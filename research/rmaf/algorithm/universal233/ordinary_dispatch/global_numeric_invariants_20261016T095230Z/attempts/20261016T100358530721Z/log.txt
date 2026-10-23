@@ -1,0 +1,111 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericActualEntries.lean:79:57: error: don't know how to synthesize placeholder for argument `b`
+context:
+rec : Nat → Tree → Tree → Option CommonForest
+q : Nat
+T S : Tree
+hp : DepthOne.proper T S = true
+N M : Nat
+sz : (leaves T).length ≤ N ∧ (leaves S).length ≤ N
+cap : PairCap M T S
+call : Call
+pre : DepthOne.pretest01 T S = DepthOne.Result.rejected
+mem :
+  call ∈
+    match early T S with
+    | Early.common reverse c => []
+    | Early.one reverse c => childCalls (Oriented reverse T S).fst q [pendantChild (Oriented reverse T S).snd c.a c.b]
+    | Early.high reverse c => childCalls (Oriented reverse T S).fst q (branches (Oriented reverse T S).snd c.a c.b)
+    | Early.rule4Forward s => rule4Calls s q
+    | Early.rule4Reverse s => rule4Calls s q
+    | Early.hard2 c d => hard2ForestCalls (cutoff rec q) T S c q
+    | Early.refused => []
+reverse : Bool
+c✝ : Candidate
+he : early T S = Early.one reverse c✝
+sel : CherryBranching.select (Oriented reverse T S).fst (Oriented reverse T S).snd = some (Priority.one, c✝)
+c : Child
+hc : c ∈ [pendantChild (Oriented reverse T S).snd c✝.a c✝.b]
+⊢ Nat
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericActualEntries.lean:79:55: error: don't know how to synthesize placeholder for argument `a`
+context:
+rec : Nat → Tree → Tree → Option CommonForest
+q : Nat
+T S : Tree
+hp : DepthOne.proper T S = true
+N M : Nat
+sz : (leaves T).length ≤ N ∧ (leaves S).length ≤ N
+cap : PairCap M T S
+call : Call
+pre : DepthOne.pretest01 T S = DepthOne.Result.rejected
+mem :
+  call ∈
+    match early T S with
+    | Early.common reverse c => []
+    | Early.one reverse c => childCalls (Oriented reverse T S).fst q [pendantChild (Oriented reverse T S).snd c.a c.b]
+    | Early.high reverse c => childCalls (Oriented reverse T S).fst q (branches (Oriented reverse T S).snd c.a c.b)
+    | Early.rule4Forward s => rule4Calls s q
+    | Early.rule4Reverse s => rule4Calls s q
+    | Early.hard2 c d => hard2ForestCalls (cutoff rec q) T S c q
+    | Early.refused => []
+reverse : Bool
+c✝ : Candidate
+he : early T S = Early.one reverse c✝
+sel : CherryBranching.select (Oriented reverse T S).fst (Oriented reverse T S).snd = some (Priority.one, c✝)
+c : Child
+hc : c ∈ [pendantChild (Oriented reverse T S).snd c✝.a c✝.b]
+⊢ Nat
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericActualEntries.lean:108:27: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  j ≥ 0
+  i ≥ 0
+  g ≥ 0
+  f ≥ 0
+  e ≥ 0
+  c ≥ 0
+  c - e ≥ 0
+  c - j ≤ -1
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+  a - f ≥ 0
+  a - g ≥ 0
+  a + c - e - f - i ≥ 0
+where
+ a := ↑N
+ b := ↑(leaves T0).length
+ c := ↑Q
+ e := ↑q
+ f := ↑(leaves T).length
+ g := ↑(leaves S).length
+ i := ↑d
+ j := ↑call.budget
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericActualEntries.lean:123:18: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  l ≥ 0
+  k ≥ 0
+  j ≥ 0
+  i ≥ 0
+  h ≥ 0
+  g ≥ 0
+  f ≥ 0
+  f + g - l ≥ 1
+  c ≥ 0
+  c - f - g ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+  a - k ≥ 0
+  2*a - h ≥ 0
+  2*a - i ≥ 0
+  2*a - j ≥ 0
+where
+ a := ↑N
+ b := ↑(leaves T0).length
+ c := ↑call.budget
+ f := ↑e
+ g := ↑r
+ h := ↑(GenericForest.targetNodes call.target)
+ i := ↑(GenericForest.sourceNodes ss)
+ j := ↑ss.length
+ k := ↑(List.map leaves ss).flatten.length
+ l := ↑Q

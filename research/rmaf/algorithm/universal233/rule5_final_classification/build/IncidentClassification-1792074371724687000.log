@@ -1,0 +1,77 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/IncidentClassification.lean:51:16: error: unknown tactic
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/IncidentClassification.lean:51:12: error: unsolved goals
+T : Tree
+X : List Nat
+q : RMAF.Vertex
+hq : q ∈ incident T X
+hs : Valid T q ∧ q ≠ [] ∧ (minimalVertices X T).contains q ≠ (minimalVertices X T).contains (List.dropLast q)
+h : ¬q ∈ minimalVertices X T
+⊢ List.dropLast q ∈ minimalVertices X T
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/IncidentClassification.lean:55:2: error: unknown tactic
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/IncidentClassification.lean:54:92: error: unsolved goals
+T : Tree
+X : List Nat
+q v : RMAF.Vertex
+hq : q ∈ incident T X
+hin : Incoming T X q
+hv : v ∈ minimalVertices X T
+⊢ q <+: v
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/IncidentClassification.lean:67:32: error(lean.invalidField): Invalid field `antisymm`: The environment does not contain `Exists.antisymm`, so it is not possible to project the field `antisymm` from an expression
+  incoming_all_hull hq hi hj.left
+of type `∃ t, q ++ t = r`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/IncidentClassification.lean:121:16: error: unknown tactic
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/IncidentClassification.lean:114:38: error(lean.unknownIdentifier): Unknown identifier `BinaryExchange.Vertex`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/IncidentClassification.lean:121:3: error: unsolved goals
+case mp
+T : Tree
+X C : List Nat
+q : RMAF.Vertex
+x y : Nat
+hn : (leaves T).Nodup
+hq : q ∈ incident T X
+dj : BinaryExchange.Disj T X C
+labs : ∀ (z : Nat), z ∈ C → z ∈ leaves T
+hx : x ∈ C
+hy : y ∈ C
+u : RMAF.Vertex
+hu : LeafAt T u x
+v : RMAF.Vertex
+hv : LeafAt T v y
+noCross : ∀ {u v : RMAF.Vertex} {x y : Nat}, LeafAt T u x → LeafAt T v y → x ∈ C → y ∈ C → q <+: u → ¬q <+: v → False
+up : q <+: u
+⊢ q <+: v
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/IncidentClassification.lean:110:37: error: unsolved goals
+case mpr
+T : Tree
+X C : List Nat
+q : RMAF.Vertex
+x y : Nat
+hn : (leaves T).Nodup
+hq : q ∈ incident T X
+dj : BinaryExchange.Disj T X C
+labs : ∀ (z : Nat), z ∈ C → z ∈ leaves T
+hx : x ∈ C
+hy : y ∈ C
+u : RMAF.Vertex
+hu : LeafAt T u x
+v : RMAF.Vertex
+hv : LeafAt T v y
+noCross : ∀ {u v : RMAF.Vertex} {x y : Nat}, LeafAt T u x → LeafAt T v y → x ∈ C → y ∈ C → q <+: u → ¬q <+: v → False
+⊢ q <+: v → q <+: u
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/IncidentClassification.lean:107:76: error: unsolved goals
+T : Tree
+X C : List Nat
+q : RMAF.Vertex
+x y : Nat
+hn : (leaves T).Nodup
+hq : q ∈ incident T X
+dj : BinaryExchange.Disj T X C
+labs : ∀ (z : Nat), z ∈ C → z ∈ leaves T
+hx : x ∈ C
+hy : y ∈ C
+u : RMAF.Vertex
+hu : LeafAt T u x
+v : RMAF.Vertex
+hv : LeafAt T v y
+const : q <+: u ↔ q <+: v
+⊢ OutsideLabel T X q x ↔ OutsideLabel T X q y

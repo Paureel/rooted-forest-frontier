@@ -1,0 +1,9 @@
+import Hard2FullOutputSource
+#check OrdinaryDispatch.Hard2SourceWork.fullOutputsSource_value
+#print axioms OrdinaryDispatch.Hard2SourceWork.fullOutputsSource_value
+#check OrdinaryDispatch.Hard2SourceWork.fullOutputsSource_split
+#print axioms OrdinaryDispatch.Hard2SourceWork.fullOutputsSource_split
+#check OrdinaryDispatch.Hard2SourceWork.hardPaidOutputExecutionSource_value
+#print axioms OrdinaryDispatch.Hard2SourceWork.hardPaidOutputExecutionSource_value
+#check OrdinaryDispatch.Hard2SourceWork.hardPaidOutputExecutionSource_split
+#print axioms OrdinaryDispatch.Hard2SourceWork.hardPaidOutputExecutionSource_split

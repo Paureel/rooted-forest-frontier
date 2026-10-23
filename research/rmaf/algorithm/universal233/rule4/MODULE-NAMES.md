@@ -1,0 +1,1 @@
+Before final freeze, all authored Lean modules received the Rule4 prefix to prevent collisions with completed imported modules named Exchange, Selector, and Program. Mathematical bodies and proof statements were preserved; local import names were adjusted. Earlier development logs retain the original filenames.

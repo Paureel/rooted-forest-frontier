@@ -1,0 +1,9 @@
+import CommonPaidSource
+#check Universal233.Rule5ExecutionSource.jobs_answers_value
+#print axioms Universal233.Rule5ExecutionSource.jobs_answers_value
+#check Universal233.Rule5ExecutionSource.jobs_answers_recursive
+#print axioms Universal233.Rule5ExecutionSource.jobs_answers_recursive
+#check Universal233.Rule5ExecutionSource.run_paid_value
+#print axioms Universal233.Rule5ExecutionSource.run_paid_value
+#check Universal233.Rule5ExecutionSource.run_paid_calls
+#print axioms Universal233.Rule5ExecutionSource.run_paid_calls

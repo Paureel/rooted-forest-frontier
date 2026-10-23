@@ -1,0 +1,38 @@
+import StateExpand
+import Priority
+import OutsideCore
+import T1Exchange
+import ForestConditional
+import BuildSetup
+namespace OrdinaryDispatch
+open RMAF ForestState Universal233 Universal233.CherryBranching Universal233.HardParent
+
+def commonFresh (T : Tree) : Nat := OrdinaryCommonSplit.Source.labelMax (leaves T)+1
+
+theorem commonFresh_not_mem (T : Tree) : commonFresh T ∉ leaves T :=
+ OrdinaryCommonSplit.Source.fresh_not_mem (leaves T) 1 (by decide)
+
+theorem selected_common_ready {T S : Tree} {c : Candidate}
+ (hp : proper (some T) [S]=true)
+ (sel : select T S=some (.common,c)) :
+ cherryReady (some T) [S] c.a c.b (commonFresh T)=true := by
+ have nt := (proper_parts (some T) [S] hp).1
+ have ns := (GenericForest.proper_source_labels T [S] hp S (by simp)).1
+ have ch := (selected_actual sel).1
+ have hab := cherry_distinct nt ch
+ have labs := hasCherry_labels (actual_hasCherry ch)
+ have perm : (leaves T).Perm (leaves S) := by
+  have op := GenericForest.singleton_ordinary_proper T S hp
+  simp only [DepthOne.proper,Bool.and_eq_true,decide_eq_true_eq] at op
+  exact op.2
+ have aS : c.a∈leaves S := (perm.mem_iff).1 labs.1
+ have bS : c.b∈leaves S := (perm.mem_iff).1 labs.2
+ have hc : cuts S c.a c.b=[] := by
+  rw [←(selected_actual sel).2]
+  exact List.length_eq_zero_iff.1 (selected_spec sel).2
+ have source := Rule5Classification.zero_cuts_hasCherry ns aS bS hab hc
+ simpa [cherryReady,labels,Bool.and_eq_true,List.any_eq_true,and_assoc] using
+  And.intro hp (And.intro hab (And.intro (commonFresh_not_mem T)
+   (And.intro (hasCherry_bool (actual_hasCherry ch)) (hasCherry_bool source))))
+
+end OrdinaryDispatch

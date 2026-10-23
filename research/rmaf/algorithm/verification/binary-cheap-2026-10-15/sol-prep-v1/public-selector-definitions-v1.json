@@ -1,0 +1,22 @@
+{
+  "source": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/good-pair-consumer-2026-10-15/sol-review-CONFIRMED-v1/review/src/Selector.lean",
+  "source_sha256": "bc685b0792bccc279abbf3870944814758fae9b4ba137c11df75d204d59828bf",
+  "scope": "Already-contacted public definitions only; no proof extraction or candidate contact",
+  "excerpts": [
+    {
+      "source_start_line": 287,
+      "source_end_line": 296,
+      "text": "def vertices : RMAF.Tree \u2192 List Vertex\n  | .leaf _ => [[]]\n  | .node l r => [] :: (RMAF.prependSide false (vertices l) ++ RMAF.prependSide true (vertices r))\n\ndef edges : RMAF.Tree \u2192 List (Vertex \u00d7 Vertex)\n  | .leaf _ => []\n  | .node l r => ([],[false]) :: ([],[true]) ::\n      ((edges l).map (fun e => (false::e.1,false::e.2)) ++\n       (edges r).map (fun e => (true::e.1,true::e.2)))\n\n"
+    },
+    {
+      "source_start_line": 390,
+      "source_end_line": 395,
+      "text": "def descendants (t : RMAF.Tree) (v : Vertex) : List Nat :=\n  (RMAF.leaves t).filter (fun x => prefixB v (leafAddress t x))\n\ndef sideLabels (A : List Nat) (t : RMAF.Tree) (v : Vertex) (inside : Bool) : List Nat :=\n  A.filter (fun x => if inside then (descendants t v).contains x else !((descendants t v).contains x))\n\n"
+    },
+    {
+      "source_start_line": 536,
+      "source_end_line": 560,
+      "text": "def properInput (t : RMAF.Tree) (A B : List Nat) : Bool :=\n  decide (RMAF.leaves t).Nodup && decide A.Nodup && decide B.Nodup &&\n  !A.isEmpty && !B.isEmpty &&\n  A.all (fun x => (RMAF.leaves t).contains x) &&\n  B.all (fun x => (RMAF.leaves t).contains x) && A.all (fun x => !(B.contains x))\n\ndef vertexOK (t : RMAF.Tree) (A B : List Nat) (v : Vertex) : Bool :=\n  (RMAF.minimalVertices A t).contains v && (RMAF.minimalVertices B t).contains v &&\n    ((regions A t v).length==3 || (regions B t v).length==3)\n\ndef edgeOK (t : RMAF.Tree) (A B : List Nat) (e : Vertex \u00d7 Vertex) : Bool :=\n  (RMAF.minimalVertices A t).contains e.1 && (RMAF.minimalVertices B t).contains e.1 &&\n  (RMAF.minimalVertices A t).contains e.2 && (RMAF.minimalVertices B t).contains e.2 &&\n  [false,true].all (fun inside =>\n    !(sideLabels A t e.2 inside).isEmpty && !(sideLabels B t e.2 inside).isEmpty &&\n    RMAF.disjointVertices (RMAF.minimalVertices (sideLabels A t e.2 inside) t) (RMAF.minimalVertices B t) &&\n    RMAF.disjointVertices (RMAF.minimalVertices (sideLabels B t e.2 inside) t) (RMAF.minimalVertices A t))\n\ndef choose (t : RMAF.Tree) (A B : List Nat) : Option Choice :=\n  if properInput t A B then\n    match (vertices t).find? (vertexOK t A B) with\n    | some v => some (.vertex v)\n    | none => ((edges t).find? (edgeOK t A B)).map Choice.edge\n  else none\n\n"
+    }
+  ]
+}

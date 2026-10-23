@@ -1,0 +1,30 @@
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReverse.lean:55:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  restrictionAgrees t s B
+in the target expression
+  targetAgrees (some t) s B = true
+
+case refine_1
+t s : Tree
+Q F : Forest
+hsn : (leaves s).Nodup
+hQ : partitionCheck (leaves s) Q = true
+sourceQ : pairwiseEmbeddings s Q = true
+hG : partitionCheck (leaves s) (family (leaves s) F) = true
+href : Refines (family (leaves s) F) Q
+hc : ∀ (u : Tree), u ∈ sourceForest s Q → sourceCheck (some t) F u = true
+localClear : ∀ (U : List Nat), U ∈ Q → pairwiseEmbeddings s (family U F) = true
+B : List Nat
+hB : B ∈ family (leaves s) F
+U : List Nat
+hU : U ∈ Q
+hBU : B ⊆ U
+u : Tree
+hu : restrict U s = some u
+hl : (leaves u).Perm U
+hcu :
+  (partitionCheck (leaves u) (family (leaves u) F) = true ∧
+      (family (leaves u) F).all (targetAgrees (some t) u) = true) ∧
+    pairwiseEmbeddings u (family (leaves u) F) = true
+hBF : B ∈ F
+hBu : B ⊆ leaves u
+⊢ targetAgrees (some t) s B = true

@@ -1,0 +1,58 @@
+import CheckPrimitives
+namespace GenericForest.CheckCorrespondence
+open RMAF ForestState Universal233 WholeSourceWork
+
+def partitionCap (N : Nat) : Nat := 128*(N+1)^2
+
+theorem meterPartition_bound (L : List Nat) (F : List (List Nat)) (N : Nat)
+ (labels : L.length≤N) (blocks : F.length≤N) (cells : F.flatten.length≤N) :
+ (meterPartition L F).work≤partitionCap N := by
+ have flat : (meterFlatten F).work≤12*N+1 := by rw [meterFlatten_work];omega
+ have nonempty:=meterAll_bound (fun B : List Nat=>⟨!B.isEmpty,1⟩) F 1 (fun _ _=>Nat.le_refl _)
+ have nonempty' : (meterAll (fun B : List Nat=>⟨!B.isEmpty,1⟩) F).work≤5*(N+1):=
+  Nat.le_trans nonempty (Nat.mul_le_mul_left 5 (Nat.add_le_add_right blocks 1))
+ let counts : Nat → Charged Bool:=fun x=>let all:=meterFlatten F;let count:=meterCount x all.value;
+  ⟨count.value==1,all.work+count.work+4⟩
+ have point (x : Nat) : (counts x).work≤16*N+6 := by
+  dsimp only [counts]
+  simp only [meterCount_work,meterFlatten_value]
+  omega
+ have counting:=meterAll_bound counts L (16*N+6) (fun x _=>point x)
+ have counting' : (meterAll counts L).work≤(16*N+10)*(N+1):=
+  Nat.le_trans counting (Nat.mul_le_mul_left _ (Nat.add_le_add_right labels 1))
+ have contain (x : Nat) : (meterContains x L).work≤4*(N+1):=
+  Nat.le_trans (meterContains_bound x L) (Nat.mul_le_mul_left 4 (Nat.add_le_add_right labels 1))
+ have support:=meterAll_bound (fun x=>meterContains x L) F.flatten (4*(N+1)) (fun x _=>contain x)
+ have support' : (meterAll (fun x=>meterContains x L) F.flatten).work≤(4*(N+1)+4)*(N+1):=
+  Nat.le_trans support (Nat.mul_le_mul_left _ (Nat.add_le_add_right cells 1))
+ dsimp only [meterPartition]
+ change _≤partitionCap N
+ dsimp only [counts] at counting'
+ simp only [meterFlatten_value] at counting' ⊢
+ unfold partitionCap
+ simp only [Nat.pow_succ,Nat.pow_zero,Nat.mul_one,Nat.mul_add,Nat.add_mul,Nat.mul_assoc] at nonempty' counting' support' ⊢
+ omega
+
+theorem singleton_replicate_cells (m x : Nat) : ((List.replicate m [x]).flatten).length=m := by
+ induction m with
+ | zero => rfl
+ | succ m ih => simpa only [List.replicate_succ,List.flatten_cons,List.length_append,List.length_singleton,Nat.add_comm] using congrArg Nat.succ ih
+
+/-- A concrete traversal obstruction to any all-callback fixed-input inspection bound. -/
+theorem hostile_partition_exceeds_inspection :
+ ∃m,inspectionBill (some (.leaf 0)) [.leaf 0] 0 < (meterPartition [0] (List.replicate m [0])).work := by
+ let K:=inspectionBill (some (.leaf 0)) [.leaf 0] 0
+ let m:=K+1
+ have lower:=meterPartition_count_lower [0] (List.replicate m [0]) 0 (by simp)
+ rw [singleton_replicate_cells] at lower
+ exact ⟨m,by dsimp [m,K] at *;omega⟩
+
+theorem hostile_not_returned_payload (m : Nat) (large : 2≤m) :
+ ¬ReturnedPayloadBound (fun _ _ _=>some (List.replicate m [0])) := by
+ intro bound
+ have data:=bound (.leaf 0) (.leaf 0) 0 (List.replicate m [0]) (by decide) rfl
+ have length:=data.1.length_eq
+ rw [singleton_replicate_cells] at length
+ simp only [leaves,List.length_singleton] at length
+ omega
+end GenericForest.CheckCorrespondence

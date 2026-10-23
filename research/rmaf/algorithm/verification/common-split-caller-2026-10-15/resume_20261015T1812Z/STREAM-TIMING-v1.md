@@ -1,0 +1,3 @@
+# Streaming prior evidence timing
+
+All 18 new named stream/gate controls and 4 string/escape/boundary controls passed before scientific input; postcontact qualification, zero blind credit. The first scientific batch compared its complete966,042,642 raw bytes (enriched JSON plus raw log) in11.023051916s, producing matching full projections and distinct source hashes. Measured throughput87.6 MB/s. Approximately16.4GB remain, projecting about188s under linear byte scaling; a10-minute aggregate cap and progress by fully compared batch count are applied. This is receipt parsing, not a repeated scientific census/build. All original raw files stay unchanged.

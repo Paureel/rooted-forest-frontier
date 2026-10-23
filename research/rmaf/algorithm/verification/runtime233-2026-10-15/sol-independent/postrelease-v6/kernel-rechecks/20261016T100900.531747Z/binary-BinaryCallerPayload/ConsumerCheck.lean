@@ -1,0 +1,9 @@
+import BinaryCallerPayload
+#check GenericForest.BinaryCaller.payBudget_caps
+#print axioms GenericForest.BinaryCaller.payBudget_caps
+#check GenericForest.BinaryCaller.raw_parent_setup_paid
+#print axioms GenericForest.BinaryCaller.raw_parent_setup_paid
+#check GenericForest.BinaryCaller.raw_parent_global_work
+#print axioms GenericForest.BinaryCaller.raw_parent_global_work
+#check GenericForest.BinaryCaller.restriction_global_caps
+#print axioms GenericForest.BinaryCaller.restriction_global_caps

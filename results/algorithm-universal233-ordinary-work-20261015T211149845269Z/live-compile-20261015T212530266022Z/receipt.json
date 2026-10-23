@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "56f8e80de3ecdc6bf65634db62a21843625486beb7f9434a6171c919057eba98",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.4756083749998652,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.4496835829995689,
+      "resource_stop": null,
+      "log_sha256": "cf1ccdfbc8031f4b44c3c32853704b3e719041f52eee3b46d226817e11298130"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0024340839991054963,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Hard2StepTrace",
+      "source_sha256": "f446cfcea07563a248a7b50f27d7062ef0909b87ff15b89e7f3f163d3382c20b",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 1.3018088339995302,
+      "resource_stop": null,
+      "log_sha256": "cb2f9b3e562622bbf55c186cf9659678ac52ce130bba4c545db08d59349bde55"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Hard2StepTrace', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-20261015T211149845269Z/Hard2StepTrace.lean:41:16: error: Tactic `rfl` failed: The left-hand side\\n  (hard2Trace actual T S c d q).value\\nis not definitionally equal to the right-hand side\\n  Hard2Dispatcher.run actual T S c d q\\n\\ncase some.clique\\nactual : Ordinary\\nT S : Tree\\nc d : Candidate\\nq : Nat\\nv : Vertex\\nsel : runHard2 T S c = some (Result.clique v)\\n\u22a2 (hard2Trace actual T S c d q).value = Hard2Dispatcher.run actual T S c d q\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-20261015T211149845269Z/Hard2StepTrace.lean:42:18: error: Tactic `rfl` failed: The left-hand side\\n  (hard2Trace actual T S c d q).value\\nis not definitionally equal to the right-hand side\\n  Hard2Dispatcher.run actual T S c d q\\n\\ncase some.four\\nactual : Ordinary\\nT S : Tree\\nc d : Candidate\\nq : Nat\\no : Order\\nv w : Vertex\\nsel : runHard2 T S c = some (Result.four o v w)\\n\u22a2 (hard2Trace actual T S c d q).value = Hard2Dispatcher.run actual T S c d q\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-20261015T211149845269Z/Hard2StepTrace.lean:43:22: error: Tactic `rfl` failed: The left-hand side\\n  (hard2Trace actual T S c d q).value\\nis not definitionally equal to the right-hand side\\n  Hard2Dispatcher.run actual T S c d q\\n\\ncase some.diagonal\\nactual : Ordinary\\nT S : Tree\\nc d : Candidate\\nq : Nat\\no : Order\\nv w : Vertex\\nsel : runHard2 T S c = some (Result.diagonal o v w)\\n\u22a2 (hard2Trace actual T S c d q).value = Hard2Dispatcher.run actual T S c d q\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-20261015T211149845269Z/Hard2StepTrace.lean:44:21: error: Tactic `rfl` failed: The left-hand side\\n  (hard2Trace actual T S c d q).value\\nis not definitionally equal to the right-hand side\\n  Hard2Dispatcher.run actual T S c d q\\n\\ncase some.pair\\nactual : Ordinary\\nT S : Tree\\nc d : Candidate\\nq : Nat\\no : Order\\nchoice : PairGeometry.Choice\\nsel : runHard2 T S c = some (Result.pair o choice)\\n\u22a2 (hard2Trace actual T S c d q).value = Hard2Dispatcher.run actual T S c d q\\n'))"
+}

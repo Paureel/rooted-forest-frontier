@@ -1,0 +1,112 @@
+[
+  {
+    "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_work_integration/Hard2SourceBill.lean",
+    "sha256": "af850522e42f09067e2612be4ff151ef41ec691a7520907177fdb1cb2b101eb3",
+    "lines": [
+      7,
+      8
+    ],
+    "verbatim": "def BelowWorkBill (W : OrdinaryWork) (N q : Nat) (c D : Rat) : Prop :=\n ∀t s r,DepthOne.proper t s=true→(leaves t).length≤N→(leaves s).length≤N→r<q→(W t s r:Rat)≤D*c^r",
+    "status": "Retrieved exact source excerpt; already recorded resume source contact; not independent derivation."
+  },
+  {
+    "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_work_integration/Hard2SourceBill.lean",
+    "sha256": "af850522e42f09067e2612be4ff151ef41ec691a7520907177fdb1cb2b101eb3",
+    "lines": [
+      90,
+      98
+    ],
+    "verbatim": "/-- Conditional recursive ordinary charge is paid once across the complete\nactual hard2 frontier; all local source work remains explicitly separate. -/\ntheorem hard2_ordinary_work_bound (actual : Ordinary) (W : OrdinaryWork) {T S : Tree} {c d : Candidate} (q : Nat)\n (proper0 : DepthOne.proper T S=true)\n (forward : CherryBranching.select T S=some (.hard2,c))\n (reverse : CherryBranching.select S T=some (.hard2,d))\n (noT : Rule4.select T S=none) (noS : Rule4.select S T=none) (D : Rat) (positive : 0≤D)\n (bill : BelowWorkBill W (leaves T).length q Rule5ActualTrace.base D) :\n (queryWork W (hard2Trace actual T S c d q).queries:Rat)≤D*Rule5ActualTrace.base^q*Rule5ActualTrace.gamma Rule5ActualTrace.base := by",
+    "status": "Retrieved exact source excerpt; already recorded resume source contact; not independent derivation."
+  },
+  {
+    "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/budget_optimization/BOConditional.lean",
+    "sha256": "2364a845ffe2254cf42a4443c9caedbf34f101a079b8e33f83d04e7b8b4941fb",
+    "lines": [
+      5,
+      8
+    ],
+    "verbatim": "/-- Explicit polynomial coefficient, including the maximum label bit length L. -/\ndef queryPolynomial (n q L A d : Nat) : Nat := A*(n+q+L+1)^d\n\ndef uniformQueryPolynomial (n L A d : Nat) : Nat := A*(2*n+L+1)^d",
+    "status": "Retrieved exact source excerpt; already recorded resume source contact; not independent derivation."
+  },
+  {
+    "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/budget_optimization/BOConditional.lean",
+    "sha256": "2364a845ffe2254cf42a4443c9caedbf34f101a079b8e33f83d04e7b8b4941fb",
+    "lines": [
+      108,
+      121
+    ],
+    "verbatim": "/-- Explicit polynomial wrapper envelopes. A source/bit implementation must\njustify these three M charges for the printed primitive-cost interface. -/\ntheorem conditional_233_polynomial (T S : Tree) (hp : DepthOne.proper T S=true)\n (w : Nat→Nat) (L A d B e : Nat)\n (perQuery : ∀b,b<(leaves T).length →\n   (w b:Rat)≤(queryPolynomial (leaves T).length b L A d:Rat)*(233/100:Rat)^b) :\n let n := (leaves T).length\n let M := B*(n+L+1)^e\n ∃o,(optimize T S).output=some o ∧ 0<o.partition.length ∧\n o.sourceCuts.length+1=o.partition.length ∧\n totalCharge w M M M S (optimize T S)≤\n   (((n*uniformQueryPolynomial n L A d+(M+M*n+M)+recoveryEnvelope n):Nat):Rat)*\n       (233/100:Rat)^(o.partition.length-1) :=\n conditional_233 T S hp w _ _ _ L A d perQuery",
+    "status": "Retrieved exact source excerpt; already recorded resume source contact; not independent derivation."
+  },
+  {
+    "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/budget_optimization/BOCost.lean",
+    "sha256": "1cfeb798784d5d480e20f36e4024eac11aa01d0cedc8271bb5895f9c11b54460",
+    "lines": [
+      69,
+      88
+    ],
+    "verbatim": "/-- Printed primitive-cost interface: preflight pays properness, leaf count and\nencoding; perTrial pays the local let/match, successor and retained cons cell;\nfinishCharge pays final selection/record construction. It excludes query and\nrecovery work, which are added separately exactly at their actual call sites. -/\ndef wrapperCharge (preflight perTrial finishCharge : Nat) (r : Execution) : Nat :=\n preflight+perTrial*r.search.trials.length+finishCharge\n\ndef totalCharge (w : Nat→Nat) (preflight perTrial finishCharge : Nat) (S : Tree) (r : Execution) : Nat :=\n trialWork w r.search.trials+wrapperCharge preflight perTrial finishCharge r+\n (r.recoveries.map (fun call => (FinalCutRecovery.meterRecover S call.1).work)).sum\n\n/-- Exact additive accounting: all failed trials plus the successful trial,\nlinear wrapper operations, and precisely the one final recovery. -/\ntheorem total_charge_exact (T S : Tree) (hp : DepthOne.proper T S=true)\n (w : Nat→Nat) (preflight perTrial finishCharge : Nat) :\n ∃q F o,(optimize T S).search.selected=some (q,F) ∧\n (optimize T S).output=some o ∧ agreement T S F=true ∧ F.length=q+1 ∧\n totalCharge w preflight perTrial finishCharge S (optimize T S)=\n consecutiveWork w 0 (q+1)+\n (preflight+perTrial*(q+1)+finishCharge)+(FinalCutRecovery.meterRecover S F).work := by",
+    "status": "Retrieved exact source excerpt; already recorded resume source contact; not independent derivation."
+  },
+  {
+    "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_local_work/CommonLocalBinding.lean",
+    "sha256": "b955cca35e9fefe151aa38f6eabc53171d9469d17463cb3cc60bfbebc33cb985",
+    "lines": [
+      64,
+      67
+    ],
+    "verbatim": "theorem reconstruct_value (check : Forest→Measured Bool) (d : Setup) (FX FY FM FN : Forest)\n (primitive : ∀G,G∈mergeCandidates d.X d.Y d.x d.y d.rho d.gamma FM FN →\n    (check G).value=agreement d.T d.S G) :\n (reconstructMeter check d FX FY FM FN).value=reconstruct d FX FY FM FN := by",
+    "status": "Retrieved exact source excerpt; already recorded resume source contact; not independent derivation."
+  },
+  {
+    "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_local_work/BoundedCommonPolynomial.lean",
+    "sha256": "070cc403945f3aef3b09892b522dd8ef2d7e946adcf482e5f73f53d77f6abb5d",
+    "lines": [
+      8,
+      17
+    ],
+    "verbatim": "theorem actual_common_bounded_polynomial (T S : Tree) (X Y : List Nat) (edge : RMAF.Vertex)\n (d : Setup) (build : buildSetup T S X Y edge=some d) (r : Nat) {FX FY FM FN : Forest}\n (fx : actual d.tx d.sx r=some FX) (fm : actual d.mxT d.mxS r=some FM) {p : RMAF.Vertex}\n (pre : DepthOne.pretest01 d.ty d.sy=.found (some p))\n (fy : FY=DepthOne.forest d.sy (some p)) (fn : outsideReply d FY=some FN)\n (L : Nat) (labels : ∀z,z∈leaves T++leaves S →z<2^L)\n (check : Forest→Measured Bool) (K : Nat)\n (primitive : ∀G,cells G≤12*(leaves d.T).length+1 →\n    (∀z,z∈G.flatten →z<2^(L+2)) →(check G).work≤K) :\n (reconstructMeter check d FX FY FM FN).work≤commonPolynomial (2*(leaves d.T).length) K := by",
+    "status": "Retrieved exact source excerpt; already recorded resume source contact; not independent derivation."
+  },
+  {
+    "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_prefix_local_work/PrefixGuardEnvelope.lean",
+    "sha256": "124b51a7123a8473b5c5b4956db27d12cabf251be3c9ee01c6c04b089b6a6e2b",
+    "lines": [
+      59,
+      64
+    ],
+    "verbatim": "def scalarWork (fee : Nat) {α : Type} (r : Measured α) := fee*r.work\n\ntheorem guard_prefix_scaled (T S : Tree) (a b N fee : Nat)\n (ht : (leaves T).length≤N) (hs : (leaves S).length≤N) :\n scalarWork fee (guardPrefixMeter T S a b)≤fee*prefixPolynomial N :=\n Nat.mul_le_mul_left fee (guard_prefix_work T S a b N ht hs)",
+    "status": "Retrieved exact source excerpt; already recorded resume source contact; not independent derivation."
+  },
+  {
+    "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_prefix_local_work/FIRST-GAP-v1.md",
+    "sha256": "0401e6698cc3329491e8bce05cfb871748dc5caf43bb0f5f12c4365ab3a9ce40",
+    "lines": [
+      3,
+      18
+    ],
+    "verbatim": "The actual admitted source is:\n  let P := pendantPartition S a b\n  properPair T S && hasCherry T a b && earlierClear T S && ...\n\nThe properPair and hasCherry Boolean body bills are now proved, including every\nraw malformed/refused input and original cherry/address scan. The actual let P\nconstruction is NOT covered by those guard bills. Under strict-let evaluation,\nthe first unresolved body is pendantPartition S a b -> cuts S a b ->\npendantOriginal S a b -> vertices S, then minimalVertices/rootedSpan/address\nmembership and source subtree-label/core construction. Source closure sharing\nand compiled evaluation order have no claimed machine correspondence here.\n\nThe prefix rejection theorem is functional only: it does not make this earlier\nP construction free. Later unresolved bodies include earlierClear/candidates\nin both orientations, rule4 in both orientations, embeddings/restriction checks,\nand the rest of selectLocal/selectBad/selectBoundary and selected builders.",
+    "status": "Retrieved exact source excerpt; already recorded resume source contact; not independent derivation."
+  },
+  {
+    "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_prefix_local_work/PRIMITIVE-INTERFACE-v1.md",
+    "sha256": "962d321b999f894d4ac85dbb82c4242786b71cfc1e828a1af1e2ed10ad0b984b",
+    "lines": [
+      29,
+      41
+    ],
+    "verbatim": "Only primitive scalar/cell correspondence remains explicit: Nat equality and\ninequality/decidable-negation on <=L-bit operands; Boolean/option/list tags;\none-cell tuple/cons construction; append-left-spine copying; Nat list-length\ncounters at the displayed polynomial size, and address cells (Bool, |p|<=N).\nUse a scalar fee covering actual label/counter/address bit widths. The theorem\nguard_prefix_scaled multiplies the proved body count by this fee; it does not\nassert any unit Nat, color, payload-copy or machine/bit cost. No agreement\nchecker fee is needed for these two guard bodies. Actual checked-embedding,\nrestriction and partition primitives remain later source calls.\n\nThis source model is not a compiled machine trace equivalence theorem. All\nnonrecursive Rule5 caller work and global bit recurrence remain OPEN until the\nremaining actual source bodies and primitive correspondence are supplied.",
+    "status": "Retrieved exact source excerpt; already recorded resume source contact; not independent derivation."
+  },
+  {
+    "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_check_correspondence/README.md",
+    "sha256": "48bf12fd79d2606cf75ce9f9e4a240ff40f51547aad44ba37fbf0e226c10f586",
+    "lines": [
+      34,
+      40
+    ],
+    "verbatim": "This is a source checker counterpart and unit-operation sheet result. It does\nnot prove native Lean machine cost. A Nat equality is still a unit scalar\nslot; scalar provider bodies and a binary bit-cost lift are the next explicit\nconsumer. The imported old address/materialization meters retain their\noriginal source-provider scope. No all-imported stored IR claim is made.\nFunctional algorithm acceptance, full runtime, base and novelty milestones\nand independent acceptance remain OPEN. This is author development lineage.",
+    "status": "Retrieved exact source excerpt; already recorded resume source contact; not independent derivation."
+  }
+]

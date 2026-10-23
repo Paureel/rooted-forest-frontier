@@ -1,0 +1,9 @@
+import RWFinal
+#check OrdinaryDispatch.RecoveryLocalWork.meterRecover_value
+#print axioms OrdinaryDispatch.RecoveryLocalWork.meterRecover_value
+#check OrdinaryDispatch.RecoveryLocalWork.final_source_work_bound
+#print axioms OrdinaryDispatch.RecoveryLocalWork.final_source_work_bound
+#check OrdinaryDispatch.RecoveryLocalWork.final_source_uniform
+#print axioms OrdinaryDispatch.RecoveryLocalWork.final_source_uniform
+#check OrdinaryDispatch.RecoveryLocalWork.final_source_absorbed
+#print axioms OrdinaryDispatch.RecoveryLocalWork.final_source_absorbed

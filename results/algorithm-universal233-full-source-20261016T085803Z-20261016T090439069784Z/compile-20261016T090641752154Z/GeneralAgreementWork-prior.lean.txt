@@ -1,0 +1,82 @@
+import ERInterface
+import CommonLocalBinding
+namespace OrdinaryDispatch.FullSourceWork
+open RMAF ForestState Universal233 WholeSourceWork CoreWork
+open GenericForest.CheckCorrespondence
+
+/-- General RMAF.agreement, using the completed checker primitives. This
+full-scan unit-source upper evaluator also charges skipped Boolean suffixes.
+It does not substitute the differently typed ForestState.agrees API. -/
+def agreementMeter (T S : Tree) (F : RMAF.Forest) : Charged Bool :=
+ let t:=meterLeaves T;let s:=meterLeaves S
+ let pt:=meterPartition t.value F;let ps:=meterPartition s.value F
+ let r:=meterAll (meterRestrictionAgrees T S) F
+ let a:=meterPairwise T F;let b:=meterPairwise S F
+ ⟨pt.value&&ps.value&&r.value&&a.value&&b.value,
+  t.work+s.work+pt.work+ps.work+r.work+a.work+b.work+8⟩
+
+@[simp] theorem agreementMeter_value (T S : Tree) (F : RMAF.Forest) :
+ (agreementMeter T S F).value=RMAF.agreement T S F := by
+ simp [agreementMeter,RMAF.agreement]
+
+theorem leaves_meter_square (T : Tree) (N : Nat) (tn : treeNodes T≤N) :
+ (meterLeaves T).work≤8*(N+1)^2 := by
+ have h:=meterLeaves_bound T N tn
+ have cap:=Nat.mul_le_mul_left (8*(N+1)) (Nat.le_trans tn (Nat.le_succ N))
+ exact Nat.le_trans h (by simpa only [Nat.pow_two,Nat.mul_assoc] using cap)
+
+theorem agreementMeter_bound (T S : Tree) (F : RMAF.Forest) (N : Nat)
+ (tn : treeNodes T≤N) (sn : treeNodes S≤N)
+ (blocks : F.length≤N) (cells : F.flatten.length≤N) :
+ (agreementMeter T S F).work≤1024*(N+1)^5 := by
+ have tl:=Nat.le_trans (leaves_nodes T) tn
+ have sl:=Nat.le_trans (leaves_nodes S) sn
+ have lens (B : List Nat) (mem : B∈F) : B.length≤N :=
+  Nat.le_trans (Rule5LocalWork.block_len F B mem) cells
+ have t:=cap_lift N 8 2 5 _ (leaves_meter_square T N tn) (by decide)
+ have s:=cap_lift N 8 2 5 _ (leaves_meter_square S N sn) (by decide)
+ have pt:=cap_lift N 128 2 5 _ (meterPartition_bound (leaves T) F N tl blocks cells) (by decide)
+ have ps:=cap_lift N 128 2 5 _ (meterPartition_bound (leaves S) F N sl blocks cells) (by decide)
+ have restriction:=cap_all (meterRestrictionAgrees T S) F N 128 2 blocks
+  (fun B hb=>meterRestrictionAgrees_bound T S B N (by omega) (by omega) (lens B hb))
+ have r:=cap_lift N 132 3 5 _ restriction (by decide)
+ have a:=meterPairwise_polynomial T F N tn tl blocks lens
+ have b:=meterPairwise_polynomial S F N sn sl blocks lens
+ have pos : 1≤(N+1)^5:=Nat.one_le_pow _ _ (by omega)
+ simp only [agreementMeter,meterLeaves_value]
+ unfold partitionCap at pt ps
+ omega
+
+/-- Explicit conversion between the two receipt types used by the completed
+checker and common-reconstruction packages. -/
+def measuredAgreement (T S : Tree) (F : RMAF.Forest) : Rule5LocalWork.Measured Bool :=
+ let c:=agreementMeter T S F;⟨c.value,c.work⟩
+
+@[simp] theorem measuredAgreement_value (T S : Tree) (F : RMAF.Forest) :
+ (measuredAgreement T S F).value=RMAF.agreement T S F := agreementMeter_value T S F
+
+def agreementK (n : Nat) : Nat := 1024*(12*n+2)^5
+
+theorem measuredAgreement_K (T S : Tree) (n : Nat)
+ (tn : treeNodes T≤2*n) (sn : treeNodes S≤2*n) (F : RMAF.Forest)
+ (payload : Rule5LocalWork.cells F≤12*n+1) :
+ (measuredAgreement T S F).work≤agreementK n := by
+ have bounds : F.length≤12*n+1 ∧ F.flatten.length≤12*n+1 := by
+  unfold Rule5LocalWork.cells at payload;omega
+ exact agreementMeter_bound T S F (12*n+1) (by omega) (by omega) bounds.1 bounds.2
+
+/-- The numeric label domain is retained explicitly for a later bounded
+scalar provider. Unit-source work does not interpret this as a bit fee. -/
+def AgreementDomain (T S : Tree) (F : RMAF.Forest) (n L : Nat) : Prop :=
+ treeNodes T≤2*n ∧ treeNodes S≤2*n ∧ Rule5LocalWork.cells F≤12*n+1 ∧
+ (∀x∈leaves T,x<2^(L+2)) ∧ (∀x∈leaves S,x<2^(L+2)) ∧ (∀x∈F.flatten,x<2^(L+2))
+
+theorem agreement_domain_envelope (T S : Tree) (F : RMAF.Forest) (n L : Nat)
+ (domain : AgreementDomain T S F n L) :
+ (measuredAgreement T S F).value=RMAF.agreement T S F ∧
+ (measuredAgreement T S F).work≤agreementK n :=
+ ⟨measuredAgreement_value T S F,measuredAgreement_K T S n domain.1 domain.2.1 F domain.2.2.1⟩
+
+theorem treeNodes_leafCount (T : Tree) : treeNodes T+1=2*(leaves T).length := by
+ induction T <;> simp_all only [treeNodes,leaves,List.length_cons,List.length_nil,List.length_append] <;> omega
+end OrdinaryDispatch.FullSourceWork

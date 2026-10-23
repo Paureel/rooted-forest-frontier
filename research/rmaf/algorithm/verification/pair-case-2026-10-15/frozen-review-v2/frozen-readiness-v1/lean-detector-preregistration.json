@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "phase": "PRE-CANDIDATE; execution deferred until root release",
+  "replay": "Copy exact frozen released modules to a fresh isolated directory, omit existing oleans, replay dependencies at pinned versions and compile using ./bootloops-lean; retain command, exit status, stdout/stderr, file hashes and actual theorem signatures/readouts.",
+  "allowed_axioms": ["propext", "Classical.choice", "Quot.sound"],
+  "must_reject": ["sorry", "admit", "native_decide", "sorryAx", "custom axioms including private declarations and declarations inherited from originating modules", "unproved conclusion supplied as a structure field or hypothesis", "missing actual minimalVertices/partition/rooted-homeomorphism interface"],
+  "positive_control": "theorem clean : True := True.intro; #print axioms clean has no axioms and isolated compile succeeds",
+  "false_compile_control": "theorem impossible : False := by decide; isolated compile must fail",
+  "custom_axiom_control": "axiom injectedFalse : False; theorem falseViaCustom : False := injectedFalse; compiler succeeds, independent full-origin axiom detector rejects injectedFalse",
+  "private_axiom_control": "private axiom hiddenFalse : False; theorem falseViaPrivate : False := hiddenFalse; compiler succeeds, detector must reject the private-origin axiom despite generated name",
+  "imported_axiom_control": "A dependency defines custom axiom; client imports and uses it; inspect theorem #print axioms and dependency source, reject even if client has no axiom keyword",
+  "explicit_false_control": "Detector rejects a compilable exported False theorem backed by a custom axiom; rejects guarded-vacuity wrappers that import False as an assumption rather than establish graph target",
+  "comments": "Compile success alone is never acceptance. A generic convex-tree lemma does not close G; a cluster-transfer seam does not close E. Every actual guard, definition, and consuming assumption must be traced after release."
+}

@@ -1,0 +1,21 @@
+import BoundedFrontier
+import SizePrecontrols
+namespace GenericForest.FrontierSize.Controls
+open RMAF ForestState FrontierWork
+set_option maxRecDepth 10000
+
+theorem actual_member_bound :
+ (frontier fail (some t) [s] 2).all (fun pb=>(leaves pb.1.1).length≤3 && (leaves pb.1.2).length≤3)=true := by decide +kernel
+
+theorem actual_member_support :
+ (frontier fail (some t) [s] 2).all (fun pb=>(leaves pb.1.1).all (leaves t).contains && (leaves pb.1.2).all (leaves t).contains)=true := by decide +kernel
+
+theorem actual_query_work : queryWork (fun _ _ _=>3) (frontier fail (some t) [s] 2)=3 := by decide +kernel
+
+theorem budget_zero_cap : SizeCappedOrdinaryBillBound (fun _ _ _=>1) 3 0 2 1 := by
+ intro T S r _ _ budget _
+ have eq : r=0:=by omega
+ subst r
+ change (1:Rat)≤1*2^0
+ decide +kernel
+end GenericForest.FrontierSize.Controls

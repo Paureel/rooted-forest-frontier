@@ -1,0 +1,223 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairSource.lean:44:23: error: Tactic `rfl` failed: The left-hand side
+  { value := { answer := none, calls := [] },
+      work :=
+        (sourceForestMeter S [A, B, C]).work + (appendLabelsMeter A B).work +
+                    (localTargetMeter (some T) (A ++ B)).work +
+                  (appendLabelsMeter A B).work +
+                (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +
+              (AllGoodDP.LocalWork.meterRun (localTarget (some T) (A ++ B))
+                  (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))).work +
+            12 +
+          4 }.value
+is not definitionally equal to the right-hand side
+  match some H with
+  | none => { answer := none, calls := [] }
+  | some H =>
+    if additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H ≤ q - 2 then
+      {
+        answer :=
+          checked T S q
+            (Option.map (fun K => H ++ K)
+              (GenericForest.solve actual (localTarget (some T) C)
+                (owned (List.filterMap (fun B => restrict B S) [A, B, C]) C)
+                (q - 2 - additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H))),
+        calls :=
+          [{ target := localTarget (some T) C, sources := owned (List.filterMap (fun B => restrict B S) [A, B, C]) C,
+              budget :=
+                q - 2 - additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H }] }
+    else { answer := none, calls := [] }
+
+case h_1
+actual : GenericForest.FrontierWork.Ordinary
+T S : Tree
+A B C : List Nat
+q : Nat
+h : 2 ≤ q
+H : List (List Nat)
+hd :
+  AllGoodDP.run (localTarget (some T) (A ++ B)) (owned (List.filterMap (fun D => restrict D S) [A, B, C]) (A ++ B)) =
+    some H
+x✝ : Option (List (List Nat))
+heq✝ : some H = none
+⊢ { value := { answer := none, calls := [] },
+        work :=
+          (sourceForestMeter S [A, B, C]).work + (appendLabelsMeter A B).work +
+                      (localTargetMeter (some T) (A ++ B)).work +
+                    (appendLabelsMeter A B).work +
+                  (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +
+                (AllGoodDP.LocalWork.meterRun (localTarget (some T) (A ++ B))
+                    (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))).work +
+              12 +
+            4 }.value =
+    match some H with
+    | none => { answer := none, calls := [] }
+    | some H =>
+      if additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H ≤ q - 2 then
+        {
+          answer :=
+            checked T S q
+              (Option.map (fun K => H ++ K)
+                (GenericForest.solve actual (localTarget (some T) C)
+                  (owned (List.filterMap (fun B => restrict B S) [A, B, C]) C)
+                  (q - 2 - additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H))),
+          calls :=
+            [{ target := localTarget (some T) C, sources := owned (List.filterMap (fun B => restrict B S) [A, B, C]) C,
+                budget :=
+                  q - 2 - additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H }] }
+      else { answer := none, calls := [] }
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairSource.lean:44:23: error: Tactic `rfl` failed: The left-hand side
+  (if additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H✝ ≤ q - 2 then
+      {
+        value :=
+          {
+            answer :=
+              checked T S q
+                (Option.map (fun K => H✝ ++ K)
+                  (GenericForest.solve actual (localTarget (some T) C)
+                    (owned (List.filterMap (fun B => restrict B S) [A, B, C]) C)
+                    (q - 2 - additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H✝))),
+            calls :=
+              [{ target := localTarget (some T) C,
+                  sources := owned (List.filterMap (fun B => restrict B S) [A, B, C]) C,
+                  budget :=
+                    q - 2 - additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H✝ }] },
+        work :=
+          (sourceForestMeter S [A, B, C]).work + (appendLabelsMeter A B).work +
+                                      (localTargetMeter (some T) (A ++ B)).work +
+                                    (appendLabelsMeter A B).work +
+                                  (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +
+                                (AllGoodDP.LocalWork.meterRun (localTarget (some T) (A ++ B))
+                                    (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))).work +
+                              12 +
+                            (appendLabelsMeter A B).work +
+                          (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +
+                        (additionalCostMeter (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))
+                            H✝).work +
+                      8 +
+                    (localTargetMeter (some T) C).work +
+                  (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) C).work +
+                2 * H✝.length +
+              (checkedMeter T S q
+                  (Option.map (fun K => H✝ ++ K)
+                    (GenericForest.solve actual (localTarget (some T) C)
+                      (owned (List.filterMap (fun B => restrict B S) [A, B, C]) C)
+                      (q - 2 -
+                        additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H✝)))).work +
+            16 }
+    else
+      { value := { answer := none, calls := [] },
+        work :=
+          (sourceForestMeter S [A, B, C]).work + (appendLabelsMeter A B).work +
+                              (localTargetMeter (some T) (A ++ B)).work +
+                            (appendLabelsMeter A B).work +
+                          (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +
+                        (AllGoodDP.LocalWork.meterRun (localTarget (some T) (A ++ B))
+                            (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))).work +
+                      12 +
+                    (appendLabelsMeter A B).work +
+                  (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +
+                (additionalCostMeter (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H✝).work +
+              8 +
+            4 }).value
+is not definitionally equal to the right-hand side
+  match some H with
+  | none => { answer := none, calls := [] }
+  | some H =>
+    if additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H ≤ q - 2 then
+      {
+        answer :=
+          checked T S q
+            (Option.map (fun K => H ++ K)
+              (GenericForest.solve actual (localTarget (some T) C)
+                (owned (List.filterMap (fun B => restrict B S) [A, B, C]) C)
+                (q - 2 - additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H))),
+        calls :=
+          [{ target := localTarget (some T) C, sources := owned (List.filterMap (fun B => restrict B S) [A, B, C]) C,
+              budget :=
+                q - 2 - additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H }] }
+    else { answer := none, calls := [] }
+
+case h_2
+actual : GenericForest.FrontierWork.Ordinary
+T S : Tree
+A B C : List Nat
+q : Nat
+h : 2 ≤ q
+H : List (List Nat)
+hd :
+  AllGoodDP.run (localTarget (some T) (A ++ B)) (owned (List.filterMap (fun D => restrict D S) [A, B, C]) (A ++ B)) =
+    some H
+x✝ : Option (List (List Nat))
+H✝ : List (List Nat)
+heq✝ : some H = some H✝
+⊢ (if additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H✝ ≤ q - 2 then
+        {
+          value :=
+            {
+              answer :=
+                checked T S q
+                  (Option.map (fun K => H✝ ++ K)
+                    (GenericForest.solve actual (localTarget (some T) C)
+                      (owned (List.filterMap (fun B => restrict B S) [A, B, C]) C)
+                      (q - 2 - additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H✝))),
+              calls :=
+                [{ target := localTarget (some T) C,
+                    sources := owned (List.filterMap (fun B => restrict B S) [A, B, C]) C,
+                    budget :=
+                      q - 2 -
+                        additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H✝ }] },
+          work :=
+            (sourceForestMeter S [A, B, C]).work + (appendLabelsMeter A B).work +
+                                        (localTargetMeter (some T) (A ++ B)).work +
+                                      (appendLabelsMeter A B).work +
+                                    (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +
+                                  (AllGoodDP.LocalWork.meterRun (localTarget (some T) (A ++ B))
+                                      (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))).work +
+                                12 +
+                              (appendLabelsMeter A B).work +
+                            (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +
+                          (additionalCostMeter (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))
+                              H✝).work +
+                        8 +
+                      (localTargetMeter (some T) C).work +
+                    (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) C).work +
+                  2 * H✝.length +
+                (checkedMeter T S q
+                    (Option.map (fun K => H✝ ++ K)
+                      (GenericForest.solve actual (localTarget (some T) C)
+                        (owned (List.filterMap (fun B => restrict B S) [A, B, C]) C)
+                        (q - 2 -
+                          additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))
+                            H✝)))).work +
+              16 }
+      else
+        { value := { answer := none, calls := [] },
+          work :=
+            (sourceForestMeter S [A, B, C]).work + (appendLabelsMeter A B).work +
+                                (localTargetMeter (some T) (A ++ B)).work +
+                              (appendLabelsMeter A B).work +
+                            (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +
+                          (AllGoodDP.LocalWork.meterRun (localTarget (some T) (A ++ B))
+                              (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))).work +
+                        12 +
+                      (appendLabelsMeter A B).work +
+                    (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +
+                  (additionalCostMeter (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H✝).work +
+                8 +
+              4 }).value =
+    match some H with
+    | none => { answer := none, calls := [] }
+    | some H =>
+      if additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H ≤ q - 2 then
+        {
+          answer :=
+            checked T S q
+              (Option.map (fun K => H ++ K)
+                (GenericForest.solve actual (localTarget (some T) C)
+                  (owned (List.filterMap (fun B => restrict B S) [A, B, C]) C)
+                  (q - 2 - additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H))),
+          calls :=
+            [{ target := localTarget (some T) C, sources := owned (List.filterMap (fun B => restrict B S) [A, B, C]) C,
+                budget :=
+                  q - 2 - additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H }] }
+      else { answer := none, calls := [] }

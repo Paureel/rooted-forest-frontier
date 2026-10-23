@@ -1,0 +1,11 @@
+# All-good source-cost companion correction
+
+Root adoption of the sealed nonauthor finding, 2026-10-15. The original author cost document and all source/control/result pins remain unchanged. The [source review](verification/all-good-dp-2026-10-15/sol-frozen-review-v1/REVIEW-REPORT-v1.md) passed semantic/interface and producer-origin checks at its printed restricted scope. Its grade is SCOPED_PASS_WITH_COST_DOCUMENTATION_FINDING. Fresh-context framing review remains separate.
+
+The frozen COST-MODEL.md:43–44 owner-helper claim, 4n(m+r+1), is false under its stated list-copy model. Each `ss.findIdx` predicate rebuilds `leaves s`. For an accepted state whose target and sole source are the same 64-leaf left caterpillar, these constructions alone copy 129024 cells, exceeding the displayed 65532 bound. The counter was frozen after candidate contact and earns no original blind-control credit. It counts source append copies, not machine instructions or elapsed time.
+
+The [sealed correction](verification/all-good-dp-2026-10-15/sol-frozen-review-v1/COST-REVIEW-v1.md) charges owner work by 4n(m²+m+r+1) and permits two separate split reconstructions. Its independently inspected coarse envelope is S[130X⁴+24X³+68X²] ≤ 222X⁵ ≤ 1000X⁶, with X=S+1 and S=n+m+r+b+1 as defined there. Scalar and label/budget-bit costs remain part of that explicit source model. This preserves the degree-six aggregate source bound while rejecting the original helper bound; it requires no candidate program change.
+
+The corrected source-operation correspondence is reviewed mathematical inspection. The kernel separately checks the solver's semantics, table/count statements and exact minimum; this note does not turn those into a kernel operational-semantics or compiled-machine runtime theorem. No global MAF recurrence or smaller base follows from this terminal subroutine.
+
+Algorithm, Correctness, Smaller base and novelty remain OPEN. The completed source review rebuilds the 66-source consumer closure; it does not claim every unused author control or every possible compiler-generated equation was audited. The 633 kernel-invisible compiler metadata names have no claimed kernel-body or machine-semantics audit.

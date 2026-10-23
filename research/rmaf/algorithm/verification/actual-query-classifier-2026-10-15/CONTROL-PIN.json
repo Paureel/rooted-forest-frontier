@@ -1,0 +1,2630 @@
+{
+  "phase": "PRE-CANDIDATE hand-expanded mocks,exact rational formulae and raw source records;no instrument output or candidate source",
+  "controls": [
+    {
+      "id": "two-budget3-successes-total6-reject",
+      "op": "query",
+      "input": {
+        "q": 5,
+        "minima": [
+          3,
+          3
+        ],
+        "slots": [
+          "A",
+          "B"
+        ],
+        "resolved": []
+      },
+      "value_fields": {
+        "accepted": false,
+        "reason": "sum",
+        "budget": 3,
+        "cost": 6,
+        "bad": 2,
+        "trace.0.budget": 3,
+        "trace.1.budget": 3,
+        "mass.2.exact": "1/2",
+        "mass.233/100.exact": "20000/54289",
+        "mass.3.exact": "2/9"
+      },
+      "counts": {
+        "query.actual_calls": 2,
+        "query.final_sum_check": 1,
+        "query.returned_sum_cells": 2
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "value",
+          "target": "accepted",
+          "replacement": true
+        },
+        {
+          "kind": "zero",
+          "target": "query.final_sum_check"
+        },
+        {
+          "kind": "omit_trace"
+        },
+        {
+          "kind": "duplicate_trace"
+        },
+        {
+          "kind": "value",
+          "target": "trace.1.budget",
+          "replacement": 2
+        }
+      ],
+      "positive_counts": [
+        "query.final_sum_check"
+      ]
+    },
+    {
+      "id": "known1-one-min4-total5-accept",
+      "op": "query",
+      "input": {
+        "q": 5,
+        "minima": [
+          4
+        ],
+        "slots": [
+          "A"
+        ],
+        "resolved": [
+          {
+            "slot": "R",
+            "cost": 1,
+            "witness": "resolved-r"
+          }
+        ]
+      },
+      "value_fields": {
+        "accepted": true,
+        "budget": 4,
+        "cost": 5,
+        "bad": 2,
+        "discount_eligible": true,
+        "mass.2.exact": "1/2",
+        "mass.233/100.exact": "100/233",
+        "mass.3.exact": "1/3"
+      },
+      "counts": {
+        "query.actual_calls": 1,
+        "query.resolved_cells": 1
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "value",
+          "target": "budget",
+          "replacement": 5
+        },
+        {
+          "kind": "wrong_IH"
+        },
+        {
+          "kind": "zero",
+          "target": "query.resolved_cells"
+        }
+      ],
+      "positive_counts": [
+        "query.resolved_cells"
+      ]
+    },
+    {
+      "id": "sole-hard-budget5-no-discount",
+      "op": "query",
+      "input": {
+        "q": 5,
+        "minima": [
+          5
+        ],
+        "slots": [
+          "A"
+        ],
+        "resolved": []
+      },
+      "value_fields": {
+        "accepted": true,
+        "budget": 5,
+        "cost": 5,
+        "bad": 1,
+        "discount_eligible": false,
+        "mass.2.exact": "1",
+        "mass.2.discount_holds": false,
+        "mass.233/100.exact": "1",
+        "mass.3.exact": "1"
+      },
+      "counts": {
+        "query.actual_calls": 1
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "value",
+          "target": "trace.0.budget",
+          "replacement": 4
+        },
+        {
+          "kind": "value",
+          "target": "mass.2.exact",
+          "replacement": "1/2"
+        },
+        {
+          "kind": "value",
+          "target": "discount_eligible",
+          "replacement": true
+        },
+        {
+          "kind": "metadata",
+          "target": "minima_access_in_caller",
+          "replacement": true
+        }
+      ],
+      "positive_counts": []
+    },
+    {
+      "id": "q3-two-hard-slots-early-no-calls",
+      "op": "query",
+      "input": {
+        "q": 3,
+        "minima": [
+          2,
+          2
+        ],
+        "slots": [
+          "A",
+          "B"
+        ],
+        "resolved": []
+      },
+      "value_fields": {
+        "accepted": false,
+        "reason": "early",
+        "budget": null,
+        "trace": [],
+        "mass.2.exact": "0"
+      },
+      "counts": {
+        "query.actual_calls": 0,
+        "query.budget_arithmetic": 0,
+        "query.pretest": 1
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "value",
+          "target": "budget",
+          "replacement": 1
+        },
+        {
+          "kind": "omit",
+          "target": "query.pretest"
+        },
+        {
+          "kind": "value",
+          "target": "accepted",
+          "replacement": true
+        }
+      ],
+      "positive_counts": [
+        "query.pretest"
+      ]
+    },
+    {
+      "id": "q6-three-min2-budget2-all-accept",
+      "op": "query",
+      "input": {
+        "q": 6,
+        "minima": [
+          2,
+          2,
+          2
+        ],
+        "slots": [
+          "A",
+          "B",
+          "C"
+        ],
+        "resolved": []
+      },
+      "value_fields": {
+        "accepted": true,
+        "budget": 2,
+        "cost": 6,
+        "bad": 3,
+        "trace.2.slot": "C",
+        "mass.2.exact": "3/16",
+        "mass.233/100.exact": "300000000/2947295521",
+        "mass.3.exact": "1/27"
+      },
+      "counts": {
+        "query.actual_calls": 3,
+        "query.returned_sum_cells": 3
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "omit_trace"
+        },
+        {
+          "kind": "value",
+          "target": "trace.2.index",
+          "replacement": 1
+        },
+        {
+          "kind": "zero",
+          "target": "query.returned_sum_cells"
+        },
+        {
+          "kind": "wrong_IH"
+        }
+      ],
+      "positive_counts": [
+        "query.returned_sum_cells"
+      ]
+    },
+    {
+      "id": "first-failure-is-actual-call-and-stops",
+      "op": "query",
+      "input": {
+        "q": 5,
+        "minima": [
+          4,
+          2
+        ],
+        "slots": [
+          "A",
+          "B"
+        ],
+        "resolved": []
+      },
+      "value_fields": {
+        "accepted": false,
+        "reason": "failure",
+        "budget": 3,
+        "cost": 0,
+        "trace.0.success": false,
+        "mass.2.exact": "1/4",
+        "mass.233/100.exact": "10000/54289",
+        "mass.3.exact": "1/9"
+      },
+      "counts": {
+        "query.actual_calls": 1,
+        "query.trace_cells": 1,
+        "query.final_sum_check": 0
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "omit_trace"
+        },
+        {
+          "kind": "value",
+          "target": "mass.2.exact",
+          "replacement": "1/2"
+        },
+        {
+          "kind": "zero",
+          "target": "query.actual_calls"
+        }
+      ],
+      "positive_counts": [
+        "query.actual_calls"
+      ]
+    },
+    {
+      "id": "middle-failure-executed-prefix-only",
+      "op": "query",
+      "input": {
+        "q": 6,
+        "minima": [
+          2,
+          3,
+          2
+        ],
+        "slots": [
+          "A",
+          "B",
+          "C"
+        ],
+        "resolved": []
+      },
+      "value_fields": {
+        "accepted": false,
+        "reason": "failure",
+        "cost": 2,
+        "budget": 2,
+        "trace.1.slot": "B",
+        "trace.1.success": false,
+        "mass.2.exact": "1/8",
+        "mass.233/100.exact": "200000000/2947295521",
+        "mass.3.exact": "2/81"
+      },
+      "counts": {
+        "query.actual_calls": 2
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "duplicate_trace"
+        },
+        {
+          "kind": "value",
+          "target": "trace.1.slot",
+          "replacement": "C"
+        },
+        {
+          "kind": "value",
+          "target": "mass.2.exact",
+          "replacement": "3/16"
+        }
+      ],
+      "positive_counts": []
+    },
+    {
+      "id": "last-failure-retains-three-calls",
+      "op": "query",
+      "input": {
+        "q": 6,
+        "minima": [
+          2,
+          2,
+          3
+        ],
+        "slots": [
+          "A",
+          "B",
+          "C"
+        ],
+        "resolved": []
+      },
+      "value_fields": {
+        "accepted": false,
+        "reason": "failure",
+        "cost": 4,
+        "trace.2.success": false,
+        "mass.2.exact": "3/16"
+      },
+      "counts": {
+        "query.actual_calls": 3
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "omit_trace"
+        },
+        {
+          "kind": "value",
+          "target": "accepted",
+          "replacement": true
+        }
+      ],
+      "positive_counts": []
+    },
+    {
+      "id": "no-slots-q0-accept-empty",
+      "op": "query",
+      "input": {
+        "q": 0,
+        "minima": [],
+        "slots": [],
+        "resolved": []
+      },
+      "value_fields": {
+        "accepted": true,
+        "reason": "accept",
+        "cost": 0,
+        "trace": [],
+        "budget": 0,
+        "mass.2.exact": "0"
+      },
+      "counts": {
+        "query.actual_calls": 0,
+        "query.final_sum_check": 1
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero",
+          "target": "query.final_sum_check"
+        },
+        {
+          "kind": "value",
+          "target": "accepted",
+          "replacement": false
+        }
+      ],
+      "positive_counts": [
+        "query.final_sum_check"
+      ]
+    },
+    {
+      "id": "no-unresolved-known5-accept",
+      "op": "query",
+      "input": {
+        "q": 5,
+        "minima": [],
+        "slots": [],
+        "resolved": [
+          {
+            "slot": "R",
+            "cost": 5,
+            "witness": "known5"
+          }
+        ]
+      },
+      "value_fields": {
+        "accepted": true,
+        "cost": 5,
+        "trace": [],
+        "mass.2.exact": "0"
+      },
+      "counts": {
+        "query.actual_calls": 0,
+        "query.resolved_cells": 1
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero",
+          "target": "query.resolved_cells"
+        },
+        {
+          "kind": "value",
+          "target": "cost",
+          "replacement": 0
+        }
+      ],
+      "positive_counts": [
+        "query.resolved_cells"
+      ]
+    },
+    {
+      "id": "excess-known-cost-rejects-before-call",
+      "op": "query",
+      "input": {
+        "q": 5,
+        "minima": [],
+        "slots": [],
+        "resolved": [
+          {
+            "slot": "R",
+            "cost": 6,
+            "witness": "known6"
+          }
+        ]
+      },
+      "value_fields": {
+        "accepted": false,
+        "reason": "early",
+        "cost": 6,
+        "budget": null,
+        "trace": []
+      },
+      "counts": {
+        "query.actual_calls": 0,
+        "query.budget_arithmetic": 0
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "value",
+          "target": "accepted",
+          "replacement": true
+        },
+        {
+          "kind": "value",
+          "target": "budget",
+          "replacement": 0
+        }
+      ],
+      "positive_counts": []
+    },
+    {
+      "id": "zero-resolved-cost-not-bad-slot",
+      "op": "query",
+      "input": {
+        "q": 5,
+        "minima": [
+          5
+        ],
+        "slots": [
+          "A"
+        ],
+        "resolved": [
+          {
+            "slot": "R",
+            "cost": 0,
+            "witness": "zero"
+          }
+        ]
+      },
+      "value_fields": {
+        "accepted": true,
+        "budget": 5,
+        "bad": 1,
+        "discount_eligible": false,
+        "mass.2.exact": "1",
+        "mass.2.discount_holds": false
+      },
+      "counts": {
+        "query.actual_calls": 1
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "value",
+          "target": "bad",
+          "replacement": 2
+        },
+        {
+          "kind": "value",
+          "target": "discount_eligible",
+          "replacement": true
+        }
+      ],
+      "positive_counts": []
+    },
+    {
+      "id": "two-positive-resolved-slots-zero-mass",
+      "op": "query",
+      "input": {
+        "q": 5,
+        "minima": [],
+        "slots": [],
+        "resolved": [
+          {
+            "slot": "R",
+            "cost": 1,
+            "witness": "one"
+          },
+          {
+            "slot": "S",
+            "cost": 2,
+            "witness": "two"
+          }
+        ]
+      },
+      "value_fields": {
+        "accepted": true,
+        "cost": 3,
+        "bad": 2,
+        "discount_eligible": true,
+        "mass.2.exact": "0"
+      },
+      "counts": {
+        "query.actual_calls": 0,
+        "query.resolved_cells": 2
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "value",
+          "target": "bad",
+          "replacement": 0
+        },
+        {
+          "kind": "zero",
+          "target": "query.resolved_cells"
+        }
+      ],
+      "positive_counts": [
+        "query.resolved_cells"
+      ]
+    },
+    {
+      "id": "duplicate-slot-ids-retain-position-and-mass",
+      "op": "query",
+      "input": {
+        "q": 4,
+        "minima": [
+          2,
+          2
+        ],
+        "slots": [
+          "X",
+          "X"
+        ],
+        "resolved": []
+      },
+      "value_fields": {
+        "accepted": true,
+        "budget": 2,
+        "cost": 4,
+        "trace.0.slot": "X",
+        "trace.1.slot": "X",
+        "trace.1.index": 1,
+        "mass.2.exact": "1/2"
+      },
+      "counts": {
+        "query.actual_calls": 2,
+        "query.trace_cells": 2
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "omit_trace"
+        },
+        {
+          "kind": "duplicate_trace"
+        },
+        {
+          "kind": "value",
+          "target": "trace.1.index",
+          "replacement": 0
+        }
+      ],
+      "positive_counts": []
+    },
+    {
+      "id": "mixed-known-and-two-hard-budget2",
+      "op": "query",
+      "input": {
+        "q": 6,
+        "minima": [
+          2,
+          2
+        ],
+        "slots": [
+          "A",
+          "B"
+        ],
+        "resolved": [
+          {
+            "slot": "R",
+            "cost": 0,
+            "witness": "zero"
+          },
+          {
+            "slot": "S",
+            "cost": 2,
+            "witness": "two"
+          }
+        ]
+      },
+      "value_fields": {
+        "accepted": true,
+        "budget": 2,
+        "cost": 6,
+        "bad": 3,
+        "mass.2.exact": "1/8"
+      },
+      "counts": {
+        "query.actual_calls": 2,
+        "query.resolved_cells": 2
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "value",
+          "target": "trace.0.budget",
+          "replacement": 3
+        },
+        {
+          "kind": "zero",
+          "target": "query.returned_sum_cells"
+        }
+      ],
+      "positive_counts": [
+        "query.returned_sum_cells"
+      ]
+    },
+    {
+      "id": "large-q-scalar-budget-preserved",
+      "op": "query",
+      "input": {
+        "q": 340282366920938463463374607431768211456,
+        "minima": [
+          4
+        ],
+        "slots": [
+          "A"
+        ],
+        "resolved": [
+          {
+            "slot": "R",
+            "cost": 1,
+            "witness": "one"
+          }
+        ]
+      },
+      "value_fields": {
+        "accepted": true,
+        "budget": 340282366920938463463374607431768211455,
+        "trace.0.budget": 340282366920938463463374607431768211455,
+        "cost": 5,
+        "mass.2.exact": "1/2"
+      },
+      "counts": {
+        "query.actual_calls": 1
+      },
+      "metadata": {
+        "q_bits": 129
+      },
+      "plants": [
+        {
+          "kind": "metadata",
+          "target": "q_bits",
+          "replacement": 1
+        },
+        {
+          "kind": "value",
+          "target": "trace.0.budget",
+          "replacement": 5
+        }
+      ],
+      "positive_counts": []
+    },
+    {
+      "id": "trace-builder-left-copy-8",
+      "op": "trace_builder",
+      "input": {
+        "calls": 8
+      },
+      "value_fields": {
+        "trace": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "calls": 8,
+        "linear_cons_reverse_cells": 16
+      },
+      "counts": {
+        "trace_builder.append_calls": 8,
+        "trace_builder.left_cells": 28,
+        "trace_builder.cell_upper_ops": 224
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero",
+          "target": "trace_builder.left_cells"
+        },
+        {
+          "kind": "zero",
+          "target": "trace_builder.cell_upper_ops"
+        },
+        {
+          "kind": "duplicate_record"
+        }
+      ],
+      "positive_counts": [
+        "trace_builder.left_cells",
+        "trace_builder.cell_upper_ops"
+      ]
+    },
+    {
+      "id": "trace-builder-left-copy-64",
+      "op": "trace_builder",
+      "input": {
+        "calls": 64
+      },
+      "value_fields": {
+        "trace": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63
+        ],
+        "calls": 64,
+        "linear_cons_reverse_cells": 128
+      },
+      "counts": {
+        "trace_builder.append_calls": 64,
+        "trace_builder.left_cells": 2016,
+        "trace_builder.cell_upper_ops": 16128
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero",
+          "target": "trace_builder.left_cells"
+        },
+        {
+          "kind": "zero",
+          "target": "trace_builder.cell_upper_ops"
+        },
+        {
+          "kind": "duplicate_record"
+        }
+      ],
+      "positive_counts": [
+        "trace_builder.left_cells",
+        "trace_builder.cell_upper_ops"
+      ]
+    },
+    {
+      "id": "cheap-known-four-q0",
+      "op": "classify",
+      "input": {
+        "q": 0,
+        "source": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ]
+      },
+      "value_fields": {
+        "outputs": [],
+        "costs": [],
+        "path": "below-three",
+        "rank_calls": 0
+      },
+      "counts": {
+        "probe.generate_calls": 0,
+        "probe.color_calls": 0,
+        "probe.oracle_tariff": 0
+      },
+      "metadata": {
+        "q_bits": 1
+      },
+      "plants": [
+        {
+          "kind": "value",
+          "target": "rank_calls",
+          "replacement": 8
+        },
+        {
+          "kind": "value",
+          "target": "path",
+          "replacement": "reuse"
+        },
+        {
+          "kind": "value",
+          "target": "outputs",
+          "replacement": [
+            {
+              "partition": [
+                [
+                  4,
+                  5
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  6,
+                  7
+                ]
+              ],
+              "cuts": [
+                "10",
+                "01",
+                "00"
+              ]
+            }
+          ]
+        }
+      ],
+      "positive_counts": []
+    },
+    {
+      "id": "cheap-known-four-q2",
+      "op": "classify",
+      "input": {
+        "q": 2,
+        "source": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ]
+      },
+      "value_fields": {
+        "outputs": [],
+        "costs": [],
+        "path": "below-three",
+        "rank_calls": 0
+      },
+      "counts": {
+        "probe.generate_calls": 0,
+        "probe.color_calls": 0,
+        "probe.oracle_tariff": 0
+      },
+      "metadata": {
+        "q_bits": 2
+      },
+      "plants": [
+        {
+          "kind": "value",
+          "target": "rank_calls",
+          "replacement": 8
+        },
+        {
+          "kind": "value",
+          "target": "path",
+          "replacement": "reuse"
+        },
+        {
+          "kind": "value",
+          "target": "outputs",
+          "replacement": [
+            {
+              "partition": [
+                [
+                  4,
+                  5
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  6,
+                  7
+                ]
+              ],
+              "cuts": [
+                "10",
+                "01",
+                "00"
+              ]
+            }
+          ]
+        }
+      ],
+      "positive_counts": []
+    },
+    {
+      "id": "cheap-known-four-q3",
+      "op": "classify",
+      "input": {
+        "q": 3,
+        "source": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ]
+      },
+      "value_fields": {
+        "outputs": [
+          {
+            "partition": [
+              [
+                4,
+                5
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                6,
+                7
+              ]
+            ],
+            "cuts": [
+              "10",
+              "01",
+              "00"
+            ]
+          }
+        ],
+        "costs": [
+          3
+        ],
+        "path": "reuse",
+        "rank_calls": 0,
+        "trace.0.budget": 3,
+        "trace.0.phase": "probe"
+      },
+      "counts": {
+        "probe.generate_calls": 1,
+        "probe.color_calls": 8,
+        "probe.oracle_tariff": 8
+      },
+      "metadata": {
+        "q_bits": 2
+      },
+      "plants": [
+        {
+          "kind": "value",
+          "target": "rank_calls",
+          "replacement": 8
+        },
+        {
+          "kind": "zero",
+          "target": "probe.color_calls"
+        },
+        {
+          "kind": "zero",
+          "target": "probe.generate_calls"
+        },
+        {
+          "kind": "value",
+          "target": "outputs",
+          "replacement": []
+        },
+        {
+          "kind": "value",
+          "target": "costs",
+          "replacement": []
+        }
+      ],
+      "positive_counts": [
+        "probe.color_calls",
+        "probe.generate_calls"
+      ]
+    },
+    {
+      "id": "cheap-known-four-q4",
+      "op": "classify",
+      "input": {
+        "q": 4,
+        "source": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ]
+      },
+      "value_fields": {
+        "outputs": [
+          {
+            "partition": [
+              [
+                4,
+                5
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                6,
+                7
+              ]
+            ],
+            "cuts": [
+              "10",
+              "01",
+              "00"
+            ]
+          }
+        ],
+        "costs": [
+          3
+        ],
+        "path": "reuse",
+        "rank_calls": 0,
+        "trace.0.budget": 3,
+        "trace.0.phase": "probe"
+      },
+      "counts": {
+        "probe.generate_calls": 1,
+        "probe.color_calls": 8,
+        "probe.oracle_tariff": 8
+      },
+      "metadata": {
+        "q_bits": 3
+      },
+      "plants": [
+        {
+          "kind": "value",
+          "target": "rank_calls",
+          "replacement": 8
+        },
+        {
+          "kind": "zero",
+          "target": "probe.color_calls"
+        },
+        {
+          "kind": "zero",
+          "target": "probe.generate_calls"
+        },
+        {
+          "kind": "value",
+          "target": "outputs",
+          "replacement": []
+        },
+        {
+          "kind": "value",
+          "target": "costs",
+          "replacement": []
+        }
+      ],
+      "positive_counts": [
+        "probe.color_calls",
+        "probe.generate_calls"
+      ]
+    },
+    {
+      "id": "cheap-known-four-qhuge",
+      "op": "classify",
+      "input": {
+        "q": 340282366920938463463374607431768211456,
+        "source": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ]
+      },
+      "value_fields": {
+        "outputs": [
+          {
+            "partition": [
+              [
+                4,
+                5
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                6,
+                7
+              ]
+            ],
+            "cuts": [
+              "10",
+              "01",
+              "00"
+            ]
+          }
+        ],
+        "costs": [
+          3
+        ],
+        "path": "reuse",
+        "rank_calls": 0,
+        "trace.0.budget": 3,
+        "trace.0.phase": "probe"
+      },
+      "counts": {
+        "probe.generate_calls": 1,
+        "probe.color_calls": 8,
+        "probe.oracle_tariff": 8
+      },
+      "metadata": {
+        "q_bits": 129
+      },
+      "plants": [
+        {
+          "kind": "value",
+          "target": "rank_calls",
+          "replacement": 8
+        },
+        {
+          "kind": "zero",
+          "target": "probe.color_calls"
+        },
+        {
+          "kind": "zero",
+          "target": "probe.generate_calls"
+        },
+        {
+          "kind": "value",
+          "target": "outputs",
+          "replacement": []
+        },
+        {
+          "kind": "value",
+          "target": "costs",
+          "replacement": []
+        }
+      ],
+      "positive_counts": [
+        "probe.color_calls",
+        "probe.generate_calls"
+      ]
+    },
+    {
+      "id": "high-known-four-q0",
+      "op": "classify",
+      "input": {
+        "q": 0,
+        "source": [
+          [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ]
+      },
+      "value_fields": {
+        "outputs": [],
+        "costs": [],
+        "path": "below-three",
+        "rank_calls": 0
+      },
+      "counts": {
+        "probe.generate_calls": 0,
+        "probe.color_calls": 0,
+        "probe.oracle_tariff": 0
+      },
+      "metadata": {
+        "q_bits": 1
+      },
+      "plants": [
+        {
+          "kind": "value",
+          "target": "rank_calls",
+          "replacement": 8
+        },
+        {
+          "kind": "value",
+          "target": "path",
+          "replacement": "reuse"
+        },
+        {
+          "kind": "value",
+          "target": "outputs",
+          "replacement": [
+            {
+              "partition": [
+                [
+                  4,
+                  5
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  6,
+                  7
+                ]
+              ],
+              "cuts": [
+                "10",
+                "01",
+                "00"
+              ]
+            }
+          ]
+        }
+      ],
+      "positive_counts": []
+    },
+    {
+      "id": "high-known-four-q2",
+      "op": "classify",
+      "input": {
+        "q": 2,
+        "source": [
+          [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ]
+      },
+      "value_fields": {
+        "outputs": [],
+        "costs": [],
+        "path": "below-three",
+        "rank_calls": 0
+      },
+      "counts": {
+        "probe.generate_calls": 0,
+        "probe.color_calls": 0,
+        "probe.oracle_tariff": 0
+      },
+      "metadata": {
+        "q_bits": 2
+      },
+      "plants": [
+        {
+          "kind": "value",
+          "target": "rank_calls",
+          "replacement": 8
+        },
+        {
+          "kind": "value",
+          "target": "path",
+          "replacement": "reuse"
+        },
+        {
+          "kind": "value",
+          "target": "outputs",
+          "replacement": [
+            {
+              "partition": [
+                [
+                  4,
+                  5
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  6,
+                  7
+                ]
+              ],
+              "cuts": [
+                "10",
+                "01",
+                "00"
+              ]
+            }
+          ]
+        }
+      ],
+      "positive_counts": []
+    },
+    {
+      "id": "high-known-four-q3",
+      "op": "classify",
+      "input": {
+        "q": 3,
+        "source": [
+          [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ]
+      },
+      "value_fields": {
+        "outputs": [],
+        "costs": [],
+        "path": "full",
+        "rank_calls": 0,
+        "trace.0.budget": 3,
+        "trace.0.phase": "probe",
+        "trace.1.budget": 3,
+        "trace.1.phase": "full"
+      },
+      "counts": {
+        "probe.generate_calls": 2,
+        "probe.color_calls": 16,
+        "probe.oracle_tariff": 16
+      },
+      "metadata": {
+        "q_bits": 2
+      },
+      "plants": [
+        {
+          "kind": "value",
+          "target": "rank_calls",
+          "replacement": 8
+        },
+        {
+          "kind": "zero",
+          "target": "probe.color_calls"
+        },
+        {
+          "kind": "zero",
+          "target": "probe.generate_calls"
+        },
+        {
+          "kind": "value",
+          "target": "trace.1.budget",
+          "replacement": 2
+        }
+      ],
+      "positive_counts": [
+        "probe.color_calls",
+        "probe.generate_calls"
+      ]
+    },
+    {
+      "id": "high-known-four-q4",
+      "op": "classify",
+      "input": {
+        "q": 4,
+        "source": [
+          [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ]
+      },
+      "value_fields": {
+        "outputs": [
+          {
+            "partition": [
+              [
+                1
+              ],
+              [
+                0
+              ],
+              [
+                6,
+                7
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                2,
+                3
+              ]
+            ],
+            "cuts": [
+              "010",
+              "000",
+              "11",
+              "10"
+            ]
+          },
+          {
+            "partition": [
+              [
+                3
+              ],
+              [
+                2
+              ],
+              [
+                6,
+                7
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "cuts": [
+              "011",
+              "001",
+              "11",
+              "10"
+            ]
+          }
+        ],
+        "costs": [
+          4,
+          4
+        ],
+        "path": "full",
+        "rank_calls": 0,
+        "trace.0.budget": 3,
+        "trace.0.phase": "probe",
+        "trace.1.budget": 4,
+        "trace.1.phase": "full"
+      },
+      "counts": {
+        "probe.generate_calls": 2,
+        "probe.color_calls": 16,
+        "probe.oracle_tariff": 16
+      },
+      "metadata": {
+        "q_bits": 3
+      },
+      "plants": [
+        {
+          "kind": "value",
+          "target": "rank_calls",
+          "replacement": 8
+        },
+        {
+          "kind": "zero",
+          "target": "probe.color_calls"
+        },
+        {
+          "kind": "zero",
+          "target": "probe.generate_calls"
+        },
+        {
+          "kind": "value",
+          "target": "outputs",
+          "replacement": [
+            {
+              "partition": [
+                [
+                  1
+                ],
+                [
+                  0
+                ],
+                [
+                  6,
+                  7
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "cuts": [
+                "010",
+                "000",
+                "11",
+                "10"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "value",
+          "target": "costs",
+          "replacement": []
+        },
+        {
+          "kind": "value",
+          "target": "trace.1.budget",
+          "replacement": 3
+        }
+      ],
+      "positive_counts": [
+        "probe.color_calls",
+        "probe.generate_calls"
+      ]
+    },
+    {
+      "id": "high-known-four-qhuge",
+      "op": "classify",
+      "input": {
+        "q": 340282366920938463463374607431768211456,
+        "source": [
+          [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ]
+      },
+      "value_fields": {
+        "outputs": [
+          {
+            "partition": [
+              [
+                1
+              ],
+              [
+                0
+              ],
+              [
+                6,
+                7
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                2,
+                3
+              ]
+            ],
+            "cuts": [
+              "010",
+              "000",
+              "11",
+              "10"
+            ]
+          },
+          {
+            "partition": [
+              [
+                3
+              ],
+              [
+                2
+              ],
+              [
+                6,
+                7
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "cuts": [
+              "011",
+              "001",
+              "11",
+              "10"
+            ]
+          }
+        ],
+        "costs": [
+          4,
+          4
+        ],
+        "path": "full",
+        "rank_calls": 0,
+        "trace.0.budget": 3,
+        "trace.0.phase": "probe",
+        "trace.1.budget": 340282366920938463463374607431768211456,
+        "trace.1.phase": "full"
+      },
+      "counts": {
+        "probe.generate_calls": 2,
+        "probe.color_calls": 16,
+        "probe.oracle_tariff": 16
+      },
+      "metadata": {
+        "q_bits": 129
+      },
+      "plants": [
+        {
+          "kind": "value",
+          "target": "rank_calls",
+          "replacement": 8
+        },
+        {
+          "kind": "zero",
+          "target": "probe.color_calls"
+        },
+        {
+          "kind": "zero",
+          "target": "probe.generate_calls"
+        },
+        {
+          "kind": "value",
+          "target": "outputs",
+          "replacement": [
+            {
+              "partition": [
+                [
+                  1
+                ],
+                [
+                  0
+                ],
+                [
+                  6,
+                  7
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "cuts": [
+                "010",
+                "000",
+                "11",
+                "10"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "value",
+          "target": "costs",
+          "replacement": []
+        },
+        {
+          "kind": "value",
+          "target": "trace.1.budget",
+          "replacement": 3
+        }
+      ],
+      "positive_counts": [
+        "probe.color_calls",
+        "probe.generate_calls"
+      ]
+    },
+    {
+      "id": "cheap-preserves-within-block-leaf-order",
+      "op": "classify",
+      "input": {
+        "q": 3,
+        "source": [
+          [
+            [
+              1,
+              0
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          [
+            [
+              5,
+              4
+            ],
+            [
+              7,
+              6
+            ]
+          ]
+        ]
+      },
+      "value_fields": {
+        "outputs": [
+          {
+            "partition": [
+              [
+                5,
+                4
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                7,
+                6
+              ]
+            ],
+            "cuts": [
+              "10",
+              "01",
+              "00"
+            ]
+          }
+        ],
+        "costs": [
+          3
+        ],
+        "path": "reuse"
+      },
+      "counts": {
+        "probe.color_calls": 8
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "value",
+          "target": "outputs",
+          "replacement": [
+            {
+              "partition": [
+                [
+                  4,
+                  5
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  6,
+                  7
+                ]
+              ],
+              "cuts": [
+                "10",
+                "01",
+                "00"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "zero",
+          "target": "probe.color_calls"
+        }
+      ],
+      "positive_counts": [
+        "probe.color_calls"
+      ]
+    },
+    {
+      "id": "high-preserves-both-records-and-order",
+      "op": "classify",
+      "input": {
+        "q": 4,
+        "source": [
+          [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ]
+      },
+      "value_fields": {
+        "outputs": [
+          {
+            "partition": [
+              [
+                1
+              ],
+              [
+                0
+              ],
+              [
+                6,
+                7
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                2,
+                3
+              ]
+            ],
+            "cuts": [
+              "010",
+              "000",
+              "11",
+              "10"
+            ]
+          },
+          {
+            "partition": [
+              [
+                3
+              ],
+              [
+                2
+              ],
+              [
+                6,
+                7
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "cuts": [
+              "011",
+              "001",
+              "11",
+              "10"
+            ]
+          }
+        ],
+        "costs": [
+          4,
+          4
+        ],
+        "path": "full"
+      },
+      "counts": {
+        "probe.color_calls": 16
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "value",
+          "target": "outputs",
+          "replacement": [
+            {
+              "partition": [
+                [
+                  3
+                ],
+                [
+                  2
+                ],
+                [
+                  6,
+                  7
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              "cuts": [
+                "011",
+                "001",
+                "11",
+                "10"
+              ]
+            },
+            {
+              "partition": [
+                [
+                  1
+                ],
+                [
+                  0
+                ],
+                [
+                  6,
+                  7
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "cuts": [
+                "010",
+                "000",
+                "11",
+                "10"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "value",
+          "target": "outputs",
+          "replacement": [
+            {
+              "partition": [
+                [
+                  1
+                ],
+                [
+                  0
+                ],
+                [
+                  6,
+                  7
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "cuts": [
+                "010",
+                "000",
+                "11",
+                "10"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "value",
+          "target": "outputs.0.cuts",
+          "replacement": [
+            "000",
+            "010",
+            "11",
+            "10"
+          ]
+        },
+        {
+          "kind": "value",
+          "target": "outputs.0.partition",
+          "replacement": [
+            [
+              2,
+              3
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ]
+        }
+      ],
+      "positive_counts": []
+    },
+    {
+      "id": "cheap-expensive-callback-is-external-bill",
+      "op": "classify",
+      "input": {
+        "q": 4,
+        "source": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ],
+        "tariff": 1000
+      },
+      "value_fields": {
+        "costs": [
+          3
+        ]
+      },
+      "counts": {
+        "probe.color_calls": 8,
+        "probe.oracle_tariff": 8000
+      },
+      "metadata": {
+        "tariff": 1000
+      },
+      "plants": [
+        {
+          "kind": "zero",
+          "target": "probe.oracle_tariff"
+        },
+        {
+          "kind": "metadata",
+          "target": "tariff",
+          "replacement": 1
+        }
+      ],
+      "positive_counts": [
+        "probe.oracle_tariff"
+      ]
+    },
+    {
+      "id": "high-expensive-callback-is-external-bill",
+      "op": "classify",
+      "input": {
+        "q": 4,
+        "source": [
+          [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ],
+        "tariff": 1000
+      },
+      "value_fields": {
+        "costs": [
+          4,
+          4
+        ]
+      },
+      "counts": {
+        "probe.color_calls": 16,
+        "probe.oracle_tariff": 16000
+      },
+      "metadata": {
+        "tariff": 1000
+      },
+      "plants": [
+        {
+          "kind": "zero",
+          "target": "probe.oracle_tariff"
+        },
+        {
+          "kind": "metadata",
+          "target": "tariff",
+          "replacement": 1
+        }
+      ],
+      "positive_counts": [
+        "probe.oracle_tariff"
+      ]
+    },
+    {
+      "id": "duplicate-leaf-refusal-never-evaluates-color",
+      "op": "classify",
+      "input": {
+        "q": 4,
+        "source": [
+          0,
+          0
+        ]
+      },
+      "value_fields": {
+        "outputs": [],
+        "costs": [],
+        "path": "full",
+        "trace.0.callbacks": 0,
+        "trace.1.callbacks": 0
+      },
+      "counts": {
+        "probe.generate_calls": 2,
+        "probe.color_calls": 0
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "value",
+          "target": "trace.0.callbacks",
+          "replacement": 2
+        },
+        {
+          "kind": "value",
+          "target": "path",
+          "replacement": "reuse"
+        }
+      ],
+      "positive_counts": []
+    },
+    {
+      "id": "huge-labels-four-colors-not-four-small-identifiers",
+      "op": "classify",
+      "input": {
+        "q": 3,
+        "source": [
+          [
+            [
+              340282366920938463463374607431768211456,
+              340282366920938463463374607431768211457
+            ],
+            [
+              340282366920938463463374607431768211458,
+              340282366920938463463374607431768211459
+            ]
+          ],
+          [
+            [
+              340282366920938463463374607431768211460,
+              340282366920938463463374607431768211461
+            ],
+            [
+              340282366920938463463374607431768211462,
+              340282366920938463463374607431768211463
+            ]
+          ]
+        ]
+      },
+      "value_fields": {
+        "outputs": [
+          {
+            "partition": [
+              [
+                340282366920938463463374607431768211460,
+                340282366920938463463374607431768211461
+              ],
+              [
+                340282366920938463463374607431768211458,
+                340282366920938463463374607431768211459
+              ],
+              [
+                340282366920938463463374607431768211456,
+                340282366920938463463374607431768211457
+              ],
+              [
+                340282366920938463463374607431768211462,
+                340282366920938463463374607431768211463
+              ]
+            ],
+            "cuts": [
+              "10",
+              "01",
+              "00"
+            ]
+          }
+        ],
+        "costs": [
+          3
+        ],
+        "path": "reuse"
+      },
+      "counts": {
+        "probe.color_calls": 8
+      },
+      "metadata": {
+        "label_bits": 129,
+        "symbolic_floor_color_bits": 128
+      },
+      "plants": [
+        {
+          "kind": "metadata",
+          "target": "label_bits",
+          "replacement": 3
+        },
+        {
+          "kind": "metadata",
+          "target": "symbolic_floor_color_bits",
+          "replacement": 2
+        },
+        {
+          "kind": "zero",
+          "target": "probe.color_calls"
+        }
+      ],
+      "positive_counts": [
+        "probe.color_calls"
+      ]
+    },
+    {
+      "id": "generic-inputRank-additional-color-and-dedup-work",
+      "op": "rank",
+      "input": {
+        "source": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ],
+        "tariff": 1000
+      },
+      "value_fields": {
+        "rank": 4,
+        "values": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ],
+        "colors": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "counts": {
+        "rank.color_calls": 8,
+        "rank.oracle_tariff": 8000,
+        "rank.equality_calls": 16
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero",
+          "target": "rank.color_calls"
+        },
+        {
+          "kind": "zero",
+          "target": "rank.oracle_tariff"
+        },
+        {
+          "kind": "zero",
+          "target": "rank.equality_calls"
+        }
+      ],
+      "positive_counts": [
+        "rank.color_calls",
+        "rank.oracle_tariff",
+        "rank.equality_calls"
+      ]
+    }
+  ],
+  "declared_controls": 35,
+  "declared_plants": 111,
+  "pilot_ids": [
+    "two-budget3-successes-total6-reject",
+    "sole-hard-budget5-no-discount",
+    "cheap-known-four-q3"
+  ],
+  "size_pilot_ids": [
+    "q6-three-min2-budget2-all-accept",
+    "high-known-four-q4",
+    "trace-builder-left-copy-64",
+    "high-known-four-qhuge"
+  ]
+}

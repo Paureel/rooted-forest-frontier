@@ -1,0 +1,3 @@
+import AuditSupport
+import ToyCoverageTampered
+audit_import "ToyCoverageTampered"

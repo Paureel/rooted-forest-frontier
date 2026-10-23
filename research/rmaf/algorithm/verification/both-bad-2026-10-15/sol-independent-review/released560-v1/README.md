@@ -1,0 +1,13 @@
+# Released source review evidence
+
+Read VERDICT-v1.md for the five scoped results and CONSUMER-TRACE-v1.md for the original-F and callback premises. FINAL-v1.json binds every retained file. The original READY115 inventory remains unchanged; source560 is the exact separately released author payload.
+
+The source build copied160 .lean files only. SOURCE-MAP-v1 records their release hashes, actual imports and topological build order. build-pilot/full and individual build logs retain the cold source compilation. No author auditor or another reviewer's implementation was executed or reused.
+
+AuditScientific-digest-v2.json contains all4675 stored occurrence records and4647 resolved records, with exact JSON type/body string-token SHA256 markers. Producer, resolved origin, actual ConstantInfo kind, dependencies and actual olean paths are separate fields. AuditScientific.json.gz losslessly retains the complete7.34GB raw map; RAW-MAP-ARCHIVES-v1.json gives both archive and decompressed raw hashes. Decompress into a separate new replay directory, not this sealed directory. The1418 compiler auxiliary names are inventory only, outside kernel ConstantInfo-body coverage.
+
+COMPILED-CONTROL-COMPARISON-v1 retains120 core receipts,100 plans,305 executions,79 independent returned-AF checks and915 exact mass comparisons. The S11 q4 callback-table mismatch is preserved in its own failure/erratum files; it is an incorrect reference promotion of entry budget1 to a recursive call. q5/q6 literal callback tables pass. SelectionControls directly tests8/7/9/7 minimum selection, duplicate occurrences and rejected payloads; those are direct execute API controls, not extra planner emissions.
+
+Reproduction: create a new sibling directory under sol-independent-review; copy the review .py scripts there and run build_sources.py pilot/full through bootloops-python. It reads the frozen canonical release and copies no oleans. The new sibling's parent resolves the same immutable precontact instrument/toy sources. Generate ScientificAudit and CompiledControls with make_scientific_audit.py/make_controls.py. Run local bootloops-lean with LEAN_PATH set only to the new isolated build directory. SelectionControls.lean is an own adapter source that can also be copied into the new build; no scientific proof source is changed. Keep replay outputs separately named and record output-path-only audit adapters.
+
+The full operational callerUnit correspondence, compiler instruction costs, full Tree/Forest solver, mutual recursion, global exponential base and novelty remain open. Later fresh-context prose/referee review is separate. This record confirms the local conditional mathematical package within the supplied formal definitions and the stated kernel/source scope.

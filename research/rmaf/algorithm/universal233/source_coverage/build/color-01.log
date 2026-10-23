@@ -1,0 +1,69 @@
+research/rmaf/algorithm/universal233/source_coverage/ColorBudget.lean:15:17: error: unsolved goals
+case cons.isTrue
+x a : Nat
+xs : List Nat
+ih : x ∈ dedupNat xs ↔ x ∈ xs
+h✝ : a ∈ dedupNat xs
+⊢ x = a → a ∈ xs
+research/rmaf/algorithm/universal233/source_coverage/ColorBudget.lean:50:17: error: unsolved goals
+case node.node.leaf
+i : Nat
+p : Vertex
+l r : GTree
+q : Vertex
+a b : GTree
+a✝ : Group
+ihl : i ∈ colors a ∨ i ∈ colors b ↔ i ∈ colors l
+ihr : i = a✝.color ↔ i ∈ colors r
+hl : normalize l = GTree.node q a b
+hr : normalize r = GTree.leaf a✝
+⊢ i ∈ colors a ∨ i ∈ colors b ∨ i ∈ colors r ↔ i ∈ colors l ∨ i ∈ colors r
+
+case node.node.node
+i : Nat
+p : Vertex
+l r : GTree
+q : Vertex
+a b : GTree
+a✝² : Vertex
+a✝¹ a✝ : GTree
+ihl : i ∈ colors a ∨ i ∈ colors b ↔ i ∈ colors l
+ihr : i ∈ colors a✝¹ ∨ i ∈ colors a✝ ↔ i ∈ colors r
+hl : normalize l = GTree.node q a b
+hr : normalize r = GTree.node a✝² a✝¹ a✝
+⊢ i ∈ colors a ∨ i ∈ colors b ∨ i ∈ colors r ↔ i ∈ colors l ∨ i ∈ colors r
+research/rmaf/algorithm/universal233/source_coverage/ColorBudget.lean:69:25: error: Type mismatch
+  ih
+has type
+  i ∈ List.map Group.color (groups t✝) → a ∈ groups t✝ → GroupLeafAt t✝ v✝ a → GroupLeafAt t✝ v✝ g✝
+but is expected to have type
+  GroupLeafAt (GTree.node p t✝ r) (false :: v✝) g✝
+research/rmaf/algorithm/universal233/source_coverage/ColorBudget.lean:70:26: error: Type mismatch
+  ih
+has type
+  i ∈ List.map Group.color (groups t✝) → a ∈ groups t✝ → GroupLeafAt t✝ v✝ a → GroupLeafAt t✝ v✝ g✝
+but is expected to have type
+  GroupLeafAt (GTree.node p l t✝) (true :: v✝) g✝
+research/rmaf/algorithm/universal233/source_coverage/ColorBudget.lean:153:18: error: unsolved goals
+f : GTree → List Group → List Vertex → Receipt
+h :
+  ∀ (t : GTree) (d : List Group) (c : List Vertex) (o : Output),
+    (origins t).Nodup → o ∈ (f t d c).outputs → ∃ cs, ColorCover t cs ∧ cs.length + c.length ≤ o.sourceCuts.length + 1
+t : GTree
+d : List Group
+c : List Vertex
+o : Output
+hn : (origins t).Nodup
+ho : o ∈ (step f t d c).outputs
+hnn : (origins (normalize t)).Nodup
+liftResult :
+  (∃ cs, ColorCover (normalize t) cs ∧ cs.length + c.length ≤ o.sourceCuts.length + 1) →
+    ∃ cs, ColorCover t cs ∧ cs.length + c.length ≤ o.sourceCuts.length + 1
+hc : choose (normalize t) = Choice.finish
+i : Nat
+hi : ColorCover (normalize t) [i]
+he : o = { partition := List.map Group.labels d ++ [List.flatMap Group.labels (groups (normalize t))], sourceCuts := c }
+⊢ 1 + c.length ≤ c.length + 1
+real 0.42
+user 0.40
+sys 0.21

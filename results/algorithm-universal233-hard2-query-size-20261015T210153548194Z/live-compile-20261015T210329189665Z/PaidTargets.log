@@ -1,0 +1,83 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-query-size-20261015T210153548194Z/PaidTargets.lean:11:3: error: Tactic `split` failed: Could not split an `if` or `match` expression in the type
+  call ∈
+    (have ss := OutputState.sourceForest S [A, B, C];
+      match AllGoodDP.run (localTarget (some T) (A ++ B)) (owned ss (A ++ B)) with
+      | none => { answer := none, calls := [] }
+      | some H =>
+        have m := additionalCost (owned ss (A ++ B)) H;
+        if m ≤ q - 2 then
+          have r := q - 2 - m;
+          have target := localTarget (some T) C;
+          have sources := owned ss C;
+          { answer := checked T S q (Option.map (fun K => H ++ K) (GenericForest.solve actual target sources r)),
+            calls := [{ target := target, sources := sources, budget := r }] }
+        else { answer := none, calls := [] }).calls
+of `mem`
+
+Hint: Use `set_option trace.split.failure true` to display additional diagnostic information
+
+case isTrue
+actual : Ordinary
+T S : Tree
+A B C : List Nat
+q : Nat
+call : Call
+h✝ : 2 ≤ q
+mem :
+  call ∈
+    (have ss := OutputState.sourceForest S [A, B, C];
+      match AllGoodDP.run (localTarget (some T) (A ++ B)) (owned ss (A ++ B)) with
+      | none => { answer := none, calls := [] }
+      | some H =>
+        have m := additionalCost (owned ss (A ++ B)) H;
+        if m ≤ q - 2 then
+          have r := q - 2 - m;
+          have target := localTarget (some T) C;
+          have sources := owned ss C;
+          { answer := checked T S q (Option.map (fun K => H ++ K) (GenericForest.solve actual target sources r)),
+            calls := [{ target := target, sources := sources, budget := r }] }
+        else { answer := none, calls := [] }).calls
+⊢ TargetBound T call.target
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-query-size-20261015T210153548194Z/PaidTargets.lean:39:5: error: Tactic `split` failed: Could not split an `if` or `match` expression in the type
+  call ∈
+    (have A := PaidAssembly.leftParent S p✝;
+      have B := PaidAssembly.rightParent S r✝;
+      have C := PaidAssembly.rootParent S p✝ r✝;
+      have X := first o✝ A B C;
+      have Y := second o✝ A B C;
+      have Z := third o✝ A B C;
+      if (restrictionAgrees S T X && restrictionAgrees S T Y) = true then GoodPairDP.runPair actual T S X Y Z q
+      else
+        if (restrictionAgrees S T X || restrictionAgrees S T Y) = true then
+          Hard2PaidLocal.runHardPaid actual T S q c (Result.pair o✝ (PairGeometry.Choice.edge edge✝))
+        else badPair actual T S X Y Z edge✝ q).calls
+of `mem`
+
+Hint: Use `set_option trace.split.failure true` to display additional diagnostic information
+
+case h_1
+actual : Ordinary
+T S : Tree
+c : Candidate
+q : Nat
+call : Call
+x✝ : List Vertex
+p✝ r✝ : Vertex
+heq✝ : c.originalCuts = [p✝, r✝]
+out✝ : Result
+o✝ : Order
+edge✝ : VertexGeometry.Vertex × VertexGeometry.Vertex
+mem :
+  call ∈
+    (have A := PaidAssembly.leftParent S p✝;
+      have B := PaidAssembly.rightParent S r✝;
+      have C := PaidAssembly.rootParent S p✝ r✝;
+      have X := first o✝ A B C;
+      have Y := second o✝ A B C;
+      have Z := third o✝ A B C;
+      if (restrictionAgrees S T X && restrictionAgrees S T Y) = true then GoodPairDP.runPair actual T S X Y Z q
+      else
+        if (restrictionAgrees S T X || restrictionAgrees S T Y) = true then
+          Hard2PaidLocal.runHardPaid actual T S q c (Result.pair o✝ (PairGeometry.Choice.edge edge✝))
+        else badPair actual T S X Y Z edge✝ q).calls
+⊢ TargetBound T call.target

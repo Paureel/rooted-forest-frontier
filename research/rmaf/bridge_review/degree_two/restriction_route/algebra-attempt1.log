@@ -1,0 +1,39 @@
+research/rmaf/bridge_review/degree_two/restriction_route/SupportAlgebra.lean:26:71: error: unsolved goals
+side : Bool
+xs ys : List Vertex
+⊢ (∀ (a : List Bool), a ∈ xs → ∀ (x : List Bool), x ∈ ys → ¬x = a) ↔ ∀ (v : Vertex), v ∈ xs → ¬v ∈ ys
+research/rmaf/bridge_review/degree_two/restriction_route/SupportAlgebra.lean:44:54: error: unsolved goals
+case false.false
+a b c d : List Vertex
+⊢ (∀ (v : Vertex),
+      ((∃ a_1, a_1 ∈ a ∧ false :: a_1 = v) ∨ ∃ a, a ∈ b ∧ true :: a = v) →
+        (∀ (x : List Bool), x ∈ c → ¬false :: x = v) ∧ ∀ (x : List Bool), x ∈ d → ¬true :: x = v) ↔
+    (∀ (v : Vertex), v ∈ a → ¬v ∈ c) ∧ ∀ (v : Vertex), v ∈ b → ¬v ∈ d
+
+case false.true
+a b c d : List Vertex
+⊢ (∀ (v : Vertex),
+      ((∃ a_1, a_1 ∈ a ∧ false :: a_1 = v) ∨ ∃ a, a ∈ b ∧ true :: a = v) →
+        ¬v = [] ∧ (∀ (x : List Bool), x ∈ c → ¬false :: x = v) ∧ ∀ (x : List Bool), x ∈ d → ¬true :: x = v) ↔
+    (∀ (v : Vertex), v ∈ a → ¬v ∈ c) ∧ ∀ (v : Vertex), v ∈ b → ¬v ∈ d
+
+case true.false
+a b c d : List Vertex
+⊢ (∀ (a_1 : Vertex),
+      ((∃ a_2, a_2 ∈ a ∧ false :: a_2 = a_1) ∨ ∃ a, a ∈ b ∧ true :: a = a_1) →
+        (∀ (x : List Bool), x ∈ c → ¬false :: x = a_1) ∧ ∀ (x : List Bool), x ∈ d → ¬true :: x = a_1) ↔
+    (∀ (v : Vertex), v ∈ a → ¬v ∈ c) ∧ ∀ (v : Vertex), v ∈ b → ¬v ∈ d
+research/rmaf/bridge_review/degree_two/restriction_route/SupportAlgebra.lean:46:17: warning: This simp argument is unused:
+  apart_append_left
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [shell, apart_append_right, Apart, prependSide]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/bridge_review/degree_two/restriction_route/SupportAlgebra.lean:46:36: warning: This simp argument is unused:
+  apart_append_right
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [shell, apart_append_left, Apart, prependSide]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

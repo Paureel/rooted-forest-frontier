@@ -1,0 +1,9 @@
+import RSBounds
+#check OrdinaryDispatch.RecoveryScalar.descendant_caps
+#print axioms OrdinaryDispatch.RecoveryScalar.descendant_caps
+#check OrdinaryDispatch.RecoveryScalar.descendant_budget
+#print axioms OrdinaryDispatch.RecoveryScalar.descendant_budget
+#check OrdinaryDispatch.RecoveryScalar.run_events
+#print axioms OrdinaryDispatch.RecoveryScalar.run_events
+#check OrdinaryDispatch.RecoveryScalar.scalar_width_inputs
+#print axioms OrdinaryDispatch.RecoveryScalar.scalar_width_inputs

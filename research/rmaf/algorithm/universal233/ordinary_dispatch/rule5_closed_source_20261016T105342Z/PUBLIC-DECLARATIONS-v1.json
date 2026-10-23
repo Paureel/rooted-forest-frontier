@@ -1,0 +1,143 @@
+{
+  "CommonCutoffPayload": {
+    "source_sha256": "9d0fb505d2c964f92a2ad86e1bb93319db670d1551ba1c9e6d56649072fec298",
+    "declarations": [
+      "def CallbackSound (cb : Ordinary) : Prop := \u2200T S r F,DepthOne.proper T S=true\u2192cb T S r=some F\u2192agreement T S F=true",
+      "theorem cutoff_sound (q : Nat) : CallbackSound (cutoff OrdinaryDispatch.FastOrdinary.solve q) := by",
+      "theorem common_sound_payloads (cb : Ordinary) (sound : CallbackSound cb) (d : Setup) (r : Nat) {FX FY FM FN : Forest}",
+      "theorem common_sound_reconstruct_work (cb : Ordinary) (sound : CallbackSound cb) (d : Setup) (r : Nat) {FX FY FM FN : Forest}"
+    ]
+  },
+  "CommonSoundLocal": {
+    "source_sha256": "ab886489e73d9ffe1bef4398e45aeba6284d7b29dcfc6c28ac12f2a0dc5ec96e",
+    "declarations": [
+      "theorem run_paid_sound_local (cb : Ordinary) (sound : CallbackSound cb) (W : OrdinaryWork) (d : Setup) (q : Nat) {FY FN : Forest} {p : RMAF.Vertex}",
+      "theorem guarded_sound_local (cb : Ordinary) (sound : CallbackSound cb) (W : OrdinaryWork) (d : Setup) (q : Nat) :",
+      "theorem common_sound_local (cb : Ordinary) (sound : CallbackSound cb) (classFee : CheckRequest\u2192Nat) (W : OrdinaryWork) {T S : Tree} {i e : RMAF.Vertex}",
+      "theorem common_sound_source_local (cb : Ordinary) (sound : CallbackSound cb) (classFee : CheckRequest\u2192Nat)"
+    ]
+  },
+  "ConcreteFees": {
+    "source_sha256": "38c81b029fc6f3276a043ce30b7bdf154e1e1ccff097e39ad40d971cf710bc4d",
+    "declarations": [
+      "def source (cb : Ordinary) (W : OrdinaryWork) (T S : Tree) (a b q : Nat) : Charged Rule5OrdinaryDispatch.Result :=",
+      "theorem source_value (cb : Ordinary) (W : OrdinaryWork) (T S : Tree) (a b q : Nat) :",
+      "def calls (cb : Ordinary) (W : OrdinaryWork) (T S : Tree) (a b q : Nat) :=dispatchCalls cb W checkFee (literalFee T S a b) T S a b q",
+      "theorem source_split (cb : Ordinary) (W : OrdinaryWork) (T S : Tree) (a b q : Nat) :",
+      "theorem literal_domain_bound (T S : Tree) (a b : Nat) (d : BadSelection) (u v : RMAF.Vertex)",
+      "theorem selected_concrete_local (cb : Ordinary) (sound : CallbackSound cb)",
+      "theorem dispatch_concrete_local (cb : Ordinary) (sound : CallbackSound cb)"
+    ]
+  },
+  "PolyTactic": {
+    "source_sha256": "dcc104e8c2ee5e8b8ad5612034601763f901736fb47b0ef38b6795ab9ef9fcd8",
+    "declarations": [
+      "elab \"poly_step\" : tactic => withMainContext do",
+      "macro \"poly_mono\" : tactic => `(tactic|repeat poly_step)"
+    ]
+  },
+  "PolynomialCaps": {
+    "source_sha256": "a22e39c0f00b0b6fdeafa554216b4f1a6d7d28e5423585e7739e5fc8652600a0",
+    "declarations": [
+      "theorem check_cap_mono {n N : Nat} (h:n\u2264N) : checkCap n\u2264checkCap N := by",
+      "theorem literal_budget_mono {n N : Nat} (h:n\u2264N) : literalBudget n\u2264literalBudget N := by",
+      "theorem agreement_K_mono {n N : Nat} (h:n\u2264N) : agreementK n\u2264agreementK N := by",
+      "theorem final_budget_mono {nt ns K N M H : Nat} (tn:nt\u2264N) (sn:ns\u2264M) (kh:K\u2264H) :",
+      "theorem forest_arm_budget_mono {nt ns K N M H : Nat} (tn:nt\u2264N) (sn:ns\u2264M) (kh:K\u2264H) :",
+      "theorem common_budget_cap {nt ns x N : Nat} (tn:nt\u2264N) (sn:ns\u2264N) (xl:x\u22642*N) :",
+      "theorem paid_selected_budget_mono {nt ns Kc Kl N M Hc Hl : Nat}"
+    ]
+  },
+  "UniformPrefix": {
+    "source_sha256": "a1afca8505aa103cab47cdb39a7f6ba2b29917d8434bc736b1e51b837b9986b5",
+    "declarations": [
+      "def sideCap (n M : Nat) :=cutsBudget n+(sideAtBudget M+4)*(2*n+1)+2",
+      "def withoutCap (n M : Nat) :=sideCap n M+(16*(M+1)^2+4*(M+1)+5)*(2*n+1)+2",
+      "def typeCap (n M : Nat) :=(cutsBudget n+partitionBudget n+4)+(singletonPartitionBudget n+4)+2*(arcPartitionBudget M (2*M+1)+3)+5",
+      "def literalPlanCap (n M : Nat) :=sideCap n M+withoutCap n M+3*M+typeCap n M+7+M+2",
+      "def guardedPlanCap (n M : Nat) :=literalPlanCap n M+5*(guardBudget M+4)+2",
+      "def requestsCap (n M : Nat) :=guardedPlanCap n M+4*(requestBudget M+3)+3",
+      "def answersCap (n M : Nat) :=requestsCap n M+4*(currentPrefixBudget (2*M)+4)+3",
+      "def bestCap (n M k : Nat) :=answersCap n M+4*(agreementK k+3*k+7)+7",
+      "def paidPrefixCap (N : Nat) :=paidSelectedBudget N N (checkCap (2*N)) (literalBudget (2*N))+bestCap N (4*N) (2*N)+2",
+      "theorem paid_best_cap (T S : Tree) {N M H k K : Nat} (tn:(leaves T).length\u2264N) (sn:(leaves S).length\u2264N)",
+      "theorem paid_prefix_cap (T S : Tree) {N : Nat} (tn:(leaves T).length\u2264N) (sn:(leaves S).length\u2264N) :",
+      "def prefixCap (N : Nat) :=finalBudget N N (checkCap (2*N))+",
+      "theorem selected_prefix_cap (T S : Tree) {N : Nat} (tn:(leaves T).length\u2264N) (sn:(leaves S).length\u2264N)"
+    ]
+  },
+  "ForestDebitBounds": {
+    "source_sha256": "435444a6f530d5fe3a3f0be9e2e0548577dd4b6c7371c629fa59a6a5e459b2fe",
+    "declarations": [
+      "def forestEnvelope (N Q q : Nat) : Rat :=geometric Rule5ActualTrace.base*(forestCoefficient N Q:Rat)*Rule5ActualTrace.base^q",
+      "theorem forest_envelope_nonneg (N Q q : Nat) : 0\u2264forestEnvelope N Q q := by",
+      "theorem current_debit_bound (cb : Ordinary) (T : Option Tree) (ss : List Tree) (r q N Q : Nat)",
+      "theorem answer_list_debit_sum (cb : Ordinary) (js : List PaidRequest) :",
+      "theorem answers_debit_bound (cb : Ordinary) {T S : Tree} (R : SelectedPaid T S) (q N Q : Nat)",
+      "theorem selected_forest_debit_bound (cb : Ordinary) {T S : Tree} {i : RMAF.Vertex} {a b : Nat}"
+    ]
+  },
+  "SourcePolynomial": {
+    "source_sha256": "42ea5bbbb3ba2bce1c8e559ad37efb88f8d5b7477bc6f3c83e68e0a716991f11",
+    "declarations": [
+      "def C5 (N Q L : Nat) : Nat :=prefixCap N+80*(2^50*(N+Q+L+2)^8)+4",
+      "theorem forest_envelope_coefficient (N Q L q : Nat) :",
+      "theorem source_bound (cb : Ordinary) (sound:CallbackSound cb)"
+    ]
+  },
+  "ActualCaller": {
+    "source_sha256": "7425ed97712028bb6103ae8d4d7d2e65293777e243a73ed369877a532fce238a",
+    "declarations": [
+      "def rule5AnswerSource (cb : Ordinary) (W : OrdinaryWork) (T S : Tree) (a b q : Nat) : Charged (Option Forest) :=",
+      "theorem rule5_answer_value (cb : Ordinary) (W : OrdinaryWork) (T S : Tree) (a b q : Nat) :",
+      "theorem rule5_answer_split (cb : Ordinary) (W : OrdinaryWork) (T S : Tree) (a b q : Nat) :",
+      "def actualCallback (q : Nat) : Ordinary :=cutoff OrdinaryDispatch.FastOrdinary.solve q",
+      "def actualRule5Source (W : OrdinaryWork) (T S : Tree) (a b q : Nat) :=rule5AnswerSource (actualCallback q) W T S a b q",
+      "theorem admitted_proper {T S : Tree} {a b : Nat} (ad:admitted T S a b=true) : DepthOne.proper T S=true := by",
+      "structure InputDomain (T S : Tree) (q N Q L : Nat) : Prop where",
+      "theorem actual_rule5_bound {T S : Tree} {i : RMAF.Vertex} {a b : Nat}"
+    ]
+  },
+  "AdmittedRouteBinding": {
+    "source_sha256": "45d3007d53c025b2f0d16da906e70215efbbf6eb09a917102209d8ccfbe785cb",
+    "declarations": [
+      "theorem admitted_route_facts (T S : Tree) (c : Candidate) (q : Nat)",
+      "theorem actual_admitted_route {T S : Tree} {c d : Candidate} (q : Nat)",
+      "def admittedRouteSource (W : OrdinaryWork) (T S : Tree) (c : Candidate) (q : Nat) :=actualRule5Source W T S c.a c.b q",
+      "theorem admitted_route_value (W : OrdinaryWork) (T S : Tree) (c : Candidate) (q : Nat) :",
+      "theorem admitted_route_split (W : OrdinaryWork) (T S : Tree) (c : Candidate) (q : Nat) :",
+      "theorem admitted_route_bound {T S : Tree} {c d : Candidate} (q N Q L : Nat)",
+      "theorem actual_rule5_calls_native (W : OrdinaryWork) (T S : Tree) (a b q : Nat) :",
+      "theorem actual_rule5_query_domain (W : OrdinaryWork) {T S : Tree} {i : RMAF.Vertex} {a b : Nat}"
+    ]
+  },
+  "CommonActualJobs": {
+    "source_sha256": "684dba1539755ea7530ada8a53d2b1418e0b9459fffeb748e13cb89a8e7fcc10",
+    "declarations": [
+      "theorem actual_common_job_payload (T S : Tree) (a b : Nat) (d : BadSelection) (q : Nat)",
+      "theorem actual_common_job_labels (T S : Tree) (a b : Nat) (d : BadSelection) (q L : Nat)",
+      "theorem original_input_domain (T S : Tree) (q L : Nat)",
+      "theorem original_rule5_bound {T S : Tree} {i : RMAF.Vertex} {a b : Nat}"
+    ]
+  },
+  "RefusalAndDomains": {
+    "source_sha256": "ed0d35a89e16322c4b80ee980e427d7913de2f29a98afb3ed7f905fd5caf70c4",
+    "declarations": [
+      "theorem source_refused_work (cb : Ordinary) (W : OrdinaryWork) (T S : Tree) (a b q L : Nat)",
+      "theorem selector_refused_bound (cb : Ordinary) (W : OrdinaryWork) (T S : Tree) (a b q N Q L : Nat)"
+    ]
+  },
+  "ClosedControls": {
+    "source_sha256": "cb04b029e9f600c3c3f1df2a3a04ca30257c6fa974e05db8a597e7fdc84439f0",
+    "declarations": [
+      "def t2 : Tree:=.node (.leaf 0) (.leaf 1)",
+      "def rep : Tree:=.node (.leaf 0) (.leaf 0)",
+      "def T9 : Tree:=Rule5Local.Pre.commonT",
+      "def S9 : Tree:=Rule5Local.Pre.commonS",
+      "def W17 (_ _ : Tree) (_ : Nat) : Nat:=17",
+      "def c9 : Candidate:=\u27e8[true,false],0,1,cuts S9 0 1\u27e9",
+      "theorem large_budget_domain : InputDomain t2 t2 99 2 99 1 := by",
+      "def controls : List (String\u00d7Bool):="
+    ]
+  }
+}

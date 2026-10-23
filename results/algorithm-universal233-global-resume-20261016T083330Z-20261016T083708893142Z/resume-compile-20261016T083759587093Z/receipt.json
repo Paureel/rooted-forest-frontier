@@ -1,0 +1,67 @@
+{
+  "instrument_sha256": "550b066c54ad3530bcf2d7a0d51ecfa6a08b3286e40c914571f6d9aabc032c66",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "memory_megabytes": 3072,
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "source_origin": "results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/live-compile-20261015T220123767831Z/GuardPositive.lean",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "source_origin": "results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/live-compile-20261015T220123767831Z/GuardFalse.lean",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true,
+      "same_lineage": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3487096670000369,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3252157499999839,
+      "resource_stop": null,
+      "log_sha256": "601824d2bc492307303c610cb74eed07ff44eca864fbad4007212553dbac2382"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.001605584000003546,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "OrdinaryStepTrace",
+      "source_sha256": "88424d0a47a9e3cf59ad22f5909440e5855b8cb46e4bbf3b8fa14bde117fe6b5",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8565208339999799,
+      "resource_stop": null,
+      "log_sha256": "3ee8408e1a3db1a7cd5dd4bd1d971c219fae85a0464df211f57904cf3a86b7c0"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('OrdinaryStepTrace', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryStepTrace.lean:38:39: error: Ambiguous term\\n  solve\\nPossible interpretations:\\n  FastOrdinary.solve q T S : Option CommonForest\\n  \\n  RMAF.solve q T S : Option (List Nat)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryStepTrace.lean:39:5: error: Ambiguous term\\n  solve.eq_def\\nPossible interpretations:\\n  FastOrdinary.solve.eq_def : \u2200 (q : Nat) (T S : Tree),\\n    FastOrdinary.solve q T S =\\n      if DepthOne.proper T S = true then\\n        match DepthOne.pretest01 T S with\\n        | DepthOne.Result.refused => none\\n        | DepthOne.Result.found c => if DepthOne.cutCost c \u2264 q then some (DepthOne.forest S c) else none\\n        | DepthOne.Result.rejected =>\\n          have paid := fun u v r => if hr : r < q then FastOrdinary.solve r u v else none;\\n          match early T S with\\n          | Early.common reverse c =>\\n            have p := commonPair T S reverse c;\\n            if hn : (leaves p.fst).length < (leaves T).length then\\n              Option.map (expandCommon T S reverse c) (FastOrdinary.solve q p.fst p.snd)\\n            else none\\n          | Early.one reverse c =>\\n            have p := Oriented reverse T S;\\n            runChildren paid p.fst p.snd q [pendantChild p.snd c.a c.b]\\n          | Early.high reverse c =>\\n            have p := Oriented reverse T S;\\n            runChildren paid p.fst p.snd q (branches p.snd c.a c.b)\\n          | Early.rule4Forward s => runRule4 paid s q\\n          | Early.rule4Reverse s => runRule4 paid s q\\n          | Early.hard2 c d => Hard2Dispatcher.run paid T S c d q\\n          | Early.refused => none\\n      else none\\n  \\n  RMAF.solve.eq_def : \u2200 (n : Nat) (t u : Tree),\\n    RMAF.solve n t u = best (fun a => (blocks a).length) (fun a => agreement t u (blocks a)) (assignments n n)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryStepTrace.lean:38:54: error: unsolved goals\\nq : Nat\\nT S : Tree\\n\u22a2 (ordinaryStepTrace FastOrdinary.solve q T S).value = sorry\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryStepTrace.lean:73:33: warning: `if_true` has been deprecated: Use `ite_true` instead\\n\\nHint: Replace the deprecated name:\\n  i\u0335f\u0335_\u0335t\u0335r\u0335u\u0335e\u0335i\u0332t\u0332e\u0332_\u0332t\u0332r\u0332u\u0332e\u0332\\n'))"
+}

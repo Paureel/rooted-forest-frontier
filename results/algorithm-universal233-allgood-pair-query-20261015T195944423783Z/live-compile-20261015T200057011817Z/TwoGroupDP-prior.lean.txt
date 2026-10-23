@@ -1,0 +1,92 @@
+import GroupInterface
+import ExactMinimum
+import SelectedExact
+namespace OrdinaryDispatch.GoodPairDP
+open RMAF ForestState ForestGroups RestrictionBridge Universal233
+abbrev Forest := List (List Nat)
+abbrev Ordinary := Tree → Tree → Nat → Option Forest
+
+def solve (actual : Ordinary) (T : Option Tree) (ss : List Tree) (U V : List Nat) (b : Nat) : Option Forest := do
+ let H ← AllGoodDP.run (localTarget T U) (owned ss U)
+ let m := additionalCost (owned ss U) H
+ if m≤b then
+  let K ← GenericForest.solve actual (localTarget T V) (owned ss V) (b-m)
+  pure (H++K)
+ else none
+
+theorem two_join (T : Option Tree) (ss : List Tree) (U V : List Nat) (H K : Forest)
+ (hp : proper T ss=true) (hq : partitionCheck (labels T) [U,V]=true)
+ (own : Owns ss [U,V]) (cross : CrossClear T ss [U,V])
+ (hH : agrees (localTarget T U) (owned ss U) H=true)
+ (hK : agrees (localTarget T V) (owned ss V) K=true) :
+ agrees T ss (H++K)=true ∧ additionalCost ss (H++K)=
+ additionalCost (owned ss U) H+additionalCost (owned ss V) K := by
+ have ne : V≠U := by
+  have hn := checked_family_nodup _ _ hq
+  simpa [ne_comm] using (List.nodup_cons.1 hn).1
+ let G : List Nat → Forest := fun X=>if X=U then H else K
+ have valid : ∀X∈[U,V],agrees (localTarget T X) (owned ss X) (G X)=true := by
+  intro X hx
+  rcases List.mem_cons.1 hx with rfl|hx
+  · simpa [G] using hH
+  · have eq : X=V := by simpa using hx
+    subst X
+    simpa [G,ne] using hK
+ have sound := reverse_reconstruction T ss [U,V] G hp hq own cross valid
+ have bill := reverse_exact_cost T ss [U,V] G hp hq own valid
+ exact ⟨by simpa [G,ne] using sound,by simpa [G,ne] using bill.symm⟩
+
+theorem two_forward (T : Option Tree) (ss : List Tree) (U V : List Nat) (F : Forest)
+ (hq : partitionCheck (labels T) [U,V]=true) (own : Owns ss [U,V])
+ (hf : agrees T ss F=true) :
+ agrees (localTarget T U) (owned ss U) (family U F)=true ∧
+ agrees (localTarget T V) (owned ss V) (family V F)=true ∧
+ additionalCost (owned ss U) (family U F)+additionalCost (owned ss V) (family V F)=additionalCost ss F := by
+ exact ⟨local_forward T ss [U,V] F hf hq own U (by simp),
+  local_forward T ss [U,V] F hf hq own V (by simp),
+  by simpa using forward_exact_cost T ss [U,V] F hf hq own⟩
+
+/-- Every actual forest callback has the literal residual b-m; the DP answer
+is executable and globally minimal on its whole group. -/
+theorem solve_sound (actual : Ordinary) (T : Option Tree) (ss : List Tree) (U V : List Nat) (b : Nat)
+ (ih : ForestMinCompletion.LocalOrdinaryIH b actual)
+ (hp : proper T ss=true) (hq : partitionCheck (labels T) [U,V]=true)
+ (own : Owns ss [U,V]) (cross : CrossClear T ss [U,V])
+ (good : AllGoodDP.allGood (localTarget T U) (owned ss U)=true)
+ (F : Forest) (hf : solve actual T ss U V b=some F) :
+ agrees T ss F=true ∧ additionalCost ss F≤b ∧ ∀G,agrees T ss G=true→F.length≤G.length := by
+ obtain ⟨H,hH,hvalid,hbal,hmin⟩ := AllGoodDP.run_total_exact _ _ good
+ unfold solve at hf
+ rw [hH] at hf
+ change (if additionalCost (owned ss U) H≤b then
+  (GenericForest.solve actual (localTarget T V) (owned ss V) (b-additionalCost (owned ss U) H)).map (fun K=>H++K)
+  else none)=some F at hf
+ split at hf
+ · rename_i affordable
+   cases hK : GenericForest.solve actual (localTarget T V) (owned ss V) (b-additionalCost (owned ss U) H) with
+   | none => simp [hK] at hf
+   | some K =>
+    have eq : H++K=F := by simpa [hK] using hf
+    subst F
+    have hs := GenericForest.solve_sound actual _ _ _ K hK
+    have joined := two_join T ss U V H K hp hq own cross hvalid hs.1
+    refine ⟨joined.1,by omega,?_⟩
+    intro G hg
+    obtain ⟨hu,hv,bill⟩ := two_forward T ss U V G hq own hg
+    have subih : ForestMinCompletion.LocalOrdinaryIH (b-additionalCost (owned ss U) H) actual := by
+     refine ⟨?_,?_⟩
+     · intro t s r G low prop ans
+       exact ih.sound t s r G (by omega) prop ans
+     · intro t s r G low prop ha hb
+       exact ih.complete t s r G (by omega) prop ha hb
+    have km := Rule5PaidOrdinary.actual_solve_minimum actual _ _ _ subih hK
+    have ku := hmin _ hu
+    have kv := km _ hv
+    have kl := ForestGroups.sources_le_blocks _ _ _ hs.1
+    have gl := ForestGroups.sources_le_blocks _ _ _ hv
+    have fl := ForestGroups.sources_le_blocks _ _ _ joined.1
+    have al := ForestGroups.sources_le_blocks _ _ _ hg
+    simp only [additionalCost] at *
+    omega
+ · simp at hf
+end OrdinaryDispatch.GoodPairDP

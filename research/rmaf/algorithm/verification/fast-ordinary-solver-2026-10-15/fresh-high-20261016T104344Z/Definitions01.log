@@ -1,0 +1,30 @@
+inductive RMAF.Tree : Type
+number of parameters: 0
+constructors:
+RMAF.Tree.leaf : Nat → Tree
+RMAF.Tree.node : Tree → Tree → Tree
+def RMAF.leaves : Tree → List Nat :=
+fun x => Tree.brecOn x leaves._f
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/fast-ordinary-solver-2026-10-15/fresh-high-20261016T104344Z/Definitions01.lean:6:7: error(lean.unknownIdentifier): Unknown constant `DepthOne.proper`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/fast-ordinary-solver-2026-10-15/fresh-high-20261016T104344Z/Definitions01.lean:7:7: error(lean.unknownIdentifier): Unknown constant `CoreGraph.CherryAt`
+def RMAF.agreement : Tree → Tree → List (List Nat) → Bool :=
+fun t u bs =>
+  partitionCheck (leaves t) bs && partitionCheck (leaves u) bs && bs.all (restrictionAgrees t u) &&
+      pairwiseEmbeddings t bs &&
+    pairwiseEmbeddings u bs
+def VertexGeometry.Refines : List (List Nat) → List (List Nat) → Prop :=
+fun F Q => ∀ (P : List Nat), P ∈ F → ∃ R, R ∈ Q ∧ ∀ (x : Nat), x ∈ P → x ∈ R
+def Universal233.CherryBranching.cuts : Tree → Nat → Nat → List Vertex :=
+fun S a b => Universal233.HardParent.pendantOriginal S a b
+def Universal233.CherryBranching.coreLabels : Tree → Nat → Nat → List Nat :=
+fun S a b =>
+  List.filter
+    (fun x =>
+      !(List.map (Universal233.HardParent.subtreeLabels S) (Universal233.CherryBranching.cuts S a b)).flatten.contains
+          x)
+    (leaves S)
+def Universal233.CherryBranching.pendantPartition : Tree → Nat → Nat → List (List Nat) :=
+fun S a b =>
+  List.map (Universal233.HardParent.subtreeLabels S) (Universal233.CherryBranching.cuts S a b) ++
+    [Universal233.CherryBranching.coreLabels S a b]
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/fast-ordinary-solver-2026-10-15/fresh-high-20261016T104344Z/Definitions01.lean:13:7: error(lean.unknownIdentifier): Unknown constant `HardParent.pendantOriginal`

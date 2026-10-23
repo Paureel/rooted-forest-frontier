@@ -1,0 +1,42 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericStateBounds.lean:12:1: error: Function expected at
+  targetNodes
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  target
+
+Hint: The identifier `targetNodes` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericStateBounds.lean:51:34: error: Function expected at
+  targetNodes
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  target
+
+Hint: The identifier `targetNodes` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericStateBounds.lean:54:42: error: unsolved goals
+x✝ : Sort u_1
+targetNodes : x✝
+target : Option Tree
+ss0 : List Tree
+q0 N M : Nat
+hp0 : proper target ss0 = true
+size : (labels target).length ≤ N
+cap : ∀ (x : Nat), x ∈ labels target → x ≤ M
+d : Nat
+ss : List Tree
+q : Nat
+path : ForestDesc target ss0 q0 d ss q
+core : proper target ss = true ∧ d + q ≤ q0
+⊢ proper target ss = true ∧
+    d + q ≤ q0 ∧
+      sorry ≤ 2 * N ∧
+        GenericForest.sourceNodes ss ≤ 2 * N ∧
+          ss.length ≤ 2 * N ∧
+            (List.map leaves ss).flatten.length ≤ N ∧
+              ∀ (s : Tree),
+                s ∈ ss →
+                  treeNodes s ≤ 2 * N ∧
+                    (leaves s).length ≤ N ∧ TreeCap M s ∧ ∀ (v : Vertex), CoreGraph.Valid s v → List.length v ≤ 2 * N

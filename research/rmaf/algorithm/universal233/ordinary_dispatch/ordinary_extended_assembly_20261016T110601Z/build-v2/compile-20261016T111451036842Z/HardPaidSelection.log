@@ -1,0 +1,14 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_extended_assembly_20261016T110601Z/build-v2/HardPaidSelection.lean:79:6: error: Type mismatch
+  hardPaidSource_uniform (cutoff FastOrdinary.solve q) T S c out q (2 * N + 3) Q
+    (Decidable.byContradiction fun a => hardPaidLocalDebit_bound._proof_1_4 N Q T S q a)
+    (Decidable.byContradiction fun a => hardPaidLocalDebit_bound._proof_1_5 N Q T S q size same tn a)
+    (Decidable.byContradiction fun a => hardPaidLocalDebit_bound._proof_1_6 N Q T S q size same sn a) budget hp hard
+    selected
+has type
+  ↑(hardPaidSource (cutoff FastOrdinary.solve q) (fun x x_1 x_2 => 0) T S q c out).work ≤
+    ↑(hardPaidUniformPolynomial (2 * N + 3) Q) * Rule5ActualTrace.base ^ q
+but is expected to have type
+  ↑(if hardPaidCaseUsed T S c out✝ = true then
+        (hardPaidSource (cutoff FastOrdinary.solve q) (fun x x_1 x_2 => 0) T S q c out✝).work
+      else 0) ≤
+    ↑(hardPaidUniformPolynomial (2 * N + 3) Q) * Rule5ActualTrace.base ^ q

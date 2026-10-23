@@ -1,0 +1,92 @@
+import BinaryCallerSites
+namespace GenericForest.BinaryCaller
+open GenericForest.BinaryProvider GenericForest.ScalarBits GenericForest.CheckCorrespondence
+open Universal233.WholeSourceWork
+
+/-- Bounds apply before the parent's checker call: the recursive generic
+callee has already returned a partition of the unchanged target labels. -/
+theorem generic_returned_candidate_sizes
+ (ordinary : RMAF.Tree→RMAF.Tree→Nat→Option (List (List Nat)))
+ (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits)
+ (F : BinaryProvider.Forest) (N : Nat) (tn : targetNodes (targetValue T)≤N)
+ (answer : GenericForest.solve ordinary (targetValue T) (sourcesValue ss) (labelValue q)=some (forestValue F)) :
+ F.length≤N ∧ F.flatten.length≤N := by
+ have sound:=(GenericForest.solve_sound ordinary _ _ _ _ answer).1
+ have parts:=ForestState.agrees_parts _ _ _ sound
+ have nd:=(ForestState.proper_parts _ _ parts.1).1
+ have block:=RMAF.partitionCheck_block_bound _ _ parts.2.1
+ have perm:=RMAF.RestrictionBridge.checked_flatten_perm _ _ nd parts.2.1
+ have cells:=perm.length_eq
+ have labels:=labels_nodes (targetValue T)
+ simp only [forestValue_length] at block
+ simp only [forestValue_flatten,blockValue_length] at cells
+ constructor <;> omega
+
+/-- Budget payment executes a bit-spine counter and bit subtraction. -/
+def payBudget {α : Type} (q : Bits) (cuts : List α) : Charged Bits:=
+ let d:=spineCounter cuts;let r:=subtractBits q d.value;⟨r.value,d.work+r.work+4⟩
+@[simp] theorem payBudget_value {α : Type} (q : Bits) (cuts : List α) :
+ decode (payBudget q cuts).value=decode q-cuts.length := by simp [payBudget]
+theorem payBudget_caps {α : Type} (Q : Nat) (q : Bits) (cuts : List α)
+ (qb : decode q≤Q) (qw : q.length≤Q+1) (afford : cuts.length≤decode q) :
+ decode (payBudget q cuts).value≤Q ∧ (payBudget q cuts).value.length≤Q+1 := by
+ have d:=spineCounter_length cuts
+ have l:=subtractBits_length q (spineCounter cuts).value
+ simp only [payBudget] at l ⊢
+ constructor
+ · rw [subtractBits_value,spineCounter_value];omega
+ · omega
+theorem payBudget_work {α : Type} (q : Bits) (cuts : List α) :
+ (payBudget q cuts).work≤16*(cuts.length+1)^2+24*(q.length+cuts.length+1)+4 := by
+ have d:=spineCounter_work cuts;have dl:=spineCounter_length cuts
+ have r:=subtractBits_work q (spineCounter cuts).value
+ simp only [payBudget];omega
+
+/-- This polynomial is derived from the executed setup; it is never a runtime
+argument or a desired checker-cost field. -/
+def setupPolynomial (N L Q : Nat) :=
+ beta L*(8*(N+1)^2)+beta L*(13*(N+1)^2)+8*Q+24*(L*N)+60*N+
+ 16*(2*N+1)^2+32*(N+1)^2+49
+
+def callPolynomial (N L Q : Nat) := setupPolynomial N L Q+beta (L+Q+2*N+3)*(908*(N+1)^6)+4
+
+theorem caller_setup_bound (N L Q : Nat) (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree)
+ (q : Bits) (F : BinaryProvider.Forest) (c : Caps N L Q T ss q F) :
+ (checkerCapacity T ss q F).work≤setupPolynomial N L Q := by
+ exact checkerCapacity_global_setup N L Q T ss q F c
+
+theorem accepted_call_bound (N L Q : Nat) (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree)
+ (q : Bits) (F : BinaryProvider.Forest) (c : Caps N L Q T ss q F) :
+ (acceptedFromInput T ss q F).work≤callPolynomial N L Q := by
+ have p:=checker_work_global N L Q T ss q F c
+ have e:=acceptedFromInput_work T ss q F
+ dsimp only [callPolynomial,setupPolynomial];omega
+
+theorem literal_setup_sum_bound (N L Q : Nat) (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree)
+ (q : Bits) (Fs : List BinaryProvider.Forest) (cap : ∀F∈Fs,Caps N L Q T ss q F) :
+ setupCallsWork T ss q Fs≤setupPolynomial N L Q*Fs.length := by
+ induction Fs with
+ | nil=>simp [setupCallsWork]
+ | cons F Fs ih=>
+  have f:=caller_setup_bound N L Q T ss q F (cap F (by simp))
+  have r:=ih (fun G hg=>cap G (by simp [hg]))
+  simp only [setupCallsWork,List.length_cons,Nat.mul_add,Nat.mul_one];omega
+
+theorem literal_checker_sum_bound (N L Q : Nat) (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree)
+ (q : Bits) (Fs : List BinaryProvider.Forest) (cap : ∀F∈Fs,Caps N L Q T ss q F) :
+ checkerCallsWork T ss q Fs≤callPolynomial N L Q*Fs.length := by
+ induction Fs with
+ | nil=>simp [checkerCallsWork]
+ | cons F Fs ih=>
+  have f:=accepted_call_bound N L Q T ss q F (cap F (by simp))
+  have r:=ih (fun G hg=>cap G (by simp [hg]))
+  simp only [checkerCallsWork,List.length_cons,Nat.mul_add,Nat.mul_one];omega
+
+theorem raw_parent_global_work (N L Q : Nat) (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree)
+ (q : Bits) (Fs : List BinaryProvider.Forest) (cap : ∀F∈Fs,Caps N L Q T ss q F) :
+ (bestCandidates T ss q Fs).work≤
+ (callPolynomial N L Q+32*(N+1)^2+20*(N+1)+8)*(Fs.length+1) := by
+ have p:=raw_parent_work N T ss q Fs (fun F hf=>(cap F hf).forestCount)
+ have s:=literal_checker_sum_bound N L Q T ss q Fs cap
+ simp only [Nat.mul_add,Nat.add_mul,Nat.mul_one];omega
+end GenericForest.BinaryCaller

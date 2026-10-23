@@ -1,0 +1,39 @@
+{
+  "rows": [
+    {
+      "id": "clean",
+      "expected_exit": 0,
+      "observed_exit": 0,
+      "stdout": "{\"status\": \"finite-agreement\", \"ordered_pairs_checked\": 9, \"seconds\": 0.0017657910002526478, \"discrepancies\": []}",
+      "stderr": "",
+      "evidence": "research/rmaf/results/verification-plant-clean.json"
+    },
+    {
+      "id": "wrong-k",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "stdout": "{\"status\": \"refuted\", \"ordered_pairs_checked\": 9, \"seconds\": 0.001721374999760883, \"discrepancies\": [{\"n\": 3, \"t1\": \"((b,c),a)\", \"t2\": \"((b,c),a)\", \"reason\": \"exact integer mismatch: 1 != 2\", \"edge_cut_k\": 1, \"external_k\": 2, \"edge_cut_partitions\": [[[\"a\", \"b\", \"c\"]]], \"external_partitions\": [[[\"a\", \"b\", \"c\"]]]}]}",
+      "stderr": "",
+      "evidence": "research/rmaf/results/verification-plant-wrong-k.json"
+    },
+    {
+      "id": "wrong-optimum-partition",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "stdout": "{\"status\": \"refuted\", \"ordered_pairs_checked\": 9, \"seconds\": 0.0016660000001138542, \"discrepancies\": [{\"n\": 3, \"t1\": \"((b,c),a)\", \"t2\": \"((b,c),a)\", \"reason\": \"complete optimum forest partition set differs\", \"edge_cut_k\": 1, \"external_k\": 1, \"edge_cut_partitions\": [[[\"a\", \"b\", \"c\"]]], \"external_partitions\": [[]]}]}",
+      "stderr": "",
+      "evidence": "research/rmaf/results/verification-plant-wrong-optimum-partition.json"
+    },
+    {
+      "id": "missing-pair",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "stdout": "{\"status\": \"refuted\", \"ordered_pairs_checked\": 8, \"seconds\": 0.001741667000715097, \"discrepancies\": [{\"n\": 3, \"kind\": \"incomplete-or-duplicate-pair-coverage\", \"actual_pairs\": 8, \"expected_pairs\": 9}]}",
+      "stderr": "",
+      "evidence": "research/rmaf/results/verification-plant-missing-pair.json"
+    }
+  ],
+  "controls_executed": 4,
+  "status": "all registered controls observed",
+  "scope": "Comparator plumbing, not mathematical correctness."
+}

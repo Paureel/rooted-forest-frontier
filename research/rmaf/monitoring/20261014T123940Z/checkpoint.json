@@ -1,0 +1,29 @@
+{
+  "at": "20261014T123940Z",
+  "status": "passed",
+  "pure_bridge_checked_theorems": 16,
+  "triple_dp_checked_theorems": 22,
+  "pure_bridge_replay": [
+    {
+      "file": "PureBridge.lean",
+      "exit_code": 0,
+      "expected_failure": false,
+      "sha256": "acf08329466b6449c39c5edb0914c7af15f30690b25b8f0389cb65b2b24943f4"
+    },
+    {
+      "file": "negative/FalseRepair.lean",
+      "exit_code": 1,
+      "expected_failure": true,
+      "sha256": "2d9eb0d27ff1df37a4dc7e5b32ffdc2131b23041ea11827583ee8683eca970d9"
+    },
+    {
+      "file": "negative/FalseDepth.lean",
+      "exit_code": 1,
+      "expected_failure": true,
+      "sha256": "87e8c35fa99100b7d4ed48e7bacf25f7001fa16a30b344ddb76644c95776bbe2"
+    }
+  ],
+  "triple_dp_receipt": "research/rmaf/results/triple-dp-lean.json",
+  "scope": "Same-source replay and receipt checks only. Abstract hypotheses and graph correspondence remain open. New MarkInteraction declarations excluded from this snapshot.",
+  "diagnostic": "A concurrent whole-project Lake replay reported missing manifest during project extension. A first isolated audit expected newly added mark theorem names in the unchanged PureBridge module; this corrected isolated audit filters the module namespace. Both failed attempts are retained. No mathematical failure is inferred from either audit-integration issue."
+}

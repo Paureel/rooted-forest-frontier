@@ -1,0 +1,98 @@
+{
+  "id": "baseline",
+  "title": "Published bound",
+  "status": "open",
+  "summary": "Published 2.3391 theorem and exact recurrence arithmetic checked. Earlier public 2^k thesis argument found; current-literature and proof-interface audit remain open.",
+  "metrics": {
+    "full_texts_read": 2,
+    "partial_sources_read": 1,
+    "keyword_queries": 24,
+    "baseline_pdf_pages": 27,
+    "later_kernel_pdf_pages": 23,
+    "thesis_chapter_pages": 28,
+    "source_reported_base": 2.3391,
+    "arithmetic_upper_base": 2.3391
+  },
+  "claims": [
+    {
+      "id": "bound",
+      "label": "2.3391 published",
+      "status": "checked",
+      "detail": "Theorem17 v2 p26; JCSS160 article103800 September2026. Source theorem, not a campaign Lean proof."
+    },
+    {
+      "id": "recurrence",
+      "label": "Base arithmetic",
+      "status": "checked",
+      "detail": "Exact rational signs place recurrence root between2.3390 and2.3391; lower upper-base control fails. Structural recurrence still a sourced theorem."
+    },
+    {
+      "id": "current",
+      "label": "Latestness",
+      "status": "open",
+      "detail": "No smaller peer-reviewed theorem found in bounded searches; not exhaustive. Prior 2^k thesis claim needs audit."
+    },
+    {
+      "id": "prior-2",
+      "label": "Earlier 2^k claim",
+      "status": "open",
+      "detail": "Whidden2013 Chapter6 contains correctness/runtime arguments. The2014 Systematic Biology article also describes edge protection and Figure4 labels2^k n; the2026 paper calls the advancement unpublished. Full-proof publication, validity and root-convention transfer remain under audit."
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "model-baseline",
+      "label": "Model conventions",
+      "status": "checked",
+      "detail": "Ordinary rooted binary MAF; no rho; vertex-disjoint embeddings; components K vs internal cuts q=K-1. Extracted from \u00a72\u20133.",
+      "depends_on": []
+    },
+    {
+      "id": "decomp-interface",
+      "label": "Decomposition cost cases",
+      "status": "open",
+      "detail": "Lemma3 p=1 gives T(q-1), which cannot literally be replaced by2T(q-2) at global c>2. Final target appears to cover either case; fresh rigorous rederivation owed.",
+      "depends_on": [
+        "model-baseline"
+      ]
+    },
+    {
+      "id": "whidden-transfer",
+      "label": "Protected-edge proof audit",
+      "status": "open",
+      "detail": "Thesis uses extra labelled root rho; structural/runtime proof and transfer to ordinary MAF need reconstruction.",
+      "depends_on": [
+        "model-baseline"
+      ]
+    }
+  ],
+  "artifacts": [
+    "research/rmaf/baseline-audit.md",
+    "research/rmaf/baseline-read-ledger.json",
+    "research/rmaf/baseline-search-ledger.json",
+    "research/rmaf/baseline-bibliography.json",
+    "research/rmaf/baseline-recurrence-check.py",
+    "research/rmaf/sources/baseline/exact-recurrence-arithmetic.json",
+    "research/rmaf/sources/baseline/split-or-decompose-v2.pdf",
+    "research/rmaf/sources/baseline/multitree-kernel.pdf",
+    "research/rmaf/sources/baseline/whidden-thesis-2013.pdf",
+    "research/rmaf/publication-status-20261014.md"
+  ],
+  "sources": [
+    {
+      "title": "Split-or-decompose",
+      "url": "https://arxiv.org/abs/2409.18634v2",
+      "locator": "\u00a72 p4; Lemma16 pp25\u201326; Theorem17 p26"
+    },
+    {
+      "title": "2026 multi-tree kernel",
+      "url": "https://arxiv.org/abs/2602.22281v3",
+      "locator": "Introduction p2; Theorem2 p19; reference13 p23"
+    },
+    {
+      "title": "Whidden2013 thesis",
+      "url": "https://dalspace.library.dal.ca/bitstreams/3b246ff4-5ec2-452f-95ab-ef1aed255373/download",
+      "locator": "Chapter2 p12; Chapter6 Theorems6.1,6.12,6.13 pp100\u2013126"
+    }
+  ]
+}

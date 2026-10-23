@@ -1,0 +1,7 @@
+# Both-bad framing status
+
+The [reader companion](verification/both-bad-referee-2026-10-15/COMPANION-PROPOSED-v1.md) is adopted alongside the [local source-review status](BOTH-BAD-REVIEW-STATUS-v1.md). Root read the complete fresh report, companion, lint record, actual report/companion diffs and contact record as a different editor, and checked all 29 final members against manifest SHA256 `6769690387c673b6c09d83357b66f20f1ed1c5a762ce4db064f6260ede0e0249`. The historical proposed-text/editor-pending fields are preserved; this separate record completes the root editorial read. No frozen file is changed.
+
+The entry text defines the callback weights and cut budgets, retains the selected-edge and recursive exactness hypotheses, and distinguishes full current forests from ordinary target-disjoint restricted pairs. In particular, callerUnit remains a polynomial billing annotation with an OPEN operation-dominance proof. The S11 q4 reference failure and corrected axiom-summary v2 remain attached. The framing findings concern prominence and terminology; they identify no new theorem contradiction within the reviewed scope.
+
+The root companion and dashboard links provide the integrated text reading path. This adoption supplies no new proof replay, machine-runtime theorem, mathematical replication or novelty review. The complete algorithm, joint correctness and termination, global runtime and smaller base remain OPEN.

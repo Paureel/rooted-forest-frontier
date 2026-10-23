@@ -1,0 +1,48 @@
+{
+  "schema": "triple-family-adversary-controls-v1",
+  "frozen_before_checker": true,
+  "date": "2026-10-14",
+  "address_convention": "Binary strings; empty string is root; tree vertices are prefixes of the labelled leaf addresses.",
+  "trees": {
+    "singleton": {"": "a"},
+    "cherry": {"0": "a", "1": "b"},
+    "triple": {"00": "a", "01": "b", "1": "c"},
+    "balanced": {"00": "a", "01": "b", "10": "c", "11": "d"},
+    "deep": {"00": "a", "010": "b", "011": "c", "10": "d", "11": "e"},
+    "bad_source": {"00": "a", "01": "c", "1": "b"}
+  },
+  "positive_controls": [
+    {"id":"singleton_root", "tree":"singleton", "kind":"regression", "supports":[[""]], "open":0, "expected":[[""]], "blocks":1,"closed_cost":0},
+    {"id":"unused_internal", "tree":"cherry", "kind":"regression", "supports":[["0"],["1"]], "open":null, "expected":[["0"],["1"]], "blocks":2,"closed_cost":2},
+    {"id":"left_extension", "tree":"cherry", "kind":"fresh_constructed", "supports":[["","0"],["1"]], "open":0, "expected":[["","0"],["1"]], "blocks":2,"closed_cost":1},
+    {"id":"right_extension", "tree":"cherry", "kind":"fresh_constructed", "supports":[["0"],["","1"]], "open":1, "expected":[["0"],["","1"]], "blocks":2,"closed_cost":1},
+    {"id":"two_child_join", "tree":"cherry", "kind":"fresh_constructed", "supports":[["","0","1"]], "open":0, "expected":[["","0","1"]], "blocks":1,"closed_cost":0},
+    {"id":"leafless_incursion_clean", "tree":"balanced", "kind":"regression", "supports":[["","0","00"],["01"],["10"],["11"]], "open":0, "expected":[["","0","00"],["01"],["10"],["11"]], "blocks":4,"closed_cost":3},
+    {"id":"leafless_incursion_extra", "tree":"balanced", "kind":"regression", "supports":[["","0","00","1"],["01"],["10"],["11"]], "open":0, "expected":[["","0","00"],["01"],["10"],["11"]], "blocks":4,"closed_cost":3},
+    {"id":"deep_closed_drop_stem", "tree":"deep", "kind":"fresh_constructed", "supports":[["00"],["0","01","010","011"],["10"],["11"]], "open":null, "expected":[["00"],["01","010","011"],["10"],["11"]], "blocks":4,"closed_cost":4},
+    {"id":"deep_open_keep_stem", "tree":"deep", "kind":"fresh_constructed", "supports":[["","0","00"],["01","010","011"],["10"],["11"]], "open":0, "expected":[["","0","00"],["01","010","011"],["10"],["11"]], "blocks":4,"closed_cost":3},
+    {"id":"deep_pair_keep_intermediate", "tree":"deep", "kind":"fresh_constructed", "supports":[["0","00","01","010"],["011"],["10"],["11"]], "open":null, "expected":[["0","00","01","010"],["011"],["10"],["11"]], "blocks":4,"closed_cost":4},
+    {"id":"adjacent_bad_color_separate", "tree":"triple", "kind":"regression", "supports":[["","0","00","01"],["1"]], "open":0, "expected":[["","0","00","01"],["1"]], "blocks":2,"closed_cost":1, "source_tree":"bad_source", "bad_color":["a","b","c"]}
+  ],
+  "corruption_controls": [
+    {"id":"gapped_lca_only", "tree":"balanced", "support":["","00"], "expected_lca_closed":true, "expected_path_convex":false,"missing_path_vertex":"0"},
+    {"id":"drop_open_stem", "twin":"deep_open_keep_stem", "mutant_supports":[["00"],["01","010","011"],["10"],["11"]], "expected_alarm":"open_root_missing"},
+    {"id":"lca_closure_instead_of_span", "twin":"deep_pair_keep_intermediate", "mutant_supports":[["0","00","010"],["011"],["10"],["11"]], "expected_alarm":"not_path_convex"},
+    {"id":"charge_empty_child_fragment", "twin":"leafless_incursion_extra", "child":"1", "leafless_local_support":[""], "expected_retained_blocks":2,"expected_closed_cost":2,"mutant_closed_cost":3,"expected_alarm":"closed_cost_changed"},
+    {"id":"force_open_without_root", "tree":"triple", "supports":[["00"],["","0","01"],["1"]], "open":0, "expected_alarm":"open_root_missing", "hypothesis_omission_only":true},
+    {"id":"merge_adjacent_bad_color", "twin":"adjacent_bad_color_separate", "mutant_supports":[["","0","00","01","1"]], "expected_alarm":"forbidden_full_bad_triple"}
+  ],
+  "extra_probe_contract": {
+    "trees":["singleton","cherry","triple","balanced","deep"],
+    "method":"For each nonempty vertex support, singleton supports for all uncovered labelled leaves complete a candidate family. Keep only valid path-convex, root-classified families. For every retained family check exact trim subset, labels, disjointness, block identity/count, child restriction after dropping leafless fragments, four-way assembly up to trimming, and closed-cost equation. No larger tree generation.",
+    "failure":"One admitted family whose trimming or reconstruction loses/duplicates a label, grows a support, overlaps supports, changes block identity/count or has wrong closed cost; preserve exact witness and stop.",
+    "scope":"Finite adversarial NO-FIRE only; no proof, no whole-family census, no independence claim against a future author construction using these controls."
+  },
+  "independence": {
+    "expected_generator":"Hand construction by X0 before checker implementation",
+    "precision":"Exact finite sets and integer counts; no floating arithmetic",
+    "reads":"FAMILY-TARGET.md; existing PROOF.md; accepted ConnectedRegions.lean; protocol skills and toolkit indexes",
+    "forbidden_reads":"New author family model/code/proofs",
+    "contacts":["These controls will be used to develop and audit the X0 checker; they are therefore construction controls, never independent certification of that checker or a later author proof."]
+  }
+}

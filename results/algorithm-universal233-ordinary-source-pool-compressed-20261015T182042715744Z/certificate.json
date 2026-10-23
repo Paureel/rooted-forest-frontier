@@ -1,0 +1,231 @@
+{
+  "status": "FAILED_NOT_ACCEPTED",
+  "all_main_milestones": "OPEN",
+  "independent_acceptance": false,
+  "full_algorithm": false,
+  "runtime_claim": false,
+  "runs": [
+    {
+      "module": "ZipCleanA",
+      "exit": 0,
+      "seconds": 0.368086500000004
+    },
+    {
+      "module": "ZipCleanB",
+      "exit": 0,
+      "seconds": 0.3235712499999863
+    },
+    {
+      "module": "ZipHostile",
+      "exit": 0,
+      "seconds": 0.35615199999995184
+    },
+    {
+      "module": "ZipPrivate",
+      "exit": 0,
+      "seconds": 0.3859738749999906
+    },
+    {
+      "module": "ZipUnused",
+      "exit": 0,
+      "seconds": 0.3652807920000214
+    },
+    {
+      "module": "ZipZero",
+      "exit": 0,
+      "seconds": 0.37505033299999013
+    },
+    {
+      "module": "ZipOne",
+      "exit": 0,
+      "seconds": 0.3876408749999882
+    },
+    {
+      "module": "ZipTwin",
+      "exit": 0,
+      "seconds": 0.3328737080000792
+    },
+    {
+      "module": "CompressedControl0",
+      "exit": 0,
+      "seconds": 0.7405344169999353
+    },
+    {
+      "module": "CompressedControl1",
+      "exit": 0,
+      "seconds": 0.8838046249999252
+    },
+    {
+      "module": "CompressedControl2",
+      "exit": 1,
+      "seconds": 0.9718135409999604
+    },
+    {
+      "module": "CompressedControl3",
+      "exit": 1,
+      "seconds": 0.8496549999999843
+    },
+    {
+      "module": "CompressedControl4",
+      "exit": 1,
+      "seconds": 0.822816792000026
+    },
+    {
+      "module": "CompressedControl5",
+      "exit": 1,
+      "seconds": 0.8382812920000333
+    },
+    {
+      "module": "CompressedZipZero",
+      "exit": 0,
+      "seconds": 0.9117072079999389
+    },
+    {
+      "module": "CompressedZipOne",
+      "exit": 0,
+      "seconds": 0.8661081660000036
+    },
+    {
+      "module": "CompressedZipTwin",
+      "exit": 0,
+      "seconds": 0.8646875420000697
+    },
+    {
+      "module": "FalseProof",
+      "exit": 1,
+      "seconds": 0.379150500000037
+    }
+  ],
+  "controls": {
+    "sink0": {
+      "hostile": false,
+      "detected": false,
+      "rows": 3
+    },
+    "sink1": {
+      "hostile": false,
+      "detected": false,
+      "rows": 3
+    },
+    "sink2": {
+      "hostile": true,
+      "detected": true,
+      "rows": 3
+    },
+    "sink3": {
+      "hostile": true,
+      "detected": true,
+      "rows": 3
+    },
+    "sink4": {
+      "hostile": true,
+      "detected": true,
+      "rows": 1
+    },
+    "sink5": {
+      "hostile": true,
+      "detected": true,
+      "rows": 1
+    },
+    "clean_value": {
+      "duplicates": [
+        {
+          "name": "ZipValue.value",
+          "occurrences": 2,
+          "producers": [
+            "ZipZero",
+            "ZipTwin"
+          ],
+          "kinds": [
+            "definition"
+          ],
+          "bodies": 1,
+          "decision": "COMPATIBLE"
+        }
+      ],
+      "rejects": []
+    },
+    "bad_LR": {
+      "duplicates": [
+        {
+          "name": "ZipValue.value",
+          "occurrences": 2,
+          "producers": [
+            "ZipZero",
+            "ZipOne"
+          ],
+          "kinds": [
+            "definition"
+          ],
+          "bodies": 2,
+          "decision": "NONPROOF_VALUE_MISMATCH"
+        }
+      ],
+      "rejects": [
+        {
+          "name": "ZipValue.value",
+          "occurrences": 2,
+          "producers": [
+            "ZipZero",
+            "ZipOne"
+          ],
+          "kinds": [
+            "definition"
+          ],
+          "bodies": 2,
+          "decision": "NONPROOF_VALUE_MISMATCH"
+        }
+      ]
+    },
+    "bad_RL": {
+      "duplicates": [
+        {
+          "name": "ZipValue.value",
+          "occurrences": 2,
+          "producers": [
+            "ZipOne",
+            "ZipZero"
+          ],
+          "kinds": [
+            "definition"
+          ],
+          "bodies": 2,
+          "decision": "NONPROOF_VALUE_MISMATCH"
+        }
+      ],
+      "rejects": [
+        {
+          "name": "ZipValue.value",
+          "occurrences": 2,
+          "producers": [
+            "ZipOne",
+            "ZipZero"
+          ],
+          "kinds": [
+            "definition"
+          ],
+          "bodies": 2,
+          "decision": "NONPROOF_VALUE_MISMATCH"
+        }
+      ]
+    },
+    "missing": "CAUGHT",
+    "duplicate": "CAUGHT",
+    "foreign_producer": "CAUGHT",
+    "custom_reference": "CAUGHT",
+    "production_pin_corruption": "CAUGHT",
+    "false_proof": "REJECTED"
+  },
+  "saved_producers": [],
+  "new_producers": [],
+  "inputs": {
+    "research/rmaf/algorithm/universal233/ordinary_dispatch/resume_20261015T1810Z/compressed_pool_resume.py": "00d3d88a6572df89cd90d5e1275839eecb6d08e57afdeda1297aa39dcc96667e",
+    "research/rmaf/algorithm/universal233/ordinary_dispatch/resume_20261015T1810Z/COMPRESSED-AUDIT-AMENDMENT-v1.md": "fea478e678546c21bdf5c109e5a6df0e38e3cd6e5f72f8e891c360fb1c6ac2d1",
+    "research/rmaf/algorithm/universal233/rule5_common_split/audit_graph.py": "213eb8d89e06a579ad5ceb6dc58251f2a4858cc7669b55fa7554a93cbc4732e4",
+    "research/rmaf/algorithm/universal233/rule5_case322/audit.py": "b3feed2ff99492fe1f38d617707ef96e727dc3ada97b2673f405bd3d67aacc86",
+    "research/rmaf/algorithm/universal233/ordinary_dispatch/producer_compatibility/compatibility.py": "f2c6ad61ae4071fcad3538f0e19aafc9f38e6d62d7529f256e3150b7b7a9b34b",
+    "results/algorithm-universal233-ordinary-source-pool-20261015T144445575127Z/construction.json": "0f142ad92c5bc3e2bbccb67a9e1a29485b96fc7f0fe248d6beb943e83b0e84e7",
+    "results/algorithm-universal233-ordinary-source-pool-resume-20261015T181255871989Z/certificate.json": "716529e6e379b60c42569ef50a12576e35388549a522a1b86d2119a98676d028"
+  },
+  "error": "AssertionError('UNEXPECTED_RAW_STDOUT')"
+}

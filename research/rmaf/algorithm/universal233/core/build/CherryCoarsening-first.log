@@ -1,0 +1,183 @@
+research/rmaf/algorithm/universal233/core/CherryCoarsening.lean:22:29: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+research/rmaf/algorithm/universal233/core/CherryCoarsening.lean:28:4: error: unsolved goals
+case pos
+t : Tree
+p : Vertex
+x y : Nat
+P : SourcePartition t
+h : CherryAt t p x y
+a b i : Nat
+v : Vertex
+hi : ¬i = a
+hj : i = b
+hv : b = a ∧ (v = p ∨ P.support a v ∨ P.support b v)
+⊢ Valid t v
+research/rmaf/algorithm/universal233/core/CherryCoarsening.lean:29:26: error: invalid 'by' tactic, expected type has not been provided
+research/rmaf/algorithm/universal233/core/CherryCoarsening.lean:28:26: warning: This simp argument is unused:
+  hi
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [mergeSupport, hj] at hv
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/core/CherryCoarsening.lean:34:57: error: unsolved goals
+case pos
+t : Tree
+p : Vertex
+x y : Nat
+P : SourcePartition t
+h : CherryAt t p x y
+a b i : Nat
+v : Vertex
+z : Nat
+hv : LeafAt t v z
+hab hvp ht : True
+hi : ¬b = a
+hj ho : True
+⊢ ¬b = a
+
+case neg
+t : Tree
+p : Vertex
+x y : Nat
+P : SourcePartition t
+h : CherryAt t p x y
+a b i : Nat
+v : Vertex
+z : Nat
+hv : LeafAt t v z
+hab hvp ht : True
+hi : ¬b = a
+hj ho : True
+⊢ b = a → ¬P.owner v = a
+
+case pos
+t : Tree
+p : Vertex
+x y : Nat
+P : SourcePartition t
+h : CherryAt t p x y
+a b i : Nat
+v : Vertex
+z : Nat
+hv : LeafAt t v z
+hab hvp ht hi hj ho : True
+⊢ b = i ↔ a = i
+research/rmaf/algorithm/universal233/core/CherryCoarsening.lean:73:27: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+research/rmaf/algorithm/universal233/core/CherryCoarsening.lean:94:4: error: unsolved goals
+case pos
+t : Tree
+p : Vertex
+x y : Nat
+P : SourcePartition t
+h : CherryAt t p x y
+hab : P.owner (p ++ [false]) ≠ P.owner (p ++ [true])
+i : Nat
+u v : Vertex
+hv : mergeSupport P p (P.owner (p ++ [false])) (P.owner (p ++ [true])) i v
+hi : ¬i = P.owner (p ++ [false])
+hj : i = P.owner (p ++ [true])
+hu :
+  P.owner (p ++ [true]) = P.owner (p ++ [false]) ∧
+    (u = p ∨ P.support (P.owner (p ++ [false])) u ∨ P.support (P.owner (p ++ [true])) u)
+⊢ Walk t (mergeSupport P p (P.owner (p ++ [false])) (P.owner (p ++ [true])) i) u v
+research/rmaf/algorithm/universal233/core/CherryCoarsening.lean:94:26: warning: This simp argument is unused:
+  hi
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [mergeSupport, hj] at hu
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/core/CherryCoarsening.lean:109:6: error: unsolved goals
+case pos
+t : Tree
+P : SourcePartition t
+p : Vertex
+a b : Nat
+hab : a ≠ b
+j : Nat
+v : Vertex
+hi : mergeSupport P p a b a v
+hja : ¬j = a
+hjb : j = b
+hj : b = a ∧ (v = p ∨ P.support a v ∨ P.support b v)
+⊢ a = j
+research/rmaf/algorithm/universal233/core/CherryCoarsening.lean:111:33: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+research/rmaf/algorithm/universal233/core/CherryCoarsening.lean:117:4: error: unsolved goals
+case pos
+t : Tree
+P : SourcePartition t
+p : Vertex
+a b : Nat
+hab : a ≠ b
+i j : Nat
+v : Vertex
+hj : mergeSupport P p a b j v
+hia : ¬i = a
+hib : i = b
+hi : b = a ∧ (v = p ∨ P.support a v ∨ P.support b v)
+⊢ i = j
+research/rmaf/algorithm/universal233/core/CherryCoarsening.lean:121:33: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+research/rmaf/algorithm/universal233/core/CherryCoarsening.lean:127:8: error: unsolved goals
+case pos
+t : Tree
+P : SourcePartition t
+p : Vertex
+a b : Nat
+hab : a ≠ b
+i j : Nat
+v : Vertex
+hi : mergeSupport P p a b i v
+hia : ¬i = a
+hib : ¬i = b
+hi' : P.support i v ∧ v ≠ p
+hja : ¬j = a
+hjb : j = b
+hj : b = a ∧ (v = p ∨ P.support a v ∨ P.support b v)
+⊢ i = j
+research/rmaf/algorithm/universal233/core/CherryCoarsening.lean:109:28: warning: This simp argument is unused:
+  hja
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [mergeSupport, hjb] at hj
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/core/CherryCoarsening.lean:117:26: warning: This simp argument is unused:
+  hia
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [mergeSupport, hib] at hi
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/core/CherryCoarsening.lean:127:30: warning: This simp argument is unused:
+  hja
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [mergeSupport, hjb] at hj
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'Universal233.CoreGraph.mergeSupport_terminal' depends on axioms: [propext, sorryAx]
+'Universal233.CoreGraph.other_cherry_neighbors_unique' depends on axioms: [propext]
+'Universal233.CoreGraph.mergeSupport_from_parent' depends on axioms: [propext]
+'Universal233.CoreGraph.mergeSupport_connected' depends on axioms: [propext, sorryAx, Quot.sound]
+'Universal233.CoreGraph.mergeSupport_disjoint' depends on axioms: [propext, sorryAx]
+'Universal233.CoreGraph.coarsenCherry' depends on axioms: [propext, sorryAx, Quot.sound]
+'Universal233.CoreGraph.coarsenCherry_refines' depends on axioms: [propext, sorryAx, Quot.sound]
+'Universal233.CoreGraph.coarsenCherry_same_block' depends on axioms: [propext, sorryAx, Quot.sound]
+'Universal233.CoreGraph.coarsenCherry_monochromatic' depends on axioms: [propext, sorryAx, Quot.sound]
+'Universal233.CoreGraph.homogeneous_cherry_coarsening' depends on axioms: [propext, sorryAx, Quot.sound]
+real 0.36
+user 0.30
+sys 0.17

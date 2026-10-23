@@ -1,0 +1,96 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:47:33: error(lean.unknownIdentifier): Unknown constant `Rat.natCast_zero`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:47:5: error: `simp` made no progress
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:56:8: error: Tactic `rfl` failed: The left-hand side
+  ↑0
+is not definitionally equal to the right-hand side
+  match some t, ss with
+  | none, x => 0
+  | some val, [head] => 0
+  | some t_1, x =>
+    match overlap t_1 ss with
+    | none => 0
+    | some h =>
+      (List.map
+          (fun io =>
+            have d := io.snd.sourceCuts.length;
+            if _hd : 1 ≤ d ∧ d ≤ q then sourceWork ordinary W (some t) (replace ss io.fst io.snd.partition) (q - d)
+            else 0)
+          (branches t_1 ss h q)).sum
+
+case h_1
+ordinary : Ordinary
+W : OrdinaryWork
+q : Nat
+ss : List Tree
+T✝ : Option Tree
+ss✝ : List Tree
+t : Tree
+ih :
+  ∀ (m : Nat), m < q → ∀ (ss : List Tree), ↑(forestWork ordinary W (some t) ss m) = sourceWork ordinary W (some t) ss m
+child :
+  ∀ (t_1 : Tree) (h : Overlap),
+    ↑(List.map
+            (fun io =>
+              if _hd : 1 ≤ io.snd.sourceCuts.length ∧ io.snd.sourceCuts.length ≤ q then
+                forestWork ordinary W (some t) (replace ss io.fst io.snd.partition) (q - io.snd.sourceCuts.length)
+              else 0)
+            (branches t_1 ss h q)).sum =
+      (List.map
+          (fun io =>
+            if _hd : 1 ≤ io.snd.sourceCuts.length ∧ io.snd.sourceCuts.length ≤ q then
+              sourceWork ordinary W (some t) (replace ss io.fst io.snd.partition) (q - io.snd.sourceCuts.length)
+            else 0)
+          (branches t_1 ss h q)).sum
+h✝ : (proper (some t) ss && !agrees (some t) ss (List.map leaves ss)) = true
+x✝¹ : ∀ (head : Tree), ss = [head] → False
+x✝ : Option Overlap
+heq✝ : overlap t ss = none
+⊢ ↑0 =
+    match some t, ss with
+    | none, x => 0
+    | some val, [head] => 0
+    | some t_1, x =>
+      match overlap t_1 ss with
+      | none => 0
+      | some h =>
+        (List.map
+            (fun io =>
+              have d := io.snd.sourceCuts.length;
+              if _hd : 1 ≤ d ∧ d ≤ q then sourceWork ordinary W (some t) (replace ss io.fst io.snd.partition) (q - d)
+              else 0)
+            (branches t_1 ss h q)).sum
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:57:8: error: Type mismatch
+  child t ?m.416
+has type
+  ↑(List.map
+          (fun io =>
+            if _hd : 1 ≤ io.snd.sourceCuts.length ∧ io.snd.sourceCuts.length ≤ q then
+              forestWork ordinary W (some t) (replace ss io.fst io.snd.partition) (q - io.snd.sourceCuts.length)
+            else 0)
+          (branches t ss ?m.416 q)).sum =
+    (List.map
+        (fun io =>
+          if _hd : 1 ≤ io.snd.sourceCuts.length ∧ io.snd.sourceCuts.length ≤ q then
+            sourceWork ordinary W (some t) (replace ss io.fst io.snd.partition) (q - io.snd.sourceCuts.length)
+          else 0)
+        (branches t ss ?m.416 q)).sum
+but is expected to have type
+  ↑(List.map
+          (fun io =>
+            have d := io.snd.sourceCuts.length;
+            if _hd : 1 ≤ d ∧ d ≤ q then forestWork ordinary W (some t) (replace ss io.fst io.snd.partition) (q - d)
+            else 0)
+          (branches t ss h✝ q)).sum =
+    match some t, ss with
+    | none, x => 0
+    | some val, [head] => 0
+    | some t_1, x =>
+      match overlap t_1 ss with
+      | none => 0
+      | some h =>
+        (List.map
+            (fun io =>
+              have d := io.snd.sourceCuts.length;
+              if _hd : 1 ≤ d ∧ d ≤ q then sourceWork ordinary W (some t) (replace ss io.fst io.snd.partition) (q - d)
+              else 0)
+            (branches t_1 ss h q)).sum

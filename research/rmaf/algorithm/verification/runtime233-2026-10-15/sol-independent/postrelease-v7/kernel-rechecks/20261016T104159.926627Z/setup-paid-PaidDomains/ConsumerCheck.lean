@@ -1,0 +1,5 @@
+import PaidDomains
+#check Universal233.Rule5RemainingLocalWork.literal_call_payload
+#print axioms Universal233.Rule5RemainingLocalWork.literal_call_payload
+#check Universal233.Rule5RemainingLocalWork.literal_call_bits
+#print axioms Universal233.Rule5RemainingLocalWork.literal_call_bits

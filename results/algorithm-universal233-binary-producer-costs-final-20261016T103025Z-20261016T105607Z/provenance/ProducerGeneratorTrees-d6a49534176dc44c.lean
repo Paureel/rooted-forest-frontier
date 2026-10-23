@@ -1,0 +1,86 @@
+import ProducerGeneratorColor
+namespace GenericForest.BinaryProducer.Generator
+open BinaryProvider GenericForest.ScalarBits Universal233.WholeSourceWork
+structure Group where
+ origin : RMAF.Vertex
+ labels : Block
+ color : Color
+ deriving Repr
+inductive GTree where
+ | leaf (g : Group)
+ | node (p : RMAF.Vertex) (l r : GTree)
+ deriving Repr
+def groupValue (g : Group) : Universal233.CoreProgram.Group:=⟨g.origin,blockValue g.labels,colorValue g.color⟩
+def gtreeValue : GTree→Universal233.CoreProgram.GTree
+ | .leaf g=>.leaf (groupValue g)
+ | .node p l r=>.node p (gtreeValue l) (gtreeValue r)
+def groupsValue (gs : List Group) := gs.map groupValue
+
+def fromTreeBits (color : Bits→Charged Color) (p : RMAF.Vertex) : BinaryProvider.Tree→Charged GTree
+ | .leaf x=>let c:=color x;let a:=copyBits x;⟨.leaf ⟨p,[a.value],c.value⟩,c.work+a.work+12⟩
+ | .node l r=>let pa:=appendSpine p [false];let pb:=appendSpine p [true]
+               let a:=fromTreeBits color pa.value l;let b:=fromTreeBits color pb.value r
+               ⟨.node p a.value b.value,pa.work+pb.work+a.work+b.work+8⟩
+theorem fromTreeBits_value (color : Bits→Charged Color) (native : Nat→Nat)
+ (ih : ∀x,colorValue (color x).value=native (decode x)) (p : RMAF.Vertex) (T : BinaryProvider.Tree) :
+ gtreeValue (fromTreeBits color p T).value=Universal233.CoreProgram.fromTree native p (treeValue T) := by
+ induction T generalizing p with
+ | leaf x=>simp [fromTreeBits,gtreeValue,groupValue,treeValue,Universal233.CoreProgram.fromTree,blockValue,labelValue,ih]
+ | node l r ihl ihr=>simp [fromTreeBits,gtreeValue,treeValue,Universal233.CoreProgram.fromTree,ihl,ihr]
+
+def groupsBits : GTree→Charged (List Group)
+ | .leaf g=>⟨[g],4⟩
+ | .node _ l r=>let a:=groupsBits l;let b:=groupsBits r;let c:=appendSpine a.value b.value
+                ⟨c.value,a.work+b.work+c.work+8⟩
+@[simp] theorem groupsBits_value (T : GTree) : groupsValue (groupsBits T).value=Universal233.CoreProgram.groups (gtreeValue T) := by
+ induction T <;> simp_all [groupsBits,groupsValue,gtreeValue,Universal233.CoreProgram.groups,List.map_append]
+
+def normalizeBits : GTree→Charged GTree
+ | .leaf g=>⟨.leaf g,4⟩
+ | .node p l r=>let a:=normalizeBits l;let b:=normalizeBits r
+  match a.value,b.value with
+  | .leaf x,.leaf y=>let c:=colorEq x.color y.color
+                    if c.value then let z:=appendLabels x.labels y.labels
+                                    ⟨.leaf ⟨p,z.value,x.color⟩,a.work+b.work+c.work+z.work+12⟩
+                    else ⟨.node p (.leaf x) (.leaf y),a.work+b.work+c.work+8⟩
+  | x,y=>⟨.node p x y,a.work+b.work+8⟩
+@[simp] theorem normalizeBits_value (T : GTree) : gtreeValue (normalizeBits T).value=Universal233.CoreProgram.normalize (gtreeValue T) := by
+ induction T with
+ | leaf g=>rfl
+ | node p l r ihl ihr=>
+  simp only [normalizeBits,gtreeValue,Universal233.CoreProgram.normalize,←ihl,←ihr]
+  cases a : (normalizeBits l).value <;> cases b : (normalizeBits r).value <;> simp only [a,b,gtreeValue]
+  all_goals first | rfl | skip
+  simp only [colorEq_value,groupValue,beq_iff_eq]
+  split <;> simp_all [gtreeValue,groupValue,blockValue_append]
+
+def eraseBits (chosen : RMAF.Vertex) : GTree→Charged (Option GTree)
+ | .leaf g=>let c:=meterAddressEq g.origin chosen;⟨if c.value then none else some (.leaf g),c.work+4⟩
+ | .node p l r=>let c:=meterAddressEq p chosen
+  if c.value then ⟨none,c.work+4⟩ else
+   let a:=eraseBits chosen l;let b:=eraseBits chosen r
+   ⟨match a.value,b.value with
+    | none,none=>none | some x,none=>some x | none,some y=>some y | some x,some y=>some (.node p x y),c.work+a.work+b.work+8⟩
+@[simp] theorem eraseBits_value (p : RMAF.Vertex) (T : GTree) :
+ (eraseBits p T).value.map gtreeValue=Universal233.CoreProgram.erase p (gtreeValue T) := by
+ induction T with
+ | leaf g=>simp [eraseBits,meterAddressEq_value,gtreeValue,groupValue,Universal233.CoreProgram.erase];split <;> rfl
+ | node v l r ihl ihr=>
+  simp only [eraseBits,meterAddressEq_value,gtreeValue,Universal233.CoreProgram.erase,beq_iff_eq]
+  split
+  · rfl
+  · cases a : (eraseBits p l).value <;> cases b : (eraseBits p r).value
+    all_goals simp only [a,b,Option.map_none,Option.map_some] at ihl ihr ⊢
+    all_goals rw [←ihl,←ihr] <;> rfl
+
+def mixedBits : GTree→Charged (Option (Group×Group))
+ | .leaf _=>⟨none,4⟩
+ | .node _ (.leaf a) (.leaf b)=>⟨some (a,b),8⟩
+ | .node _ l r=>let a:=mixedBits l;let b:=mixedBits r;⟨a.value.or b.value,a.work+b.work+4⟩
+@[simp] theorem mixedBits_value (T : GTree) :
+ (mixedBits T).value.map (fun p=>(groupValue p.1,groupValue p.2))=Universal233.CoreProgram.mixedCherry (gtreeValue T) := by
+ induction T with
+ | leaf g=>rfl
+ | node p l r ihl ihr=>
+  cases l <;> cases r <;> simp_all [mixedBits,gtreeValue,Universal233.CoreProgram.mixedCherry,Option.map_or]
+end GenericForest.BinaryProducer.Generator

@@ -1,0 +1,117 @@
+{
+  "status": "full-path-CLI-plant-and-corruption-passed",
+  "answer": {
+    "feasible": true,
+    "partition": [
+      [
+        0,
+        2
+      ],
+      [
+        1
+      ]
+    ],
+    "additional_cuts": 1,
+    "reconstruction": [
+      {
+        "source": [
+          [
+            0,
+            2
+          ],
+          1
+        ],
+        "cuts": [
+          [
+            0,
+            4
+          ]
+        ],
+        "blocks": [
+          [
+            0,
+            2
+          ],
+          [
+            1
+          ]
+        ]
+      }
+    ],
+    "cover": {
+      "states": [
+        {
+          "charge": 0,
+          "partition": [
+            [
+              0,
+              1,
+              2
+            ]
+          ],
+          "source": [
+            [
+              [
+                0,
+                2
+              ],
+              1
+            ]
+          ],
+          "precuts": [
+            []
+          ]
+        }
+      ],
+      "prefilter_states": 4,
+      "cutsets_tested": 5,
+      "coarsening_scans": 7,
+      "paid_vector": [
+        0
+      ],
+      "exact_mass": "1"
+    },
+    "queries": [
+      {
+        "precuts": [
+          []
+        ],
+        "child_blocks": [
+          [
+            0,
+            1,
+            2
+          ]
+        ],
+        "paid": 0,
+        "remaining_budget": 1,
+        "algorithm": "explicit finite budgeted completion; libraries disabled",
+        "feasible": true,
+        "stats": {
+          "recursive_states": 1,
+          "core_states": 0,
+          "children_emitted": 0,
+          "fallback_cutsets": 2,
+          "library_calls": 0
+        }
+      }
+    ],
+    "fallback_used": false,
+    "tested_budgets": [
+      0,
+      1
+    ],
+    "components": 2,
+    "initial_source_components": 1,
+    "claim_status": "finite enumerative candidate; full proof and improved exponent OPEN"
+  },
+  "corrupted_exit": 1,
+  "corruption_error": "Traceback (most recent call last):\n  File \"/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/paid_cover/state_cli.py\", line 44, in <module>\n    print(json.dumps(execute(json.loads(a.input.read_text())),indent=2))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/paid_cover/state_cli.py\", line 18, in execute\n    parsed, forest = parse_state(target,sources,0)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/paid_cover/cover_solver.py\", line 58, in parse_state\n    sources = [Tree(s) for s in raw_sources]\n               ^^^^^^^\n  File \"/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/pure_bridge/check_geometry.py\", line 28, in __init__\n    build(self.syntax)\n  File \"/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/pure_bridge/check_geometry.py\", line 26, in build\n    self.child[v]=[build(x,v,depth+1) for x in t]\n                   ^^^^^^^^^^^^^^^^^^\n  File \"/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/pure_bridge/check_geometry.py\", line 26, in build\n    self.child[v]=[build(x,v,depth+1) for x in t]\n                   ^^^^^^^^^^^^^^^^^^\n  File \"/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/pure_bridge/check_geometry.py\", line 22, in build\n    if t in self.labels: raise ValueError('duplicate label')\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: duplicate label\n",
+  "elapsed_seconds": 0.11800900000025649,
+  "hashes": {
+    "cli_controls.py": "6606793685b768cecc955cb9cde709a45ccd8d01ebd28a538939f627a5445f29",
+    "state_cli.py": "d3049e88a51613d40d0448198fde033d0278f1f497d28e21dc1f823148a20566",
+    "cli-input-v1.json": "2cab083726e03e57af2b55fc6bf6bdd522a95a25da8cdb9ee65eec3d294673ff",
+    "cli-corruption-v1.json": "bdfaa47ac469686dbd7f778829e722ca313b3586df12a6ad53a0448649fbd5cd"
+  }
+}

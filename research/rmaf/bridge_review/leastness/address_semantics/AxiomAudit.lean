@@ -1,0 +1,23 @@
+import TreeAddresses
+#print axioms LeastEmbedding.mem_vertices_iff
+#print axioms LeastEmbedding.mem_terminals_iff
+#print axioms LeastEmbedding.LeafOccurrence.valid
+#print axioms LeastEmbedding.LeafOccurrence.mem_leaves
+#print axioms LeastEmbedding.mem_leaves_iff_occurrence
+#print axioms LeastEmbedding.LeafOccurrence.label_unique
+#print axioms LeastEmbedding.terminals_subset_vertices
+#print axioms LeastEmbedding.terminal_nonempty
+#print axioms LeastEmbedding.LeafOccurrence.address_unique
+#print axioms LeastEmbedding.unique_occurrence_of_nodup
+#print axioms LeastEmbedding.instance_left_nodup
+#print axioms LeastEmbedding.instance_right_nodup
+#print axioms LeastEmbedding.instance_left_mem_leaves_iff
+#print axioms LeastEmbedding.instance_right_mem_leaves_iff
+#print axioms LeastEmbedding.instance_left_unique_occurrence
+#print axioms LeastEmbedding.instance_right_unique_occurrence
+#print axioms LeastEmbedding.instance_left_occurrence_iff
+#print axioms LeastEmbedding.instance_right_occurrence_iff
+#print axioms LeastEmbedding.prependSide_nodup
+#print axioms LeastEmbedding.side_append_nodup
+#print axioms LeastEmbedding.vertices_nodup
+#print axioms LeastEmbedding.terminals_nodup

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "frozen_before_first_algorithm_run": true,
+  "convention": "rho is a labelled degree-one root; q is the number of cuts",
+  "known_answers": [
+    {"id":"identity-null","t1":[["a","b"],"c"],"t2":[["a","b"],"c"],"optimum_cuts":0},
+    {"id":"single-leaf-boundary","t1":"a","t2":"a","optimum_cuts":0},
+    {"id":"one-spr-triple","t1":[["a","b"],"c"],"t2":[["a","c"],"b"],"optimum_cuts":1},
+    {"id":"incompatible-quartet","t1":[["a","b"],["c","d"]],"t2":[["a","c"],["b","d"]],"optimum_cuts":2}
+  ],
+  "corruptions": [
+    {"id":"wrong-expected-optimum","target":"one-spr-triple","mutated_optimum_cuts":0,"expected":"comparator rejects"},
+    {"id":"duplicate-label","t1":["a","a"],"t2":["a","b"],"expected":"parser rejects"},
+    {"id":"different-label-sets","t1":["a","b"],"t2":["a","c"],"expected":"parser rejects"},
+    {"id":"negative-budget","target":"identity-null","budget":-1,"expected":false}
+  ],
+  "pass_criterion":"Every fixed optimum equals both independent partition enumeration and reconstructed decision threshold; every corruption is caught exactly; zero tolerance."
+}

@@ -1,0 +1,134 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/SourceSpine.lean:117:3: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [List.append_assoc] at eq
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/SourceSpine.lean:244:52: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  e
+in the target expression
+  g ++ [!t] <+: p ++ [!s]
+
+S U : Tree
+p f : RMAF.Vertex
+s : Bool
+a b c : Nat
+hn : (leaves S).Nodup
+ha : a ∈ leaves S
+hb : b ∈ leaves S
+nab : a ≠ b
+hp : subtree S p = some (fork s (Tree.leaf a) U)
+nU : ¬b ∈ leaves U
+cut : cuts S a b = [p ++ [!s], f] ∨ cuts S a b = [f, p ++ [!s]]
+hf : subtree S f = some (Tree.leaf c)
+forbid : ¬HasCherry b c S
+e : RMAF.Vertex := p ++ [!s]
+A : Tree := fork s (Tree.leaf a) U
+htU : subtree S e = some U
+em : e ∈ cuts S a b
+fm : f ∈ cuts S a b
+ef : e ≠ f
+cF : c ∈ subtreeLabels S f
+nca : c ≠ a
+ncb : c ≠ b
+ncU : ¬c ∈ leaves U
+aA : a ∈ leaves A
+bA : ¬b ∈ leaves A
+cA : ¬c ∈ leaves A
+g : RMAF.Vertex
+t : Bool
+W : Tree
+pg : p = g ++ [t]
+hg : subtree S g = some (fork t (fork s (Tree.leaf a) U) W)
+ndG : (leaves (fork t A W)).Nodup
+disG : ∀ (x : Nat), x ∈ leaves A → ¬x ∈ leaves W
+htW : subtree S (g ++ [!t]) = some W
+badLeg : ¬b ∈ leaves W
+wm : g ++ [!t] ∈ cuts S a b
+eq : g ++ [!t] = e
+⊢ g ++ [!t] <+: p ++ [!s]
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/SourceSpine.lean:245:54: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp at pe
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/SourceSpine.lean:258:31: error: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `e` is a value of type
+  RMAF.Vertex
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/SourceSpine.lean:270:38: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  h ++ [r]
+in the target expression
+  h ++ [!r] ++ [] <+: h ++ [!!r] ++ tail
+
+S U : Tree
+p f : RMAF.Vertex
+s : Bool
+a b c : Nat
+hn : (leaves S).Nodup
+ha : a ∈ leaves S
+hb : b ∈ leaves S
+nab : a ≠ b
+hp : subtree S p = some (fork s (Tree.leaf a) U)
+nU : ¬b ∈ leaves U
+cut : cuts S a b = [p ++ [!s], f] ∨ cuts S a b = [f, p ++ [!s]]
+hf : subtree S f = some (Tree.leaf c)
+forbid : ¬HasCherry b c S
+e : RMAF.Vertex := p ++ [!s]
+A : Tree := fork s (Tree.leaf a) U
+htU : subtree S e = some U
+em : e ∈ cuts S a b
+fm : f ∈ cuts S a b
+ef : e ≠ f
+cF : c ∈ subtreeLabels S f
+nca : c ≠ a
+ncb : c ≠ b
+ncU : ¬c ∈ leaves U
+aA : a ∈ leaves A
+bA : ¬b ∈ leaves A
+cA : ¬c ∈ leaves A
+g : RMAF.Vertex
+t : Bool
+pg : p = g ++ [t]
+wm : g ++ [!t] ∈ cuts S a b
+we : g ++ [!t] ≠ e
+wf : g ++ [!t] = f
+hg : subtree S g = some (fork t (fork s (Tree.leaf a) U) (Tree.leaf c))
+ndG : (leaves (fork t A (Tree.leaf c))).Nodup
+disG : ∀ (x : Nat), x ∈ leaves A → ¬x ∈ leaves (Tree.leaf c)
+htW : subtree S (g ++ [!t]) = some (Tree.leaf c)
+badLeg : ¬b ∈ leaves (Tree.leaf c)
+G : Tree := fork t A (Tree.leaf c)
+aG : a ∈ leaves G
+bG : ¬b ∈ leaves G
+h : RMAF.Vertex
+r : Bool
+V : Tree
+gh : g = h ++ [r]
+hh : subtree S h = some (fork r (fork t (fork s (Tree.leaf a) U) (Tree.leaf c)) V)
+ndH : (leaves (fork r G V)).Nodup
+disH : ∀ (x : Nat), x ∈ leaves G → ¬x ∈ leaves V
+ePre : g <+: e
+fPre : g <+: f
+nbV : ¬b ∈ leaves V
+vm : h ++ [!r] ∈ cuts S a b
+q : RMAF.Vertex
+eq : h ++ [!r] = q
+tail : List Bool
+et : h ++ [r] ++ tail = q
+none : ¬h ++ [!r] ++ [] <+: h ++ [!!r] ++ tail
+⊢ h ++ [!r] ++ [] <+: h ++ [!!r] ++ tail
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/SourceSpine.lean:271:72: error: Application type mismatch: The argument
+  opp
+has type
+  h ++ [!r] <+: h ++ [r] ++ List.drop (List.length (h ++ [r])) q
+but is expected to have type
+  h ++ [!r] ++ [] <+: h ++ [!!r] ++ List.drop (List.length (h ++ [r])) q
+in the application
+  opposite_child_not_prefix h (!r) [] (List.drop (List.length (h ++ [r])) q) opp
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/SourceSpine.lean:183:67: warning: This simp argument is unused:
+  e
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [eq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

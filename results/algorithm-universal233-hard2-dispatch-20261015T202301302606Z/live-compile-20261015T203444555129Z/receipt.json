@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "066674620291f40e2dda28dfc68fa635d667428d964572945042bce4c8e04d5c",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3423329580000427,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3659780409998348,
+      "resource_stop": null,
+      "log_sha256": "6a7f014cc92270990dc8e4d143de1daa3384e1f581fad8d69c9b82d087d15f2d"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016270409996650415,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PaidCaseExact",
+      "source_sha256": "4279dfddf7c51dbf1d1b6a2bd8695b10cc07442bee958280f88ae2a17d37fb8c",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 1.2540095839995047,
+      "resource_stop": null,
+      "log_sha256": "dcd124add211462f50dadc46535d7449c2dd153d268cf7ed0f0f933e0667cb84"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('PaidCaseExact', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-dispatch-20261015T202301302606Z/PaidCaseExact.lean:79:83: error: Type mismatch: After simplification, term\\n  both\\n has type\\n  And (restrictionAgrees S T A = true) (decide (restrictionAgrees S T B = true) = true)\\nbut is expected to have type\\n  And (restrictionAgrees S T A = true) (restrictionAgrees S T B = true)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-dispatch-20261015T202301302606Z/PaidCaseExact.lean:84:87: error: Type mismatch: After simplification, term\\n  both\\n has type\\n  Not (restrictionAgrees S T A = true \u2227 decide (restrictionAgrees S T B = true) = true)\\nbut is expected to have type\\n  Not (restrictionAgrees S T A = true \u2227 restrictionAgrees S T B = true)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-dispatch-20261015T202301302606Z/PaidCaseExact.lean:86:85: error: Type mismatch: After simplification, term\\n  one\\n has type\\n  Or (restrictionAgrees S T A = true) (decide (restrictionAgrees S T B = true) = true)\\nbut is expected to have type\\n  Or (restrictionAgrees S T A = true) (restrictionAgrees S T B = true)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-dispatch-20261015T202301302606Z/PaidCaseExact.lean:91:88: error: Type mismatch: After simplification, term\\n  one\\n has type\\n  Not (restrictionAgrees S T A = true \u2228 decide (restrictionAgrees S T B = true) = true)\\nbut is expected to have type\\n  Not (restrictionAgrees S T A = true \u2228 restrictionAgrees S T B = true)\\n'))"
+}

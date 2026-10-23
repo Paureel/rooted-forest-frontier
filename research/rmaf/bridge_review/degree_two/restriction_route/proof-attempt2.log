@@ -1,0 +1,35 @@
+research/rmaf/bridge_review/degree_two/restriction_route/RestrictionTransport.lean:20:12: error: Tactic `rfl` failed: The left-hand side
+  restrict A val✝
+is not definitionally equal to the right-hand side
+  none
+
+case h_1
+A : List Nat
+val✝ : Tree
+x✝¹ x✝ : Option Tree
+heq✝ : restrict A val✝ = none
+⊢ restrict A val✝ = none
+research/rmaf/bridge_review/degree_two/restriction_route/RestrictionTransport.lean:20:12: error: Tactic `rfl` failed: The left-hand side
+  restrict A val✝
+is not definitionally equal to the right-hand side
+  some (l✝.node r✝)
+
+case h_3
+A : List Nat
+val✝ : Tree
+x✝¹ x✝ : Option Tree
+l✝ r✝ : Tree
+heq✝¹ : restrict A val✝ = some l✝
+heq✝ : none = some r✝
+⊢ restrict A val✝ = some (l✝.node r✝)
+research/rmaf/bridge_review/degree_two/restriction_route/RestrictionTransport.lean:95:38: warning: This simp argument is unused:
+  List.contains_iff_mem
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [restrict, leaves]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'RestrictionRoute.restrict_associative' depends on axioms: [propext, sorryAx, Quot.sound]
+'RestrictionRoute.restrict_associative_subset' depends on axioms: [propext, sorryAx, Quot.sound]
+'RestrictionRoute.rootedIso_restrict' depends on axioms: [propext]
+'RestrictionRoute.restrictionAgrees_subset' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

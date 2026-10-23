@@ -1,0 +1,7 @@
+# Remaining scope
+
+The named structural local prefix has value proofs, source-derived operation bounds and executed controls at author level. No additional structural local call inside this prefix is left as an assumed CostBound. Fresh nonauthor semantic and interface review remains required before scientific acceptance.
+
+The first unprovided cost statement is the scalar interpretation of the unit-source sheet. Given concrete binary algorithms for Nat label equality/order, address Bool comparison, counter arithmetic, list-length counters, label copies and the comparison `DepthOne.cutCost c ≤ q`, prove that their execution costs are bounded by an explicit fee depending on input label cap L, current node cap N and separate original budget cap Q, and that this fee interprets every charged scalar/administrative slot used here and in the imported checker. The statement must cover rejected candidates as well as successful ones. `weightedFront_bound` only multiplies a proved structural bound by an arbitrary fee; it does not prove that fee sufficient.
+
+For the complete algorithm, the consumer must compose the prefix with recursive branch construction and the global recurrence, prove state/label growth, and account for outer budget iteration. Those bodies are outside this author's ownership and were neither edited nor accepted here. Initial q=k-1 without an implicit rho, full algorithm/base acceptance and novelty remain unresolved by this local result.

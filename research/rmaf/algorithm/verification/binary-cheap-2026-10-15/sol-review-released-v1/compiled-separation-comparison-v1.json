@@ -1,0 +1,210 @@
+{
+  "checks": [
+    {
+      "name": "F_agreement",
+      "got": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "Fprime_agreement",
+      "got": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "F_refines_P",
+      "got": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "F_refines_some_literal_Q",
+      "got": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "name": "Fprime_refines_some_literal_Q",
+      "got": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "Fprime_no_larger",
+      "got": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "local_cost2_agreement",
+      "got": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "three_color_rank",
+      "got": 3,
+      "expected": 3,
+      "pass": true
+    },
+    {
+      "name": "three_color_costs",
+      "got": [
+        2
+      ],
+      "expected": [
+        2
+      ],
+      "pass": true
+    },
+    {
+      "name": "one_mass",
+      "got": "1/8",
+      "expected": "1/8",
+      "pass": true
+    },
+    {
+      "name": "two_identical_occurrences_mass",
+      "got": "1/4",
+      "expected": "1/4",
+      "pass": true
+    },
+    {
+      "name": "native literal duplicate occurrence retained",
+      "pass": true
+    }
+  ],
+  "denominator": 12,
+  "passed": 12,
+  "all_pass": true,
+  "observation": {
+    "F_agreement": true,
+    "F_refines_P": true,
+    "F_refines_some_literal_Q": false,
+    "Fprime_agreement": true,
+    "Fprime_no_larger": true,
+    "Fprime_refines_some_literal_Q": true,
+    "id": "frozen-separation-controls",
+    "local_cost2_agreement": true,
+    "one_mass": {
+      "den": 8,
+      "num": 1
+    },
+    "three_color_rank": 3,
+    "three_color_receipt": {
+      "childAttempts": 2,
+      "outputs": [
+        {
+          "partition": [
+            [
+              2,
+              3
+            ],
+            [
+              1
+            ],
+            [
+              5,
+              7,
+              9,
+              6,
+              8,
+              10,
+              11,
+              12
+            ]
+          ],
+          "sourceCuts": [
+            "00",
+            "0000"
+          ]
+        }
+      ],
+      "pruned": 0,
+      "refusals": [],
+      "visited": 3
+    },
+    "two_identical_occurrences_mass": {
+      "den": 4,
+      "num": 1
+    },
+    "two_identical_raw_occurrences": [
+      {
+        "partition": [
+          [
+            5,
+            7,
+            9,
+            6,
+            8,
+            10
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1
+          ],
+          [
+            11,
+            12
+          ]
+        ],
+        "sourceCuts": [
+          "01",
+          "00",
+          "0000"
+        ]
+      },
+      {
+        "partition": [
+          [
+            5,
+            7,
+            9,
+            6,
+            8,
+            10
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1
+          ],
+          [
+            11,
+            12
+          ]
+        ],
+        "sourceCuts": [
+          "01",
+          "00",
+          "0000"
+        ]
+      }
+    ],
+    "whole_source_same_address_partition": [
+      [
+        1,
+        2,
+        3,
+        5,
+        7,
+        9,
+        6,
+        8,
+        10
+      ],
+      [
+        11,
+        12
+      ]
+    ]
+  },
+  "meaning": "Fprime correctness witness only; no unknown-F runtime oracle; minimum1 does not discount all capped local answers",
+  "replication_increment": 0
+}

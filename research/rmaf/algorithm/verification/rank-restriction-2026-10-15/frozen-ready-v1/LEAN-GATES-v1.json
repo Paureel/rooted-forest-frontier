@@ -1,0 +1,18 @@
+{
+  "phase":"PRERELEASE; detector source/compilation deferred until exact candidate release",
+  "allowed_axioms":["propext","Classical.choice","Quot.sound"],
+  "source_only_replay":"New empty isolated directory per exact released package; copy only source at released hashes, no candidate oleans; retain actual compiler commands, pinned launcher/version, all stdout/stderr and failures.",
+  "complete_origins":"Inspect EVERY declaration originating in every released scientific source module, including private and generated declarations and imported dependencies. Audit type/signature, isAxiom/isUnsafe and transitive axiom dependencies; include each origin even when no headline theorem references it. Distinguish generated-origin adoption from source/body or module-name changes.",
+  "reject_source_tokens":["sorry","admit","native_decide","axiom in accepted scientific source"],
+  "controls":[
+    {"plant":"theorem clean : True := True.intro","expected":"compile and full-origin audit pass"},
+    {"plant":"theorem falseStatement : False := by decide","expected":"explicit decide-false compilation rejection"},
+    {"plant":"unused custom axiom : False","expected":"module compiles; full-origin audit rejects unused axiom"},
+    {"plant":"private custom axiom and private dependent theorem","expected":"compile; reject both private originating declarations"},
+    {"plant":"dependency custom axiom used through imported client theorem","expected":"compile; reject client and dependency even if client source contains no axiom token"},
+    {"plant":"clean headline plus unreferenced private bad declaration","expected":"reject package despite clean headline"},
+    {"plant":"empty or omitted origin inventory","expected":"audit refuses zero/missing denominators"}
+  ],
+  "semantic_audits":["rank feasibility has only actual partition/embedding/monochromatic existence premises", "literal raw LIST outputs, cost/cardinality/duplicates/mass and original-cut correspondence", "every budget below and above r-1 with actual cap and monotonicity", "no positive-optimum query-time discount inferred", "forward local actual agreement without Q target-disjointness", "local family nonempty before Nat subtraction and exact global Q offset", "reverse requires original Q embeddings disjoint in both trees", "literal restriction equations and original/root/LCA/unary-path transport", "do not infer full Q target-disjointness from requested clearing", "actual cheap/high and SolveForest caller hypotheses must be derived; unsupported caller remains OPEN"],
+  "reuse_disclosure":"Same reviewer lineage and same pinned Lean/kernel origin APIs as completed G/E review; zero extra replication credit. No candidate source or compiler contact during preparation."
+}

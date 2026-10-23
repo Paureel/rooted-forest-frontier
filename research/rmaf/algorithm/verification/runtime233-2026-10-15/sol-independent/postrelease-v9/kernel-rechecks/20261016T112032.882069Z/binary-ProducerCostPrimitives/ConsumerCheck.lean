@@ -1,0 +1,7 @@
+import ProducerCostPrimitives
+#check GenericForest.BinaryProducer.leavesCopy_cost
+#print axioms GenericForest.BinaryProducer.leavesCopy_cost
+#check GenericForest.BinaryProducer.restrictLabels_cost
+#print axioms GenericForest.BinaryProducer.restrictLabels_cost
+#check GenericForest.BinaryProducer.forestBits_cost
+#print axioms GenericForest.BinaryProducer.forestBits_cost

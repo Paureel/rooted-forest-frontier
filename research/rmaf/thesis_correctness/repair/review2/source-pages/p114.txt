@@ -1,0 +1,56 @@
+
+114
+from c to x in F 2
+2 :“ F2 ˜ t eau has pendant nodes y, b 2, b 3, . . . , b q. By Lemma 6.8, we
+have e pT1, T 2, F 2
+2 ˜ t ecuq “ e pT1, T 2, F 2
+2 q ´ 1, e
+`
+T1, T 2, F 2
+2 ˜ t ey, e b2, e b3, . . . , e bq u
+˘
+“
+e pT1, T 2, F 2
+2 q ´ q or e pT1, T 2, F 2
+2 ˜ t exuq “ e pT1, T 2, F 2
+2 q ´ 1. In the ﬁrst case, we
+also have e pT1, T 2, F 2 ˜ t ecuq “ e pT1, T 2, F 2q ´ 1 because F 2
+2 Ď F2. As we argued
+above, this implies that e pT1, T 2, F 2 ˜ t ec, e yuq “ e pT1, T 2, F 2q ´ 2. In the third
+case, we obtain e pT1, T 2, F 2 ˜ t exuq “ e pT1, T 2, F 2q ´ 1 because F 2
+2 Ď F2. Finally,
+in the second case, we obtain that e pT1, T 2, F 2
+2 ˜ t eyuq “ e pT1, T 2, F 2
+2 q ´ 1 and, hence,
+e pT1, T 2, F 2 ˜ t eyuq “ e pT1, T 2, F 2q´ 1. Case RB applies to the sibling pair pa, c q after
+cutting edge ey in F2, with pa, x q being a sibling pair in F 3
+2 :“ F2 ˜ t eyu and c being
+the only pendant node of the path from a to x in F1. Thus, e pT1, T 2, F 3
+2 ˜ t ecuq “
+e pT1, T 2, F 3
+2 q ´ 1 and, hence, e pT1, T 2, F 2 ˜ t ec, e yuq “ e pT1, T 2, F 2q ´ 2.
+Using Lemmas 6.6–6.11, we can now prove the correctness of our algorithm.
+Theorem 6.12. The invocation m pT1, T 2, k 0q returns True if and only if
+e pT1, T 2, T 2q ď k0.
+Proof. First consider a variant of our algorithm where Cases A2BC and A3 BC do not
+protect any edges and Case BCY includes an additional recurs ive call m pF 1
+1, F 2 ˜ t exu,
+k ´ 1q. Consider the recursion tree T deﬁned by the set of recursive calls made by
+this algorithm. Each leaf of this tree corresponds to an invo cation that does not make
+any further recursive calls and thus returns F alsein Step 1 or True in Step 2. The
+algorithm returns True if and only if at least one of these leaf invocations returns
+True.
+First we prove that e pT1, T 2, T 2q ď k0 if our algorithm returns True. Since
+each recursive call m pF 1
+1, F 2 ˜ E, k 1q made by an invocation m pF1, F 2, k q satisﬁes
+k1 “ k ´ | E|, it is easily veriﬁed that each leaf invocation m pF1, F 2, k q satisﬁes |F2| ď
+k0 ´ k ` 1. If our algorithm returns True, then there exists such a leaf invocation
+that returns True, which implies that k ě 0 and F2 is an AF of T1 and T2. Thus,
+|F2| ě e pT1, T 2, T 2q ` 1, that is, e pT1, T 2, T 2q ď k0 ´ k ď k0.
+Next assume e pT1, T 2, T 2q ď k0. We call an invocation m pF1, F 2, k q promis-
+ing if |F2| ` e pT1, T 2, F 2q “ 1 ` e pT1, T 2, T 2q and k0 ´ k “ | F2| ´ 1. By Lem-
+mas 6.6–6.11, every promising invocation m pF1, F 2, k q has a promising child invo-
+cation m pF 1
+1, F 1
+2, k 1q. Since the root invocation e pT1, T 2, T 2q is itself promising, this
+

@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3215693750007631,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.35547016600139614,
+      "resource_stop": null,
+      "log_sha256": "05707a7d94e6bbeb4824f625f1b19325a487f3d7c6c6cc21cc99fd792199388f"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016462499988847412,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "OrdinaryPrepareBound",
+      "source_sha256": "96acebc0cf2b70a1f9b08f537fd03465914a8d77770b190c5b1aa9654211b502",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8835019159996591,
+      "resource_stop": null,
+      "log_sha256": "aa2107fddd975a8d4faa54c57bfdbd9abbe6f16079b81247df4e52026be7cf37"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('OrdinaryPrepareBound', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/OrdinaryPrepareBound.lean:25:1: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  m \u2265 0\\n  l \u2265 0\\n  k \u2265 1\\n  32*k - l \u2265 0\\n  j \u2265 0\\n  j - 64*k + m \u2265 -7\\n  j - 8*k \u2264 0\\n  i \u2265 0\\n  h \u2265 0\\n  g \u2265 0\\n  f \u2265 0\\n  e \u2265 0\\n  8*e - f \u2265 0\\n  8*e - g \u2265 0\\n  8*e - j \u2265 0\\n  d \u2265 0\\n  c \u2265 0\\n  b \u2265 0\\n  a \u2265 0\\n  a - b \u2265 0\\n  a - c \u2265 0\\n  a - d \u2265 0\\n  a - h \u2265 0\\n  a - i \u2265 0\\nwhere\\n a := \u2191N\\n b := \u2191(treeNodes T)\\n c := \u2191(treeNodes S)\\n d := \u2191U.length\\n e := \u2191((N + 1) ^ 2)\\n f := \u2191(meterLeaves T).work\\n g := \u2191(meterLeaves S).work\\n h := \u2191(leaves T).length\\n i := \u2191(leaves S).length\\n j := \u2191(meterNodup U).work\\n k := \u2191((N + 1) ^ 3)\\n l := \u2191(meterAll\\n      (fun x =>\\n        let t := meterLeaves T;\\n        let s := meterLeaves S;\\n        let a := meterContains x t.value;\\n        let b := meterContains x s.value;\\n        { value := a.value && b.value, work := t.work + s.work + a.work + b.work + 4 })\\n      U).work\\n m := \u2191(meterAll\\n      (fun x =>\\n        { value := (meterContains x (meterLeaves T).value).value && (meterContains x (meterLeaves S).value).value,\\n          work :=\\n            (meterLeaves T).work + (meterLeaves S).work + (meterContains x (meterLeaves T).value).work +\\n                (meterContains x (meterLeaves S).value).work +\\n              4 })\\n      U).work\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/OrdinaryPrepareBound.lean:40:3: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  i \u2265 0\\n  h \u2265 0\\n  g \u2265 0\\n  f \u2265 0\\n  e \u2265 1\\n  16*e - g \u2265 4\\n  16*e - h \u2265 4\\n  64*e - f \u2265 0\\n  401000*e - i \u2264 -1\\n  d \u2265 0\\n  c \u2265 0\\n  b \u2265 0\\n  a \u2265 0\\n  a - b \u2265 0\\n  a - c \u2265 0\\n  a - d \u2265 0\\nwhere\\n a := \u2191N\\n b := \u2191(treeNodes T)\\n c := \u2191(treeNodes S)\\n d := \u2191U.length\\n e := \u2191((N + 1) ^ 6)\\n f := \u2191(properBlockMeter T S U).work\\n g := \u2191(meterRestrict U T).work\\n h := \u2191(meterRestrict U S).work\\n i := \u2191{ value := none, work := (properBlockMeter T S U).work + 6 }.work\\n'))"
+}

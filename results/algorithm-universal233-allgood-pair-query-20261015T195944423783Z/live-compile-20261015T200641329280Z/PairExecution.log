@@ -1,0 +1,24 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-pair-query-20261015T195944423783Z/PairExecution.lean:80:79: error: don't know how to synthesize placeholder for argument `F`
+context:
+actual : Ordinary
+T S : Tree
+A B C : List Nat
+q : Nat
+a : Call
+h✝¹ : 2 ≤ q
+x✝ : Option (List (List Nat))
+H✝ : List (List Nat)
+heq✝ : AllGoodDP.run (localTarget (some T) (A ++ B)) (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) = some H✝
+h✝ : additionalCost (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) H✝ ≤ q - 2
+mem :
+  a ∈
+    {
+        answer :=
+          checked T S q
+            (Option.map (fun K => H✝ ++ K)
+              (GenericForest.solve actual (localTarget (some T) C) (owned (OutputState.sourceForest S [A, B, C]) C)
+                (q - 2 - additionalCost (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) H✝))),
+        calls :=
+          [{ target := localTarget (some T) C, sources := owned (OutputState.sourceForest S [A, B, C]) C,
+              budget := q - 2 - additionalCost (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) H✝ }] }.calls
+⊢ List (List Nat)

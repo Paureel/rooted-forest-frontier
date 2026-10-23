@@ -1,0 +1,122 @@
+import ProducerGeneratorChoose
+namespace GenericForest.BinaryProducer.Generator
+open BinaryProvider GenericForest.ScalarBits Universal233.WholeSourceWork
+structure Receipt where
+ outputs : List BinaryProducer.Output
+ refusals : List String
+ visited : Bits
+ childAttempts : Bits
+ pruned : Bits
+ deriving Repr
+def receiptValue (r : Receipt) : Universal233.CoreProgram.Receipt:=
+ ⟨r.outputs.map outputValue,r.refusals,decode r.visited,decode r.childAttempts,decode r.pruned⟩
+
+def combineBits (a b : Receipt) : Charged Receipt:=
+ let o:=appendSpine a.outputs b.outputs;let f:=appendSpine a.refusals b.refusals
+ let v:=addBits a.visited b.visited;let c:=addBits a.childAttempts b.childAttempts;let p:=addBits a.pruned b.pruned
+ ⟨⟨o.value,f.value,v.value,c.value,p.value⟩,o.work+f.work+v.work+c.work+p.work+16⟩
+@[simp] theorem combineBits_value (a b : Receipt) :
+ receiptValue (combineBits a b).value=Universal233.CoreProgram.combine (receiptValue a) (receiptValue b) := by
+ simp [combineBits,receiptValue,Universal233.CoreProgram.combine,List.map_append]
+
+def prefixBits (r : Receipt) : Charged Receipt:=
+ let v:=incrementBits r.visited;⟨{r with visited:=v.value},v.work+4⟩
+@[simp] theorem prefixBits_value (r : Receipt) :
+ receiptValue (prefixBits r).value=Universal233.CoreProgram.prefixRoot (receiptValue r) := by
+ simp [prefixBits,receiptValue,Universal233.CoreProgram.prefixRoot]
+def childBits (r : Receipt) : Charged Receipt:=
+ let v:=incrementBits r.childAttempts;⟨{r with childAttempts:=v.value},v.work+4⟩
+@[simp] theorem childBits_value (r : Receipt) :
+ receiptValue (childBits r).value={receiptValue r with childAttempts:=(receiptValue r).childAttempts+1} := by
+ simp [childBits,receiptValue]
+
+def detachedBits : List Group→Charged BinaryProvider.Forest
+ | []=>⟨[],1⟩
+ | g::gs=>let r:=detachedBits gs;⟨g.labels::r.value,r.work+4⟩
+@[simp] theorem detachedBits_value (gs : List Group) :
+ forestValue (detachedBits gs).value=(groupsValue gs).map Universal233.CoreProgram.Group.labels := by
+ induction gs <;> simp_all [detachedBits,forestValue,groupsValue,groupValue]
+def flattenGroups : List Group→Charged Block
+ | []=>⟨[],1⟩
+ | g::gs=>let r:=flattenGroups gs;let a:=appendLabels g.labels r.value;⟨a.value,r.work+a.work+4⟩
+@[simp] theorem flattenGroups_value (gs : List Group) :
+ blockValue (flattenGroups gs).value=(groupsValue gs).flatMap Universal233.CoreProgram.Group.labels := by
+ induction gs <;> simp_all [flattenGroups,blockValue_append,groupsValue,groupValue,blockValue]
+
+def finishBits (T : GTree) (detached : List Group) (cuts : Addresses) : Charged Receipt:=
+ let gs:=groupsBits T;let b:=flattenGroups gs.value;let d:=detachedBits detached
+ let a:=appendSpine d.value [b.value]
+ ⟨⟨[⟨a.value,cuts⟩],[],[true],[],[]⟩,gs.work+b.work+d.work+a.work+16⟩
+@[simp] theorem finishBits_value (T : GTree) (d : List Group) (c : Addresses) :
+ receiptValue (finishBits T d c).value=
+ ⟨[⟨(groupsValue d).map Universal233.CoreProgram.Group.labels++[(Universal233.CoreProgram.groups (gtreeValue T)).flatMap Universal233.CoreProgram.Group.labels],c⟩],[],1,0,0⟩ := by
+ have dv:=detachedBits_value d
+ have fv:=flattenGroups_value (groupsBits T).value
+ rw [groupsBits_value] at fv
+ simp only [forestValue] at dv
+ simp [finishBits,receiptValue,outputValue,forestValue,List.map_append,dv,fv,decode,bit]
+
+def attemptBits (f : GTree→List Group→Addresses→Charged Receipt)
+ (T : GTree) (d : List Group) (c : Addresses) (g : Group) : Charged Receipt:=
+ let root:=meterAddressEq g.origin []
+ if root.value then ⟨⟨[],["attempt to cut original root"],[],[true],[]⟩,root.work+8⟩ else
+  let dup:=meterVertexContains g.origin c
+  if dup.value then ⟨⟨[],["duplicate original source cut"],[],[true],[]⟩,root.work+dup.work+8⟩ else
+   let er:=eraseBits g.origin T
+   match er.value with
+   | none=>⟨⟨[],["attempt removed entire current source"],[],[true],[]⟩,root.work+dup.work+er.work+8⟩
+   | some next=>let r:=f next (g::d) (g.origin::c);let child:=childBits r.value
+                 ⟨child.value,root.work+dup.work+er.work+r.work+child.work+12⟩
+
+theorem attemptBits_value (f : GTree→List Group→Addresses→Charged Receipt)
+ (native : Universal233.CoreProgram.GTree→List Universal233.CoreProgram.Group→Addresses→Universal233.CoreProgram.Receipt)
+ (ih : ∀t d c,receiptValue (f t d c).value=native (gtreeValue t) (groupsValue d) c)
+ (T : GTree) (d : List Group) (c : Addresses) (g : Group) :
+ receiptValue (attemptBits f T d c g).value=
+ Universal233.CoreProgram.attempt native (gtreeValue T) (groupsValue d) c (groupValue g) := by
+ have e:=eraseBits_value g.origin T
+ dsimp only [attemptBits]
+ unfold Universal233.CoreProgram.attempt
+ simp only [meterAddressEq_value,beq_iff_eq,groupValue]
+ split
+ · rename_i yes
+   simp [yes,receiptValue,decode,bit]
+ · rename_i no
+   simp only [no,ite_false,meterVertexContains_value]
+   split
+   · rename_i dup
+     have member : g.origin∈c:=by simpa using dup
+     simp [member,receiptValue,decode,bit]
+   · rename_i clean
+     simp only [clean,ite_false,←e]
+     cases h : (eraseBits g.origin T).value with
+     | none=>rfl
+     | some u=>simp [childBits_value,ih,groupsValue,groupValue]
+
+def stepBits (f : GTree→List Group→Addresses→Charged Receipt) (current : GTree) (d : List Group) (c : Addresses) : Charged Receipt:=
+ let n:=normalizeBits current;let choice:=chooseBits n.value
+ match choice.value with
+ | .finish=>let r:=finishBits n.value d c;⟨r.value,n.work+choice.work+r.work+8⟩
+ | .one g=>let a:=attemptBits f n.value d c g;let p:=prefixBits a.value;⟨p.value,n.work+choice.work+a.work+p.work+8⟩
+ | .two a b=>let x:=attemptBits f n.value d c a;let y:=attemptBits f n.value d c b
+             let z:=combineBits x.value y.value;let p:=prefixBits z.value
+             ⟨p.value,n.work+choice.work+x.work+y.work+z.work+p.work+12⟩
+ | .refuse why=>⟨⟨[],[why],[true],[],[]⟩,n.work+choice.work+8⟩
+
+theorem stepBits_value (f : GTree→List Group→Addresses→Charged Receipt)
+ (native : Universal233.CoreProgram.GTree→List Universal233.CoreProgram.Group→Addresses→Universal233.CoreProgram.Receipt)
+ (ih : ∀t d c,receiptValue (f t d c).value=native (gtreeValue t) (groupsValue d) c)
+ (T : GTree) (d : List Group) (c : Addresses) :
+ receiptValue (stepBits f T d c).value=Universal233.CoreProgram.step native (gtreeValue T) (groupsValue d) c := by
+ have n:=normalizeBits_value T
+ have choice:=chooseBits_value (normalizeBits T).value
+ dsimp only [Universal233.CoreProgram.step]
+ rw [←n]
+ simp only [←choice]
+ dsimp only [stepBits]
+ cases h : (chooseBits (normalizeBits T).value).value with
+ | finish=>simp only [h,finishBits_value,choiceValue]
+ | one g=>simp only [h,prefixBits_value,choiceValue,attemptBits_value f native ih]
+ | two a b=>simp only [h,prefixBits_value,combineBits_value,choiceValue,attemptBits_value f native ih]
+ | refuse why=>rfl
+end GenericForest.BinaryProducer.Generator

@@ -1,0 +1,5 @@
+import ActualInspection
+#check GenericForest.CheckCorrespondence.fast_actual_singleton_check_bound
+#print axioms GenericForest.CheckCorrespondence.fast_actual_singleton_check_bound
+#check GenericForest.CheckCorrespondence.fast_disjoint_attempt_check_bound
+#print axioms GenericForest.CheckCorrespondence.fast_disjoint_attempt_check_bound

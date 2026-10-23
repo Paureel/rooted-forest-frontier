@@ -1,0 +1,573 @@
+{
+  "schema": 1,
+  "status": "frozen-before-restriction-evaluation",
+  "scope": "Family geometry only; address identities, including equal leaf values, remain distinct.",
+  "positives": [
+    {
+      "id": "R1-close-both",
+      "tree": [
+        "a",
+        "b"
+      ],
+      "indices": [
+        "a",
+        "b"
+      ],
+      "regions": {
+        "a": [
+          "0"
+        ],
+        "b": [
+          "1"
+        ]
+      },
+      "boundary": null,
+      "expected": {
+        "kind": "closeBoth",
+        "left_regions": {
+          "a": [
+            ""
+          ]
+        },
+        "right_regions": {
+          "b": [
+            ""
+          ]
+        },
+        "left_boundary": "a",
+        "right_boundary": "b",
+        "parent_count": 2,
+        "parent_cost": 2,
+        "left_count": 1,
+        "right_count": 1,
+        "left_cost": 0,
+        "right_cost": 0,
+        "toll": 2
+      }
+    },
+    {
+      "id": "R2-extend-left",
+      "tree": [
+        "a",
+        "b"
+      ],
+      "indices": [
+        "a",
+        "b"
+      ],
+      "regions": {
+        "a": [
+          "",
+          "0"
+        ],
+        "b": [
+          "1"
+        ]
+      },
+      "boundary": "a",
+      "expected": {
+        "kind": "extendLeft",
+        "left_regions": {
+          "a": [
+            ""
+          ]
+        },
+        "right_regions": {
+          "b": [
+            ""
+          ]
+        },
+        "left_boundary": "a",
+        "right_boundary": "b",
+        "parent_count": 2,
+        "parent_cost": 1,
+        "left_count": 1,
+        "right_count": 1,
+        "left_cost": 0,
+        "right_cost": 0,
+        "toll": 1
+      }
+    },
+    {
+      "id": "R3-extend-right",
+      "tree": [
+        "a",
+        "b"
+      ],
+      "indices": [
+        "a",
+        "b"
+      ],
+      "regions": {
+        "a": [
+          "0"
+        ],
+        "b": [
+          "",
+          "1"
+        ]
+      },
+      "boundary": "b",
+      "expected": {
+        "kind": "extendRight",
+        "left_regions": {
+          "a": [
+            ""
+          ]
+        },
+        "right_regions": {
+          "b": [
+            ""
+          ]
+        },
+        "left_boundary": "a",
+        "right_boundary": "b",
+        "parent_count": 2,
+        "parent_cost": 1,
+        "left_count": 1,
+        "right_count": 1,
+        "left_cost": 0,
+        "right_cost": 0,
+        "toll": 1
+      }
+    },
+    {
+      "id": "R4-merge",
+      "tree": [
+        "a",
+        "b"
+      ],
+      "indices": [
+        "o"
+      ],
+      "regions": {
+        "o": [
+          "",
+          "0",
+          "1"
+        ]
+      },
+      "boundary": "o",
+      "expected": {
+        "kind": "merge",
+        "left_regions": {
+          "o": [
+            ""
+          ]
+        },
+        "right_regions": {
+          "o": [
+            ""
+          ]
+        },
+        "left_boundary": "o",
+        "right_boundary": "o",
+        "parent_count": 1,
+        "parent_cost": 0,
+        "left_count": 1,
+        "right_count": 1,
+        "left_cost": 0,
+        "right_cost": 0,
+        "toll": 0
+      }
+    },
+    {
+      "id": "R5-parent-closed-child-root",
+      "tree": [
+        [
+          "a",
+          "b"
+        ],
+        "c"
+      ],
+      "indices": [
+        "ab",
+        "c"
+      ],
+      "regions": {
+        "ab": [
+          "0",
+          "00",
+          "01"
+        ],
+        "c": [
+          "1"
+        ]
+      },
+      "boundary": null,
+      "expected": {
+        "kind": "closeBoth",
+        "left_regions": {
+          "ab": [
+            "",
+            "0",
+            "1"
+          ]
+        },
+        "right_regions": {
+          "c": [
+            ""
+          ]
+        },
+        "left_boundary": "ab",
+        "right_boundary": "c",
+        "parent_count": 2,
+        "parent_cost": 2,
+        "left_count": 1,
+        "right_count": 1,
+        "left_cost": 0,
+        "right_cost": 0,
+        "toll": 2
+      }
+    },
+    {
+      "id": "R6-unused-child-root",
+      "tree": [
+        [
+          "a",
+          "b"
+        ],
+        "c"
+      ],
+      "indices": [
+        "a",
+        "b",
+        "c"
+      ],
+      "regions": {
+        "a": [
+          "00"
+        ],
+        "b": [
+          "01"
+        ],
+        "c": [
+          "1"
+        ]
+      },
+      "boundary": null,
+      "expected": {
+        "kind": "closeBoth",
+        "left_regions": {
+          "a": [
+            "0"
+          ],
+          "b": [
+            "1"
+          ]
+        },
+        "right_regions": {
+          "c": [
+            ""
+          ]
+        },
+        "left_boundary": null,
+        "right_boundary": "c",
+        "parent_count": 3,
+        "parent_cost": 3,
+        "left_count": 2,
+        "right_count": 1,
+        "left_cost": 2,
+        "right_cost": 0,
+        "toll": 1
+      }
+    },
+    {
+      "id": "R7-extend-unused-other-root",
+      "tree": [
+        "a",
+        [
+          "b",
+          "c"
+        ]
+      ],
+      "indices": [
+        "a",
+        "b",
+        "c"
+      ],
+      "regions": {
+        "a": [
+          "",
+          "0"
+        ],
+        "b": [
+          "10"
+        ],
+        "c": [
+          "11"
+        ]
+      },
+      "boundary": "a",
+      "expected": {
+        "kind": "extendLeft",
+        "left_regions": {
+          "a": [
+            ""
+          ]
+        },
+        "right_regions": {
+          "b": [
+            "0"
+          ],
+          "c": [
+            "1"
+          ]
+        },
+        "left_boundary": "a",
+        "right_boundary": null,
+        "parent_count": 3,
+        "parent_cost": 2,
+        "left_count": 1,
+        "right_count": 2,
+        "left_cost": 0,
+        "right_cost": 2,
+        "toll": 0
+      }
+    },
+    {
+      "id": "R8-repeated-label-survivors",
+      "tree": [
+        [
+          "x",
+          "x"
+        ],
+        [
+          "x",
+          "x"
+        ]
+      ],
+      "indices": [
+        "o",
+        "b",
+        "c"
+      ],
+      "regions": {
+        "o": [
+          "",
+          "0",
+          "00",
+          "1",
+          "11"
+        ],
+        "b": [
+          "01"
+        ],
+        "c": [
+          "10"
+        ]
+      },
+      "boundary": "o",
+      "expected": {
+        "kind": "merge",
+        "left_regions": {
+          "o": [
+            "",
+            "0"
+          ],
+          "b": [
+            "1"
+          ]
+        },
+        "right_regions": {
+          "o": [
+            "",
+            "1"
+          ],
+          "c": [
+            "0"
+          ]
+        },
+        "left_boundary": "o",
+        "right_boundary": "o",
+        "parent_count": 3,
+        "parent_cost": 2,
+        "left_count": 2,
+        "right_count": 2,
+        "left_cost": 1,
+        "right_cost": 1,
+        "toll": 0
+      }
+    }
+  ],
+  "outside_premise": [
+    {
+      "id": "raw-leafless-open-incursion",
+      "tree": [
+        [
+          "a",
+          "b"
+        ],
+        "c"
+      ],
+      "indices": [
+        "o",
+        "a",
+        "b"
+      ],
+      "regions": {
+        "o": [
+          "",
+          "0",
+          "1"
+        ],
+        "a": [
+          "00"
+        ],
+        "b": [
+          "01"
+        ]
+      },
+      "boundary": "o",
+      "expected_family_valid": true,
+      "expected_open_branch_live": false,
+      "expected_live_left_indices": [
+        "a",
+        "b"
+      ],
+      "expected_live_right_indices": [
+        "o"
+      ],
+      "forbidden_child_boundary": "o"
+    }
+  ],
+  "malformed": [
+    {
+      "id": "duplicate-index",
+      "base": "R1-close-both",
+      "replace": {
+        "indices": [
+          "a",
+          "a",
+          "b"
+        ]
+      }
+    },
+    {
+      "id": "omitted-index",
+      "base": "R1-close-both",
+      "replace": {
+        "indices": [
+          "a"
+        ]
+      }
+    },
+    {
+      "id": "overlap",
+      "base": "R4-merge",
+      "replace": {
+        "indices": [
+          "o",
+          "a"
+        ],
+        "regions": {
+          "o": [
+            "",
+            "0",
+            "1"
+          ],
+          "a": [
+            "0"
+          ]
+        }
+      }
+    },
+    {
+      "id": "wrong-root-owner",
+      "base": "R2-extend-left",
+      "replace": {
+        "boundary": "b"
+      }
+    }
+  ],
+  "wrong_numbers": [
+    {
+      "id": "omit-close-toll",
+      "base": "R1-close-both",
+      "field": "toll",
+      "wrong": 0,
+      "correct": 2
+    },
+    {
+      "id": "parent-closed-root-is-not-child-boundary",
+      "base": "R5-parent-closed-child-root",
+      "field": "left_cost",
+      "wrong": 1,
+      "correct": 0
+    },
+    {
+      "id": "unused-root-invented",
+      "base": "R6-unused-child-root",
+      "field": "left_cost",
+      "wrong": 1,
+      "correct": 2
+    },
+    {
+      "id": "double-count-merge",
+      "base": "R4-merge",
+      "field": "parent_count",
+      "wrong": 2,
+      "correct": 1
+    },
+    {
+      "id": "charge-extended-open",
+      "base": "R7-extend-unused-other-root",
+      "field": "toll",
+      "wrong": 1,
+      "correct": 0
+    }
+  ],
+  "corruptions": [
+    {
+      "id": "merge-equal-valued-distinct-indices",
+      "base": "R8-repeated-label-survivors",
+      "field": "left_regions",
+      "wrong": {
+        "o": [
+          "",
+          "0",
+          "1"
+        ]
+      },
+      "correct": {
+        "o": [
+          "",
+          "0"
+        ],
+        "b": [
+          "1"
+        ]
+      }
+    },
+    {
+      "id": "fill-unused-child-root",
+      "base": "R6-unused-child-root",
+      "field": "left_regions",
+      "wrong": {
+        "a": [
+          "",
+          "0"
+        ],
+        "b": [
+          "1"
+        ]
+      },
+      "correct": {
+        "a": [
+          "0"
+        ],
+        "b": [
+          "1"
+        ]
+      }
+    },
+    {
+      "id": "lose-closed-root-owner",
+      "base": "R5-parent-closed-child-root",
+      "field": "left_boundary",
+      "wrong": null,
+      "correct": "ab"
+    }
+  ],
+  "checker_plant": "On a copy, disable numeric equality comparison. All wrong-number entries must then escape detection and the outer control gate must reject that checker. Do not edit the original checker."
+}

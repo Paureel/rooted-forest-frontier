@@ -1,0 +1,197 @@
+{
+  "status": "NATIVE-SEQUENCE-MUTATIONS-PASS",
+  "sequence": {
+    "cleanup": {
+      "F": [
+        [
+          1,
+          0
+        ]
+      ],
+      "T": [
+        0,
+        1
+      ],
+      "cost": 0,
+      "ss": [
+        [
+          0,
+          1
+        ]
+      ],
+      "valid": true
+    },
+    "contract": {
+      "F": [
+        [
+          3
+        ]
+      ],
+      "T": 3,
+      "cost": 0,
+      "ss": [
+        3
+      ],
+      "valid": true
+    },
+    "expand": {
+      "F": [
+        [
+          0,
+          1
+        ]
+      ],
+      "T": [
+        0,
+        1
+      ],
+      "cost": 0,
+      "ss": [
+        [
+          0,
+          1
+        ]
+      ],
+      "valid": true
+    },
+    "mutations": [
+      {
+        "clean": [
+          "0",
+          "00",
+          "000",
+          "01"
+        ],
+        "corrupt": [
+          "0",
+          "000",
+          "01"
+        ],
+        "id": "hull-unary-erasure"
+      },
+      {
+        "clean": 0,
+        "corrupt": 1,
+        "id": "source-cost-minus-one"
+      },
+      {
+        "clean": [
+          "forward",
+          "reverse"
+        ],
+        "corrupt": [
+          "forward"
+        ],
+        "id": "omit-reverse-direction"
+      },
+      {
+        "clean": true,
+        "corrupt": false,
+        "id": "fabricated-reconstruction"
+      },
+      {
+        "clean": false,
+        "corrupt": true,
+        "id": "missing-component-readiness"
+      },
+      {
+        "clean": false,
+        "corrupt": true,
+        "id": "accept-nonfresh-z"
+      },
+      {
+        "clean": [
+          3,
+          2
+        ],
+        "corrupt": [
+          3
+        ],
+        "id": "drop-surviving-label"
+      },
+      {
+        "clean": false,
+        "corrupt": true,
+        "id": "weak-endpoint-clearance"
+      },
+      {
+        "clean": false,
+        "corrupt": true,
+        "id": "reassignment-cost-equality"
+      },
+      {
+        "clean": false,
+        "corrupt": true,
+        "id": "duplicate-state-labels"
+      }
+    ],
+    "nullCost": 0,
+    "nullValid": true,
+    "reconstructedCost": 0,
+    "reconstructedF": [
+      [
+        2
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "reconstructedValid": true
+  },
+  "mutationsCaught": [
+    {
+      "id": "hull-unary-erasure",
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': ['0', '000', '01'], 'expected': ['0', '00', '000', '01']}"
+    },
+    {
+      "id": "source-cost-minus-one",
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': 1, 'expected': 0}"
+    },
+    {
+      "id": "omit-reverse-direction",
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': ['forward'], 'expected': ['forward', 'reverse']}"
+    },
+    {
+      "id": "fabricated-reconstruction",
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': False, 'expected': True}"
+    },
+    {
+      "id": "missing-component-readiness",
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': True, 'expected': False}"
+    },
+    {
+      "id": "accept-nonfresh-z",
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': True, 'expected': False}"
+    },
+    {
+      "id": "drop-surviving-label",
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': [3], 'expected': [3, 2]}"
+    },
+    {
+      "id": "weak-endpoint-clearance",
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': True, 'expected': False}"
+    },
+    {
+      "id": "reassignment-cost-equality",
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': True, 'expected': False}"
+    },
+    {
+      "id": "duplicate-state-labels",
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': True, 'expected': False}"
+    }
+  ],
+  "seconds": 0.6830473340014578,
+  "unmodifiedFrozenExpectationFile": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-frozen-ready-v1/preparation/TRANSPORT-EXPECTATIONS-v1.json",
+  "directionControl": "actual singleton forward/reverse signatures compiled by #check; omission mask is the driver-completeness corruption"
+}

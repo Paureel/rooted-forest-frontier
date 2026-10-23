@@ -1,0 +1,92 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_paid_selector_consumer/build/SelectorBuilder.lean:35:41: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Decidable (LeafAt T q a)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_paid_selector_consumer/build/SelectorBuilder.lean:54:1: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Decidable
+    (properPair T S = true ∧
+      subtree S R.w = some (bottom R.sa R.sc R.sb R.a R.b d.c R.X) ∧
+        (∃ i, i ∈ vertices T ∧ (CherryAt T i R.a R.b ∨ CherryAt T i R.b R.a)) ∧
+          (cuts S R.a R.b).length = 2 ∧
+            (∀ (z : Nat), z ∈ leaves T → (z ∈ leaves C ↔ ¬z ∈ leaves R.X ∧ z ≠ d.c)) ∧
+              R.b ∈ leaves C ∧
+                ¬d.c ∈ leaves C ∧
+                  LeafAt T qa R.a ∧
+                    LeafAt T ub R.b ∧
+                      LeafAt T u d.c ∧
+                        (incident T (leaves R.X) = [v, u] ∨ incident T (leaves R.X) = [u, v]) ∧
+                          List.dropLast v ∈ minimalVertices (leaves R.X) T ∧
+                            List.dropLast u ∈ minimalVertices (leaves R.X) T ∧
+                              ¬v ∈ minimalVertices (leaves R.X) T ∧
+                                ¬u ∈ minimalVertices (leaves R.X) T ∧
+                                  subtreeLabels S d.badArc = leaves R.X ∧ (R.a = a ∧ R.b = b ∨ R.a = b ∧ R.b = a))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_paid_selector_consumer/build/SelectorBuilder.lean:113:52: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Decidable (LeafAt T p a)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_paid_selector_consumer/build/SelectorBuilder.lean:116:25: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Decidable (LeafAt T q a)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_paid_selector_consumer/build/SelectorBuilder.lean:118:29: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Decidable (LeafAt T p a)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_paid_selector_consumer/build/SelectorBuilder.lean:149:10: warning: `dif_pos` has been deprecated: Use `dite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  d̵i̵f̵_̵p̵o̵s̵d̲i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_paid_selector_consumer/build/SelectorBuilder.lean:149:10: error: Application type mismatch: The argument
+  dif_pos props
+has type
+  dite
+      (LiteralProps T S a b d u v { w := D.w, sa := D.sa, sc := D.sc, sb := D.sb, a := D.a, b := D.b, X := D.X } D.C
+        D.qa D.ub)
+      ?m.63 ?m.64 =
+    ?m.63 props
+but is expected to have type
+  (match hc : subtree T v, some D.qa, some D.ub with
+    | some C, some qa, some ub =>
+      if h :
+          LiteralProps T S a b d u v { w := D.w, sa := D.sa, sc := D.sc, sb := D.sb, a := D.a, b := D.b, X := D.X } C qa
+            ub then
+        some (ofProps hc h)
+      else none
+    | x, x_1, x_2 => none) =
+    some ?m.59
+in the application
+  Exists.intro ?m.59 (dif_pos props)
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_paid_selector_consumer/build/SelectorBuilder.lean:145:72: error: unsolved goals
+T S : Tree
+a b : Nat
+d : BadSelection
+u v : RMAF.Vertex
+D : LiteralGeometry T S
+r : D.r = v
+c : D.uc = u
+dc : D.c = d.c
+ql : subtreeLabels S d.badArc = leaves D.X
+xy : EndpointOrder a b D.a D.b
+hc : subtree T v = some D.C
+props :
+  LiteralProps T S a b d u v { w := D.w, sa := D.sa, sc := D.sc, sb := D.sb, a := D.a, b := D.b, X := D.X } D.C D.qa
+    D.ub
+⊢ ∃ E,
+    (match hc : subtree T v, some D.qa, some D.ub with
+      | some C, some qa, some ub =>
+        if h :
+            LiteralProps T S a b d u v { w := D.w, sa := D.sa, sc := D.sc, sb := D.sb, a := D.a, b := D.b, X := D.X } C
+              qa ub then
+          some (ofProps hc h)
+        else none
+      | x, x_1, x_2 => none) =
+      some E
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_paid_selector_consumer/build/SelectorBuilder.lean:148:21: warning: This simp argument is unused:
+  hc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [buildOne, leafAddress_complete D.properT D.leafA, leafAddress_complete D.properT D.leafB]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

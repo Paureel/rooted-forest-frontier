@@ -1,0 +1,204 @@
+{
+  "status": "NO-FIRE-BOUNDED",
+  "metrics": {
+    "max_active_protections": 3,
+    "descendant_cut_sets": 619,
+    "protected_sibling_checks": 619,
+    "three_way_second_pairs": 27,
+    "no_free_merger_checks": 81,
+    "two_protected_ge2_checks": 27,
+    "three_protected_states": 38
+  },
+  "geometries": 20000,
+  "hits": {
+    "3": 194,
+    "4": 152
+  },
+  "maxima": {
+    "3": "1/4",
+    "4": "1/4"
+  },
+  "source_cut_checks": 1038,
+  "witnesses": {
+    "4": {
+      "F1": "(((a,((x,y),(u,v))),((p,q),(r,s))))rho",
+      "F2": [
+        "(((y,v),((u,x),(q,(a,p)))))rho",
+        "(r,s)"
+      ],
+      "b": "p",
+      "mass": "1/4",
+      "nodes": 2,
+      "trace": [
+        {
+          "rule": {
+            "pair": [
+              "u",
+              "v"
+            ],
+            "case": "RB",
+            "pendants": [
+              "x",
+              "a,p,q"
+            ],
+            "branches": [
+              {
+                "name": "C",
+                "cuts": [
+                  "v"
+                ],
+                "protect2": [],
+                "protect1": [],
+                "legal": true
+              }
+            ],
+            "uncle": "x"
+          },
+          "branch": "C",
+          "mass": "1/2",
+          "child": [
+            {
+              "rule": {
+                "pair": [
+                  "a",
+                  "u,x"
+                ],
+                "case": "A2BC",
+                "pendants": [
+                  "p",
+                  "q"
+                ],
+                "branches": [
+                  {
+                    "name": "A",
+                    "cuts": [
+                      "a"
+                    ],
+                    "protect2": [],
+                    "protect1": [],
+                    "legal": false
+                  },
+                  {
+                    "name": "B",
+                    "cuts": [
+                      "p",
+                      "q"
+                    ],
+                    "protect2": [],
+                    "protect1": [],
+                    "legal": false
+                  },
+                  {
+                    "name": "C",
+                    "cuts": [
+                      "u,x"
+                    ],
+                    "protect2": [
+                      "a",
+                      "p",
+                      "q"
+                    ],
+                    "protect1": [
+                      "a"
+                    ],
+                    "legal": true
+                  }
+                ],
+                "uncle": "p,q,r,s"
+              },
+              "branch": "C",
+              "mass": "1",
+              "child": []
+            }
+          ]
+        }
+      ]
+    },
+    "3": {
+      "F1": "(((a,((x,y),z)),((p,q),(r,s))))rho",
+      "F2": [
+        "((((z,(r,x)),(p,y)),q))rho",
+        "(a,s)"
+      ],
+      "b": "s",
+      "mass": "1/4",
+      "nodes": 2,
+      "trace": [
+        {
+          "rule": {
+            "pair": [
+              "x",
+              "z"
+            ],
+            "case": "B",
+            "pendants": [
+              "r"
+            ],
+            "branches": [
+              {
+                "name": "B",
+                "cuts": [
+                  "r"
+                ],
+                "protect2": [],
+                "protect1": [],
+                "legal": true
+              }
+            ],
+            "uncle": "a"
+          },
+          "branch": "B",
+          "mass": "1/2",
+          "child": [
+            {
+              "rule": {
+                "pair": [
+                  "x,z",
+                  "a"
+                ],
+                "case": "AC",
+                "pendants": [],
+                "branches": [
+                  {
+                    "name": "A",
+                    "cuts": [
+                      "x,z"
+                    ],
+                    "protect2": [],
+                    "protect1": [],
+                    "legal": true
+                  },
+                  {
+                    "name": "C",
+                    "cuts": [
+                      "a"
+                    ],
+                    "protect2": [],
+                    "protect1": [],
+                    "legal": false
+                  }
+                ],
+                "uncle": "p,q,r,s"
+              },
+              "branch": "A",
+              "mass": "1",
+              "child": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "forest": true,
+  "controls": [
+    "thesis-complexity-reachable-trace.json",
+    "thesis-complexity-three-credit-trace.json",
+    "live-two-leaf",
+    "wrong-orientation",
+    "orientation-positive-twin",
+    "arbitrary-double-child-cut-caught-with-positive-twin"
+  ],
+  "elapsed_seconds": 7.69575129200166,
+  "seed": 614,
+  "script_sha256": "6a49317ebbf6965a6773fc2d23a69c73a33cde85720b19cd35148df180bf95d5"
+}

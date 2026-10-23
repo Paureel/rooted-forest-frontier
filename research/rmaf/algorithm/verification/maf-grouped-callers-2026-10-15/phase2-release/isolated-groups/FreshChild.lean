@@ -1,0 +1,19 @@
+import FreshConsumer
+import Lean
+open RMAF Lean ForestState ForestGroups
+namespace NonauthorChildControls
+def target : Option Tree := some (Tree.node (Tree.node (Tree.leaf 3) (Tree.leaf 4)) (Tree.node (Tree.leaf 5) (Tree.leaf 6)))
+def sources : List Tree := [(Tree.node (Tree.leaf 3) (Tree.leaf 5)), (Tree.node (Tree.leaf 4) (Tree.leaf 6))]
+def candidates : List (List (List Nat)) := [[[3, 4, 5, 6]], [[3, 4, 5], [6]], [[3, 4, 6], [5]], [[3, 4], [5, 6]], [[3, 4], [5], [6]], [[3, 5, 6], [4]], [[3, 5], [4, 6]], [[3, 5], [4], [6]], [[3, 6], [4, 5]], [[3], [4, 5, 6]], [[3], [4, 5], [6]], [[3, 6], [4], [5]], [[3], [4, 6], [5]], [[3], [4], [5, 6]], [[3], [4], [5], [6]]]
+#eval IO.println ("TABLE|" ++ (toJson (candidates.map (fun F =>
+  (agrees target sources F,additionalCost sources F)))).compress)
+def literalReturns : List (List (List Nat)) := [[[3], [5], [4, 6]], [[3], [4], [5], [6]]]
+#eval IO.println ("RETURNS|" ++ (toJson (literalReturns.map (fun F =>
+  (agrees target sources F,additionalCost sources F)))).compress)
+theorem constant_none_cannot_supply_child_contract :
+    ¬ ResidualSolverContract (fun _ _ _ => none) target sources 1 := by
+  intro IH
+  have impossible := (IH (by decide)).1.1 rfl [[3],[5],[4,6]] (by decide)
+  have cost : additionalCost sources [[3],[5],[4,6]]=1 := by decide
+  omega
+end NonauthorChildControls

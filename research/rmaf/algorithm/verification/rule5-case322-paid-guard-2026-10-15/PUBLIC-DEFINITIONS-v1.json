@@ -1,0 +1,181 @@
+{
+  "role": "Exact public definitions and literal geometry/input predicates only; no author proof, fixture, receipt or auditor provided. PRE-CANDIDATE whitelist consists only of these excerpts, not original module bodies.",
+  "definitions": [
+    {
+      "original_source": "research/rmaf/algorithm/universal233/rule5_case322_paid_guard/PaidCaller.lean",
+      "original_sha256": "de00eb2b4bde04ef626d32b7167d9818375e0bbe74b50c6be7223397af15bac2",
+      "lines_1_based": [
+        10,
+        48
+      ],
+      "excerpt_sha256": "1c2492716b33b28bc810d1855b098be7c9ab03282c90e17462f394026a20bf92",
+      "excerpt": "structure LiteralGeometry (T S : Tree) where\n X : Tree\n C : Tree\n w : RMAF.Vertex\n r : RMAF.Vertex\n qa : RMAF.Vertex\n ub : RMAF.Vertex\n uc : RMAF.Vertex\n sa : Bool\n sc : Bool\n sb : Bool\n a : Nat\n b : Nat\n c : Nat\n properT : (leaves T).Nodup\n properS : (leaves S).Nodup\n same : \u2200 x, x \u2208 leaves T \u2194 x \u2208 leaves S\n source : subtree S w = some (bottom sa sc sb a b c X)\n cherry : ActualCherry T a b\n two : (cuts S a b).length = 2\n core : subtree T r = some C\n coreLabels : \u2200 x, x \u2208 leaves T \u2192 (x \u2208 leaves C \u2194 x \u2209 leaves X \u2227 x \u2260 c)\n bC : b \u2208 leaves C\n cC : c \u2209 leaves C\n leafA : LeafAt T qa a\n leafB : LeafAt T ub b\n leafC : LeafAt T uc c\n frontier : incident T (leaves X) = [r,uc] \u2228 incident T (leaves X) = [uc,r]\n tailR : r.dropLast \u2208 minimalVertices (leaves X) T\n tailC : uc.dropLast \u2208 minimalVertices (leaves X) T\n offR : r \u2209 minimalVertices (leaves X) T\n offC : uc \u2209 minimalVertices (leaves X) T\n\ndef literalPlan {T S : Tree} (D : LiteralGeometry T S) : List Branch :=\n rawPlan T S D.a D.b D.c D.qa (bArc D.w D.sb) D.ub D.uc\n\n/-- Actual current-guard filtering, preserving branch order and multiplicity. -/\ndef guardedPlan {T S : Tree} (D : LiteralGeometry T S) : List Branch :=\n (literalPlan D).filter (currentGuard T S)\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/rule5_case322_paid_guard/PaidCaller.lean",
+      "original_sha256": "de00eb2b4bde04ef626d32b7167d9818375e0bbe74b50c6be7223397af15bac2",
+      "lines_1_based": [
+        117,
+        126
+      ],
+      "excerpt_sha256": "81f433a97007d2e55279d7c5f1bdf031ed842a993989a8b7441858a2f4dd6a60",
+      "excerpt": "def ChildQueryCorrect (T S : Tree) (child : Branch) (q : Nat)\n (answer : Option (List (List Nat))) : Prop :=\n (\u2200 G, answer = some G \u2192 agreement T S G = true \u2227 Refines G child.partition \u2227\n   G.length-child.partition.length \u2264 q) \u2227\n ((\u2203 G, agreement T S G = true \u2227 Refines G child.partition \u2227\n   G.length-child.partition.length \u2264 q) \u2192 \u2203 G, answer = some G)\n\ndef guardedQuery {T S : Tree} (D : LiteralGeometry T S) (q : Nat)\n (solve : Branch \u2192 Nat \u2192 Option (List (List Nat))) : Bool :=\n (guardedPlan D).any fun child => if paid child \u2264 q then (solve child (q-paid child)).isSome else false\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/rule5_case322_paid_guard/PaidCaller.lean",
+      "original_sha256": "de00eb2b4bde04ef626d32b7167d9818375e0bbe74b50c6be7223397af15bac2",
+      "lines_1_based": [
+        156,
+        157
+      ],
+      "excerpt_sha256": "0d36c24fef2c2b311fa4ee56976b3972628bf1064b832303b92187b44832bd71",
+      "excerpt": "def swappedGuardedPlan {T S : Tree} (D : LiteralGeometry T S) : List Branch :=\n (guardedPlan D).map swapBranch\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/rule5_case322/Case322Caller.lean",
+      "original_sha256": "6e2bdba48ab0113d1096440fb75c194ca9a30214e18a0c5451f39dcf34e35839",
+      "lines_1_based": [
+        26,
+        55
+      ],
+      "excerpt_sha256": "33580fd4bea7c5a7aa5372f6be2280821bbd325496646241c0791aed15f5c3dc",
+      "excerpt": "inductive Role where | target | source deriving DecidableEq,Repr\nstructure Branch where\n role : Role\n originalCuts : List RMAF.Vertex\n partition : List (List Nat)\n deriving DecidableEq,Repr\n\ndef current (T S : Tree) (c : Branch) : Tree := if c.role = .source then S else T\ndef paid (c : Branch) := c.originalCuts.length\ndef sourceForest (T S : Tree) (c : Branch) := OutputState.sourceForest (current T S c) c.partition\n\ndef hardBranch (S : Tree) (a b : Nat) : Branch := \u27e8.source,cuts S a b,pendantPartition S a b\u27e9\ndef bBranch (S : Tree) (b : Nat) (qb : RMAF.Vertex) : Branch := \u27e8.source,[qb],singletonPartition S b\u27e9\ndef targetBranch (T : Tree) (qs : List RMAF.Vertex) : Branch := \u27e8.target,qs,arcPartition T qs\u27e9\ndef typeIBranches (T S : Tree) (a b : Nat) (qa qb q r : RMAF.Vertex) :=\n [hardBranch S a b,bBranch S b qb,targetBranch T [qa,q],targetBranch T [qa,r]]\ndef typeIIBranches (T S : Tree) (a b : Nat) (qa qb : RMAF.Vertex) (qs : List RMAF.Vertex) :=\n [hardBranch S a b,bBranch S b qb,targetBranch T (qa::qs)]\n\n/-- This executable guard retains original nonroot valid distinct arcs and\nchecks the exact current source partition, embeddings and nonredundant cost.\nNo saving or safe-cover premise appears in this guard. The geometric caller\nmust prove it for its materialized literal branches. -/\ndef currentGuard (T S : Tree) (c : Branch) : Bool :=\n decide c.originalCuts.Nodup &&\n c.originalCuts.all (fun q => !q.isEmpty && (subtree (current T S c) q).isSome) &&\n partitionCheck (leaves (current T S c)) c.partition &&\n pairwiseEmbeddings (current T S c) c.partition &&\n (c.partition.length == paid c + 1) &&\n (c.partition == arcPartition (current T S c) c.originalCuts)\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/rule5_case322/Case322Caller.lean",
+      "original_sha256": "6e2bdba48ab0113d1096440fb75c194ca9a30214e18a0c5451f39dcf34e35839",
+      "lines_1_based": [
+        111,
+        112
+      ],
+      "excerpt_sha256": "2d6eaa342855777fbf2a940c34b0b980ac4bc4a00805a72a6982bfbf6d70b19a",
+      "excerpt": "def callbackRequests (q : Nat) (cs : List Branch) : List Nat :=\n cs.filterMap fun c => if paid c \u2264 q then some (q-paid c) else none\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/rule5_case322_extraction/SourceOrientation.lean",
+      "original_sha256": "f5f12a43d80b71db0aa8f781ef63565c9b845d1698a0f0258938edd955ba0037",
+      "lines_1_based": [
+        7,
+        7
+      ],
+      "excerpt_sha256": "0a13e89eeb7ccbf44dfd83bf269909bccba166a7548e541a3ee2a23ba93e4fce",
+      "excerpt": "def orient (s : Bool) (A B : Tree) : Tree := if s then .node B A else .node A B\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/rule5_case322_extraction/SourceOrientation.lean",
+      "original_sha256": "f5f12a43d80b71db0aa8f781ef63565c9b845d1698a0f0258938edd955ba0037",
+      "lines_1_based": [
+        21,
+        28
+      ],
+      "excerpt_sha256": "a1dd0987040444b580cc3e13ab1d3a5a639f655a4ca49bfac1314561ff49d872",
+      "excerpt": "def AX (sa : Bool) (a : Nat) (X : Tree) := orient sa (.leaf a) X\ndef VC (sa sc : Bool) (a c : Nat) (X : Tree) := orient sc (AX sa a X) (.leaf c)\ndef bottom (sa sc sb : Bool) (a b c : Nat) (X : Tree) := orient sb (VC sa sc a c X) (.leaf b)\ndef aArc (w : RMAF.Vertex) (sa sc sb : Bool) := w ++ [sb,sc,sa]\ndef xArc (w : RMAF.Vertex) (sa sc sb : Bool) := w ++ [sb,sc,!sa]\ndef cArc (w : RMAF.Vertex) (sc sb : Bool) := w ++ [sb,!sc]\ndef bArc (w : RMAF.Vertex) (sb : Bool) := w ++ [!sb]\ndef vRoot (w : RMAF.Vertex) (sb : Bool) := w ++ [sb]\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/rule5_case322_extraction/CsideExtraction.lean",
+      "original_sha256": "70d00dcb78d9444ae1ad5a26a4cca7040a817d09bef22efb677c8cea856d938f",
+      "lines_1_based": [
+        7,
+        8
+      ],
+      "excerpt_sha256": "59d3a5fe7c50e9c24de56624fe595bf522e3662f4601145b45c13063fdbba0ab",
+      "excerpt": "def cSideEdges (T : Tree) (b c : Nat) : List RMAF.Vertex :=\n (cuts T b c).filter fun q => (subtreeLabels T q.dropLast).contains c && !(subtreeLabels T q.dropLast).contains b\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/rule5_case322_extraction/BsideExtraction.lean",
+      "original_sha256": "1f68d4a1debfd019afa3aff61aa9cb95d17f2038afef6846c411e2b8a9d9f221",
+      "lines_1_based": [
+        44,
+        48
+      ],
+      "excerpt_sha256": "a7cabca24ba97bf287c95003ee865cd457d50a5e56e3586ea44ea66019fbf4a5",
+      "excerpt": "def bSideEdges (T : Tree) (b c : Nat) : List RMAF.Vertex :=\n (cuts T b c).filter fun q => (subtreeLabels T q.dropLast).contains b && !(subtreeLabels T q.dropLast).contains c\n\ndef bSideWithoutA (T : Tree) (a b c : Nat) : List RMAF.Vertex :=\n (bSideEdges T b c).filter fun q => !(subtreeLabels T q).contains a\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/rule5_case322_extraction/LiteralPlan.lean",
+      "original_sha256": "d8b4839a2cae6a5bed475dee929e7220ded533bddf5bf967a7cfde707f23fcbb",
+      "lines_1_based": [
+        61,
+        66
+      ],
+      "excerpt_sha256": "324838ab8588e26893ea23bc014484deabbd9e93a7bee4d0aa644a2e787441ad",
+      "excerpt": "def rawPlan (T S : Tree) (a b c : Nat) (qa qb ub uc : RMAF.Vertex) : List Branch :=\n match cSideEdges T b c with\n | q::r::_ => typeIBranches T S a b qa qb q r\n | _ => match bSideWithoutA T a b c with\n   | [] => typeIIBranches T S a b qa qb [lca ub uc]\n   | qs => typeIIBranches T S a b qa qb qs\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/rule5_case322/Case322Partition.lean",
+      "original_sha256": "6e4064275345fd1ed8048055c00d97da0a8dc6d7a37ae68bd7a2fd75926eb3cf",
+      "lines_1_based": [
+        9,
+        12
+      ],
+      "excerpt_sha256": "a3cddb6ebf70aad38624e4a6fb1b6e6a44ebfec8c027cd5ac63dacae9a4106e9",
+      "excerpt": "def arcPartitionFrom (T : Tree) : List RMAF.Vertex \u2192 List (List Nat) \u2192 List (List Nat)\n | [],P => P\n | q::qs,P => arcPartitionFrom T qs (splitForest P (subtreeLabels T q))\ndef arcPartition (T : Tree) (qs : List RMAF.Vertex) := arcPartitionFrom T qs [leaves T]\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/rule5_case322/Case322Cover.lean",
+      "original_sha256": "81916fefab5689588bd4ff3a213d3871732824909e95a787e698ccac94b78ebb",
+      "lines_1_based": [
+        7,
+        8
+      ],
+      "excerpt_sha256": "8e20cb71fb7f9722fa3eb516e7d288d6053411c59b2ef9f269c065b32acdb96d",
+      "excerpt": "def OriginalCover (T S : Tree) (F : List (List Nat)) (P : List (List Nat)) : Prop :=\n \u2203 G, agreement T S G = true \u2227 G.length \u2264 F.length \u2227 Refines G P\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/rule5_case322_extraction/RoleBinding.lean",
+      "original_sha256": "0f230e430335420156fc0375aa2df424b0d2835bbd5d10fd20fd70fb7fbb4267",
+      "lines_1_based": [
+        6,
+        7
+      ],
+      "excerpt_sha256": "d735de3655720891fb43410faf1af37cfcaedea21158cf3910693a8aeedb9daf",
+      "excerpt": "def swapRole : Role \u2192 Role | .target => .source | .source => .target\ndef swapBranch (c : Branch) : Branch := { c with role := swapRole c.role }\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/cherry_branching/Selector.lean",
+      "original_sha256": "a4063e0ffe94a6d387aee8a0440f80ea160642fb1bb22d00135c4ab89e1ff664",
+      "lines_1_based": [
+        109,
+        110
+      ],
+      "excerpt_sha256": "0a54c5b02673cfbe33bd7c9baa64bc2a10db558aa4256e9684dd503d1f55e6e7",
+      "excerpt": "def singletonPartition (S : Tree) (a : Nat) : List (List Nat) :=\n [[a],(leaves S).filter fun x => x != a]\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/rule5_local/build/Safety.lean",
+      "original_sha256": "64a629b2132876db5bea9ee74b02a2ac85fb82ca6b4888c148aefef07c4c3870",
+      "lines_1_based": [
+        126,
+        127
+      ],
+      "excerpt_sha256": "5ece9a8888b66b2089987e22317cf0e7b38039477ced4fdf34229a3637140d26",
+      "excerpt": "def ActualCherry (T : Tree) (a b : Nat) : Prop :=\n  \u2203 p, CherryAt T p a b \u2228 CherryAt T p b a\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/rule5_local/build/Geometry.lean",
+      "original_sha256": "b98de754ee29fdeae54aebc6e03ffb7e8262dcb299f61b7ac5ca9bcee4887a9d",
+      "lines_1_based": [
+        400,
+        403
+      ],
+      "excerpt_sha256": "9fac8a65c5b170fd9262a5727d5981a75a37140e613321643ca6e0ebdf39b06f",
+      "excerpt": "def lca : Vertex \u2192 Vertex \u2192 Vertex\n  | [], _ => []\n  | _, [] => []\n  | s :: a, t :: b => if s = t then s :: lca a b else []\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/cherry_branching/T1Split.lean",
+      "original_sha256": "0ce0f039224b2888d265e5afc7291e820a53a8a6e508da37c5f0ef37d520a80b",
+      "lines_1_based": [
+        6,
+        10
+      ],
+      "excerpt_sha256": "e29eb37598c0f762c8c2a03504a13830907987bf2b0904fde472007a0471a94f",
+      "excerpt": "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent\n\n/-- Literal generic source-edge split of every original agreement block. -/\ndef splitForest (F : List (List Nat)) (X : List Nat) :=\n BinaryExchange.splitAll F X.contains\n"
+    }
+  ],
+  "other_allowed_capsules": [
+    "research/rmaf/algorithm/verification/both-bad-2026-10-15/PUBLIC-DEFINITIONS-v1.json",
+    "research/rmaf/algorithm/verification/rule5-classification-2026-10-15/PUBLIC-DEFINITIONS-v1.json",
+    "research/rmaf/algorithm/verification/rule5-classification-2026-10-15/PUBLIC-DEFINITIONS-SUPPLEMENT-v2.json"
+  ],
+  "interpretation": "LiteralGeometry is a supplied original graph input shape, not the globally proved selector classification. All original hull vertices retained. originalCuts lists remain ordered/multiple occurrences; paid is literal cut-list length. A query returns feasibility under explicit per-affordable-child ChildQueryCorrect, not an implemented minimum solver. No author fixture or intended optimum is supplied."
+}

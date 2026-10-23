@@ -1,0 +1,5 @@
+import Hard2GenerationBound
+#check OrdinaryDispatch.Hard2SourceWork.sideTaggedMeter_bound
+#print axioms OrdinaryDispatch.Hard2SourceWork.sideTaggedMeter_bound
+#check OrdinaryDispatch.Hard2SourceWork.kindOutputsMeter_bound
+#print axioms OrdinaryDispatch.Hard2SourceWork.kindOutputsMeter_bound

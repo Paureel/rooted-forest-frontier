@@ -1,0 +1,11 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2PairGeometrySource.lean:110:1: error: unsolved goals
+case h_2
+T : Tree
+A B : List Nat
+h✝ : PairGeometry.properInput T A B = true
+x✝ : Option Vertex
+heq✝ : ∀ (x : Vertex), x ∈ PairGeometry.vertices T → PairGeometry.vertexOK T A B x = false
+⊢ Option.map PairGeometry.Choice.edge (List.find? (fun x => PairGeometry.edgeOK T A B x) (PairGeometry.edges T)) =
+    match List.find? (PairGeometry.vertexOK T A B) (PairGeometry.vertices T) with
+    | some v => some (PairGeometry.Choice.vertex v)
+    | none => Option.map PairGeometry.Choice.edge (List.find? (PairGeometry.edgeOK T A B) (PairGeometry.edges T))

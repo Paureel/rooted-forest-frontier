@@ -1,0 +1,780 @@
+{
+  "scope": "Exact named pure SOURCE trace/optimizer/type computation only. Accounting is not a runtime oracle or granted cost/occurrence theorem. forestQueries belongs to OrdinaryDispatch.WorkIntegration, not GenericForest.FrontierWork.",
+  "definitions": [
+    {
+      "module": "MeterErase",
+      "declaration": "Ordinary",
+      "range": [
+        26,
+        26
+      ],
+      "code": "abbrev Ordinary := Tree \u2192 Tree \u2192 Nat \u2192 Option Forest",
+      "context": [
+        "import ForestTrace",
+        "namespace GenericForest.FrontierWork",
+        "open RMAF ForestState Universal233 Universal233.PaidQueries"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/MeterErase.lean",
+      "source_sha256": "be275947eef30389acd38f5bf3dc0bbb9def545ce5b96756e02a2357fbee7f54",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/MeterErase.olean",
+      "object_sha256": "262f7ac187d409390d08ab84b63ba97d6aa508d147f4cf7ed51304ebf9f21a87"
+    },
+    {
+      "module": "MeterErase",
+      "declaration": "OrdinaryWork",
+      "range": [
+        27,
+        27
+      ],
+      "code": "abbrev OrdinaryWork := Tree \u2192 Tree \u2192 Nat \u2192 Nat",
+      "context": [
+        "import ForestTrace",
+        "namespace GenericForest.FrontierWork",
+        "open RMAF ForestState Universal233 Universal233.PaidQueries"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/MeterErase.lean",
+      "source_sha256": "be275947eef30389acd38f5bf3dc0bbb9def545ce5b96756e02a2357fbee7f54",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/MeterErase.olean",
+      "object_sha256": "262f7ac187d409390d08ab84b63ba97d6aa508d147f4cf7ed51304ebf9f21a87"
+    },
+    {
+      "module": "MeterErase",
+      "declaration": "Query",
+      "range": [
+        28,
+        28
+      ],
+      "code": "abbrev Query := (Tree \u00d7 Tree) \u00d7 Nat",
+      "context": [
+        "import ForestTrace",
+        "namespace GenericForest.FrontierWork",
+        "open RMAF ForestState Universal233 Universal233.PaidQueries"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/MeterErase.lean",
+      "source_sha256": "be275947eef30389acd38f5bf3dc0bbb9def545ce5b96756e02a2357fbee7f54",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/MeterErase.olean",
+      "object_sha256": "262f7ac187d409390d08ab84b63ba97d6aa508d147f4cf7ed51304ebf9f21a87"
+    },
+    {
+      "module": "MeterErase",
+      "declaration": "pairCallback",
+      "range": [
+        30,
+        31
+      ],
+      "code": "def pairCallback (ordinary : Ordinary) (p : Tree \u00d7 Tree) (b : Nat) : Option (Nat \u00d7 Forest) :=\n (ordinary p.1 p.2 b).map (fun F=>(F.length-1,F))",
+      "context": [
+        "import ForestTrace",
+        "namespace GenericForest.FrontierWork",
+        "open RMAF ForestState Universal233 Universal233.PaidQueries"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/MeterErase.lean",
+      "source_sha256": "be275947eef30389acd38f5bf3dc0bbb9def545ce5b96756e02a2357fbee7f54",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/MeterErase.olean",
+      "object_sha256": "262f7ac187d409390d08ab84b63ba97d6aa508d147f4cf7ed51304ebf9f21a87"
+    },
+    {
+      "module": "MeterErase",
+      "declaration": "frontier",
+      "range": [
+        47,
+        59
+      ],
+      "code": "def frontier (ordinary : Ordinary) (T : Option Tree) (ss : List Tree) (q : Nat) : List Query :=\n if proper T ss && !agrees T ss (ss.map leaves) then\n  match T,ss with\n  | none,_ => []\n  | some t,[s] => [((t,s),q)]\n  | some t,_ => match overlap t ss with\n    | none => match jobs t ss with\n      | none => []\n      | some js => (meterSchedule (pairCallback ordinary) (fun _ _=>0) q js).queries\n    | some h => (branches t ss h q).flatMap fun io=>\n      let d:=io.2.sourceCuts.length\n      if _hd : 1\u2264d \u2227 d\u2264q then frontier ordinary T (replace ss io.1 io.2.partition) (q-d) else []\n else []",
+      "context": [
+        "import ForestTrace",
+        "namespace GenericForest.FrontierWork",
+        "open RMAF ForestState Universal233 Universal233.PaidQueries"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/MeterErase.lean",
+      "source_sha256": "be275947eef30389acd38f5bf3dc0bbb9def545ce5b96756e02a2357fbee7f54",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/MeterErase.olean",
+      "object_sha256": "262f7ac187d409390d08ab84b63ba97d6aa508d147f4cf7ed51304ebf9f21a87",
+      "termination_interface": {
+        "measure": "q",
+        "required_proposition": "Under1<=d and d<=q, q-d<q; proof value omitted, no axiom."
+      }
+    },
+    {
+      "module": "Hard2Frontier",
+      "declaration": "forestQueries",
+      "range": [
+        8,
+        9
+      ],
+      "code": "def forestQueries (actual : Ordinary) (calls : List Call) : List Query :=\n calls.flatMap fun call=>frontier actual call.target call.sources call.budget",
+      "context": [
+        "import Hard2QueryProper",
+        "import WorkComponentsV2",
+        "namespace OrdinaryDispatch.WorkIntegration",
+        "open RMAF ForestState Universal233 Universal233.BothBad Universal233.PaidQueries",
+        "open Universal233.CherryBranching Universal233.Hard2Overlap",
+        "open OrdinaryDispatch.Hard2Dispatcher GenericForest.FrontierWork"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Hard2Frontier.lean",
+      "source_sha256": "47878069a8b3b8e23678912e647f08c64cc7630290f094098c98ebe6df500760",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Hard2Frontier.olean",
+      "object_sha256": "fc0b8065a3dc6ac6e82dc51c676fe2f425722880fdab4bf3bc0c1aba629a3380"
+    },
+    {
+      "module": "ChildrenTrace",
+      "declaration": "childrenTrace",
+      "range": [
+        8,
+        10
+      ],
+      "code": "def childrenTrace (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree) (q : Nat) (cs : List Child) : Hard2Receipt :=\n let jobs := Rule5OrdinaryDispatch.forestJobs T q cs\n \u27e8Rule5ActualTrace.runForestJobs actual T S q jobs,Rule5ActualTrace.queries actual (.forestJobs jobs)\u27e9",
+      "context": [
+        "import ForestNatSplit",
+        "namespace OrdinaryDispatch.WorkRecursion",
+        "open RMAF ForestState Universal233 Universal233.CherryBranching",
+        "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.Hard2Dispatcher"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ChildrenTrace.lean",
+      "source_sha256": "6f344eb89d1b25bebd1378a44ee00866db67f4befd96de6653726696538064b3",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ChildrenTrace.olean",
+      "object_sha256": "91c8eb85dbaf11a5c1db6a7c6ba5d629835d9fb255b4f1b2ea4c3453856bdcd2"
+    },
+    {
+      "module": "Rule4Trace",
+      "declaration": "rule4Calls",
+      "range": [
+        6,
+        7
+      ],
+      "code": "def rule4Calls {T S : Tree} (s : Rule4.Choice T S) (q : Nat) : List Call :=\n affordableCalls (Rule4.branches s) Rule4.Branch.target Rule4.Branch.sourceForest Rule4.Branch.cost q",
+      "context": [
+        "import AffordableCalls",
+        "namespace OrdinaryDispatch.WorkRecursion",
+        "open RMAF ForestState Universal233 Universal233.BothBad",
+        "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Rule4Trace.lean",
+      "source_sha256": "6e14fe079ee1d7a1bfb56a476e40c60f5a77b9dcb16dc0adcf4e12a1ddf53217",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Rule4Trace.olean",
+      "object_sha256": "fd76fda7304fa2e46c038c3272f9147792c74d8e3005498e0dae8be9b064f0ea"
+    },
+    {
+      "module": "Rule4Trace",
+      "declaration": "rule4Trace",
+      "range": [
+        9,
+        10
+      ],
+      "code": "def rule4Trace (actual : GenericForest.FrontierWork.Ordinary) {T S : Tree} (s : Rule4.Choice T S) (q : Nat) : Hard2Receipt :=\n \u27e8OrdinaryDispatch.runRule4 actual s q,forestQueries actual (rule4Calls s q)\u27e9",
+      "context": [
+        "import AffordableCalls",
+        "namespace OrdinaryDispatch.WorkRecursion",
+        "open RMAF ForestState Universal233 Universal233.BothBad",
+        "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Rule4Trace.lean",
+      "source_sha256": "6e14fe079ee1d7a1bfb56a476e40c60f5a77b9dcb16dc0adcf4e12a1ddf53217",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Rule4Trace.olean",
+      "object_sha256": "fd76fda7304fa2e46c038c3272f9147792c74d8e3005498e0dae8be9b064f0ea"
+    },
+    {
+      "module": "AffordableCalls",
+      "declaration": "affordableCalls",
+      "range": [
+        6,
+        7
+      ],
+      "code": "def affordableCalls {\u03b1 : Type} (L : List \u03b1) (target : \u03b1\u2192Tree) (sources : \u03b1\u2192List Tree) (cost : \u03b1\u2192Nat) (q : Nat) : List Call :=\n L.filterMap fun a=>if cost a\u2264q then some \u27e8some (target a),sources a,q-cost a\u27e9 else none",
+      "context": [
+        "import ForestNatSplit",
+        "namespace OrdinaryDispatch.WorkRecursion",
+        "open RMAF ForestState Universal233 Universal233.BothBad Universal233.PaidQueries Universal233.SourceCoverage",
+        "open OrdinaryDispatch.Hard2Dispatcher GenericForest.FrontierWork"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/AffordableCalls.lean",
+      "source_sha256": "79d6535397ca97677cd31e2fed732a1eeec4fff03a7710029bc8db716717564d",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/AffordableCalls.olean",
+      "object_sha256": "05aaf5f462de005229976ae9d3027758fbc8e609d661978b25022efa3f8af866"
+    },
+    {
+      "module": "SelectedTrace",
+      "declaration": "Calls",
+      "range": [
+        8,
+        14
+      ],
+      "code": "inductive Calls where\n | forestJobs (jobs : List ForestJob)\n | direct (jobs : List OrdinaryCommonSplit.Caller.Job)\n | paidRequests (jobs : List Rule5PaidSelector.PaidRequest)\n | selectorRefused\n | paidBuilderRefused\n deriving Repr, DecidableEq",
+      "context": [
+        "import CommonTrace",
+        "namespace Universal233.Rule5ActualTrace",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification",
+        "open Rule5SourceOrientation Rule5OrdinaryDispatch",
+        "open GenericForest.FrontierWork"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.lean",
+      "source_sha256": "799a51845ddd7fdbaafd0c6a39681306e5ce390db1cbd0895cd784afefd99d5a",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.olean",
+      "object_sha256": "b1870f959d9fcf4111dd63a9055cc1603e1b7933bd447793d5905e0948e881cf"
+    },
+    {
+      "module": "SelectedTrace",
+      "declaration": "Receipt",
+      "range": [
+        16,
+        19
+      ],
+      "code": "structure Receipt where\n value : Rule5OrdinaryDispatch.Result\n calls : Calls\n deriving Repr, DecidableEq",
+      "context": [
+        "import CommonTrace",
+        "namespace Universal233.Rule5ActualTrace",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification",
+        "open Rule5SourceOrientation Rule5OrdinaryDispatch",
+        "open GenericForest.FrontierWork"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.lean",
+      "source_sha256": "799a51845ddd7fdbaafd0c6a39681306e5ce390db1cbd0895cd784afefd99d5a",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.olean",
+      "object_sha256": "b1870f959d9fcf4111dd63a9055cc1603e1b7933bd447793d5905e0948e881cf"
+    },
+    {
+      "module": "SelectedTrace",
+      "declaration": "runForestJobs",
+      "range": [
+        21,
+        23
+      ],
+      "code": "def runForestJobs (actual : Ordinary) (T S : Tree) (q : Nat) (jobs : List ForestJob) : Option Forest :=\n best List.length (Rule5OrdinaryDispatch.accepted T S q)\n   (jobs.filterMap fun j => GenericForest.solve actual j.target j.sources j.residual)",
+      "context": [
+        "import CommonTrace",
+        "namespace Universal233.Rule5ActualTrace",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification",
+        "open Rule5SourceOrientation Rule5OrdinaryDispatch",
+        "open GenericForest.FrontierWork"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.lean",
+      "source_sha256": "799a51845ddd7fdbaafd0c6a39681306e5ce390db1cbd0895cd784afefd99d5a",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.olean",
+      "object_sha256": "b1870f959d9fcf4111dd63a9055cc1603e1b7933bd447793d5905e0948e881cf"
+    },
+    {
+      "module": "SelectedTrace",
+      "declaration": "runPaidRequests",
+      "range": [
+        31,
+        34
+      ],
+      "code": "def runPaidRequests (actual : Ordinary) (T S : Tree) (q : Nat)\n (jobs : List Rule5PaidSelector.PaidRequest) : Option Forest :=\n best List.length (Rule5PaidOrdinary.originalAccepted T S q)\n   (jobs.filterMap fun j => Rule5PaidOrdinary.currentAnswer actual (some j.target) j.sources j.residual)",
+      "context": [
+        "import CommonTrace",
+        "namespace Universal233.Rule5ActualTrace",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification",
+        "open Rule5SourceOrientation Rule5OrdinaryDispatch",
+        "open GenericForest.FrontierWork"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.lean",
+      "source_sha256": "799a51845ddd7fdbaafd0c6a39681306e5ce390db1cbd0895cd784afefd99d5a",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.olean",
+      "object_sha256": "b1870f959d9fcf4111dd63a9055cc1603e1b7933bd447793d5905e0948e881cf"
+    },
+    {
+      "module": "SelectedTrace",
+      "declaration": "selectedTrace",
+      "range": [
+        36,
+        54
+      ],
+      "code": "def selectedTrace (actual : Ordinary) (T S : Tree) (a b q : Nat) : FinalSelection\u2192Receipt\n | .prefix s =>\n   let jobs := forestJobs T q (localChildren S a b s)\n   \u27e8.answered (runForestJobs actual T S q jobs),.forestJobs jobs\u27e9\n | .remaining d (.first _ _) =>\n   let jobs := forestJobs T q (firstChildren S a b d)\n   \u27e8.answered (runForestJobs actual T S q jobs),.forestJobs jobs\u27e9\n | .remaining d (.third _ _) =>\n   let jobs := forestJobs T q (thirdChildren S a b d)\n   \u27e8.answered (runForestJobs actual T S q jobs),.forestJobs jobs\u27e9\n | .remaining d (.one _) =>\n   let r := commonTrace actual T S a b d q\n   \u27e8.answered r.value.join,.direct r.calls\u27e9\n | .remaining _ (.second _ _) =>\n   match Rule5PaidSelector.buildSelected T S a b with\n   | none => \u27e8.paidBuilderRefused,.paidBuilderRefused\u27e9\n   | some R =>\n     let jobs := Rule5PaidSelector.requests R.geometry q\n     \u27e8.answered (runPaidRequests actual T S q jobs),.paidRequests jobs\u27e9",
+      "context": [
+        "import CommonTrace",
+        "namespace Universal233.Rule5ActualTrace",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification",
+        "open Rule5SourceOrientation Rule5OrdinaryDispatch",
+        "open GenericForest.FrontierWork"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.lean",
+      "source_sha256": "799a51845ddd7fdbaafd0c6a39681306e5ce390db1cbd0895cd784afefd99d5a",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.olean",
+      "object_sha256": "b1870f959d9fcf4111dd63a9055cc1603e1b7933bd447793d5905e0948e881cf"
+    },
+    {
+      "module": "SelectedTrace",
+      "declaration": "dispatchTrace",
+      "range": [
+        56,
+        59
+      ],
+      "code": "def dispatchTrace (actual : Ordinary) (T S : Tree) (a b q : Nat) : Receipt :=\n match selectFinal T S a b with\n | none => \u27e8.selectorRefused,.selectorRefused\u27e9\n | some z => selectedTrace actual T S a b q z",
+      "context": [
+        "import CommonTrace",
+        "namespace Universal233.Rule5ActualTrace",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification",
+        "open Rule5SourceOrientation Rule5OrdinaryDispatch",
+        "open GenericForest.FrontierWork"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.lean",
+      "source_sha256": "799a51845ddd7fdbaafd0c6a39681306e5ce390db1cbd0895cd784afefd99d5a",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.olean",
+      "object_sha256": "b1870f959d9fcf4111dd63a9055cc1603e1b7933bd447793d5905e0948e881cf"
+    },
+    {
+      "module": "SelectedTrace",
+      "declaration": "answer",
+      "range": [
+        80,
+        81
+      ],
+      "code": "def answer (r : Receipt) : Option Forest :=\n match r.value with | .answered F => F | _ => none",
+      "context": [
+        "import CommonTrace",
+        "namespace Universal233.Rule5ActualTrace",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification",
+        "open Rule5SourceOrientation Rule5OrdinaryDispatch",
+        "open GenericForest.FrontierWork"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.lean",
+      "source_sha256": "799a51845ddd7fdbaafd0c6a39681306e5ce390db1cbd0895cd784afefd99d5a",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.olean",
+      "object_sha256": "b1870f959d9fcf4111dd63a9055cc1603e1b7933bd447793d5905e0948e881cf"
+    },
+    {
+      "module": "SelectedTrace",
+      "declaration": "currentFrontier",
+      "range": [
+        90,
+        93
+      ],
+      "code": "def currentFrontier (actual : Ordinary) (T : Option Tree) (ss : List Tree) (r : Nat) : List Query :=\n match ForestPretest01.pretest01 T ss with\n | .rejected => if r\u22641 then [] else frontier actual T ss r\n | _ => []",
+      "context": [
+        "import CommonTrace",
+        "namespace Universal233.Rule5ActualTrace",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification",
+        "open Rule5SourceOrientation Rule5OrdinaryDispatch",
+        "open GenericForest.FrontierWork"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.lean",
+      "source_sha256": "799a51845ddd7fdbaafd0c6a39681306e5ce390db1cbd0895cd784afefd99d5a",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.olean",
+      "object_sha256": "b1870f959d9fcf4111dd63a9055cc1603e1b7933bd447793d5905e0948e881cf"
+    },
+    {
+      "module": "SelectedTrace",
+      "declaration": "queries",
+      "range": [
+        95,
+        100
+      ],
+      "code": "def queries (actual : Ordinary) : Calls\u2192List Query\n | .forestJobs jobs => jobs.flatMap fun j => frontier actual j.target j.sources j.residual\n | .direct jobs => directQueries jobs\n | .paidRequests jobs => jobs.flatMap fun j => currentFrontier actual (some j.target) j.sources j.residual\n | .selectorRefused => []\n | .paidBuilderRefused => []",
+      "context": [
+        "import CommonTrace",
+        "namespace Universal233.Rule5ActualTrace",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification",
+        "open Rule5SourceOrientation Rule5OrdinaryDispatch",
+        "open GenericForest.FrontierWork"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.lean",
+      "source_sha256": "799a51845ddd7fdbaafd0c6a39681306e5ce390db1cbd0895cd784afefd99d5a",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectedTrace.olean",
+      "object_sha256": "b1870f959d9fcf4111dd63a9055cc1603e1b7933bd447793d5905e0948e881cf"
+    },
+    {
+      "module": "CommonTrace",
+      "declaration": "Forest",
+      "range": [
+        8,
+        8
+      ],
+      "code": "abbrev Forest := List (List Nat)",
+      "context": [
+        "import SelectedInterfaces",
+        "import Hard2Program",
+        "import BoundedFrontier",
+        "namespace Universal233.Rule5ActualTrace",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification",
+        "open Rule5SourceOrientation Rule5OrdinaryDispatch"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CommonTrace.lean",
+      "source_sha256": "0622c9497c0fe2b3754acde061a26bd361b6372c1ee0b0fa4db63d7702ade5b7",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CommonTrace.olean",
+      "object_sha256": "10319f59c88d5ab5fab03510a32054b6c85f83ba8fcad5cddd4a9b1b5b362315"
+    },
+    {
+      "module": "CommonTrace",
+      "declaration": "Ordinary",
+      "range": [
+        9,
+        9
+      ],
+      "code": "abbrev Ordinary := Tree\u2192Tree\u2192Nat\u2192Option Forest",
+      "context": [
+        "import SelectedInterfaces",
+        "import Hard2Program",
+        "import BoundedFrontier",
+        "namespace Universal233.Rule5ActualTrace",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification",
+        "open Rule5SourceOrientation Rule5OrdinaryDispatch"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CommonTrace.lean",
+      "source_sha256": "0622c9497c0fe2b3754acde061a26bd361b6372c1ee0b0fa4db63d7702ade5b7",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CommonTrace.olean",
+      "object_sha256": "10319f59c88d5ab5fab03510a32054b6c85f83ba8fcad5cddd4a9b1b5b362315"
+    },
+    {
+      "module": "CommonTrace",
+      "declaration": "Query",
+      "range": [
+        10,
+        12
+      ],
+      "code": "abbrev Query := GenericForest.FrontierWork.Query\n\nopen OrdinaryCommonSplit.Caller in",
+      "context": [
+        "import SelectedInterfaces",
+        "import Hard2Program",
+        "import BoundedFrontier",
+        "namespace Universal233.Rule5ActualTrace",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification",
+        "open Rule5SourceOrientation Rule5OrdinaryDispatch"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CommonTrace.lean",
+      "source_sha256": "0622c9497c0fe2b3754acde061a26bd361b6372c1ee0b0fa4db63d7702ade5b7",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CommonTrace.olean",
+      "object_sha256": "10319f59c88d5ab5fab03510a32054b6c85f83ba8fcad5cddd4a9b1b5b362315"
+    },
+    {
+      "module": "CommonTrace",
+      "declaration": "finishPaid",
+      "range": [
+        13,
+        19
+      ],
+      "code": "def finishPaid (d : Setup) (q : Nat) (FY FN : Forest) (answers : List (Option Forest)) : Option Forest :=\n match answers with\n | [some FX,some FM] =>\n   match reconstruct d FX FY FM FN with\n   | none => none\n   | some G => if G.length-1\u2264q then some G else none\n | _ => none",
+      "context": [
+        "import SelectedInterfaces",
+        "import Hard2Program",
+        "import BoundedFrontier",
+        "namespace Universal233.Rule5ActualTrace",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification",
+        "open Rule5SourceOrientation Rule5OrdinaryDispatch",
+        "open OrdinaryCommonSplit.Caller in"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CommonTrace.lean",
+      "source_sha256": "0622c9497c0fe2b3754acde061a26bd361b6372c1ee0b0fa4db63d7702ade5b7",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CommonTrace.olean",
+      "object_sha256": "10319f59c88d5ab5fab03510a32054b6c85f83ba8fcad5cddd4a9b1b5b362315"
+    },
+    {
+      "module": "CommonTrace",
+      "declaration": "CommonReceipt",
+      "range": [
+        21,
+        23
+      ],
+      "code": "structure CommonReceipt where\n value : Option (Option Forest)\n calls : List OrdinaryCommonSplit.Caller.Job",
+      "context": [
+        "import SelectedInterfaces",
+        "import Hard2Program",
+        "import BoundedFrontier",
+        "namespace Universal233.Rule5ActualTrace",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification",
+        "open Rule5SourceOrientation Rule5OrdinaryDispatch",
+        "open OrdinaryCommonSplit.Caller in"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CommonTrace.lean",
+      "source_sha256": "0622c9497c0fe2b3754acde061a26bd361b6372c1ee0b0fa4db63d7702ade5b7",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CommonTrace.olean",
+      "object_sha256": "10319f59c88d5ab5fab03510a32054b6c85f83ba8fcad5cddd4a9b1b5b362315"
+    },
+    {
+      "module": "CommonTrace",
+      "declaration": "commonTrace",
+      "range": [
+        27,
+        41
+      ],
+      "code": "def commonTrace (actual : Ordinary) (T S : Tree) (a b : Nat) (d : BadSelection) (q : Nat) : CommonReceipt :=\n match OrdinaryCommonSplit.Source.buildSetup T S (subtreeLabels S d.badArc)\n     (Rule5CommonSelector.outsideLabels S a b d) d.badArc with\n | none => \u27e8none,[]\u27e9\n | some setup =>\n   match DepthOne.pretest01 setup.ty setup.sy with\n   | .found (some p) =>\n     let FY := DepthOne.forest setup.sy (some p)\n     match OrdinaryCommonSplit.Caller.outsideReply setup FY with\n     | none => \u27e8some none,[]\u27e9\n     | some FN =>\n       let js := OrdinaryCommonSplit.Caller.paidJobs setup q\n       let answers := js.map fun j => actual j.T j.S j.budget\n       \u27e8some (finishPaid setup q FY FN answers),js\u27e9\n   | _ => \u27e8none,[]\u27e9",
+      "context": [
+        "import SelectedInterfaces",
+        "import Hard2Program",
+        "import BoundedFrontier",
+        "namespace Universal233.Rule5ActualTrace",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification",
+        "open Rule5SourceOrientation Rule5OrdinaryDispatch",
+        "open OrdinaryCommonSplit.Caller in"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CommonTrace.lean",
+      "source_sha256": "0622c9497c0fe2b3754acde061a26bd361b6372c1ee0b0fa4db63d7702ade5b7",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CommonTrace.olean",
+      "object_sha256": "10319f59c88d5ab5fab03510a32054b6c85f83ba8fcad5cddd4a9b1b5b362315"
+    },
+    {
+      "module": "CommonTrace",
+      "declaration": "directQueries",
+      "range": [
+        80,
+        81
+      ],
+      "code": "def directQueries (js : List OrdinaryCommonSplit.Caller.Job) : List Query :=\n js.map fun j => ((j.T,j.S),j.budget)",
+      "context": [
+        "import SelectedInterfaces",
+        "import Hard2Program",
+        "import BoundedFrontier",
+        "namespace Universal233.Rule5ActualTrace",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification",
+        "open Rule5SourceOrientation Rule5OrdinaryDispatch",
+        "open OrdinaryCommonSplit.Caller in"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CommonTrace.lean",
+      "source_sha256": "0622c9497c0fe2b3754acde061a26bd361b6372c1ee0b0fa4db63d7702ade5b7",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CommonTrace.olean",
+      "object_sha256": "10319f59c88d5ab5fab03510a32054b6c85f83ba8fcad5cddd4a9b1b5b362315"
+    },
+    {
+      "module": "DisjointTrace",
+      "declaration": "disjointExecution",
+      "range": [
+        9,
+        10
+      ],
+      "code": "def disjointExecution (actual : Ordinary) (T S : Tree) (a b q : Nat) : Execution :=\n Hard2Combine.combine actual T S a b q (DisjointParents.query actual T S (pendantPartition S a b) q)",
+      "context": [
+        "import TraceProgress",
+        "namespace OrdinaryDispatch.Hard2Trace",
+        "open RMAF ForestState RestrictionBridge Universal233 Universal233.BothBad",
+        "open Universal233.CherryBranching Universal233.Hard2Overlap Universal233.PaidAssembly",
+        "open OrdinaryDispatch.Hard2Dispatcher"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/DisjointTrace.lean",
+      "source_sha256": "47ef4ec04c1d0f92e6bca566fcf9f610213bdd30161184862ec0514f962c34cf",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/DisjointTrace.olean",
+      "object_sha256": "da4c8882a01cab9356a6237ec9ebda855998755c19316793e6550592865f6530"
+    },
+    {
+      "module": "Hard2Combine",
+      "declaration": "Ordinary",
+      "range": [
+        4,
+        4
+      ],
+      "code": "abbrev Ordinary := DisjointParents.Ordinary",
+      "context": [
+        "import DisjointExact",
+        "namespace OrdinaryDispatch.Hard2Combine",
+        "open RMAF ForestState OutputState RestrictionBridge Universal233 Universal233.CherryBranching Universal233.BothBad"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Hard2Combine.lean",
+      "source_sha256": "3f9c108fc1924a6772ef899bd953be782924b4e2fdcbf11217c19a775d3d7369",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Hard2Combine.olean",
+      "object_sha256": "eb2c79ef592e4c17b76a62d044918d5dd516fe5be9e3ce8c345a751e1dcd4a3e"
+    },
+    {
+      "module": "Hard2Combine",
+      "declaration": "unitCalls",
+      "range": [
+        6,
+        8
+      ],
+      "code": "def unitCalls (S : Tree) (T : Tree) (a b q : Nat) : List Call :=\n [singletonChild S a,singletonChild S b].filterMap (fun c=>\n  (remaining q c).map (fun r=>\u27e8some T,c.sourceForest,r\u27e9))",
+      "context": [
+        "import DisjointExact",
+        "namespace OrdinaryDispatch.Hard2Combine",
+        "open RMAF ForestState OutputState RestrictionBridge Universal233 Universal233.CherryBranching Universal233.BothBad"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Hard2Combine.lean",
+      "source_sha256": "3f9c108fc1924a6772ef899bd953be782924b4e2fdcbf11217c19a775d3d7369",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Hard2Combine.olean",
+      "object_sha256": "eb2c79ef592e4c17b76a62d044918d5dd516fe5be9e3ce8c345a751e1dcd4a3e"
+    },
+    {
+      "module": "Hard2Combine",
+      "declaration": "combine",
+      "range": [
+        10,
+        12
+      ],
+      "code": "def combine (actual : Ordinary) (T S : Tree) (a b q : Nat) (paid : Execution) : Execution :=\n \u27e8choose (runChildren actual T S q [singletonChild S a,singletonChild S b]) paid.answer,\n  unitCalls S T a b q++paid.calls\u27e9",
+      "context": [
+        "import DisjointExact",
+        "namespace OrdinaryDispatch.Hard2Combine",
+        "open RMAF ForestState OutputState RestrictionBridge Universal233 Universal233.CherryBranching Universal233.BothBad"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Hard2Combine.lean",
+      "source_sha256": "3f9c108fc1924a6772ef899bd953be782924b4e2fdcbf11217c19a775d3d7369",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Hard2Combine.olean",
+      "object_sha256": "eb2c79ef592e4c17b76a62d044918d5dd516fe5be9e3ce8c345a751e1dcd4a3e"
+    },
+    {
+      "module": "Hard2Program",
+      "declaration": "paidCase",
+      "range": [
+        13,
+        30
+      ],
+      "code": "def paidCase (actual : Ordinary) (T S : Tree) (c : Candidate) (q : Nat) (out : Result) : Execution :=\n match c.originalCuts with\n | [p,r] =>\n  let A := PaidAssembly.leftParent S p\n  let B := PaidAssembly.rightParent S r\n  let C := PaidAssembly.rootParent S p r\n  match out with\n  | .pair o (.edge edge) =>\n   let X := first o A B C\n   let Y := second o A B C\n   let Z := third o A B C\n   if restrictionAgrees S T X && restrictionAgrees S T Y then\n    GoodPairDP.runPair actual T S X Y Z q\n   else if restrictionAgrees S T X || restrictionAgrees S T Y then\n    Hard2PaidLocal.runHardPaid actual T S q c out\n   else badPair actual T S X Y Z edge q\n  | _ => Hard2PaidLocal.runHardPaid actual T S q c out\n | _ => \u27e8none,[]\u27e9",
+      "context": [
+        "import Hard2ConsumersV2",
+        "namespace OrdinaryDispatch.Hard2Dispatcher",
+        "open RMAF ForestState RestrictionBridge Universal233 Universal233.BothBad",
+        "open Universal233.CherryBranching Universal233.Hard2Overlap"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Hard2Program.lean",
+      "source_sha256": "5d403aa8fa82b0b19e9ccb7f1dc5efc47787a864d4e27168a85d70ad05b343ab",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Hard2Program.olean",
+      "object_sha256": "a5721fc6e683ccfabdd435cf793941159b0826018e24d4c6c6d915e92242c5c4"
+    },
+    {
+      "module": "CutoffFacts",
+      "declaration": "cutoff",
+      "range": [
+        5,
+        6
+      ],
+      "code": "def cutoff (rec : Nat\u2192Tree\u2192Tree\u2192Option CommonForest) (q : Nat) : Tree\u2192Tree\u2192Nat\u2192Option CommonForest :=\n fun T S r => if r<q then rec r T S else none",
+      "context": [
+        "import EarlyFacts",
+        "namespace OrdinaryDispatch.FastOrdinary",
+        "open RMAF ForestState Universal233 Universal233.CherryBranching"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CutoffFacts.lean",
+      "source_sha256": "fc570b6f0fa0848f144b1430d123b5a512fd78fa68accfb8ac5018d9e4931bd2",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CutoffFacts.olean",
+      "object_sha256": "496c0581d4aa7d808c4668c17585fc238401dfe20d4084d23c6ff85425a1e712"
+    },
+    {
+      "module": "Pretest",
+      "declaration": "proper",
+      "range": [
+        34,
+        35
+      ],
+      "code": "def proper (T S : Tree) : Bool :=\n  decide ((leaves T).Nodup) && decide ((leaves S).Nodup) && decide ((leaves T).Perm (leaves S))",
+      "context": [
+        "import CoreGraph",
+        "namespace Universal233.DepthOne",
+        "open RMAF CoreGraph"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Pretest.lean",
+      "source_sha256": "b1c811c03315de68dee43b2201c5d824a463b317024cd11679ff75c5ff5a4eba",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Pretest.olean",
+      "object_sha256": "42653ded2f2e261705c8333752a2fa2914d608644931ae277d99f76e6fb00174"
+    },
+    {
+      "module": "BOScan",
+      "declaration": "Trial",
+      "range": [
+        5,
+        5
+      ],
+      "code": "abbrev Trial := Nat \u00d7 Option CommonForest",
+      "context": [
+        "import BOForest",
+        "namespace OrdinaryDispatch.BudgetOptimization",
+        "open RMAF Universal233"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BOScan.lean",
+      "source_sha256": "aa7771d11eb50aaa7c16504a687122b42d81b251854a5911f7359452962adc32",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BOScan.olean",
+      "object_sha256": "03a928005cc47e84ef0d75c208291944d09f7ab7c9fe226b99abf59b2cb8a0c2"
+    },
+    {
+      "module": "BOScan",
+      "declaration": "Scan",
+      "range": [
+        6,
+        9
+      ],
+      "code": "structure Scan where\n selected : Option (Nat \u00d7 CommonForest)\n trials : List Trial\n deriving Repr",
+      "context": [
+        "import BOForest",
+        "namespace OrdinaryDispatch.BudgetOptimization",
+        "open RMAF Universal233"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BOScan.lean",
+      "source_sha256": "aa7771d11eb50aaa7c16504a687122b42d81b251854a5911f7359452962adc32",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BOScan.olean",
+      "object_sha256": "03a928005cc47e84ef0d75c208291944d09f7ab7c9fe226b99abf59b2cb8a0c2"
+    },
+    {
+      "module": "BOScan",
+      "declaration": "scan",
+      "range": [
+        13,
+        21
+      ],
+      "code": "def scan (query : Nat \u2192 Option CommonForest) (start : Nat) : Nat \u2192 Scan\n | 0 => \u27e8none,[]\u27e9\n | fuel+1 =>\n   let answer := query start\n   match answer with\n   | some F => \u27e8some (start,F),[(start,answer)]\u27e9\n   | none =>\n     let tail := scan query (start+1) fuel\n     \u27e8tail.selected,(start,answer)::tail.trials\u27e9",
+      "context": [
+        "import BOForest",
+        "namespace OrdinaryDispatch.BudgetOptimization",
+        "open RMAF Universal233"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BOScan.lean",
+      "source_sha256": "aa7771d11eb50aaa7c16504a687122b42d81b251854a5911f7359452962adc32",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BOScan.olean",
+      "object_sha256": "03a928005cc47e84ef0d75c208291944d09f7ab7c9fe226b99abf59b2cb8a0c2"
+    },
+    {
+      "module": "BOOptimize",
+      "declaration": "Execution",
+      "range": [
+        5,
+        9
+      ],
+      "code": "structure Execution where\n search : Scan\n output : Option CoreProgram.Output\n recoveries : List (CommonForest \u00d7 Option CoreProgram.Output)\n deriving Repr",
+      "context": [
+        "import BOScan",
+        "namespace OrdinaryDispatch.BudgetOptimization",
+        "open RMAF Universal233 RestrictionBridge"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BOOptimize.lean",
+      "source_sha256": "7407417eac3780032497d357ff523e3c5a4cc0eecf17831b24dffbd4b38b5e25",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BOOptimize.olean",
+      "object_sha256": "68ef12d5b861b061fac2d3c369b195b6d31120a61980a7d0c7f597f3ce34440f"
+    },
+    {
+      "module": "BOOptimize",
+      "declaration": "finish",
+      "range": [
+        12,
+        17
+      ],
+      "code": "def finish (S : Tree) (r : Scan) : Execution :=\n match r.selected with\n | none => \u27e8r,none,[]\u27e9\n | some (_,F) =>\n   let answer := FinalCutRecovery.recover S F\n   \u27e8r,answer,[(F,answer)]\u27e9",
+      "context": [
+        "import BOScan",
+        "namespace OrdinaryDispatch.BudgetOptimization",
+        "open RMAF Universal233 RestrictionBridge"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BOOptimize.lean",
+      "source_sha256": "7407417eac3780032497d357ff523e3c5a4cc0eecf17831b24dffbd4b38b5e25",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BOOptimize.olean",
+      "object_sha256": "68ef12d5b861b061fac2d3c369b195b6d31120a61980a7d0c7f597f3ce34440f"
+    },
+    {
+      "module": "BOOptimize",
+      "declaration": "optimize",
+      "range": [
+        26,
+        29
+      ],
+      "code": "def optimize (T S : Tree) : Execution :=\n if DepthOne.proper T S then\n   finish S (scan (fun q => FastOrdinary.solve q T S) 0 (leaves T).length)\n else \u27e8\u27e8none,[]\u27e9,none,[]\u27e9",
+      "context": [
+        "import BOScan",
+        "namespace OrdinaryDispatch.BudgetOptimization",
+        "open RMAF Universal233 RestrictionBridge"
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BOOptimize.lean",
+      "source_sha256": "7407417eac3780032497d357ff523e3c5a4cc0eecf17831b24dffbd4b38b5e25",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BOOptimize.olean",
+      "object_sha256": "68ef12d5b861b061fac2d3c369b195b6d31120a61980a7d0c7f597f3ce34440f"
+    }
+  ]
+}

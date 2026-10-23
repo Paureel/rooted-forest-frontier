@@ -1,0 +1,71 @@
+import ProducerCostJobsSource
+namespace GenericForest.BinaryProducer
+open BinaryProvider GenericForest.ScalarBits Universal233.WholeSourceWork Universal233.CoreWork
+
+/-- This is the sum of work of actual reached recursive callbacks. It is
+computed from the producer's literal guards and inputs, never supplied. -/
+def rawCallbackWork
+ (solve : Option BinaryProvider.Tree→List BinaryProvider.Tree→Bits→Charged (Option BinaryProvider.Forest))
+ (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits) : List (Bits×Output)→Nat
+ | []=>0
+ | (i,o)::ios=>let d:=spineCounter o.sourceCuts;let lower:=leBits [true] d.value;let upper:=leBits d.value q
+  let rest:=rawCallbackWork solve T ss q ios
+  if lower.value&&upper.value then
+   let s:=replaceBits o.partition i ss;let b:=subtractBits q d.value
+   (solve T s.value b.value).work+rest
+  else rest
+
+def rawLocalCost (N L I D B S M : Nat):=
+ 16*(D+1)^2+10*(D+2)+10*(D+B+1)+replaceCost N L I M S+24*(B+D+1)+12
+
+def BranchCaps (N L I D M : Nat) (io : Bits×Output) : Prop :=
+ io.1.length≤I ∧ ForestWidth L io.2.partition ∧ (∀b∈io.2.partition,b.length≤N) ∧
+ io.2.sourceCuts.length≤D ∧ io.2.partition.length≤M
+
+theorem rawCandidates_ledger
+ (solve : Option BinaryProvider.Tree→List BinaryProvider.Tree→Bits→Charged (Option BinaryProvider.Forest))
+ (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits) (ios : List (Bits×Output))
+ (N L I D B M : Nat) (ip : 1≤I) (qw : q.length≤B) (sc : SourcesWidth L ss)
+ (sn : ∀s∈ss,treeNodes (treeValue s)≤N) (caps : ∀io∈ios,BranchCaps N L I D M io) :
+ (rawCandidates solve T ss q ios).work≤rawCallbackWork solve T ss q ios+
+  rawLocalCost N L I D B ss.length M*(ios.length+1) := by
+ induction ios with
+ | nil=>simp [rawCandidates,rawCallbackWork,rawLocalCost];omega
+ | cons io ios ih=>
+  rcases io with ⟨i,o⟩
+  have c:=caps (i,o) (by simp)
+  have tail:=ih (fun io h=>caps io (by simp [h]))
+  have dc:=spineCounter_work o.sourceCuts;have dw:=spineCounter_length o.sourceCuts
+  have dp:=Nat.mul_le_mul_left 16 (Nat.pow_le_pow_left (Nat.add_le_add_right c.2.2.2.1 1) 2)
+  have lo:=(compare_family_work [true] (spineCounter o.sourceCuts).value).2.1
+  have hi:=(compare_family_work (spineCounter o.sourceCuts).value q).2.1
+  have sub:=subtractBits_work q (spineCounter o.sourceCuts).value
+  have rep:=replaceBits_cost N L I o.partition i ss ip c.1 sc sn c.2.1 c.2.2.1
+  have rp:=Nat.mul_le_mul_left (56*(I+1)+24*(I+2)+(restrictCost N L+6)*(M+1)+4*M+9) (Nat.le_refl (ss.length+1))
+  have rm : replaceCost N L I o.partition.length ss.length≤replaceCost N L I M ss.length:=by
+   unfold replaceCost
+   apply Nat.mul_le_mul_right
+   have x:=Nat.mul_le_mul_left (restrictCost N L+6) (Nat.add_le_add_right c.2.2.2.2 1)
+   omega
+  dsimp only [rawCandidates,rawCallbackWork]
+  split
+  · split <;> dsimp only [Charged.work]
+    all_goals unfold rawLocalCost at *
+    all_goals simp only [List.length_cons,List.length_nil,Nat.mul_add,Nat.mul_one] at *;omega
+  · dsimp only [Charged.work]
+    unfold rawLocalCost at *
+    simp only [List.length_cons,List.length_nil,Nat.mul_add,Nat.mul_one] at *;omega
+
+theorem rawCallbackWork_paid
+ (solve : Option BinaryProvider.Tree→List BinaryProvider.Tree→Bits→Charged (Option BinaryProvider.Forest))
+ (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits) (ios : List (Bits×Output)) :
+ rawCallbackWork solve T ss q ios≤(rawCandidates solve T ss q ios).work := by
+ induction ios with
+ | nil=>simp [rawCallbackWork,rawCandidates]
+ | cons io ios ih=>
+  rcases io with ⟨i,o⟩
+  dsimp only [rawCallbackWork,rawCandidates]
+  split
+  · split <;> dsimp only [Charged.work] <;> omega
+  · dsimp only [Charged.work];omega
+end GenericForest.BinaryProducer

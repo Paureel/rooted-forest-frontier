@@ -1,0 +1,17 @@
+def RMAF.rootedSpan : List Nat → RMAF.Tree → List RMAF.Vertex :=
+fun selected x => RMAF.Tree.brecOn x (RMAF.rootedSpan._f selected)
+@[reducible] def RMAF.rootedSpan._f : List Nat → (x : RMAF.Tree) → RMAF.Tree.below x → List RMAF.Vertex :=
+fun selected x f =>
+  (match (motive := (x : RMAF.Tree) → RMAF.Tree.below x → List RMAF.Vertex) x with
+    | RMAF.Tree.leaf x => fun x_1 => if selected.contains x = true then [[]] else []
+    | l.node r => fun x =>
+      let ls := x.1.1;
+      let rs := x.2.1;
+      if (ls.isEmpty && rs.isEmpty) = true then [] else [] :: (RMAF.prependSide false ls ++ RMAF.prependSide true rs))
+    f
+def RMAF.prependSide : Bool → List RMAF.Vertex → List RMAF.Vertex :=
+fun side vs => List.map (fun x => side :: x) vs
+def RMAF.disjointVertices : List RMAF.Vertex → List RMAF.Vertex → Bool :=
+fun a b => a.all fun v => !b.contains v
+def VertexGeometry.Hull : (VertexGeometry.Vertex → Prop) → VertexGeometry.Vertex → Prop :=
+fun S v => ∃ a b, S a ∧ S b ∧ VertexGeometry.PathAt v a b

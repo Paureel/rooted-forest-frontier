@@ -1,0 +1,683 @@
+{
+  "status": "ALL10_SPECIFIC_CORRUPTIONS_CAUGHT",
+  "results": [
+    {
+      "case": "source_byte_alteration",
+      "expected_specific_catch": "source bytes differ",
+      "caught": true,
+      "target": null,
+      "error": "ValueError: source bytes differ from fixed registry: RMAF",
+      "gate_result": null,
+      "seconds": 0.020807249999052146
+    },
+    {
+      "case": "olean_byte_alteration",
+      "expected_specific_catch": "olean bytes differ",
+      "caught": true,
+      "target": null,
+      "error": "ValueError: olean bytes differ from fixed registry: RMAF",
+      "gate_result": null,
+      "seconds": 0.019942250000895
+    },
+    {
+      "case": "wrong_scientific_olean_path",
+      "expected_specific_catch": "logical module/olean mapping mismatch",
+      "caught": true,
+      "target": null,
+      "error": "ValueError: logical module/olean mapping mismatch",
+      "gate_result": null,
+      "seconds": 0.6761258330006967
+    },
+    {
+      "case": "changed_import_flag",
+      "expected_specific_catch": "exact import flags/order differ",
+      "caught": true,
+      "target": null,
+      "error": "ValueError: exact import flags/order differ from retained build registry",
+      "gate_result": null,
+      "seconds": 0.6630574170012551
+    },
+    {
+      "case": "missing_occurrence",
+      "expected_specific_catch": "missing/duplicate occurrence denominator",
+      "caught": true,
+      "target": [
+        "RMAF",
+        0,
+        0
+      ],
+      "error": "ValueError: missing/duplicate occurrence denominator",
+      "gate_result": null,
+      "seconds": 0.7081321670011675
+    },
+    {
+      "case": "duplicate_occurrence",
+      "expected_specific_catch": "UNIQUE constraint",
+      "caught": true,
+      "target": [
+        "RMAF",
+        0,
+        0
+      ],
+      "error": "IntegrityError: UNIQUE constraint failed: occurrences.producer, occurrences.part, occurrences.idx",
+      "gate_result": null,
+      "seconds": 0.6559827919991221
+    },
+    {
+      "case": "wrong_origin",
+      "expected_specific_catch": "resolved_origin_missing",
+      "caught": true,
+      "target": [
+        "RMAF",
+        0,
+        0
+      ],
+      "error": null,
+      "gate_result": {
+        "status": "REJECT",
+        "stored_occurrences": 199,
+        "qualified_view_records": 0,
+        "compiler_extra_names_uninspected": 103,
+        "max_record_bytes": 104791,
+        "cap_bytes": 33554432,
+        "issues": [
+          [
+            "RMAF",
+            0,
+            0,
+            "resolved_origin_missing"
+          ],
+          [
+            "RMAF",
+            0,
+            14,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            14,
+            "partial:['RMAF.sameShape._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            40,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            40,
+            "partial:['RMAF.leaves._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            41,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            41,
+            "partial:['RMAF.minimalVertices._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            79,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            79,
+            "partial:['RMAF.rootedSpan._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            98,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            98,
+            "partial:['RMAF.best._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            128,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            128,
+            "partial:['RMAF.pairwiseEmbeddings._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            142,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            142,
+            "partial:['RMAF.assignments._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            146,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            146,
+            "partial:['RMAF.instReprTree.repr._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            161,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            161,
+            "partial:['RMAF.instDecidableEqTree.decEq._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            177,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            177,
+            "partial:['RMAF.restrict._unsafe_rec']"
+          ]
+        ],
+        "seconds": 0.7993303750008636,
+        "registry_sha256": "70ae7db3a9bfd43f0bece036e3c9fbdbbb01f1f53ad5190773c6186eb6f12d09",
+        "receipt_sha256": "4adc6b4a9d35f090b104940a6fcfead28e9c2ee101fbb85317bc48efff412640",
+        "scope": "compact SQLite index; per-occurrence lossless payload stays in receipt; not theorem acceptance"
+      },
+      "seconds": 0.8009907500018016
+    },
+    {
+      "case": "custom_axiom_raw",
+      "expected_specific_catch": "direct_custom_axiom",
+      "caught": true,
+      "target": [
+        "RMAF",
+        0,
+        0
+      ],
+      "error": null,
+      "gate_result": {
+        "status": "REJECT",
+        "stored_occurrences": 199,
+        "qualified_view_records": 0,
+        "compiler_extra_names_uninspected": 103,
+        "max_record_bytes": 104791,
+        "cap_bytes": 33554432,
+        "issues": [
+          [
+            "RMAF",
+            0,
+            0,
+            "direct_custom_axiom"
+          ],
+          [
+            "RMAF",
+            0,
+            0,
+            "stored_resolved_body_kind_type_mismatch"
+          ],
+          [
+            "RMAF",
+            0,
+            14,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            14,
+            "partial:['RMAF.sameShape._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            40,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            40,
+            "partial:['RMAF.leaves._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            41,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            41,
+            "partial:['RMAF.minimalVertices._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            79,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            79,
+            "partial:['RMAF.rootedSpan._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            98,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            98,
+            "partial:['RMAF.best._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            128,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            128,
+            "partial:['RMAF.pairwiseEmbeddings._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            142,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            142,
+            "partial:['RMAF.assignments._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            146,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            146,
+            "partial:['RMAF.instReprTree.repr._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            161,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            161,
+            "partial:['RMAF.instDecidableEqTree.decEq._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            177,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            177,
+            "partial:['RMAF.restrict._unsafe_rec']"
+          ]
+        ],
+        "seconds": 0.7198521660029655,
+        "registry_sha256": "70ae7db3a9bfd43f0bece036e3c9fbdbbb01f1f53ad5190773c6186eb6f12d09",
+        "receipt_sha256": "acd1bff910ec13d68e505b983db462371498badb1a701a0ec27feb71fa87a399",
+        "scope": "compact SQLite index; per-occurrence lossless payload stays in receipt; not theorem acceptance"
+      },
+      "seconds": 0.7214733330001764
+    },
+    {
+      "case": "changed_type",
+      "expected_specific_catch": "stored_resolved_body_kind_type_mismatch",
+      "caught": true,
+      "target": [
+        "RMAF",
+        0,
+        0
+      ],
+      "error": null,
+      "gate_result": {
+        "status": "REJECT",
+        "stored_occurrences": 199,
+        "qualified_view_records": 0,
+        "compiler_extra_names_uninspected": 103,
+        "max_record_bytes": 104791,
+        "cap_bytes": 33554432,
+        "issues": [
+          [
+            "RMAF",
+            0,
+            0,
+            "stored_resolved_body_kind_type_mismatch"
+          ],
+          [
+            "RMAF",
+            0,
+            14,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            14,
+            "partial:['RMAF.sameShape._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            40,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            40,
+            "partial:['RMAF.leaves._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            41,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            41,
+            "partial:['RMAF.minimalVertices._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            79,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            79,
+            "partial:['RMAF.rootedSpan._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            98,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            98,
+            "partial:['RMAF.best._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            128,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            128,
+            "partial:['RMAF.pairwiseEmbeddings._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            142,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            142,
+            "partial:['RMAF.assignments._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            146,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            146,
+            "partial:['RMAF.instReprTree.repr._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            161,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            161,
+            "partial:['RMAF.instDecidableEqTree.decEq._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            177,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            177,
+            "partial:['RMAF.restrict._unsafe_rec']"
+          ]
+        ],
+        "seconds": 0.7458467079995899,
+        "registry_sha256": "70ae7db3a9bfd43f0bece036e3c9fbdbbb01f1f53ad5190773c6186eb6f12d09",
+        "receipt_sha256": "361117c5b21a1e76b1344771f2a4be9a25b94c197eef57377c16fdf78eda95e7",
+        "scope": "compact SQLite index; per-occurrence lossless payload stays in receipt; not theorem acceptance"
+      },
+      "seconds": 0.7475166670010367
+    },
+    {
+      "case": "changed_body",
+      "expected_specific_catch": "stored_resolved_body_kind_type_mismatch",
+      "caught": true,
+      "target": [
+        "RMAF",
+        0,
+        0
+      ],
+      "error": null,
+      "gate_result": {
+        "status": "REJECT",
+        "stored_occurrences": 199,
+        "qualified_view_records": 0,
+        "compiler_extra_names_uninspected": 103,
+        "max_record_bytes": 104791,
+        "cap_bytes": 33554432,
+        "issues": [
+          [
+            "RMAF",
+            0,
+            0,
+            "stored_resolved_body_kind_type_mismatch"
+          ],
+          [
+            "RMAF",
+            0,
+            14,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            14,
+            "partial:['RMAF.sameShape._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            40,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            40,
+            "partial:['RMAF.leaves._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            41,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            41,
+            "partial:['RMAF.minimalVertices._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            79,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            79,
+            "partial:['RMAF.rootedSpan._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            98,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            98,
+            "partial:['RMAF.best._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            128,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            128,
+            "partial:['RMAF.pairwiseEmbeddings._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            142,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            142,
+            "partial:['RMAF.assignments._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            146,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            146,
+            "partial:['RMAF.instReprTree.repr._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            161,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            161,
+            "partial:['RMAF.instDecidableEqTree.decEq._unsafe_rec']"
+          ],
+          [
+            "RMAF",
+            0,
+            177,
+            "unsafe_or_partial"
+          ],
+          [
+            "RMAF",
+            0,
+            177,
+            "partial:['RMAF.restrict._unsafe_rec']"
+          ]
+        ],
+        "seconds": 0.9929754580007284,
+        "registry_sha256": "70ae7db3a9bfd43f0bece036e3c9fbdbbb01f1f53ad5190773c6186eb6f12d09",
+        "receipt_sha256": "52b13d3aa4bfe6a81d8fc58c863608723c5976bd5e2d1a78db0a92698cbb5b53",
+        "scope": "compact SQLite index; per-occurrence lossless payload stays in receipt; not theorem acceptance"
+      },
+      "seconds": 0.9949181250012771
+    }
+  ],
+  "seconds": 6.42973662499935,
+  "raw_baseline_partial_rejections_preserved": true
+}

@@ -1,0 +1,5 @@
+import PaidForestPretest
+#check Universal233.Rule5ExecutionSource.best_additional_value
+#print axioms Universal233.Rule5ExecutionSource.best_additional_value
+#check Universal233.Rule5ExecutionSource.forest_pretest_value
+#print axioms Universal233.Rule5ExecutionSource.forest_pretest_value

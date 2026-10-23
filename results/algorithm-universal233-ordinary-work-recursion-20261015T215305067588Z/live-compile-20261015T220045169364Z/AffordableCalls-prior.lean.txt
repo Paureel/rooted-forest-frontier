@@ -1,0 +1,40 @@
+import ForestNatSplit
+namespace OrdinaryDispatch.WorkRecursion
+open RMAF ForestState Universal233 Universal233.PaidQueries Universal233.SourceCoverage
+open OrdinaryDispatch.Hard2Dispatcher GenericForest.FrontierWork
+
+def affordableCalls {α : Type} (L : List α) (target : α→Tree) (sources : α→List Tree) (cost : α→Nat) (q : Nat) : List Call :=
+ L.filterMap fun a=>if cost a≤q then some ⟨some (target a),sources a,q-cost a⟩ else none
+
+theorem affordableCalls_member {α : Type} (L : List α) (target : α→Tree) (sources : α→List Tree) (cost : α→Nat)
+ (q : Nat) (call : Call) (mem : call∈affordableCalls L target sources cost q) :
+ ∃a,a∈L ∧ cost a≤q ∧ call=⟨some (target a),sources a,q-cost a⟩ := by
+ obtain ⟨a,ha,eq⟩ := List.mem_filterMap.1 mem
+ split at eq
+ · exact ⟨a,ha,by assumption,(Option.some.inj eq).symm⟩
+ · contradiction
+
+theorem affordableCalls_mass {α : Type} (L : List α) (target : α→Tree) (sources : α→List Tree) (cost : α→Nat)
+ (q : Nat) (c : Rat) : traceMass c q (affordableCalls L target sources cost q)=Rule4.callbackMass c q (L.map cost) := by
+ induction L with
+ | nil => simp [affordableCalls,traceMass,actualQueryMass,Rule4.callbackMass]
+ | cons a L ih =>
+  by_cases h:cost a≤q
+  · have pay:q-(q-cost a)=cost a := by omega
+    simpa [affordableCalls,h,traceMass,actualQueryMass,Rule4.callbackMass,pay] using congrArg (fun x=>c^(-(cost a:Int))+x) ih
+  · simpa [affordableCalls,h,traceMass,actualQueryMass,Rule4.callbackMass] using ih
+
+/-- Affordable calls preserve original order and duplicate occurrences, and
+failed solver answers are the only removals in the subsequent filterMap. -/
+theorem affordableCalls_answers {α : Type} (L : List α) (target : α→Tree) (sources : α→List Tree) (cost : α→Nat)
+ (q : Nat) (actual : GenericForest.FrontierWork.Ordinary) :
+ (L.flatMap fun a=>if cost a≤q then (GenericForest.solve actual (some (target a)) (sources a) (q-cost a)).toList else [])=
+ (affordableCalls L target sources cost q).filterMap (fun call=>GenericForest.solve actual call.target call.sources call.budget) := by
+ induction L with
+ | nil => rfl
+ | cons a L ih =>
+  by_cases h:cost a≤q
+  · cases answer:GenericForest.solve actual (some (target a)) (sources a) (q-cost a) <;>
+     simpa [affordableCalls,h,answer] using ih
+  · simpa [affordableCalls,h] using ih
+end OrdinaryDispatch.WorkRecursion

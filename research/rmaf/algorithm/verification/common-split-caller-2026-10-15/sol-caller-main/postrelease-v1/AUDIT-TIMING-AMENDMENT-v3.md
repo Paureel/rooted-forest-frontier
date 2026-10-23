@@ -1,0 +1,3 @@
+# Producer audit batching amendment
+
+Pilot3 producer audit took7.516s. Mean projection83s underestimated the full closure walk: all173 command timed out at120.272s with no JSON. v3 splits producer outputs into10-module batches while importing the same complete ordered173-module scientific context in every batch. No declaration/axiom/ref walk is removed or weakened; partial/no-output timeout remains a failure. First batch is a timing pilot; a20-minute aggregate and120s/command cap govern completion. Std controls compare full-versus-selected actual fingerprints and private-unused-coalesced rejection before scientific batches. Compiler-only IR and runtime safety remain unaccepted.

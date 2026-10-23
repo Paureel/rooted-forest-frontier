@@ -1,0 +1,74 @@
+import FastSolve
+import HighTrace
+import Rule4Trace
+namespace OrdinaryDispatch.WorkRecursion
+open RMAF ForestState Universal233 Universal233.CherryBranching
+open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration
+open OrdinaryDispatch.FastOrdinary
+
+/-- Source-bound one-step companion. Queries retain source order and every
+failed or duplicate invocation. Common contraction is its own direct call. -/
+def ordinaryStepTrace (rec : Nat→Tree→Tree→Option CommonForest) (q : Nat) (T S : Tree) : Hard2Receipt :=
+ if DepthOne.proper T S then
+  match DepthOne.pretest01 T S with
+  | .refused => ⟨none,[]⟩
+  | .found c => ⟨if DepthOne.cutCost c≤q then some (DepthOne.forest S c) else none,[]⟩
+  | .rejected =>
+   let paid := cutoff rec q
+   match early T S with
+   | .common reverse c =>
+     let p := commonPair T S reverse c
+     if (leaves p.1).length<(leaves T).length then
+      ⟨(rec q p.1 p.2).map (expandCommon T S reverse c),[(p,q)]⟩
+     else ⟨none,[]⟩
+   | .one reverse c =>
+     let p := Oriented reverse T S
+     childrenTrace paid p.1 p.2 q [pendantChild p.2 c.a c.b]
+   | .high reverse c =>
+     let p := Oriented reverse T S
+     childrenTrace paid p.1 p.2 q (branches p.2 c.a c.b)
+   | .rule4Forward s => rule4Trace paid s q
+   | .rule4Reverse s => rule4Trace paid s q
+   | .hard2 c d => hard2Trace paid T S c d q
+   | .refused => ⟨none,[]⟩
+ else ⟨none,[]⟩
+
+/-- Exact body binding, with no work or mass assumption. -/
+theorem ordinaryStepTrace_value (q : Nat) (T S : Tree) :
+ (ordinaryStepTrace FastOrdinary.solve q T S).value=FastOrdinary.solve q T S := by
+ rw [FastOrdinary.solve.eq_def]
+ unfold ordinaryStepTrace
+ split
+ · cases hpre : DepthOne.pretest01 T S with
+   | refused => rfl
+   | found c => rfl
+   | rejected =>
+    cases he : early T S with
+    | common reverse c => rfl
+    | one reverse c => exact childrenTrace_value _ _ _ _ _
+    | high reverse c => exact childrenTrace_value _ _ _ _ _
+    | rule4Forward s => rfl
+    | rule4Reverse s => rfl
+    | hard2 c d => exact hard2Trace_value _ _ _ _ _ _
+    | refused => rfl
+ · rfl
+
+def commonStage (T S : Tree) : Bool :=
+ match early T S with
+ | .common _ _ => true
+ | _ => false
+
+theorem oriented_size {T S : Tree} (hp : DepthOne.proper T S=true) (reverse : Bool) :
+ (leaves (Oriented reverse T S).1).length=(leaves T).length := by
+ have len := ((DepthOne.proper_iff T S).1 hp).2.2.length_eq
+ cases reverse <;> simp only [Oriented,Bool.false_eq_true,ite_false,ite_true] <;> omega
+
+theorem ordinaryStepTrace_common (rec : Nat→Tree→Tree→Option CommonForest) (q : Nat)
+ {T S : Tree} (hp : DepthOne.proper T S=true) (pre : DepthOne.pretest01 T S=.rejected)
+ {reverse : Bool} {c : Candidate} (he : early T S=.common reverse c) :
+ (ordinaryStepTrace rec q T S).queries=[(commonPair T S reverse c,q)] := by
+ have sel : select (Oriented reverse T S).1 (Oriented reverse T S).2=some (.common,c) := by
+  simpa only [he,EarlySound] using early_sound T S
+ have ready := common_pair_ready hp sel
+ simp only [ordinaryStepTrace,hp,ite_true,pre,he,ready.2]
+end OrdinaryDispatch.WorkRecursion

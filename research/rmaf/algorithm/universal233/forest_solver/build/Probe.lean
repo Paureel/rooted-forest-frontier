@@ -1,0 +1,13 @@
+import ForestReplace
+#check List.single_le_sum
+#check List.le_sum_of_mem
+#check List.Nodup.of_map
+#check List.nodup_append
+#check List.getElem?_eq_some_iff
+#check List.take_append_drop
+#check List.getElem?_eq_getElem
+#check List.head?_eq_some_iff
+#check List.mem_zipIdx
+#check List.mem_of_mem_head?
+#check List.find?_some
+#check List.find?_eq_some_iff

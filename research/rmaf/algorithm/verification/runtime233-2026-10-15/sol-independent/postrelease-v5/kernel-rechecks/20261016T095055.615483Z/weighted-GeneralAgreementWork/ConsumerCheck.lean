@@ -1,0 +1,9 @@
+import GeneralAgreementWork
+#check OrdinaryDispatch.FullSourceWork.agreementMeter_value
+#print axioms OrdinaryDispatch.FullSourceWork.agreementMeter_value
+#check OrdinaryDispatch.FullSourceWork.agreementMeter_bound
+#print axioms OrdinaryDispatch.FullSourceWork.agreementMeter_bound
+#check OrdinaryDispatch.FullSourceWork.measuredAgreement_K
+#print axioms OrdinaryDispatch.FullSourceWork.measuredAgreement_K
+#check OrdinaryDispatch.FullSourceWork.agreement_domain_envelope
+#print axioms OrdinaryDispatch.FullSourceWork.agreement_domain_envelope

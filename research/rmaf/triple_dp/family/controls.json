@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "frozen_before_author_construction": true,
+  "address_convention": "Empty string is root; 0/1 are left/right child steps. Supports are vertex sets; leaves are labelled by the raw binary tree.",
+  "known_regressions": [
+    {"id":"gapped-lca","tree":[["a","b"],["c","d"]],"region":["","00"],"lca_closed":true,"path_convex":false},
+    {"id":"leafless-incursion","tree":[["a","b"],["c","d"]],"regions":[["","0","00","1"],["01"],["10"],["11"]],"open":0,"trimmed":[["","0","00"],["01"],["10"],["11"]],"closed_cost":3,"blocks":4},
+    {"id":"trimmed-incursion-twin","tree":[["a","b"],["c","d"]],"regions":[["","0","00"],["01"],["10"],["11"]],"open":0,"trimmed":[["","0","00"],["01"],["10"],["11"]],"closed_cost":3,"blocks":4},
+    {"id":"singleton-root","tree":"a","regions":[[""]],"open":0,"trimmed":[[""]],"closed_cost":0,"blocks":1},
+    {"id":"unused-internal","tree":[["a","b"],["c","d"]],"regions":[["00"],["01"],["10"],["11"]],"open":null,"trimmed":[["00"],["01"],["10"],["11"]],"closed_cost":4,"blocks":4},
+    {"id":"adjacent-bad-triple","tree":[["a","b"],"c"],"regions":[["","0","00","01"],["1"]],"open":0,"trimmed":[["","0","00","01"],["1"]],"closed_cost":1,"blocks":2,"bad_colors":[["a","b","c"]],"merged_full_color_valid":false}
+  ],
+  "new_controls": [
+    {"id":"two-child-open","tree":[["a","b"],["c","d"]],"regions":[["","0","00","1","10"],["01"],["11"]],"open":0,"trimmed":[["","0","00","1","10"],["01"],["11"]],"closed_cost":2,"blocks":3},
+    {"id":"closed-leafless-tail","tree":[["a","b"],["c","d"]],"regions":[["0","00"],["01"],["10"],["11"]],"open":null,"trimmed":[["00"],["01"],["10"],["11"]],"closed_cost":4,"blocks":4},
+    {"id":"leafless-open-fragment","tree":[["a","b"],["c","d"]],"regions":[["","0","00","1"],["01"],["10"],["11"]],"open":0,"right_fragment":["1"],"right_fragment_labels":[],"right_fragment_must_be_discarded":true,"charged_blocks_added":0}
+  ],
+  "malformed_or_corrupt": [
+    {"id":"charged-leafless","tree":["a","b"],"regions":[[""],["0"],["1"]],"open":0,"family_valid":false},
+    {"id":"closed-root","tree":["a","b"],"regions":[["","0"],["1"]],"open":null,"family_valid":false},
+    {"id":"overlapping-supports","tree":["a","b"],"regions":[["","0"],["","1"]],"open":0,"family_valid":false},
+    {"id":"drop-open-stem-mutant","control":"two-child-open","mutant_support":["00","10"],"path_convex":false,"clean_twin_support":["","0","00","1","10"]},
+    {"id":"charge-empty-fragment-mutant","control":"leafless-open-fragment","mutant_added_charge":1,"expected_added_charge":0}
+  ],
+  "scope":"Hand-registered finite checks. Known examples are regression evidence. No universal theorem is inferred from their execution."
+}

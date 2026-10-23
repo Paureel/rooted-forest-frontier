@@ -1,0 +1,9 @@
+import ClassifierFeeBinding
+#check Universal233.ClassifierCheckFee.final_source_work
+#print axioms Universal233.ClassifierCheckFee.final_source_work
+#check Universal233.ClassifierCheckFee.final_source_calls
+#print axioms Universal233.ClassifierCheckFee.final_source_calls
+#check Universal233.ClassifierCheckFee.paid_builder_value
+#print axioms Universal233.ClassifierCheckFee.paid_builder_value
+#check Universal233.ClassifierCheckFee.paid_builder_work
+#print axioms Universal233.ClassifierCheckFee.paid_builder_work

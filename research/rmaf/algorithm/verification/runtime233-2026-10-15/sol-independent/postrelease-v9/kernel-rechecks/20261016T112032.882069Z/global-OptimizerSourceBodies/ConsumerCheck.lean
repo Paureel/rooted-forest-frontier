@@ -1,0 +1,7 @@
+import OptimizerSourceBodies
+#check OrdinaryDispatch.GlobalSourceAssembly.sourceFinishMeter_value
+#print axioms OrdinaryDispatch.GlobalSourceAssembly.sourceFinishMeter_value
+#check OrdinaryDispatch.GlobalSourceAssembly.sourceOptimizeMeter_value
+#print axioms OrdinaryDispatch.GlobalSourceAssembly.sourceOptimizeMeter_value
+#check OrdinaryDispatch.GlobalSourceAssembly.sourceOptimize_actual_fees
+#print axioms OrdinaryDispatch.GlobalSourceAssembly.sourceOptimize_actual_fees

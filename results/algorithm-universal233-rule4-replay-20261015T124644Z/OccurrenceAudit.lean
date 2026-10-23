@@ -1,0 +1,57 @@
+import Rule4Controls
+import Lean
+open Lean Elab Command
+run_cmd do
+  let env ← getEnv
+  let wanted : List Name := [`RMAF, `CoreGraph, `Geometry, `Bridge, `Composition, `SourceBridge, `Executable, `Endpoint, `Restriction, `PendantExclusion, `Refinement, `CherryCoarsening, `CoreProgram, `CoreInvariants, `Contraction, `Normalization, `InitialLift, `Suppression, `EraseLift, `Origins, `Branches, `CutRecords, `OriginalGraph, `Components, `Safety, `ExchangeRestriction, `Cluster, `Descendant, `Forest, `GroupRestriction, `GroupEmbedding, `Surgery, `Count, `Parents, `GroupPartition, `GroupState, `GroupStateFacts, `GroupCost, `GroupForward, `GroupReconstruction, `GroupDefs, `GroupForwardProof, `GroupReverseProof, `GroupCostProof, `GroupPriority, `OutputDefs, `Materialize, `Equivalence, `FullTransport, `Coverage, `Entrypoint, `OutputBudget, `ColorBudget, `ColorSteps, `RawMass, `RationalMass, `ParentColors, `Display, `Regions, `History, `Realization, `OwnerCover, `CutCoverage, `InitialCoverage, `Cost, `ValidPartition, `WholeSource, `Requests, `OwnershipBase, `ChainAssembly, `SourceValidity, `RankCost, `MinimumUnique, `TailMass, `ColorClasses, `RecoveryProgram, `BlockColors, `Permutations, `Recovery, `Work, `FinalWork, `Rule4OriginalExchange, `Rule4PathPrune, `Rule4Graft, `Rule4SourceExchange, `Rule4Exchange, `Rule4LcaCoverage, `Rule4Cover, `Rule4LiteralCuts, `Rule4LiteralChecks, `Rule4Selector, `Rule4Costs, `Rule4Program, `Rule4Solve, `Rule4Controls]
+  let allowed : List Name := [`Classical.choice,`Quot.sound,`propext]
+  let mut rows : Array Json := #[]
+  let mut counts : Array Json := #[]
+  let mut bad : Array Json := #[]
+  for i in [:env.header.moduleNames.size] do
+    let producer := env.header.moduleNames[i]!
+    if wanted.contains producer then
+      let data := env.header.moduleData[i]!
+      unless data.constants.size == data.constNames.size do
+        throwError "PRODUCER_ARRAY_LENGTH_MISMATCH"
+      counts := counts.push (Json.mkObj [("producer",toJson producer.toString),("count",toJson data.constants.size)])
+      for j in [:data.constants.size] do
+        let ci := data.constants[j]!
+        let stored := data.constNames[j]!
+        unless stored == ci.name do throwError "PRODUCER_NAME_MISMATCH"
+        let kind := match ci with
+          | .axiomInfo _ => "axiom"
+          | .defnInfo _ => "definition"
+          | .thmInfo _ => "theorem"
+          | .opaqueInfo _ => "opaque"
+          | .quotInfo _ => "quotient"
+          | .ctorInfo _ => "constructor"
+          | .recInfo _ => "recursor"
+          | .inductInfo _ => "inductive"
+        let body := ci.value? true
+        let bodyText := match body with | some e => reprStr e | none => "<none>"
+        let mut refs := ci.type.getUsedConstants.toList
+        if let some e := body then refs := refs ++ e.getUsedConstants.toList
+        refs := refs.eraseDups
+        let mut ax : List Name := []
+        if ci.isAxiom then ax := [ci.name]
+        for n in refs do ax := ax ++ (← collectAxioms n).toList
+        ax := ax.eraseDups
+        let resolved := match env.getModuleIdxFor? ci.name with
+          | some k => env.header.moduleNames[k.toNat]!.toString
+          | none => "<unresolved>"
+        let row := Json.mkObj [
+          ("producer",toJson producer.toString),("index",toJson j),
+          ("stored_name",toJson stored.toString),("actual_name",toJson ci.name.toString),
+          ("resolved_origin",toJson resolved),("kind",toJson kind),
+          ("type",toJson (reprStr ci.type)),("body",toJson bodyText),
+          ("has_body",toJson body.isSome),
+          ("direct_references",toJson (refs.map Name.toString)),
+          ("axiom_references",toJson (ax.map Name.toString))]
+        rows := rows.push row
+        if (ci.isAxiom && !allowed.contains ci.name) || ax.any (fun n => !allowed.contains n) then
+          bad := bad.push (Json.mkObj [("producer",toJson producer.toString),("name",toJson ci.name.toString),("kind",toJson kind),("axioms",toJson (ax.map Name.toString))])
+  let result := Json.mkObj [("producer_counts",Json.arr counts),("occurrences",Json.arr rows),("rejects",Json.arr bad)]
+  liftIO <| IO.FS.writeFile "/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-rule4-replay-20261015T124644Z/occurrences.json" result.pretty
+  if !bad.isEmpty then throwError m!"REJECT_PRODUCER_OCCURRENCE|{bad.size}"
+  logInfo m!"PRODUCER_OCCURRENCE_PASS|{counts.size}|{rows.size}"

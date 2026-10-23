@@ -1,0 +1,125 @@
+research/rmaf/algorithm/universal233/core/CoreProgram.lean:149:31: error: No goals to be solved
+research/rmaf/algorithm/universal233/core/CoreProgram.lean:161:35: error: No goals to be solved
+research/rmaf/algorithm/universal233/core/CoreProgram.lean:203:51: error: Tactic `decide` failed to reduce
+  @decide (parts (generate crossed parity 3) = [[[0], [1, 3], [2]], [[0, 2], [1], [3]]])
+    (instDecidableEqList (parts (generate crossed parity 3)) [[[0], [1, 3], [2]], [[0, 2], [1], [3]]])
+to `true` or `false`.
+
+After unfolding the instance `instDecidableEqList`, reduction got stuck at
+  match parts (generate crossed parity 3) with
+  | [] =>
+    match [[[0], [1, 3], [2]], [[0, 2], [1], [3]]] with
+    | [] => isTrue ⋯
+    | head :: tail => isFalse ⋯
+  | a :: as =>
+    match [[[0], [1, 3], [2]], [[0, 2], [1], [3]]] with
+    | [] => isFalse ⋯
+    | b :: bs =>
+      match decEq a b with
+      | { decide := true, reflects_decide := hab } =>
+        match as.hasDecEq bs with
+        | { decide := true, reflects_decide := habs } => isTrue ⋯
+        | { decide := false, reflects_decide := nabs } => isFalse ⋯
+      | { decide := false, reflects_decide := nab } => isFalse ⋯
+research/rmaf/algorithm/universal233/core/CoreProgram.lean:212:82: error: Tactic `decide` failed to reduce
+  @decide (parts (generate cherry3 homColor 2) = [[[0, 1], [2]]])
+    (instDecidableEqList (parts (generate cherry3 homColor 2)) [[[0, 1], [2]]])
+to `true` or `false`.
+
+After unfolding the instance `instDecidableEqList`, reduction got stuck at
+  match parts (generate cherry3 homColor 2) with
+  | [] =>
+    match [[[0, 1], [2]]] with
+    | [] => isTrue ⋯
+    | head :: tail => isFalse ⋯
+  | a :: as =>
+    match [[[0, 1], [2]]] with
+    | [] => isFalse ⋯
+    | b :: bs =>
+      match decEq a b with
+      | { decide := true, reflects_decide := hab } =>
+        match as.hasDecEq bs with
+        | { decide := true, reflects_decide := habs } => isTrue ⋯
+        | { decide := false, reflects_decide := nabs } => isFalse ⋯
+      | { decide := false, reflects_decide := nab } => isFalse ⋯
+research/rmaf/algorithm/universal233/core/CoreProgram.lean:217:31: error: Tactic `decide` failed to reduce
+  @decide (parts (generate crossed (fun x => if x = 3 then 0 else x) 3) = [[[0, 3], [1], [2]]])
+    (instDecidableEqList (parts (generate crossed (fun x => if x = 3 then 0 else x) 3)) [[[0, 3], [1], [2]]])
+to `true` or `false`.
+
+After unfolding the instance `instDecidableEqList`, reduction got stuck at
+  match parts (generate crossed (fun x => if x = 3 then 0 else x) 3) with
+  | [] =>
+    match [[[0, 3], [1], [2]]] with
+    | [] => isTrue ⋯
+    | head :: tail => isFalse ⋯
+  | a :: as =>
+    match [[[0, 3], [1], [2]]] with
+    | [] => isFalse ⋯
+    | b :: bs =>
+      match decEq a b with
+      | { decide := true, reflects_decide := hab } =>
+        match as.hasDecEq bs with
+        | { decide := true, reflects_decide := habs } => isTrue ⋯
+        | { decide := false, reflects_decide := nabs } => isFalse ⋯
+      | { decide := false, reflects_decide := nab } => isFalse ⋯
+research/rmaf/algorithm/universal233/core/CoreProgram.lean:219:91: error: Tactic `decide` failed to reduce
+  @decide (parts (generate crossed (fun x => 0) 0) = [[[0, 1, 2, 3]]])
+    (instDecidableEqList (parts (generate crossed (fun x => 0) 0)) [[[0, 1, 2, 3]]])
+to `true` or `false`.
+
+After unfolding the instance `instDecidableEqList`, reduction got stuck at
+  match parts (generate crossed (fun x => 0) 0) with
+  | [] =>
+    match [[[0, 1, 2, 3]]] with
+    | [] => isTrue ⋯
+    | head :: tail => isFalse ⋯
+  | a :: as =>
+    match [[[0, 1, 2, 3]]] with
+    | [] => isFalse ⋯
+    | b :: bs =>
+      match decEq a b with
+      | { decide := true, reflects_decide := hab } =>
+        match as.hasDecEq bs with
+        | { decide := true, reflects_decide := habs } => isTrue ⋯
+        | { decide := false, reflects_decide := nabs } => isFalse ⋯
+      | { decide := false, reflects_decide := nab } => isFalse ⋯
+research/rmaf/algorithm/universal233/core/CoreProgram.lean:221:68: error: Tactic `decide` failed to reduce
+  @decide (parts (generate (Tree.leaf 7) id 0) = [[[7]]])
+    (instDecidableEqList (parts (generate (Tree.leaf 7) id 0)) [[[7]]])
+to `true` or `false`.
+
+After unfolding the instance `instDecidableEqList`, reduction got stuck at
+  match parts (generate (Tree.leaf 7) id 0) with
+  | [] =>
+    match [[[7]]] with
+    | [] => isTrue ⋯
+    | head :: tail => isFalse ⋯
+  | a :: as =>
+    match [[[7]]] with
+    | [] => isFalse ⋯
+    | b :: bs =>
+      match decEq a b with
+      | { decide := true, reflects_decide := hab } =>
+        match as.hasDecEq bs with
+        | { decide := true, reflects_decide := habs } => isTrue ⋯
+        | { decide := false, reflects_decide := nabs } => isFalse ⋯
+      | { decide := false, reflects_decide := nab } => isFalse ⋯
+'Universal233.CoreProgram.fromTree' does not depend on any axioms
+'Universal233.CoreProgram.normalize' depends on axioms: [propext]
+'Universal233.CoreProgram.erase' does not depend on any axioms
+'Universal233.CoreProgram.choose' depends on axioms: [propext]
+'Universal233.CoreProgram.run' depends on axioms: [propext]
+'Universal233.CoreProgram.generate' depends on axioms: [propext]
+'Universal233.CoreProgram.run_visited_bound' depends on axioms: [propext, sorryAx, Quot.sound]
+'Universal233.CoreProgram.maxVisits_pow' depends on axioms: [propext, Quot.sound]
+'Universal233.CoreProgram.run_visited_exponential' depends on axioms: [propext, sorryAx, Quot.sound]
+'Universal233.CoreProgram.Controls.crossed_both' depends on axioms: [propext, sorryAx, Quot.sound]
+'Universal233.CoreProgram.Controls.crossed_paid' depends on axioms: [propext]
+'Universal233.CoreProgram.Controls.crossed_budget_refusal' depends on axioms: [propext]
+'Universal233.CoreProgram.Controls.homogeneous' depends on axioms: [propext, sorryAx, Quot.sound]
+'Universal233.CoreProgram.Controls.distinct_colors' depends on axioms: [propext]
+'Universal233.CoreProgram.Controls.three_color_quartet' depends on axioms: [propext, sorryAx, Quot.sound]
+'Universal233.CoreProgram.Controls.same_color_root' depends on axioms: [propext, sorryAx, Quot.sound]
+'Universal233.CoreProgram.Controls.singleton' depends on axioms: [propext, sorryAx, Quot.sound]
+'Universal233.CoreProgram.Controls.duplicate_refused' depends on axioms: [propext]

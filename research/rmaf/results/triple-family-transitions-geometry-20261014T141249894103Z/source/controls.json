@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "frozen_before": "Any new merge construction or control evaluation",
+  "positive": [
+    {"id":"T1-singletons","left":{"tree":"a","regions":{"o":[""]},"boundary":"o"},"right":{"tree":"b","regions":{"o":[""]},"boundary":"o"},"expected":{"regions":{"M":["","0","1"]},"boundary":"M","blocks":1,"cost":0,"merged_labels":["a","b"]}},
+    {"id":"left-extra-block","left":{"tree":["a","b"],"regions":{"o":["","0"],"c":["1"]},"boundary":"o"},"right":{"tree":"c","regions":{"o":[""]},"boundary":"o"},"expected":{"regions":{"M":["","0","00","1"],"L:c":["01"]},"boundary":"M","blocks":2,"cost":1,"merged_labels":["a","c"]}},
+    {"id":"both-extra-same-color","left":{"tree":["a","b"],"regions":{"o":["","0"],"c":["1"]},"boundary":"o","colors":{"o":"red","c":"red"}},"right":{"tree":["c","d"],"regions":{"o":["","1"],"c":["0"]},"boundary":"o","colors":{"o":"red","c":"red"}},"expected":{"regions":{"M":["","0","00","1","11"],"L:c":["01"],"R:c":["10"]},"boundary":"M","blocks":3,"cost":2,"merged_labels":["a","d"]}},
+    {"id":"asymmetric-stems","left":{"tree":[["a","b"],"c"],"regions":{"o":["","0","01"],"a":["00"],"c":["1"]},"boundary":"o"},"right":{"tree":["d","e"],"regions":{"o":["","0"],"e":["1"]},"boundary":"o"},"expected":{"regions":{"M":["","0","00","001","1","10"],"L:a":["000"],"L:c":["01"],"R:e":["11"]},"boundary":"M","blocks":4,"cost":3,"merged_labels":["b","d"]}},
+    {"id":"unused-internal-vertex","left":{"tree":["a",["b","c"]],"regions":{"o":["","0"],"b":["10"],"c":["11"]},"boundary":"o"},"right":{"tree":"d","regions":{"o":[""]},"boundary":"o"},"expected":{"regions":{"M":["","0","00","1"],"L:b":["010"],"L:c":["011"]},"boundary":"M","blocks":3,"cost":2,"merged_labels":["a","d"],"unused_vertices":["01"]}}
+  ],
+  "malformed": [
+    {"id":"missing-boundary","left":{"tree":["a","b"],"regions":{"a":["0"],"b":["1"]},"boundary":null},"right":{"tree":"c","regions":{"o":[""]},"boundary":"o"},"reason":"Merge requires both designated boundaries present"},
+    {"id":"raw-leafless-open","left":{"tree":["a","b"],"regions":{"o":[""],"a":["0"],"b":["1"]},"boundary":"o"},"right":{"tree":"c","regions":{"o":[""]},"boundary":"o"},"reason":"Every CostRoute index, including the boundary, must contain a leaf"},
+    {"id":"overlapping-input","left":{"tree":["a","b"],"regions":{"o":["","0"],"c":["0","1"]},"boundary":"o"},"right":{"tree":"c","regions":{"o":[""]},"boundary":"o"},"reason":"Input supports overlap and second support is not convex"},
+    {"id":"boundary-missing-root","left":{"tree":["a","b"],"regions":{"o":["0"],"c":["1"]},"boundary":"o"},"right":{"tree":"c","regions":{"o":[""]},"boundary":"o"},"reason":"Boundary must own the actual child root"}
+  ],
+  "wrong_results": [
+    {"id":"charge-merged-open","fixture":"T1-singletons","field":"cost","wrong":1,"clean":0},
+    {"id":"retain-two-open-indices","fixture":"T1-singletons","field":"blocks","wrong":2,"clean":1},
+    {"id":"coalesce-same-color-others","fixture":"both-extra-same-color","field":"blocks","wrong":1,"clean":3},
+    {"id":"charge-closed-blocks-twice","fixture":"asymmetric-stems","field":"cost","wrong":6,"clean":3}
+  ],
+  "support_corruptions": [
+    {"id":"drop-connecting-root","fixture":"T1-singletons","region":"M","remove":"","reason":"Disconnected merged support"},
+    {"id":"drop-required-stem","fixture":"asymmetric-stems","region":"M","remove":"00","reason":"Required root-to-label path gap"},
+    {"id":"drop-right-leaf","fixture":"T1-singletons","region":"M","remove":"1","reason":"Loss of leaf coverage"}
+  ]
+}

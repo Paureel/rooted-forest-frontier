@@ -1,0 +1,7 @@
+import StoredContract
+#check OrdinaryDispatch.StoredNumeric.contractPairBits_value
+#print axioms OrdinaryDispatch.StoredNumeric.contractPairBits_value
+#check OrdinaryDispatch.StoredNumeric.contractPairBits_width
+#print axioms OrdinaryDispatch.StoredNumeric.contractPairBits_width
+#check OrdinaryDispatch.StoredNumeric.contractPairBits_work
+#print axioms OrdinaryDispatch.StoredNumeric.contractPairBits_work

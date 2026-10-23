@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "scope": "One-shot continuation evidence integrity and receipt consistency only; no new scientific replay or independent replication",
+  "reuse_policy": "Reuse unchanged prior executed consumer checks and adapted controls; never regenerate a reference",
+  "controls_before_prior_records": [
+    "SHA256 known-answer abc passes",
+    "SHA256 deliberately changed abd is rejected",
+    "exact positive/corruption case denominators pass on a synthetic clean pair",
+    "missing synthetic case is rejected",
+    "synthetic failed case is rejected",
+    "standard synthetic axiom reports pass",
+    "synthetic sorryAx is rejected"
+  ],
+  "expected_consumers": 6,
+  "expected_type_axiom_reports": 15,
+  "expected_adaptation_positives": 20,
+  "expected_adaptation_corruptions": 25,
+  "expected_READY_members": 94,
+  "expected_phase1_members": 107,
+  "expected_prior_files_at_resume": 293,
+  "allowed_axioms": ["propext", "Classical.choice", "Quot.sound"],
+  "initial_process_seconds": 60,
+  "raw_cap_bytes": 67108864,
+  "line_cap_bytes": 16777216,
+  "compressed_budget_bytes": 268435456,
+  "disk_floor_bytes": 3221225472,
+  "failure_rule": "Retain failure record; stop final acceptance on any drift, missing count, changed source/fixture, unexpected axiom or raw/line/storage violation",
+  "new_blind_credit": 0,
+  "global_runtime_acceptance": "OPEN"
+}

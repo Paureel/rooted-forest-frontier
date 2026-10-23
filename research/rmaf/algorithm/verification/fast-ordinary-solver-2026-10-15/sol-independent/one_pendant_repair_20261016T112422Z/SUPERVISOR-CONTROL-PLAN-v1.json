@@ -1,0 +1,28 @@
+{
+  "before_new_proof_execution": true,
+  "supervisor_sha256": "0e47e43a5664921faf61ea1f59a65a1b3774b2080d04516d7ffbe6d3ba25371d",
+  "controls": {
+    "positive": "import time; x=bytearray(8*1024**2); print('known-positive-42');time.sleep(.1)",
+    "rss": "import time; x=bytearray(96*1024**2);time.sleep(.4)",
+    "raw": "import sys;sys.stdout.buffer.write(b'x\\n'*4096)",
+    "line": "import sys;sys.stdout.buffer.write(b'x'*4096)",
+    "time": "import time;time.sleep(.4)"
+  },
+  "expected": [
+    "positive clean",
+    "rss violation stopped",
+    "raw violation stopped",
+    "line violation stopped",
+    "time violation stopped"
+  ],
+  "tightened_test_caps_only": true,
+  "real_caps": {
+    "rss_bytes": 3221225472,
+    "pilot_seconds": 30,
+    "audit_seconds": 59,
+    "raw_bytes": 16777216,
+    "line_bytes": 8388608,
+    "DAG_chunk_bytes": 4194304
+  },
+  "source_contact_permanent": true
+}

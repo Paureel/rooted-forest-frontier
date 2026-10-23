@@ -1,0 +1,99 @@
+{
+  "status": "LOCAL-CERTIFICATE-PROVED-GRAPH-ENCODING-OPEN",
+  "target": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/SECOND-EXCHANGE-TARGET.md",
+  "report": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/REPORT.md",
+  "formal_audit": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-repair-edge-second-formal-audit.json",
+  "controls": {
+    "status": "CONTROLS-PASS",
+    "receipt": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-repair-edge-second-controls.json",
+    "supplied_input_optimum": 2,
+    "two_stage_cases": 2,
+    "two_stage_counts": [
+      [
+        2,
+        3,
+        2
+      ],
+      [
+        2,
+        3,
+        2
+      ]
+    ],
+    "map_corruption_rejected": true,
+    "detached_rho_transport_cases": 4,
+    "detached_rho_reachability": "NOT_CLAIMED"
+  },
+  "reached_evidence": {
+    "status": "NO-FIRE",
+    "counts": {
+      "2B_calls": 1575,
+      "K_premises": 4448,
+      "inputs": 5000,
+      "lifted_second_premises": 4448,
+      "root_v_K_premises": 0,
+      "root_v_states": 0,
+      "unique_2B_states": 328
+    },
+    "root_v_denominator": 0,
+    "contexts_are_source_pair_and_active_state_key_not_isomorphism_classes": true,
+    "receipts": [
+      "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-repair-edge-second-reached-n5-limit3000.json",
+      "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-repair-edge-second-reached-n6-limit2000.json"
+    ],
+    "seed": 622,
+    "scope": "Sampled ordered inputs; all budgets 0..n-1; every allowable K in each retained reached 2B context.",
+    "counterexamples": 0,
+    "universal_inference": false
+  },
+  "formal": {
+    "named_production_theorems": 26,
+    "positive_named_control_theorems": 4,
+    "positive_closed_examples": 9,
+    "negative_control_rejected": true,
+    "scope": "Exact parent-map cut/splice commutation, concrete recursive yielded-forest and attached-root equality for two witnessed pendant splices, literal second-rule support and root guard, distinct-edge lift cost.",
+    "standard_axioms": [
+      "Quot.sound",
+      "propext"
+    ],
+    "source_hashes": {
+      "ParentTransport.lean": "bdfd12e856c17abfec17f6813aeb1102d997cf7abc2c4775e26554f7c81ed7f0",
+      "YieldTransport.lean": "c887e90d31990284d0872c43e7d845435f89c8fd29e4e721d0c8931cd83d6ac8",
+      "SecondCut.lean": "181ded6bf32855a1f3647d558887c84e129d2fade71ae06b8b6f38753f68bf22",
+      "PositiveControls.lean": "d9067d3be7b06186c1f50d578ffb685d97f12478ba008e504e83d2a383d953fa",
+      "NegativeControl.lean": "38387f5666715bf7107a460289bb9145df908f4cc0bbee15a5571e7a05168649"
+    }
+  },
+  "open_formal_interface": {
+    "id": "edge-second-geometry-certificate",
+    "statement": "For the finite reduced binary 2B parent-graph geometry, construct an original-ID marked-tree encoding with the two pendant-splice witnesses; prove all affected incidences lie in P, x/u/v and their applicable incoming edges survive unchanged, and arbitrary C disjoint from B union P induces the same witnesses. Verify the encoding represents graph yield and root-connected label fragments.",
+    "prose_derivation": "REPORT.md geometry steps 1-6; not yet independently reviewed or fully encoded."
+  },
+  "independence": {
+    "oracle_reused": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/edge_route/adversary.py",
+    "oracle_sha256": "0066d5b0ef5f8dfc9754dfcc2c6d2cefee356e6089b9edc56d2a4416899d6fc9",
+    "algorithm_role": "Reached state generator only; no algorithm cut/reduce/shape oracle calls in transport checker.",
+    "generator_sha256": "a4e2e459e772e043093ebd25cfb0f4b9c87bc3e78abd061753069f89543672cf",
+    "component_route_read_or_imported": false,
+    "new_nonauthor_review": "PENDING"
+  },
+  "v1_source_hashes_unchanged": {
+    "OriginalEdges.lean": true,
+    "RootedPaths.lean": true,
+    "PositiveControls.lean": true,
+    "RootedPathControls.lean": true,
+    "NegativeControl.lean": true
+  },
+  "not_claimed": [
+    "AF normalization",
+    "source partial-restoration equivalence",
+    "global marked-state invariant",
+    "global algorithm correctness",
+    "runtime theorem",
+    "reached unlabelled-v-root transport coverage"
+  ],
+  "validation_not_run": [
+    "Repository-wide ./bootloops-check: no shared toolkit implementation changed.",
+    "Fresh nonauthor review of v2: pending."
+  ]
+}

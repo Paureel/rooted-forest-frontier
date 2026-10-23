@@ -1,0 +1,9 @@
+import OrdinaryCallBound
+#check OrdinaryDispatch.WorkRecursion.ordinaryCallNodes_eq
+#print axioms OrdinaryDispatch.WorkRecursion.ordinaryCallNodes_eq
+#check OrdinaryDispatch.WorkRecursion.ordinaryCallNodes_bound
+#print axioms OrdinaryDispatch.WorkRecursion.ordinaryCallNodes_bound
+#check OrdinaryDispatch.WorkRecursion.ordinaryStepTrace_common_or_paid
+#print axioms OrdinaryDispatch.WorkRecursion.ordinaryStepTrace_common_or_paid
+#check OrdinaryDispatch.WorkRecursion.queryWork_mass_bound
+#print axioms OrdinaryDispatch.WorkRecursion.queryWork_mass_bound

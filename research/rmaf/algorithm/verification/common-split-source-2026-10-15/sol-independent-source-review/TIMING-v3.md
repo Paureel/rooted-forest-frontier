@@ -1,0 +1,5 @@
+# Bounded build plan v3
+
+Known-answer TrueDiagnostic compiled in0.2745/0.2939/0.3123 seconds. Detector compiler attempts v1/v2 failed in1.0389/0.8117 seconds; repaired v3 compiled in0.8914 seconds. Preserve all attempts. The next pilot compiles only CleanBase/CleanTwin/CoalescedBad and dumps only clean/twins/coalesced. Linear projection from same-machine tiny compile timings is under4 seconds for those three sources plus one detector command; each actual command still capped30 seconds. Dump runtime is not yet measured, so only the three bounded pilot dumps run first, with logs/producer rows as progress. No candidate audit or census occurs.
+
+Pilot stored dumps clean/twins/coalesced took1.2605/1.2568/1.2416 seconds each; CleanBase/Twin/CoalescedBad compiles took0.2999/0.2424/0.2390 seconds. Projecting four remaining tiny compiles plus six v4 dumps gives under10 seconds at observed rates; a3× margin remains under30 seconds total, with each command independently capped30 seconds. These projections apply only to fabricated controls; candidate rebuild size/runtime remains unknown until exact release and a new pilot.

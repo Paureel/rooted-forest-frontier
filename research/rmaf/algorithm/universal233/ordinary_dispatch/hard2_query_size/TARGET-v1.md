@@ -1,0 +1,7 @@
+# Actual hard2 forest-query support and size
+
+New author scope after immutable trace seal e29854e71351309f3ef06fd7ba8636765ae08cf68708bb3242c8f55e8c1c68dc. Own only this directory/new result roots; preserve every earlier package and failure. Prove that every literal non-Rule5 hard2 forest query target uses only current original target labels and has at most the current target leaf count. Include whole-source paid handlers, current pair DP outside query, ordinary grouping and both-bad grouped full queries, plus two singleton children and disjoint query. Bind source-level actual trace, not a supplied desired callback list. Combine with sealed strict budgets to give target_size+2*residual<=original_n+2*q for these outer queries. The sealed actual forest frontier then transfers this cap to both ordinary trees.
+
+No new total source/bit/payload time bound or independent/main acceptance is claimed. Actual Rule5 direct/forest traces are a separate assigned author. Local source overhead is another assigned author. Read only own or immutable manifest-bound sources. Fresh compiler controls and source-bound bounded compressed producer audit precede a seal. Maintain live3GiB free margin and preserve every failed attempt.
+
+Toolkit index and frozen compiler/extractor consulted. This one-shot consumer reuses the guarded compiler and compressed extractor unchanged; no toolkit engine proves these problem-specific selector-query label facts.

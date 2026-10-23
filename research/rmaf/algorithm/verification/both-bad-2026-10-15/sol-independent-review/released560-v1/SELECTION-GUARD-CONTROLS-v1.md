@@ -1,0 +1,5 @@
+# Post-contact adapter supplement: frozen selection/guard classes
+
+This mapping is post-contact, not original blind evidence. It instantiates the already frozen abstract list-length control[8,7,9,7] using refinements of the frozen valid S11 seven-block AF. Four direct execute full entries include an exact duplicate occurrence; any-oracle payloads8/7/9/7 must select length7 and record all4 calls. Invalid source-parent partition or empty returned forest must be rejected by original checking while preserving all4 calls. These direct execute entries are arbitrary API inputs, not claimed planner emissions; no planner mass theorem is applied to their duplicate list.
+
+Original S8 source-only parent partition must fail checked. Proper selected-edge C-clearance-only boundary from GUARD-CLEARANCE-v2 is compiled: choose edge(0,01), partition/source hulls and rooted-good C pass, both C parent clearances fail. Empty/absent/overlap C partitions fail source partition checks; no runtime-refusal requirement is inferred.

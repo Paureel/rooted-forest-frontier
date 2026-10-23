@@ -1,0 +1,11 @@
+research/rmaf/algorithm/universal233/source_coverage/build/RatProbe2.lean:5:64: error: Tactic `decide` failed to reduce
+  @decide (2 * mkRat 100 233 ^ 2 ≤ mkRat 100 233) ((2 * mkRat 100 233 ^ 2).instDecidableLe (mkRat 100 233))
+to `true` or `false`.
+
+After unfolding the instances `decEq`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `isFalse`, `isTrue`, `Int.decEq`, `Int.decLe`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `Nat.decEq`, and `Rat.instDecidableLe`, reduction got stuck at
+  match 0 - (2 * mkRat 100 233 ^ 2).num with
+  | Int.ofNat m => isTrue ⋯
+  | Int.negSucc i => isFalse ⋯
+real 0.39
+user 0.18
+sys 0.19

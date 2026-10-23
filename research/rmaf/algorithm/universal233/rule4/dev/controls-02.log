@@ -1,0 +1,18 @@
+research/rmaf/algorithm/universal233/rule4/Rule4Controls.lean:48:78: error: Tactic `decide` failed to reduce
+  @decide (100 / 233 + 2 * (100 / 233) ^ 2 = 43300 / 54289)
+    (instDecidableEqRat (100 / 233 + 2 * (100 / 233) ^ 2) (43300 / 54289))
+to `true` or `false`.
+
+After unfolding the instances `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, and `instDecidableEqRat.decEq`, reduction got stuck at
+  match ((100 / 233).add (2 * (100 / 233) ^ 2)).num, (Rat.mul 43300 (Rat.inv 54289)).num with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | { decide := true, reflects_decide := h } => isTrue ⋯
+    | { decide := false, reflects_decide := h } => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | { decide := true, reflects_decide := h } => isTrue ⋯
+    | { decide := false, reflects_decide := h } => isFalse ⋯
+(43300 : Rat)/54289

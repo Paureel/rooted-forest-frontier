@@ -1,0 +1,100 @@
+{
+  "status": "PASS",
+  "postcontact": true,
+  "new_blind_credit": 0,
+  "controls": [
+    {
+      "control": "origin-full-CallerCleanA-v2.json",
+      "pass": true,
+      "rows": 3
+    },
+    {
+      "control": "origin-full-CallerCleanA+CallerCleanB-v2.json",
+      "pass": true,
+      "rows": 5
+    },
+    {
+      "control": "origin-full-CallerCleanB+CallerCleanA-v2.json",
+      "pass": true,
+      "rows": 5
+    },
+    {
+      "control": "origin-full-CallerGenerated-v2.json",
+      "pass": true,
+      "rows": 49
+    },
+    {
+      "control": "origin-full-CallerEmpty-v2.json",
+      "pass": true,
+      "rows": 0
+    },
+    {
+      "control": "missing",
+      "rejected": true,
+      "reason": "occurrence indices"
+    },
+    {
+      "control": "duplicate",
+      "rejected": true,
+      "reason": "duplicate occurrence"
+    },
+    {
+      "control": "header",
+      "rejected": true,
+      "reason": "producer coverage"
+    },
+    {
+      "control": "unresolved",
+      "rejected": true,
+      "reason": "unresolved origin"
+    },
+    {
+      "control": "body",
+      "rejected": true,
+      "reason": "nonproof body/rules incompatibility CallerDetector.seed"
+    },
+    {
+      "control": "type",
+      "rejected": true,
+      "reason": "kind/type incompatibility CallerDetector.seed"
+    },
+    {
+      "control": "origin-full-CallerUnused-v2.json",
+      "rejected": true,
+      "reason": "direct custom axiom CallerUnused:CallerUnused.unused"
+    },
+    {
+      "control": "origin-full-CallerPrivate-v2.json",
+      "rejected": true,
+      "reason": "direct custom axiom CallerPrivate:_private.CallerPrivate.0.CallerPrivate.hidden"
+    },
+    {
+      "control": "origin-full-CallerCleanA+CallerHostile-v2.json",
+      "rejected": true,
+      "reason": "direct custom axiom CallerHostile:CallerDetector.shared"
+    },
+    {
+      "control": "origin-full-CallerHostile+CallerCleanA-v2.json",
+      "rejected": true,
+      "reason": "direct custom axiom CallerHostile:CallerDetector.shared"
+    },
+    {
+      "control": "origin-CallerPrivateClean+CallerPrivateHostile-v2.json",
+      "rejected": true,
+      "reason": "direct custom axiom CallerPrivateHostile:_private.SameCallerPrivate.0.CallerPrivateTwin.shared"
+    },
+    {
+      "control": "origin-CallerPrivateHostile+CallerPrivateClean-v2.json",
+      "rejected": true,
+      "reason": "direct custom axiom CallerPrivateHostile:_private.SameCallerPrivate.0.CallerPrivateTwin.shared"
+    },
+    {
+      "control": "nonproof incompatible value",
+      "rejected": true,
+      "reason": "nonproof body/rules incompatibility CallerDetector.seed"
+    }
+  ],
+  "string_tests": 4,
+  "seconds": 0.07145795799999632,
+  "script_sha256": "57eacae0e5447353dfe53a0477c6a374940787bbb1ec0a7f8fd8d31b76e26e9d"
+}

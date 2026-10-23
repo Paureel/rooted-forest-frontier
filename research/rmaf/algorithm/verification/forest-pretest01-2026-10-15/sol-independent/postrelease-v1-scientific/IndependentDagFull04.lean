@@ -1,0 +1,10 @@
+import Coverage
+import Entrypoint
+import OutputBudget
+import ColorBudget
+import ColorSteps
+import RawMass
+import RationalMass
+import WholeColors
+import PostreleaseProducerAudit
+audit_selected "Coverage,Entrypoint,OutputBudget,ColorBudget,ColorSteps,RawMass,RationalMass,WholeColors"

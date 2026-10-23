@@ -1,0 +1,12 @@
+import OriginAudit
+import ToyRestriction
+namespace ToyRoute
+structure Packet where
+  value : Nat
+private def hiddenId (r : ToyRestriction.Restriction) : ToyRestriction.Restriction := r
+def identity (r : ToyRestriction.Restriction) : ToyRestriction.Restriction := r
+def projected (r : ToyRestriction.Restriction) : Nat := r.value
+theorem harmless : True := True.intro
+end ToyRoute
+
+run_cmd ReleasedAudit.emit ["ToySource"]

@@ -1,0 +1,5 @@
+import NumericInterface
+#check OrdinaryDispatch.GlobalNumeric.fast_original_caps
+#print axioms OrdinaryDispatch.GlobalNumeric.fast_original_caps
+#check OrdinaryDispatch.GlobalNumeric.reachable_fast_payload
+#print axioms OrdinaryDispatch.GlobalNumeric.reachable_fast_payload

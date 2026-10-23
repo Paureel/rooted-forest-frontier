@@ -1,0 +1,115 @@
+research/rmaf/bridge_review/leastness/lean/ExtractorLeastness.lean:51:54: error: Application type mismatch: The argument
+  hr
+has type
+  rootedSpan selected r ≠ []
+of sort `Prop` but is expected to have type
+  List ?m.138
+of sort `Type ?u.48` in the application
+  List.exists_mem_of_ne_nil hr
+research/rmaf/bridge_review/leastness/lean/ExtractorLeastness.lean:54:54: error: Application type mismatch: The argument
+  hl
+has type
+  ¬rootedSpan selected l = []
+of sort `Prop` but is expected to have type
+  List ?m.142
+of sort `Type ?u.49` in the application
+  List.exists_mem_of_ne_nil hl
+research/rmaf/bridge_review/leastness/lean/ExtractorLeastness.lean:162:34: error(lean.invalidField): Invalid field notation: Type of
+  a
+is not known; cannot resolve field `IsPrefix`
+
+Hint: Consider replacing the field projection with a call to one of the following:
+  • `List.IsPrefix`
+  • `Std.Sat.AIG.IsPrefix`
+research/rmaf/bridge_review/leastness/lean/ExtractorLeastness.lean:162:50: error(lean.invalidField): Invalid field notation: Type of
+  a
+is not known; cannot resolve field `IsPrefix`
+
+Hint: Consider replacing the field projection with a call to one of the following:
+  • `List.IsPrefix`
+  • `Std.Sat.AIG.IsPrefix`
+research/rmaf/bridge_review/leastness/lean/ExtractorLeastness.lean:166:17: error: Function expected at
+  List.nil_prefix
+but this term has type
+  [] <+: ?m.50
+
+Note: Expected a function because this term is being applied to the argument
+  _
+research/rmaf/bridge_review/leastness/lean/ExtractorLeastness.lean:177:42: error(lean.invalidField): Invalid field notation: Type of
+  a
+is not known; cannot resolve field `IsPrefix`
+
+Hint: Consider replacing the field projection with a call to one of the following:
+  • `List.IsPrefix`
+  • `Std.Sat.AIG.IsPrefix`
+research/rmaf/bridge_review/leastness/lean/ExtractorLeastness.lean:178:44: error(lean.invalidField): Invalid field notation: Type of
+  a
+is not known; cannot resolve field `IsPrefix`
+
+Hint: Consider replacing the field projection with a call to one of the following:
+  • `List.IsPrefix`
+  • `Std.Sat.AIG.IsPrefix`
+research/rmaf/bridge_review/leastness/lean/ExtractorLeastness.lean:187:13: error(nested.lean.propRecLargeElim): Tactic `cases` failed with a nested error:
+Tactic `induction` failed: recursor `Exists.casesOn` can only eliminate into `Prop`
+
+case pos
+selected : List Nat
+l r : Tree
+ihl :
+  ?m.16 selected l →
+    ((p : Vertex) → p ∈ terminals selected l → sorry) → (v : Vertex) → v ∈ minimalVertices selected l → sorry
+ihr :
+  ?m.16 selected r →
+    ((p : Vertex) → p ∈ terminals selected r → sorry) → (v : Vertex) → v ∈ minimalVertices selected r → sorry
+a : ?m.16 selected (l.node r)
+ha : (p : Vertex) → p ∈ terminals selected (l.node r) → sorry
+v : Vertex
+hl : (rootedSpan selected l).isEmpty = true
+hv : v ∈ prependSide true (minimalVertices selected r)
+x✝ : ∃ a, a ∈ minimalVertices selected r ∧ true :: a = v
+⊢ sorry
+research/rmaf/bridge_review/leastness/lean/ExtractorLeastness.lean:194:15: error(nested.lean.propRecLargeElim): Tactic `cases` failed with a nested error:
+Tactic `induction` failed: recursor `Exists.casesOn` can only eliminate into `Prop`
+
+case pos
+selected : List Nat
+l r : Tree
+ihl :
+  ?m.16 selected l →
+    ((p : Vertex) → p ∈ terminals selected l → sorry) → (v : Vertex) → v ∈ minimalVertices selected l → sorry
+ihr :
+  ?m.16 selected r →
+    ((p : Vertex) → p ∈ terminals selected r → sorry) → (v : Vertex) → v ∈ minimalVertices selected r → sorry
+a : ?m.16 selected (l.node r)
+ha : (p : Vertex) → p ∈ terminals selected (l.node r) → sorry
+v : Vertex
+hl : ¬(rootedSpan selected l).isEmpty = true
+hr : (rootedSpan selected r).isEmpty = true
+hv :
+  v ∈
+    if false = true then prependSide true (minimalVertices selected r)
+    else prependSide false (minimalVertices selected l)
+x✝ : ∃ a, a ∈ minimalVertices selected l ∧ false :: a = v
+⊢ sorry
+research/rmaf/bridge_review/leastness/lean/ExtractorLeastness.lean:201:52: error: Application type mismatch: The argument
+  hln
+has type
+  rootedSpan selected l ≠ []
+of sort `Prop` but is expected to have type
+  List ?m.129
+of sort `Type ?u.42` in the application
+  List.exists_mem_of_ne_nil hln
+research/rmaf/bridge_review/leastness/lean/ExtractorLeastness.lean:218:38: error(lean.unknownIdentifier): Unknown identifier `minimal_below_common_ancestor`
+'LeastEmbedding.span_left_in_parent' depends on axioms: [propext, Quot.sound]
+'LeastEmbedding.span_right_in_parent' depends on axioms: [propext, Quot.sound]
+'LeastEmbedding.span_terminal_descendant' depends on axioms: [propext, sorryAx, Quot.sound]
+'LeastEmbedding.terminals_in_span' depends on axioms: [propext, Quot.sound]
+'LeastEmbedding.span_in_vertices' depends on axioms: [propext, Quot.sound]
+'LeastEmbedding.minimal_in_span' depends on axioms: [propext, Quot.sound]
+'LeastEmbedding.minimal_terminal_descendant' depends on axioms: [propext, sorryAx, Quot.sound]
+'LeastEmbedding.minimal_in_vertices' depends on axioms: [propext, Quot.sound]
+'LeastEmbedding.terminals_in_minimal' depends on axioms: [propext, Quot.sound]
+'LeastEmbedding.common_prefix_across_children' depends on axioms: [propext, Quot.sound]
+'LeastEmbedding.common_prefix_lift' depends on axioms: [propext, sorryAx, Quot.sound]
+research/rmaf/bridge_review/leastness/lean/ExtractorLeastness.lean:233:14: error(lean.unknownIdentifier): Unknown constant `minimal_below_common_ancestor`
+'LeastEmbedding.minimal_least' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

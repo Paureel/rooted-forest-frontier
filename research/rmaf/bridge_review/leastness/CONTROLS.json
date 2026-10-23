@@ -1,0 +1,284 @@
+{
+  "frozen_before_new_proof_construction": true,
+  "prior_source_contact_disclosed": "author completed earlier connectivity interface; no new leastness proof or candidate read before these controls",
+  "address_convention": "false=left, true=right",
+  "tree": [
+    [
+      0,
+      1
+    ],
+    [
+      2,
+      3
+    ]
+  ],
+  "cases": [
+    {
+      "name": "crossing",
+      "selection": [
+        0,
+        2
+      ],
+      "terminals": [
+        [
+          false,
+          false
+        ],
+        [
+          true,
+          false
+        ]
+      ],
+      "support": [
+        [],
+        [
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          true
+        ],
+        [
+          true,
+          false
+        ]
+      ]
+    },
+    {
+      "name": "singleton",
+      "selection": [
+        1
+      ],
+      "terminals": [
+        [
+          false,
+          true
+        ]
+      ],
+      "support": [
+        [
+          false,
+          true
+        ]
+      ]
+    },
+    {
+      "name": "siblings",
+      "selection": [
+        0,
+        1
+      ],
+      "terminals": [
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          true
+        ]
+      ],
+      "support": [
+        [
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          true
+        ]
+      ]
+    },
+    {
+      "name": "empty",
+      "selection": [],
+      "terminals": [],
+      "support": []
+    },
+    {
+      "name": "absent",
+      "selection": [
+        9
+      ],
+      "terminals": [],
+      "support": []
+    },
+    {
+      "name": "root_leaf",
+      "tree": 7,
+      "selection": [
+        7
+      ],
+      "terminals": [
+        []
+      ],
+      "support": [
+        []
+      ]
+    },
+    {
+      "name": "duplicate_labels",
+      "tree": [
+        [
+          7,
+          1
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "selection": [
+        7
+      ],
+      "terminals": [
+        [
+          false,
+          false
+        ],
+        [
+          true,
+          true
+        ]
+      ],
+      "support": [
+        [],
+        [
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          true
+        ],
+        [
+          true,
+          true
+        ]
+      ]
+    },
+    {
+      "name": "duplicate_selection",
+      "selection": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "terminals": [
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          true
+        ]
+      ],
+      "support": [
+        [
+          false
+        ],
+        [
+          false,
+          false
+        ],
+        [
+          false,
+          true
+        ]
+      ]
+    },
+    {
+      "name": "deep_suppression",
+      "tree": [
+        8,
+        [
+          8,
+          [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        ]
+      ],
+      "selection": [
+        0,
+        1
+      ],
+      "terminals": [
+        [
+          true,
+          true,
+          false,
+          false
+        ],
+        [
+          true,
+          true,
+          false,
+          true
+        ]
+      ],
+      "support": [
+        [
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          false,
+          false
+        ],
+        [
+          true,
+          true,
+          false,
+          true
+        ]
+      ]
+    }
+  ],
+  "hostile_controls": [
+    {
+      "name": "deleted_path",
+      "base": "crossing",
+      "alteration": "remove [false]",
+      "failure": "connectivity and exact support"
+    },
+    {
+      "name": "added_input_root",
+      "base": "siblings",
+      "alteration": "add []",
+      "failure": "leastness despite connectivity"
+    },
+    {
+      "name": "invalid_ambient",
+      "base": "crossing",
+      "alteration": "add [false,false,false]",
+      "failure": "ambient inclusion"
+    },
+    {
+      "name": "missing_terminal",
+      "base": "siblings",
+      "alteration": "remove [false,true]",
+      "failure": "selected-terminal inclusion"
+    }
+  ],
+  "gate": "All positive values exact; each named corruption rejected for specified mathematical reason. True Lean twins compile; false assertions must fail for actual falsity and malformed proof errors must not count."
+}

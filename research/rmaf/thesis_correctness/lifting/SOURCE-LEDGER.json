@@ -1,0 +1,237 @@
+{
+  "source_sha256": "60627e60cb3e6f5c1470bea16f9e1a3241dc52dbd432dffe7c76ffc9889f8949",
+  "version": "retained Whidden July 2013 thesis",
+  "records": [
+    {
+      "id": "rho-and-suppression",
+      "status": "read-primary-local-text",
+      "source": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/sources/baseline/whidden-thesis-2013.txt",
+      "printed_page": 12,
+      "PDF_page": 25,
+      "text_lines_1based": [
+        820,
+        831
+      ],
+      "verbatim_extracted_lines": [
+        "A (rooted binary phylogenetic) X-tree is a rooted tree T whose nodes each have",
+        "zero or two children. The leaves are bijectively labelled wi th the members of a label",
+        "set X. As in [20, 22, 23, 83], we augment the tree with a labelled root node whose",
+        "label is distinct from the labels of all leaves and whose only child is the original root",
+        "of T ; see Figure 2.1(a). In the remainder of this thesis, we consid er \u03c1 to be part of",
+        "X. For a subset V of X, T pV q is the smallest subtree of T that connects all nodes",
+        "in V ; see Figures 2.1(b). The V-tree induced by T is the smallest tree T |V that can be",
+        "obtained from T pV q by suppressing unlabelled nodes with fewer than two childre n;",
+        "see Figure 2.1(c). Suppressing a node v deletes v and its incident edges; if v is of",
+        "degree 2 with parent u and child w, u and w are reconnected using a new edge pu, w q.",
+        "Each non-root internal node v of an X-tree T has an associated cluster CT pvq,",
+        "de\ufb01ned to be the set of leaf descendants of v. The set of clusters of T is denoted CT ."
+      ],
+      "paraphrase": "Unary labelled rho is part of X; suppression deletes unlabelled vertices with fewer than two children and joins parent/child when present.",
+      "scope": "Definitions/source rule only; no general lifting theorem inferred."
+    },
+    {
+      "id": "yield-and-cut-objective",
+      "status": "read-primary-local-text",
+      "source": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/sources/baseline/whidden-thesis-2013.txt",
+      "printed_page": 15,
+      "PDF_page": 28,
+      "text_lines_1based": [
+        932,
+        948
+      ],
+      "verbatim_extracted_lines": [
+        "components are rooted phylogenetic trees T1, T 2, . . . , T k with label sets X1, X 2, . . . , X k,",
+        "we say F yields the forest with components T1|X1, T 2|X2, . . . , T k|Xk; if Xi \u201c H , then",
+        "TipXiq \u201c H and, hence, Ti|Xi \u201c H . In other words, the forest yielded by F is the",
+        "smallest forest that can be obtained from F by suppressing unlabelled nodes with less",
+        "than two children. For a subset E of edges of F , we use F \u00b4 E to denote the forest",
+        "obtained by deleting the edges in E from F , and F \u02dc E to denote the forest yielded",
+        "by F \u00b4 E. We say F \u02dc E is a forest of F .",
+        "Given X-trees T1 and T2 and forests F1 of T1 and F2 of T2, a forest F is an",
+        "agreement forest (AF) of F1 and F2 if it is a forest of both F1 and F2. F is a",
+        "maximum agreement forest (MAF) of F1 and F2 if there is no AF of F1 and F2 with",
+        "fewer components. We denote the number of components in an MAF of F1 and F2 by",
+        "m pF1, F 2q. For a forest F of F1 or F2, we use e pF1, F 2, F q to denote the size of the",
+        "smallest edge set E such that F \u02dc E is an AF of F1 and F2. Bordewich and Semple [23]",
+        "showed that, for two X-trees T1 and T2, dSPR pT1, T 2q \u201c e pT1, T 2, T 2q \u201c m pT1, T 2q \u00b4 1.",
+        "An MAF of the trees in Figure 2.2(a) is shown in Figure 2.2(b).",
+        "The hybridization number of two X-trees T1 and T2 corresponds to an MAF of",
+        "T1 and T2 with an additional constraint. For two forests F1 and F2 of T1 and T2"
+      ],
+      "paraphrase": "Yield discards empty label components; e counts a smallest current-edge cutset.",
+      "scope": "Definitions/source rule only; no general lifting theorem inferred."
+    },
+    {
+      "id": "common-subtree-and-shifting",
+      "status": "read-primary-local-text",
+      "source": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/sources/baseline/whidden-thesis-2013.txt",
+      "printed_page": 16,
+      "PDF_page": 29,
+      "text_lines_1based": [
+        983,
+        1006
+      ],
+      "verbatim_extracted_lines": [
+        "For two nodes a and b of a forest F , we write a \u201e F b if there exists a path between",
+        "a and b in F . An internal node of a path P in F is a node of P that is not an endpoint",
+        "of P ; a pendant node of P is a node not in P and whose parent is an internal node",
+        "of P . For a node x of a rooted forest F , F x denotes the subtree of F induced by all",
+        "descendants of x, including x. For two rooted forests F1 and F2 and a node a P F1, we",
+        "say that a exists in F2 if there is a node a1 P F2 such that F a",
+        "1 \u201c F a1",
+        "2 . For simplicity,",
+        "we refer to both a and a1 as a. For forests F1 and F2 and nodes a, c P F1 with a",
+        "common parent, we say pa, c q is a sibling pair of F1 if a and c exist in F2. Figure 2.3",
+        "shows such a sibling pair.",
+        "The correctness proofs of our algorithms make use of the foll owing two lemmas.",
+        "Lemma 2.1 was shown by Bordewich et al. [22] and is illustrate d in Figure 2.4. Sup-",
+        "pose we cut a set of edges E from a forest F to obtain F \u02dc E, and there is an edge e",
+        "of F such that F \u00b4 p E Y teuq has a component without labelled nodes. This lemma",
+        "shows that the forest F \u02dc p E z t f u Y teuq obtained by replacing any edge f P E on",
+        "the boundary of this \u201cempty\u201d component with e is the same as F \u02dc E.",
+        "Lemma 2.1 (Shifting Lemma) . Let F be a forest of an X-tree, e and f edges of F ,",
+        "and E a subset of edges of F such that f P E and e R E. Let vf be the end vertex of",
+        "f closer to e, and ve an end vertex of e. If vf \u201e F \u00b4E ve and x \uf6be F \u00b4pEYteuq vf , for all",
+        "x P X, then F \u02dc E \u201c F \u02dc p E z t f u Y teuq.",
+        "",
+        "=== PDF PAGE 30 ===",
+        "17"
+      ],
+      "paraphrase": "Sibling endpoints represent identical full descendant subtrees; source shifting lemma concerns a label-empty fragment.",
+      "scope": "Definitions/source rule only; no general lifting theorem inferred."
+    },
+    {
+      "id": "active-containment",
+      "status": "read-primary-local-text",
+      "source": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/sources/baseline/whidden-thesis-2013.txt",
+      "printed_page": 17,
+      "PDF_page": 30,
+      "text_lines_1based": [
+        1018,
+        1030
+      ],
+      "verbatim_extracted_lines": [
+        "contains a labelled leaf y: vf \u201e F \u00b4pEYteuq y.",
+        "Let F1 and F2 be forests of X-trees T1 and T2, respectively. Any agreement forest",
+        "of F1 and F2 is an agreement forest of T1 and T2. Conversely, an agreement forest of",
+        "T1 and T2 is an agreement forest of F1 and F2 if it is a forest of F2 and there are no",
+        "two leaves a and b such that a \u201e F2 b but a \uf6be F1 b. This is formalized in the following",
+        "lemma. Our algorithms ensure that any intermediate forests F1 and F2 they produce",
+        "have this latter property. Thus, we can reason about agreeme nt forests of F1 and F2",
+        "and of T1 and T2 interchangeably.",
+        "Lemma 2.2. Let F1 and F2 be forests of X-trees T1 and T2, respectively. Let F1 be",
+        "the union of trees 9T1, 9T2, . . . , 9Tk and F2 be the union of forests 9F1, 9F2, . . . , 9Fk such that",
+        "9Ti and 9Fi have the same label set, for all 1 \u010f i \u010f k. A forest of F2 is an AF of T1",
+        "and T2 if and only if it is an AF of F1 and F2.",
+        "A triple ab|c of a rooted forest F is de\ufb01ned by a set ta, b, c u of three leaves in the"
+      ],
+      "paraphrase": "AF equivalence between current and original forests uses paired components with equal label sets.",
+      "scope": "Definitions/source rule only; no general lifting theorem inferred."
+    },
+    {
+      "id": "protection-inheritance",
+      "status": "read-primary-local-text",
+      "source": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/sources/baseline/whidden-thesis-2013.txt",
+      "printed_page": 107,
+      "PDF_page": 120,
+      "text_lines_1based": [
+        5855,
+        5871
+      ],
+      "verbatim_extracted_lines": [
+        "=== PDF PAGE 120 ===",
+        "107",
+        "which of the three cases AC, B or ABC applies to it. However, if th e applicable case",
+        "speci\ufb01es that a recursive call m pF 1",
+        "1, F 2 \u02dc Ei, k \u00b4 | Ei|q should be made, we make this",
+        "recursive call only if Ei does not contain any protected edge, nor an edge incident",
+        "to a root of F2 whose sibling edge is protected. When we do make a recursive ca ll",
+        "m pF 1",
+        "1, F 2 \u02dc Ei, k \u00b4 | Ei|q, cutting each edge xpx in Ei turns px into a degree-2 node",
+        "that is suppressed in F2 \u02dc Ei. This e\ufb00ectively replaces the remaining two edges e1",
+        "and e2 incident to px with a single edge e in F2 \u02dc Ei. If at least one of e1 and e2 is",
+        "protected in F2, then e inherits this protection in F2 \u02dc Ei.",
+        "While it should be clear now how the edge protection a\ufb00ects the set of recursive",
+        "calls an invocation can make, we have not discussed how edges become protected",
+        "in the \ufb01rst place. Only Case ABC introduces protected edges. We also split it",
+        "into two sub-cases, depending on whether the path from a to c in F2 has q \u201c 2 or",
+        "q \u011b 3 pendant subtree. This gives us the following four cases of t he algorithm (see"
+      ],
+      "paraphrase": "Suppression combines two surviving incidences and the new edge inherits protection if either original edge was protected.",
+      "scope": "Definitions/source rule only; no general lifting theorem inferred."
+    },
+    {
+      "id": "promising-definition",
+      "status": "read-primary-local-text-and-PDF",
+      "printed_page": 114,
+      "PDF_page": 127,
+      "text_lines_1based": [
+        6167,
+        6172
+      ],
+      "verbatim_extracted_lines": [
+        "Next assume e pT1, T 2, T 2q \u010f k0. We call an invocation m pF1, F 2, k q promis-",
+        "ing if |F2| ` e pT1, T 2, F 2q \u201c 1 ` e pT1, T 2, T 2q and k0 \u00b4 k \u201c | F2| \u00b4 1. By Lem-",
+        "mas 6.6\u20136.11, every promising invocation m pF1, F 2, k q has a promising child invo-",
+        "cation m pF 1",
+        "1, F 1",
+        "2, k 1q. Since the root invocation e pT1, T 2, T 2q is itself promising, this"
+      ],
+      "paraphrase": "Promising uses component optimum and budget equations; arbitrary residual optimum alone is insufficient.",
+      "render": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/lifting/source-promising-127.png",
+      "scope": "Source rule/use site; its lifting obligations remain unproved here."
+    },
+    {
+      "id": "root-sibling-and-later-protection",
+      "status": "read-primary-local-text-and-PDF",
+      "printed_page": 115,
+      "PDF_page": 128,
+      "text_lines_1based": [
+        6193,
+        6224
+      ],
+      "verbatim_extracted_lines": [
+        "Assume the contrary. Then there exists an index 1 \u010f j1 \u0103 h such that our algo-",
+        "rithm makes invocations I1, I2, . . . , Ij1 but does not make invocations Ij1` 1, Ij1` 2, . . . ,",
+        "Ih. Then we have Ij1 \u201c m pF 2",
+        "1 , F 2",
+        "2 , k 2q and Ij1` 1 \u201c m pF 3",
+        "1 , F 2",
+        "2 \u02dc E2, k 2 \u00b4 | E2|q, for",
+        "some edge set E2 that includes a protected edge of F 2",
+        "2 or an edge incident to a",
+        "root of F 2",
+        "2 whose sibling edge is protected. In the former case, let e be a pro-",
+        "tected edge in E2; in the latter case, let e be the protected sibling edge of an",
+        "edge in E2 incident to a root of F 2",
+        "2 . Since both invocations Ij1 and Ij1` 1 are",
+        "promising, we have e pT1, T 2, F 2",
+        "2 \u02dc E2q \u201c e pT1, T 2, F 2",
+        "2 q \u00b4 | E2|, which implies that",
+        "e pT1, T 2, F 2",
+        "2 \u02dc t euq \u201c e pT1, T 2, F 2",
+        "2 q \u00b4 1 because either e P E2 or e\u2019s sibling is in E2",
+        "and both are incident to a root in F 2",
+        "2 , in which case cutting e or its sibling produces",
+        "the same forest. Since T2 does not contain any protected edges, there exists an index",
+        "1 \u010f j \u0103 j1 such that the invocations Ij \u201c m pF1, F 2, k q and Ij` 1 \u201c m pF 1",
+        "1, F 1",
+        "2, k 1q have",
+        "the property that edge e is protected in F 1",
+        "2 but not in F2. Therefore, invocation Ij ap-",
+        "plies Case A2BC or A3BC and Ij` 1 \u201c m pF 1",
+        "1, F 2 \u02db t ea, e b1, e b2u \u02dc t ecu, k \u00b4 1q or Ij` 1 \u201c",
+        "m pF 1",
+        "1, F 2 \u02db t eau \u02dc t ecu, k \u00b4 1q. In particular, e P tea, e b1, e b2u. If invocation Ij applies"
+      ],
+      "paraphrase": "The source replaces a cut incident to a component root by its protected sibling and identifies the earlier protection event; the propagation inference continues on p116.",
+      "render": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/lifting/source-promising-128.png",
+      "scope": "Source rule/use site; its lifting obligations remain unproved here."
+    }
+  ],
+  "visual_inspection": "Printed pp114-115 newly rendered and visually inspected; original definition extracts read as text.",
+  "bibliography": "No new bibliography entry or external bibliographic audit in this round.",
+  "editorial_corrections": [
+    "Tightened two source ranges to their printed-page boundaries after checking numbered text lines; no target or control changed."
+  ]
+}

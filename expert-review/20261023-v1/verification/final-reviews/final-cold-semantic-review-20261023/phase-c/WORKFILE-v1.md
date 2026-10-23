@@ -1,0 +1,11 @@
+# Phase C workfile
+
+Opened 2026-10-23 after the parent released the screened proposed-proof packet. Phase A and Phase B remain sealed and unchanged. This phase compares unproved proposed arguments with the independently recorded Phase B obligations. No author claim or embedded checking assertion is accepted as independent evidence. No candidate ruling has been made.
+
+Release: FINAL-COLD-SEMANTIC-PROPOSED-PROOF-RELEASE-v1.json, SHA256 9eebbe75f3606bb34e702754ac36250ca2ec1f83b61dc3f8e1db16a5c3caa6ab. Scope is exactly the 28 proposed-argument copies and two selected-paid-prepare copies, their packet manifests, and earlier licenses. Original locators are binding-only. No peer contact, reports, status, outcomes, private provenance, adjacent project material, numeric listing, monitor, dashboard, or network access.
+
+Required audit: current theorem v2/read order, all three dynamic arguments and graph determinism; every consuming interface and actual branch, including malformed children, duplicates, failure versus refused entry, retained producer order, optimizer and one recovery. Shared functional, Rule5/G0 and SOURCE theorem TYPES remain conditional shared support; no reconstructed proof terms or independent kernel claim. New computations, if needed, receive prospective own controls, existing BootLoops Python and unchanged default30/shared-lock wrapper. No unchanged passed reruns.
+
+Status: release manifest read and hash matched; own Phase C directory initialized. File verification and proposed-argument reading pending. Final ruling will be additive and will stop this phase.
+
+Final status: all30 licensed file pins and2 manifests matched; all28 proposed arguments and both selected-paid-prepare copies read. Added own derivation/dependency and consuming-interface ruling ledgers. New calibration read before candidate mode:6 positive/null controls,7 exact negative diagnostics. Fresh composite Run and five-leaf decoder instances,432 exact algebra instances,63 environment cases and65 corrected-materialization cases matched. No failure/repair/cap change/unchanged passed rerun. Final ruling is qualified complete mathematical confirmation at the explicitly stated shared-TYPE support boundary. Phase A/B unchanged; additive record is to be sealed and work stops at final ruling.

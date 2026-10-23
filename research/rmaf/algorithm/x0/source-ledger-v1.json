@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "read_at_utc": "2026-10-14T21:34:47.996199+00:00",
+  "source_sha256": "8a80c5f7d82bd0e25c404bcf13e8bb306b218de349f360186557f657b998d21f",
+  "identity": {
+    "authors": [
+      "David Mestel",
+      "Steven Chaplick",
+      "Steven Kelk",
+      "Ruben Meuwese"
+    ],
+    "title": "Split-or-decompose: Improved FPT branching algorithms for maximum agreement forests",
+    "arxiv": "2409.18634v2",
+    "revision": "2026-03-21",
+    "canonical_identity_checked": "https://arxiv.org/abs/2409.18634",
+    "canonical_support": "arXiv abstract page lines8\u201311,21\u201328 opened in this session"
+  },
+  "read": [
+    {
+      "claim": "ordinary root convention",
+      "source": "research/rmaf/sources/baseline/split-or-decompose-v2.txt",
+      "locator": "\u00a72, PDF page4",
+      "lines": [
+        160,
+        196
+      ],
+      "status": "read",
+      "verbatim_from_bytes": "ignoring rooting, but not including rooting.\nRooted trees.Arootedbinary phylogenetic tree on X is a simple directed tree whose\nleaves are bijectively labelled byX and all internal nodes have indegree-1 and outdegree-2,\nexcept (when|X|\u22652) a single node with indegree-0 and outdegree-2 (theroot). As in the\nunrooted case, we often simply writephylogenetic treeortreeto denote a rooted binary\nphylogenetic tree. The definitions for rooted trees go through as for unrooted trees, with\nthe following exceptions. For|X|\u22643, T =T\u2032does not always hold (but it does if|X|\u22642).\nForX\u2032\u2286X, we writeT|X\u2032to denote the rooted tree obtained fromT [X\u2032]by suppressing\nall nodes that have indegree-1 and outdegree-1. Also, unlike unrooted trees the notion of a\ncommon pendant subtree requires no nuancing: the location of the root in the subtree is\nalways taken into account. Note that a rooted tree (when|X|\u22652) might only have one\ncherry, and such a tree is a caterpillar. However, an unrooted treeT (when|X|\u22654) always\nhas at least two cherries{a,b},{c,d}where a,b,c,d are distinct andT [{a,b}]is disjoint\nfrom T [{c,d}]. The only unrooted trees with at most two cherries are caterpillars. Finally,\nwhen referring to a path in a rooted tree, we mean a path in the underlying unrooted tree.\nAgreement forests.The following definitions hold for both rooted and unrooted trees. Let\nT and T\u2032be two phylogenetic trees onX. Let F ={B1,B 2,...,Bk}be a partition ofX,\nwhere each blockBi withi\u2208{1, 2,...,k}is referred to as acomponentofF. We say thatF\nis anagreement forestforTandT \u2032if the following conditions hold.\n(1) For eachi\u2208{1,2,...,k}, we haveT|Bi =T \u2032|Bi.\n(2) For each pairi,j\u2208{1, 2,...,k}with i\u0338= j, we have thatT [Bi]and T [Bj]are vertex-\ndisjoint inT, andT \u2032[Bi]andT \u2032[Bj]are vertex-disjoint inT \u2032.\nLet F ={B1,B 2,...,Bk}be an agreement forest forT and T\u2032. Thesizeof F is simply its\nnumber of components; i.e.k. Moreover, an agreement forest with the minimum number of\ncomponents (over all agreement forests forT and T\u2032) is called amaximum agreement forest\n(MAF)for T andT\u2032. The number of components of a maximum agreement forest forT andT\u2032\nis denoted byduMAF(T,T\u2032), whenT andT\u2032are unrooted trees, anddrMAF(T,T\u2032)when T and\nT\u2032are rooted. Although they share much common structure, there are subtle combinatorial\ndifferences between the rMAF and uMAF models, which explains the differences in running\ntimes obtained thus far for the two models.2\nIt is well-known that, when computingduMAF(T,T\u2032), pendant subtrees that are common\nincluding rooting can be reduced to a single taxon without changingduMAF(T,T\u2032)[ 1]. When\ncomputing drMAF(T,T\u2032)common pendant subtrees can also be reduced to a single taxon\nwithout changingdrMAF(T,T\u2032)[ 3]. This is why, for both rMAF and uMAF, ifT andT\u2032both\ncontain a cherry{a,b}, this common cherry can always be reduced to a single taxon.\n2 Also, with rMAF, an extra taxon\u03c1pendant to the root in both trees is commonly added. This is done\nto ensure that rMAF correctly models therooted subtree prune and regraftdistance. We do not adopt"
+    },
+    {
+      "claim": "paid cuts and tidying",
+      "source": "research/rmaf/sources/baseline/split-or-decompose-v2.txt",
+      "locator": "\u00a73.1, PDF page5, used for rooted case by \u00a73.2 footnote3",
+      "lines": [
+        204,
+        223
+      ],
+      "status": "read",
+      "verbatim_from_bytes": "the algorithm from [15] with a running time ofO\u2217(2.42k). These two classical branching\nschemes form the starting point for our new algorithms.\n3.1 Chen et al.\u2019s algorithm for uMAF [6]\nWe start with two unrooted treesT and T\u2032on X. The high-level idea is to progressively cut\nedges in one of the trees, sayT\u2032, to obtain a forestF\u2032(initially F\u2032=T\u2032) with an increasing\nnumber of components, until it becomes anagreementforest forT and T\u2032. Each edge cut\nincreases the size of the forest by 1. Hence, to determine whether there exists an agreement\nforest with at mostk components, we can make at mostk\u22121edge cuts in T\u2032. At each step\nvarious \u201ctidying up\u201d operations are applied to exhaustion:\n1. If a singleton component is created inF\u2032(i.e. a component comprising a single taxona),\nthen we deleteafrom bothTandF \u2032;\n2.Degree-2 nodes are always suppressed;\n3. Common cherries are always reduced into a single taxon in both trees. For example by\ndiscarding an arbitrary taxon from the common cheery in bothTandF\u2032.\nThe way we will choose edges to cut, combined with the tidying up operations, ensures\nthat (unlikeT\u2032) T remains connected at every step. More formally: if, at a given step,T\u2032\nhas been cut into a forestF\u2032and X\u2032is the union of the taxa inF\u2032, thenT will have been\ntransformed intoT|X\u2032. To keep notation light we will henceforth refer simply toT and F\u2032,\nwith the understanding that we are actually referring to the tree-forest pair encountered\nat a specific iteration of the algorithm. The general decision problem is as follows. We are"
+    },
+    {
+      "claim": "Whidden path parameter",
+      "source": "research/rmaf/sources/baseline/split-or-decompose-v2.txt",
+      "locator": "\u00a73.2, PDF pages6\u20137",
+      "lines": [
+        322,
+        340
+      ],
+      "status": "read",
+      "verbatim_from_bytes": "T (k\u22121) + 2T (k\u22121), producing a bound of3k for that case, and thus at most3k overall.\n3.2 Whidden et al.\u2019s algorithm for rMAF [15]\nThis is very similar to the above3 and, indeed, predates it. The second branching rule is\nslightly different as a result of the trees being rooted.\n1.(DIFFERENT COMPONENTS) This is the same as in the previous section.\n2. (WHIDDEN) IfT has a cherry{a,b}such thata and b are in the same componentB\nof F\u2032, then letP be the unique path froma to b in B. Lete1,...,et be the edges whose\ntails, but not heads, lie onP. Note that t\u22651otherwise {a,b}is a common cherry.\nThere are three possibilities:a is cut off,b is cut off,allthe e1,...,et edges are cut off.\nSee Figure 3. This gives a recurrenceT (k)\u22642T (k\u22121) +T (k\u2212t). Ift\u22652, then this\n3 The tidying up steps are also analogous, with the exception that we do not suppress nodes with\nindegree-0 and outdegree-2, i.e. the roots of components.\n\n=== PDF PAGE 7 ===\nD. Mestel, S. Chaplick, S. Kelk, R. Meuwese 7\nrecursion is bounded by(1 +\n\u221a\n2)k\u22482.42k. The caset = 1remains a bottleneck however,\nyielding3 k. However, whent = 1we do not need to consider the case whena is cut off,"
+    },
+    {
+      "claim": "rule4 applicability",
+      "source": "research/rmaf/sources/baseline/split-or-decompose-v2.txt",
+      "locator": "\u00a76, PDF page17, Branching rule4",
+      "lines": [
+        923,
+        934
+      ],
+      "status": "read",
+      "verbatim_from_bytes": "\u25b6 Branching rule 4.Let T and T\u2032be two rooted trees onX without common cherries,\nand assume that Whidden(t = 1)does not apply. Let {a,b}be a cherry inT and let\n\u2205\u2282X1,X 2\u2282(X\\{a,b})be the two subsets of taxa that are pendant on the path froma to\nb in T\u2032, whereX1 is closer toa, thanX2 is toa. SupposeX1 ={c}and{a,c}is a cherry in\nT\u2032. (Note that ifX2 is a singleton, and forms a cherry withb, then we can swap the labels\nofaandbto arrive in the same situation). Then branch as follows:\n1.Cut offX 1 andX 2.\n2.Cut offa.\n\n=== PDF PAGE 18 ===\n18 Improved FPT branching algorithms for maximum agreement forests\na"
+    },
+    {
+      "claim": "rule5 applicability",
+      "source": "research/rmaf/sources/baseline/split-or-decompose-v2.txt",
+      "locator": "\u00a76, PDF page18, Lemma13",
+      "lines": [
+        956,
+        984
+      ],
+      "status": "read",
+      "verbatim_from_bytes": "from outside{a,b,c}\u222aX2: again, we are back in the first branch. The remaining case is that\nB includes c. Then (due to{a,c}being a cherry inT\u2032)the two arcs outgoing from the path\nfrom a to c in T cannot be inB i.e. they must be cut. Hence, the third branch applies.\u25c0\nConsider a potential invocation of Whidden(t = 2), where X1 and X2 are as defined\nin the statement of branching rule 4, and letS =X\\ ({a,b}\u222aX1\u222aX2). (So, the branch\nof Whidden(t = 2)that cuts off X1 and X2, splitsT\u2032into three components with taxa\nX1,X 2 and S\u222a{a,b}). Assuming branching rule 4 does not apply,X1 and X2 are not both\nsingletons. Also, if one of them is a singleton, it does not form a cherry witha or b. We are\nnow almost ready to invoke a specially-modified version of Whidden(t = 2), but we have to\nfirst deal with a very specific boundary situation when both the following conditions hold:\n1.T[X 1],T[X 2]andT[S\u222a{a,b}]are mutually disjoint inT.\n2.At least two ofX 1,X 2,S\u222a{a,b}are homeomorphic.\nThe only purpose of our next branching rule,Branching rule 5, is to catch this situation.\nFor convenience, we give the definition of this branching rule at the same time as the proof\nof its correctness; to guide the reader we show the actual branching strategy in red text.\n\u25b6 Lemma 13.Let T and T\u2032be two rooted trees onX without common cherries. Suppose\nWhidden( t = 1)does not apply, and neither does branching rule 4. Suppose Whidden (t = 2)\ndoes apply. That is:{a,b}is a cherry inT and\u2205\u2282X1,X 2\u2282(X\\{a,b})are the two subsets\nof taxa that are pendant on the path froma to b in T\u2032, whereX1 is closer toa than X2 is to\na. LetS =X\\ ({a,b}\u222aX1\u222aX2). Suppose thatT [Xi],T [Xj]and T [S\u222a{a,b}]are mutually\ndisjoint inT, and at least two ofXi,Xj,S\u222a{a,b}are homeomorphic. Then there is a safe\nbranching rule, denotedbranching rule 5, with recursion at mostT (k\u22121) + 3T (k\u22122),\nwhich yields a branching factor of at most 2.3028.\nProof. First, recall that due to the non-applicability of branching rule 4, at most one ofX1\nand X2 is a singleton, and if one of them is a singleton it does not form a cherry witha or b.\n\n=== PDF PAGE 19 ===\nD. Mestel, S. Chaplick, S. Kelk, R. Meuwese 19\nNow, if all three ofX1,X 2,S\u222a{a,b}are homeomorphic, theT (k\u22122)branch of Whidden"
+    },
+    {
+      "claim": "priority",
+      "source": "research/rmaf/sources/baseline/split-or-decompose-v2.txt",
+      "locator": "\u00a76, PDF page24, Figure16",
+      "lines": [
+        1318,
+        1333
+      ],
+      "status": "read",
+      "verbatim_from_bytes": "We can now describe the overall algorithm for rMAF; see Figure 16. Note that here the\nrecursion rule in step 4 is called witht= 1.\nFigure 16Algorithm rMAF.\n1.Apply tidying-up operations\n2.Apply the first among the following branching rules to be applicable:\na.Whidden(t= 1)(1)\nb.Whidden(t\u22653)(2.206)\nc.Branching rule 4 (2)\nd.Branching rule 5 (2.3028)\ne.Whidden(t= 2)(2.42), followed by branching rule 6 or 7 if applicable.\n3.Apply branching rule 1 (SPLIT) to exhaustion (2)\n4.Apply the recursion rule (i.e. decomposition) witht= 1\n\n=== PDF PAGE 25 ===\nD. Mestel, S. Chaplick, S. Kelk, R. Meuwese 25\nEvery branching rule except for Whidden(t = 2)has a branching factor below our target"
+    },
+    {
+      "claim": "two-cut child tidying",
+      "source": "research/rmaf/sources/baseline/split-or-decompose-v2.txt",
+      "locator": "\u00a76, PDF page25, Lemma16",
+      "lines": [
+        1335,
+        1356
+      ],
+      "status": "read",
+      "verbatim_from_bytes": "\u25b6 Lemma 16.Let T and T\u2032be two rooted trees onX with no common cherries. Assume\nthat none of Whidden(t = 1), Whidden(t\u22653), branching rule 4 or branching rule 5 apply.\nThen applying Whidden(t = 2), followed by branching rule 6 or 7 if applicable, followed\nby branching rule 1 to exhaustion, followed by the recursion rule witht = 1, has overall\nbranching factor at most2.3391.\nProof. The obstacle blocking a branching factor of at most 2.3391 is when theT (k\u22122)\nbranch of Whidden(t = 2)induces worst-case behaviour,2 T (k\u22121), in branching rule 1.\nWe show that this is avoided. More formally, we take as our starting point the situation\ncreated by theT (k\u22122)branch of Whidden(t = 2), i.e. T\u2032has been split intoX1,X 2 and\nS\u222a{a,b}, and show that from this point a recursion of at mostT (k\u22121) + 2T (k\u22122)is\nobtained. Plugging k\u22122in here for k, givesT (k\u22123) + 2T (k\u22124). Combined with the\noriginal2 T (k\u22121)term for cutting offa and b, we will obtain an overall running time of\n2T (k\u22121) +T (k\u22123) + 2T (k\u22124), which finally yields the desired branching factor of 2.3391.\nWe can assume that tidying-up operations have been applied, soa,b have been collapsed\ninto a single taxon, because they now form a common cherry, and any singleton components\nhave been deleted. We let{A,B,C}be the (at most) three components inT\u2032at this point;\nwe will not need to know their origins as{X1,X 2,S\u222a{a,b}}. We know that ifA,B,C are\nmutually disjoint inT, then at least two of them are non-homeomorphic, because otherwise\nbranching rule 5 would have applied. In this situation the recursion rule in step 4 (executed\nto depth 1) ensures a recursion of at most2T (k\u22122)(see Lemma 3), which is faster than the\nrequired T (k\u22121) + 2T (k\u22122)bound, so we are done. Hence, from this point on we know\nthatA,B,Care not mutually disjoint inT. We consider a number of other cases."
+    }
+  ],
+  "inferred": [
+    {
+      "claim": "No Figure16 steps2a-d are applicable on retained bounded states in either orientation",
+      "basis": "fresh applicability execution of source predicates; actual numerical row results in algorithm-x0-bounded-v1.json",
+      "status": "finite inference, implementation not formally verified"
+    },
+    {
+      "claim": "Rooted cluster signatures characterize induced labelled rooted topologies",
+      "basis": "standard hierarchical cluster encoding, fresh known-answer rooted topology controls",
+      "status": "mathematical representation assumption; no new universal Lean proof supplied"
+    }
+  ],
+  "background": []
+}

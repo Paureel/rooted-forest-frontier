@@ -1,0 +1,24 @@
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:16:1: error: Invalid alternative name `cons₂`: Expected `cons_cons`
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:14:13: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Membership (List Nat) Nat
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:15:3: error: `simp` made no progress
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:10:1: error: Alternative `cons_cons` has not been provided
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:57:62: error: unsolved goals
+A L : List Nat
+h : A.Sublist L
+hn : L.Nodup
+neA : A ≠ []
+neR : List.filter (fun x => !A.contains x) L ≠ []
+yes : List.filter A.contains L = A
+no : BinaryExchange.no L A.contains = List.filter (fun x => !A.contains x) L
+⊢ ∃ x, x ∈ L ∧ ¬x ∈ A
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:62:3: warning: This simp argument is unused:
+  (BinaryExchange.isEmpty_false _).2 neR
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [splitForest, BinaryExchange.splitAll, BinaryExchange.split, BinaryExchange.yes, yes, no,
+    (BinaryExchange.isEmpty_false A).2 neA]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

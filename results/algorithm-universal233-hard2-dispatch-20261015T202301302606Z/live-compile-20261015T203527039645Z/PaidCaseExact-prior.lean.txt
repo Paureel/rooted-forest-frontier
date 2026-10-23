@@ -1,0 +1,96 @@
+import Hard2Program
+namespace OrdinaryDispatch.Hard2Dispatcher
+open RMAF ForestState RestrictionBridge Universal233 Universal233.BothBad
+open Universal233.CherryBranching Universal233.Hard2Overlap Universal233.PaidAssembly
+
+theorem paidCase_sound (actual : Ordinary) (T S : Tree) (c : Candidate) (q : Nat) (out : Result)
+ (F : Forest) (answer : (paidCase actual T S c q out).answer=some F) :
+ agreement T S F=true ∧ F.length-1≤q := by
+ unfold paidCase at answer
+ split at answer
+ · try dsimp only at answer
+   split at answer
+   · try dsimp only at answer
+     split at answer
+     · exact GoodPairDP.runPair_sound actual T S _ _ _ q F answer
+     · split at answer
+       · exact Hard2PaidLocal.actual_paid_sound actual T S q c _ F answer
+       · exact badPair_sound actual T S _ _ _ _ q F answer
+   · exact Hard2PaidLocal.actual_paid_sound actual T S q c _ F answer
+ · simp at answer
+
+theorem hardPaid_cover (actual : Ordinary) {T S : Tree} {c : Candidate} {q : Nat} {out : Result}
+ (proper : DepthOne.proper T S=true) (hard : CherryBranching.select T S=some (.hard2,c))
+ (sel : runHard2 T S c=some out) (enabled : Hard2PaidLocal.actualPaidCase S T c out)
+ (below : BelowIH q actual) (F : Forest) (hf : agreement T S F=true)
+ (href : Refines F (pendantPartition S c.a c.b)) (budget : F.length-1≤q) :
+ ∃G,(Hard2PaidLocal.runHardPaid actual T S q c out).answer=some G ∧ G.length≤F.length := by
+ obtain ⟨G,hG,_,_,len⟩ := Hard2PaidLocal.actual_paid_conditional_cover actual proper hard sel enabled below hf budget (refines_blocks href)
+ exact ⟨G,hG,len⟩
+
+theorem refines_parent_permutation {F : Forest} (o : Order) {A B C : List Nat}
+ (href : Refines F [A,B,C]) : Refines F (parents o A B C) := by
+ intro K hK
+ obtain ⟨U,hU,sub⟩ := href K hK
+ exact ⟨U,(parents_perm o A B C).mem_iff.2 hU,sub⟩
+
+theorem paidCase_complete (actual : Ordinary) {T S : Tree} {c : Candidate} {q : Nat} {out : Result}
+ (proper : DepthOne.proper T S=true) (hard : CherryBranching.select T S=some (.hard2,c))
+ (selected : runHard2 T S c=some out) (notDisjoint : out≠.disjoint)
+ (below : BelowIH q actual) (F : Forest) (hf : agreement T S F=true)
+ (href : Refines F (pendantPartition S c.a c.b)) (budget : F.length-1≤q) :
+ ∃G,(paidCase actual T S c q out).answer=some G ∧ G.length≤F.length := by
+ obtain ⟨p,r,cuts,hcuts,graph,hp,es,partEq⟩ := actual_source_inputs proper hard
+ have basic := OrdinaryPriorityBridge.proper_parts proper
+ have ht := basic.1
+ have hs := basic.2.1
+ have same : ∀x,x∈leaves T ↔ x∈leaves S := fun _=>basic.2.2.mem_iff
+ have hl : ∀x,x∈leaves S→x∈leaves T := fun x hx=>(same x).2 hx
+ have raw : Hard2Overlap.select T (leftParent S p) (rightParent S r) (rootParent S p r)=some out := by
+  simpa only [runHard2,cuts] using selected
+ have href0 : Refines F [leftParent S p,rightParent S r,rootParent S p r] := by
+  rwa [partEq] at href
+ cases out with
+ | disjoint => exact False.elim (notDisjoint rfl)
+ | clique v =>
+  have en : Hard2PaidLocal.actualPaidCase S T c (.clique v) := by simp [Hard2PaidLocal.actualPaidCase,cuts,Hard2PaidLocal.PaidCase]
+  simpa [paidCase,cuts] using hardPaid_cover actual proper hard selected en below F hf href budget
+ | four o v w =>
+  have en : Hard2PaidLocal.actualPaidCase S T c (.four o v w) := by simp [Hard2PaidLocal.actualPaidCase,cuts,Hard2PaidLocal.PaidCase]
+  simpa [paidCase,cuts] using hardPaid_cover actual proper hard selected en below F hf href budget
+ | diagonal o v w =>
+  have en : Hard2PaidLocal.actualPaidCase S T c (.diagonal o v w) := by simp [Hard2PaidLocal.actualPaidCase,cuts,Hard2PaidLocal.PaidCase]
+  simpa [paidCase,cuts] using hardPaid_cover actual proper hard selected en below F hf href budget
+ | pair o choice =>
+  cases choice with
+  | vertex v =>
+   have en : Hard2PaidLocal.actualPaidCase S T c (.pair o (.vertex v)) := by simp [Hard2PaidLocal.actualPaidCase,cuts,Hard2PaidLocal.PaidCase]
+   simpa [paidCase,cuts] using hardPaid_cover actual proper hard selected en below F hf href budget
+  | edge edge =>
+   let A := first o (leftParent S p) (rightParent S r) (rootParent S p r)
+   let B := second o (leftParent S p) (rightParent S r) (rootParent S p r)
+   let C := third o (leftParent S p) (rightParent S r) (rootParent S p r)
+   obtain ⟨pp,pe,ne,pairProper,chosen,valid,other⟩ := selected_pair_guards ht hl hp es raw
+   have guards := select_sound ht hl hp raw
+   have ac : BinaryExchange.Disj T A C := FreshPairReview.actual_clear_disj T _ _ guards.1
+   have bc : BinaryExchange.Disj T B C := FreshPairReview.actual_clear_disj T _ _ guards.2.1
+   have refP : Refines F [A,B,C] := refines_parent_permutation o href0
+   by_cases both : restrictionAgrees S T A && restrictionAgrees S T B=true
+   · have good : restrictionAgrees S T A=true ∧ restrictionAgrees S T B=true := by simpa only [Bool.and_eq_true] using both
+     have over : ∃v,v∈minimalVertices A T ∧ v∈minimalVertices B T := ⟨edge.1,valid.2.1,valid.2.2.1⟩
+     obtain ⟨G,hG,min⟩ := GoodPairDP.runPair_complete actual T S A B C q below hs ht same pp pe ac bc
+      (PairAssembly.restriction_agrees_swap S T A good.1) (PairAssembly.restriction_agrees_swap S T B good.2) over F hf refP budget
+     exact ⟨G,by simpa [paidCase,cuts,A,B,C,good.1,good.2] using hG,min⟩
+   · have bothN : ¬(restrictionAgrees S T A=true ∧ restrictionAgrees S T B=true) := by simpa only [Bool.and_eq_true] using both
+     by_cases one : restrictionAgrees S T A || restrictionAgrees S T B=true
+     · have oneP : restrictionAgrees S T A=true ∨ restrictionAgrees S T B=true := by simpa only [Bool.or_eq_true] using one
+       have en : Hard2PaidLocal.actualPaidCase S T c (.pair o (.edge edge)) := by
+        simpa [Hard2PaidLocal.actualPaidCase,cuts,Hard2PaidLocal.PaidCase,A,B] using oneP
+       obtain ⟨G,hG,min⟩ := hardPaid_cover actual proper hard selected en below F hf href budget
+       exact ⟨G,by simpa [paidCase,cuts,A,B,C,bothN,oneP] using hG,min⟩
+     · have oneN : ¬(restrictionAgrees S T A=true ∨ restrictionAgrees S T B=true) := by simpa only [Bool.or_eq_true] using one
+       have badA : restrictionAgrees S T A=false := by cases h:restrictionAgrees S T A <;> simp_all
+       have badB : restrictionAgrees S T B=false := by cases h:restrictionAgrees S T B <;> simp_all
+       obtain ⟨G,hG,min⟩ := badPair_complete actual T S A B C edge q below hs ht same pp pe badA badB ac bc chosen F hf refP budget
+       exact ⟨G,by simpa [paidCase,cuts,A,B,C,badA,badB] using hG,min⟩
+end OrdinaryDispatch.Hard2Dispatcher

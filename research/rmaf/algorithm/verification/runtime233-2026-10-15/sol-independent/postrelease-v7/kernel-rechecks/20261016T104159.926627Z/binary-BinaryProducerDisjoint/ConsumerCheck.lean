@@ -1,0 +1,5 @@
+import BinaryProducerDisjoint
+#check GenericForest.BinaryProducer.disjointProducer_value
+#print axioms GenericForest.BinaryProducer.disjointProducer_value
+#check GenericForest.BinaryProducer.singletonProducer_value
+#print axioms GenericForest.BinaryProducer.singletonProducer_value

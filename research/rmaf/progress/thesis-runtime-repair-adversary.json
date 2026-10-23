@@ -1,0 +1,58 @@
+{
+  "id": "thesis-runtime-repair-adversary",
+  "title": "Runtime repair: independent adversary",
+  "status": "complete",
+  "summary": "No in-regime fire for two-active-leaf repair. Source-history proof must use prescribed cut shapes; tree formalization and global runtime theorem remain open.",
+  "updated_at": "2026-10-14T13:50:27.678364+00:00",
+  "metrics": {
+    "frozen_controls_passed": 5,
+    "mutation_catches": 2,
+    "sampled_local_trees": 20000,
+    "admissible_J_orientations": 2491,
+    "C_orientations": 3391,
+    "live_C": 267,
+    "dead_C": 3124,
+    "singleton_history_checks": 156602,
+    "in_regime_fires": 0,
+    "elapsed_search_seconds": 35.400635292000516
+  },
+  "claims": [
+    {
+      "id": "two-active-adversary",
+      "label": "Two-active-leaf geometric repair",
+      "status": "screened",
+      "detail": "Finite fresh implementation found no counterexample. Independent ordinary proof attempt retained; not a formal tree theorem."
+    },
+    {
+      "id": "history-strengthening",
+      "label": "Arbitrary simultaneous-cut history strengthening",
+      "status": "refuted",
+      "detail": "Protected b=(x,y) can be erased by simultaneous cuts of x,y. This is outside source branch rules and does not refute source history."
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "repair-affine-arithmetic",
+      "label": "Conditional scaled affine implication",
+      "status": "checked",
+      "detail": "Lean kernel checked positive-denominator coefficient arithmetic, scaled integer affine implication, height inequalities, and budget drop. A deliberately false arithmetic control failed."
+    },
+    {
+      "id": "protected-history-structure",
+      "label": "Source cut-shape preservation",
+      "status": "open",
+      "detail": "Ordinary exhaustive-case attempt for singleton, pendant-path, and BCY sets; no formal structural theorem and no held-out author verification."
+    }
+  ],
+  "artifacts": [
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-runtime-repair-adversary-final.json",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_complexity/repair/adversary/PROOF-ATTEMPT.md",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_complexity/repair/adversary/AdversaryArithmetic.lean",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-runtime-repair-adversary-search20000.json",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-runtime-repair-adversary-controls-v3.json",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-runtime-repair-adversary-history-premise.json"
+  ],
+  "sources": [
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/sources/baseline/whidden-thesis-2013.pdf"
+  ]
+}

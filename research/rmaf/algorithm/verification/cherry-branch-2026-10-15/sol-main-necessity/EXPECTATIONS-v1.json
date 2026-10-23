@@ -1,0 +1,38 @@
+{
+  "status": "PRE-CANDIDATE_LITERAL_EXPECTATIONS",
+  "birth": "Constructed by this review from public definitions before any instrument execution; public t1 example is retrieved and labelled.",
+  "address_convention": "binary strings, 0=left, 1=right, empty=root; original directed child addresses; partition comparison ignores block/label order unless stated",
+  "cases": [
+    {"id":"common", "T":[[0,1],2], "S":[[0,1],2], "a":0,"b":1,"cuts":[],"P":[[0,1,2]],"opt":1},
+    {"id":"t1-public", "T":[[0,1],2], "S":[[0,2],1], "a":0,"b":1,"cuts":["01"],"P":[[2],[0,1]],"opt":2,"F":[[0,2],[1]],"G":[[0,1],[2]],"F_refines":false,"G_refines":true},
+    {"id":"t2-new", "T":[[[0,1],2],3], "S":[[[0,2],3],1], "a":0,"b":1,"cuts":["001","01"],"P":[[2],[3],[0,1]],"opt":2},
+    {"id":"t3-new", "T":[[[[0,1],2],3],4], "S":[[[[0,2],3],4],1], "a":0,"b":1,"cuts":["0001","001","01"],"P":[[2],[3],[4],[0,1]],"opt":2,
+      "path":["0000","000","00","0","","1"],
+      "components_vertices":[["0001"],["001"],["01"],["","0","00","000","0000","1"]],
+      "F":[[0,2,3,4],[1]],"F_refines":false,
+      "branch_min_blocks":[3,2,4],"branch_paid":[1,1,3],"branch_min_residual":[1,0,0]},
+    {"id":"root-boundary", "T":[[[0,1],2],9], "S":[[[0,2],1],9], "a":0,"b":1,"cuts":["001"],"P":[[2],[0,1,9]],"opt":2,
+      "path":["000","00","0","01"],"forbidden_above_lca":"0","exterior_address":"1",
+      "F":[[0,2,9],[1]],"G":[[0,1,9],[2]],"F_refines":false,"G_refines":true},
+    {"id":"swapped", "T":[2,[1,0]], "S":[1,[2,0]], "a":0,"b":1,"cuts":["10"],"P":[[2],[0,1]],"opt":2},
+    {"id":"arbitrary-nat", "T":[[7,1000],42], "S":[[7,42],1000], "a":7,"b":1000,"cuts":["01"],"P":[[42],[7,1000]],"opt":2}
+  ],
+  "priority_cases":[
+    {"id":"common-before-earlier-t1","T":[[0,1],[[2,3],4]],"S":[[[0,4],1],[2,3]],"counts":[1,0],"selected":"common","pair":[2,3]},
+    {"id":"high-before-earlier-hard2","T":[[2,3],[[0,1],4]],"S":[[0,2],[[1,4],3]],"counts":[2,3],"selected":"high","pair":[0,1]},
+    {"id":"t1-before-hard2","T":[[0,1],[2,3]],"S":[[[0,2],1],3],"counts":[1,2],"selected":"t1","pair":[0,1]},
+    {"id":"only-hard2","T":[[0,1],[2,3]],"S":[[0,2],[1,3]],"counts":[2,2],"selected":"hard2","pair":[0,1]},
+    {"id":"empty","T":0,"S":0,"counts":[],"selected":null,"pair":null}
+  ],
+  "invalid_inputs":["duplicate labels","unequal labels","absent endpoint","equal endpoints","negative label","empty selected block"],
+  "mutations_required":["incomplete-endpoint-cover","incomplete-pendant-cover","skip-suppressed-vertex","edge-above-lca","root-cut","leafless-region","invalid-cut","duplicate-cut","component-offset","nat-truncation","filter-drop","display-address-as-original","free-known-minimum","unpaid-parent","double-proof-split","wrong-priority","omitted-earlier-rejection","forged-agreement","wrong-child","wrong-budget","missing-failure","injected-optimum-oracle"],
+  "mass_literals":{"q2_t3":"9/8","q233over100_t3":"11857800/12649337","q3_t3":"19/27","q233over100_t2":"56600/54289"},
+  "finite_bank":{"pilot":"all pairs n=3 plus constructed t3", "bounded":"all unordered labelled rooted binary pairs n<=4 plus all 105 n=5 sources against fixed T=((((0,1),2),3),4)","limit_seconds":120,"claim":"finite diagnostic only, no universal proof"},
+  "origin_controls":{
+    "std_axioms_allowed":["propext","Classical.choice","Quot.sound"],
+    "pass":["CleanA","CleanA+CleanB","GeneratedPrivateClean"],
+    "reject":["KnownFalseCompile","UnusedAxiom","PrivateAxiom","CleanA+HostileCoalesced","CleanA+PrivateAxiom","MissingOccurrence","DuplicateOccurrence","ChangedSourceByte","ChangedImport","ChangedBody"],
+    "coalesced_requirements":"CleanA and CleanB each prove same shared : True independently. HostileCoalesced declares same shared : True as axiom plus own clean theorem. Audit actual ConstantInfo in every producer moduleData.constants occurrence, including unused/private/generated; resolved names alone cannot pass hostile case.",
+    "row_identity":"producer,index,name; contiguous full producer counts, actual type/body strings and hashes; resolved origin separately"
+  }
+}

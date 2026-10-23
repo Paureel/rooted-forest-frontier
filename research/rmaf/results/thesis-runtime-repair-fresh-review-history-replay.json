@@ -1,0 +1,1562 @@
+{
+  "status": "checked reachable application fire",
+  "input_sha256": "daf26c7595e727f02bf9b013f21d6c87cfa909b1b783a74848d18cb7df6aa85d",
+  "checks": [
+    {
+      "id": "F1-all-twelve-labels",
+      "passed": true,
+      "observed": [
+        "B",
+        "W",
+        "X",
+        "Y",
+        "a",
+        "c",
+        "d",
+        "d0",
+        "h",
+        "t",
+        "x",
+        "y"
+      ],
+      "expected": [
+        "B",
+        "W",
+        "X",
+        "Y",
+        "a",
+        "c",
+        "d",
+        "d0",
+        "h",
+        "t",
+        "x",
+        "y"
+      ]
+    },
+    {
+      "id": "F2-all-twelve-labels",
+      "passed": true,
+      "observed": [
+        "B",
+        "W",
+        "X",
+        "Y",
+        "a",
+        "c",
+        "d",
+        "d0",
+        "h",
+        "t",
+        "x",
+        "y"
+      ],
+      "expected": [
+        "B",
+        "W",
+        "X",
+        "Y",
+        "a",
+        "c",
+        "d",
+        "d0",
+        "h",
+        "t",
+        "x",
+        "y"
+      ]
+    },
+    {
+      "id": "labelled-unary-rho",
+      "passed": true,
+      "observed": [
+        "rho",
+        1,
+        "rho",
+        1
+      ],
+      "expected": [
+        "rho",
+        1,
+        "rho",
+        1
+      ]
+    },
+    {
+      "id": "corrupted-initial-protection",
+      "passed": true,
+      "expected": "reject",
+      "observed": "reject",
+      "reason": "initial state is not unprotected"
+    },
+    {
+      "id": "step1-budget",
+      "passed": true,
+      "observed": 20,
+      "expected": 20
+    },
+    {
+      "id": "step1-F1",
+      "passed": true,
+      "observed": "('rho', (('', (('', (('', ('B', 'Y')), ('', ('W', 'X')))), ('', (('', ('d', ('', ('c', ('', ('d0', ('', ('a', 't')))))))), ('', ('h', ('', ('x', 'y')))))))),))",
+      "expected": "('rho', (('', (('', (('', ('B', 'Y')), ('', ('W', 'X')))), ('', (('', ('d', ('', ('c', ('', ('d0', ('', ('a', 't')))))))), ('', ('h', ('', ('x', 'y')))))))),))"
+    },
+    {
+      "id": "step1-F2",
+      "passed": true,
+      "observed": "(('rho', (('', ('h', ('', (('', ('a', ('', (('', ('W', ('', ('X', 'x')))), ('', ('d', ('', ('Y', 'y')))))))), ('', ('t', ('', ('c', ('', ('B', 'd0')))))))))),)),)",
+      "expected": "(('rho', (('', ('h', ('', (('', ('a', ('', (('', ('W', ('', ('X', 'x')))), ('', ('d', ('', ('Y', 'y')))))))), ('', ('t', ('', ('c', ('', ('B', 'd0')))))))))),)),)"
+    },
+    {
+      "id": "step1-protected1",
+      "passed": true,
+      "observed": [],
+      "expected": []
+    },
+    {
+      "id": "step1-protected2",
+      "passed": true,
+      "observed": [],
+      "expected": []
+    },
+    {
+      "id": "step1-case",
+      "passed": true,
+      "observed": "A2BC",
+      "expected": "A2BC"
+    },
+    {
+      "id": "step1-pendants",
+      "passed": true,
+      "observed": [
+        "W,X,Y,d,x,y",
+        "B,c,d0"
+      ],
+      "expected": [
+        "W,X,Y,d,x,y",
+        "B,c,d0"
+      ]
+    },
+    {
+      "id": "step1-branches",
+      "passed": true,
+      "observed": [
+        {
+          "name": "A",
+          "cuts": [
+            "a"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": true
+        },
+        {
+          "name": "B",
+          "cuts": [
+            "W,X,Y,d,x,y",
+            "B,c,d0"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": true
+        },
+        {
+          "name": "C",
+          "cuts": [
+            "t"
+          ],
+          "protect2": [
+            "a",
+            "W,X,Y,d,x,y",
+            "B,c,d0"
+          ],
+          "protect1": [
+            "a"
+          ],
+          "legal": true
+        }
+      ],
+      "expected": [
+        {
+          "name": "A",
+          "cuts": [
+            "a"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": true
+        },
+        {
+          "name": "B",
+          "cuts": [
+            "W,X,Y,d,x,y",
+            "B,c,d0"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": true
+        },
+        {
+          "name": "C",
+          "cuts": [
+            "t"
+          ],
+          "protect2": [
+            "a",
+            "W,X,Y,d,x,y",
+            "B,c,d0"
+          ],
+          "protect1": [
+            "a"
+          ],
+          "legal": true
+        }
+      ]
+    },
+    {
+      "id": "step1-output-credits",
+      "passed": true,
+      "observed": {
+        "P": [
+          "a"
+        ],
+        "Q": []
+      },
+      "expected": {
+        "P": [
+          "a"
+        ],
+        "Q": []
+      }
+    },
+    {
+      "id": "step2-budget",
+      "passed": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "id": "step2-F1",
+      "passed": true,
+      "observed": "('rho', (('', (('', (('', ('B', 'Y')), ('', ('W', 'X')))), ('', (('', ('d', ('', ('c', ('', ('a', 'd0')))))), ('', ('h', ('', ('x', 'y')))))))),))",
+      "expected": "('rho', (('', (('', (('', ('B', 'Y')), ('', ('W', 'X')))), ('', (('', ('d', ('', ('c', ('', ('a', 'd0')))))), ('', ('h', ('', ('x', 'y')))))))),))"
+    },
+    {
+      "id": "step2-F2",
+      "passed": true,
+      "observed": "(('rho', (('', ('h', ('', (('', ('a', ('', (('', ('W', ('', ('X', 'x')))), ('', ('d', ('', ('Y', 'y')))))))), ('', ('c', ('', ('B', 'd0')))))))),)),)",
+      "expected": "(('rho', (('', ('h', ('', (('', ('a', ('', (('', ('W', ('', ('X', 'x')))), ('', ('d', ('', ('Y', 'y')))))))), ('', ('c', ('', ('B', 'd0')))))))),)),)"
+    },
+    {
+      "id": "step2-protected1",
+      "passed": true,
+      "observed": [
+        "a"
+      ],
+      "expected": [
+        "a"
+      ]
+    },
+    {
+      "id": "step2-protected2",
+      "passed": true,
+      "observed": [
+        "B,c,d0",
+        "W,X,Y,d,x,y",
+        "a"
+      ],
+      "expected": [
+        "B,c,d0",
+        "W,X,Y,d,x,y",
+        "a"
+      ]
+    },
+    {
+      "id": "step2-case",
+      "passed": true,
+      "observed": "A3BC",
+      "expected": "A3BC"
+    },
+    {
+      "id": "step2-pendants",
+      "passed": true,
+      "observed": [
+        "B",
+        "c",
+        "W,X,Y,d,x,y"
+      ],
+      "expected": [
+        "B",
+        "c",
+        "W,X,Y,d,x,y"
+      ]
+    },
+    {
+      "id": "step2-branches",
+      "passed": true,
+      "observed": [
+        {
+          "name": "A",
+          "cuts": [
+            "d0"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": true
+        },
+        {
+          "name": "B",
+          "cuts": [
+            "B",
+            "c",
+            "W,X,Y,d,x,y"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": false
+        },
+        {
+          "name": "C",
+          "cuts": [
+            "a"
+          ],
+          "protect2": [
+            "d0"
+          ],
+          "protect1": [
+            "d0"
+          ],
+          "legal": false
+        }
+      ],
+      "expected": [
+        {
+          "name": "A",
+          "cuts": [
+            "d0"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": true
+        },
+        {
+          "name": "B",
+          "cuts": [
+            "B",
+            "c",
+            "W,X,Y,d,x,y"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": false
+        },
+        {
+          "name": "C",
+          "cuts": [
+            "a"
+          ],
+          "protect2": [
+            "d0"
+          ],
+          "protect1": [
+            "d0"
+          ],
+          "legal": false
+        }
+      ]
+    },
+    {
+      "id": "step2-output-credits",
+      "passed": true,
+      "observed": {
+        "P": [],
+        "Q": []
+      },
+      "expected": {
+        "P": [],
+        "Q": []
+      }
+    },
+    {
+      "id": "step3-budget",
+      "passed": true,
+      "observed": 18,
+      "expected": 18
+    },
+    {
+      "id": "step3-F1",
+      "passed": true,
+      "observed": "('rho', (('', (('', (('', ('B', 'Y')), ('', ('W', 'X')))), ('', (('', ('d', ('', ('a', 'c')))), ('', ('h', ('', ('x', 'y')))))))),))",
+      "expected": "('rho', (('', (('', (('', ('B', 'Y')), ('', ('W', 'X')))), ('', (('', ('d', ('', ('a', 'c')))), ('', ('h', ('', ('x', 'y')))))))),))"
+    },
+    {
+      "id": "step3-F2",
+      "passed": true,
+      "observed": "(('rho', (('', ('h', ('', (('', ('B', 'c')), ('', ('a', ('', (('', ('W', ('', ('X', 'x')))), ('', ('d', ('', ('Y', 'y')))))))))))),)),)",
+      "expected": "(('rho', (('', ('h', ('', (('', ('B', 'c')), ('', ('a', ('', (('', ('W', ('', ('X', 'x')))), ('', ('d', ('', ('Y', 'y')))))))))))),)),)"
+    },
+    {
+      "id": "step3-protected1",
+      "passed": true,
+      "observed": [
+        "a"
+      ],
+      "expected": [
+        "a"
+      ]
+    },
+    {
+      "id": "step3-protected2",
+      "passed": true,
+      "observed": [
+        "B,c",
+        "W,X,Y,d,x,y",
+        "a"
+      ],
+      "expected": [
+        "B,c",
+        "W,X,Y,d,x,y",
+        "a"
+      ]
+    },
+    {
+      "id": "step3-case",
+      "passed": true,
+      "observed": "A2BC",
+      "expected": "A2BC"
+    },
+    {
+      "id": "step3-pendants",
+      "passed": true,
+      "observed": [
+        "W,X,Y,d,x,y",
+        "B"
+      ],
+      "expected": [
+        "W,X,Y,d,x,y",
+        "B"
+      ]
+    },
+    {
+      "id": "step3-branches",
+      "passed": true,
+      "observed": [
+        {
+          "name": "A",
+          "cuts": [
+            "a"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": false
+        },
+        {
+          "name": "B",
+          "cuts": [
+            "W,X,Y,d,x,y",
+            "B"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": false
+        },
+        {
+          "name": "C",
+          "cuts": [
+            "c"
+          ],
+          "protect2": [
+            "a",
+            "W,X,Y,d,x,y",
+            "B"
+          ],
+          "protect1": [
+            "a"
+          ],
+          "legal": true
+        }
+      ],
+      "expected": [
+        {
+          "name": "A",
+          "cuts": [
+            "a"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": false
+        },
+        {
+          "name": "B",
+          "cuts": [
+            "W,X,Y,d,x,y",
+            "B"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": false
+        },
+        {
+          "name": "C",
+          "cuts": [
+            "c"
+          ],
+          "protect2": [
+            "a",
+            "W,X,Y,d,x,y",
+            "B"
+          ],
+          "protect1": [
+            "a"
+          ],
+          "legal": true
+        }
+      ]
+    },
+    {
+      "id": "new-I-empty-analysis-credit",
+      "passed": true,
+      "observed": [
+        [],
+        []
+      ],
+      "expected": [
+        [],
+        []
+      ]
+    },
+    {
+      "id": "new-I-inherited-physical-a",
+      "passed": true,
+      "observed": true,
+      "expected": true
+    },
+    {
+      "id": "new-I-equal-F1-depth",
+      "passed": true,
+      "observed": 5,
+      "expected": 5
+    },
+    {
+      "id": "new-I-x-deeper-F2",
+      "passed": true,
+      "observed": true,
+      "expected": true
+    },
+    {
+      "id": "new-I-ineligible-xy",
+      "passed": true,
+      "expected": "reject",
+      "observed": "reject",
+      "reason": "depth selection"
+    },
+    {
+      "id": "step3-output-credits",
+      "passed": true,
+      "observed": {
+        "P": [
+          "a"
+        ],
+        "Q": []
+      },
+      "expected": {
+        "P": [
+          "a"
+        ],
+        "Q": []
+      }
+    },
+    {
+      "id": "step4-budget",
+      "passed": true,
+      "observed": 17,
+      "expected": 17
+    },
+    {
+      "id": "step4-F1",
+      "passed": true,
+      "observed": "('rho', (('', (('', (('', ('B', 'Y')), ('', ('W', 'X')))), ('', (('', ('a', 'd')), ('', ('h', ('', ('x', 'y')))))))),))",
+      "expected": "('rho', (('', (('', (('', ('B', 'Y')), ('', ('W', 'X')))), ('', (('', ('a', 'd')), ('', ('h', ('', ('x', 'y')))))))),))"
+    },
+    {
+      "id": "step4-F2",
+      "passed": true,
+      "observed": "(('rho', (('', ('h', ('', ('B', ('', ('a', ('', (('', ('W', ('', ('X', 'x')))), ('', ('d', ('', ('Y', 'y')))))))))))),)),)",
+      "expected": "(('rho', (('', ('h', ('', ('B', ('', ('a', ('', (('', ('W', ('', ('X', 'x')))), ('', ('d', ('', ('Y', 'y')))))))))))),)),)"
+    },
+    {
+      "id": "step4-protected1",
+      "passed": true,
+      "observed": [
+        "a"
+      ],
+      "expected": [
+        "a"
+      ]
+    },
+    {
+      "id": "step4-protected2",
+      "passed": true,
+      "observed": [
+        "B",
+        "W,X,Y,d,x,y",
+        "a"
+      ],
+      "expected": [
+        "B",
+        "W,X,Y,d,x,y",
+        "a"
+      ]
+    },
+    {
+      "id": "step4-case",
+      "passed": true,
+      "observed": "A2BC",
+      "expected": "A2BC"
+    },
+    {
+      "id": "step4-pendants",
+      "passed": true,
+      "observed": [
+        "Y,y",
+        "W,X,x"
+      ],
+      "expected": [
+        "Y,y",
+        "W,X,x"
+      ]
+    },
+    {
+      "id": "step4-branches",
+      "passed": true,
+      "observed": [
+        {
+          "name": "B",
+          "cuts": [
+            "Y,y",
+            "W,X,x"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": true
+        },
+        {
+          "name": "A",
+          "cuts": [
+            "d"
+          ],
+          "protect2": [
+            "Y,y",
+            "W,X,x"
+          ],
+          "protect1": [],
+          "legal": true
+        }
+      ],
+      "expected": [
+        {
+          "name": "B",
+          "cuts": [
+            "Y,y",
+            "W,X,x"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": true
+        },
+        {
+          "name": "A",
+          "cuts": [
+            "d"
+          ],
+          "protect2": [
+            "Y,y",
+            "W,X,x"
+          ],
+          "protect1": [],
+          "legal": true
+        }
+      ]
+    },
+    {
+      "id": "step4-output-credits",
+      "passed": true,
+      "observed": {
+        "P": [
+          "a"
+        ],
+        "Q": []
+      },
+      "expected": {
+        "P": [
+          "a"
+        ],
+        "Q": []
+      }
+    },
+    {
+      "id": "step5-budget",
+      "passed": true,
+      "observed": 16,
+      "expected": 16
+    },
+    {
+      "id": "step5-F1",
+      "passed": true,
+      "observed": "('rho', (('', (('', ('a', ('', ('h', ('', ('x', 'y')))))), ('', (('', ('B', 'Y')), ('', ('W', 'X')))))),))",
+      "expected": "('rho', (('', (('', ('a', ('', ('h', ('', ('x', 'y')))))), ('', (('', ('B', 'Y')), ('', ('W', 'X')))))),))"
+    },
+    {
+      "id": "step5-F2",
+      "passed": true,
+      "observed": "(('rho', (('', ('h', ('', ('B', ('', ('a', ('', (('', ('W', ('', ('X', 'x')))), ('', ('Y', 'y')))))))))),)),)",
+      "expected": "(('rho', (('', ('h', ('', ('B', ('', ('a', ('', (('', ('W', ('', ('X', 'x')))), ('', ('Y', 'y')))))))))),)),)"
+    },
+    {
+      "id": "step5-protected1",
+      "passed": true,
+      "observed": [
+        "a"
+      ],
+      "expected": [
+        "a"
+      ]
+    },
+    {
+      "id": "step5-protected2",
+      "passed": true,
+      "observed": [
+        "B",
+        "W,X,Y,x,y",
+        "W,X,x",
+        "Y,y",
+        "a"
+      ],
+      "expected": [
+        "B",
+        "W,X,Y,x,y",
+        "W,X,x",
+        "Y,y",
+        "a"
+      ]
+    },
+    {
+      "id": "step5-case",
+      "passed": true,
+      "observed": "A3BC",
+      "expected": "A3BC"
+    },
+    {
+      "id": "step5-pendants",
+      "passed": true,
+      "observed": [
+        "X",
+        "W",
+        "Y"
+      ],
+      "expected": [
+        "X",
+        "W",
+        "Y"
+      ]
+    },
+    {
+      "id": "step5-branches",
+      "passed": true,
+      "observed": [
+        {
+          "name": "A",
+          "cuts": [
+            "x"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": true
+        },
+        {
+          "name": "B",
+          "cuts": [
+            "X",
+            "W",
+            "Y"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": true
+        },
+        {
+          "name": "C",
+          "cuts": [
+            "y"
+          ],
+          "protect2": [
+            "x"
+          ],
+          "protect1": [
+            "x"
+          ],
+          "legal": true
+        }
+      ],
+      "expected": [
+        {
+          "name": "A",
+          "cuts": [
+            "x"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": true
+        },
+        {
+          "name": "B",
+          "cuts": [
+            "X",
+            "W",
+            "Y"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": true
+        },
+        {
+          "name": "C",
+          "cuts": [
+            "y"
+          ],
+          "protect2": [
+            "x"
+          ],
+          "protect1": [
+            "x"
+          ],
+          "legal": true
+        }
+      ]
+    },
+    {
+      "id": "J-input-credits",
+      "passed": true,
+      "observed": [
+        [
+          "a"
+        ],
+        []
+      ],
+      "expected": [
+        [
+          "a"
+        ],
+        []
+      ]
+    },
+    {
+      "id": "J-case",
+      "passed": true,
+      "observed": "A3BC",
+      "expected": "A3BC"
+    },
+    {
+      "id": "J-three-pendants",
+      "passed": true,
+      "observed": 3,
+      "expected": 3
+    },
+    {
+      "id": "J-all-three-legal",
+      "passed": true,
+      "observed": [
+        "A",
+        "B",
+        "C"
+      ],
+      "expected": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "id": "J-three-e-active-roots",
+      "passed": true,
+      "observed": 3,
+      "expected": 3
+    },
+    {
+      "id": "J-a-and-b-physical-protection",
+      "passed": true,
+      "observed": [
+        true,
+        true
+      ],
+      "expected": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "J-x-inside-b",
+      "passed": true,
+      "observed": true,
+      "expected": true
+    }
+  ],
+  "replayed": [
+    {
+      "step": 1,
+      "budget": 20,
+      "input_credits": {
+        "P": [],
+        "Q": []
+      },
+      "snapshot": {
+        "protected1": [],
+        "protected2": [],
+        "eligible_best_pairs": [
+          [
+            "a",
+            "t"
+          ]
+        ],
+        "depth1": {
+          "a": 7,
+          "t": 7,
+          "d0": 6,
+          "c": 5,
+          "d": 4,
+          "x": 5,
+          "y": 5,
+          "h": 4,
+          "W": 4,
+          "X": 4,
+          "Y": 4,
+          "B": 4
+        },
+        "depth2": {
+          "a": 4,
+          "W": 6,
+          "x": 7,
+          "X": 7,
+          "d": 6,
+          "y": 7,
+          "Y": 7,
+          "t": 4,
+          "c": 5,
+          "d0": 6,
+          "B": 6,
+          "h": 2
+        }
+      },
+      "rule": {
+        "pair": [
+          "a",
+          "t"
+        ],
+        "case": "A2BC",
+        "pendants": [
+          "W,X,Y,d,x,y",
+          "B,c,d0"
+        ],
+        "branches": [
+          {
+            "name": "A",
+            "cuts": [
+              "a"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "B",
+            "cuts": [
+              "W,X,Y,d,x,y",
+              "B,c,d0"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "C",
+            "cuts": [
+              "t"
+            ],
+            "protect2": [
+              "a",
+              "W,X,Y,d,x,y",
+              "B,c,d0"
+            ],
+            "protect1": [
+              "a"
+            ],
+            "legal": true
+          }
+        ]
+      },
+      "credit_source_rule": "p118 G1 A2 C assignment",
+      "selected_branch": "C",
+      "output_credits": {
+        "P": [
+          "a"
+        ],
+        "Q": []
+      }
+    },
+    {
+      "step": 2,
+      "budget": 19,
+      "input_credits": {
+        "P": [
+          "a"
+        ],
+        "Q": []
+      },
+      "snapshot": {
+        "protected1": [
+          "a"
+        ],
+        "protected2": [
+          "B,c,d0",
+          "W,X,Y,d,x,y",
+          "a"
+        ],
+        "eligible_best_pairs": [
+          [
+            "d0",
+            "a"
+          ]
+        ],
+        "depth1": {
+          "a": 6,
+          "d0": 6,
+          "c": 5,
+          "d": 4,
+          "x": 5,
+          "y": 5,
+          "h": 4,
+          "W": 4,
+          "X": 4,
+          "Y": 4,
+          "B": 4
+        },
+        "depth2": {
+          "a": 4,
+          "W": 6,
+          "x": 7,
+          "X": 7,
+          "d": 6,
+          "y": 7,
+          "Y": 7,
+          "c": 4,
+          "d0": 5,
+          "B": 5,
+          "h": 2
+        }
+      },
+      "rule": {
+        "pair": [
+          "d0",
+          "a"
+        ],
+        "case": "A3BC",
+        "pendants": [
+          "B",
+          "c",
+          "W,X,Y,d,x,y"
+        ],
+        "branches": [
+          {
+            "name": "A",
+            "cuts": [
+              "d0"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "B",
+            "cuts": [
+              "B",
+              "c",
+              "W,X,Y,d,x,y"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": false
+          },
+          {
+            "name": "C",
+            "cuts": [
+              "a"
+            ],
+            "protect2": [
+              "d0"
+            ],
+            "protect1": [
+              "d0"
+            ],
+            "legal": false
+          }
+        ]
+      },
+      "credit_source_rule": "p120 G3 sole surviving A3 branch resets analysis credits",
+      "selected_branch": "A",
+      "output_credits": {
+        "P": [],
+        "Q": []
+      }
+    },
+    {
+      "step": 3,
+      "budget": 18,
+      "input_credits": {
+        "P": [],
+        "Q": []
+      },
+      "snapshot": {
+        "protected1": [
+          "a"
+        ],
+        "protected2": [
+          "B,c",
+          "W,X,Y,d,x,y",
+          "a"
+        ],
+        "eligible_best_pairs": [
+          [
+            "a",
+            "c"
+          ]
+        ],
+        "depth1": {
+          "a": 5,
+          "c": 5,
+          "d": 4,
+          "x": 5,
+          "y": 5,
+          "h": 4,
+          "W": 4,
+          "X": 4,
+          "Y": 4,
+          "B": 4
+        },
+        "depth2": {
+          "a": 4,
+          "W": 6,
+          "x": 7,
+          "X": 7,
+          "d": 6,
+          "y": 7,
+          "Y": 7,
+          "c": 4,
+          "B": 4,
+          "h": 2
+        }
+      },
+      "rule": {
+        "pair": [
+          "a",
+          "c"
+        ],
+        "case": "A2BC",
+        "pendants": [
+          "W,X,Y,d,x,y",
+          "B"
+        ],
+        "branches": [
+          {
+            "name": "A",
+            "cuts": [
+              "a"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": false
+          },
+          {
+            "name": "B",
+            "cuts": [
+              "W,X,Y,d,x,y",
+              "B"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": false
+          },
+          {
+            "name": "C",
+            "cuts": [
+              "c"
+            ],
+            "protect2": [
+              "a",
+              "W,X,Y,d,x,y",
+              "B"
+            ],
+            "protect1": [
+              "a"
+            ],
+            "legal": true
+          }
+        ]
+      },
+      "depth_history_obstruction": {
+        "a_F1_depth": 5,
+        "x_F1_depth": 5,
+        "a_F2_depth": 4,
+        "x_F2_depth": 7,
+        "xy_eligible": false
+      },
+      "credit_source_rule": "p118 new G1 A2 C assignment; all-three-legal is not a premise",
+      "selected_branch": "C",
+      "output_credits": {
+        "P": [
+          "a"
+        ],
+        "Q": []
+      }
+    },
+    {
+      "step": 4,
+      "budget": 17,
+      "input_credits": {
+        "P": [
+          "a"
+        ],
+        "Q": []
+      },
+      "snapshot": {
+        "protected1": [
+          "a"
+        ],
+        "protected2": [
+          "B",
+          "W,X,Y,d,x,y",
+          "a"
+        ],
+        "eligible_best_pairs": [
+          [
+            "d",
+            "a"
+          ]
+        ],
+        "depth1": {
+          "a": 4,
+          "d": 4,
+          "x": 5,
+          "y": 5,
+          "h": 4,
+          "W": 4,
+          "X": 4,
+          "Y": 4,
+          "B": 4
+        },
+        "depth2": {
+          "a": 4,
+          "W": 6,
+          "x": 7,
+          "X": 7,
+          "d": 6,
+          "y": 7,
+          "Y": 7,
+          "B": 3,
+          "h": 2
+        }
+      },
+      "rule": {
+        "pair": [
+          "d",
+          "a"
+        ],
+        "case": "A2BC",
+        "pendants": [
+          "Y,y",
+          "W,X,x"
+        ],
+        "branches": [
+          {
+            "name": "B",
+            "cuts": [
+              "Y,y",
+              "W,X,x"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "A",
+            "cuts": [
+              "d"
+            ],
+            "protect2": [
+              "Y,y",
+              "W,X,x"
+            ],
+            "protect1": [],
+            "legal": true
+          }
+        ]
+      },
+      "credit_source_rule": "p120 G3 old A2/current A2 endpoint continuation retains a and Q empty",
+      "selected_branch": "A",
+      "output_credits": {
+        "P": [
+          "a"
+        ],
+        "Q": []
+      }
+    },
+    {
+      "step": 5,
+      "budget": 16,
+      "input_credits": {
+        "P": [
+          "a"
+        ],
+        "Q": []
+      },
+      "snapshot": {
+        "protected1": [
+          "a"
+        ],
+        "protected2": [
+          "B",
+          "W,X,Y,x,y",
+          "W,X,x",
+          "Y,y",
+          "a"
+        ],
+        "eligible_best_pairs": [
+          [
+            "x",
+            "y"
+          ]
+        ],
+        "depth1": {
+          "a": 3,
+          "x": 5,
+          "y": 5,
+          "h": 4,
+          "W": 4,
+          "X": 4,
+          "Y": 4,
+          "B": 4
+        },
+        "depth2": {
+          "a": 4,
+          "W": 6,
+          "x": 7,
+          "X": 7,
+          "y": 6,
+          "Y": 6,
+          "B": 3,
+          "h": 2
+        }
+      },
+      "rule": {
+        "pair": [
+          "x",
+          "y"
+        ],
+        "case": "A3BC",
+        "pendants": [
+          "X",
+          "W",
+          "Y"
+        ],
+        "branches": [
+          {
+            "name": "A",
+            "cuts": [
+              "x"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "B",
+            "cuts": [
+              "X",
+              "W",
+              "Y"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "C",
+            "cuts": [
+              "y"
+            ],
+            "protect2": [
+              "x"
+            ],
+            "protect1": [
+              "x"
+            ],
+            "legal": true
+          }
+        ]
+      }
+    }
+  ],
+  "fire": {
+    "failing_step": "unqualified source-history implication to x outside protected sibling b",
+    "scope": "source-reachable physical full-call-tree history with source-derived G1/G3 credit schedule; not a conditional local theorem or runtime-bound counterexample",
+    "instance": {
+      "input_f1": "((((((a,t),d0),c),d),((x,y),h)),((W,X),(Y,B)))",
+      "input_f2": "(((a,((W,(x,X)),(d,(y,Y)))),(t,(c,(d0,B)))),h)",
+      "root": "labelled unary rho",
+      "initial_budget": 20,
+      "branch_sequence": [
+        "C",
+        "A",
+        "C",
+        "A"
+      ],
+      "J_budget": 16,
+      "J_pair": [
+        "x",
+        "y"
+      ],
+      "P": [
+        "a"
+      ],
+      "Q": [],
+      "b": "W,X,Y,x,y",
+      "e_active_roots": [
+        "x",
+        "y",
+        "h"
+      ]
+    },
+    "lhs": 1,
+    "rhs": 0,
+    "residual": 1,
+    "quantity": "indicator that x belongs to b; claimed outside-b conclusion requires zero"
+  },
+  "actual_C": {
+    "count": 2,
+    "budget": 15,
+    "scope": "full legal children under deterministic allowed tie selection; invocation counted",
+    "tree": {
+      "budget": 15,
+      "rule": {
+        "pair": [
+          "x",
+          "h"
+        ],
+        "case": "A3BC",
+        "pendants": [
+          "X",
+          "W",
+          "Y",
+          "a",
+          "B"
+        ],
+        "branches": [
+          {
+            "name": "A",
+            "cuts": [
+              "x"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": false
+          },
+          {
+            "name": "B",
+            "cuts": [
+              "X",
+              "W",
+              "Y",
+              "a",
+              "B"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": false
+          },
+          {
+            "name": "C",
+            "cuts": [
+              "h"
+            ],
+            "protect2": [
+              "x"
+            ],
+            "protect1": [
+              "x"
+            ],
+            "legal": true
+          }
+        ]
+      },
+      "children": [
+        {
+          "branch": "C",
+          "tree": {
+            "budget": 14,
+            "rule": {
+              "pair": [
+                "x",
+                "a"
+              ],
+              "case": "A3BC",
+              "pendants": [
+                "X",
+                "W",
+                "Y"
+              ],
+              "branches": [
+                {
+                  "name": "A",
+                  "cuts": [
+                    "x"
+                  ],
+                  "protect2": [],
+                  "protect1": [],
+                  "legal": false
+                },
+                {
+                  "name": "B",
+                  "cuts": [
+                    "X",
+                    "W",
+                    "Y"
+                  ],
+                  "protect2": [],
+                  "protect1": [],
+                  "legal": false
+                },
+                {
+                  "name": "C",
+                  "cuts": [
+                    "a"
+                  ],
+                  "protect2": [
+                    "x"
+                  ],
+                  "protect1": [
+                    "x"
+                  ],
+                  "legal": false
+                }
+              ]
+            },
+            "children": [],
+            "count": 1
+          }
+        }
+      ],
+      "count": 2
+    }
+  },
+  "elapsed_seconds": 0.008284875002573244,
+  "lineage": "own first-review tree evaluator; no parent history implementation read or imported; explicit input and expected snapshots exposed"
+}

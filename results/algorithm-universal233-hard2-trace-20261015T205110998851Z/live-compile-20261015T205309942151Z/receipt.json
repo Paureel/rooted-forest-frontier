@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "a55101d8ea816ba75fd76ab2758a4583d945f7c913f4abc195bd5179e4c830aa",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3453167919997213,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3307459160005237,
+      "resource_stop": null,
+      "log_sha256": "505d249e8bc3b3d52a8e44f53f3ebd18dceb4adccaabd8c394c7f9369b7b7af9"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016444579996459652,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "TraceProgress",
+      "source_sha256": "ab2bea5da24af2c6e0d911c671e72c067856bdeed49654e96587a1694ba54c1a",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8030793329999142,
+      "resource_stop": null,
+      "log_sha256": "6ce71906c46b8b5f8efb1839959398154f8cdb2cfb8e2061a16a09ad80a81ccd"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('TraceProgress', \"/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-trace-20261015T205110998851Z/TraceProgress.lean:43:3: error: unknown tactic\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-trace-20261015T205110998851Z/TraceProgress.lean:37:15: error: don't know how to synthesize implicit argument `q`\\n  @paidCase_mass actual T S c ?m.27 out proper hard selected 2 (of_decide_eq_true (id (Eq.refl true)))\\n    (of_decide_eq_true (id (Eq.refl true)))\\ncontext:\\nactual : Ordinary\\nT S : Tree\\nc : Candidate\\nq : Nat\\nout : Result\\nproper : DepthOne.proper T S = true\\nhard : CherryBranching.select T S = some (Priority.hard2, c)\\nselected : runHard2 T S c = some out\\ncall : Call\\nmem : call \u2208 (paidCase actual T S c q out).calls\\n\u22a2 Nat\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-trace-20261015T205110998851Z/TraceProgress.lean:37:6: error: failed to infer `have` declaration type\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-trace-20261015T205110998851Z/TraceProgress.lean:36:87: error: unsolved goals\\nactual : Ordinary\\nT S : Tree\\nc : Candidate\\nq : Nat\\nout : Result\\nproper : DepthOne.proper T S = true\\nhard : CherryBranching.select T S = some (Priority.hard2, c)\\nselected : runHard2 T S c = some out\\ncall : Call\\nmem : call \u2208 (paidCase actual T S c q out).calls\\n\u22a2 call.budget + 2 \u2264 q \u2227 call.budget < q\\n\"))"
+}

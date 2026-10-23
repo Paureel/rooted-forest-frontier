@@ -1,0 +1,15 @@
+import FamilyAssembly
+#check List.prefix_singleton
+#check List.IsPrefix.eq_or_eq
+#check List.filter_cons
+#check List.nodup_cons
+#check List.length_erase_of_mem
+#check List.count_eq_one_of_mem
+#check List.count_eq_one
+#check List.count_pos_iff
+#check List.filter_eq
+#check List.filter_eq_cons_iff
+#check List.length_filter_add_length_filter_neg_eq
+#check List.filter_eq_nil_iff
+#check List.mem_erase_iff
+#check List.count_eq_length_filter

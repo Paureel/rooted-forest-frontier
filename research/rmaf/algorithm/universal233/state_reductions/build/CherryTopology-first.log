@@ -1,0 +1,98 @@
+research/rmaf/algorithm/universal233/state_reductions/build/CherryTopology.lean:83:42: error: unsolved goals
+t : Tree
+B : List Nat
+b : Nat
+hb : ¬b ∈ leaves t
+x : Nat
+hx : x ∈ leaves t
+hn : x ≠ b
+⊢ x = b → x ∈ B
+research/rmaf/algorithm/universal233/state_reductions/build/CherryTopology.lean:87:8: warning: This simp argument is unused:
+  Ne.symm hn
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/state_reductions/build/CherryTopology.lean:110:4: error: Type mismatch: After simplification, term
+  rootedIso_refl ((Tree.leaf a).node (Tree.leaf b))
+ has type
+  RootedIso ((Tree.leaf a).node (Tree.leaf b)) ((Tree.leaf a).node (Tree.leaf b))
+but is expected to have type
+  OptionIso (some ((Tree.leaf a).node (Tree.leaf b))) (some ((Tree.leaf a).node (Tree.leaf b)))
+research/rmaf/algorithm/universal233/state_reductions/build/CherryTopology.lean:154:13: error: unsolved goals
+case some.some.none
+T S : Tree
+a b : Nat
+B : List Nat
+ndT : (leaves T).Nodup
+ndS : (leaves S).Nodup
+chT : cherry a b T = true
+chS : cherry a b S = true
+ha : a ∈ B
+hb : ¬b ∈ B
+h : restrictionAgrees T S B = true
+w : Vertex
+hw : CherryAt a b T w
+v : Vertex
+hv : CherryAt a b S v
+t : Tree
+it :
+  match some (expand a b a t), restrict (b :: B) T with
+  | none, none => True
+  | some t, some u => RootedIso t u
+  | x, x_1 => False
+rt : restrict B T = some t
+s : Tree
+is : OptionIso (Option.map (expand a b a) (some s)) (restrict (b :: B) S)
+rs : restrict B S = some s
+iso : RootedIso t s
+et : restrict (b :: B) T = none
+⊢ restrictionAgrees T S (b :: B) = true
+research/rmaf/algorithm/universal233/state_reductions/build/CherryTopology.lean:157:15: error: unsolved goals
+case some.some.some.none
+T S : Tree
+a b : Nat
+B : List Nat
+ndT : (leaves T).Nodup
+ndS : (leaves S).Nodup
+chT : cherry a b T = true
+chS : cherry a b S = true
+ha : a ∈ B
+hb : ¬b ∈ B
+h : restrictionAgrees T S B = true
+w : Vertex
+hw : CherryAt a b T w
+v : Vertex
+hv : CherryAt a b S v
+t : Tree
+it : OptionIso (Option.map (expand a b a) (some t)) (restrict (b :: B) T)
+rt : restrict B T = some t
+s : Tree
+is :
+  match some (expand a b a s), restrict (b :: B) S with
+  | none, none => True
+  | some t, some u => RootedIso t u
+  | x, x_1 => False
+rs : restrict B S = some s
+iso : RootedIso t s
+t' : Tree
+et : restrict (b :: B) T = some t'
+es : restrict (b :: B) S = none
+⊢ restrictionAgrees T S (b :: B) = true
+research/rmaf/algorithm/universal233/state_reductions/build/CherryTopology.lean:159:53: error: Application type mismatch: The argument
+  it
+has type
+  OptionIso (Option.map (expand a b a) (some t)) (restrict (b :: B) T)
+but is expected to have type
+  RootedIso ?m.229 ?m.230
+in the application
+  rootedIso_symm it
+research/rmaf/algorithm/universal233/state_reductions/build/CherryTopology.lean:160:62: error: Application type mismatch: The argument
+  is
+has type
+  OptionIso (Option.map (expand a b a) (some s)) (restrict (b :: B) S)
+but is expected to have type
+  RootedIso (expand a b a s) ?m.233
+in the application
+  rootedIso_trans (expand_preserves_iso a b a iso) is

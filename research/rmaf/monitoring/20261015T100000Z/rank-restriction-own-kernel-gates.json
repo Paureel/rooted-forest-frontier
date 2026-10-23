@@ -1,0 +1,299 @@
+{
+  "phase": "RELEASED",
+  "scope": "Own preregistered detector gates first; no candidate positives compiled",
+  "runs": [
+    {
+      "module": "StdClean",
+      "directory": "research/rmaf/algorithm/verification/rank-restriction-2026-10-15/isolated-release-v1/own",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "StdClean.olean",
+        "StdClean.lean"
+      ],
+      "seconds": 0.3103672910001478,
+      "returncode": 0,
+      "expected": "compile",
+      "log_sha256": "79b19921d62a044c4c0bf0241945bb8db50f2b3b1f349940511f18c7143dca7a"
+    },
+    {
+      "module": "CleanAudit",
+      "directory": "research/rmaf/algorithm/verification/rank-restriction-2026-10-15/isolated-release-v1/own",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "CleanAudit.olean",
+        "CleanAudit.lean"
+      ],
+      "seconds": 4.197715958000117,
+      "returncode": 0,
+      "expected": "compile",
+      "log_sha256": "79d879f8e13a700147096a718dcf2b0fecdf511a500dbb092c73400044c40f06"
+    },
+    {
+      "module": "FalseControl",
+      "directory": "research/rmaf/algorithm/verification/rank-restriction-2026-10-15/isolated-release-v1/own",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "FalseControl.olean",
+        "FalseControl.lean"
+      ],
+      "seconds": 0.28632866599946283,
+      "returncode": 1,
+      "expected": "false",
+      "log_sha256": "d094b3b34b2478dd95bbb5e89bf07af1c99a85062c84d6cb0a89c1d8374a88a8"
+    },
+    {
+      "module": "CustomDependency",
+      "directory": "research/rmaf/algorithm/verification/rank-restriction-2026-10-15/isolated-release-v1/own",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "CustomDependency.olean",
+        "CustomDependency.lean"
+      ],
+      "seconds": 0.2782955420007056,
+      "returncode": 0,
+      "expected": "compile",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "ImportClient",
+      "directory": "research/rmaf/algorithm/verification/rank-restriction-2026-10-15/isolated-release-v1/own",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "ImportClient.olean",
+        "ImportClient.lean"
+      ],
+      "seconds": 0.3155402909997065,
+      "returncode": 0,
+      "expected": "compile",
+      "log_sha256": "6a4c7eff09ec50cc20d73ccad55815fc5a915c6c9890bd0d8239cd95e6d5686c"
+    },
+    {
+      "module": "CustomAudit",
+      "directory": "research/rmaf/algorithm/verification/rank-restriction-2026-10-15/isolated-release-v1/own",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "CustomAudit.olean",
+        "CustomAudit.lean"
+      ],
+      "seconds": 4.183008624999275,
+      "returncode": 1,
+      "expected": "FRESH_AUDIT_REJECT",
+      "log_sha256": "a382a3df0dfa20170667de28182941702c44c986bf281513788a6df7162bb0e6"
+    },
+    {
+      "module": "EmptyAudit",
+      "directory": "research/rmaf/algorithm/verification/rank-restriction-2026-10-15/isolated-release-v1/own",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "EmptyAudit.olean",
+        "EmptyAudit.lean"
+      ],
+      "seconds": 0.705457000000024,
+      "returncode": 1,
+      "expected": "FRESH_EMPTY_INVENTORY",
+      "log_sha256": "3cf08ab3c2aae7d6235374220c4258df926ba59d4f742a177497fb52e15a0f2b"
+    },
+    {
+      "module": "MissingAudit",
+      "directory": "research/rmaf/algorithm/verification/rank-restriction-2026-10-15/isolated-release-v1/own",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "MissingAudit.olean",
+        "MissingAudit.lean"
+      ],
+      "seconds": 4.075732790999609,
+      "returncode": 1,
+      "expected": "FRESH_MISSING_ORIGIN",
+      "log_sha256": "9b22bf4aa48c2b39b5cddd190a1a9ff38fe79af5c770984364caf3c3c0a43ba7"
+    }
+  ],
+  "audits": {
+    "own/CleanAudit": {
+      "counts": {
+        "StdClean": 2
+      },
+      "total": 2,
+      "bad": [],
+      "all_declarations": [
+        {
+          "origin": "StdClean",
+          "name": "_private.StdClean.0.hiddenClean",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "StdClean",
+          "name": "headlineClean",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        }
+      ]
+    },
+    "own/CustomAudit": {
+      "counts": {
+        "CustomDependency": 5,
+        "ImportClient": 1
+      },
+      "total": 6,
+      "bad": [
+        {
+          "origin": "CustomDependency",
+          "name": "exportedBad",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [
+            "_private.CustomDependency.0.privateFalse"
+          ],
+          "rejected": true
+        },
+        {
+          "origin": "CustomDependency",
+          "name": "unusedFalse",
+          "is_axiom": true,
+          "unsafe": false,
+          "axioms": [
+            "unusedFalse"
+          ],
+          "rejected": true
+        },
+        {
+          "origin": "CustomDependency",
+          "name": "_private.CustomDependency.0.hiddenBad",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [
+            "_private.CustomDependency.0.privateFalse"
+          ],
+          "rejected": true
+        },
+        {
+          "origin": "ImportClient",
+          "name": "importedBad",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [
+            "_private.CustomDependency.0.privateFalse"
+          ],
+          "rejected": true
+        },
+        {
+          "origin": "CustomDependency",
+          "name": "_private.CustomDependency.0.privateFalse",
+          "is_axiom": true,
+          "unsafe": false,
+          "axioms": [
+            "_private.CustomDependency.0.privateFalse"
+          ],
+          "rejected": true
+        }
+      ],
+      "all_declarations": [
+        {
+          "origin": "CustomDependency",
+          "name": "cleanHeadline",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "CustomDependency",
+          "name": "exportedBad",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [
+            "_private.CustomDependency.0.privateFalse"
+          ],
+          "rejected": true
+        },
+        {
+          "origin": "CustomDependency",
+          "name": "unusedFalse",
+          "is_axiom": true,
+          "unsafe": false,
+          "axioms": [
+            "unusedFalse"
+          ],
+          "rejected": true
+        },
+        {
+          "origin": "CustomDependency",
+          "name": "_private.CustomDependency.0.hiddenBad",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [
+            "_private.CustomDependency.0.privateFalse"
+          ],
+          "rejected": true
+        },
+        {
+          "origin": "ImportClient",
+          "name": "importedBad",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [
+            "_private.CustomDependency.0.privateFalse"
+          ],
+          "rejected": true
+        },
+        {
+          "origin": "CustomDependency",
+          "name": "_private.CustomDependency.0.privateFalse",
+          "is_axiom": true,
+          "unsafe": false,
+          "axioms": [
+            "_private.CustomDependency.0.privateFalse"
+          ],
+          "rejected": true
+        }
+      ]
+    },
+    "own/EmptyAudit": {
+      "counts": {},
+      "total": 0,
+      "bad": [],
+      "all_declarations": []
+    },
+    "own/MissingAudit": {
+      "counts": {
+        "StdClean": 2,
+        "NeverImported": 0
+      },
+      "total": 2,
+      "bad": [],
+      "all_declarations": [
+        {
+          "origin": "StdClean",
+          "name": "_private.StdClean.0.hiddenClean",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "StdClean",
+          "name": "headlineClean",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        }
+      ]
+    }
+  },
+  "preregistration_sha256": "3906918d2ae55dad196698f3a1e121425837785d133c15e777f3f4ba03aa5eee",
+  "actual_compiler": "Lean (version 4.35.0, arm64-apple-darwin24.6.0, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "verdict": "OWN-PREREGISTERED-LEAN-GATES-PASSED-BEFORE-CANDIDATE-POSITIVES"
+}

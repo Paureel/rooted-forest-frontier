@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "frozen_before_reading_receipts": true,
+  "scope": "Evidence bookkeeping only, no independent proof derivation or enumeration",
+  "positive": {
+    "declarations": [
+      {"name":"old_theorem","origin":"imported","kind":"theorem","count_as_new":false},
+      {"name":"new_theorem","origin":"local","kind":"theorem","count_as_new":true},
+      {"name":"constructor","origin":"local","kind":"def","count_as_new":false}
+    ],
+    "advertised_new_count": 1,
+    "diagnostics": [{"result":"malformed_proof_failure","claim":"diagnostic_only"}],
+    "finite_checks": [{"claim":"finite_only"}],
+    "bindings": [{"expected":"a","actual":"a"}]
+  },
+  "corruptions": [
+    {"id":"imported_as_new","path":["declarations",0,"count_as_new"],"value":true,"expected_error":"imported_as_new"},
+    {"id":"definition_as_theorem","path":["declarations",2,"count_as_new"],"value":true,"expected_error":"definition_as_theorem"},
+    {"id":"malformed_as_false","path":["diagnostics",0,"claim"],"value":"false_statement","expected_error":"malformed_as_false"},
+    {"id":"finite_as_universal","path":["finite_checks",0,"claim"],"value":"universal_proof","expected_error":"finite_as_universal"},
+    {"id":"source_hash_mismatch","path":["bindings",0,"actual"],"value":"b","expected_error":"source_hash_mismatch"}
+  ],
+  "null": {"declarations":[],"advertised_new_count":0,"diagnostics":[],"finite_checks":[],"bindings":[]},
+  "pass_criteria": "The positive and null must have no errors. Each one-corruption clone must produce its named expected error; all 5 required. Any source mismatch in real input invalidates the bound receipt. No aggregate theorem-count acceptance belongs to this reviewer."
+}

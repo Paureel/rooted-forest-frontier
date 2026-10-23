@@ -1,0 +1,225 @@
+{
+  "kind": "exact-counterexample-search",
+  "started_utc": "2026-10-14T21:50:19.111942+00:00",
+  "script_sha256": "4c9d70932bc2b199d79b6d473a7a0a9f773c92b233452cfd7e8b9dca5189b3ca",
+  "balancing_definition": "one source-edge cut; both sides nonempty; maximum leaf count <= ceil(2n/3)",
+  "claim": "every budget-admissible globally leaf-balanced source-edge split preserves some original optimum",
+  "qualification": "finite candidate failure does not refute the safe-cover existence target",
+  "additional_restrictions": {
+    "equal_halves": true,
+    "require_local_halfbudget": true
+  },
+  "sizes": [
+    {
+      "n": 1,
+      "tree_count": 1,
+      "total_ordered_tree_pairs": 1,
+      "finished_pairs": 1,
+      "checked_balanced_splits": 0,
+      "checked_halfbudget_balanced_splits": 0,
+      "pair_seconds": [
+        1.3874999922336428e-05
+      ],
+      "seconds": 2.166700005545863e-05
+    },
+    {
+      "n": 2,
+      "tree_count": 1,
+      "total_ordered_tree_pairs": 1,
+      "finished_pairs": 1,
+      "checked_balanced_splits": 0,
+      "checked_halfbudget_balanced_splits": 0,
+      "pair_seconds": [
+        2.9000000040468876e-05
+      ],
+      "seconds": 5.3167000032772194e-05
+    },
+    {
+      "n": 3,
+      "tree_count": 3,
+      "total_ordered_tree_pairs": 9,
+      "finished_pairs": 9,
+      "checked_balanced_splits": 0,
+      "checked_halfbudget_balanced_splits": 0,
+      "pair_seconds": [
+        8.887500007404014e-05,
+        2.2958000045036897e-05,
+        1.9416999975874205e-05,
+        3.229200001442223e-05,
+        2.079199998661352e-05,
+        4.899999998997373e-05,
+        2.9874999881940312e-05,
+        1.874999998108251e-05,
+        2.2708999949827557e-05
+      ],
+      "seconds": 0.00035991699996884563
+    },
+    {
+      "n": 4,
+      "tree_count": 15,
+      "total_ordered_tree_pairs": 225,
+      "finished_pairs": 2,
+      "checked_balanced_splits": 1,
+      "checked_halfbudget_balanced_splits": 1,
+      "pair_seconds": [
+        0.00010304100010216644,
+        0.0002784589999009768
+      ],
+      "seconds": 0.00044350000007398194
+    }
+  ],
+  "witness": {
+    "n": 4,
+    "source": [
+      "a",
+      [
+        "b",
+        [
+          "c",
+          "d"
+        ]
+      ]
+    ],
+    "target": [
+      "a",
+      [
+        [
+          "b",
+          "c"
+        ],
+        "d"
+      ]
+    ],
+    "original_budget": 1,
+    "source_cut": {
+      "parent_vertex": "R1",
+      "child_vertex": "R11",
+      "child_descendant_labels": [
+        "c",
+        "d"
+      ]
+    },
+    "split_leaf_sizes": [
+      2,
+      2
+    ],
+    "centroid_balanced": true,
+    "equal_halves": true,
+    "local_halfbudget": true,
+    "exact": {
+      "optimum_cuts": 1,
+      "optimum_partitions": [
+        [
+          [
+            "a",
+            "b",
+            "c"
+          ],
+          [
+            "d"
+          ]
+        ],
+        [
+          [
+            "a",
+            "b",
+            "d"
+          ],
+          [
+            "c"
+          ]
+        ],
+        [
+          [
+            "a",
+            "c",
+            "d"
+          ],
+          [
+            "b"
+          ]
+        ]
+      ],
+      "optimum_partition_count": 3,
+      "partitions_enumerated": 15,
+      "precut_blocks": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "precuts": 1,
+      "distinct_precut_realization_count": 1,
+      "precut_realizations": [
+        [
+          {
+            "parent_vertex": "R1",
+            "child_vertex": "R11",
+            "child_descendant_labels": [
+              "c",
+              "d"
+            ]
+          }
+        ]
+      ],
+      "surviving_optimum_count": 0,
+      "surviving_optimum_partitions": [],
+      "one_optimum_survival": false,
+      "all_optimum_survival": false,
+      "completion_cuts": 1,
+      "charged_total": 2,
+      "local_distances": [
+        {
+          "block": [
+            "a",
+            "b"
+          ],
+          "distance": 0
+        },
+        {
+          "block": [
+            "c",
+            "d"
+          ],
+          "distance": 0
+        }
+      ],
+      "tau": 0,
+      "terminal_membership": {
+        "pure-bridge": true,
+        "compatible-or-triple": true
+      },
+      "actual_target_overlap_geometry": [
+        {
+          "A": [
+            "a",
+            "b"
+          ],
+          "B": [
+            "c",
+            "d"
+          ],
+          "vertices": [
+            {
+              "vertex": "R1",
+              "degree_A": 2,
+              "degree_B": 2
+            },
+            {
+              "vertex": "R10",
+              "degree_A": 2,
+              "degree_B": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "verdict": "CERTIFIED-CANDIDATE-FAILURE",
+  "seconds": 0.0014554580000094575,
+  "finished_utc": "2026-10-14T21:50:19.113396+00:00"
+}

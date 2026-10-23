@@ -1,0 +1,5 @@
+import StoredBudget
+#check OrdinaryDispatch.StoredNumeric.disjoint_budget_width
+#print axioms OrdinaryDispatch.StoredNumeric.disjoint_budget_width
+#check OrdinaryDispatch.StoredNumeric.global_budget_width
+#print axioms OrdinaryDispatch.StoredNumeric.global_budget_width

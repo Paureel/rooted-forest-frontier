@@ -1,0 +1,7 @@
+import Hard2FullOutputBound
+#check OrdinaryDispatch.Hard2SourceWork.forest_answer_payload
+#print axioms OrdinaryDispatch.Hard2SourceWork.forest_answer_payload
+#check OrdinaryDispatch.Hard2SourceWork.checkedMeter_forest_bound
+#print axioms OrdinaryDispatch.Hard2SourceWork.checkedMeter_forest_bound
+#check OrdinaryDispatch.Hard2SourceWork.fullOutputsSource_local
+#print axioms OrdinaryDispatch.Hard2SourceWork.fullOutputsSource_local

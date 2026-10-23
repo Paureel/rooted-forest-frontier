@@ -1,0 +1,110 @@
+import ProducerGeneratorRun
+import GenerationBounds
+namespace GenericForest.BinaryProducer
+open BinaryProvider GenericForest.ScalarBits Universal233.WholeSourceWork
+
+def sourceAtBits (i : Bits) : List BinaryProvider.Tree→Charged (Option BinaryProvider.Tree)
+ | []=>⟨none,1⟩
+ | s::ss=>let z:=copiedEqual i []
+           if z.value then ⟨some s,z.work+4⟩ else
+            let d:=subtractBits i [true];let r:=sourceAtBits d.value ss;⟨r.value,z.work+d.work+r.work+8⟩
+@[simp] theorem sourceAtBits_value (i : Bits) (ss : List BinaryProvider.Tree) :
+ (sourceAtBits i ss).value.map treeValue=(sourcesValue ss)[decode i]? := by
+ induction ss generalizing i with
+ | nil=>rfl
+ | cons s ss ih=>
+  dsimp only [sourceAtBits]
+  simp only [copiedEqual_value,decode]
+  split
+  · rename_i h
+    have z : decode i=0:=by simpa using h
+    simp [z,sourcesValue]
+  · rename_i h
+    have nz : decode i≠0:=by simpa using h
+    obtain ⟨k,hk⟩:=Nat.exists_eq_succ_of_ne_zero nz
+    have di : decode (subtractBits i [true]).value=k:=by simp [subtractBits_value,hk,decode,bit]
+    simp only [ih,di,sourcesValue,List.map_cons,hk,List.getElem?_cons_succ]
+
+def rawProducer (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (i : Bits) (v : RMAF.Vertex) (q : Bits) : Charged (List Output):=
+ let s:=sourceAtBits i ss
+ match s.value with
+ | none=>⟨[],s.work+4⟩
+ | some u=>let g:=Generator.generateBits u (Generator.colorBits t v) q;⟨g.value.outputs,s.work+g.work+8⟩
+
+theorem rawProducer_value (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (i : Bits) (v : RMAF.Vertex) (q : Bits) :
+ (rawProducer t ss i v q).value.map outputValue=GenericForest.raw (treeValue t) (sourcesValue ss) (decode i) v (decode q) := by
+ have s:=sourceAtBits_value i ss
+ unfold GenericForest.raw
+ simp only [←s]
+ dsimp only [rawProducer]
+ cases h : (sourceAtBits i ss).value with
+ | none=>rfl
+ | some u=>
+  have g:=congrArg Universal233.CoreProgram.Receipt.outputs
+   (Generator.generateBits_value u (Generator.colorBits t v) (VertexGeometry.colorLabel (treeValue t) v)
+    (Generator.colorBits_value t v) q)
+  exact g
+
+def indexedOutputs (i : Bits) : List Output→Charged (List (Bits×Output))
+ | []=>⟨[],1⟩
+ | o::os=>let r:=indexedOutputs i os;⟨(i,o)::r.value,r.work+4⟩
+@[simp] theorem indexedOutputs_value (i : Bits) (os : List Output) :
+ (indexedOutputs i os).value.map branchValue=(os.map outputValue).map (decode i,·) := by
+ induction os <;> simp_all [indexedOutputs,branchValue]
+@[simp] theorem indexedOutputs_count (i : Bits) (os : List Output) : (indexedOutputs i os).value.length=os.length := by
+ induction os <;> simp_all [indexedOutputs]
+@[simp] theorem indexedOutputs_cost (i : Bits) (os : List Output) : (indexedOutputs i os).work=4*os.length+1 := by
+ induction os <;> simp only [indexedOutputs,List.length_nil,List.length_cons] at * <;> omega
+
+def branchesProducer (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (h : OverlapBits) (q : Bits) : Charged (List (Bits×Output)):=
+ let a:=rawProducer t ss h.left h.vertex q;let b:=rawProducer t ss h.right h.vertex q
+ let ia:=indexedOutputs h.left a.value;let ib:=indexedOutputs h.right b.value
+ let r:=appendSpine ia.value ib.value
+ ⟨r.value,a.work+b.work+ia.work+ib.work+r.work+12⟩
+
+theorem branchesProducer_value (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (h : OverlapBits) (q : Bits) :
+ (branchesProducer t ss h q).value.map branchValue=
+ GenericForest.branches (treeValue t) (sourcesValue ss) (overlapValue h) (decode q) := by
+ simp [branchesProducer,indexedOutputs_value,rawProducer_value,GenericForest.branches,overlapValue,List.map_append]
+
+/-- This produces the actual branch list; no supplied represented-list equation
+is a premise. Only the separately typed recursive solver refinement remains. -/
+def generatedRawParent
+ (solve : Option BinaryProvider.Tree→List BinaryProvider.Tree→Bits→Charged (Option BinaryProvider.Forest))
+ (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (h : OverlapBits) (q : Bits) : Charged (Option BinaryProvider.Forest):=
+ let b:=branchesProducer t ss h q;let p:=rawParentProducer solve (some t) ss q b.value
+ ⟨p.value,b.work+p.work+4⟩
+
+theorem generatedRawParent_value
+ (solve : Option BinaryProvider.Tree→List BinaryProvider.Tree→Bits→Charged (Option BinaryProvider.Forest))
+ (native : Option RMAF.Tree→List RMAF.Tree→Nat→Option GenericForest.Forest)
+ (ih : ∀T ss b,forestOptionValue (solve T ss b).value=native (targetValue T) (sourcesValue ss) (decode b))
+ (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (h : OverlapBits) (q : Bits) :
+ forestOptionValue (generatedRawParent solve t ss h q).value=
+ RMAF.best List.length (GenericForest.accepted (some (treeValue t)) (sourcesValue ss) (decode q))
+ ((GenericForest.branches (treeValue t) (sourcesValue ss) (overlapValue h) (decode q)).filterMap (fun io=>
+  let d:=io.2.sourceCuts.length
+  if 1≤d∧d≤decode q then native (some (treeValue t)) (GenericForest.replace (sourcesValue ss) io.1 io.2.partition) (decode q-d) else none)) := by
+ have p:=rawParentProducer_value solve native ih (some t) ss q (branchesProducer t ss h q).value
+ simpa only [generatedRawParent,branchesProducer_value,targetValue,Option.map_some] using p
+
+theorem rawProducer_exponential_count (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (i : Bits) (v : RMAF.Vertex) (q : Bits) :
+ (rawProducer t ss i v q).value.length≤6*2^(decode q) := by
+ have p:=congrArg List.length (rawProducer_value t ss i v q)
+ simp only [List.length_map] at p
+ rw [p]
+ exact GenericForest.LocalPolynomial.raw_output_count _ _ _ _ _
+
+theorem branchesProducer_exponential_count (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (h : OverlapBits) (q : Bits) :
+ (branchesProducer t ss h q).value.length≤12*2^(decode q) := by
+ have p:=congrArg List.length (branchesProducer_value t ss h q)
+ simp only [List.length_map] at p
+ rw [p]
+ exact GenericForest.LocalPolynomial.branches_output_count _ _ _ _
+
+theorem branchesProducer_multiplicity_paid (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (h : OverlapBits) (q : Bits) :
+ (branchesProducer t ss h q).work=
+ (rawProducer t ss h.left h.vertex q).work+(rawProducer t ss h.right h.vertex q).work+
+ 8*(rawProducer t ss h.left h.vertex q).value.length+4*(rawProducer t ss h.right h.vertex q).value.length+15 := by
+ simp only [branchesProducer,indexedOutputs_cost,appendSpine_work,indexedOutputs_count];omega
+end GenericForest.BinaryProducer

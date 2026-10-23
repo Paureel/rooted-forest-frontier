@@ -1,0 +1,55 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/UniqueCherry.lean:270:12: warning: This simp argument is unused:
+  Nat.add_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Nat.add_left_comm, Nat.add_assoc, Bool.and_comm, Bool.and_left_comm, Bool.and_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/UniqueCherry.lean:270:43: warning: This simp argument is unused:
+  Nat.add_assoc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Nat.add_comm, Nat.add_left_comm, Bool.and_comm, Bool.and_left_comm, Bool.and_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/UniqueCherry.lean:286:84: error: No goals to be solved
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/UniqueCherry.lean:286:44: error: unsolved goals
+T : Tree
+X Y Z : List Nat
+he : pairwiseEmbeddings T [X, Y, Z] = true
+hp :
+  List.Pairwise (fun D E => ∀ (v : VertexGeometry.Vertex), ¬(Hull (selectedLeaves D T) v ∧ Hull (selectedLeaves E T) v))
+    [X, Y, Z]
+dxy : ∀ (v : VertexGeometry.Vertex), ¬(Hull (selectedLeaves X T) v ∧ Hull (selectedLeaves Y T) v)
+dxz : ∀ (v : VertexGeometry.Vertex), ¬(Hull (selectedLeaves X T) v ∧ Hull (selectedLeaves Z T) v)
+dyz : ∀ (v : VertexGeometry.Vertex), ¬(Hull (selectedLeaves Y T) v ∧ Hull (selectedLeaves Z T) v)
+B : List Nat
+hB : B ∈ [Z]
+e : B = Z
+⊢ ∀ (v : VertexGeometry.Vertex), ¬(Hull (selectedLeaves X T) v ∧ Hull (selectedLeaves B T) v)
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/UniqueCherry.lean:320:6: error: unknown tactic
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/UniqueCherry.lean:300:23: error: Type mismatch
+  hasCherry_labels ?m.76
+has type
+  ?m.73 ∈ leaves ?m.75 ∧ ?m.74 ∈ leaves ?m.75
+but is expected to have type
+  HasCherry a b T
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/UniqueCherry.lean:311:45: error(lean.unknownIdentifier): Unknown identifier `a`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/UniqueCherry.lean:311:52: error: Dependent elimination failed: Failed to solve equation
+  some ((Tree.leaf x).node (Tree.leaf y)) = subtree T p
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/UniqueCherry.lean:294:72: error: unsolved goals
+T S : Tree
+a b : Nat
+e : RMAF.Vertex
+ha : admitted T S a b = true
+he : e ∈ cuts S a b
+good : restrictionAgrees T S (subtreeLabels S e) = true
+parts :
+  properPair T S = true ∧
+    earlierClear T S = true ∧
+      earlierClear S T = true ∧ pairwiseEmbeddings T (pendantPartition S a b) = true ∧ (cuts S a b).length = 2
+proper : (leaves T).Nodup ∧ (leaves S).Nodup ∧ ∀ (x : Nat), x ∈ leaves T ↔ x ∈ leaves S
+hc : cuts S a b = [(cuts S a b)[0], (cuts S a b)[1]]
+U : Tree
+hU : subtree S e = some U
+⊢ ∃ U, subtree S e = some U ∧ Caterpillar U ∧ (cherries U).length ≤ 1

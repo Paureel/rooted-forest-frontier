@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "aaee88fbb9ccb20555966346d0e96754f52dfab822f066cbe9c82b9922e17ec3",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.39403416700042726,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.30315254099969025,
+      "resource_stop": null,
+      "log_sha256": "bb10ace6fa7858c848ff742d964e189738b7d8a9cbc0abda2984b3ad9bbc68cd"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0014851249998173444,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "DisjointQuery",
+      "source_sha256": "537a3cd1685f102b482f4788319aef74f073c454a1a8b9ff7c2647b473de7fb0",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.6962845000007292,
+      "resource_stop": null,
+      "log_sha256": "ad3c515199680cc964b155ed7d82fcb6e977ee32317879ba6a87cf23e1722051"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('DisjointQuery', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-disjoint-parent-query-20261015T195609926776Z/DisjointQuery.lean:35:41: error(lean.unknownIdentifier): Unknown identifier `Universal233.BothBad.badParents`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-disjoint-parent-query-20261015T195609926776Z/DisjointQuery.lean:50:31: error(lean.unknownIdentifier): Unknown identifier `Universal233.BothBad.badParents`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-disjoint-parent-query-20261015T195609926776Z/DisjointQuery.lean:67:11: error(lean.invalidField): Invalid field `trans_eq`: The environment does not contain `Eq.trans_eq`, so it is not possible to project the field `trans_eq` from an expression\\n  h\\nof type\\n  (c ^ (-2) * c ^ (-1)).blt\\n      (c ^ (-2) * traceMass c (q - 2) (ordinaryExecution (GenericForest.solve actual) T S P (q - 2)).calls) =\\n    false\\n'))"
+}

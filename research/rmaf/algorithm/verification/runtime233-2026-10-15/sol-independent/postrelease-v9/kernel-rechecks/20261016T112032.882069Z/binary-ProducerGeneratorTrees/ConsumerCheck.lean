@@ -1,0 +1,7 @@
+import ProducerGeneratorTrees
+#check GenericForest.BinaryProducer.Generator.fromTreeBits_value
+#print axioms GenericForest.BinaryProducer.Generator.fromTreeBits_value
+#check GenericForest.BinaryProducer.Generator.normalizeBits_value
+#print axioms GenericForest.BinaryProducer.Generator.normalizeBits_value
+#check GenericForest.BinaryProducer.Generator.eraseBits_value
+#print axioms GenericForest.BinaryProducer.Generator.eraseBits_value

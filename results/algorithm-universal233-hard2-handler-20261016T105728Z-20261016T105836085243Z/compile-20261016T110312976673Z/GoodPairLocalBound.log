@@ -1,0 +1,167 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairLocalBound.lean:78:120: error: Application type mismatch: The argument
+  h
+has type
+  (N + 1) ^ 1 ≤ (N + 1) ^ 3
+but is expected to have type
+  N.succ ≤ (N + 1) ^ 3
+in the application
+  Nat.le_trans (Nat.le_succ N) h
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairLocalBound.lean:99:6: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  y ≥ 0
+  x ≥ 0
+  x - y ≥ 0
+  w ≥ 0
+  v ≥ 0
+  u ≥ 0
+  t ≥ 0
+  s ≥ 0
+  r ≥ 0
+  r - s ≥ 0
+  p ≥ 0
+  o ≥ 0
+  n ≥ 0
+  m ≥ 0
+  l ≥ 0
+  k ≥ 0
+  j ≥ 0
+  j - k ≥ 0
+  j - l ≥ 0
+  i ≥ 1
+  16*i - o ≥ 0
+  16*i - p ≥ 0
+  64*i - m ≥ 0
+  64*i - n ≥ 0
+  h ≥ 0
+  h - 40*i ≤ 0
+  g ≥ 0
+  g - h ≥ -1
+  f ≥ 0
+  e ≥ 0
+  d ≥ 0
+  6*d + h - 512*i + k + 2*m + n + o + p - r + s + 3*t - v + w ≥ -51
+  c ≥ 0
+  b ≥ 0
+  a ≥ 3
+  a - b ≥ 0
+  a - c ≥ 0
+  a - d ≥ 0
+  a - e ≥ 0
+  a - f ≥ 0
+  a - i ≤ 0
+  a - t ≥ 0
+  a - u ≥ 0
+  2*a + v - w ≥ -6
+where
+ a := ↑N
+ b := ↑(treeNodes T)
+ c := ↑(treeNodes S)
+ d := ↑A.length
+ e := ↑B.length
+ f := ↑C.length
+ g := ↑(4 * (N + 2) * treeNodes S + 3) * ↑[A, B, C].length
+ h := ↑(sourceForestMeter S [A, B, C]).work
+ i := ↑((N + 1) ^ 3)
+ j := ↑[A, B, C].length
+ k := ↑(owned (List.filterMap (fun U => restrict U S) [A, B, C]) (A ++ B)).length
+ l := ↑(owned (OutputState.sourceForest S [A, B, C]) C).length
+ m := ↑(ownedMeter (List.filterMap (fun U => restrict U S) [A, B, C]) (A ++ B)).work
+ n := ↑(ownedMeter (List.filterMap (fun U => restrict U S) [A, B, C]) C).work
+ o := ↑(localTargetMeter (some T) (A ++ B)).work
+ p := ↑(localTargetMeter (some T) C).work
+ r := ↑(goodPairDPPolynomial N)
+ s := ↑(AllGoodDP.LocalWork.meterRun (localTarget (some T) (A ++ B))
+      (owned (List.filterMap (fun U => restrict U S) [A, B, C]) (A ++ B))).work
+ t := ↑H.length
+ u := ↑H.flatten.length
+ v := ↑(agreementK N)
+ w := ↑(checkedMeter T S q
+      (Option.map (fun K => H ++ K)
+        (GenericForest.solve actual (localTarget (some T) C)
+          (owned (List.filterMap (fun U => restrict U S) [A, B, C]) C)
+          (q - 2 - additionalCost (owned (List.filterMap (fun U => restrict U S) [A, B, C]) (A ++ B)) H)))).work
+ x := ↑(q - 2)
+ y := ↑(additionalCost (owned (List.filterMap (fun D => restrict D S) [A, B, C]) (A ++ B)) H)
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairLocalBound.lean:103:6: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  y ≥ 0
+  x ≥ 0
+  x - y ≥ 1
+  w ≥ 0
+  v ≥ 0
+  u ≥ 0
+  t ≥ 0
+  s ≥ 0
+  r ≥ 0
+  r - s ≥ 0
+  p ≥ 0
+  o ≥ 0
+  n ≥ 0
+  m ≥ 0
+  l ≥ 0
+  k ≥ 0
+  j ≥ 0
+  j - k ≥ 0
+  j - l ≥ 0
+  i ≥ 1
+  16*i - o ≥ 0
+  16*i - p ≥ 0
+  64*i - m ≥ 0
+  64*i - n ≥ 0
+  h ≥ 0
+  h - 40*i ≤ 0
+  g ≥ 0
+  g - h ≥ -1
+  f ≥ 0
+  e ≥ 0
+  d ≥ 0
+  6*d + h - 512*i + k + 2*m + o - r + s + t - v ≥ -39
+  c ≥ 0
+  b ≥ 0
+  a ≥ 3
+  a - b ≥ 0
+  a - c ≥ 0
+  a - d ≥ 0
+  a - e ≥ 0
+  a - f ≥ 0
+  a - i ≤ 0
+  a - t ≥ 0
+  a - u ≥ 0
+  2*a + v - w ≥ -6
+where
+ a := ↑N
+ b := ↑(treeNodes T)
+ c := ↑(treeNodes S)
+ d := ↑A.length
+ e := ↑B.length
+ f := ↑C.length
+ g := ↑(4 * (N + 2) * treeNodes S + 3) * ↑[A, B, C].length
+ h := ↑(sourceForestMeter S [A, B, C]).work
+ i := ↑((N + 1) ^ 3)
+ j := ↑[A, B, C].length
+ k := ↑(owned (List.filterMap (fun U => restrict U S) [A, B, C]) (A ++ B)).length
+ l := ↑(owned (OutputState.sourceForest S [A, B, C]) C).length
+ m := ↑(ownedMeter (List.filterMap (fun U => restrict U S) [A, B, C]) (A ++ B)).work
+ n := ↑(ownedMeter (OutputState.sourceForest S [A, B, C]) C).work
+ o := ↑(localTargetMeter (some T) (A ++ B)).work
+ p := ↑(localTargetMeter (some T) C).work
+ r := ↑(goodPairDPPolynomial N)
+ s := ↑(AllGoodDP.LocalWork.meterRun (localTarget (some T) (A ++ B))
+      (owned (List.filterMap (fun U => restrict U S) [A, B, C]) (A ++ B))).work
+ t := ↑H.length
+ u := ↑H.flatten.length
+ v := ↑(agreementK N)
+ w := ↑(checkedMeter T S q
+      (Option.map (fun K => H ++ K)
+        (GenericForest.solve actual (localTarget (some T) C) (owned (OutputState.sourceForest S [A, B, C]) C)
+          (q - 2 - additionalCost (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) H)))).work
+ x := ↑(additionalCost (owned (List.filterMap (fun D => restrict D S) [A, B, C]) (A ++ B)) H)
+ y := ↑(q - 2)
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairLocalBound.lean:80:2: warning: This simp argument is unused:
+  OutputState.sourceForest
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [goodPairLocalSource, appendLabelsMeter_value, localTargetMeter_value, ownedMeter_value,
+    source_forest_value, AllGoodDP.LocalWork.meterRun_value, additionalCostMeter_value]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

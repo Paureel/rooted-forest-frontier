@@ -1,0 +1,53 @@
+def Universal233.RankDichotomy.inputRank : RMAF.Tree → (Nat → Nat) → Nat :=
+fun T color => (Universal233.SourceCoverage.dedupNat (List.map color (RMAF.leaves T))).length
+def Universal233.RankDichotomy.RankFeasible : RMAF.Tree → (Nat → Nat) → Prop :=
+fun T color =>
+  ∃ bs,
+    RMAF.partitionCheck (RMAF.leaves T) bs = true ∧
+      RMAF.pairwiseEmbeddings T bs = true ∧
+        (∀ (b : List Nat), b ∈ bs → VertexGeometry.LabelMonochromatic color b) ∧
+          bs.length = Universal233.RankDichotomy.inputRank T color
+Universal233.CoreProgram.generate (t : RMAF.Tree) (color : Nat → Nat) (budget : Nat) : Universal233.CoreProgram.Receipt
+Universal233.Assembly.generated_source_valid (T : RMAF.Tree) (color : Nat → Nat) (q : Nat)
+  (o : Universal233.CoreProgram.Output) (ho : o ∈ (Universal233.CoreProgram.generate T color q).outputs) :
+  RMAF.partitionCheck (RMAF.leaves T) o.partition = true ∧ RMAF.pairwiseEmbeddings T o.partition = true
+Universal233.SourceCoverage.generate_rawQ_mass (t : RMAF.Tree) (color : Nat → Nat) (q : Nat) (b : Rat) (hb : 2 ≤ b) :
+  Universal233.SourceCoverage.rawQMass b (Universal233.CoreProgram.generate t color q).outputs ≤
+    b ^ (1 - ↑(Universal233.SourceCoverage.dedupNat (List.map color (RMAF.leaves t))).length)
+Universal233.RankDichotomy.below_rank_outputs_empty (T : RMAF.Tree) (color : Nat → Nat) (q : Nat)
+  (hq : q < Universal233.RankDichotomy.inputRank T color - 1) :
+  (Universal233.CoreProgram.generate T color q).outputs = []
+Universal233.RankDichotomy.feasible_unique (T : RMAF.Tree) (color : Nat → Nat) (hn : (RMAF.leaves T).Nodup)
+  (hf : Universal233.RankDichotomy.RankFeasible T color) (q : Nat)
+  (hq : Universal233.RankDichotomy.inputRank T color - 1 ≤ q) :
+  ∃ o,
+    (Universal233.CoreProgram.generate T color q).outputs = [o] ∧
+      o.sourceCuts.length = Universal233.RankDichotomy.inputRank T color - 1
+Universal233.RankDichotomy.feasible_unique_color_classes (T : RMAF.Tree) (color : Nat → Nat)
+  (hn : (RMAF.leaves T).Nodup) (hf : Universal233.RankDichotomy.RankFeasible T color) (q : Nat)
+  (hq : Universal233.RankDichotomy.inputRank T color - 1 ≤ q) :
+  ∃ o,
+    (Universal233.CoreProgram.generate T color q).outputs = [o] ∧
+      o.sourceCuts.length = Universal233.RankDichotomy.inputRank T color - 1 ∧
+        ∀ (b : List Nat), b ∈ o.partition → ∀ (y : Nat), y ∈ b ↔ y ∈ RMAF.leaves T ∧ color y = color (b.headD 0)
+Universal233.RankDichotomy.infeasible_cost (T : RMAF.Tree) (color : Nat → Nat) (q : Nat)
+  (hf : ¬Universal233.RankDichotomy.RankFeasible T color) (o : Universal233.CoreProgram.Output)
+  (ho : o ∈ (Universal233.CoreProgram.generate T color q).outputs) :
+  Universal233.RankDichotomy.inputRank T color ≤ o.sourceCuts.length
+Universal233.RankDichotomy.generate_tail_mass (T : RMAF.Tree) (color : Nat → Nat) (q L : Nat) (b : Rat) (hb : 2 ≤ b)
+  (hL : Universal233.RankDichotomy.inputRank T color - 1 ≤ L)
+  (hmin :
+    ∀ (o : Universal233.CoreProgram.Output),
+      o ∈ (Universal233.CoreProgram.generate T color q).outputs → L ≤ o.sourceCuts.length) :
+  Universal233.SourceCoverage.rawQMass b (Universal233.CoreProgram.generate T color q).outputs ≤
+    2 ^ (L - (Universal233.RankDichotomy.inputRank T color - 1)) * b ^ (-↑L)
+Universal233.RankDichotomy.infeasible_mass (T : RMAF.Tree) (color : Nat → Nat) (q : Nat)
+  (hf : ¬Universal233.RankDichotomy.RankFeasible T color) (b : Rat) (hb : 2 ≤ b) :
+  Universal233.SourceCoverage.rawQMass b (Universal233.CoreProgram.generate T color q).outputs ≤
+    2 * b ^ (-↑(Universal233.RankDichotomy.inputRank T color))
+'Universal233.RankDichotomy.below_rank_outputs_empty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Universal233.RankDichotomy.feasible_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Universal233.RankDichotomy.feasible_unique_color_classes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Universal233.RankDichotomy.infeasible_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Universal233.RankDichotomy.generate_tail_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Universal233.RankDichotomy.infeasible_mass' depends on axioms: [propext, Classical.choice, Quot.sound]

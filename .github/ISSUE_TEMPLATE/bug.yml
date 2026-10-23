@@ -1,0 +1,25 @@
+name: Counterexample or defect
+description: Report a reproducible failure.
+labels: ["counterexample"]
+body:
+  - type: textarea
+    id: claim
+    attributes:
+      label: Affected claim or command
+      description: Pin the version and distinguish a mathematical counterexample from an execution error.
+    validations:
+      required: true
+  - type: textarea
+    id: witness
+    attributes:
+      label: Small reproducible witness
+      description: Provide tiny inputs, expected behavior and observed behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment and evidence
+      description: Include commands, tool versions, source hashes and small receipts; keep big logs local.
+    validations:
+      required: true

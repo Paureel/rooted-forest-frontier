@@ -1,0 +1,81 @@
+{
+  "campaign": "geometry review reported-count transcription only",
+  "quote_source": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/geometry-2026-10-15/VERDICT.md",
+  "defaults": {
+    "mode": "exact"
+  },
+  "receipts": {
+    "c": {
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/algorithm-geometry-fresh-review-controls-v1.json"
+    },
+    "a": {
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/geometry-2026-10-15/AUTHOR-SOURCE-FREEZE.json"
+    },
+    "m": {
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/geometry-2026-10-15/LEAN-CONTROL-MAP.json"
+    },
+    "l": {
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/algorithm-geometry-fresh-review-lean.json"
+    },
+    "f": {
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/geometry-2026-10-15/PRE-CANDIDATE-FREEZE.json"
+    }
+  },
+  "claims": [
+    {
+      "label": "frozen literal control count",
+      "quoted": "35",
+      "expr": "f('f','/literal_controls')"
+    },
+    {
+      "label": "clean controls completed",
+      "quoted": "35",
+      "expr": "f('c','/result/completed')"
+    },
+    {
+      "label": "clean controls passed",
+      "quoted": "35",
+      "expr": "f('c','/result/passed')"
+    },
+    {
+      "label": "frozen false expectations",
+      "quoted": "20",
+      "expr": "f('f','/literal_false_plants')"
+    },
+    {
+      "label": "false expectations caught",
+      "quoted": "20",
+      "expr": "f('c','/result/plants_caught')"
+    },
+    {
+      "label": "author source fingerprints",
+      "quoted": "9",
+      "expr": "len(f('a','/source_pin_checks'))"
+    },
+    {
+      "label": "finite kernel comparisons",
+      "quoted": "69",
+      "expr": "len(f('m','/declarations'))"
+    },
+    {
+      "label": "author explicit false diagnostics",
+      "quoted": "2",
+      "expr": "f('l','/rows/7/actual_false_diagnostics')"
+    },
+    {
+      "label": "independent explicit false diagnostics",
+      "quoted": "2",
+      "expr": "f('l','/rows/8/actual_false_diagnostics')"
+    },
+    {
+      "label": "explicit false diagnostics total",
+      "quoted": "4",
+      "expr": "f('l','/rows/7/actual_false_diagnostics')+f('l','/rows/8/actual_false_diagnostics')"
+    },
+    {
+      "label": "no additional replication",
+      "quoted": "0",
+      "expr": "f('l','/additional_independent_replications')"
+    }
+  ]
+}

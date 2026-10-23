@@ -1,0 +1,7 @@
+import StoredCommonPayload
+#check OrdinaryDispatch.StoredNumeric.commonPayloadBits_value
+#print axioms OrdinaryDispatch.StoredNumeric.commonPayloadBits_value
+#check OrdinaryDispatch.StoredNumeric.commonPayloadBits_width
+#print axioms OrdinaryDispatch.StoredNumeric.commonPayloadBits_width
+#check OrdinaryDispatch.StoredNumeric.commonPayloadBits_work
+#print axioms OrdinaryDispatch.StoredNumeric.commonPayloadBits_work

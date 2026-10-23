@@ -1,0 +1,15 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-pair-query-20261015T195944423783Z/TwoGroupDP.lean:61:1: error: 'change' tactic failed, pattern
+  (if additionalCost (owned ss U) H ≤ b then
+      Option.map (fun K => H ++ K)
+        (GenericForest.solve actual (localTarget T V) (owned ss V) (b - additionalCost (owned ss U) H))
+    else none) =
+    some F
+is not definitionally equal to target
+  (do
+      let H ← some H
+      have m : Nat := additionalCost (owned ss U) H
+      if m ≤ b then do
+          let K ← GenericForest.solve actual (localTarget T V) (owned ss V) (b - m)
+          pure (H ++ K)
+        else none) =
+    some F

@@ -1,0 +1,380 @@
+{
+  "schema_version": 1,
+  "frozen_at": "2026-10-14",
+  "convention": "ordinary rooted binary leaf-labelled trees; no rho taxon; k counts nonempty components",
+  "source": {
+    "url": "https://arxiv.org/pdf/2409.18634",
+    "version": "v2, 21 March 2026",
+    "locator": "Section 2, pp. 3\u20134; footnote 2"
+  },
+  "rule": "Expected values below were chosen by elementary hand reasoning before corpus execution. Full CLI runs must match exactly; every deliberate invalid forest must be rejected with the indicated reason code.",
+  "optima": [
+    {
+      "id": "singleton",
+      "a": "a",
+      "b": "a",
+      "k": 1
+    },
+    {
+      "id": "identical-triple",
+      "a": [
+        [
+          "a",
+          "b"
+        ],
+        "c"
+      ],
+      "b": [
+        [
+          "a",
+          "b"
+        ],
+        "c"
+      ],
+      "k": 1
+    },
+    {
+      "id": "conflicting-triples",
+      "a": [
+        [
+          "a",
+          "b"
+        ],
+        "c"
+      ],
+      "b": [
+        [
+          "a",
+          "c"
+        ],
+        "b"
+      ],
+      "k": 1
+    },
+    {
+      "id": "identical-balanced-four",
+      "a": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "b": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "k": 1
+    },
+    {
+      "id": "crossed-balanced-four",
+      "a": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "b": [
+        [
+          "a",
+          "c"
+        ],
+        [
+          "b",
+          "d"
+        ]
+      ],
+      "k": 3
+    }
+  ],
+  "forests": [
+    {
+      "id": "clean-blocks",
+      "a": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "b": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "forest": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "valid": true
+    },
+    {
+      "id": "singleton-forest",
+      "a": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "b": [
+        [
+          "a",
+          "c"
+        ],
+        [
+          "b",
+          "d"
+        ]
+      ],
+      "forest": [
+        [
+          "a"
+        ],
+        [
+          "b"
+        ],
+        [
+          "c"
+        ],
+        [
+          "d"
+        ]
+      ],
+      "valid": true
+    },
+    {
+      "id": "missing-label",
+      "a": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "b": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "forest": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c"
+        ]
+      ],
+      "valid": false,
+      "reason": "label-coverage"
+    },
+    {
+      "id": "duplicate-label",
+      "a": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "b": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "forest": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "b",
+          "c",
+          "d"
+        ]
+      ],
+      "valid": false,
+      "reason": "duplicate-label"
+    },
+    {
+      "id": "conflicting-restriction",
+      "a": [
+        [
+          "a",
+          "b"
+        ],
+        "c"
+      ],
+      "b": [
+        [
+          "a",
+          "c"
+        ],
+        "b"
+      ],
+      "forest": [
+        [
+          "a",
+          "b",
+          "c"
+        ]
+      ],
+      "valid": false,
+      "reason": "restriction-mismatch"
+    },
+    {
+      "id": "overlap",
+      "a": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "b": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "forest": [
+        [
+          "a",
+          "c"
+        ],
+        [
+          "b",
+          "d"
+        ]
+      ],
+      "valid": false,
+      "reason": "embedding-overlap"
+    },
+    {
+      "id": "empty-block",
+      "a": [
+        "a",
+        "b"
+      ],
+      "b": [
+        "a",
+        "b"
+      ],
+      "forest": [
+        [],
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "valid": false,
+      "reason": "empty-block"
+    }
+  ],
+  "input_corruptions": [
+    {
+      "id": "tree-duplicate",
+      "a": [
+        [
+          "a",
+          "b"
+        ],
+        "a"
+      ],
+      "b": [
+        [
+          "a",
+          "b"
+        ],
+        "c"
+      ],
+      "reason": "tree-duplicate-label"
+    },
+    {
+      "id": "nonbinary-node",
+      "a": [
+        "a",
+        "b",
+        "c"
+      ],
+      "b": [
+        [
+          "a",
+          "b"
+        ],
+        "c"
+      ],
+      "reason": "tree-nonbinary"
+    },
+    {
+      "id": "different-leaf-sets",
+      "a": [
+        "a",
+        "b"
+      ],
+      "b": [
+        "a",
+        "c"
+      ],
+      "reason": "tree-label-set"
+    }
+  ],
+  "hand_arguments": {
+    "conflicting-triples": "One component would require equality of the two unequal full trees. A two-leaf block plus the remaining singleton is valid, giving exactly two.",
+    "crossed-balanced-four": "The full trees disagree. Each three-leaf restriction disagrees, excluding 3+1. Each 2+2 partition has overlapping embeddings in at least one input, excluding 2+2. The partition {a,b},{c},{d} is valid, giving exactly three."
+  }
+}

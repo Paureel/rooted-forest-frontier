@@ -1,0 +1,3 @@
+import BinaryProducerPretest
+#check GenericForest.BinaryProducer.pretestBits_value
+#print axioms GenericForest.BinaryProducer.pretestBits_value

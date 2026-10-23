@@ -1,0 +1,23 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-disjoint-parent-query-20261015T195609926776Z/Hard2Combine.lean:71:33: error: Tactic `decide` failed to reduce
+  @decide (2 = 1 + 1) (instDecidableEqRat 2 (1 + 1))
+to `true` or `false`.
+
+After unfolding the instances `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, and `instDecidableEqRat.decEq`, reduction got stuck at
+  match ↑2, (Rat.add 1 1).num with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | { decide := true, reflects_decide := h } => isTrue ⋯
+    | { decide := false, reflects_decide := h } => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | { decide := true, reflects_decide := h } => isTrue ⋯
+    | { decide := false, reflects_decide := h } => isFalse ⋯
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-disjoint-parent-query-20261015T195609926776Z/Hard2Combine.lean:73:9: error: Function expected at
+  Rat.le_refl
+but this term has type
+  ?m.79 ≤ ?m.79
+
+Note: Expected a function because this term is being applied to the argument
+  _

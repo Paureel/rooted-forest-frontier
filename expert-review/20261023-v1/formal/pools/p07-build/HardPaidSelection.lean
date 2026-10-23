@@ -1,0 +1,89 @@
+import HardPaidUniform
+namespace OrdinaryDispatch.ExtendedSourceAssembly
+open RMAF Universal233 WholeSourceWork CoreWork
+open Hard2Overlap Hard2PaidLocal PaidAssembly
+open GenericForest.FrontierWork OrdinaryDispatch.FullSourceWork OrdinaryDispatch.Hard2SourceWork
+open OrdinaryDispatch.WorkRecursion OrdinaryDispatch.WorkIntegration OrdinaryDispatch.GlobalSourceAssembly
+open OrdinaryDispatch.FastOrdinary OrdinaryDispatch.EarlyLocalWork
+
+/-- Literal branch predicate only. Its inspection fees and the outer combine
+remain separately owned source obligations; this is a selected-body subtotal. -/
+def hardPaidCaseUsed (T S : Tree) (c : CherryBranching.Candidate) (out : Hard2Overlap.Result) : Bool :=
+ match c.originalCuts with
+ | [p,r]=>
+  let A:=leftParent S p;let B:=rightParent S r;let C:=rootParent S p r
+  match out with
+  | .disjoint=>false
+  | .pair o (.edge _) =>
+   let X:=first o A B C;let Y:=second o A B C
+   if restrictionAgrees S T X && restrictionAgrees S T Y then false
+   else if restrictionAgrees S T X || restrictionAgrees S T Y then true else false
+  | _=>true
+ | _=>false
+
+theorem hardPaidCaseUsed_binding (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree) (c : CherryBranching.Candidate)
+ (out : Hard2Overlap.Result) (q : Nat) (used : hardPaidCaseUsed T S c out=true) :
+ Hard2Dispatcher.paidCase actual T S c q out=Hard2PaidLocal.runHardPaid actual T S q c out := by
+ unfold hardPaidCaseUsed at used
+ split at used
+ · rename_i p r cuts
+   simp only [Hard2Dispatcher.paidCase,cuts]
+   cases out with
+   | disjoint=>simp at used
+   | clique v=>rfl
+   | four o v w=>rfl
+   | diagonal o v w=>rfl
+   | pair o k=>cases k with
+    | vertex v=>rfl
+    | edge e=>
+     dsimp only at used ⊢
+     split at used <;> simp_all
+ · simp at used
+
+/-- Actual hard-paid body bill only at the literal ordinary paidCase path.
+Other handlers and paidCase's own selector/outer join costs remain absent. -/
+def hardPaidLocalDebit (T S : Tree) (q : Nat) : Nat :=
+ if DepthOne.proper T S then
+  match DepthOne.pretest01 T S with
+  | .rejected=>match early T S with
+   | .hard2 c _=>match runHard2 T S c with
+    | some out=>if hardPaidCaseUsed T S c out then
+      (hardPaidSource (cutoff FastOrdinary.solve q) (fun _ _ _=>0) T S q c out).work else 0
+    | none=>0
+   | _=>0
+  | _=>0
+ else 0
+
+theorem hardPaidLocalDebit_bound (N Q : Nat) (T S : Tree) (q : Nat)
+ (hp : DepthOne.proper T S=true) (size : (leaves T).length≤N) (budget : q≤Q) :
+ (hardPaidLocalDebit T S q:Rat)≤(hardPaidUniformPolynomial (2*N+3) Q:Rat)*Rule5ActualTrace.base^q := by
+ have nonneg:0≤(hardPaidUniformPolynomial (2*N+3) Q:Rat)*Rule5ActualTrace.base^q:=
+  Rat.mul_nonneg Rat.natCast_nonneg (Rat.le_trans (by decide +kernel : (0:Rat)≤1) (call_base_pow_ge_one q))
+ have same:=((DepthOne.proper_iff T S).1 hp).2.2.length_eq
+ have tn:=treeNodes_leafCount T;have sn:=treeNodes_leafCount S
+ unfold hardPaidLocalDebit
+ simp only [hp,ite_true]
+ cases pre:DepthOne.pretest01 T S with
+ | refused=>simpa only [Rat.natCast_ofNat] using nonneg
+ | found e=>simpa only [Rat.natCast_ofNat] using nonneg
+ | rejected=>cases he:early T S with
+  | hard2 c d=>
+   dsimp only
+   have sound:=early_sound T S
+   rw [he] at sound
+   have hard : CherryBranching.select T S=some (.hard2,c):=sound.1
+   cases selected:runHard2 T S c with
+   | none=>simpa only [selected,Rat.natCast_ofNat] using nonneg
+   | some out=>
+    simp only [selected]
+    split
+    · exact hardPaidSource_uniform (cutoff FastOrdinary.solve q) T S c out q (2*N+3) Q
+       (by omega) (by omega) (by omega) budget hp hard selected
+    · simpa only [Rat.natCast_ofNat] using nonneg
+  | common reverse c=>simpa only [Rat.natCast_ofNat] using nonneg
+  | one reverse c=>simpa only [Rat.natCast_ofNat] using nonneg
+  | high reverse c=>simpa only [Rat.natCast_ofNat] using nonneg
+  | rule4Forward s=>simpa only [Rat.natCast_ofNat] using nonneg
+  | rule4Reverse s=>simpa only [Rat.natCast_ofNat] using nonneg
+  | refused=>simpa only [Rat.natCast_ofNat] using nonneg
+end OrdinaryDispatch.ExtendedSourceAssembly

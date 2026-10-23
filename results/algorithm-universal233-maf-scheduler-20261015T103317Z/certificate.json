@@ -1,0 +1,880 @@
+{
+  "status": "PASS AUTHOR actual original MAF disjoint caller",
+  "full_algorithm_proved": false,
+  "independent_acceptance": false,
+  "all_main_milestones": "OPEN",
+  "source_inputs": [
+    {
+      "module": "RMAF",
+      "source": "research/rmaf/lean/RMAF.lean",
+      "original_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "copy_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Geometry",
+      "source": "research/rmaf/algorithm/universal233/geometry/Geometry.lean",
+      "original_sha256": "b98de754ee29fdeae54aebc6e03ffb7e8262dcb299f61b7ac5ca9bcee4887a9d",
+      "copy_sha256": "b98de754ee29fdeae54aebc6e03ffb7e8262dcb299f61b7ac5ca9bcee4887a9d",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Bridge",
+      "source": "research/rmaf/algorithm/universal233/geometry/Bridge.lean",
+      "original_sha256": "ba12f3b99d87efecce407dab54d95df003fc5e735cb12e314734c346317c9583",
+      "copy_sha256": "ba12f3b99d87efecce407dab54d95df003fc5e735cb12e314734c346317c9583",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Composition",
+      "source": "research/rmaf/algorithm/universal233/geometry/Composition.lean",
+      "original_sha256": "097b9184ebacd913524fc3f0a130057004f95e30ba15f485adb9e0b7934578df",
+      "copy_sha256": "097b9184ebacd913524fc3f0a130057004f95e30ba15f485adb9e0b7934578df",
+      "first_import_adapter": null
+    },
+    {
+      "module": "CoreGraph",
+      "source": "research/rmaf/algorithm/universal233/core/CoreGraph.lean",
+      "original_sha256": "7099d4aa48a771f1d56e11bd36447a51d7e3c57094a6779c0d40acec11dca7a0",
+      "copy_sha256": "7099d4aa48a771f1d56e11bd36447a51d7e3c57094a6779c0d40acec11dca7a0",
+      "first_import_adapter": null
+    },
+    {
+      "module": "CherryCoarsening",
+      "source": "research/rmaf/algorithm/universal233/core/CherryCoarsening.lean",
+      "original_sha256": "2f7142129ee2bc7bc188c629d1e6f225211278f5689dcb1dea38cc516247c0b8",
+      "copy_sha256": "2f7142129ee2bc7bc188c629d1e6f225211278f5689dcb1dea38cc516247c0b8",
+      "first_import_adapter": null
+    },
+    {
+      "module": "CoreProgram",
+      "source": "research/rmaf/algorithm/universal233/core/CoreProgram.lean",
+      "original_sha256": "9aa92355dfecf6e0e3d7707c1c284cabcb2f3846b6682e3b55b719e35cb7311f",
+      "copy_sha256": "9aa92355dfecf6e0e3d7707c1c284cabcb2f3846b6682e3b55b719e35cb7311f",
+      "first_import_adapter": null
+    },
+    {
+      "module": "CoreInvariants",
+      "source": "research/rmaf/algorithm/universal233/core/CoreInvariants.lean",
+      "original_sha256": "c4801fbfa04dcf83e9f79c91fe9e9834d0f7d030298a9e3ef1671c14de30ad19",
+      "copy_sha256": "c4801fbfa04dcf83e9f79c91fe9e9834d0f7d030298a9e3ef1671c14de30ad19",
+      "first_import_adapter": null
+    },
+    {
+      "module": "SourceBridge",
+      "source": "research/rmaf/algorithm/universal233/integration/SourceBridge.lean",
+      "original_sha256": "2eb4542a64461399029c6d3e0cb6dddd77d8b5b555d17e03abf8066a1cf7e93f",
+      "copy_sha256": "2eb4542a64461399029c6d3e0cb6dddd77d8b5b555d17e03abf8066a1cf7e93f",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Contraction",
+      "source": "research/rmaf/algorithm/universal233/integration/Contraction.lean",
+      "original_sha256": "956d7acadd05b9aba389d45e34699776999f745c063e9d5d66062e5816f3f8b4",
+      "copy_sha256": "956d7acadd05b9aba389d45e34699776999f745c063e9d5d66062e5816f3f8b4",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Normalization",
+      "source": "research/rmaf/algorithm/universal233/integration/Normalization.lean",
+      "original_sha256": "4dd4c1239d02e2452d94dcf254b7ca073c844428bbf07d3219dac3dc9e4b615c",
+      "copy_sha256": "4dd4c1239d02e2452d94dcf254b7ca073c844428bbf07d3219dac3dc9e4b615c",
+      "first_import_adapter": null
+    },
+    {
+      "module": "InitialLift",
+      "source": "research/rmaf/algorithm/universal233/integration/InitialLift.lean",
+      "original_sha256": "2fb05bd9dfc20a7bfe9e128615ac3eb7b3ed0054fae63ca37d12c7bfb33fc811",
+      "copy_sha256": "2fb05bd9dfc20a7bfe9e128615ac3eb7b3ed0054fae63ca37d12c7bfb33fc811",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Suppression",
+      "source": "research/rmaf/algorithm/universal233/integration/Suppression.lean",
+      "original_sha256": "cf76359d9dff313237e2565aded7bff1c68fdb605690846d82145b5237bd978c",
+      "copy_sha256": "cf76359d9dff313237e2565aded7bff1c68fdb605690846d82145b5237bd978c",
+      "first_import_adapter": null
+    },
+    {
+      "module": "EraseLift",
+      "source": "research/rmaf/algorithm/universal233/integration/EraseLift.lean",
+      "original_sha256": "3a9a1df4eb4549fa44af20cd785e4fd183261b2b01227c12f5bda9e36473e5f1",
+      "copy_sha256": "3a9a1df4eb4549fa44af20cd785e4fd183261b2b01227c12f5bda9e36473e5f1",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Origins",
+      "source": "research/rmaf/algorithm/universal233/integration/Origins.lean",
+      "original_sha256": "43b33498a9a48f3434986d2e382ade610f60e3d4cbff60cbb461c25d60eefb23",
+      "copy_sha256": "43b33498a9a48f3434986d2e382ade610f60e3d4cbff60cbb461c25d60eefb23",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Branches",
+      "source": "research/rmaf/algorithm/universal233/integration/Branches.lean",
+      "original_sha256": "638fffbede206252d81802ea6b14269e2a58ddae69653857c97c8bd17661dce3",
+      "copy_sha256": "638fffbede206252d81802ea6b14269e2a58ddae69653857c97c8bd17661dce3",
+      "first_import_adapter": null
+    },
+    {
+      "module": "CutRecords",
+      "source": "research/rmaf/algorithm/universal233/integration/CutRecords.lean",
+      "original_sha256": "6e14f512ff9304ded10766a26d2e9e9678ccc904c28a11cdc1bfddbb853a73a3",
+      "copy_sha256": "6e14f512ff9304ded10766a26d2e9e9678ccc904c28a11cdc1bfddbb853a73a3",
+      "first_import_adapter": null
+    },
+    {
+      "module": "OriginalGraph",
+      "source": "research/rmaf/algorithm/universal233/cut_realization/OriginalGraph.lean",
+      "original_sha256": "1f228db7d7df4cbe7d368747fbffef83641b6a52bc2629be350504bb7c322d88",
+      "copy_sha256": "1f228db7d7df4cbe7d368747fbffef83641b6a52bc2629be350504bb7c322d88",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Display",
+      "source": "research/rmaf/algorithm/universal233/cut_realization/Display.lean",
+      "original_sha256": "bffcf3e3df26f7f2f5ce79959e303f21801b21731878492b5ef9c590c18f46dc",
+      "copy_sha256": "bffcf3e3df26f7f2f5ce79959e303f21801b21731878492b5ef9c590c18f46dc",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Regions",
+      "source": "research/rmaf/algorithm/universal233/cut_realization/Regions.lean",
+      "original_sha256": "88e4d4529b0e4555761ca6049999f484c102fcdbbb407207ad2b39e05a8fb0d5",
+      "copy_sha256": "88e4d4529b0e4555761ca6049999f484c102fcdbbb407207ad2b39e05a8fb0d5",
+      "first_import_adapter": null
+    },
+    {
+      "module": "History",
+      "source": "research/rmaf/algorithm/universal233/cut_realization/History.lean",
+      "original_sha256": "4f40af3a1275f6fbed2d1b017109399c188f61ccce50ca2319effec7868da577",
+      "copy_sha256": "4f40af3a1275f6fbed2d1b017109399c188f61ccce50ca2319effec7868da577",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Realization",
+      "source": "research/rmaf/algorithm/universal233/cut_realization/Realization.lean",
+      "original_sha256": "d440b98eeff7fd5955532d804063817f615fd92f3da5e0c049453af8f712bcb9",
+      "copy_sha256": "d440b98eeff7fd5955532d804063817f615fd92f3da5e0c049453af8f712bcb9",
+      "first_import_adapter": null
+    },
+    {
+      "module": "OwnerCover",
+      "source": "research/rmaf/algorithm/universal233/cut_realization/OwnerCover.lean",
+      "original_sha256": "464604a8c2fdad1bca162367103b71b9cb2b866d0d8837a1de3ee28e43e79dbd",
+      "copy_sha256": "464604a8c2fdad1bca162367103b71b9cb2b866d0d8837a1de3ee28e43e79dbd",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Coverage",
+      "source": "research/rmaf/algorithm/universal233/cut_realization/Coverage.lean",
+      "original_sha256": "59df6e64beead296a71cb9b282432e03b4a883bc483d6dd1800645c6d2606556",
+      "copy_sha256": "59df6e64beead296a71cb9b282432e03b4a883bc483d6dd1800645c6d2606556",
+      "first_import_adapter": null
+    },
+    {
+      "module": "InitialCoverage",
+      "source": "research/rmaf/algorithm/universal233/cut_realization/InitialCoverage.lean",
+      "original_sha256": "2b985c92c85b22d7b49a63a391b1add4e9e5a1bec622ce016d900a932a29c9b6",
+      "copy_sha256": "2b985c92c85b22d7b49a63a391b1add4e9e5a1bec622ce016d900a932a29c9b6",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Cost",
+      "source": "research/rmaf/algorithm/universal233/cut_realization/Cost.lean",
+      "original_sha256": "88ac32b1fa6303353506f2edd26b30daab7a625940b762ce0c046990f2e0483b",
+      "copy_sha256": "88ac32b1fa6303353506f2edd26b30daab7a625940b762ce0c046990f2e0483b",
+      "first_import_adapter": null
+    },
+    {
+      "module": "ValidPartition",
+      "source": "research/rmaf/algorithm/universal233/cut_realization/ValidPartition.lean",
+      "original_sha256": "b5543ebef7c5ba2d4d0fea8307a738acd74c4ac24e1ae43e514dee9345e37ded",
+      "copy_sha256": "b5543ebef7c5ba2d4d0fea8307a738acd74c4ac24e1ae43e514dee9345e37ded",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Restriction",
+      "source": "research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean",
+      "original_sha256": "06755e63fbb1e6585eb9344cd0ffcfe2cf976b6ce97405fd15008b95227171e1",
+      "copy_sha256": "06755e63fbb1e6585eb9344cd0ffcfe2cf976b6ce97405fd15008b95227171e1",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Embedding",
+      "source": "research/rmaf/algorithm/universal233/restriction_bridge/Embedding.lean",
+      "original_sha256": "ff8a4fde22548be8350429e86152fdc520344e4272b7e23a5bd6aca42d166856",
+      "copy_sha256": "ff8a4fde22548be8350429e86152fdc520344e4272b7e23a5bd6aca42d166856",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Partition",
+      "source": "research/rmaf/algorithm/universal233/restriction_bridge/Partition.lean",
+      "original_sha256": "922bc716bcbb428feb2011f2c372f0557e6d6342083e60c4a53ce3a72576726d",
+      "copy_sha256": "922bc716bcbb428feb2011f2c372f0557e6d6342083e60c4a53ce3a72576726d",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Pretest",
+      "source": "research/rmaf/algorithm/universal233/depth_one/Pretest.lean",
+      "original_sha256": "b1c811c03315de68dee43b2201c5d824a463b317024cd11679ff75c5ff5a4eba",
+      "copy_sha256": "b1c811c03315de68dee43b2201c5d824a463b317024cd11679ff75c5ff5a4eba",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Controls",
+      "source": "research/rmaf/algorithm/universal233/depth_one/Controls.lean",
+      "original_sha256": "50c3bf49110c4b016b905f4903f9aaf0f238132fbfaee906a5e650d4a31f70e5",
+      "copy_sha256": "50c3bf49110c4b016b905f4903f9aaf0f238132fbfaee906a5e650d4a31f70e5",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Lemmas",
+      "source": "research/rmaf/algorithm/universal233/depth_one/Lemmas.lean",
+      "original_sha256": "8356a6c4599f11d21fbdc9f41c605b36f41a1cc6884fab62771ae65023cf9f5a",
+      "copy_sha256": "8356a6c4599f11d21fbdc9f41c605b36f41a1cc6884fab62771ae65023cf9f5a",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Reconstruction01",
+      "source": "research/rmaf/algorithm/universal233/depth_one/Reconstruction01.lean",
+      "original_sha256": "d043faa78cb29a31e728db52255c27393d6d0b6899b91369ecb403648f2d2d0b",
+      "copy_sha256": "d043faa78cb29a31e728db52255c27393d6d0b6899b91369ecb403648f2d2d0b",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Optimality01",
+      "source": "research/rmaf/algorithm/universal233/depth_one/Optimality01.lean",
+      "original_sha256": "a0ebbb97f5584c3663f7ada4921e3d833f4754c106c0a682b4d75e12ded8a715",
+      "copy_sha256": "a0ebbb97f5584c3663f7ada4921e3d833f4754c106c0a682b4d75e12ded8a715",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Witness01",
+      "source": "research/rmaf/algorithm/universal233/depth_one/Witness01.lean",
+      "original_sha256": "3bc4478cd58439cc4282ddc05a7ee62e5e61211f24aeccc0a1b0d9c281b22f4d",
+      "copy_sha256": "3bc4478cd58439cc4282ddc05a7ee62e5e61211f24aeccc0a1b0d9c281b22f4d",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Runtime01",
+      "source": "research/rmaf/algorithm/universal233/depth_one/Runtime01.lean",
+      "original_sha256": "4771148495794449c045ccf72eedf5dc637869bca3cb02f3ed1b77df89212d5a",
+      "copy_sha256": "4771148495794449c045ccf72eedf5dc637869bca3cb02f3ed1b77df89212d5a",
+      "first_import_adapter": null
+    },
+    {
+      "module": "ConsumerControls",
+      "source": "research/rmaf/algorithm/universal233/depth_one/ConsumerControls.lean",
+      "original_sha256": "806a1c29102790bc7fc5c552ffc5b1c21850baf5c1dbe3445a9eaf84a16e8f84",
+      "copy_sha256": "806a1c29102790bc7fc5c552ffc5b1c21850baf5c1dbe3445a9eaf84a16e8f84",
+      "first_import_adapter": null
+    },
+    {
+      "module": "SourceColorControls",
+      "source": "research/rmaf/algorithm/universal233/depth_one/SourceColorControls.lean",
+      "original_sha256": "edb136413d6b34f7456116a35a27b480a7cd7838d215c22766e808447d940173",
+      "copy_sha256": "edb136413d6b34f7456116a35a27b480a7cd7838d215c22766e808447d940173",
+      "first_import_adapter": null
+    },
+    {
+      "module": "RestrictionCost",
+      "source": "research/rmaf/algorithm/universal233/restriction_bridge/Cost.lean",
+      "original_sha256": "f3cee58b286702549ce63194b5df5f787d273aa6a47849252e8977c8e94423b2",
+      "copy_sha256": "f3cee58b286702549ce63194b5df5f787d273aa6a47849252e8977c8e94423b2",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Forward",
+      "source": "research/rmaf/algorithm/universal233/restriction_bridge/Forward.lean",
+      "original_sha256": "0ef7be14147e83a03879278d47689df22e793b7f04bac249a67c9ed7d6f31ab8",
+      "copy_sha256": "f40037b9ab25b21a36691aa139841ae3abee5289a546ea8c7b147edf872d78a6",
+      "first_import_adapter": [
+        "Cost",
+        "RestrictionCost"
+      ]
+    },
+    {
+      "module": "Reconstruction",
+      "source": "research/rmaf/algorithm/universal233/restriction_bridge/Reconstruction.lean",
+      "original_sha256": "84ec7c640a9d49f38f7b6b3b5c347fc09e9c66a614667d1c8e929549e2d71896",
+      "copy_sha256": "84ec7c640a9d49f38f7b6b3b5c347fc09e9c66a614667d1c8e929549e2d71896",
+      "first_import_adapter": null
+    },
+    {
+      "module": "QueryCaller",
+      "source": "research/rmaf/algorithm/universal233/query_scheduler/Caller.lean",
+      "original_sha256": "0817d83f9b1887ca43d8c52fe0c367f1f41ec5f696d5fd9b3d937b962254e143",
+      "copy_sha256": "0817d83f9b1887ca43d8c52fe0c367f1f41ec5f696d5fd9b3d937b962254e143",
+      "first_import_adapter": null
+    },
+    {
+      "module": "QuerySpecification",
+      "source": "research/rmaf/algorithm/universal233/query_scheduler/Specification.lean",
+      "original_sha256": "21832e53be9e7f38d2e2331878ddb2239b172c3d97c5dd78fb21b378bc67a070",
+      "copy_sha256": "761ea7968f9b43dbfde3d5113c4f05bcac959054e094108571f0df7e2fb5de54",
+      "first_import_adapter": [
+        "Caller",
+        "QueryCaller"
+      ]
+    },
+    {
+      "module": "QueryBudgets",
+      "source": "research/rmaf/algorithm/universal233/query_scheduler/Budgets.lean",
+      "original_sha256": "12265a7209859592fbdc10e410416b99557b4882865d6f7260513e33aca454cb",
+      "copy_sha256": "371424c2d7216e21c5f4c1ff3a659e79236315952f83c89d013df1aff4d04836",
+      "first_import_adapter": [
+        "Specification",
+        "QuerySpecification"
+      ]
+    },
+    {
+      "module": "QueryMass",
+      "source": "research/rmaf/algorithm/universal233/query_scheduler/Mass.lean",
+      "original_sha256": "ebcfd890d7e005d8c492600930ccb108f51b12779a12852b194f16445e1c77bd",
+      "copy_sha256": "1d1c38d807db1183da4f1b5887136516fb40efae7650477d0f30add6f68dce6d",
+      "first_import_adapter": [
+        "Budgets",
+        "QueryBudgets"
+      ]
+    },
+    {
+      "module": "QueryWork",
+      "source": "research/rmaf/algorithm/universal233/query_scheduler/Work.lean",
+      "original_sha256": "d56afa9d6ca0b198b184b61a2a53538a205056d38c67b1fbf2707ea34598ab16",
+      "copy_sha256": "e99717188afc825734511e07e70b7a20cf5dfe37e6c3c30a51e12b009316a3d9",
+      "first_import_adapter": [
+        "Mass",
+        "QueryMass"
+      ]
+    },
+    {
+      "module": "MafCaller",
+      "source": "research/rmaf/algorithm/universal233/maf_scheduler/MafCaller.lean",
+      "original_sha256": "deb30777315a1b638499e4297bd5cc5d3db09af6a743a24d75ea0e053d61689c",
+      "copy_sha256": "deb30777315a1b638499e4297bd5cc5d3db09af6a743a24d75ea0e053d61689c",
+      "first_import_adapter": null
+    },
+    {
+      "module": "MafPrecontrols",
+      "source": "research/rmaf/algorithm/universal233/maf_scheduler/MafPrecontrols.lean",
+      "original_sha256": "5e66c128afad862d3d106fb826190775b50a2fc1ae3ac646a89e18193564d249",
+      "copy_sha256": "5e66c128afad862d3d106fb826190775b50a2fc1ae3ac646a89e18193564d249",
+      "first_import_adapter": null
+    },
+    {
+      "module": "LocalSlots",
+      "source": "research/rmaf/algorithm/universal233/maf_scheduler/LocalSlots.lean",
+      "original_sha256": "577deab5dbfceffd70556ee18efa83e30a81ad48819c8754c1030a8002092bd0",
+      "copy_sha256": "577deab5dbfceffd70556ee18efa83e30a81ad48819c8754c1030a8002092bd0",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Regional",
+      "source": "research/rmaf/algorithm/universal233/maf_scheduler/Regional.lean",
+      "original_sha256": "41cca32859fffea248f612cc3697d62633087bd06ffc82e564370a3aa8a6d07b",
+      "copy_sha256": "41cca32859fffea248f612cc3697d62633087bd06ffc82e564370a3aa8a6d07b",
+      "first_import_adapter": null
+    },
+    {
+      "module": "Indexing",
+      "source": "research/rmaf/algorithm/universal233/maf_scheduler/Indexing.lean",
+      "original_sha256": "40abfab7cdeea1f0cabba39449013747dc714a2adea68082b77f57a502034aa6",
+      "copy_sha256": "40abfab7cdeea1f0cabba39449013747dc714a2adea68082b77f57a502034aa6",
+      "first_import_adapter": null
+    },
+    {
+      "module": "OriginalReconstruction",
+      "source": "research/rmaf/algorithm/universal233/maf_scheduler/OriginalReconstruction.lean",
+      "original_sha256": "7e79871d937de691df646c78eecf43aa477ca6c684b193be2661a7690bf3ecf5",
+      "copy_sha256": "7e79871d937de691df646c78eecf43aa477ca6c684b193be2661a7690bf3ecf5",
+      "first_import_adapter": null
+    },
+    {
+      "module": "OriginalCaller",
+      "source": "research/rmaf/algorithm/universal233/maf_scheduler/OriginalCaller.lean",
+      "original_sha256": "7f19d90ccbeff902191433b1c0e92e34f04fa67214a73bd831f317eea5002a24",
+      "copy_sha256": "7f19d90ccbeff902191433b1c0e92e34f04fa67214a73bd831f317eea5002a24",
+      "first_import_adapter": null
+    },
+    {
+      "module": "OriginalPaid",
+      "source": "research/rmaf/algorithm/universal233/maf_scheduler/OriginalPaid.lean",
+      "original_sha256": "950ab25c458b95d1001caafc1010acaf68dd332e32cafef2970f3c915e0b1b9b",
+      "copy_sha256": "950ab25c458b95d1001caafc1010acaf68dd332e32cafef2970f3c915e0b1b9b",
+      "first_import_adapter": null
+    },
+    {
+      "module": "MafConsumerControls",
+      "source": "research/rmaf/algorithm/universal233/maf_scheduler/MafConsumerControls.lean",
+      "original_sha256": "d44f0c5c2fbe4f3799f6ab657c3d62ba267978bd6e01aa9f756e9c85b584a5f6",
+      "copy_sha256": "d44f0c5c2fbe4f3799f6ab657c3d62ba267978bd6e01aa9f756e9c85b584a5f6",
+      "first_import_adapter": null
+    }
+  ],
+  "positive_order": [
+    "RMAF",
+    "Geometry",
+    "Bridge",
+    "Composition",
+    "CoreGraph",
+    "CherryCoarsening",
+    "CoreProgram",
+    "CoreInvariants",
+    "SourceBridge",
+    "Contraction",
+    "Normalization",
+    "InitialLift",
+    "Suppression",
+    "EraseLift",
+    "Origins",
+    "Branches",
+    "CutRecords",
+    "OriginalGraph",
+    "Display",
+    "Regions",
+    "History",
+    "Realization",
+    "OwnerCover",
+    "Coverage",
+    "InitialCoverage",
+    "Cost",
+    "ValidPartition",
+    "Restriction",
+    "Embedding",
+    "Partition",
+    "Pretest",
+    "Controls",
+    "Lemmas",
+    "Reconstruction01",
+    "Optimality01",
+    "Witness01",
+    "Runtime01",
+    "ConsumerControls",
+    "SourceColorControls",
+    "RestrictionCost",
+    "Forward",
+    "Reconstruction",
+    "QueryCaller",
+    "QuerySpecification",
+    "QueryBudgets",
+    "QueryMass",
+    "QueryWork",
+    "MafCaller",
+    "MafPrecontrols",
+    "LocalSlots",
+    "Regional",
+    "Indexing",
+    "OriginalReconstruction",
+    "OriginalCaller",
+    "OriginalPaid",
+    "MafConsumerControls"
+  ],
+  "preproof_pin_sha256": "101530577b163993cadab00a4929037d11ec1deef5009d6f687ce1ac2f8f7740",
+  "upstream_manifests": [
+    {
+      "path": "research/rmaf/algorithm/universal233/depth_one/DEPTH-ONE-MANIFEST-v1.json",
+      "sha256": "d776b06ea6039850ba0e333908e18d2d95cd7ae4138e224d5859fb324e300032",
+      "entries_checked": 317
+    },
+    {
+      "path": "research/rmaf/algorithm/universal233/query_scheduler/QUERY-SCHEDULER-MANIFEST-v1.json",
+      "sha256": "3e91794e8e5a15d979e11dc17cd8087d294fee8e1dbe5cc627249e6c5d24e68e",
+      "entries_checked": 54
+    },
+    {
+      "path": "research/rmaf/algorithm/universal233/restriction_bridge/RESTRICTION-MANIFEST-v1.json",
+      "sha256": "93f5ba4cf1671f1d7499c5a3e757c5d7ca9c1710321bdf58bbca43aeb3010652",
+      "entries_checked": 12
+    }
+  ],
+  "runs": [
+    {
+      "module": "TrueControl",
+      "exit": 0,
+      "seconds": 0.2136276250002993
+    },
+    {
+      "module": "FalseControl",
+      "exit": 1,
+      "seconds": 0.1858692499990866
+    },
+    {
+      "module": "RMAF",
+      "exit": 0,
+      "seconds": 5.268995792001078
+    },
+    {
+      "module": "Geometry",
+      "exit": 0,
+      "seconds": 0.5386484999999084
+    },
+    {
+      "module": "Bridge",
+      "exit": 0,
+      "seconds": 0.5116486250008165
+    },
+    {
+      "module": "Composition",
+      "exit": 0,
+      "seconds": 0.3193697909991897
+    },
+    {
+      "module": "CoreGraph",
+      "exit": 0,
+      "seconds": 0.329275250000137
+    },
+    {
+      "module": "CherryCoarsening",
+      "exit": 0,
+      "seconds": 0.36322049999944284
+    },
+    {
+      "module": "CoreProgram",
+      "exit": 0,
+      "seconds": 0.557213000000047
+    },
+    {
+      "module": "CoreInvariants",
+      "exit": 0,
+      "seconds": 0.3358147500002815
+    },
+    {
+      "module": "SourceBridge",
+      "exit": 0,
+      "seconds": 0.34728091600118205
+    },
+    {
+      "module": "Contraction",
+      "exit": 0,
+      "seconds": 0.3971889580006973
+    },
+    {
+      "module": "Normalization",
+      "exit": 0,
+      "seconds": 0.3804919169997447
+    },
+    {
+      "module": "InitialLift",
+      "exit": 0,
+      "seconds": 0.31021762500131445
+    },
+    {
+      "module": "Suppression",
+      "exit": 0,
+      "seconds": 0.3634752910002135
+    },
+    {
+      "module": "EraseLift",
+      "exit": 0,
+      "seconds": 0.4866030410012172
+    },
+    {
+      "module": "Origins",
+      "exit": 0,
+      "seconds": 0.34541812499992375
+    },
+    {
+      "module": "Branches",
+      "exit": 0,
+      "seconds": 0.3963767089990142
+    },
+    {
+      "module": "CutRecords",
+      "exit": 0,
+      "seconds": 0.3106111670003884
+    },
+    {
+      "module": "OriginalGraph",
+      "exit": 0,
+      "seconds": 0.31715204099964467
+    },
+    {
+      "module": "Display",
+      "exit": 0,
+      "seconds": 0.3726005839998834
+    },
+    {
+      "module": "Regions",
+      "exit": 0,
+      "seconds": 0.33446133299912617
+    },
+    {
+      "module": "History",
+      "exit": 0,
+      "seconds": 0.32213512499947683
+    },
+    {
+      "module": "Realization",
+      "exit": 0,
+      "seconds": 0.33111949999874923
+    },
+    {
+      "module": "OwnerCover",
+      "exit": 0,
+      "seconds": 0.32190266599900497
+    },
+    {
+      "module": "Coverage",
+      "exit": 0,
+      "seconds": 0.3907156250006665
+    },
+    {
+      "module": "InitialCoverage",
+      "exit": 0,
+      "seconds": 0.3828442499998346
+    },
+    {
+      "module": "Cost",
+      "exit": 0,
+      "seconds": 0.37525258299865527
+    },
+    {
+      "module": "ValidPartition",
+      "exit": 0,
+      "seconds": 0.2959347079995496
+    },
+    {
+      "module": "Restriction",
+      "exit": 0,
+      "seconds": 0.31271654200099874
+    },
+    {
+      "module": "Embedding",
+      "exit": 0,
+      "seconds": 0.6615567089993419
+    },
+    {
+      "module": "Partition",
+      "exit": 0,
+      "seconds": 0.3239463749996503
+    },
+    {
+      "module": "Pretest",
+      "exit": 0,
+      "seconds": 0.3003549999993993
+    },
+    {
+      "module": "Controls",
+      "exit": 0,
+      "seconds": 3.2273115829993912
+    },
+    {
+      "module": "Lemmas",
+      "exit": 0,
+      "seconds": 0.4289104159997805
+    },
+    {
+      "module": "Reconstruction01",
+      "exit": 0,
+      "seconds": 0.4621160000006057
+    },
+    {
+      "module": "Optimality01",
+      "exit": 0,
+      "seconds": 0.4031488750006247
+    },
+    {
+      "module": "Witness01",
+      "exit": 0,
+      "seconds": 0.3525394169992069
+    },
+    {
+      "module": "Runtime01",
+      "exit": 0,
+      "seconds": 0.380719875000068
+    },
+    {
+      "module": "ConsumerControls",
+      "exit": 0,
+      "seconds": 0.3160707500010176
+    },
+    {
+      "module": "SourceColorControls",
+      "exit": 0,
+      "seconds": 0.36428491700098675
+    },
+    {
+      "module": "RestrictionCost",
+      "exit": 0,
+      "seconds": 0.37957120800092525
+    },
+    {
+      "module": "Forward",
+      "exit": 0,
+      "seconds": 0.3255531670001801
+    },
+    {
+      "module": "Reconstruction",
+      "exit": 0,
+      "seconds": 0.33060654099972453
+    },
+    {
+      "module": "QueryCaller",
+      "exit": 0,
+      "seconds": 0.7045377909998933
+    },
+    {
+      "module": "QuerySpecification",
+      "exit": 0,
+      "seconds": 0.8669712080009049
+    },
+    {
+      "module": "QueryBudgets",
+      "exit": 0,
+      "seconds": 0.7450706670006184
+    },
+    {
+      "module": "QueryMass",
+      "exit": 0,
+      "seconds": 0.8409484580006392
+    },
+    {
+      "module": "QueryWork",
+      "exit": 0,
+      "seconds": 0.7405527920000168
+    },
+    {
+      "module": "MafCaller",
+      "exit": 0,
+      "seconds": 0.737612042001274
+    },
+    {
+      "module": "MafPrecontrols",
+      "exit": 0,
+      "seconds": 0.9955942910000886
+    },
+    {
+      "module": "LocalSlots",
+      "exit": 0,
+      "seconds": 0.7919167920008476
+    },
+    {
+      "module": "Regional",
+      "exit": 0,
+      "seconds": 0.6983651660011674
+    },
+    {
+      "module": "Indexing",
+      "exit": 0,
+      "seconds": 0.6688916249986505
+    },
+    {
+      "module": "OriginalReconstruction",
+      "exit": 0,
+      "seconds": 0.7613335829992138
+    },
+    {
+      "module": "OriginalCaller",
+      "exit": 0,
+      "seconds": 0.773232375000589
+    },
+    {
+      "module": "OriginalPaid",
+      "exit": 0,
+      "seconds": 0.7702559579993249
+    },
+    {
+      "module": "MafConsumerControls",
+      "exit": 0,
+      "seconds": 0.8459227499988629
+    },
+    {
+      "module": "ModuleAudit",
+      "exit": 0,
+      "seconds": 4.593967917000555
+    },
+    {
+      "module": "MafFalseControls",
+      "exit": 1,
+      "seconds": 0.6952600000004168
+    },
+    {
+      "module": "PlantPrivate",
+      "exit": 0,
+      "seconds": 0.2375092919992312
+    },
+    {
+      "module": "PlantAudit",
+      "exit": 1,
+      "seconds": 4.30802629199934
+    }
+  ],
+  "positive_source_modules": 56,
+  "module_origin_declarations": 2450,
+  "module_counts": {
+    "Branches": 71,
+    "Bridge": 162,
+    "CherryCoarsening": 21,
+    "Composition": 33,
+    "ConsumerControls": 10,
+    "Contraction": 36,
+    "Controls": 13,
+    "CoreGraph": 79,
+    "CoreInvariants": 55,
+    "CoreProgram": 267,
+    "Cost": 34,
+    "Coverage": 10,
+    "CutRecords": 33,
+    "Display": 49,
+    "Embedding": 47,
+    "EraseLift": 100,
+    "Forward": 9,
+    "Geometry": 128,
+    "History": 47,
+    "Indexing": 3,
+    "InitialCoverage": 26,
+    "InitialLift": 31,
+    "Lemmas": 40,
+    "LocalSlots": 17,
+    "MafCaller": 15,
+    "MafConsumerControls": 15,
+    "MafPrecontrols": 16,
+    "Normalization": 71,
+    "Optimality01": 31,
+    "OriginalCaller": 11,
+    "OriginalGraph": 45,
+    "OriginalPaid": 13,
+    "OriginalReconstruction": 5,
+    "Origins": 18,
+    "OwnerCover": 19,
+    "Partition": 22,
+    "Pretest": 53,
+    "QueryBudgets": 36,
+    "QueryCaller": 66,
+    "QueryMass": 30,
+    "QuerySpecification": 80,
+    "QueryWork": 52,
+    "RMAF": 199,
+    "Realization": 23,
+    "Reconstruction": 18,
+    "Reconstruction01": 26,
+    "Regional": 7,
+    "Regions": 24,
+    "Restriction": 38,
+    "RestrictionCost": 16,
+    "Runtime01": 53,
+    "SourceBridge": 37,
+    "SourceColorControls": 3,
+    "Suppression": 57,
+    "ValidPartition": 7,
+    "Witness01": 23
+  },
+  "private_generated_included": true,
+  "axiom_union_observed": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "actual_maf_preproof_controls": 10,
+  "direct_universal_fixture_consumers": 2,
+  "false_propositions_rejected": 4,
+  "known_false_rejected": true,
+  "missing_record_caught": true,
+  "wrong_origin_caught": true,
+  "foreign_private_axiom_caught": true,
+  "byte_corruption_caught": true,
+  "source_pin_mismatch_plant_caught": true,
+  "copy_adapter_policy": "module filename and first import only; all proof bodies unchanged",
+  "scope": "Literal original restrictions and actual depth01 create slots; conditional exact recursive IH; original AF forward/reverse, FrefQ, exact additionalmin and actual trace paid mass under original>=2bad. Both originalQ source/target embeddings required. Full solver/source priorities/global recurrence OPEN."
+}

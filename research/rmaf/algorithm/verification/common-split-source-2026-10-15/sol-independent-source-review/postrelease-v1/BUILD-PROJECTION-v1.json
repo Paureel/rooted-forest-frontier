@@ -1,0 +1,27 @@
+{
+  "pilot_modules": [
+    "RMAF",
+    "CoreGraph",
+    "Geometry",
+    "Bridge",
+    "Composition"
+  ],
+  "pilot_seconds": [
+    5.428145709000091,
+    0.3421180419973098,
+    0.49109308300103294,
+    0.5162611249979818,
+    0.2874172499978158
+  ],
+  "startup_RMAF_seconds": 5.428145709000091,
+  "steady_window": "CoreGraph,Geometry,Bridge,Composition; fixed topological pilot indices1..4",
+  "steady_count": 4,
+  "steady_median_seconds": 0.41660556249917136,
+  "steady_max_seconds": 0.5162611249979818,
+  "remaining_modules": 146,
+  "linear_median_projection_seconds": 60.82441212487902,
+  "linear_max_projection_seconds": 75.37412424970535,
+  "all_pilot_max_projection_seconds": 792.5092735140133,
+  "assumption": "same toolchain/hardware, heterogeneous source modules; per-module size/proof complexity may invalidate extrapolation; retain max and remeasure at each slice",
+  "decision": "bounded sequential slices, <=50s total per driver call, module timeout limited to remaining slice; stop/replan on repeated or material rate change; no all-at-once launch"
+}

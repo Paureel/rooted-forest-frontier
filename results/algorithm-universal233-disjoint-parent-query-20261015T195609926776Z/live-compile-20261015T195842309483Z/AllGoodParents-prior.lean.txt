@@ -1,0 +1,36 @@
+import MemberComplete
+import CommonDispatch
+namespace OrdinaryDispatch.DisjointParents
+open RMAF ForestState OutputState Universal233 Universal233.CherryBranching Universal233.BothBad
+
+def direct (P : OrdinaryDispatch.Forest) (q : Nat) : Option OrdinaryDispatch.Forest :=
+ if P.length-1≤q then some P else none
+
+theorem parent_agreement (T S : Tree) (P : OrdinaryDispatch.Forest)
+ (same : ∀x,x∈leaves T ↔ x∈leaves S)
+ (part : partitionCheck (leaves S) P=true)
+ (et : pairwiseEmbeddings T P=true) (es : pairwiseEmbeddings S P=true)
+ (good : P.all (restrictionAgrees T S)=true) : agreement T S P=true := by
+ have pt := (RestrictionBridge.partition_labels_congr (leaves T) (leaves S) P same).2 part
+ simp only [agreement,Bool.and_eq_true]
+ exact ⟨⟨⟨⟨pt,part⟩,good⟩,et⟩,es⟩
+
+/-- All three literal good parents give a cost-two original answer. The actual
+initial rejected pretest establishes global minimum, including q<2 refusal. -/
+theorem direct_exact (T S : Tree) (P : OrdinaryDispatch.Forest) (q : Nat)
+ (same : ∀x,x∈leaves T ↔ x∈leaves S)
+ (part : partitionCheck (leaves S) P=true)
+ (et : pairwiseEmbeddings T P=true) (es : pairwiseEmbeddings S P=true)
+ (good : P.all (restrictionAgrees T S)=true) (three : P.length=3)
+ (rejected : DepthOne.pretest01 T S=.rejected) : QueryExact T S q (direct P q) := by
+ have ha := parent_agreement T S P same part et es good
+ have low := (DepthOne.rejected_lower_bound T S rejected).2
+ unfold direct
+ split
+ · rename_i affordable
+   exact ⟨ha,affordable,by intro G hg;have h:=low G hg;omega⟩
+ · rename_i unaffordable
+   intro G hg
+   have h := low G hg
+   omega
+end OrdinaryDispatch.DisjointParents

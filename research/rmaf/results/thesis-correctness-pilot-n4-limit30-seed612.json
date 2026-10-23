@@ -1,0 +1,121 @@
+{
+  "scope": "finite testing, not a universal correctness proof",
+  "mode": "pilot",
+  "controls": [
+    {
+      "id": "identity-null",
+      "pass": true,
+      "optimum_cuts": 0,
+      "witness": [
+        [
+          "a",
+          "b",
+          "c",
+          "rho"
+        ]
+      ]
+    },
+    {
+      "id": "single-leaf-boundary",
+      "pass": true,
+      "optimum_cuts": 0,
+      "witness": [
+        [
+          "a",
+          "rho"
+        ]
+      ]
+    },
+    {
+      "id": "one-spr-triple",
+      "pass": true,
+      "optimum_cuts": 1,
+      "witness": [
+        [
+          "a",
+          "b",
+          "rho"
+        ],
+        [
+          "c"
+        ]
+      ]
+    },
+    {
+      "id": "incompatible-quartet",
+      "pass": true,
+      "optimum_cuts": 2,
+      "witness": [
+        [
+          "a",
+          "b",
+          "rho"
+        ],
+        [
+          "c"
+        ],
+        [
+          "d"
+        ]
+      ]
+    },
+    {
+      "id": "wrong-expected-optimum",
+      "caught": true,
+      "reason": "exact comparison failed: expected=0, actual=1"
+    },
+    {
+      "id": "duplicate-label",
+      "caught": true,
+      "routes": 2
+    },
+    {
+      "id": "different-label-sets",
+      "caught": true,
+      "routes": 2
+    },
+    {
+      "id": "negative-budget",
+      "caught": true
+    }
+  ],
+  "hashes": {
+    "controls.json": "4002a37363f01967fb9fc9fac6c834a63081ebb2bc6e3e196dc7e85ccfec047f",
+    "algorithm.py": "101d4c77424a2d6e93a1f828b49e3c16702b87d8e184c9ca47b0ed2b6d1fc319",
+    "reference.py": "2400342337b2e8266bbebca22b34c11872337d3a59465366b0b68712c4df8cfd"
+  },
+  "n": 4,
+  "seed": 612,
+  "completed": 30,
+  "failures": [],
+  "stats": {
+    "calls": 256,
+    "B": 55,
+    "contract": 123,
+    "AC": 9,
+    "finish": 74,
+    "A2BC": 16,
+    "refused": 4,
+    "RB*": 6,
+    "RB": 30
+  },
+  "timing_batches": [
+    {
+      "completed": 10,
+      "seconds": 0.008029041999179753
+    },
+    {
+      "completed": 20,
+      "seconds": 0.006329290999929071
+    },
+    {
+      "completed": 30,
+      "seconds": 0.0051931670004705666
+    }
+  ],
+  "expected_pairs": 30,
+  "tree_count": 15,
+  "denominator_complete": true,
+  "seconds": 0.021714291000535013,
+  "pass": true
+}

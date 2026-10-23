@@ -1,0 +1,159 @@
+import BinaryCallerOrdinaryBounds
+namespace GenericForest.BinaryProducer
+open BinaryProvider GenericForest.ScalarBits Universal233.WholeSourceWork
+namespace Q := Universal233.PaidQueries
+
+/-- Costs are persistent little-endian bits. Problems and answers are shared
+immutable values; newly constructed list and receipt nodes are charged below. -/
+inductive Job (P A : Type) where
+ | resolved (problem : P) (cost : Bits) (answer : A)
+ | hard (problem : P)
+ deriving Repr
+structure Receipt (A : Type) where
+ answers : Option (List (Bits × A))
+ calls : List Bits
+ visits : Bits
+ deriving Repr
+
+def jobValue (π : P→P') (ρ : A→A') : Job P A→Q.Job P' A'
+ | .resolved p c a=>.resolved (π p) (decode c) (ρ a)
+ | .hard p=>.hard (π p)
+def pairValue (ρ : A→A') (x : Bits×A) : Nat×A':=(decode x.1,ρ x.2)
+def receiptValue (ρ : A→A') (r : Receipt A) : Q.Receipt A':=
+ ⟨r.answers.map (List.map (pairValue ρ)),r.calls.map decode,decode r.visits⟩
+
+def knownBits : List (Job P A)→Charged Bits
+ | []=>⟨[],1⟩
+ | .resolved _ c _::js=>let r:=knownBits js;let a:=addBits c r.value;⟨a.value,r.work+a.work+4⟩
+ | .hard _::js=>let r:=knownBits js;⟨r.value,r.work+4⟩
+def pendingBits : List (Job P A)→Charged Bits
+ | []=>⟨[],1⟩
+ | .resolved _ _ _::js=>let r:=pendingBits js;⟨r.value,r.work+4⟩
+ | .hard _::js=>let r:=pendingBits js;let a:=incrementBits r.value;⟨a.value,r.work+a.work+4⟩
+def answerBits : List (Bits×A)→Charged Bits
+ | []=>⟨[],1⟩
+ | (c,_)::xs=>let r:=answerBits xs;let a:=addBits c r.value;⟨a.value,r.work+a.work+4⟩
+
+@[simp] theorem knownBits_value (π : P→P') (ρ : A→A') (js : List (Job P A)) :
+ decode (knownBits js).value=Q.knownCost (js.map (jobValue π ρ)) := by
+ induction js with
+ | nil=>rfl
+ | cons j js ih=>cases j <;> simp [knownBits,jobValue,Q.knownCost,ih]
+@[simp] theorem pendingBits_value (π : P→P') (ρ : A→A') (js : List (Job P A)) :
+ decode (pendingBits js).value=Q.pending (js.map (jobValue π ρ)) := by
+ induction js with
+ | nil=>rfl
+ | cons j js ih=>cases j <;> simp [pendingBits,jobValue,Q.pending,ih,Nat.add_comm]
+@[simp] theorem answerBits_value (ρ : A→A') (xs : List (Bits×A)) :
+ decode (answerBits xs).value=Q.answerCost (xs.map (pairValue ρ)) := by
+ induction xs with
+ | nil=>rfl
+ | cons x xs ih=>rcases x with ⟨c,a⟩;simp [answerBits,pairValue,Q.answerCost,←ih]
+
+def runBits (solve : P→Bits→Charged (Option (Bits×A))) (b : Bits) : List (Job P A)→Charged (Receipt A)
+ | []=>⟨⟨some [],[],[]⟩,4⟩
+ | .resolved _ c a::js=>
+  let r:=runBits solve b js;let v:=incrementBits r.value.visits
+  ⟨⟨r.value.answers.map ((c,a)::·),r.value.calls,v.value⟩,r.work+v.work+8⟩
+ | .hard p::js=>
+  let s:=solve p b
+  match s.value with
+  | none=>⟨⟨none,[b],[true]⟩,s.work+8⟩
+  | some x=>let r:=runBits solve b js;let v:=incrementBits r.value.visits
+            ⟨⟨r.value.answers.map (x::·),b::r.value.calls,v.value⟩,s.work+r.work+v.work+8⟩
+
+theorem runBits_value (π : P→P') (ρ : A→A')
+ (solve : P→Bits→Charged (Option (Bits×A))) (native : P'→Nat→Option (Nat×A'))
+ (ih : ∀p b,(solve p b).value.map (pairValue ρ)=native (π p) (decode b)) (b : Bits) (js : List (Job P A)) :
+ receiptValue ρ (runBits solve b js).value=Q.run native (decode b) (js.map (jobValue π ρ)) := by
+ induction js with
+ | nil=>rfl
+ | cons j js rec=>
+  cases j with
+  | resolved p c a=>
+   have aa:=congrArg Q.Receipt.answers rec
+   have cc:=congrArg Q.Receipt.calls rec
+   have vv:=congrArg Q.Receipt.visits rec
+   apply Q.Receipt.ext
+   · simpa [runBits,receiptValue,jobValue,Q.run,Option.map_map,List.map_cons,pairValue] using
+       congrArg (Option.map ((decode c,ρ a)::·)) aa
+   · simpa [runBits,receiptValue,jobValue,Q.run] using cc
+   · simpa [runBits,receiptValue,jobValue,Q.run] using congrArg (·+1) vv
+  | hard p=>
+   have h:=ih p b
+   cases hs : (solve p b).value with
+   | none=>simp [hs] at h;simp [runBits,hs,jobValue,Q.run,←h,receiptValue,decode,bit]
+   | some x=>
+    simp only [hs,Option.map_some] at h
+    have aa:=congrArg Q.Receipt.answers rec
+    have cc:=congrArg Q.Receipt.calls rec
+    have vv:=congrArg Q.Receipt.visits rec
+    apply Q.Receipt.ext
+    · simpa [runBits,hs,receiptValue,jobValue,Q.run,←h,Option.map_map,pairValue] using
+        congrArg (Option.map (pairValue ρ x::·)) aa
+    · simpa [runBits,hs,receiptValue,jobValue,Q.run,←h] using congrArg (decode b::·) cc
+    · simpa [runBits,hs,receiptValue,jobValue,Q.run,←h] using congrArg (·+1) vv
+
+/-- Every arithmetic operand is already represented; no mathematical projection
+is evaluated by this scheduler. The same allocated budget spine is shared. -/
+def scheduleBits (solve : P→Bits→Charged (Option (Bits×A))) (q : Bits) (js : List (Job P A)) : Charged (Receipt A):=
+ let k:=knownBits js;let p:=pendingBits js;let twice:=addBits p.value p.value
+ let threshold:=addBits k.value twice.value;let enough:=leBits threshold.value q
+ let setup:=k.work+p.work+twice.work+threshold.work+enough.work+12
+ if enough.value then
+  let pm:=subtractBits p.value [true];let pt:=addBits pm.value pm.value
+  let qk:=subtractBits q k.value;let budget:=subtractBits qk.value pt.value
+  let r:=runBits solve budget.value js
+  let overhead:=setup+pm.work+pt.work+qk.work+budget.work+r.work+12
+  match r.value.answers with
+  | none=>⟨⟨none,r.value.calls,r.value.visits⟩,overhead+4⟩
+  | some xs=>let a:=answerBits xs;let fits:=leBits a.value q
+             ⟨⟨if fits.value then some xs else none,r.value.calls,r.value.visits⟩,overhead+a.work+fits.work+4⟩
+ else ⟨⟨none,[],[]⟩,setup+4⟩
+
+theorem scheduleBits_value (π : P→P') (ρ : A→A')
+ (solve : P→Bits→Charged (Option (Bits×A))) (native : P'→Nat→Option (Nat×A'))
+ (ih : ∀p b,(solve p b).value.map (pairValue ρ)=native (π p) (decode b)) (q : Bits) (js : List (Job P A)) :
+ receiptValue ρ (scheduleBits solve q js).value=Q.schedule native (decode q) (js.map (jobValue π ρ)) := by
+ have k:=knownBits_value π ρ js;have p:=pendingBits_value π ρ js
+ have threshold : (leBits (addBits (knownBits js).value (addBits (pendingBits js).value (pendingBits js).value).value).value q).value=
+   decide (Q.knownCost (js.map (jobValue π ρ))+2*Q.pending (js.map (jobValue π ρ))≤decode q):=by
+  simp [leBits_value,k,p,Nat.two_mul]
+ have budget : decode (subtractBits (subtractBits q (knownBits js).value).value
+   (addBits (subtractBits (pendingBits js).value [true]).value (subtractBits (pendingBits js).value [true]).value).value=
+   Q.allocated (decode q) (js.map (jobValue π ρ)):=by
+  simp [subtractBits_value,k,p,Q.allocated,decode,bit,Nat.two_mul]
+ have r:=runBits_value π ρ solve native ih
+  (subtractBits (subtractBits q (knownBits js).value).value
+   (addBits (subtractBits (pendingBits js).value [true]).value (subtractBits (pendingBits js).value [true]).value).value js
+ rw [budget] at r
+ unfold scheduleBits
+ rw [threshold]
+ unfold Q.schedule
+ split
+ · rename_i h
+   have nh : ¬decode q<Q.knownCost (js.map (jobValue π ρ))+2*Q.pending (js.map (jobValue π ρ)):=by
+    simp only [decide_eq_true_eq] at h;omega
+   rw [if_neg nh]
+   have aa:=congrArg Q.Receipt.answers r
+   have cc:=congrArg Q.Receipt.calls r
+   have vv:=congrArg Q.Receipt.visits r
+   cases hx : (runBits solve (subtractBits (subtractBits q (knownBits js).value).value
+    (addBits (subtractBits (pendingBits js).value [true]).value (subtractBits (pendingBits js).value [true]).value).value js).value.answers with
+   | none=>
+    apply Q.Receipt.ext
+    · simpa [hx,receiptValue,←aa] using (rfl : (none : Option (List (Nat×A')))=none)
+    · exact cc
+    · exact vv
+   | some xs=>
+    apply Q.Receipt.ext
+    · simp only [hx,receiptValue,Option.map_some] at aa
+      simp only [hx,receiptValue,leBits_value,answerBits_value ρ xs,aa,Option.bind_some]
+      split <;> simp_all
+    · exact cc
+    · exact vv
+ · rename_i h
+   have nh : decode q<Q.knownCost (js.map (jobValue π ρ))+2*Q.pending (js.map (jobValue π ρ)):=by
+    simp only [Bool.not_eq_true,decide_eq_false_iff_not] at h;omega
+   simp [nh,receiptValue,decode]
+end GenericForest.BinaryProducer

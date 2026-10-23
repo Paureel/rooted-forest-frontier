@@ -1,0 +1,55 @@
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:165:17: error: don't know how to synthesize implicit argument `b`
+  @pendant_partition_binding S a ?m.72 hn ha
+context:
+T S : Tree
+a b : Nat
+hn : (leaves S).Nodup
+ha : a ∈ leaves S
+nd : (pendantOriginal S a b).Nodup
+arcs : ((cuts S a b).all fun q => !List.isEmpty q && (subtree S q).isSome) = true
+⊢ Nat
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:165:6: error: failed to infer `have` declaration type
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:156:47: error: unsolved goals
+T S : Tree
+a b : Nat
+hn : (leaves S).Nodup
+ha : a ∈ leaves S
+nd : (pendantOriginal S a b).Nodup
+arcs : ((cuts S a b).all fun q => !List.isEmpty q && (subtree S q).isSome) = true
+⊢ currentGuard T S (hardBranch S a b) = true
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:181:1: error: Type mismatch: After simplification, term
+  split
+ has type
+  @Eq (List (List Nat)) (splitForest [leaves S] [a]) [[a], List.filter (fun x => !decide (x = a)) (leaves S)]
+but is expected to have type
+  @Eq (List (List Nat)) (splitForest [leaves S] [a]) [[a], List.filter (fun x => x != a) (leaves S)]
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:185:45: error: unsolved goals
+T S : Tree
+a b : Nat
+qb : RMAF.Vertex
+hn : (leaves S).Nodup
+lb : LeafAt S qb b
+ha : a ∈ leaves S
+ne : b ≠ a
+binding : arcPartition S [qb] = singletonPartition S b
+hp : partitionCheck (leaves S) (singletonPartition S b) = true
+emb : pairwiseEmbeddings S (singletonPartition S b) = true
+nr : qb ≠ []
+ie : List.isEmpty qb = false
+look : subtree S qb = some (Tree.leaf b)
+⊢ partitionCheck (leaves S) [[b], List.filter (fun x => x != b) (leaves S)] = true ∧
+    pairwiseEmbeddings S [[b], List.filter (fun x => x != b) (leaves S)] = true
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:192:41: warning: This simp argument is unused:
+  hp
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [currentGuard, bBranch, current, paid, emb, ie, look, binding, singletonPartition]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:192:44: warning: This simp argument is unused:
+  emb
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [currentGuard, bBranch, current, paid, hp, ie, look, binding, singletonPartition]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

@@ -1,0 +1,9 @@
+# Local recurrence instruments
+
+These one-shot scripts reconstruct the specified finite tree controls and evaluate exact rational credit recurrences. Their scope is the local Whidden Chapter6 repair. The toolkit index and Gatekeeper guide were consulted; general numerical validation tools do not encode this source algorithm's cut rules. The scripts are left unregistered because their schemas and assertions are specific to this source and target.
+
+Use `./bootloops-python research/rmaf/thesis_complexity/repair/recurrence/check_recurrence.py --tag final` from the workspace root to replay 31 named controls, the 40-state negative-budget loop, and the literal additive table. Run `check_multiplicative.py` and `check_state_coverage.py` through the same launcher for the proposed measure and deliberately overbroad closure tests. All results use exact `Fraction` arithmetic; elapsed times are descriptive only.
+
+The outputs preserve failing recurrence rows. A script exit zero means its expected controls and expected obstructions reproduced. It never means the source algorithm has a universal runtime proof. The tree code is a fresh, deliberately local control instrument: it handles the listed cuts and normalizations and does not implement or certify all possible algorithm executions.
+
+The known-answer controls are frozen in `controls.md`, the parent `controls-frozen.json`, `multiplicative-controls-frozen.json`, and `state-adversary-frozen.json`. Incorrect orientation, a missing invocation, a one-cut generic C discharge, and invalid credit-domain closure must be caught. `RepairArithmetic.lean` is the separate kernel check of arithmetic and conditional frontier composition. `NegativeControl.lean` must fail compilation. Fresh nonauthor derivation remains necessary for scientific acceptance.

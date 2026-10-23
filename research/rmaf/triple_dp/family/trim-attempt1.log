@@ -1,0 +1,28 @@
+research/rmaf/triple_dp/family/FamilyTrim.lean:150:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  LeafSet t (OpenHull t Q)
+in the target expression
+  (Hull fun v => LeafSet t Q v ∨ v = []) = Hull fun v => LeafSet t (Hull fun v => LeafSet t Q v ∨ v = []) v ∨ v = []
+
+α✝ : Type
+t : BTree α✝
+k : Nat
+F : RawFamily t k
+Q : Support
+hQ : F.openRegion = some Q
+left✝ : HasLeaf t Q
+hR : (normalize F).openRegion = some (OpenHull t Q)
+⊢ (Hull fun v => LeafSet t Q v ∨ v = []) = Hull fun v => LeafSet t (Hull fun v => LeafSet t Q v ∨ v = []) v ∨ v = []
+'TripleDP.Family.trimOpen_live' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.Family.trimOpen_empty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.Family.trimOpen_some' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.Family.trimOpen_labels' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.Family.normalize' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.Family.normalize_retained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.Family.normalize_closed_labels' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.Family.normalize_open_labels' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.Family.normalize_closed_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.Family.normalize_open_hasLeaf' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.Family.normalize_labelled_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.Family.normalize_closed_property' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.Family.normalized_closed_is_hull' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.Family.normalized_open_is_hull' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

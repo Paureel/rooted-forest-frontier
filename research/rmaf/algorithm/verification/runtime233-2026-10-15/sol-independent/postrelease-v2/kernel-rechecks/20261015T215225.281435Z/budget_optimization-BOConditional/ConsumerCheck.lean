@@ -1,0 +1,7 @@
+import BOConditional
+#check OrdinaryDispatch.BudgetOptimization.conditional_233_correct
+#print axioms OrdinaryDispatch.BudgetOptimization.conditional_233_correct
+#check OrdinaryDispatch.BudgetOptimization.conditional_233_polynomial
+#print axioms OrdinaryDispatch.BudgetOptimization.conditional_233_polynomial
+#check OrdinaryDispatch.BudgetOptimization.total_charge_exact
+#print axioms OrdinaryDispatch.BudgetOptimization.total_charge_exact

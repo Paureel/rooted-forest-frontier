@@ -1,0 +1,284 @@
+research/rmaf/algorithm/universal233/integration/Suppression.lean:19:40: error: No goals to be solved
+research/rmaf/algorithm/universal233/integration/Suppression.lean:26:8: error: Type mismatch
+  ih target (fun he => ha (congrArg (fun x => b :: x) he)) fun he => hb (congrArg (fun x => b :: x) he)
+has type
+  region target a = region target (a ++ [s])
+but is expected to have type
+  region (b :: target) (b :: a) = region (b :: target) (b :: a ++ [s])
+research/rmaf/algorithm/universal233/integration/Suppression.lean:41:15: error: don't know how to synthesize placeholder for argument `a`
+context:
+t : Tree
+P : RMAF.Vertex → Prop
+a b target : RMAF.Vertex
+hn : ¬P target
+x✝ y✝ z✝ : RMAF.Vertex
+hp : P x✝
+ha : Adj t x✝ y✝
+tail : Walk t P y✝ z✝
+ih : region target y✝ = region target z✝
+⊢ RMAF.Vertex
+research/rmaf/algorithm/universal233/integration/Suppression.lean:96:2: error(nested.lean.propRecLargeElim): Tactic `cases` failed with a nested error:
+Tactic `induction` failed: recursor `Universal233.Integration.LeafErasure.casesOn` can only eliminate into `Prop`
+
+u✝ t✝ : Tree
+x✝² : LeafErasure t✝ u✝
+x✝¹ : RMAF.Vertex
+motive : (u t : Tree) → LeafErasure t u → RMAF.Vertex → Sort ?u.40
+h_1 : (u : Tree) → (x : Nat) → (v : RMAF.Vertex) → motive u ((Tree.leaf x).node u) ⋯ v
+h_2 : (u : Tree) → (x : Nat) → (v : RMAF.Vertex) → motive u (u.node (Tree.leaf x)) ⋯ v
+h_3 : (t u r : Tree) → (a : LeafErasure t u) → motive (u.node r) (t.node r) ⋯ []
+h_4 : (t u r : Tree) → (h : LeafErasure t u) → (v : List Bool) → motive (u.node r) (t.node r) ⋯ (false :: v)
+h_5 : (t u r : Tree) → (a : LeafErasure t u) → (v : List Bool) → motive (u.node r) (t.node r) ⋯ (true :: v)
+h_6 : (t u l : Tree) → (a : LeafErasure t u) → motive (l.node u) (l.node t) ⋯ []
+h_7 : (t u l : Tree) → (a : LeafErasure t u) → (v : List Bool) → motive (l.node u) (l.node t) ⋯ (false :: v)
+h_8 : (t u l : Tree) → (h : LeafErasure t u) → (v : List Bool) → motive (l.node u) (l.node t) ⋯ (true :: v)
+a✝¹ a✝ : Tree
+x✝ : LeafErasure a✝¹ a✝
+⊢ t✝ = a✝¹ → u✝ = a✝ → x✝² ≍ x✝ → motive u✝ t✝ x✝² x✝¹ after processing
+  _, _, _, _
+the dependent pattern matcher can solve the following kinds of equations
+- <var> = <term> and <term> = <var>
+- <term> = <term> where the terms are definitionally equal
+- <constructor> = <constructor>, examples: List.cons x xs = List.cons y ys, and List.cons x xs = List.nil
+research/rmaf/algorithm/universal233/integration/Suppression.lean:108:16: error: Type mismatch
+  hv
+has type
+  LeafAt r✝ v x
+but is expected to have type
+  LeafAt ((Tree.leaf x✝).node r✝) (erasureEmbedding ⋯ v) x
+research/rmaf/algorithm/universal233/integration/Suppression.lean:109:17: error: Type mismatch
+  hv
+has type
+  LeafAt l✝ v x
+but is expected to have type
+  LeafAt (l✝.node (Tree.leaf x✝)) (erasureEmbedding ⋯ v) x
+research/rmaf/algorithm/universal233/integration/Suppression.lean:113:54: error: Type mismatch
+  hv
+has type
+  LeafAt (u✝.node r) (false :: v) x
+but is expected to have type
+  LeafAt (t✝.node r) (erasureEmbedding ⋯ (false :: v)) x
+research/rmaf/algorithm/universal233/integration/Suppression.lean:113:54: error: Type mismatch
+  hv
+has type
+  LeafAt (u✝.node r) (true :: v) x
+but is expected to have type
+  LeafAt (t✝.node r) (erasureEmbedding ⋯ (true :: v)) x
+research/rmaf/algorithm/universal233/integration/Suppression.lean:117:60: error: Application type mismatch: The argument
+  hv
+has type
+  LeafAt (l.node u✝) (false :: v) x
+but is expected to have type
+  LeafAt u✝ v x
+in the application
+  ih v hv
+research/rmaf/algorithm/universal233/integration/Suppression.lean:117:49: error: Type mismatch
+  ih v hv
+has type
+  LeafAt t✝ (erasureEmbedding h v) x
+but is expected to have type
+  LeafAt (l.node t✝) (erasureEmbedding ⋯ (true :: v)) x
+research/rmaf/algorithm/universal233/integration/Suppression.lean:122:16: error: Type mismatch
+  PathAt.leftLeg true hp
+has type
+  PathAt (true :: v) (true :: a) []
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ v) (erasureEmbedding ⋯ a) []
+research/rmaf/algorithm/universal233/integration/Suppression.lean:123:17: error: Type mismatch
+  PathAt.leftLeg false hp
+has type
+  PathAt (false :: v) (false :: a) []
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ v) (erasureEmbedding ⋯ a) []
+research/rmaf/algorithm/universal233/integration/Suppression.lean:127:21: error: Type mismatch
+  PathAt.endpointR ?m.148 []
+has type
+  PathAt [] ?m.148 []
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ []) (erasureEmbedding ⋯ a) []
+research/rmaf/algorithm/universal233/integration/Suppression.lean:130:17: error: Type mismatch
+  PathAt.leftLeg false (ih v✝ a✝ hp)
+has type
+  PathAt (false :: erasureEmbedding h v✝) (false :: erasureEmbedding h a✝) []
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (false :: v✝)) (erasureEmbedding ⋯ (false :: a✝)) []
+research/rmaf/algorithm/universal233/integration/Suppression.lean:131:16: error: Type mismatch
+  PathAt.leftLeg true hp
+has type
+  PathAt (true :: v✝) (true :: a✝) []
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (true :: v✝)) (erasureEmbedding ⋯ (true :: a✝)) []
+research/rmaf/algorithm/universal233/integration/Suppression.lean:135:21: error: Type mismatch
+  PathAt.endpointR ?m.472 []
+has type
+  PathAt [] ?m.472 []
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ []) (erasureEmbedding ⋯ a) []
+research/rmaf/algorithm/universal233/integration/Suppression.lean:138:17: error: Type mismatch
+  PathAt.leftLeg false hp
+has type
+  PathAt (false :: v✝) (false :: a✝) []
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (false :: v✝)) (erasureEmbedding ⋯ (false :: a✝)) []
+research/rmaf/algorithm/universal233/integration/Suppression.lean:139:16: error: Type mismatch
+  PathAt.leftLeg true (ih v✝ a✝ hp)
+has type
+  PathAt (true :: erasureEmbedding h v✝) (true :: erasureEmbedding h a✝) []
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (true :: v✝)) (erasureEmbedding ⋯ (true :: a✝)) []
+research/rmaf/algorithm/universal233/integration/Suppression.lean:146:16: error: Type mismatch
+  PathAt.down true hp
+has type
+  PathAt (true :: v) (true :: a) (true :: b)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ v) (erasureEmbedding ⋯ a) (erasureEmbedding ⋯ b)
+research/rmaf/algorithm/universal233/integration/Suppression.lean:147:17: error: Type mismatch
+  PathAt.down false hp
+has type
+  PathAt (false :: v) (false :: a) (false :: b)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ v) (erasureEmbedding ⋯ a) (erasureEmbedding ⋯ b)
+research/rmaf/algorithm/universal233/integration/Suppression.lean:152:18: error: Type mismatch
+  PathAt.fork ?m.195 ?m.196
+has type
+  PathAt [] (false :: ?m.195) (true :: ?m.196)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ []) (erasureEmbedding ⋯ (false :: a)) (erasureEmbedding ⋯ (true :: b))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:153:19: error: Type mismatch
+  PathAt.fork' ?m.240 ?m.241
+has type
+  PathAt [] (true :: ?m.240) (false :: ?m.241)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ []) (erasureEmbedding ⋯ (true :: a)) (erasureEmbedding ⋯ (false :: b))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:155:17: error: Type mismatch
+  PathAt.down false (ih v✝ a✝ b✝ hp)
+has type
+  PathAt (false :: erasureEmbedding h v✝) (false :: erasureEmbedding h a✝) (false :: erasureEmbedding h b✝)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (false :: v✝)) (erasureEmbedding ⋯ (false :: a✝)) (erasureEmbedding ⋯ (false :: b✝))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:156:16: error: Type mismatch
+  PathAt.down true hp
+has type
+  PathAt (true :: v✝) (true :: a✝) (true :: b✝)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (true :: v✝)) (erasureEmbedding ⋯ (true :: a✝)) (erasureEmbedding ⋯ (true :: b✝))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:158:17: error: Type mismatch
+  PathAt.leftLeg false (erasure_root_path h v✝ a✝ hp)
+has type
+  PathAt (false :: erasureEmbedding h v✝) (false :: erasureEmbedding h a✝) []
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (false :: v✝)) (erasureEmbedding ⋯ (false :: a✝)) (erasureEmbedding ⋯ [])
+research/rmaf/algorithm/universal233/integration/Suppression.lean:159:16: error: Type mismatch
+  PathAt.leftLeg true hp
+has type
+  PathAt (true :: v✝) (true :: a✝) []
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (true :: v✝)) (erasureEmbedding ⋯ (true :: a✝)) (erasureEmbedding ⋯ [])
+research/rmaf/algorithm/universal233/integration/Suppression.lean:161:17: error: Type mismatch
+  PathAt.rightLeg false (path_sym (erasure_root_path h v✝ b✝ (path_sym hp)))
+has type
+  PathAt (false :: erasureEmbedding h v✝) [] (false :: erasureEmbedding h b✝)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (false :: v✝)) (erasureEmbedding ⋯ []) (erasureEmbedding ⋯ (false :: b✝))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:162:16: error: Type mismatch
+  PathAt.rightLeg true hp
+has type
+  PathAt (true :: v✝) [] (true :: b✝)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (true :: v✝)) (erasureEmbedding ⋯ []) (erasureEmbedding ⋯ (true :: b✝))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:164:17: error: Type mismatch
+  PathAt.crossLeft false (erasure_root_path h v✝ a✝ hp)
+has type
+  PathAt (false :: erasureEmbedding h v✝) (false :: erasureEmbedding h a✝) ((!false) :: ?m.539)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (false :: v✝)) (erasureEmbedding ⋯ (false :: a✝)) (erasureEmbedding ⋯ ((!false) :: b✝))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:165:16: error: Type mismatch
+  PathAt.crossLeft true hp
+has type
+  PathAt (true :: v✝) (true :: a✝) ((!true) :: ?m.554)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (true :: v✝)) (erasureEmbedding ⋯ (true :: a✝)) (erasureEmbedding ⋯ ((!true) :: b✝))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:167:17: error: Type mismatch
+  PathAt.crossRight false (path_sym (erasure_root_path h v✝ b✝ (path_sym hp)))
+has type
+  PathAt (false :: erasureEmbedding h v✝) ((!false) :: ?m.616) (false :: erasureEmbedding h b✝)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (false :: v✝)) (erasureEmbedding ⋯ ((!false) :: a✝)) (erasureEmbedding ⋯ (false :: b✝))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:168:16: error: Type mismatch
+  PathAt.crossRight true hp
+has type
+  PathAt (true :: v✝) ((!true) :: ?m.637) (true :: b✝)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (true :: v✝)) (erasureEmbedding ⋯ ((!true) :: a✝)) (erasureEmbedding ⋯ (true :: b✝))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:173:18: error: Type mismatch
+  PathAt.fork ?m.795 ?m.796
+has type
+  PathAt [] (false :: ?m.795) (true :: ?m.796)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ []) (erasureEmbedding ⋯ (false :: a)) (erasureEmbedding ⋯ (true :: b))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:174:19: error: Type mismatch
+  PathAt.fork' ?m.840 ?m.841
+has type
+  PathAt [] (true :: ?m.840) (false :: ?m.841)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ []) (erasureEmbedding ⋯ (true :: a)) (erasureEmbedding ⋯ (false :: b))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:176:17: error: Type mismatch
+  PathAt.down false hp
+has type
+  PathAt (false :: v✝) (false :: a✝) (false :: b✝)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (false :: v✝)) (erasureEmbedding ⋯ (false :: a✝)) (erasureEmbedding ⋯ (false :: b✝))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:177:16: error: Type mismatch
+  PathAt.down true (ih v✝ a✝ b✝ hp)
+has type
+  PathAt (true :: erasureEmbedding h v✝) (true :: erasureEmbedding h a✝) (true :: erasureEmbedding h b✝)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (true :: v✝)) (erasureEmbedding ⋯ (true :: a✝)) (erasureEmbedding ⋯ (true :: b✝))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:179:17: error: Type mismatch
+  PathAt.leftLeg false hp
+has type
+  PathAt (false :: v✝) (false :: a✝) []
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (false :: v✝)) (erasureEmbedding ⋯ (false :: a✝)) (erasureEmbedding ⋯ [])
+research/rmaf/algorithm/universal233/integration/Suppression.lean:180:16: error: Type mismatch
+  PathAt.leftLeg true (erasure_root_path h v✝ a✝ hp)
+has type
+  PathAt (true :: erasureEmbedding h v✝) (true :: erasureEmbedding h a✝) []
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (true :: v✝)) (erasureEmbedding ⋯ (true :: a✝)) (erasureEmbedding ⋯ [])
+research/rmaf/algorithm/universal233/integration/Suppression.lean:182:17: error: Type mismatch
+  PathAt.rightLeg false hp
+has type
+  PathAt (false :: v✝) [] (false :: b✝)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (false :: v✝)) (erasureEmbedding ⋯ []) (erasureEmbedding ⋯ (false :: b✝))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:183:16: error: Type mismatch
+  PathAt.rightLeg true (path_sym (erasure_root_path h v✝ b✝ (path_sym hp)))
+has type
+  PathAt (true :: erasureEmbedding h v✝) [] (true :: erasureEmbedding h b✝)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (true :: v✝)) (erasureEmbedding ⋯ []) (erasureEmbedding ⋯ (true :: b✝))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:185:17: error: Type mismatch
+  PathAt.crossLeft false hp
+has type
+  PathAt (false :: v✝) (false :: a✝) ((!false) :: ?m.1139)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (false :: v✝)) (erasureEmbedding ⋯ (false :: a✝)) (erasureEmbedding ⋯ ((!false) :: b✝))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:186:16: error: Type mismatch
+  PathAt.crossLeft true (erasure_root_path h v✝ a✝ hp)
+has type
+  PathAt (true :: erasureEmbedding h v✝) (true :: erasureEmbedding h a✝) ((!true) :: ?m.1150)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (true :: v✝)) (erasureEmbedding ⋯ (true :: a✝)) (erasureEmbedding ⋯ ((!true) :: b✝))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:188:17: error: Type mismatch
+  PathAt.crossRight false hp
+has type
+  PathAt (false :: v✝) ((!false) :: ?m.1216) (false :: b✝)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (false :: v✝)) (erasureEmbedding ⋯ ((!false) :: a✝)) (erasureEmbedding ⋯ (false :: b✝))
+research/rmaf/algorithm/universal233/integration/Suppression.lean:189:16: error: Type mismatch
+  PathAt.crossRight true (path_sym (erasure_root_path h v✝ b✝ (path_sym hp)))
+has type
+  PathAt (true :: erasureEmbedding h v✝) ((!true) :: ?m.1227) (true :: erasureEmbedding h b✝)
+but is expected to have type
+  PathAt (erasureEmbedding ⋯ (true :: v✝)) (erasureEmbedding ⋯ ((!true) :: a✝)) (erasureEmbedding ⋯ (true :: b✝))

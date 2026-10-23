@@ -1,0 +1,3 @@
+import StoredOrientations
+#check OrdinaryDispatch.StoredNumeric.all_orientations_global_caps
+#print axioms OrdinaryDispatch.StoredNumeric.all_orientations_global_caps

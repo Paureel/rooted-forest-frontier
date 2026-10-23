@@ -1,0 +1,115 @@
+import BinaryAdd
+namespace GenericForest.ScalarBits
+open Universal233.WholeSourceWork
+
+def borrowBit (a b c : Bool) := (!a&&(b||c))||(b&&c)
+theorem digit_sub (a b c : Bool) : bit (sumBit a b c)+bit b+bit c=bit a+2*bit (borrowBit a b c) := by
+ cases a <;> cases b <;> cases c <;> decide
+
+def subtractBorrow (c : Bool) : List Bool → List Bool → Charged (Bool×List Bool)
+ | [],_=>⟨(c,[]),4⟩
+ | a::as,ys=>
+  let b:=ys.headD false;let bs:=ys.tail
+  let r:=subtractBorrow (borrowBit a b c) as bs
+  ⟨(r.value.1,sumBit a b c::r.value.2),r.work+12⟩
+
+theorem subtractBorrow_length (xs ys : List Bool) (c : Bool) :
+ (subtractBorrow c xs ys).value.2.length=xs.length := by
+ induction xs generalizing ys c with
+ | nil=>rfl
+ | cons a as ih=>simp [subtractBorrow,ih]
+
+theorem subtractBorrow_work (xs ys : List Bool) (c : Bool) :
+ (subtractBorrow c xs ys).work=12*xs.length+4 := by
+ induction xs generalizing ys c with
+ | nil=>rfl
+ | cons a as ih=>simp only [subtractBorrow,ih,List.length_cons];omega
+
+theorem subtractBorrow_value (xs ys : List Bool) (c : Bool) (len : xs.length=ys.length) :
+ decode (subtractBorrow c xs ys).value.2+decode ys+bit c=
+ decode xs+2^xs.length*bit (subtractBorrow c xs ys).value.1 := by
+ induction xs generalizing ys c with
+ | nil=>have eq : ys=[]:=by simpa using len.symm;subst ys;simp [subtractBorrow,decode]
+ | cons a as ih=>
+  cases ys with
+  | nil=>simp at len
+  | cons b bs=>
+   have tailLen : as.length=bs.length:=by simpa using len
+   have h:=ih bs (borrowBit a b c) tailLen
+   have d:=digit_sub a b c
+   have twice:=congrArg (fun n=>2*n) h
+   simp only [subtractBorrow,List.headD_cons,List.tail_cons,decode,List.length_cons,Nat.pow_succ] at twice ⊢
+   simp only [Nat.mul_add,Nat.add_mul,Nat.mul_assoc,Nat.mul_comm (2^as.length) 2] at twice ⊢
+   omega
+
+def alignBits : List Bool → List Bool → Charged (List Bool×List Bool)
+ | [],[]=>⟨([],[]),2⟩
+ | a::as,[]=>let r:=alignBits as [];⟨(a::r.value.1,false::r.value.2),r.work+8⟩
+ | [],b::bs=>let r:=alignBits [] bs;⟨(false::r.value.1,b::r.value.2),r.work+8⟩
+ | a::as,b::bs=>let r:=alignBits as bs;⟨(a::r.value.1,b::r.value.2),r.work+8⟩
+termination_by xs ys=>xs.length+ys.length
+
+theorem alignBits_value (xs ys : List Bool) :
+ decode (alignBits xs ys).value.1=decode xs ∧ decode (alignBits xs ys).value.2=decode ys := by
+ induction xs generalizing ys with
+ | nil=>
+  induction ys with
+  | nil=>simp [alignBits,decode]
+  | cons b bs ih=>simp [alignBits,decode,bit,ih]
+ | cons a as ih=>
+  cases ys with
+  | nil=>have h:=ih [];simp [alignBits,decode,bit,h]
+  | cons b bs=>have h:=ih bs;simp [alignBits,decode,h]
+
+theorem alignBits_length (xs ys : List Bool) :
+ (alignBits xs ys).value.1.length=max xs.length ys.length ∧
+ (alignBits xs ys).value.2.length=max xs.length ys.length := by
+ induction xs generalizing ys with
+ | nil=>
+  induction ys with
+  | nil=>simp [alignBits]
+  | cons b bs ih=>simp [alignBits,ih]
+ | cons a as ih=>
+  cases ys with
+  | nil=>have h:=ih [];simp [alignBits,h]
+  | cons b bs=>have h:=ih bs;simp [alignBits,h,Nat.max_succ_succ]
+
+theorem alignBits_work (xs ys : List Bool) : (alignBits xs ys).work≤8*(xs.length+ys.length+1) := by
+ induction xs generalizing ys with
+ | nil=>
+  induction ys with
+  | nil=>simp [alignBits]
+  | cons b bs ih=>simp only [alignBits,List.length_nil,List.length_cons] at *;omega
+ | cons a as ih=>
+  cases ys with
+  | nil=>have h:=ih [];simp only [alignBits,List.length_nil,List.length_cons] at *;omega
+  | cons b bs=>have h:=ih bs;simp only [alignBits,List.length_cons] at *;omega
+
+theorem decode_bound (xs : List Bool) : decode xs<2^xs.length := by
+ induction xs with
+ | nil=>decide
+ | cons a as ih=>cases a <;> simp only [decode,bit,Bool.false_eq_true,ite_false,ite_true,List.length_cons,Nat.pow_succ] <;> omega
+
+def subtractBits (xs ys : List Bool) : Charged (List Bool) :=
+ let p:=alignBits xs ys;let r:=subtractBorrow false p.value.1 p.value.2
+ ⟨if r.value.1 then [] else r.value.2,p.work+r.work+4⟩
+
+@[simp] theorem subtractBits_value (xs ys : List Bool) : decode (subtractBits xs ys).value=decode xs-decode ys := by
+ have lens:=alignBits_length xs ys
+ have vals:=alignBits_value xs ys
+ have h:=subtractBorrow_value (alignBits xs ys).value.1 (alignBits xs ys).value.2 false (lens.1.trans lens.2.symm)
+ have bounded:=decode_bound (subtractBorrow false (alignBits xs ys).value.1 (alignBits xs ys).value.2).value.2
+ have length:=subtractBorrow_length (alignBits xs ys).value.1 (alignBits xs ys).value.2 false
+ rw [length] at bounded
+ simp only [bit,Bool.false_eq_true,ite_false,Nat.add_zero,vals.1,vals.2] at h
+ cases hb : (subtractBorrow false (alignBits xs ys).value.1 (alignBits xs ys).value.2).value.1 <;>
+  simp only [hb,bit,ite_false,ite_true,Nat.mul_zero,Nat.mul_one,Nat.add_zero] at h <;>
+  simp only [subtractBits,hb,Bool.false_eq_true,ite_false,ite_true,decode] <;> omega
+
+theorem subtractBits_work (xs ys : List Bool) : (subtractBits xs ys).work≤24*(xs.length+ys.length+1) := by
+ have a:=alignBits_work xs ys
+ have b:=subtractBorrow_work (alignBits xs ys).value.1 (alignBits xs ys).value.2 false
+ have lens:=alignBits_length xs ys
+ simp only [subtractBits]
+ omega
+end GenericForest.ScalarBits

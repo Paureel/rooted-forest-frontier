@@ -1,0 +1,9 @@
+import PaidSelectedBinding
+#check Universal233.Rule5RemainingLocalWork.paid_selected_value
+#print axioms Universal233.Rule5RemainingLocalWork.paid_selected_value
+#check Universal233.Rule5RemainingLocalWork.paid_selected_work
+#print axioms Universal233.Rule5RemainingLocalWork.paid_selected_work
+#check Universal233.Rule5RemainingLocalWork.paid_selected_ledger
+#print axioms Universal233.Rule5RemainingLocalWork.paid_selected_ledger
+#check Universal233.Rule5RemainingLocalWork.paid_selected_calls_domain
+#print axioms Universal233.Rule5RemainingLocalWork.paid_selected_calls_domain

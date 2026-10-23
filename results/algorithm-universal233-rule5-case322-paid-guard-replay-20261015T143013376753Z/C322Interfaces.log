@@ -1,0 +1,136 @@
+Universal233.Case322PaidGuard.literal_rawPlan_currentGuards {T S X C : RMAF.Tree} {w r qa ub uc : RMAF.Vertex}
+  {sa sc sb : Bool} {a b c : Nat} (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S)
+  (he : Universal233.CoreGraph.subtree S w = some (Universal233.Case322Extraction.bottom sa sc sb a b c X))
+  (ch : Universal233.HardParent.ActualCherry T a b) (_two : (Universal233.CherryBranching.cuts S a b).length = 2)
+  (core : Universal233.CoreGraph.subtree T r = some C)
+  (coreLabels : ∀ (x : Nat), x ∈ RMAF.leaves T → (x ∈ RMAF.leaves C ↔ ¬x ∈ RMAF.leaves X ∧ x ≠ c))
+  (bC : b ∈ RMAF.leaves C) (_cC : ¬c ∈ RMAF.leaves C) (la : Universal233.CoreGraph.LeafAt T qa a)
+  (lb : Universal233.CoreGraph.LeafAt T ub b) (lc : Universal233.CoreGraph.LeafAt T uc c)
+  (frontier :
+    Universal233.Rule5Local.incident T (RMAF.leaves X) = [r, uc] ∨
+      Universal233.Rule5Local.incident T (RMAF.leaves X) = [uc, r])
+  (tailR : List.dropLast r ∈ RMAF.minimalVertices (RMAF.leaves X) T)
+  (_tailC : List.dropLast uc ∈ RMAF.minimalVertices (RMAF.leaves X) T)
+  (_offR : ¬r ∈ RMAF.minimalVertices (RMAF.leaves X) T) (_offC : ¬uc ∈ RMAF.minimalVertices (RMAF.leaves X) T)
+  (child : Universal233.Rule5Case322.Branch) :
+  child ∈ Universal233.Case322Extraction.rawPlan T S a b c qa (Universal233.Case322Extraction.bArc w sb) ub uc →
+    Universal233.Rule5Case322.currentGuard T S child = true
+Universal233.Case322PaidGuard.rawPlan_currentGuards_outgoing {T S X C : RMAF.Tree} {w r qa ub uc : RMAF.Vertex}
+  {sa sc sb : Bool} {a b c : Nat} (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S)
+  (he : Universal233.CoreGraph.subtree S w = some (Universal233.Case322Extraction.bottom sa sc sb a b c X))
+  (ch : Universal233.HardParent.ActualCherry T a b) (core : Universal233.CoreGraph.subtree T r = some C)
+  (coreLabels : ∀ (x : Nat), x ∈ RMAF.leaves T → (x ∈ RMAF.leaves C ↔ ¬x ∈ RMAF.leaves X ∧ x ≠ c))
+  (bC : b ∈ RMAF.leaves C) (la : Universal233.CoreGraph.LeafAt T qa a) (lb : Universal233.CoreGraph.LeafAt T ub b)
+  (lc : Universal233.CoreGraph.LeafAt T uc c) (rnr : r ≠ [])
+  (tailHull : List.dropLast r ∈ RMAF.minimalVertices (RMAF.leaves X) T) :
+  (Universal233.Case322Extraction.rawPlan T S a b c qa (Universal233.Case322Extraction.bArc w sb) ub uc).all
+      (Universal233.Rule5Case322.currentGuard T S) =
+    true
+Universal233.Case322PaidGuard.guardedPlan_eq {T S : RMAF.Tree} (D : Universal233.Case322PaidGuard.LiteralGeometry T S) :
+  Universal233.Case322PaidGuard.guardedPlan D = Universal233.Case322PaidGuard.literalPlan D
+Universal233.Case322PaidGuard.guarded_original_cover {T S : RMAF.Tree}
+  (D : Universal233.Case322PaidGuard.LiteralGeometry T S) {F : List (List Nat)} (ha : RMAF.agreement T S F = true) :
+  ∃ child,
+    child ∈ Universal233.Case322PaidGuard.guardedPlan D ∧ Universal233.Rule5Case322.OriginalCover T S F child.partition
+Universal233.Case322PaidGuard.guarded_affordable_cover {T S : RMAF.Tree}
+  (D : Universal233.Case322PaidGuard.LiteralGeometry T S) (q : Nat) {F : List (List Nat)}
+  (ha : RMAF.agreement T S F = true) (budget : F.length - 1 ≤ q) :
+  ∃ child,
+    child ∈ Universal233.Case322PaidGuard.guardedPlan D ∧
+      Universal233.Rule5Case322.paid child ≤ q ∧
+        ∃ G,
+          RMAF.agreement T S G = true ∧
+            G.length ≤ F.length ∧
+              VertexGeometry.Refines G child.partition ∧
+                G.length - child.partition.length ≤ q - Universal233.Rule5Case322.paid child
+Universal233.Case322PaidGuard.guardedQuery_spec {T S : RMAF.Tree}
+  (D : Universal233.Case322PaidGuard.LiteralGeometry T S) (q : Nat)
+  (solve : Universal233.Rule5Case322.Branch → Nat → Option (List (List Nat)))
+  (ih :
+    ∀ (child : Universal233.Rule5Case322.Branch),
+      child ∈ Universal233.Case322PaidGuard.guardedPlan D →
+        Universal233.Rule5Case322.paid child ≤ q →
+          Universal233.Case322PaidGuard.ChildQueryCorrect T S child (q - Universal233.Rule5Case322.paid child)
+            (solve child (q - Universal233.Rule5Case322.paid child))) :
+  Universal233.Case322PaidGuard.guardedQuery D q solve = true ↔ ∃ F, RMAF.agreement T S F = true ∧ F.length - 1 ≤ q
+Universal233.Case322PaidGuard.guarded_conditional_minimum {T S : RMAF.Tree}
+  (D : Universal233.Case322PaidGuard.LiteralGeometry T S) (solve : Universal233.Rule5Case322.Branch → List (List Nat))
+  (ih :
+    ∀ (child : Universal233.Rule5Case322.Branch),
+      child ∈ Universal233.Case322PaidGuard.guardedPlan D →
+        Universal233.Rule5Case322.ExactChild T S child (solve child))
+  (best : List (List Nat)) (chosen : ∃ child, child ∈ Universal233.Case322PaidGuard.guardedPlan D ∧ best = solve child)
+  (least :
+    ∀ (child : Universal233.Rule5Case322.Branch),
+      child ∈ Universal233.Case322PaidGuard.guardedPlan D → best.length ≤ (solve child).length) :
+  RMAF.agreement T S best = true ∧ ∀ (F : List (List Nat)), RMAF.agreement T S F = true → best.length ≤ F.length
+Universal233.Case322PaidGuard.guarded_query_decrease {T S : RMAF.Tree}
+  (D : Universal233.Case322PaidGuard.LiteralGeometry T S) {q n : Nat}
+  (mem : n ∈ Universal233.Rule5Case322.callbackRequests q (Universal233.Case322PaidGuard.guardedPlan D)) : n < q
+Universal233.Case322PaidGuard.guarded_query_LIST_mass {T S : RMAF.Tree}
+  (D : Universal233.Case322PaidGuard.LiteralGeometry T S) (q : Nat) (weight : Nat → Nat) :
+  (List.map weight (Universal233.Rule5Case322.callbackRequests q (Universal233.Case322PaidGuard.guardedPlan D))).sum ≤
+    (List.map (fun child => weight (q - Universal233.Rule5Case322.paid child))
+        (Universal233.Case322PaidGuard.guardedPlan D)).sum
+Universal233.Case322PaidGuard.guarded_cost_LIST_mass {T S : RMAF.Tree}
+  (D : Universal233.Case322PaidGuard.LiteralGeometry T S) (weight : Nat → Nat)
+  (decay : ∀ (d : Nat), 2 ≤ d → weight d ≤ weight 2) :
+  Universal233.Rule5Case322.rawMass weight
+      (List.map Universal233.Rule5Case322.paid (Universal233.Case322PaidGuard.guardedPlan D)) ≤
+    weight 1 + 3 * weight 2
+Universal233.Case322PaidGuard.guarded_cost_classes {T S : RMAF.Tree}
+  (D : Universal233.Case322PaidGuard.LiteralGeometry T S) :
+  List.map Universal233.Rule5Case322.paid (Universal233.Case322PaidGuard.guardedPlan D) = [2, 1, 2, 2] ∨
+    ∃ d, 2 ≤ d ∧ List.map Universal233.Rule5Case322.paid (Universal233.Case322PaidGuard.guardedPlan D) = [2, 1, d]
+Universal233.Case322PaidGuard.swapped_guarded_binding {T S : RMAF.Tree}
+  (D : Universal233.Case322PaidGuard.LiteralGeometry T S) (child : Universal233.Rule5Case322.Branch) :
+  child ∈ Universal233.Case322PaidGuard.swappedGuardedPlan D → Universal233.Rule5Case322.currentGuard S T child = true
+Universal233.Case322PaidGuard.swapped_conditional_minimum {T S : RMAF.Tree}
+  (D : Universal233.Case322PaidGuard.LiteralGeometry T S) (solve : Universal233.Rule5Case322.Branch → List (List Nat))
+  (ih :
+    ∀ (child : Universal233.Rule5Case322.Branch),
+      child ∈ Universal233.Case322PaidGuard.swappedGuardedPlan D →
+        Universal233.Rule5Case322.ExactChild S T child (solve child))
+  (best : List (List Nat))
+  (chosen : ∃ child, child ∈ Universal233.Case322PaidGuard.swappedGuardedPlan D ∧ best = solve child)
+  (least :
+    ∀ (child : Universal233.Rule5Case322.Branch),
+      child ∈ Universal233.Case322PaidGuard.swappedGuardedPlan D → best.length ≤ (solve child).length) :
+  RMAF.agreement S T best = true ∧ ∀ (F : List (List Nat)), RMAF.agreement S T F = true → best.length ≤ F.length
+Universal233.Case322PaidGuard.swapped_callbacks_exact {T S : RMAF.Tree}
+  (D : Universal233.Case322PaidGuard.LiteralGeometry T S) (q : Nat) :
+  Universal233.Rule5Case322.callbackRequests q (Universal233.Case322PaidGuard.swappedGuardedPlan D) =
+    Universal233.Rule5Case322.callbackRequests q (Universal233.Case322PaidGuard.guardedPlan D)
+Universal233.Case322PaidGuard.fallback_lca_nonroot {T : RMAF.Tree} {X : List Nat} {r qa ub uc : RMAF.Vertex}
+  {a b c : Nat} (hn : (RMAF.leaves T).Nodup) (la : Universal233.CoreGraph.LeafAt T qa a)
+  (lb : Universal233.CoreGraph.LeafAt T ub b) (lc : Universal233.CoreGraph.LeafAt T uc c)
+  (valid : Universal233.CoreGraph.Valid T r) (nr : r ≠ []) (ar : a ∈ Universal233.HardParent.subtreeLabels T r)
+  (br : b ∈ Universal233.HardParent.subtreeLabels T r) (subset : ∀ (x : Nat), x ∈ X → x ∈ RMAF.leaves T)
+  (disj : ∀ (x : Nat), x ∈ X → ¬x ∈ Universal233.HardParent.subtreeLabels T r)
+  (tailHull : List.dropLast r ∈ RMAF.minimalVertices X T)
+  (empty : Universal233.Case322Extraction.bSideWithoutA T a b c = []) : VertexGeometry.lca ub uc ≠ []
+Universal233.Case322PaidGuard.outgoing_core_root_forces_bside {T : RMAF.Tree} {X : List Nat} {r qa ub uc : RMAF.Vertex}
+  {a b c : Nat} (hn : (RMAF.leaves T).Nodup) (la : Universal233.CoreGraph.LeafAt T qa a)
+  (lb : Universal233.CoreGraph.LeafAt T ub b) (lc : Universal233.CoreGraph.LeafAt T uc c)
+  (valid : Universal233.CoreGraph.Valid T r) (nr : r ≠ []) (ar : a ∈ Universal233.HardParent.subtreeLabels T r)
+  (br : b ∈ Universal233.HardParent.subtreeLabels T r) (subset : ∀ (x : Nat), x ∈ X → x ∈ RMAF.leaves T)
+  (disj : ∀ (x : Nat), x ∈ X → ¬x ∈ Universal233.HardParent.subtreeLabels T r)
+  (tailHull : List.dropLast r ∈ RMAF.minimalVertices X T) (root : VertexGeometry.lca ub uc = []) :
+  Universal233.Case322Extraction.bSideWithoutA T a b c ≠ []
+Universal233.Case322PaidGuard.pendant_partition_binding {S : RMAF.Tree} {a b : Nat} (hn : (RMAF.leaves S).Nodup)
+  (ha : a ∈ RMAF.leaves S) :
+  Universal233.Rule5Case322.arcPartition S (Universal233.CherryBranching.cuts S a b) =
+    Universal233.CherryBranching.pendantPartition S a b
+Universal233.Case322PaidGuard.pendant_subset_paid_components {T : RMAF.Tree} {a b : Nat} (hn : (RMAF.leaves T).Nodup)
+  (ha : a ∈ RMAF.leaves T) (qs : List RMAF.Vertex) (nd : qs.Nodup)
+  (selected : ∀ (q : RMAF.Vertex), q ∈ qs → q ∈ Universal233.CherryBranching.cuts T a b) :
+  (Universal233.Rule5Case322.arcPartition T qs).length = qs.length + 1
+Universal233.Case322PaidGuard.ancestor_branch_currentGuard {T S : RMAF.Tree} {q qa ub uc : RMAF.Vertex} {a b c : Nat}
+  (hn : (RMAF.leaves T).Nodup) (ch : Universal233.HardParent.ActualCherry T a b)
+  (la : Universal233.CoreGraph.LeafAt T qa a) (lb : Universal233.CoreGraph.LeafAt T ub b)
+  (lc : Universal233.CoreGraph.LeafAt T uc c) (hab : a ≠ b) (hbc : b ≠ c) (valid : Universal233.CoreGraph.Valid T q)
+  (nr : q ≠ []) (bq : b ∈ Universal233.HardParent.subtreeLabels T q)
+  (cq : c ∈ Universal233.HardParent.subtreeLabels T q) :
+  Universal233.Rule5Case322.currentGuard T S (Universal233.Rule5Case322.targetBranch T [qa, q]) = true

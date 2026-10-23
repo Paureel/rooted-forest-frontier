@@ -1,0 +1,139 @@
+{
+  "scope": "exact replay of frozen finite fixtures; no universal proof; same-author checker reuse disclosed",
+  "control_sha256": "a96b66716ec2b1f2c68ce38461413859bd3ca7bb504d7f2b4f6ca85f29e55185",
+  "controls": [
+    {
+      "id": "nine-leaf-arithmetic",
+      "mass": "9/16",
+      "parent": "1/2",
+      "passed": true
+    },
+    {
+      "id": "live-two-leaf",
+      "passed": true,
+      "J": {
+        "pair": [
+          "x",
+          "y"
+        ],
+        "case": "A3BC",
+        "uncle": "a",
+        "lca": "p,q,r,x,y",
+        "pendants": [
+          "p",
+          "q",
+          "r"
+        ],
+        "predicates": {
+          "RB": false,
+          "RB*": false,
+          "2B": false,
+          "BCY": false
+        },
+        "branches": [
+          {
+            "name": "A",
+            "cuts": [
+              "x"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "B",
+            "cuts": [
+              "p",
+              "q",
+              "r"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "C",
+            "cuts": [
+              "y"
+            ],
+            "protect2": [
+              "x"
+            ],
+            "protect1": [
+              "x"
+            ],
+            "legal": true
+          }
+        ]
+      },
+      "C": {
+        "pair": [
+          "x",
+          "a"
+        ],
+        "case": "A3BC",
+        "uncle": "p,q,r",
+        "lca": "a,p,q,r,x",
+        "pendants": [
+          "p",
+          "q",
+          "r"
+        ],
+        "predicates": {
+          "RB": false,
+          "RB*": false,
+          "2B": false,
+          "BCY": false
+        },
+        "branches": [
+          {
+            "name": "A",
+            "cuts": [
+              "x"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": false
+          },
+          {
+            "name": "B",
+            "cuts": [
+              "p",
+              "q",
+              "r"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "C",
+            "cuts": [
+              "a"
+            ],
+            "protect2": [
+              "x"
+            ],
+            "protect1": [
+              "x"
+            ],
+            "legal": false
+          }
+        ]
+      },
+      "F1_C": "(((a,x),(p,(q,r))))rho",
+      "F2_C": "((a,(((x,p),q),r)))rho"
+    },
+    {
+      "id": "wrong-orientation",
+      "caught": true,
+      "illegal_C_pendants": 1
+    },
+    {
+      "id": "orientation-positive-twin",
+      "passed": true,
+      "C_pendants": 3
+    }
+  ],
+  "elapsed_seconds": 0.0014587910009140614
+}

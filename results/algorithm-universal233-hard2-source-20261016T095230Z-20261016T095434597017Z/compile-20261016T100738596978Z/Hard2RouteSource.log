@@ -1,0 +1,221 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2RouteSource.lean:63:59: error: unexpected token '|'; expected term
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2RouteSource.lean:71:7: error: unsolved goals
+case none
+actual : GenericForest.FrontierWork.Ordinary
+T S : Tree
+c d : CherryBranching.Candidate
+q : Nat
+h : runHard2 T S c = none
+⊢ sorry actual T S c q Hard2Route.refused = []
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2RouteSource.lean:76:27: error: Tactic `split` failed: Could not split an `if` or `match` expression in the goal
+
+Hint: Use `set_option trace.split.failure true` to display additional diagnostic information
+
+case some.disjoint.isTrue
+actual : GenericForest.FrontierWork.Ordinary
+T S : Tree
+c d : CherryBranching.Candidate
+q : Nat
+h : runHard2 T S c = some Result.disjoint
+h✝ : ((CherryBranching.pendantPartition S c.a c.b).all fun x => restrictionAgrees T S x) = true
+⊢ hard2RouteQueries actual T S c q
+      { value := Hard2Route.direct (DisjointParents.direct (CherryBranching.pendantPartition S c.a c.b) q),
+          work :=
+            (runHard2Meter T S c).work + (partitionMeter S c.a c.b).work +
+                  (meterAll (meterRestrictionAgrees T S) (CherryBranching.pendantPartition S c.a c.b)).work +
+                (CherryBranching.pendantPartition S c.a c.b).length +
+              8 }.value =
+    { value := DisjointParents.direct (CherryBranching.pendantPartition S c.a c.b) q, queries := [] }.queries
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2RouteSource.lean:76:37: error: Tactic `rfl` failed: The left-hand side
+  hard2RouteQueries actual T S c q
+    { value := Hard2Route.admittedRule5,
+        work :=
+          (runHard2Meter T S c).work + (partitionMeter S c.a c.b).work +
+                  (meterAll (meterRestrictionAgrees T S) (CherryBranching.pendantPartition S c.a c.b)).work +
+                (meterFilter (meterRestrictionAgrees T S) (CherryBranching.pendantPartition S c.a c.b)).work +
+              (List.filter (fun x => restrictionAgrees T S x) (CherryBranching.pendantPartition S c.a c.b)).length +
+            8 }.value
+is not definitionally equal to the right-hand side
+  { value := Rule5ActualTrace.answer (Rule5ActualTrace.dispatchTrace actual T S c.a c.b q),
+      queries := Rule5ActualTrace.queries actual (Rule5ActualTrace.dispatchTrace actual T S c.a c.b q).calls }.queries
+
+case some.disjoint.isFalse.isTrue
+actual : GenericForest.FrontierWork.Ordinary
+T S : Tree
+c d : CherryBranching.Candidate
+q : Nat
+h : runHard2 T S c = some Result.disjoint
+h✝¹ : ¬((CherryBranching.pendantPartition S c.a c.b).all fun x => restrictionAgrees T S x) = true
+h✝ : (List.filter (fun x => restrictionAgrees T S x) (CherryBranching.pendantPartition S c.a c.b)).length = 2
+⊢ hard2RouteQueries actual T S c q
+      { value := Hard2Route.admittedRule5,
+          work :=
+            (runHard2Meter T S c).work + (partitionMeter S c.a c.b).work +
+                    (meterAll (meterRestrictionAgrees T S) (CherryBranching.pendantPartition S c.a c.b)).work +
+                  (meterFilter (meterRestrictionAgrees T S) (CherryBranching.pendantPartition S c.a c.b)).work +
+                (List.filter (fun x => restrictionAgrees T S x) (CherryBranching.pendantPartition S c.a c.b)).length +
+              8 }.value =
+    { value := Rule5ActualTrace.answer (Rule5ActualTrace.dispatchTrace actual T S c.a c.b q),
+        queries := Rule5ActualTrace.queries actual (Rule5ActualTrace.dispatchTrace actual T S c.a c.b q).calls }.queries
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2RouteSource.lean:76:37: error: Tactic `rfl` failed: The left-hand side
+  hard2RouteQueries actual T S c q
+    { value := Hard2Route.disjointPaid,
+        work :=
+          (runHard2Meter T S c).work + (partitionMeter S c.a c.b).work +
+                  (meterAll (meterRestrictionAgrees T S) (CherryBranching.pendantPartition S c.a c.b)).work +
+                (meterFilter (meterRestrictionAgrees T S) (CherryBranching.pendantPartition S c.a c.b)).work +
+              (List.filter (fun x => restrictionAgrees T S x) (CherryBranching.pendantPartition S c.a c.b)).length +
+            8 }.value
+is not definitionally equal to the right-hand side
+  { value := (Hard2Trace.disjointExecution actual T S c.a c.b q).answer,
+      queries := forestQueries actual (Hard2Trace.disjointExecution actual T S c.a c.b q).calls }.queries
+
+case some.disjoint.isFalse.isFalse
+actual : GenericForest.FrontierWork.Ordinary
+T S : Tree
+c d : CherryBranching.Candidate
+q : Nat
+h : runHard2 T S c = some Result.disjoint
+h✝¹ : ¬((CherryBranching.pendantPartition S c.a c.b).all fun x => restrictionAgrees T S x) = true
+h✝ : ¬(List.filter (fun x => restrictionAgrees T S x) (CherryBranching.pendantPartition S c.a c.b)).length = 2
+⊢ hard2RouteQueries actual T S c q
+      { value := Hard2Route.disjointPaid,
+          work :=
+            (runHard2Meter T S c).work + (partitionMeter S c.a c.b).work +
+                    (meterAll (meterRestrictionAgrees T S) (CherryBranching.pendantPartition S c.a c.b)).work +
+                  (meterFilter (meterRestrictionAgrees T S) (CherryBranching.pendantPartition S c.a c.b)).work +
+                (List.filter (fun x => restrictionAgrees T S x) (CherryBranching.pendantPartition S c.a c.b)).length +
+              8 }.value =
+    { value := (Hard2Trace.disjointExecution actual T S c.a c.b q).answer,
+        queries := forestQueries actual (Hard2Trace.disjointExecution actual T S c.a c.b q).calls }.queries
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2RouteSource.lean:77:12: error: unsolved goals
+case some.clique
+actual : GenericForest.FrontierWork.Ordinary
+T S : Tree
+c d : CherryBranching.Candidate
+q : Nat
+v : Vertex
+h : runHard2 T S c = some (Result.clique v)
+⊢ sorry actual T S c q (Hard2Route.paid (Result.clique v)) =
+    forestQueries actual
+      (Hard2Combine.combine actual T S c.a c.b q (Hard2Dispatcher.paidCase actual T S c q (Result.clique v))).calls
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2RouteSource.lean:78:14: error: unsolved goals
+case some.four
+actual : GenericForest.FrontierWork.Ordinary
+T S : Tree
+c d : CherryBranching.Candidate
+q : Nat
+o : Order
+v w : Vertex
+h : runHard2 T S c = some (Result.four o v w)
+⊢ sorry actual T S c q (Hard2Route.paid (Result.four o v w)) =
+    forestQueries actual
+      (Hard2Combine.combine actual T S c.a c.b q (Hard2Dispatcher.paidCase actual T S c q (Result.four o v w))).calls
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2RouteSource.lean:79:18: error: unsolved goals
+case some.diagonal
+actual : GenericForest.FrontierWork.Ordinary
+T S : Tree
+c d : CherryBranching.Candidate
+q : Nat
+o : Order
+v w : Vertex
+h : runHard2 T S c = some (Result.diagonal o v w)
+⊢ sorry actual T S c q (Hard2Route.paid (Result.diagonal o v w)) =
+    forestQueries actual
+      (Hard2Combine.combine actual T S c.a c.b q
+          (Hard2Dispatcher.paidCase actual T S c q (Result.diagonal o v w))).calls
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2RouteSource.lean:80:17: error: unsolved goals
+case some.pair
+actual : GenericForest.FrontierWork.Ordinary
+T S : Tree
+c d : CherryBranching.Candidate
+q : Nat
+o : Order
+choice : PairGeometry.Choice
+h : runHard2 T S c = some (Result.pair o choice)
+⊢ sorry actual T S c q (Hard2Route.paid (Result.pair o choice)) =
+    forestQueries actual
+      (Hard2Combine.combine actual T S c.a c.b q (Hard2Dispatcher.paidCase actual T S c q (Result.pair o choice))).calls
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2RouteSource.lean:71:44: warning: declaration uses `sorry`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2RouteSource.lean:104:2: error: Type mismatch: After simplification, term
+  h
+ has type
+  132 * ((N + 1) ^ 0 * ((N + 1) * ((N + 1) * ((partitionMeter S c.a c.b).value.length + 1)))) ≤
+    2 * (132 * ((N + 1) ^ 0 * ((N + 1) * ((N + 1) * (N + 1)))))
+but is expected to have type
+  132 * ((N + 1) ^ 0 * ((N + 1) * ((N + 1) * ((partitionMeter S c.a c.b).value.length + 1)))) ≤
+    264 * ((N + 1) ^ 0 * ((N + 1) * ((N + 1) * (N + 1))))
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2RouteSource.lean:110:24: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (meterRestrictionAgrees ?T ?S ?B).value
+in the target expression
+  (List.filter (fun x => (meterRestrictionAgrees T S x).value) (partitionMeter S c.a c.b).value).length ≤ 2 * N + 1
+
+T S : Tree
+c : CherryBranching.Candidate
+q N : Nat
+three : 3 ≤ N
+tn : treeNodes T ≤ N
+sn : treeNodes S ≤ N
+sl : (leaves S).length ≤ N
+graph : (runHard2Meter T S c).work ≤ 2100 * (N + 1) ^ 6
+partition0 : (partitionMeter S c.a c.b).work ≤ partitionBudget N
+plen : (partitionMeter S c.a c.b).value.length ≤ 2 * N + 1
+blocks : ∀ (B : List Nat), B ∈ (partitionMeter S c.a c.b).value → B.length ≤ N
+point : ∀ (B : List Nat), B ∈ (partitionMeter S c.a c.b).value → (meterRestrictionAgrees T S B).work ≤ 128 * (N + 1) ^ 2
+pos2 : 1 ≤ (N + 1) ^ 2
+coef : 128 * (N + 1) ^ 2 + 4 ≤ 132 * (N + 1) ^ 2
+poly : 132 * (N + 1) ^ 2 * ((partitionMeter S c.a c.b).value.length + 1) ≤ 264 * (N + 1) ^ 3
+a0 :
+  (meterAll (meterRestrictionAgrees T S) (partitionMeter S c.a c.b).value).work ≤
+    (128 * (N + 1) ^ 2 + 4) * ((partitionMeter S c.a c.b).value.length + 1)
+f0 :
+  (meterFilter (meterRestrictionAgrees T S) (partitionMeter S c.a c.b).value).work ≤
+    (128 * (N + 1) ^ 2 + 4) * ((partitionMeter S c.a c.b).value.length + 1)
+a : (meterAll (meterRestrictionAgrees T S) (partitionMeter S c.a c.b).value).work ≤ 264 * (N + 1) ^ 6
+f : (meterFilter (meterRestrictionAgrees T S) (partitionMeter S c.a c.b).value).work ≤ 264 * (N + 1) ^ 6
+⊢ (List.filter (fun x => (meterRestrictionAgrees T S x).value) (partitionMeter S c.a c.b).value).length ≤ 2 * N + 1
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2RouteSource.lean:115:1: error: Tactic `split` failed: Could not split an `if` or `match` expression in the goal
+
+Hint: Use `set_option trace.split.failure true` to display additional diagnostic information
+
+T S : Tree
+c : CherryBranching.Candidate
+q N : Nat
+three : 3 ≤ N
+tn : treeNodes T ≤ N
+sn : treeNodes S ≤ N
+sl : (leaves S).length ≤ N
+graph : (runHard2Meter T S c).work ≤ 2100 * (N + 1) ^ 6
+partition0 : (partitionMeter S c.a c.b).work ≤ partitionBudget N
+plen : (partitionMeter S c.a c.b).value.length ≤ 2 * N + 1
+blocks : ∀ (B : List Nat), B ∈ (partitionMeter S c.a c.b).value → B.length ≤ N
+point : ∀ (B : List Nat), B ∈ (partitionMeter S c.a c.b).value → (meterRestrictionAgrees T S B).work ≤ 128 * (N + 1) ^ 2
+pos2 : 1 ≤ (N + 1) ^ 2
+coef : 128 * (N + 1) ^ 2 + 4 ≤ 132 * (N + 1) ^ 2
+poly : 132 * (N + 1) ^ 2 * ((partitionMeter S c.a c.b).value.length + 1) ≤ 264 * (N + 1) ^ 3
+a0 :
+  (meterAll (meterRestrictionAgrees T S) (partitionMeter S c.a c.b).value).work ≤
+    (128 * (N + 1) ^ 2 + 4) * ((partitionMeter S c.a c.b).value.length + 1)
+f0 :
+  (meterFilter (meterRestrictionAgrees T S) (partitionMeter S c.a c.b).value).work ≤
+    (128 * (N + 1) ^ 2 + 4) * ((partitionMeter S c.a c.b).value.length + 1)
+a : (meterAll (meterRestrictionAgrees T S) (partitionMeter S c.a c.b).value).work ≤ 264 * (N + 1) ^ 6
+f : (meterFilter (meterRestrictionAgrees T S) (partitionMeter S c.a c.b).value).work ≤ 264 * (N + 1) ^ 6
+fl : (meterFilter (meterRestrictionAgrees T S) (partitionMeter S c.a c.b).value).value.length ≤ 2 * N + 1
+pos : 1 ≤ (N + 1) ^ 6
+np : N + 1 ≤ (N + 1) ^ 6
+⊢ (have graph := runHard2Meter T S c;
+      match graph.value with
+      | none => { value := Hard2Route.refused, work := graph.work + 2 }
+      | some Result.disjoint =>
+        have p := partitionMeter S c.a c.b;
+        have all := meterAll (meterRestrictionAgrees T S) p.value;
+        if all.value = true then
+          { value := Hard2Route.direct (DisjointParents.direct p.value q),
+            work := graph.work + p.work + all.work + p.value.length + 8 }
+        else
+          have good := meterFilter (meterRestrictionAgrees T S) p.value;
+          { value := if good.value.length = 2 then Hard2Route.admittedRule5 else Hard2Route.disjointPaid,
+            work := graph.work + p.work + all.work + good.work + good.value.length + 8 }
+      | some out => { value := Hard2Route.paid out, work := graph.work + 4 }).work ≤
+    partitionBudget N + 2700 * (N + 1) ^ 6

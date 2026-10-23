@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "verdict": "CERTIFIED-CANDIDATE-FAILURE",
+  "frozen_controls": {
+    "fixtures": 9,
+    "literal_checks": 41,
+    "comparator_corruptions_caught": 41,
+    "negative_detectors": 6,
+    "pin_mismatches": []
+  },
+  "refuted_claim": "Every admissible globally leaf-balanced source-edge split automatically preserves some original optimum, even when equal halves and local tau<=b/2 hold.",
+  "witness": {
+    "n": 4,
+    "source": [
+      "a",
+      [
+        "b",
+        [
+          "c",
+          "d"
+        ]
+      ]
+    ],
+    "target": [
+      "a",
+      [
+        [
+          "b",
+          "c"
+        ],
+        "d"
+      ]
+    ],
+    "original_budget": 1,
+    "source_cut": {
+      "parent_vertex": "R1",
+      "child_vertex": "R11",
+      "child_descendant_labels": [
+        "c",
+        "d"
+      ]
+    },
+    "split_leaf_sizes": [
+      2,
+      2
+    ],
+    "centroid_balanced": true,
+    "equal_halves": true,
+    "local_halfbudget": true,
+    "exact": {
+      "optimum_cuts": 1,
+      "optimum_partitions": [
+        [
+          [
+            "a",
+            "b",
+            "c"
+          ],
+          [
+            "d"
+          ]
+        ],
+        [
+          [
+            "a",
+            "b",
+            "d"
+          ],
+          [
+            "c"
+          ]
+        ],
+        [
+          [
+            "a",
+            "c",
+            "d"
+          ],
+          [
+            "b"
+          ]
+        ]
+      ],
+      "optimum_partition_count": 3,
+      "partitions_enumerated": 15,
+      "precut_blocks": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "precuts": 1,
+      "distinct_precut_realization_count": 1,
+      "precut_realizations": [
+        [
+          {
+            "parent_vertex": "R1",
+            "child_vertex": "R11",
+            "child_descendant_labels": [
+              "c",
+              "d"
+            ]
+          }
+        ]
+      ],
+      "surviving_optimum_count": 0,
+      "surviving_optimum_partitions": [],
+      "one_optimum_survival": false,
+      "all_optimum_survival": false,
+      "completion_cuts": 1,
+      "charged_total": 2,
+      "local_distances": [
+        {
+          "block": [
+            "a",
+            "b"
+          ],
+          "distance": 0
+        },
+        {
+          "block": [
+            "c",
+            "d"
+          ],
+          "distance": 0
+        }
+      ],
+      "tau": 0,
+      "terminal_membership": {
+        "pure-bridge": true,
+        "compatible-or-triple": true
+      },
+      "actual_target_overlap_geometry": [
+        {
+          "A": [
+            "a",
+            "b"
+          ],
+          "B": [
+            "c",
+            "d"
+          ],
+          "vertices": [
+            {
+              "vertex": "R1",
+              "degree_A": 2,
+              "degree_B": 2
+            },
+            {
+              "vertex": "R10",
+              "degree_A": 2,
+              "degree_B": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "minimal_n_scope": "Every rooted unordered labelled tree pair with n<=3 exhausted in one-source-edge centroid census; equal-halves follow-up also exhausted n<=3.",
+  "safe_cover_existence_target_refuted": false,
+  "reduction_history_eligibility": "NOT-AUDITED",
+  "proof_or_faster_algorithm_closed": false,
+  "primary_receipt": "research/rmaf/results/algorithm-balanced-cover-x0-equal-halfbudget-n4.json",
+  "cut_graph_replay_receipt": "research/rmaf/results/algorithm-balanced-cover-x0-cut-graph-replay.json",
+  "final_frozen_control_receipt": "research/rmaf/results/algorithm-balanced-cover-x0-controls-v3.json"
+}

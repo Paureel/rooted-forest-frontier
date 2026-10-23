@@ -1,0 +1,102 @@
+import ProducerGeneratorTrees
+namespace GenericForest.BinaryProducer.Generator
+open BinaryProvider GenericForest.ScalarBits Universal233.WholeSourceWork
+
+def allColors (c : Color) : List Group→Charged Bool
+ | []=>⟨true,1⟩
+ | g::gs=>let a:=colorEq g.color c;let r:=allColors c gs;⟨a.value&&r.value,a.work+r.work+4⟩
+@[simp] theorem allColors_value (c : Color) (gs : List Group) :
+ (allColors c gs).value=(groupsValue gs).all (fun g=>g.color==colorValue c) := by
+ induction gs <;> simp_all [allColors,groupsValue,groupValue]
+
+def filterColor (c : Color) : List Group→Charged (List Group)
+ | []=>⟨[],1⟩
+ | g::gs=>let a:=colorEq g.color c;let r:=filterColor c gs
+           ⟨if a.value then g::r.value else r.value,a.work+r.work+6⟩
+@[simp] theorem filterColor_value (c : Color) (gs : List Group) :
+ groupsValue (filterColor c gs).value=(groupsValue gs).filter (fun g=>g.color==colorValue c) := by
+ induction gs with
+ | nil=>rfl
+ | cons g gs ih=>simp only [filterColor,colorEq_value,groupsValue,List.map_cons,List.filter_cons,groupValue];split <;> simp_all [groupsValue,groupValue]
+
+def uniqueBits (g : Group) (gs : List Group) : Charged Bool:=
+ let f:=filterColor g.color gs;let n:=spineCounter f.value;let e:=copiedEqual n.value [true]
+ ⟨e.value,f.work+n.work+e.work+8⟩
+@[simp] theorem uniqueBits_value (g : Group) (gs : List Group) :
+ (uniqueBits g gs).value=(((groupsValue gs).filter (fun h=>h.color==(groupValue g).color)).length==1) := by
+ have f:=congrArg List.length (filterColor_value g.color gs)
+ simp only [groupsValue,List.length_map] at f
+ simp [uniqueBits,copiedEqual_value,spineCounter_value,f,groupValue,decode,bit,groupsValue]
+
+def findUnique (gs : List Group) : List Group→Charged (Option Group)
+ | []=>⟨none,1⟩
+ | g::more=>let u:=uniqueBits g gs
+            if u.value then ⟨some g,u.work+4⟩ else let r:=findUnique gs more;⟨r.value,u.work+r.work+4⟩
+@[simp] theorem findUnique_value (gs more : List Group) :
+ (findUnique gs more).value.map groupValue=(groupsValue more).find? (fun g=>
+  ((groupsValue gs).filter (fun h=>h.color==g.color)).length==1) := by
+ induction more with
+ | nil=>rfl
+ | cons g more ih=>simp only [findUnique,uniqueBits_value,groupsValue,List.map_cons,List.find?_cons];split <;> simp_all [groupsValue]
+
+inductive Choice where
+ | finish
+ | one (g : Group)
+ | two (a b : Group)
+ | refuse (why : String)
+ deriving Repr
+def choiceValue : Choice→Universal233.CoreProgram.Choice
+ | .finish=>.finish | .one g=>.one (groupValue g) | .two a b=>.two (groupValue a) (groupValue b) | .refuse why=>.refuse why
+
+def chooseBits (T : GTree) : Charged Choice:=
+ let gs:=groupsBits T
+ match gs.value with
+ | []=>⟨.refuse "empty current source",gs.work+4⟩
+ | first::_=>let all:=allColors first.color gs.value
+  if all.value then ⟨.finish,gs.work+all.work+4⟩ else
+   let one:=findUnique gs.value gs.value
+   match one.value with
+   | some g=>⟨.one g,gs.work+all.work+one.work+4⟩
+   | none=>let two:=mixedBits T
+    match two.value with
+    | none=>⟨.refuse "no mixed cherry in multicolor source",gs.work+all.work+one.work+two.work+8⟩
+    | some (a,b)=>let eq:=colorEq a.color b.color
+                  ⟨if eq.value then .refuse "unnormalized homogeneous cherry" else .two a b,
+                    gs.work+all.work+one.work+two.work+eq.work+12⟩
+
+theorem chooseBits_value (T : GTree) : choiceValue (chooseBits T).value=Universal233.CoreProgram.choose (gtreeValue T) := by
+ have g:=groupsBits_value T
+ dsimp only [chooseBits]
+ unfold Universal233.CoreProgram.choose
+ rw [←g]
+ cases h : (groupsBits T).value with
+ | nil=>simp only [h,groupsValue,List.map_nil,choiceValue]
+ | cons first rest=>
+  simp only [h,groupsValue,List.map_cons]
+  have a:=allColors_value first.color (groupsBits T).value
+  have u:=findUnique_value (groupsBits T).value (groupsBits T).value
+  have m:=mixedBits_value T
+  cases ha : (allColors first.color (groupsBits T).value).value with
+  | true=>simp only [ha,ite_true] at *;simp_all [choiceValue,groupValue,groupsValue]
+  | false=>
+   try simp only [ha,Bool.false_eq_true,ite_false]
+   cases hu : (findUnique (groupsBits T).value (groupsBits T).value).value with
+   | some one=>
+    simp only [hu,Option.map_some] at u
+    simp only [hu,choiceValue]
+    simp only [h,groupsValue,List.map_cons,groupValue] at a u
+    rw [←a,←u];rfl
+   | none=>
+    simp only [hu,Option.map_none] at u
+    simp only [hu]
+    simp only [h,groupsValue,List.map_cons,groupValue] at a u
+    rw [←a,←u]
+    cases hm : (mixedBits T).value with
+    | none=>simp only [hm,Option.map_none] at m;rw [←m];rfl
+    | some p=>
+     rcases p with ⟨x,y⟩
+     simp only [hm,Option.map_some] at m
+     rw [←m]
+     simp only [hm,colorEq_value,groupValue]
+     split <;> rfl
+end GenericForest.BinaryProducer.Generator

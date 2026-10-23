@@ -1,0 +1,972 @@
+{
+  "status": "PASS_PRECONSTRUCTION_DEVELOPMENT",
+  "independence": "AUTHOR DEVELOPMENT; completed rule5 local + oracle contacted",
+  "fixtures": {
+    "i": {
+      "target": [
+        "t",
+        [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "p",
+            [
+              "x",
+              [
+                "q",
+                [
+                  "w",
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
+      "source": [
+        [
+          [
+            "a",
+            [
+              "w",
+              [
+                "t",
+                [
+                  "x",
+                  [
+                    "p",
+                    "q"
+                  ]
+                ]
+              ]
+            ]
+          ],
+          "c"
+        ],
+        "b"
+      ],
+      "classification": {
+        "kind": "322",
+        "j": 0,
+        "P": [
+          [
+            "w",
+            "t",
+            "x",
+            "p",
+            "q"
+          ],
+          [
+            "c"
+          ],
+          [
+            "a",
+            "b"
+          ]
+        ],
+        "incident": [
+          "10",
+          "111111"
+        ]
+      },
+      "branches": [
+        {
+          "name": "hard2",
+          "role": "source",
+          "cuts": [
+            "001",
+            "01"
+          ],
+          "paid": 2,
+          "partition": [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "w",
+              "t",
+              "x",
+              "p",
+              "q"
+            ],
+            [
+              "c"
+            ]
+          ]
+        },
+        {
+          "name": "b",
+          "role": "source",
+          "cuts": [
+            "1"
+          ],
+          "paid": 1,
+          "partition": [
+            [
+              "a",
+              "w",
+              "t",
+              "x",
+              "p",
+              "q",
+              "c"
+            ],
+            [
+              "b"
+            ]
+          ]
+        },
+        {
+          "name": "3i",
+          "role": "target",
+          "cuts": [
+            "100",
+            "110"
+          ],
+          "paid": 2,
+          "partition": [
+            [
+              "t",
+              "b",
+              "x",
+              "q",
+              "w",
+              "c"
+            ],
+            [
+              "a"
+            ],
+            [
+              "p"
+            ]
+          ]
+        },
+        {
+          "name": "3i",
+          "role": "target",
+          "cuts": [
+            "100",
+            "1110"
+          ],
+          "paid": 2,
+          "partition": [
+            [
+              "t",
+              "b",
+              "p",
+              "q",
+              "w",
+              "c"
+            ],
+            [
+              "a"
+            ],
+            [
+              "x"
+            ]
+          ]
+        }
+      ],
+      "guards": {
+        "proper": true,
+        "cherry": true,
+        "earlier_both": true,
+        "no_rule4_both": true,
+        "hard2": true,
+        "target_disjoint": true,
+        "source_disjoint": true,
+        "exactly_two_good": true
+      }
+    },
+    "i-mirror": {
+      "target": [
+        [
+          [
+            [
+              [
+                [
+                  "c",
+                  "w"
+                ],
+                "q"
+              ],
+              "x"
+            ],
+            "p"
+          ],
+          [
+            "b",
+            "a"
+          ]
+        ],
+        "t"
+      ],
+      "source": [
+        "b",
+        [
+          "c",
+          [
+            [
+              [
+                [
+                  [
+                    "q",
+                    "p"
+                  ],
+                  "x"
+                ],
+                "t"
+              ],
+              "w"
+            ],
+            "a"
+          ]
+        ]
+      ],
+      "classification": {
+        "kind": "322",
+        "j": 1,
+        "P": [
+          [
+            "c"
+          ],
+          [
+            "q",
+            "p",
+            "x",
+            "t",
+            "w"
+          ],
+          [
+            "b",
+            "a"
+          ]
+        ],
+        "incident": [
+          "000000",
+          "01"
+        ]
+      },
+      "branches": [
+        {
+          "name": "hard2",
+          "role": "source",
+          "cuts": [
+            "10",
+            "110"
+          ],
+          "paid": 2,
+          "partition": [
+            [
+              "b",
+              "a"
+            ],
+            [
+              "c"
+            ],
+            [
+              "q",
+              "p",
+              "x",
+              "t",
+              "w"
+            ]
+          ]
+        },
+        {
+          "name": "b",
+          "role": "source",
+          "cuts": [
+            "0"
+          ],
+          "paid": 1,
+          "partition": [
+            [
+              "b"
+            ],
+            [
+              "c",
+              "q",
+              "p",
+              "x",
+              "t",
+              "w",
+              "a"
+            ]
+          ]
+        },
+        {
+          "name": "3i",
+          "role": "target",
+          "cuts": [
+            "011",
+            "000001"
+          ],
+          "paid": 2,
+          "partition": [
+            [
+              "c",
+              "q",
+              "x",
+              "p",
+              "b",
+              "t"
+            ],
+            [
+              "w"
+            ],
+            [
+              "a"
+            ]
+          ]
+        },
+        {
+          "name": "3i",
+          "role": "target",
+          "cuts": [
+            "011",
+            "00001"
+          ],
+          "paid": 2,
+          "partition": [
+            [
+              "c",
+              "w",
+              "x",
+              "p",
+              "b",
+              "t"
+            ],
+            [
+              "q"
+            ],
+            [
+              "a"
+            ]
+          ]
+        }
+      ],
+      "guards": {
+        "proper": true,
+        "cherry": true,
+        "earlier_both": true,
+        "no_rule4_both": true,
+        "hard2": true,
+        "target_disjoint": true,
+        "source_disjoint": true,
+        "exactly_two_good": true
+      }
+    },
+    "ii": {
+      "target": [
+        [
+          [
+            [
+              "x",
+              [
+                "a",
+                "b"
+              ]
+            ],
+            "y"
+          ],
+          "c"
+        ],
+        "z"
+      ],
+      "source": [
+        [
+          [
+            "a",
+            [
+              "x",
+              [
+                "y",
+                "z"
+              ]
+            ]
+          ],
+          "c"
+        ],
+        "b"
+      ],
+      "classification": {
+        "kind": "322",
+        "j": 0,
+        "P": [
+          [
+            "x",
+            "y",
+            "z"
+          ],
+          [
+            "c"
+          ],
+          [
+            "a",
+            "b"
+          ]
+        ],
+        "incident": [
+          "0001",
+          "01"
+        ]
+      },
+      "branches": [
+        {
+          "name": "hard2",
+          "role": "source",
+          "cuts": [
+            "001",
+            "01"
+          ],
+          "paid": 2,
+          "partition": [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "x",
+              "y",
+              "z"
+            ],
+            [
+              "c"
+            ]
+          ]
+        },
+        {
+          "name": "b",
+          "role": "source",
+          "cuts": [
+            "1"
+          ],
+          "paid": 1,
+          "partition": [
+            [
+              "a",
+              "x",
+              "y",
+              "z",
+              "c"
+            ],
+            [
+              "b"
+            ]
+          ]
+        },
+        {
+          "name": "3ii",
+          "role": "target",
+          "cuts": [
+            "00010",
+            "0000",
+            "001"
+          ],
+          "paid": 3,
+          "partition": [
+            [
+              "x"
+            ],
+            [
+              "a"
+            ],
+            [
+              "b",
+              "c",
+              "z"
+            ],
+            [
+              "y"
+            ]
+          ]
+        }
+      ],
+      "guards": {
+        "proper": true,
+        "cherry": true,
+        "earlier_both": true,
+        "no_rule4_both": true,
+        "hard2": true,
+        "target_disjoint": true,
+        "source_disjoint": true,
+        "exactly_two_good": true
+      }
+    },
+    "ii-mirror": {
+      "target": [
+        "z",
+        [
+          "c",
+          [
+            "y",
+            [
+              [
+                "b",
+                "a"
+              ],
+              "x"
+            ]
+          ]
+        ]
+      ],
+      "source": [
+        "b",
+        [
+          "c",
+          [
+            [
+              [
+                "z",
+                "y"
+              ],
+              "x"
+            ],
+            "a"
+          ]
+        ]
+      ],
+      "classification": {
+        "kind": "322",
+        "j": 1,
+        "P": [
+          [
+            "c"
+          ],
+          [
+            "z",
+            "y",
+            "x"
+          ],
+          [
+            "b",
+            "a"
+          ]
+        ],
+        "incident": [
+          "10",
+          "1110"
+        ]
+      },
+      "branches": [
+        {
+          "name": "hard2",
+          "role": "source",
+          "cuts": [
+            "10",
+            "110"
+          ],
+          "paid": 2,
+          "partition": [
+            [
+              "b",
+              "a"
+            ],
+            [
+              "c"
+            ],
+            [
+              "z",
+              "y",
+              "x"
+            ]
+          ]
+        },
+        {
+          "name": "b",
+          "role": "source",
+          "cuts": [
+            "0"
+          ],
+          "paid": 1,
+          "partition": [
+            [
+              "b"
+            ],
+            [
+              "c",
+              "z",
+              "y",
+              "x",
+              "a"
+            ]
+          ]
+        },
+        {
+          "name": "3ii",
+          "role": "target",
+          "cuts": [
+            "11101",
+            "110",
+            "1111"
+          ],
+          "paid": 3,
+          "partition": [
+            [
+              "z",
+              "c",
+              "b"
+            ],
+            [
+              "y"
+            ],
+            [
+              "a"
+            ],
+            [
+              "x"
+            ]
+          ]
+        }
+      ],
+      "guards": {
+        "proper": true,
+        "cherry": true,
+        "earlier_both": true,
+        "no_rule4_both": true,
+        "hard2": true,
+        "target_disjoint": true,
+        "source_disjoint": true,
+        "exactly_two_good": true
+      }
+    },
+    "iii": {
+      "target": [
+        "p",
+        [
+          "x",
+          [
+            "q",
+            [
+              [
+                "a",
+                "b"
+              ],
+              [
+                "w",
+                "c"
+              ]
+            ]
+          ]
+        ]
+      ],
+      "source": [
+        [
+          [
+            "a",
+            [
+              "w",
+              [
+                "x",
+                [
+                  "p",
+                  "q"
+                ]
+              ]
+            ]
+          ],
+          "c"
+        ],
+        "b"
+      ],
+      "classification": {
+        "kind": "322",
+        "j": 0,
+        "P": [
+          [
+            "w",
+            "x",
+            "p",
+            "q"
+          ],
+          [
+            "c"
+          ],
+          [
+            "a",
+            "b"
+          ]
+        ],
+        "incident": [
+          "1110",
+          "11111"
+        ]
+      },
+      "branches": [
+        {
+          "name": "hard2",
+          "role": "source",
+          "cuts": [
+            "001",
+            "01"
+          ],
+          "paid": 2,
+          "partition": [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "w",
+              "x",
+              "p",
+              "q"
+            ],
+            [
+              "c"
+            ]
+          ]
+        },
+        {
+          "name": "b",
+          "role": "source",
+          "cuts": [
+            "1"
+          ],
+          "paid": 1,
+          "partition": [
+            [
+              "a",
+              "w",
+              "x",
+              "p",
+              "q",
+              "c"
+            ],
+            [
+              "b"
+            ]
+          ]
+        },
+        {
+          "name": "3iii",
+          "role": "target",
+          "cuts": [
+            "11100",
+            "111"
+          ],
+          "paid": 2,
+          "partition": [
+            [
+              "p",
+              "x",
+              "q"
+            ],
+            [
+              "a"
+            ],
+            [
+              "b",
+              "w",
+              "c"
+            ]
+          ]
+        }
+      ],
+      "guards": {
+        "proper": true,
+        "cherry": true,
+        "earlier_both": true,
+        "no_rule4_both": true,
+        "hard2": true,
+        "target_disjoint": true,
+        "source_disjoint": true,
+        "exactly_two_good": true
+      }
+    },
+    "iii-mirror": {
+      "target": [
+        [
+          [
+            [
+              [
+                "c",
+                "w"
+              ],
+              [
+                "b",
+                "a"
+              ]
+            ],
+            "q"
+          ],
+          "x"
+        ],
+        "p"
+      ],
+      "source": [
+        "b",
+        [
+          "c",
+          [
+            [
+              [
+                [
+                  "q",
+                  "p"
+                ],
+                "x"
+              ],
+              "w"
+            ],
+            "a"
+          ]
+        ]
+      ],
+      "classification": {
+        "kind": "322",
+        "j": 1,
+        "P": [
+          [
+            "c"
+          ],
+          [
+            "q",
+            "p",
+            "x",
+            "w"
+          ],
+          [
+            "b",
+            "a"
+          ]
+        ],
+        "incident": [
+          "00000",
+          "0001"
+        ]
+      },
+      "branches": [
+        {
+          "name": "hard2",
+          "role": "source",
+          "cuts": [
+            "10",
+            "110"
+          ],
+          "paid": 2,
+          "partition": [
+            [
+              "b",
+              "a"
+            ],
+            [
+              "c"
+            ],
+            [
+              "q",
+              "p",
+              "x",
+              "w"
+            ]
+          ]
+        },
+        {
+          "name": "b",
+          "role": "source",
+          "cuts": [
+            "0"
+          ],
+          "paid": 1,
+          "partition": [
+            [
+              "b"
+            ],
+            [
+              "c",
+              "q",
+              "p",
+              "x",
+              "w",
+              "a"
+            ]
+          ]
+        },
+        {
+          "name": "3iii",
+          "role": "target",
+          "cuts": [
+            "00011",
+            "000"
+          ],
+          "paid": 2,
+          "partition": [
+            [
+              "c",
+              "w",
+              "b"
+            ],
+            [
+              "a"
+            ],
+            [
+              "q",
+              "x",
+              "p"
+            ]
+          ]
+        }
+      ],
+      "guards": {
+        "proper": true,
+        "cherry": true,
+        "earlier_both": true,
+        "no_rule4_both": true,
+        "hard2": true,
+        "target_disjoint": true,
+        "source_disjoint": true,
+        "exactly_two_good": true
+      }
+    }
+  },
+  "controls": {
+    "wrong_saving": {
+      "F": [
+        [
+          "a"
+        ],
+        [
+          "b",
+          "c",
+          "w"
+        ],
+        [
+          "t"
+        ],
+        [
+          "x"
+        ],
+        [
+          "p"
+        ],
+        [
+          "q"
+        ]
+      ],
+      "valid": true,
+      "components": 6,
+      "split_components": 8,
+      "conditional_guard": false
+    },
+    "malformed_geometry": {
+      "proper": true,
+      "cherry": true,
+      "earlier_both": false,
+      "no_rule4_both": true,
+      "hard2": true,
+      "target_disjoint": true,
+      "source_disjoint": true,
+      "exactly_two_good": false
+    }
+  },
+  "pins": {
+    "research/rmaf/algorithm/universal233/rule5_case322/CONTROLS-PIN-v1.md": "01e542d857f1759728c426b56b2bdd5b139bde06040253ed0e1627e8cc06096e",
+    "research/rmaf/algorithm/universal233/rule5_case322/controls.py": "fa1871b7fc720b863383779adf4ebd07df9e7e5e396d3e71c0e520463b82460b",
+    "research/rmaf/algorithm/universal233/rule5_local/local.py": "a566a6317c5b76c8e76d54f1009e3a2a32847d232727d658fee826f2c888853f",
+    "research/rmaf/oracle/oracle.py": "5ee74b7e8b67b1307eab91ef8e99a97ee172269972ab581e902dbb1c2298e35c"
+  }
+}

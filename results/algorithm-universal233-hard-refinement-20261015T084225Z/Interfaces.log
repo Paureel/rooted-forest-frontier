@@ -1,0 +1,58 @@
+Universal233.HardParent.actual_hard2_source_safety {T S : RMAF.Tree} {F : List (List Nat)} (hn : (RMAF.leaves S).Nodup)
+  (ha : RMAF.agreement T S F = true) {p : RMAF.Vertex} {a b : Nat} (hc : Universal233.CoreGraph.CherryAt T p a b)
+  (h2 : (Universal233.HardParent.pendantOriginal S a b).length = 2) :
+  ∃ q r,
+    Universal233.HardParent.pendantOriginal S a b = [q, r] ∧
+      Universal233.HardParent.LiteralOriginalThree S q r ∧
+        RMAF.partitionCheck (RMAF.leaves S) (Universal233.HardParent.literalThree S q r) = true ∧
+          ([a] ∈ F ∨ [b] ∈ F ∨ VertexGeometry.Refines F (Universal233.HardParent.literalThree S q r))
+Universal233.HardParent.actual_hard2_named_safety {T S : RMAF.Tree} {F : List (List Nat)} (hn : (RMAF.leaves S).Nodup)
+  (ha : RMAF.agreement T S F = true) {p : RMAF.Vertex} {a b : Nat} (hc : Universal233.CoreGraph.CherryAt T p a b)
+  {q r : RMAF.Vertex} (hcuts : Universal233.HardParent.pendantOriginal S a b = [q, r]) :
+  Universal233.HardParent.LiteralOriginalThree S q r ∧
+    RMAF.partitionCheck (RMAF.leaves S) (Universal233.HardParent.literalThree S q r) = true ∧
+      ([a] ∈ F ∨ [b] ∈ F ∨ VertexGeometry.Refines F (Universal233.HardParent.literalThree S q r))
+Universal233.HardParent.actual_hard2_unordered_safety {T S : RMAF.Tree} {F : List (List Nat)}
+  (hn : (RMAF.leaves S).Nodup) (ha : RMAF.agreement T S F = true) {a b : Nat}
+  (hc : Universal233.HardParent.ActualCherry T a b) (h2 : (Universal233.HardParent.pendantOriginal S a b).length = 2) :
+  ∃ q r,
+    Universal233.HardParent.pendantOriginal S a b = [q, r] ∧
+      Universal233.HardParent.LiteralOriginalThree S q r ∧
+        RMAF.partitionCheck (RMAF.leaves S) (Universal233.HardParent.literalThree S q r) = true ∧
+          ([a] ∈ F ∨ [b] ∈ F ∨ VertexGeometry.Refines F (Universal233.HardParent.literalThree S q r))
+Universal233.HardParent.original_pendant_spec {S : RMAF.Tree} (hn : (RMAF.leaves S).Nodup) {a b : Nat}
+  {u v : RMAF.Vertex} (hu : Universal233.CoreGraph.LeafAt S u a) (hv : Universal233.CoreGraph.LeafAt S v b)
+  (q : RMAF.Vertex) :
+  q ∈ Universal233.HardParent.pendantOriginal S a b ↔
+    ∃ p s, q = p ++ [s] ∧ Universal233.CoreGraph.Adj S p q ∧ VertexGeometry.PathAt p u v ∧ ¬VertexGeometry.PathAt q u v
+Universal233.HardParent.literalOriginalThree_construct {S : RMAF.Tree} {a b : Nat} {q r : RMAF.Vertex}
+  (hn : (RMAF.leaves S).Nodup) (ha : a ∈ RMAF.leaves S) (hq : q ∈ Universal233.HardParent.pendantOriginal S a b)
+  (hr : r ∈ Universal233.HardParent.pendantOriginal S a b) (hne : q ≠ r) :
+  Universal233.HardParent.LiteralOriginalThree S q r
+Universal233.HardParent.literalThree_partition {S : RMAF.Tree} {a b : Nat} {q r : RMAF.Vertex}
+  (hn : (RMAF.leaves S).Nodup) (hq : q ∈ Universal233.HardParent.pendantOriginal S a b)
+  (hr : r ∈ Universal233.HardParent.pendantOriginal S a b) (hne : q ≠ r)
+  (hc : Universal233.HardParent.LiteralOriginalThree S q r) :
+  RMAF.partitionCheck (RMAF.leaves S) (Universal233.HardParent.literalThree S q r) = true
+Universal233.HardParent.hard2_endpoints_in_root {S : RMAF.Tree} {a b : Nat} {q r : RMAF.Vertex}
+  (hq : q ∈ Universal233.HardParent.pendantOriginal S a b) (hr : r ∈ Universal233.HardParent.pendantOriginal S a b)
+  (ha : a ∈ RMAF.leaves S) (hb : b ∈ RMAF.leaves S) :
+  a ∈
+      List.filter
+        (fun x =>
+          !(Universal233.HardParent.subtreeLabels S q).contains x &&
+            !(Universal233.HardParent.subtreeLabels S r).contains x)
+        (RMAF.leaves S) ∧
+    b ∈
+      List.filter
+        (fun x =>
+          !(Universal233.HardParent.subtreeLabels S q).contains x &&
+            !(Universal233.HardParent.subtreeLabels S r).contains x)
+        (RMAF.leaves S)
+Universal233.HardParent.original_common_block_excluded {T S : RMAF.Tree} {F : List (List Nat)}
+  (hn : (RMAF.leaves S).Nodup) (ha : RMAF.agreement T S F = true) {p : RMAF.Vertex} {a b : Nat}
+  (hc : Universal233.CoreGraph.CherryAt T p a b) {B : List Nat} (hB : B ∈ F) (haB : a ∈ B) (hbB : b ∈ B) :
+  Universal233.HardParent.PendantExcluded B a b S
+Universal233.HardParent.actual_cherry_endpoint_alternative {T S : RMAF.Tree} {F : List (List Nat)}
+  (ha : RMAF.agreement T S F = true) {p : RMAF.Vertex} {a b : Nat} (hc : Universal233.CoreGraph.CherryAt T p a b) :
+  [a] ∈ F ∨ [b] ∈ F ∨ ∃ B, B ∈ F ∧ a ∈ B ∧ b ∈ B

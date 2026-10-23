@@ -1,0 +1,566 @@
+{
+  "phase": "PRE-CANDIDATE",
+  "candidate_contacts": 0,
+  "runs": [
+    {
+      "module": "ToyClean",
+      "expected": "compile",
+      "returncode": 0,
+      "seconds": 0.3592202500003623,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "ToyClean.olean",
+        "ToyClean.lean"
+      ],
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "CleanAudit",
+      "expected": "compile",
+      "returncode": 0,
+      "seconds": 4.116744499999186,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "CleanAudit.olean",
+        "CleanAudit.lean"
+      ],
+      "log_sha256": "cd78305df48a57d52e9ec23d086c0bdb9fabafe5053dd19cc7de18a1163569ba"
+    },
+    {
+      "module": "ToyFalse",
+      "expected": "false",
+      "returncode": 1,
+      "seconds": 0.3027999590012769,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "ToyFalse.olean",
+        "ToyFalse.lean"
+      ],
+      "log_sha256": "b213eca3a84b199ef54668123d97197d6f53d235e8bcec754668f15f318767dd"
+    },
+    {
+      "module": "ToyDirty",
+      "expected": "compile",
+      "returncode": 0,
+      "seconds": 0.27912437499981024,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "ToyDirty.olean",
+        "ToyDirty.lean"
+      ],
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "ToyClient",
+      "expected": "compile",
+      "returncode": 0,
+      "seconds": 0.2821692500001518,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "ToyClient.olean",
+        "ToyClient.lean"
+      ],
+      "log_sha256": "0d27c097b1e94f91720ecefe75e26cde133621914cc83426d113c8eaf25111c9"
+    },
+    {
+      "module": "DirtyAudit",
+      "expected": "FRESH_CUSTOM_OR_UNSAFE",
+      "returncode": 1,
+      "seconds": 4.107750625000335,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "DirtyAudit.olean",
+        "DirtyAudit.lean"
+      ],
+      "log_sha256": "be7ddc210a73e649f13b7b0f82acbc81dd3de1f0280f26f87081b0647b1b9162"
+    },
+    {
+      "module": "EmptyAudit",
+      "expected": "FRESH_EMPTY_INVENTORY",
+      "returncode": 1,
+      "seconds": 0.6943399999981921,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "EmptyAudit.olean",
+        "EmptyAudit.lean"
+      ],
+      "log_sha256": "3cf08ab3c2aae7d6235374220c4258df926ba59d4f742a177497fb52e15a0f2b"
+    },
+    {
+      "module": "MissingAudit",
+      "expected": "FRESH_MISSING_ORIGIN",
+      "returncode": 1,
+      "seconds": 4.239069999999629,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "MissingAudit.olean",
+        "MissingAudit.lean"
+      ],
+      "log_sha256": "c5ccbb423312c75d2747959b5ee43357be3cbed43d0f22cdf14b1acfbbfcd9ba"
+    },
+    {
+      "module": "ToyPaths",
+      "expected": "compile",
+      "returncode": 0,
+      "seconds": 0.7150162079997244,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "ToyPaths.olean",
+        "ToyPaths.lean"
+      ],
+      "log_sha256": "6c06defd362d62f1e95811f4bc3aa151118ec8b438a0cbd282ca1ed9f0ac5795"
+    }
+  ],
+  "audits": {
+    "CleanAudit": {
+      "rows": [
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.publicClean",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit._sizeOf_inst",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit._sizeOf_1",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.zero",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.ctorIdx",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.zero.sizeOf_spec",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.noConfusion",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.rec",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.casesOn",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.one.sizeOf_spec",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.ctorElimType",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.one",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.one.elim",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.zero.elim",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.noConfusionType",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.ctorElim",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.recOn",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "_private.ToyClean.0.OutputStateToy.hiddenClean",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        }
+      ],
+      "counts": {
+        "ToyClean": 19
+      },
+      "total": 19,
+      "rejected_count": 0
+    },
+    "DirtyAudit": {
+      "rows": [
+        {
+          "origin": "ToyDirty",
+          "name": "OutputStateToy.usedFalse",
+          "is_axiom": true,
+          "unsafe": false,
+          "axioms": [
+            "OutputStateToy.usedFalse"
+          ],
+          "rejected": true
+        },
+        {
+          "origin": "ToyDirty",
+          "name": "_private.ToyDirty.0.OutputStateToy.hiddenBad",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [
+            "_private.ToyDirty.0.OutputStateToy.secretFalse"
+          ],
+          "rejected": true
+        },
+        {
+          "origin": "ToyDirty",
+          "name": "_private.ToyDirty.0.OutputStateToy.secretFalse",
+          "is_axiom": true,
+          "unsafe": false,
+          "axioms": [
+            "_private.ToyDirty.0.OutputStateToy.secretFalse"
+          ],
+          "rejected": true
+        },
+        {
+          "origin": "ToyDirty",
+          "name": "OutputStateToy.exportedBad",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [
+            "OutputStateToy.usedFalse"
+          ],
+          "rejected": true
+        },
+        {
+          "origin": "ToyClient",
+          "name": "importedBad",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [
+            "OutputStateToy.usedFalse"
+          ],
+          "rejected": true
+        },
+        {
+          "origin": "ToyDirty",
+          "name": "OutputStateToy.unusedFalse",
+          "is_axiom": true,
+          "unsafe": false,
+          "axioms": [
+            "OutputStateToy.unusedFalse"
+          ],
+          "rejected": true
+        },
+        {
+          "origin": "ToyDirty",
+          "name": "OutputStateToy.cleanHeadline",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        }
+      ],
+      "counts": {
+        "ToyDirty": 6,
+        "ToyClient": 1
+      },
+      "total": 7,
+      "rejected_count": 6
+    },
+    "EmptyAudit": {
+      "rows": [],
+      "counts": {},
+      "total": 0,
+      "rejected_count": 0
+    },
+    "MissingAudit": {
+      "rows": [
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.publicClean",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit._sizeOf_inst",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit._sizeOf_1",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.zero",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.ctorIdx",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.zero.sizeOf_spec",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.noConfusion",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.rec",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.casesOn",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.one.sizeOf_spec",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.ctorElimType",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.one",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.one.elim",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.zero.elim",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.noConfusionType",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.ctorElim",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "OutputStateToy.Bit.recOn",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        },
+        {
+          "origin": "ToyClean",
+          "name": "_private.ToyClean.0.OutputStateToy.hiddenClean",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        }
+      ],
+      "counts": {
+        "ToyClean": 19,
+        "NeverImported": 0
+      },
+      "total": 19,
+      "rejected_count": 0
+    }
+  },
+  "metadata_mutations": [
+    {
+      "id": "complete_clean_twin",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "drop_generated_recursor",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "duplicate_record_same_count",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "change_generated_origin",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "omit_all_records",
+      "expected": false,
+      "actual": false
+    }
+  ],
+  "all_main_milestones": "OPEN",
+  "compiler": "Lean (version 4.35.0, arm64-apple-darwin24.6.0, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "path_clean_twin": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/output-state-2026-10-15/preparation-v1/isolated-std-v1/ToyClean.olean",
+  "wrong_path_mutation_rejected": true,
+  "source_pin_clean": "2cb2e8855b07b08cf34472a5b3fc3bcf1bd9f5246c0c5b046d53b6f1b57a27d4",
+  "source_pin_corruption_rejected": true,
+  "verdict": "PASS-BLIND-STD-TOY-FALSE-CUSTOM-PRIVATE-IMPORT-AND-INVENTORY-GATES"
+}

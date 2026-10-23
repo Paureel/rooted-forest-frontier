@@ -1,0 +1,27 @@
+import Rule4SourceBound
+namespace OrdinaryDispatch.FullSourceWork
+open RMAF Universal233 GenericForest.FrontierWork
+open Universal233.Rule5PendantLocalWork
+
+theorem rule4LocalPolynomial_explicit (N : Nat) :
+ rule4LocalPolynomial N=1560*N^4+312*N^3+614*N^2+586*N+300 := by
+ simp only [rule4LocalPolynomial,rule4BranchCap,rule4StateCap,rule4PartitionCap,rule4OutsideCap,
+  rule4SubtreeCap,cutsBudget,cutGuardBudget,minimalBudget,Nat.pow_succ,Nat.pow_zero,
+  Nat.mul_one,Nat.one_mul,Nat.mul_add,Nat.add_mul,Nat.mul_assoc]
+ omega
+
+theorem rule4SourcePolynomial_explicit (N Q : Nat) :
+ rule4SourcePolynomial N Q=
+  1560*N^4+312*N^3+614*N^2+586*N+300+48*(2^50*(N+Q+2)^8) := by
+ simp only [rule4SourcePolynomial,rule4LocalPolynomial_explicit]
+
+/-- Actual cutoff caller requested by the consuming ordinary recursion.
+Choice's original admission already includes nodup and common labels. -/
+theorem rule4Source_cutoff_bound {T S : Tree} (s : Rule4.Choice T S) (q N Q : Nat)
+ (size : (leaves T).length≤N) (budget : q≤Q) :
+ ((rule4Source (OrdinaryDispatch.FastOrdinary.cutoff OrdinaryDispatch.FastOrdinary.solve q)
+   (fun _ _ _=>0) s q).work:Rat)≤
+ (1560*N^4+312*N^3+614*N^2+586*N+300+48*(2^50*(N+Q+2)^8):Nat)*(233/100:Rat)^q := by
+ simpa only [rule4SourcePolynomial_explicit,Rule5ActualTrace.base] using
+  rule4Source_bound (OrdinaryDispatch.FastOrdinary.cutoff OrdinaryDispatch.FastOrdinary.solve q) s q N Q size budget
+end OrdinaryDispatch.FullSourceWork

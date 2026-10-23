@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "frozen_date": "2026-10-14",
+  "fixtures": [
+    {"id":"empty","source":null,"target":null,"expected_optimum":0,"expected_packing":0},
+    {"id":"singleton","source":"a","target":"a","expected_optimum":0,"expected_packing":0},
+    {"id":"identical","source":[["a","b"],["c","d"]],"target":[["a","b"],["c","d"]],"expected_optimum":0,"expected_packing":0},
+    {"id":"incompatible-triple","source":[["a","b"],"c"],"target":[["a","c"],"b"],"expected_optimum":1,"expected_packing":1},
+    {"id":"quartet-packing-gap","source":[["a","b"],["c","d"]],"target":[["a","c"],["b","d"]],"expected_optimum":2,"expected_packing":1},
+    {"id":"equal-half-survival-failure","source":["a",["b",["c","d"]]],"target":["a",[["b","c"],"d"]],"precut_blocks":[["a","b"],["c","d"]],"expected_optimum":1,"expected_precuts":1,"expected_surviving":0,"expected_completion":1,"expected_tau":0},
+    {"id":"equal-half-clean-twin","source":["a",["b",["c","d"]]],"target":["a",[["b","c"],"d"]],"precut_blocks":[["a","c","d"],["b"]],"expected_optimum":1,"expected_precuts":1,"expected_surviving":1,"expected_completion":0,"expected_tau":0}
+  ],
+  "mutations": ["every_expected_integer_plus_one","invalid_unsplit_bad_triple","false_halfbudget_unsplit_equal_half_pair","wrong_precut_charge"],
+  "census_gate": "Every cutset must agree on hypergraph hitting vs exact agreement partition; minimum cut cost must equal partition optimum. Any mismatch stops. Finite clean census is not universal closure."
+}

@@ -1,0 +1,114 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/RestrictionCounts.lean:19:50: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 0
+  c ≥ 0
+  c - d ≤ -1
+  b ≥ 0
+  a ≥ 0
+  a - b - c ≤ 0
+where
+ a := ↑(List.filter (fun i => decide (Q i)) xs).length
+ b := ↑xs.length
+ c := ↑(List.filter (fun i => decide (P i ∧ Q i)) xs).length
+ d := ↑(List.filter (fun i => decide (P i) && decide (Q i)) xs).length
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/RestrictionCounts.lean:19:50: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 0
+  c ≥ 0
+  c - d ≤ -1
+  b ≥ 0
+  a ≥ 0
+  a - b - c ≤ 0
+where
+ a := ↑(List.filter (fun i => decide (Q i)) xs).length
+ b := ↑xs.length
+ c := ↑(List.filter (fun i => decide (P i ∧ Q i)) xs).length
+ d := ↑(List.filter (fun i => decide (P i) && decide (Q i)) xs).length
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/RestrictionCounts.lean:19:50: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 0
+  c ≥ 0
+  c - d ≤ -1
+  b ≥ 0
+  a ≥ 0
+  a - b - c ≤ 0
+where
+ a := ↑(List.filter (fun i => decide (Q i)) xs).length
+ b := ↑xs.length
+ c := ↑(List.filter (fun i => decide (P i ∧ Q i)) xs).length
+ d := ↑(List.filter (fun i => decide (P i) && decide (Q i)) xs).length
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/RestrictionCounts.lean:19:12: warning: This simp argument is unused:
+  List.filter_cons
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hp, hq] at hh ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/RestrictionCounts.lean:44:41: warning: This simp argument is unused:
+  he
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [overlapIndices, overlapCharge, hp]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/RestrictionCounts.lean:104:28: warning: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/RestrictionCounts.lean:105:2: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 0
+  c ≥ 0
+  c - d ≤ -1
+  b ≥ 0
+  a ≥ 0
+  a + b + c ≥ 0
+where
+ a := ↑(restrict A h false).cost
+ b := ↑(restrict A h true).cost
+ c := ↑(match (restrict A h true).boundary with
+  | none => 0
+  | some val => 1)
+ d := ↑(boundaryCharge (restrict A h true).boundary)
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/RestrictionCounts.lean:115:28: warning: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/RestrictionCounts.lean:116:2: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 0
+  c ≥ 0
+  c - d ≤ -1
+  b ≥ 0
+  a ≥ 0
+  a + b + c ≥ 0
+where
+ a := ↑(restrict A h false).cost
+ b := ↑(restrict A h true).cost
+ c := ↑(match (restrict A h false).boundary with
+  | none => 0
+  | some val => 1)
+ d := ↑(boundaryCharge (restrict A h false).boundary)
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/RestrictionCounts.lean:125:28: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+'TripleDP.Transitions.Restriction.filter_cover_count' depends on axioms: [propext, sorryAx, Quot.sound]
+'TripleDP.Transitions.Restriction.overlap_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.Transitions.Restriction.live_count_partition' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'TripleDP.Transitions.Restriction.restrict_count_equation' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'TripleDP.Transitions.Restriction.restrict_cost_balance' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'TripleDP.Transitions.Restriction.overlap_iff_open' depends on axioms: [propext]
+'TripleDP.Transitions.Restriction.cost_closeBoth' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TripleDP.Transitions.Restriction.cost_extendLeft' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TripleDP.Transitions.Restriction.cost_extendRight' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TripleDP.Transitions.Restriction.cost_merge' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

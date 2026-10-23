@@ -1,0 +1,44 @@
+research/rmaf/algorithm/universal233/binary_cheap/TargetGeometry.lean:55:77: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  [o]
+in the target expression
+  o ∈ (generate S (cheapColor A B (leaves u)) 3).outputs
+
+S T : Tree
+A B C : List Nat
+e : RMAF.Vertex × RMAF.Vertex
+hs : (leaves S).Nodup
+ht : (leaves T).Nodup
+same : ∀ (x : Nat), x ∈ leaves S ↔ x ∈ leaves T
+hp : partitionCheck (leaves S) [A, B, C] = true
+hchoose : PairGeometry.choose T A B = some (PairGeometry.Choice.edge e)
+hac : Disj T A C
+hbc : Disj T B C
+u : Tree
+haccept : fourAccepted S (cheapColor A B (leaves u)) = true
+hu : treeAt T e.snd = some u
+hay : ay A (leaves u) ≠ []
+han : an A (leaves u) ≠ []
+hby : ay B (leaves u) ≠ []
+hbn : an B (leaves u) ≠ []
+cay : Disj T (ay A (leaves u)) B
+can : Disj T (an A (leaves u)) B
+cby : Disj T (ay B (leaves u)) A
+cbn : Disj T (an B (leaves u)) A
+has : Disj T (ay A (leaves u)) (an A (leaves u))
+hbs : Disj T (ay B (leaves u)) (an B (leaves u))
+hcolor : cheapColor A B (PairGeometry.descendants T e.snd) = cheapColor A B (leaves u)
+o : Output
+ho : sideOutputs S B A (leaves u) 3 = [o]
+hcost : o.sourceCuts.length = 3
+hpart : partitionCheck (leaves S) o.partition = true
+hsource : pairwiseEmbeddings S o.partition = true
+hlen : o.partition.length = 4
+hcl :
+  ∀ (K : List Nat),
+    K ∈ o.partition →
+      ∀ (y : Nat), y ∈ K ↔ y ∈ leaves S ∧ cheapColor A B (leaves u) y = cheapColor A B (leaves u) (K.headD 0)
+hall : ∀ (q : Nat), 3 ≤ q → sideOutputs S B A (leaves u) q = [o]
+hex :
+  (∀ (K : List Nat), K ∈ o.partition → ∃ L, L ∈ classes A B C (leaves u) ∧ SameMembers K L) ∧
+    ∀ (L : List Nat), L ∈ classes A B C (leaves u) → ∃ K, K ∈ o.partition ∧ SameMembers K L
+⊢ o ∈ (generate S (cheapColor A B (leaves u)) 3).outputs

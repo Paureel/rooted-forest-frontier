@@ -1,0 +1,7 @@
+# Mathematical ordinary algorithm package v1
+
+Read ALGORITHM-v1.md first. It gives the complete ordinary query/Hard2/Rule5/forest/optimizer/recovery execution paths and the whole procedure graph. PROCEDURES-v1.md supplies the literal typed helper bodies; the small DATA JSON packets supply exact plain roots and proof-free constructor/selector computations with full logical types. SOURCE-INDEX-v1.tsv and DECLARATIONS-v1.txt locate every included source declaration. CONTEXTS-v1.txt resolves original namespace/import contexts.
+
+PROJECTION-v1.md fixes runtime fields and explains precisely which accounting/trace replay computations are omitted,with its compositional preservation argument and diagnostic consumer table. REPRESENTATION-AND-OPERATIONS-v1.md fixes actual raw words,the paid decoder,immutable records/lists,finite activations,elementary implementations and per-operation charges. SOURCE-BINDING-v1.json binds this package to exact source identities and the supplied compiled functional theorem types. IDENTITY-MANIFEST-v1.json fixes bytes and conservative program constants. REMAINING-v1.md identifies actual proof/cost/assembly obligations.
+
+This public package contains mathematical statements,pseudocode,computational/type source data and identities. Private author corrections/exposure history remain in the separate MATH-PSEUDOCODE-WORKLOG-v1.md outside this directory. No optional numeric candidate is changed and no numeric/RAM execution or acceptance result is supplied here.

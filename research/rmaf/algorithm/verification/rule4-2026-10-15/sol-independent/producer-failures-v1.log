@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/rule4-2026-10-15/sol-independent/producer_controls.py", line 113, in <module>
+    try:main()
+        ^^^^^^
+  File "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/rule4-2026-10-15/sol-independent/producer_controls.py", line 71, in main
+    clean=audit(["SolCleanA"],"pilot-clean-audit")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/rule4-2026-10-15/sol-independent/producer_controls.py", line 57, in audit
+    result=run([LEAN,"--run",H/"ProducerAudit.lean",*modules],tag,expected)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/rule4-2026-10-15/sol-independent/producer_controls.py", line 23, in run
+    if p.returncode!=expected: raise AssertionError((tag,p.returncode,expected,p.stdout,p.stderr))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('pilot-clean-audit', 1, 0, "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/rule4-2026-10-15/sol-independent/ProducerAudit.lean:34:46: error: unexpected token '++'; expected ')', ',' or ':'\n", '')
+
+Traceback (most recent call last):
+  File "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/rule4-2026-10-15/sol-independent/producer_controls.py", line 116, in <module>
+    try:main()
+        ^^^^^^
+  File "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/rule4-2026-10-15/sol-independent/producer_controls.py", line 78, in main
+    run([LEAN,"-o",C/(name+".olean"),C/(name+".lean")],"battery-compile-"+name)
+  File "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/rule4-2026-10-15/sol-independent/producer_controls.py", line 26, in run
+    if p.returncode!=expected: raise AssertionError((tag,p.returncode,expected,p.stdout,p.stderr))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('battery-compile-SolPrivate', 1, 0, '/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/rule4-2026-10-15/sol-independent/producer-controls/SolPrivate.lean:4:4: error(lean.dependsOnNoncomputable): `_private.SolPrivate.0.SolPrivate.hidden` not supported by code generator; consider marking definition as `noncomputable`\n', '')
+

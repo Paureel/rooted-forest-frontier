@@ -1,0 +1,28 @@
+research/rmaf/algorithm/universal233/state_reductions/build/Removal.lean:28:38: error: Application type mismatch: The argument
+  hbe
+has type
+  (C == B) = false
+but is expected to have type
+  ¬(?m.88 == ?m.87) = true
+in the application
+  List.erase_cons_tail hbe
+research/rmaf/algorithm/universal233/state_reductions/build/Removal.lean:29:6: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b ≤ 0
+  a - b - c + d ≤ -1
+where
+ a := ↑(List.count x B)
+ b := ↑(List.count x F.flatten)
+ c := ↑(List.count x C)
+ d := ↑(List.count x ((C :: F).erase B).flatten)
+research/rmaf/algorithm/universal233/state_reductions/build/Removal.lean:44:55: warning: This simp argument is unused:
+  hxa
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Ne.symm hxa]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

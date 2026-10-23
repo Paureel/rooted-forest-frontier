@@ -1,0 +1,5 @@
+import StoredPolicy
+#check OrdinaryDispatch.StoredNumeric.global_storage_caps
+#print axioms OrdinaryDispatch.StoredNumeric.global_storage_caps
+#check OrdinaryDispatch.StoredNumeric.padded_zero
+#print axioms OrdinaryDispatch.StoredNumeric.padded_zero

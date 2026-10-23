@@ -1,0 +1,67 @@
+import Hard2GroupingSource
+namespace OrdinaryDispatch.Hard2SourceWork
+open OrdinaryDispatch.WorkRecursion OrdinaryDispatch.WorkIntegration
+open RMAF ForestState ForestGroups Universal233 WholeSourceWork CoreWork
+open GenericForest.CheckCorrespondence GenericForest.FrontierWork
+open Universal233.BothBad Universal233.Rule5SelectedLocalWork
+
+/-- The complete surrounding GoodPairDP.runPair source body. The two DP
+arguments and the later score each evaluate their own A++B/owned expression. -/
+def goodPairLocalSource (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree)
+ (A B C : List Nat) (q : Nat) : SourceExecution:=
+ if 2≤q then
+  let ss:=sourceForestMeter S [A,B,C]
+  let u1:=appendLabelsMeter A B;let t:=localTargetMeter (some T) u1.value
+  let u2:=appendLabelsMeter A B;let ds:=ownedMeter ss.value u2.value
+  let dp:=AllGoodDP.LocalWork.meterRun t.value ds.value
+  let frontWork:=ss.work+u1.work+t.work+u2.work+ds.work+dp.work+12
+  match dp.value with
+  | none=>⟨⟨none,[]⟩,frontWork+4⟩
+  | some H=>
+   let u3:=appendLabelsMeter A B;let scoreSources:=ownedMeter ss.value u3.value
+   let score:=additionalCostMeter scoreSources.value H
+   let firstWork:=frontWork+u3.work+scoreSources.work+score.work+8
+   if score.value≤q-2 then
+    let target:=localTargetMeter (some T) C;let sources:=ownedMeter ss.value C
+    let r:=q-2-score.value
+    let answer:=GenericForest.solve actual target.value sources.value r
+    let checked:=checkedMeter T S q (answer.map (fun K=>H++K))
+    ⟨⟨checked.value,[⟨target.value,sources.value,r⟩]⟩,
+     firstWork+target.work+sources.work+2*H.length+checked.work+16⟩
+   else ⟨⟨none,[]⟩,firstWork+4⟩
+ else ⟨⟨none,[]⟩,6⟩
+
+theorem goodPairLocalSource_value (actual : GenericForest.FrontierWork.Ordinary)
+ (T S : Tree) (A B C : List Nat) (q : Nat) :
+ (goodPairLocalSource actual T S A B C q).value=GoodPairDP.runPair actual T S A B C q:=by
+ simp only [goodPairLocalSource,GoodPairDP.runPair]
+ by_cases h:2≤q
+ · simp only [h,ite_true,appendLabelsMeter_value,localTargetMeter_value,ownedMeter_value,source_forest_value,
+   AllGoodDP.LocalWork.meterRun_value,additionalCostMeter_value,checkedMeter_value]
+   simp only [OutputState.sourceForest]
+   cases hd:AllGoodDP.run (localTarget (some T) (A++B)) (owned ([A,B,C].filterMap (fun D=>restrict D S)) (A++B)) with
+   | none=>rfl
+   | some H=>
+    simp only []
+    by_cases m:additionalCost (owned ([A,B,C].filterMap (fun D=>restrict D S)) (A++B)) H≤q-2
+    · simp only [m,ite_true]
+    · simp only [m,ite_false]
+ · simp only [h,ite_false]
+
+def goodPairSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+ (T S : Tree) (A B C : List Nat) (q : Nat) : SourceExecution:=
+ let r:=goodPairLocalSource actual T S A B C q
+ ⟨r.value,r.work+callsForestDebit actual W r.value.calls⟩
+
+theorem goodPairSource_value (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+ (T S : Tree) (A B C : List Nat) (q : Nat) :
+ (goodPairSource actual W T S A B C q).value=GoodPairDP.runPair actual T S A B C q:=goodPairLocalSource_value actual T S A B C q
+
+theorem goodPairSource_split (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+ (T S : Tree) (A B C : List Nat) (q : Nat) :
+ (goodPairSource actual W T S A B C q).work=(goodPairSource actual (fun _ _ _=>0) T S A B C q).work+
+ queryWork W (forestQueries actual (GoodPairDP.runPair actual T S A B C q).calls):=by
+ simp only [goodPairSource]
+ rw [callsForestDebit_split,goodPairLocalSource_value]
+ omega
+end OrdinaryDispatch.Hard2SourceWork

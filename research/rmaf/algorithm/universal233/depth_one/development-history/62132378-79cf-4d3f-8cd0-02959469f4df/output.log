@@ -1,0 +1,14 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:158:3: error: unknown tactic
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:144:49: error: unsolved goals
+T S : Tree
+A B : List Nat
+hp : (A ++ B).Perm (B ++ A)
+hc : ∀ (L : List Nat), partitionCheck L [A, B] = partitionCheck L [B, A]
+⊢ (((partitionCheck (leaves T) [B, A] = true ∧ partitionCheck (leaves S) [B, A] = true) ∧
+          restrictionAgrees T S A = true ∧ restrictionAgrees T S B = true) ∧
+        Clear (minimalVertices B T) (minimalVertices A T)) ∧
+      Clear (minimalVertices B S) (minimalVertices A S) ↔
+    (((partitionCheck (leaves T) [B, A] = true ∧ partitionCheck (leaves S) [B, A] = true) ∧
+          restrictionAgrees T S B = true ∧ restrictionAgrees T S A = true) ∧
+        Clear (minimalVertices B T) (minimalVertices A T)) ∧
+      Clear (minimalVertices B S) (minimalVertices A S)

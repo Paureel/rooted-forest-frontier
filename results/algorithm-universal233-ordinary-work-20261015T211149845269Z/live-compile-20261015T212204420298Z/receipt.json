@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "56f8e80de3ecdc6bf65634db62a21843625486beb7f9434a6171c919057eba98",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.35862079199978325,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.32939374999841675,
+      "resource_stop": null,
+      "log_sha256": "3744b90451eafe12cbd6a3f8d1ebec419ca2a66d8c817cc92c3d544629c8be4f"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.001752374999341555,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Hard2QueryProper",
+      "source_sha256": "1f846d7b1b2e967fc2a581b3df8c8bf638d0b98b9be39ac2d3b8217bfc273876",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.794228832999579,
+      "resource_stop": null,
+      "log_sha256": "26feeda434487037212174e3a4b0cd6621a54d75c0affe63c8ed35d6a86be915"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Hard2QueryProper', \"/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-20261015T211149845269Z/Hard2QueryProper.lean:46:3: error: 'change' tactic failed, pattern\\n  call \u2208\\n    (if (restrictionAgrees S T A && restrictionAgrees S T B) = true then GoodPairDP.runPair actual T S A B C q\\n      else\\n        if (restrictionAgrees S T A || restrictionAgrees S T B) = true then\\n          Hard2PaidLocal.runHardPaid actual T S q c (Result.pair o (PairGeometry.Choice.edge edge))\\n        else badPair actual T S A B C edge q).calls\\nis not definitionally equal to target\\n  call \u2208 (paidCase actual T S c q (Result.pair o (PairGeometry.Choice.edge edge))).calls\\n\"))"
+}

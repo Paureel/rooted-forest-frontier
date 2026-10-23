@@ -1,0 +1,96 @@
+import MeterErase
+namespace GenericForest.FrontierWork
+open RMAF ForestState Universal233 Universal233.PaidQueries Universal233.SourceCoverage
+
+theorem queryEnvelope_le_one {P A : Type} (js : List (Job P A)) (c : Rat) (hc : 2≤c) : queryEnvelope c js≤1 := by
+ cases hp : pending js with
+ | zero => simp only [queryEnvelope,hp,Rat.natCast_zero,Rat.zero_mul]; decide
+ | succ p =>
+  cases p with
+  | zero => simpa [queryEnvelope,hp] using negpow_antitone c hc 0 (knownCost js) (Nat.zero_le _)
+  | succ p =>
+   have h:=multi_hard_mass c hc (pending js) (by omega)
+   have mono:=negpow_antitone c hc (2*(pending js-1)) (knownCost js+2*(pending js-1)) (by omega)
+   have hm:=Rat.mul_le_mul_of_nonneg_left mono (show 0≤(pending js:Rat) from Rat.natCast_nonneg)
+   have last:=negpow_antitone c hc 0 1 (by omega)
+   exact Rat.le_trans hm (Rat.le_trans h (by simpa using last))
+
+theorem schedule_mass_le_one {P A : Type} (rec : P → Nat → Option (Nat × A)) (q : Nat)
+ (js : List (Job P A)) (c : Rat) (hc : 2≤c) : actualQueryMass c q (schedule rec q js).calls≤1 :=
+ Rat.le_trans (actual_query_envelope rec q js c hc) (queryEnvelope_le_one js c hc)
+
+theorem branch_mass_sharp (t : Tree) (ss : List Tree) (hp : proper (some t) ss=true)
+ (h : Overlap) (hh : overlap t ss=some h) (q : Nat) (c : Rat) (hc : 2≤c) :
+ ((branches t ss h q).map fun io=>c^(-(io.2.sourceCuts.length:Int))).sum≤2*c^(-1:Int) := by
+ obtain ⟨s,r,hi,hj,hne,hv,hw⟩:=selected_parents_distinct t ss hp h hh
+ have hm:=two_actual_cores_mass t ss hp s r (List.mem_of_getElem? hi) (List.mem_of_getElem? hj) hne h.vertex hv hw q c hc
+ simpa [branches,raw,hi,hj,rawQMass,List.map_append,List.map_map,Function.comp_def,List.sum_append] using hm
+
+theorem schedule_query_proper (ordinary : Ordinary) (t : Tree) (ss : List Tree) (q : Nat)
+ (hp : proper (some t) ss=true) (js : List (Job (Tree × Tree) Forest)) (jobsEq : jobs t ss=some js)
+ (p : Tree × Tree) (r : Nat) (mem : (p,r)∈(meterSchedule (pairCallback ordinary) (fun _ _=>0) q js).queries) :
+ r≤q ∧ DepthOne.proper p.1 p.2=true := by
+ unfold meterSchedule at mem
+ split at mem
+ · simp at mem
+ · obtain ⟨eq,j,hj,key⟩:=meter_run_query_keys _ _ _ js p r mem
+   have budget : r≤q := by simp only [allocated] at eq; omega
+   obtain ⟨s,hs,comp⟩:=jobs_actual t ss js jobsEq j hj
+   obtain ⟨u,hu,_,_,proper⟩:=component_pair_proper t ss hp s hs
+   have ep : (u,s)=p:=Option.some.inj (hu.symm.trans (by simpa [key] using comp))
+   exact ⟨budget,by simpa [←ep] using proper⟩
+
+theorem frontier_queries_proper (ordinary : Ordinary) (T : Option Tree) (ss : List Tree) (q : Nat)
+ (hp : proper T ss=true) (p : Tree × Tree) (r : Nat) (mem : (p,r)∈frontier ordinary T ss q) :
+ r≤q ∧ DepthOne.proper p.1 p.2=true := by
+ induction q using Nat.strongRecOn generalizing ss with
+ | ind q ih =>
+  rw [frontier.eq_def] at mem
+  split at mem
+  · rename_i active
+    split at mem
+    · simp at mem
+    · rename_i t s
+      have eq : (p,r)=((t,s),q):=by simpa using mem
+      cases eq
+      exact ⟨Nat.le_refl _,singleton_ordinary_proper t s hp⟩
+    · rename_i t ht notsingle
+      split at mem
+      · split at mem
+        · simp at mem
+        · rename_i js jobsEq
+          exact schedule_query_proper ordinary t ss q hp js jobsEq p r mem
+      · rename_i h hh
+        obtain ⟨io,hio,mem⟩:=List.mem_flatMap.1 mem
+        dsimp only at mem
+        split at mem
+        · rename_i hd
+          have paid:=branch_paid_proper t ss hp h hh q io.1 io.2 hio
+          have child:=ih (q-io.2.sourceCuts.length) (by omega) (replace ss io.1 io.2.partition) paid.2.2 mem
+          exact ⟨by omega,child.2⟩
+        · simp at mem
+  · simp at mem
+
+theorem frontierPower_as_mass (c : Rat) (cp : 0<c) (q : Nat) (xs : List Query)
+ (budgets : ∀p r,(p,r)∈xs → r≤q) :
+ frontierPower c xs=c^q*actualQueryMass c q (xs.map Prod.snd) := by
+ have point (pb : Query) (mem : pb∈xs) : c^pb.2=c^q*c^(-((q-pb.2:Nat):Int)) := by
+  have budget:=budgets pb.1 pb.2 mem
+  have h:=qpow_clear c (Rat.ne_of_gt cp) q (q-pb.2) (by omega)
+  simpa only [Nat.sub_sub_self budget] using h
+ unfold frontierPower actualQueryMass
+ rw [List.map_map]
+ have eq : xs.map (fun pb=>c^pb.2)=xs.map (fun pb=>c^q*c^(-((q-pb.2:Nat):Int))) := List.map_congr_left point
+ rw [eq,rat_sum_mul]
+ rfl
+
+theorem scheduled_frontier_power (ordinary : Ordinary) (t : Tree) (ss : List Tree) (q : Nat)
+ (hp : proper (some t) ss=true) (js : List (Job (Tree × Tree) Forest)) (jobsEq : jobs t ss=some js)
+ (c : Rat) (hc : 2≤c) :
+ frontierPower c (meterSchedule (pairCallback ordinary) (fun _ _=>0) q js).queries≤c^q := by
+ have cp : 0<c:=by grind
+ rw [frontierPower_as_mass c cp q _ (fun p r mem=>(schedule_query_proper ordinary t ss q hp js jobsEq p r mem).1)]
+ rw [(meterSchedule_trace (pairCallback ordinary) (fun _ _=>0) q js).1]
+ have h:=Rat.mul_le_mul_of_nonneg_left (schedule_mass_le_one (pairCallback ordinary) q js c hc) (show 0≤c^q from Rat.le_of_lt (Rat.pow_pos cp))
+ simpa only [Rat.mul_one] using h
+end GenericForest.FrontierWork

@@ -1,0 +1,7 @@
+# Actual bounded child-to-forest binding
+
+Named main consumer: the executable ordinary dispatcher calls `GenericForest.solve actual` on each literal CherryBranching Child.sourceForest at remaining budget k-paid. Existing cherry/Rule5 contracts quantify ExactBoundedChild over every residual r; a well-founded ordinary IH only covers actual paid queries. Prove the direct current-r contract from LocalOrdinaryIH r actual, literal child materialization, original source partition/embeddings and same labels. No runtime ghost/minimum callback is added.
+
+Then prove an actual checked best-of-child-calls consumer using the actual remaining budget. Prove original agreement, minimum, budget, and non-success iff no original feasible forest only when the named frozen source cover supplies the case. Do not assume global ordinary correctness or desired source coverage in a record.
+
+Controls before construction: an actual lower-budget cutoff callback and overlap fixture from the saved LocalControls; the existing unbounded transfer and singleton-hard discount false claims remain rejected; add a false residual-paid inference and a missing one-child cover control before any enumeration instrument. Build only the actual transitive source closure in one new root; all frozen sources remain byte-for-byte. Source/proof checks here are AUTHOR development, not independent verification. All main claims remain OPEN.

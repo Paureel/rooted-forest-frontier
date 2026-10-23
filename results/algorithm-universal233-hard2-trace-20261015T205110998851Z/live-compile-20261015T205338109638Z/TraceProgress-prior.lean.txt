@@ -1,0 +1,66 @@
+import PaidTraceBound
+namespace OrdinaryDispatch.Hard2Trace
+open RMAF ForestState Universal233 Universal233.BothBad
+open Universal233.CherryBranching Universal233.Hard2Overlap
+open OrdinaryDispatch.Hard2Dispatcher
+
+theorem trace_nonnegative (b : Rat) (positive : 0<b) (q : Nat) (calls : List Call) :
+ 0≤traceMass b q calls := by
+ induction calls with
+ | nil => simp [traceMass,PaidQueries.actualQueryMass]
+ | cons call calls ih =>
+  have term : (0 : Rat)≤b^(-((q-call.budget : Nat) : Int)) := Rat.le_of_lt (Rat.zpow_pos positive)
+  simp only [traceMass,PaidQueries.actualQueryMass,List.map_cons,List.sum_cons] at ih ⊢
+  exact Rat.add_nonneg term ih
+
+theorem trace_member_bound (b : Rat) (positive : 0<b) (q : Nat) (calls : List Call)
+ (call : Call) (mem : call∈calls) :
+ b^(-((q-call.budget : Nat) : Int))≤traceMass b q calls := by
+ induction calls with
+ | nil => simp at mem
+ | cons head tail ih =>
+  have zero := trace_nonnegative b positive q tail
+  have term : (0 : Rat)≤b^(-((q-head.budget : Nat) : Int)) := Rat.le_of_lt (Rat.zpow_pos positive)
+  rcases List.mem_cons.1 mem with eq|rest
+  · subst call
+    simp only [traceMass,PaidQueries.actualQueryMass,List.map_cons,List.sum_cons] at zero ⊢
+    grind
+  · have bound := ih rest
+    simp only [traceMass,PaidQueries.actualQueryMass,List.map_cons,List.sum_cons] at bound ⊢
+    grind
+
+/-- The bound applies to each actual occurrence, including failed queries. -/
+theorem paidCase_calls_drop (actual : Ordinary) {T S : Tree} {c : Candidate} {q : Nat} {out : Result}
+ (proper : DepthOne.proper T S=true) (hard : CherryBranching.select T S=some (.hard2,c))
+ (selected : runHard2 T S c=some out) (call : Call)
+ (mem : call∈(paidCase actual T S c q out).calls) : call.budget+2≤q ∧ call.budget<q := by
+ have bound := paidCase_mass actual proper hard selected (2 : Rat) (by decide) (by decide)
+ have upper : (4 : Rat)*2^(-4 : Int)=1/4 := by cbv
+ rw [upper] at bound
+ have term := trace_member_bound (2 : Rat) (by decide) q _ call mem
+ have low := Rat.le_trans term bound
+ have drop : 2≤q-call.budget := by
+  by_contra no
+  have cases : q-call.budget=0 ∨ q-call.budget=1 := by omega
+  rcases cases with d|d
+  · rw [d] at low
+    have one : (2 : Rat)^(-((0 : Nat) : Int))=1 := by cbv
+    rw [one] at low
+    have bad : ¬(1 : Rat)≤1/4 := by cbv
+    exact bad low
+  · rw [d] at low
+    have half : (2 : Rat)^(-((1 : Nat) : Int))=1/2 := by cbv
+    rw [half] at low
+    have bad : ¬(1/2 : Rat)≤1/4 := by cbv
+    exact bad low
+ omega
+
+theorem combined_calls_strict (actual : Ordinary) {T S : Tree} {c : Candidate} {q : Nat} {out : Result}
+ (proper : DepthOne.proper T S=true) (hard : CherryBranching.select T S=some (.hard2,c))
+ (selected : runHard2 T S c=some out) (call : Call)
+ (mem : call∈(Hard2Combine.combine actual T S c.a c.b q (paidCase actual T S c q out)).calls) : call.budget<q := by
+ change call∈Hard2Combine.unitCalls S T c.a c.b q++(paidCase actual T S c q out).calls at mem
+ rcases List.mem_append.1 mem with unit|paid
+ · exact Hard2Combine.unitCalls_strict T S c.a c.b q call unit
+ · exact (paidCase_calls_drop actual proper hard selected call paid).2
+end OrdinaryDispatch.Hard2Trace

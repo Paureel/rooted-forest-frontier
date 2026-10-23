@@ -1,0 +1,269 @@
+{
+  "arithmetic": [
+    {
+      "bound": "1/4",
+      "c": "2",
+      "charged": "3/16",
+      "charged_ok": true,
+      "in_domain": true,
+      "raw": "1/4",
+      "raw_ok": true
+    },
+    {
+      "bound": "400000000/2947295521",
+      "c": "233/100",
+      "charged": "74289000000/686719856393",
+      "charged_ok": true,
+      "in_domain": true,
+      "raw": "433000000/2947295521",
+      "raw_ok": false
+    },
+    {
+      "bound": "4/81",
+      "c": "3",
+      "charged": "11/243",
+      "charged_ok": true,
+      "in_domain": true,
+      "raw": "5/81",
+      "raw_ok": false
+    },
+    {
+      "bound": "1/64",
+      "c": "4",
+      "charged": "9/512",
+      "charged_ok": false,
+      "in_domain": false,
+      "raw": "3/128",
+      "raw_ok": false
+    }
+  ],
+  "elapsed_seconds": 0.0006520748138427734,
+  "instrument_sha256": "6857c966f8895e887fd441b081d8852e87a2b3a50b544486ebcc1523281f6c8c",
+  "ledger": {
+    "clean_twin_pass": true,
+    "denominator": 23,
+    "mutations": [
+      {
+        "caught": [
+          "selector_checked"
+        ],
+        "detector": "selector_checked",
+        "name": "missing-selector"
+      },
+      {
+        "caught": [
+          "clearance_checked"
+        ],
+        "detector": "clearance_checked",
+        "name": "missing-clearance"
+      },
+      {
+        "caught": [
+          "same_occurrences"
+        ],
+        "detector": "same_occurrences",
+        "name": "drop-cover"
+      },
+      {
+        "caught": [
+          "same_occurrences"
+        ],
+        "detector": "same_occurrences",
+        "name": "duplicate-charge"
+      },
+      {
+        "caught": [
+          "same_occurrences"
+        ],
+        "detector": "same_occurrences",
+        "name": "omit-charge"
+      },
+      {
+        "caught": [
+          "same_occurrences"
+        ],
+        "detector": "same_occurrences",
+        "name": "favorable-filter"
+      },
+      {
+        "caught": [
+          "literal_calls"
+        ],
+        "detector": "literal_calls",
+        "name": "wrong-target"
+      },
+      {
+        "caught": [
+          "literal_calls"
+        ],
+        "detector": "literal_calls",
+        "name": "wrong-source"
+      },
+      {
+        "caught": [
+          "literal_calls"
+        ],
+        "detector": "literal_calls",
+        "name": "free-whole-B"
+      },
+      {
+        "caught": [
+          "literal_calls"
+        ],
+        "detector": "literal_calls",
+        "name": "omit-call"
+      },
+      {
+        "caught": [
+          "literal_calls"
+        ],
+        "detector": "literal_calls",
+        "name": "duplicate-call"
+      },
+      {
+        "caught": [
+          "retained_budget"
+        ],
+        "detector": "retained_budget",
+        "name": "q-versus-additional"
+      },
+      {
+        "caught": [
+          "fixed_parent_once"
+        ],
+        "detector": "fixed_parent_once",
+        "name": "double-parent"
+      },
+      {
+        "caught": [
+          "pruned_before_subtract"
+        ],
+        "detector": "pruned_before_subtract",
+        "name": "subtract-before-prune"
+      },
+      {
+        "caught": [
+          "premises"
+        ],
+        "detector": "premises",
+        "name": "local-to-whole-union"
+      },
+      {
+        "caught": [
+          "premises"
+        ],
+        "detector": "premises",
+        "name": "own-minimum-free"
+      },
+      {
+        "caught": [
+          "runtime_dependency"
+        ],
+        "detector": "runtime_dependency",
+        "name": "hidden-optimum"
+      },
+      {
+        "caught": [
+          "work_components"
+        ],
+        "detector": "work_components",
+        "name": "uncharged-prefix"
+      },
+      {
+        "caught": [
+          "work_components"
+        ],
+        "detector": "work_components",
+        "name": "uncharged-refusal"
+      },
+      {
+        "caught": [
+          "work_components"
+        ],
+        "detector": "work_components",
+        "name": "uncharged-append"
+      },
+      {
+        "caught": [
+          "work_components"
+        ],
+        "detector": "work_components",
+        "name": "uncharged-materialize"
+      },
+      {
+        "caught": [
+          "work_components"
+        ],
+        "detector": "work_components",
+        "name": "uncharged-checker"
+      },
+      {
+        "caught": [
+          "work_components"
+        ],
+        "detector": "work_components",
+        "name": "uncharged-payload"
+      }
+    ],
+    "scope": "semantic ledger controls only; actual source adapters pending RELEASE"
+  },
+  "mode": "plants",
+  "started_unix": 1792066025.898525,
+  "status": "PASS",
+  "truth": {
+    "comparator_mismatch_caught": true,
+    "denominator": 10,
+    "plants": [
+      {
+        "expected": true,
+        "name": "whole-identical",
+        "observed": true
+      },
+      {
+        "expected": true,
+        "name": "singletons-identical",
+        "observed": true
+      },
+      {
+        "expected": true,
+        "name": "split-identical",
+        "observed": true
+      },
+      {
+        "expected": false,
+        "name": "whole-corrupt-shape",
+        "observed": false
+      },
+      {
+        "expected": false,
+        "name": "target-overlap",
+        "observed": false
+      },
+      {
+        "expected": true,
+        "name": "different-singletons",
+        "observed": true
+      },
+      {
+        "expected": false,
+        "name": "empty-block",
+        "observed": false
+      },
+      {
+        "expected": false,
+        "name": "duplicated-label",
+        "observed": false
+      },
+      {
+        "expected": false,
+        "name": "absent-label",
+        "observed": false
+      },
+      {
+        "expected": false,
+        "name": "incomplete",
+        "observed": false
+      }
+    ]
+  }
+}

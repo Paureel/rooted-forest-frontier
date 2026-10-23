@@ -1,0 +1,102 @@
+{
+  "entries": [
+    {
+      "module": "RMAF",
+      "path": "research/rmaf/lean/RMAF.lean",
+      "sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "adaptations": {},
+      "adapted_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9"
+    },
+    {
+      "module": "GroupRestriction",
+      "path": "research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean",
+      "sha256": "06755e63fbb1e6585eb9344cd0ffcfe2cf976b6ce97405fd15008b95227171e1",
+      "adaptations": {},
+      "adapted_sha256": "06755e63fbb1e6585eb9344cd0ffcfe2cf976b6ce97405fd15008b95227171e1"
+    },
+    {
+      "module": "GroupEmbedding",
+      "path": "research/rmaf/algorithm/universal233/restriction_bridge/Embedding.lean",
+      "sha256": "ff8a4fde22548be8350429e86152fdc520344e4272b7e23a5bd6aca42d166856",
+      "adaptations": {
+        "Restriction": "GroupRestriction"
+      },
+      "adapted_sha256": "3856a1f30ebf79d6231a889f37e063045e3b549e6cc3cb22f7e47d0e49c2d13d"
+    },
+    {
+      "module": "GroupPartition",
+      "path": "research/rmaf/algorithm/universal233/restriction_bridge/Partition.lean",
+      "sha256": "922bc716bcbb428feb2011f2c372f0557e6d6342083e60c4a53ce3a72576726d",
+      "adaptations": {
+        "Embedding": "GroupEmbedding"
+      },
+      "adapted_sha256": "2c682887ec490a875f9df0bf174ce76bcb5424586899287148df9d2828bc7735"
+    },
+    {
+      "module": "GroupCost",
+      "path": "research/rmaf/algorithm/universal233/restriction_bridge/Cost.lean",
+      "sha256": "f3cee58b286702549ce63194b5df5f787d273aa6a47849252e8977c8e94423b2",
+      "adaptations": {
+        "Partition": "GroupPartition"
+      },
+      "adapted_sha256": "60b0b83abdc1957e79cd5efecd08b087899eb3cd51d8ce2f6a1722f8041f0774"
+    },
+    {
+      "module": "GroupForward",
+      "path": "research/rmaf/algorithm/universal233/restriction_bridge/Forward.lean",
+      "sha256": "0ef7be14147e83a03879278d47689df22e793b7f04bac249a67c9ed7d6f31ab8",
+      "adaptations": {
+        "Cost": "GroupCost"
+      },
+      "adapted_sha256": "868403514424a3162d10ce8586804a405ccdea3d8977ee2058b1a00f9afb641f"
+    },
+    {
+      "module": "Geometry",
+      "path": "research/rmaf/algorithm/universal233/geometry/Geometry.lean",
+      "sha256": "b98de754ee29fdeae54aebc6e03ffb7e8262dcb299f61b7ac5ca9bcee4887a9d",
+      "adaptations": {},
+      "adapted_sha256": "b98de754ee29fdeae54aebc6e03ffb7e8262dcb299f61b7ac5ca9bcee4887a9d"
+    },
+    {
+      "module": "Bridge",
+      "path": "research/rmaf/algorithm/universal233/geometry/Bridge.lean",
+      "sha256": "ba12f3b99d87efecce407dab54d95df003fc5e735cb12e314734c346317c9583",
+      "adaptations": {},
+      "adapted_sha256": "ba12f3b99d87efecce407dab54d95df003fc5e735cb12e314734c346317c9583"
+    },
+    {
+      "module": "Composition",
+      "path": "research/rmaf/algorithm/universal233/geometry/Composition.lean",
+      "sha256": "097b9184ebacd913524fc3f0a130057004f95e30ba15f485adb9e0b7934578df",
+      "adaptations": {},
+      "adapted_sha256": "097b9184ebacd913524fc3f0a130057004f95e30ba15f485adb9e0b7934578df"
+    },
+    {
+      "module": "GroupReconstruction",
+      "path": "research/rmaf/algorithm/universal233/restriction_bridge/Reconstruction.lean",
+      "sha256": "84ec7c640a9d49f38f7b6b3b5c347fc09e9c66a614667d1c8e929549e2d71896",
+      "adaptations": {
+        "Forward": "GroupForward"
+      },
+      "adapted_sha256": "c8b7c9a04398a6b736c64c00d4e065116f5e18ed05ba6c3eec990c8f49603c90"
+    },
+    {
+      "module": "GroupState",
+      "path": "research/rmaf/algorithm/universal233/state_reductions/State.lean",
+      "sha256": "b285d2bdf317720540074b7e09042bc76cc89f024d683d6ed311efd3df04fee9",
+      "adaptations": {
+        "StatePartition": "GroupPartition"
+      },
+      "adapted_sha256": "def667f28d5a9658f817fa259f2293b6d82a05c1f7916a9c4c8a9b566d4952a3"
+    },
+    {
+      "module": "GroupStateFacts",
+      "path": "research/rmaf/algorithm/universal233/state_reductions/Singleton.lean",
+      "sha256": "8ce6617dd2bcb6305f103faaf905295ebeb6f048933a10cc96b9c21c9356821c",
+      "adaptations": {
+        "State": "GroupState"
+      },
+      "adapted_sha256": "6c24423b800ba8d77616f9bf825b34001c3004fc7c76e5a6d8912a715b55ffef"
+    }
+  ]
+}

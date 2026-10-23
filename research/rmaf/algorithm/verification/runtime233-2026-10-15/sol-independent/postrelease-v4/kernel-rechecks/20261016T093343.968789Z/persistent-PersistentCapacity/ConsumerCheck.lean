@@ -1,0 +1,11 @@
+import PersistentCapacity
+#check GenericForest.BinaryProvider.prepareCapacity_spec
+#print axioms GenericForest.BinaryProvider.prepareCapacity_spec
+#check GenericForest.BinaryProvider.prepareCapacity_width_bound
+#print axioms GenericForest.BinaryProvider.prepareCapacity_width_bound
+#check GenericForest.BinaryProvider.prepareCapacity_work_bound
+#print axioms GenericForest.BinaryProvider.prepareCapacity_work_bound
+#check GenericForest.BinaryProvider.partitionFromInput_value
+#print axioms GenericForest.BinaryProvider.partitionFromInput_value
+#check GenericForest.BinaryProvider.partitionFromInput_work
+#print axioms GenericForest.BinaryProvider.partitionFromInput_work

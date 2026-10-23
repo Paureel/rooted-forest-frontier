@@ -1,0 +1,11 @@
+import DegreePropagation
+#check List.length_eq_two
+#check List.length_eq_two_iff
+#check List.length_eq_cons
+#check List.mem_eraseDups
+#check List.nodup_eraseDups
+#check List.Nodup.filter
+#check List.Nodup.cons
+#check List.Nodup.of_cons
+#check List.nodup_cons
+#check List.toFinset

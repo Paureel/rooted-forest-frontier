@@ -1,0 +1,75 @@
+{
+  "route": "GLOBAL original-edge conflict continuation CB1-CB4",
+  "main_milestones": {
+    "algorithm": "open",
+    "correctness": "open",
+    "smaller_base": "open"
+  },
+  "calls": [
+    {
+      "call": "core.validate_input",
+      "file": "conflict_solver.py",
+      "obligation": "ordinary binary syntax, equal distinct original labels, nonnegative integer budget; empty input explicit",
+      "evidence": "executed pinned clean/malformed controls",
+      "status": "finite-tested; source executable review pending"
+    },
+    {
+      "call": "core.conflicts and root incidence_factors",
+      "file": "conflict_solver.py",
+      "obligation": "actual original-edge triple/path conflicts; min transversal equals ordinary original optimum; independent factors add",
+      "source_import": "conflict/PROOF.md C1 and normalization, explicitly open to final source-model review",
+      "new_argument": "factor minima add on disjoint edge universes",
+      "status": "handwritten source-model import plus finite independent controls; no universal Lean graph theorem"
+    },
+    {
+      "call": "quotient_rows / forced_closure",
+      "file": "conflict_dag_solver.py",
+      "obligation": "row subsumption preserves constraints; maximal columns preserve minimum; singleton forcing selects actual original edges with paid unit cost",
+      "source_import": "C4 generic hit-preserving substitution; C1 only when interpreting cuts as agreement forests",
+      "status": "conditional source interpretation; finite implementations checked"
+    },
+    {
+      "call": "compile_row / dominates / cache",
+      "file": "conflict_row_selector.py",
+      "obligation": "every raw branch retains a cheaper weak-constraint representative; cache exact original mask states only",
+      "new_lean": "ConstraintCompression.rowImplicationSound, dominatedResidualWitness, prefixCostSubstitution",
+      "status": "generic finite/list facts kernel-checked; code/source correspondence finite-tested and pending nonauthor review"
+    },
+    {
+      "call": "optimize_hitting factor iterative budgets",
+      "file": "conflict_row_selector.py",
+      "obligation": "at b>=original optimum return an ORIGINAL minimum, not any feasible witness; insufficient cap fails correctly",
+      "evidence": "all9 literal ordinary fixtures checked at optimum, optimum-1 when positive, and optimum+2; test oracles blocked during generation",
+      "status": "conditional exactness argument under C1; no optimum oracle"
+    },
+    {
+      "call": "core.certificate_for / verify_certificate",
+      "file": "conflict_solver.py",
+      "obligation": "full original components, nonempty labels, actual cuts, r+1 accounting, rooted agreement and unsuppressed target supports",
+      "completion": "direct full witness, zero residual cuts and zero local queries; pure-bridge G1-G7 and triple DP G1-G3 are not consumed",
+      "terminal": "all-compatible; original unmarked tau0",
+      "status": "direct executed polynomial checks; universal minimum/nonredundancy uses explicit C1/normalization proof"
+    },
+    {
+      "call": "choose_row paid all-row mass at alpha7/3 theta0",
+      "file": "conflict_row_selector.py",
+      "obligation": "all paid reachable states have a valid global charge; uniform candidate requires some compiled row mass<=1",
+      "counterexample": "ordinary six-leaf quotient-star, 26 rows, every row retains at least3 unit children, best7/3 mass9/7",
+      "evidence": "algorithm-balanced-cover-continue-cb3-obstruction.json; AllRowObstruction literal-profile kernel replay",
+      "status": "uniform recurrence REFUTED; global charging/state bound OPEN"
+    },
+    {
+      "call": "guarded_frontier.generate / guard / witness",
+      "file": "guarded_frontier.py",
+      "obligation": "at most b nonredundant original precuts; every output pure or compatible/triple; explicit original local cuts bound every unmarked distance by floor(b/2); one ORIGINAL optimum path survives",
+      "source_import": "C1/C4 and normalization as explicit source-model imports; original-edge refinement from quotient/EdgeLocalization used only at emitted minimum prefix",
+      "new_argument": "CB4-COVERAGE.md; global residual prefix dominance preserves existence of one minimum; exact C included in visited key",
+      "evidence": "5 known development controls; independent18 covers24 certificates with actual local costs/original cuts;108 retained substitutions checked. Exact nonoptimal visited prefixes65/257 retained as quantifier controls.",
+      "status": "independent finite source/witness/cover checks confirmed; corrected existential coverage reviewed under C1/C4 imports; universal formal/source acceptance and alpha frontier bound OPEN"
+    }
+  ],
+  "remaining_guarded_cover_import": "oracle-free alpha5/4 or prelicensed3/2 partial-original-edge certificate enumeration, original-optimum survival, every-output terminal class, original unmarked tau<=b/2, all failed work paid",
+  "novelty": "no claim; no literature-priority acceptance attempted",
+  "current_paid_proposal": "CB4 global guarded partial frontier; CB1-CB3 retained as complete-certificate predecessors and recurrence diagnostics",
+  "coverage_quantifier": "At least one surviving ORIGINAL-optimum path; not every visited state or emitted prefix. SPEC-CB4-ERRATUM-v2.md corrects frozen overstrong state wording."
+}

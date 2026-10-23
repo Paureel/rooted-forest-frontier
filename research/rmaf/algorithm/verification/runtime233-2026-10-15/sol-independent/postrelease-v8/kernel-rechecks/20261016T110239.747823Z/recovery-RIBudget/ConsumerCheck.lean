@@ -1,0 +1,7 @@
+import RIBudget
+#check OrdinaryDispatch.RecoveryInitialBits.lengthOwned_value
+#print axioms OrdinaryDispatch.RecoveryInitialBits.lengthOwned_value
+#check OrdinaryDispatch.RecoveryInitialBits.clipOwned_value
+#print axioms OrdinaryDispatch.RecoveryInitialBits.clipOwned_value
+#check OrdinaryDispatch.RecoveryInitialBits.clipOwned_work
+#print axioms OrdinaryDispatch.RecoveryInitialBits.clipOwned_work

@@ -1,0 +1,117 @@
+FINITE CALLER TABLE AND THE LOCAL OPERATION-CREDIT JOIN
+
+Author construction for the frozen mathematical implementation. Unit: U0 counts fixed abstract data/control operations, BEFORE gamma and the finite frame/record realization. Call and return are separate paid operations. The conservative primitive/cons refinements below may overcount those operations, but do not multiply gamma. No operand width, actual bill or cost oracle is assumed. The input decoder remains the root's separate prefix.
+
+Binding: math_pseudocode_v1 ae6b35f2235de3a9a76435467bd2bd7405129b9199ab2175a1a49fb9e9b4fcff plus the exact deletion-only math_projection_amendment_v2 61da6aca. All actual decision values and callback/source occurrence bindings are those of this frozen program, as supplied by the separate semantic coupling. That coupling is a value/occurrence premise, not a count premise. Let d=CompleteSource.completeLocalDebit(T,S,q). Assume BOTH local ordinary trees have <=N leaves, N>=1, and q<=Q. Put R=N+Q+L+2. The reachable-domain TYPES give these local leaf/budget premises; no reduced-leaf budget cap is used.
+
+The table distinguishes (i) bounded finite data recipes and (ii) lists whose length follows the generator occurrence tree. A long generator receipt/candidate/query/refusal spine is never substituted by a polynomial size bound.
+
+A. Local payload catalogue.
+
+The following m bounds are occurrence bounds on the data actually traversed by the named recipe. An immutable reference copy is a word operation; it does not copy or scan the referenced object.
+
+  ordinary input Tree: nodes+1<=2N;
+  contracted/restricted/marked/relabelled Tree: <=2N+6 nodes;
+  subtree/bottom/AX/VC/orient temporary: <=2N+6 nodes;
+  actual vertex path, dropLast/lca, or bArc: <=2N+2 Boolean cells;
+  leaves/subtree/core/descendant/outside label list: <=N entries;
+  finite concatenations A++B,core++[c],yes/no,completed/known: <=4(N+1) entries;
+  cut-list/vertex/cherry/edge lists: <=4(N+1) entries, each path bounded above;
+  Rule4 RawChoice list: <=4N^2 entries, each with two paths and three words;
+  a single generated Output: <=N+1 blocks, <=N total labels,
+    <=2N cut paths each of length<=2N;
+  a branch partition before a guard: <=2N+2 blocks, <=4(N+1)^2 labels;
+  a sourceForest before properness: <=2N+2 individual restrictions,
+    each <=2N+6 nodes, total<=8(N+1)^2 nodes;
+  successful QUERY/FOREST answer: <=N blocks and <=N flattened labels
+    on its actual target's domain; finite checked reconstruction candidates
+    from known++F++[completed],FX++FY,H++K,or merged have <=8(N+1)
+    blocks and <=8(N+1) labels;
+  one Paint: same constructor shape as its input tree;
+  one DP table: <=2N+3 Paint references, each Paint<=2N+6 nodes;
+  one merge candidate list: <=64(N+1)^2 forest references, each candidate
+    of the preceding finite reconstruction size;
+  parsed bottom rows: <=16*(2N+1) entries (eight orientations,two endpoint orders);
+  fixed branch/plan lists: at most5 children or4 literal plan branches;
+  a disjoint/grouped scheduler job list: <=2N+2 jobs; each job holds
+    at most an existing bounded target/source/partition payload.
+
+These inequalities follow by the following constructor/loop inductions, not by assuming a small answer. restrict contracts only and relabel changes only labels. contract replaces a cherry by one leaf; common expansion replaces a fresh leaf label by at most two labels. AX/VC/bottom add at most three leaves. vertices/edges/cherries enumerate actual nodes, with two orders only at a cherry. RawAC proceeds only after the actually recomputed pendant list has length2; RawR recomputes that same list and maps over its two entries. Thus each ordered cherry pair contributes at most four RawChoices. The full RawChoices list may contain equal records, but its length is still bounded by those actual pairs. The generator invariant is proved separately in GENERATOR-OCCURRENCE-CREDIT-v1. Rule4's duplicated subtree blocks are all retained and give the quadratic bound above, rather than a false partition premise. Every sourceForest entry is an actual restriction of the selected existing source. PaidArcPartition.splitBlock partitions each old block by a predicate and its complement, discards empty parts and therefore preserves total label occurrences; repeated arc cuts cannot double that mass. Setup's tests permit only actual restricted/marked trees; unorient/parseBottom returns an existing subtree. A successful QUERY uses new QueryExact agreement; FOREST uses its literal accepted/checked postcondition. MergeOperations.filter never adds labels, erase only removes a block, and merged appends the two selected filtered blocks and remaining forests: each candidate has at most the sum of the two input masses. The candidates enumeration is a Cartesian product of their block lists, not another recursive merge enumeration. DP meterTable builds one chosen Paint for each color at each input node, and its owner/color list has at most sourceForest.length+1 entries; properness rejects a nonpartition source forest before the DP. meterSplit distributes those Paint leaf labels without adding new ones. These observations also cover rejected finite candidates before their final checked filter. They do not require a successful final optimization.
+
+Consequently D=64*(N+1)^3 bounds the occurrence size of every finite payload/list just catalogued, including the full RawChoices, DP-table and merge-candidate collections when their referenced finite payloads are counted. D does NOT bound output/entry/query/calls/refusal/candidate spines accumulated across unbounded generator occurrences. Those are handled by B below. An initial malformed forest may have the quadratic catalogue size; it pays properness and stops. An admitted forest retains the fixed individual-tree bound m<=8(N+1) needed for the separate Forest lemma.
+
+B. Bounded recipe rows (excluding recursive QUERY/FOREST bodies and generator run bodies).
+
+Use P(D)=2^48*(D+1)^10. This common bound is obtained from the following explicit loop products, with the saved core helper constants (largest65536), <=256 per list/control visit and <=128*(f+1) per fixed f-field record. All fixed records here have at most20 computational fields. All literal finite tests/choices are counted, including eagerly constructed thunk environments that are later uninvoked. The coefficients below include separate call and return handling.
+
+1 list/word/record primitives: <=2^16*(D+1)^3.
+  Structural equality visits actual fields/list heads; membership/count/reverse/take/drop/index/length/append visit their real spines. A nested membership or erase/perm comparison gives at most the product of the two bounded lengths and a bounded path length. Every repeated flatten and length is repeated in this bound. Scalar add/sub/comparison/min/max and fixed-literal arithmetic have fixed abstract count. Variable arithmetic is one U0 arithmetic call; its bitloop expansion belongs to gamma after the root width bound. No exponentiation call is introduced.
+
+2 tree/restriction/hull/agreement: <=2^24*(D+1)^8.
+  sameShape has <=nodes(T)*nodes(S) calls by the ordered path-pair injection, including all four children. restrict/leaves have the saved explicit recurrences. rootedSpan/minimal have degree<=5; pairwise adds <=D^2 block pairs, giving degree<=7. partition/contained/family/agreement add the printed actual outer loops; summing source-tree fourth powers is bounded by the fourth power of their total node mass, giving degree<=8. The sum has fewer than64 core/control terms. Their maximum coefficient65536, times64 and the at-most2^2 length-sum factors in this row, is below2^24.
+
+3 vertices/pendant/cherries,front and early selectors: <=2^36*(D+1)^9.
+  Pendant recomputes a bounded minimal test for every bounded vertex: degree<=6. Candidates invokes it for every cherry: degree<=7. RawChoices invokes it for each ordered cherry pair and each of the at-most-two guarded pendant entries: degree<=8. Each raw local guard repeats its printed eight tests. Four eager selectors/orientations and the priority helpers add fixed factors. Pretest invokes agreement on <=nodes(S)+1 cuts, with <=2 blocks each; meterBest also executes the retained length(xs) at EVERY visited candidate. The sum of those tail lengths is <=j^2 for j<=nodes(S)+1. It is counted here even though the meterBest work increment does not credit that length. Counting at most2^12 fixed repetitions/terms on top of row2 gives the displayed2^36 coefficient. The complete finite front invocation is bounded by this row, including unsuccessful candidates and later-discarded diagnostics.
+
+4 Rule5 finite classification/setup/literal parsing and guards:
+  <=2^40*(D+1)^10.
+  Prefix/local/bad/boundary selectors enumerate actual bounded vertices/cherries/labels, using the printed eager or short-circuit tests. The dominant loop products can be checked individually: admittedGuards has ten fixed tests, with full embedding checks of degree<=8 and earlier/admittedRule4 candidate scans of degree<=7. badCandidates has D outer cuts; each badRow recomputes cuts (degree<=6) and scans D badAt tests, whose restriction test has degree<=2, so its total degree is<=7. Prefix large/size-two/outside scans have at most D candidates with a degree<=6 pendant/core test, hence degree<=7. Incident repeats minimal twice per vertex, giving degree<=6; boundary invokes it and at most four fixed paint/outside tests. rows has16 alternatives per vertex, and secondBuilder visits at most16D rows, each with at most17 literal predicates of degree<=6; this gives degree<=7. Setup performs its displayed properness/partition/subtree/incident tests and at most eight restrict/marked constructions plus the two max traversals. literalPlan emits3 or4 branches: arcFrom visits D cut paths and each splitForest visits at most D blocks with at most D selected-membership tests per entry, degree<=4; currentGuard's pairwise check has degree<=7. These are sums of the listed products, not four extra D factors on a full degree8 check. The common degree10 allowance is therefore conservative. The largest extra fixed product is16*17*8<2^12; multiply row2's coefficient by2^16 to include the other fixed tests and record construction, giving2^40. This row also covers leafAddress?'s actual vertices/find/subtree enumeration and the actual LiteralProps finite projection; no Prop proof is supplied as runtime data.
+
+5 DP/paint/owner/split: <=2^32*(D+1)^6.
+  At each input node, meterTable constructs at most D rows. Each row performs two chooses over at most D Paints; each score traverses a Paint with at most D nodes. Thus all row-score visits are <=2D^4. At a leaf, owner scans actual sources and their actual label lists; summing over leaves is <=D^4. Building rows, maps, split/blocks, root/delta and the final choose add <=D^4 visits/copies. Their fixed term/control sum is <2^16 times the largest<=2^16 basic coefficient; the degree6 allowance includes both terminating terms. This does not enumerate all colorings or perform a generic tree search.
+
+6 common reconstruction/merge/best: <=2^40*(D+1)^10.
+  owners/row enumerate at most D^2 actual owner pairs. Each pair performs the two membership filters, two actual forest erases with structural block equality, and literal merged appends, degree<=3. It emits exactly one candidate forest. Each of the <=D^2 candidates then receives an actual agreement/length best check from row2, giving degree<=10. Unchecked finite candidate forests retain their actual labels before rejection. expandCommon, outside relabel/extension and retained known++F++[completed] perform the printed maps/appends and have smaller degree. The sum of at most2^16 fixed factors/terms above row2 yields2^40.
+
+7 finite Hard2 geometry/good/grouped problem preparation/per-output action:
+  <=2^44*(D+1)^10, excluding generator runs and FOREST.
+  Pair vertices/edges are bounded actual lists. SideClear repeats its named descendant/minimal/disjoint tests (it does not cache them); pairChoose scans vertices then edges only if needed. GoodPair executes three separate A++B constructions and separately owned/scoring traversals, DP, residual target/source and checked H++K. One grouped output makes two group problems; each local pretest makes at most sourceNodes+1 one-cut candidates, then schedules the actual jobs and checks/flattens its actual answers. An ordinary-mode entry prepares each partition block, repeats the written restrictions for its diagnostic conversion, and flattens actual answers; a full/retained entry constructs its actual sourceForest,owned target and reconstruction. Combining rows2,4,5,6 with fewer than16 such fixed subrecipes gives the displayed bound. Every per-output sourceCuts.length guard/recomputation remains an actual scan. A callback's returned data has the logical size condition stated in the Forest lemma, never a supplied cost.
+
+All rows are <=P(D). There is no product of a per-recursion cost constant at successive input depths: recursive tree/list children are summed as their actual visits in the displayed powers. The deliberately loose P is a maximum of finite proven recipe rows; it is not a measurement assigned to an unexpanded body. It also bounds a paid cutoff/Oriented/outer dispatch and the fixed record/thunk/control work around one such recipe.
+
+C. Unbounded occurrence and copy ledger.
+
+The source credit is used only after an actual recipe has been bounded. The following literal recurrence increments bound how often the P(D)-bounded recipes/extra long-spine copies occur. Recursive ordinary QUERY bodies are outside U0_local. FOREST bodies and generator bodies use the separate constructive lemmas, not this per-recipe bound.
+
+  generatedOutputsMeter: r.work+4, with r the actual eager RW generator;
+  appendOutputsMeter/appendEntriesMeter: both subworks+2*left.length+4;
+  entriesMeter: tail.work+2*cuts.length+20 for EVERY output, retained or refused;
+  fullOutputsSource: tail.work+2*cuts.length+6 on refusal, or the actual
+    state/checked/choose/FOREST credits+tail.work+14 on admission;
+  bothBadExecuteLocalSource: dispatch.work+tail.work+checked.work+best.work
+    +2*current.calls.length+20 on EVERY entry;
+  groupEvaluateLocalSource: current.work+answerFlatten.work+tail.work
+    +2*current.trace.length+20 on EVERY output;
+  badPairLocalSource: good.work+group.work+12*queries.length+12 on grouped arm;
+  sourceBestMeter/bestLengthMeter/bestMeter: actual current check, entire tail,
+    actual cost/length subcalls and +4/+8/+12 at EVERY candidate;
+  ordinaryQueriesMeter: actual two restrictions+tail.work+12 at EVERY query;
+  answerFlattenMeter: tail.work+2*currentForest.length+12 at EVERY pair;
+  scheduler/literal run: one actual hard/resolved prefix visit, +32 locally
+    (or +5/+8 canonical caller credit), retained query/call cells once;
+  childAnswers: current.localWork+tail.localWork+current.calls.length+3;
+  andSequence/options/guard calls: actual head test work and tail work,
+    plus the printed copied head.calls.length and positive local increment.
+
+These equations pay every outer list iteration and copied left spine, even when the actual answer is None, the candidate is refused, or equal data were seen earlier. The full tail is run wherever the body says so. reuseOutputs tests only nil and shares a nonempty probe; when nil it makes the written new generator call, whose full work is a source summand. Both initial depth3 probes remain actual calls even when the later plan does not use their outputs. CheapPlan's knownOne refusal and both full q generators are included in their taken source branches. Cheap-color/tagged-color work is counted at every leaf where it actually executes.
+
+SOURCE ledger conclusion. Expand the taken completeBranchSource case with W=0. Front and every bounded finite recipe may be charged to its actual positive enclosing increment or, for front and the three Rule4 states, to one polynomial administrative term. Each unbounded iterator above has an actual positive increment per occurrence, and each unbounded copied left spine has its literal length term. Each reached eager generator's complete work is an explicit summand. Each admitted FOREST call's forestWork is present in childForestDebit,rule4AnswersSource,paid forestDebit,or callsForestDebit at precisely the actual stored call occurrence supplied by semantic coupling. The WorkRecursion sum counts each affordable repeated branch, not a set. The pure common branch's same-budget ordinary QUERY and paid direct QUERY bodies have zero W here; their fixed control/arguments/reconstruction are the counted caller work.
+
+Consequently the sum of (a) reached top-level eager-generator work, (b) actual admitted top-level forestWork credits, and (c) positive outer iteration/copy increments is <=16*(d+1). Factor16 is a conservative simultaneous allowance for the eight finite caller families above and their two retained result/diagnostic consumers; no consumer replays an answer call. More directly their exact disjoint source summands give a smaller allowance. The finite front's j^2 diagnostic tail scans and the EXACT THREE refused Rule4 state constructions have independently proved polynomial bounds and do not use this occurrence inference. Nothing follows merely from d>=2 until those concrete bounds have been supplied.
+
+D. Coefficient and local result.
+
+Apply P(D) to the finite administrative recipes and to every credited outer occurrence/copy. Apply the separate eager generator inequality with its actual color recipe from the table; apply the separate Forest inequality with m<=8(N+1), giving J(m)<=2^44*(N+1)^3. Count both bodies as their explicit source summands, not also as outer recipe bodies. The full Rule4 administration is <=2^30*(N+1)^5, and the finite front is bounded by P(D). Those two terms are <=2*P(D). The ledger and fixed surrounding dispatch are therefore bounded by
+
+  U0_local <= 64*P(D)*(d+1).
+
+Indeed eager-generator multiplication uses factor2^16 at the primitive meter rows, already covered by the P(D) recipe envelope and its positive initial/per-step credits; plain generator expansions occur inside Forest, whose J(m) is smaller than P(D). The factor64 allows the16 ledger groups, their color/adapter consumers and the two administrative terms. It is a sum of table rows, not a per-depth product.
+
+Since D+1<=65*(N+1)^3<=2^7*R^3,
+  64*P(D) <=2^(6+48+70)*R^30 =2^124*R^30.
+Thus one explicit conservative local coefficient is
+
+  K0(N,Q,L) = 2^128*(N+Q+L+2)^32,
+  U0_local <= K0(N,Q,L)*(completeLocalDebit(T,S,q)+1).
+
+The unused factor16*R^2 is explicit slack for fixed initial/final caller state copies; all unbounded loops have already been exposed. This replaces the unsupported initial target2^4096*R^128 by a coefficient derived from the finite table. It is an AUTHOR mathematical proof at the declared projected/value-coupled boundary. Independent hostile reconstruction and the separate semantic/finite-realization/global-width joins are not supplied by this document. There is no assertion here that the original source counter itself executes or is an actual primitive-operation count.

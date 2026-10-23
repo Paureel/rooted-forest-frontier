@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "8483bfeb83e0c9b38e2d82fba5628b08e7e409a383df7e2c6bd4687611d350d0",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3886822080003185,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.34154491600020265,
+      "resource_stop": null,
+      "log_sha256": "924061f77942ea6d764adc22097d155877e8eaae860c24dac5ecd0319ccbda0b"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016158750004251488,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "HighTrace",
+      "source_sha256": "d1d7fda166a03801acd4c206a49667aad7216be3174bce71744a0693f743d43f",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8893813750000845,
+      "resource_stop": null,
+      "log_sha256": "b0c06a69a0db4c7e4bb23e496538debb6b5d1b9dbae4efe6701cbf3ffd383aaa"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('HighTrace', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/HighTrace.lean:11:35: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  c ^ (-\u21912) * c\u207b\u00b9\\nin the target expression\\n  c ^ (-\u2191(d - 1 + 1)) \u2264 c ^ (-2) * c\u207b\u00b9\\n\\nc : Rat\\nhc : 2 \u2264 c\\nd : Nat\\nhd : 3 \u2264 d\\ncp : 0 < c\\nnz : c \u2260 0\\nbound : c ^ (-\u2191(d - 1)) \u2264 c ^ (-2)\\nmul : c ^ (-\u2191(d - 1 + 1)) \u2264 c ^ (-2) * c\u207b\u00b9\\n\u22a2 c ^ (-\u2191d) \u2264 c ^ (-3)\\n'))"
+}

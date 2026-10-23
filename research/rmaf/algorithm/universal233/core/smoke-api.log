@@ -1,0 +1,16 @@
+List.append_cancel_left.{u_1} {α : Type u_1} {as bs cs : List α} (h : as ++ bs = as ++ cs) : bs = cs
+List.append_cancel_right.{u_1} {α : Type u_1} {as bs cs : List α} (h : as ++ bs = cs ++ bs) : as = cs
+List.dropLast_append_cons.{u_1} {α✝ : Type u_1} {l₁ : List α✝} {b : α✝} {l₂ : List α✝} :
+  (l₁ ++ b :: l₂).dropLast = l₁ ++ (b :: l₂).dropLast
+List.dropLast_concat.{u_1} {α✝ : Type u_1} {l₁ : List α✝} {b : α✝} : (l₁ ++ [b]).dropLast = l₁
+List.dropLast_append.{u_1} {α : Type u_1} {l₁ l₂ : List α} :
+  (l₁ ++ l₂).dropLast = if l₂.isEmpty = true then l₁.dropLast else l₁ ++ l₂.dropLast
+List.append_inj.{u_1} {α : Type u_1} {s₁ s₂ t₁ t₂ : List α} :
+  s₁ ++ t₁ = s₂ ++ t₂ → s₁.length = s₂.length → s₁ = s₂ ∧ t₁ = t₂
+List.append_inj_left.{u_1} {α✝ : Type u_1} {s₁ t₁ s₂ t₂ : List α✝} (h : s₁ ++ t₁ = s₂ ++ t₂)
+  (hl : s₁.length = s₂.length) : s₁ = s₂
+research/rmaf/algorithm/universal233/core/Smoke.lean:10:7: error(lean.unknownIdentifier): Unknown constant `List.isPrefix_iff`
+List.IsPrefix.eq_of_length_le.{u_1} {α✝ : Type u_1} {l₁ l₂ : List α✝} (h : l₁ <+: l₂) : l₂.length ≤ l₁.length → l₁ = l₂
+List.IsPrefix.eq_of_length.{u_1} {α✝ : Type u_1} {l₁ l₂ : List α✝} (h : l₁ <+: l₂) : l₁.length = l₂.length → l₁ = l₂
+research/rmaf/algorithm/universal233/core/Smoke.lean:13:7: error(lean.unknownIdentifier): Unknown constant `List.append_injective_left`
+research/rmaf/algorithm/universal233/core/Smoke.lean:14:7: error(lean.unknownIdentifier): Unknown constant `List.append_injective_right`

@@ -1,0 +1,5 @@
+import RINormalize
+#check OrdinaryDispatch.RecoveryInitialBits.normalizeBits_value
+#print axioms OrdinaryDispatch.RecoveryInitialBits.normalizeBits_value
+#check OrdinaryDispatch.RecoveryInitialBits.normalizeBits_words
+#print axioms OrdinaryDispatch.RecoveryInitialBits.normalizeBits_words

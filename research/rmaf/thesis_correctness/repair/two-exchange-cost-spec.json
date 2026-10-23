@@ -1,0 +1,24 @@
+{
+  "status": "frozen-before-construction",
+  "target": "Natural-number cut accounting for Lemma6.10's two normalization exchanges, using inequalities rather than the source's unjustified equality E11=E1.",
+  "variables": {
+    "base": "Original completion cut count",
+    "p1,p2,p3": "Sizes of prefix subsets E1,E2,E3; p2 counts existing pendant cuts",
+    "added": "Missing pendant cuts actually added",
+    "restore1": "First replacement parent cut, zero if p3=1",
+    "removed2": "Actual second path cut count, may exceed prefix p1",
+    "restore2": "Second replacement parent cut, zero if removed2<=1"
+  },
+  "hypotheses": ["p2<=2", "p3>=1", "p1+p2+p3>=2", "added+p2<=2", "restore1<=1", "p3=1 -> restore1=0", "p3=1 -> p1<=removed2", "p3>=2 -> removed2>=1", "restore2<=1", "removed2<=1 -> restore2=0", "p3<=base+added", "removed2<=base+added-p3+restore1"],
+  "conclusion": "base+added-p3+restore1-removed2+restore2<=base",
+  "positive_controls": [
+    {"name":"one-path-cut-second-exchange-compensates", "tuple":[2,1,0,1,2,0,1,0], "expected_final":2},
+    {"name":"two-path-cuts-one-parent-each", "tuple":[3,0,0,2,2,1,1,0], "expected_final":3},
+    {"name":"both-root-parents-absent", "tuple":[3,1,0,2,2,0,1,0], "expected_final":2}
+  ],
+  "negative_controls": [
+    {"name":"omit-prefix-size", "tuple":[1,0,0,1,2,0,0,0], "expected_final":2},
+    {"name":"omit-second-cut-after-first-parent", "tuple":[2,0,0,2,2,1,0,0], "expected_final":3}
+  ],
+  "scope": "Only cardinal accounting is proved. Forest preservation, prefix/path identification, component compatibility and original-edge provenance stay outside this scalar statement."
+}

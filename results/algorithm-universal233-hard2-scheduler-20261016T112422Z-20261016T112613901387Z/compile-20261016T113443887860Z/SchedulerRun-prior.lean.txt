@@ -1,0 +1,82 @@
+import SchedulerAtoms
+namespace OrdinaryDispatch.Hard2SourceWork
+open Universal233 WholeSourceWork PaidQueries
+
+/-- Literal scheduler traversal. Callback work is accumulated at every actual
+query, including the failure that stops a run. The local bill covers branch,
+record, Option map and cons operations; it does not reuse declared callerWork. -/
+def runSourceMeter {P A : Type} (f : P→Nat→Charged (Option (Nat×A)))
+ (b : Nat) : List (Job P A)→MeterReceipt P A
+ | []=>⟨⟨some [],[],0⟩,[],2,0⟩
+ | .resolved _ c a::js=>let r:=runSourceMeter f b js
+   ⟨⟨r.value.answers.map ((c,a)::·),r.value.calls,r.value.visits+1⟩,
+     r.queries,r.callerWork+32,r.recursiveWork⟩
+ | .hard p::js=>let x:=f p b
+   match x.value with
+   | none=>⟨⟨none,[b],1⟩,[(p,b)],32,x.work⟩
+   | some a=>let r:=runSourceMeter f b js
+     ⟨⟨r.value.answers.map (a::·),b::r.value.calls,r.value.visits+1⟩,
+       (p,b)::r.queries,r.callerWork+32,x.work+r.recursiveWork⟩
+
+@[simp] theorem runSourceMeter_value {P A : Type}
+ (f : P→Nat→Charged (Option (Nat×A))) (b : Nat) (js : List (Job P A)) :
+ (runSourceMeter f b js).value=run (fun p b=>(f p b).value) b js:=by
+ induction js with
+ | nil=>rfl
+ | cons j js ih=>cases j with
+   | resolved p c a=>simp only [runSourceMeter,run,ih]
+   | hard p=>cases h:(f p b).value <;> simp only [runSourceMeter,run,h,ih]
+
+theorem runSourceMeter_queries {P A : Type}
+ (f : P→Nat→Charged (Option (Nat×A))) (b : Nat) (js : List (Job P A)) :
+ (runSourceMeter f b js).queries=(meterRun (fun p b=>(f p b).value) (fun _ _=>0) b js).queries:=by
+ induction js with
+ | nil=>rfl
+ | cons j js ih=>cases j with
+   | resolved p c a=>simpa only [runSourceMeter,meterRun] using ih
+   | hard p=>cases h:(f p b).value <;> simp only [runSourceMeter,meterRun,h,ih]
+
+theorem runSourceMeter_callback_split {P A : Type}
+ (f : P→Nat→Charged (Option (Nat×A))) (b : Nat) (js : List (Job P A)) :
+ (runSourceMeter f b js).recursiveWork=
+  ((runSourceMeter f b js).queries.map (fun pb=>(f pb.1 pb.2).work)).sum:=by
+ induction js with
+ | nil=>rfl
+ | cons j js ih=>cases j with
+   | resolved p c a=>simpa only [runSourceMeter] using ih
+   | hard p=>cases h:(f p b).value <;> simp [runSourceMeter,h,ih]
+
+theorem runSourceMeter_caller_bound {P A : Type}
+ (f : P→Nat→Charged (Option (Nat×A))) (b : Nat) (js : List (Job P A)) :
+ (runSourceMeter f b js).callerWork≤32*js.length+2:=by
+ induction js with
+ | nil=>simp [runSourceMeter]
+ | cons j js ih=>cases j with
+   | resolved p c a=>simp only [runSourceMeter,List.length_cons];omega
+   | hard p=>cases h:(f p b).value <;> simp only [runSourceMeter,h,List.length_cons] <;> omega
+
+theorem runSourceMeter_queries_bound {P A : Type}
+ (f : P→Nat→Charged (Option (Nat×A))) (b : Nat) (js : List (Job P A)) :
+ (runSourceMeter f b js).queries.length≤js.length:=by
+ induction js with
+ | nil=>simp [runSourceMeter]
+ | cons j js ih=>cases j with
+   | resolved p c a=>simp only [runSourceMeter,List.length_cons];omega
+   | hard p=>cases h:(f p b).value <;> simp only [runSourceMeter,h,List.length_cons,List.length_nil] <;> omega
+
+theorem runSourceMeter_query_origin {P A : Type}
+ (f : P→Nat→Charged (Option (Nat×A))) (b : Nat) (js : List (Job P A))
+ (pb : P×Nat) (h:pb∈(runSourceMeter f b js).queries) : .hard pb.1∈js ∧ pb.2=b:=by
+ induction js with
+ | nil=>simp [runSourceMeter] at h
+ | cons j js ih=>cases j with
+   | resolved p c a=>
+     have r:=ih h
+     exact ⟨List.mem_cons_of_mem _ r.1,r.2⟩
+   | hard p=>
+     cases hx:(f p b).value <;> simp only [runSourceMeter,hx,List.mem_cons,List.mem_singleton] at h
+     · subst pb;exact ⟨by simp,rfl⟩
+     · rcases h with he|ht
+       · subst pb;exact ⟨by simp,rfl⟩
+       · have r:=ih ht;exact ⟨List.mem_cons_of_mem _ r.1,r.2⟩
+end OrdinaryDispatch.Hard2SourceWork

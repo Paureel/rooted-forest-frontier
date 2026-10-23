@@ -1,0 +1,147 @@
+import InspectionBound
+namespace GenericForest.CheckCorrespondence
+open RMAF ForestState RestrictionBridge Universal233 SourceCoverage WholeSourceWork CoreWork FrontierWork PaidQueries
+
+def recursiveCandidates (actual : Ordinary) (t : Tree) (ss : List Tree) (h : Overlap) (q : Nat) : List Forest :=
+ (branches t ss h q).filterMap fun io=>
+  let d:=io.2.sourceCuts.length
+  if _hd : 1≤d ∧ d≤q then solve actual (some t) (replace ss io.1 io.2.partition) (q-d) else none
+
+theorem actual_raw_checks_bound (actual : Ordinary) (t : Tree) (ss : List Tree) (h : Overlap) (q : Nat) :
+ ((recursiveCandidates actual t ss h q).map (fun F=>(meterAccepted (some t) ss q F).work)).sum≤
+ (recursiveCandidates actual t ss h q).length*inspectionBill (some t) ss q := by
+ apply raw_checks_bound
+ intro F hF
+ obtain ⟨io,_,hf⟩:=List.mem_filterMap.mp hF
+ dsimp only at hf
+ split at hf
+ · exact state_payload_forest_return _ _ _ _ _ hf
+ · contradiction
+
+def jobWeight (j : Job (Tree×Tree) Forest) := (leaves j.problem.2).length
+
+def JobPayload (j : Job (Tree×Tree) Forest) : Prop :=
+ DepthOne.proper j.problem.1 j.problem.2=true ∧
+ match j with
+ | .resolved _ _ F=>F.length≤jobWeight j ∧ F.flatten.length≤jobWeight j
+ | .hard _=>True
+
+theorem ordinary_payload_source (actual : Ordinary) (bound : ReturnedPayloadBound actual) (p : Tree×Tree)
+ (b : Nat) (F : Forest) (proper : DepthOne.proper p.1 p.2=true) (answer : actual p.1 p.2 b=some F) :
+ F.length≤(leaves p.2).length ∧ F.flatten.length≤(leaves p.2).length := by
+ have h:=bound _ _ _ _ proper answer
+ have eq : (leaves p.1).length=(leaves p.2).length:=by
+  simp only [DepthOne.proper,Bool.and_eq_true,decide_eq_true_eq] at proper
+  exact proper.2.length_eq
+ exact ⟨by omega,by have size:=h.1.length_eq;omega⟩
+
+theorem run_payload (actual : Ordinary) (bound : ReturnedPayloadBound actual) (b : Nat)
+ (js : List (Job (Tree×Tree) Forest)) (payload : ∀j∈js,JobPayload j)
+ (xs : List (Nat×Forest))
+ (answer : (run (fun p b=>(actual p.1 p.2 b).map (fun F=>(F.length-1,F))) b js).answers=some xs) :
+ (xs.flatMap Prod.snd).length≤(js.map jobWeight).sum ∧
+ (xs.flatMap Prod.snd).flatten.length≤(js.map jobWeight).sum := by
+ induction js generalizing xs with
+ | nil=>have eq : xs=[]:=by simpa only [run,Option.some.injEq] using answer.symm;subst xs;simp
+ | cons j js ih=>
+  have tailPayload:=fun k hk=>payload k (by simp [hk])
+  have headPayload:=payload j (by simp)
+  cases j with
+  | resolved p c F=>
+   cases he : (run (fun p b=>(actual p.1 p.2 b).map (fun F=>(F.length-1,F))) b js).answers with
+   | none=>simp [run,he] at answer
+   | some ys=>
+    have eq : xs=(c,F)::ys:=by simpa [run,he] using answer.symm
+    subst xs
+    have ht:=ih tailPayload ys he
+    have hh:=headPayload.2
+    simp only [List.flatMap_cons,List.flatMap_nil,List.length_append,List.flatten_append,
+     List.map_cons,List.sum_cons]
+    exact ⟨Nat.add_le_add hh.1 ht.1,Nat.add_le_add hh.2 ht.2⟩
+  | hard p=>
+   cases ha : actual p.1 p.2 b with
+   | none=>simp [run,ha] at answer
+   | some F=>
+    cases he : (run (fun p b=>(actual p.1 p.2 b).map (fun F=>(F.length-1,F))) b js).answers with
+    | none=>simp [run,ha,he] at answer
+    | some ys=>
+     have eq : xs=(F.length-1,F)::ys:=by simpa [run,ha,he] using answer.symm
+     subst xs
+     have ht:=ih tailPayload ys he
+     have hh:=ordinary_payload_source actual bound p b F headPayload.1 ha
+     simp only [List.flatMap_cons,List.flatMap_nil,List.length_append,List.flatten_append,List.map_cons,List.sum_cons]
+     exact ⟨Nat.add_le_add hh.1 ht.1,Nat.add_le_add hh.2 ht.2⟩
+
+theorem jobs_payload (t : Tree) (ss : List Tree)
+ (actual : ∀s∈ss,componentPair t s=some (pair t s))
+ (proper : ∀s∈ss,DepthOne.proper (pair t s).1 (pair t s).2=true)
+ (js : List (Job (Tree×Tree) Forest)) (hjobs : jobs t ss=some js) :
+ (∀j∈js,JobPayload j) ∧ (js.map jobWeight).sum=(ss.map leaves).flatten.length := by
+ induction ss generalizing js with
+ | nil=>have eq : js=[]:=by simpa [jobs] using hjobs.symm;subst js;simp
+ | cons s ss ih=>
+  have pa:=actual s (by simp)
+  have pp:=proper s (by simp)
+  cases he : DepthOne.pretest01 (pair t s).1 (pair t s).2 with
+  | refused=>simp [jobs,pa,he] at hjobs
+  | rejected=>
+   cases ht : jobs t ss with
+   | none=>simp [jobs,pa,he,ht] at hjobs
+   | some ks=>
+    have eq : js=.hard (pair t s)::ks:=by simpa [jobs,pa,he,ht] using hjobs.symm
+    subst js
+    have tailData:=ih (fun r hr=>actual r (by simp [hr])) (fun r hr=>proper r (by simp [hr])) ks ht
+    constructor
+    · intro j hj;rcases List.mem_cons.mp hj with rfl|hj
+      · exact ⟨pp,True.intro⟩
+      · exact tailData.1 j hj
+    · simpa [jobWeight,Job.problem,pair,tailData.2] using congrArg (fun x=>(leaves s).length+x) tailData.2
+  | found c=>
+   cases ht : jobs t ss with
+   | none=>simp [jobs,pa,he,ht] at hjobs
+   | some ks=>
+    have eq : js=.resolved (pair t s) (DepthOne.cutCost c) (DepthOne.forest s c)::ks:=by
+     simpa [jobs,pa,he,ht] using hjobs.symm
+    subst js
+    have tailData:=ih (fun r hr=>actual r (by simp [hr])) (fun r hr=>proper r (by simp [hr])) ks ht
+    have af:=(DepthOne.found_globally_minimum _ _ c he).1
+    have part : partitionCheck (leaves s) (DepthOne.forest s c)=true:=by
+     simp only [agreement,Bool.and_eq_true] at af
+     simpa only [pair] using af.1.1.1.2
+    have nd : (leaves s).Nodup:=by
+     simp only [DepthOne.proper,Bool.and_eq_true,decide_eq_true_eq] at pp
+     simpa only [pair] using pp.1.2
+    have data : (DepthOne.forest s c).length≤(leaves s).length ∧
+     (DepthOne.forest s c).flatten.length≤(leaves s).length:=
+      ⟨partitionCheck_block_bound _ _ part,by have h:=checked_flatten_perm _ _ nd part;have eq:=h.length_eq;omega⟩
+    constructor
+    · intro j hj;rcases List.mem_cons.mp hj with rfl|hj
+      · exact ⟨pp,data⟩
+      · exact tailData.1 j hj
+    · simpa [jobWeight,Job.problem,pair,tailData.2] using congrArg (fun x=>(leaves s).length+x) tailData.2
+
+theorem scheduled_payload (actual : Ordinary) (bound : ReturnedPayloadBound actual) (t : Tree)
+ (ss : List Tree) (q : Nat) (proper : ForestState.proper (some t) ss=true)
+ (js : List (Job (Tree×Tree) Forest)) (hjobs : jobs t ss=some js) (xs : List (Nat×Forest))
+ (answer : (schedule (fun p b=>(actual p.1 p.2 b).map (fun F=>(F.length-1,F))) q js).answers=some xs) :
+ StatePayloadSize (some t) (xs.flatMap Prod.snd) := by
+ have data:=jobs_payload t ss (fun s hs=>(pair_actual t ss proper s hs).1)
+   (fun s hs=>(pair_actual t ss proper s hs).2.2) js hjobs
+ unfold schedule at answer
+ split at answer
+ · contradiction
+ · cases hr : (run (fun p b=>(actual p.1 p.2 b).map (fun F=>(F.length-1,F))) (allocated q js) js).answers with
+   | none=>simp [hr] at answer
+   | some ys=>
+    by_cases hc : answerCost ys≤q
+    · have eq : xs=ys:=by simpa [hr,hc] using answer.symm
+      subst xs
+      have sizes:=run_payload actual bound (allocated q js) js data.1 ys hr
+      have perm:=checked_flatten_perm _ _ (proper_parts _ _ proper).1 (proper_parts _ _ proper).2
+      have size:=perm.length_eq
+      unfold StatePayloadSize
+      rw [data.2] at sizes
+      simp only [labels]
+      exact ⟨by omega,by omega⟩
+    · simp [hr,hc] at answer
+end GenericForest.CheckCorrespondence

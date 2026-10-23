@@ -1,0 +1,32 @@
+{
+  "command": [
+    ".venv/bin/python3",
+    "-c",
+    "import os; os.write(1,b'x'*10000)"
+  ],
+  "limits": {
+    "name": "calibration-line",
+    "wall": 30,
+    "rss": 3221225472,
+    "raw": 16777216,
+    "line": 1024,
+    "compressed": 268435456,
+    "floor": 3221225472,
+    "cmd": [
+      "--",
+      ".venv/bin/python3",
+      "-c",
+      "import os; os.write(1,b'x'*10000)"
+    ]
+  },
+  "started_unix": 1792150020.6706262,
+  "initial_free_bytes": 15012212736,
+  "measurement": "psutil recursive RSS samples plus wait4 direct-child ru_maxrss",
+  "exit_code": -9,
+  "violation": "rss_measurement:PermissionError(1, 'Operation not permitted (originated from sysctl() malloc 1/3)')",
+  "wall_seconds": 0.014687917000628659,
+  "peak_rss_bytes": 737280,
+  "raw_bytes": 0,
+  "rss_observations": 0,
+  "compressed_bytes": 54
+}

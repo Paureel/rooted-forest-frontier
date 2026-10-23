@@ -1,0 +1,1 @@
+Development logs only. Exact failed sources are retained in separately named development/precontrols receipts. Final source/kernel claims depend on fresh isolated replay, never these warm development objects.

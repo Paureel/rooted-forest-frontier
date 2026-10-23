@@ -1,0 +1,5 @@
+import Rule5CommonSelectedTraceV3
+#check Universal233.Rule5ExecutionSource.bestLengthMeter
+#check Universal233.Rule5PrefixLocalWork.Measured
+#check OrdinaryDispatch.EarlyLocalWork.Measured
+#check OrdinaryDispatch.FullSourceWork.measuredAgreement

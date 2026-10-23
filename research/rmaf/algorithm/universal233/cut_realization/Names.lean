@@ -1,0 +1,13 @@
+import OriginalGraph
+#check List.Perm.append_left
+#check List.Perm.append_right
+#check List.perm_append_comm
+#check List.Perm.append_comm
+#check List.Perm.mem_iff
+#check List.Perm.nodup_iff
+#check List.Perm.nodup
+#check List.append_right_inj
+#check List.getLast?_eq_some_iff
+#check List.exists_cons_append
+#check List.eq_nil_or_concat
+#check List.isPrefixOf_iff_prefix

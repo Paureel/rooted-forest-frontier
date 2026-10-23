@@ -1,0 +1,53 @@
+'OwnHigh.singleton_or_shared' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OwnHigh.agreement_singleton_or_shared' depends on axioms: [propext, Classical.choice, Quot.sound]
+theorem OwnHigh.agreement_singleton_or_shared : ∀ (T S : Tree) (p : Vertex) (a b : Nat) (F : List (List Nat)),
+  CoreGraph.CherryAt T p a b → agreement T S F = true → [a] ∈ F ∨ [b] ∈ F ∨ ∃ P, P ∈ F ∧ a ∈ P ∧ b ∈ P :=
+fun T S p a b F hc hag =>
+  singleton_or_shared T p a b F hc
+    (Eq.mp
+              (Eq.trans
+                (Bool.and_eq_true
+                  (partitionCheck (leaves T) F && partitionCheck (leaves S) F && F.all (restrictionAgrees T S) &&
+                    pairwiseEmbeddings T F)
+                  (pairwiseEmbeddings S F))
+                (congrFun'
+                  (congrArg And
+                    (Eq.trans
+                      (Bool.and_eq_true
+                        (partitionCheck (leaves T) F && partitionCheck (leaves S) F && F.all (restrictionAgrees T S))
+                        (pairwiseEmbeddings T F))
+                      (congrFun'
+                        (congrArg And
+                          (Eq.trans
+                            (Bool.and_eq_true (partitionCheck (leaves T) F && partitionCheck (leaves S) F)
+                              (F.all (restrictionAgrees T S)))
+                            (congrFun'
+                              (congrArg And
+                                (Bool.and_eq_true (partitionCheck (leaves T) F) (partitionCheck (leaves S) F)))
+                              (F.all (restrictionAgrees T S) = true))))
+                        (pairwiseEmbeddings T F = true))))
+                  (pairwiseEmbeddings S F = true)))
+              hag).left.left.left.left
+    (Eq.mp
+          (Eq.trans
+            (Bool.and_eq_true
+              (partitionCheck (leaves T) F && partitionCheck (leaves S) F && F.all (restrictionAgrees T S) &&
+                pairwiseEmbeddings T F)
+              (pairwiseEmbeddings S F))
+            (congrFun'
+              (congrArg And
+                (Eq.trans
+                  (Bool.and_eq_true
+                    (partitionCheck (leaves T) F && partitionCheck (leaves S) F && F.all (restrictionAgrees T S))
+                    (pairwiseEmbeddings T F))
+                  (congrFun'
+                    (congrArg And
+                      (Eq.trans
+                        (Bool.and_eq_true (partitionCheck (leaves T) F && partitionCheck (leaves S) F)
+                          (F.all (restrictionAgrees T S)))
+                        (congrFun'
+                          (congrArg And (Bool.and_eq_true (partitionCheck (leaves T) F) (partitionCheck (leaves S) F)))
+                          (F.all (restrictionAgrees T S) = true))))
+                    (pairwiseEmbeddings T F = true))))
+              (pairwiseEmbeddings S F = true)))
+          hag).left.right

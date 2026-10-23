@@ -1,0 +1,1057 @@
+{
+  "catches": [
+    {
+      "alarm": {
+        "actual": 2,
+        "expected": 3,
+        "site": "count",
+        "witness": null
+      },
+      "caught": true,
+      "id": "count"
+    },
+    {
+      "alarm": {
+        "actual": [
+          [
+            "a",
+            "b"
+          ]
+        ],
+        "expected": [
+          [
+            "a"
+          ],
+          [
+            "b"
+          ]
+        ],
+        "site": "components",
+        "witness": null
+      },
+      "caught": true,
+      "id": "components"
+    },
+    {
+      "alarm": {
+        "actual": [
+          "es",
+          "eb"
+        ],
+        "expected": [
+          "ea"
+        ],
+        "site": "path",
+        "witness": null
+      },
+      "caught": true,
+      "id": "path"
+    },
+    {
+      "alarm": {
+        "actual": [
+          [
+            "",
+            [
+              [
+                "a",
+                []
+              ],
+              [
+                "",
+                [
+                  [
+                    "b",
+                    []
+                  ],
+                  [
+                    "c",
+                    []
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        "expected": [
+          [
+            "",
+            [
+              [
+                "",
+                [
+                  [
+                    "a",
+                    []
+                  ],
+                  [
+                    "b",
+                    []
+                  ]
+                ]
+              ],
+              [
+                "c",
+                []
+              ]
+            ]
+          ]
+        ],
+        "site": "topology",
+        "witness": null
+      },
+      "caught": true,
+      "id": "topology"
+    },
+    {
+      "alarm": {
+        "actual": [
+          "r",
+          "a"
+        ],
+        "expected": [
+          "s",
+          "a"
+        ],
+        "site": "surviving_ids",
+        "witness": null
+      },
+      "caught": true,
+      "id": "surviving_ids"
+    },
+    {
+      "alarm": {
+        "actual": false,
+        "expected": true,
+        "site": "origin belongs to path",
+        "witness": null
+      },
+      "caught": true,
+      "id": "wrong_origin"
+    },
+    {
+      "alarm": {
+        "actual": false,
+        "expected": true,
+        "site": "L1 end endpoint",
+        "witness": null
+      },
+      "caught": true,
+      "id": "forged_path"
+    },
+    {
+      "alarm": {
+        "actual": false,
+        "expected": true,
+        "site": "no fictitious incoming edge",
+        "witness": null
+      },
+      "caught": true,
+      "id": "fictitious_parent"
+    },
+    {
+      "alarm": {
+        "actual": false,
+        "expected": true,
+        "site": "actual edge",
+        "witness": null
+      },
+      "caught": true,
+      "id": "suppressed_edge"
+    },
+    {
+      "alarm": {
+        "actual": false,
+        "expected": true,
+        "site": "unique labels",
+        "witness": null
+      },
+      "caught": true,
+      "id": "duplicate_label"
+    },
+    {
+      "alarm": {
+        "actual": false,
+        "expected": true,
+        "site": "indegree at most one",
+        "witness": null
+      },
+      "caught": true,
+      "id": "indegree"
+    }
+  ],
+  "controls": [
+    {
+      "C": [],
+      "id": "identity",
+      "outcomes": [
+        {
+          "K": [],
+          "origins": [],
+          "topology": [
+            [
+              "rho",
+              [
+                [
+                  "",
+                  [
+                    [
+                      "",
+                      [
+                        [
+                          "b",
+                          []
+                        ],
+                        [
+                          "c",
+                          []
+                        ]
+                      ]
+                    ],
+                    [
+                      "a",
+                      []
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ],
+          "yielded": {
+            "edges": [
+              [
+                "r-a",
+                "r",
+                "a"
+              ],
+              [
+                "r-s",
+                "r",
+                "s"
+              ],
+              [
+                "rho-r",
+                "rho",
+                "r"
+              ],
+              [
+                "s-b",
+                "s",
+                "b"
+              ],
+              [
+                "s-c",
+                "s",
+                "c"
+              ]
+            ],
+            "labels": {
+              "a": "a",
+              "b": "b",
+              "c": "c",
+              "rho": "rho"
+            },
+            "vertices": [
+              "a",
+              "b",
+              "c",
+              "r",
+              "rho",
+              "s"
+            ]
+          }
+        }
+      ],
+      "paths": {
+        "r-a": [
+          "ea"
+        ],
+        "r-s": [
+          "es"
+        ],
+        "rho-r": [
+          "er"
+        ],
+        "s-b": [
+          "eb"
+        ],
+        "s-c": [
+          "ec"
+        ]
+      },
+      "residual": {
+        "edges": [
+          [
+            "r-a",
+            "r",
+            "a"
+          ],
+          [
+            "r-s",
+            "r",
+            "s"
+          ],
+          [
+            "rho-r",
+            "rho",
+            "r"
+          ],
+          [
+            "s-b",
+            "s",
+            "b"
+          ],
+          [
+            "s-c",
+            "s",
+            "c"
+          ]
+        ],
+        "labels": {
+          "a": "a",
+          "b": "b",
+          "c": "c",
+          "rho": "rho"
+        },
+        "vertices": [
+          "a",
+          "b",
+          "c",
+          "r",
+          "rho",
+          "s"
+        ]
+      },
+      "trace": []
+    },
+    {
+      "C": [
+        "ec"
+      ],
+      "id": "suppressed-path-choice",
+      "outcomes": [
+        {
+          "K": [
+            "ec",
+            "es"
+          ],
+          "origins": [
+            "es"
+          ],
+          "topology": [
+            [
+              "b",
+              []
+            ],
+            [
+              "c",
+              []
+            ],
+            [
+              "rho",
+              [
+                [
+                  "a",
+                  []
+                ]
+              ]
+            ]
+          ],
+          "yielded": {
+            "edges": [
+              [
+                "rho-a",
+                "rho",
+                "a"
+              ]
+            ],
+            "labels": {
+              "a": "a",
+              "b": "b",
+              "c": "c",
+              "rho": "rho"
+            },
+            "vertices": [
+              "a",
+              "b",
+              "c",
+              "rho"
+            ]
+          }
+        },
+        {
+          "K": [
+            "eb",
+            "ec"
+          ],
+          "origins": [
+            "eb"
+          ],
+          "topology": [
+            [
+              "b",
+              []
+            ],
+            [
+              "c",
+              []
+            ],
+            [
+              "rho",
+              [
+                [
+                  "a",
+                  []
+                ]
+              ]
+            ]
+          ],
+          "yielded": {
+            "edges": [
+              [
+                "rho-a",
+                "rho",
+                "a"
+              ]
+            ],
+            "labels": {
+              "a": "a",
+              "b": "b",
+              "c": "c",
+              "rho": "rho"
+            },
+            "vertices": [
+              "a",
+              "b",
+              "c",
+              "rho"
+            ]
+          }
+        }
+      ],
+      "paths": {
+        "r-a": [
+          "ea"
+        ],
+        "r-b": [
+          "es",
+          "eb"
+        ],
+        "rho-r": [
+          "er"
+        ]
+      },
+      "residual": {
+        "edges": [
+          [
+            "r-a",
+            "r",
+            "a"
+          ],
+          [
+            "r-b",
+            "r",
+            "b"
+          ],
+          [
+            "rho-r",
+            "rho",
+            "r"
+          ]
+        ],
+        "labels": {
+          "a": "a",
+          "b": "b",
+          "c": "c",
+          "rho": "rho"
+        },
+        "vertices": [
+          "a",
+          "b",
+          "c",
+          "r",
+          "rho"
+        ]
+      },
+      "trace": [
+        [
+          "suppress_unlabelled_unary",
+          "s",
+          "r",
+          "b"
+        ]
+      ]
+    },
+    {
+      "C": [
+        "ec",
+        "er"
+      ],
+      "id": "absent-parent",
+      "outcomes": [
+        {
+          "K": [
+            "ec",
+            "er",
+            "es"
+          ],
+          "origins": [
+            "es"
+          ],
+          "topology": [
+            [
+              "a",
+              []
+            ],
+            [
+              "b",
+              []
+            ],
+            [
+              "c",
+              []
+            ],
+            [
+              "rho",
+              []
+            ]
+          ],
+          "yielded": {
+            "edges": [],
+            "labels": {
+              "a": "a",
+              "b": "b",
+              "c": "c",
+              "rho": "rho"
+            },
+            "vertices": [
+              "a",
+              "b",
+              "c",
+              "rho"
+            ]
+          }
+        },
+        {
+          "K": [
+            "eb",
+            "ec",
+            "er"
+          ],
+          "origins": [
+            "eb"
+          ],
+          "topology": [
+            [
+              "a",
+              []
+            ],
+            [
+              "b",
+              []
+            ],
+            [
+              "c",
+              []
+            ],
+            [
+              "rho",
+              []
+            ]
+          ],
+          "yielded": {
+            "edges": [],
+            "labels": {
+              "a": "a",
+              "b": "b",
+              "c": "c",
+              "rho": "rho"
+            },
+            "vertices": [
+              "a",
+              "b",
+              "c",
+              "rho"
+            ]
+          }
+        }
+      ],
+      "paths": {
+        "r-a": [
+          "ea"
+        ],
+        "r-b": [
+          "es",
+          "eb"
+        ]
+      },
+      "residual": {
+        "edges": [
+          [
+            "r-a",
+            "r",
+            "a"
+          ],
+          [
+            "r-b",
+            "r",
+            "b"
+          ]
+        ],
+        "labels": {
+          "a": "a",
+          "b": "b",
+          "c": "c",
+          "rho": "rho"
+        },
+        "vertices": [
+          "a",
+          "b",
+          "c",
+          "r",
+          "rho"
+        ]
+      },
+      "trace": [
+        [
+          "suppress_unlabelled_unary",
+          "s",
+          "r",
+          "b"
+        ]
+      ]
+    },
+    {
+      "C": [
+        "ea",
+        "eb",
+        "ec",
+        "er"
+      ],
+      "id": "empty-component-and-redundant-cost",
+      "outcomes": [
+        {
+          "K": [
+            "ea",
+            "eb",
+            "ec",
+            "er"
+          ],
+          "origins": [],
+          "topology": [
+            [
+              "a",
+              []
+            ],
+            [
+              "b",
+              []
+            ],
+            [
+              "c",
+              []
+            ],
+            [
+              "rho",
+              []
+            ]
+          ],
+          "yielded": {
+            "edges": [],
+            "labels": {
+              "a": "a",
+              "b": "b",
+              "c": "c",
+              "rho": "rho"
+            },
+            "vertices": [
+              "a",
+              "b",
+              "c",
+              "rho"
+            ]
+          }
+        }
+      ],
+      "paths": {},
+      "residual": {
+        "edges": [],
+        "labels": {
+          "a": "a",
+          "b": "b",
+          "c": "c",
+          "rho": "rho"
+        },
+        "vertices": [
+          "a",
+          "b",
+          "c",
+          "rho"
+        ]
+      },
+      "trace": [
+        [
+          "delete_unlabelled_root_stem",
+          "r",
+          "s"
+        ],
+        [
+          "delete_unlabelled_leaf",
+          "s"
+        ]
+      ]
+    },
+    {
+      "C": [
+        "ec"
+      ],
+      "id": "sequential-choice",
+      "outcomes": [
+        {
+          "K": [
+            "ec",
+            "er",
+            "es"
+          ],
+          "topology": [
+            [
+              "a",
+              []
+            ],
+            [
+              "b",
+              []
+            ],
+            [
+              "c",
+              []
+            ],
+            [
+              "rho",
+              []
+            ]
+          ],
+          "yielded": {
+            "edges": [],
+            "labels": {
+              "a": "a",
+              "b": "b",
+              "c": "c",
+              "rho": "rho"
+            },
+            "vertices": [
+              "a",
+              "b",
+              "c",
+              "rho"
+            ]
+          }
+        },
+        {
+          "K": [
+            "ea",
+            "ec",
+            "es"
+          ],
+          "topology": [
+            [
+              "a",
+              []
+            ],
+            [
+              "b",
+              []
+            ],
+            [
+              "c",
+              []
+            ],
+            [
+              "rho",
+              []
+            ]
+          ],
+          "yielded": {
+            "edges": [],
+            "labels": {
+              "a": "a",
+              "b": "b",
+              "c": "c",
+              "rho": "rho"
+            },
+            "vertices": [
+              "a",
+              "b",
+              "c",
+              "rho"
+            ]
+          }
+        }
+      ],
+      "paths": {
+        "r-a": [
+          "ea"
+        ],
+        "r-b": [
+          "es",
+          "eb"
+        ],
+        "rho-r": [
+          "er"
+        ]
+      },
+      "residual": {
+        "edges": [
+          [
+            "r-a",
+            "r",
+            "a"
+          ],
+          [
+            "r-b",
+            "r",
+            "b"
+          ],
+          [
+            "rho-r",
+            "rho",
+            "r"
+          ]
+        ],
+        "labels": {
+          "a": "a",
+          "b": "b",
+          "c": "c",
+          "rho": "rho"
+        },
+        "vertices": [
+          "a",
+          "b",
+          "c",
+          "r",
+          "rho"
+        ]
+      },
+      "trace": [
+        [
+          "suppress_unlabelled_unary",
+          "s",
+          "r",
+          "b"
+        ]
+      ]
+    },
+    {
+      "C": [
+        "ec"
+      ],
+      "both_origins": {
+        "K": [
+          "eb",
+          "ec",
+          "es"
+        ],
+        "topology": [
+          [
+            "b",
+            []
+          ],
+          [
+            "c",
+            []
+          ],
+          [
+            "rho",
+            [
+              [
+                "a",
+                []
+              ]
+            ]
+          ]
+        ],
+        "yielded": {
+          "edges": [
+            [
+              "rho-a",
+              "rho",
+              "a"
+            ]
+          ],
+          "labels": {
+            "a": "a",
+            "b": "b",
+            "c": "c",
+            "rho": "rho"
+          },
+          "vertices": [
+            "a",
+            "b",
+            "c",
+            "rho"
+          ]
+        }
+      },
+      "id": "two-protected-origins-one-residual-edge",
+      "outcomes": [
+        {
+          "K": [
+            "ec",
+            "es"
+          ],
+          "origins": [
+            "es"
+          ],
+          "topology": [
+            [
+              "b",
+              []
+            ],
+            [
+              "c",
+              []
+            ],
+            [
+              "rho",
+              [
+                [
+                  "a",
+                  []
+                ]
+              ]
+            ]
+          ],
+          "yielded": {
+            "edges": [
+              [
+                "rho-a",
+                "rho",
+                "a"
+              ]
+            ],
+            "labels": {
+              "a": "a",
+              "b": "b",
+              "c": "c",
+              "rho": "rho"
+            },
+            "vertices": [
+              "a",
+              "b",
+              "c",
+              "rho"
+            ]
+          }
+        },
+        {
+          "K": [
+            "eb",
+            "ec"
+          ],
+          "origins": [
+            "eb"
+          ],
+          "topology": [
+            [
+              "b",
+              []
+            ],
+            [
+              "c",
+              []
+            ],
+            [
+              "rho",
+              [
+                [
+                  "a",
+                  []
+                ]
+              ]
+            ]
+          ],
+          "yielded": {
+            "edges": [
+              [
+                "rho-a",
+                "rho",
+                "a"
+              ]
+            ],
+            "labels": {
+              "a": "a",
+              "b": "b",
+              "c": "c",
+              "rho": "rho"
+            },
+            "vertices": [
+              "a",
+              "b",
+              "c",
+              "rho"
+            ]
+          }
+        }
+      ],
+      "paths": {
+        "r-a": [
+          "ea"
+        ],
+        "r-b": [
+          "es",
+          "eb"
+        ],
+        "rho-r": [
+          "er"
+        ]
+      },
+      "residual": {
+        "edges": [
+          [
+            "r-a",
+            "r",
+            "a"
+          ],
+          [
+            "r-b",
+            "r",
+            "b"
+          ],
+          [
+            "rho-r",
+            "rho",
+            "r"
+          ]
+        ],
+        "labels": {
+          "a": "a",
+          "b": "b",
+          "c": "c",
+          "rho": "rho"
+        },
+        "vertices": [
+          "a",
+          "b",
+          "c",
+          "r",
+          "rho"
+        ]
+      },
+      "trace": [
+        [
+          "suppress_unlabelled_unary",
+          "s",
+          "r",
+          "b"
+        ]
+      ]
+    }
+  ],
+  "controls_count": 6,
+  "elapsed_seconds": 0.0007389170023088809,
+  "null_count": 1,
+  "pin_sha256": "73708aff38419015a0fdcf407cb78418018843199dc52ffb86696cf59e9ebef9",
+  "planted_catches": 11,
+  "script_sha256": "38ba73cf1d9492fa9931b1f9b8a3019e8b86ef533c3c1b6b91853d738708469c",
+  "status": "CONTROLS-PASS"
+}

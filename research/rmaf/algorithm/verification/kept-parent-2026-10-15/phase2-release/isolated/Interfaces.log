@@ -1,0 +1,39 @@
+Universal233.KeptParent.generated_keeps_A_C (S : RMAF.Tree) (A B C : List Nat) (cb : Nat → Nat)
+  (hp : RMAF.partitionCheck (RMAF.leaves S) [A, B, C] = true) (he : RMAF.pairwiseEmbeddings S [A, B, C] = true)
+  (q : Nat) (o : Universal233.CoreProgram.Output)
+  (ho : o ∈ (Universal233.CoreProgram.generate S (Universal233.KeptParent.keepColor A B cb) q).outputs) :
+  Universal233.KeptParent.Keeps A o ∧ Universal233.KeptParent.Keeps C o
+Universal233.KeptParent.generated_unique_kept (S : RMAF.Tree) (color : Nat → Nat) (q : Nat)
+  (o : Universal233.CoreProgram.Output) (ho : o ∈ (Universal233.CoreProgram.generate S color q).outputs) (A : List Nat)
+  (ha : A ≠ []) (hk : Universal233.KeptParent.Keeps A o) :
+  ∃ K,
+    K ∈ o.partition ∧
+      Universal233.KeptParent.SameMembers K A ∧
+        List.count K o.partition = 1 ∧
+          ∀ (L : List Nat), L ∈ o.partition → Universal233.KeptParent.SameMembers L A → L = K
+Universal233.KeptParent.restriction_agrees_same_members (S T : RMAF.Tree) (K A : List Nat)
+  (hm : Universal233.KeptParent.SameMembers K A) : RMAF.restrictionAgrees S T K = RMAF.restrictionAgrees S T A
+Universal233.KeptParent.every_output_retains_paid_A (S T : RMAF.Tree) (A B C : List Nat) (cb : Nat → Nat)
+  (hp : RMAF.partitionCheck (RMAF.leaves S) [A, B, C] = true) (he : RMAF.pairwiseEmbeddings S [A, B, C] = true)
+  (hbad : RMAF.restrictionAgrees S T A = false) (F : List (List Nat))
+  (hf : Universal233.KeptParent.LocalCompletion S T A F) (hcost : F.length = 2) (q : Nat)
+  (o : Universal233.CoreProgram.Output)
+  (ho : o ∈ (Universal233.CoreProgram.generate S (Universal233.KeptParent.keepColor A B cb) q).outputs) :
+  ∃ K,
+    K ∈ o.partition ∧
+      Universal233.KeptParent.SameMembers K A ∧
+        RMAF.restrict K S = RMAF.restrict A S ∧
+          RMAF.restrict K T = RMAF.restrict A T ∧
+            RMAF.restrictionAgrees S T K = false ∧ Universal233.KeptParent.LocalCompletion S T K F ∧ F.length - 1 = 1
+Universal233.KeptParent.every_output_retains_original_local_cut (S T : RMAF.Tree) (A B C : List Nat) (cb : Nat → Nat)
+  (hp : RMAF.partitionCheck (RMAF.leaves S) [A, B, C] = true) (he : RMAF.pairwiseEmbeddings S [A, B, C] = true)
+  (a : Universal233.CoreProgram.Output) (ha : Universal233.KeptParent.OriginalLocalOneCut S T A a) (q : Nat)
+  (o : Universal233.CoreProgram.Output)
+  (ho : o ∈ (Universal233.CoreProgram.generate S (Universal233.KeptParent.keepColor A B cb) q).outputs) :
+  ∃ K, K ∈ o.partition ∧ Universal233.KeptParent.SameMembers K A ∧ Universal233.KeptParent.OriginalLocalOneCut S T K a
+'Universal233.KeptParent.generated_keeps_A_C' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Universal233.KeptParent.generated_unique_kept' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Universal233.KeptParent.every_output_retains_paid_A' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Universal233.KeptParent.every_output_retains_original_local_cut' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

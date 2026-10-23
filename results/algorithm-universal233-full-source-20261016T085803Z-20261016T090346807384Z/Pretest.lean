@@ -1,0 +1,50 @@
+import CoreGraph
+
+/-! One-shot original-edge depth-zero/one pretest. The executable routine never
+enumerates assignments, set partitions, colors, or production core outputs. -/
+namespace Universal233.DepthOne
+open RMAF CoreGraph
+
+def vertices : Tree → List Vertex
+  | .leaf _ => [[]]
+  | .node l r => [] :: ((vertices l).map (false :: ·) ++ (vertices r).map (true :: ·))
+
+def edges : Tree → List Vertex
+  | .leaf _ => []
+  | .node l r => (vertices l).map (false :: ·) ++ (vertices r).map (true :: ·)
+
+def subtreeLabels (S : Tree) (p : Vertex) : List Nat :=
+  match subtree S p with
+  | none => []
+  | some s => leaves s
+
+def complement (S : Tree) (p : Vertex) : List Nat :=
+  (leaves S).filter (fun x => !(subtreeLabels S p).contains x)
+
+def forest (S : Tree) : Option Vertex → List (List Nat)
+  | none => [leaves S]
+  | some p => [subtreeLabels S p,complement S p]
+
+def cutCost : Option Vertex → Nat
+  | none => 0
+  | some _ => 1
+
+def candidates (S : Tree) : List (Option Vertex) := none :: (edges S).map some
+
+def proper (T S : Tree) : Bool :=
+  decide ((leaves T).Nodup) && decide ((leaves S).Nodup) && decide ((leaves T).Perm (leaves S))
+
+inductive Result where
+  | refused
+  | rejected
+  | found (cut : Option Vertex)
+  deriving DecidableEq, Repr
+
+def pretest01 (T S : Tree) : Result :=
+  if proper T S then
+    match best cutCost (fun c => agreement T S (forest S c)) (candidates S) with
+    | none => .rejected
+    | some c => .found c
+  else .refused
+
+end Universal233.DepthOne

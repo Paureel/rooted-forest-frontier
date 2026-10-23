@@ -1,0 +1,18 @@
+research/rmaf/algorithm/universal233/cut_realization/Realization.lean:73:55: error: unsolved goals
+T : Tree
+color : Nat → Nat
+t : GTree
+d : List Group
+c : List Vertex
+h : History T color t d c
+hn : (leaves T).Nodup
+hi : StateInvariant T color t d c
+hf : Facts T c [] t
+⊢ map (Prod.fst ∘ fun g => (g.origin, g.labels)) d = c
+research/rmaf/algorithm/universal233/cut_realization/Realization.lean:73:83: warning: This simp argument is unused:
+  hi.cutMap
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [pairs, List.map_map]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

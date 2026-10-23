@@ -1,0 +1,18 @@
+research/rmaf/algorithm/universal233/final_cut_recovery/BlockColors.lean:27:4: error: unsolved goals
+case cons.inl
+x : Nat
+a : List Nat
+P : List (List Nat)
+hn : (a :: P).flatten.Nodup
+hh : a.Nodup ∧ P.flatten.Nodup ∧ ∀ (a_1 : Nat), a_1 ∈ a → ∀ (b : Nat), b ∈ P.flatten → a_1 ≠ b
+hx : x ∈ a
+ih : P.flatten.Nodup → a ∈ P → blockColor P x = a.headD 0
+hb : a ∈ a :: P
+⊢ ¬x ∈ a → blockColor P x = a.head?.getD 0
+research/rmaf/algorithm/universal233/final_cut_recovery/BlockColors.lean:27:32: warning: This simp argument is unused:
+  List.contains_iff_mem.2 hx
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [blockColor]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

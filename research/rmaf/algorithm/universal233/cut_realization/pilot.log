@@ -1,0 +1,23 @@
+Universal233.Integration.erase_leaf_realization (t : CoreProgram.GTree) (hn : (Integration.origins t).Nodup)
+  (v : RMAF.Vertex) (g : CoreProgram.Group) (hv : Integration.GroupLeafAt t v g) (hvr : v ≠ []) :
+  ∃ u, CoreProgram.erase g.origin t = some u ∧ Nonempty (Integration.GLeafErase t u v g)
+Universal233.Integration.step_source_progress
+  (f : CoreProgram.GTree → List CoreProgram.Group → List RMAF.Vertex → CoreProgram.Receipt) (t : CoreProgram.GTree)
+  (detached : List CoreProgram.Group) (cuts : List RMAF.Vertex) (hn : (Integration.origins t).Nodup)
+  (hz : Integration.RootZeroOnly t) (ha : Integration.CutsAvoid t cuts)
+  (P : CoreGraph.SourcePartition (Integration.skeleton t)) (hm : CoreGraph.Monochromatic P id) :
+  ∃ Q,
+    CoreGraph.Monochromatic Q id ∧
+      Integration.GroupedTransport t (CoreProgram.normalize t) P Q ∧
+        (CoreProgram.choose (CoreProgram.normalize t) = CoreProgram.Choice.finish ∨
+          ∃ v g,
+            Integration.GroupLeafAt (CoreProgram.normalize t) v g ∧
+              v ≠ [] ∧
+                CoreGraph.SingletonBlock Q v ∧
+                  (CoreProgram.choose (CoreProgram.normalize t) = CoreProgram.Choice.one g ∨
+                      ∃ a b,
+                        CoreProgram.choose (CoreProgram.normalize t) = CoreProgram.Choice.two a b ∧ (g = a ∨ g = b)) ∧
+                    Integration.SourceAttempt f (CoreProgram.normalize t) detached cuts Q v g)
+real 0.40
+user 0.15
+sys 0.21

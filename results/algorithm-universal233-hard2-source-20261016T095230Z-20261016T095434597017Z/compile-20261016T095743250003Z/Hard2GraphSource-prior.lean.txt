@@ -1,0 +1,72 @@
+import Hard2PairGeometrySource
+namespace OrdinaryDispatch.Hard2SourceWork
+open RMAF ForestState Universal233 WholeSourceWork CoreWork
+open Universal233.Hard2Overlap GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork
+open Universal233.Rule5PendantLocalWork Universal233.PaidAssembly
+
+/-- Repeat the original left/right subtree expressions inside the complement
+predicate; previously materialized parent labels are not free substitutes. -/
+def hard2RootMeter (S : Tree) (p r : RMAF.Vertex) : Charged (List Nat) :=
+ let l:=meterLeaves S
+ let c:=meterFilter (fun x=>let a:=subtreeLabelsMeter S p;let b:=subtreeLabelsMeter S r
+  let ca:=meterContains x a.value;let cb:=meterContains x b.value
+  ⟨!ca.value&&!cb.value,a.work+b.work+ca.work+cb.work+4⟩) l.value
+ ⟨c.value,l.work+c.work+2⟩
+@[simp] theorem hard2RootMeter_value (S : Tree) (p r : RMAF.Vertex) :
+ (hard2RootMeter S p r).value=rootParent S p r := by
+ simp [hard2RootMeter,rootParent,leftParent,rightParent,subtree_labels_value]
+
+def hard2ParentsMeter (S : Tree) (p r : RMAF.Vertex) : Charged (List Nat×List Nat×List Nat) :=
+ let a:=subtreeLabelsMeter S p;let b:=subtreeLabelsMeter S r;let c:=hard2RootMeter S p r
+ ⟨(a.value,b.value,c.value),a.work+b.work+c.work+4⟩
+@[simp] theorem hard2ParentsMeter_value (S : Tree) (p r : RMAF.Vertex) :
+ (hard2ParentsMeter S p r).value=(leftParent S p,rightParent S r,rootParent S p r) := by
+ simp [hard2ParentsMeter,leftParent,rightParent,subtree_labels_value]
+
+def hard2OverlapMeter (T : Tree) (A B : List Nat) : Charged (Option RMAF.Vertex) :=
+ let a:=meterMinimal A T;let b:=meterMinimal B T;let b2:=meterMinimal B T
+ let c:=meterCommon a.value b.value b2.value
+ ⟨c.value,a.work+b.work+b2.work+c.work+4⟩
+@[simp] theorem hard2OverlapMeter_value (T : Tree) (A B : List Nat) :
+ (hard2OverlapMeter T A B).value=Hard2Overlap.overlap T A B := by simp [hard2OverlapMeter,Hard2Overlap.overlap]
+
+def hard2ChainMeter (T : Tree) (A B C : List Nat) (o : Order) (v w : RMAF.Vertex) : Charged Result :=
+ let j:=meterJointColors (second o A B C) T v w
+ ⟨if j.value.length=2 then .diagonal o v w else .four o v w,j.work+j.value.length+8⟩
+@[simp] theorem hard2ChainMeter_value (T : Tree) (A B C : List Nat) (o : Order) (v w : RMAF.Vertex) :
+ (hard2ChainMeter T A B C o v w).value=chain T A B C o v w := by simp [hard2ChainMeter,chain]
+
+def hard2IsolatedMeter (T : Tree) (A B C : List Nat) (o : Order) : Charged (Option Result) :=
+ let p:=pairChooseMeter T (first o A B C) (second o A B C)
+ ⟨p.value.map (Result.pair o),p.work+6⟩
+@[simp] theorem hard2IsolatedMeter_value (T : Tree) (A B C : List Nat) (o : Order) :
+ (hard2IsolatedMeter T A B C o).value=isolated T A B C o := by simp [hard2IsolatedMeter,isolated]
+
+def hard2SelectMeter (T : Tree) (A B C : List Nat) : Charged (Option Result) :=
+ let ab:=hard2OverlapMeter T A B;let bc:=hard2OverlapMeter T B C;let ac:=hard2OverlapMeter T A C
+ let prefix:=ab.work+bc.work+ac.work+8
+ match ab.value,bc.value,ac.value with
+ | none,none,none=>⟨some .disjoint,prefix⟩
+ | some v,some w,none=>let r:=hard2ChainMeter T A B C .abc v w;⟨some r.value,prefix+r.work⟩
+ | some v,none,some w=>let r:=hard2ChainMeter T A B C .bac v w;⟨some r.value,prefix+r.work⟩
+ | none,some w,some v=>let r:=hard2ChainMeter T A B C .acb v w;⟨some r.value,prefix+r.work⟩
+ | some _,none,none=>let r:=hard2IsolatedMeter T A B C .abc;⟨r.value,prefix+r.work⟩
+ | none,none,some _=>let r:=hard2IsolatedMeter T A B C .acb;⟨r.value,prefix+r.work⟩
+ | none,some _,none=>let r:=hard2IsolatedMeter T A B C .bca;⟨r.value,prefix+r.work⟩
+ | some _,some _,some _=>let r:=meterCliqueSelection T A B C;⟨r.value.map Result.clique,prefix+r.work+2⟩
+@[simp] theorem hard2SelectMeter_value (T : Tree) (A B C : List Nat) :
+ (hard2SelectMeter T A B C).value=Hard2Overlap.select T A B C := by
+ cases hab:Hard2Overlap.overlap T A B <;> cases hbc:Hard2Overlap.overlap T B C <;> cases hac:Hard2Overlap.overlap T A C <;>
+ simp [hard2SelectMeter,Hard2Overlap.select,hab,hbc,hac]
+
+def runHard2Meter (T S : Tree) (c : CherryBranching.Candidate) : Charged (Option Result) :=
+ match c.originalCuts with
+ | [p,r]=>let parents:=hard2ParentsMeter S p r
+          let s:=hard2SelectMeter T parents.value.1 parents.value.2.1 parents.value.2.2
+          ⟨s.value,parents.work+s.work+8⟩
+ | _=>⟨none,8⟩
+@[simp] theorem runHard2Meter_value (T S : Tree) (c : CherryBranching.Candidate) :
+ (runHard2Meter T S c).value=runHard2 T S c := by
+ unfold runHard2Meter runHard2
+ split <;> simp
+end OrdinaryDispatch.Hard2SourceWork

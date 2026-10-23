@@ -1,0 +1,10 @@
+import CompleteNamedSources
+#check Universal233.Rule5PendantLocalWork.final_value
+#check Universal233.Rule5SelectedLocalWork.selected_children_value
+#check Universal233.Rule5RemainingLocalWork.common_setup_value
+#check OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter_value
+#check OrdinaryDispatch.OuterSource.paidOuterMeter_value
+#check OrdinaryDispatch.WorkIntegration.Rule5ActualTrace.dispatchTrace
+#check Universal233.Rule5ActualTrace.dispatchTrace
+#check Universal233.Rule5ActualTrace.answer
+#check Universal233.Rule5ActualTrace.queries

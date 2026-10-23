@@ -1,0 +1,260 @@
+{
+  "status": "PASS_AUTHOR_LOCAL_IH_TRANSFER_SOURCE_PRODUCER",
+  "all_main_milestones": "OPEN",
+  "independent_acceptance": false,
+  "runtime_claim": false,
+  "source_work_claim": false,
+  "full_ordinary_solver": false,
+  "runs": [
+    {
+      "module": "FreshHeader",
+      "exit": 0,
+      "seconds": 0.926237540999864,
+      "stdout_bytes": 683268,
+      "resource_stop": null
+    },
+    {
+      "module": "CompressedLocalIHAll",
+      "exit": 0,
+      "seconds": 3.07344795899985,
+      "stdout_bytes": 28,
+      "resource_stop": null
+    }
+  ],
+  "controls": {
+    "actual_proof_body_reference_walk": "CAUGHT_WITH_FOREIGN_AXIOM_PRODUCER_EXCLUDED",
+    "sink0": {
+      "hostile": false,
+      "detected": false,
+      "rows": 3
+    },
+    "sink1": {
+      "hostile": false,
+      "detected": false,
+      "rows": 3
+    },
+    "sink2": {
+      "hostile": true,
+      "detected": true,
+      "rows": 3
+    },
+    "sink3": {
+      "hostile": true,
+      "detected": true,
+      "rows": 3
+    },
+    "sink4": {
+      "hostile": true,
+      "detected": true,
+      "rows": 1
+    },
+    "sink5": {
+      "hostile": true,
+      "detected": true,
+      "rows": 1
+    },
+    "clean_value": {
+      "duplicates": [
+        {
+          "name": "ZipValue.value",
+          "occurrences": 2,
+          "producers": [
+            "ZipZero",
+            "ZipTwin"
+          ],
+          "kinds": [
+            "definition"
+          ],
+          "bodies": 1,
+          "decision": "COMPATIBLE"
+        }
+      ],
+      "rejects": []
+    },
+    "bad_LR": {
+      "duplicates": [
+        {
+          "name": "ZipValue.value",
+          "occurrences": 2,
+          "producers": [
+            "ZipZero",
+            "ZipOne"
+          ],
+          "kinds": [
+            "definition"
+          ],
+          "bodies": 2,
+          "decision": "NONPROOF_VALUE_MISMATCH"
+        }
+      ],
+      "rejects": [
+        {
+          "name": "ZipValue.value",
+          "occurrences": 2,
+          "producers": [
+            "ZipZero",
+            "ZipOne"
+          ],
+          "kinds": [
+            "definition"
+          ],
+          "bodies": 2,
+          "decision": "NONPROOF_VALUE_MISMATCH"
+        }
+      ]
+    },
+    "bad_RL": {
+      "duplicates": [
+        {
+          "name": "ZipValue.value",
+          "occurrences": 2,
+          "producers": [
+            "ZipOne",
+            "ZipZero"
+          ],
+          "kinds": [
+            "definition"
+          ],
+          "bodies": 2,
+          "decision": "NONPROOF_VALUE_MISMATCH"
+        }
+      ],
+      "rejects": [
+        {
+          "name": "ZipValue.value",
+          "occurrences": 2,
+          "producers": [
+            "ZipOne",
+            "ZipZero"
+          ],
+          "kinds": [
+            "definition"
+          ],
+          "bodies": 2,
+          "decision": "NONPROOF_VALUE_MISMATCH"
+        }
+      ]
+    },
+    "clean_opaque": {
+      "duplicates": [
+        {
+          "name": "ZipOpaque.value",
+          "occurrences": 2,
+          "producers": [
+            "ZipOpaqueZero",
+            "ZipOpaqueTwin"
+          ],
+          "kinds": [
+            "opaque"
+          ],
+          "bodies": 1,
+          "decision": "COMPATIBLE"
+        }
+      ],
+      "rejects": []
+    },
+    "opaque_bad_LR": {
+      "duplicates": [
+        {
+          "name": "ZipOpaque.value",
+          "occurrences": 2,
+          "producers": [
+            "ZipOpaqueZero",
+            "ZipOpaqueOne"
+          ],
+          "kinds": [
+            "opaque"
+          ],
+          "bodies": 2,
+          "decision": "NONPROOF_VALUE_MISMATCH"
+        }
+      ],
+      "rejects": [
+        {
+          "name": "ZipOpaque.value",
+          "occurrences": 2,
+          "producers": [
+            "ZipOpaqueZero",
+            "ZipOpaqueOne"
+          ],
+          "kinds": [
+            "opaque"
+          ],
+          "bodies": 2,
+          "decision": "NONPROOF_VALUE_MISMATCH"
+        }
+      ]
+    },
+    "opaque_bad_RL": {
+      "duplicates": [
+        {
+          "name": "ZipOpaque.value",
+          "occurrences": 2,
+          "producers": [
+            "ZipOpaqueOne",
+            "ZipOpaqueZero"
+          ],
+          "kinds": [
+            "opaque"
+          ],
+          "bodies": 2,
+          "decision": "NONPROOF_VALUE_MISMATCH"
+        }
+      ],
+      "rejects": [
+        {
+          "name": "ZipOpaque.value",
+          "occurrences": 2,
+          "producers": [
+            "ZipOpaqueOne",
+            "ZipOpaqueZero"
+          ],
+          "kinds": [
+            "opaque"
+          ],
+          "bodies": 2,
+          "decision": "NONPROOF_VALUE_MISMATCH"
+        }
+      ]
+    },
+    "missing": "CAUGHT",
+    "duplicate": "CAUGHT",
+    "foreign_producer": "CAUGHT",
+    "custom_reference": "CAUGHT",
+    "production_pin_corruption": "CAUGHT",
+    "false_proof": "REJECTED",
+    "foreign_path": "CAUGHT",
+    "missing_path": "CAUGHT"
+  },
+  "inputs": {
+    "research/rmaf/algorithm/universal233/ordinary_dispatch/resume_20261015T1810Z/audit_local_ih_compressed.py": "17b7a3d0d99f98bbfb175eb73e8f39dbe8bfcedb98075c591ccb7a2ebe4b0147",
+    "research/rmaf/algorithm/universal233/ordinary_dispatch/resume_20261015T1810Z/compressed_pool_resume_v3.py": "626e3f21ba70fb417ad1085995a88b4af217a1b6f210191fa58ca442aad0098a",
+    "research/rmaf/algorithm/universal233/ordinary_dispatch/resume_20261015T1810Z/PROOF-TEXT-SCOPE-v3.md": "e4cbab9948a454d51bfd2b1de3f83d7d6dbc34632aac1d52e6b5735fd3bd0404",
+    "results/algorithm-universal233-forest-local-ih-replay-v2-20261015T182229550641Z/certificate.json": "64e51da810d21e736768de040787ebdc8438672b213a6b91b89622b1a2c0aaa5",
+    "research/rmaf/algorithm/universal233/rule5_common_split/audit_graph.py": "213eb8d89e06a579ad5ceb6dc58251f2a4858cc7669b55fa7554a93cbc4732e4",
+    "research/rmaf/algorithm/universal233/rule5_case322/audit.py": "b3feed2ff99492fe1f38d617707ef96e727dc3ada97b2673f405bd3d67aacc86",
+    "research/rmaf/algorithm/universal233/ordinary_dispatch/producer_compatibility/compatibility.py": "f2c6ad61ae4071fcad3538f0e19aafc9f38e6d62d7529f256e3150b7b7a9b34b"
+  },
+  "fresh_controls_receipt": {
+    "path": "results/algorithm-universal233-ordinary-source-pool-compressed-20261015T182814513546Z/certificate.json",
+    "sha256": "59874c67a59b6ed07d19ac728c4759b4835d4cc4cdac6ac89e4e03af90ab96ec",
+    "scope": "Passed exact-generator preconstruction controls only; other scientific result not imported as acceptance."
+  },
+  "source_builds": 92,
+  "stored_producer_occurrences": 3443,
+  "axiom_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "interfaces": [
+    "GenericForest.LocalIH.run_congr",
+    "GenericForest.LocalIH.schedule_congr",
+    "GenericForest.LocalIH.disjointSolve_congr",
+    "GenericForest.LocalIH.solve_congr_budget",
+    "GenericForest.LocalIH.exact_at_budget_bound",
+    "GenericForest.LocalIH.exact_at_current_budget"
+  ],
+  "theorem_proof_text": "OMITTED in new JSON only; actual full proof references traversed; full proof binary .olean pinned. All nonproof opaque/definition value representations retained.",
+  "first_external_gap": "Actual ordinary dispatch and per-query LocalOrdinaryIH from well-founded recursion, source applicability and total source/bit/payload recurrence remain OPEN."
+}

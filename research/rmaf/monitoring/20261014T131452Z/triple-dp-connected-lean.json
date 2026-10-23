@@ -1,0 +1,147 @@
+{
+  "status": "passed",
+  "version": "Lean (version 4.35.0, arm64-apple-darwin24.6.0, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "builds": [
+    {
+      "file": "TripleDP.lean",
+      "negative": false,
+      "returncode": 0,
+      "sha256": "6b544504b68dd6638caa40200914dee5720be1cdc38ce5f180de1dc792944298",
+      "checked_axioms": [
+        [
+          "TripleDP.candidate_some",
+          "propext, Classical.choice, Quot.sound"
+        ],
+        [
+          "TripleDP.table_correct",
+          "propext, Classical.choice, Quot.sound"
+        ],
+        [
+          "TripleDP.table_optimal",
+          "propext, Classical.choice, Quot.sound"
+        ],
+        [
+          "TripleDP.table_none_iff",
+          "propext, Classical.choice, Quot.sound"
+        ],
+        [
+          "TripleDP.minimum_pair_sum",
+          "propext, Classical.choice, Quot.sound"
+        ],
+        [
+          "TripleDP.join_exact",
+          "propext, Quot.sound"
+        ],
+        [
+          "TripleDP.join_records_union",
+          "propext"
+        ],
+        [
+          "TripleDP.proper_mask",
+          ""
+        ],
+        [
+          "TripleDP.exactly_six_joins",
+          "propext"
+        ],
+        [
+          "TripleDP.bad_triple_control",
+          "propext"
+        ],
+        [
+          "TripleDP.bad_triple_one_region_impossible",
+          "propext"
+        ],
+        [
+          "TripleDP.cross_children_use_root",
+          "propext"
+        ],
+        [
+          "TripleDP.root_absent_no_crossing",
+          "propext"
+        ],
+        [
+          "TripleDP.child_restriction_closed",
+          "propext"
+        ],
+        [
+          "TripleDP.at_most_one_open",
+          ""
+        ],
+        [
+          "TripleDP.exact_transition_count",
+          "propext, Quot.sound"
+        ],
+        [
+          "TripleDP.states_linear",
+          "propext, Quot.sound"
+        ],
+        [
+          "TripleDP.transitions_linear",
+          "propext, Quot.sound"
+        ],
+        [
+          "TripleDP.total_transition_bound",
+          "propext, Quot.sound"
+        ]
+      ],
+      "seconds": 0.7300553330005641,
+      "log": "research/rmaf/triple_dp/TripleDP-connected-audit.log"
+    },
+    {
+      "file": "ConnectedRegions.lean",
+      "negative": false,
+      "returncode": 0,
+      "sha256": "1b09d6e197d26eef62dfa5b13b8f5e17e826867e8778e68b50bc4f7b02d8ea33",
+      "checked_axioms": [
+        [
+          "TripleDP.lca_prefix_left",
+          "propext, Quot.sound"
+        ],
+        [
+          "TripleDP.pathConvex_lca_closed",
+          "propext, Quot.sound"
+        ],
+        [
+          "TripleDP.rooted_pathConvex_iff_prefixClosed",
+          "propext"
+        ],
+        [
+          "TripleDP.pathConvex_child_restriction",
+          "propext, Quot.sound"
+        ],
+        [
+          "TripleDP.rooted_child_contains_root",
+          "propext, Quot.sound"
+        ],
+        [
+          "TripleDP.rooted_region_decomposition",
+          "propext, Quot.sound"
+        ],
+        [
+          "TripleDP.gapped_region_lca_closed",
+          "propext"
+        ],
+        [
+          "TripleDP.gapped_region_not_pathConvex",
+          "propext, Quot.sound"
+        ]
+      ],
+      "seconds": 0.33152945800065936,
+      "log": "research/rmaf/triple_dp/ConnectedRegions-connected-audit.log"
+    },
+    {
+      "file": "NegativeConnected.lean",
+      "negative": true,
+      "returncode": 1,
+      "sha256": "9ea7ecb0d1121d68039e31db6634e63da5f7e43e2e11d250f552b74d9a391d12",
+      "checked_axioms": [],
+      "seconds": 0.3292247919998772,
+      "log": "research/rmaf/triple_dp/NegativeConnected-connected-audit.log"
+    }
+  ],
+  "new_theorem_count": 8,
+  "dependency_theorem_count": 19,
+  "negative_control": "caught",
+  "scope": "Path-convex single-region root/child decomposition on binary addresses; not whole region families or MAF/Python correspondence."
+}

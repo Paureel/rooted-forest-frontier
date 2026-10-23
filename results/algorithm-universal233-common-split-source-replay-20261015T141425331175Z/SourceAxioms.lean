@@ -1,0 +1,11 @@
+import SourceFinal
+#print axioms OrdinaryCommonSplit.Source.original_split_from_incident
+#print axioms OrdinaryCommonSplit.Source.buildSetup_complete
+#print axioms OrdinaryCommonSplit.Source.buildSetup_identity
+#print axioms OrdinaryCommonSplit.Source.source_answer_exact
+#print axioms OrdinaryCommonSplit.Source.source_job_progress
+#print axioms OrdinaryCommonSplit.Source.outside_topology_obstruction
+#print axioms OrdinaryCommonSplit.Source.actual_outside_minimum_one
+#print axioms OrdinaryCommonSplit.Source.actual_outside_one_from_three
+#print axioms OrdinaryCommonSplit.Source.actual_source_nonrefusal
+#print axioms OrdinaryCommonSplit.Source.actual_source_bounded_solver

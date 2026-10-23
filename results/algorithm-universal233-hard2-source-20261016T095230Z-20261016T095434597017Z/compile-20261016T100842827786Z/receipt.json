@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3440559159998884,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3618639999995139,
+      "resource_stop": null,
+      "log_sha256": "2b116006f82a87923e06e135cfa0318a8a40e6dfeed2d4cb5544c1242380f442"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.004418333000103303,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Hard2RouteSource",
+      "source_sha256": "558b2501a3ee815f5473c5503ade2782e763509ae2e03da874c7569e064312cc",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 1.0193958339996243,
+      "resource_stop": null,
+      "log_sha256": "70969ebf2f1061acb77da75b7ab978e8ea865315e85d346d0db561a243f85dd1"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Hard2RouteSource', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2RouteSource.lean:106:23: error: unsolved goals\\nT S : Tree\\nc : CherryBranching.Candidate\\nq N : Nat\\nthree : 3 \u2264 N\\ntn : treeNodes T \u2264 N\\nsn : treeNodes S \u2264 N\\nsl : (leaves S).length \u2264 N\\ngraph : (runHard2Meter T S c).work \u2264 2100 * (N + 1) ^ 6\\npartition0 : (partitionMeter S c.a c.b).work \u2264 partitionBudget N\\nplen : (partitionMeter S c.a c.b).value.length \u2264 2 * N + 1\\nblocks : \u2200 (B : List Nat), B \u2208 (partitionMeter S c.a c.b).value \u2192 B.length \u2264 N\\npoint : \u2200 (B : List Nat), B \u2208 (partitionMeter S c.a c.b).value \u2192 (meterRestrictionAgrees T S B).work \u2264 128 * (N + 1) ^ 2\\npos2 : 1 \u2264 (N + 1) ^ 2\\ncoef : 128 * (N + 1) ^ 2 + 4 \u2264 132 * (N + 1) ^ 2\\nh : 132 * (N + 1) ^ 2 * ((partitionMeter S c.a c.b).value.length + 1) \u2264 132 * (N + 1) ^ 2 * (2 * (N + 1))\\n\u22a2 2 * (132 * ((N + 1) ^ 1 * (N + 1) * (N + 1))) = 2 * (132 * (N + 1) ^ 3)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2RouteSource.lean:123:49: warning: This simp argument is unused:\\n  Charged.work\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp only\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n'))"
+}

@@ -1,0 +1,142 @@
+import BinaryCallerSetup
+namespace GenericForest.BinaryCaller
+open GenericForest.BinaryProvider GenericForest.ScalarBits GenericForest.CheckCorrespondence
+open Universal233.WholeSourceWork
+
+def acceptedFromInput (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits) (F : BinaryProvider.Forest) : Charged Bool:=
+ let c:=checkerCapacity T ss q F;let a:=acceptedLabels c.value T ss q F
+ ⟨a.value,c.work+a.work+4⟩
+theorem acceptedFromInput_value (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits) (F : BinaryProvider.Forest) :
+ (acceptedFromInput T ss q F).value=GenericForest.accepted (targetValue T) (sourcesValue ss) (labelValue q) (forestValue F) := by
+ have r:=checkerCapacity_ready T ss q F
+ have a:=acceptedLabels_projects _ _ T ss q F r.width r.positive r.target r.sources r.budget r.forest r.forestCells r.sourceCells r.forestCount r.sourceCount
+ exact a.1.trans (meterAccepted_value _ _ _ _)
+theorem acceptedFromInput_work (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits) (F : BinaryProvider.Forest) :
+ (acceptedFromInput T ss q F).work+2=(checkerFromInput T ss q F).work := by
+ simp only [acceptedFromInput,checkerFromInput,checkedLabels];omega
+
+def checkOptional (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits) :
+ Option BinaryProvider.Forest→Charged (Option BinaryProvider.Forest)
+ | none=>⟨none,1⟩
+ | some F=>checkerFromInput T ss q F
+
+theorem singleton_site (t s : BinaryProvider.Tree) (q : Bits) (candidate : Option BinaryProvider.Forest) :
+ forestOptionValue (checkOptional (some t) [s] q candidate).value=
+  (forestOptionValue candidate).bind (GenericForest.checked (some (treeValue t)) [treeValue s] (labelValue q)) := by
+ cases candidate with
+ | none=>rfl
+ | some F=>exact (checkerFromInput_projects (some t) [s] q F).1
+
+def flattenAnswers {α : Type} : List (α×BinaryProvider.Forest)→Charged BinaryProvider.Forest
+ | []=>⟨[],1⟩
+ | x::xs=>let r:=flattenAnswers xs;let a:=appendSpine x.2 r.value;⟨a.value,r.work+a.work+4⟩
+@[simp] theorem flattenAnswers_value {α : Type} (xs : List (α×BinaryProvider.Forest)) :
+ (flattenAnswers xs).value=xs.flatMap Prod.snd := by induction xs <;> simp_all [flattenAnswers]
+theorem flattenAnswers_work {α : Type} (xs : List (α×BinaryProvider.Forest)) :
+ (flattenAnswers xs).work=4*(xs.flatMap Prod.snd).length+5*xs.length+1 := by
+ induction xs with
+ | nil=>simp [flattenAnswers]
+ | cons x xs ih=>simp only [flattenAnswers,appendSpine_work,List.flatMap_cons,List.length_append,List.length_cons] at ih ⊢;omega
+
+def disjointFinish {α : Type} (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits) :
+ Option (List (α×BinaryProvider.Forest))→Charged (Option BinaryProvider.Forest)
+ | none=>⟨none,1⟩
+ | some xs=>let f:=flattenAnswers xs;let c:=checkerFromInput (some t) ss q f.value;⟨c.value,f.work+c.work+4⟩
+
+theorem disjoint_site {α : Type} (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits)
+ (answers : Option (List (α×BinaryProvider.Forest))) :
+ forestOptionValue (disjointFinish t ss q answers).value=
+  (answers.map (fun xs=>forestValue (xs.flatMap Prod.snd))).bind
+   (GenericForest.checked (some (treeValue t)) (sourcesValue ss) (labelValue q)) := by
+ cases answers with
+ | none=>rfl
+ | some xs=>simpa only [disjointFinish,flattenAnswers_value,Option.map_some,Option.some_bind] using
+  (checkerFromInput_projects (some t) ss q (xs.flatMap Prod.snd)).1
+
+def lengthChoice (A B : BinaryProvider.Forest) : Charged BinaryProvider.Forest:=
+ let a:=spineCounter A;let b:=spineCounter B;let e:=leBits a.value b.value
+ ⟨if e.value then A else B,a.work+b.work+e.work+4⟩
+theorem lengthChoice_value (A B : BinaryProvider.Forest) :
+ (lengthChoice A B).value=if A.length≤B.length then A else B := by
+ simp [lengthChoice,leBits_value,spineCounter_value]
+theorem lengthChoice_work (N : Nat) (A B : BinaryProvider.Forest) (ac : A.length≤N) (bc : B.length≤N) :
+ (lengthChoice A B).work≤32*(N+1)^2+20*(N+1)+4 := by
+ have a:=spineCounter_work A;have b:=spineCounter_work B
+ have ap:=Nat.mul_le_mul_left 16 (Nat.pow_le_pow_left (Nat.add_le_add_right ac 1) 2)
+ have bp:=Nat.mul_le_mul_left 16 (Nat.pow_le_pow_left (Nat.add_le_add_right bc 1) 2)
+ have al:=spineCounter_length A;have bl:=spineCounter_length B
+ have e:=(compare_family_work (spineCounter A).value (spineCounter B).value).2.1
+ simp only [lengthChoice];omega
+
+/-- The actual raw-parent best site, retaining every candidate occurrence. -/
+def bestCandidates (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits) :
+ List BinaryProvider.Forest→Charged (Option BinaryProvider.Forest)
+ | []=>⟨none,1⟩
+ | F::Fs=>let a:=acceptedFromInput T ss q F;let r:=bestCandidates T ss q Fs
+           if a.value then
+            match r.value with
+            | none=>⟨some F,a.work+r.work+4⟩
+            | some G=>let c:=lengthChoice F G;⟨some c.value,a.work+r.work+c.work+4⟩
+           else ⟨r.value,a.work+r.work+4⟩
+
+theorem raw_parent_site (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits)
+ (candidates : List BinaryProvider.Forest) :
+ forestOptionValue (bestCandidates T ss q candidates).value=
+  RMAF.best List.length (GenericForest.accepted (targetValue T) (sourcesValue ss) (labelValue q)) (candidates.map forestValue) := by
+ induction candidates with
+ | nil=>rfl
+ | cons F Fs ih=>
+  have a:=acceptedFromInput_value T ss q F
+  simp only [bestCandidates,List.map_cons,RMAF.best,←a,←ih]
+  cases hv : (acceptedFromInput T ss q F).value
+  · simp [hv,forestOptionValue]
+  · cases hr : (bestCandidates T ss q Fs).value with
+    | none=>simp [hv,hr,forestOptionValue]
+    | some G=>
+     simp only [hv,hr,forestOptionValue,Option.map_some,Bool.true_eq,ite_true,lengthChoice_value,forestValue_length]
+     split <;> rfl
+
+theorem bestCandidates_count (N : Nat) (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits)
+ (Fs : List BinaryProvider.Forest) (G : BinaryProvider.Forest) (h : (bestCandidates T ss q Fs).value=some G)
+ (cap : ∀F∈Fs,F.length≤N) : G.length≤N := by
+ have p:=raw_parent_site T ss q Fs
+ simp only [h,forestOptionValue,Option.map_some] at p
+ have m:=(RMAF.best_spec List.length _ _ (forestValue G) p.symm).1
+ obtain ⟨F,hF,e⟩:=List.mem_map.mp m
+ have len:=congrArg List.length e
+ simp only [forestValue_length] at len
+ have f:=cap F hF;omega
+
+/-- This sum records executed calls, including repeated invalid candidates.
+Each term contains that call's actual capacity setup, rather than a supplied
+whole-checker cost record. -/
+def checkerCallsWork (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits) : List BinaryProvider.Forest→Nat
+ | []=>0 | F::Fs=>(acceptedFromInput T ss q F).work+checkerCallsWork T ss q Fs
+
+def setupCallsWork (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits) : List BinaryProvider.Forest→Nat
+ | []=>0 | F::Fs=>(checkerCapacity T ss q F).work+setupCallsWork T ss q Fs
+
+theorem setupCallsWork_paid (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits)
+ (Fs : List BinaryProvider.Forest) : setupCallsWork T ss q Fs≤checkerCallsWork T ss q Fs := by
+ induction Fs with
+ | nil=>rfl
+ | cons F Fs ih=>simp only [setupCallsWork,checkerCallsWork,acceptedFromInput];omega
+
+theorem raw_parent_work (N : Nat) (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits)
+ (Fs : List BinaryProvider.Forest) (cap : ∀F∈Fs,F.length≤N) :
+ (bestCandidates T ss q Fs).work≤checkerCallsWork T ss q Fs+
+  (32*(N+1)^2+20*(N+1)+8)*(Fs.length+1) := by
+ induction Fs with
+ | nil=>simp only [bestCandidates,checkerCallsWork,List.length_nil,Nat.zero_add,Nat.mul_one];omega
+ | cons F Fs ih=>
+  have r:=ih (fun G hg=>cap G (by simp [hg]))
+  simp only [bestCandidates,checkerCallsWork,List.length_cons]
+  split
+  · split
+    · simp only [Nat.mul_add,Nat.mul_one] at r ⊢;omega
+    · rename_i G hg
+      have gc:=bestCandidates_count N T ss q Fs G hg (fun H hh=>cap H (by simp [hh]))
+      have lc:=lengthChoice_work N F G (cap F (by simp)) gc
+      simp only [Nat.mul_add,Nat.mul_one] at r ⊢;omega
+  · simp only [Nat.mul_add,Nat.mul_one] at r ⊢;omega
+end GenericForest.BinaryCaller

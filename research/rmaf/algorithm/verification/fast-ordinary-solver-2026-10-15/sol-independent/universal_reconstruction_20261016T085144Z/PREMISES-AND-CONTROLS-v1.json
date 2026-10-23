@@ -1,0 +1,19 @@
+{
+  "version":1,
+  "phase":"postcontact independent mathematical reconstruction; zero blind credit",
+  "frozen_before_new_proof_execution":true,
+  "target":"forall q T S, DepthOne.proper T S=true -> QueryExact T S q (FastOrdinary.solve q T S)",
+  "may_assume":{
+    "definitions":["RMAF.Tree","RMAF.leaves","RMAF.restrict","RMAF.sameShape","RMAF.partitionCheck","RMAF.restrictionAgrees","RMAF.pairwiseEmbeddings","RMAF.agreement","RMAF.best","DepthOne.proper","DepthOne.pretest01","DepthOne.forest","DepthOne.cutCost","DepthOne.candidates","OrdinaryDispatch.QueryExact","FastOrdinary.solve","FastOrdinary.solve.eq_def"],
+    "standard":"installed pinned Lean/Init/Std logic, structural induction, natural arithmetic and elementary List lemmas",
+    "author_primitive_theorems":[],
+    "author_local_completeness_or_exactness":[]
+  },
+  "must_not_assume":["FastOrdinary.solve_exact","external_exact","actual_ordinary_IH","actual_local_ordinary_IH","DepthOne.found_globally_minimum","found_query_exact","any proof closure importing an author global target"],
+  "planned_substantive_proofs":["agreement forests are nonempty directly from coverage","single-block agreement implies full-leaf agreement through structural restriction invariance","successful zero/one-cut pretest gives global minimum and QueryExact for every budget","actual solve inherits QueryExact on every successful pretest"],
+  "planned_remaining_scope":"Record exact rejected-pretest recursion obligations; no hidden author local completeness reuse",
+  "known_answer_controls":[{"name":"one-leaf-agreement","input":"leaf label 0, singleton block [0]","expected":"agreement true and QueryExact of some [[0]] at q=0"},{"name":"best-zero-head","input":"literal zero-cost accepted first candidate with arbitrary tail","expected":"head selected"}],
+  "hostile_controls":[{"name":"false-negative","input":"QueryExact leaf0 leaf0 q0 none","expected":"Lean proof attempt rejected using explicit singleton witness"},{"name":"empty-answer","input":"QueryExact leaf0 leaf0 q0 (some [])","expected":"Lean proof attempt rejected by coverage"}],
+  "no_new_author_solver_or_oracle_execution":true,
+  "execution":"Kernel proof compilation and own proof-reference walker only; no #eval of solver, no new census"
+}

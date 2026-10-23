@@ -1,0 +1,34 @@
+import Lean
+import OptimizedWork
+open Lean RMAF Universal233 Universal233.CoreProgram Universal233.CoreWork Universal233.SourceCoverage Universal233.RankConsumer Universal233.RankDichotomy
+def outJ (o : Output) : Json := Json.mkObj [("partition",toJson o.partition),("cuts",toJson (o.sourceCuts.map (fun v => String.ofList (v.map (fun x => if x then '1' else '0')))))]
+def tracedColor (tag : String) (x : Nat) : Nat :=
+ dbg_trace ("REVIEW_COLOR " ++ (Json.mkObj [("tag",toJson tag),("label",toJson x),("color",toJson (x/2))]).compress);
+ x/2
+def checkRank (id : String) (t : Tree) : IO Unit := do
+ let v := inputRank t (tracedColor (id++":rank"))
+ IO.println ("REVIEW_VALUE " ++ (Json.mkObj [("id",toJson id),("rank",toJson v)]).compress)
+def checkFour (id : String) (t : Tree) (q : Nat) : IO Unit := do
+ let out := optimizedFourOutputs t (tracedColor (id++":actual")) q
+ let m := meterOptimizedFour t (tracedColor (id++":meter")) q
+ let raw := generate t (fun x => x/2) q
+ let probe := fourProbe t (fun x => x/2)
+ IO.println ("REVIEW_VALUE " ++ (Json.mkObj [("id",toJson id),("outputs",toJson (out.map outJ)),("meterOutputs",toJson (m.outputs.map outJ)),("rawOutputs",toJson (raw.outputs.map outJ)),("probeOutputs",toJson (probe.outputs.map outJ)),("colorCalls",toJson m.colorCalls),("work",toJson m.work),("rawPruned",toJson raw.pruned),("probePruned",toJson probe.pruned),("fixedProbeBound",toJson (fixedProbeBound t)),("fullCoreBound",toJson (fullCoreBound t q)),("mass",toJson ([("2",rawQMass 2 out),("233/100",rawQMass (mkRat 233 100) out),("3",rawQMass 3 out)].map (fun (k,v) => Json.arr #[toJson k,toJson (toString v)])))]).compress)
+def main : IO Unit := do
+ checkFour "cheap-known-four-q0" (.node (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) (.node (.node (.leaf 4) (.leaf 5)) (.node (.leaf 6) (.leaf 7)))) 0
+ checkFour "cheap-known-four-q2" (.node (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) (.node (.node (.leaf 4) (.leaf 5)) (.node (.leaf 6) (.leaf 7)))) 2
+ checkFour "cheap-known-four-q3" (.node (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) (.node (.node (.leaf 4) (.leaf 5)) (.node (.leaf 6) (.leaf 7)))) 3
+ checkFour "cheap-known-four-q4" (.node (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) (.node (.node (.leaf 4) (.leaf 5)) (.node (.leaf 6) (.leaf 7)))) 4
+ checkFour "cheap-known-four-qhuge" (.node (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) (.node (.node (.leaf 4) (.leaf 5)) (.node (.leaf 6) (.leaf 7)))) 340282366920938463463374607431768211456
+ checkFour "high-known-four-q0" (.node (.node (.node (.leaf 0) (.leaf 2)) (.node (.leaf 1) (.leaf 3))) (.node (.node (.leaf 4) (.leaf 5)) (.node (.leaf 6) (.leaf 7)))) 0
+ checkFour "high-known-four-q2" (.node (.node (.node (.leaf 0) (.leaf 2)) (.node (.leaf 1) (.leaf 3))) (.node (.node (.leaf 4) (.leaf 5)) (.node (.leaf 6) (.leaf 7)))) 2
+ checkFour "high-known-four-q3" (.node (.node (.node (.leaf 0) (.leaf 2)) (.node (.leaf 1) (.leaf 3))) (.node (.node (.leaf 4) (.leaf 5)) (.node (.leaf 6) (.leaf 7)))) 3
+ checkFour "high-known-four-q4" (.node (.node (.node (.leaf 0) (.leaf 2)) (.node (.leaf 1) (.leaf 3))) (.node (.node (.leaf 4) (.leaf 5)) (.node (.leaf 6) (.leaf 7)))) 4
+ checkFour "high-known-four-qhuge" (.node (.node (.node (.leaf 0) (.leaf 2)) (.node (.leaf 1) (.leaf 3))) (.node (.node (.leaf 4) (.leaf 5)) (.node (.leaf 6) (.leaf 7)))) 340282366920938463463374607431768211456
+ checkFour "cheap-preserves-within-block-leaf-order" (.node (.node (.node (.leaf 1) (.leaf 0)) (.node (.leaf 3) (.leaf 2))) (.node (.node (.leaf 5) (.leaf 4)) (.node (.leaf 7) (.leaf 6)))) 3
+ checkFour "high-preserves-both-records-and-order" (.node (.node (.node (.leaf 0) (.leaf 2)) (.node (.leaf 1) (.leaf 3))) (.node (.node (.leaf 4) (.leaf 5)) (.node (.leaf 6) (.leaf 7)))) 4
+ checkFour "cheap-expensive-callback-is-external-bill" (.node (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) (.node (.node (.leaf 4) (.leaf 5)) (.node (.leaf 6) (.leaf 7)))) 4
+ checkFour "high-expensive-callback-is-external-bill" (.node (.node (.node (.leaf 0) (.leaf 2)) (.node (.leaf 1) (.leaf 3))) (.node (.node (.leaf 4) (.leaf 5)) (.node (.leaf 6) (.leaf 7)))) 4
+ checkFour "duplicate-leaf-refusal-never-evaluates-color" (.node (.leaf 0) (.leaf 0)) 4
+ checkFour "huge-labels-four-colors-not-four-small-identifiers" (.node (.node (.node (.leaf 340282366920938463463374607431768211456) (.leaf 340282366920938463463374607431768211457)) (.node (.leaf 340282366920938463463374607431768211458) (.leaf 340282366920938463463374607431768211459))) (.node (.node (.leaf 340282366920938463463374607431768211460) (.leaf 340282366920938463463374607431768211461)) (.node (.leaf 340282366920938463463374607431768211462) (.leaf 340282366920938463463374607431768211463)))) 3
+ checkRank "generic-inputRank-additional-color-and-dedup-work" (.node (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) (.node (.node (.leaf 4) (.leaf 5)) (.node (.leaf 6) (.leaf 7))))

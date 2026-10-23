@@ -1,0 +1,82 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/OrdinaryPrepareBound.lean:25:1: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  m ≥ 0
+  l ≥ 0
+  k ≥ 1
+  32*k - l ≥ 0
+  j ≥ 0
+  j - 64*k + m ≥ -7
+  j - 8*k ≤ 0
+  i ≥ 0
+  h ≥ 0
+  g ≥ 0
+  f ≥ 0
+  e ≥ 0
+  8*e - f ≥ 0
+  8*e - g ≥ 0
+  8*e - j ≥ 0
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+  a - c ≥ 0
+  a - d ≥ 0
+  a - h ≥ 0
+  a - i ≥ 0
+where
+ a := ↑N
+ b := ↑(treeNodes T)
+ c := ↑(treeNodes S)
+ d := ↑U.length
+ e := ↑((N + 1) ^ 2)
+ f := ↑(meterLeaves T).work
+ g := ↑(meterLeaves S).work
+ h := ↑(leaves T).length
+ i := ↑(leaves S).length
+ j := ↑(meterNodup U).work
+ k := ↑((N + 1) ^ 3)
+ l := ↑(meterAll
+      (fun x =>
+        let t := meterLeaves T;
+        let s := meterLeaves S;
+        let a := meterContains x t.value;
+        let b := meterContains x s.value;
+        { value := a.value && b.value, work := t.work + s.work + a.work + b.work + 4 })
+      U).work
+ m := ↑(meterAll
+      (fun x =>
+        { value := (meterContains x (meterLeaves T).value).value && (meterContains x (meterLeaves S).value).value,
+          work :=
+            (meterLeaves T).work + (meterLeaves S).work + (meterContains x (meterLeaves T).value).work +
+                (meterContains x (meterLeaves S).value).work +
+              4 })
+      U).work
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/OrdinaryPrepareBound.lean:40:3: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  i ≥ 0
+  h ≥ 0
+  g ≥ 0
+  f ≥ 0
+  e ≥ 1
+  16*e - g ≥ 4
+  16*e - h ≥ 4
+  64*e - f ≥ 0
+  401000*e - i ≤ -1
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+  a - c ≥ 0
+  a - d ≥ 0
+where
+ a := ↑N
+ b := ↑(treeNodes T)
+ c := ↑(treeNodes S)
+ d := ↑U.length
+ e := ↑((N + 1) ^ 6)
+ f := ↑(properBlockMeter T S U).work
+ g := ↑(meterRestrict U T).work
+ h := ↑(meterRestrict U S).work
+ i := ↑{ value := none, work := (properBlockMeter T S U).work + 6 }.work

@@ -1,0 +1,86 @@
+import BinaryProducerLocalCaps
+namespace GenericForest.BinaryProducer
+open BinaryProvider GenericForest.ScalarBits Universal233.WholeSourceWork
+
+def sourceForestBits (S : BinaryProvider.Tree) : BinaryProvider.Forest→Charged (List BinaryProvider.Tree)
+ | []=>⟨[],1⟩
+ | B::Q=>let u:=restrictLabels B S;let r:=sourceForestBits S Q
+         ⟨match u.value with | none=>r.value | some t=>t::r.value,u.work+r.work+6⟩
+@[simp] theorem sourceForestBits_value (S : BinaryProvider.Tree) (Q : BinaryProvider.Forest) :
+ sourcesValue (sourceForestBits S Q).value=OutputState.sourceForest (treeValue S) (forestValue Q) := by
+ induction Q with
+ | nil=>rfl
+ | cons B Q ih=>
+  have u:=restrictLabels_value B S
+  simp only [sourceForestBits,OutputState.sourceForest,forestValue,List.map_cons,List.filterMap_cons,←u]
+  cases h : (restrictLabels B S).value <;> simp_all [sourcesValue,targetValue]
+
+theorem sourceForestBits_caps (L : Nat) (S : BinaryProvider.Tree) (Q : BinaryProvider.Forest) (cap : TreeWidth L S) :
+ SourcesWidth L (sourceForestBits S Q).value ∧ (sourceForestBits S Q).value.length≤Q.length := by
+ induction Q with
+ | nil=>simp [sourceForestBits,SourcesWidth]
+ | cons B Q ih=>
+  cases h : (restrictLabels B S).value with
+  | none=>simpa only [sourceForestBits,h,List.length_cons] using And.intro ih.1 (Nat.le_trans ih.2 (Nat.le_succ Q.length))
+  | some u=>
+   have w:=restrictedWidth L B S u cap h
+   simp only [sourceForestBits,h,List.length_cons]
+   refine ⟨?_,by omega⟩
+   intro t ht;rcases List.mem_cons.mp ht with rfl|ht
+   · exact w
+   · exact ih.1 t ht
+
+theorem replace_zero (s : RMAF.Tree) (ss : List RMAF.Tree) (Q : GenericForest.Forest) :
+ GenericForest.replace (s::ss) 0 Q=OutputState.sourceForest s Q++ss := by
+ simp [GenericForest.replace]
+theorem replace_succ (s : RMAF.Tree) (ss : List RMAF.Tree) (i : Nat) (Q : GenericForest.Forest) :
+ GenericForest.replace (s::ss) (i+1) Q=s::GenericForest.replace ss i Q := by
+ unfold GenericForest.replace
+ simp only [List.getElem?_cons_succ]
+ cases h : ss[i]? <;> simp [List.take_succ_cons,List.drop_succ_cons,List.cons_append,Nat.add_assoc]
+
+/-- The source index is represented too. Decrement traverses bits and each
+reconstructed prefix cons is paid; no getElem? on a decoded index executes. -/
+def replaceBits (Q : BinaryProvider.Forest) (i : Bits) : List BinaryProvider.Tree→Charged (List BinaryProvider.Tree)
+ | []=>⟨[],1⟩
+ | s::ss=>let z:=copiedEqual i []
+  if z.value then let r:=sourceForestBits s Q;let a:=appendSpine r.value ss
+                   ⟨a.value,z.work+r.work+a.work+8⟩
+  else let d:=subtractBits i [true];let r:=replaceBits Q d.value ss
+       ⟨s::r.value,z.work+d.work+r.work+8⟩
+@[simp] theorem replaceBits_value (Q : BinaryProvider.Forest) (i : Bits) (ss : List BinaryProvider.Tree) :
+ sourcesValue (replaceBits Q i ss).value=GenericForest.replace (sourcesValue ss) (decode i) (forestValue Q) := by
+ induction ss generalizing i with
+ | nil=>simp [replaceBits,sourcesValue,GenericForest.replace]
+ | cons s ss ih=>
+  simp only [replaceBits,copiedEqual_value,decode,List.length_nil,Nat.mul_zero,Nat.add_zero]
+  split
+  · rename_i h
+    have z : decode i=0:=by simpa using h
+    simp [z,sourcesValue,replace_zero,sourceForestBits_value,List.map_append]
+  · rename_i h
+    have nz : decode i≠0:=by simpa using h
+    obtain ⟨k,hk⟩:=Nat.exists_eq_succ_of_ne_zero nz
+    have di : decode (subtractBits i [true]).value=k:=by simp [subtractBits_value,hk,decode,bit]
+    simp only [sourcesValue,List.map_cons,ih,di]
+    rw [hk]
+    exact (replace_succ _ _ k _).symm
+
+/-- All replacement trees retain the input stored-label bound. -/
+theorem replaceBits_width (L : Nat) (Q : BinaryProvider.Forest) (i : Bits) (ss : List BinaryProvider.Tree)
+ (cap : SourcesWidth L ss) : SourcesWidth L (replaceBits Q i ss).value := by
+ induction ss generalizing i with
+ | nil=>simp [replaceBits,SourcesWidth]
+ | cons s ss ih=>
+  have sc:=cap s (by simp)
+  have tail : SourcesWidth L ss:=fun t ht=>cap t (by simp [ht])
+  simp only [replaceBits]
+  split
+  · simp only [appendSpine_value]
+    intro t ht;rcases List.mem_append.mp ht with a|b
+    · exact (sourceForestBits_caps L s Q sc).1 t a
+    · exact tail t b
+  · intro t ht;rcases List.mem_cons.mp ht with rfl|ht
+    · exact sc
+    · exact ih _ tail t ht
+end GenericForest.BinaryProducer

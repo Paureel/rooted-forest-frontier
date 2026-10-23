@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "56f8e80de3ecdc6bf65634db62a21843625486beb7f9434a6171c919057eba98",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3930336250014079,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3518764159998682,
+      "resource_stop": null,
+      "log_sha256": "a88ea1ac887d05fe5eaaf2fb5ae5f98da64f53e4f829b4be5b2f0d689c9334a9"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016881669998838333,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "WorkControls",
+      "source_sha256": "c664625af75cf0be9ec951241c29e3f53b3dbcc8c9979ab6a2aa9621b2ab22f8",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.7732273340006941,
+      "resource_stop": null,
+      "log_sha256": "955761de6e64a818a5cba938fe5a2c8cbba5ecf075c7af62a0e694a2c523d700"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('WorkControls', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-20261015T211149845269Z/WorkControls.lean:11:111: error: Tactic `decide` failed to reduce\\n  @decide ((forestQueries Controls.refusal failedCalls).length = 2)\\n    (instDecidableEqNat (forestQueries Controls.refusal failedCalls).length 2)\\nto `true` or `false`.\\n\\nAfter unfolding the instances `instDecidableEqNat` and `Nat.decEq`, reduction got stuck at\\n  (forestQueries Controls.refusal failedCalls).length.beq 2\\n'))"
+}

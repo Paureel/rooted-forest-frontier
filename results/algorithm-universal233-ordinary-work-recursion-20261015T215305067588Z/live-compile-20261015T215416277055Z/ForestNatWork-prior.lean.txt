@@ -1,0 +1,59 @@
+import DPControls
+namespace OrdinaryDispatch.WorkRecursion
+open RMAF ForestState Universal233 Universal233.CoreProgram Universal233.PaidQueries Universal233.SourceCoverage
+open GenericForest GenericForest.FrontierWork
+
+def forestWork (ordinary : Ordinary) (W : OrdinaryWork) (T : Option Tree) (ss : List Tree) (q : Nat) : Nat :=
+ nonrecursiveBill ordinary W T ss q+
+ if proper T ss && !agrees T ss (ss.map leaves) then
+  match T,ss with
+  | none,_ => 0
+  | some _,[_] => 0
+  | some t,_ => match overlap t ss with
+    | none => 0
+    | some h => ((branches t ss h q).map fun io=>
+     let d := io.2.sourceCuts.length
+     if _hd : 1≤d ∧ d≤q then forestWork ordinary W T (replace ss io.1 io.2.partition) (q-d)
+     else 0).sum
+ else 0
+termination_by q
+decreasing_by omega
+
+theorem nat_sum_cast {α : Type} (L : List α) (f : α→Nat) :
+ ((L.map f).sum:Rat)=(L.map fun a=>(f a:Rat)).sum := by
+ induction L with
+ | nil => rfl
+ | cons a L ih => simp only [List.map_cons,List.sum_cons,Rat.natCast_add,ih]
+
+/-- Exact integer accounting of the frozen rational source sheet. It includes
+all actual recursive filterMap occurrences, even failed and duplicate calls. -/
+theorem forestWork_cast (ordinary : Ordinary) (W : OrdinaryWork) (T : Option Tree) (ss : List Tree) (q : Nat) :
+ (forestWork ordinary W T ss q:Rat)=GenericForest.sourceWork ordinary W T ss q := by
+ induction q using Nat.strongRecOn generalizing ss with
+ | ind q ih =>
+  have child (t : Tree) (h : Overlap) :
+   (((branches t ss h q).map fun io=>if _hd:1≤io.2.sourceCuts.length ∧ io.2.sourceCuts.length≤q then
+    forestWork ordinary W T (replace ss io.1 io.2.partition) (q-io.2.sourceCuts.length) else 0).sum:Rat)=
+   ((branches t ss h q).map fun io=>if _hd:1≤io.2.sourceCuts.length ∧ io.2.sourceCuts.length≤q then
+    sourceWork ordinary W T (replace ss io.1 io.2.partition) (q-io.2.sourceCuts.length) else 0).sum := by
+   rw [nat_sum_cast]
+   congr 1
+   apply List.map_congr_left
+   intro io _
+   split
+   · rename_i hd
+     simpa only [dite_eq_left hd] using ih (q-io.2.sourceCuts.length) (by omega) (replace ss io.1 io.2.partition)
+   · rename_i hd
+     simp only [dite_eq_right hd,Rat.natCast_zero]
+  rw [forestWork.eq_def,GenericForest.sourceWork.eq_def,Rat.natCast_add]
+  congr 1
+  split
+  · split
+    · rfl
+    · rfl
+    · rename_i t _ _
+      split
+      · rfl
+      · exact child t _
+  · rfl
+end OrdinaryDispatch.WorkRecursion

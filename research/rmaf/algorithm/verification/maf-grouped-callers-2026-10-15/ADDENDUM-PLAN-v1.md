@@ -1,0 +1,7 @@
+# Prerelease gate-strengthening addendum
+
+The frozen v1 pilot/full battery passed unchanged. Before candidate contact, strengthen the unknown-optimum detector from a poisoned function alone to an explicit Mapping exposing only source/target/Q/q/slot identities/frozen callback table/failure selector. Reads of unknown local minima or semantic correctness metadata raise. All fourteen unchanged runtime traces/outputs must survive this restriction with the minimum function also poisoned; deliberate forbidden field reads must fail.
+
+For the supplied grouped child only, enumerate the fifteen partitions of its four labels. Hand expectations: the valid {3}|{5}|{4,6} completion costs1; no cost0 completion exists because the two original current source pieces overlap in target. The supplied singleton completion costs2 and is valid. The frozen residual feasibility table succeeds exactly at budgets1/2 with valid returned costs<=budget, fails at0, and does not promise minimum attainment at budget2. Compare these finite table facts without constructing a general recursive contract. A supplied true flag beside a failed feasible query and a false minimum-attainment claim must be rejected. No eight-label enumeration or candidate source access.
+
+This adds controls, without changing any frozen v1 instrument or expectation. It is an inspection-driven gate improvement, not a failed mathematical claim or extra replication. Preserve all earlier failure/correction provenance and await root release after READY.

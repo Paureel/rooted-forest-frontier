@@ -1,0 +1,14 @@
+import CallerFinal
+#print axioms OrdinaryCommonSplit.Caller.literal_stable_merge_candidate
+#print axioms OrdinaryCommonSplit.Caller.pickMerge_actual_spec
+#print axioms OrdinaryCommonSplit.Caller.reconstruct_actual_spec
+#print axioms OrdinaryCommonSplit.Caller.marked_inside_feasible
+#print axioms OrdinaryCommonSplit.Caller.runPaid_exact
+#print axioms OrdinaryCommonSplit.Caller.actual_job_progress
+#print axioms OrdinaryCommonSplit.Caller.outsideReply_spec
+#print axioms OrdinaryCommonSplit.Caller.runWithOutside_exact
+#print axioms OrdinaryCommonSplit.Caller.runGuarded_answer_exact
+#print axioms OrdinaryCommonSplit.Caller.runGuarded_nonrefusal_iff
+#print axioms OrdinaryCommonSplit.Caller.guarded_job_progress
+#print axioms OrdinaryCommonSplit.Caller.guarded_mass_bound
+#print axioms OrdinaryCommonSplit.Caller.mergeCandidates_length

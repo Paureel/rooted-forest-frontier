@@ -1,0 +1,81 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/RecoverSplits.lean:35:6: error: Type mismatch: After simplification, term
+  Eq.symm (support_left_exact A h i.val hi)
+ has type
+  A.support i.val = fun a => o = i.val ∧ a = [] ∨ liftSupport false (fun b => A.support i.val (false :: b)) a
+but is expected to have type
+  A.support i.val =
+    adjoinRootSupport
+      { finite := indexSum (selectIndex A.finite (Live A false)) (selectIndex A.finite (Live A true)),
+        support :=
+          closedSupport
+            { finite := selectIndex A.finite (Live A false), support := fun i a => A.support i.val (false :: a),
+              bounded := ⋯, convex := ⋯, labelled := ⋯, disjoint := ⋯, covers := ⋯, boundary := childBoundary A h false,
+              root_spec := ⋯ }
+            { finite := selectIndex A.finite (Live A true), support := fun i a => A.support i.val (true :: a),
+              bounded := ⋯, convex := ⋯, labelled := ⋯, disjoint := ⋯, covers := ⋯, boundary := childBoundary A h true,
+              root_spec := ⋯ },
+        bounded := ⋯, convex := ⋯, labelled := ⋯, disjoint := ⋯, covers := ⋯, boundary := none, root_spec := ⋯ }
+      (Sum.inl ⟨o, hl⟩) (Sum.inl i)
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/RecoverSplits.lean:41:6: error: Type mismatch: After simplification, term
+  Eq.symm (support_right_exact A h i.val hi)
+ has type
+  (fun a => liftSupport true (fun b => A.support i.val (true :: b)) a) = A.support i.val
+but is expected to have type
+  adjoinRootSupport
+      { finite := indexSum (selectIndex A.finite (Live A false)) (selectIndex A.finite (Live A true)),
+        support :=
+          closedSupport
+            { finite := selectIndex A.finite (Live A false), support := fun i a => A.support i.val (false :: a),
+              bounded := ⋯, convex := ⋯, labelled := ⋯, disjoint := ⋯, covers := ⋯, boundary := childBoundary A h false,
+              root_spec := ⋯ }
+            { finite := selectIndex A.finite (Live A true), support := fun i a => A.support i.val (true :: a),
+              bounded := ⋯, convex := ⋯, labelled := ⋯, disjoint := ⋯, covers := ⋯, boundary := childBoundary A h true,
+              root_spec := ⋯ },
+        bounded := ⋯, convex := ⋯, labelled := ⋯, disjoint := ⋯, covers := ⋯, boundary := none, root_spec := ⋯ }
+      (Sum.inl ⟨o, hl⟩) (Sum.inr i) =
+    A.support i.val
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/RecoverSplits.lean:57:6: error: Type mismatch: After simplification, term
+  Eq.symm (support_left_exact A h i.val hi)
+ has type
+  (fun a => liftSupport false (fun b => A.support i.val (false :: b)) a) = A.support i.val
+but is expected to have type
+  adjoinRootSupport
+      { finite := indexSum (selectIndex A.finite (Live A false)) (selectIndex A.finite (Live A true)),
+        support :=
+          closedSupport
+            { finite := selectIndex A.finite (Live A false), support := fun i a => A.support i.val (false :: a),
+              bounded := ⋯, convex := ⋯, labelled := ⋯, disjoint := ⋯, covers := ⋯, boundary := childBoundary A h false,
+              root_spec := ⋯ }
+            { finite := selectIndex A.finite (Live A true), support := fun i a => A.support i.val (true :: a),
+              bounded := ⋯, convex := ⋯, labelled := ⋯, disjoint := ⋯, covers := ⋯, boundary := childBoundary A h true,
+              root_spec := ⋯ },
+        bounded := ⋯, convex := ⋯, labelled := ⋯, disjoint := ⋯, covers := ⋯, boundary := none, root_spec := ⋯ }
+      (Sum.inr ⟨o, hr⟩) (Sum.inl i) =
+    A.support i.val
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/RecoverSplits.lean:62:6: error: Type mismatch: After simplification, term
+  Eq.symm (support_right_exact A h i.val hi)
+ has type
+  A.support i.val = fun a => o = i.val ∧ a = [] ∨ liftSupport true (fun b => A.support i.val (true :: b)) a
+but is expected to have type
+  A.support i.val =
+    adjoinRootSupport
+      { finite := indexSum (selectIndex A.finite (Live A false)) (selectIndex A.finite (Live A true)),
+        support :=
+          closedSupport
+            { finite := selectIndex A.finite (Live A false), support := fun i a => A.support i.val (false :: a),
+              bounded := ⋯, convex := ⋯, labelled := ⋯, disjoint := ⋯, covers := ⋯, boundary := childBoundary A h false,
+              root_spec := ⋯ }
+            { finite := selectIndex A.finite (Live A true), support := fun i a => A.support i.val (true :: a),
+              bounded := ⋯, convex := ⋯, labelled := ⋯, disjoint := ⋯, covers := ⋯, boundary := childBoundary A h true,
+              root_spec := ⋯ },
+        bounded := ⋯, convex := ⋯, labelled := ⋯, disjoint := ⋯, covers := ⋯, boundary := none, root_spec := ⋯ }
+      (Sum.inr ⟨o, hr⟩) (Sum.inr i)
+'TripleDP.Transitions.Restriction.recover_closeBoth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.Transitions.Restriction.recover_extendLeft' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'TripleDP.Transitions.Restriction.recover_extendRight' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

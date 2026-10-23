@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3173404589997517,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.28414279200023884,
+      "resource_stop": null,
+      "log_sha256": "dd767702788a59a2ee5812cefc983332b386630885a218ec48acafb4ce1f32b4"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0015797910000401316,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Rule4CallerSource",
+      "source_sha256": "3194fedc6339390971be8a2faa38700e99d5ecc78f52463aa391d27a91d88ae6",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8576964169997154,
+      "resource_stop": null,
+      "log_sha256": "dfc6e3a035992ccb82392524731f937101f0047ee6d7e3bbc8df48414bee1866"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Rule4CallerSource', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/Rule4CallerSource.lean:131:1: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  e \u2265 0\\n  d \u2265 0\\n  c \u2265 0\\n  b \u2265 0\\n  b - e \u2264 -1\\n  a \u2265 0\\n  a + b \u2265 0\\nwhere\\n a := \u2191(rule4AnswersSource actual (fun x x_1 x_2 => 0) q (Rule4.branches s)).work\\n b := \u2191(queryWork W\\n    (forestQueries actual\\n      (affordableCalls (Rule4.branches s) Rule4.Branch.target Rule4.Branch.sourceForest Rule4.Branch.cost q)))\\n c := \u2191(rule4BranchesMeter s).work\\n d := \u2191(bestLengthMeter (fun x => { value := true, work := 1 })\\n      (List.flatMap (fun b => Rule4.childOutputs b q (rule4Child actual)) (Rule4.branches s))).work\\n e := \u2191(queryWork W (forestQueries actual (rule4Calls s q)))\\n'))"
+}

@@ -1,0 +1,34 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/LargeExchange.lean:189:14: error: Tactic `rfl` failed: Expected the goal to be a binary relation
+
+Hint: Reflexivity tactics can only be used on goals of the form `x ~ x` or `R x x`
+
+case false
+T S : Tree
+F : List (List Nat)
+p q : Nat
+u v : RMAF.Vertex
+hnT : (leaves T).Nodup
+ha : agreement S T F = true
+cutEq : cuts T p q = [u, v]
+nomix : ∀ (C : List Nat), C ∈ F → ∀ (x y : Nat), x ∈ C → y ∈ C → x ∈ coreLabels T p q → y ∈ coreLabels T p q
+um : u ∈ cuts T p q
+vm : v ∈ cuts T p q
+unev : u ≠ v
+dj : ∀ (x : Nat), x ∈ subtreeLabels T u → ¬x ∈ subtreeLabels T v
+U : Tree
+hU : subtree T u = some U
+first :
+  agreement S T (splitForest F (subtreeLabels T u)) = true ∧ (splitForest F (subtreeLabels T u)).length ≤ F.length + 1
+H : List (List Nat) := splitForest F (subtreeLabels T u)
+D : List Nat
+hD : D ∈ H
+hm : BinaryExchange.mixed D (subtreeLabels T v).contains = false
+⊢ ¬false = true
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/LargeExchange.lean:233:30: error: Application type mismatch: The argument
+  x
+has type
+  Nat
+of sort `Type` but is expected to have type
+  ?m.106 ∈ C
+of sort `Prop` in the application
+  cd x

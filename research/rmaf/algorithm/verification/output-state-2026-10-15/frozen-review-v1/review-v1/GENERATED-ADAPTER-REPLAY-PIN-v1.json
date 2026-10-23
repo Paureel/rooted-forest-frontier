@@ -1,0 +1,50 @@
+{
+  "before_execution": true,
+  "sources": [
+    {
+      "module": "RMAF",
+      "producer": "research/rmaf/lean/RMAF.lean",
+      "sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "adapted_module": "RMAF"
+    },
+    {
+      "module": "Restriction",
+      "producer": "research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean",
+      "sha256": "06755e63fbb1e6585eb9344cd0ffcfe2cf976b6ce97405fd15008b95227171e1",
+      "adapted_module": "GroupRestriction"
+    },
+    {
+      "module": "Embedding",
+      "producer": "research/rmaf/algorithm/universal233/restriction_bridge/Embedding.lean",
+      "sha256": "ff8a4fde22548be8350429e86152fdc520344e4272b7e23a5bd6aca42d166856",
+      "adapted_module": "GroupEmbedding"
+    },
+    {
+      "module": "Partition",
+      "producer": "research/rmaf/algorithm/universal233/restriction_bridge/Partition.lean",
+      "sha256": "922bc716bcbb428feb2011f2c372f0557e6d6342083e60c4a53ce3a72576726d",
+      "adapted_module": "GroupPartition"
+    },
+    {
+      "module": "Cost",
+      "producer": "research/rmaf/algorithm/universal233/restriction_bridge/Cost.lean",
+      "sha256": "f3cee58b286702549ce63194b5df5f787d273aa6a47849252e8977c8e94423b2",
+      "adapted_module": "GroupCost"
+    },
+    {
+      "module": "Forward",
+      "producer": "research/rmaf/algorithm/universal233/restriction_bridge/Forward.lean",
+      "sha256": "0ef7be14147e83a03879278d47689df22e793b7f04bac249a67c9ed7d6f31ab8",
+      "adapted_module": "GroupForward"
+    }
+  ],
+  "expectation": "All RMAF-namespaced equations generated outside RMAF have identical names/types and proof bodies after only explicit private producer-module prefix transport. Origins map by the six stated module names. No generated declaration omitted.",
+  "private_prefix_transport": {
+    "Restriction": "GroupRestriction",
+    "Embedding": "GroupEmbedding",
+    "Partition": "GroupPartition",
+    "Cost": "GroupCost",
+    "Forward": "GroupForward"
+  },
+  "scientific_oleans_copied": false
+}

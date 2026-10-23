@@ -1,0 +1,11 @@
+research/rmaf/algorithm/universal233/source_coverage/build/RatProbe.lean:3:72: error: Tactic `decide` failed to reduce
+  @decide (2 * (100 / 233) ^ 2 ≤ 100 / 233) ((2 * (100 / 233) ^ 2).instDecidableLe (100 / 233))
+to `true` or `false`.
+
+After unfolding the instances `instDecidableEqBool`, `Bool.decEq`, `Int.decLt`, `Int.decNonneg`, and `Rat.instDecidableLe`, reduction got stuck at
+  match 0 - ((100 / 233).num + 1) with
+  | Int.ofNat m => isTrue ⋯
+  | Int.negSucc i => isFalse ⋯
+real 0.36
+user 0.16
+sys 0.18

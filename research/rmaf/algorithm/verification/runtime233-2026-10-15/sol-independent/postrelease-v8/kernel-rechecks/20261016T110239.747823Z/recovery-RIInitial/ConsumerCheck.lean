@@ -1,0 +1,5 @@
+import RIInitial
+#check OrdinaryDispatch.RecoveryInitialBits.initializeBits_value
+#print axioms OrdinaryDispatch.RecoveryInitialBits.initializeBits_value
+#check OrdinaryDispatch.RecoveryInitialBits.initializeBits_work
+#print axioms OrdinaryDispatch.RecoveryInitialBits.initializeBits_work

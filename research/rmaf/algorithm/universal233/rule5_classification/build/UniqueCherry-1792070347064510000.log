@@ -1,0 +1,53 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/UniqueCherry.lean:270:12: warning: This simp argument is unused:
+  Nat.add_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Nat.add_left_comm, Nat.add_assoc, Bool.and_comm, Bool.and_left_comm, Bool.and_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/UniqueCherry.lean:270:43: warning: This simp argument is unused:
+  Nat.add_assoc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Nat.add_comm, Nat.add_left_comm, Bool.and_comm, Bool.and_left_comm, Bool.and_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/UniqueCherry.lean:326:14: error: don't know how to synthesize implicit argument `b`
+  @pendant_partition_check S a ?m.234 proper.right.left ((proper.right.right a).mp aT)
+context:
+T S : Tree
+a b : Nat
+e : RMAF.Vertex
+ha : admitted T S a b = true
+he : e ∈ cuts S a b
+good : restrictionAgrees T S (subtreeLabels S e) = true
+parts :
+  properPair T S = true ∧
+    earlierClear T S = true ∧
+      earlierClear S T = true ∧ pairwiseEmbeddings T (pendantPartition S a b) = true ∧ (cuts S a b).length = 2
+proper : (leaves T).Nodup ∧ (leaves S).Nodup ∧ ∀ (x : Nat), x ∈ leaves T ↔ x ∈ leaves S
+u v : RMAF.Vertex
+hc : cuts S a b = [u, v]
+U : Tree
+hU : subtree S e = some U
+aT : a ∈ leaves T
+⊢ Nat
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/UniqueCherry.lean:326:6: error: failed to infer `have` declaration type
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/UniqueCherry.lean:311:72: error: unsolved goals
+T S : Tree
+a b : Nat
+e : RMAF.Vertex
+ha : admitted T S a b = true
+he : e ∈ cuts S a b
+good : restrictionAgrees T S (subtreeLabels S e) = true
+parts :
+  properPair T S = true ∧
+    earlierClear T S = true ∧
+      earlierClear S T = true ∧ pairwiseEmbeddings T (pendantPartition S a b) = true ∧ (cuts S a b).length = 2
+proper : (leaves T).Nodup ∧ (leaves S).Nodup ∧ ∀ (x : Nat), x ∈ leaves T ↔ x ∈ leaves S
+u v : RMAF.Vertex
+hc : cuts S a b = [u, v]
+U : Tree
+hU : subtree S e = some U
+aT : a ∈ leaves T
+⊢ ∃ U, subtree S e = some U ∧ Caterpillar U ∧ (cherries U).length ≤ 1

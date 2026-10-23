@@ -1,0 +1,11 @@
+# Frozen local controls and search plan
+
+Before execution, the six frozen graph controls must reproduce their stated paths, cut counts, label components and specified origins. Full topologies for those controls are hand-specified in the evaluator, in addition to their pinned component data. A mismatch is an immediate STOP, never a parameter repair.
+
+Fresh evaluator: destructive graph deletion followed by repeatedly deleting unlabelled zero-child vertices and suppressing unlabelled one-child vertices. Suppressed non-root edges concatenate provenance; suppressed root stems vanish. Original IDs are never relabelled. A separately coded recursive pruning oracle checks yielded topology and surviving IDs; it is an internal different-algorithm check by the same author, not external independent certification.
+
+Negative controls: duplicate labels, invalid indegree, forged residual path, topology with the same component labels but a different cherry, wrong lift origin, fictitious incoming root edge, component=count(cuts)+1 after empty deletion, and treating two origins as one actual cut. All relevant comparators are supplied deliberate mismatches and must reject them.
+
+Search order: graph controls first; then size-3 pilot; then size-4 pilot sampled across the full deterministic generated graph list; extension only after timing record. Enumerate unordered reduced binary rooted forests over a fixed injective ordinary label set, plus no rho / singleton rho / unary rho added over each individual component. This is structural enumeration, not reached-algorithm-state enumeration. For each graph enumerate every C, every R, every origin product, and every K containing C. Sequential: exhaustive first and second residual cut subsets through n=3; for n=4 first cut is any single residual edge, second subset arbitrary, every origin choice at both stages. Labels and IDs in each actual witness are retained.
+
+A yield mismatch, path failure, lifted-count failure, or projection/count failure ends search and writes the full graph, C/R/K, paths, exact topologies, and ID graphs. Finite NO-FIRE changes no target. Large cases may be capped with exact completed denominators, never represented as exhaustive.

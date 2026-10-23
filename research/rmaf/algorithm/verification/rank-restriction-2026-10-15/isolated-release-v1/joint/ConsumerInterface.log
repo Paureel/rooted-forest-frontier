@@ -1,0 +1,32 @@
+ConsumerInterface.lean:60:9: error: unexpected token 'local'; expected '(', ':=', '|' or term
+ConsumerInterface.lean:60:9: error: Missing cases:
+ConsumerInterface.lean:54:44: error: unsolved goals
+T S : Tree
+color : Nat → Nat
+q : Nat
+o : Output
+G : List Nat → List (List Nat)
+t s : List Nat → Tree
+properT : (leaves T).Nodup
+properS : (leaves S).Nodup
+ho : o ∈ (generate S color q).outputs
+targetPartition : partitionCheck (leaves T) o.partition = true
+targetDisjoint : pairwiseEmbeddings T o.partition = true
+ht : ∀ (U : List Nat), U ∈ o.partition → restrict U T = some (t U)
+hs : ∀ (U : List Nat), U ∈ o.partition → restrict U S = some (s U)
+ha : ∀ (U : List Nat), U ∈ o.partition → agreement (t U) (s U) (G U) = true
+sourceValid : partitionCheck (leaves S) o.partition = true ∧ pairwiseEmbeddings S o.partition = true
+rv :
+  agreement T S (List.flatMap G o.partition) = true ∧
+    (List.map (fun U => (G U).length - 1) o.partition).sum = (List.flatMap G o.partition).length - o.partition.length ∧
+      (List.flatMap G o.partition).flatten.Perm (leaves T) ∧ (List.flatMap G o.partition).flatten.Perm (leaves S)
+positive : ∀ (U : List Nat), U ∈ o.partition → 0 < (G U).length
+⊢ agreement T S (List.flatMap G o.partition) = true ∧
+    o.sourceCuts.length + (List.map (fun U => (G U).length - 1) o.partition).sum =
+      (List.flatMap G o.partition).length - 1
+ConsumerInterface.lean:60:14: error: unexpected token ':='; expected 'binder_predicate', 'builtin_cbv_simproc', 'builtin_dsimproc', 'builtin_simproc', 'cbv_simproc', 'dsimproc', 'elab', 'elab_rules', 'grind_pattern', 'infix', 'infixl', 'infixr', 'instance', 'macro', 'macro_rules', 'notation', 'postfix', 'prefix', 'simproc', 'syntax' or 'unif_hint'
+ConsumerInterface.lean:61:51: error: unexpected token 'have'; expected 'binder_predicate', 'builtin_cbv_simproc', 'builtin_dsimproc', 'builtin_simproc', 'cbv_simproc', 'dsimproc', 'elab', 'elab_rules', 'grind_pattern', 'infix', 'infixl', 'infixr', 'instance', 'macro', 'macro_rules', 'notation', 'postfix', 'prefix', 'simproc', 'syntax' or 'unif_hint'
+ConsumerInterface.lean:63:48: error: unexpected token '.'; expected 'binder_predicate', 'builtin_cbv_simproc', 'builtin_dsimproc', 'builtin_simproc', 'cbv_simproc', 'dsimproc', 'elab', 'elab_rules', 'grind_pattern', 'infix', 'infixl', 'infixr', 'instance', 'macro', 'macro_rules', 'notation', 'postfix', 'prefix', 'simproc', 'syntax' or 'unif_hint'
+'FreshRankRestrictionConsumer.refinement_interface' does not depend on any axioms
+'FreshRankRestrictionConsumer.actual_output_forward' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FreshRankRestrictionConsumer.actual_output_reverse' depends on axioms: [propext, sorryAx]

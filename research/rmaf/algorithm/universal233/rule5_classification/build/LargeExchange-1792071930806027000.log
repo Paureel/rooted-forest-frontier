@@ -1,0 +1,34 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/LargeExchange.lean:46:41: error: Type mismatch: After simplification, term
+  List.filter_append_perm
+ has type
+  ∀ (p : ?m.84 → Bool) (l : List ?m.84), (List.filter p l ++ List.filter (fun x => !p x) l).Perm l
+but is expected to have type
+  (List.filter (fun x => RestrictionBridge.contained x X) H ++
+        List.filter (fun B => !RestrictionBridge.contained B X) H).Perm
+    H
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/LargeExchange.lean:36:82: error: unsolved goals
+T S U : Tree
+e : RMAF.Vertex
+P H : List (List Nat)
+X : List Nat
+hnS : (leaves S).Nodup
+hU : subtree S e = some U
+hxU : leaves U = X
+hp : partitionCheck (leaves S) P = true
+heT : pairwiseEmbeddings T P = true
+heS : pairwiseEmbeddings S P = true
+xm : X ∈ P
+good : restrictionAgrees T S X = true
+ha : agreement T S H = true
+href : VertexGeometry.Refines H P
+A : List (List Nat) := RestrictionBridge.family X H
+W : List (List Nat) := List.filter (fun B => !RestrictionBridge.contained B X) H
+ru : restrict X S = some U
+hAX : partitionCheck X A = true
+ndX : X.Nodup
+neX : X ≠ []
+perm : (A ++ [] ++ W).Perm H
+⊢ agreement T S (mergeGood X H) = true ∧
+    VertexGeometry.Refines (mergeGood X H) P ∧
+      (mergeGood X H).length + (RestrictionBridge.family X H).length = H.length + 1
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/LargeExchange.lean:47:27: error: unexpected token '('; expected command

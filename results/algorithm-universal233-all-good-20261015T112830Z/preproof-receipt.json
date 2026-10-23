@@ -1,0 +1,97 @@
+{
+  "created_utc": "2026-10-15T11:06:00.747131+00:00",
+  "status": "PASS_7_GUARDS_6_EXACT_MINIMA_4_FALSE_CONTROLS",
+  "pin_sha256": "b18ea57b85deabd9f57d8050851ae79ce942e4978f42fb46e22de80acfd13b98",
+  "pin_before_proof": true,
+  "enumeration_is_not_algorithm_subroutine": true,
+  "independence": "Manual fixtures and separate set-partition route; author development evidence only",
+  "cases": [
+    {
+      "name": "empty",
+      "all_good": true,
+      "partitions_checked": 1,
+      "agreements": 1,
+      "minimum_additional_cost": 0,
+      "mismatch_caught": true
+    },
+    {
+      "name": "one_matching",
+      "all_good": true,
+      "partitions_checked": 2,
+      "agreements": 2,
+      "minimum_additional_cost": 0,
+      "mismatch_caught": true
+    },
+    {
+      "name": "two_clear",
+      "all_good": true,
+      "partitions_checked": 15,
+      "agreements": 4,
+      "minimum_additional_cost": 0,
+      "mismatch_caught": true
+    },
+    {
+      "name": "crossed_quartet",
+      "all_good": true,
+      "partitions_checked": 15,
+      "agreements": 3,
+      "minimum_additional_cost": 1,
+      "mismatch_caught": true
+    },
+    {
+      "name": "six_caterpillar",
+      "all_good": true,
+      "partitions_checked": 203,
+      "agreements": 4,
+      "minimum_additional_cost": 2,
+      "mismatch_caught": true
+    },
+    {
+      "name": "permuted",
+      "all_good": true,
+      "partitions_checked": 15,
+      "agreements": 3,
+      "minimum_additional_cost": 1,
+      "mismatch_caught": true
+    },
+    {
+      "name": "bad_topology",
+      "all_good": false,
+      "guard": "REJECTED"
+    }
+  ],
+  "lean_runs": [
+    {
+      "module": "RMAF",
+      "exit": 0,
+      "seconds": 5.525521374998789
+    },
+    {
+      "module": "StateRestriction",
+      "exit": 0,
+      "seconds": 0.39165433299785946
+    },
+    {
+      "module": "StateEmbedding",
+      "exit": 0,
+      "seconds": 0.6713275000001886
+    },
+    {
+      "module": "StatePartition",
+      "exit": 0,
+      "seconds": 0.3284250409997185
+    },
+    {
+      "module": "State",
+      "exit": 0,
+      "seconds": 0.30673508399922866
+    },
+    {
+      "module": "PreControls",
+      "exit": 0,
+      "seconds": 0.3799171250029758
+    }
+  ],
+  "false_lean_claims_rejected": 4,
+  "seconds": 7.9378876669979945
+}

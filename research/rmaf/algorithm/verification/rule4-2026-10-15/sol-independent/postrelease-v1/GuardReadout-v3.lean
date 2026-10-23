@@ -1,0 +1,63 @@
+import Rule4Solve
+import Lean
+open RMAF Lean Universal233.Rule4
+def tj : Tree → Json
+  | .leaf x => toJson x
+  | .node l r => Json.arr #[tj l,tj r]
+def cj (cuts : List RMAF.Vertex) : Json :=
+  toJson (cuts.map (fun p => String.ofList (p.map (fun s => if s then '1' else '0'))))
+def fj (F : Option (List (List Nat))) : Json := match F with
+  | none => Json.null
+  | some F => toJson F
+def bj (b : Branch) : Json := Json.mkObj [
+  ("target",tj b.target),("source",tj b.source),("cuts",cj b.cuts),
+  ("partition",toJson b.partition),("source_forest",Json.arr (b.sourceForest.map tj).toArray),
+  ("cost",toJson b.cost),("swapped",toJson b.swapped),
+  ("proper",toJson (ForestState.proper (some b.target) b.sourceForest))]
+def quietChild (allF : List (List (List Nat))) (b : Branch) (r : Nat) :=
+  RMAF.best List.length (fun F => ForestState.agrees (some b.target) b.sourceForest F &&
+    decide (ForestState.additionalCost b.sourceForest F ≤ r)) allF
+def child (tag : String) (q : Nat) (allF : List (List (List Nat))) (b : Branch) (r : Nat) :=
+  dbg_trace ("CALL " ++ (Json.mkObj [("fixture",toJson tag),("parent_q",toJson q),
+    ("branch",bj b),("residual",toJson r)]).compress)
+  quietChild allF b r
+def recoveryJ (o : Option Universal233.CoreProgram.Output) : Json := match o with
+  | none => Json.null
+  | some o => Json.mkObj [("partition",toJson o.partition),("cuts",cj o.sourceCuts)]
+def runFixture (tag : String) (T S : Tree) (allP allF : List (List (List Nat))) : Json :=
+  match select T S with
+  | none => Json.mkObj [("fixture",toJson tag),("selected",toJson false)]
+  | some s =>
+    let states := (branches s).map (fun b => Json.mkObj [("branch",bj b),
+      ("table",toJson (allP.filter (fun F => ForestState.agrees (some b.target) b.sourceForest F)))])
+    let budgets := (List.range 5).map (fun q =>
+      let solve := solveForest s q (child tag q allF)
+      let cuts := solveCuts s q (child tag q allF)
+      Json.mkObj [("q",toJson q),("solveForest",fj solve),("solveCuts",recoveryJ cuts),
+        ("affordable",Json.arr ((branches s).filter (fun b => b.cost ≤ q) |>.map (fun b =>
+          Json.mkObj [("branch",bj b),("residual",toJson (q-b.cost))])).toArray),
+        ("masses",toJson ([2,(233/100 : Rat),3].map (fun c => toString (callbackMass c q ((branches s).map Branch.cost)))))])
+    Json.mkObj [("fixture",toJson tag),("selected",toJson true),("a",toJson s.raw.a),
+      ("b",toJson s.raw.b),("c",toJson s.raw.c),("states",toJson states),("budgets",toJson budgets)]
+def guardJ (tag : String) (T S : Tree) := Json.mkObj [("guard",toJson tag),
+  ("selected",toJson (select T S |>.isSome)),
+  ("proper_T",toJson (decide (leaves T).Nodup)),
+  ("proper_S",toJson (decide (leaves S).Nodup)),
+  ("labels_perm",toJson (decide ((leaves T).Perm (leaves S)))),
+  ("no_common",toJson ((orderedCherries T).all (fun p => !(orderedCherries S).contains p))),
+  ("no_t1_target",toJson ((orderedCherries T).all (fun p => (Universal233.HardParent.pendantOriginal S p.1 p.2).length != 1))),
+  ("no_t1_source",toJson ((orderedCherries S).all (fun p => (Universal233.HardParent.pendantOriginal T p.1 p.2).length != 1))),
+  ("local_admissions",toJson ((rawChoices T S).filter (fun s => decide (LocalGuard T S s))).length)]
+def guard0 : Json := guardJ "common" (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 3)) (.node (.leaf 2) (.leaf 4))) (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 3)) (.node (.leaf 2) (.leaf 4)))
+def guard1 : Json := guardJ "t1-forward" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) (.node (.node (.node (.leaf 0) (.leaf 2)) (.leaf 1)) (.leaf 3))
+def guard2 : Json := guardJ "t1-source" (.node (.node (.node (.leaf 0) (.leaf 2)) (.leaf 1)) (.leaf 3)) (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3)))
+def guard3 : Json := guardJ "unequal" (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 3)) (.node (.leaf 2) (.leaf 4))) (.node (.node (.leaf 0) (.leaf 2)) (.node (.leaf 1) (.node (.leaf 3) (.leaf 9))))
+def guard4 : Json := guardJ "duplicate" (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 3)) (.node (.leaf 2) (.leaf 4))) (.node (.node (.leaf 0) (.leaf 2)) (.node (.leaf 1) (.node (.leaf 3) (.leaf 3))))
+def guard5 : Json := guardJ "bad-geometry" (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 3)) (.node (.leaf 2) (.node (.leaf 4) (.leaf 5)))) (.node (.node (.node (.node (.node (.leaf 0) (.leaf 2)) (.leaf 3)) (.leaf 4)) (.leaf 1)) (.leaf 5))
+def main : IO Unit := do
+  IO.println ("RESULT " ++ guard0.compress)
+  IO.println ("RESULT " ++ guard1.compress)
+  IO.println ("RESULT " ++ guard2.compress)
+  IO.println ("RESULT " ++ guard3.compress)
+  IO.println ("RESULT " ++ guard4.compress)
+  IO.println ("RESULT " ++ guard5.compress)

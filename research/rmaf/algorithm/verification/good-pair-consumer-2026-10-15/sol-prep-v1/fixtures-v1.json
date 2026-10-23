@@ -1,0 +1,41 @@
+{
+ "phase":"PRE-CANDIDATE PREPARATION ONLY",
+ "lineage":"Same X0 checker and public edge fixture reused; zero additional replications",
+ "rational_c":[[2,1],[233,100],[3,1]],
+ "fixtures":[
+  {
+   "id":"root-supplied-six-leaf-vertex",
+   "S":[[[0,[1,2]],[3,4]],5],"T":[[[0,3],[1,[2,4]]],5],"P":[[0,1,2],[3,4],[5]],"vertex":"01","q":5,
+   "expected":{"all_premises":true,"A_good":true,"A_region_count":3,"B_region_count":2,"A_colors":5,"B_colors":4,"LA_costs":[4],"LB_costs":[3],"LA_cuts":[["01","0011","0010","000"]],"LB_cuts":[["011","010","00"]],"at_q3_LA_costs":[],"at_q3_LB_costs":[3],"mass_c2":"3/16","optimum_refining_P_components":4,"refinement_partition_denominator":10,"agreement_count":6,"all_Q_agreement":true,"root_degree":2,"root_A_regions":1,"root_B_regions":1,"selected_singleton_leaf_regions":0}
+  },
+  {
+   "id":"public-good-A-edge-reused",
+   "S":[[[1,2],[[3,5],[4,6]]],7],"T":[[[1,[3,4]],[2,[5,6]]],7],"P":[[1,2],[3,4,5,6],[7]],"edge":"00","q":6,
+   "F":[[1],[2],[3,5],[4],[6],[7]],"Fprime":[[1,2],[3],[5],[4],[6],[7]],
+   "expected":{"all_premises":true,"A_good":true,"costs":[4,4],"mass_c2":"1/8","optimum_refining_P_components":5,"refinement_partition_denominator":30,"agreement_count":10,"F_agreement":true,"Fprime_agreement":true,"Fprime_no_larger":true,"F_refines_any_Q":false,"Fprime_refines_some_Q":true,"kept_A_each":true,"clear_B_each":true,"all_Q_agreement":true,"at_q3_costs":[],"at_q4_costs":[4,4]}
+  },
+  {
+   "id":"vertex-good-A-bad-C-not-all-Q-agreement",
+   "S":[[[0,[1,2]],[3,4]],[[5,6],7]],"T":[[[0,3],[1,[2,4]]],[[5,7],6]],"P":[[0,1,2],[3,4],[5,6,7]],"vertex":"01","q":7,
+   "expected":{"all_premises":true,"A_good":true,"A_region_count":3,"B_region_count":2,"A_colors":5,"B_colors":4,"LA_costs":[4],"LB_costs":[3],"mass_c2":"3/16","optimum_refining_P_components":5,"refinement_partition_denominator":50,"agreement_count":24,"all_Q_agreement":false,"each_Q_additional_cuts":[1,1]}
+  }
+ ],
+ "premise_corruptions":[
+  {"id":"source-disjointness-only-removed","S":[[[1,[3,5]],[2,[4,6]]],7],"T":[[[1,[3,4]],[2,[5,6]]],7],"P":[[1,2],[3,4,5,6],[7]],"expected_false_guard":"source_P_disjoint"},
+  {"id":"A-agreement-only-removed-X0-reused","S":[[[1,[2,[[4,6],[5,7]]]],3],8],"T":[[[1,[4,5]],[[2,3],[6,7]]],8],"P":[[1,2,3],[4,5,6,7],[8]],"expected_false_guard":"A_good"},
+  {"id":"other-parent-clearance-only-removed","S":[[[[1,2],[[3,5],[4,6]]],7],8],"T":[[[1,[3,4]],[2,[[5,7],6]]],8],"P":[[1,2],[3,4,5,6],[7,8]],"expected_false_guard":"C_clear"}
+ ],
+ "corruption_expectations":{
+  "omitted_vertex_call_rejected":true,
+  "vertex_duplicated_B_output_mass_c2":"5/16",
+  "raw_deduplication_rejected":true,
+  "wrong_source_cut_cost_rejected":true,
+  "forged_original_F_refinement_rejected":true,
+  "unknown_F_runtime_read_rejected":true,
+  "clean_runtime_without_F_allowed":true,
+  "identical_restricted_pair_additional_cuts":0,
+  "empty_and_absent_selections_rejected":true,
+  "duplicate_original_label_refused":true,
+  "sibling_order_irrelevant_to_rooted_topology":true
+ }
+}

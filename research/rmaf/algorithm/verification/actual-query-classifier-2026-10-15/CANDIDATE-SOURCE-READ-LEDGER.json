@@ -1,0 +1,698 @@
+{
+  "phase": "Exact root release only after immutable60 readiness",
+  "ready_manifest_sha256": "655f32eef6ee281e4d820e49e26d2b20bbf694f11e27cb0605ca4c5d2ac5f535",
+  "author_manifests": {
+    "query": "3e91794e8e5a15d979e11dc17cd8087d294fee8e1dbe5cc627249e6c5d24e68e",
+    "rank": "b429f361f6ce0ce11dd641e7bbc545eb0fda3411d2ebfef5e748419bfb0691a0"
+  },
+  "read_statement_records": [
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Caller.lean",
+      "source_sha256": "0817d83f9b1887ca43d8c52fe0c367f1f41ec5f696d5fd9b3d937b962254e143",
+      "line": 14,
+      "declaration": "def knownCost",
+      "verbatim": "def knownCost : List (Job P A) \u2192 Nat\n  | [] => 0\n  | .resolved _ c _ :: js => c + knownCost js\n  | .hard _ :: js => knownCost js"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Caller.lean",
+      "source_sha256": "0817d83f9b1887ca43d8c52fe0c367f1f41ec5f696d5fd9b3d937b962254e143",
+      "line": 19,
+      "declaration": "def pending",
+      "verbatim": "def pending : List (Job P A) \u2192 Nat\n  | [] => 0\n  | .resolved _ _ _ :: js => pending js\n  | .hard _ :: js => 1 + pending js"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Caller.lean",
+      "source_sha256": "0817d83f9b1887ca43d8c52fe0c367f1f41ec5f696d5fd9b3d937b962254e143",
+      "line": 24,
+      "declaration": "def answerCost",
+      "verbatim": "def answerCost (xs : List (Nat \u00d7 A)) : Nat := (xs.map Prod.fst).sum"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Caller.lean",
+      "source_sha256": "0817d83f9b1887ca43d8c52fe0c367f1f41ec5f696d5fd9b3d937b962254e143",
+      "line": 32,
+      "declaration": "def run",
+      "verbatim": "def run (solve : P \u2192 Nat \u2192 Option (Nat \u00d7 A)) (b : Nat) : List (Job P A) \u2192 Receipt A\n  | [] => \u27e8some [], [], 0\u27e9\n  | .resolved _ c a :: js =>\n    let r := run solve b js\n    \u27e8r.answers.map ((c,a) :: \u00b7), r.calls, r.visits+1\u27e9\n  | .hard p :: js =>\n    match solve p b with\n    | none => \u27e8none, [b], 1\u27e9\n    | some x =>\n      let r := run solve b js\n      \u27e8r.answers.map (x :: \u00b7), b :: r.calls, r.visits+1\u27e9"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Caller.lean",
+      "source_sha256": "0817d83f9b1887ca43d8c52fe0c367f1f41ec5f696d5fd9b3d937b962254e143",
+      "line": 44,
+      "declaration": "def allocated",
+      "verbatim": "def allocated (q : Nat) (js : List (Job P A)) : Nat :=\n  q - knownCost js - 2*(pending js-1)"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Caller.lean",
+      "source_sha256": "0817d83f9b1887ca43d8c52fe0c367f1f41ec5f696d5fd9b3d937b962254e143",
+      "line": 47,
+      "declaration": "def schedule",
+      "verbatim": "def schedule (solve : P \u2192 Nat \u2192 Option (Nat \u00d7 A)) (q : Nat)\n    (js : List (Job P A)) : Receipt A :=\n  if q < knownCost js + 2*pending js then \u27e8none, [], 0\u27e9 else\n    let r := run solve (allocated q js) js\n    \u27e8r.answers.bind (fun xs => if answerCost xs \u2264 q then some xs else none),\n      r.calls, r.visits\u27e9"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Specification.lean",
+      "source_sha256": "21832e53be9e7f38d2e2331878ddb2239b172c3d97c5dd78fb21b378bc67a070",
+      "line": 5,
+      "declaration": "def Planned",
+      "verbatim": "def Planned (minimum : P \u2192 Nat) (valid : P \u2192 A \u2192 Prop) : Job P A \u2192 Prop\n  | .resolved p c a => c = minimum p \u2227 valid p a \u2227 c \u2264 1\n  | .hard p => 2 \u2264 minimum p"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Specification.lean",
+      "source_sha256": "21832e53be9e7f38d2e2331878ddb2239b172c3d97c5dd78fb21b378bc67a070",
+      "line": 102,
+      "declaration": "theorem run_sound",
+      "verbatim": "theorem run_sound (minimum : P \u2192 Nat) (valid : P \u2192 A \u2192 Prop)\n    (solve : P \u2192 Nat \u2192 Option (Nat \u00d7 A))\n    (hs : \u2200 p b c a, solve p b = some (c,a) \u2192 c = minimum p \u2227 valid p a)\n    (b : Nat) (js : List (Job P A)) (hp : \u2200 j \u2208 js, Planned minimum valid j)\n    (xs : List (Nat \u00d7 A)) (hr : (run solve b js).answers = some xs) :\n    AnswersFor minimum valid js xs := by\n  induction js generalizing xs with\n  | nil =>\n    have hx : xs = [] := by simpa [run] using hr.symm\n    subst xs\n    exact AnswersFor.nil\n  | cons j js ih =>"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Specification.lean",
+      "source_sha256": "21832e53be9e7f38d2e2331878ddb2239b172c3d97c5dd78fb21b378bc67a070",
+      "line": 137,
+      "declaration": "theorem run_complete",
+      "verbatim": "theorem run_complete (minimum : P \u2192 Nat)\n    (solve : P \u2192 Nat \u2192 Option (Nat \u00d7 A))\n    (hc : \u2200 p b, minimum p \u2264 b \u2192 \u2203 x, solve p b = some x)\n    (b : Nat) (js : List (Job P A))\n    (hf : \u2200 p, Job.hard p \u2208 js \u2192 minimum p \u2264 b) :\n    \u2203 xs, (run solve b js).answers = some xs := by\n  induction js with\n  | nil => exact \u27e8[],rfl\u27e9\n  | cons j js ih =>\n    have htail : \u2200 p, Job.hard p \u2208 js \u2192 minimum p \u2264 b := by\n      intro p hp; exact hf p (by simp [hp])\n    obtain \u27e8ys,hy\u27e9 := ih htail"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Specification.lean",
+      "source_sha256": "21832e53be9e7f38d2e2331878ddb2239b172c3d97c5dd78fb21b378bc67a070",
+      "line": 155,
+      "declaration": "theorem schedule_sound",
+      "verbatim": "theorem schedule_sound (minimum : P \u2192 Nat) (valid : P \u2192 A \u2192 Prop)\n    (solve : P \u2192 Nat \u2192 Option (Nat \u00d7 A))\n    (hs : \u2200 p b c a, solve p b = some (c,a) \u2192 c = minimum p \u2227 valid p a)\n    (q : Nat) (js : List (Job P A)) (hp : \u2200 j \u2208 js, Planned minimum valid j)\n    (xs : List (Nat \u00d7 A)) (hr : (schedule solve q js).answers = some xs) :\n    AnswersFor minimum valid js xs \u2227 answerCost xs = totalMinimum minimum js \u2227\n      totalMinimum minimum js \u2264 q := by\n  unfold schedule at hr\n  split at hr\n  \u00b7 simp at hr\n  \u00b7 rename_i hprune\n    cases he : (run solve (allocated q js) js).answers with"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Specification.lean",
+      "source_sha256": "21832e53be9e7f38d2e2331878ddb2239b172c3d97c5dd78fb21b378bc67a070",
+      "line": 177,
+      "declaration": "theorem schedule_complete",
+      "verbatim": "theorem schedule_complete (minimum : P \u2192 Nat) (valid : P \u2192 A \u2192 Prop)\n    (solve : P \u2192 Nat \u2192 Option (Nat \u00d7 A))\n    (hs : \u2200 p b c a, solve p b = some (c,a) \u2192 c = minimum p \u2227 valid p a)\n    (hc : \u2200 p b, minimum p \u2264 b \u2192 \u2203 x, solve p b = some x)\n    (q : Nat) (js : List (Job P A)) (hp : \u2200 j \u2208 js, Planned minimum valid j)\n    (hq : totalMinimum minimum js \u2264 q) :\n    \u2203 xs, (schedule solve q js).answers = some xs := by\n  have hl := total_lower minimum valid js hp\n  have hprune : \u00acq < knownCost js + 2*pending js := by omega\n  have hf := feasible_allocation minimum valid js hp q hq\n  obtain \u27e8xs,hxs\u27e9 := run_complete minimum solve hc (allocated q js) js hf\n  have ha := run_sound minimum valid solve hs (allocated q js) js hp xs hxs"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Specification.lean",
+      "source_sha256": "21832e53be9e7f38d2e2331878ddb2239b172c3d97c5dd78fb21b378bc67a070",
+      "line": 193,
+      "declaration": "theorem schedule_accepts_iff",
+      "verbatim": "theorem schedule_accepts_iff (minimum : P \u2192 Nat) (valid : P \u2192 A \u2192 Prop)\n    (solve : P \u2192 Nat \u2192 Option (Nat \u00d7 A))\n    (hs : \u2200 p b c a, solve p b = some (c,a) \u2192 c = minimum p \u2227 valid p a)\n    (hc : \u2200 p b, minimum p \u2264 b \u2192 \u2203 x, solve p b = some x)\n    (q : Nat) (js : List (Job P A)) (hp : \u2200 j \u2208 js, Planned minimum valid j) :\n    (\u2203 xs, (schedule solve q js).answers = some xs) \u2194 totalMinimum minimum js \u2264 q := by\n  constructor\n  \u00b7 rintro \u27e8xs,hxs\u27e9\n    exact (schedule_sound minimum valid solve hs q js hp xs hxs).2.2\n  \u00b7 exact schedule_complete minimum valid solve hs hc q js hp\nend Universal233.PaidQueries"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Budgets.lean",
+      "source_sha256": "12265a7209859592fbdc10e410416b99557b4882865d6f7260513e33aca454cb",
+      "line": 5,
+      "declaration": "def badSlots",
+      "verbatim": "def badSlots : List (Job P A) \u2192 Nat\n  | [] => 0\n  | .resolved _ c _ :: js => (if c=0 then 0 else 1) + badSlots js\n  | .hard _ :: js => 1 + badSlots js"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Budgets.lean",
+      "source_sha256": "12265a7209859592fbdc10e410416b99557b4882865d6f7260513e33aca454cb",
+      "line": 82,
+      "declaration": "theorem allocation_paid_identity",
+      "verbatim": "theorem allocation_paid_identity (q : Nat) (js : List (Job P A))\n    (h : knownCost js + 2*pending js \u2264 q) :\n    allocated q js + knownCost js + 2*(pending js-1) = q := by\n  simp only [allocated]\n  omega"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Budgets.lean",
+      "source_sha256": "12265a7209859592fbdc10e410416b99557b4882865d6f7260513e33aca454cb",
+      "line": 106,
+      "declaration": "theorem sole_hard_no_discount",
+      "verbatim": "theorem sole_hard_no_discount (p : P) (q : Nat) :\n    allocated q ([Job.hard p] : List (Job P A)) = q := by simp [allocated,knownCost,pending]"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Mass.lean",
+      "source_sha256": "ebcfd890d7e005d8c492600930ccb108f51b12779a12852b194f16445e1c77bd",
+      "line": 88,
+      "declaration": "def actualQueryMass",
+      "verbatim": "def actualQueryMass (c : Rat) (q : Nat) (calls : List Nat) : Rat :=\n  (calls.map (fun b => c^(-((q-b : Nat) : Int)))).sum"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Mass.lean",
+      "source_sha256": "ebcfd890d7e005d8c492600930ccb108f51b12779a12852b194f16445e1c77bd",
+      "line": 121,
+      "declaration": "theorem actual_paid_query_mass",
+      "verbatim": "theorem actual_paid_query_mass (solve : P \u2192 Nat \u2192 Option (Nat \u00d7 A)) (q : Nat)\n    (js : List (Job P A)) (hbad : 2 \u2264 badSlots js) (c : Rat) (hc : 2 \u2264 c) :\n    actualQueryMass c q (schedule solve q js).calls \u2264 c^(-1 : Int) :=\n  Rat.le_trans (actual_query_envelope solve q js c hc) (paid_query_envelope c hc js hbad)\nend Universal233.PaidQueries"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Work.lean",
+      "source_sha256": "d56afa9d6ca0b198b184b61a2a53538a205056d38c67b1fbf2707ea34598ab16",
+      "line": 73,
+      "declaration": "def meterSchedule",
+      "verbatim": "def meterSchedule (solve : P \u2192 Nat \u2192 Option (Nat \u00d7 A)) (charge : P \u2192 Nat \u2192 Nat)\n    (q : Nat) (js : List (Job P A)) : MeterReceipt P A :=\n  if q < knownCost js + 2*pending js then\n    \u27e8\u27e8none,[],0\u27e9,[],8*js.length+8,0\u27e9 else\n    let r := meterRun solve charge (allocated q js) js\n    \u27e8\u27e8r.value.answers.bind (fun xs => if answerCost xs \u2264 q then some xs else none),\n        r.value.calls,r.value.visits\u27e9,r.queries,\n      16*js.length+20+r.callerWork+postCharge r.value,r.recursiveWork\u27e9"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Work.lean",
+      "source_sha256": "d56afa9d6ca0b198b184b61a2a53538a205056d38c67b1fbf2707ea34598ab16",
+      "line": 82,
+      "declaration": "theorem meterSchedule_value",
+      "verbatim": "theorem meterSchedule_value (solve : P \u2192 Nat \u2192 Option (Nat \u00d7 A)) (charge : P \u2192 Nat \u2192 Nat)\n    (q : Nat) (js : List (Job P A)) :\n    (meterSchedule solve charge q js).value = schedule solve q js := by\n  unfold meterSchedule schedule\n  split\n  \u00b7 rfl\n  \u00b7 simp only [meterRun_value]"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Work.lean",
+      "source_sha256": "d56afa9d6ca0b198b184b61a2a53538a205056d38c67b1fbf2707ea34598ab16",
+      "line": 114,
+      "declaration": "theorem meterSchedule_caller",
+      "verbatim": "theorem meterSchedule_caller (solve : P \u2192 Nat \u2192 Option (Nat \u00d7 A)) (charge : P \u2192 Nat \u2192 Nat)\n    (q : Nat) (js : List (Job P A)) :\n    (meterSchedule solve charge q js).callerWork \u2264 32*(js.length+1) := by\n  unfold meterSchedule\n  split\n  \u00b7 simp only []; omega\n  \u00b7 have hm := meterRun_caller solve charge (allocated q js) js\n    have hp : postCharge (meterRun solve charge (allocated q js) js).value \u2264 4*js.length+4 := by\n      rw [meterRun_value]\n      cases he : (run solve (allocated q js) js).answers with\n      | none => simp [postCharge,he]\n      | some xs => simp [postCharge,he,run_answer_length solve (allocated q js) js xs he]"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-query/Work.lean",
+      "source_sha256": "d56afa9d6ca0b198b184b61a2a53538a205056d38c67b1fbf2707ea34598ab16",
+      "line": 129,
+      "declaration": "theorem meterSchedule_trace",
+      "verbatim": "theorem meterSchedule_trace (solve : P \u2192 Nat \u2192 Option (Nat \u00d7 A)) (charge : P \u2192 Nat \u2192 Nat)\n    (q : Nat) (js : List (Job P A)) :\n    (meterSchedule solve charge q js).queries.map Prod.snd = (schedule solve q js).calls \u2227\n      (meterSchedule solve charge q js).recursiveWork =\n        ((meterSchedule solve charge q js).queries.map (fun pb => charge pb.1 pb.2)).sum := by\n  unfold meterSchedule schedule\n  split\n  \u00b7 simp\n  \u00b7 have ht := meterRun_trace solve charge (allocated q js) js\n    simpa only [meterRun_value] using ht\nend Universal233.PaidQueries"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/RankCost.lean",
+      "source_sha256": "fc3336d4dd996330f077cd7407d6e63796b332b625b374ccde34ef278c04d7aa",
+      "line": 10,
+      "declaration": "def inputRank",
+      "verbatim": "def inputRank (T : Tree) (color : Nat \u2192 Nat) : Nat :=\n  (dedupNat ((leaves T).map color)).length"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/RankCost.lean",
+      "source_sha256": "fc3336d4dd996330f077cd7407d6e63796b332b625b374ccde34ef278c04d7aa",
+      "line": 13,
+      "declaration": "def RankFeasible",
+      "verbatim": "def RankFeasible (T : Tree) (color : Nat \u2192 Nat) : Prop :=\n  \u2203 bs : List (List Nat), partitionCheck (leaves T) bs = true \u2227\n    pairwiseEmbeddings T bs = true \u2227\n    (\u2200 b, b \u2208 bs \u2192 LabelMonochromatic color b) \u2227 bs.length = inputRank T color"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/Probe.lean",
+      "source_sha256": "ee4558e9eddf1b3b317ef54eaf5545ac74975778a18823c5d59e36babca124b5",
+      "line": 6,
+      "declaration": "def probe",
+      "verbatim": "def probe (T : Tree) (color : Nat \u2192 Nat) : Receipt := generate T color (inputRank T color-1)\ndef accepted (T : Tree) (color : Nat \u2192 Nat) : Bool := !(probe T color).outputs.isEmpty"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/Probe.lean",
+      "source_sha256": "ee4558e9eddf1b3b317ef54eaf5545ac74975778a18823c5d59e36babca124b5",
+      "line": 9,
+      "declaration": "theorem probe_nonempty_iff",
+      "verbatim": "theorem probe_nonempty_iff (T : Tree) (color : Nat \u2192 Nat) (hs : (leaves T).Nodup) :\n    (probe T color).outputs \u2260 [] \u2194 RankFeasible T color := by\n  constructor\n  \u00b7 intro hne\n    obtain \u27e8o,ho\u27e9 := List.exists_mem_of_ne_nil _ hne\n    have hv := Assembly.generated_source_valid T color (inputRank T color-1) o ho\n    have hm := CutRealization.generate_monochromatic T color (inputRank T color-1) o ho\n    have hlen := generate_partition_cost T color _ o ho\n    have hlo := generate_color_cost T color _ o ho\n    have hhi := generate_output_budget T color _ o ho\n    have hr := inputRank_pos T color\n    change inputRank T color \u2264 o.sourceCuts.length+1 at hlo"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/Probe.lean",
+      "source_sha256": "ee4558e9eddf1b3b317ef54eaf5545ac74975778a18823c5d59e36babca124b5",
+      "line": 53,
+      "declaration": "theorem accepted_literal_stable",
+      "verbatim": "theorem accepted_literal_stable (T : Tree) (color : Nat \u2192 Nat) (hs : (leaves T).Nodup)\n    (h : accepted T color = true) :\n    \u2203 o, (probe T color).outputs = [o] \u2227 o.sourceCuts.length = inputRank T color-1 \u2227\n      \u2200 q, (generate T color q).outputs = if q < inputRank T color-1 then [] else [o] := by\n  have hf := (accepted_iff T color hs).1 h\n  obtain \u27e8o,ho,hcost\u27e9 := feasible_unique T color hs hf (inputRank T color-1) (Nat.le_refl _)\n  refine \u27e8o,ho,hcost,?_\u27e9\n  intro q\n  by_cases hq : q < inputRank T color-1\n  \u00b7 simp only [hq,ite_true]\n    exact below_rank_outputs_empty T color q hq\n  \u00b7 simp only [hq,ite_false]"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/Probe.lean",
+      "source_sha256": "ee4558e9eddf1b3b317ef54eaf5545ac74975778a18823c5d59e36babca124b5",
+      "line": 71,
+      "declaration": "theorem rejected_cost_mass",
+      "verbatim": "theorem rejected_cost_mass (T : Tree) (color : Nat \u2192 Nat) (hs : (leaves T).Nodup)\n    (h : accepted T color = false) (q : Nat) (c : Rat) (hc : 2 \u2264 c) :\n    (\u2200 o, o \u2208 (generate T color q).outputs \u2192 inputRank T color \u2264 o.sourceCuts.length) \u2227\n      rawQMass c (generate T color q).outputs \u2264 2*c^(-(inputRank T color : Int)) := by\n  have hn : \u00acRankFeasible T color := by\n    intro hf\n    have he := (accepted_iff T color hs).2 hf\n    simp [h] at he\n  exact \u27e8fun o ho => infeasible_cost T color q hn o ho,infeasible_mass T color q hn c hc\u27e9"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/FourProbe.lean",
+      "source_sha256": "711f20a2b2e5b65f0122800d1fb5dce8c230d832734543d3af2032fe90da76a6",
+      "line": 6,
+      "declaration": "def fourProbe",
+      "verbatim": "def fourProbe (T : Tree) (color : Nat \u2192 Nat) : Receipt := generate T color 3"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/FourProbe.lean",
+      "source_sha256": "711f20a2b2e5b65f0122800d1fb5dce8c230d832734543d3af2032fe90da76a6",
+      "line": 18,
+      "declaration": "def optimizedFourOutputs",
+      "verbatim": "def optimizedFourOutputs (T : Tree) (color : Nat \u2192 Nat) (q : Nat) : List Output :=\n  if q < 3 then [] else\n    let p := fourProbe T color\n    if p.outputs.isEmpty then (generate T color q).outputs else p.outputs"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/FourProbe.lean",
+      "source_sha256": "711f20a2b2e5b65f0122800d1fb5dce8c230d832734543d3af2032fe90da76a6",
+      "line": 25,
+      "declaration": "theorem optimized_four_exact",
+      "verbatim": "theorem optimized_four_exact (T : Tree) (color : Nat \u2192 Nat) (hs : (leaves T).Nodup)\n    (hr : inputRank T color = 4) (q : Nat) :\n    optimizedFourOutputs T color q = (generate T color q).outputs := by\n  by_cases hq : q < 3\n  \u00b7 simp only [optimizedFourOutputs,hq,ite_true]\n    symm\n    exact below_rank_outputs_empty T color q (by omega)\n  \u00b7 cases he : (fourProbe T color).outputs with\n    | nil => simp [optimizedFourOutputs,hq,he]\n    | cons o os =>\n      have ha : accepted T color = true := by\n        have hprobe : probe T color = fourProbe T color := by simp [probe,fourProbe,hr]"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/FourProbe.lean",
+      "source_sha256": "711f20a2b2e5b65f0122800d1fb5dce8c230d832734543d3af2032fe90da76a6",
+      "line": 45,
+      "declaration": "theorem four_rejected_high",
+      "verbatim": "theorem four_rejected_high (T : Tree) (color : Nat \u2192 Nat) (hs : (leaves T).Nodup)\n    (hr : inputRank T color = 4) (h : fourAccepted T color = false)\n    (q : Nat) (c : Rat) (hc : 2 \u2264 c) :\n    (\u2200 o, o \u2208 (generate T color q).outputs \u2192 4 \u2264 o.sourceCuts.length) \u2227\n      rawQMass c (generate T color q).outputs \u2264 2*c^(-4 : Int) := by\n  have he : fourAccepted T color = accepted T color := by simp [fourAccepted,fourProbe,accepted,probe,hr]\n  have hmodel := rejected_cost_mass T color hs (by rw [\u2190he];exact h) q c hc\n  have hi : -((4 : Nat) : Int) = (-4 : Int) := by decide\n  simpa only [hr,hi] using hmodel"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/OptimizedWork.lean",
+      "source_sha256": "66b7f4a5364266e98de1696761d0facc340126f7eb7ab9164fa436e8133bb135",
+      "line": 17,
+      "declaration": "def meterOptimizedFour",
+      "verbatim": "def meterOptimizedFour (T : Tree) (color : Nat \u2192 Nat) (q : Nat) : MeasuredProbe :=\n  if q<3 then \u27e8[],64,0\u27e9 else\n    let p := meterGenerate T color 3\n    if p.measured.receipt.outputs.isEmpty then\n      let g := meterGenerate T color q\n      \u27e8g.measured.receipt.outputs,64+p.measured.work+g.measured.work,p.oracleCalls+g.oracleCalls\u27e9\n    else \u27e8p.measured.receipt.outputs,64+p.measured.work,p.oracleCalls\u27e9"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/OptimizedWork.lean",
+      "source_sha256": "66b7f4a5364266e98de1696761d0facc340126f7eb7ab9164fa436e8133bb135",
+      "line": 32,
+      "declaration": "theorem meterOptimizedFour_calls",
+      "verbatim": "theorem meterOptimizedFour_calls (T : Tree) (color : Nat \u2192 Nat) (q : Nat) :\n    (meterOptimizedFour T color q).colorCalls =\n      if q<3 then 0 else\n      if (fourProbe T color).outputs.isEmpty then\n        2*(if (leaves T).Nodup then (leaves T).length else 0)\n      else if (leaves T).Nodup then (leaves T).length else 0 := by\n  simp only [meterOptimizedFour]\n  split\n  \u00b7 rfl\n  \u00b7 simp only [meterGenerate_receipt,meterGenerate_calls,fourProbe]\n    split <;> simp_all [Nat.two_mul]"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/OptimizedWork.lean",
+      "source_sha256": "66b7f4a5364266e98de1696761d0facc340126f7eb7ab9164fa436e8133bb135",
+      "line": 44,
+      "declaration": "theorem meterOptimizedFour_bound",
+      "verbatim": "theorem meterOptimizedFour_bound (T : Tree) (color : Nat \u2192 Nat) (q : Nat)\n    (hr : inputRank T color = 4) :\n    (meterOptimizedFour T color q).work \u2264\n      if q<3 then 64 else 64+fixedProbeBound T+\n        if (fourProbe T color).outputs.isEmpty then fullCoreBound T q else 0 := by\n  have hp := four_probe_model_work T color hr\n  change (meterGenerate T color 3).measured.work \u2264 fixedProbeBound T at hp\n  have hq := generate_work_bound T color q\n  change (meterGenerate T color q).measured.work \u2264 fullCoreBound T q at hq\n  unfold meterOptimizedFour\n  split\n  \u00b7 simp_all"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/ProbeWork.lean",
+      "source_sha256": "985099bf6c6994f20c7ac945c413b5eb92aa75e45f5cea1707c68bbfb12294ba",
+      "line": 10,
+      "declaration": "theorem probe_model_work",
+      "verbatim": "theorem probe_model_work (T : Tree) (color : Nat \u2192 Nat) (hr : inputRank T color \u2264 4) :\n    (meterGenerate T color (inputRank T color-1)).measured.work \u2264\n      initialCharge T+64*(cap (inputResource T)+6) := by\n  let B := min (inputRank T color-1) ((leaves T).length-1)\n  have hB : B \u2264 3 := by dsimp [B]; omega\n  have hp : 2^(B+1) \u2264 16 := by\n    have h := Nat.pow_le_pow_right (n := 2) (by decide) (show B+1 \u2264 4 by omega)\n    exact h\n  have hm : (B+1)*2^(B+1) \u2264 64 := Nat.mul_le_mul (show B+1 \u2264 4 by omega) hp\n  have h := generate_work_bound T color (inputRank T color-1)\n  change _ \u2264 initialCharge T+(cap (inputResource T)+6)*(B+1)*2^(B+1) at h\n  calc"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/ColorBudget.lean",
+      "source_sha256": "d95766773d9942157d99be21adc1e335109b345771d1796dac96eb2f81e024a8",
+      "line": 8,
+      "declaration": "def dedupNat",
+      "verbatim": "def dedupNat : List Nat \u2192 List Nat\n  | [] => []\n  | x :: xs => let ys := dedupNat xs; if x \u2208 ys then ys else x :: ys"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/SourceBridge.lean",
+      "source_sha256": "2eb4542a64461399029c6d3e0cb6dddd77d8b5b555d17e03abf8066a1cf7e93f",
+      "line": 243,
+      "declaration": "noncomputable def checkedSourcePartition",
+      "verbatim": "noncomputable def checkedSourcePartition (t : Tree) (bs : List (List Nat))\n    (hp : RMAF.partitionCheck (RMAF.leaves t) bs = true)\n    (he : RMAF.pairwiseEmbeddings t bs = true) : SourcePartition t where\n  owner := checkedOwner t bs\n  support := checkedSupport t bs\n  actual := by\n    intro i v hv\n    obtain \u27e8b,hb,hbi,hv\u27e9 := hv\n    exact minimalVertices_actual b t v hv\n  terminal_exact := checkedSupport_terminal t bs hp he\n  connected := by\n    intro i u v hu hv"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/SourceBridge.lean",
+      "source_sha256": "2eb4542a64461399029c6d3e0cb6dddd77d8b5b555d17e03abf8066a1cf7e93f",
+      "line": 306,
+      "declaration": "theorem sourcePartition_from_checks",
+      "verbatim": "theorem sourcePartition_from_checks (t : Tree) (bs : List (List Nat))\n    (hp : RMAF.partitionCheck (RMAF.leaves t) bs = true)\n    (he : RMAF.pairwiseEmbeddings t bs = true) :\n    \u2203 P : SourcePartition t, \u2200 u v x y, LeafAt t u x \u2192 LeafAt t v y \u2192\n      (P.owner u = P.owner v \u2194 \u2203 b, b \u2208 bs \u2227 x \u2208 b \u2227 y \u2208 b) :=\n  \u27e8checkedSourcePartition t bs hp he,checkedSourcePartition_owner t bs hp he\u27e9"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/ColorClasses.lean",
+      "source_sha256": "64f347d7f1a21e85aee11120514254effeb4264c420754b0890e864465f80202",
+      "line": 63,
+      "declaration": "theorem rank_partition_color_classes",
+      "verbatim": "theorem rank_partition_color_classes (T : Tree) (color : Nat \u2192 Nat) (bs : List (List Nat))\n    (hp : partitionCheck (leaves T) bs = true)\n    (hm : \u2200 b, b \u2208 bs \u2192 LabelMonochromatic color b)\n    (hlen : bs.length = inputRank T color) (b : List Nat) (hb : b \u2208 bs) (y : Nat) :\n    y \u2208 b \u2194 y \u2208 leaves T \u2227 color y = color (b.headD 0) := by\n  have hne := partitionCheck_nonempty _ bs hp b hb\n  have hh : b.headD 0 \u2208 b := by cases b <;> simp_all\n  constructor\n  \u00b7 intro hy\n    exact \u27e8partitionCheck_subset _ bs hp (List.mem_flatten.mpr \u27e8b,hb,hy\u27e9),hm b hb y _ hy hh\u27e9\n  \u00b7 rintro \u27e8hy,hcol\u27e9\n    obtain \u27e8c,hc,hyc\u27e9 := Integration.partitionCheck_covers _ bs hp y hy"
+    },
+    {
+      "grade": "READ source statement; proof/interface interpretation separately in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/actual-query-classifier-2026-10-15/isolated-rank/SourceValidity.lean",
+      "source_sha256": "cb28ca67f3ddb6f0fa27ecc941420139a892e1f33370431c689b3daf6f6dde8f",
+      "line": 87,
+      "declaration": "theorem generated_source_valid",
+      "verbatim": "theorem generated_source_valid (T : Tree) (color : Nat \u2192 Nat) (q : Nat) (o : Output)\n    (ho : o \u2208 (generate T color q).outputs) :\n    partitionCheck (leaves T) o.partition = true \u2227 pairwiseEmbeddings T o.partition = true := by\n  have hreal := CutRealization.generate_original_realization T color q o ho\n  refine \u27e8CutRealization.generate_partition_check T color q o ho,?_\u27e9\n  obtain \u27e8hg,hact,cs,hroots,hblocks,hc,hn,hcover,hsep,hno,hcost\u27e9 := hreal\n  rw [\u2190hblocks]\n  exact components_pairwise_embeddings T o.sourceCuts cs hc hn (fun r hr s hs hw => (hsep r hr s hs).1 hw)"
+    }
+  ],
+  "source_copy_contacts": {
+    "query": [
+      {
+        "module": "Budgets",
+        "origin_path": "results/algorithm-universal233-query-20261015T101316Z/Budgets.lean",
+        "sha256": "12265a7209859592fbdc10e410416b99557b4882865d6f7260513e33aca454cb"
+      },
+      {
+        "module": "Caller",
+        "origin_path": "results/algorithm-universal233-query-20261015T101316Z/Caller.lean",
+        "sha256": "0817d83f9b1887ca43d8c52fe0c367f1f41ec5f696d5fd9b3d937b962254e143"
+      },
+      {
+        "module": "ConsumerControls",
+        "origin_path": "results/algorithm-universal233-query-20261015T101316Z/ConsumerControls.lean",
+        "sha256": "52f8f2c5a123ff533891679153054712df5be12d50ee81ec49456dbc6fa4cbde"
+      },
+      {
+        "module": "FalsePrecontrols",
+        "origin_path": "results/algorithm-universal233-query-20261015T101316Z/FalsePrecontrols.lean",
+        "sha256": "9716018cada18e231d5dab8380bd5e7cace6b8a306f3db281191778b12e32350"
+      },
+      {
+        "module": "Mass",
+        "origin_path": "results/algorithm-universal233-query-20261015T101316Z/Mass.lean",
+        "sha256": "ebcfd890d7e005d8c492600930ccb108f51b12779a12852b194f16445e1c77bd"
+      },
+      {
+        "module": "Precontrols",
+        "origin_path": "results/algorithm-universal233-query-20261015T101316Z/Precontrols.lean",
+        "sha256": "e95c8774bdd9eda0cbc950a3c93c4d288f626d871a9c23d77ddd946f9600a902"
+      },
+      {
+        "module": "Specification",
+        "origin_path": "results/algorithm-universal233-query-20261015T101316Z/Specification.lean",
+        "sha256": "21832e53be9e7f38d2e2331878ddb2239b172c3d97c5dd78fb21b378bc67a070"
+      },
+      {
+        "module": "Work",
+        "origin_path": "results/algorithm-universal233-query-20261015T101316Z/Work.lean",
+        "sha256": "d56afa9d6ca0b198b184b61a2a53538a205056d38c67b1fbf2707ea34598ab16"
+      }
+    ],
+    "rank": [
+      {
+        "module": "AssemblyControls",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/AssemblyControls.lean",
+        "sha256": "cc1ba24549dba49f3a7f260d43181ef3b66be6bf8bfc0118281f7edff9c97649"
+      },
+      {
+        "module": "Branches",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Branches.lean",
+        "sha256": "638fffbede206252d81802ea6b14269e2a58ddae69653857c97c8bd17661dce3"
+      },
+      {
+        "module": "Bridge",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Bridge.lean",
+        "sha256": "ba12f3b99d87efecce407dab54d95df003fc5e735cb12e314734c346317c9583"
+      },
+      {
+        "module": "ChainAssembly",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/ChainAssembly.lean",
+        "sha256": "89e2c10df446741ccde057b606765522835551757cd5324988c8ffd3bab6d56f"
+      },
+      {
+        "module": "CherryCoarsening",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/CherryCoarsening.lean",
+        "sha256": "2f7142129ee2bc7bc188c629d1e6f225211278f5689dcb1dea38cc516247c0b8"
+      },
+      {
+        "module": "ColorBudget",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/ColorBudget.lean",
+        "sha256": "d95766773d9942157d99be21adc1e335109b345771d1796dac96eb2f81e024a8"
+      },
+      {
+        "module": "ColorClasses",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/ColorClasses.lean",
+        "sha256": "64f347d7f1a21e85aee11120514254effeb4264c420754b0890e864465f80202"
+      },
+      {
+        "module": "ColorSteps",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/ColorSteps.lean",
+        "sha256": "9a689f5b19d588094d95902d7595ca1396b5adc7c1fadb501e7f795a4e6365e4"
+      },
+      {
+        "module": "Composition",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Composition.lean",
+        "sha256": "097b9184ebacd913524fc3f0a130057004f95e30ba15f485adb9e0b7934578df"
+      },
+      {
+        "module": "Contraction",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Contraction.lean",
+        "sha256": "956d7acadd05b9aba389d45e34699776999f745c063e9d5d66062e5816f3f8b4"
+      },
+      {
+        "module": "Controls",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Controls.lean",
+        "sha256": "dbd327b29dedec9436a70e9fa4a9822a1d6690039ec6e466569c5ddb59882824"
+      },
+      {
+        "module": "CoreGraph",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/CoreGraph.lean",
+        "sha256": "7099d4aa48a771f1d56e11bd36447a51d7e3c57094a6779c0d40acec11dca7a0"
+      },
+      {
+        "module": "CoreInvariants",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/CoreInvariants.lean",
+        "sha256": "c4801fbfa04dcf83e9f79c91fe9e9834d0f7d030298a9e3ef1671c14de30ad19"
+      },
+      {
+        "module": "CoreProgram",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/CoreProgram.lean",
+        "sha256": "9aa92355dfecf6e0e3d7707c1c284cabcb2f3846b6682e3b55b719e35cb7311f"
+      },
+      {
+        "module": "Cost",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Cost.lean",
+        "sha256": "88ac32b1fa6303353506f2edd26b30daab7a625940b762ce0c046990f2e0483b"
+      },
+      {
+        "module": "Coverage",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Coverage.lean",
+        "sha256": "f51df00f57101295368902da0d450cb4d0d66616cd1e49db95a5a9f7f2301925"
+      },
+      {
+        "module": "CutControls",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/CutControls.lean",
+        "sha256": "bb64dfeed21c52af0d38aabbd5bce7726ee50c792a3938ec5ba07a85b7fa645b"
+      },
+      {
+        "module": "CutCoverage",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/CutCoverage.lean",
+        "sha256": "59df6e64beead296a71cb9b282432e03b4a883bc483d6dd1800645c6d2606556"
+      },
+      {
+        "module": "CutRecords",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/CutRecords.lean",
+        "sha256": "6e14f512ff9304ded10766a26d2e9e9678ccc904c28a11cdc1bfddbb853a73a3"
+      },
+      {
+        "module": "Display",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Display.lean",
+        "sha256": "bffcf3e3df26f7f2f5ce79959e303f21801b21731878492b5ef9c590c18f46dc"
+      },
+      {
+        "module": "Entrypoint",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Entrypoint.lean",
+        "sha256": "b852cd6fd979f09d5a2936eee9a730e1b8e0cf70277cac07dbe985b7b0a7a8b2"
+      },
+      {
+        "module": "EraseLift",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/EraseLift.lean",
+        "sha256": "3a9a1df4eb4549fa44af20cd785e4fd183261b2b01227c12f5bda9e36473e5f1"
+      },
+      {
+        "module": "FalseProbe",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/FalseProbe.lean",
+        "sha256": "2e45b080f612a452ed28cb015dc324d90bc1596e87508e6b6e6d2c15956459d6"
+      },
+      {
+        "module": "ForestOutputs",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/ForestOutputs.lean",
+        "sha256": "342586389ed06b8965b38739b8a20245705d3a3f71e8659014c67f93667f0861"
+      },
+      {
+        "module": "FourProbe",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/FourProbe.lean",
+        "sha256": "711f20a2b2e5b65f0122800d1fb5dce8c230d832734543d3af2032fe90da76a6"
+      },
+      {
+        "module": "FullTransport",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/FullTransport.lean",
+        "sha256": "34c8303aa102f39c00c605080b0f692b066fdd76077185e98b8dae89141e643b"
+      },
+      {
+        "module": "Geometry",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Geometry.lean",
+        "sha256": "b98de754ee29fdeae54aebc6e03ffb7e8262dcb299f61b7ac5ca9bcee4887a9d"
+      },
+      {
+        "module": "History",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/History.lean",
+        "sha256": "4f40af3a1275f6fbed2d1b017109399c188f61ccce50ca2319effec7868da577"
+      },
+      {
+        "module": "InitialCoverage",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/InitialCoverage.lean",
+        "sha256": "2699739ac5196e0ea936d8804a48b443449bc8b67ba2a645b7c70c2720f438de"
+      },
+      {
+        "module": "InitialLift",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/InitialLift.lean",
+        "sha256": "2fb05bd9dfc20a7bfe9e128615ac3eb7b3ed0054fae63ca37d12c7bfb33fc811"
+      },
+      {
+        "module": "MinimumUnique",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/MinimumUnique.lean",
+        "sha256": "76a0418844c48cf5054df4fdc580a75230ff281871dbb74b7771896c463e2146"
+      },
+      {
+        "module": "Normalization",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Normalization.lean",
+        "sha256": "4dd4c1239d02e2452d94dcf254b7ca073c844428bbf07d3219dac3dc9e4b615c"
+      },
+      {
+        "module": "OptimizedWork",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/OptimizedWork.lean",
+        "sha256": "66b7f4a5364266e98de1696761d0facc340126f7eb7ab9164fa436e8133bb135"
+      },
+      {
+        "module": "OriginalGraph",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/OriginalGraph.lean",
+        "sha256": "1f228db7d7df4cbe7d368747fbffef83641b6a52bc2629be350504bb7c322d88"
+      },
+      {
+        "module": "Origins",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Origins.lean",
+        "sha256": "43b33498a9a48f3434986d2e382ade610f60e3d4cbff60cbb461c25d60eefb23"
+      },
+      {
+        "module": "OutputBudget",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/OutputBudget.lean",
+        "sha256": "f7153c35c2d80fca6e75469f02316a93e0a000fb62a94aa4f3d1ce6055815cf2"
+      },
+      {
+        "module": "OwnerCover",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/OwnerCover.lean",
+        "sha256": "464604a8c2fdad1bca162367103b71b9cb2b866d0d8837a1de3ee28e43e79dbd"
+      },
+      {
+        "module": "OwnershipBase",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/OwnershipBase.lean",
+        "sha256": "cb05fb0415affad67b39644b1a33b65335ec59759805d9609b11d4a9767d4f0d"
+      },
+      {
+        "module": "ParentColors",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/ParentColors.lean",
+        "sha256": "9fbdde285596a8a807e5ca9593c2f617bdf77f7a10e9c47e9978b5e3ae762f9c"
+      },
+      {
+        "module": "Probe",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Probe.lean",
+        "sha256": "ee4558e9eddf1b3b317ef54eaf5545ac74975778a18823c5d59e36babca124b5"
+      },
+      {
+        "module": "ProbeControls",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/ProbeControls.lean",
+        "sha256": "2add13f1350490cbc0c56d44be12b18026ce703bf5bf0305e59bd3d3774ac16c"
+      },
+      {
+        "module": "ProbePrecontrols",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/ProbePrecontrols.lean",
+        "sha256": "5704698fca7da47e46c696c9cce16ca74479c17503ac4c05ff468e3e434cb4b8"
+      },
+      {
+        "module": "ProbeWork",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/ProbeWork.lean",
+        "sha256": "985099bf6c6994f20c7ac945c413b5eb92aa75e45f5cea1707c68bbfb12294ba"
+      },
+      {
+        "module": "RMAF",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/RMAF.lean",
+        "sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9"
+      },
+      {
+        "module": "RankControls",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/RankControls.lean",
+        "sha256": "f832da49d971fc698496cf1891a17ba5abbb439fb99d549574c234481c9f6232"
+      },
+      {
+        "module": "RankCost",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/RankCost.lean",
+        "sha256": "fc3336d4dd996330f077cd7407d6e63796b332b625b374ccde34ef278c04d7aa"
+      },
+      {
+        "module": "RationalMass",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/RationalMass.lean",
+        "sha256": "d97ae819f439d70c6989d6e6cf65751162c295a3183bdd4d690e4f1d340f1c45"
+      },
+      {
+        "module": "RawMass",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/RawMass.lean",
+        "sha256": "693eb85b54dd732b7febbdc6e795d65f88be52ab76c1b82dd4093313c1e218df"
+      },
+      {
+        "module": "Realization",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Realization.lean",
+        "sha256": "d440b98eeff7fd5955532d804063817f615fd92f3da5e0c049453af8f712bcb9"
+      },
+      {
+        "module": "Regions",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Regions.lean",
+        "sha256": "88e4d4529b0e4555761ca6049999f484c102fcdbbb407207ad2b39e05a8fb0d5"
+      },
+      {
+        "module": "Regression",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Regression.lean",
+        "sha256": "66c507d25fa0adfab92e6f0a016f1e0e461984a1278a1d5c72d45aca27f80ea2"
+      },
+      {
+        "module": "Requests",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Requests.lean",
+        "sha256": "a184db935bc9167de76dcef87e37e75cf82a87661126fa1c316ec6b9796c2172"
+      },
+      {
+        "module": "SourceBridge",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/SourceBridge.lean",
+        "sha256": "2eb4542a64461399029c6d3e0cb6dddd77d8b5b555d17e03abf8066a1cf7e93f"
+      },
+      {
+        "module": "SourceValidity",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/SourceValidity.lean",
+        "sha256": "cb28ca67f3ddb6f0fa27ecc941420139a892e1f33370431c689b3daf6f6dde8f"
+      },
+      {
+        "module": "Suppression",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Suppression.lean",
+        "sha256": "cf76359d9dff313237e2565aded7bff1c68fdb605690846d82145b5237bd978c"
+      },
+      {
+        "module": "TailMass",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/TailMass.lean",
+        "sha256": "58e4ac2d635c03a3411faf5734a5180d46f8ccf62c63ab55c868806acdcdbb3d"
+      },
+      {
+        "module": "ValidPartition",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/ValidPartition.lean",
+        "sha256": "b5543ebef7c5ba2d4d0fea8307a738acd74c4ac24e1ae43e514dee9345e37ded"
+      },
+      {
+        "module": "WholeSource",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/WholeSource.lean",
+        "sha256": "05317a0ecfc3aaa7236f77c98559813c8c0289643521a42862f85cc9ee7e3b75"
+      },
+      {
+        "module": "Work",
+        "origin_path": "results/algorithm-universal233-rank-consumer-20261015T094545Z/Work.lean",
+        "sha256": "99a5cfadd532db40b66a07bb0d3ec673aba49fe9455db2998100d64d10f39e56"
+      }
+    ]
+  },
+  "read_author_prose": [
+    "research/rmaf/algorithm/universal233/query_scheduler/RESULT.md",
+    "research/rmaf/algorithm/universal233/query_scheduler/COST-MODEL.md",
+    "research/rmaf/algorithm/universal233/query_scheduler/FIRST-GAP.md",
+    "research/rmaf/algorithm/universal233/rank_consumer/RESULT.md",
+    "research/rmaf/algorithm/universal233/rank_consumer/INTERFACE.md",
+    "research/rmaf/algorithm/universal233/rank_consumer/FIRST-GAP.md"
+  ],
+  "read_canonical_receipts": [
+    "results/algorithm-universal233-query-20261015T101316Z/certificate.json",
+    "results/algorithm-universal233-rank-consumer-20261015T094545Z/certificate.json"
+  ],
+  "inferred_records": [
+    "SOURCE-COST-REVIEW explicit128 linear source envelope,64 fixed inspection,bit/oracle/serialization contracts",
+    "CONSUMER-TRACE hypothesis/actual-interface interpretations",
+    "Candidate tail-first rank dedup10 comparisons from literal recursion; instrument first-seen16 retained"
+  ],
+  "background_unverified": "none used for a supported mathematical claim",
+  "audit_metadata": "All65 source modules rebuilt and originating declarations inventoried; selected executable/proof consumer sources manually read. No claim of independent rederivation of every completed dependency theorem.",
+  "excluded": [
+    "author audit/replay implementation",
+    "live maf_scheduler/depth/cherry/groupedforest/binarygeometry and fresh-reviewer content",
+    "scientific author oleans"
+  ],
+  "noted_noncontent_event": "Attempt to read nonexistent rank_consumer/SOURCE-COST-MODEL.md returned file-not-found; no scientific inference drawn",
+  "lineage_extra_replications": 0,
+  "author_child_contact": false
+}

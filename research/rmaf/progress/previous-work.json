@@ -1,0 +1,22 @@
+{
+  "id": "previous-work",
+  "title": "Prior research",
+  "status": "open",
+  "summary": "User's full 279-line note read. Pure-bridge elimination and triple-component completion are promising restricted algorithms; all new claims await independent checks and Lean proofs.",
+  "metrics": {"note_lines_read": 279, "structural_routes": 2},
+  "claims": [
+    {"id":"previous-pure-bridge","label":"Pure-bridge elimination","status":"open","detail":"The note proposes deepest-root elimination with degree-two marks and a one-cut exchange. Marked local queries are paid for by role-swapping to a tree–forest problem. Verify geometry, exchange, and q_J≤d_D independently."},
+    {"id":"previous-triple-dp","label":"Triple completion DP","status":"open","detail":"The note proposes O(nm) value computation when every incompatible source component has exactly three leaves. Independently establish the characterization, DP invariant and witness reconstruction."},
+    {"id":"previous-claims","label":"Reported test counts","status":"open","detail":"The note describes extensive tests, but its implementation bundle was not supplied. These reported counts are not reproduced campaign evidence."},
+    {"id":"previous-cover","label":"Balanced safe cover","status":"open","detail":"The note explicitly leaves optimum-preserving construction of at most O*(1.25^b) terminal refinements with local distance≤b/2 unproved. Arbitrary pre-cutting can exclude every optimum."}
+  ],
+  "lemmas": [
+    {"id":"pure-clearance","label":"Pure-overlap clearance","status":"open","detail":"A block using one vertex of a pure degree-two overlap must use its entire path. Verify all root and single-vertex cases.","depends_on":[]},
+    {"id":"mark-exchange","label":"Marked elimination","status":"open","detail":"Prove exact elimination and preservation of earlier marks, including many overlapping components.","depends_on":["pure-clearance"]},
+    {"id":"marked-role-swap","label":"Pay for marked queries","status":"open","detail":"Prove role-swap feasible-partition equality and residual cut budget q_J=h_D(J)-(r-1)≤d_D.","depends_on":[]},
+    {"id":"triple-terminal","label":"Triple terminal solver","status":"open","detail":"Prove the connected-region characterization and O(nm) DP with explicit reconstruction costs.","depends_on":[]},
+    {"id":"safe-cover","label":"Safe terminal cover","status":"open","detail":"Generate a small terminal family retaining an original optimum; prove the size and balanced local-distance bound. This is the missing unrestricted improvement.","depends_on":["mark-exchange","marked-role-swap","triple-terminal"]}
+  ],
+  "artifacts": ["research/rmaf/sources/previous-work/RESEARCH.md","research/rmaf/CONTINUATION.md"],
+  "next": "First independently test and formalize the two restricted terminal algorithms; then attack optimum-preserving safe covers of actual baseline hard children. Reconcile the prior 2^k thesis claim before novelty assertions."
+}

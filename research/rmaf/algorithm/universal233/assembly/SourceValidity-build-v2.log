@@ -1,0 +1,37 @@
+research/rmaf/algorithm/universal233/assembly/stack/SourceValidity.lean:76:46: error: unsolved goals
+T : Tree
+cuts : List RMAF.Vertex
+tail : List (RMAF.Vertex × List Nat)
+ih :
+  (∀ (r : RMAF.Vertex) (L : List Nat), (r, L) ∈ tail → CutRealization.ComponentLabels T cuts r L) →
+    (List.map Prod.fst tail).Nodup →
+      (∀ (r : RMAF.Vertex),
+          r ∈ List.map Prod.fst tail →
+            ∀ (s : RMAF.Vertex), s ∈ List.map Prod.fst tail → CutRealization.ResidualWalk T cuts r s → r = s) →
+        pairwiseEmbeddings T (List.map Prod.snd tail) = true
+r : RMAF.Vertex
+L : List Nat
+hc : ∀ (r_1 : RMAF.Vertex) (L_1 : List Nat), (r_1, L_1) ∈ (r, L) :: tail → CutRealization.ComponentLabels T cuts r_1 L_1
+hn : (List.map Prod.fst ((r, L) :: tail)).Nodup
+hsep :
+  ∀ (r_1 : RMAF.Vertex),
+    r_1 ∈ List.map Prod.fst ((r, L) :: tail) →
+      ∀ (s : RMAF.Vertex), s ∈ List.map Prod.fst ((r, L) :: tail) → CutRealization.ResidualWalk T cuts r_1 s → r_1 = s
+hn' : ¬(r, L).fst ∈ List.map Prod.fst tail ∧ (List.map Prod.fst tail).Nodup
+s : RMAF.Vertex
+M : List Nat
+hp : (s, M) ∈ tail
+hK : (s, M).snd ∈ List.map Prod.snd tail
+v : RMAF.Vertex
+hv : v ∈ minimalVertices L T
+hw : v ∈ minimalVertices M T
+hr : CutRealization.ResidualWalk T cuts r v
+hs : CutRealization.ResidualWalk T cuts s v
+⊢ s = r ∨ ∃ x, (s, x) ∈ tail
+research/rmaf/algorithm/universal233/assembly/stack/SourceValidity.lean:76:68: warning: This simp argument is unused:
+  hp
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [List.mem_map]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

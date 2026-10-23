@@ -1,0 +1,129 @@
+import NonauthorConsumer
+open RMAF Universal233.CoreGraph Universal233.CoreProgram Universal233.CutRealization
+example : Valid (Tree.leaf 7) [] := ⟨_,rfl⟩
+example : LeafAt (Tree.leaf 7) [] 7 := rfl
+example : Valid (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [] := ⟨_,rfl⟩
+example : Adj (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [] [false] := by simp [Adj,Valid,subtree]
+example : ¬ ResidualAdj (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [[false]] [] [false] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Adj (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [] [true] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [[false]] [] [true] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [false] := ⟨_,rfl⟩
+example : LeafAt (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [false] 0 := rfl
+example : Adj (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [false] [] := by simp [Adj,Valid,subtree]
+example : ¬ ResidualAdj (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [[false]] [false] [] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [true] := ⟨_,rfl⟩
+example : LeafAt (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [true] 1 := rfl
+example : Adj (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [true] [] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [[false]] [true] [] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [] := ⟨_,rfl⟩
+example : Adj (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [] [false] := by simp [Adj,Valid,subtree]
+example : ¬ ResidualAdj (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [[false], [true]] [] [false] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Adj (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [] [true] := by simp [Adj,Valid,subtree]
+example : ¬ ResidualAdj (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [[false], [true]] [] [true] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [false] := ⟨_,rfl⟩
+example : LeafAt (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [false] 0 := rfl
+example : Adj (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [false] [] := by simp [Adj,Valid,subtree]
+example : ¬ ResidualAdj (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [[false], [true]] [false] [] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [true] := ⟨_,rfl⟩
+example : LeafAt (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [true] 1 := rfl
+example : Adj (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [true] [] := by simp [Adj,Valid,subtree]
+example : ¬ ResidualAdj (Tree.node (Tree.leaf 0) (Tree.leaf 1)) [[false], [true]] [true] [] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [] := ⟨_,rfl⟩
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [] [false] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [[false, false], [false, true]] [] [false] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [] [true] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [[false, false], [false, true]] [] [true] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false] := ⟨_,rfl⟩
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false] [] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [[false, false], [false, true]] [false] [] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false] [false, false] := by simp [Adj,Valid,subtree]
+example : ¬ ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [[false, false], [false, true]] [false] [false, false] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false] [false, true] := by simp [Adj,Valid,subtree]
+example : ¬ ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [[false, false], [false, true]] [false] [false, true] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [true] := ⟨_,rfl⟩
+example : LeafAt (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [true] 2 := rfl
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [true] [] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [[false, false], [false, true]] [true] [] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false, false] := ⟨_,rfl⟩
+example : LeafAt (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false, false] 0 := rfl
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false, false] [false] := by simp [Adj,Valid,subtree]
+example : ¬ ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [[false, false], [false, true]] [false, false] [false] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false, true] := ⟨_,rfl⟩
+example : LeafAt (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false, true] 1 := rfl
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false, true] [false] := by simp [Adj,Valid,subtree]
+example : ¬ ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [[false, false], [false, true]] [false, true] [false] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [] := ⟨_,rfl⟩
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [] [false] := by simp [Adj,Valid,subtree]
+example : ¬ ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [[false]] [] [false] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [] [true] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [[false]] [] [true] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false] := ⟨_,rfl⟩
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false] [] := by simp [Adj,Valid,subtree]
+example : ¬ ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [[false]] [false] [] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false] [false, false] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [[false]] [false] [false, false] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false] [false, true] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [[false]] [false] [false, true] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [true] := ⟨_,rfl⟩
+example : LeafAt (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [true] 2 := rfl
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [true] [] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [[false]] [true] [] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false, false] := ⟨_,rfl⟩
+example : LeafAt (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false, false] 0 := rfl
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false, false] [false] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [[false]] [false, false] [false] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false, true] := ⟨_,rfl⟩
+example : LeafAt (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false, true] 1 := rfl
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [false, true] [false] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [[false]] [false, true] [false] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [] := ⟨_,rfl⟩
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [] [false] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [[false, true], [true, true]] [] [false] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [] [true] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [[false, true], [true, true]] [] [true] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [false] := ⟨_,rfl⟩
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [false] [] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [[false, true], [true, true]] [false] [] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [false] [false, false] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [[false, true], [true, true]] [false] [false, false] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [false] [false, true] := by simp [Adj,Valid,subtree]
+example : ¬ ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [[false, true], [true, true]] [false] [false, true] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [true] := ⟨_,rfl⟩
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [true] [] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [[false, true], [true, true]] [true] [] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [true] [true, false] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [[false, true], [true, true]] [true] [true, false] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [true] [true, true] := by simp [Adj,Valid,subtree]
+example : ¬ ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [[false, true], [true, true]] [true] [true, true] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [false, false] := ⟨_,rfl⟩
+example : LeafAt (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [false, false] 0 := rfl
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [false, false] [false] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [[false, true], [true, true]] [false, false] [false] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [false, true] := ⟨_,rfl⟩
+example : LeafAt (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [false, true] 1 := rfl
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [false, true] [false] := by simp [Adj,Valid,subtree]
+example : ¬ ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [[false, true], [true, true]] [false, true] [false] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [true, false] := ⟨_,rfl⟩
+example : LeafAt (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [true, false] 2 := rfl
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [true, false] [true] := by simp [Adj,Valid,subtree]
+example : ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [[false, true], [true, true]] [true, false] [true] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : Valid (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [true, true] := ⟨_,rfl⟩
+example : LeafAt (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [true, true] 3 := rfl
+example : Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [true, true] [true] := by simp [Adj,Valid,subtree]
+example : ¬ ResidualAdj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.node (Tree.leaf 2) (Tree.leaf 3))) [[false, true], [true, true]] [true, true] [true] := by simp [ResidualAdj,Adj,Valid,subtree]
+example : ¬ Adj (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [] [false,true] := by simp [Adj,Valid,subtree]
+example : ResidualWalk (Tree.node (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (Tree.leaf 2)) [[false,false]] [] [false,true] := by
+  apply ResidualWalk.step (v := [false])
+  · simp [ResidualAdj,Adj,Valid,subtree]
+  apply ResidualWalk.step (v := [false,true])
+  · simp [ResidualAdj,Adj,Valid,subtree]
+  exact ResidualWalk.refl ⟨_,rfl⟩
+example : ¬ RealizedOutput (.node (.leaf 0) (.leaf 1))
+    ⟨[[0],[1]],[[false],[true]]⟩ := by
+  intro h
+  obtain ⟨_,_,components,_,_,_,_,_,_,_,hcost⟩ := h
+  simp at hcost
+example : ¬ (⟨[[0], [1]], [[false], [true]]⟩ : Output) ∈ (generate (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (fun x => if x = 0 then 0 else if x = 1 then 1 else 0) 2).outputs := by decide +kernel
+example : (⟨[[0], [1]], [[false]]⟩ : Output) ∈ (generate (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (fun x => if x = 0 then 0 else if x = 1 then 1 else 0) 2).outputs := by decide +kernel
+example : ¬ (⟨[[0, 1]], []⟩ : Output) ∈ (generate (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (fun x => if x = 0 then 0 else if x = 1 then 1 else 0) 0).outputs := by decide +kernel
+example : (⟨[[0, 1]], []⟩ : Output) ∈ (generate (Tree.node (Tree.leaf 0) (Tree.leaf 1)) (fun x => if x = 0 then 0 else if x = 1 then 0 else 0) 0).outputs := by decide +kernel

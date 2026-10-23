@@ -1,0 +1,34 @@
+List.count_eq_zero.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {a : α} {l : List α} : List.count a l = 0 ↔ ¬a ∈ l
+List.count_pos_iff.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {a : α} {l : List α} : 0 < List.count a l ↔ a ∈ l
+List.count_append.{u_1} {α : Type u_1} [BEq α] {a : α} {l₁ l₂ : List α} :
+  List.count a (l₁ ++ l₂) = List.count a l₁ + List.count a l₂
+List.count_flatten.{u_1} {α : Type u_1} [BEq α] {a : α} {l : List (List α)} :
+  List.count a l.flatten = (List.map (List.count a) l).sum
+List.count_filter.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {p : α → Bool} {a : α} {l : List α} (h : p a = true) :
+  List.count a (List.filter p l) = List.count a l
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/build/Probe.lean:7:7: error(lean.unknownIdentifier): Unknown constant `List.nodup_iff_count_le_one`
+List.Perm.count_eq.{u_1} {α : Type u_1} [BEq α] {l₁ l₂ : List α} (p : l₁.Perm l₂) (a : α) :
+  List.count a l₁ = List.count a l₂
+List.perm_iff_count.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {l₁ l₂ : List α} :
+  l₁.Perm l₂ ↔ ∀ (a : α), List.count a l₁ = List.count a l₂
+List.Nodup.count.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {a : α} {l : List α} (h : l.Nodup) :
+  List.count a l = if a ∈ l then 1 else 0
+List.nodup_iff_pairwise_ne.{u_1} {α✝ : Type u_1} {l : List α✝} : l.Nodup ↔ List.Pairwise (fun x1 x2 => x1 ≠ x2) l
+List.pairwise_cons.{u} {α : Type u} {R : α → α → Prop} {a : α} {l : List α} :
+  List.Pairwise R (a :: l) ↔ (∀ (a' : α), a' ∈ l → R a a') ∧ List.Pairwise R l
+List.Pairwise.imp.{u_1} {α : Type u_1} {R S : α → α → Prop} (H : ∀ {a b : α}, R a b → S a b) {l : List α} :
+  List.Pairwise R l → List.Pairwise S l
+List.pairwise_append.{u_1} {α : Type u_1} {R : α → α → Prop} {l₁ l₂ : List α} :
+  List.Pairwise R (l₁ ++ l₂) ↔ List.Pairwise R l₁ ∧ List.Pairwise R l₂ ∧ ∀ (a : α), a ∈ l₁ → ∀ (b : α), b ∈ l₂ → R a b
+List.filter_append.{u_1} {α : Type u_1} {p : α → Bool} (l₁ l₂ : List α) :
+  List.filter p (l₁ ++ l₂) = List.filter p l₁ ++ List.filter p l₂
+List.filter_filter.{u_1} {α✝ : Type u_1} {p q : α✝ → Bool} {l : List α✝} :
+  List.filter p (List.filter q l) = List.filter (fun a => p a && q a) l
+List.filter_eq_self.{u_1} {α✝ : Type u_1} {p : α✝ → Bool} {l : List α✝} :
+  List.filter p l = l ↔ ∀ (a : α✝), a ∈ l → p a = true
+List.length_filter_le.{u_1} {α : Type u_1} (p : α → Bool) (l : List α) : (List.filter p l).length ≤ l.length
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/build/Probe.lean:19:7: error(lean.unknownIdentifier): Unknown constant `List.length_filter_add_length_filter_neg_eq`
+List.Pairwise.filter.{u_1} {α : Type u_1} {R : α → α → Prop} {l : List α} (p : α → Bool) :
+  List.Pairwise R l → List.Pairwise R (List.filter p l)
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/build/Probe.lean:21:7: error(lean.unknownIdentifier): Unknown constant `List.Pairwise.of_mem`
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/build/Probe.lean:22:7: error(lean.unknownIdentifier): Unknown constant `List.pairwise_iff_forall_mem`

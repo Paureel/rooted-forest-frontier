@@ -1,0 +1,467 @@
+{
+  "convention": "ordinary rooted binary non-plane leaf-labelled trees, no rho; k=components",
+  "fixture_sha256": "c84a7c2be9abb5105a55f6b95290a5fb42daa327a92f0d12a77468930c340764",
+  "generator_sha256": "5ee74b7e8b67b1307eab91ef8e99a97ee172269972ab581e902dbb1c2298e35c",
+  "checks_passed": 15,
+  "checks_expected": 15,
+  "checks": [
+    {
+      "id": "singleton",
+      "passed": true,
+      "expected_k": 1,
+      "actual": {
+        "k": 1,
+        "forests": [
+          [
+            [
+              "a"
+            ]
+          ]
+        ],
+        "partitions_tested": 1
+      },
+      "witness": {
+        "valid": true,
+        "forest": [
+          [
+            "a"
+          ]
+        ],
+        "k": 1,
+        "cuts_a": [],
+        "cuts_b": []
+      }
+    },
+    {
+      "id": "identical-triple",
+      "passed": true,
+      "expected_k": 1,
+      "actual": {
+        "k": 1,
+        "forests": [
+          [
+            [
+              "a",
+              "b",
+              "c"
+            ]
+          ]
+        ],
+        "partitions_tested": 1
+      },
+      "witness": {
+        "valid": true,
+        "forest": [
+          [
+            "a",
+            "b",
+            "c"
+          ]
+        ],
+        "k": 1,
+        "cuts_a": [],
+        "cuts_b": []
+      }
+    },
+    {
+      "id": "conflicting-triples",
+      "passed": true,
+      "expected_k": 2,
+      "actual": {
+        "k": 2,
+        "forests": [
+          [
+            [
+              "a"
+            ],
+            [
+              "b",
+              "c"
+            ]
+          ],
+          [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "c"
+            ]
+          ],
+          [
+            [
+              "a",
+              "c"
+            ],
+            [
+              "b"
+            ]
+          ]
+        ],
+        "partitions_tested": 4
+      },
+      "witness": {
+        "valid": true,
+        "forest": [
+          [
+            "a"
+          ],
+          [
+            "b",
+            "c"
+          ]
+        ],
+        "k": 2,
+        "cuts_a": [
+          {
+            "parent": "1",
+            "child": "10",
+            "parent_block": 1,
+            "child_block": 0
+          }
+        ],
+        "cuts_b": [
+          {
+            "parent": "1",
+            "child": "10",
+            "parent_block": 1,
+            "child_block": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "identical-balanced-four",
+      "passed": true,
+      "expected_k": 1,
+      "actual": {
+        "k": 1,
+        "forests": [
+          [
+            [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          ]
+        ],
+        "partitions_tested": 1
+      },
+      "witness": {
+        "valid": true,
+        "forest": [
+          [
+            "a",
+            "b",
+            "c",
+            "d"
+          ]
+        ],
+        "k": 1,
+        "cuts_a": [],
+        "cuts_b": []
+      }
+    },
+    {
+      "id": "crossed-balanced-four",
+      "passed": true,
+      "expected_k": 3,
+      "actual": {
+        "k": 3,
+        "forests": [
+          [
+            [
+              "a"
+            ],
+            [
+              "b"
+            ],
+            [
+              "c",
+              "d"
+            ]
+          ],
+          [
+            [
+              "a"
+            ],
+            [
+              "b",
+              "c"
+            ],
+            [
+              "d"
+            ]
+          ],
+          [
+            [
+              "a"
+            ],
+            [
+              "b",
+              "d"
+            ],
+            [
+              "c"
+            ]
+          ],
+          [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "c"
+            ],
+            [
+              "d"
+            ]
+          ],
+          [
+            [
+              "a",
+              "c"
+            ],
+            [
+              "b"
+            ],
+            [
+              "d"
+            ]
+          ],
+          [
+            [
+              "a",
+              "d"
+            ],
+            [
+              "b"
+            ],
+            [
+              "c"
+            ]
+          ]
+        ],
+        "partitions_tested": 14
+      },
+      "witness": {
+        "valid": true,
+        "forest": [
+          [
+            "a"
+          ],
+          [
+            "b"
+          ],
+          [
+            "c",
+            "d"
+          ]
+        ],
+        "k": 3,
+        "cuts_a": [
+          {
+            "parent": "root",
+            "child": "0",
+            "parent_block": 2,
+            "child_block": 0
+          },
+          {
+            "parent": "0",
+            "child": "01",
+            "parent_block": 0,
+            "child_block": 1
+          }
+        ],
+        "cuts_b": [
+          {
+            "parent": "0",
+            "child": "00",
+            "parent_block": 2,
+            "child_block": 0
+          },
+          {
+            "parent": "1",
+            "child": "10",
+            "parent_block": 2,
+            "child_block": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "clean-blocks",
+      "passed": true,
+      "expected_valid": true,
+      "actual": {
+        "valid": true,
+        "forest": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "c",
+            "d"
+          ]
+        ],
+        "k": 2,
+        "cuts_a": [
+          {
+            "parent": "root",
+            "child": "1",
+            "parent_block": 0,
+            "child_block": 1
+          }
+        ],
+        "cuts_b": [
+          {
+            "parent": "root",
+            "child": "1",
+            "parent_block": 0,
+            "child_block": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "singleton-forest",
+      "passed": true,
+      "expected_valid": true,
+      "actual": {
+        "valid": true,
+        "forest": [
+          [
+            "a"
+          ],
+          [
+            "b"
+          ],
+          [
+            "c"
+          ],
+          [
+            "d"
+          ]
+        ],
+        "k": 4,
+        "cuts_a": [
+          {
+            "parent": "0",
+            "child": "01",
+            "parent_block": 0,
+            "child_block": 1
+          },
+          {
+            "parent": "root",
+            "child": "1",
+            "parent_block": 0,
+            "child_block": 2
+          },
+          {
+            "parent": "1",
+            "child": "11",
+            "parent_block": 2,
+            "child_block": 3
+          }
+        ],
+        "cuts_b": [
+          {
+            "parent": "0",
+            "child": "01",
+            "parent_block": 0,
+            "child_block": 2
+          },
+          {
+            "parent": "root",
+            "child": "1",
+            "parent_block": 0,
+            "child_block": 1
+          },
+          {
+            "parent": "1",
+            "child": "11",
+            "parent_block": 1,
+            "child_block": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "missing-label",
+      "passed": true,
+      "expected_valid": false,
+      "actual": {
+        "valid": false,
+        "reason": "label-coverage",
+        "detail": "missing=['d']; extra=[]"
+      }
+    },
+    {
+      "id": "duplicate-label",
+      "passed": true,
+      "expected_valid": false,
+      "actual": {
+        "valid": false,
+        "reason": "duplicate-label",
+        "detail": "b"
+      }
+    },
+    {
+      "id": "conflicting-restriction",
+      "passed": true,
+      "expected_valid": false,
+      "actual": {
+        "valid": false,
+        "reason": "restriction-mismatch",
+        "detail": "block=('a', 'b', 'c')"
+      }
+    },
+    {
+      "id": "overlap",
+      "passed": true,
+      "expected_valid": false,
+      "actual": {
+        "valid": false,
+        "reason": "embedding-overlap",
+        "detail": "tree=a; blocks=('a', 'c'),('b', 'd'); vertices=['root', '0', '1']"
+      }
+    },
+    {
+      "id": "empty-block",
+      "passed": true,
+      "expected_valid": false,
+      "actual": {
+        "valid": false,
+        "reason": "empty-block",
+        "detail": "Every component must be nonempty"
+      }
+    },
+    {
+      "id": "tree-duplicate",
+      "passed": true,
+      "actual": {
+        "reason": "tree-duplicate-label",
+        "detail": "a"
+      }
+    },
+    {
+      "id": "nonbinary-node",
+      "passed": true,
+      "actual": {
+        "reason": "tree-nonbinary",
+        "detail": "['a', 'b', 'c']"
+      }
+    },
+    {
+      "id": "different-leaf-sets",
+      "passed": true,
+      "actual": {
+        "reason": "tree-label-set",
+        "detail": "Input leaf-label sets differ"
+      }
+    }
+  ],
+  "status": "executed-exact-not-Lean"
+}

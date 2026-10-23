@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3397988750002696,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.405231375000767,
+      "resource_stop": null,
+      "log_sha256": "e1ec11d153ff581919f59ac2e814363d285a9b650efb0c1dd7afe1c33a0104cf"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0015335000007326016,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Hard2PairGeometrySource",
+      "source_sha256": "af0227a005d5845a25a13bee084ee2d93bfa9e358be4ffe369ed1760994c2377",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.805390792000253,
+      "resource_stop": null,
+      "log_sha256": "53e79e993bd5d9ea23d4a98f32d51241ee1cfae9eb0a4f2d13ee9d71baf10213"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Hard2PairGeometrySource', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2PairGeometrySource.lean:110:1: error: unsolved goals\\ncase h_1\\nT : Tree\\nA B : List Nat\\nh\u271d : PairGeometry.properInput T A B = true\\nx\u271d\u00b9 : Option Vertex\\nx\u271d : Vertex\\nheq\u271d : List.find? (fun x => PairGeometry.vertexOK T A B x) (PairGeometry.vertices T) = some x\u271d\\n\u22a2 some (PairGeometry.Choice.vertex x\u271d) =\\n    match List.find? (PairGeometry.vertexOK T A B) (PairGeometry.vertices T) with\\n    | some v => some (PairGeometry.Choice.vertex v)\\n    | none => Option.map PairGeometry.Choice.edge (List.find? (PairGeometry.edgeOK T A B) (PairGeometry.edges T))\\n\\ncase h_2\\nT : Tree\\nA B : List Nat\\nh\u271d : PairGeometry.properInput T A B = true\\nx\u271d : Option Vertex\\nheq\u271d : List.find? (fun x => PairGeometry.vertexOK T A B x) (PairGeometry.vertices T) = none\\n\u22a2 Option.map PairGeometry.Choice.edge (List.find? (fun x => PairGeometry.edgeOK T A B x) (PairGeometry.edges T)) =\\n    match List.find? (PairGeometry.vertexOK T A B) (PairGeometry.vertices T) with\\n    | some v => some (PairGeometry.Choice.vertex v)\\n    | none => Option.map PairGeometry.Choice.edge (List.find? (PairGeometry.edgeOK T A B) (PairGeometry.edges T))\\n'))"
+}

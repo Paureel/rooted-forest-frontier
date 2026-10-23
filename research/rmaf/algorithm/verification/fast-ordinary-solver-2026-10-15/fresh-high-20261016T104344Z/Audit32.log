@@ -1,0 +1,129 @@
+AUDIT counts: 1174 declarations; 69 own bodies; 65 imported domain constants
+AUDIT axioms: [Quot.sound, propext, Classical.choice]
+AUDIT forbidden: []; unknown: []
+REUSED RMAF.prependSide [definition] : Bool → List RMAF.Vertex → List RMAF.Vertex
+REUSED RMAF.Vertex [definition] : Type
+REUSED Universal233.CherryBranching.cuts [definition] : RMAF.Tree → Nat → Nat → List RMAF.Vertex
+REUSED Universal233.HardParent.pendantOriginal [definition] : RMAF.Tree → Nat → Nat → List RMAF.Vertex
+REUSED RMAF.minimalVertices [definition] : List Nat → RMAF.Tree → List RMAF.Vertex
+REUSED RMAF.minimalVertices._f [definition] : List Nat → (x : RMAF.Tree) → RMAF.Tree.below x → List RMAF.Vertex
+REUSED RMAF.Tree.below [definition] : {motive : RMAF.Tree → Sort u} → RMAF.Tree → Sort (max 1 u)
+REUSED RMAF.Tree [inductive] : Type
+REUSED RMAF.Tree.leaf [constructor] : Nat → RMAF.Tree
+REUSED RMAF.Tree.node [constructor] : RMAF.Tree → RMAF.Tree → RMAF.Tree
+REUSED RMAF.Tree.rec [recursor] : {motive : RMAF.Tree → Sort u} →
+  ((a : Nat) → motive (RMAF.Tree.leaf a)) →
+    ((a a_1 : RMAF.Tree) → motive a → motive a_1 → motive (a.node a_1)) → (t : RMAF.Tree) → motive t
+REUSED RMAF.rootedSpan [definition] : List Nat → RMAF.Tree → List RMAF.Vertex
+REUSED RMAF.Tree.brecOn [definition] : {motive : RMAF.Tree → Sort u} →
+  (t : RMAF.Tree) → ((t : RMAF.Tree) → RMAF.Tree.below t → motive t) → motive t
+REUSED RMAF.Tree.brecOn.go [definition] : {motive : RMAF.Tree → Sort u} →
+  (t : RMAF.Tree) → ((t : RMAF.Tree) → RMAF.Tree.below t → motive t) → motive t ×' RMAF.Tree.below t
+REUSED RMAF.rootedSpan._f [definition] : List Nat → (x : RMAF.Tree) → RMAF.Tree.below x → List RMAF.Vertex
+REUSED RMAF.instReprTree.repr.match_1 [definition] : (motive : RMAF.Tree → Sort u_1) →
+  (x : RMAF.Tree) → ((a : Nat) → motive (RMAF.Tree.leaf a)) → ((a a_1 : RMAF.Tree) → motive (a.node a_1)) → motive x
+REUSED RMAF.Tree.casesOn [definition] : {motive : RMAF.Tree → Sort u} →
+  (t : RMAF.Tree) → ((a : Nat) → motive (RMAF.Tree.leaf a)) → ((a a_1 : RMAF.Tree) → motive (a.node a_1)) → motive t
+REUSED Universal233.HardParent.vertices [definition] : RMAF.Tree → List RMAF.Vertex
+REUSED Universal233.HardParent.vertices._f [definition] : (x : RMAF.Tree) → RMAF.Tree.below x → List RMAF.Vertex
+REUSED Universal233.HardParent.vertices.match_1 [definition] : (motive : RMAF.Tree → Sort u_1) →
+  (x : RMAF.Tree) → ((a : Nat) → motive (RMAF.Tree.leaf a)) → ((l r : RMAF.Tree) → motive (l.node r)) → motive x
+REUSED RMAF.leaves [definition] : RMAF.Tree → List Nat
+REUSED RMAF.leaves._f [definition] : (x : RMAF.Tree) → RMAF.Tree.below x → List Nat
+REUSED Universal233.HardParent.subtreeLabels [definition] : RMAF.Tree → RMAF.Vertex → List Nat
+REUSED Universal233.HardParent.subtreeLabels._f [definition] : (x : RMAF.Vertex) →
+  List.below (motive := fun x => RMAF.Tree → List Nat) x → RMAF.Tree → List Nat
+REUSED Universal233.HardParent.subtreeLabels.match_1 [definition] : (motive : RMAF.Tree → RMAF.Vertex → Sort u_1) →
+  (x : RMAF.Tree) →
+    (x_1 : RMAF.Vertex) →
+      ((S : RMAF.Tree) → motive S []) →
+        ((a : Nat) → (head : Bool) → (tail : List Bool) → motive (RMAF.Tree.leaf a) (head :: tail)) →
+          ((l r : RMAF.Tree) → (s : Bool) → (v : List Bool) → motive (l.node r) (s :: v)) → motive x x_1
+REUSED Universal233.HardParent.subtreeLabels.eq_3 [theorem] : ∀ (l r : RMAF.Tree) (s : Bool) (v : List Bool),
+  Universal233.HardParent.subtreeLabels (l.node r) (s :: v) =
+    Universal233.HardParent.subtreeLabels (if s = true then r else l) v
+REUSED Universal233.HardParent.vertices.eq_2 [theorem] : ∀ (l r : RMAF.Tree),
+  Universal233.HardParent.vertices (l.node r) =
+    [] ::
+      (RMAF.prependSide false (Universal233.HardParent.vertices l) ++
+        RMAF.prependSide true (Universal233.HardParent.vertices r))
+REUSED RMAF.leaves.eq_1 [theorem] : ∀ (a : Nat), RMAF.leaves (RMAF.Tree.leaf a) = [a]
+REUSED RMAF.minimalVertices.eq_2 [theorem] : ∀ (selected : List Nat) (a a_1 : RMAF.Tree),
+  RMAF.minimalVertices selected (a.node a_1) =
+    if (RMAF.rootedSpan selected a).isEmpty = true then RMAF.prependSide true (RMAF.minimalVertices selected a_1)
+    else
+      if (RMAF.rootedSpan selected a_1).isEmpty = true then RMAF.prependSide false (RMAF.minimalVertices selected a)
+      else
+        [] ::
+          (RMAF.prependSide false (RMAF.rootedSpan selected a) ++ RMAF.prependSide true (RMAF.rootedSpan selected a_1))
+REUSED RMAF.instDecidableEqTree [definition] : DecidableEq RMAF.Tree
+REUSED RMAF.instDecidableEqTree.decEq [definition] : (x x_1 : RMAF.Tree) → Decidable (x = x_1)
+REUSED RMAF.instDecidableEqTree.decEq._f [definition] : (x : RMAF.Tree) →
+  RMAF.Tree.below (motive := fun x => (x_1 : RMAF.Tree) → Decidable (x = x_1)) x →
+    (x_1 : RMAF.Tree) → Decidable (x = x_1)
+REUSED RMAF.Tree.ctorIdx [definition] : RMAF.Tree → Nat
+REUSED RMAF.Tree.leaf.noConfusion [definition] : {P : Sort u} →
+  {a a' : Nat} → RMAF.Tree.leaf a = RMAF.Tree.leaf a' → (a = a' → P) → P
+REUSED RMAF.Tree.noConfusion [definition] : {P : Sort u} →
+  {t t' : RMAF.Tree} → t = t' → RMAF.Tree.noConfusionType P t t'
+REUSED RMAF.Tree.noConfusionType [definition] : Sort u → RMAF.Tree → RMAF.Tree → Sort u
+REUSED RMAF.instDecidableEqTree.decEq.match_1 [definition] : (motive : RMAF.Tree → RMAF.Tree → Sort u_1) →
+  (x x_1 : RMAF.Tree) →
+    ((a b : Nat) → motive (RMAF.Tree.leaf a) (RMAF.Tree.leaf b)) →
+      ((a : Nat) → (a_1 a_2 : RMAF.Tree) → motive (RMAF.Tree.leaf a) (a_1.node a_2)) →
+        ((a a_1 : RMAF.Tree) → (a_2 : Nat) → motive (a.node a_1) (RMAF.Tree.leaf a_2)) →
+          ((a a_1 b b_1 : RMAF.Tree) → motive (a.node a_1) (b.node b_1)) → motive x x_1
+REUSED RMAF.Tree.node.noConfusion [definition] : {P : Sort u} →
+  {a a_1 a' a'_1 : RMAF.Tree} → a.node a_1 = a'.node a'_1 → (a = a' → a_1 = a'_1 → P) → P
+REUSED Universal233.DepthOne.proper [definition] : RMAF.Tree → RMAF.Tree → Bool
+REUSED Universal233.CherryBranching.pendantPartition [definition] : RMAF.Tree → Nat → Nat → List (List Nat)
+REUSED Universal233.CherryBranching.coreLabels [definition] : RMAF.Tree → Nat → Nat → List Nat
+REUSED Universal233.CoreGraph.CherryAt [definition] : RMAF.Tree → RMAF.Vertex → Nat → Nat → Prop
+REUSED Universal233.CoreGraph.subtree [definition] : RMAF.Tree → RMAF.Vertex → Option RMAF.Tree
+REUSED Universal233.CoreGraph.subtree._f [definition] : (x : RMAF.Vertex) →
+  List.below (motive := fun x => RMAF.Tree → Option RMAF.Tree) x → RMAF.Tree → Option RMAF.Tree
+REUSED Universal233.CoreGraph.subtree.match_1 [definition] : (motive : RMAF.Tree → RMAF.Vertex → Sort u_1) →
+  (x : RMAF.Tree) →
+    (x_1 : RMAF.Vertex) →
+      ((t : RMAF.Tree) → motive t []) →
+        ((a : Nat) → (head : Bool) → (tail : List Bool) → motive (RMAF.Tree.leaf a) (head :: tail)) →
+          ((l r : RMAF.Tree) → (b : Bool) → (v : List Bool) → motive (l.node r) (b :: v)) → motive x x_1
+REUSED RMAF.agreement [definition] : RMAF.Tree → RMAF.Tree → List (List Nat) → Bool
+REUSED RMAF.partitionCheck [definition] : List Nat → List (List Nat) → Bool
+REUSED RMAF.restrictionAgrees [definition] : RMAF.Tree → RMAF.Tree → List Nat → Bool
+REUSED RMAF.restrictionAgrees.match_1 [definition] : (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) →
+  (x x_1 : Option RMAF.Tree) →
+    ((s v : RMAF.Tree) → motive (some s) (some v)) → ((x x_2 : Option RMAF.Tree) → motive x x_2) → motive x x_1
+REUSED RMAF.restrictionAgrees._sparseCasesOn_1 [definition] : {α : Type u} →
+  {motive : Option α → Sort u_1} →
+    (t : Option α) → ((val : α) → motive (some val)) → (Nat.hasNotBit 2 t.ctorIdx → motive t) → motive t
+REUSED RMAF.restrict [definition] : List Nat → RMAF.Tree → Option RMAF.Tree
+REUSED RMAF.restrict._f [definition] : List Nat → (x : RMAF.Tree) → RMAF.Tree.below x → Option RMAF.Tree
+REUSED RMAF.restrict.match_1 [definition] : (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) →
+  (x x_1 : Option RMAF.Tree) →
+    (Unit → motive none none) →
+      ((a : RMAF.Tree) → motive (some a) none) →
+        ((b : RMAF.Tree) → motive none (some b)) → ((a b : RMAF.Tree) → motive (some a) (some b)) → motive x x_1
+REUSED RMAF.sameShape [definition] : RMAF.Tree → RMAF.Tree → Bool
+REUSED RMAF.sameShape._f [definition] : (x : RMAF.Tree) →
+  RMAF.Tree.below (motive := fun x => RMAF.Tree → Bool) x → RMAF.Tree → Bool
+REUSED RMAF.sameShape.match_1 [definition] : (motive : RMAF.Tree → RMAF.Tree → Sort u_1) →
+  (x x_1 : RMAF.Tree) →
+    ((a b : Nat) → motive (RMAF.Tree.leaf a) (RMAF.Tree.leaf b)) →
+      ((a b c d : RMAF.Tree) → motive (a.node b) (c.node d)) → ((x x_2 : RMAF.Tree) → motive x x_2) → motive x x_1
+REUSED RMAF.sameShape._sparseCasesOn_2 [definition] : {motive : RMAF.Tree → Sort u} →
+  (t : RMAF.Tree) → ((a a_1 : RMAF.Tree) → motive (a.node a_1)) → (Nat.hasNotBit 2 t.ctorIdx → motive t) → motive t
+REUSED RMAF.sameShape._sparseCasesOn_1 [definition] : {motive : RMAF.Tree → Sort u} →
+  (t : RMAF.Tree) → ((a : Nat) → motive (RMAF.Tree.leaf a)) → (Nat.hasNotBit 1 t.ctorIdx → motive t) → motive t
+REUSED RMAF.pairwiseEmbeddings [definition] : RMAF.Tree → List (List Nat) → Bool
+REUSED RMAF.pairwiseEmbeddings._f [definition] : RMAF.Tree → (x : List (List Nat)) → List.below x → Bool
+REUSED RMAF.disjointVertices [definition] : List RMAF.Vertex → List RMAF.Vertex → Bool
+REUSED RMAF.pairwiseEmbeddings.match_1 [definition] : (motive : List (List Nat) → Sort u_1) →
+  (x : List (List Nat)) → (Unit → motive []) → ((b : List Nat) → (bs : List (List Nat)) → motive (b :: bs)) → motive x
+REUSED VertexGeometry.Refines [definition] : List (List Nat) → List (List Nat) → Prop
+REUSED RestrictionBridge.root_not_prepend._simp_1 [theorem] : ∀ (s : Bool) (a : List RMAF.Vertex),
+  ([] ∈ RMAF.prependSide s a) = False
+REUSED RestrictionBridge.root_not_prepend [theorem] : ∀ (s : Bool) (a : List RMAF.Vertex), ¬[] ∈ RMAF.prependSide s a
+'OwnHigh.agreement_singleton_or_shared' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OwnHigh.agreement_source_cherry' depends on axioms: [propext, Quot.sound]
+'OwnHigh.literal_consumer' depends on axioms: [propext, Classical.choice, Quot.sound]

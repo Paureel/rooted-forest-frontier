@@ -1,0 +1,5 @@
+import StoredRelabel
+#check OrdinaryDispatch.StoredNumeric.markedBits_value
+#print axioms OrdinaryDispatch.StoredNumeric.markedBits_value
+#check OrdinaryDispatch.StoredNumeric.markedBits_work
+#print axioms OrdinaryDispatch.StoredNumeric.markedBits_work

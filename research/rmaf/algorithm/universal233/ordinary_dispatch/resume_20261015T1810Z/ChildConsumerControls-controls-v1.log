@@ -1,0 +1,31 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-child-binding-20261015T182851721674Z/ChildConsumerControls.lean:11:66: error: Tactic `decide` failed to reduce
+  @decide
+    (Option.map (fun F => (agreement T S F, F.length)) (runChildren noOrdinary T S 2 [singletonChild S 0]) =
+      some (true, 3))
+    ((Option.map (fun F => (agreement T S F, F.length))
+          (runChildren noOrdinary T S 2 [singletonChild S 0])).instDecidableEq
+      (some (true, 3)))
+to `true` or `false`.
+
+After unfolding the instances `Nat.decLe` and `Option.instDecidableEq`, reduction got stuck at
+  match Option.map (fun F => (agreement T S F, F.length)) (runChildren noOrdinary T S 2 [singletonChild S 0]) with
+  | none =>
+    match some (true, 3) with
+    | none => isTrue ⋯
+    | some val => isFalse ⋯
+  | some a =>
+    match some (true, 3) with
+    | none => isFalse ⋯
+    | some b =>
+      match (fun a b => instDecidableEqProd a b) a b with
+      | { decide := true, reflects_decide := h } => isTrue ⋯
+      | { decide := false, reflects_decide := n } => isFalse ⋯
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-child-binding-20261015T182851721674Z/ChildConsumerControls.lean:13:94: error: Tactic `decide` failed to reduce
+  @decide (runChildren noOrdinary T S 1 [singletonChild S 0] = none)
+    (runChildren noOrdinary T S 1 [singletonChild S 0]).decidableEqNone
+to `true` or `false`.
+
+After unfolding the instances `Nat.decLe` and `Option.decidableEqNone`, reduction got stuck at
+  match runChildren noOrdinary T S 1 [singletonChild S 0] with
+  | none => isTrue ⋯
+  | some val => isFalse ⋯

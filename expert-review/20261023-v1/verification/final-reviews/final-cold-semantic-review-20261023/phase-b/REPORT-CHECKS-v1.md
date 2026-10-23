@@ -1,0 +1,9 @@
+# Phase B report checks
+
+I read the complete report after drafting it, checked its numerical claims against the retained observation files, and reviewed every universal/only/all/every claim in the report and derivation for scope. The second pass checked whether the opening could imply a theorem acceptance, whether conditional shared TYPES were being used without premises, whether bounded tests were presented as general proofs, and whether the record disclosed uninspected helper/read-site material. The report names those limits explicitly. These are self-editing checks, not fresh peer verification.
+
+The 8/8 primitive/comparison, 3/3 complete-path, 6/6 fixed-case/ledger and 4/4 geometry-control counts have distinct units and are not merged. Geometry enumeration counts are 4+72+1680=1756 complementary partitions; no disagreement occurred within that finite scope. Semantic logs and complete output JSON, rather than resource exit status, support the claims. No expectation or generated output was edited after execution. All six pre-execution script/preregistration entries remained unchanged, as recorded in PREEXECUTION-CHECK-v1.txt.
+
+The exact static chronology distinction is a comparison between two released finite bodies; it is not reported as a target counterexample. B-EVAL/B-PROJECTION/B-SPLIT/B-GUARDS/B-OCCURRENCE/B-OPS/B-WIDTH remain explicit proof obligations. No explicit A, whole runtime acceptance, new independent proof kernel, unrestricted search result or novelty claim is stated. The full-source read ledger distinguishes content read from bytes only hash-validated.
+
+No fresh referee context or additional agent was invoked under the dispatch's no-peer boundary. Phase A remains immutable; later reading will be prospective Phase C material. The common model/Python/formal lineage and Darwin sampled-resource limitations remain attached to the report.

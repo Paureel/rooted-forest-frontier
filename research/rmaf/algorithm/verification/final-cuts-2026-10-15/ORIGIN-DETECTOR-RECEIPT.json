@@ -1,0 +1,72 @@
+{
+  "status": "PASS-COMPLETE-ORIGIN-PLANTS",
+  "diagnostics": {
+    "clean": "ACCEPT complete origin/source map",
+    "missing": "REJECT missing/wrong originating record",
+    "duplicate": "REJECT duplicate originating record",
+    "wrong_origin": "REJECT missing/wrong originating record",
+    "wrong_type_body_map": "REJECT immutable type/body/reference map mismatch",
+    "ReviewPlantUsed": "REJECT custom axiom closure FinalCutUsed.publicCost",
+    "ReviewPlantUnused": "REJECT originating custom axiom _private.ReviewPlantUnused.0.FinalCutUnused.erasedRoot",
+    "source_corruption": "REJECT source SHA mismatch",
+    "wrong_source_pin": "REJECT source SHA mismatch"
+  },
+  "plant_records": [
+    {
+      "axioms": [],
+      "kind": "theorem",
+      "name": "FinalCutUnused.cleanLooking",
+      "origin": "ReviewPlantUnused"
+    },
+    {
+      "axioms": [
+        "_private.ReviewPlantUsed.0.FinalCutUsed.freeCut"
+      ],
+      "kind": "theorem",
+      "name": "FinalCutUsed.publicCost",
+      "origin": "ReviewPlantUsed"
+    },
+    {
+      "axioms": [
+        "_private.ReviewPlantUnused.0.FinalCutUnused.erasedRoot"
+      ],
+      "kind": "axiom",
+      "name": "_private.ReviewPlantUnused.0.FinalCutUnused.erasedRoot",
+      "origin": "ReviewPlantUnused"
+    },
+    {
+      "axioms": [
+        "_private.ReviewPlantUsed.0.FinalCutUsed.freeCut"
+      ],
+      "kind": "theorem",
+      "name": "_private.ReviewPlantUsed.0.FinalCutUsed.hidden",
+      "origin": "ReviewPlantUsed"
+    },
+    {
+      "axioms": [
+        "_private.ReviewPlantUsed.0.FinalCutUsed.freeCut"
+      ],
+      "kind": "axiom",
+      "name": "_private.ReviewPlantUsed.0.FinalCutUsed.freeCut",
+      "origin": "ReviewPlantUsed"
+    }
+  ],
+  "builds": [
+    {
+      "module": "ReviewPlantUsed",
+      "exit": 0,
+      "seconds": 0.3607429580006283
+    },
+    {
+      "module": "ReviewPlantUnused",
+      "exit": 0,
+      "seconds": 0.3257681670002057
+    },
+    {
+      "module": "ReviewPlantAudit",
+      "exit": 0,
+      "seconds": 4.41203916700033
+    }
+  ],
+  "scope": "Custom axioms deliberately only in isolated detector plants,excluded from62 scientific modules. Missing/duplicate/origin/type-body/source mutations have clean twins. No author source changed."
+}

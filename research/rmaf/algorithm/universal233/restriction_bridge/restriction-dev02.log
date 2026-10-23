@@ -1,0 +1,42 @@
+research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean:21:39: error: Tactic `rfl` failed: The left-hand side
+  (join none (some b)).bind (restrict B)
+is not definitionally equal to the right-hand side
+  join (none.bind (restrict B)) ((some b).bind (restrict B))
+
+case none.some.none
+B : List Nat
+b : Tree
+⊢ (join none (some b)).bind (restrict B) = join (none.bind (restrict B)) ((some b).bind (restrict B))
+research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean:21:39: error: Tactic `rfl` failed: The left-hand side
+  (join none (some b)).bind (restrict B)
+is not definitionally equal to the right-hand side
+  join (none.bind (restrict B)) ((some b).bind (restrict B))
+
+case none.some.some
+B : List Nat
+b val✝ : Tree
+⊢ (join none (some b)).bind (restrict B) = join (none.bind (restrict B)) ((some b).bind (restrict B))
+research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean:23:37: error: Tactic `rfl` failed: The left-hand side
+  (join (some a) none).bind (restrict B)
+is not definitionally equal to the right-hand side
+  join ((some a).bind (restrict B)) (none.bind (restrict B))
+
+case some.none.none
+B : List Nat
+a : Tree
+⊢ (join (some a) none).bind (restrict B) = join ((some a).bind (restrict B)) (none.bind (restrict B))
+research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean:23:37: error: Tactic `rfl` failed: The left-hand side
+  (join (some a) none).bind (restrict B)
+is not definitionally equal to the right-hand side
+  join ((some a).bind (restrict B)) (none.bind (restrict B))
+
+case some.none.some
+B : List Nat
+a val✝ : Tree
+⊢ (join (some a) none).bind (restrict B) = join ((some a).bind (restrict B)) (none.bind (restrict B))
+research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean:33:6: error: Type mismatch: After simplification, term
+  hh
+ has type
+  (x ∈ C) = (x ∈ U ∧ x ∈ B)
+but is expected to have type
+  x ∈ C ↔ x ∈ U ∧ x ∈ B

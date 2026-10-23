@@ -1,0 +1,93 @@
+import ReturnedPayload
+namespace GenericForest.CheckCorrespondence
+open RMAF ForestState Universal233 WholeSourceWork
+
+/-- Full-scan upper evaluator; skipped Boolean suffixes are deliberately charged. -/
+def meterAll {α : Type} (f : α → Charged Bool) : List α → Charged Bool
+ | [] => ⟨true,1⟩
+ | x::xs => let a:=f x;let r:=meterAll f xs;⟨a.value && r.value,a.work+r.work+4⟩
+
+def meterAny {α : Type} (f : α → Charged Bool) : List α → Charged Bool
+ | [] => ⟨false,1⟩
+ | x::xs => let a:=f x;let r:=meterAny f xs;⟨a.value || r.value,a.work+r.work+4⟩
+
+@[simp] theorem meterAll_value {α : Type} (f : α → Charged Bool) (xs : List α) :
+ (meterAll f xs).value=xs.all (fun x=>(f x).value) := by induction xs <;> simp [meterAll,List.all_cons,*]
+@[simp] theorem meterAny_value {α : Type} (f : α → Charged Bool) (xs : List α) :
+ (meterAny f xs).value=xs.any (fun x=>(f x).value) := by induction xs <;> simp [meterAny,List.any_cons,*]
+
+theorem meterAll_bound {α : Type} (f : α → Charged Bool) (xs : List α) (A : Nat)
+ (bound : ∀x,x∈xs → (f x).work≤A) : (meterAll f xs).work≤(A+4)*(xs.length+1) := by
+ induction xs with
+ | nil => simp [meterAll];omega
+ | cons x xs ih =>
+  have a:=bound x (by simp)
+  have b:=ih (fun y hy=>bound y (by simp [hy]))
+  simp only [meterAll,List.length_cons,Charged.work]
+  have eq : (A+4)*(xs.length+1+1)=(A+4)*(xs.length+1)+(A+4):=by omega
+  rw [eq];omega
+
+theorem meterAny_bound {α : Type} (f : α → Charged Bool) (xs : List α) (A : Nat)
+ (bound : ∀x,x∈xs → (f x).work≤A) : (meterAny f xs).work≤(A+4)*(xs.length+1) := by
+ induction xs with
+ | nil => simp [meterAny];omega
+ | cons x xs ih =>
+  have a:=bound x (by simp)
+  have b:=ih (fun y hy=>bound y (by simp [hy]))
+  simp only [meterAny,List.length_cons,Charged.work]
+  have eq : (A+4)*(xs.length+1+1)=(A+4)*(xs.length+1)+(A+4):=by omega
+  rw [eq];omega
+
+/-- Charges every original label equality and scalar count increment. -/
+def meterCount (x : Nat) : List Nat → Charged Nat
+ | [] => ⟨0,1⟩
+ | y::ys => let r:=meterCount x ys;⟨(if x==y then 1 else 0)+r.value,r.work+4⟩
+
+@[simp] theorem meterCount_value (x : Nat) (xs : List Nat) : (meterCount x xs).value=xs.count x := by
+ induction xs with
+ | nil => rfl
+ | cons y ys ih => by_cases eq : x=y <;> simp [meterCount,List.count_cons,ih,eq,beq_iff_eq,Nat.add_comm]
+
+theorem meterCount_work (x : Nat) (xs : List Nat) : (meterCount x xs).work=4*xs.length+1 := by
+ induction xs <;> simp only [meterCount,Charged.work,List.length_nil,List.length_cons] at * <;> omega
+
+def meterFlatten {α : Type} : List (List α) → Charged (List α)
+ | [] => ⟨[],1⟩
+ | x::xs => let r:=meterFlatten xs;⟨x++r.value,6*(x.length+1)+r.work⟩
+
+@[simp] theorem meterFlatten_value {α : Type} (xs : List (List α)) : (meterFlatten xs).value=xs.flatten := by
+ induction xs <;> simp [meterFlatten,*]
+
+theorem meterFlatten_work {α : Type} (xs : List (List α)) :
+ (meterFlatten xs).work=6*(xs.flatten.length+xs.length)+1 := by
+ induction xs <;> simp only [meterFlatten,Charged.work,List.length_nil,List.length_cons,List.flatten_nil,List.flatten_cons,List.length_append] at * <;> omega
+
+/-- The source repeats flatten inside each label-count closure; each copy is billed. -/
+def meterPartition (L : List Nat) (F : List (List Nat)) : Charged Bool :=
+ let nonempty:=meterAll (fun B : List Nat=>⟨!B.isEmpty,1⟩) F
+ let counts:=meterAll (fun x=>let cells:=meterFlatten F;let count:=meterCount x cells.value;
+  ⟨count.value==1,cells.work+count.work+4⟩) L
+ let cells:=meterFlatten F
+ let labels:=meterAll (fun x=>meterContains x L) cells.value
+ ⟨nonempty.value && counts.value && labels.value,nonempty.work+counts.work+cells.work+labels.work+4⟩
+
+@[simp] theorem meterPartition_value (L : List Nat) (F : List (List Nat)) :
+ (meterPartition L F).value=partitionCheck L F := by simp [meterPartition,partitionCheck]
+
+/-- Exact counted-visits lower bound; it applies even to rejected repeated-label payloads. -/
+theorem meterPartition_count_lower (L : List Nat) (F : List (List Nat)) (x : Nat) (mem : x∈L) :
+ 4*F.flatten.length≤(meterPartition L F).work := by
+ have all_lower {α : Type} (f : α → Charged Bool) (xs : List α) (a : α) (ha : a∈xs) : (f a).work≤(meterAll f xs).work := by
+  induction xs with
+  | nil => simp at ha
+  | cons y ys ih =>
+   simp only [List.mem_cons] at ha
+   rcases ha with rfl|ha
+   · simp only [meterAll,Charged.work];omega
+   · have h:=ih ha;simp only [meterAll,Charged.work];omega
+ have counts:=all_lower (fun x=>let cells:=meterFlatten F;let count:=meterCount x cells.value;
+  ⟨count.value==1,cells.work+count.work+4⟩) L x mem
+ simp only [meterFlatten_value,meterCount_work] at counts
+ unfold meterPartition
+ omega
+end GenericForest.CheckCorrespondence

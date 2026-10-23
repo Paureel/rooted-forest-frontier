@@ -1,0 +1,7 @@
+import RILifetime
+#check OrdinaryDispatch.RecoveryInitialBits.initializeBits_work_decomposition
+#print axioms OrdinaryDispatch.RecoveryInitialBits.initializeBits_work_decomposition
+#check OrdinaryDispatch.RecoveryInitialBits.initializeBits_input_lifetime_paid
+#print axioms OrdinaryDispatch.RecoveryInitialBits.initializeBits_input_lifetime_paid
+#check OrdinaryDispatch.RecoveryInitialBits.merged_children_lifetime_paid
+#print axioms OrdinaryDispatch.RecoveryInitialBits.merged_children_lifetime_paid

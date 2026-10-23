@@ -1,0 +1,597 @@
+{
+  "plants": [
+    {
+      "id": "common",
+      "cuts": [],
+      "partition": [
+        [
+          0,
+          1,
+          2
+        ]
+      ],
+      "path": [
+        "00",
+        "0",
+        "01"
+      ],
+      "components": [
+        {
+          "vertices": [
+            "",
+            "0",
+            "00",
+            "01",
+            "1"
+          ],
+          "labels": [
+            0,
+            1,
+            2
+          ]
+        }
+      ],
+      "opt": 1,
+      "agreements": 5
+    },
+    {
+      "id": "t1-public",
+      "cuts": [
+        "01"
+      ],
+      "partition": [
+        [
+          0,
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "path": [
+        "00",
+        "0",
+        "",
+        "1"
+      ],
+      "components": [
+        {
+          "vertices": [
+            "",
+            "0",
+            "00",
+            "1"
+          ],
+          "labels": [
+            0,
+            1
+          ]
+        },
+        {
+          "vertices": [
+            "01"
+          ],
+          "labels": [
+            2
+          ]
+        }
+      ],
+      "opt": 2,
+      "agreements": 4
+    },
+    {
+      "id": "t2-new",
+      "cuts": [
+        "01",
+        "001"
+      ],
+      "partition": [
+        [
+          0,
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "path": [
+        "000",
+        "00",
+        "0",
+        "",
+        "1"
+      ],
+      "components": [
+        {
+          "vertices": [
+            "",
+            "0",
+            "00",
+            "000",
+            "1"
+          ],
+          "labels": [
+            0,
+            1
+          ]
+        },
+        {
+          "vertices": [
+            "001"
+          ],
+          "labels": [
+            2
+          ]
+        },
+        {
+          "vertices": [
+            "01"
+          ],
+          "labels": [
+            3
+          ]
+        }
+      ],
+      "opt": 2,
+      "agreements": 8
+    },
+    {
+      "id": "t3-new",
+      "cuts": [
+        "01",
+        "001",
+        "0001"
+      ],
+      "partition": [
+        [
+          0,
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          4
+        ]
+      ],
+      "path": [
+        "0000",
+        "000",
+        "00",
+        "0",
+        "",
+        "1"
+      ],
+      "components": [
+        {
+          "vertices": [
+            "",
+            "0",
+            "00",
+            "000",
+            "0000",
+            "1"
+          ],
+          "labels": [
+            0,
+            1
+          ]
+        },
+        {
+          "vertices": [
+            "0001"
+          ],
+          "labels": [
+            2
+          ]
+        },
+        {
+          "vertices": [
+            "001"
+          ],
+          "labels": [
+            3
+          ]
+        },
+        {
+          "vertices": [
+            "01"
+          ],
+          "labels": [
+            4
+          ]
+        }
+      ],
+      "opt": 2,
+      "agreements": 17,
+      "branch_min_blocks": [
+        3,
+        2,
+        4
+      ],
+      "child_budget_calls": [
+        {
+          "k": 0,
+          "eligible": [
+            null,
+            null,
+            null
+          ],
+          "success": [
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "k": 1,
+          "eligible": [
+            0,
+            0,
+            null
+          ],
+          "success": [
+            false,
+            true,
+            false
+          ]
+        },
+        {
+          "k": 2,
+          "eligible": [
+            1,
+            1,
+            null
+          ],
+          "success": [
+            true,
+            true,
+            false
+          ]
+        },
+        {
+          "k": 3,
+          "eligible": [
+            2,
+            2,
+            0
+          ],
+          "success": [
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    },
+    {
+      "id": "root-boundary",
+      "cuts": [
+        "001"
+      ],
+      "partition": [
+        [
+          0,
+          1,
+          9
+        ],
+        [
+          2
+        ]
+      ],
+      "path": [
+        "000",
+        "00",
+        "0",
+        "01"
+      ],
+      "components": [
+        {
+          "vertices": [
+            "",
+            "0",
+            "00",
+            "000",
+            "01",
+            "1"
+          ],
+          "labels": [
+            0,
+            1,
+            9
+          ]
+        },
+        {
+          "vertices": [
+            "001"
+          ],
+          "labels": [
+            2
+          ]
+        }
+      ],
+      "opt": 2,
+      "agreements": 10
+    },
+    {
+      "id": "swapped",
+      "cuts": [
+        "10"
+      ],
+      "partition": [
+        [
+          0,
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "path": [
+        "11",
+        "1",
+        "",
+        "0"
+      ],
+      "components": [
+        {
+          "vertices": [
+            "",
+            "0",
+            "1",
+            "11"
+          ],
+          "labels": [
+            0,
+            1
+          ]
+        },
+        {
+          "vertices": [
+            "10"
+          ],
+          "labels": [
+            2
+          ]
+        }
+      ],
+      "opt": 2,
+      "agreements": 4
+    },
+    {
+      "id": "arbitrary-nat",
+      "cuts": [
+        "01"
+      ],
+      "partition": [
+        [
+          7,
+          1000
+        ],
+        [
+          42
+        ]
+      ],
+      "path": [
+        "00",
+        "0",
+        "",
+        "1"
+      ],
+      "components": [
+        {
+          "vertices": [
+            "",
+            "0",
+            "00",
+            "1"
+          ],
+          "labels": [
+            7,
+            1000
+          ]
+        },
+        {
+          "vertices": [
+            "01"
+          ],
+          "labels": [
+            42
+          ]
+        }
+      ],
+      "opt": 2,
+      "agreements": 4
+    }
+  ],
+  "priority": [
+    {
+      "id": "common-before-earlier-t1",
+      "counts": [
+        1,
+        0
+      ],
+      "selected": "common",
+      "pair": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "high-before-earlier-hard2",
+      "counts": [
+        2,
+        3
+      ],
+      "selected": "high",
+      "pair": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "t1-before-hard2",
+      "counts": [
+        1,
+        2
+      ],
+      "selected": "t1",
+      "pair": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "only-hard2",
+      "counts": [
+        2,
+        2
+      ],
+      "selected": "hard2",
+      "pair": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "empty",
+      "counts": [],
+      "selected": null,
+      "pair": null
+    }
+  ],
+  "mutations": [
+    {
+      "mutation": "incomplete-endpoint-cover",
+      "caught": true,
+      "reason": "not a partition"
+    },
+    {
+      "mutation": "incomplete-pendant-cover",
+      "caught": true,
+      "reason": "literal pendant cover/address"
+    },
+    {
+      "mutation": "skip-suppressed-vertex",
+      "caught": true,
+      "reason": "frozen mismatch"
+    },
+    {
+      "mutation": "edge-above-lca",
+      "caught": true,
+      "reason": "literal pendant cover/address"
+    },
+    {
+      "mutation": "root-cut",
+      "caught": true,
+      "reason": "root cut"
+    },
+    {
+      "mutation": "leafless-region",
+      "caught": true,
+      "reason": "leafless region"
+    },
+    {
+      "mutation": "invalid-cut",
+      "caught": true,
+      "reason": "invalid cut"
+    },
+    {
+      "mutation": "duplicate-cut",
+      "caught": true,
+      "reason": "duplicate cut"
+    },
+    {
+      "mutation": "component-offset",
+      "caught": true,
+      "reason": "wrong component offset"
+    },
+    {
+      "mutation": "nat-truncation",
+      "caught": true,
+      "reason": "frozen mismatch"
+    },
+    {
+      "mutation": "filter-drop",
+      "caught": true,
+      "reason": "not a partition"
+    },
+    {
+      "mutation": "display-address-as-original",
+      "caught": true,
+      "reason": "literal pendant cover/address"
+    },
+    {
+      "mutation": "free-known-minimum",
+      "caught": true,
+      "reason": "frozen mismatch"
+    },
+    {
+      "mutation": "unpaid-parent",
+      "caught": true,
+      "reason": "child/budget/refusal"
+    },
+    {
+      "mutation": "double-proof-split",
+      "caught": true,
+      "reason": "wrong component offset"
+    },
+    {
+      "mutation": "wrong-priority",
+      "caught": true,
+      "reason": "wrong priority"
+    },
+    {
+      "mutation": "omitted-earlier-rejection",
+      "caught": true,
+      "reason": "omitted candidate/rejection"
+    },
+    {
+      "mutation": "forged-agreement",
+      "caught": true,
+      "reason": "frozen mismatch"
+    },
+    {
+      "mutation": "wrong-child",
+      "caught": true,
+      "reason": "child/budget/refusal"
+    },
+    {
+      "mutation": "wrong-budget",
+      "caught": true,
+      "reason": "child/budget/refusal"
+    },
+    {
+      "mutation": "missing-failure",
+      "caught": true,
+      "reason": "child/budget/refusal"
+    },
+    {
+      "mutation": "injected-optimum-oracle",
+      "caught": true,
+      "reason": "injected optimum/enumeration dependency"
+    }
+  ],
+  "caught": 22,
+  "required": 22,
+  "invalid_rejections": 6,
+  "masses": {
+    "q2_t3": "9/8",
+    "q233over100_t3": "11857800/12649337",
+    "q3_t3": "19/27",
+    "q233over100_t2": "56600/54289"
+  },
+  "runtime_dependency_gate": "clean own runtime functions; no candidate conclusion",
+  "utc": "2026-10-15T12:25:17Z",
+  "mode": "controls",
+  "total_seconds": 0.003931708000891376,
+  "script_sha256": "6a7dc77d984bef365be178f8abf107456a3ca9016f93cce9580710fd1f203322",
+  "expectations_sha256": "2da971115d1feace9480cab3d631901049b837856aae4a55b5677a3e00843b36",
+  "candidate_contact": false
+}

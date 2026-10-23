@@ -1,0 +1,35 @@
+{
+  "instrument_sha256": "404a19b13905c68b5a6f7ea630887a52904b9d79944a0fe6bed544db91ed8b03",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "7eea19a9328fe34f405062167f395782a2b29a2d658af8d88f3af6b216326091",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 3.4030503750000207,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "153c319c3b2c2d54befa690a48a3fbbbd2db2dc8c18aefa0b02fc0ddf68015f9",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.4496793329999491,
+      "resource_stop": null,
+      "log_sha256": "c82cdffe96de187a85a011fa0cbd8123b885f73ac8097bdf644b36c316460b7e"
+    },
+    {
+      "module": "ExtendedFalseControls",
+      "source_sha256": "20aa18df71e54b20ba9bcc8c16c1e16ff032a33f1eb5fd7b213dafc623a3d346",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 5.167775249999977,
+      "resource_stop": null,
+      "log_sha256": "f8f323b9b29d747fd48055f82ac975ed9bff2a9b55eca5f0822b0f3c74db5fea"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('NONMATHEMATICAL_CONTROL_FAILURE', ['Tactic `decide` failed to reduce', 'Tactic `decide` proved that the proposition', 'Tactic `decide` proved that the proposition'], '/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_extended_assembly_20261016T110601Z/build-v2/ExtendedFalseControls.lean:7:1: error: Tactic `decide` failed to reduce\\n  @decide ((1 / 4).num * \u2191(1 / 8).den = (1 / 8).num * \u2191(1 / 4).den)\\n    (((1 / 4).num * \u2191(1 / 8).den).instDecidableEq ((1 / 8).num * \u2191(1 / 4).den))\\nto `true` or `false`.\\n\\nReduction got stuck at\\n  match (1 / 4).num * \u2191(1 / 8).den, (1 / 8).num * \u2191(1 / 4).den with\\n  | Int.ofNat a, Int.ofNat b =>\\n    match decEq a b with\\n    | { decide := true, reflects_decide := h } => isTrue \u22ef\\n    | { decide := false, reflects_decide := h } => isFalse \u22ef\\n  | Int.ofNat a, Int.negSucc a_1 => isFalse \u22ef\\n  | Int.negSucc a, Int.ofNat a_1 => isFalse \u22ef\\n  | Int.negSucc a, Int.negSucc b =>\\n    match decEq a b with\\n    | { decide := true, reflects_decide := h } => isTrue \u22ef\\n    | { decide := false, reflects_decide := h } => isFalse \u22ef\\n/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_extended_assembly_20261016T110601Z/build-v2/ExtendedFalseControls.lean:8:110: error: Tactic `decide` proved that the proposition\\n  (hardPaidSource noAnswer (fun x x_1 x_2 => 7) (Tree.leaf 0) (Tree.leaf 0) 9 emptyCuts (Result.clique [])).work = 12\\nis false\\n/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_extended_assembly_20261016T110601Z/build-v2/ExtendedFalseControls.lean:9:118: error: Tactic `decide` proved that the proposition\\n  (fullOutputsSource noAnswer (fun x x_1 x_2 => 7) (Tree.leaf 0) (Tree.leaf 0) 0 [unaffordable, unaffordable]).work = 10\\nis false\\n'))"
+}

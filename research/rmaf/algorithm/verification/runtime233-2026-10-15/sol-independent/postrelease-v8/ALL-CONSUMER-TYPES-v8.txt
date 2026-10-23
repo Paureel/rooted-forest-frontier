@@ -1,0 +1,534 @@
+classifier-ClassifierRequestMeter
+Universal233.ClassifierCheckFee.request_value (r : Universal233.Rule5PendantLocalWork.CheckRequest) :
+  (Universal233.ClassifierCheckFee.requestMeter r).value = Universal233.Rule5PendantLocalWork.checkValue r
+'Universal233.ClassifierCheckFee.request_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.ClassifierCheckFee.request_calls (r : Universal233.Rule5PendantLocalWork.CheckRequest) :
+  (Universal233.ClassifierCheckFee.requestMeter r).calls = [r]
+'Universal233.ClassifierCheckFee.request_calls' depends on axioms: [propext]
+Universal233.ClassifierCheckFee.check_receipt_eq (r : Universal233.Rule5PendantLocalWork.CheckRequest) :
+  Universal233.Rule5PendantLocalWork.checkMeter Universal233.ClassifierCheckFee.checkFee r =
+    Universal233.ClassifierCheckFee.requestMeter r
+'Universal233.ClassifierCheckFee.check_receipt_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.ClassifierCheckFee.check_fee_bound (N L : Nat) (r : Universal233.Rule5PendantLocalWork.CheckRequest)
+  (dom : Universal233.Rule5PendantLocalWork.CheckDomain N L r) :
+  Universal233.ClassifierCheckFee.checkFee r ≤ Universal233.ClassifierCheckFee.checkCap N
+'Universal233.ClassifierCheckFee.check_fee_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+classifier-ClassifierFeePolynomial
+Universal233.ClassifierCheckFee.check_cap_polynomial (N : Nat) :
+  Universal233.ClassifierCheckFee.checkCap N = 120 * (2 * N * N + 2 * N + 2) ^ 5 + 128 * (N + 1) ^ 2 + 2
+'Universal233.ClassifierCheckFee.check_cap_polynomial' depends on axioms: [propext]
+
+
+classifier-ClassifierFeeBinding
+Universal233.ClassifierCheckFee.final_source_work (T S : RMAF.Tree) (a b L : Nat)
+  (tlabs : ∀ (x : Nat), x ∈ RMAF.leaves T → x < 2 ^ L) (slabs : ∀ (x : Nat), x ∈ RMAF.leaves S → x < 2 ^ L) :
+  (Universal233.ClassifierCheckFee.finalSourceMeter T S a b).work ≤
+    Universal233.Rule5PendantLocalWork.finalBudget (RMAF.leaves T).length (RMAF.leaves S).length
+      (Universal233.ClassifierCheckFee.checkCap ((RMAF.leaves T).length + (RMAF.leaves S).length))
+'Universal233.ClassifierCheckFee.final_source_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.ClassifierCheckFee.final_source_calls (T S : RMAF.Tree) (a b L : Nat)
+  (tlabs : ∀ (x : Nat), x ∈ RMAF.leaves T → x < 2 ^ L) (slabs : ∀ (x : Nat), x ∈ RMAF.leaves S → x < 2 ^ L)
+  {r : Universal233.Rule5PendantLocalWork.CheckRequest}
+  (mem : r ∈ (Universal233.ClassifierCheckFee.finalSourceMeter T S a b).calls) :
+  Universal233.Rule5PendantLocalWork.CheckDomain ((RMAF.leaves T).length + (RMAF.leaves S).length) L r ∧
+    Universal233.ClassifierCheckFee.checkFee r ≤
+      Universal233.ClassifierCheckFee.checkCap ((RMAF.leaves T).length + (RMAF.leaves S).length)
+'Universal233.ClassifierCheckFee.final_source_calls' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.ClassifierCheckFee.paid_builder_value (T S : RMAF.Tree) (a b : Nat) :
+  (Universal233.ClassifierCheckFee.paidBuilderSourceMeter T S a b).value =
+    Universal233.Rule5PaidSelector.buildSelected T S a b
+'Universal233.ClassifierCheckFee.paid_builder_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.ClassifierCheckFee.paid_builder_work (T S : RMAF.Tree) (a b L : Nat)
+  (tlabs : ∀ (x : Nat), x ∈ RMAF.leaves T → x < 2 ^ L) (slabs : ∀ (x : Nat), x ∈ RMAF.leaves S → x < 2 ^ L) :
+  (Universal233.ClassifierCheckFee.paidBuilderSourceMeter T S a b).work ≤
+    Universal233.Rule5RemainingLocalWork.paidSelectedBudget (RMAF.leaves T).length (RMAF.leaves S).length
+      (Universal233.ClassifierCheckFee.checkCap ((RMAF.leaves T).length + (RMAF.leaves S).length))
+      (Universal233.PaidLiteralDecisionWork.literalBudget ((RMAF.leaves T).length + (RMAF.leaves S).length))
+'Universal233.ClassifierCheckFee.paid_builder_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+execution-CommonPaidSource
+Universal233.Rule5ExecutionSource.jobs_answers_value (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork) (js : List OrdinaryCommonSplit.Caller.Job) :
+  (Universal233.Rule5ExecutionSource.jobsAnswersMeter cb W js).value = List.map (fun j => cb j.T j.S j.budget) js
+'Universal233.Rule5ExecutionSource.jobs_answers_value' depends on axioms: [propext]
+Universal233.Rule5ExecutionSource.jobs_answers_recursive (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork) (js : List OrdinaryCommonSplit.Caller.Job) :
+  (Universal233.Rule5ExecutionSource.jobsAnswersMeter cb W js).recursiveWork =
+    (List.map (fun j => W j.T j.S j.budget) js).sum
+'Universal233.Rule5ExecutionSource.jobs_answers_recursive' depends on axioms: [propext]
+Universal233.Rule5ExecutionSource.run_paid_value (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork) (d : OrdinaryCommonSplit.Caller.Setup) (q : Nat)
+  (FY FN : Universal233.Rule5ExecutionSource.Forest) :
+  (Universal233.Rule5ExecutionSource.runPaidMeter cb W d q FY FN).value =
+    OrdinaryCommonSplit.Caller.runPaid d q FY FN cb
+'Universal233.Rule5ExecutionSource.run_paid_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5ExecutionSource.run_paid_calls (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork) (d : OrdinaryCommonSplit.Caller.Setup) (q : Nat)
+  (FY FN : Universal233.Rule5ExecutionSource.Forest) :
+  (Universal233.Rule5ExecutionSource.runPaidMeter cb W d q FY FN).calls = OrdinaryCommonSplit.Caller.paidJobs d q
+'Universal233.Rule5ExecutionSource.run_paid_calls' depends on axioms: [propext]
+
+
+execution-CommonCallBinding
+Universal233.Rule5ExecutionSource.common_local_on_jobs (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork) {T S : RMAF.Tree} {i e : RMAF.Vertex} {a b : Nat}
+  {d : Universal233.Rule5FinalClassification.BadSelection} (ch : Universal233.CoreGraph.CherryAt T i a b)
+  (ad : Universal233.Rule5Local.admitted T S a b = true)
+  (sel :
+    (Universal233.Rule5PendantLocalWork.finalMeter classFee T S a b).value =
+      some
+        (Universal233.Rule5FinalClassification.FinalSelection.remaining d
+          (Universal233.Rule5FinalClassification.BoundarySelection.one e)))
+  (q : Nat)
+  (same :
+    ∀ (j : OrdinaryCommonSplit.Caller.Job),
+      j ∈ Universal233.Rule5CommonSelector.commonJobs T S a b d q →
+        cb j.T j.S j.budget = Universal233.Rule5LocalWork.actual j.T j.S j.budget) :
+  (Universal233.Rule5ExecutionSource.commonMeter cb W T S a b d q).localWork ≤
+    Universal233.Rule5ExecutionSource.commonBudget (RMAF.leaves T).length (RMAF.leaves S).length
+      (Universal233.HardParent.subtreeLabels S d.badArc).length
+'Universal233.Rule5ExecutionSource.common_local_on_jobs' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5ExecutionSource.common_call_count (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork) (T S : RMAF.Tree) (a b : Nat)
+  (d : Universal233.Rule5FinalClassification.BadSelection) (q : Nat) :
+  (Universal233.Rule5ExecutionSource.commonMeter cb W T S a b d q).calls.length ≤ 2
+'Universal233.Rule5ExecutionSource.common_call_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5ExecutionSource.common_call_bits (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork) (T S : RMAF.Tree) (a b : Nat)
+  (d : Universal233.Rule5FinalClassification.BadSelection) (q L : Nat)
+  (labels : ∀ (x : Nat), x ∈ RMAF.leaves T ++ RMAF.leaves S → x < 2 ^ L) {j : OrdinaryCommonSplit.Caller.Job}
+  (mem : j ∈ (Universal233.Rule5ExecutionSource.commonMeter cb W T S a b d q).calls) :
+  (∀ (x : Nat), x ∈ RMAF.leaves j.T → x < 2 ^ (L + 2)) ∧ ∀ (x : Nat), x ∈ RMAF.leaves j.S → x < 2 ^ (L + 2)
+'Universal233.Rule5ExecutionSource.common_call_bits' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+execution-CommonSourceDebit
+Universal233.Rule5ExecutionSource.common_source_value (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork) (T S : RMAF.Tree) (a b : Nat)
+  (d : Universal233.Rule5FinalClassification.BadSelection) (q : Nat) :
+  (Universal233.Rule5ExecutionSource.commonSource cb W T S a b d q).value =
+    Universal233.Rule5CommonOrdinary.runSelectedCommon cb T S a b d q
+'Universal233.Rule5ExecutionSource.common_source_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5ExecutionSource.common_source_split (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork) (T S : RMAF.Tree) (a b : Nat)
+  (d : Universal233.Rule5FinalClassification.BadSelection) (q : Nat) :
+  (Universal233.Rule5ExecutionSource.commonSource cb W T S a b d q).work =
+    (Universal233.Rule5ExecutionSource.commonSource cb (fun x x_1 x_2 => 0) T S a b d q).work +
+      (List.map (fun j => W j.T j.S j.budget) (Universal233.Rule5CommonSelector.commonJobs T S a b d q)).sum
+'Universal233.Rule5ExecutionSource.common_source_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5ExecutionSource.common_source_local (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat) {T S : RMAF.Tree} {i e : RMAF.Vertex} {a b : Nat}
+  {d : Universal233.Rule5FinalClassification.BadSelection} (ch : Universal233.CoreGraph.CherryAt T i a b)
+  (ad : Universal233.Rule5Local.admitted T S a b = true)
+  (sel :
+    (Universal233.Rule5PendantLocalWork.finalMeter classFee T S a b).value =
+      some
+        (Universal233.Rule5FinalClassification.FinalSelection.remaining d
+          (Universal233.Rule5FinalClassification.BoundarySelection.one e)))
+  (q : Nat)
+  (same :
+    ∀ (j : OrdinaryCommonSplit.Caller.Job),
+      j ∈ Universal233.Rule5CommonSelector.commonJobs T S a b d q →
+        cb j.T j.S j.budget = Universal233.Rule5LocalWork.actual j.T j.S j.budget) :
+  (Universal233.Rule5ExecutionSource.commonSource cb (fun x x_1 x_2 => 0) T S a b d q).work ≤
+    Universal233.Rule5ExecutionSource.commonBudget (RMAF.leaves T).length (RMAF.leaves S).length
+      (Universal233.HardParent.subtreeLabels S d.badArc).length
+'Universal233.Rule5ExecutionSource.common_source_local' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+execution-PaidForestPretest
+Universal233.Rule5ExecutionSource.best_additional_value (ss : List RMAF.Tree)
+  (valid : Universal233.Rule5ExecutionSource.Forest → Universal233.WholeSourceWork.Charged Bool)
+  (fs : List Universal233.Rule5ExecutionSource.Forest) :
+  (Universal233.Rule5ExecutionSource.bestAdditionalMeter ss valid fs).value =
+    RMAF.best (ForestState.additionalCost ss) (fun F => (valid F).value) fs
+'Universal233.Rule5ExecutionSource.best_additional_value' depends on axioms: [propext]
+Universal233.Rule5ExecutionSource.forest_pretest_value (T : Option RMAF.Tree) (ss : List RMAF.Tree) :
+  (Universal233.Rule5ExecutionSource.forestPretestMeter T ss).value = ForestPretest01.pretest01 T ss
+'Universal233.Rule5ExecutionSource.forest_pretest_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+execution-PaidCurrentSource
+Universal233.Rule5ExecutionSource.current_query_value (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork) (T : Option RMAF.Tree) (ss : List RMAF.Tree) (r : Nat) :
+  (Universal233.Rule5ExecutionSource.currentQueryMeter cb W T ss r).value =
+    Universal233.Rule5PaidOrdinary.currentQuery cb T ss r
+'Universal233.Rule5ExecutionSource.current_query_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5ExecutionSource.current_answer_split (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork) (T : Option RMAF.Tree) (ss : List RMAF.Tree) (r : Nat) :
+  (Universal233.Rule5ExecutionSource.currentAnswerSource cb W T ss r).work =
+    (Universal233.Rule5ExecutionSource.currentAnswerSource cb (fun x x_1 x_2 => 0) T ss r).work +
+      GenericForest.FrontierWork.queryWork W
+        (Universal233.Rule5ExecutionSource.currentQueryMeter cb W T ss r).ordinaryCalls
+'Universal233.Rule5ExecutionSource.current_answer_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5ExecutionSource.current_fallback_gate (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork) (T : Option RMAF.Tree) (ss : List RMAF.Tree) (r : Nat)
+  (gate : ¬(ForestPretest01.pretest01 T ss = ForestPretest01.Result.rejected ∧ 1 < r)) :
+  (Universal233.Rule5ExecutionSource.currentQueryMeter cb W T ss r).forestDebit = 0 ∧
+    (Universal233.Rule5ExecutionSource.currentQueryMeter cb W T ss r).ordinaryCalls = []
+'Universal233.Rule5ExecutionSource.current_fallback_gate' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+execution-PaidRequestsSource
+Universal233.Rule5ExecutionSource.requests_value {T S : RMAF.Tree}
+  (D : Universal233.Case322PaidGuard.LiteralGeometry T S) (q : Nat) :
+  (Universal233.Rule5ExecutionSource.requestsMeter D q).value = Universal233.Rule5PaidSelector.requests D q
+'Universal233.Rule5ExecutionSource.requests_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5ExecutionSource.answer_list_value (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork) (js : List Universal233.Rule5PaidSelector.PaidRequest) :
+  (Universal233.Rule5ExecutionSource.answerListMeter cb W js).value =
+    List.filterMap (fun j => Universal233.Rule5PaidOrdinary.currentAnswer cb (some j.target) j.sources j.residual) js
+'Universal233.Rule5ExecutionSource.answer_list_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+execution-PaidExecutionBounds
+Universal233.Rule5ExecutionSource.request_state_caps {T S : RMAF.Tree}
+  (D : Universal233.Case322PaidGuard.LiteralGeometry T S) (q N : Nat) (tn : Universal233.CoreWork.treeNodes T ≤ N)
+  (sn : Universal233.CoreWork.treeNodes S ≤ N) {j : Universal233.Rule5PaidSelector.PaidRequest}
+  (mem : j ∈ Universal233.Rule5PaidSelector.requests D q) :
+  GenericForest.targetNodes (some j.target) ≤ N ∧
+    GenericForest.sourceNodes j.sources ≤ 2 * N ∧ ForestState.proper (some j.target) j.sources = true
+'Universal233.Rule5ExecutionSource.request_state_caps' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5ExecutionSource.answers_payload (cb : Universal233.Rule5ExecutionSource.Ordinary) {T S : RMAF.Tree}
+  {a b : Nat} {R : Universal233.Rule5PaidSelector.SelectedPaid T S}
+  (built : Universal233.Rule5PaidSelector.buildSelected T S a b = some R) (q : Nat)
+  {F : Universal233.Rule5ExecutionSource.Forest} (mem : F ∈ Universal233.Rule5PaidOrdinary.answers cb R q) :
+  (List.flatten F).length = (RMAF.leaves T).length ∧ List.length F ≤ (RMAF.leaves T).length
+'Universal233.Rule5ExecutionSource.answers_payload' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5ExecutionSource.best_for_prefix_work (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork) {T S : RMAF.Tree} {a b : Nat}
+  {R : Universal233.Rule5PaidSelector.SelectedPaid T S}
+  (built : Universal233.Rule5PaidSelector.buildSelected T S a b = some R) (q N n : Nat)
+  (tn : Universal233.CoreWork.treeNodes T ≤ N) (sn : Universal233.CoreWork.treeNodes S ≤ N)
+  (tnn : Universal233.CoreWork.treeNodes T ≤ 2 * n) (snn : Universal233.CoreWork.treeNodes S ≤ 2 * n)
+  (ln : (RMAF.leaves T).length ≤ n) :
+  (Universal233.Rule5ExecutionSource.bestForMeter cb W R q).prefixWork ≤
+    Universal233.Rule5ExecutionSource.paidBestBudget T S N n
+'Universal233.Rule5ExecutionSource.best_for_prefix_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+execution-PaidSelectedExecution
+Universal233.Rule5ExecutionSource.solve_selected_prefix_work (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork)
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat)
+  (literalFee : Universal233.Rule5RemainingLocalWork.LiteralCall → Nat) (T S : RMAF.Tree) (a b q L Kc Kl : Nat)
+  (tlabs : ∀ (x : Nat), x ∈ RMAF.leaves T → x < 2 ^ L) (slabs : ∀ (x : Nat), x ∈ RMAF.leaves S → x < 2 ^ L)
+  (classifier :
+    ∀ (r : Universal233.Rule5PendantLocalWork.CheckRequest),
+      Universal233.Rule5PendantLocalWork.CheckDomain ((RMAF.leaves T).length + (RMAF.leaves S).length) L r →
+        classFee r ≤ Kc)
+  (literal :
+    ∀ (d : Universal233.Rule5FinalClassification.BadSelection) (u v : RMAF.Vertex),
+      (Universal233.Rule5PendantLocalWork.finalMeter classFee T S a b).value =
+          some
+            (Universal233.Rule5FinalClassification.FinalSelection.remaining d
+              (Universal233.Rule5FinalClassification.BoundarySelection.second u v)) →
+        ∀ (j : Universal233.Rule5RemainingLocalWork.LiteralCall),
+          Universal233.Rule5RemainingLocalWork.LiteralCallDomain T S a b d u v j → literalFee j ≤ Kl) :
+  (Universal233.Rule5ExecutionSource.solveSelectedMeter cb W classFee literalFee T S a b q).prefixWork ≤
+    Universal233.Rule5ExecutionSource.paidExecutionPrefixBudget T S Kc Kl
+'Universal233.Rule5ExecutionSource.solve_selected_prefix_work' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Universal233.Rule5ExecutionSource.solve_selected_calls_native (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork)
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat)
+  (literalFee : Universal233.Rule5RemainingLocalWork.LiteralCall → Nat) (T S : RMAF.Tree) (a b q : Nat) :
+  (Universal233.Rule5ExecutionSource.solveSelectedMeter cb W classFee literalFee T S a b q).ordinaryCalls =
+    match Universal233.Rule5PaidSelector.buildSelected T S a b with
+    | none => []
+    | some R =>
+      Universal233.Rule5ActualTrace.queries cb
+        (Universal233.Rule5ActualTrace.Calls.paidRequests (Universal233.Rule5PaidSelector.requests R.geometry q))
+'Universal233.Rule5ExecutionSource.solve_selected_calls_native' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+
+execution-Rule5SelectedSource
+Universal233.Rule5ExecutionSource.run_selected_source_value (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork)
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat)
+  (literalFee : Universal233.Rule5RemainingLocalWork.LiteralCall → Nat) (T S : RMAF.Tree) (a b q : Nat)
+  (z : Universal233.Rule5FinalClassification.FinalSelection) :
+  (Universal233.Rule5ExecutionSource.runSelectedSource cb W classFee literalFee T S a b q z).value =
+    Universal233.Rule5OrdinaryDispatch.runSelected cb T S a b q z
+'Universal233.Rule5ExecutionSource.run_selected_source_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5ExecutionSource.run_selected_source_split (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork)
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat)
+  (literalFee : Universal233.Rule5RemainingLocalWork.LiteralCall → Nat) (T S : RMAF.Tree) (a b q : Nat)
+  (z : Universal233.Rule5FinalClassification.FinalSelection) :
+  (Universal233.Rule5ExecutionSource.runSelectedSource cb W classFee literalFee T S a b q z).work =
+    (Universal233.Rule5ExecutionSource.runSelectedSource cb (fun x x_1 x_2 => 0) classFee literalFee T S a b q z).work +
+      GenericForest.FrontierWork.queryWork W
+        (Universal233.Rule5ExecutionSource.runSelectedCalls cb W classFee literalFee T S a b q z)
+'Universal233.Rule5ExecutionSource.run_selected_source_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5ExecutionSource.dispatch_source_value (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork)
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat)
+  (literalFee : Universal233.Rule5RemainingLocalWork.LiteralCall → Nat) (T S : RMAF.Tree) (a b q : Nat) :
+  (Universal233.Rule5ExecutionSource.dispatchSource cb W classFee literalFee T S a b q).value =
+    Universal233.Rule5OrdinaryDispatch.dispatch cb T S a b q
+'Universal233.Rule5ExecutionSource.dispatch_source_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+execution-Rule5SourceBounds
+Universal233.Rule5ExecutionSource.run_selected_local_bound (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat)
+  (literalFee : Universal233.Rule5RemainingLocalWork.LiteralCall → Nat) {T S : RMAF.Tree} {i : RMAF.Vertex} {a b : Nat}
+  (ch : Universal233.CoreGraph.CherryAt T i a b) (ad : Universal233.Rule5Local.admitted T S a b = true)
+  (hp : Universal233.DepthOne.proper T S = true) (q L Kc Kl : Nat)
+  {z : Universal233.Rule5FinalClassification.FinalSelection}
+  (sel : (Universal233.Rule5PendantLocalWork.finalMeter classFee T S a b).value = some z)
+  (tlabs : ∀ (x : Nat), x ∈ RMAF.leaves T → x < 2 ^ L) (slabs : ∀ (x : Nat), x ∈ RMAF.leaves S → x < 2 ^ L)
+  (classifier :
+    ∀ (r : Universal233.Rule5PendantLocalWork.CheckRequest),
+      Universal233.Rule5PendantLocalWork.CheckDomain ((RMAF.leaves T).length + (RMAF.leaves S).length) L r →
+        classFee r ≤ Kc)
+  (literal :
+    ∀ (d : Universal233.Rule5FinalClassification.BadSelection) (u v : RMAF.Vertex),
+      (Universal233.Rule5PendantLocalWork.finalMeter classFee T S a b).value =
+          some
+            (Universal233.Rule5FinalClassification.FinalSelection.remaining d
+              (Universal233.Rule5FinalClassification.BoundarySelection.second u v)) →
+        ∀ (j : Universal233.Rule5RemainingLocalWork.LiteralCall),
+          Universal233.Rule5RemainingLocalWork.LiteralCallDomain T S a b d u v j → literalFee j ≤ Kl)
+  (same :
+    ∀ (d : Universal233.Rule5FinalClassification.BadSelection) (e : RMAF.Vertex),
+      (Universal233.Rule5PendantLocalWork.finalMeter classFee T S a b).value =
+          some
+            (Universal233.Rule5FinalClassification.FinalSelection.remaining d
+              (Universal233.Rule5FinalClassification.BoundarySelection.one e)) →
+        ∀ (j : OrdinaryCommonSplit.Caller.Job),
+          j ∈ Universal233.Rule5CommonSelector.commonJobs T S a b d q →
+            cb j.T j.S j.budget = Universal233.Rule5LocalWork.actual j.T j.S j.budget) :
+  (Universal233.Rule5ExecutionSource.runSelectedSource cb (fun x x_1 x_2 => 0) classFee literalFee T S a b q z).work ≤
+    Universal233.Rule5ExecutionSource.selectedPrefixBudget T S Kc Kl z +
+      Universal233.Rule5ExecutionSource.selectedForestDebit cb classFee literalFee T S a b q z
+'Universal233.Rule5ExecutionSource.run_selected_local_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5ExecutionSource.dispatch_source_split (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork)
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat)
+  (literalFee : Universal233.Rule5RemainingLocalWork.LiteralCall → Nat) (T S : RMAF.Tree) (a b q : Nat) :
+  (Universal233.Rule5ExecutionSource.dispatchSource cb W classFee literalFee T S a b q).work =
+    (Universal233.Rule5ExecutionSource.dispatchSource cb (fun x x_1 x_2 => 0) classFee literalFee T S a b q).work +
+      GenericForest.FrontierWork.queryWork W
+        (Universal233.Rule5ExecutionSource.dispatchCalls cb W classFee literalFee T S a b q)
+'Universal233.Rule5ExecutionSource.dispatch_source_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+execution-Rule5QueryDomains
+Universal233.Rule5ExecutionSource.run_selected_calls_native (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork)
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat)
+  (literalFee : Universal233.Rule5RemainingLocalWork.LiteralCall → Nat) (T S : RMAF.Tree) (a b q : Nat)
+  (z : Universal233.Rule5FinalClassification.FinalSelection) :
+  Universal233.Rule5ExecutionSource.runSelectedCalls cb W classFee literalFee T S a b q z =
+    Universal233.Rule5ActualTrace.queries cb (Universal233.Rule5ActualTrace.selectedTrace cb T S a b q z).calls
+'Universal233.Rule5ExecutionSource.run_selected_calls_native' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5ExecutionSource.dispatch_calls_native (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork)
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat)
+  (literalFee : Universal233.Rule5RemainingLocalWork.LiteralCall → Nat) (T S : RMAF.Tree) (a b q : Nat) :
+  Universal233.Rule5ExecutionSource.dispatchCalls cb W classFee literalFee T S a b q =
+    Universal233.Rule5ActualTrace.queries cb (Universal233.Rule5ActualTrace.dispatchTrace cb T S a b q).calls
+'Universal233.Rule5ExecutionSource.dispatch_calls_native' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5ExecutionSource.dispatch_query_domain (cb : Universal233.Rule5ExecutionSource.Ordinary)
+  (W : Universal233.Rule5ExecutionSource.OrdinaryWork)
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat)
+  (literalFee : Universal233.Rule5RemainingLocalWork.LiteralCall → Nat) {T S : RMAF.Tree} {i : RMAF.Vertex} {a b : Nat}
+  (ch : Universal233.CoreGraph.CherryAt T i a b) (ad : Universal233.Rule5Local.admitted T S a b = true) (q : Nat)
+  {p : RMAF.Tree × RMAF.Tree} {r : Nat}
+  (mem : (p, r) ∈ Universal233.Rule5ExecutionSource.dispatchCalls cb W classFee literalFee T S a b q) :
+  r < q ∧
+    Universal233.DepthOne.proper p.fst p.snd = true ∧
+      (RMAF.leaves p.fst).length ≤ (RMAF.leaves T).length ∧ (RMAF.leaves p.snd).length ≤ (RMAF.leaves T).length
+'Universal233.Rule5ExecutionSource.dispatch_query_domain' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+recovery-RIWords
+OrdinaryDispatch.RecoveryInitialBits.ownedEqual_value (xs ys : List Bool) :
+  (OrdinaryDispatch.RecoveryInitialBits.ownedEqual xs ys).value =
+    (OrdinaryDispatch.RecoveryBits.decode xs == OrdinaryDispatch.RecoveryBits.decode ys)
+'OrdinaryDispatch.RecoveryInitialBits.ownedEqual_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.RecoveryInitialBits.ownedNodup_value (xs : List (List Bool)) :
+  (OrdinaryDispatch.RecoveryInitialBits.ownedNodup xs).value =
+    decide (List.map OrdinaryDispatch.RecoveryBits.decode xs).Nodup
+'OrdinaryDispatch.RecoveryInitialBits.ownedNodup_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.RecoveryInitialBits.ownedColor_work (W : Nat) (P : List (List (List Bool))) (x : List Bool)
+  (xw : x.length ≤ W) (h : OrdinaryDispatch.RecoveryBits.ForestWords W P) :
+  (OrdinaryDispatch.RecoveryInitialBits.ownedColor P x).work ≤ 160 * (W + 1) * (P.flatten.length + P.length + 1)
+'OrdinaryDispatch.RecoveryInitialBits.ownedColor_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+recovery-RIBudget
+OrdinaryDispatch.RecoveryInitialBits.lengthOwned_value {α : Type} (W : Nat) (xs : List α) (fits : xs.length < 2 ^ W) :
+  OrdinaryDispatch.RecoveryBits.decode (OrdinaryDispatch.RecoveryInitialBits.lengthOwned W xs).value = xs.length
+'OrdinaryDispatch.RecoveryInitialBits.lengthOwned_value' depends on axioms: [propext, Quot.sound]
+OrdinaryDispatch.RecoveryInitialBits.clipOwned_value {α : Type} (W : Nat) (budget : List Bool) (xs : List α)
+  (fits : xs.length < 2 ^ W) :
+  OrdinaryDispatch.RecoveryBits.decode (OrdinaryDispatch.RecoveryInitialBits.clipOwned W budget xs).value =
+    min (OrdinaryDispatch.RecoveryBits.decode budget) (xs.length - 1)
+'OrdinaryDispatch.RecoveryInitialBits.clipOwned_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.RecoveryInitialBits.clipOwned_work {α : Type} (W : Nat) (budget : List Bool) (xs : List α)
+  (positive : 1 ≤ W) (bw : budget.length ≤ W) :
+  (OrdinaryDispatch.RecoveryInitialBits.clipOwned W budget xs).work ≤ 256 * (W + 1) * (xs.length + 1)
+'OrdinaryDispatch.RecoveryInitialBits.clipOwned_work' depends on axioms: [propext, Quot.sound]
+
+
+recovery-RITree
+OrdinaryDispatch.RecoveryInitialBits.copyInput_work (W : Nat) (t : OrdinaryDispatch.RecoveryInitialBits.InputTree)
+  (h : OrdinaryDispatch.RecoveryInitialBits.InputWords W t) :
+  (OrdinaryDispatch.RecoveryInitialBits.copyInput t).work ≤
+    16 * (W + 1) * OrdinaryDispatch.RecoveryInitialBits.inputNodes t
+'OrdinaryDispatch.RecoveryInitialBits.copyInput_work' depends on axioms: [propext, Quot.sound]
+OrdinaryDispatch.RecoveryInitialBits.leafArrays_work (W N : Nat) (t : OrdinaryDispatch.RecoveryInitialBits.InputTree)
+  (h : OrdinaryDispatch.RecoveryInitialBits.InputWords W t)
+  (size : OrdinaryDispatch.RecoveryInitialBits.inputNodes t ≤ N) :
+  (OrdinaryDispatch.RecoveryInitialBits.leafArrays t).work ≤
+    32 * (W + 1) * (N + 1) * OrdinaryDispatch.RecoveryInitialBits.inputNodes t
+'OrdinaryDispatch.RecoveryInitialBits.leafArrays_work' depends on axioms: [propext, Quot.sound]
+
+
+recovery-RIBuild
+OrdinaryDispatch.RecoveryInitialBits.build_value (P : List (List (List Bool))) (p : List Bool)
+  (t : OrdinaryDispatch.RecoveryInitialBits.InputTree) :
+  OrdinaryDispatch.RecoveryBits.viewTree (OrdinaryDispatch.RecoveryInitialBits.build P p t).value =
+    Universal233.CoreProgram.fromTree
+      (Universal233.FinalCutRecovery.blockColor (List.map (List.map OrdinaryDispatch.RecoveryBits.decode) P)) p
+      (OrdinaryDispatch.RecoveryInitialBits.viewInput t)
+'OrdinaryDispatch.RecoveryInitialBits.build_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.RecoveryInitialBits.build_work (W N : Nat) (P : List (List (List Bool))) (p : List Bool)
+  (t : OrdinaryDispatch.RecoveryInitialBits.InputTree) (tw : OrdinaryDispatch.RecoveryInitialBits.InputWords W t)
+  (pw : OrdinaryDispatch.RecoveryBits.ForestWords W P)
+  (size : p.length + OrdinaryDispatch.RecoveryInitialBits.inputNodes t ≤ N) :
+  (OrdinaryDispatch.RecoveryInitialBits.build P p t).work ≤
+    OrdinaryDispatch.RecoveryInitialBits.buildCap W N P * OrdinaryDispatch.RecoveryInitialBits.inputNodes t
+'OrdinaryDispatch.RecoveryInitialBits.build_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+recovery-RIInitial
+OrdinaryDispatch.RecoveryInitialBits.initializeBits_value (W : Nat) (t : OrdinaryDispatch.RecoveryInitialBits.InputTree)
+  (P : List (List (List Bool))) (budget : List Bool)
+  (fits : (OrdinaryDispatch.RecoveryInitialBits.inputLeaves t).length < 2 ^ W) :
+  OrdinaryDispatch.RecoveryInitialBits.viewInit
+      (OrdinaryDispatch.RecoveryInitialBits.initializeBits W t P budget).value =
+    (OrdinaryDispatch.RecoveryLocalWork.meterInitial
+        (OrdinaryDispatch.RecoveryLocalWork.meterColor (List.map (List.map OrdinaryDispatch.RecoveryBits.decode) P))
+        (OrdinaryDispatch.RecoveryBits.decode budget) (OrdinaryDispatch.RecoveryInitialBits.viewInput t)).value
+'OrdinaryDispatch.RecoveryInitialBits.initializeBits_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.RecoveryInitialBits.initializeBits_work (W N : Nat)
+  (t : OrdinaryDispatch.RecoveryInitialBits.InputTree) (P : List (List (List Bool))) (budget : List Bool)
+  (positive : 1 ≤ W) (tw : OrdinaryDispatch.RecoveryInitialBits.InputWords W t)
+  (pw : OrdinaryDispatch.RecoveryBits.ForestWords W P) (bw : budget.length ≤ W)
+  (tn : OrdinaryDispatch.RecoveryInitialBits.inputNodes t ≤ N) (pn : P.flatten.length + P.length ≤ N) :
+  (OrdinaryDispatch.RecoveryInitialBits.initializeBits W t P budget).work ≤ 2048 * (W + 1) * (N + 1) ^ 2
+'OrdinaryDispatch.RecoveryInitialBits.initializeBits_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+recovery-RIInterface
+OrdinaryDispatch.RecoveryInitialBits.represented_initialization (W : Nat)
+  (t : OrdinaryDispatch.RecoveryInitialBits.InputTree) (P : List (List (List Bool))) (budget : List Bool)
+  (positive : 1 ≤ W) (tw : OrdinaryDispatch.RecoveryInitialBits.InputWords W t)
+  (pw : OrdinaryDispatch.RecoveryBits.ForestWords W P) (bw : budget.length ≤ W)
+  (fits : (OrdinaryDispatch.RecoveryInitialBits.inputLeaves t).length < 2 ^ W) :
+  OrdinaryDispatch.RecoveryInitialBits.viewInit
+        (OrdinaryDispatch.RecoveryInitialBits.initializeBits W t P budget).value =
+      (OrdinaryDispatch.RecoveryLocalWork.meterInitial
+          (OrdinaryDispatch.RecoveryLocalWork.meterColor (List.map (List.map OrdinaryDispatch.RecoveryBits.decode) P))
+          (OrdinaryDispatch.RecoveryBits.decode budget) (OrdinaryDispatch.RecoveryInitialBits.viewInput t)).value ∧
+    (OrdinaryDispatch.RecoveryInitialBits.initializeBits W t P budget).work ≤
+      2048 * (W + 1) * (OrdinaryDispatch.RecoveryInitialBits.inputNodes t + P.flatten.length + P.length + 1) ^ 2
+'OrdinaryDispatch.RecoveryInitialBits.represented_initialization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+OrdinaryDispatch.RecoveryInitialBits.initializeBits_refused (W : Nat)
+  (t : OrdinaryDispatch.RecoveryInitialBits.InputTree) (P : List (List (List Bool))) (budget : List Bool) :
+  (OrdinaryDispatch.RecoveryInitialBits.initializeBits W t P budget).value = none ↔
+    ¬(RMAF.leaves (OrdinaryDispatch.RecoveryInitialBits.viewInput t)).Nodup
+'OrdinaryDispatch.RecoveryInitialBits.initializeBits_refused' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.RecoveryInitialBits.initializeBits_output_words (W : Nat)
+  (t : OrdinaryDispatch.RecoveryInitialBits.InputTree) (P : List (List (List Bool))) (budget q : List Bool)
+  (tree : OrdinaryDispatch.RecoveryBits.BitTree) (positive : 1 ≤ W)
+  (tw : OrdinaryDispatch.RecoveryInitialBits.InputWords W t) (pw : OrdinaryDispatch.RecoveryBits.ForestWords W P)
+  (bw : budget.length ≤ W)
+  (h : (OrdinaryDispatch.RecoveryInitialBits.initializeBits W t P budget).value = some (q, tree)) :
+  q.length ≤ W ∧ OrdinaryDispatch.RecoveryBits.TreeWords W tree
+'OrdinaryDispatch.RecoveryInitialBits.initializeBits_output_words' depends on axioms: [propext, Quot.sound]
+OrdinaryDispatch.RecoveryInitialBits.initializeBits_retained_cells (W : Nat)
+  (t : OrdinaryDispatch.RecoveryInitialBits.InputTree) (P : List (List (List Bool))) (budget q : List Bool)
+  (tree : OrdinaryDispatch.RecoveryBits.BitTree) (positive : 1 ≤ W)
+  (tw : OrdinaryDispatch.RecoveryInitialBits.InputWords W t) (pw : OrdinaryDispatch.RecoveryBits.ForestWords W P)
+  (bw : budget.length ≤ W)
+  (h : (OrdinaryDispatch.RecoveryInitialBits.initializeBits W t P budget).value = some (q, tree)) :
+  q.length + OrdinaryDispatch.RecoveryBits.treeCells tree + 3 ≤
+    W +
+        (W + 4) *
+          (OrdinaryDispatch.RecoveryInitialBits.inputNodes t *
+            (OrdinaryDispatch.RecoveryInitialBits.inputNodes t + 2)) +
+      3
+'OrdinaryDispatch.RecoveryInitialBits.initializeBits_retained_cells' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+
+recovery-RINormalize
+OrdinaryDispatch.RecoveryInitialBits.normalizeBits_value (t : OrdinaryDispatch.RecoveryBits.BitTree) :
+  OrdinaryDispatch.RecoveryBits.viewTree (OrdinaryDispatch.RecoveryInitialBits.normalizeBits t).value =
+    Universal233.CoreProgram.normalize (OrdinaryDispatch.RecoveryBits.viewTree t)
+'OrdinaryDispatch.RecoveryInitialBits.normalizeBits_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.RecoveryInitialBits.normalizeBits_words (W : Nat) (t : OrdinaryDispatch.RecoveryBits.BitTree)
+  (h : OrdinaryDispatch.RecoveryBits.TreeWords W t) :
+  OrdinaryDispatch.RecoveryBits.TreeWords W (OrdinaryDispatch.RecoveryInitialBits.normalizeBits t).value
+'OrdinaryDispatch.RecoveryInitialBits.normalizeBits_words' depends on axioms: [propext, Quot.sound]
+
+
+recovery-RINormBound
+OrdinaryDispatch.RecoveryInitialBits.normalizeBits_source_bound (W N : Nat) (t : OrdinaryDispatch.RecoveryBits.BitTree)
+  (words : OrdinaryDispatch.RecoveryBits.TreeWords W t)
+  (size : Universal233.CoreWork.footprint (OrdinaryDispatch.RecoveryBits.viewTree t) ≤ N) :
+  OrdinaryDispatch.RecoveryBits.viewTree (OrdinaryDispatch.RecoveryInitialBits.normalizeBits t).value =
+      Universal233.CoreProgram.normalize (OrdinaryDispatch.RecoveryBits.viewTree t) ∧
+    (OrdinaryDispatch.RecoveryInitialBits.normalizeBits t).work ≤ 1024 * (W + 4) * (N + 1) * N ∧
+      OrdinaryDispatch.RecoveryBits.treeCells (OrdinaryDispatch.RecoveryInitialBits.normalizeBits t).value ≤ (W + 4) * N
+'OrdinaryDispatch.RecoveryInitialBits.normalizeBits_source_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+
+recovery-RILifetime
+OrdinaryDispatch.RecoveryInitialBits.initializeBits_work_decomposition (W : Nat)
+  (t : OrdinaryDispatch.RecoveryInitialBits.InputTree) (P : List (List (List Bool))) (budget : List Bool) :
+  (OrdinaryDispatch.RecoveryInitialBits.initializeBits W t P budget).work =
+    (OrdinaryDispatch.RecoveryInitialBits.copyInput t).work + (OrdinaryDispatch.RecoveryBits.copyForest P).work +
+                (OrdinaryDispatch.RecoveryBits.copyBits budget).work +
+              (OrdinaryDispatch.RecoveryInitialBits.initialCore W t P budget).work +
+            (OrdinaryDispatch.RecoveryInitialBits.closeInput t).work +
+          (OrdinaryDispatch.RecoveryInitialBits.closeForest P).work +
+        (OrdinaryDispatch.RecoveryInitialBits.closeBits budget).work +
+      16
+'OrdinaryDispatch.RecoveryInitialBits.initializeBits_work_decomposition' depends on axioms: [propext, Quot.sound]
+OrdinaryDispatch.RecoveryInitialBits.initializeBits_input_lifetime_paid (W : Nat)
+  (t : OrdinaryDispatch.RecoveryInitialBits.InputTree) (P : List (List (List Bool))) (budget : List Bool) :
+  (OrdinaryDispatch.RecoveryInitialBits.copyInput t).work + (OrdinaryDispatch.RecoveryBits.copyForest P).work +
+            (OrdinaryDispatch.RecoveryBits.copyBits budget).work +
+          (OrdinaryDispatch.RecoveryInitialBits.closeInput t).work +
+        (OrdinaryDispatch.RecoveryInitialBits.closeForest P).work +
+      (OrdinaryDispatch.RecoveryInitialBits.closeBits budget).work ≤
+    (OrdinaryDispatch.RecoveryInitialBits.initializeBits W t P budget).work
+'OrdinaryDispatch.RecoveryInitialBits.initializeBits_input_lifetime_paid' depends on axioms: [propext, Quot.sound]
+OrdinaryDispatch.RecoveryInitialBits.merged_children_lifetime_paid (p : List Bool)
+  (a b : OrdinaryDispatch.RecoveryBits.BitGroup)
+  (same : OrdinaryDispatch.RecoveryBits.decode a.color = OrdinaryDispatch.RecoveryBits.decode b.color) :
+  (OrdinaryDispatch.RecoveryInitialBits.closeTree (OrdinaryDispatch.RecoveryBits.BitTree.leaf a)).work +
+      (OrdinaryDispatch.RecoveryInitialBits.closeTree (OrdinaryDispatch.RecoveryBits.BitTree.leaf b)).work ≤
+    (OrdinaryDispatch.RecoveryInitialBits.assemble p (OrdinaryDispatch.RecoveryBits.BitTree.leaf a)
+        (OrdinaryDispatch.RecoveryBits.BitTree.leaf b)).work
+'OrdinaryDispatch.RecoveryInitialBits.merged_children_lifetime_paid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,556 @@
+{
+  "schema": 1,
+  "scope": "finite frozen regressions; no census or universal proof",
+  "engine": "stdlib adjacency plus BFS; exact sets and integers",
+  "script_sha256": "2685f5990da20468cf89a91308d525a7b9c6d2961bcf1474f73474beb0dfcd7e",
+  "rows": [
+    {
+      "name": "R0",
+      "got": {
+        "support": [
+          "",
+          "0",
+          "00"
+        ],
+        "labels": [
+          "00"
+        ],
+        "convex": true,
+        "subset": true
+      },
+      "expected": {
+        "support": [
+          "",
+          "0",
+          "00"
+        ],
+        "labels": [
+          "00"
+        ],
+        "convex": true,
+        "subset": true
+      },
+      "wrong_result": {
+        "support": [
+          "",
+          "0",
+          "00",
+          "1"
+        ],
+        "labels": [
+          "00"
+        ],
+        "convex": true,
+        "subset": true
+      },
+      "clean_pass": true,
+      "wrong_rejected": true
+    },
+    {
+      "name": "R1_leafless_child",
+      "got": {
+        "support": [
+          "",
+          "0",
+          "00"
+        ],
+        "labels": [
+          "00"
+        ],
+        "convex": true,
+        "subset": true
+      },
+      "expected": {
+        "support": [
+          "",
+          "0",
+          "00"
+        ],
+        "labels": [
+          "00"
+        ],
+        "convex": true,
+        "subset": true
+      },
+      "wrong_result": {
+        "support": [
+          "",
+          "0",
+          "00"
+        ],
+        "labels": [
+          "00",
+          "10"
+        ],
+        "convex": true,
+        "subset": true
+      },
+      "clean_pass": true,
+      "wrong_rejected": true
+    },
+    {
+      "name": "gapped_support",
+      "got": false,
+      "expected": false,
+      "wrong_result": true,
+      "clean_pass": true,
+      "wrong_rejected": true
+    },
+    {
+      "name": "R2_opposite_label_kept",
+      "got": {
+        "support": [
+          "",
+          "0",
+          "1",
+          "10",
+          "100",
+          "11"
+        ],
+        "labels": [
+          "0",
+          "100",
+          "11"
+        ],
+        "convex": true,
+        "subset": true
+      },
+      "expected": {
+        "support": [
+          "",
+          "0",
+          "1",
+          "10",
+          "100",
+          "11"
+        ],
+        "labels": [
+          "0",
+          "100",
+          "11"
+        ],
+        "convex": true,
+        "subset": true
+      },
+      "wrong_result": {
+        "support": [
+          "",
+          "0",
+          "1",
+          "10",
+          "100"
+        ],
+        "labels": [
+          "0",
+          "100",
+          "11"
+        ],
+        "convex": true,
+        "subset": true
+      },
+      "clean_pass": true,
+      "wrong_rejected": true
+    },
+    {
+      "name": "R3_one_child_only",
+      "got": {
+        "support": [
+          "",
+          "1",
+          "10",
+          "100",
+          "11"
+        ],
+        "labels": [
+          "100",
+          "11"
+        ],
+        "convex": true,
+        "subset": true
+      },
+      "expected": {
+        "support": [
+          "",
+          "1",
+          "10",
+          "100",
+          "11"
+        ],
+        "labels": [
+          "100",
+          "11"
+        ],
+        "convex": true,
+        "subset": true
+      },
+      "wrong_result": {
+        "support": [
+          "",
+          "1",
+          "10",
+          "100"
+        ],
+        "labels": [
+          "100",
+          "11"
+        ],
+        "convex": true,
+        "subset": true
+      },
+      "clean_pass": true,
+      "wrong_rejected": true
+    },
+    {
+      "name": "leafless_open_discard",
+      "got": {
+        "support": [],
+        "labels": [],
+        "convex": true,
+        "subset": true
+      },
+      "expected": {
+        "support": [],
+        "labels": [],
+        "convex": true,
+        "subset": true
+      },
+      "wrong_result": {
+        "support": [
+          ""
+        ],
+        "labels": [],
+        "convex": true,
+        "subset": true
+      },
+      "clean_pass": true,
+      "wrong_rejected": true
+    },
+    {
+      "name": "root_label_trim",
+      "got": {
+        "support": [
+          ""
+        ],
+        "labels": [
+          ""
+        ],
+        "convex": true,
+        "subset": true
+      },
+      "expected": {
+        "support": [
+          ""
+        ],
+        "labels": [
+          ""
+        ],
+        "convex": true,
+        "subset": true
+      },
+      "wrong_result": {
+        "support": [],
+        "labels": [
+          ""
+        ],
+        "convex": true,
+        "subset": true
+      },
+      "clean_pass": true,
+      "wrong_rejected": true
+    },
+    {
+      "name": "adjacent_same_color_unused_internal",
+      "got": {
+        "count": 4,
+        "closed": 4,
+        "root_owners": [],
+        "labels": {
+          "A7": [
+            "00"
+          ],
+          "B7": [
+            "01"
+          ],
+          "C8": [
+            "10"
+          ],
+          "D9": [
+            "11"
+          ]
+        }
+      },
+      "expected": {
+        "count": 4,
+        "closed": 4,
+        "root_owners": [],
+        "labels": {
+          "A7": [
+            "00"
+          ],
+          "B7": [
+            "01"
+          ],
+          "C8": [
+            "10"
+          ],
+          "D9": [
+            "11"
+          ]
+        }
+      },
+      "wrong_result": {
+        "count": 3,
+        "closed": 4,
+        "root_owners": [],
+        "labels": {
+          "A7": [
+            "00"
+          ],
+          "B7": [
+            "01"
+          ],
+          "C8": [
+            "10"
+          ],
+          "D9": [
+            "11"
+          ]
+        }
+      },
+      "clean_pass": true,
+      "wrong_rejected": true
+    },
+    {
+      "name": "close_both",
+      "got": {
+        "count": 2,
+        "closed": 2,
+        "root_owners": [],
+        "labels": {
+          "L": [
+            "0"
+          ],
+          "R": [
+            "1"
+          ]
+        },
+        "toll": 2
+      },
+      "expected": {
+        "count": 2,
+        "closed": 2,
+        "root_owners": [],
+        "labels": {
+          "L": [
+            "0"
+          ],
+          "R": [
+            "1"
+          ]
+        },
+        "toll": 2
+      },
+      "wrong_result": {
+        "count": 1,
+        "closed": 2,
+        "root_owners": [],
+        "labels": {
+          "L": [
+            "0"
+          ],
+          "R": [
+            "1"
+          ]
+        },
+        "toll": 2
+      },
+      "clean_pass": true,
+      "wrong_rejected": true
+    },
+    {
+      "name": "close_both_toll",
+      "got": 2,
+      "expected": 2,
+      "wrong_result": 3,
+      "clean_pass": true,
+      "wrong_rejected": true
+    },
+    {
+      "name": "extend_left",
+      "got": {
+        "count": 2,
+        "closed": 1,
+        "root_owners": [
+          "L"
+        ],
+        "labels": {
+          "L": [
+            "0"
+          ],
+          "R": [
+            "1"
+          ]
+        },
+        "toll": 1
+      },
+      "expected": {
+        "count": 2,
+        "closed": 1,
+        "root_owners": [
+          "L"
+        ],
+        "labels": {
+          "L": [
+            "0"
+          ],
+          "R": [
+            "1"
+          ]
+        },
+        "toll": 1
+      },
+      "wrong_result": {
+        "count": 1,
+        "closed": 1,
+        "root_owners": [
+          "L"
+        ],
+        "labels": {
+          "L": [
+            "0"
+          ],
+          "R": [
+            "1"
+          ]
+        },
+        "toll": 1
+      },
+      "clean_pass": true,
+      "wrong_rejected": true
+    },
+    {
+      "name": "extend_left_toll",
+      "got": 1,
+      "expected": 1,
+      "wrong_result": 2,
+      "clean_pass": true,
+      "wrong_rejected": true
+    },
+    {
+      "name": "extend_right",
+      "got": {
+        "count": 2,
+        "closed": 1,
+        "root_owners": [
+          "R"
+        ],
+        "labels": {
+          "L": [
+            "0"
+          ],
+          "R": [
+            "1"
+          ]
+        },
+        "toll": 1
+      },
+      "expected": {
+        "count": 2,
+        "closed": 1,
+        "root_owners": [
+          "R"
+        ],
+        "labels": {
+          "L": [
+            "0"
+          ],
+          "R": [
+            "1"
+          ]
+        },
+        "toll": 1
+      },
+      "wrong_result": {
+        "count": 1,
+        "closed": 1,
+        "root_owners": [
+          "R"
+        ],
+        "labels": {
+          "L": [
+            "0"
+          ],
+          "R": [
+            "1"
+          ]
+        },
+        "toll": 1
+      },
+      "clean_pass": true,
+      "wrong_rejected": true
+    },
+    {
+      "name": "extend_right_toll",
+      "got": 1,
+      "expected": 1,
+      "wrong_result": 2,
+      "clean_pass": true,
+      "wrong_rejected": true
+    },
+    {
+      "name": "manual_merge_fixture_only",
+      "got": {
+        "count": 1,
+        "closed": 0,
+        "root_owners": [
+          "M"
+        ],
+        "labels": {
+          "M": [
+            "0",
+            "1"
+          ]
+        }
+      },
+      "expected": {
+        "count": 1,
+        "closed": 0,
+        "root_owners": [
+          "M"
+        ],
+        "labels": {
+          "M": [
+            "0",
+            "1"
+          ]
+        }
+      },
+      "wrong_result": {
+        "count": 2,
+        "closed": 0,
+        "root_owners": [
+          "M"
+        ],
+        "labels": {
+          "M": [
+            "0",
+            "1"
+          ]
+        }
+      },
+      "clean_pass": true,
+      "wrong_rejected": true
+    },
+    {
+      "name": "singleton_closing_charge",
+      "got": 1,
+      "expected": 1,
+      "wrong_result": 0,
+      "clean_pass": true,
+      "wrong_rejected": true
+    }
+  ],
+  "clean_passed": 16,
+  "wrong_rejected": 16,
+  "elapsed_seconds": 0.00024699999994481914
+}

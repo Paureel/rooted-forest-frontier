@@ -1,0 +1,9 @@
+import RWInitial
+#check OrdinaryDispatch.RecoveryLocalWork.meterInitial_bound
+#print axioms OrdinaryDispatch.RecoveryLocalWork.meterInitial_bound
+#check OrdinaryDispatch.RecoveryLocalWork.meterInitial_coloring
+#print axioms OrdinaryDispatch.RecoveryLocalWork.meterInitial_coloring
+#check OrdinaryDispatch.RecoveryLocalWork.meterGenerate_value
+#print axioms OrdinaryDispatch.RecoveryLocalWork.meterGenerate_value
+#check OrdinaryDispatch.RecoveryLocalWork.meterGenerate_bound
+#print axioms OrdinaryDispatch.RecoveryLocalWork.meterGenerate_bound

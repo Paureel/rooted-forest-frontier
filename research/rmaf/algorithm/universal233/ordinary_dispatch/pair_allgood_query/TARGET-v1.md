@@ -1,0 +1,5 @@
+# Actual all-good overlap-pair DP query
+
+For the isolated overlap pair where A and B are good, compute the exact executable AllGoodDP minimum for the WHOLE AB source group. Its target overlap forces positive added cost. Run the outside whole-source group with its remaining budget after the full original precut count and that computed DP cost. All three good may use AllGoodDP on the entire original source forest. Prove the greedy pair/outside composition using frozen current-source group reconstruction/exact cost and current-budget forest correctness. No optimum value oracle enters code. This supplies the named all-good-pair/outside consumer in the fast dispatch plan, not a full algorithm or recurrence claim.
+
+Use immutable fast source pool efa132be64d489544e2aeeffaa0d08494cb9986d28104024f200f1080e2fbb60. The main author owns this new directory only; child pair bindings remain disjoint. Reuse the existing guarded compiler; new proof attempts/failures and fresh controls retained. All main faster claims OPEN.

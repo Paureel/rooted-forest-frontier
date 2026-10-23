@@ -1,0 +1,13 @@
+{
+ "schema_version":1,
+ "birth":"2026-10-14; frozen before repair construction; reference values inherited from completed audits, not held-out discovery",
+ "convention":"rooted binary trees beneath a labelled unary rho root; full legal recursive-call tree; q budget distinct from s pendant count; analysis credits distinct from protected-edge sets",
+ "controls":[
+  {"id":"nine-leaf","reference":"research/rmaf/results/thesis-complexity-reachable-trace.json","expected_mass":"9/16","expected_parent_mass":"1/2","expected_C_legal_children":0},
+  {"id":"thirteen-leaf","reference":"research/rmaf/results/thesis-complexity-three-credit-trace.json","expected_P_size":3,"expected_Q_size":2},
+  {"id":"live-two-leaf","F1":"((a,(x,y)),(p,(q,r)))","F2":"(a,(((x,p),q),(y,r)))","protected_F1":["a"],"protected_F2":["a","p,q,r,x,y"],"chosen_pair":["x","y"],"expected_case":"A3BC","expected_pendants":3,"expected_C_pendants":3,"expected_C_legal_branches":["B"]},
+  {"id":"wrong-orientation","F1":"((a,(x,y)),(p,(q,r)))","F2":"(a,(x,(((y,p),q),r)))","protected_F1":["a"],"protected_F2":["a","p,q,r,x,y"],"chosen_pair":["x","y"],"expected_orientation_accepted":false,"if_illegally_cut_y_expected_C_pendants":1},
+  {"id":"orientation-positive-twin","F1":"((a,(x,y)),(p,(q,r)))","F2":"(a,(x,(((y,p),q),r)))","protected_F1":["a"],"protected_F2":["a","p,q,r,x,y"],"chosen_pair":["y","x"],"expected_orientation_accepted":true,"expected_C_pendants":3}
+ ],
+ "failure_criteria":"Exact mismatch, accepted wrong orientation, missing positive twin, allowed cut of protected edge, omitted earlier branch case, or promotion of these finite controls to a universal theorem invalidates the corresponding claim."
+}

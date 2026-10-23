@@ -1,0 +1,54 @@
+{
+ "phase":"PRE-CANDIDATE; literal expectations frozen before any execution or depth_one contact",
+ "lineage":"Same G/E and rank/restriction reviewer; reuse only own frozen original-address graph/partition/rooted-cluster checker plus literal original-RMAF recursion. Zero extra independent replications.",
+ "cases":[
+  {"id":"singleton","S":7,"T":7,"guard":true,"minimum_cost":0,"edges":[],"one_two_partition_count":1,"all_partition_count":1,"one_cut_partitions":[],"successful_edges":[],"minimum_forests":[[[7]]]},
+  {"id":"identical_balanced","S":[[0,1],[2,3]],"T":[[0,1],[2,3]],"guard":true,"minimum_cost":0,"edges":["0","00","01","1","10","11"],"one_two_partition_count":8,"all_partition_count":15,"successful_edges":["0","00","01","1","10","11"],"one_cut_partitions":[[[0,1],[2,3]],[[0],[1,2,3]],[[0,2,3],[1]],[[0,1,3],[2]],[[0,1,2],[3]]],"minimum_forests":[[[0,1,2,3]]]},
+  {"id":"rooted_triple","S":[[0,1],2],"T":[[0,2],1],"guard":true,"minimum_cost":1,"edges":["0","00","01","1"],"one_two_partition_count":4,"all_partition_count":5,"successful_edges":["0","00","01","1"],"one_cut_partitions":[[[0],[1,2]],[[0,2],[1]],[[0,1],[2]]],"minimum_forests":[[[0],[1,2]],[[0,2],[1]],[[0,1],[2]]]},
+  {"id":"crossed_quartet","S":[[0,1],[2,3]],"T":[[0,2],[1,3]],"guard":true,"minimum_cost":2,"edges":["0","00","01","1","10","11"],"one_two_partition_count":8,"all_partition_count":15,"successful_edges":[],"one_cut_partitions":[],"minimum_forests":[[[0,1],[2],[3]],[[0,2],[1],[3]],[[0,3],[1],[2]],[[0],[1,2],[3]],[[0],[1,3],[2]],[[0],[1],[2,3]]]},
+  {"id":"common_extra_leaf","S":[[[0,1],2],3],"T":[[[0,2],1],3],"guard":true,"minimum_cost":1,"edges":["0","00","000","001","01","1"],"one_two_partition_count":8,"all_partition_count":15,"successful_edges":["000","001","01"],"one_cut_partitions":[[[0],[1,2,3]],[[0,2,3],[1]],[[0,1,3],[2]]],"minimum_forests":[[[0],[1,2,3]],[[0,2,3],[1]],[[0,1,3],[2]]]},
+  {"id":"swapped_triple_children","S":[[0,1],2],"T":[1,[2,0]],"guard":true,"minimum_cost":1,"edges":["0","00","01","1"],"one_two_partition_count":4,"all_partition_count":5,"successful_edges":["0","00","01","1"],"one_cut_partitions":[[[0],[1,2]],[[0,2],[1]],[[0,1],[2]]],"minimum_forests":[[[0],[1,2]],[[0,2],[1]],[[0,1],[2]]]},
+  {"id":"relabeled_reordered_triple","S":[[41,7],23],"T":[[41,23],7],"guard":true,"minimum_cost":1,"edges":["0","00","01","1"],"one_two_partition_count":4,"all_partition_count":5,"successful_edges":["0","00","01","1"],"one_cut_partitions":[[[7],[23,41]],[[7,41],[23]],[[7,23],[41]]],"minimum_forests":[[[7],[23,41]],[[7,41],[23]],[[7,23],[41]]]},
+  {"id":"swapped_identical_shape","S":[[0,1],[2,3]],"T":[[3,2],[1,0]],"guard":true,"minimum_cost":0,"edges":["0","00","01","1","10","11"],"one_two_partition_count":8,"all_partition_count":15,"successful_edges":["0","00","01","1","10","11"],"one_cut_partitions":[[[0,1],[2,3]],[[0],[1,2,3]],[[0,2,3],[1]],[[0,1,3],[2]],[[0,1,2],[3]]],"minimum_forests":[[[0,1,2,3]]]},
+  {"id":"unary_path_identical","S":[[[7,11],23],41],"T":[[[7,11],23],41],"guard":true,"minimum_cost":0,"edges":["0","00","000","001","01","1"],"one_two_partition_count":8,"all_partition_count":15,"successful_edges":["0","00","000","001","01","1"],"one_cut_partitions":[[[7,11,23],[41]],[[7,11],[23,41]],[[7],[11,23,41]],[[7,23,41],[11]],[[7,11,41],[23]]],"minimum_forests":[[[7,11,23,41]]]},
+  {"id":"duplicate_both","S":[[0,0],1],"T":[[0,0],1],"guard":false,"status":"REFUSED","raw_agreement_forest":[[0,1]],"raw_agreement":true},
+  {"id":"unequal_leaf_sets","S":[[0,1],2],"T":[[0,1],3],"guard":false,"status":"REFUSED"},
+  {"id":"duplicate_target","S":[[0,1],2],"T":[[0,1],1],"guard":false,"status":"REFUSED"},
+  {"id":"reordered_crossed_quartet","S":[[7,11],[23,41]],"T":[[23,7],[41,11]],"guard":true,"minimum_cost":2,"edges":["0","00","01","1","10","11"],"one_two_partition_count":8,"all_partition_count":15,"successful_edges":[],"one_cut_partitions":[],"minimum_forests":[[[7,11],[23],[41]],[[7,23],[11],[41]],[[7,41],[11],[23]],[[7],[11,23],[41]],[[7],[11,41],[23]],[[7],[11],[23,41]]]}
+ ],
+ "edge_partition_expectations":{
+  "balanced":{"0":[[0,1],[2,3]],"00":[[0],[1,2,3]],"01":[[0,2,3],[1]],"1":[[0,1],[2,3]],"10":[[0,1,3],[2]],"11":[[0,1,2],[3]]},
+  "triple":{"0":[[0,1],[2]],"00":[[0],[1,2]],"01":[[0,2],[1]],"1":[[0,1],[2]]},
+  "common_extra":{"0":[[0,1,2],[3]],"00":[[0,1],[2,3]],"000":[[0],[1,2,3]],"001":[[0,2,3],[1]],"01":[[0,1,3],[2]],"1":[[0,1,2],[3]]},
+  "relabeled_triple":{"0":[[7,41],[23]],"00":[[7,23],[41]],"01":[[7],[23,41]],"1":[[7,41],[23]]},
+  "unary_path":{"0":[[7,11,23],[41]],"00":[[7,11],[23,41]],"000":[[7],[11,23,41]],"001":[[7,23,41],[11]],"01":[[7,11,41],[23]],"1":[[7,11,23],[41]]},
+  "reordered_quartet":{"0":[[7,11],[23,41]],"00":[[7],[11,23,41]],"01":[[7,23,41],[11]],"1":[[7,11],[23,41]],"10":[[7,11,41],[23]],"11":[[7,11,23],[41]]}
+ },
+ "source_topology_controls":[
+  {"tree":[[0,1],2],"selection":[0,1,2],"clusters":[[0],[1],[2],[0,1],[0,1,2]]},
+  {"tree":[[0,2],1],"selection":[0,1,2],"clusters":[[0],[1],[2],[0,2],[0,1,2]]},
+  {"tree":[[0,1],[2,3]],"selection":[0,1,2,3],"clusters":[[0],[1],[2],[3],[0,1],[2,3],[0,1,2,3]]}
+ ],
+ "restriction_controls":{"tree":[[[7,11],23],41],"empty_selection":[],"absent_selection":[99],"repeated_selection":[7,7],"root_selection":[7,41],"root_shape":[7,41],"root_hull":["","0","00","000","1"],"local_to_original":{"":"","0":"000","1":"1"},"displayed_edge":["","000"],"displayed_edge_is_original":false,"expanded_path_edges":3,"below_root_selection":[7,11],"below_root_hull":["00","000","001"],"below_root_original_root":"00","singleton_selection":[23],"singleton_hull":["01"],"singleton_original_root":"01"},
+ "planted_witnesses":{
+  "valid_one":{"S":[[0,1],2],"T":[[0,2],1],"forest":[[0],[1,2]],"cuts":["00"],"valid_realization":true,"global_minimum":true},
+  "corrupt_cut_same_agreement":{"S":[[0,1],2],"T":[[0,2],1],"forest":[[0],[1,2]],"cuts":["01"],"valid_realization":false,"global_minimum":false},
+  "duplicate_cut":{"S":[[0,1],2],"T":[[0,2],1],"forest":[[0],[1,2]],"cuts":["00","00"],"valid_realization":false,"global_minimum":false},
+  "root_cut":{"S":[[0,1],2],"T":[[0,2],1],"forest":[[0],[1,2]],"cuts":[""],"valid_realization":false,"global_minimum":false},
+  "absent_cut":{"S":[[0,1],2],"T":[[0,2],1],"forest":[[0],[1,2]],"cuts":["000"],"valid_realization":false,"global_minimum":false},
+  "wrong_global_minimum":{"S":[[0,1],2],"T":[[0,1],2],"forest":[[0],[1,2]],"cuts":["00"],"valid_realization":true,"global_minimum":false},
+  "valid_zero_twin":{"S":[[0,1],2],"T":[[0,1],2],"forest":[[0,1,2]],"cuts":[],"valid_realization":true,"global_minimum":true},
+  "leafless_root_residual":{"S":[[0,1],[2,3]],"T":[[0,1],[2,3]],"forest":[[0,1],[2,3]],"cuts":["0","1"],"graph_components":3,"leaf_bearing_components":2,"leafless_component_vertices":[[""]],"valid_realization":false,"global_minimum":false}
+ },
+ "false_extensions":{
+  "shape_without_embedding":{"S":[[0,1],[2,3]],"T":[[0,2],[1,3]],"forest":[[0,1],[2,3]],"all_block_shapes_agree":true,"source_embeddings":true,"target_embeddings":false,"agreement":false},
+  "rooted_topology":{"S":[[0,1],2],"T":[[0,2],1],"forest":[[0,1,2]],"agreement":false},
+  "oriented_edge":{"tree":[[0,1],2],"parent":"0","child":"00","valid_oriented":true,"reverse_is_valid_oriented":false,"reverse_same_undirected_cut":true},
+  "incomplete_negative_search":{"case":"crossed_quartet","complete_edges":["0","00","01","1","10","11"],"omit":"11","omission_must_fail":true,"duplicate_instead_of_missing_must_fail":true},
+  "malformed_forests":[[],[[],[0,1,2]],[[0],[0],[1,2]],[[0],[1]],[[0],[1],[2],[99]]],
+  "status_controls":{"REFUSED":"REFUSED","TIMEOUT":"OPEN","UNSUPPORTED":"OPEN","EMPTY_WITHOUT_GUARD_OR_COMPLETENESS":"OPEN","COMPLETE_NEGATIVE":"MINIMUM_AT_LEAST_2"}
+ },
+ "candidate_output_rule":"A returned minimum witness may be any of the pinned equal-cost forests/cuts; candidate tie order is not frozen. Oracle instruments inspect every original edge and every one/two-block partition. Complete negative certification requires a proper guard and complete source edge/zero-case coverage. Do not demand a positive candidate enumerate every witness before early success.",
+ "limits":{"maximum_labels":4,"maximum_all_partitions_per_case":15,"case_seconds":2,"battery_seconds":20,"pilot_ids":["singleton","rooted_triple","crossed_quartet"],"no_broad_census":true,"timeout_or_unsupported":"OPEN; never negative decision or PASS"},
+ "acceptance":"READY certifies only blind instruments/controls. Candidate exact0/1 correctness, global minimality, refusal iff, O(N^4(b+1))/O(M^5) work contracts and actual source edge loop await separate final317 release. Whole algorithm/state/runtime/novelty remain OPEN."
+}

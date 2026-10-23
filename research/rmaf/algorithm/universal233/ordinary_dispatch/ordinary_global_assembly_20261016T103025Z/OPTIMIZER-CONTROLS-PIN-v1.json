@@ -1,0 +1,12 @@
+{
+ "version":1,
+ "stage":"before optimizer composition construction",
+ "fixtures":[
+  {"query":"q=1 returns some[[0]], all other q return none", "start":0,"fuel":3,"expected_trials":"[(0,none),(1,some[[0]])]","expected_count":2,"expected_selected_budget":1},
+  {"query":"always none", "start":0,"fuel":3,"expected_trials":"[(0,none),(1,none),(2,none)]","expected_count":3,"expected_selected":"none"},
+  {"scan":"selected none", "finish_source":"leaf0", "expected_recovery_occurrences":0},
+  {"scan":"selected some(0,[[0]])", "finish_source":"leaf0", "expected_recovery_occurrences":1}
+ ],
+ "corruptions":["Successful trial omitted from expected trial list: reject", "All-failed prefix counted as2 instead of3: reject", "Successful finish claimed to recover twice: reject"],
+ "scope":"Expected values written from literal finite scan/finish definitions; regression controls belong to production history and cannot certify independence."
+}

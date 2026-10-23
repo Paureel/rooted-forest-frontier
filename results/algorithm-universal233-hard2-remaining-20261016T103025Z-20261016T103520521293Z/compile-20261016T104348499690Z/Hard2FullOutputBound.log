@@ -1,0 +1,142 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2FullOutputBound.lean:28:2: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  i ≥ 0
+  g ≥ 0
+  f ≥ 0
+  f - g ≥ 0
+  e ≥ 0
+  d ≥ 0
+  d - e ≥ 0
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - d ≥ 0
+  a - e + f - i ≤ -1
+  2*a - b ≥ 0
+  2*a - c ≥ 0
+where
+ a := ↑N
+ b := ↑(treeNodes T)
+ c := ↑(treeNodes S)
+ d := ↑(List.flatten F).length
+ e := ↑(List.length F)
+ f := ↑(agreementK N)
+ g := ↑(measuredAgreement T S F).work
+ i := ↑(agreementMeter T S F).work
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2FullOutputBound.lean:86:51: error: Invalid `←` modifier: `OutputState.sourceForest` is a declaration name to be unfolded
+
+Hint: The simplifier cannot "refold" definitions by name. Use `rw` for this instead,
+                      or use the `←` simp modifier with an equational lemma for `OutputState.sourceForest`.
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2FullOutputBound.lean:88:4: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  s ≥ 0
+  r ≥ 0
+  p ≥ 0
+  n ≥ 0
+  m ≥ 0
+  l ≥ 0
+  l - m ≥ -1
+  l - n ≤ 0
+  k ≥ 0
+  j ≥ 0
+  i ≥ 0
+  i + j - k ≥ -2
+  h ≥ 0
+  g ≥ 0
+  f ≥ 0
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+  a - c ≥ 0
+  a - d ≥ 0
+  a - e ≥ 0
+  a + f - g ≥ -6
+  2*a - h ≥ -4
+  5*a - 2*d + f - g - h + i - k - m + n - p + r + s ≤ -14
+where
+ a := ↑N
+ b := ↑(treeNodes T)
+ c := ↑(treeNodes S)
+ d := ↑o.sourceCuts.length
+ e := ↑o.partition.length
+ f := ↑(agreementK N)
+ g := ↑(checkedMeter T S q
+      (GenericForest.solve actual (some T) (List.filterMap (fun B => restrict B S) o.partition)
+        (q - o.sourceCuts.length))).work
+ h := ↑(chooseMeter
+      (checkedMeter T S q
+          (GenericForest.solve actual (some T) (List.filterMap (fun B => restrict B S) o.partition)
+            (q - o.sourceCuts.length))).value
+      (fullOutputsSource actual W T S q os).value.answer).work
+ i := ↑(2 * N + ((4 * N + 4 * 2) * N + 3) * N + 1 + agreementK N + 3 * N + 24) * ↑os.length
+ j := ↑(outputForestDebit actual W T S q os)
+ k := ↑(fullOutputsSource actual W T S q os).work
+ l := ↑((4 * N + 4 * 2) * treeNodes S + 3) * ↑o.partition.length
+ m := ↑(sourceForestMeter S o.partition).work
+ n := ↑((4 * N + 4 * 2) * N + 3) * ↑N
+ p := ↑(forestWork actual W (some T) (List.filterMap (fun B => restrict B S) o.partition) (q - o.sourceCuts.length))
+ r := ↑(forestWork actual W (some T) (OutputState.sourceForest S o.partition) (q - o.sourceCuts.length))
+ s := ↑(List.map
+      (fun o =>
+        if o.sourceCuts.length ≤ q then
+          forestWork actual W (some T) (OutputState.sourceForest S o.partition) (q - o.sourceCuts.length)
+        else 0)
+      os).sum
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2FullOutputBound.lean:91:4: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  r ≥ 0
+  p ≥ 0
+  n ≥ 0
+  m ≥ 0
+  m - n ≥ -1
+  m - p ≤ 0
+  l ≥ 0
+  k ≥ 0
+  j ≥ 0
+  j + k - l ≥ -2
+  i ≥ 0
+  h ≥ 0
+  g ≥ 0
+  f ≥ 0
+  e ≥ 0
+  d ≥ 0
+  d - i ≥ 1
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+  a - c ≥ 0
+  a - d ≥ 0
+  a - e ≥ 0
+  a + f - g ≥ -6
+  2*a - h ≥ -4
+  5*a - 2*d + f + j - l + p + r ≤ -22
+where
+ a := ↑N
+ b := ↑(treeNodes T)
+ c := ↑(treeNodes S)
+ d := ↑o.sourceCuts.length
+ e := ↑o.partition.length
+ f := ↑(agreementK N)
+ g := ↑(checkedMeter T S q
+      (GenericForest.solve actual (some T) (sourceForestMeter S o.partition).value (q - o.sourceCuts.length))).work
+ h := ↑(chooseMeter
+      (checkedMeter T S q
+          (GenericForest.solve actual (some T) (sourceForestMeter S o.partition).value (q - o.sourceCuts.length))).value
+      (fullOutputsSource actual W T S q os).value.answer).work
+ i := ↑q
+ j := ↑(2 * N + ((4 * N + 4 * 2) * N + 3) * N + 1 + agreementK N + 3 * N + 24) * ↑os.length
+ k := ↑(outputForestDebit actual W T S q os)
+ l := ↑(fullOutputsSource actual W T S q os).work
+ m := ↑((4 * N + 4 * 2) * treeNodes S + 3) * ↑o.partition.length
+ n := ↑(sourceForestMeter S o.partition).work
+ p := ↑((4 * N + 4 * 2) * N + 3) * ↑N
+ r := ↑(List.map
+      (fun o =>
+        if o.sourceCuts.length ≤ q then
+          forestWork actual W (some T) (OutputState.sourceForest S o.partition) (q - o.sourceCuts.length)
+        else 0)
+      os).sum

@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "0066694b97730a99b442354edfe748c18b8d126fca844de9e068a475b1ab2c84",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.32257591699999466,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.28773816600005375,
+      "resource_stop": null,
+      "log_sha256": "843367deba19035ae8a31a17a3d39d36128c2aceabeb0f8948d69e7b44ed7ad5"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.001599166000232799,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PairExecution",
+      "source_sha256": "5a12e4ff07ff503fb56b8f53dc2f19e87c43d84f8f3b9248e6e6d76442751304",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8076917499993215,
+      "resource_stop": null,
+      "log_sha256": "ce3a7b792414a1b4ca6142174ad10c89c599ecfca638c4be0ab7d7346739881a"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('PairExecution', ') (A ++ B)) (owned ss (A ++ B)) with\\n      | none => { answer := none, calls := [] }\\n      | some H =>\\n        have m := additionalCost (owned ss (A ++ B)) H;\\n        if m \u2264 q - 2 then\\n          have r := q - 2 - m;\\n          have target := localTarget (some T) C;\\n          have sources := owned ss C;\\n          { answer := checked T S q (Option.map (fun K => H ++ K) (GenericForest.solve actual target sources r)),\\n            calls := [{ target := target, sources := sources, budget := r }] }\\n        else { answer := none, calls := [] }).answer =\\n    checked T S q\\n      (have m := additionalCost (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) H\u271d;\\n      if m \u2264 q - 2 then\\n        Option.map (fun K => H\u271d ++ K)\\n          (GenericForest.solve actual (localTarget (some T) C) (owned (OutputState.sourceForest S [A, B, C]) C)\\n            (q - 2 - m))\\n      else none)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-pair-query-20261015T195944423783Z/PairExecution.lean:54:7: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern\\n  AllGoodDP.run (localTarget (some T) (A ++ B)) (owned (OutputState.sourceForest S [A, B, C]) (A ++ B))\\nin the target expression\\n  traceMass c q\\n      (have ss := OutputState.sourceForest S [A, B, C];\\n        match AllGoodDP.run (localTarget (some T) (A ++ B)) (owned ss (A ++ B)) with\\n        | none => { answer := none, calls := [] }\\n        | some H =>\\n          have m := additionalCost (owned ss (A ++ B)) H;\\n          if m \u2264 q - 2 then\\n            have r := q - 2 - m;\\n            have target := localTarget (some T) C;\\n            have sources := owned ss C;\\n            { answer := checked T S q (Option.map (fun K => H ++ K) (GenericForest.solve actual target sources r)),\\n              calls := [{ target := target, sources := sources, budget := r }] }\\n          else { answer := none, calls := [] }).calls \u2264\\n    c ^ (-3)\\n\\ncase isTrue\\nactual : Ordinary\\nT S : Tree\\nA B C : List Nat\\nq : Nat\\nhs : (leaves S).Nodup\\nht : (leaves T).Nodup\\nsame : \u2200 (x : Nat), x \u2208 leaves T \u2194 x \u2208 leaves S\\nhp : partitionCheck (leaves S) [A, B, C] = true\\nhac : BinaryExchange.Disj T A C\\nhbc : BinaryExchange.Disj T B C\\nga : restrictionAgrees T S A = true\\ngb : restrictionAgrees T S B = true\\nover : \u2203 v, v \u2208 minimalVertices A T \u2227 v \u2208 minimalVertices B T\\nc : Rat\\nhc : 2 \u2264 c\\nzero : 0 \u2264 c ^ (-3)\\ngood : AllGoodDP.allGood (localTarget (some T) (A ++ B)) (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) = true\\npos :\\n  \u2200 (F : List (List Nat)),\\n    agrees (localTarget (some T) (A ++ B)) (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) F = true \u2192\\n      0 < additionalCost (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) F\\nH : List (List Nat)\\nhH : AllGoodDP.run (localTarget (some T) (A ++ B)) (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) = some H\\nhvalid : agrees (localTarget (some T) (A ++ B)) (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) H = true\\nleft\u271d :\\n  additionalCost (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) H +\\n      (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)).length =\\n    H.length\\nright\u271d :\\n  \u2200 (G : List (List Nat)),\\n    agrees (localTarget (some T) (A ++ B)) (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) G = true \u2192\\n      additionalCost (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) H \u2264\\n        additionalCost (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) G\\npositive : 0 < additionalCost (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) H\\naffordable : 2 \u2264 q\\n\u22a2 traceMass c q\\n      (have ss := OutputState.sourceForest S [A, B, C];\\n        match AllGoodDP.run (localTarget (some T) (A ++ B)) (owned ss (A ++ B)) with\\n        | none => { answer := none, calls := [] }\\n        | some H =>\\n          have m := additionalCost (owned ss (A ++ B)) H;\\n          if m \u2264 q - 2 then\\n            have r := q - 2 - m;\\n            have target := localTarget (some T) C;\\n            have sources := owned ss C;\\n            { answer := checked T S q (Option.map (fun K => H ++ K) (GenericForest.solve actual target sources r)),\\n              calls := [{ target := target, sources := sources, budget := r }] }\\n          else { answer := none, calls := [] }).calls \u2264\\n    c ^ (-3)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-pair-query-20261015T195944423783Z/PairExecution.lean:68:3: error: Tactic `split` failed: Could not split an `if` or `match` expression in the type\\n  a \u2208\\n    (have ss := OutputState.sourceForest S [A, B, C];\\n      match AllGoodDP.run (localTarget (some T) (A ++ B)) (owned ss (A ++ B)) with\\n      | none => { answer := none, calls := [] }\\n      | some H =>\\n        have m := additionalCost (owned ss (A ++ B)) H;\\n        if m \u2264 q - 2 then\\n          have r := q - 2 - m;\\n          have target := localTarget (some T) C;\\n          have sources := owned ss C;\\n          { answer := checked T S q (Option.map (fun K => H ++ K) (GenericForest.solve actual target sources r)),\\n            calls := [{ target := target, sources := sources, budget := r }] }\\n        else { answer := none, calls := [] }).calls\\nof `mem`\\n\\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\\n\\ncase isTrue\\nactual : Ordinary\\nT S : Tree\\nA B C : List Nat\\nq : Nat\\na : Call\\nh\u271d : 2 \u2264 q\\nmem :\\n  a \u2208\\n    (have ss := OutputState.sourceForest S [A, B, C];\\n      match AllGoodDP.run (localTarget (some T) (A ++ B)) (owned ss (A ++ B)) with\\n      | none => { answer := none, calls := [] }\\n      | some H =>\\n        have m := additionalCost (owned ss (A ++ B)) H;\\n        if m \u2264 q - 2 then\\n          have r := q - 2 - m;\\n          have target := localTarget (some T) C;\\n          have sources := owned ss C;\\n          { answer := checked T S q (Option.map (fun K => H ++ K) (GenericForest.solve actual target sources r)),\\n            calls := [{ target := target, sources := sources, budget := r }] }\\n        else { answer := none, calls := [] }).calls\\n\u22a2 a.budget < q\\n'))"
+}

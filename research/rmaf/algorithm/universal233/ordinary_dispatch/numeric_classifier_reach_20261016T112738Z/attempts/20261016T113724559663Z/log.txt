@@ -1,0 +1,52 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredReachBridge.lean:19:1: error: Too many variable names provided at alternative `same`: 1 provided, but 0 expected
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredReachBridge.lean:20:1: error: Too many variable names provided at alternative `trim`: 1 provided, but 0 expected
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredReachBridge.lean:21:1: error: Too many variable names provided at alternative `payment`: 2 provided, but 1 expected
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredReachBridge.lean:21:77: error(lean.unknownIdentifier): Unknown identifier `d`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredReachBridge.lean:21:31: error: No goals to be solved
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredReachBridge.lean:22:1: error: Too many variable names provided at alternative `allocation`: 3 provided, but 2 expected
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredReachBridge.lean:22:86: error(lean.unknownIdentifier): Unknown identifier `p`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredReachBridge.lean:63:85: error(lean.unknownIdentifier): Unknown identifier `OrdinaryDispatch.Oriented`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredReachBridge.lean:72:10: error(lean.unknownIdentifier): Unknown identifier `OrdinaryDispatch.early`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredReachBridge.lean:72:61: error(lean.invalidDottedIdent): Invalid dotted identifier notation: The expected type of `.common` could not be determined
+
+Hint: Using one of these would be unambiguous:
+  [apply] `Lean.LLVM.Linkage.common`
+  [apply] `Early.common`
+  [apply] `StoredStep.common`
+  [apply] `Universal233.CherryBranching.Priority.common`
+  [apply] `Lean.Meta.Tactic.BVDecide.Normalize.SharedCoefficients.common`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredReachBridge.lean:75:60: error: unsolved goals
+rec : Nat → RMAF.Tree → RMAF.Tree → Option CommonForest
+T S : Tree
+q : Bits
+reverse : Bool
+c : CandidateBits
+hp : Universal233.DepthOne.proper (treeValue T) (treeValue S) = true
+pre : Universal233.DepthOne.pretest01 (treeValue T) (treeValue S) = Universal233.DepthOne.Result.rejected
+early : sorry = sorry
+selected :
+  (selectPriorityBits (orientedStored reverse T S).fst (orientedStored reverse T S).snd).value =
+    some (Universal233.CherryBranching.Priority.common, c)
+A : Tree := (orientedStored reverse T S).fst
+B : Tree := (orientedStored reverse T S).snd
+pr :
+  c.a ∈ leavesBits A ∧
+    c.b ∈ leavesBits A ∧
+      List.length c.parent ≤ treeNodes (treeValue A) + treeNodes (treeValue B) ∧
+        c.originalCuts = (pendantBits B c.a c.b).value ∧
+          List.length c.originalCuts ≤ treeNodes (treeValue A) + treeNodes (treeValue B) ∧
+            ∀ (v : RMAF.Vertex), v ∈ c.originalCuts → List.length v ≤ treeNodes (treeValue A) + treeNodes (treeValue B)
+stored : OrientedStep T S (contractPairBits c.a c.b A B).value.fst (contractPairBits c.a c.b A B).value.snd
+value :
+  treeValue (contractPairBits c.a c.b A B).value.fst =
+      ForestState.contract (decode c.a) (decode c.b) (commonFresh (treeValue A)) (treeValue A) ∧
+    treeValue (contractPairBits c.a c.b A B).value.snd =
+      ForestState.contract (decode c.a) (decode c.b) (commonFresh (treeValue A)) (treeValue B)
+projected :
+  (treeValue (contractPairBits c.a c.b A B).value.fst, treeValue (contractPairBits c.a c.b A B).value.snd) =
+    commonPair (treeValue T) (treeValue S) reverse (candidateValue c)
+⊢ ((treeValue (contractPairBits c.a c.b (orientedStored reverse T S).fst (orientedStored reverse T S).snd).value.fst,
+        treeValue
+          (contractPairBits c.a c.b (orientedStored reverse T S).fst (orientedStored reverse T S).snd).value.snd),
+      decode (trimBudget q).value) ∈
+    (ordinaryStepTrace rec (decode q) (treeValue T) (treeValue S)).queries

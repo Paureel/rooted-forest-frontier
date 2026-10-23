@@ -1,0 +1,5 @@
+import RIBuild
+#check OrdinaryDispatch.RecoveryInitialBits.build_value
+#print axioms OrdinaryDispatch.RecoveryInitialBits.build_value
+#check OrdinaryDispatch.RecoveryInitialBits.build_work
+#print axioms OrdinaryDispatch.RecoveryInitialBits.build_work

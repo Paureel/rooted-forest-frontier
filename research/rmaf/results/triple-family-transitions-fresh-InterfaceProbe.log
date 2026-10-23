@@ -1,0 +1,17 @@
+'TripleDP.FreshMergeReview.exported_interface_consumable' depends on axioms: [propext, Classical.choice, Quot.sound]
+@merge : {α I J : Type} →
+  {l r : BTree α} →
+    [DecidableEq J] →
+      (f : Family l I) →
+        (g : Family r J) →
+          (o : I) → (p : J) → f.boundary = some o → g.boundary = some p → Family (l.node r) (MergeIndex I p)
+@merge_universal : ∀ {α I J : Type} {l r : BTree α} (f : Family l I) (g : Family r J) (o : I) (p : J),
+  f.boundary = some o →
+    g.boundary = some p →
+      ∃ A,
+        A.boundary = some (Sum.inl o) ∧
+          (∀ (i : I), i ≠ o → A.support (Sum.inl i) = liftSupport false (f.support i)) ∧
+            (∀ (j : { j // j ≠ p }), A.support (Sum.inr j) = liftSupport true (g.support j.val)) ∧
+              (A.support (Sum.inl o) = fun a =>
+                  a = [] ∨ liftSupport false (f.support o) a ∨ liftSupport true (g.support p) a) ∧
+                A.blockCount = f.blockCount + g.blockCount - 1 ∧ A.cost = f.cost + g.cost

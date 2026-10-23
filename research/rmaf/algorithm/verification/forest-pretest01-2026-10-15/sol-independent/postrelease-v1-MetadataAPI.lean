@@ -1,0 +1,9 @@
+import Lean
+open Lean
+#print SourceInfo
+#print Syntax.Preresolved
+#print Substring.Raw
+#print String.Pos.Raw
+#print String.Pos
+#print SourceInfo.getPos?
+#print SyntaxNodeKind

@@ -1,0 +1,207 @@
+{
+  "kind": "exact-counterexample-search",
+  "started_utc": "2026-10-14T21:49:08.382104+00:00",
+  "script_sha256": "db407c3334642040bca7d0473b596518312e2e4be79c33c0270e0869871f26c2",
+  "balancing_definition": "one source-edge cut; both sides nonempty; maximum leaf count <= ceil(2n/3)",
+  "claim": "every budget-admissible globally leaf-balanced source-edge split preserves some original optimum",
+  "qualification": "finite candidate failure does not refute the safe-cover existence target",
+  "sizes": [
+    {
+      "n": 1,
+      "tree_count": 1,
+      "total_ordered_tree_pairs": 1,
+      "finished_pairs": 1,
+      "checked_balanced_splits": 0,
+      "checked_halfbudget_balanced_splits": 0,
+      "pair_seconds": [
+        1.2915999832330272e-05
+      ],
+      "seconds": 2.0167000002402347e-05
+    },
+    {
+      "n": 2,
+      "tree_count": 1,
+      "total_ordered_tree_pairs": 1,
+      "finished_pairs": 1,
+      "checked_balanced_splits": 0,
+      "checked_halfbudget_balanced_splits": 0,
+      "pair_seconds": [
+        7.416700009343913e-05
+      ],
+      "seconds": 9.733399997458037e-05
+    },
+    {
+      "n": 3,
+      "tree_count": 3,
+      "total_ordered_tree_pairs": 9,
+      "finished_pairs": 9,
+      "checked_balanced_splits": 24,
+      "checked_halfbudget_balanced_splits": 24,
+      "pair_seconds": [
+        4.583300005833735e-05,
+        4.96249999741849e-05,
+        7.858399999349786e-05,
+        4.875000013271347e-05,
+        1.9333000182086835e-05,
+        3.379200006747851e-05,
+        7.262500002980232e-05,
+        3.4916999993583886e-05,
+        2.045800010819221e-05
+      ],
+      "seconds": 0.00045583300016005524
+    },
+    {
+      "n": 4,
+      "tree_count": 15,
+      "total_ordered_tree_pairs": 225,
+      "finished_pairs": 2,
+      "checked_balanced_splits": 1,
+      "checked_halfbudget_balanced_splits": 0,
+      "pair_seconds": [
+        0.00017058299999916926,
+        0.00023124999984247552
+      ],
+      "seconds": 0.00043225000013080717
+    }
+  ],
+  "witness": {
+    "n": 4,
+    "source": [
+      "a",
+      [
+        "b",
+        [
+          "c",
+          "d"
+        ]
+      ]
+    ],
+    "target": [
+      "a",
+      [
+        [
+          "b",
+          "c"
+        ],
+        "d"
+      ]
+    ],
+    "original_budget": 1,
+    "source_cut": {
+      "parent_vertex": "R",
+      "child_vertex": "R0",
+      "child_descendant_labels": [
+        "a"
+      ]
+    },
+    "split_leaf_sizes": [
+      1,
+      3
+    ],
+    "centroid_balanced": true,
+    "equal_halves": false,
+    "local_halfbudget": false,
+    "exact": {
+      "optimum_cuts": 1,
+      "optimum_partitions": [
+        [
+          [
+            "a",
+            "b",
+            "c"
+          ],
+          [
+            "d"
+          ]
+        ],
+        [
+          [
+            "a",
+            "b",
+            "d"
+          ],
+          [
+            "c"
+          ]
+        ],
+        [
+          [
+            "a",
+            "c",
+            "d"
+          ],
+          [
+            "b"
+          ]
+        ]
+      ],
+      "optimum_partition_count": 3,
+      "partitions_enumerated": 15,
+      "precut_blocks": [
+        [
+          "a"
+        ],
+        [
+          "b",
+          "c",
+          "d"
+        ]
+      ],
+      "precuts": 1,
+      "distinct_precut_realization_count": 2,
+      "precut_realizations": [
+        [
+          {
+            "parent_vertex": "R",
+            "child_vertex": "R0",
+            "child_descendant_labels": [
+              "a"
+            ]
+          }
+        ],
+        [
+          {
+            "parent_vertex": "R",
+            "child_vertex": "R1",
+            "child_descendant_labels": [
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        ]
+      ],
+      "surviving_optimum_count": 0,
+      "surviving_optimum_partitions": [],
+      "one_optimum_survival": false,
+      "all_optimum_survival": false,
+      "completion_cuts": 1,
+      "charged_total": 2,
+      "local_distances": [
+        {
+          "block": [
+            "a"
+          ],
+          "distance": 0
+        },
+        {
+          "block": [
+            "b",
+            "c",
+            "d"
+          ],
+          "distance": 1
+        }
+      ],
+      "tau": 1,
+      "terminal_membership": {
+        "pure-bridge": true,
+        "compatible-or-triple": true
+      },
+      "actual_target_overlap_geometry": []
+    }
+  },
+  "verdict": "CERTIFIED-CANDIDATE-FAILURE",
+  "seconds": 0.0015452499999355496,
+  "finished_utc": "2026-10-14T21:49:08.383649+00:00"
+}

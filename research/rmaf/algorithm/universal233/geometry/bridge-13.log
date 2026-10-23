@@ -1,0 +1,67 @@
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:299:20: warning: This simp argument is unused:
+  eR
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hnr, hull_or_reach, ← rootedSpan_correct, ← ihl, RMAF.minimalVertices, eL, eR, RMAF.prependSide]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:299:23: warning: This simp argument is unused:
+  hull_or_reach
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hnr, eR, ← rootedSpan_correct, ← ihl, RMAF.minimalVertices, eL, eR, RMAF.prependSide]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:309:20: warning: This simp argument is unused:
+  eL
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hnl, hull_or_reach, ← rootedSpan_correct, ← ihr, RMAF.minimalVertices, eL, eR, RMAF.prependSide]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:309:23: warning: This simp argument is unused:
+  hull_or_reach
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hnl, eL, ← rootedSpan_correct, ← ihr, RMAF.minimalVertices, eL, eR, RMAF.prependSide]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:524:31: error: Invalid `←` modifier: `Nonempty` is a declaration name to be unfolded
+
+Hint: The simplifier cannot "refold" definitions by name. Use `rw` for this instead,
+                      or use the `←` simp modifier with an equational lemma for `Nonempty`.
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:524:4: error: Type mismatch: After simplification, term
+  or_congr ihl ihr
+ has type
+  ((∃ a, selectedLeaves [x] l a) ∨ ∃ a, selectedLeaves [x] r a) ↔ x ∈ RMAF.leaves l ∨ x ∈ RMAF.leaves r
+but is expected to have type
+  (∃ a, Join (selectedLeaves [x] l) (selectedLeaves [x] r) a) ↔ x ∈ RMAF.leaves l ∨ x ∈ RMAF.leaves r
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:563:10: warning: This simp argument is unused:
+  he
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [eqba]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:577:73: error: Tactic `assumption` failed
+
+D : List Nat
+l r : RMAF.Tree
+ihl : ∀ (a : Vertex), selectedLeaves D l a ↔ ∃ x, x ∈ D ∧ selectedLeaves [x] l a
+ihr : ∀ (a : Vertex), selectedLeaves D r a ↔ ∃ x, x ∈ D ∧ selectedLeaves [x] r a
+a : List Bool
+⊢ selectedLeaves D l a ↔ ∃ x, x ∈ D ∧ selectedLeaves [x] l a
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:577:73: error: Tactic `assumption` failed
+
+D : List Nat
+l r : RMAF.Tree
+ihl : ∀ (a : Vertex), selectedLeaves D l a ↔ ∃ x, x ∈ D ∧ selectedLeaves [x] l a
+ihr : ∀ (a : Vertex), selectedLeaves D r a ↔ ∃ x, x ∈ D ∧ selectedLeaves [x] r a
+a : List Bool
+⊢ selectedLeaves D r a ↔ ∃ x, x ∈ D ∧ selectedLeaves [x] r a
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:600:4: error: Type mismatch: After simplification, term
+  heq
+ has type
+  region v a = region v b
+but is expected to have type
+  SameRegion v a b

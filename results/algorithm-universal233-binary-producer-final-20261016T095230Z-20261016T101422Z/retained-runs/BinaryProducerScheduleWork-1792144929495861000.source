@@ -1,0 +1,74 @@
+import BinaryProducerSchedulerCaps
+namespace GenericForest.BinaryProducer
+open BinaryProvider GenericForest.ScalarBits Universal233.WholeSourceWork
+variable {P A : Type}
+theorem allocationBits_width (q k p : Bits) :
+ (allocationBits q k p).value.length≤q.length+k.length+p.length+2 := by
+ have pm:=subtractBits_length p [true]
+ have pt:=addCarry_length (subtractBits p [true]).value (subtractBits p [true]).value false
+ have qk:=subtractBits_length q k
+ have b:=subtractBits_length (subtractBits q k).value
+  (addBits (subtractBits p [true]).value (subtractBits p [true]).value).value
+ simp only [allocationBits,addBits,List.length_cons,List.length_nil] at *;omega
+
+theorem allocationBits_work (q k p : Bits) :
+ (allocationBits q k p).work≤200*(q.length+k.length+p.length+3) := by
+ have pm:=subtractBits_length p [true]
+ have pt:=addCarry_length (subtractBits p [true]).value (subtractBits p [true]).value false
+ have qk:=subtractBits_length q k
+ have a:=subtractBits_work p [true]
+ have b:=addCarry_work (subtractBits p [true]).value (subtractBits p [true]).value false
+ have c:=subtractBits_work q k
+ have d:=subtractBits_work (subtractBits q k).value
+  (addBits (subtractBits p [true]).value (subtractBits p [true]).value).value
+ simp only [allocationBits,addBits,List.length_cons,List.length_nil] at *;omega
+
+/-- Storage is bounded in terms of actual stored input widths and job count.
+No logarithmic or original-input global invariant is assumed here. -/
+theorem allocated_local_width (W : Nat) (q : Bits) (js : List (Job P A))
+ (caps : ∀j∈js,CostWidth W j) :
+ (allocationBits q (knownBits js).value (pendingBits js).value).value.length≤q.length+W+2*js.length+2 := by
+ have a:=allocationBits_width q (knownBits js).value (pendingBits js).value
+ have k:=knownBits_width W js caps;have p:=pendingBits_width js;omega
+
+/-- Explicit per-call C and result-cost W contracts are modular obligations.
+All actual setup, arithmetic and list/receipt allocations are included. -/
+theorem scheduleBits_work (solve : P→Bits→Charged (Option (Bits×A))) (q : Bits)
+ (js : List (Job P A)) (W C : Nat) (caps : ∀j∈js,CostWidth W j)
+ (callback : ∀p b,(solve p b).work≤C)
+ (answerCap : ∀p b x,(solve p b).value=some x→x.1.length≤W) :
+ (scheduleBits solve q js).work≤(C+1000*(q.length+W+js.length+3))*(js.length+1) := by
+ have kw:=knownBits_width W js caps;have pw:=pendingBits_width js
+ have kc:=knownBits_work W js caps;have pc:=pendingBits_work js
+ have tw:=addCarry_length (pendingBits js).value (pendingBits js).value false
+ have tc:=addCarry_work (pendingBits js).value (pendingBits js).value false
+ have hw:=addCarry_length (knownBits js).value (addBits (pendingBits js).value (pendingBits js).value).value false
+ have hc:=addCarry_work (knownBits js).value (addBits (pendingBits js).value (pendingBits js).value).value false
+ have ec:=(compare_family_work (addBits (knownBits js).value (addBits (pendingBits js).value (pendingBits js).value).value).value q).2.1
+ have bc:=allocationBits_work q (knownBits js).value (pendingBits js).value
+ let b:=(allocationBits q (knownBits js).value (pendingBits js).value).value
+ have rc:=runBits_work solve b js C (fun p=>callback p b)
+ have rs:=runBits_storage solve b js
+ dsimp only [scheduleBits]
+ split
+ · cases hx : (runBits solve b js).value.answers with
+   | none=>
+    change _≤_ at rc
+    dsimp only [b] at hx rc
+    simp only [b,addBits,Nat.max_self,Charged.work] at *
+    simp only [Nat.mul_add,Nat.add_mul,Nat.mul_one,Nat.mul_assoc] at *;omega
+   | some xs=>
+    have xl:=rs.2.2.1 xs hx
+    have xc : ∀x∈xs,x.1.length≤W:=runBits_answerCap solve b (fun x=>x.1.length≤W) js
+      (fun p c a h=>by have hh:=caps (.resolved p c a) h;exact hh)
+      (fun p x h=>answerCap p b x h) xs hx
+    have aw:=answerBits_width W xs xc;have ac:=answerBits_work W xs xc
+    have fc:=(compare_family_work (answerBits xs).value q).2.1
+    have ap:=Nat.mul_le_mul (Nat.le_refl (24*(W+xs.length+1)+4)) (Nat.add_le_add_right xl 1)
+    have aq:=Nat.mul_le_mul_right (js.length+1) (show 24*(W+xs.length+1)+4≤24*(W+js.length+1)+4 by omega)
+    dsimp only [b] at hx rc
+    simp only [b,addBits,Nat.max_self,Charged.work] at *
+    simp only [Nat.mul_add,Nat.add_mul,Nat.mul_one,Nat.mul_assoc] at *;omega
+ · simp only [b,addBits,Nat.max_self,Charged.work] at *
+   simp only [Nat.mul_add,Nat.add_mul,Nat.mul_one,Nat.mul_assoc] at *;omega
+end GenericForest.BinaryProducer

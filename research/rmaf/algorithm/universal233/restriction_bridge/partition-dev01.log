@@ -1,0 +1,90 @@
+research/rmaf/algorithm/universal233/restriction_bridge/Partition.lean:66:6: error: unsolved goals
+case pos.refine_1
+x : Nat
+A : List Nat
+Q : List (List Nat)
+ih : List.count x Q.flatten = 1 → ∃ U, U ∈ Q ∧ x ∈ U ∧ List.count U Q = 1 ∧ ∀ (V : List Nat), V ∈ Q → x ∈ V → V = U
+hc : List.count x A + List.count x Q.flatten = 1
+hx : x ∈ A
+ha : 0 < List.count x A
+hz : List.count x Q.flatten = 0
+hnot : ∀ (V : List Nat), V ∈ Q → ¬x ∈ V
+han : ¬A ∈ Q
+⊢ List.count A Q = 0
+research/rmaf/algorithm/universal233/restriction_bridge/Partition.lean:66:14: warning: This simp argument is unused:
+  han
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/restriction_bridge/Partition.lean:75:14: warning: This simp argument is unused:
+  List.count_cons
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hne, hcu]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/restriction_bridge/Partition.lean:89:4: error: unsolved goals
+case pos
+U : List Nat
+x : Nat
+B : List Nat
+F : List (List Nat)
+ih : (∀ (B : List Nat), B ∈ F → x ∈ B → B ⊆ U) → List.count x (family U F).flatten = List.count x F.flatten
+owners : ∀ (B_1 : List Nat), B_1 ∈ B :: F → x ∈ B_1 → B_1 ⊆ U
+ht : ∀ (C : List Nat), C ∈ F → x ∈ C → C ⊆ U
+hb : B ⊆ U
+hh : contained B U = true
+⊢ List.count x (List.filter (fun x => contained x U) F).flatten = List.count x F.flatten
+research/rmaf/algorithm/universal233/restriction_bridge/Partition.lean:91:4: error: unsolved goals
+case neg
+U : List Nat
+x : Nat
+B : List Nat
+F : List (List Nat)
+ih : (∀ (B : List Nat), B ∈ F → x ∈ B → B ⊆ U) → List.count x (family U F).flatten = List.count x F.flatten
+owners : ∀ (B_1 : List Nat), B_1 ∈ B :: F → x ∈ B_1 → B_1 ⊆ U
+ht : ∀ (C : List Nat), C ∈ F → x ∈ C → C ⊆ U
+hb : ¬B ⊆ U
+hh : contained B U = false
+hx : ¬x ∈ B
+⊢ List.count x (List.filter (fun x => contained x U) F).flatten = List.count x F.flatten
+research/rmaf/algorithm/universal233/restriction_bridge/Partition.lean:90:22: warning: This simp argument is unused:
+  ih ht
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [family, hh]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/restriction_bridge/Partition.lean:93:46: warning: This simp argument is unused:
+  ih ht
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [family, hh, List.count_eq_zero.2 hx]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/restriction_bridge/Partition.lean:100:15: error: unexpected token '⟩'; expected '_' or identifier
+research/rmaf/algorithm/universal233/restriction_bridge/Partition.lean:100:9: error: Insufficient number of fields for `⟨...⟩` constructor: Constructor `And.intro` has 2 explicit field, but only 1 was provided
+research/rmaf/algorithm/universal233/restriction_bridge/Partition.lean:98:53: error: unsolved goals
+case refine_1
+t u : Tree
+U : List Nat
+F Q : List (List Nat)
+hr : restrict U t = some u
+hF : partitionCheck (leaves t) F = true
+hQ : partitionCheck (leaves t) Q = true
+href : Refines F Q
+hU : U ∈ Q
+⊢ ((family U F).all fun b => !b.isEmpty) = true
+
+case refine_2
+t u : Tree
+U : List Nat
+F Q : List (List Nat)
+hr : restrict U t = some u
+hF : partitionCheck (leaves t) F = true
+hQ : partitionCheck (leaves t) Q = true
+href : Refines F Q
+hU : U ∈ Q
+⊢ ((leaves u).all fun x => List.count x (family U F).flatten == 1) = true

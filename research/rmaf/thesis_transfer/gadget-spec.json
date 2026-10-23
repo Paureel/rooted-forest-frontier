@@ -1,0 +1,15 @@
+{
+  "version":1,
+  "status":"X0 target pinned before gadget code and tests",
+  "labels":"Two fresh leaves @alpha,@beta, plus unary root @rho",
+  "construction":"U1=(@beta,(@alpha,T1)); U2=(@alpha,(@beta,T2)); then add unary labelled root rho to each",
+  "theorem":"augmented_optimum(U1,U2) = ordinary_optimum(T1,T2)+1",
+  "solution_map":"Delete alpha,beta,rho from every block and discard empty blocks",
+  "cut_parameter":"q_rho = augmented_components-1 = ordinary_components K",
+  "upper_map":"Take any ordinary forest and adjoin block {alpha,beta,rho}",
+  "lower_obligation":"At least one augmented component contains no original label; after erasing the three new labels, surviving blocks form an ordinary AF",
+  "frozen_controls":[{"old":"singleton","K":1,"augmented_gadget_K":2},{"old":"equal cherry","K":1,"augmented_gadget_K":2},{"old":"incompatible triple","K":2,"augmented_gadget_K":3},{"old":"opposite-ancestry","K":2,"augmented_gadget_K":3}],
+  "negative_mutation":"Make both new caterpillar orders identical. For identical old singleton input augmented optimum is 1, contradicting K+1=2.",
+  "scan":"Start n=1,2,3 only; test every feasible augmented forest for erase map and loss of at least one component. Pilot before n=4.",
+  "scope":"Ordinary AF, no acyclicity constraint. A prospective reduction, not accepted proof. No previous oracle code read."
+}

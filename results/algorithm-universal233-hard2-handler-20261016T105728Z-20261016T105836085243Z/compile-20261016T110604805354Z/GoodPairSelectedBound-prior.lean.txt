@@ -1,0 +1,63 @@
+import GoodPairWeightedBound
+namespace OrdinaryDispatch.Hard2SourceWork
+open RMAF ForestState Universal233 WholeSourceWork CoreWork SourceCoverage
+open GenericForest.FrontierWork OrdinaryDispatch.WorkRecursion OrdinaryDispatch.WorkIntegration OrdinaryDispatch.FullSourceWork
+open Universal233.Hard2Overlap Universal233.PaidAssembly Universal233.Rule5PendantLocalWork
+
+/-- The actual selected-edge caller discharges the geometric and payload
+conditions; the bound has no all-good/positive-minimum/source-fee assumption. -/
+theorem selected_goodPairSource_bound (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree)
+ (c : CherryBranching.Candidate) (o : Order) (edge : RMAF.Vertex×RMAF.Vertex) (p r : RMAF.Vertex)
+ (q N Q : Nat) (three : 3≤N) (budget : q≤Q) (tn : treeNodes T≤N) (sn : treeNodes S≤N)
+ (proper0 : DepthOne.proper T S=true) (hard : CherryBranching.select T S=some (.hard2,c))
+ (cuts : c.originalCuts=[p,r]) (selected : runHard2 T S c=some (.pair o (.edge edge)))
+ (good : (restrictionAgrees S T (first o (leftParent S p) (rightParent S r) (rootParent S p r)) &&
+  restrictionAgrees S T (second o (leftParent S p) (rightParent S r) (rootParent S p r)))=true) :
+ ((goodPairSource actual (fun _ _ _=>0) T S
+   (first o (leftParent S p) (rightParent S r) (rootParent S p r))
+   (second o (leftParent S p) (rightParent S r) (rootParent S p r))
+   (third o (leftParent S p) (rightParent S r) (rootParent S p r)) q).work:Rat)≤
+ ((goodPairPolynomial N:Rat)+geometric Rule5ActualTrace.base*forestCoefficient N Q*Rule5ActualTrace.base^(-3:Int))*Rule5ActualTrace.base^q:=by
+ obtain ⟨p',r',cuts',_,_,hp,es,_⟩:=actual_source_inputs proper0 hard
+ have eq:[p,r]=[p',r']:=cuts.symm.trans cuts'
+ have pe:p=p' ∧ r=r':=by simpa using eq
+ rcases pe with ⟨rfl,rfl⟩
+ have basic:=OrdinaryPriorityBridge.proper_parts proper0
+ have same:∀x,x∈leaves T ↔ x∈leaves S:=fun x=>basic.2.2.mem_iff
+ have raw:Hard2Overlap.select T (leftParent S p) (rightParent S r) (rootParent S p r)=some (.pair o (.edge edge)):=by
+  simpa only [runHard2,cuts'] using selected
+ have guards:=Hard2Overlap.select_sound basic.1 (fun x h=>(same x).2 h) hp raw
+ have ac:=FreshPairReview.actual_clear_disj T _ _ guards.1
+ have bc:=FreshPairReview.actual_clear_disj T _ _ guards.2.1
+ have chosen:=PairGeometry.choose_sound T _ _ (.edge edge) guards.2.2.1
+ have over:∃v,v∈minimalVertices (first o (leftParent S p) (rightParent S r) (rootParent S p r)) T ∧
+  v∈minimalVertices (second o (leftParent S p) (rightParent S r) (rootParent S p r)) T:=
+  ⟨edge.1,chosen.2.2.1,chosen.2.2.2.1⟩
+ have a:(leftParent S p).length≤N:=by
+  simpa only [leftParent,subtree_labels_value] using Nat.le_trans (subtree_labels_payload S p).1 (Nat.le_trans (leaves_nodes S) sn)
+ have b:(rightParent S r).length≤N:=by
+  simpa only [rightParent,subtree_labels_value] using Nat.le_trans (subtree_labels_payload S r).1 (Nat.le_trans (leaves_nodes S) sn)
+ have d:(rootParent S p r).length≤N:=Nat.le_trans (List.length_filter_le _ _) (Nat.le_trans (leaves_nodes S) sn)
+ have sizes:(first o (leftParent S p) (rightParent S r) (rootParent S p r)).length≤N ∧
+  (second o (leftParent S p) (rightParent S r) (rootParent S p r)).length≤N ∧
+  (third o (leftParent S p) (rightParent S r) (rootParent S p r)).length≤N:=by cases o <;> simp_all [first,second,third]
+ have gs:=Bool.and_eq_true.1 good
+ exact goodPairSource_bound actual T S _ _ _ q N Q three budget tn sn sizes.1 sizes.2.1 sizes.2.2
+  basic.2.1 basic.1 same (permuted_partition o hp) ac bc
+  (PairAssembly.restriction_agrees_swap S T _ gs.1) (PairAssembly.restriction_agrees_swap S T _ gs.2) over
+
+theorem hardPaidSource_uniform_bound (actual : GenericForest.FrontierWork.Ordinary)
+ (T S : Tree) (c : CherryBranching.Candidate) (out : Result) (q N Q : Nat)
+ (three : 3≤N) (tn : treeNodes T≤N) (sn : treeNodes S≤N) (budget : q≤Q)
+ (proper0 : DepthOne.proper T S=true) (hard : CherryBranching.select T S=some (.hard2,c))
+ (selected : runHard2 T S c=some out) :
+ ((hardPaidSource actual (fun _ _ _=>0) T S q c out).work:Rat)≤
+ ((hardPaidPolynomial N Q:Rat)+geometric Rule5ActualTrace.base*forestCoefficient N Q*(4*Rule5ActualTrace.base^(-4:Int)))*Rule5ActualTrace.base^q:=by
+ have sharp:=hardPaidSource_bound actual T S c out q N Q three tn sn budget proper0 hard selected
+ have kp:0≤geometric Rule5ActualTrace.base*forestCoefficient N Q:=Rat.mul_nonneg
+  (geometric_properties _ (by decide +kernel)).2.2.1 Rat.natCast_nonneg
+ have uniform:=Rat.mul_le_mul_of_nonneg_left (hardPaid_caseMass_uniform out) kp
+ have add:(hardPaidPolynomial N Q:Rat)+geometric Rule5ActualTrace.base*forestCoefficient N Q*Hard2PaidLocal.caseMass Rule5ActualTrace.base out≤
+  (hardPaidPolynomial N Q:Rat)+geometric Rule5ActualTrace.base*forestCoefficient N Q*(4*Rule5ActualTrace.base^(-4:Int)):=Rat.add_le_add_left.mpr uniform
+ exact Rat.le_trans sharp (Rat.mul_le_mul_of_nonneg_right add (Rat.le_of_lt (Rat.pow_pos (by decide +kernel))))
+end OrdinaryDispatch.Hard2SourceWork

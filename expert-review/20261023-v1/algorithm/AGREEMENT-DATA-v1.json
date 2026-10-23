@@ -1,0 +1,109 @@
+{
+  "scope": "These6 exact pure agreement predicate roots, no proofs/outcomes/namespace substitution or transitive grant.",
+  "binding_note": "GroupState uses open RMAF. Its unqualified partitionCheck and pairwiseEmbeddings resolve to RMAF declarations; no ForestState.partitionCheck alias is asserted. targetAgrees is actually ForestState.targetAgrees.",
+  "definitions": [
+    {
+      "module": "RMAF",
+      "name": "partitionCheck",
+      "context": [
+        "import Std",
+        "namespace RMAF"
+      ],
+      "code": "def partitionCheck (labels : List Nat) (bs : List (List Nat)) : Bool :=\n  bs.all (fun b => !b.isEmpty) &&\n  labels.all (fun x => bs.flatten.count x == 1) &&\n  bs.flatten.all (fun x => labels.contains x)",
+      "range": [
+        149,
+        152
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.lean",
+      "source_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.olean",
+      "object_sha256": "1e507601b9ac70ce8c8995633f887c2d7e7160989682264670a4d93c7f145b8d"
+    },
+    {
+      "module": "RMAF",
+      "name": "pairwiseEmbeddings",
+      "context": [
+        "import Std",
+        "namespace RMAF"
+      ],
+      "code": "def pairwiseEmbeddings (t : Tree) : List (List Nat) \u2192 Bool\n  | [] => true\n  | b :: bs =>\n      bs.all (fun c => disjointVertices (minimalVertices b t) (minimalVertices c t)) &&\n      pairwiseEmbeddings t bs",
+      "range": [
+        138,
+        142
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.lean",
+      "source_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.olean",
+      "object_sha256": "1e507601b9ac70ce8c8995633f887c2d7e7160989682264670a4d93c7f145b8d"
+    },
+    {
+      "module": "RMAF",
+      "name": "agreement",
+      "context": [
+        "import Std",
+        "namespace RMAF"
+      ],
+      "code": "def agreement (t u : Tree) (bs : List (List Nat)) : Bool :=\n  partitionCheck (leaves t) bs && partitionCheck (leaves u) bs &&\n  bs.all (restrictionAgrees t u) &&\n  pairwiseEmbeddings t bs && pairwiseEmbeddings u bs",
+      "range": [
+        154,
+        157
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.lean",
+      "source_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.olean",
+      "object_sha256": "1e507601b9ac70ce8c8995633f887c2d7e7160989682264670a4d93c7f145b8d"
+    },
+    {
+      "module": "RMAF",
+      "name": "restrictionAgrees",
+      "context": [
+        "import Std",
+        "namespace RMAF"
+      ],
+      "code": "def restrictionAgrees (t u : Tree) (b : List Nat) : Bool :=\n  match restrict b t, restrict b u with\n  | some s, some v => sameShape s v\n  | _, _ => false",
+      "range": [
+        144,
+        147
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.lean",
+      "source_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.olean",
+      "object_sha256": "1e507601b9ac70ce8c8995633f887c2d7e7160989682264670a4d93c7f145b8d"
+    },
+    {
+      "module": "RMAF",
+      "name": "disjointVertices",
+      "context": [
+        "import Std",
+        "namespace RMAF"
+      ],
+      "code": "def disjointVertices (a b : List Vertex) : Bool :=\n  a.all (fun v => !(b.contains v))",
+      "range": [
+        135,
+        136
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.lean",
+      "source_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.olean",
+      "object_sha256": "1e507601b9ac70ce8c8995633f887c2d7e7160989682264670a4d93c7f145b8d"
+    },
+    {
+      "module": "GroupState",
+      "name": "targetAgrees",
+      "context": [
+        "import GroupPartition",
+        "namespace ForestState",
+        "open RMAF RestrictionBridge"
+      ],
+      "code": "def targetAgrees : Option Tree \u2192 Tree \u2192 List Nat \u2192 Bool\n  | none, _, _ => false\n  | some t, s, B => restrictionAgrees t s B",
+      "range": [
+        15,
+        17
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/GroupState.lean",
+      "source_sha256": "def667f28d5a9658f817fa259f2293b6d82a05c1f7916a9c4c8a9b566d4952a3",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/GroupState.olean",
+      "object_sha256": "33f0722b2d4b328a566db69898f398c0b2cb8e36c1ba58be2d9a179706919b0c"
+    }
+  ]
+}

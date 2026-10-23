@@ -1,0 +1,56 @@
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidRootBoundary.lean:75:65: error: unknown tactic
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidRootBoundary.lean:71:66: error: unsolved goals
+case false
+X : List Nat
+r : RMAF.Vertex
+nr : r ≠ []
+e : List.dropLast r = []
+L R : Tree
+hn : (leaves (L.node R)).Nodup
+valid : Valid (L.node R) r
+subset : ∀ (x : Nat), x ∈ X → x ∈ leaves (L.node R)
+disj : ∀ (x : Nat), x ∈ X → ¬x ∈ subtreeLabels (L.node R) r
+tailHull : List.dropLast r ∈ minimalVertices X (L.node R)
+x : Nat
+hx : x ∈ X
+eq : r = [].concat false
+re : r = [false]
+all : x ∈ leaves L ∨ x ∈ leaves R
+no : ¬x ∈ leaves L
+⊢ x ∈ leaves R
+
+case true
+X : List Nat
+r : RMAF.Vertex
+nr : r ≠ []
+e : List.dropLast r = []
+L R : Tree
+hn : (leaves (L.node R)).Nodup
+valid : Valid (L.node R) r
+subset : ∀ (x : Nat), x ∈ X → x ∈ leaves (L.node R)
+disj : ∀ (x : Nat), x ∈ X → ¬x ∈ subtreeLabels (L.node R) r
+tailHull : List.dropLast r ∈ minimalVertices X (L.node R)
+x : Nat
+hx : x ∈ X
+eq : r = [].concat true
+re : r = [true]
+all : x ∈ leaves L ∨ x ∈ leaves R
+no : ¬x ∈ leaves R
+⊢ x ∈ leaves L
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidRootBoundary.lean:70:12: error: unsolved goals
+case inr.node
+X : List Nat
+r : RMAF.Vertex
+nr : r ≠ []
+e : List.dropLast r = []
+s : Bool
+eq : r = [].concat s
+re : r = [s]
+L R : Tree
+hn : (leaves (L.node R)).Nodup
+valid : Valid (L.node R) r
+subset : ∀ (x : Nat), x ∈ X → x ∈ leaves (L.node R)
+disj : ∀ (x : Nat), x ∈ X → ¬x ∈ subtreeLabels (L.node R) r
+tailHull : List.dropLast r ∈ minimalVertices X (L.node R)
+mono : ∀ (x : Nat), x ∈ X → x ∈ subtreeLabels (L.node R) [!s]
+⊢ False

@@ -1,0 +1,25 @@
+{
+ "phase":"PRE-CANDIDATE PREPARATION ONLY; NOT A RELEASE",
+ "allowed_dependencies":"Lean/Std toolchain and this directory's toy modules only",
+ "forbidden":"Any actual pair_assembly or live candidate compilation/import; copied scientific oleans",
+ "standard_axiom_allowlist":["propext","Classical.choice","Quot.sound"],
+ "source_origin_gate":"Enumerate every declaration whose environment module index originates in the exact source modules; never infer origin by public namespace prefix. Include private, generated, unused declarations.",
+ "closure_gate":"Collect standard axiom closures for every originating declaration; reject any nonallowlisted axiom. Also reject any originating custom axiom declaration even if unused by all public theorems.",
+ "toy_expected":{
+  "ToyClean":"ACCEPT; ordinary, private and generated declarations all inventoried",
+  "ToyUnusedAxiom":"REJECT despite clean public theorem closure; unused public custom axiom inventoried",
+  "ToyPrivateAxiom":"REJECT; private custom axiom and generated declarations must retain module origin",
+  "ToyRestrictionSource":"ACCEPT; establishes original private/generated inventory for exact type/import adapter",
+  "ToyExchangeAdapted":"ACCEPT; only approved import/type replacements, proof/definition bodies preserved; origin map includes private/generated names",
+  "ToyExchangeTampered":"REJECT source adapter; changed function body even if Lean accepts it",
+  "ToyCoverageSource":"ACCEPT",
+  "ToyCoverageAdapted":"ACCEPT exact existing-Coverage import/name substitution",
+  "ToyCoverageTampered":"REJECT source adapter for changed body",
+  "external_axiom_in_import":"REJECT if its closure reaches an originating declaration even though axiom originates elsewhere"
+ },
+ "adapter_gate":"Compare exact source after only preregistered import/type-family substitutions. Record every name/module/encoding adapter. Map originating private module prefixes and generated suffixes explicitly. No additional edits accepted.",
+ "clean_false_twins":"Each detector must accept its clean twin and reject the deliberate corruption; missing modules or zero-declaration inventories fail.",
+ "candidate_compile_allowed":false,
+ "all_three_milestones":"OPEN",
+ "replication_increment":0
+}

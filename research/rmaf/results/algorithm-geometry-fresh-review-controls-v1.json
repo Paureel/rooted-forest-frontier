@@ -1,0 +1,1572 @@
+{
+  "scope": "pre-candidate finite instrument controls; no universal scientific claim",
+  "same_reviewer_lineage": true,
+  "additional_independent_replications": 0,
+  "candidate_source_read": false,
+  "source_sha256": "e5d61c1d66ce53804e1f87050d72e79983c727eaf80916f059c7c271e40b92eb",
+  "controls_sha256": "8a6e3bc57d57f1b639b2d485ec9c0894135364a14127b4ee42a2eb728458ea6a",
+  "result": {
+    "phase": "controls",
+    "declared_controls": 35,
+    "completed": 35,
+    "passed": 35,
+    "plants_caught": 20,
+    "plant_count": 20,
+    "rows": [
+      {
+        "id": "empty-graph",
+        "kind": "hull",
+        "observed": {
+          "hull": [],
+          "address_hull": [],
+          "connected": false,
+          "convex": true,
+          "root_exists": false,
+          "root_in_hull": false,
+          "leaf_addresses": {}
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [
+          {
+            "id": "invented-empty-root",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "hull",
+                "expected": [
+                  ""
+                ],
+                "observed": [],
+                "residual": null
+              }
+            ]
+          }
+        ],
+        "elapsed_seconds": 2.1999999717081664e-05
+      },
+      {
+        "id": "singleton-root",
+        "kind": "hull",
+        "observed": {
+          "hull": [
+            ""
+          ],
+          "address_hull": [
+            ""
+          ],
+          "connected": true,
+          "convex": true,
+          "root_exists": true,
+          "root_in_hull": true,
+          "leaf_addresses": {
+            "a": ""
+          }
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [
+          {
+            "id": "singleton-root-removed",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "hull",
+                "expected": [],
+                "observed": [
+                  ""
+                ],
+                "residual": null
+              }
+            ]
+          }
+        ],
+        "elapsed_seconds": 2.8542000109155197e-05
+      },
+      {
+        "id": "below-root-hull",
+        "kind": "hull",
+        "observed": {
+          "hull": [
+            "1",
+            "10",
+            "11"
+          ],
+          "address_hull": [
+            "1",
+            "10",
+            "11"
+          ],
+          "connected": true,
+          "convex": true,
+          "root_exists": true,
+          "root_in_hull": false,
+          "leaf_addresses": {
+            "a": "0",
+            "b": "10",
+            "c": "11"
+          }
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [
+          {
+            "id": "all-ancestors-false-hull",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "hull",
+                "expected": [
+                  "",
+                  "1",
+                  "10",
+                  "11"
+                ],
+                "observed": [
+                  "1",
+                  "10",
+                  "11"
+                ],
+                "residual": null
+              }
+            ]
+          }
+        ],
+        "elapsed_seconds": 5.200000032345997e-05
+      },
+      {
+        "id": "empty-block-nonempty-tree",
+        "kind": "hull",
+        "observed": {
+          "hull": [],
+          "address_hull": [],
+          "connected": false,
+          "convex": true,
+          "root_exists": true,
+          "root_in_hull": false,
+          "leaf_addresses": {
+            "a": "0",
+            "b": "10",
+            "c": "11"
+          }
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 1.2542000149551313e-05
+      },
+      {
+        "id": "singleton-nonroot",
+        "kind": "hull",
+        "observed": {
+          "hull": [
+            "10"
+          ],
+          "address_hull": [
+            "10"
+          ],
+          "connected": true,
+          "convex": true,
+          "root_exists": true,
+          "root_in_hull": false,
+          "leaf_addresses": {
+            "a": "0",
+            "b": "10",
+            "c": "11"
+          }
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 1.4208999800757738e-05
+      },
+      {
+        "id": "cross-root-hull",
+        "kind": "hull",
+        "observed": {
+          "hull": [
+            "",
+            "0",
+            "1",
+            "11"
+          ],
+          "address_hull": [
+            "",
+            "0",
+            "1",
+            "11"
+          ],
+          "connected": true,
+          "convex": true,
+          "root_exists": true,
+          "root_in_hull": true,
+          "leaf_addresses": {
+            "a": "0",
+            "b": "10",
+            "c": "11"
+          }
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 3.4374999813735485e-05
+      },
+      {
+        "id": "unsuppressed-path",
+        "kind": "hull",
+        "observed": {
+          "hull": [
+            "",
+            "0",
+            "1",
+            "11",
+            "111"
+          ],
+          "address_hull": [
+            "",
+            "0",
+            "1",
+            "11",
+            "111"
+          ],
+          "connected": true,
+          "convex": true,
+          "root_exists": true,
+          "root_in_hull": true,
+          "leaf_addresses": {
+            "a": "0",
+            "x": "10",
+            "y": "110",
+            "b": "111"
+          }
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [
+          {
+            "id": "suppressed-addresses-used-as-original",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "hull",
+                "expected": [
+                  "",
+                  "0",
+                  "1"
+                ],
+                "observed": [
+                  "",
+                  "0",
+                  "1",
+                  "11",
+                  "111"
+                ],
+                "residual": null
+              }
+            ]
+          }
+        ],
+        "elapsed_seconds": 4.749999970954377e-05
+      },
+      {
+        "id": "missing-label",
+        "kind": "error",
+        "observed": {
+          "error": "unknown label"
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 2.049999966402538e-05
+      },
+      {
+        "id": "duplicate-original-label",
+        "kind": "error",
+        "observed": {
+          "error": "duplicate label"
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 1.3082999885227764e-05
+      },
+      {
+        "id": "unary-input",
+        "kind": "error",
+        "observed": {
+          "error": "binary node required"
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 3.250000190746505e-06
+      },
+      {
+        "id": "triple-helly-no-common-edge",
+        "kind": "helly",
+        "observed": {
+          "pairwise": [
+            true,
+            true,
+            true
+          ],
+          "connected": [
+            true,
+            true,
+            true
+          ],
+          "common_vertices": [
+            "1"
+          ],
+          "common_edges": [],
+          "common_vertex_exists": true,
+          "common_edge_exists": false,
+          "premise": true,
+          "selector": "1"
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [
+          {
+            "id": "triple-common-edge-overclaim",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "common_edge_exists",
+                "expected": true,
+                "observed": false,
+                "residual": null
+              }
+            ]
+          },
+          {
+            "id": "shared-root-overclaim",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "selector",
+                "expected": "",
+                "observed": "1",
+                "residual": null
+              }
+            ]
+          }
+        ],
+        "elapsed_seconds": 9.541700001136633e-05
+      },
+      {
+        "id": "triple-helly-shared-root",
+        "kind": "helly",
+        "observed": {
+          "pairwise": [
+            true,
+            true,
+            true
+          ],
+          "connected": [
+            true,
+            true,
+            true
+          ],
+          "common_vertices": [
+            "",
+            "0",
+            "1"
+          ],
+          "common_edges": [
+            [
+              "",
+              "0"
+            ],
+            [
+              "",
+              "1"
+            ]
+          ],
+          "common_vertex_exists": true,
+          "common_edge_exists": true,
+          "premise": true,
+          "selector": ""
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 5.220799994276604e-05
+      },
+      {
+        "id": "helly-disconnected-hypothesis",
+        "kind": "sets_helly",
+        "observed": {
+          "pairwise": [
+            true,
+            true,
+            true
+          ],
+          "connected": [
+            false,
+            false,
+            false
+          ],
+          "common_vertices": [],
+          "common_edges": [],
+          "common_vertex_exists": false,
+          "common_edge_exists": false,
+          "premise": false,
+          "selector": null
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [
+          {
+            "id": "drop-connectedness",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "common_vertex_exists",
+                "expected": true,
+                "observed": false,
+                "residual": null
+              }
+            ]
+          }
+        ],
+        "elapsed_seconds": 2.5834000098257093e-05
+      },
+      {
+        "id": "helly-empty-hypothesis",
+        "kind": "helly",
+        "observed": {
+          "pairwise": [
+            false,
+            false,
+            false
+          ],
+          "connected": [
+            false,
+            false,
+            false
+          ],
+          "common_vertices": [],
+          "common_edges": [],
+          "common_vertex_exists": false,
+          "common_edge_exists": false,
+          "premise": false,
+          "selector": null
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [
+          {
+            "id": "empty-triple-vertex",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "common_vertex_exists",
+                "expected": true,
+                "observed": false,
+                "residual": null
+              }
+            ]
+          }
+        ],
+        "elapsed_seconds": 1.44999999065476e-05
+      },
+      {
+        "id": "root-two-regions",
+        "kind": "regions",
+        "observed": {
+          "leaf_regions": [
+            [
+              "a"
+            ],
+            [
+              "b",
+              "c"
+            ]
+          ],
+          "leafless_components": [],
+          "r": 2,
+          "overlap_guard": true,
+          "covers_parent_labels": true,
+          "avoiding_subsets": [
+            [
+              "a"
+            ],
+            [
+              "b"
+            ],
+            [
+              "c"
+            ],
+            [
+              "b",
+              "c"
+            ]
+          ],
+          "equivalence": true,
+          "equivalence_failures": [],
+          "coincidence": null,
+          "full_components": [
+            {
+              "vertices": [
+                "0"
+              ],
+              "parent_labels": [
+                "a"
+              ]
+            },
+            {
+              "vertices": [
+                "1",
+                "10",
+                "11"
+              ],
+              "parent_labels": [
+                "b",
+                "c"
+              ]
+            }
+          ]
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [
+          {
+            "id": "root-given-third-region",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "r",
+                "expected": 3,
+                "observed": 2,
+                "residual": -1
+              }
+            ]
+          },
+          {
+            "id": "cross-root-piece-called-avoiding",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "avoiding_subsets",
+                "expected": [
+                  [
+                    "a"
+                  ],
+                  [
+                    "b"
+                  ],
+                  [
+                    "c"
+                  ],
+                  [
+                    "a",
+                    "b"
+                  ],
+                  [
+                    "b",
+                    "c"
+                  ]
+                ],
+                "observed": [
+                  [
+                    "a"
+                  ],
+                  [
+                    "b"
+                  ],
+                  [
+                    "c"
+                  ],
+                  [
+                    "b",
+                    "c"
+                  ]
+                ],
+                "residual": null
+              }
+            ]
+          }
+        ],
+        "elapsed_seconds": 8.279199983007857e-05
+      },
+      {
+        "id": "internal-three-regions",
+        "kind": "regions",
+        "observed": {
+          "leaf_regions": [
+            [
+              "a"
+            ],
+            [
+              "b"
+            ],
+            [
+              "c"
+            ]
+          ],
+          "leafless_components": [],
+          "r": 3,
+          "overlap_guard": true,
+          "covers_parent_labels": true,
+          "avoiding_subsets": [
+            [
+              "a"
+            ],
+            [
+              "b"
+            ],
+            [
+              "c"
+            ]
+          ],
+          "equivalence": true,
+          "equivalence_failures": [],
+          "coincidence": null,
+          "full_components": [
+            {
+              "vertices": [
+                "",
+                "0"
+              ],
+              "parent_labels": [
+                "a"
+              ]
+            },
+            {
+              "vertices": [
+                "10"
+              ],
+              "parent_labels": [
+                "b"
+              ]
+            },
+            {
+              "vertices": [
+                "11"
+              ],
+              "parent_labels": [
+                "c"
+              ]
+            }
+          ]
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 5.999999984851456e-05
+      },
+      {
+        "id": "vertex-outside-parent-hull",
+        "kind": "regions",
+        "observed": {
+          "leaf_regions": [
+            [
+              "b",
+              "c"
+            ]
+          ],
+          "leafless_components": [],
+          "r": 1,
+          "overlap_guard": false,
+          "covers_parent_labels": true,
+          "avoiding_subsets": [
+            [
+              "b"
+            ],
+            [
+              "c"
+            ],
+            [
+              "b",
+              "c"
+            ]
+          ],
+          "equivalence": true,
+          "equivalence_failures": [],
+          "coincidence": null,
+          "full_components": [
+            {
+              "vertices": [
+                "1",
+                "10",
+                "11"
+              ],
+              "parent_labels": [
+                "b",
+                "c"
+              ]
+            }
+          ]
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [
+          {
+            "id": "missing-hull-premise-r2",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "r",
+                "expected": 2,
+                "observed": 1,
+                "residual": -1
+              }
+            ]
+          }
+        ],
+        "elapsed_seconds": 2.870799971788074e-05
+      },
+      {
+        "id": "removed-labelled-leaf",
+        "kind": "regions",
+        "observed": {
+          "leaf_regions": [
+            [
+              "b",
+              "c"
+            ]
+          ],
+          "leafless_components": [],
+          "r": 1,
+          "overlap_guard": false,
+          "covers_parent_labels": false,
+          "avoiding_subsets": [
+            [
+              "b"
+            ],
+            [
+              "c"
+            ],
+            [
+              "b",
+              "c"
+            ]
+          ],
+          "equivalence": true,
+          "equivalence_failures": [],
+          "coincidence": null,
+          "full_components": [
+            {
+              "vertices": [
+                "",
+                "1",
+                "10",
+                "11"
+              ],
+              "parent_labels": [
+                "b",
+                "c"
+              ]
+            }
+          ]
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [
+          {
+            "id": "labelled-overlap-guard",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "overlap_guard",
+                "expected": true,
+                "observed": false,
+                "residual": null
+              }
+            ]
+          }
+        ],
+        "elapsed_seconds": 4.516700028034393e-05
+      },
+      {
+        "id": "leafless-middle-two-regions",
+        "kind": "regions",
+        "observed": {
+          "leaf_regions": [
+            [
+              "a"
+            ],
+            [
+              "b"
+            ]
+          ],
+          "leafless_components": [
+            [
+              "1"
+            ]
+          ],
+          "r": 2,
+          "overlap_guard": true,
+          "covers_parent_labels": true,
+          "avoiding_subsets": [
+            [
+              "a"
+            ],
+            [
+              "b"
+            ]
+          ],
+          "equivalence": true,
+          "equivalence_failures": [],
+          "coincidence": true,
+          "full_components": [
+            {
+              "vertices": [
+                "0"
+              ],
+              "parent_labels": [
+                "a"
+              ]
+            },
+            {
+              "vertices": [
+                "1"
+              ],
+              "parent_labels": []
+            },
+            {
+              "vertices": [
+                "111"
+              ],
+              "parent_labels": [
+                "b"
+              ]
+            }
+          ]
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [
+          {
+            "id": "leafless-middle-counted-as-color",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "r",
+                "expected": 3,
+                "observed": 2,
+                "residual": -1
+              }
+            ]
+          },
+          {
+            "id": "coincident-pieces-disagree",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "coincidence",
+                "expected": false,
+                "observed": true,
+                "residual": null
+              }
+            ]
+          }
+        ],
+        "elapsed_seconds": 4.5416999910230516e-05
+      },
+      {
+        "id": "three-region-noncoincidence",
+        "kind": "regions",
+        "observed": {
+          "leaf_regions": [
+            [
+              "a"
+            ],
+            [
+              "b"
+            ],
+            [
+              "x"
+            ]
+          ],
+          "leafless_components": [],
+          "r": 3,
+          "overlap_guard": true,
+          "covers_parent_labels": true,
+          "avoiding_subsets": [
+            [
+              "a"
+            ],
+            [
+              "b"
+            ],
+            [
+              "x"
+            ]
+          ],
+          "equivalence": true,
+          "equivalence_failures": [],
+          "coincidence": false,
+          "full_components": [
+            {
+              "vertices": [
+                "0"
+              ],
+              "parent_labels": [
+                "a"
+              ]
+            },
+            {
+              "vertices": [
+                "1",
+                "10"
+              ],
+              "parent_labels": [
+                "x"
+              ]
+            },
+            {
+              "vertices": [
+                "111"
+              ],
+              "parent_labels": [
+                "b"
+              ]
+            }
+          ],
+          "piece_occupancy": [
+            true,
+            false
+          ]
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [
+          {
+            "id": "drop-two-region-hypothesis",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "coincidence",
+                "expected": true,
+                "observed": false,
+                "residual": null
+              }
+            ]
+          }
+        ],
+        "elapsed_seconds": 6.62919997012068e-05
+      },
+      {
+        "id": "actual-chain-two-regions",
+        "kind": "chain",
+        "observed": {
+          "overlap_edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "endpoints_disjoint": true,
+          "chosen_overlap_vertices": true,
+          "middle_r": 2,
+          "middle_leafless_components": [
+            [
+              "1",
+              "11"
+            ]
+          ],
+          "middle_coincidence": true,
+          "middle": {
+            "leaf_regions": [
+              [
+                "a"
+              ],
+              [
+                "b"
+              ]
+            ],
+            "leafless_components": [
+              [
+                "1",
+                "11"
+              ]
+            ],
+            "r": 2,
+            "overlap_guard": true,
+            "covers_parent_labels": true,
+            "avoiding_subsets": [
+              [
+                "a"
+              ],
+              [
+                "b"
+              ]
+            ],
+            "equivalence": true,
+            "equivalence_failures": [],
+            "coincidence": true,
+            "full_components": [
+              {
+                "vertices": [
+                  "0",
+                  "00"
+                ],
+                "parent_labels": [
+                  "a"
+                ]
+              },
+              {
+                "vertices": [
+                  "1",
+                  "11"
+                ],
+                "parent_labels": []
+              },
+              {
+                "vertices": [
+                  "1110"
+                ],
+                "parent_labels": [
+                  "b"
+                ]
+              }
+            ]
+          },
+          "original_hulls": [
+            [
+              "",
+              "0",
+              "01",
+              "1",
+              "10"
+            ],
+            [
+              "",
+              "0",
+              "00",
+              "1",
+              "11",
+              "111",
+              "1110"
+            ],
+            [
+              "11",
+              "110",
+              "111",
+              "1111"
+            ]
+          ]
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [
+          {
+            "id": "coincident-chain-needs-third-color",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "middle_r",
+                "expected": 3,
+                "observed": 2,
+                "residual": -1
+              }
+            ]
+          }
+        ],
+        "elapsed_seconds": 7.137500006137998e-05
+      },
+      {
+        "id": "actual-chain-three-regions",
+        "kind": "chain",
+        "observed": {
+          "overlap_edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "endpoints_disjoint": true,
+          "chosen_overlap_vertices": true,
+          "middle_r": 3,
+          "middle_leafless_components": [],
+          "middle_coincidence": false,
+          "middle": {
+            "leaf_regions": [
+              [
+                "a"
+              ],
+              [
+                "b"
+              ],
+              [
+                "m"
+              ]
+            ],
+            "leafless_components": [],
+            "r": 3,
+            "overlap_guard": true,
+            "covers_parent_labels": true,
+            "avoiding_subsets": [
+              [
+                "a"
+              ],
+              [
+                "b"
+              ],
+              [
+                "m"
+              ]
+            ],
+            "equivalence": true,
+            "equivalence_failures": [],
+            "coincidence": false,
+            "full_components": [
+              {
+                "vertices": [
+                  "0",
+                  "00"
+                ],
+                "parent_labels": [
+                  "a"
+                ]
+              },
+              {
+                "vertices": [
+                  "1",
+                  "11",
+                  "110",
+                  "111"
+                ],
+                "parent_labels": [
+                  "m"
+                ]
+              },
+              {
+                "vertices": [
+                  "11110"
+                ],
+                "parent_labels": [
+                  "b"
+                ]
+              }
+            ],
+            "piece_occupancy": [
+              true,
+              false
+            ]
+          },
+          "original_hulls": [
+            [
+              "",
+              "0",
+              "01",
+              "1",
+              "10"
+            ],
+            [
+              "",
+              "0",
+              "00",
+              "1",
+              "11",
+              "110",
+              "111",
+              "1111",
+              "11110"
+            ],
+            [
+              "111",
+              "1110",
+              "1111",
+              "11111"
+            ]
+          ],
+          "piece_occupancy": [
+            true,
+            false
+          ]
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [
+          {
+            "id": "three-region-chain-diagonal-overclaim",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "middle_coincidence",
+                "expected": true,
+                "observed": false,
+                "residual": null
+              }
+            ]
+          }
+        ],
+        "elapsed_seconds": 0.00019220900003347197
+      },
+      {
+        "id": "valid-separated-state",
+        "kind": "state",
+        "observed": {
+          "valid": true,
+          "vertex_owners": [
+            [],
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "max_parent_owners": 1,
+          "components": 2,
+          "additional_cuts": 0
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 8.512499971402576e-05
+      },
+      {
+        "id": "invalid-shared-root-state",
+        "kind": "state",
+        "observed": {
+          "valid": false,
+          "vertex_owners": [
+            [
+              0,
+              1
+            ]
+          ],
+          "max_parent_owners": 2,
+          "reason": "target hull overlap"
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [
+          {
+            "id": "ownership-without-validity",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "valid",
+                "expected": true,
+                "observed": false,
+                "residual": null
+              }
+            ]
+          }
+        ],
+        "elapsed_seconds": 5.437499976324034e-05
+      },
+      {
+        "id": "invalid-cross-parent-piece",
+        "kind": "state",
+        "observed": {
+          "valid": false,
+          "reason": "piece has no unique source parent"
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 1.770900007613818e-05
+      },
+      {
+        "id": "invalid-rooted-restriction-state",
+        "kind": "state",
+        "observed": {
+          "valid": false,
+          "vertex_owners": [
+            [
+              0
+            ]
+          ],
+          "max_parent_owners": 1,
+          "reason": "rooted restriction mismatch"
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 4.6582999857491814e-05
+      },
+      {
+        "id": "state-empty",
+        "kind": "state",
+        "observed": {
+          "valid": true,
+          "vertex_owners": [],
+          "max_parent_owners": 0,
+          "components": 0,
+          "additional_cuts": 0
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 9.458000022277702e-06
+      },
+      {
+        "id": "state-singleton-root",
+        "kind": "state",
+        "observed": {
+          "valid": true,
+          "vertex_owners": [
+            [
+              0
+            ]
+          ],
+          "max_parent_owners": 1,
+          "components": 1,
+          "additional_cuts": 0
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 1.6666999727021903e-05
+      },
+      {
+        "id": "chain-clear-middle-diagonal",
+        "kind": "state",
+        "observed": {
+          "valid": true,
+          "vertex_owners": [
+            [
+              0
+            ],
+            [
+              2
+            ]
+          ],
+          "max_parent_owners": 1,
+          "components": 4,
+          "additional_cuts": 1
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 0.00010025000028690556
+      },
+      {
+        "id": "chain-clear-endpoints-diagonal",
+        "kind": "state",
+        "observed": {
+          "valid": true,
+          "vertex_owners": [
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ],
+          "max_parent_owners": 1,
+          "components": 5,
+          "additional_cuts": 2
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 8.704100036993623e-05
+      },
+      {
+        "id": "one-original-source-cut",
+        "kind": "cuts",
+        "observed": {
+          "partition": [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "c",
+              "d"
+            ]
+          ],
+          "empty_components": [],
+          "graph_components": 2,
+          "paid": 1,
+          "nonredundant": true
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 2.9625000024680048e-05
+      },
+      {
+        "id": "leafless-root-payment-trap",
+        "kind": "cuts",
+        "observed": {
+          "partition": [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "c",
+              "d"
+            ]
+          ],
+          "empty_components": [
+            [
+              ""
+            ]
+          ],
+          "graph_components": 3,
+          "paid": 2,
+          "nonredundant": false
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [
+          {
+            "id": "empty-region-earns-paid-component",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "nonredundant",
+                "expected": true,
+                "observed": false,
+                "residual": null
+              }
+            ]
+          }
+        ],
+        "elapsed_seconds": 2.4292000034620287e-05
+      },
+      {
+        "id": "invented-suppressed-source-edge",
+        "kind": "error",
+        "observed": {
+          "error": "nonexistent edge"
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 1.2791999779437901e-05
+      },
+      {
+        "id": "real-unsuppressed-source-edge",
+        "kind": "cuts",
+        "observed": {
+          "partition": [
+            [
+              "a"
+            ],
+            [
+              "b",
+              "x",
+              "y"
+            ]
+          ],
+          "empty_components": [],
+          "graph_components": 2,
+          "paid": 1,
+          "nonredundant": true
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [],
+        "elapsed_seconds": 1.9958000393671682e-05
+      },
+      {
+        "id": "distinct-source-cut-union",
+        "kind": "forest_cuts",
+        "observed": {
+          "paid": 2,
+          "components": 5,
+          "partition": [
+            [
+              "u"
+            ],
+            [
+              "x"
+            ],
+            [
+              "y"
+            ],
+            [
+              "z"
+            ],
+            [
+              "a",
+              "b"
+            ]
+          ],
+          "valid": true,
+          "source_cuts": [
+            {
+              "partition": [
+                [
+                  "u"
+                ],
+                [
+                  "x"
+                ]
+              ],
+              "empty_components": [],
+              "graph_components": 2,
+              "paid": 1,
+              "nonredundant": true
+            },
+            {
+              "partition": [
+                [
+                  "a",
+                  "b"
+                ]
+              ],
+              "empty_components": [],
+              "graph_components": 1,
+              "paid": 0,
+              "nonredundant": true
+            },
+            {
+              "partition": [
+                [
+                  "y"
+                ],
+                [
+                  "z"
+                ]
+              ],
+              "empty_components": [],
+              "graph_components": 2,
+              "paid": 1,
+              "nonredundant": true
+            }
+          ],
+          "source_qualified_edges": [
+            [
+              0,
+              "",
+              "0"
+            ],
+            [
+              2,
+              "",
+              "0"
+            ]
+          ]
+        },
+        "clean_passed": true,
+        "failures": [],
+        "plants": [
+          {
+            "id": "source-identity-forgotten-in-union",
+            "caught": true,
+            "exact_failures": [
+              {
+                "field": "paid",
+                "expected": 1,
+                "observed": 2,
+                "residual": 1
+              }
+            ]
+          }
+        ],
+        "elapsed_seconds": 0.00012908400003652787
+      }
+    ],
+    "elapsed_seconds": 0.001900457999909122,
+    "all_passed": true
+  }
+}

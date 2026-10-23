@@ -1,0 +1,7 @@
+# Timing record
+
+Fresh pilot graph controls and fallback enumeration executed through bootloops-python. 27 scoped checks (exact count retained in receipt), four-label minimum plant and five-label fallback: total0.0062s measured inside process, wall0.076s. No candidate contact. Larger fixed families retain the5s per-fixture cap and4140 partition cap; expected n6/7/8 Bell counts203/877/4140. Projection is unknown for larger regime; run each bounded slice and retain timing rather than extrapolate blindly. Real progress is completed fixture receipt with exact denominator, not CPU activity. Orientation rows are bounded32/64 per family and checkpointed separately.
+
+Graph measurements: cside2 n6 0.0148s; bside-d3 n6 0.0422s; d4 n7 0.4848s; d5 n8 0.8268s. All five expected minima3 and complete bounded original-AF enumerations passed. Orientation geometry/guard/source readouts finished32/32/64/64/64 rows in0.016–0.056s per family. Denominators are in receipts.
+
+Fresh Std-only producer pilot single clean compile+audit:5.724s internal/5.959s wall,1 scoped check passed. The battery has9 remaining compiles and14 auditor invocations (including incompatible-value both-order probes), each30s capped; rough linear startup-inclusive projection from pilot is<3minutes, uncertain because each probe has different stored payload. Run asynchronously with per-command checkpoint, no unmeasured long farm. No scientific acceptance from exit status alone.

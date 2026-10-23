@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.43787883299955865,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.4492806660000497,
+      "resource_stop": null,
+      "log_sha256": "589483ebf88e872686123ae7c225db82f0d43cf7365c2ca5b73d23cb467c853c"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0019026669997401768,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Hard2GraphSource",
+      "source_sha256": "eea778ef72cfe1cfaf8f73b0028c8f3a9bac7c7d57a8b7136212c0a11ca1f6fa",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.16187666699988768,
+      "resource_stop": null,
+      "log_sha256": "0d4652b3d2d5efe156d065623224ef0f382a41e4499834da44bc92f6d510421f"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Hard2GraphSource', \"/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSource.lean:1:0: error: unknown module prefix 'Hard2PairGeometrySource'\\n\\nNo directory 'Hard2PairGeometrySource' or file 'Hard2PairGeometrySource.olean' in the search path entries:\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z\\n/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/lib/lean\\n\"))"
+}

@@ -1,0 +1,24 @@
+List.filter_append_perm.{u_1} {α : Type u_1} (p : α → Bool) (l : List α) :
+  (List.filter p l ++ List.filter (fun x => !p x) l).Perm l
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/build/Probe2.lean:3:7: error(lean.unknownIdentifier): Unknown constant `List.filter_append_filter_neg_eq`
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/build/Probe2.lean:4:7: error(lean.unknownIdentifier): Unknown constant `List.perm_filter_append_filter_neg`
+List.Perm.filter.{u_1} {α : Type u_1} (p : α → Bool) {l₁ l₂ : List α} (s : l₁.Perm l₂) :
+  (List.filter p l₁).Perm (List.filter p l₂)
+List.Perm.flatten.{u_1} {α : Type u_1} {l₁ l₂ : List (List α)} (h : l₁.Perm l₂) : l₁.flatten.Perm l₂.flatten
+List.Perm.all_eq.{u_1} {α : Type u_1} {l₁ l₂ : List α} {f : α → Bool} (hp : l₁.Perm l₂) : l₁.all f = l₂.all f
+List.Perm.pairwise_iff.{u_1} {α : Type u_1} {R : α → α → Prop} (S : ∀ {x y : α}, R x y → R y x) {l₁ l₂ : List α}
+  (_p : l₁.Perm l₂) : List.Pairwise R l₁ ↔ List.Pairwise R l₂
+List.Perm.length_eq.{u_1} {α : Type u_1} {l₁ l₂ : List α} (p : l₁.Perm l₂) : l₁.length = l₂.length
+List.Perm.append_right.{u_1} {α : Type u_1} {l₁ l₂ : List α} (t₁ : List α) (p : l₁.Perm l₂) : (l₁ ++ t₁).Perm (l₂ ++ t₁)
+List.Perm.append_left.{u_1} {α : Type u_1} {t₁ t₂ : List α} (l : List α) : t₁.Perm t₂ → (l ++ t₁).Perm (l ++ t₂)
+List.Perm.trans.{u} {α : Type u} {l₁ l₂ l₃ : List α} : l₁.Perm l₂ → l₂.Perm l₃ → l₁.Perm l₃
+List.perm_middle.{u_1} {α : Type u_1} {a : α} {l₁ l₂ : List α} : (l₁ ++ a :: l₂).Perm (a :: (l₁ ++ l₂))
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/build/Probe2.lean:14:7: error(lean.unknownIdentifier): Unknown constant `List.Perm.middle`
+List.Perm.mem_iff.{u_1} {α : Type u_1} {a : α} {l₁ l₂ : List α} (p : l₁.Perm l₂) : a ∈ l₁ ↔ a ∈ l₂
+List.Perm.nodup_iff.{u_1} {α : Type u_1} {l₁ l₂ : List α} : l₁.Perm l₂ → (l₁.Nodup ↔ l₂.Nodup)
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/build/Probe2.lean:17:7: error(lean.unknownIdentifier): Unknown constant `List.nodup_flatten`
+List.nodup_iff_count.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {l : List α} : l.Nodup ↔ ∀ (a : α), List.count a l ≤ 1
+List.Pairwise.imp_of_mem.{u_1} {α : Type u_1} {l : List α} {R S : α → α → Prop}
+  (H : ∀ {a b : α}, a ∈ l → b ∈ l → R a b → S a b) (p : List.Pairwise R l) : List.Pairwise S l
+List.perm_iff_count.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {l₁ l₂ : List α} :
+  l₁.Perm l₂ ↔ ∀ (a : α), List.count a l₁ = List.count a l₂

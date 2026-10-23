@@ -1,0 +1,28 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/FourTransitions.lean:40:2: error: Tactic `generalize` failed: result is not type correct
+  ∀ (x : Option I),
+    (∃ x, ExactRecovery (closeBoth (restrict A h false) (restrict A h true)) A (splitMap A)) ∨
+      (∃ o ho hl,
+          ¬Live A true o ∧
+            ExactRecovery (extendLeft (restrict A h false) (restrict A h true) ⟨o, hl⟩ ⋯) A (splitMap A)) ∨
+        (∃ o ho hr,
+            ¬Live A false o ∧
+              ExactRecovery (extendRight (restrict A h false) (restrict A h true) ⟨o, hr⟩ ⋯) A (splitMap A)) ∨
+          ∃ o ho hl hr, ExactRecovery (rejoin A h o ho hl hr) A (mergeMap A o hr)
+
+α I : Type
+l r : BTree α
+A : Family (l.node r) I
+h : OpenBranchLive A
+⊢ (∃ x, ExactRecovery (closeBoth (restrict A h false) (restrict A h true)) A (splitMap A)) ∨
+    (∃ o ho hl,
+        ¬Live A true o ∧ ExactRecovery (extendLeft (restrict A h false) (restrict A h true) ⟨o, hl⟩ ⋯) A (splitMap A)) ∨
+      (∃ o ho hr,
+          ¬Live A false o ∧
+            ExactRecovery (extendRight (restrict A h false) (restrict A h true) ⟨o, hr⟩ ⋯) A (splitMap A)) ∨
+        ∃ o ho hl hr, ExactRecovery (rejoin A h o ho hl hr) A (mergeMap A o hr)
+'TripleDP.Transitions.Restriction.exact_recovery' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.Transitions.Restriction.represents_normal' does not depend on any axioms
+'TripleDP.Transitions.Restriction.four_transition_recovery' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

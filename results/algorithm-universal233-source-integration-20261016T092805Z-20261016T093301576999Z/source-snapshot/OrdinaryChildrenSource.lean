@@ -1,0 +1,147 @@
+import ForestArmBinding
+import GeneralAgreementWork
+import HighTrace
+namespace OrdinaryDispatch.FullSourceWork
+open RMAF ForestState Universal233 Universal233.CherryBranching
+open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion
+open Universal233.Rule5SelectedLocalWork
+
+/-- The selected package's runChildren is the same original ordinary caller.
+The accepted predicate and list score are bound explicitly across contexts. -/
+theorem ordinary_run_children_value (actual : GenericForest.FrontierWork.Ordinary) (fee : ForestQuery→Nat)
+ (T S : Tree) (q : Nat) (cs : List Child) :
+ (runChildrenMeter actual fee (fun F=>(agreementMeter T S F).work) T S q cs).value=
+ OrdinaryDispatch.runChildren actual T S q cs := by
+ rw [run_children_value]
+ rfl
+
+def branchesMeter (S : Tree) (a b : Nat) : Rule5LocalWork.Measured (List Child) :=
+ let x:=singletonChildMeter S a;let y:=singletonChildMeter S b;let p:=pendantChildMeter S a b
+ ⟨[x.value,y.value,p.value],x.work+y.work+p.work+4⟩
+
+theorem branchesMeter_value (S : Tree) (a b : Nat) :
+ (branchesMeter S a b).value=branches S a b := by
+ simp only [branchesMeter,branches,singleton_child_value,pendant_child_value]
+
+def branchesBudget (n : Nat) :=2*singletonChildBudget n+pendantChildBudget n+4
+
+theorem branchesMeter_work (S : Tree) (a b : Nat) :
+ (branchesMeter S a b).work≤branchesBudget (leaves S).length := by
+ have x:=singleton_child_work S a
+ have y:=singleton_child_work S b
+ have p:=pendant_child_work S a b
+ simp only [branchesMeter,branchesBudget]
+ omega
+
+/-- The checker fee at every affordable answer follows from the actual forest
+solver's checked payload. No agreement-work assumption is supplied. -/
+theorem ordinary_children_checker (T S : Tree)
+ (hp : DepthOne.proper T S=true) (F : List (List Nat))
+ (flat : F.flatten.length≤(leaves T).length) (blocks : F.length≤(leaves T).length) :
+ (agreementMeter T S F).work≤agreementK (leaves T).length := by
+ have eq:=((DepthOne.proper_iff T S).1 hp).2.2.length_eq
+ have tn:=treeNodes_leafCount T
+ have sn:=treeNodes_leafCount S
+ apply measuredAgreement_K T S (leaves T).length (by omega) (by omega) F
+ unfold Rule5LocalWork.cells
+ omega
+
+theorem ordinary_run_children_local (actual : GenericForest.FrontierWork.Ordinary) (fee : ForestQuery→Nat)
+ (T S : Tree) (q : Nat) (cs : List Child) (hp : DepthOne.proper T S=true) :
+ (runChildrenMeter actual fee (fun F=>(agreementMeter T S F).work) T S q cs).localWork≤
+ (agreementK (leaves T).length+3*(leaves T).length+16)*cs.length+4 := by
+ apply run_children_local actual fee _ T S q cs _ ((DepthOne.proper_iff T S).1 hp).1
+ intro F flat blocks _
+ exact ordinary_children_checker T S hp F flat blocks
+
+/-- The full forest counter is charged once for every literal affordable job.
+The underlying evaluator retains failures and duplicate occurrences. -/
+def childForestDebit (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T : Tree) (q : Nat) (cs : List Child) : Nat :=
+ ((Rule5OrdinaryDispatch.forestJobs T q cs).map fun j=>forestWork actual W j.target j.sources j.residual).sum
+
+def runChildrenSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree) (q : Nat)
+ (cs : List Child) : WholeSourceWork.Charged (Option (List (List Nat))) :=
+ let r:=runChildrenMeter actual (fun _=>0) (fun F=>(agreementMeter T S F).work) T S q cs
+ ⟨r.value,r.localWork+childForestDebit actual W T q cs⟩
+
+theorem runChildrenSource_value (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree) (q : Nat) (cs : List Child) :
+ (runChildrenSource actual W T S q cs).value=OrdinaryDispatch.runChildren actual T S q cs :=
+ ordinary_run_children_value actual _ T S q cs
+
+theorem children_recursive_debit (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T : Tree) (q : Nat) (cs : List Child) :
+ (childrenAnswersMeter actual (fun j=>forestWork actual W (some T) j.child.sourceForest j.budget) T q cs).recursiveWork=
+ childForestDebit actual W T q cs := by
+ induction cs with
+ | nil=>rfl
+ | cons c cs ih=>
+  by_cases h:c.paid≤q
+  · simpa only [childrenAnswersMeter,childExecutionMeter,h,ite_true,childForestDebit,
+    Rule5OrdinaryDispatch.forestJobs,Rule5OrdinaryDispatch.jobFor,remaining,h,ite_true,
+    List.filterMap_cons,Option.map_some,List.map_cons,List.sum_cons] using
+    congrArg (fun n=>forestWork actual W (some T) c.sourceForest (q-c.paid)+n) ih
+  · simpa only [childrenAnswersMeter,childExecutionMeter,h,ite_false,childForestDebit,
+    Rule5OrdinaryDispatch.forestJobs,Rule5OrdinaryDispatch.jobFor,remaining,h,ite_false,
+    List.filterMap_cons,Option.map_none,Nat.zero_add] using ih
+
+theorem childForestDebit_split (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree) (q : Nat) (cs : List Child) :
+ childForestDebit actual W T q cs=childForestDebit actual (fun _ _ _=>0) T q cs+
+ queryWork W (childrenTrace actual T S q cs).queries := by
+ apply Rat.natCast_inj.1
+ rw [Rat.natCast_add]
+ simp only [childForestDebit,nat_sum_cast]
+ have point:=List.map_congr_left (l:=Rule5OrdinaryDispatch.forestJobs T q cs)
+  (f:=fun j=>(forestWork actual W j.target j.sources j.residual:Rat))
+  (g:=fun j=>(forestWork actual (fun _ _ _=>0) j.target j.sources j.residual:Rat)+
+   (queryWork W (frontier actual j.target j.sources j.residual):Rat))
+  (fun j _=>by rw [forestWork_split,Rat.natCast_add])
+ rw [point,rat_sum_map_add,queryWork_cast]
+ congr 1
+ rw [show (childrenTrace actual T S q cs).queries=
+  (Rule5OrdinaryDispatch.forestJobs T q cs).flatMap (fun j=>frontier actual j.target j.sources j.residual) from rfl,
+  queryWorkRat_flatMap]
+ simp only [queryWork_cast]
+
+theorem runChildrenSource_split (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree) (q : Nat) (cs : List Child) :
+ (runChildrenSource actual W T S q cs).work=
+ (runChildrenSource actual (fun _ _ _=>0) T S q cs).work+
+ queryWork W (childrenTrace actual T S q cs).queries := by
+ simp only [runChildrenSource]
+ rw [childForestDebit_split actual W T S q cs]
+ omega
+
+/-- Constructor work is paid separately from execution, including unaffordable
+children. Only the forest recursive debit depends on the ordinary work table. -/
+def oneSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree) (q a b : Nat) :
+ WholeSourceWork.Charged (Option (List (List Nat))) :=
+ let c:=pendantChildMeter S a b
+ let r:=runChildrenSource actual W T S q [c.value]
+ ⟨r.value,c.work+r.work+2⟩
+
+def highSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree) (q a b : Nat) :
+ WholeSourceWork.Charged (Option (List (List Nat))) :=
+ let c:=branchesMeter S a b
+ let r:=runChildrenSource actual W T S q c.value
+ ⟨r.value,c.work+r.work+2⟩
+
+theorem oneSource_value (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree) (q a b : Nat) :
+ (oneSource actual W T S q a b).value=OrdinaryDispatch.runChildren actual T S q [pendantChild S a b] := by
+ simp only [oneSource,runChildrenSource_value,pendant_child_value]
+
+theorem highSource_value (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree) (q a b : Nat) :
+ (highSource actual W T S q a b).value=OrdinaryDispatch.runChildren actual T S q (branches S a b) := by
+ simp only [highSource,runChildrenSource_value,branchesMeter_value]
+
+theorem oneSource_split (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree) (q a b : Nat) :
+ (oneSource actual W T S q a b).work=(oneSource actual (fun _ _ _=>0) T S q a b).work+
+ queryWork W (childrenTrace actual T S q [pendantChild S a b]).queries := by
+ simp only [oneSource,pendant_child_value]
+ rw [runChildrenSource_split actual W T S q [pendantChild S a b]]
+ omega
+
+theorem highSource_split (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree) (q a b : Nat) :
+ (highSource actual W T S q a b).work=(highSource actual (fun _ _ _=>0) T S q a b).work+
+ queryWork W (childrenTrace actual T S q (branches S a b)).queries := by
+ simp only [highSource,branchesMeter_value]
+ rw [runChildrenSource_split actual W T S q (branches S a b)]
+ omega
+end OrdinaryDispatch.FullSourceWork

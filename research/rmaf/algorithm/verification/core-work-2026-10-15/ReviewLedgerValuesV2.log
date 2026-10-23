@@ -1,0 +1,29 @@
+LEDGER_COMPARE {"id":"empty-left-append-call-still-present","metrics":{},"value":[1,2]}
+LEDGER_COMPARE {"id":"nonempty-left-append-work","metrics":{},"value":[10,11,12,20]}
+LEDGER_COMPARE {"id":"combine-materializes-both-left-lists","metrics":{"copied":5},"value":{"childAttempts":9,"outputs_length":5,"pruned":13,"refusals_length":3,"visited":5}}
+LEDGER_COMPARE {"id":"combine-empty-left-lists","metrics":{"copied":0},"value":{"childAttempts":0,"outputs_length":1,"pruned":0,"refusals_length":1,"visited":0}}
+LEDGER_COMPARE {"id":"combine-left-output-length-eight","metrics":{"copied":8},"value":{"childAttempts":0,"outputs_length":9,"pruned":0,"refusals_length":0,"visited":0}}
+LEDGER_COMPARE {"id":"combine-left-output-length-sixteen","metrics":{"copied":16},"value":{"childAttempts":0,"outputs_length":17,"pruned":0,"refusals_length":0,"visited":0}}
+LEDGER_COMPARE {"id":"singleton-fromTree-color-oracle","metrics":{"footprint":2,"oracleCalls":1},"value":{"groups":[["",[7],7]],"root":""}}
+LEDGER_COMPARE {"id":"fromTree-three-leaves-original-address-work","metrics":{"footprint":14,"oracleCalls":3},"value":{"groups":[["00",[0],0],["01",[1],1],["1",[2],2]],"root":""}}
+LEDGER_COMPARE {"id":"fromTree-nonempty-original-prefix","metrics":{"footprint":24,"oracleCalls":3},"value":{"groups":[["1000",[0],0],["1001",[1],1],["101",[2],2]],"root":"10"}}
+LEDGER_COMPARE {"id":"normalization-homogeneous-payload-appends","metrics":{"normalizeWork":22},"value":{"groups":[["",[0,1,2],7]],"root":""}}
+LEDGER_COMPARE {"id":"normalization-mixed-comparison-still-charged","metrics":{"normalizeWork":20},"value":{"groups":[["0",[0,1],0],["1",[2],1]],"root":""}}
+LEDGER_COMPARE {"id":"groups-left-appends","metrics":{"groupsWork":19},"value":[["00",[0],0],["01",[1],1],["1",[2],2]]}
+LEDGER_COMPARE {"id":"erase-suppressed-survivor-still-visits","metrics":{"eraseWork":56},"value":{"groups":[["01",[1],1],["1",[2],2]],"root":""}}
+LEDGER_COMPARE {"id":"erase-original-root-cost","metrics":{"eraseWork":46},"value":{"groups":[],"root":null}}
+LEDGER_COMPARE {"id":"choose-filter-find-list-work","metrics":{"findFilterWork":26},"value":{"kind":"one","origins":["0"]}}
+LEDGER_COMPARE {"id":"choose-refusal-after-real-search","metrics":{"findFilterWork":169},"value":{"kind":"refuse","refusals":["unnormalized homogeneous cherry"]}}
+LEDGER_COMPARE {"id":"attempt-root-refusal-cost","metrics":{"prunedCalls":0,"work":0},"value":{"childAttempts":1,"outputs":[],"pruned":0,"refusals":["attempt to cut original root"],"visited":0}}
+LEDGER_COMPARE {"id":"attempt-duplicate-refusal-cost","metrics":{"prunedCalls":0,"work":0},"value":{"childAttempts":1,"outputs":[],"pruned":0,"refusals":["duplicate original source cut"],"visited":0}}
+LEDGER_COMPARE {"id":"attempt-entire-refusal-cost","metrics":{"prunedCalls":0,"work":0},"value":{"childAttempts":1,"outputs":[],"pruned":0,"refusals":["attempt removed entire current source"],"visited":0}}
+LEDGER_COMPARE {"id":"attempt-prune-still-pays-local-erase","metrics":{"prunedCalls":1,"work":1},"value":{"childAttempts":1,"outputs":[],"pruned":1,"refusals":[],"visited":0}}
+LEDGER_COMPARE {"id":"run-zero-budget-local-work","metrics":{"copied":0,"prunedCalls":1,"work":131073},"value":{"childAttempts":1,"outputs":[],"pruned":1,"refusals":[],"visited":1}}
+LEDGER_COMPARE {"id":"generate-zero-budget-initial-check-and-colors","metrics":{"B":0,"N":3,"copied":0,"initialCharge":8192,"oracleCalls":2,"prunedCalls":1,"work":139265},"value":{"childAttempts":1,"outputs":[],"pruned":1,"refusals":[],"visited":1}}
+LEDGER_COMPARE {"id":"duplicate-input-pays-check-but-not-colors","metrics":{"B":1,"N":3,"copied":0,"initialCharge":8192,"oracleCalls":0,"prunedCalls":0,"work":8192},"value":{"childAttempts":0,"outputs":[],"pruned":0,"refusals":["duplicate original label"],"visited":0}}
+LEDGER_COMPARE {"id":"generate-finish-materializes-output","metrics":{"B":1,"N":3,"copied":0,"initialCharge":8192,"oracleCalls":2,"prunedCalls":0,"work":194560},"value":{"childAttempts":1,"outputs":[{"cuts":["0"],"partition":[[0],[1]]}],"pruned":0,"refusals":[],"visited":2}}
+LEDGER_COMPARE {"id":"oversized-budget-bit-width-survives-clipping","metrics":{"B":1,"N":3,"copied":0,"initialCharge":8192,"oracleCalls":2,"prunedCalls":0,"work":194560},"value":{"childAttempts":1,"outputs":[{"cuts":["0"],"partition":[[0],[1]]}],"pruned":0,"refusals":[],"visited":2}}
+LEDGER_COMPARE {"id":"encoded-labels-and-oracle-tariff","metrics":{"B":1,"N":3,"copied":0,"initialCharge":8192,"oracleCalls":2,"prunedCalls":0,"work":194560},"value":{"childAttempts":1,"outputs":[{"cuts":["0"],"partition":[[0],[340282366920938463463374607431768211456]]}],"pruned":0,"refusals":[],"visited":2}}
+LEDGER_COMPARE {"id":"two-pruned-children-still-join-receipts","metrics":{"copied":0,"prunedCalls":2,"work":2725890},"value":{"childAttempts":2,"outputs":[],"pruned":2,"refusals":[],"visited":1}}
+LEDGER_COMPARE {"id":"two-output-source-run-joins-left-output-record","metrics":{"B":2,"N":7,"copied":1,"initialCharge":65536,"oracleCalls":4,"prunedCalls":0,"work":7182337},"value":{"childAttempts":4,"outputs":[{"cuts":["10","00"],"partition":[[2],[0],[1,3]]},{"cuts":["11","01"],"partition":[[3],[1],[0,2]]}],"pruned":0,"refusals":[],"visited":5}}
+LEDGER_COMPARE {"id":"large-color-value-is-not-small-label-width","metrics":{"B":0,"N":3,"copied":0,"initialCharge":8192,"oracleCalls":2,"prunedCalls":0,"work":139264},"value":{"childAttempts":0,"outputs":[{"cuts":[],"partition":[[0,1]]}],"pruned":0,"refusals":[],"visited":1}}

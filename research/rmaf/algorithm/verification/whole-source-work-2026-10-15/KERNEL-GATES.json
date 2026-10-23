@@ -1,0 +1,24 @@
+{
+  "phase": "PREREGISTERED-UNEXECUTED until exact root candidate release",
+  "allowed_axioms": ["propext", "Classical.choice", "Quot.sound"],
+  "required_audit": [
+    "Rebuild source-only isolated modules with no author oleans.",
+    "Enumerate every declaration by actual originating compiled module, all kinds, private/generated names included; source-regex/namespace counts insufficient.",
+    "Reject every originating custom axiom even if unused; collect every declaration's full transitive axiom set.",
+    "Detect missing and duplicate inventory rows by exact originating-name set; clean inventory twin must pass.",
+    "No sorry,admit,native_decide or accepted custom axioms; retain rejected plants and failed adapters separately.",
+    "Exact formal meter/value projection is not source cost. Inspect callbacks,membership,original lookup,regions,selectors,joint counting,dedup and all materialized output/refusal appends.",
+    "Apply conservative primitive/cell contracts including outer appends; independently rederive domination and bit/oracle assumptions.",
+    "Any new proper-parent/domain/source-cost premise remains OPEN until actual caller enforces/derives it.",
+    "Empirical timings support measured configurations only. All three main milestones OPEN."
+  ],
+  "plants": [
+    {"id":"clean", "source":"namespace WholeClean\ntheorem bill : (8*3 : Nat) = 24 := by decide\n#print axioms bill\nend WholeClean\n", "expected_compile":"success", "expected_audit":"ACCEPT"},
+    {"id":"explicit-false-outer-cell-cost", "source":"namespace WholeFalse\ntheorem freeOuter : (8*3 : Nat) = 3 := by decide\nend WholeFalse\n", "expected_compile":"nonzero", "required_diagnostic":"Tactic decide explicitly proves proposition is false; generic import/elaboration errors excluded"},
+    {"id":"hidden-private-used-custom-axiom", "source":"namespace WholeUsedPlant\nprivate axiom zeroAppend : (8*3 : Nat) = 0\nprivate theorem hiddenBill : (8*3 : Nat) = 0 := zeroAppend\ntheorem bill : (8*3 : Nat) = 0 := hiddenBill\nend WholeUsedPlant\n", "expected_compile":"success", "expected_audit":"REJECT-private-origin-axiom-and-private/public-dependents"},
+    {"id":"hidden-private-unused-custom-axiom", "source":"namespace WholeUnusedPlant\nprivate axiom neverReferenced : False\ntheorem cleanLooking : True := True.intro\nend WholeUnusedPlant\n", "expected_compile":"success", "expected_audit":"REJECT-unused-private-origin-axiom-even-though-cleanLooking-has-no-dependency"},
+    {"id":"missing-import-not-mathematical-falsity", "source":"import DefinitelyMissingWholeWorkReview\ntheorem irrelevant : True := True.intro\n", "expected_compile":"nonzero", "expected_audit":"EXCLUDE-from-false-proposition-evidence"}
+  ],
+  "execution_status":"UNEXECUTED",
+  "independent_replications_added":0
+}

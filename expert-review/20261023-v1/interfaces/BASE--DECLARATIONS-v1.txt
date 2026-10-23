@@ -1,0 +1,623 @@
+CommonBranchWork.lean:9: def commonBranchMeter (rec : Nat→Tree→Tree→Option (List (List Nat))) (W : OrdinaryWork)
+CompleteNamedSources.lean:12: def concreteResiduals (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree)
+CompleteNamedSources.lean:88: def completeRouteSource (W : GenericForest.FrontierWork.OrdinaryWork) (T S : Tree) (c : CherryBranching.Candidate)
+CompleteNamedSources.lean:122: def hard2CompleteSource (W : GenericForest.FrontierWork.OrdinaryWork) (T S : Tree) (c : CherryBranching.Candidate) (q : Nat) :
+CompleteOrdinaryStep.lean:8: def completeBranchSource (W : GenericForest.FrontierWork.OrdinaryWork) (q : Nat) (T S : Tree) :
+CompleteOrdinaryStep.lean:19: def ordinaryCompleteStepSource (W : GenericForest.FrontierWork.OrdinaryWork) (q : Nat) (T S : Tree) :
+CutoffFacts.lean:5: def cutoff (rec : Nat→Tree→Tree→Option CommonForest) (q : Nat) : Tree→Tree→Nat→Option CommonForest :=
+FastSolve.lean:10: def solve (q : Nat) (T S : Tree) : Option CommonForest :=
+ForestProgram.lean:9: def checked (T : Option Tree) (ss : List Tree) (q : Nat) (F : Forest) : Option Forest :=
+ForestProgram.lean:12: def disjointSolve (t : Tree) (ss : List Tree)
+ForestProgram.lean:17: def branches (t : Tree) (ss : List Tree) (h : Overlap) (q : Nat) : List (Nat × Output) :=
+ForestProgram.lean:24: def solve (ordinary : Tree → Tree → Nat → Option Forest)
+OWScan.lean:16: def meterPreflight (T S : Tree) : Charged (Bool×Nat) :=
+OWScan.lean:41: def meterScan (query : Nat→Charged (Option CommonForest)) (start : Nat) : Nat→ScanMeasured
+OptimizerSourceBodies.lean:10: def sourceFinishMeter (S : Tree) (r : Scan) : Charged Execution :=
+OptimizerSourceBodies.lean:37: def sourceOptimizeMeter (w : Nat→Nat) (T S : Tree) : Charged Execution :=
+OrdinaryChildrenSource.lean:18: def branchesMeter (S : Tree) (a b : Nat) : Rule5LocalWork.Measured (List Child) :=
+OrdinaryChildrenSource.lean:62: def runChildrenSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree) (q : Nat)
+OrdinaryChildrenSource.lean:114: def oneSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree) (q a b : Nat) :
+OrdinaryChildrenSource.lean:120: def highSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree) (q a b : Nat) :
+Rule4CallerSource.lean:66: def rule4AnswersSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+Rule4CallerSource.lean:89: def rule4Source (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+ELOuter.lean:19: def meterFront (q : Nat) (T S : Tree) : Charged (Front T S) :=
+ELPretest.lean:5: def meterAgreement (T S : Tree) (F : List (List Nat)) : Charged Bool :=
+ELPretest.lean:30: def meterComplement (S : Tree) (v : RMAF.Vertex) : Charged (List Nat) :=
+ELPretest.lean:38: def meterForest (S : Tree) : Option RMAF.Vertex→Charged (List (List Nat))
+ELPretest.lean:95: def meterBest {α : Type} (cost : α→Nat) (valid : α→Charged Bool) : List α→BestMeasured α
+ELPretest.lean:142: def meterCandidates (S : Tree) : Charged (List (Option RMAF.Vertex)) :=
+ELPretest.lean:151: def meterCandidate (T S : Tree) (c : Option RMAF.Vertex) : Charged Bool :=
+ELPretest.lean:157: def meterPretest (T S : Tree) : Charged DepthOne.Result :=
+Pretest.lean:28: def cutCost : Option Vertex → Nat
+ActualCaller.lean:10: def rule5AnswerSource (cb : Ordinary) (W : OrdinaryWork) (T S : Tree) (a b q : Nat) : Charged (Option Forest) :=
+ActualCaller.lean:24: def actualCallback (q : Nat) : Ordinary :=cutoff OrdinaryDispatch.FastOrdinary.solve q
+ActualCaller.lean:26: def actualRule5Source (W : OrdinaryWork) (T S : Tree) (a b q : Nat) :=rule5AnswerSource (actualCallback q) W T S a b q
+AdmittedCases.lean:5: structure SizeTwoSelection where
+AdmittedCheckCalls.lean:16: structure CheckReceipt (α : Type) where
+AdmittedCheckCalls.lean:7: inductive CheckRequest where
+AdmittedCheckCalls.lean:25: def andSequence : List (Unit→CheckReceipt Bool)→CheckReceipt Bool
+AdmittedCheckCalls.lean:22: def liftMeter {α : Type} (m : Measured α) : CheckReceipt α := ⟨m.value,m.work,[]⟩
+AdmittedCheckCalls.lean:23: def checkMeter (fee : CheckRequest→Nat) (r : CheckRequest) : CheckReceipt Bool := ⟨checkValue r,fee r,[r]⟩
+AdmittedCheckCalls.lean:12: def checkValue : CheckRequest→Bool
+AdmittedCheckCalls.lean:61: def restrictionFilterMeter (fee : CheckRequest→Nat) (T S : Tree) : List (List Nat)→CheckReceipt (List (List Nat))
+AdmittedHandler.lean:6: inductive Result where
+AdmittedRouteBinding.lean:39: def admittedRouteSource (W : OrdinaryWork) (T S : Tree) (c : Candidate) (q : Nat) :=actualRule5Source W T S c.a c.b q
+AdmittedRule4Guard.lean:116: def admittedRule4Meter (T S : Tree) : Measured Bool :=
+AdmittedRule4Guard.lean:92: def rule4AnyMeter (S : Tree) : List Candidate→Measured Bool
+AdmittedRule4Guard.lean:7: def rule4ArcMeter (S : Tree) (a b : Nat) (q : RMAF.Vertex) : Measured Bool :=
+AdmittedRule4Guard.lean:45: def rule4ArcsMeter (S : Tree) (a b : Nat) : List RMAF.Vertex→Measured Bool
+AdmittedRule4Guard.lean:67: def rule4CandidateMeter (S : Tree) (c : Candidate) : Measured Bool :=
+AdmittedWork.lean:12: def admittedGuards (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) (P : List (List Nat)) : List (Unit→CheckReceipt Bool) :=
+AdmittedWork.lean:22: def admittedMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt Bool :=
+AdmittedWork.lean:6: def cutLengthMeter (S : Tree) (a b : Nat) : Measured Bool :=
+AdmittedWork.lean:8: def filteredLengthMeter (fee : CheckRequest→Nat) (T S : Tree) (P : List (List Nat)) : CheckReceipt Bool :=
+AllGoodParents.lean:6: def direct (P : OrdinaryDispatch.Forest) (q : Nat) : Option OrdinaryDispatch.Forest :=
+BOOptimize.lean:5: structure Execution where
+BOScan.lean:5: abbrev Trial := Nat × Option CommonForest
+BOScan.lean:6: structure Scan where
+BadClassifierWork.lean:14: def badAtMeter (fee : CheckRequest→Nat) (T S : Tree) (e f : RMAF.Vertex) : CheckReceipt (Option BadSelection) :=
+BadClassifierWork.lean:145: def badCandidatesMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt (List BadSelection) :=
+BadClassifierWork.lean:63: def badRowMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) (e : RMAF.Vertex) : CheckReceipt (List BadSelection) :=
+BadClassifierWork.lean:102: def concatMeter {α β : Type} (f : α→CheckReceipt (List β)) : List α→CheckReceipt (List β)
+BadClassifierWork.lean:190: def selectBadMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt (Option BadSelection) :=
+BadGroupedPair.lean:8: structure Evaluation where
+BadGroupedPair.lean:35: structure PairExecution where
+BadPairSource.lean:9: def badPairLocalSource (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree)
+BadPairSource.lean:25: def badPairSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree)
+BlockCost.lean:81: def meterBlocks (p : Paint) : Charged (List (List Nat)) :=
+BlockCost.lean:34: def meterSplit : Paint→Charged (List Nat×List (List Nat))
+BlockCost.lean:66: def meterNonempty : List (List Nat)→Charged (List (List Nat))
+BothBadLocalExecutionSource.lean:20: def bothBadDispatchLocalSource (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree) (e : Entry) : SourceExecution:=
+BothBadLocalExecutionSource.lean:38: def bothBadExecuteLocalSource (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree)
+BothBadLocalExecutionSource.lean:55: def bothBadLocalPairLocalSource (actual : GenericForest.FrontierWork.Ordinary) (S T : Tree)
+BothBadLocalExecutionSource.lean:10: def retainedReconstructionMeter (known : List (List Nat)) (completed : List Nat)
+BothBadPlanSource.lean:43: def bothBadPlanMeter (S T : Tree) (A B C D : List Nat) (q : Nat) : Charged (List Entry):=
+BothBadPlanSource.lean:7: def cheapPlanMeter (S T : Tree) (A B C D : List Nat) (q : Nat)
+BothBadPlanSource.lean:33: def reuseOutputsMeter (S : Tree) (color : Nat→Charged Nat) (probe : List CoreProgram.Output) (q : Nat) : Charged (List CoreProgram.Output):=
+BothBadPlannerAtoms.lean:12: def yesSideMeter (A D : List Nat) : Charged (List Nat):=meterFilter (fun x=>meterContains x D) A
+BothBadPlannerAtoms.lean:13: def noSideMeter (A D : List Nat) : Charged (List Nat):=
+BothBadPlannerAtoms.lean:20: def knownOneMeter (T S : Tree) (A : List Nat) : Charged (Option (List (List Nat))):=
+BothBadPlannerAtoms.lean:52: def appendEntriesMeter (a b : Charged (List Entry)) : Charged (List Entry):=
+BothBadPlannerAtoms.lean:7: def cheapColorMeter (A B D : List Nat) (x : Nat) : Charged Nat:=sideTaggedMeter B A D x
+BothBadPlannerAtoms.lean:38: def entriesMeter (q : Nat) (mode : Mode) : List CoreProgram.Output→Charged (List Entry)
+BoundaryClassifierWork.lean:7: def boundaryMeter (T : Tree) (X : List Nat) (c : Nat) : Measured (Option BoundarySelection) :=
+Bridge.lean:552: def colorLabel (t : RMAF.Tree) (v : Vertex) (x : Nat) : Nat :=
+Bridge.lean:399: def leafList (D : List Nat) : RMAF.Tree → List Vertex
+BuildSetup.lean:5: def labelMax (L : List Nat) : Nat := L.foldr Nat.max 0
+CallerSetup.lean:8: structure Setup where
+CandidateCost.lean:5: def meterCandidate (T : Option Tree) (ss : List Tree) : Charged (List (List Nat)) :=
+Case322Caller.lean:27: structure Branch where
+Case322Caller.lean:26: inductive Role where | target | source deriving DecidableEq,Repr
+Case322Caller.lean:33: def current (T S : Tree) (c : Branch) : Tree := if c.role = .source then S else T
+CheckAssembly.lean:39: def meterAgrees (T : Option Tree) (ss : List Tree) (F : Forest) : Charged Bool :=
+CheckAssembly.lean:5: def meterLabels : Option Tree → Charged (List Nat)
+CheckAssembly.lean:9: def meterProper (T : Option Tree) (ss : List Tree) : Charged Bool :=
+CheckAssembly.lean:15: def meterTargetAgrees : Option Tree → Tree → List Nat → Charged Bool
+CheckAssembly.lean:20: def meterTargetEmbeddings : Option Tree → Forest → Charged Bool
+CheckAssembly.lean:25: def meterSourceCheck (T : Option Tree) (F : Forest) (s : Tree) : Charged Bool :=
+CheckAssembly.lean:34: def meterSourceContainment (B : List Nat) (ss : List Tree) : Charged Bool :=
+CheckFamilies.lean:40: def meterContained (B U : List Nat) := meterAll (fun x=>meterContains x U) B
+CheckFamilies.lean:49: def meterFamily (U : List Nat) : Forest → Charged Forest
+CheckFamilies.lean:8: def meterLeaves : Tree → Charged (List Nat)
+CheckFamilies.lean:25: def meterNodup : List Nat → Charged Bool
+CheckFamilies.lean:75: def meterSourceLeaves : List Tree → Charged Forest
+CheckPrimitives.lean:6: def meterAll {α : Type} (f : α → Charged Bool) : List α → Charged Bool
+CheckPrimitives.lean:42: def meterCount (x : Nat) : List Nat → Charged Nat
+CheckPrimitives.lean:58: def meterFlatten {α : Type} : List (List α) → Charged (List α)
+CheckPrimitives.lean:10: def meterAny {α : Type} (f : α → Charged Bool) : List α → Charged Bool
+CheckPrimitives.lean:70: def meterPartition (L : List Nat) (F : List (List Nat)) : Charged Bool :=
+CheckedMerge.lean:5: def bestMeter (check : Forest→Measured Bool) : List Forest→Measured (Option Forest)
+CheckedMerge.lean:100: def pickMeter (check : Forest→Measured Bool) (X Y : List Nat) (x y rho gamma : Nat)
+CherryGuardWork.lean:4: abbrev CherryRow := RMAF.Vertex×Nat×Nat
+CherryGuardWork.lean:55: def cherryAnyMeter (a b : Nat) : List CherryRow→Measured Bool
+CherryGuardWork.lean:6: def cherriesMeter : Tree→Measured (List CherryRow)
+CherryGuardWork.lean:72: def hasCherryMeter (T : Tree) (a b : Nat) : Measured Bool :=
+CherryGuardWork.lean:52: def endpointGuard (a b : Nat) (c : CherryRow) : Bool :=
+ChildrenExecutionWork.lean:162: structure ChildrenReceipt where
+ChildrenExecutionWork.lean:8: structure ForestQuery where
+ChildrenExecutionWork.lean:12: structure ForestReceipt (α : Type) where
+ChildrenExecutionWork.lean:21: def childExecutionMeter (actual : Ordinary) (fee : ForestQuery→Nat) (T : Tree) (q : Nat) (c : Child) : ForestReceipt (Option Forest) :=
+ChildrenExecutionWork.lean:32: def childrenAnswersMeter (actual : Ordinary) (fee : ForestQuery→Nat) (T : Tree) (q : Nat) : List Child→ForestReceipt (List Forest)
+ChildrenExecutionWork.lean:117: def acceptedMeter (agreementFee : Forest→Nat) (T S : Tree) (q : Nat) (F : Forest) : Measured Bool :=
+ChildrenExecutionWork.lean:122: def bestLengthMeter (check : Forest→Measured Bool) : List Forest→Measured (Option Forest)
+ClassifierAtoms.lean:27: def optionsMeter {α β : Type} (f : α→CheckReceipt (Option β)) : List α→CheckReceipt (List β)
+ClassifierAtoms.lean:77: def paintMeter (T : Tree) (X : List Nat) (q : RMAF.Vertex) : Measured Bool :=
+ClassifierAtoms.lean:99: def outsideCheckMeter (T : Tree) (X : List Nat) (q : RMAF.Vertex) (x : Nat) : Measured Bool :=
+ClassifierAtoms.lean:6: def subtreeMeter : Tree→RMAF.Vertex→Measured (Option Tree)
+ClassifierRequestMeter.lean:20: def checkFee (r : CheckRequest) : Nat := (requestMeter r).work
+ClassifierRequestMeter.lean:9: def requestMeter : CheckRequest→CheckReceipt Bool
+ClosedPayload.lean:10: def cells (F : Forest) : Nat := F.length+F.flatten.length
+ColorDP.lean:10: inductive Paint where
+ColorDP.lean:15: def root : Paint → Nat
+ColorDP.lean:23: def delta (a b : Nat) : Nat := if a == b then 0 else 1
+CommonConstructionWork.lean:15: def commonFreshMeter (T : Tree) : Charged Nat :=
+CommonConstructionWork.lean:38: def contractMeter (a b z : Nat) : Tree→Charged Tree
+CommonConstructionWork.lean:76: def expandBlockMeter (a b z : Nat) : List Nat→Charged (List Nat)
+CommonConstructionWork.lean:57: def commonPairMeter (T S : Tree) (reverse : Bool) (c : CherryBranching.Candidate) : Charged (Tree×Tree) :=
+CommonConstructionWork.lean:88: def expandCommonMeter (T S : Tree) (reverse : Bool) (c : CherryBranching.Candidate) (F : List (List Nat)) : Charged (List (List Nat)) :=
+CommonConstructionWork.lean:6: def labelMaxMeter : List Nat→Charged Nat
+CommonConstructionWork.lean:32: def leafEqualMeter (T : Tree) (a : Nat) : Charged Bool :=
+CommonExecutionBinding.lean:38: def commonMeter (cb : Ordinary) (W : OrdinaryWork) (T S : Tree) (a b : Nat) (d : BadSelection) (q : Nat) : CommonReceipt (Option Forest) :=
+CommonGuardedSource.lean:43: def guardedMeter (cb : Ordinary) (W : OrdinaryWork) (d : Setup) (q : Nat) : CommonReceipt (Option (Option Forest)) :=
+CommonGuardedSource.lean:17: def withOutsideMeter (cb : Ordinary) (W : OrdinaryWork) (d : Setup) (q : Nat) (FY : Forest) : CommonReceipt (Option Forest) :=
+CommonLocalBinding.lean:57: def reconstructMeter (check : Forest→Measured Bool) (d : Setup) (FX FY FM FN : Forest) : Measured (Option Forest) :=
+CommonOutsideSource.lean:44: def outsideExtensionMeter (d : Setup) (FY : List (List Nat)) : Charged (List (List Nat)) :=
+CommonOutsideSource.lean:57: def outsideReplyMeter (d : Setup) (FY : List (List Nat)) : Charged (Option (List (List Nat))) :=
+CommonOutsideSource.lean:21: def relabelBlockMeter (a b : Nat) : List Nat→Charged (List Nat)
+CommonOutsideSource.lean:31: def relabelForestMeter (a b : Nat) : List (List Nat)→Charged (List (List Nat))
+CommonPaidSource.lean:11: structure CommonReceipt (α : Type) where
+CommonPaidSource.lean:18: def paidJobsMeter (d : Setup) (q : Nat) : Charged (List Job) :=
+CommonPaidSource.lean:27: def jobsAnswersMeter (cb : Ordinary) (W : OrdinaryWork) : List Job→CommonReceipt (List (Option Forest))
+CommonPaidSource.lean:49: def runPaidMeter (cb : Ordinary) (W : OrdinaryWork) (d : Setup) (q : Nat) (FY FN : Forest) : CommonReceipt (Option Forest) :=
+CommonSetupBinding.lean:8: def commonSetupMeter (T S : Tree) (a b : Nat) (d : BadSelection) : Measured (Option Setup) :=
+CommonSourceDebit.lean:28: def commonSource (cb : Ordinary) (W : OrdinaryWork) (T S : Tree) (a b : Nat) (d : BadSelection) (q : Nat) : Charged (Option Forest) :=
+CompleteNamedSources.lean:46: def paidCaseCompleteSource (actual : GenericForest.FrontierWork.Ordinary) (W : GenericForest.FrontierWork.OrdinaryWork)
+CompleteNamedSources.lean:20: def selectedPaidSource (actual : GenericForest.FrontierWork.Ordinary) (W : GenericForest.FrontierWork.OrdinaryWork)
+ConcreteFees.lean:10: def source (cb : Ordinary) (W : OrdinaryWork) (T S : Tree) (a b q : Nat) : Charged Rule5OrdinaryDispatch.Result :=
+CoreGraph.lean:10: def subtree : Tree → Vertex → Option Tree
+CoreGraph.lean:17: def LeafAt (t : Tree) (v : Vertex) (x : Nat) : Prop :=
+CoreGraph.lean:20: def CherryAt (t : Tree) (p : Vertex) (x y : Nat) : Prop :=
+CoreProgram.lean:10: structure Group where
+CoreProgram.lean:16: inductive GTree where
+CoreProgram.lean:53: inductive Choice where
+CoreProgram.lean:76: structure Output where
+CoreProgram.lean:83: structure Receipt where
+CoreProgram.lean:91: def combine (a b : Receipt) : Receipt :=
+CoreProgram.lean:95: def prefixRoot (r : Receipt) : Receipt := { r with visited := r.visited + 1 }
+CoreProgram.lean:21: def fromTree (color : Nat → Nat) (p : Vertex) : Tree → GTree
+CoreProgram.lean:25: def groups : GTree → List Group
+CoreProgram.lean:29: def normalize : GTree → GTree
+CoreProgram.lean:38: def erase (chosen : Vertex) : GTree → Option GTree
+CoreProgram.lean:48: def mixedCherry : GTree → Option (Group × Group)
+CoreProgram.lean:60: def choose (t : GTree) : Choice :=
+CoreProgram.lean:97: def attempt (continuation : GTree → List Group → List Vertex → Receipt)
+CoreProgram.lean:108: def step (continuation : GTree → List Group → List Vertex → Receipt)
+CoreProgram.lean:120: def run : Nat → GTree → List Group → List Vertex → Receipt
+CoreProgram.lean:124: def generate (t : Tree) (color : Nat → Nat) (budget : Nat) : Receipt :=
+CurrentQuery.lean:8: inductive CurrentResult where
+CurrentQuery.lean:21: def CurrentResult.answer? : CurrentResult → Option Forest
+DisjointParentSource.lean:10: def disjointQueryLocalSource (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree)
+DisjointParentSource.lean:26: def disjointQuerySource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+DisjointParentSource.lean:46: def disjointRunSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+Dispatcher.lean:10: structure Call where
+Dispatcher.lean:15: structure Execution where
+ELCherry.lean:5: def meterCherries : Tree→Charged (List (RMAF.Vertex×Nat×Nat))
+ELCherry.lean:31: def meterCherryCandidates (T S : Tree) : Charged (List Candidate) :=
+ELCherry.lean:69: def meterSelect (T S : Tree) : Charged (Option (Priority×Candidate)) :=
+ELEarly.lean:10: structure ChoiceMeasured (T S : Tree) where
+ELGeometry.lean:101: def meterDropLast : RMAF.Vertex→Charged RMAF.Vertex
+ELGeometry.lean:35: def meterEdges (T : Tree) : Charged (List RMAF.Vertex) :=
+ELGeometry.lean:70: def meterSubtreeLabels (T : Tree) (v : RMAF.Vertex) : Charged (List Nat) :=
+ELGeometry.lean:122: def meterPendantCheck (S : Tree) (a b : Nat) (v : RMAF.Vertex) : Charged Bool :=
+ELGeometry.lean:5: def meterVertices : Tree→Charged (List RMAF.Vertex)
+ELGeometry.lean:43: def meterSubtree : Tree→RMAF.Vertex→Charged (Option Tree)
+ELGeometry.lean:146: def meterPendant (S : Tree) (a b : Nat) : Charged (List RMAF.Vertex) :=
+ELOuter.lean:5: inductive Front (T S : Tree) where
+ELPretest.lean:86: structure BestMeasured (α : Type) where
+ELPrimitives.lean:7: def meterMap {α β : Type} (f : α→Charged β) : List α→Charged (List β)
+ELPrimitives.lean:20: def meterFilter {α : Type} (f : α→Charged Bool) : List α→Charged (List α)
+ELPrimitives.lean:33: def meterFind {α : Type} (f : α→Charged Bool) : List α→Charged (Option α)
+ELRule4Guards.lean:30: def meterRule4Priority (T S : Tree) : Charged Bool :=
+ELRule4Guards.lean:82: def meterLocalGuard (T S : Tree) (raw : Rule4.RawChoice) : Charged Bool :=
+ELRule4Guards.lean:14: def meterNoCommon (T S : Tree) : Charged Bool :=
+ELRule4Guards.lean:22: def meterNoOne (T S : Tree) : Charged Bool :=
+ELRule4Primitives.lean:5: def meterPairContains (x : Nat×Nat) : List (Nat×Nat)→Charged Bool
+ELRule4Primitives.lean:22: def meterOrderedCherries : Tree→Charged (List (Nat×Nat))
+ELRule4Primitives.lean:69: def meterVertexPerm : List RMAF.Vertex→List RMAF.Vertex→Charged Bool
+ELRule4Primitives.lean:104: def meterNatListEq : List Nat→List Nat→Charged Bool
+ELRule4Primitives.lean:47: def meterVertexErase (x : RMAF.Vertex) : List RMAF.Vertex→Charged (List RMAF.Vertex)
+ELRule4Raw.lean:10: def meterFlatMap {α β : Type} (f : α→Charged (List β)) : List α→Charged (List β)
+ELRule4Raw.lean:88: def meterRawAB (S : Tree) (ab : Nat×Nat) : Charged (List Rule4.RawChoice) :=
+ELRule4Raw.lean:40: def meterRawAC (S : Tree) (ab ac : Nat×Nat) : Charged (List Rule4.RawChoice) :=
+ELRule4Raw.lean:113: def meterRawChoices (T S : Tree) : Charged (List Rule4.RawChoice) :=
+ELRule4Raw.lean:33: def meterRawR (S : Tree) (ab ac : Nat×Nat) (q : RMAF.Vertex) : Charged (List Rule4.RawChoice) :=
+EarlySelector.lean:7: inductive Early (T S : Tree) where
+Executable.lean:12: def pendantOriginal (S : Tree) (a b : Nat) : List Vertex :=
+Executable.lean:17: def subtreeLabels : Tree → Vertex → List Nat
+Executable.lean:8: def vertices : Tree → List Vertex
+FinalClassifierWork.lean:103: def finalMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt (Option FinalSelection) :=
+FinalClassifierWork.lean:16: def localMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt (Option LocalSelection) :=
+FinalClassifierWork.lean:5: def localTailMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt (Option LocalSelection) :=
+FinalSelector.lean:5: structure BadSelection where
+FinalSelector.lean:180: inductive FinalSelection where
+FinalSelector.lean:107: inductive BoundarySelection where
+ForestColorWork.lean:9: structure Charged (α : Type) where
+ForestColorWork.lean:195: structure Colors where
+ForestColorWork.lean:204: def meterTagged (T : Tree) (A B : List Nat) (c : Colors) (x : Nat) : Charged Nat :=
+ForestColorWork.lean:146: inductive Local where
+ForestColorWork.lean:157: def meterLocal (T : Tree) (l : Local) (x : Nat) : Charged Nat :=
+ForestColorWork.lean:124: def meterColorLabel (T : Tree) (v : RMAF.Vertex) (x : Nat) : Charged Nat :=
+ForestColorWork.lean:14: def meterContains (x : Nat) : List Nat → Charged Bool
+ForestColorWork.lean:35: def meterLeafList (D : List Nat) : Tree → Charged (List RMAF.Vertex)
+ForestColorWork.lean:92: def meterRegion : RMAF.Vertex → RMAF.Vertex → Charged Nat
+ForestDefs.lean:12: structure Overlap where
+ForestDefs.lean:33: def jobs (t : Tree) : List Tree → Option (List (Job (Tree × Tree) Forest))
+ForestDefs.lean:30: def componentPair (t s : Tree) : Option (Tree × Tree) :=
+ForestDefs.lean:18: def overlap (t : Tree) (ss : List Tree) : Option Overlap :=
+ForestDefs.lean:25: def replace (ss : List Tree) (i : Nat) (Q : Forest) : List Tree :=
+ForestDefs.lean:41: def disjointAttempt (t : Tree) (ss : List Tree)
+ForestDefs.lean:45: def raw (t : Tree) (ss : List Tree) (i : Nat) (v : RMAF.Vertex) (q : Nat) : List Output :=
+ForestGeometryWork.lean:332: def meterAddressEq : RMAF.Vertex → RMAF.Vertex → Charged Bool
+ForestGeometryWork.lean:361: def meterVertexContains (v : RMAF.Vertex) : List RMAF.Vertex → Charged Bool
+ForestGeometryWork.lean:154: def meterAnyEq {α : Type} [BEq α] (a : α) : List α → Charged Bool
+ForestGeometryWork.lean:7: def meterRooted (D : List Nat) : Tree → Charged (List RMAF.Vertex)
+ForestGeometryWork.lean:437: def meterCliqueSelection (T : Tree) (A B C : List Nat) : Charged (Option RMAF.Vertex) :=
+ForestGeometryWork.lean:244: def meterJointColors (D : List Nat) (T : Tree) (v w : RMAF.Vertex) : Charged (List (Nat×Nat)) :=
+ForestGeometryWork.lean:390: def meterCommon (A B C : List RMAF.Vertex) : Charged (Option RMAF.Vertex) :=
+ForestGeometryWork.lean:174: def meterDupsLoop {α : Type} [BEq α] : List α → List α → Charged (List α)
+ForestGeometryWork.lean:207: def meterDups {α : Type} [BEq α] (L : List α) : Charged (List α) := meterDupsLoop L []
+ForestGeometryWork.lean:217: def meterJointMap (v w : RMAF.Vertex) : List RMAF.Vertex → Charged (List (Nat×Nat))
+ForestGeometryWork.lean:63: def meterMinimal (D : List Nat) : Tree → Charged (List RMAF.Vertex)
+ForestMerge.lean:5: def merged (K L : List Nat) (FX FY : List (List Nat)) := (K++L)::(FX++FY)
+ForestPretest01.lean:22: inductive Result where
+ForestPretestSource.lean:35: def forestPretestMeter (T : Option Tree) (ss : List Tree) : Charged ForestPretest01.Result:=
+ForestPretestSource.lean:6: def unchangedForestMeter (ss : List Tree) : Charged (List (List Nat)):=meterMap meterLeaves ss
+ForestPretestSource.lean:12: def oneCutsForestMeter : List Tree→Charged (List (List (List Nat)))
+ForestPretestSource.lean:28: def pretestCandidatesMeter (ss : List Tree) : Charged (List (List (List Nat))):=
+ForestProgram.lean:6: def accepted (T : Option Tree) (ss : List Tree) (q : Nat) (F : Forest) : Bool :=
+FullStateJobs.lean:8: structure Problem where
+GeneralAgreementWork.lean:10: def agreementMeter (T S : Tree) (F : List (List Nat)) : Charged Bool :=
+GeneralAgreementWork.lean:52: def measuredAgreement (T S : Tree) (F : List (List Nat)) : Rule5LocalWork.Measured Bool :=
+Geometry.lean:35: def region : Vertex → Vertex → Nat
+GoodPairSource.lean:10: def goodPairLocalSource (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree)
+GoodPairSource.lean:51: def goodPairSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+GroupPartition.lean:5: def contained (B U : List Nat) : Bool := B.all (U.contains ·)
+GroupPartition.lean:6: def family (U : List Nat) (F : List (List Nat)) := F.filter (contained · U)
+GroupState.lean:31: def additionalCost (ss : List Tree) (F : List (List Nat)) := F.length - ss.length
+GroupState.lean:19: def proper (T : Option Tree) (ss : List Tree) : Bool :=
+GroupState.lean:26: def agrees (T : Option Tree) (ss : List Tree) (F : List (List Nat)) : Bool :=
+GroupState.lean:7: def labels : Option Tree → List Nat
+GroupState.lean:11: def targetEmbeddings : Option Tree → List (List Nat) → Bool
+GroupState.lean:22: def sourceCheck (T : Option Tree) (F : List (List Nat)) (s : Tree) : Bool :=
+GroupState.lean:15: def targetAgrees : Option Tree → Tree → List Nat → Bool
+GroupedExecutionSource.lean:8: def groupOutputAnswerMeter (r : BothBadGrouped.OutputResult) : Charged (Option (List (List Nat))):=
+GroupedExecutionSource.lean:16: structure GroupEvaluationSource where
+GroupedExecutionSource.lean:20: def groupEvaluateLocalSource (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree)
+GroupedExecutionSource.lean:36: def bothBadOutputsMeter (S : Tree) (A B D : List Nat) (q : Nat) : Charged (List CoreProgram.Output):=
+GroupedExecutionSource.lean:46: def groupedAcceptedMeter (T S : Tree) (q : Nat) (F : List (List Nat)) : Charged Bool:=
+GroupedExecutionSource.lean:53: def forestLengthMeter (F : List (List Nat)) : Charged Nat:=⟨F.length,F.length+4⟩
+GroupedExecutionSource.lean:56: structure GroupPairSourceExecution where
+GroupedExecutionSource.lean:60: def groupPairLocalSource (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree)
+GroupedExecutionSource.lean:75: def groupCalls (xs : List (Problem×Nat)) : List Call:=xs.map (fun x=>⟨x.1.target,x.1.sources,x.2⟩)
+GroupedJobsSource.lean:46: def groupCallbackMeter (actual : GenericForest.FrontierWork.Ordinary) (p : Problem) (b : Nat) :
+GroupedJobsSource.lean:58: def groupJobsForMeter (T S : Tree) (A B C : List Nat) (o : CoreProgram.Output) :
+GroupedJobsSource.lean:16: def groupProblemsMeter (T : Option Tree) (ss : List Tree) (Q : List (List Nat)) : Charged (List Problem):=
+GroupedJobsSource.lean:34: def groupPrepareMeter : List Problem→Charged (Option (List (Job Problem (List (List Nat)))))
+GroupedJobsSource.lean:9: def groupProblemMeter (T : Option Tree) (ss : List Tree) (U : List Nat) : Charged Problem:=
+GroupedJobsSource.lean:22: def groupPrepareOneMeter (p : Problem) : Charged (Option (Job Problem (List (List Nat)))):=
+GroupedJobsSource.lean:71: def groupRunOutputLocalSource (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree)
+GuardCost.lean:13: def meterGuard (T : Option Tree) (ss : List Tree) : Charged Bool :=
+GuardCost.lean:42: def meterRun (T : Option Tree) (ss : List Tree) : Charged (Option (List (List Nat))) :=
+GuardCost.lean:6: def meterSourceGuard (T : Option Tree) (s : Tree) : Charged Bool :=
+Hard2FullOutputSource.lean:15: def chooseMeter : Option (List (List Nat))→Option (List (List Nat))→Charged (Option (List (List Nat)))
+Hard2FullOutputSource.lean:22: structure SourceExecution where
+Hard2FullOutputSource.lean:8: def checkedMeter (T S : Tree) (q : Nat) : Option (List (List Nat))→Charged (Option (List (List Nat)))
+Hard2FullOutputSource.lean:29: def fullOutputsSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+Hard2GeneratorSource.lean:9: def generatedOutputsMeter (S : Tree) (color : Nat→Charged Nat) (q : Nat) : Charged (List Output) :=
+Hard2GeneratorSource.lean:36: def appendOutputsMeter (a b : Charged (List Output)) : Charged (List Output) :=
+Hard2GeneratorSource.lean:41: def wholeOutputsMeter (S T : Tree) (A B : List Nat) (c : Colors) (q : Nat) : Charged (List Output) :=
+Hard2GraphSource.lean:9: def hard2RootMeter (S : Tree) (p r : RMAF.Vertex) : Charged (List Nat) :=
+Hard2GraphSource.lean:26: def hard2OverlapMeter (T : Tree) (A B : List Nat) : Charged (Option RMAF.Vertex) :=
+Hard2GraphSource.lean:33: def hard2ChainMeter (T : Tree) (A B C : List Nat) (o : Order) (v w : RMAF.Vertex) : Charged Result :=
+Hard2GraphSource.lean:39: def hard2IsolatedMeter (T : Tree) (A B C : List Nat) (o : Order) : Charged (Option Result) :=
+Hard2GraphSource.lean:19: def hard2ParentsMeter (S : Tree) (p r : RMAF.Vertex) : Charged (List Nat×List Nat×List Nat) :=
+Hard2GraphSource.lean:45: def hard2SelectMeter (T : Tree) (A B C : List Nat) : Charged (Option Result) :=
+Hard2GraphSource.lean:62: def runHard2Meter (T S : Tree) (c : CherryBranching.Candidate) : Charged (Option Result) :=
+Hard2GroupingSource.lean:11: def appendLabelsMeter (A B : List Nat) : Charged (List Nat):=⟨A++B,2*A.length+4⟩
+Hard2GroupingSource.lean:14: def localTargetMeter (T : Option Tree) (U : List Nat) : Charged (Option Tree) :=
+Hard2GroupingSource.lean:22: def ownedMeter (ss : List Tree) (U : List Nat) : Charged (List Tree) :=
+Hard2GroupingSource.lean:28: def additionalCostMeter (ss : List Tree) (F : List (List Nat)) : Charged Nat:=
+Hard2GroupingSource.lean:34: def callsForestDebit (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (calls : List Call) : Nat:=
+Hard2OutputGenerationSource.lean:71: def actualOutputsMeter (S T : Tree) (c : CherryBranching.Candidate) (q : Nat) (out : Result) : Charged (List Output) :=
+Hard2OutputGenerationSource.lean:58: def caseOutputsMeter (S T : Tree) (A B C : List Nat) (q : Nat) : Result→Charged (List Output)
+Hard2OutputGenerationSource.lean:19: def kindOutputsMeter (kind : Kind) (S T : Tree) (A B : List Nat) (q : Nat) : Charged (List Output) :=
+Hard2OutputGenerationSource.lean:47: def edgeOutputsMeter (S T : Tree) (A B : List Nat) (e : RMAF.Vertex×RMAF.Vertex) (q : Nat) : Charged (List Output) :=
+Hard2OutputGenerationSource.lean:84: def hardPaidSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+Hard2OutputGenerationSource.lean:8: def sideTaggedMeter (A B D : List Nat) (x : Nat) : Charged Nat :=
+Hard2PairGeometrySource.lean:97: def pairChooseMeter (T : Tree) (A B : List Nat) : Charged (Option PairGeometry.Choice) :=
+Hard2PairGeometrySource.lean:7: def pairVerticesMeter (T : Tree) : Charged (List RMAF.Vertex) := meterVertices T
+Hard2PairGeometrySource.lean:13: def pairEdgesMeter : Tree→Charged (List (RMAF.Vertex×RMAF.Vertex))
+Hard2PairGeometrySource.lean:23: def pairProperMeter (T : Tree) (A B : List Nat) : Charged Bool :=
+Hard2PairGeometrySource.lean:41: def pairVertexMeter (T : Tree) (A B : List Nat) (v : RMAF.Vertex) : Charged Bool :=
+Hard2PairGeometrySource.lean:57: def pairDescendantsMeter (T : Tree) (v : RMAF.Vertex) : Charged (List Nat) :=
+Hard2PairGeometrySource.lean:87: def pairEdgeMeter (T : Tree) (A B : List Nat) (e : RMAF.Vertex×RMAF.Vertex) : Charged Bool :=
+Hard2PairGeometrySource.lean:34: def pairRegionsMeter (D : List Nat) (T : Tree) (v : RMAF.Vertex) : Charged (List Nat) :=
+Hard2PairGeometrySource.lean:50: def pairPrefixMeter : RMAF.Vertex→RMAF.Vertex→Charged Bool
+Hard2PairGeometrySource.lean:72: def pairSideClearMeter (T : Tree) (A B : List Nat) (v : RMAF.Vertex) (inside : Bool) : Charged Bool :=
+Hard2PairGeometrySource.lean:66: def pairSideMeter (A : List Nat) (T : Tree) (v : RMAF.Vertex) (inside : Bool) : Charged (List Nat) :=
+Hard2RouteSource.lean:10: inductive Hard2Route where
+Hard2RouteSource.lean:18: def hard2FrontMeter (T S : Tree) (c : CherryBranching.Candidate) (q : Nat) : Charged Hard2Route :=
+Hard2StepTrace.lean:7: structure Hard2Receipt where
+HullCheckMeters.lean:5: def meterDisjoint (A B : List RMAF.Vertex) : Charged Bool :=
+HullCheckMeters.lean:10: def meterHullPair (T : Tree) (B C : List Nat) : Charged Bool :=
+HullCheckMeters.lean:17: def meterPairwise (T : Tree) : Forest → Charged Bool
+IncidentWork.lean:7: def incidentAtMeter (T : Tree) (X : List Nat) (q : RMAF.Vertex) : Measured Bool :=
+IncidentWork.lean:44: def incidentFilterMeter (T : Tree) (X : List Nat) : List RMAF.Vertex→Measured (List RMAF.Vertex)
+IncidentWork.lean:67: def incidentMeter (T : Tree) (X : List Nat) : Measured (List RMAF.Vertex) :=
+LiteralAtoms.lean:8: def treeEqMeter : Tree → Tree → Measured Bool
+LiteralAtoms.lean:68: def natListEqMeter := listEqMeter natEqMeter
+LiteralAtoms.lean:76: def addressListsEqMeter := listEqMeter eqAddressMeter
+LiteralAtoms.lean:86: def anyMeter {α : Type} (f : α→Measured Bool) : List α→Measured Bool
+LiteralAtoms.lean:92: def allMeter {α : Type} (f : α→Measured Bool) : List α→Measured Bool
+LiteralAtoms.lean:129: def checksMeter : List (Unit→Measured Bool)→Measured Bool
+LiteralAtoms.lean:37: def listEqMeter {α : Type} (f : α→α→Measured Bool) : List α→List α→Measured Bool
+LiteralAtoms.lean:67: def natEqMeter (x y : Nat) : Measured Bool := ⟨decide (x=y),1⟩
+LiteralDecision.lean:6: def notMeter (m : Measured Bool) : Measured Bool := ⟨!m.value,m.work+1⟩
+LiteralDecision.lean:7: def orMeter (m : Measured Bool) (f : Unit→Measured Bool) : Measured Bool :=
+LiteralDecision.lean:18: def cutsTwoMeter (S : Tree) (a b : Nat) : Measured Bool :=
+LiteralDecision.lean:63: def literalFee (T S : Tree) (a b : Nat) (j : LiteralCall) : Nat :=
+LiteralDecision.lean:47: def literalMeter (T S : Tree) (a b : Nat) (d : BadSelection) (u v : RMAF.Vertex)
+LiteralScheduleReceiptSource.lean:4: structure LiteralReceiptSource (P A : Type) where
+LiteralScheduleReceiptSource.lean:9: def literalRunSource {P A : Type} (f : P→Nat→Charged (Option (Nat×A))) (b : Nat) :
+LiteralScheduleReceiptSource.lean:44: def literalScheduleSource {P A : Type} (f : P→Nat→Charged (Option (Nat×A)))
+LiteralStructural.lean:7: def atTreeMeter (T : Tree) (q : RMAF.Vertex) (U : Tree) : Measured Bool :=
+LiteralStructural.lean:44: def cherryExistsMeter (T : Tree) (a b : Nat) : Measured Bool :=
+LiteralStructural.lean:84: def labelsMeter (T C X : Tree) (c : Nat) : Measured Bool :=
+LiteralStructural.lean:104: def incidentEqMeter (T X : Tree) (u v : RMAF.Vertex) : Measured Bool :=
+LiteralStructural.lean:114: def minimalMemMeter (T X : Tree) (q : RMAF.Vertex) : Measured Bool :=
+LiteralStructural.lean:123: def tailMemMeter (T X : Tree) (q : RMAF.Vertex) : Measured Bool :=
+LiteralStructural.lean:131: def boundaryEqMeter (S X : Tree) (p : RMAF.Vertex) : Measured Bool :=
+LiteralStructural.lean:27: def cherryAtEitherMeter (T : Tree) (a b : Nat) (q : RMAF.Vertex) : Measured Bool :=
+LiteralStructural.lean:65: def labelPointMeter (C X : Tree) (c z : Nat) : Measured Bool :=
+LocalSelector.lean:5: inductive LocalSelection where
+Marked.lean:7: def marked (t : Tree) (X : List Nat) (y rho : Nat) : Option Tree :=
+MergeEnumeration.lean:61: def mergeMeter (X Y : List Nat) (x y rho gamma : Nat) (FM FN : Forest) : Measured (List Forest) :=
+MergeEnumeration.lean:10: def ownersMeter (X Y : List Nat) (GM GN : Forest) : Forest→Measured (List Forest)
+MergeEnumeration.lean:5: def rowMeter (X Y : List Nat) (GM GN : Forest) (H : List Nat) : Forest→Measured (List Forest)
+MergeOperations.lean:4: structure Measured (α : Type) where
+MergeOperations.lean:12: def filterMeter (X : List Nat) : List Nat→Measured (List Nat)
+MergeOperations.lean:29: def eraseMeter (H : List Nat) : Forest→Measured Forest
+MergeOperations.lean:55: def pairMeter (X Y : List Nat) (GM GN : Forest) (H J : List Nat) : Measured Forest :=
+MeterErase.lean:28: abbrev Query := (Tree × Tree) × Nat
+OWRecovery.lean:7: def meterInputCheck (S : Tree) (P : CommonForest) : Charged Bool :=
+OWScan.lean:34: structure ScanMeasured where
+OWScan.lean:8: def meterLength {α : Type} : List α→Charged Nat
+Ordinary.lean:6: def cuts (S : Tree) (a b : Nat) := pendantOriginal S a b
+OrdinaryPrepareSource.lean:41: def ordinaryPrepareMeter (T S : Tree) : List (List Nat)→Charged (Option (List (Job (List Nat) (List (List Nat)))))
+OrdinaryPrepareSource.lean:16: def ordinarySlotMeter (T S : Tree) (U : List Nat) : Charged (Option (Job (List Nat) (List (List Nat)))):=
+OrdinaryPrepareSource.lean:7: def properBlockMeter (T S : Tree) (U : List Nat) : Charged Bool:=
+OrdinarySchedulerSource.lean:39: def answerFlattenMeter : List (Nat×List (List Nat))→Charged (List (List Nat))
+OrdinarySchedulerSource.lean:9: def mafRecursiveMeter (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree)
+OrdinarySchedulerSource.lean:24: def ordinaryQueriesMeter (T S : Tree) : List (List Nat×Nat)→Charged (List Call)
+OrdinarySchedulerSource.lean:46: def optionFlattenMeter (o : Option (List (Nat×List (List Nat)))) : Charged (Option (List (List Nat))):=
+OrdinarySchedulerSource.lean:54: def ordinaryLocalSource (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree)
+OriginalSides.lean:39: def OriginalSplit (T : Tree) (X Y : List Nat) : Prop :=
+OutputDefs.lean:9: def sourceForest (S : Tree) (Q : List (List Nat)) : List Tree :=
+OutputRun.lean:28: def OutputResult.trace : OutputResult → List (Problem × Nat)
+OutputRun.lean:7: inductive OutputResult where
+OutsideClassifierWork.lean:5: def coreCheckMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt Bool :=
+OutsideClassifierWork.lean:9: def coreContainsMeter (S : Tree) (a b x : Nat) : Measured Bool :=
+OutsideClassifierWork.lean:19: def outsideAtMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) (c : CherryRow) : CheckReceipt (Option OutsideSelection) :=
+OutsideClassifierWork.lean:13: def outsideGuards (fee : CheckRequest→Nat) (T S : Tree) (a b p q : Nat) : List (Unit→CheckReceipt Bool) :=
+OutsideClassifierWork.lean:83: def selectOutsideMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt (Option OutsideSelection) :=
+OutsideCore.lean:109: structure OutsideSelection where
+OverlapDefs.lean:10: inductive Order where
+OverlapDefs.lean:13: def first (o : Order) (A B C : List Nat) : List Nat :=
+OverlapDefs.lean:15: def second (o : Order) (A B C : List Nat) : List Nat :=
+OverlapDefs.lean:17: def third (o : Order) (A B C : List Nat) : List Nat :=
+OverlapDefs.lean:33: inductive Result where
+OwnerCost.lean:5: def meterLabels : Tree→Charged (List Nat)
+OwnerCost.lean:36: def meterOwner (x : Nat) : List Tree→Charged Nat
+PaidAddresses.lean:22: def findLeafMeter (T : Tree) (a : Nat) : List RMAF.Vertex→Measured (Option RMAF.Vertex)
+PaidAddresses.lean:44: def leafAddressMeter (T : Tree) (a : Nat) : Measured (Option RMAF.Vertex) :=
+PaidAddresses.lean:5: def leafAtMeter (T : Tree) (q : RMAF.Vertex) (a : Nat) : Measured Bool :=
+PaidArcPartition.lean:86: def arcFromMeter (T : Tree) : List RMAF.Vertex→List (List Nat)→Charged (List (List Nat))
+PaidArcPartition.lean:96: def arcPartitionMeter (T : Tree) (qs : List RMAF.Vertex) : Charged (List (List Nat)) :=
+PaidArcPartition.lean:9: def splitBlockMeter (X B : List Nat) : Charged (List (List Nat)) :=
+PaidArcPartition.lean:19: def splitForestMeter (X : List Nat) : List (List Nat)→Charged (List (List Nat))
+PaidBestSource.lean:14: def bestForMeter (cb : Ordinary) (W : OrdinaryWork) {T S : Tree} (R : SelectedPaid T S) (q : Nat) : PaidExecutionReceipt (Option Forest) :=
+PaidBestSource.lean:8: def originalAcceptedMeter (T S : Tree) (q : Nat) (F : Forest) : Measured Bool :=
+PaidBestSource.lean:59: def paidSelectedSource (cb : Ordinary) (W : OrdinaryWork) (classFee : CheckRequest→Nat)
+PaidBestSource.lean:30: def solveSelectedMeter (cb : Ordinary) (W : OrdinaryWork) (classFee : CheckRequest→Nat)
+PaidBuilderOuter.lean:5: structure LiteralCall where
+PaidBuilderOuter.lean:22: def buildOneMeter (fee : LiteralCall→Nat) (T S : Tree) (a b : Nat) (d : BadSelection)
+PaidBuilderOuter.lean:92: def findBuilderMeter {α β : Type} (f : α→Measured (Option β)) : List α→Measured (Option β)
+PaidBuilderOuter.lean:115: def secondBuilderMeter (fee : LiteralCall→Nat) (T S : Tree) (a b : Nat) (d : BadSelection)
+PaidCaller.lean:10: structure LiteralGeometry (T S : Tree) where
+PaidCurrentSource.lean:8: structure CurrentReceipt where
+PaidCurrentSource.lean:17: def currentQueryMeter (cb : Ordinary) (W : OrdinaryWork) (T : Option Tree) (ss : List Tree) (r : Nat) : CurrentReceipt :=
+PaidDefs.lean:6: structure Job where
+PaidForestCandidates.lean:64: def forestCandidatesMeter (ss : List Tree) : Charged (List Forest) :=
+PaidForestCandidates.lean:11: def oneCutsMeter : List Tree→Charged (List Forest)
+PaidForestPretest.lean:10: def bestAdditionalMeter (ss : List Tree) (valid : Forest→Charged Bool) : List Forest→Charged (Option Forest)
+PaidForestPretest.lean:51: def forestPretestMeter (T : Option Tree) (ss : List Tree) : Charged ForestPretest01.Result :=
+PaidGuardSource.lean:45: def currentGuardMeter (T S : Tree) (c : Branch) : Charged Bool :=
+PaidGuardSource.lean:7: def vertexNodupMeter : List RMAF.Vertex→Charged Bool
+PaidGuardSource.lean:28: def forestEqMeter : List (List Nat)→List (List Nat)→Charged Bool
+PaidGuardSource.lean:61: def guardedPlanMeter {T S : Tree} (D : Case322PaidGuard.LiteralGeometry T S)
+PaidGuardSource.lean:16: def natListEqMeter : List Nat→List Nat→Charged Bool
+PaidOuterSource.lean:13: inductive PaidRoute where
+PaidOuterSource.lean:20: def paidOuterMeter (T S : Tree) (c : CherryBranching.Candidate) (out : Result) : Charged PaidRoute :=
+PaidOutputDefs.lean:7: inductive Kind where
+PaidParsing.lean:57: def fmMeter {α β : Type} (f : α→Measured (List β)) : List α→Measured (List β)
+PaidParsing.lean:87: def rowAtMeter (S : Tree) (w : RMAF.Vertex) (a b c : Nat) : Measured (List BottomData) :=
+PaidParsing.lean:7: def leafEqMeter (T : Tree) (x : Nat) : Measured Bool := ⟨decide (T=.leaf x),3⟩
+PaidParsing.lean:83: def pairRowsMeter (S : Tree) (w : RMAF.Vertex) (sa sc sb : Bool) (a b c : Nat) : Measured (List BottomData) :=
+PaidParsing.lean:9: def parseBottomMeter (S : Tree) (w : RMAF.Vertex) (sa sc sb : Bool) (a b c : Nat) : Measured (Option Tree) :=
+PaidParsing.lean:91: def rowsMeter (S : Tree) (a b c : Nat) : Measured (List BottomData) :=
+PaidPlanSource.lean:9: def sideAtMeter (T : Tree) (b c : Nat) (q : RMAF.Vertex) : Charged Bool :=
+PaidPlanSource.lean:17: def sideEdgesMeter (T : Tree) (b c : Nat) : Charged (List RMAF.Vertex) :=
+PaidPlanSource.lean:49: def hardBranchMeter (S : Tree) (a b : Nat) : Charged Branch :=
+PaidPlanSource.lean:52: def bBranchMeter (S : Tree) (b : Nat) (qb : RMAF.Vertex) : Charged Branch :=
+PaidPlanSource.lean:54: def targetBranchMeter (T : Tree) (qs : List RMAF.Vertex) : Charged Branch :=
+PaidPlanSource.lean:23: def cSideMeter (T : Tree) (b c : Nat) : Charged (List RMAF.Vertex) :=
+PaidPlanSource.lean:29: def withoutAMeter (T : Tree) (a b c : Nat) : Charged (List RMAF.Vertex) :=
+PaidPlanSource.lean:36: def lcaMeter : RMAF.Vertex→RMAF.Vertex→Charged RMAF.Vertex
+PaidPlanSource.lean:60: def typeIMeter (T S : Tree) (a b : Nat) (qa qb q r : RMAF.Vertex) : Charged (List Branch) :=
+PaidPlanSource.lean:64: def typeIIMeter (T S : Tree) (a b : Nat) (qa qb : RMAF.Vertex) (qs : List RMAF.Vertex) : Charged (List Branch) :=
+PaidPlanSource.lean:89: def literalPlanMeter {T S : Tree} (D : LiteralGeometry T S) : Charged (List Branch) :=
+PaidPlanSource.lean:72: def rawPlanMeter (T S : Tree) (a b c : Nat) (qa qb ub uc : RMAF.Vertex) : Charged (List Branch) :=
+PaidRequests.lean:9: structure PaidRequest where
+PaidRequests.lean:7: def opposite (T S : Tree) (c : Branch) : Tree := if c.role=.source then T else S
+PaidRequestsSource.lean:41: structure PaidExecutionReceipt (α : Type) where
+PaidRequestsSource.lean:33: def requestsMeter {T S : Tree} (D : LiteralGeometry T S) (q : Nat) : Charged (List PaidRequest) :=
+PaidRequestsSource.lean:55: def answerListMeter (cb : Ordinary) (W : OrdinaryWork) : List PaidRequest→PaidExecutionReceipt (List Forest)
+PaidRequestsSource.lean:68: def answersMeter (cb : Ordinary) (W : OrdinaryWork) {T S : Tree} (R : SelectedPaid T S) (q : Nat) : PaidExecutionReceipt (List Forest) :=
+PaidRequestsSource.lean:19: def requestListMeter (T S : Tree) (q : Nat) : List Branch→Charged (List PaidRequest)
+PaidRequestsSource.lean:48: def requestAnswerMeter (cb : Ordinary) (W : OrdinaryWork) (j : PaidRequest) : PaidExecutionReceipt (Option Forest) :=
+PaidRequestsSource.lean:7: def requestForMeter (T S : Tree) (q : Nat) (c : Branch) : Charged (Option PaidRequest) :=
+PaidSelectedBinding.lean:7: def paidSelectedMeter (classFee : CheckRequest→Nat) (literalFee : LiteralCall→Nat)
+PaintCost.lean:42: def meterBest {α : Type} (cost : α → Charged Nat) : List α → Charged (Option α)
+PaintCost.lean:15: def meterChanges : Paint → Charged Nat
+PaintCost.lean:74: def meterChoose (cost : Paint → Charged Nat) (xs : List Paint) : Charged Paint :=
+PaintCost.lean:30: def meterEdgeCost (c : Nat) (p : Paint) : Charged Nat :=
+PendantAddressScans.lean:25: def containsAddressMeter (p : RMAF.Vertex) : List RMAF.Vertex→Measured Bool
+PendantAddressScans.lean:48: def dropLastMeter : RMAF.Vertex→Measured RMAF.Vertex
+PendantAddressScans.lean:5: def eqAddressMeter : RMAF.Vertex→RMAF.Vertex→Measured Bool
+PendantCandidates.lean:5: def candidateRowsMeter (S : Tree) : List CherryRow→Measured (List Candidate)
+PendantCandidates.lean:26: def candidatesMeter (T S : Tree) : Measured (List Candidate) :=
+PendantCandidates.lean:60: def earlierAllMeter : List Candidate→Measured Bool
+PendantCandidates.lean:83: def earlierMeter (T S : Tree) : Measured Bool :=
+PendantCutWork.lean:41: def cutFilterMeter (S : Tree) (a b : Nat) : List RMAF.Vertex→Measured (List RMAF.Vertex)
+PendantCutWork.lean:5: def cutGuardMeter (S : Tree) (a b : Nat) (v : RMAF.Vertex) : Measured Bool :=
+PendantCutWork.lean:64: def cutsMeter (S : Tree) (a b : Nat) : Measured (List RMAF.Vertex) :=
+PendantMinimal.lean:5: def minimalMeter (D : List Nat) : Tree→Measured (List RMAF.Vertex)
+PendantPartitionWork.lean:55: def coreFilterMeter (S : Tree) (a b : Nat) : List Nat→Measured (List Nat)
+PendantPartitionWork.lean:78: def coreMeter (S : Tree) (a b : Nat) : Measured (List Nat) :=
+PendantPartitionWork.lean:98: def partitionMeter (S : Tree) (a b : Nat) : Measured (List (List Nat)) :=
+PendantPartitionWork.lean:8: def pendantPayloadMeter (S : Tree) (a b : Nat) : Measured (List Nat) :=
+PendantSpan.lean:5: def spanMeter (D : List Nat) : Tree→Measured (List RMAF.Vertex)
+PendantSubtrees.lean:42: def blocksMeter (T : Tree) : List RMAF.Vertex→Measured (List (List Nat))
+PendantSubtrees.lean:82: def flattenMeter : List (List Nat)→Measured (List Nat)
+PendantSubtrees.lean:5: def subtreeLabelsMeter : Tree→RMAF.Vertex→Measured (List Nat)
+PendantVertices.lean:5: def verticesMeter : Tree→Measured (List RMAF.Vertex)
+Planner.lean:15: structure Entry where
+Planner.lean:6: inductive Mode where
+Planner.lean:11: def Mode.extra : Mode → Nat
+PoolClassificationSelector.lean:63: structure Candidate where
+PoolClassificationSelector.lean:73: inductive Priority where
+PoolClassificationSelector.lean:97: structure Child where
+PoolClassificationSelector.lean:120: def remaining (budget : Nat) (c : Child) : Option Nat :=
+PrefixChildrenWork.lean:7: def excludeOneMeter (x : Nat) : List Nat→Measured (List Nat)
+PrefixChildrenWork.lean:10: def excludeTwoMeter (x y : Nat) : List Nat→Measured (List Nat)
+PrefixChildrenWork.lean:135: def fiveChildrenMeter (S : Tree) (a b p q : Nat) : Measured (List Child) :=
+PrefixChildrenWork.lean:156: def localChildrenMeter (S : Tree) (a b : Nat) : LocalSelection→Measured (List Child)
+PrefixChildrenWork.lean:97: def pairChildMeter (S : Tree) (x y : Nat) : Measured Child :=
+PrefixChildrenWork.lean:36: def pairPartitionMeter (S : Tree) (x y : Nat) : Measured (List (List Nat)) :=
+PrefixChildrenWork.lean:94: def singletonChildMeter (S : Tree) (x : Nat) : Measured Child :=
+PrefixChildrenWork.lean:33: def singletonPartitionMeter (S : Tree) (x : Nat) : Measured (List (List Nat)) :=
+PrefixClassifierWork.lean:5: def largeAtMeter (fee : CheckRequest→Nat) (T S : Tree) (e : RMAF.Vertex) : CheckReceipt (Option RMAF.Vertex) :=
+PrefixClassifierWork.lean:41: def optionsHeadMeter {α β : Type} (cs : Measured (List α)) (f : α→CheckReceipt (Option β)) : CheckReceipt (Option β) :=
+PrefixClassifierWork.lean:81: def sizeTwoAtMeter (fee : CheckRequest→Nat) (T S : Tree) (e : RMAF.Vertex) : CheckReceipt (Option SizeTwoSelection) :=
+PrefixClassifierWork.lean:55: def selectLargeMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt (Option RMAF.Vertex) :=
+PrefixClassifierWork.lean:108: def selectSizeTwoMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt (Option SizeTwoSelection) :=
+PrefixLeaves.lean:5: def leavesMeter : Tree→Measured (List Nat)
+PrefixScans.lean:4: structure Measured (α : Type) where
+PrefixScans.lean:11: def containsMeter (x : Nat) : List Nat→Measured Bool
+PrefixScans.lean:40: def nodupMeter : List Nat→Measured Bool
+Pretest.lean:37: inductive Result where
+Pretest.lean:12: def edges : Tree → List Vertex
+Pretest.lean:16: def subtreeLabels (S : Tree) (p : Vertex) : List Nat :=
+Pretest.lean:8: def vertices : Tree → List Vertex
+ProperPairWork.lean:5: def nodupTreeMeter (T : Tree) : Measured Bool :=
+ProperPairWork.lean:21: def allPairMeter (T S : Tree) : Measured Bool :=
+ProperPairWork.lean:15: def allTreeMeter (S : Tree) : List Nat→Measured Bool
+ProperPairWork.lean:9: def containsTreeMeter (T : Tree) (x : Nat) : Measured Bool :=
+ProperPairWork.lean:73: def properPairMeter (T S : Tree) : Measured Bool :=
+QueryCaller.lean:5: inductive Job (P A : Type) where
+QueryCaller.lean:26: structure Receipt (A : Type) where
+QueryCaller.lean:47: def schedule (solve : P → Nat → Option (Nat × A)) (q : Nat)
+QueryCaller.lean:14: def knownCost : List (Job P A) → Nat
+QueryCaller.lean:19: def pending : List (Job P A) → Nat
+QueryCaller.lean:24: def answerCost (xs : List (Nat × A)) : Nat := (xs.map Prod.fst).sum
+QueryCaller.lean:32: def run (solve : P → Nat → Option (Nat × A)) (b : Nat) : List (Job P A) → Receipt A
+QueryCaller.lean:44: def allocated (q : Nat) (js : List (Job P A)) : Nat :=
+RMAF.lean:36: def sameShape : Tree → Tree → Bool
+RMAF.lean:135: def disjointVertices (a b : List Vertex) : Bool :=
+RMAF.lean:111: def prependSide (side : Bool) (vs : List Vertex) : List Vertex :=
+RMAF.lean:116: def rootedSpan (selected : List Nat) : Tree → List Vertex
+RMAF.lean:126: def minimalVertices (selected : List Nat) : Tree → List Vertex
+RMAF.lean:138: def pairwiseEmbeddings (t : Tree) : List (List Nat) → Bool
+RMAF.lean:144: def restrictionAgrees (t u : Tree) (b : List Nat) : Bool :=
+RMAF.lean:149: def partitionCheck (labels : List Nat) (bs : List (List Nat)) : Bool :=
+RMAF.lean:84: def restrict (selected : List Nat) : Tree → Option Tree
+RWChoose.lean:21: def meterChoose (t : GTree) : Charged Choice :=
+RWChoose.lean:6: def meterUniqueTest (gs : List Group) (g : Group) : Charged Bool :=
+RWFinal.lean:9: def meterColor : CommonForest→Nat→Charged Nat
+RWFinal.lean:38: def meterRecover (S : Tree) (P : CommonForest) : Charged (Option Output) :=
+RWInitial.lean:6: structure Built where
+RWInitial.lean:34: structure InitialMeasured where
+RWInitial.lean:11: def meterBuild (color : Nat→Charged Nat) (p : RMAF.Vertex) : Tree→Built
+RWInitial.lean:39: def meterInitial (color : Nat→Charged Nat) (budget : Nat) (t : Tree) : InitialMeasured :=
+RWInitial.lean:82: def meterGenerate (t : Tree) (color : Nat→Charged Nat) (budget : Nat) : Charged Receipt :=
+RWLocal.lean:6: def meterAttempt (f : GTree→List Group→List RMAF.Vertex→Charged Receipt)
+RWLocal.lean:87: def meterStep (f : GTree→List Group→List RMAF.Vertex→Charged Receipt)
+RWLocal.lean:58: def meterOutput (t : GTree) (d : List Group) (c : List RMAF.Vertex) : Charged Output :=
+RWRun.lean:8: def meterRun : Nat→GTree→List Group→List RMAF.Vertex→Charged Receipt
+RWTree.lean:8: def meterGroups : GTree→Charged (List Group)
+RWTree.lean:28: def meterNormalize : GTree→Charged GTree
+RWTree.lean:54: def meterErase (chosen : RMAF.Vertex) : GTree→Charged (Option GTree)
+RWTree.lean:24: def normalizeFee : GTree→GTree→Nat
+RWTree.lean:79: def meterMixed : GTree→Charged (Option (Group×Group))
+Rename.lean:5: def relabel (f : Nat → Nat) : Tree → Tree
+Rename.lean:9: def relabelForest (f : Nat → Nat) (F : List (List Nat)) := F.map (List.map f)
+Rename.lean:11: def swap (a b x : Nat) := if x=a then b else if x=b then a else x
+Rule4CallerSource.lean:19: def rule4PartitionMeter (S : Tree) (cuts : List RMAF.Vertex) : Charged (List (List Nat)) :=
+Rule4CallerSource.lean:29: def leafAddressMeter (a : Nat) : Tree→Charged (Option RMAF.Vertex)
+Rule4CallerSource.lean:45: def rule4BranchesMeter {T S : Tree} (s : Rule4.Choice T S) : Charged (List Rule4.Branch) :=
+Rule4CallerSource.lean:57: def rule4StateMeter (b : Rule4.Branch) : Charged (List Tree) :=
+Rule4CallerSource.lean:11: def rule4OutsideMeter (S : Tree) (cuts : List RMAF.Vertex) (x : Nat) : Charged Bool :=
+Rule4Program.lean:68: structure Branch where
+Rule4Selector.lean:40: def Priority (T S : Tree) : Prop :=
+Rule4Selector.lean:48: structure RawChoice where
+Rule4Selector.lean:56: def LocalGuard (T S : Tree) (s : RawChoice) : Prop :=
+Rule4Selector.lean:64: structure Choice (T S : Tree) where
+Rule4Selector.lean:6: def orderedCherries : Tree → List (Nat × Nat)
+Rule5Defs.lean:19: def properPair (T S : Tree) : Bool :=
+Rule5Defs.lean:32: def incident (T : Tree) (X : List Nat) : List RMAF.Vertex :=
+Rule5SelectedSource.lean:60: def dispatchSource (cb : Ordinary) (W : OrdinaryWork) (classFee : CheckRequest→Nat)
+Rule5SelectedSource.lean:10: def runSelectedSource (cb : Ordinary) (W : OrdinaryWork) (classFee : CheckRequest→Nat)
+Safety.lean:126: def ActualCherry (T : Tree) (a b : Nat) : Prop :=
+SchedulerAtoms.lean:5: def knownCostMeter {P A : Type} : List (Job P A)→Charged Nat
+SchedulerAtoms.lean:18: def pendingMeter {P A : Type} : List (Job P A)→Charged Nat
+SchedulerAtoms.lean:39: def allocatedMeter {P A : Type} (q : Nat) (js : List (Job P A)) : Charged Nat:=
+SchedulerAtoms.lean:49: def postChargeMeter {A : Type} (r : Receipt A) : Charged Nat:=
+SchedulerAtoms.lean:31: def answerCostMeter {A : Type} : List (Nat×A)→Charged Nat
+SchedulerRun.lean:8: def runSourceMeter {P A : Type} (f : P→Nat→Charged (Option (Nat×A)))
+SchedulerSchedule.lean:5: def acceptAnswersMeter {A : Type} (q : Nat) : Option (List (Nat×A))→Charged (Option (List (Nat×A)))
+SchedulerSchedule.lean:16: def scheduleSourceMeter {P A : Type} (f : P→Nat→Charged (Option (Nat×A)))
+SelectedAgreementBinding.lean:25: def selectedArmSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+SelectedChildrenWork.lean:8: def selectedChildrenMeter (S : Tree) (a b : Nat) : FinalSelection→Measured (List Child)
+SelectedExact.lean:9: inductive SelectedResult where
+SelectedRestriction.lean:11: def sourceForestMeter (S : Tree) : List (List Nat)→Measured (List Tree)
+SelectedRestriction.lean:51: def makeChildMeter (S : Tree) (P : List (List Nat)) (paid : Nat) : Measured Child :=
+SelectedRestriction.lean:67: def pendantChildMeter (S : Tree) (a b : Nat) : Measured Child :=
+Selector.lean:531: inductive Choice where
+Selector.lean:287: def vertices : RMAF.Tree → List Vertex
+SelectorBuilder.lean:7: structure BottomData where
+SelectorBuilder.lean:43: def LiteralProps (T S : Tree) (a b : Nat) (d : BadSelection) (u v : RMAF.Vertex)
+SelectorBuilder.lean:84: structure SelectedPaid (T S : Tree) where
+SelectorBuilder.lean:40: def leafAddress? (T : Tree) (a : Nat) : Option RMAF.Vertex :=
+SelectorBuilder.lean:17: def unorient (s : Bool) : Tree → Option (Tree × Tree)
+SelectorGeometry.lean:11: def EndpointOrder (a b x y : Nat) : Prop := (x=a ∧ y=b) ∨ (x=b ∧ y=a)
+SetupAtoms.lean:8: def bump {α : Type} (k : Nat) (r : Measured α) : Measured α := ⟨r.value,k+r.work⟩
+SetupAtoms.lean:13: def eraseMeter (x : Nat) : List Nat→Measured (List Nat)
+SetupAtoms.lean:88: def relabelMeter (y rho : Nat) : Tree→Measured Tree
+SetupAtoms.lean:32: def permMeter : List Nat→List Nat→Measured Bool
+SetupAtoms.lean:60: def partitionTreeMeter (T : Tree) (X Y : List Nat) : Measured Bool :=
+SetupAtoms.lean:77: def maxMeter : List Nat→Measured Nat
+SetupAtoms.lean:100: def markedMeter (T : Tree) (X : List Nat) (y rho : Nat) : Measured (Option Tree) :=
+SiblingChildrenWork.lean:74: def firstChildrenMeter (S : Tree) (a b : Nat) (d : BadSelection) : Measured (List Child) :=
+SiblingChildrenWork.lean:81: def thirdChildrenMeter (S : Tree) (a b : Nat) (d : BadSelection) : Measured (List Child) :=
+SiblingChildrenWork.lean:6: def reverseAuxMeter : RMAF.Vertex→RMAF.Vertex→Measured RMAF.Vertex
+SiblingChildrenWork.lean:22: def reverseMeter (p : RMAF.Vertex) :=reverseAuxMeter p []
+SiblingChildrenWork.lean:27: def siblingEndpointMeter (S : Tree) (q : RMAF.Vertex) : Measured (Option Nat) :=
+SolveCost.lean:5: def meterSolve (cs : List Nat) (owner : Nat→Charged Nat) (t : Tree) : Charged Paint :=
+SourceBestMeter.lean:7: def sourceBestMeter {α : Type} (cost : α→Charged Nat) (valid : α→Charged Bool) : List α→Charged (Option α)
+SourceOrientation.lean:21: def AX (sa : Bool) (a : Nat) (X : Tree) := orient sa (.leaf a) X
+SourceOrientation.lean:7: def orient (s : Bool) (A B : Tree) : Tree := if s then .node B A else .node A B
+SourceOrientation.lean:22: def VC (sa sc : Bool) (a c : Nat) (X : Tree) := orient sc (AX sa a X) (.leaf c)
+SourceOrientation.lean:27: def bArc (w : RMAF.Vertex) (sb : Bool) := w ++ [!sb]
+SourceOrientation.lean:23: def bottom (sa sc sb : Bool) (a b c : Nat) (X : Tree) := orient sb (VC sa sc a c X) (.leaf b)
+TableCost.lean:23: def meterRow (c : Nat) (ls rs : List Paint) : Charged Paint :=
+TableCost.lean:31: def meterTable (cs : List Nat) (owner : Nat→Charged Nat) : Tree→Charged (List Paint)
+TreeCheckMeters.lean:6: def meterSameShape : Tree → Tree → Charged Bool
+TreeCheckMeters.lean:34: def meterRestrict (B : List Nat) : Tree → Charged (Option Tree)
+TreeCheckMeters.lean:68: def meterRestrictionAgrees (T S : Tree) (B : List Nat) : Charged Bool :=
+UnitCombineSource.lean:32: def combineSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+UnitCombineSource.lean:8: def unitChildrenMeter (S : Tree) (a b : Nat) : Rule5LocalWork.Measured (List CherryBranching.Child) :=
+UnitCombineSource.lean:18: def unitCallsMeter (S T : Tree) (a b q : Nat) : Charged (List Call) :=
+Work.lean:121: structure Measured where
+Work.lean:119: def appendCells (a : Receipt) : Nat := a.outputs.length + a.refusals.length
+ChildrenExecutionWork.lean:170: def runChildrenMeter (actual : Ordinary) (forestFee : ForestQuery→Nat) (agreementFee : Forest→Nat) (T S : Tree) (q : Nat) (cs : List Child) : ChildrenReceipt :=
+Rule4Program.lean:77: def Branch.cost (b : Branch) := b.cuts.length

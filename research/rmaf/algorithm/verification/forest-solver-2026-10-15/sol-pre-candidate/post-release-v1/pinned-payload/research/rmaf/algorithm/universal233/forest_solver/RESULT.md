@@ -1,0 +1,11 @@
+# Author result
+
+`ForestDisjoint.lean:exact_of_ordinary` proves `ExactAt (solve ordinary)` from `OrdinaryIH ordinary`. Every accepted return satisfies the literal original `ForestState.agrees` checker and the additional budget. For every affordable agreeing forest G, the solver returns an agreeing forest F with `F.length ≤ G.length`. The earlier `DisjointExact` premise in `ForestConditional.lean` is discharged in `ForestDisjoint.lean` through the actual depth01 planner and paid scheduler.
+
+`ForestReplace.lean` and `ForestReverse.lean` prove component-only replacement, original-state reconstruction, local source refinement, and exact additional-cost preservation for actual generator outputs. The proofs use generated original SOURCE embeddings. Distinct current source components may overlap in the target. `ForestOverlap.lean` derives final-piece ownership from actual `ForestState.agrees`; the overlap vertex is an original nonleaf with two or three nonempty incident leaf regions. Every emitted cut list costs at least one, and the two raw source-core lists have total rational mass at most `2*c^(-1)` for `c ≥ 2`.
+
+`ForestSelection.lean` binds these facts to the actual selected source indices and original shared vertex. The recursive forest budget decreases strictly at every raw occurrence. `ForestQueries.lean` and `ForestTrace.lean` prove properness and strict label decrease for actual ordinary queries when there are multiple source components; a sole hard query may retain q. A single source component calls the explicit ordinary-tree IH with derived properness.
+
+`ForestWorkBound.lean:source_work_bound` proves the billed source bound `(q+1)*K*c^q` for rational `c ≥ 2`, under `LocalBillBound`. The bill includes core prefix/refusal/prune work, original-target color callbacks, actual paid ordinary traces, source replacement, and final checking/minimum selection. `SOURCE-WORK.md` scopes the local cost hypothesis. The unconditional full runtime theorem remains OPEN.
+
+The preproof receipt retains six actual control groups and two rejected false claims. Later kernel controls exercise the actual generic solver. Completed dependencies were used in development, so this author replay is not independent evidence. Root coordinates fresh nonauthor review; no novelty claim or full ordinary-tree algorithm claim is made.

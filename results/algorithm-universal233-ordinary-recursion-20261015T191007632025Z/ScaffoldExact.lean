@@ -1,0 +1,116 @@
+import ScaffoldFacts
+namespace OrdinaryScaffold
+open RMAF ForestState Universal233 Universal233.CherryBranching OrdinaryDispatch
+
+def cutoff (q : Nat) : Tree → Tree → Nat → Option CommonForest :=
+ fun T S b => if b<q then solve b T S else none
+
+theorem cutoff_local (q : Nat)
+ (ih : ∀b,b<q →∀T S,DepthOne.proper T S=true →QueryExact T S b (solve b T S))
+ (r : Nat) (hr : r<q) : ForestMinCompletion.LocalOrdinaryIH r (cutoff q) := by
+ constructor
+ · intro T S b F hb proper answer
+   have bq : b<q := by omega
+   have returned : solve b T S=some F := by simpa [cutoff,bq] using answer
+   exact query_sound (ih b bq T S proper) returned
+ · intro T S b F hb proper af budget
+   have bq : b<q := by omega
+   obtain ⟨G,hG⟩ := query_complete (ih b bq T S proper) F af budget
+   exact ⟨G,by simpa [cutoff,bq] using hG⟩
+
+/-- Correctness of the explicit ordinary cherry scaffold. The hard2 fallback
+still has its original (1,1,2) costs and supplies no improved-base claim. -/
+theorem solve_exact (q : Nat) (T S : Tree) (hp : DepthOne.proper T S=true) :
+ QueryExact T S q (solve q T S) := by
+ have state := ordinary_state_proper hp
+ obtain ⟨nt,ns,perm⟩ := (DepthOne.proper_iff T S).1 hp
+ have same : ∀x,x∈leaves T ↔x∈leaves S := fun _=>perm.mem_iff
+ have ih : ∀r,r<q →ForestMinCompletion.LocalOrdinaryIH r (cutoff q) := by
+  intro r hr
+  apply cutoff_local q ?_ r hr
+  intro b hb t s proper
+  exact solve_exact b t s proper
+ rw [solve.eq_def]
+ simp only [hp,ite_true]
+ cases pre : DepthOne.pretest01 T S with
+ | refused =>
+  have no := (DepthOne.refused_iff T S).1 pre
+  rw [hp] at no
+  contradiction
+ | found edge =>
+  simp only [pre]
+  exact found_query_exact T S q edge pre
+ | rejected =>
+  simp only [pre]
+  cases sel : select T S with
+  | none =>
+   obtain ⟨p,hp⟩ := select_after_rejection hp pre
+   rw [sel] at hp
+   contradiction
+  | some p =>
+   obtain ⟨pr,c⟩ := p
+   cases pr with
+   | common =>
+    have size := selected_common_label_decrease state sel
+    have smaller : (leaves (contract c.a c.b (commonFresh T) T)).length<(leaves T).length := by omega
+    have ready := selected_common_ready state sel
+    have reduced := common_reduced_proper ready
+    have rp := GenericForest.singleton_ordinary_proper _ _ reduced
+    have contracted := solve_exact q (contract c.a c.b (commonFresh T) T)
+      (contract c.a c.b (commonFresh T) S) rp
+    have full := selected_common_query_exact (fun t s b=>solve b t s) q state sel contracted
+    simpa only [sel,smaller,dite_true,runCommonCherry] using full
+   | one =>
+    change QueryExact T S q (runChildren (cutoff q) T S q [pendantChild S c.a c.b])
+    have ch := (selected_actual sel).1
+    have one : (cuts S c.a c.b).length=1 := by
+     rw [←(selected_actual sel).2]
+     exact (selected_spec sel).2.1
+    apply query_of_checked_complete
+    · exact runChildren_sound (cutoff q) T S q _
+    · exact one_child_complete (cutoff q) T S q nt ns same ch one ih
+   | high =>
+    change QueryExact T S q (runChildren (cutoff q) T S q (branches S c.a c.b))
+    have ch := (selected_actual sel).1
+    have pos : 1≤(cuts S c.a c.b).length := by
+     rw [←(selected_actual sel).2]
+     have h := (selected_spec sel).2.1
+     omega
+    apply query_of_checked_complete
+    · exact runChildren_sound (cutoff q) T S q _
+    · exact three_children_complete (cutoff q) T S q nt ns same ch pos ih
+   | hard2 =>
+    change QueryExact T S q (runChildren (cutoff q) T S q (branches S c.a c.b))
+    have ch := (selected_actual sel).1
+    have pos : 1≤(cuts S c.a c.b).length := by
+     rw [←(selected_actual sel).2]
+     have h := (selected_spec sel).2.1
+     omega
+    apply query_of_checked_complete
+    · exact runChildren_sound (cutoff q) T S q _
+    · exact three_children_complete (cutoff q) T S q nt ns same ch pos ih
+termination_by (q,(leaves T).length)
+decreasing_by
+ all_goals simp_wf
+ all_goals first | apply Prod.Lex.left; assumption | apply Prod.Lex.right; assumption
+end OrdinaryScaffold
+
+namespace OrdinaryScaffold
+open RMAF ForestState Universal233 OrdinaryDispatch
+
+theorem actual_ordinary_IH :
+ GenericForest.OrdinaryIH (fun T S q=>solve q T S) := by
+ constructor
+ · intro T S q F proper returned
+   exact query_sound (solve_exact q T S proper) returned
+ · intro T S q F proper af budget
+   exact query_complete (solve_exact q T S proper) F af budget
+
+theorem actual_local_ordinary_IH (K : Nat) :
+ ForestMinCompletion.LocalOrdinaryIH K (fun T S q=>solve q T S) := by
+ constructor
+ · intro T S q F _ proper returned
+   exact query_sound (solve_exact q T S proper) returned
+ · intro T S q F _ proper af budget
+   exact query_complete (solve_exact q T S proper) F af budget
+end OrdinaryScaffold

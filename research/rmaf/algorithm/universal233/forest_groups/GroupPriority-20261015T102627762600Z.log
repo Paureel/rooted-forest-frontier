@@ -1,0 +1,71 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/build/GroupPriority.lean:68:29: error: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)
+  U = C ∨ U ∈ []
+
+case inr.inr
+T : Option Tree
+a : Tree
+bs cs : List Tree
+A B C : List Nat
+eqs : owned ([a] ++ bs ++ cs) A = [a] ∧ owned ([a] ++ bs ++ cs) B = bs ∧ owned ([a] ++ bs ++ cs) C = cs
+clear : PriorityClear T a bs cs
+t : Tree
+ht : T = some t
+U V : List Nat
+hne : U ≠ V
+s : Tree
+hs : s ∈ owned ([a] ++ bs ++ cs) U
+r : Tree
+hr : r ∈ owned ([a] ++ bs ++ cs) V
+hh :
+  (∀ (b : Tree), b ∈ bs → Clear (minimalVertices (leaves a) t) (minimalVertices (leaves b) t)) ∧
+    (∀ (c : Tree), c ∈ cs → Clear (minimalVertices (leaves a) t) (minimalVertices (leaves c) t)) ∧
+      ∀ (b : Tree), b ∈ bs → ∀ (c : Tree), c ∈ cs → Clear (minimalVertices (leaves b) t) (minimalVertices (leaves c) t)
+hV : V = A ∨ V = B ∨ V = C ∨ V ∈ []
+h✝ : U = C ∨ U ∈ []
+⊢ Clear (minimalVertices (leaves s) t) (minimalVertices (leaves r) t)
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/build/GroupPriority.lean:67:27: warning: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [List.mem_cons] at hU hV
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/build/GroupPriority.lean:110:31: error: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)
+  U = C ∨ U ∈ []
+
+case inr.inr
+T : Option Tree
+a : Tree
+bs cs : List Tree
+A B C : List Nat
+FA FB FC : List (List Nat)
+hp : proper T ([a] ++ bs ++ cs) = true
+hq : partitionCheck (labels T) [A, B, C] = true
+ownsA : leaves a ⊆ A
+ownsB : ∀ (s : Tree), s ∈ bs → leaves s ⊆ B
+ownsC : ∀ (s : Tree), s ∈ cs → leaves s ⊆ C
+clear : PriorityClear T a bs cs
+hA : agrees (localTarget T A) [a] FA = true
+costA : additionalCost [a] FA = 1
+hB : agrees (localTarget T B) bs FB = true
+hC : agrees (localTarget T C) cs FC = true
+costC : additionalCost cs FC = 0
+eqs : owned ([a] ++ bs ++ cs) A = [a] ∧ owned ([a] ++ bs ++ cs) B = bs ∧ owned ([a] ++ bs ++ cs) C = cs
+own : Owns ([a] ++ bs ++ cs) [A, B, C]
+hab : A ≠ B
+hac : A ≠ C
+hbc : B ≠ C
+G : List Nat → List (List Nat) := fun U => if U = A then FA else if U = B then FB else FC
+gA : G A = FA
+gB : G B = FB
+gC : G C = FC
+U : List Nat
+h✝ : U = C ∨ U ∈ []
+⊢ agrees (localTarget T U) (owned ([a] ++ bs ++ cs) U) (G U) = true
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/build/GroupPriority.lean:109:29: warning: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [List.mem_cons] at hU
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

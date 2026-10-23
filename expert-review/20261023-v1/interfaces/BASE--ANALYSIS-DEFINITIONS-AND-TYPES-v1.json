@@ -1,0 +1,169 @@
+{
+  "scope": "Pure canonical definitions and full logical TYPES only; no theorem proof values or author outcomes. Background formal contracts may be used only with all printed premises; do not infer a RAM cost from them.",
+  "definitions": [
+    {
+      "module": "CompleteOrdinaryStep",
+      "declaration": "completeLocalDebit",
+      "source_context_lines": [
+        "import CompleteResidualBounds",
+        "namespace OrdinaryDispatch.CompleteSource",
+        "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+        "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+        "open OrdinaryDispatch.Hard2SourceWork OrdinaryDispatch.FullSourceWork OrdinaryDispatch.OuterSource",
+        "open OrdinaryDispatch.FastOrdinary OrdinaryDispatch.EarlyLocalWork"
+      ],
+      "code": "def completeLocalDebit (T S : Tree) (q : Nat) : Nat := (ordinaryCompleteStepSource (fun _ _ _=>0) q T S).work",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CompleteOrdinaryStep.lean",
+      "source_sha256": "f9b3d0942368be95dcb00315266dca8e33588a8f18cdb0e7cab6a85678ee65ed",
+      "object_sha256": "13c3c8f0c5086bed172f621aade919e24c323efe178119e0485284fd0866608f"
+    },
+    {
+      "module": "CompleteWeightedSource",
+      "declaration": "completeSourceCounter",
+      "source_context_lines": [
+        "import CompleteLocalLedger",
+        "namespace OrdinaryDispatch.CompleteSource",
+        "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+        "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+        "open OrdinaryDispatch.Hard2SourceWork OrdinaryDispatch.FullSourceWork OrdinaryDispatch.OuterSource",
+        "open OrdinaryDispatch.FastOrdinary OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.GlobalSourceAssembly",
+        "open OrdinaryDispatch.GoodPairGlobalAssembly OrdinaryDispatch.ExtendedSourceAssembly OrdinaryDispatch.GlobalNumeric",
+        "open OrdinaryDispatch.BudgetOptimization OrdinaryDispatch.RecoveryLocalWork"
+      ],
+      "code": "def completeSourceCounter (q : Nat) (T S : Tree) : Nat:=sourceSubtotal completeLocalDebit q T S",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CompleteWeightedSource.lean",
+      "source_sha256": "976d1006e8335007a67f1fa213947bd3f139709431de4dd49ae343324408de0c",
+      "object_sha256": "63064efa529e854318cec1650033db6fafbefc721fce612381c1292839451904"
+    },
+    {
+      "module": "WeightedSourceSubtotal",
+      "declaration": "sourceSubtotal",
+      "source_context_lines": [
+        "import PrefixSourceWork",
+        "namespace OrdinaryDispatch.FullSourceWork",
+        "open RMAF ForestState Universal233",
+        "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion"
+      ],
+      "code": "def sourceSubtotal (localDebit : OrdinaryWork) (q : Nat) (T S : Tree) : Nat :=\n localDebit T S q+\n (((ordinaryStepTrace FastOrdinary.solve q T S).queries.attach).map fun pb=>\n  sourceSubtotal localDebit pb.val.2 pb.val.1.1 pb.val.1.2).sum",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/WeightedSourceSubtotal.lean",
+      "source_sha256": "e8fb5e066dac195d5280fb8cadad09a49a0700a3ef0f1707122c1c2f85e54829",
+      "object_sha256": "dbe0f9dbe8b8ba44047f5a2d1a453ff91361dd95989a48cd20324ff588fa32f0"
+    },
+    {
+      "module": "FastSolve",
+      "name": "OrdinaryDispatch.FastOrdinary.solve",
+      "range": [
+        10,
+        33
+      ],
+      "source_context_lines": [
+        "import CommonOrientation",
+        "import CutoffFacts",
+        "import Hard2Exact",
+        "namespace OrdinaryDispatch.FastOrdinary",
+        "open RMAF ForestState Universal233 Universal233.CherryBranching"
+      ],
+      "code": "def solve (q : Nat) (T S : Tree) : Option CommonForest :=\n if DepthOne.proper T S then\n  match DepthOne.pretest01 T S with\n  | .refused => none\n  | .found c => if DepthOne.cutCost c\u2264q then some (DepthOne.forest S c) else none\n  | .rejected =>\n   let paid := fun u v r => if hr : r<q then solve r u v else none\n   match early T S with\n   | .common reverse c =>\n     let p := commonPair T S reverse c\n     if hn : (leaves p.1).length<(leaves T).length then\n       (solve q p.1 p.2).map (expandCommon T S reverse c)\n     else none\n   | .one reverse c =>\n     let p := Oriented reverse T S\n     runChildren paid p.1 p.2 q [pendantChild p.2 c.a c.b]\n   | .high reverse c =>\n     let p := Oriented reverse T S\n     runChildren paid p.1 p.2 q (branches p.2 c.a c.b)\n   | .rule4Forward s => runRule4 paid s q\n   | .rule4Reverse s => runRule4 paid s q\n   | .hard2 c d => Hard2Dispatcher.run paid T S c d q\n   | .refused => none\n else none",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/FastSolve.lean",
+      "source_sha256": "5e6f9a586a7029648e774f34eae8d0fed9451976326d3b59f5d78c0741e8ed31",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/FastSolve.olean",
+      "object_sha256": "0befb80879678d10e38a982f79e43f26d8ae1011dab5815b480845a1b6f67d0a"
+    },
+    {
+      "module": "Hard2StepTrace",
+      "name": "OrdinaryDispatch.WorkIntegration.Hard2Receipt",
+      "range": [
+        7,
+        9
+      ],
+      "source_context_lines": [
+        "import Hard2Frontier",
+        "namespace OrdinaryDispatch.WorkIntegration",
+        "open RMAF ForestState Universal233 Universal233.BothBad Universal233.PaidQueries",
+        "open Universal233.CherryBranching Universal233.Hard2Overlap",
+        "open OrdinaryDispatch.Hard2Dispatcher GenericForest.FrontierWork"
+      ],
+      "code": "structure Hard2Receipt where\n value : Option (List (List Nat))\n queries : List Query",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Hard2StepTrace.lean",
+      "source_sha256": "78a936ec14a327af069e994d904be00989c0ea90d30a2a453b690430b319b904",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Hard2StepTrace.olean",
+      "object_sha256": "65e2d74e4a508dad445ba183266e05066999e4b99c55bf07f639dedc812be92a"
+    },
+    {
+      "module": "Hard2StepTrace",
+      "name": "OrdinaryDispatch.WorkIntegration.hard2Trace",
+      "range": [
+        13,
+        27
+      ],
+      "source_context_lines": [
+        "import Hard2Frontier",
+        "namespace OrdinaryDispatch.WorkIntegration",
+        "open RMAF ForestState Universal233 Universal233.BothBad Universal233.PaidQueries",
+        "open Universal233.CherryBranching Universal233.Hard2Overlap",
+        "open OrdinaryDispatch.Hard2Dispatcher GenericForest.FrontierWork"
+      ],
+      "code": "def hard2Trace (actual : Ordinary) (T S : Tree) (c _d : Candidate) (q : Nat) : Hard2Receipt :=\n match runHard2 T S c with\n | none => \u27e8none,[]\u27e9\n | some .disjoint =>\n  let P := pendantPartition S c.a c.b\n  if P.all (restrictionAgrees T S) then \u27e8DisjointParents.direct P q,[]\u27e9\n  else if (P.filter (restrictionAgrees T S)).length=2 then\n   let r := Rule5ActualTrace.dispatchTrace actual T S c.a c.b q\n   \u27e8Rule5ActualTrace.answer r,Rule5ActualTrace.queries actual r.calls\u27e9\n  else\n   let r := Hard2Trace.disjointExecution actual T S c.a c.b q\n   \u27e8r.answer,forestQueries actual r.calls\u27e9\n | some out =>\n  let r := Hard2Combine.combine actual T S c.a c.b q (paidCase actual T S c q out)\n  \u27e8r.answer,forestQueries actual r.calls\u27e9",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Hard2StepTrace.lean",
+      "source_sha256": "78a936ec14a327af069e994d904be00989c0ea90d30a2a453b690430b319b904",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Hard2StepTrace.olean",
+      "object_sha256": "65e2d74e4a508dad445ba183266e05066999e4b99c55bf07f639dedc812be92a"
+    },
+    {
+      "module": "OrdinaryStepTrace",
+      "name": "OrdinaryDispatch.WorkRecursion.ordinaryStepTrace",
+      "range": [
+        11,
+        34
+      ],
+      "source_context_lines": [
+        "import FastSolve",
+        "import HighTrace",
+        "import Rule4Trace",
+        "namespace OrdinaryDispatch.WorkRecursion",
+        "open RMAF ForestState Universal233 Universal233.CherryBranching",
+        "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration",
+        "open OrdinaryDispatch.FastOrdinary"
+      ],
+      "code": "def ordinaryStepTrace (rec : Nat\u2192Tree\u2192Tree\u2192Option CommonForest) (q : Nat) (T S : Tree) : Hard2Receipt :=\n if DepthOne.proper T S then\n  match DepthOne.pretest01 T S with\n  | .refused => \u27e8none,[]\u27e9\n  | .found c => \u27e8if DepthOne.cutCost c\u2264q then some (DepthOne.forest S c) else none,[]\u27e9\n  | .rejected =>\n   let paid := cutoff rec q\n   match early T S with\n   | .common reverse c =>\n     let p := commonPair T S reverse c\n     if (leaves p.1).length<(leaves T).length then\n      \u27e8(rec q p.1 p.2).map (expandCommon T S reverse c),[(p,q)]\u27e9\n     else \u27e8none,[]\u27e9\n   | .one reverse c =>\n     let p := Oriented reverse T S\n     childrenTrace paid p.1 p.2 q [pendantChild p.2 c.a c.b]\n   | .high reverse c =>\n     let p := Oriented reverse T S\n     childrenTrace paid p.1 p.2 q (branches p.2 c.a c.b)\n   | .rule4Forward s => rule4Trace paid s q\n   | .rule4Reverse s => rule4Trace paid s q\n   | .hard2 c d => hard2Trace paid T S c d q\n   | .refused => \u27e8none,[]\u27e9\n else \u27e8none,[]\u27e9",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/OrdinaryStepTrace.lean",
+      "source_sha256": "3e8db006be85dcd6ea137ee79c0a0fbb3edc5dab75f1fa44d0a893fc271ad171",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/OrdinaryStepTrace.olean",
+      "object_sha256": "e9b1adac9369102e1890f0fd8afab1f92c3a1d26a3e63993a9823480e0d9a645"
+    }
+  ],
+  "query_exact_definition": {
+    "module": "CommonDispatch",
+    "name": "OrdinaryDispatch.QueryExact",
+    "range": [
+      42,
+      45
+    ],
+    "source_context_lines": [
+      "import StateExpand",
+      "import Priority",
+      "import OutsideCore",
+      "import T1Exchange",
+      "import ForestConditional",
+      "import BuildSetup",
+      "namespace OrdinaryDispatch",
+      "open RMAF ForestState Universal233 Universal233.CherryBranching Universal233.HardParent"
+    ],
+    "code": "def QueryExact (T S : Tree) (q : Nat) : Option CommonForest \u2192 Prop\n | none => \u2200 F, agreement T S F=true \u2192 q<F.length-1\n | some F => agreement T S F=true \u2227 F.length-1\u2264q \u2227\n     \u2200G,agreement T S G=true \u2192 F.length\u2264G.length",
+    "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CommonDispatch.lean",
+    "source_sha256": "f311b994dbc27b6814a8486afc76a6d16f70bca168adfb7293f0758b99f2c419",
+    "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CommonDispatch.olean",
+    "object_sha256": "e59e9b8d4043337aad2f0a4122ae80b97c5354f67b74cc363b3d2be8afab331b"
+  },
+  "source_optimizer_bound_type": {
+    "name": "ExplicitSourceOptimizer20261022.optimum_k_source_bound",
+    "type": "theorem optimum_k_source_bound (T S : Tree) (L : Nat)\n    (proper : DepthOne.proper T S=true)\n    (labels : \u2200x,x\u2208leaves T++leaves S \u2192 x<2^L) :\n    \u2203 k o,\n      (optimize T S).output=some o \u2227\n      o.partition.length=k \u2227 0<k \u2227\n      agreement T S o.partition=true \u2227\n      (\u2200G,agreement T S G=true \u2192 k\u2264G.length) \u2227\n      (sourceOptimizeMeter (fun b=>completeSourceCounter b T S) T S).value=optimize T S \u2227\n      ((sourceOptimizeMeter (fun b=>completeSourceCounter b T S) T S).work : Rat)\u2264\n        (sourceOptimizerPolynomial (leaves T).length L : Rat)*(233/100:Rat)^(k-1)",
+    "source_sha256": "5d16e370d0ca5921dc1caf569412ae0c07d8dcb0e610205a214c65a26c172152",
+    "object_sha256": "7301340760d8cfae5ca5eb573d1868fd7adf87675fc65a671dbc9aa8ec8a4509"
+  },
+  "explicit_P_definition": "def sourceOptimizerPolynomial (n L : Nat) : Nat :=\n  n*((outerJoinedPolynomial n n L+\n    (disjointRunPolynomial (2*n+3)+badPairLocalPolynomialExpression (2*n+3) n+\n      32*(2^50*(2*n+3+n+2)^8)))*1024*(n+1))+\n  512*(2*n+1)^2+64*(recoveryEnvelope n+32)",
+  "sourceSubtotal_termination_interface": {
+    "rank": "lex(q,length(leaves T))",
+    "required_proposition": "Every stored ordinaryStepTrace query has strictly smaller lex(budget,target leaf count) than its parent. Treat this as a required shared formal interface, not a dropped or assumed proof value; ask for its exact TYPE if needed."
+  }
+}

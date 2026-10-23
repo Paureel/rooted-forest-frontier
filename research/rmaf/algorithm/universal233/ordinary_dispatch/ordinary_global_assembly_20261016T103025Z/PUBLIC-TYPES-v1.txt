@@ -1,0 +1,112 @@
+OrdinaryDispatch.GlobalSourceAssembly.closedLocalDebit_bound : ∀ (N Q : Nat) (T S : RMAF.Tree) (q : Nat),
+  Universal233.DepthOne.proper T S = true →
+    (RMAF.leaves T).length ≤ N →
+      q ≤ Q →
+        ↑(OrdinaryDispatch.GlobalSourceAssembly.closedLocalDebit T S q) ≤
+          ↑(OrdinaryDispatch.GlobalSourceAssembly.closedLocalPolynomial N Q) * Universal233.Rule5ActualTrace.base ^ q
+OrdinaryDispatch.GlobalSourceAssembly.closedSourceSubtotal_eq : ∀ (q : Nat) (T S : RMAF.Tree),
+  OrdinaryDispatch.GlobalSourceAssembly.closedSourceSubtotal q T S =
+    OrdinaryDispatch.GlobalSourceAssembly.closedLocalDebit T S q +
+      GenericForest.FrontierWork.queryWork
+        (fun t s r => OrdinaryDispatch.GlobalSourceAssembly.closedSourceSubtotal r t s)
+        (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace OrdinaryDispatch.FastOrdinary.solve q T S).queries
+OrdinaryDispatch.GlobalSourceAssembly.closedSourceSubtotal_bound : ∀ (N Q q : Nat) (T S : RMAF.Tree),
+  Universal233.DepthOne.proper T S = true →
+    (RMAF.leaves T).length ≤ N →
+      q ≤ Q →
+        ↑(OrdinaryDispatch.GlobalSourceAssembly.closedSourceSubtotal q T S) ≤
+          ↑(OrdinaryDispatch.GlobalSourceAssembly.closedLocalPolynomial N Q) *
+                OrdinaryDispatch.WorkRecursion.callNodeFactor *
+              ↑((RMAF.leaves T).length + 1) *
+            Universal233.Rule5ActualTrace.base ^ q
+OrdinaryDispatch.GlobalSourceAssembly.closedSourceQuery_bound : ∀ (T S : RMAF.Tree),
+  Universal233.DepthOne.proper T S = true →
+    ∀ (b : Nat),
+      b < (RMAF.leaves T).length →
+        ↑(OrdinaryDispatch.GlobalSourceAssembly.closedSourceSubtotal b T S) ≤
+          ↑(OrdinaryDispatch.GlobalSourceAssembly.closedQueryPolynomial (RMAF.leaves T).length) * (233 / 100) ^ b
+OrdinaryDispatch.GlobalSourceAssembly.partialSourceMeter_value : ∀ (q : Nat) (T S : RMAF.Tree),
+  (OrdinaryDispatch.GlobalSourceAssembly.partialSourceMeter q T S).value = OrdinaryDispatch.FastOrdinary.solve q T S
+OrdinaryDispatch.GlobalSourceAssembly.common_exact_callback_split : ∀ (W : GenericForest.FrontierWork.OrdinaryWork)
+  (q : Nat) {T S : RMAF.Tree},
+  Universal233.DepthOne.proper T S = true →
+    Universal233.DepthOne.pretest01 T S = Universal233.DepthOne.Result.rejected →
+      ∀ {reverse : Bool} {c : Universal233.CherryBranching.Candidate},
+        OrdinaryDispatch.FastOrdinary.early T S = OrdinaryDispatch.FastOrdinary.Early.common reverse c →
+          (OrdinaryDispatch.FullSourceWork.commonBranchMeter OrdinaryDispatch.FastOrdinary.solve W q T S reverse
+                c).work =
+            OrdinaryDispatch.GlobalSourceAssembly.commonLocalDebit T S q +
+              GenericForest.FrontierWork.queryWork W
+                (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace OrdinaryDispatch.FastOrdinary.solve q T S).queries
+OrdinaryDispatch.GlobalSourceAssembly.rule4_forward_exact_callback_split : ∀
+  (W : GenericForest.FrontierWork.OrdinaryWork) (q : Nat) {T S : RMAF.Tree},
+  Universal233.DepthOne.proper T S = true →
+    Universal233.DepthOne.pretest01 T S = Universal233.DepthOne.Result.rejected →
+      ∀ {s : Universal233.Rule4.Choice T S},
+        OrdinaryDispatch.FastOrdinary.early T S = OrdinaryDispatch.FastOrdinary.Early.rule4Forward s →
+          (OrdinaryDispatch.FullSourceWork.rule4Source
+                (OrdinaryDispatch.FastOrdinary.cutoff OrdinaryDispatch.FastOrdinary.solve q) W s q).work =
+            OrdinaryDispatch.GlobalSourceAssembly.rule4LocalDebit T S q +
+              GenericForest.FrontierWork.queryWork W
+                (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace OrdinaryDispatch.FastOrdinary.solve q T S).queries
+OrdinaryDispatch.GlobalSourceAssembly.rule4_reverse_exact_callback_split : ∀
+  (W : GenericForest.FrontierWork.OrdinaryWork) (q : Nat) {T S : RMAF.Tree},
+  Universal233.DepthOne.proper T S = true →
+    Universal233.DepthOne.pretest01 T S = Universal233.DepthOne.Result.rejected →
+      ∀ {s : Universal233.Rule4.Choice S T},
+        OrdinaryDispatch.FastOrdinary.early T S = OrdinaryDispatch.FastOrdinary.Early.rule4Reverse s →
+          (OrdinaryDispatch.FullSourceWork.rule4Source
+                (OrdinaryDispatch.FastOrdinary.cutoff OrdinaryDispatch.FastOrdinary.solve q) W s q).work =
+            OrdinaryDispatch.GlobalSourceAssembly.rule4LocalDebit T S q +
+              GenericForest.FrontierWork.queryWork W
+                (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace OrdinaryDispatch.FastOrdinary.solve q T S).queries
+OrdinaryDispatch.GlobalSourceAssembly.sourceFinishMeter_value : ∀ (S : RMAF.Tree)
+  (r : OrdinaryDispatch.BudgetOptimization.Scan),
+  (OrdinaryDispatch.GlobalSourceAssembly.sourceFinishMeter S r).value = OrdinaryDispatch.BudgetOptimization.finish S r
+OrdinaryDispatch.GlobalSourceAssembly.sourceOptimizeMeter_value : ∀ (w : Nat → Nat) (T S : RMAF.Tree),
+  (OrdinaryDispatch.GlobalSourceAssembly.sourceOptimizeMeter w T S).value =
+    OrdinaryDispatch.BudgetOptimization.optimize T S
+OrdinaryDispatch.GlobalSourceAssembly.sourceOptimize_actual_fees : ∀ (w : Nat → Nat) (T S : RMAF.Tree) (N : Nat),
+  Universal233.CoreWork.treeNodes T ≤ N →
+    Universal233.CoreWork.treeNodes S ≤ N →
+      (OrdinaryDispatch.GlobalSourceAssembly.sourceOptimizeMeter w T S).work ≤
+        OrdinaryDispatch.GlobalSourceAssembly.sourceTotalCharge w (OrdinaryDispatch.OptimizerLocalWork.preflightFee N)
+          12 32 S (OrdinaryDispatch.BudgetOptimization.optimize T S)
+OrdinaryDispatch.GlobalSourceAssembly.sourceOptimize_uniform_233 : ∀ (w : Nat → Nat) (P : Nat) (T S : RMAF.Tree)
+  (N : Nat),
+  Universal233.DepthOne.proper T S = true →
+    Universal233.CoreWork.treeNodes T ≤ N →
+      Universal233.CoreWork.treeNodes S ≤ N →
+        (∀ (b : Nat), b < (RMAF.leaves T).length → ↑(w b) ≤ ↑P * (233 / 100) ^ b) →
+          ∃ o,
+            (OrdinaryDispatch.BudgetOptimization.optimize T S).output = some o ∧
+              0 < o.partition.length ∧
+                o.sourceCuts.length + 1 = o.partition.length ∧
+                  ↑(OrdinaryDispatch.GlobalSourceAssembly.sourceOptimizeMeter w T S).work ≤
+                    ↑((RMAF.leaves T).length * P + 512 * (N + 1) ^ 2 +
+                          OrdinaryDispatch.RecoveryLocalWork.recoverySourceEnvelope (RMAF.leaves T).length) *
+                      (233 / 100) ^ (o.partition.length - 1)
+OrdinaryDispatch.GlobalSourceAssembly.partialSourceOptimize_value : ∀ (T S : RMAF.Tree),
+  (OrdinaryDispatch.GlobalSourceAssembly.partialSourceOptimize T S).value =
+    OrdinaryDispatch.BudgetOptimization.optimize T S
+OrdinaryDispatch.GlobalSourceAssembly.partialSourceOptimize_bound : ∀ (T S : RMAF.Tree),
+  Universal233.DepthOne.proper T S = true →
+    ∃ o,
+      (OrdinaryDispatch.BudgetOptimization.optimize T S).output = some o ∧
+        0 < o.partition.length ∧
+          o.sourceCuts.length + 1 = o.partition.length ∧
+            ↑(OrdinaryDispatch.GlobalSourceAssembly.partialSourceOptimize T S).work ≤
+              ↑(OrdinaryDispatch.GlobalSourceAssembly.partialOptimizeCoefficient (RMAF.leaves T).length) *
+                (233 / 100) ^ (o.partition.length - 1)
+def OrdinaryDispatch.GlobalSourceAssembly.closedLocalPolynomial : Nat → Nat → Nat :=
+fun N Q =>
+  OrdinaryDispatch.FullSourceWork.prefixCoefficient N + OrdinaryDispatch.GlobalSourceAssembly.commonCoefficient N +
+        OrdinaryDispatch.GlobalSourceAssembly.simpleNatCoefficient N Q +
+      OrdinaryDispatch.FullSourceWork.rule4SourcePolynomial N Q +
+    OrdinaryDispatch.Hard2SourceWork.hard2FrontCoefficient (2 * N + 3)
+def OrdinaryDispatch.GlobalSourceAssembly.closedQueryPolynomial : Nat → Nat :=
+fun n => OrdinaryDispatch.GlobalSourceAssembly.closedLocalPolynomial n n * 1024 * (n + 1)
+def OrdinaryDispatch.GlobalSourceAssembly.partialOptimizeCoefficient : Nat → Nat :=
+fun n =>
+  n * OrdinaryDispatch.GlobalSourceAssembly.closedQueryPolynomial n + 512 * (2 * n + 1) ^ 2 +
+    OrdinaryDispatch.RecoveryLocalWork.recoverySourceEnvelope n

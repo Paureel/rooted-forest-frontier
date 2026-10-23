@@ -1,0 +1,65 @@
+{
+  "status": "FAIL",
+  "mode": "controls",
+  "commands": [
+    {
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+        "-o",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/value-controls-build/CallerValueA.olean",
+        "CallerValueA.lean"
+      ],
+      "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/value-controls-src",
+      "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/value-controls-build",
+      "seconds": 0.2861458329971356,
+      "returncode": 0,
+      "log": "value-compile-CallerValueA.log"
+    },
+    {
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+        "-o",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/value-controls-build/CallerValueB.olean",
+        "CallerValueB.lean"
+      ],
+      "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/value-controls-src",
+      "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/value-controls-build",
+      "seconds": 0.24108487500052433,
+      "returncode": 0,
+      "log": "value-compile-CallerValueB.log"
+    },
+    {
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+        "-o",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/value-controls-build/CallerValueHostile.olean",
+        "CallerValueHostile.lean"
+      ],
+      "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/value-controls-src",
+      "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/value-controls-build",
+      "seconds": 0.24525770800028113,
+      "returncode": 0,
+      "log": "value-compile-CallerValueHostile.log"
+    },
+    {
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+        "--run",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/origin/CallerProducerAudit_v2.lean",
+        "CallerValueA",
+        "CallerValueB"
+      ],
+      "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1",
+      "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/value-controls-build",
+      "seconds": 1.1270034160006617,
+      "returncode": 1,
+      "log": "value-audit-CallerValueA+CallerValueB.log"
+    }
+  ],
+  "script_sha256": "d910a3bd7fe3f38d54d3123101c8981af7ae4f6b2045ef8708d0875b5b4999ce",
+  "detector_sha256": "dc296121f5d5558d5fe5127dc7907839268b28ccab97f3b3c594a91aeca1f14a",
+  "own_gate_sha256": "95c144e00a6086ee56f480926576c8995abc1114aa364c3158e98a825d993446",
+  "replication_credit": 0,
+  "error": "AssertionError(('value-audit-CallerValueA+CallerValueB', \"uncaught exception: import CallerValueB failed, environment already contains 'CallerValue.shared' from CallerValueA\\n\"))",
+  "seconds": 1.900401791997865
+}

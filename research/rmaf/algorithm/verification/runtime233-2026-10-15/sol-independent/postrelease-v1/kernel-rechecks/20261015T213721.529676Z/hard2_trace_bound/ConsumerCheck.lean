@@ -1,0 +1,5 @@
+import DisjointTrace
+#check OrdinaryDispatch.Hard2Trace.disjointExecution_mass
+#print axioms OrdinaryDispatch.Hard2Trace.disjointExecution_mass
+#check OrdinaryDispatch.Hard2Trace.combined_mass
+#print axioms OrdinaryDispatch.Hard2Trace.combined_mass

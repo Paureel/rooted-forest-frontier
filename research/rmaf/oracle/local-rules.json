@@ -1,0 +1,21 @@
+{
+  "schema_version":1,
+  "frozen_at":"2026-10-14",
+  "candidates":[
+    {
+      "id":"endpoint-only-cherry",
+      "statement":"For all ordinary rooted binary trees T,U on the same X, and all cherries {a,b} in T that are not cherries in U, there exists a minimum agreement forest for T,U containing singleton {a} or singleton {b}.",
+      "motivation":"If true this would permit discarding the branch that cuts every off-path subtree in the standard rooted cherry rule.",
+      "failure_criterion":"A pair and cherry such that every minimum agreement forest contains neither {a} nor {b} as a singleton.",
+      "search":"All ordered pairs of canonical labelled trees for n=3,4; only extend after measured pilot."
+    },
+    {
+      "id":"restriction-only-contraction",
+      "statement":"For all ordinary rooted binary trees T,U on X and every S subset X with |S|>=2 and equal rooted restrictions T|S=U|S, retaining any one s in S and deleting S minus {s} from both trees preserves the optimum number of agreement-forest components.",
+      "motivation":"This tempting over-extension of common-pendant-subtree reduction would allow much more aggressive kernelization.",
+      "failure_criterion":"Optimum(T,U) != Optimum(T|(X minus (S minus {s})), U|(X minus (S minus {s}))).",
+      "search":"Conflicting-triple hand control, then all small pairs as needed."
+    }
+  ],
+  "status_semantics":"Passing finite tests never proves the universal statement. A complete exact counterexample refutes it; certificate remains computational until independent replay and Lean formalization."
+}

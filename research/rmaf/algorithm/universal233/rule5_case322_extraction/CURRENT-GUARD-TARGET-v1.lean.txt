@@ -1,0 +1,30 @@
+UNPROVED TARGET; DATA FILE, NOT A LEAN SOURCE OR ACCEPTED DECLARATION.
+
+literal_rawPlan_currentGuards:
+For proper ordinary original T,S with identical label sets, actual original
+source lookup subtree S w = some (bottom sa sc sb a b c X), ActualCherry T a b,
+and (cuts S a b).length=2, let qa,ub,uc be actual original terminal a,b,c
+addresses in T and qb=bArc w sb be the derived original terminal b address in S.
+Let subtree T r=some C with actual descendant labels
+ x∈leaves C iff x∉leaves X and x≠c (for every original T label), b∈C,c∉C.
+Assume the EXACT Figure15.2 original X-hull boundary:
+ incident T (leaves X) = [r,uc] or [uc,r],
+ r.dropLast and uc.dropLast lie in minimalVertices (leaves X) T,
+ r and uc do not lie in minimalVertices (leaves X) T.
+Then every child in rawPlan T S a b c qa qb ub uc has
+ currentGuard T S child = true.
+
+Required subclaims, still unproved:
+- the exact original source hard2/singleton partitions equal the sequential
+  arcPartition materializations in the actual traversal order;
+- every target cut list selected by the literal path predicates has paid+1
+  nonempty current components (including a plus every b-side core/X arc);
+- in the fallback, cSideEdges.length<2 and bSideWithoutA=[] plus the exact
+  two-outgoing X-hull boundary force lca ub uc≠[]. The root plant violates
+  this boundary and correctly falsifies the weaker guard claim.
+
+Proved reduction: CurrentPartition.target_currentGuard_of_nonredundant
+already derives the other current partition/embedding checks from actual
+valid original splits. It explicitly retains the unproved component count.
+No field asserting this target, a saving or a safe cover is an accepted input
+to rawPlan_original_cover.

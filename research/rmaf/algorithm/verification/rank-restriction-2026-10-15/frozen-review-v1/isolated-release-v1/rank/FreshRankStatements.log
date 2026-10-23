@@ -1,0 +1,73 @@
+def Universal233.RankDichotomy.inputRank : Tree → (Nat → Nat) → Nat :=
+fun T color => (dedupNat (List.map color (leaves T))).length
+def Universal233.RankDichotomy.RankFeasible : Tree → (Nat → Nat) → Prop :=
+fun T color =>
+  ∃ bs,
+    partitionCheck (leaves T) bs = true ∧
+      pairwiseEmbeddings T bs = true ∧
+        (∀ (b : List Nat), b ∈ bs → VertexGeometry.LabelMonochromatic color b) ∧ bs.length = inputRank T color
+def Universal233.CoreProgram.generate : Tree → (Nat → Nat) → Nat → Receipt :=
+fun t color budget =>
+  if (leaves t).Nodup then run (min budget ((leaves t).length - 1)) (fromTree color [] t) [] []
+  else { refusals := ["duplicate original label"] }
+def Universal233.CutRealization.ResidualAdj : Tree → List Vertex → Vertex → Vertex → Prop :=
+fun T cuts u v =>
+  CoreGraph.Adj T u v ∧ ∀ (p : Vertex), p ∈ cuts → ¬(u = List.dropLast p ∧ v = p) ∧ ¬(v = List.dropLast p ∧ u = p)
+def Universal233.CutRealization.RealizedOutput : Tree → Output → Prop :=
+fun T o =>
+  GoodCuts o.sourceCuts ∧
+    (∀ (p : Vertex), p ∈ o.sourceCuts → CoreGraph.Valid T p) ∧
+      ∃ components,
+        List.map Prod.fst components = o.sourceCuts ++ [[]] ∧
+          List.map Prod.snd components = o.partition ∧
+            (∀ (r : Vertex) (L : List Nat), (r, L) ∈ components → CutRealization.ComponentLabels T o.sourceCuts r L) ∧
+              (List.map Prod.fst components).Nodup ∧
+                (∀ (v : Vertex),
+                    CoreGraph.Valid T v →
+                      ∃ r, r ∈ List.map Prod.fst components ∧ CutRealization.ResidualWalk T o.sourceCuts r v) ∧
+                  (∀ (r : Vertex),
+                      r ∈ List.map Prod.fst components →
+                        ∀ (s : Vertex),
+                          s ∈ List.map Prod.fst components → (CutRealization.ResidualWalk T o.sourceCuts r s ↔ r = s)) ∧
+                    (∀ (v : Vertex),
+                        CoreGraph.Valid T v →
+                          ∃ a x, CoreGraph.LeafAt T a x ∧ CutRealization.ResidualWalk T o.sourceCuts v a) ∧
+                      o.partition.length = o.sourceCuts.length + 1
+Universal233.SourceCoverage.generate_partition_coverage_paid (t : Tree) (bs : List (List Nat)) (color : Nat → Nat)
+  (hnd : (leaves t).Nodup) (hp : partitionCheck (leaves t) bs = true) (he : pairwiseEmbeddings t bs = true)
+  (hm : ∀ (b : List Nat), b ∈ bs → VertexGeometry.LabelMonochromatic color b) (q : Nat) (hq : bs.length - 1 ≤ q) :
+  ∃ o, o ∈ (generate t color q).outputs ∧ RefinesBlocks bs o.partition ∧ o.sourceCuts.length ≤ q
+Universal233.SourceCoverage.generate_color_cost (t : Tree) (color : Nat → Nat) (q : Nat) (o : Output)
+  (ho : o ∈ (generate t color q).outputs) : (dedupNat (List.map color (leaves t))).length ≤ o.sourceCuts.length + 1
+Universal233.RankDichotomy.generate_outputs_mono (T : Tree) (color : Nat → Nat) {q q' : Nat} (hq : q ≤ q') (o : Output)
+  (ho : o ∈ (generate T color q).outputs) : o ∈ (generate T color q').outputs
+Universal233.SourceCoverage.generate_output_cap (t : Tree) (color : Nat → Nat) (q : Nat) (o : Output)
+  (ho : o ∈ (generate t color q).outputs) : o.sourceCuts.length ≤ min q ((leaves t).length - 1)
+Universal233.Assembly.generated_source_valid (T : Tree) (color : Nat → Nat) (q : Nat) (o : Output)
+  (ho : o ∈ (generate T color q).outputs) :
+  partitionCheck (leaves T) o.partition = true ∧ pairwiseEmbeddings T o.partition = true
+Universal233.RankDichotomy.feasible_unique (T : Tree) (color : Nat → Nat) (hn : (leaves T).Nodup)
+  (hf : RankFeasible T color) (q : Nat) (hq : inputRank T color - 1 ≤ q) :
+  ∃ o, (generate T color q).outputs = [o] ∧ o.sourceCuts.length = inputRank T color - 1
+Universal233.RankDichotomy.feasible_unique_color_classes (T : Tree) (color : Nat → Nat) (hn : (leaves T).Nodup)
+  (hf : RankFeasible T color) (q : Nat) (hq : inputRank T color - 1 ≤ q) :
+  ∃ o,
+    (generate T color q).outputs = [o] ∧
+      o.sourceCuts.length = inputRank T color - 1 ∧
+        ∀ (b : List Nat), b ∈ o.partition → ∀ (y : Nat), y ∈ b ↔ y ∈ leaves T ∧ color y = color (b.headD 0)
+Universal233.RankDichotomy.below_rank_outputs_empty (T : Tree) (color : Nat → Nat) (q : Nat)
+  (hq : q < inputRank T color - 1) : (generate T color q).outputs = []
+Universal233.RankDichotomy.infeasible_cost (T : Tree) (color : Nat → Nat) (q : Nat) (hf : ¬RankFeasible T color)
+  (o : Output) (ho : o ∈ (generate T color q).outputs) : inputRank T color ≤ o.sourceCuts.length
+Universal233.RankDichotomy.generate_tail_mass (T : Tree) (color : Nat → Nat) (q L : Nat) (b : Rat) (hb : 2 ≤ b)
+  (hL : inputRank T color - 1 ≤ L) (hmin : ∀ (o : Output), o ∈ (generate T color q).outputs → L ≤ o.sourceCuts.length) :
+  rawQMass b (generate T color q).outputs ≤ 2 ^ (L - (inputRank T color - 1)) * b ^ (-↑L)
+Universal233.RankDichotomy.infeasible_mass (T : Tree) (color : Nat → Nat) (q : Nat) (hf : ¬RankFeasible T color)
+  (b : Rat) (hb : 2 ≤ b) : rawQMass b (generate T color q).outputs ≤ 2 * b ^ (-↑(inputRank T color))
+def Universal233.SourceCoverage.rawQMass : Rat → List Output → Rat :=
+fun b outputs => (List.map (fun o => b ^ (-↑o.sourceCuts.length)) outputs).sum
+'Universal233.RankDichotomy.feasible_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Universal233.RankDichotomy.feasible_unique_color_classes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Universal233.RankDichotomy.infeasible_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Universal233.RankDichotomy.generate_tail_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Universal233.RankDichotomy.infeasible_mass' depends on axioms: [propext, Classical.choice, Quot.sound]

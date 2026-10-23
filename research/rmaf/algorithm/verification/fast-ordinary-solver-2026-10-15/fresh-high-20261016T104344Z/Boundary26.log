@@ -1,0 +1,12 @@
+'OwnHigh.refines_of_no_crossing' depends on axioms: [propext, Quot.sound]
+'OwnHigh.literal_consumer' depends on axioms: [propext, Classical.choice, Quot.sound]
+def OwnHigh.SourceBoundaryObligation : Prop :=
+∀ (S : Tree) (a b : Nat) (F : List (List Nat)) (P : List Nat),
+  (leaves S).Nodup →
+    a ≠ b →
+      partitionCheck (leaves S) F = true →
+        pairwiseEmbeddings S F = true →
+          P ∈ F → a ∈ P → b ∈ P → (∃ U, restrict P S = some U ∧ HasCherry U a b) → NoPendantCrossing S a b F
+OwnHigh.literal_consumer (hboundary : SourceBoundaryObligation) (T S : Tree) (p : Vertex) (a b : Nat)
+  (F : List (List Nat)) (hproper : DepthOne.proper T S = true) (hc : CoreGraph.CherryAt T p a b)
+  (hag : agreement T S F = true) : [a] ∈ F ∨ [b] ∈ F ∨ VertexGeometry.Refines F (CherryBranching.pendantPartition S a b)

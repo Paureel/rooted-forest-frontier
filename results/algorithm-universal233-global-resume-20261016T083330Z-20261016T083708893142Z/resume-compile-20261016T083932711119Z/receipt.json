@@ -1,0 +1,67 @@
+{
+  "instrument_sha256": "550b066c54ad3530bcf2d7a0d51ecfa6a08b3286e40c914571f6d9aabc032c66",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "memory_megabytes": 3072,
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "source_origin": "results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/live-compile-20261015T220123767831Z/GuardPositive.lean",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "source_origin": "results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/live-compile-20261015T220123767831Z/GuardFalse.lean",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true,
+      "same_lineage": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.47529037499998594,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.42122837500005517,
+      "resource_stop": null,
+      "log_sha256": "fc9f9b297e15f096543eff63e2bbe91ba02f9bf569e06c0283151285dc473a9c"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016725420000511804,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "OrdinaryStepBounds",
+      "source_sha256": "2efd04e940bc9e0d864f29ace927612791148151880f87751a5cc508f284a8d5",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8460004580000486,
+      "resource_stop": null,
+      "log_sha256": "c23248cbe6e94e65376e8fbd41c7c9cf360f28cf1edf08c01f1678e275135a33"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('OrdinaryStepBounds', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryStepBounds.lean:70:1: error: unsolved goals\\ncase neg\\nrec : Nat \u2192 Tree \u2192 Tree \u2192 Option CommonForest\\nq : Nat\\nT S : Tree\\np : Tree \u00d7 Tree\\nr : Nat\\nhp : \u00acDepthOne.proper T S = true\\nmem :\\n  (p, r) \u2208\\n    (if false = true then\\n        match DepthOne.pretest01 T S with\\n        | DepthOne.Result.refused => { value := none, queries := [] }\\n        | DepthOne.Result.found c =>\\n          { value := if DepthOne.cutCost c \u2264 q then some (DepthOne.forest S c) else none, queries := [] }\\n        | DepthOne.Result.rejected =>\\n          match early T S with\\n          | Early.common reverse c =>\\n            if (leaves (commonPair T S reverse c).fst).length < (leaves T).length then\\n              {\\n                value :=\\n                  Option.map (expandCommon T S reverse c)\\n                    (rec q (commonPair T S reverse c).fst (commonPair T S reverse c).snd),\\n                queries := [(commonPair T S reverse c, q)] }\\n            else { value := none, queries := [] }\\n          | Early.one reverse c =>\\n            childrenTrace (cutoff rec q) (Oriented reverse T S).fst (Oriented reverse T S).snd q\\n              [pendantChild (Oriented reverse T S).snd c.a c.b]\\n          | Early.high reverse c =>\\n            childrenTrace (cutoff rec q) (Oriented reverse T S).fst (Oriented reverse T S).snd q\\n              (branches (Oriented reverse T S).snd c.a c.b)\\n          | Early.rule4Forward s => rule4Trace (cutoff rec q) s q\\n          | Early.rule4Reverse s => rule4Trace (cutoff rec q) s q\\n          | Early.hard2 c d => hard2Trace (cutoff rec q) T S c d q\\n          | Early.refused => { value := none, queries := [] }\\n      else { value := none, queries := [] }).queries\\n\u22a2 Prod.Lex (fun a b => a < b) (fun a b => a < b) (r, (leaves p.fst).length) (q, (leaves T).length)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryStepBounds.lean:70:35: warning: This simp argument is unused:\\n  ite_false\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp only [ordinaryStepTrace, hp, List.not_mem_nil] at mem\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryStepBounds.lean:70:45: warning: This simp argument is unused:\\n  List.not_mem_nil\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp only [ordinaryStepTrace, hp, ite_false] at mem\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n'))"
+}

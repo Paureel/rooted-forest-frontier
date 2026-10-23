@@ -1,0 +1,108 @@
+import Hard2GroupingBound
+namespace OrdinaryDispatch.Hard2SourceWork
+open RMAF ForestState ForestGroups Universal233 WholeSourceWork CoreWork
+open GenericForest.CheckCorrespondence GenericForest.FrontierWork
+open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork
+open Universal233.Rule5SelectedLocalWork
+set_option maxRecDepth 16000
+
+theorem owned_source_forest_caps (S : Tree) (P : List (List Nat)) (U : List Nat) (N : Nat) (sn : treeNodes S≤N) :
+ (owned (OutputState.sourceForest S P) U).length≤P.length ∧
+ (∀s,s∈owned (OutputState.sourceForest S P) U→treeNodes s≤N):=by
+ constructor
+ · exact Nat.le_trans (List.length_filter_le _ _) (List.length_filterMap_le _ _)
+ · intro s mem
+   have source: s∈(sourceForestMeter S P).value:=by
+    rw [source_forest_value];exact (mem_owned s _ U).1 mem |>.1
+   exact Nat.le_trans (source_forest_payload S P source).1 sn
+
+theorem goodPair_dp_bound (T S : Tree) (A B C : List Nat) (N : Nat)
+ (tn : treeNodes T≤N) (sn : treeNodes S≤N) :
+ (AllGoodDP.LocalWork.meterRun (localTarget (some T) (A++B))
+   (owned (OutputState.sourceForest S [A,B,C]) (A++B))).work≤goodPairDPPolynomial N:=by
+ have cap:=owned_source_forest_caps S [A,B,C] (A++B) N sn
+ have size:=sourceNodes_list_cap _ N cap.2
+ apply allGoodMeter_uniform _ _ N (localTarget_nodes_cap T (A++B) N tn)
+  (Nat.le_trans size (Nat.mul_le_mul_right N cap.1)) cap.1
+
+theorem goodPair_dp_payload (T S : Tree) (A B C : List Nat) (N : Nat) (tn : treeNodes T≤N)
+ {H : List (List Nat)} (answer : AllGoodDP.run (localTarget (some T) (A++B))
+  (owned (OutputState.sourceForest S [A,B,C]) (A++B))=some H) :
+ H.length≤N ∧ H.flatten.length≤N:=by
+ have bound:=state_payload_of_agrees _ _ H (AllGoodDP.run_sound _ _ H answer)
+ have labels:=localTarget_labels_cap T (A++B) N tn
+ dsimp only [StatePayloadSize] at bound
+ omega
+
+theorem goodPair_checked_bound (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree)
+ (C : List Nat) (ss : List Tree) (H : List (List Nat)) (N q r : Nat)
+ (tn : treeNodes T≤N) (sn : treeNodes S≤N) (hl : H.length≤N) (hf : H.flatten.length≤N) :
+ (checkedMeter T S q ((GenericForest.solve actual (localTarget (some T) C) ss r).map (fun K=>H++K))).work≤agreementK N+2*N+6:=by
+ cases answer:GenericForest.solve actual (localTarget (some T) C) ss r with
+ | none=>simp [checkedMeter]
+ | some K=>
+  have kb:=state_payload_forest_return actual (localTarget (some T) C) ss r K answer
+  have kl:=localTarget_labels_cap T C N tn
+  dsimp only [StatePayloadSize] at kb
+  have check:=measuredAgreement_K T S N (by omega) (by omega) (H++K)
+   (by simp only [Rule5LocalWork.cells,List.length_append,List.flatten_append,List.length_append];omega)
+  change (agreementMeter T S (H++K)).work≤agreementK N at check
+  simp only [Option.map_some,checkedMeter,List.length_append]
+  omega
+
+def goodPairPolynomial (N : Nat):=goodPairDPPolynomial N+agreementK N+512*(N+1)^3
+
+theorem goodPairLocalSource_bound (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree)
+ (A B C : List Nat) (N q : Nat) (three : 3≤N)
+ (tn : treeNodes T≤N) (sn : treeNodes S≤N) (al : A.length≤N) (bl : B.length≤N) (cl : C.length≤N) :
+ (goodPairLocalSource actual T S A B C q).work≤goodPairPolynomial N:=by
+ have material:=source_forest_work S [A,B,C] N (by intro D h;simp only [List.mem_cons,List.not_mem_nil,or_false] at h;rcases h with rfl|rfl|rfl <;> assumption)
+ have materialCap:(sourceForestMeter S [A,B,C]).work≤40*(N+1)^3:=by
+  have scale:=Nat.mul_le_mul_left 3 (Nat.add_le_add_right (Nat.mul_le_mul_left (4*(N+2)) sn) 3)
+  simp only [List.length_cons,List.length_nil,Nat.pow_succ,Nat.pow_zero,Nat.mul_one,Nat.mul_add,Nat.add_mul,Nat.one_mul,Nat.mul_assoc] at material scale ⊢
+  omega
+ have ac:=owned_source_forest_caps S [A,B,C] (A++B) N sn
+ have cc:=owned_source_forest_caps S [A,B,C] C N sn
+ simp only [List.length_cons,List.length_nil] at ac cc
+ have point (U : List Nat) (ul : U.length≤2*N) :
+  (ownedMeter (OutputState.sourceForest S [A,B,C]) U).work≤64*(N+1)^3:=by
+  apply ownedMeter_bound _ U N _ (by have h:=source_forest_count S [A,B,C];rw [source_forest_value] at h;simpa only [List.length_cons,List.length_nil,OutputState.sourceForest] using Nat.le_trans h three) ul
+  intro s mem
+  have m:s∈(sourceForestMeter S [A,B,C]).value:=by simpa only [source_forest_value,OutputState.sourceForest] using mem
+  exact Nat.le_trans (source_forest_payload S [A,B,C] m).1 sn
+ have oa:=point (A++B) (by simp only [List.length_append];omega)
+ have oc:=point C (by omega)
+ have ta:=cap_lift N 16 2 3 _ (localTargetMeter_bound T (A++B) N tn (by simp only [List.length_append];omega)) (by decide)
+ have tc:=cap_lift N 16 2 3 _ (localTargetMeter_bound T C N tn (by omega)) (by decide)
+ have dp:=goodPair_dp_bound T S A B C N tn sn
+ have pos:1≤(N+1)^3:=Nat.one_le_pow _ _ (by omega)
+ have ncap:N≤(N+1)^3:=by
+  have h:N+1≤(N+1)^3:=by simpa only [Nat.pow_one] using pow_mono N 1 3 (by decide)
+  omega
+ simp only [goodPairLocalSource,appendLabelsMeter_value,localTargetMeter_value,ownedMeter_value,source_forest_value,
+  OutputState.sourceForest,AllGoodDP.LocalWork.meterRun_value,additionalCostMeter_value]
+ by_cases afford:2≤q
+ · simp only [afford,ite_true]
+   cases answer:AllGoodDP.run (localTarget (some T) (A++B))
+    (owned ([A,B,C].filterMap (fun D=>restrict D S)) (A++B)) with
+   | none=>
+    simp only []
+    simp only [OutputState.sourceForest] at materialCap oa dp
+    simp only [appendLabelsMeter,goodPairPolynomial]
+    omega
+   | some H=>
+    have hp:=goodPair_dp_payload T S A B C N tn answer
+    have check:=goodPair_checked_bound actual T S C (owned (OutputState.sourceForest S [A,B,C]) C) H N q
+     (q-2-additionalCost (owned (OutputState.sourceForest S [A,B,C]) (A++B)) H) tn sn hp.1 hp.2
+    simp only []
+    by_cases enough:additionalCost (owned ([A,B,C].filterMap (fun D=>restrict D S)) (A++B)) H≤q-2
+    · simp only [enough,ite_true]
+      simp only [OutputState.sourceForest] at materialCap oa oc dp ac check
+      simp only [appendLabelsMeter,additionalCostMeter,goodPairPolynomial]
+      omega
+    · simp only [enough,ite_false]
+      simp only [OutputState.sourceForest] at materialCap oa dp ac
+      simp only [appendLabelsMeter,additionalCostMeter,goodPairPolynomial]
+      omega
+ · simp only [afford,ite_false,goodPairPolynomial];omega
+end OrdinaryDispatch.Hard2SourceWork

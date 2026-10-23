@@ -1,0 +1,4520 @@
+{
+  "scope": "finite testing, not a universal correctness proof",
+  "mode": "sweep",
+  "controls": [
+    {
+      "id": "identity-null",
+      "pass": true,
+      "optimum_cuts": 0,
+      "witness": [
+        [
+          "a",
+          "b",
+          "c",
+          "rho"
+        ]
+      ]
+    },
+    {
+      "id": "single-leaf-boundary",
+      "pass": true,
+      "optimum_cuts": 0,
+      "witness": [
+        [
+          "a",
+          "rho"
+        ]
+      ]
+    },
+    {
+      "id": "one-spr-triple",
+      "pass": true,
+      "optimum_cuts": 1,
+      "witness": [
+        [
+          "a",
+          "b",
+          "rho"
+        ],
+        [
+          "c"
+        ]
+      ]
+    },
+    {
+      "id": "incompatible-quartet",
+      "pass": true,
+      "optimum_cuts": 2,
+      "witness": [
+        [
+          "a",
+          "b",
+          "rho"
+        ],
+        [
+          "c"
+        ],
+        [
+          "d"
+        ]
+      ]
+    },
+    {
+      "id": "wrong-expected-optimum",
+      "caught": true,
+      "reason": "exact comparison failed: expected=0, actual=1"
+    },
+    {
+      "id": "duplicate-label",
+      "caught": true,
+      "routes": 2
+    },
+    {
+      "id": "different-label-sets",
+      "caught": true,
+      "routes": 2
+    },
+    {
+      "id": "negative-budget",
+      "caught": true
+    }
+  ],
+  "hashes": {
+    "controls.json": "4002a37363f01967fb9fc9fac6c834a63081ebb2bc6e3e196dc7e85ccfec047f",
+    "algorithm.py": "101d4c77424a2d6e93a1f828b49e3c16702b87d8e184c9ca47b0ed2b6d1fc319",
+    "reference.py": "2400342337b2e8266bbebca22b34c11872337d3a59465366b0b68712c4df8cfd"
+  },
+  "n": 5,
+  "seed": 612,
+  "completed": 11025,
+  "failures": [],
+  "stats": {
+    "calls": 149065,
+    "contract": 56480,
+    "B": 34284,
+    "finish": 52934,
+    "RB": 12800,
+    "AC": 6636,
+    "A2BC": 11380,
+    "refused": 2710,
+    "A3BC": 6360,
+    "2B": 2160,
+    "RB*": 1470,
+    "A2BC-protected-c": 80
+  },
+  "timing_batches": [
+    {
+      "completed": 10,
+      "seconds": 0.011397083999327151
+    },
+    {
+      "completed": 20,
+      "seconds": 0.012412416001097881
+    },
+    {
+      "completed": 30,
+      "seconds": 0.014070166998862987
+    },
+    {
+      "completed": 40,
+      "seconds": 0.01716025000132504
+    },
+    {
+      "completed": 50,
+      "seconds": 0.021341499999834923
+    },
+    {
+      "completed": 60,
+      "seconds": 0.015431416999490466
+    },
+    {
+      "completed": 70,
+      "seconds": 0.020612207999874954
+    },
+    {
+      "completed": 80,
+      "seconds": 0.015565666999464156
+    },
+    {
+      "completed": 90,
+      "seconds": 0.013431833000140614
+    },
+    {
+      "completed": 100,
+      "seconds": 0.013405042000158574
+    },
+    {
+      "completed": 110,
+      "seconds": 0.01176129099985701
+    },
+    {
+      "completed": 120,
+      "seconds": 0.012176500000350643
+    },
+    {
+      "completed": 130,
+      "seconds": 0.012611666999873705
+    },
+    {
+      "completed": 140,
+      "seconds": 0.013059124999927008
+    },
+    {
+      "completed": 150,
+      "seconds": 0.012468417000491172
+    },
+    {
+      "completed": 160,
+      "seconds": 0.012834749999456108
+    },
+    {
+      "completed": 170,
+      "seconds": 0.018909665999672143
+    },
+    {
+      "completed": 180,
+      "seconds": 0.01938250000057451
+    },
+    {
+      "completed": 190,
+      "seconds": 0.019866250000632135
+    },
+    {
+      "completed": 200,
+      "seconds": 0.01660704200003238
+    },
+    {
+      "completed": 210,
+      "seconds": 0.013261750000310712
+    },
+    {
+      "completed": 220,
+      "seconds": 0.010752791999038891
+    },
+    {
+      "completed": 230,
+      "seconds": 0.012197500000183936
+    },
+    {
+      "completed": 240,
+      "seconds": 0.01367404099983105
+    },
+    {
+      "completed": 250,
+      "seconds": 0.018017417000010028
+    },
+    {
+      "completed": 260,
+      "seconds": 0.021877332999792998
+    },
+    {
+      "completed": 270,
+      "seconds": 0.014113084000200615
+    },
+    {
+      "completed": 280,
+      "seconds": 0.013227875000666245
+    },
+    {
+      "completed": 290,
+      "seconds": 0.018176665998907993
+    },
+    {
+      "completed": 300,
+      "seconds": 0.022501250001369044
+    },
+    {
+      "completed": 310,
+      "seconds": 0.013013374998990912
+    },
+    {
+      "completed": 320,
+      "seconds": 0.012174667001090711
+    },
+    {
+      "completed": 330,
+      "seconds": 0.010859749998417101
+    },
+    {
+      "completed": 340,
+      "seconds": 0.01196758300102374
+    },
+    {
+      "completed": 350,
+      "seconds": 0.01699745899895788
+    },
+    {
+      "completed": 360,
+      "seconds": 0.01795870800015109
+    },
+    {
+      "completed": 370,
+      "seconds": 0.018706292001297697
+    },
+    {
+      "completed": 380,
+      "seconds": 0.01619554099852394
+    },
+    {
+      "completed": 390,
+      "seconds": 0.017565916999956244
+    },
+    {
+      "completed": 400,
+      "seconds": 0.0191713330004859
+    },
+    {
+      "completed": 410,
+      "seconds": 0.016264500000033877
+    },
+    {
+      "completed": 420,
+      "seconds": 0.02012520900098025
+    },
+    {
+      "completed": 430,
+      "seconds": 0.011423207999541773
+    },
+    {
+      "completed": 440,
+      "seconds": 0.011806458000137354
+    },
+    {
+      "completed": 450,
+      "seconds": 0.015081874998941203
+    },
+    {
+      "completed": 460,
+      "seconds": 0.018249500000820262
+    },
+    {
+      "completed": 470,
+      "seconds": 0.01800070900026185
+    },
+    {
+      "completed": 480,
+      "seconds": 0.013138624999555759
+    },
+    {
+      "completed": 490,
+      "seconds": 0.021430916000099387
+    },
+    {
+      "completed": 500,
+      "seconds": 0.01700337500005844
+    },
+    {
+      "completed": 510,
+      "seconds": 0.018689124999582418
+    },
+    {
+      "completed": 520,
+      "seconds": 0.017675541999778943
+    },
+    {
+      "completed": 530,
+      "seconds": 0.014619833000324434
+    },
+    {
+      "completed": 540,
+      "seconds": 0.01177879200076859
+    },
+    {
+      "completed": 550,
+      "seconds": 0.015595249999023508
+    },
+    {
+      "completed": 560,
+      "seconds": 0.014065041999856476
+    },
+    {
+      "completed": 570,
+      "seconds": 0.014238040999771329
+    },
+    {
+      "completed": 580,
+      "seconds": 0.011390167001081863
+    },
+    {
+      "completed": 590,
+      "seconds": 0.019017958000404178
+    },
+    {
+      "completed": 600,
+      "seconds": 0.018244834000142873
+    },
+    {
+      "completed": 610,
+      "seconds": 0.018551499999375665
+    },
+    {
+      "completed": 620,
+      "seconds": 0.017220457999428618
+    },
+    {
+      "completed": 630,
+      "seconds": 0.014072083000428393
+    },
+    {
+      "completed": 640,
+      "seconds": 0.01062245899993286
+    },
+    {
+      "completed": 650,
+      "seconds": 0.013626415999169694
+    },
+    {
+      "completed": 660,
+      "seconds": 0.013520917000278132
+    },
+    {
+      "completed": 670,
+      "seconds": 0.013023083000007318
+    },
+    {
+      "completed": 680,
+      "seconds": 0.013339084000108414
+    },
+    {
+      "completed": 690,
+      "seconds": 0.012392915999953402
+    },
+    {
+      "completed": 700,
+      "seconds": 0.013608541999929002
+    },
+    {
+      "completed": 710,
+      "seconds": 0.01567412500116916
+    },
+    {
+      "completed": 720,
+      "seconds": 0.021088833000248997
+    },
+    {
+      "completed": 730,
+      "seconds": 0.019742208998650312
+    },
+    {
+      "completed": 740,
+      "seconds": 0.016702500000974396
+    },
+    {
+      "completed": 750,
+      "seconds": 0.010316874999261927
+    },
+    {
+      "completed": 760,
+      "seconds": 0.014731958000993473
+    },
+    {
+      "completed": 770,
+      "seconds": 0.013744291998591507
+    },
+    {
+      "completed": 780,
+      "seconds": 0.011886500000400702
+    },
+    {
+      "completed": 790,
+      "seconds": 0.013701875001061126
+    },
+    {
+      "completed": 800,
+      "seconds": 0.018612415999086807
+    },
+    {
+      "completed": 810,
+      "seconds": 0.017848167000920512
+    },
+    {
+      "completed": 820,
+      "seconds": 0.012608666998858098
+    },
+    {
+      "completed": 830,
+      "seconds": 0.015369374999863794
+    },
+    {
+      "completed": 840,
+      "seconds": 0.02099191600063932
+    },
+    {
+      "completed": 850,
+      "seconds": 0.011102000000391854
+    },
+    {
+      "completed": 860,
+      "seconds": 0.012430124999809777
+    },
+    {
+      "completed": 870,
+      "seconds": 0.016890458999114344
+    },
+    {
+      "completed": 880,
+      "seconds": 0.014720332999786478
+    },
+    {
+      "completed": 890,
+      "seconds": 0.017709333000311744
+    },
+    {
+      "completed": 900,
+      "seconds": 0.013909375000366708
+    },
+    {
+      "completed": 910,
+      "seconds": 0.01860708400090516
+    },
+    {
+      "completed": 920,
+      "seconds": 0.018529457998738508
+    },
+    {
+      "completed": 930,
+      "seconds": 0.02164062500014552
+    },
+    {
+      "completed": 940,
+      "seconds": 0.01699320800071291
+    },
+    {
+      "completed": 950,
+      "seconds": 0.016956874998868443
+    },
+    {
+      "completed": 960,
+      "seconds": 0.012467459000617964
+    },
+    {
+      "completed": 970,
+      "seconds": 0.01380954100022791
+    },
+    {
+      "completed": 980,
+      "seconds": 0.013017708999541355
+    },
+    {
+      "completed": 990,
+      "seconds": 0.019538915999874007
+    },
+    {
+      "completed": 1000,
+      "seconds": 0.018702000001212582
+    },
+    {
+      "completed": 1010,
+      "seconds": 0.012939791999087902
+    },
+    {
+      "completed": 1020,
+      "seconds": 0.012509000000136439
+    },
+    {
+      "completed": 1030,
+      "seconds": 0.017535041999508394
+    },
+    {
+      "completed": 1040,
+      "seconds": 0.019331916000737692
+    },
+    {
+      "completed": 1050,
+      "seconds": 0.01317029199890385
+    },
+    {
+      "completed": 1060,
+      "seconds": 0.010571000000709319
+    },
+    {
+      "completed": 1070,
+      "seconds": 0.013611083000796498
+    },
+    {
+      "completed": 1080,
+      "seconds": 0.01168945899917162
+    },
+    {
+      "completed": 1090,
+      "seconds": 0.012380874999507796
+    },
+    {
+      "completed": 1100,
+      "seconds": 0.011863958001413266
+    },
+    {
+      "completed": 1110,
+      "seconds": 0.013937374998931773
+    },
+    {
+      "completed": 1120,
+      "seconds": 0.012882125000032829
+    },
+    {
+      "completed": 1130,
+      "seconds": 0.014517916999466252
+    },
+    {
+      "completed": 1140,
+      "seconds": 0.022031541000615107
+    },
+    {
+      "completed": 1150,
+      "seconds": 0.019183000000339234
+    },
+    {
+      "completed": 1160,
+      "seconds": 0.016229124999881606
+    },
+    {
+      "completed": 1170,
+      "seconds": 0.010096542000610498
+    },
+    {
+      "completed": 1180,
+      "seconds": 0.013764291999905254
+    },
+    {
+      "completed": 1190,
+      "seconds": 0.012244083000041428
+    },
+    {
+      "completed": 1200,
+      "seconds": 0.021303292000084184
+    },
+    {
+      "completed": 1210,
+      "seconds": 0.014228582998839556
+    },
+    {
+      "completed": 1220,
+      "seconds": 0.013407624999672407
+    },
+    {
+      "completed": 1230,
+      "seconds": 0.012159458001406165
+    },
+    {
+      "completed": 1240,
+      "seconds": 0.012141749999500462
+    },
+    {
+      "completed": 1250,
+      "seconds": 0.014601083999878028
+    },
+    {
+      "completed": 1260,
+      "seconds": 0.0209799580006802
+    },
+    {
+      "completed": 1270,
+      "seconds": 0.011192582998774014
+    },
+    {
+      "completed": 1280,
+      "seconds": 0.011085500000262982
+    },
+    {
+      "completed": 1290,
+      "seconds": 0.014865459001157433
+    },
+    {
+      "completed": 1300,
+      "seconds": 0.01707387499845936
+    },
+    {
+      "completed": 1310,
+      "seconds": 0.0216887910009973
+    },
+    {
+      "completed": 1320,
+      "seconds": 0.014159667000058107
+    },
+    {
+      "completed": 1330,
+      "seconds": 0.02033708300041326
+    },
+    {
+      "completed": 1340,
+      "seconds": 0.014553458999216673
+    },
+    {
+      "completed": 1350,
+      "seconds": 0.013304915999469813
+    },
+    {
+      "completed": 1360,
+      "seconds": 0.012243709001268144
+    },
+    {
+      "completed": 1370,
+      "seconds": 0.012720707998596481
+    },
+    {
+      "completed": 1380,
+      "seconds": 0.010184083001149702
+    },
+    {
+      "completed": 1390,
+      "seconds": 0.013402791999396868
+    },
+    {
+      "completed": 1400,
+      "seconds": 0.012258167000254616
+    },
+    {
+      "completed": 1410,
+      "seconds": 0.012425832999724662
+    },
+    {
+      "completed": 1420,
+      "seconds": 0.012977708000107668
+    },
+    {
+      "completed": 1430,
+      "seconds": 0.018133834000764182
+    },
+    {
+      "completed": 1440,
+      "seconds": 0.019594915998823126
+    },
+    {
+      "completed": 1450,
+      "seconds": 0.012047709000398754
+    },
+    {
+      "completed": 1460,
+      "seconds": 0.015713208000306622
+    },
+    {
+      "completed": 1470,
+      "seconds": 0.02294604199960304
+    },
+    {
+      "completed": 1480,
+      "seconds": 0.011916666000615805
+    },
+    {
+      "completed": 1490,
+      "seconds": 0.011357583998687915
+    },
+    {
+      "completed": 1500,
+      "seconds": 0.012955166001120233
+    },
+    {
+      "completed": 1510,
+      "seconds": 0.016482999999425374
+    },
+    {
+      "completed": 1520,
+      "seconds": 0.020453459001146257
+    },
+    {
+      "completed": 1530,
+      "seconds": 0.01171654099925945
+    },
+    {
+      "completed": 1540,
+      "seconds": 0.012825959000110743
+    },
+    {
+      "completed": 1550,
+      "seconds": 0.013020832999245613
+    },
+    {
+      "completed": 1560,
+      "seconds": 0.013284500000736443
+    },
+    {
+      "completed": 1570,
+      "seconds": 0.017837499999586726
+    },
+    {
+      "completed": 1580,
+      "seconds": 0.01758683300067787
+    },
+    {
+      "completed": 1590,
+      "seconds": 0.013924458999099443
+    },
+    {
+      "completed": 1600,
+      "seconds": 0.011024166000424884
+    },
+    {
+      "completed": 1610,
+      "seconds": 0.017126500000813394
+    },
+    {
+      "completed": 1620,
+      "seconds": 0.0164590419990418
+    },
+    {
+      "completed": 1630,
+      "seconds": 0.01624962499954563
+    },
+    {
+      "completed": 1640,
+      "seconds": 0.017247625000891276
+    },
+    {
+      "completed": 1650,
+      "seconds": 0.01653795799938962
+    },
+    {
+      "completed": 1660,
+      "seconds": 0.0113227090005239
+    },
+    {
+      "completed": 1670,
+      "seconds": 0.011315583000396146
+    },
+    {
+      "completed": 1680,
+      "seconds": 0.013719958000365295
+    },
+    {
+      "completed": 1690,
+      "seconds": 0.011352333998729591
+    },
+    {
+      "completed": 1700,
+      "seconds": 0.014366958001119201
+    },
+    {
+      "completed": 1710,
+      "seconds": 0.014034582998647238
+    },
+    {
+      "completed": 1720,
+      "seconds": 0.012119125000026543
+    },
+    {
+      "completed": 1730,
+      "seconds": 0.012252125001396053
+    },
+    {
+      "completed": 1740,
+      "seconds": 0.014978041999711422
+    },
+    {
+      "completed": 1750,
+      "seconds": 0.015359875000285683
+    },
+    {
+      "completed": 1760,
+      "seconds": 0.018294832998435595
+    },
+    {
+      "completed": 1770,
+      "seconds": 0.016357334001440904
+    },
+    {
+      "completed": 1780,
+      "seconds": 0.01129429100001289
+    },
+    {
+      "completed": 1790,
+      "seconds": 0.01484474999961094
+    },
+    {
+      "completed": 1800,
+      "seconds": 0.013587916999313165
+    },
+    {
+      "completed": 1810,
+      "seconds": 0.01369012500072131
+    },
+    {
+      "completed": 1820,
+      "seconds": 0.014364458000272862
+    },
+    {
+      "completed": 1830,
+      "seconds": 0.0161526669999148
+    },
+    {
+      "completed": 1840,
+      "seconds": 0.015429125000082422
+    },
+    {
+      "completed": 1850,
+      "seconds": 0.011677624999720138
+    },
+    {
+      "completed": 1860,
+      "seconds": 0.014580167000531219
+    },
+    {
+      "completed": 1870,
+      "seconds": 0.015606624998326879
+    },
+    {
+      "completed": 1880,
+      "seconds": 0.014467791001152364
+    },
+    {
+      "completed": 1890,
+      "seconds": 0.013531583999792929
+    },
+    {
+      "completed": 1900,
+      "seconds": 0.013081082999633509
+    },
+    {
+      "completed": 1910,
+      "seconds": 0.012164166999355075
+    },
+    {
+      "completed": 1920,
+      "seconds": 0.015880124999966938
+    },
+    {
+      "completed": 1930,
+      "seconds": 0.013475458001266816
+    },
+    {
+      "completed": 1940,
+      "seconds": 0.018415208000078565
+    },
+    {
+      "completed": 1950,
+      "seconds": 0.015832499999305583
+    },
+    {
+      "completed": 1960,
+      "seconds": 0.0169341250002617
+    },
+    {
+      "completed": 1970,
+      "seconds": 0.013726541999858455
+    },
+    {
+      "completed": 1980,
+      "seconds": 0.013730582999414764
+    },
+    {
+      "completed": 1990,
+      "seconds": 0.011442625000199769
+    },
+    {
+      "completed": 2000,
+      "seconds": 0.012580209000589093
+    },
+    {
+      "completed": 2010,
+      "seconds": 0.012244916000781814
+    },
+    {
+      "completed": 2020,
+      "seconds": 0.014141749999907915
+    },
+    {
+      "completed": 2030,
+      "seconds": 0.013551083999118418
+    },
+    {
+      "completed": 2040,
+      "seconds": 0.011174125000252388
+    },
+    {
+      "completed": 2050,
+      "seconds": 0.014127624999673571
+    },
+    {
+      "completed": 2060,
+      "seconds": 0.015230875000270316
+    },
+    {
+      "completed": 2070,
+      "seconds": 0.01759541600040393
+    },
+    {
+      "completed": 2080,
+      "seconds": 0.011341333998643677
+    },
+    {
+      "completed": 2090,
+      "seconds": 0.0165248330013128
+    },
+    {
+      "completed": 2100,
+      "seconds": 0.016635624999253196
+    },
+    {
+      "completed": 2110,
+      "seconds": 0.014295791999757057
+    },
+    {
+      "completed": 2120,
+      "seconds": 0.015140708001126768
+    },
+    {
+      "completed": 2130,
+      "seconds": 0.014046749998669839
+    },
+    {
+      "completed": 2140,
+      "seconds": 0.014789708000535029
+    },
+    {
+      "completed": 2150,
+      "seconds": 0.017844375001004664
+    },
+    {
+      "completed": 2160,
+      "seconds": 0.012573583999255789
+    },
+    {
+      "completed": 2170,
+      "seconds": 0.012387624999973923
+    },
+    {
+      "completed": 2180,
+      "seconds": 0.014955791000829777
+    },
+    {
+      "completed": 2190,
+      "seconds": 0.014100791999226203
+    },
+    {
+      "completed": 2200,
+      "seconds": 0.016012916999898152
+    },
+    {
+      "completed": 2210,
+      "seconds": 0.014151583000057144
+    },
+    {
+      "completed": 2220,
+      "seconds": 0.011598082999626058
+    },
+    {
+      "completed": 2230,
+      "seconds": 0.009763375001057284
+    },
+    {
+      "completed": 2240,
+      "seconds": 0.0176432919997751
+    },
+    {
+      "completed": 2250,
+      "seconds": 0.012924708000355167
+    },
+    {
+      "completed": 2260,
+      "seconds": 0.01751591699940036
+    },
+    {
+      "completed": 2270,
+      "seconds": 0.013236417000371148
+    },
+    {
+      "completed": 2280,
+      "seconds": 0.013230165999630117
+    },
+    {
+      "completed": 2290,
+      "seconds": 0.017199666999658803
+    },
+    {
+      "completed": 2300,
+      "seconds": 0.016881542000191985
+    },
+    {
+      "completed": 2310,
+      "seconds": 0.01624387499941804
+    },
+    {
+      "completed": 2320,
+      "seconds": 0.016010041001209174
+    },
+    {
+      "completed": 2330,
+      "seconds": 0.013366291999773239
+    },
+    {
+      "completed": 2340,
+      "seconds": 0.014111791999312118
+    },
+    {
+      "completed": 2350,
+      "seconds": 0.01493783300065843
+    },
+    {
+      "completed": 2360,
+      "seconds": 0.014293624999481835
+    },
+    {
+      "completed": 2370,
+      "seconds": 0.0174374580001313
+    },
+    {
+      "completed": 2380,
+      "seconds": 0.011679084000206785
+    },
+    {
+      "completed": 2390,
+      "seconds": 0.011716582999724778
+    },
+    {
+      "completed": 2400,
+      "seconds": 0.01169162500082166
+    },
+    {
+      "completed": 2410,
+      "seconds": 0.01610166699902038
+    },
+    {
+      "completed": 2420,
+      "seconds": 0.017124915999374934
+    },
+    {
+      "completed": 2430,
+      "seconds": 0.01631858400105557
+    },
+    {
+      "completed": 2440,
+      "seconds": 0.010940915999526624
+    },
+    {
+      "completed": 2450,
+      "seconds": 0.017097292000471498
+    },
+    {
+      "completed": 2460,
+      "seconds": 0.013334332999875187
+    },
+    {
+      "completed": 2470,
+      "seconds": 0.016591334000622737
+    },
+    {
+      "completed": 2480,
+      "seconds": 0.014294874999905005
+    },
+    {
+      "completed": 2490,
+      "seconds": 0.011873374998685904
+    },
+    {
+      "completed": 2500,
+      "seconds": 0.015895958000328392
+    },
+    {
+      "completed": 2510,
+      "seconds": 0.014159792001009919
+    },
+    {
+      "completed": 2520,
+      "seconds": 0.011667165999824647
+    },
+    {
+      "completed": 2530,
+      "seconds": 0.012283750000278815
+    },
+    {
+      "completed": 2540,
+      "seconds": 0.016832249999424675
+    },
+    {
+      "completed": 2550,
+      "seconds": 0.012598958999660681
+    },
+    {
+      "completed": 2560,
+      "seconds": 0.015300332999686361
+    },
+    {
+      "completed": 2570,
+      "seconds": 0.016141792000780697
+    },
+    {
+      "completed": 2580,
+      "seconds": 0.016199207999306964
+    },
+    {
+      "completed": 2590,
+      "seconds": 0.014096541999606416
+    },
+    {
+      "completed": 2600,
+      "seconds": 0.012898083001346095
+    },
+    {
+      "completed": 2610,
+      "seconds": 0.016510166999069043
+    },
+    {
+      "completed": 2620,
+      "seconds": 0.011319666000417783
+    },
+    {
+      "completed": 2630,
+      "seconds": 0.012917874999402557
+    },
+    {
+      "completed": 2640,
+      "seconds": 0.013270292000015615
+    },
+    {
+      "completed": 2650,
+      "seconds": 0.017237833000763203
+    },
+    {
+      "completed": 2660,
+      "seconds": 0.009506667000096058
+    },
+    {
+      "completed": 2670,
+      "seconds": 0.011518291999891517
+    },
+    {
+      "completed": 2680,
+      "seconds": 0.014519915999699151
+    },
+    {
+      "completed": 2690,
+      "seconds": 0.014174208999975235
+    },
+    {
+      "completed": 2700,
+      "seconds": 0.013154750000467175
+    },
+    {
+      "completed": 2710,
+      "seconds": 0.01681300000018382
+    },
+    {
+      "completed": 2720,
+      "seconds": 0.015880832999755512
+    },
+    {
+      "completed": 2730,
+      "seconds": 0.016251167000518763
+    },
+    {
+      "completed": 2740,
+      "seconds": 0.014287582998804282
+    },
+    {
+      "completed": 2750,
+      "seconds": 0.013998458000060054
+    },
+    {
+      "completed": 2760,
+      "seconds": 0.013379166999584413
+    },
+    {
+      "completed": 2770,
+      "seconds": 0.015250958000251558
+    },
+    {
+      "completed": 2780,
+      "seconds": 0.01590924999982235
+    },
+    {
+      "completed": 2790,
+      "seconds": 0.01712125000085507
+    },
+    {
+      "completed": 2800,
+      "seconds": 0.015044249999846215
+    },
+    {
+      "completed": 2810,
+      "seconds": 0.012972459000593517
+    },
+    {
+      "completed": 2820,
+      "seconds": 0.011861166000016965
+    },
+    {
+      "completed": 2830,
+      "seconds": 0.01574695899944345
+    },
+    {
+      "completed": 2840,
+      "seconds": 0.015399874999275198
+    },
+    {
+      "completed": 2850,
+      "seconds": 0.011936291000893107
+    },
+    {
+      "completed": 2860,
+      "seconds": 0.014160167000227375
+    },
+    {
+      "completed": 2870,
+      "seconds": 0.013407499998720596
+    },
+    {
+      "completed": 2880,
+      "seconds": 0.01287479200072994
+    },
+    {
+      "completed": 2890,
+      "seconds": 0.01606800000081421
+    },
+    {
+      "completed": 2900,
+      "seconds": 0.01597054099875095
+    },
+    {
+      "completed": 2910,
+      "seconds": 0.018015084000580828
+    },
+    {
+      "completed": 2920,
+      "seconds": 0.012044582999806153
+    },
+    {
+      "completed": 2930,
+      "seconds": 0.01624450000053912
+    },
+    {
+      "completed": 2940,
+      "seconds": 0.016225125000346452
+    },
+    {
+      "completed": 2950,
+      "seconds": 0.01591033299882838
+    },
+    {
+      "completed": 2960,
+      "seconds": 0.0164603339999303
+    },
+    {
+      "completed": 2970,
+      "seconds": 0.012159833000623621
+    },
+    {
+      "completed": 2980,
+      "seconds": 0.0148155829992902
+    },
+    {
+      "completed": 2990,
+      "seconds": 0.015761333999762428
+    },
+    {
+      "completed": 3000,
+      "seconds": 0.011829041000964935
+    },
+    {
+      "completed": 3010,
+      "seconds": 0.011226708998947288
+    },
+    {
+      "completed": 3020,
+      "seconds": 0.01509812500080443
+    },
+    {
+      "completed": 3030,
+      "seconds": 0.012327165999522549
+    },
+    {
+      "completed": 3040,
+      "seconds": 0.016165334000106668
+    },
+    {
+      "completed": 3050,
+      "seconds": 0.017063958001017454
+    },
+    {
+      "completed": 3060,
+      "seconds": 0.016189082998607773
+    },
+    {
+      "completed": 3070,
+      "seconds": 0.016401542001403868
+    },
+    {
+      "completed": 3080,
+      "seconds": 0.012347666999630746
+    },
+    {
+      "completed": 3090,
+      "seconds": 0.013543749999371357
+    },
+    {
+      "completed": 3100,
+      "seconds": 0.01658112500081188
+    },
+    {
+      "completed": 3110,
+      "seconds": 0.014119165998636163
+    },
+    {
+      "completed": 3120,
+      "seconds": 0.01666687500073749
+    },
+    {
+      "completed": 3130,
+      "seconds": 0.0144172090003849
+    },
+    {
+      "completed": 3140,
+      "seconds": 0.01152712499970221
+    },
+    {
+      "completed": 3150,
+      "seconds": 0.011655791000521276
+    },
+    {
+      "completed": 3160,
+      "seconds": 0.011860291999255423
+    },
+    {
+      "completed": 3170,
+      "seconds": 0.011771249999583233
+    },
+    {
+      "completed": 3180,
+      "seconds": 0.01637562500036438
+    },
+    {
+      "completed": 3190,
+      "seconds": 0.011335917000906193
+    },
+    {
+      "completed": 3200,
+      "seconds": 0.013902458000302431
+    },
+    {
+      "completed": 3210,
+      "seconds": 0.015346499998486252
+    },
+    {
+      "completed": 3220,
+      "seconds": 0.015921457999866107
+    },
+    {
+      "completed": 3230,
+      "seconds": 0.017911083999933908
+    },
+    {
+      "completed": 3240,
+      "seconds": 0.0161982910012739
+    },
+    {
+      "completed": 3250,
+      "seconds": 0.01181216700024379
+    },
+    {
+      "completed": 3260,
+      "seconds": 0.016726707999623613
+    },
+    {
+      "completed": 3270,
+      "seconds": 0.015655041999707464
+    },
+    {
+      "completed": 3280,
+      "seconds": 0.015459750000445638
+    },
+    {
+      "completed": 3290,
+      "seconds": 0.013432957999611972
+    },
+    {
+      "completed": 3300,
+      "seconds": 0.012840458999562543
+    },
+    {
+      "completed": 3310,
+      "seconds": 0.014093916001002071
+    },
+    {
+      "completed": 3320,
+      "seconds": 0.011821083999166149
+    },
+    {
+      "completed": 3330,
+      "seconds": 0.013550040999689372
+    },
+    {
+      "completed": 3340,
+      "seconds": 0.01571325000077195
+    },
+    {
+      "completed": 3350,
+      "seconds": 0.015307624998968095
+    },
+    {
+      "completed": 3360,
+      "seconds": 0.012186792000647984
+    },
+    {
+      "completed": 3370,
+      "seconds": 0.01624445800007379
+    },
+    {
+      "completed": 3380,
+      "seconds": 0.016330709000612842
+    },
+    {
+      "completed": 3390,
+      "seconds": 0.013514665999537101
+    },
+    {
+      "completed": 3400,
+      "seconds": 0.013320666999788955
+    },
+    {
+      "completed": 3410,
+      "seconds": 0.01271308300056262
+    },
+    {
+      "completed": 3420,
+      "seconds": 0.015314624999518855
+    },
+    {
+      "completed": 3430,
+      "seconds": 0.0174111249998532
+    },
+    {
+      "completed": 3440,
+      "seconds": 0.012717542000245885
+    },
+    {
+      "completed": 3450,
+      "seconds": 0.011569874999622698
+    },
+    {
+      "completed": 3460,
+      "seconds": 0.014274791999923764
+    },
+    {
+      "completed": 3470,
+      "seconds": 0.011093582999819773
+    },
+    {
+      "completed": 3480,
+      "seconds": 0.013134208000337821
+    },
+    {
+      "completed": 3490,
+      "seconds": 0.014285958999607828
+    },
+    {
+      "completed": 3500,
+      "seconds": 0.012436791001164238
+    },
+    {
+      "completed": 3510,
+      "seconds": 0.011706833998687216
+    },
+    {
+      "completed": 3520,
+      "seconds": 0.011118666001493693
+    },
+    {
+      "completed": 3530,
+      "seconds": 0.017978791998757515
+    },
+    {
+      "completed": 3540,
+      "seconds": 0.017648250001002452
+    },
+    {
+      "completed": 3550,
+      "seconds": 0.01846379199923831
+    },
+    {
+      "completed": 3560,
+      "seconds": 0.01711483300096006
+    },
+    {
+      "completed": 3570,
+      "seconds": 0.011740332998670056
+    },
+    {
+      "completed": 3580,
+      "seconds": 0.012059874999977183
+    },
+    {
+      "completed": 3590,
+      "seconds": 0.013990250001370441
+    },
+    {
+      "completed": 3600,
+      "seconds": 0.013021208998907241
+    },
+    {
+      "completed": 3610,
+      "seconds": 0.01089124999998603
+    },
+    {
+      "completed": 3620,
+      "seconds": 0.0119671250013198
+    },
+    {
+      "completed": 3630,
+      "seconds": 0.01290720799988776
+    },
+    {
+      "completed": 3640,
+      "seconds": 0.012164624999059015
+    },
+    {
+      "completed": 3650,
+      "seconds": 0.018502041999454377
+    },
+    {
+      "completed": 3660,
+      "seconds": 0.019345791000887402
+    },
+    {
+      "completed": 3670,
+      "seconds": 0.019758000000365428
+    },
+    {
+      "completed": 3680,
+      "seconds": 0.017047458999513765
+    },
+    {
+      "completed": 3690,
+      "seconds": 0.011958749999394058
+    },
+    {
+      "completed": 3700,
+      "seconds": 0.014685207999718841
+    },
+    {
+      "completed": 3710,
+      "seconds": 0.012722875000690692
+    },
+    {
+      "completed": 3720,
+      "seconds": 0.01030808299947239
+    },
+    {
+      "completed": 3730,
+      "seconds": 0.012872334000348928
+    },
+    {
+      "completed": 3740,
+      "seconds": 0.017918583000209765
+    },
+    {
+      "completed": 3750,
+      "seconds": 0.017901082999742357
+    },
+    {
+      "completed": 3760,
+      "seconds": 0.012335334000454168
+    },
+    {
+      "completed": 3770,
+      "seconds": 0.01731741599905945
+    },
+    {
+      "completed": 3780,
+      "seconds": 0.01887525000165624
+    },
+    {
+      "completed": 3790,
+      "seconds": 0.015490791998672648
+    },
+    {
+      "completed": 3800,
+      "seconds": 0.017740250001224922
+    },
+    {
+      "completed": 3810,
+      "seconds": 0.016314124999553314
+    },
+    {
+      "completed": 3820,
+      "seconds": 0.011914708000404062
+    },
+    {
+      "completed": 3830,
+      "seconds": 0.010740833999079769
+    },
+    {
+      "completed": 3840,
+      "seconds": 0.015841665999687393
+    },
+    {
+      "completed": 3850,
+      "seconds": 0.015635375000783824
+    },
+    {
+      "completed": 3860,
+      "seconds": 0.01966366699889477
+    },
+    {
+      "completed": 3870,
+      "seconds": 0.01632945800156449
+    },
+    {
+      "completed": 3880,
+      "seconds": 0.015523291998761124
+    },
+    {
+      "completed": 3890,
+      "seconds": 0.021382958000685903
+    },
+    {
+      "completed": 3900,
+      "seconds": 0.015951166999002453
+    },
+    {
+      "completed": 3910,
+      "seconds": 0.014019417001691181
+    },
+    {
+      "completed": 3920,
+      "seconds": 0.013591499999165535
+    },
+    {
+      "completed": 3930,
+      "seconds": 0.010825625000506989
+    },
+    {
+      "completed": 3940,
+      "seconds": 0.013382540999373305
+    },
+    {
+      "completed": 3950,
+      "seconds": 0.016145458999744733
+    },
+    {
+      "completed": 3960,
+      "seconds": 0.01760133300012967
+    },
+    {
+      "completed": 3970,
+      "seconds": 0.01534341700062214
+    },
+    {
+      "completed": 3980,
+      "seconds": 0.020837083000515122
+    },
+    {
+      "completed": 3990,
+      "seconds": 0.016303499998684856
+    },
+    {
+      "completed": 4000,
+      "seconds": 0.01293245800115983
+    },
+    {
+      "completed": 4010,
+      "seconds": 0.012690083998677437
+    },
+    {
+      "completed": 4020,
+      "seconds": 0.012302708000788698
+    },
+    {
+      "completed": 4030,
+      "seconds": 0.010660916999768233
+    },
+    {
+      "completed": 4040,
+      "seconds": 0.012001040999166435
+    },
+    {
+      "completed": 4050,
+      "seconds": 0.013567917001637397
+    },
+    {
+      "completed": 4060,
+      "seconds": 0.012948499999765772
+    },
+    {
+      "completed": 4070,
+      "seconds": 0.01742283299972769
+    },
+    {
+      "completed": 4080,
+      "seconds": 0.020132958999965922
+    },
+    {
+      "completed": 4090,
+      "seconds": 0.021828875000210246
+    },
+    {
+      "completed": 4100,
+      "seconds": 0.019116833000225597
+    },
+    {
+      "completed": 4110,
+      "seconds": 0.024130457999490318
+    },
+    {
+      "completed": 4120,
+      "seconds": 0.014464042000327026
+    },
+    {
+      "completed": 4130,
+      "seconds": 0.015167292000114685
+    },
+    {
+      "completed": 4140,
+      "seconds": 0.010264790998917306
+    },
+    {
+      "completed": 4150,
+      "seconds": 0.014247959001295385
+    },
+    {
+      "completed": 4160,
+      "seconds": 0.014470332998826052
+    },
+    {
+      "completed": 4170,
+      "seconds": 0.013217125000664964
+    },
+    {
+      "completed": 4180,
+      "seconds": 0.013496707999365753
+    },
+    {
+      "completed": 4190,
+      "seconds": 0.017348708999634255
+    },
+    {
+      "completed": 4200,
+      "seconds": 0.020634500000596745
+    },
+    {
+      "completed": 4210,
+      "seconds": 0.020904582999719423
+    },
+    {
+      "completed": 4220,
+      "seconds": 0.01573804200052109
+    },
+    {
+      "completed": 4230,
+      "seconds": 0.014556083000570652
+    },
+    {
+      "completed": 4240,
+      "seconds": 0.011296916998617235
+    },
+    {
+      "completed": 4250,
+      "seconds": 0.011531707999893115
+    },
+    {
+      "completed": 4260,
+      "seconds": 0.014538583000103245
+    },
+    {
+      "completed": 4270,
+      "seconds": 0.012305875001402455
+    },
+    {
+      "completed": 4280,
+      "seconds": 0.01499429199975566
+    },
+    {
+      "completed": 4290,
+      "seconds": 0.02060058299866796
+    },
+    {
+      "completed": 4300,
+      "seconds": 0.012035542000376154
+    },
+    {
+      "completed": 4310,
+      "seconds": 0.016557000000830158
+    },
+    {
+      "completed": 4320,
+      "seconds": 0.016712167000150657
+    },
+    {
+      "completed": 4330,
+      "seconds": 0.01575333300024795
+    },
+    {
+      "completed": 4340,
+      "seconds": 0.012762957998347702
+    },
+    {
+      "completed": 4350,
+      "seconds": 0.011073959001805633
+    },
+    {
+      "completed": 4360,
+      "seconds": 0.014793832999203005
+    },
+    {
+      "completed": 4370,
+      "seconds": 0.015186250000624568
+    },
+    {
+      "completed": 4380,
+      "seconds": 0.01839954199931526
+    },
+    {
+      "completed": 4390,
+      "seconds": 0.019096583000646206
+    },
+    {
+      "completed": 4400,
+      "seconds": 0.018908749998445273
+    },
+    {
+      "completed": 4410,
+      "seconds": 0.017002958000375656
+    },
+    {
+      "completed": 4420,
+      "seconds": 0.01254062500083819
+    },
+    {
+      "completed": 4430,
+      "seconds": 0.013848333999703755
+    },
+    {
+      "completed": 4440,
+      "seconds": 0.01414900000054331
+    },
+    {
+      "completed": 4450,
+      "seconds": 0.012191083000288927
+    },
+    {
+      "completed": 4460,
+      "seconds": 0.011776416999055073
+    },
+    {
+      "completed": 4470,
+      "seconds": 0.01803920800011838
+    },
+    {
+      "completed": 4480,
+      "seconds": 0.019128124999042484
+    },
+    {
+      "completed": 4490,
+      "seconds": 0.013981500000227243
+    },
+    {
+      "completed": 4500,
+      "seconds": 0.014787875001275097
+    },
+    {
+      "completed": 4510,
+      "seconds": 0.021569124999587075
+    },
+    {
+      "completed": 4520,
+      "seconds": 0.02081249999901047
+    },
+    {
+      "completed": 4530,
+      "seconds": 0.021146750001207693
+    },
+    {
+      "completed": 4540,
+      "seconds": 0.01344641699870408
+    },
+    {
+      "completed": 4550,
+      "seconds": 0.013539708001189865
+    },
+    {
+      "completed": 4560,
+      "seconds": 0.009823417000006884
+    },
+    {
+      "completed": 4570,
+      "seconds": 0.0147225000000617
+    },
+    {
+      "completed": 4580,
+      "seconds": 0.013017082999795093
+    },
+    {
+      "completed": 4590,
+      "seconds": 0.014705833000334678
+    },
+    {
+      "completed": 4600,
+      "seconds": 0.013392541999564855
+    },
+    {
+      "completed": 4610,
+      "seconds": 0.016948458000115352
+    },
+    {
+      "completed": 4620,
+      "seconds": 0.02378758399936487
+    },
+    {
+      "completed": 4630,
+      "seconds": 0.024067166001259466
+    },
+    {
+      "completed": 4640,
+      "seconds": 0.018464291999407578
+    },
+    {
+      "completed": 4650,
+      "seconds": 0.014551124999343301
+    },
+    {
+      "completed": 4660,
+      "seconds": 0.01318600000013248
+    },
+    {
+      "completed": 4670,
+      "seconds": 0.012090375001207576
+    },
+    {
+      "completed": 4680,
+      "seconds": 0.01669883299837238
+    },
+    {
+      "completed": 4690,
+      "seconds": 0.022490084000310162
+    },
+    {
+      "completed": 4700,
+      "seconds": 0.016812750000099186
+    },
+    {
+      "completed": 4710,
+      "seconds": 0.013153750000128639
+    },
+    {
+      "completed": 4720,
+      "seconds": 0.013519541000277968
+    },
+    {
+      "completed": 4730,
+      "seconds": 0.014570749999620602
+    },
+    {
+      "completed": 4740,
+      "seconds": 0.014064791999771842
+    },
+    {
+      "completed": 4750,
+      "seconds": 0.013957667000795482
+    },
+    {
+      "completed": 4760,
+      "seconds": 0.012733499999740161
+    },
+    {
+      "completed": 4770,
+      "seconds": 0.012730124999507098
+    },
+    {
+      "completed": 4780,
+      "seconds": 0.01240887499989185
+    },
+    {
+      "completed": 4790,
+      "seconds": 0.019519125000442727
+    },
+    {
+      "completed": 4800,
+      "seconds": 0.020224707999659586
+    },
+    {
+      "completed": 4810,
+      "seconds": 0.020755833000293933
+    },
+    {
+      "completed": 4820,
+      "seconds": 0.015930708999803755
+    },
+    {
+      "completed": 4830,
+      "seconds": 0.015059499999551917
+    },
+    {
+      "completed": 4840,
+      "seconds": 0.021072833000289393
+    },
+    {
+      "completed": 4850,
+      "seconds": 0.018314667000595364
+    },
+    {
+      "completed": 4860,
+      "seconds": 0.013286208000863553
+    },
+    {
+      "completed": 4870,
+      "seconds": 0.011661957998512662
+    },
+    {
+      "completed": 4880,
+      "seconds": 0.011814417001005495
+    },
+    {
+      "completed": 4890,
+      "seconds": 0.013178582999898936
+    },
+    {
+      "completed": 4900,
+      "seconds": 0.012450333999368013
+    },
+    {
+      "completed": 4910,
+      "seconds": 0.017426791000616504
+    },
+    {
+      "completed": 4920,
+      "seconds": 0.02134470899909502
+    },
+    {
+      "completed": 4930,
+      "seconds": 0.012839000000894885
+    },
+    {
+      "completed": 4940,
+      "seconds": 0.017854624999017688
+    },
+    {
+      "completed": 4950,
+      "seconds": 0.019612707999840495
+    },
+    {
+      "completed": 4960,
+      "seconds": 0.015267208000295796
+    },
+    {
+      "completed": 4970,
+      "seconds": 0.01161225000032573
+    },
+    {
+      "completed": 4980,
+      "seconds": 0.012448708999727387
+    },
+    {
+      "completed": 4990,
+      "seconds": 0.014065790999666206
+    },
+    {
+      "completed": 5000,
+      "seconds": 0.017644000001382665
+    },
+    {
+      "completed": 5010,
+      "seconds": 0.019595583999034716
+    },
+    {
+      "completed": 5020,
+      "seconds": 0.012290083001062158
+    },
+    {
+      "completed": 5030,
+      "seconds": 0.013513249999959953
+    },
+    {
+      "completed": 5040,
+      "seconds": 0.0120527500002936
+    },
+    {
+      "completed": 5050,
+      "seconds": 0.012202457999592298
+    },
+    {
+      "completed": 5060,
+      "seconds": 0.015868958998908056
+    },
+    {
+      "completed": 5070,
+      "seconds": 0.021123041000464582
+    },
+    {
+      "completed": 5080,
+      "seconds": 0.013198459000705043
+    },
+    {
+      "completed": 5090,
+      "seconds": 0.012678040999162477
+    },
+    {
+      "completed": 5100,
+      "seconds": 0.011897959000634728
+    },
+    {
+      "completed": 5110,
+      "seconds": 0.01619508299882
+    },
+    {
+      "completed": 5120,
+      "seconds": 0.015728708000096958
+    },
+    {
+      "completed": 5130,
+      "seconds": 0.015599250000377651
+    },
+    {
+      "completed": 5140,
+      "seconds": 0.012866709001173149
+    },
+    {
+      "completed": 5150,
+      "seconds": 0.012683582999670762
+    },
+    {
+      "completed": 5160,
+      "seconds": 0.012286291999771493
+    },
+    {
+      "completed": 5170,
+      "seconds": 0.017579082999873208
+    },
+    {
+      "completed": 5180,
+      "seconds": 0.017308082999079488
+    },
+    {
+      "completed": 5190,
+      "seconds": 0.012603750001289882
+    },
+    {
+      "completed": 5200,
+      "seconds": 0.011293416999251349
+    },
+    {
+      "completed": 5210,
+      "seconds": 0.011613417000262416
+    },
+    {
+      "completed": 5220,
+      "seconds": 0.01058779099912499
+    },
+    {
+      "completed": 5230,
+      "seconds": 0.01699712500158057
+    },
+    {
+      "completed": 5240,
+      "seconds": 0.016671624998707557
+    },
+    {
+      "completed": 5250,
+      "seconds": 0.015499875000386965
+    },
+    {
+      "completed": 5260,
+      "seconds": 0.013430250000965316
+    },
+    {
+      "completed": 5270,
+      "seconds": 0.01551929199922597
+    },
+    {
+      "completed": 5280,
+      "seconds": 0.016917041999477078
+    },
+    {
+      "completed": 5290,
+      "seconds": 0.01548604100025841
+    },
+    {
+      "completed": 5300,
+      "seconds": 0.012512167000750196
+    },
+    {
+      "completed": 5310,
+      "seconds": 0.012341999999989639
+    },
+    {
+      "completed": 5320,
+      "seconds": 0.016644332999931066
+    },
+    {
+      "completed": 5330,
+      "seconds": 0.011530292000315967
+    },
+    {
+      "completed": 5340,
+      "seconds": 0.011345916998834582
+    },
+    {
+      "completed": 5350,
+      "seconds": 0.016367250000257627
+    },
+    {
+      "completed": 5360,
+      "seconds": 0.013776040999800898
+    },
+    {
+      "completed": 5370,
+      "seconds": 0.011256375000812113
+    },
+    {
+      "completed": 5380,
+      "seconds": 0.014284374999988358
+    },
+    {
+      "completed": 5390,
+      "seconds": 0.015282416999980342
+    },
+    {
+      "completed": 5400,
+      "seconds": 0.016680667000400717
+    },
+    {
+      "completed": 5410,
+      "seconds": 0.012926832998346072
+    },
+    {
+      "completed": 5420,
+      "seconds": 0.014318917001219233
+    },
+    {
+      "completed": 5430,
+      "seconds": 0.01624308299869881
+    },
+    {
+      "completed": 5440,
+      "seconds": 0.012292667001020163
+    },
+    {
+      "completed": 5450,
+      "seconds": 0.01680783300071198
+    },
+    {
+      "completed": 5460,
+      "seconds": 0.015245332999256789
+    },
+    {
+      "completed": 5470,
+      "seconds": 0.017397542000253452
+    },
+    {
+      "completed": 5480,
+      "seconds": 0.01635429199995997
+    },
+    {
+      "completed": 5490,
+      "seconds": 0.016101625000374042
+    },
+    {
+      "completed": 5500,
+      "seconds": 0.01071333299842081
+    },
+    {
+      "completed": 5510,
+      "seconds": 0.011332583000694285
+    },
+    {
+      "completed": 5520,
+      "seconds": 0.013882458999432856
+    },
+    {
+      "completed": 5530,
+      "seconds": 0.01142700000127661
+    },
+    {
+      "completed": 5540,
+      "seconds": 0.015836458000194398
+    },
+    {
+      "completed": 5550,
+      "seconds": 0.012329749999480555
+    },
+    {
+      "completed": 5560,
+      "seconds": 0.01619462499911606
+    },
+    {
+      "completed": 5570,
+      "seconds": 0.017595208000784623
+    },
+    {
+      "completed": 5580,
+      "seconds": 0.015097375000550528
+    },
+    {
+      "completed": 5590,
+      "seconds": 0.01786004199857416
+    },
+    {
+      "completed": 5600,
+      "seconds": 0.015381375000288244
+    },
+    {
+      "completed": 5610,
+      "seconds": 0.016183417001229827
+    },
+    {
+      "completed": 5620,
+      "seconds": 0.012003791000097408
+    },
+    {
+      "completed": 5630,
+      "seconds": 0.014946041999792214
+    },
+    {
+      "completed": 5640,
+      "seconds": 0.012487582998801372
+    },
+    {
+      "completed": 5650,
+      "seconds": 0.014458625000770553
+    },
+    {
+      "completed": 5660,
+      "seconds": 0.011064333999456721
+    },
+    {
+      "completed": 5670,
+      "seconds": 0.011300416001176927
+    },
+    {
+      "completed": 5680,
+      "seconds": 0.011339416998453089
+    },
+    {
+      "completed": 5690,
+      "seconds": 0.01211854200118978
+    },
+    {
+      "completed": 5700,
+      "seconds": 0.01385366599970439
+    },
+    {
+      "completed": 5710,
+      "seconds": 0.018259459000546485
+    },
+    {
+      "completed": 5720,
+      "seconds": 0.014594999998735148
+    },
+    {
+      "completed": 5730,
+      "seconds": 0.013240666001365753
+    },
+    {
+      "completed": 5740,
+      "seconds": 0.01446024999859219
+    },
+    {
+      "completed": 5750,
+      "seconds": 0.01866979199985508
+    },
+    {
+      "completed": 5760,
+      "seconds": 0.015358083001046907
+    },
+    {
+      "completed": 5770,
+      "seconds": 0.01220850000026985
+    },
+    {
+      "completed": 5780,
+      "seconds": 0.015587959000185947
+    },
+    {
+      "completed": 5790,
+      "seconds": 0.01670491599907109
+    },
+    {
+      "completed": 5800,
+      "seconds": 0.016137917000378366
+    },
+    {
+      "completed": 5810,
+      "seconds": 0.014925333000064711
+    },
+    {
+      "completed": 5820,
+      "seconds": 0.011696499999743537
+    },
+    {
+      "completed": 5830,
+      "seconds": 0.013821500000631204
+    },
+    {
+      "completed": 5840,
+      "seconds": 0.012303833998885239
+    },
+    {
+      "completed": 5850,
+      "seconds": 0.01591733300119813
+    },
+    {
+      "completed": 5860,
+      "seconds": 0.016454416998385568
+    },
+    {
+      "completed": 5870,
+      "seconds": 0.015211708001515944
+    },
+    {
+      "completed": 5880,
+      "seconds": 0.012312124999880325
+    },
+    {
+      "completed": 5890,
+      "seconds": 0.015565457999400678
+    },
+    {
+      "completed": 5900,
+      "seconds": 0.01787424999929499
+    },
+    {
+      "completed": 5910,
+      "seconds": 0.01639200000136043
+    },
+    {
+      "completed": 5920,
+      "seconds": 0.016728291999243083
+    },
+    {
+      "completed": 5930,
+      "seconds": 0.01576004200069292
+    },
+    {
+      "completed": 5940,
+      "seconds": 0.012389583000185667
+    },
+    {
+      "completed": 5950,
+      "seconds": 0.01245908300006704
+    },
+    {
+      "completed": 5960,
+      "seconds": 0.012161416998424102
+    },
+    {
+      "completed": 5970,
+      "seconds": 0.012310250000155065
+    },
+    {
+      "completed": 5980,
+      "seconds": 0.014488000000710599
+    },
+    {
+      "completed": 5990,
+      "seconds": 0.010219707999567618
+    },
+    {
+      "completed": 6000,
+      "seconds": 0.013841625001077773
+    },
+    {
+      "completed": 6010,
+      "seconds": 0.01350362499943003
+    },
+    {
+      "completed": 6020,
+      "seconds": 0.013837041999067878
+    },
+    {
+      "completed": 6030,
+      "seconds": 0.01832937500148546
+    },
+    {
+      "completed": 6040,
+      "seconds": 0.01792724999904749
+    },
+    {
+      "completed": 6050,
+      "seconds": 0.01091529199948127
+    },
+    {
+      "completed": 6060,
+      "seconds": 0.011520333000589744
+    },
+    {
+      "completed": 6070,
+      "seconds": 0.018498292000003858
+    },
+    {
+      "completed": 6080,
+      "seconds": 0.018180166000092868
+    },
+    {
+      "completed": 6090,
+      "seconds": 0.012133000000176253
+    },
+    {
+      "completed": 6100,
+      "seconds": 0.012138374999267398
+    },
+    {
+      "completed": 6110,
+      "seconds": 0.0150997090004239
+    },
+    {
+      "completed": 6120,
+      "seconds": 0.012886583001090912
+    },
+    {
+      "completed": 6130,
+      "seconds": 0.012303749999773572
+    },
+    {
+      "completed": 6140,
+      "seconds": 0.012012666998998611
+    },
+    {
+      "completed": 6150,
+      "seconds": 0.012634832999538048
+    },
+    {
+      "completed": 6160,
+      "seconds": 0.010516042000745074
+    },
+    {
+      "completed": 6170,
+      "seconds": 0.01728166599968972
+    },
+    {
+      "completed": 6180,
+      "seconds": 0.019318167000164976
+    },
+    {
+      "completed": 6190,
+      "seconds": 0.020845291999648907
+    },
+    {
+      "completed": 6200,
+      "seconds": 0.016053416000431753
+    },
+    {
+      "completed": 6210,
+      "seconds": 0.01158075000057579
+    },
+    {
+      "completed": 6220,
+      "seconds": 0.013848499998857733
+    },
+    {
+      "completed": 6230,
+      "seconds": 0.013591167000413407
+    },
+    {
+      "completed": 6240,
+      "seconds": 0.02022279199991317
+    },
+    {
+      "completed": 6250,
+      "seconds": 0.014445415999944089
+    },
+    {
+      "completed": 6260,
+      "seconds": 0.012173875000371481
+    },
+    {
+      "completed": 6270,
+      "seconds": 0.011561958999664057
+    },
+    {
+      "completed": 6280,
+      "seconds": 0.01238966600067215
+    },
+    {
+      "completed": 6290,
+      "seconds": 0.01583970899991982
+    },
+    {
+      "completed": 6300,
+      "seconds": 0.021171291000428027
+    },
+    {
+      "completed": 6310,
+      "seconds": 0.01721449999968172
+    },
+    {
+      "completed": 6320,
+      "seconds": 0.015853834000154166
+    },
+    {
+      "completed": 6330,
+      "seconds": 0.01250366599924746
+    },
+    {
+      "completed": 6340,
+      "seconds": 0.01790729200001806
+    },
+    {
+      "completed": 6350,
+      "seconds": 0.017084041999623878
+    },
+    {
+      "completed": 6360,
+      "seconds": 0.012545540999781224
+    },
+    {
+      "completed": 6370,
+      "seconds": 0.010848584000996198
+    },
+    {
+      "completed": 6380,
+      "seconds": 0.017158624999865424
+    },
+    {
+      "completed": 6390,
+      "seconds": 0.0163990000000922
+    },
+    {
+      "completed": 6400,
+      "seconds": 0.017252915999051766
+    },
+    {
+      "completed": 6410,
+      "seconds": 0.020593750001353328
+    },
+    {
+      "completed": 6420,
+      "seconds": 0.016104999998788116
+    },
+    {
+      "completed": 6430,
+      "seconds": 0.013751459000559407
+    },
+    {
+      "completed": 6440,
+      "seconds": 0.016172833000382525
+    },
+    {
+      "completed": 6450,
+      "seconds": 0.017789333000109764
+    },
+    {
+      "completed": 6460,
+      "seconds": 0.014620459000070696
+    },
+    {
+      "completed": 6470,
+      "seconds": 0.011983165999481571
+    },
+    {
+      "completed": 6480,
+      "seconds": 0.01302774999930989
+    },
+    {
+      "completed": 6490,
+      "seconds": 0.01724820900017221
+    },
+    {
+      "completed": 6500,
+      "seconds": 0.01907175000087591
+    },
+    {
+      "completed": 6510,
+      "seconds": 0.016100832999654813
+    },
+    {
+      "completed": 6520,
+      "seconds": 0.01268362500013609
+    },
+    {
+      "completed": 6530,
+      "seconds": 0.012089292000382557
+    },
+    {
+      "completed": 6540,
+      "seconds": 0.01276016599877039
+    },
+    {
+      "completed": 6550,
+      "seconds": 0.01217904200166231
+    },
+    {
+      "completed": 6560,
+      "seconds": 0.01339899999948102
+    },
+    {
+      "completed": 6570,
+      "seconds": 0.012950791999173816
+    },
+    {
+      "completed": 6580,
+      "seconds": 0.011053916001401376
+    },
+    {
+      "completed": 6590,
+      "seconds": 0.017706249998809653
+    },
+    {
+      "completed": 6600,
+      "seconds": 0.018315417000849266
+    },
+    {
+      "completed": 6610,
+      "seconds": 0.021957332999591017
+    },
+    {
+      "completed": 6620,
+      "seconds": 0.0165844589992048
+    },
+    {
+      "completed": 6630,
+      "seconds": 0.021822041000632453
+    },
+    {
+      "completed": 6640,
+      "seconds": 0.012618624999959138
+    },
+    {
+      "completed": 6650,
+      "seconds": 0.014559625000401866
+    },
+    {
+      "completed": 6660,
+      "seconds": 0.011314834000586416
+    },
+    {
+      "completed": 6670,
+      "seconds": 0.014580415998352692
+    },
+    {
+      "completed": 6680,
+      "seconds": 0.011052667001422378
+    },
+    {
+      "completed": 6690,
+      "seconds": 0.011451291999037494
+    },
+    {
+      "completed": 6700,
+      "seconds": 0.012373708001177874
+    },
+    {
+      "completed": 6710,
+      "seconds": 0.01410254199981864
+    },
+    {
+      "completed": 6720,
+      "seconds": 0.021742249999078922
+    },
+    {
+      "completed": 6730,
+      "seconds": 0.021885957999984385
+    },
+    {
+      "completed": 6740,
+      "seconds": 0.014994250001109322
+    },
+    {
+      "completed": 6750,
+      "seconds": 0.013671582999450038
+    },
+    {
+      "completed": 6760,
+      "seconds": 0.012720667000394315
+    },
+    {
+      "completed": 6770,
+      "seconds": 0.012487582998801372
+    },
+    {
+      "completed": 6780,
+      "seconds": 0.013666459000887698
+    },
+    {
+      "completed": 6790,
+      "seconds": 0.010278374998961226
+    },
+    {
+      "completed": 6800,
+      "seconds": 0.01398950000111654
+    },
+    {
+      "completed": 6810,
+      "seconds": 0.021292333000019426
+    },
+    {
+      "completed": 6820,
+      "seconds": 0.01343504199940071
+    },
+    {
+      "completed": 6830,
+      "seconds": 0.015550791000350728
+    },
+    {
+      "completed": 6840,
+      "seconds": 0.016466875000332948
+    },
+    {
+      "completed": 6850,
+      "seconds": 0.01613191700016614
+    },
+    {
+      "completed": 6860,
+      "seconds": 0.020967249998648185
+    },
+    {
+      "completed": 6870,
+      "seconds": 0.019215875001464156
+    },
+    {
+      "completed": 6880,
+      "seconds": 0.015685291999034234
+    },
+    {
+      "completed": 6890,
+      "seconds": 0.012268415999642457
+    },
+    {
+      "completed": 6900,
+      "seconds": 0.009370750000016415
+    },
+    {
+      "completed": 6910,
+      "seconds": 0.020115999999688938
+    },
+    {
+      "completed": 6920,
+      "seconds": 0.017607792000490008
+    },
+    {
+      "completed": 6930,
+      "seconds": 0.016154000000824453
+    },
+    {
+      "completed": 6940,
+      "seconds": 0.01290737499948591
+    },
+    {
+      "completed": 6950,
+      "seconds": 0.013088042000163114
+    },
+    {
+      "completed": 6960,
+      "seconds": 0.01364974999887636
+    },
+    {
+      "completed": 6970,
+      "seconds": 0.017069708001145045
+    },
+    {
+      "completed": 6980,
+      "seconds": 0.018895666999014793
+    },
+    {
+      "completed": 6990,
+      "seconds": 0.012866875000327127
+    },
+    {
+      "completed": 7000,
+      "seconds": 0.01101583300078346
+    },
+    {
+      "completed": 7010,
+      "seconds": 0.012154832998930942
+    },
+    {
+      "completed": 7020,
+      "seconds": 0.013652917001309106
+    },
+    {
+      "completed": 7030,
+      "seconds": 0.0204596669991588
+    },
+    {
+      "completed": 7040,
+      "seconds": 0.01967595799942501
+    },
+    {
+      "completed": 7050,
+      "seconds": 0.021245125000859844
+    },
+    {
+      "completed": 7060,
+      "seconds": 0.014372625000760308
+    },
+    {
+      "completed": 7070,
+      "seconds": 0.013765457999397768
+    },
+    {
+      "completed": 7080,
+      "seconds": 0.012936167000589194
+    },
+    {
+      "completed": 7090,
+      "seconds": 0.01354558299863129
+    },
+    {
+      "completed": 7100,
+      "seconds": 0.012345500001174514
+    },
+    {
+      "completed": 7110,
+      "seconds": 0.013799208998534596
+    },
+    {
+      "completed": 7120,
+      "seconds": 0.016916458000196144
+    },
+    {
+      "completed": 7130,
+      "seconds": 0.02089591700132587
+    },
+    {
+      "completed": 7140,
+      "seconds": 0.02254591599921696
+    },
+    {
+      "completed": 7150,
+      "seconds": 0.029303334000360337
+    },
+    {
+      "completed": 7160,
+      "seconds": 0.027806333000626182
+    },
+    {
+      "completed": 7170,
+      "seconds": 0.016578124999796273
+    },
+    {
+      "completed": 7180,
+      "seconds": 0.017034167000019806
+    },
+    {
+      "completed": 7190,
+      "seconds": 0.021412415999293444
+    },
+    {
+      "completed": 7200,
+      "seconds": 0.013259875000585453
+    },
+    {
+      "completed": 7210,
+      "seconds": 0.010517958999116672
+    },
+    {
+      "completed": 7220,
+      "seconds": 0.012559666000015568
+    },
+    {
+      "completed": 7230,
+      "seconds": 0.012011209000775125
+    },
+    {
+      "completed": 7240,
+      "seconds": 0.012678040999162477
+    },
+    {
+      "completed": 7250,
+      "seconds": 0.01322375000017928
+    },
+    {
+      "completed": 7260,
+      "seconds": 0.012398083999869414
+    },
+    {
+      "completed": 7270,
+      "seconds": 0.01296287500008475
+    },
+    {
+      "completed": 7280,
+      "seconds": 0.016493291001097532
+    },
+    {
+      "completed": 7290,
+      "seconds": 0.018564333999165683
+    },
+    {
+      "completed": 7300,
+      "seconds": 0.015898457999355742
+    },
+    {
+      "completed": 7310,
+      "seconds": 0.011360417000105372
+    },
+    {
+      "completed": 7320,
+      "seconds": 0.012356958000964369
+    },
+    {
+      "completed": 7330,
+      "seconds": 0.022013166999386158
+    },
+    {
+      "completed": 7340,
+      "seconds": 0.014375791000929894
+    },
+    {
+      "completed": 7350,
+      "seconds": 0.013534916999560664
+    },
+    {
+      "completed": 7360,
+      "seconds": 0.021347750000131782
+    },
+    {
+      "completed": 7370,
+      "seconds": 0.016560332998778904
+    },
+    {
+      "completed": 7380,
+      "seconds": 0.01480966700000863
+    },
+    {
+      "completed": 7390,
+      "seconds": 0.01433066700155905
+    },
+    {
+      "completed": 7400,
+      "seconds": 0.013754540999798337
+    },
+    {
+      "completed": 7410,
+      "seconds": 0.013953791998574161
+    },
+    {
+      "completed": 7420,
+      "seconds": 0.010792125000079977
+    },
+    {
+      "completed": 7430,
+      "seconds": 0.016033167001296533
+    },
+    {
+      "completed": 7440,
+      "seconds": 0.02083695799956331
+    },
+    {
+      "completed": 7450,
+      "seconds": 0.012482250000175554
+    },
+    {
+      "completed": 7460,
+      "seconds": 0.016883582999071223
+    },
+    {
+      "completed": 7470,
+      "seconds": 0.022014166999724694
+    },
+    {
+      "completed": 7480,
+      "seconds": 0.015313583000533981
+    },
+    {
+      "completed": 7490,
+      "seconds": 0.01707587500095542
+    },
+    {
+      "completed": 7500,
+      "seconds": 0.021561292000114918
+    },
+    {
+      "completed": 7510,
+      "seconds": 0.01538316699952702
+    },
+    {
+      "completed": 7520,
+      "seconds": 0.012099874998966698
+    },
+    {
+      "completed": 7530,
+      "seconds": 0.009529541001029429
+    },
+    {
+      "completed": 7540,
+      "seconds": 0.012406292000378016
+    },
+    {
+      "completed": 7550,
+      "seconds": 0.013463291999869398
+    },
+    {
+      "completed": 7560,
+      "seconds": 0.011435207999966224
+    },
+    {
+      "completed": 7570,
+      "seconds": 0.011627750000116066
+    },
+    {
+      "completed": 7580,
+      "seconds": 0.013299332998940372
+    },
+    {
+      "completed": 7590,
+      "seconds": 0.015689458999986527
+    },
+    {
+      "completed": 7600,
+      "seconds": 0.018871541000407888
+    },
+    {
+      "completed": 7610,
+      "seconds": 0.01839016700068896
+    },
+    {
+      "completed": 7620,
+      "seconds": 0.02038958299999649
+    },
+    {
+      "completed": 7630,
+      "seconds": 0.01626354200016067
+    },
+    {
+      "completed": 7640,
+      "seconds": 0.011364291998688714
+    },
+    {
+      "completed": 7650,
+      "seconds": 0.014609541000027093
+    },
+    {
+      "completed": 7660,
+      "seconds": 0.01366408400099317
+    },
+    {
+      "completed": 7670,
+      "seconds": 0.01470704100029252
+    },
+    {
+      "completed": 7680,
+      "seconds": 0.01736454199999571
+    },
+    {
+      "completed": 7690,
+      "seconds": 0.017275958000027458
+    },
+    {
+      "completed": 7700,
+      "seconds": 0.012560624998513958
+    },
+    {
+      "completed": 7710,
+      "seconds": 0.011564250000446918
+    },
+    {
+      "completed": 7720,
+      "seconds": 0.014175917000102345
+    },
+    {
+      "completed": 7730,
+      "seconds": 0.01766854200104717
+    },
+    {
+      "completed": 7740,
+      "seconds": 0.013873749998310814
+    },
+    {
+      "completed": 7750,
+      "seconds": 0.012854583001171704
+    },
+    {
+      "completed": 7760,
+      "seconds": 0.013586207998741884
+    },
+    {
+      "completed": 7770,
+      "seconds": 0.01243929200063576
+    },
+    {
+      "completed": 7780,
+      "seconds": 0.016316625000399654
+    },
+    {
+      "completed": 7790,
+      "seconds": 0.019522750000760425
+    },
+    {
+      "completed": 7800,
+      "seconds": 0.014394041998457396
+    },
+    {
+      "completed": 7810,
+      "seconds": 0.01738366600147856
+    },
+    {
+      "completed": 7820,
+      "seconds": 0.015221833999021328
+    },
+    {
+      "completed": 7830,
+      "seconds": 0.012994332999369362
+    },
+    {
+      "completed": 7840,
+      "seconds": 0.013038458000664832
+    },
+    {
+      "completed": 7850,
+      "seconds": 0.012289000000237138
+    },
+    {
+      "completed": 7860,
+      "seconds": 0.012284959000680828
+    },
+    {
+      "completed": 7870,
+      "seconds": 0.014330540998344077
+    },
+    {
+      "completed": 7880,
+      "seconds": 0.010465334000400617
+    },
+    {
+      "completed": 7890,
+      "seconds": 0.013783458000034443
+    },
+    {
+      "completed": 7900,
+      "seconds": 0.012455833000785788
+    },
+    {
+      "completed": 7910,
+      "seconds": 0.016721500000130618
+    },
+    {
+      "completed": 7920,
+      "seconds": 0.01696720899963111
+    },
+    {
+      "completed": 7930,
+      "seconds": 0.018216832999314647
+    },
+    {
+      "completed": 7940,
+      "seconds": 0.017443042001104914
+    },
+    {
+      "completed": 7950,
+      "seconds": 0.01823395799874561
+    },
+    {
+      "completed": 7960,
+      "seconds": 0.010144583000510465
+    },
+    {
+      "completed": 7970,
+      "seconds": 0.012587708999490133
+    },
+    {
+      "completed": 7980,
+      "seconds": 0.012173083001471241
+    },
+    {
+      "completed": 7990,
+      "seconds": 0.013495624998540734
+    },
+    {
+      "completed": 8000,
+      "seconds": 0.013327624999874388
+    },
+    {
+      "completed": 8010,
+      "seconds": 0.013332917000298039
+    },
+    {
+      "completed": 8020,
+      "seconds": 0.01276500000130909
+    },
+    {
+      "completed": 8030,
+      "seconds": 0.012005082999166916
+    },
+    {
+      "completed": 8040,
+      "seconds": 0.015433458000188693
+    },
+    {
+      "completed": 8050,
+      "seconds": 0.019995167000161018
+    },
+    {
+      "completed": 8060,
+      "seconds": 0.012212583000291488
+    },
+    {
+      "completed": 8070,
+      "seconds": 0.011450500000137254
+    },
+    {
+      "completed": 8080,
+      "seconds": 0.02191191699967021
+    },
+    {
+      "completed": 8090,
+      "seconds": 0.015139875000386382
+    },
+    {
+      "completed": 8100,
+      "seconds": 0.011701874998834683
+    },
+    {
+      "completed": 8110,
+      "seconds": 0.013226291999671957
+    },
+    {
+      "completed": 8120,
+      "seconds": 0.015615500000421889
+    },
+    {
+      "completed": 8130,
+      "seconds": 0.018872208000175306
+    },
+    {
+      "completed": 8140,
+      "seconds": 0.014702750000651577
+    },
+    {
+      "completed": 8150,
+      "seconds": 0.012742999999318272
+    },
+    {
+      "completed": 8160,
+      "seconds": 0.012779541999407229
+    },
+    {
+      "completed": 8170,
+      "seconds": 0.011211958000785671
+    },
+    {
+      "completed": 8180,
+      "seconds": 0.01557633300035377
+    },
+    {
+      "completed": 8190,
+      "seconds": 0.019969708999269642
+    },
+    {
+      "completed": 8200,
+      "seconds": 0.018749208000372164
+    },
+    {
+      "completed": 8210,
+      "seconds": 0.013076499999442603
+    },
+    {
+      "completed": 8220,
+      "seconds": 0.013982750000650412
+    },
+    {
+      "completed": 8230,
+      "seconds": 0.017836708000686485
+    },
+    {
+      "completed": 8240,
+      "seconds": 0.01763570899856859
+    },
+    {
+      "completed": 8250,
+      "seconds": 0.01807612500124378
+    },
+    {
+      "completed": 8260,
+      "seconds": 0.015664040998672135
+    },
+    {
+      "completed": 8270,
+      "seconds": 0.013067542000499088
+    },
+    {
+      "completed": 8280,
+      "seconds": 0.010401833000287297
+    },
+    {
+      "completed": 8290,
+      "seconds": 0.01898883399917395
+    },
+    {
+      "completed": 8300,
+      "seconds": 0.018539374999818392
+    },
+    {
+      "completed": 8310,
+      "seconds": 0.01568766600030358
+    },
+    {
+      "completed": 8320,
+      "seconds": 0.015721417001259397
+    },
+    {
+      "completed": 8330,
+      "seconds": 0.012883999999758089
+    },
+    {
+      "completed": 8340,
+      "seconds": 0.018134707999706734
+    },
+    {
+      "completed": 8350,
+      "seconds": 0.015505708999626222
+    },
+    {
+      "completed": 8360,
+      "seconds": 0.01768320799965295
+    },
+    {
+      "completed": 8370,
+      "seconds": 0.016816041999845766
+    },
+    {
+      "completed": 8380,
+      "seconds": 0.01082308300101431
+    },
+    {
+      "completed": 8390,
+      "seconds": 0.01459012499981327
+    },
+    {
+      "completed": 8400,
+      "seconds": 0.01650474999951257
+    },
+    {
+      "completed": 8410,
+      "seconds": 0.012742291999529698
+    },
+    {
+      "completed": 8420,
+      "seconds": 0.011880250000103842
+    },
+    {
+      "completed": 8430,
+      "seconds": 0.013065416000245023
+    },
+    {
+      "completed": 8440,
+      "seconds": 0.012797875000615022
+    },
+    {
+      "completed": 8450,
+      "seconds": 0.013192459000492818
+    },
+    {
+      "completed": 8460,
+      "seconds": 0.0166901249995135
+    },
+    {
+      "completed": 8470,
+      "seconds": 0.018614041000546422
+    },
+    {
+      "completed": 8480,
+      "seconds": 0.012555249999422813
+    },
+    {
+      "completed": 8490,
+      "seconds": 0.011274959000729723
+    },
+    {
+      "completed": 8500,
+      "seconds": 0.021832040998560842
+    },
+    {
+      "completed": 8510,
+      "seconds": 0.01662541699988651
+    },
+    {
+      "completed": 8520,
+      "seconds": 0.021574417000010726
+    },
+    {
+      "completed": 8530,
+      "seconds": 0.01409225000134029
+    },
+    {
+      "completed": 8540,
+      "seconds": 0.014342832999318489
+    },
+    {
+      "completed": 8550,
+      "seconds": 0.011086917000284302
+    },
+    {
+      "completed": 8560,
+      "seconds": 0.014466332999290898
+    },
+    {
+      "completed": 8570,
+      "seconds": 0.012990291999813053
+    },
+    {
+      "completed": 8580,
+      "seconds": 0.012948583000252256
+    },
+    {
+      "completed": 8590,
+      "seconds": 0.010250792000078945
+    },
+    {
+      "completed": 8600,
+      "seconds": 0.014465457999904174
+    },
+    {
+      "completed": 8610,
+      "seconds": 0.021557833000770188
+    },
+    {
+      "completed": 8620,
+      "seconds": 0.0222245839995594
+    },
+    {
+      "completed": 8630,
+      "seconds": 0.01466120800068893
+    },
+    {
+      "completed": 8640,
+      "seconds": 0.013786083000013605
+    },
+    {
+      "completed": 8650,
+      "seconds": 0.013495666999006062
+    },
+    {
+      "completed": 8660,
+      "seconds": 0.012530375001006178
+    },
+    {
+      "completed": 8670,
+      "seconds": 0.014943582998967031
+    },
+    {
+      "completed": 8680,
+      "seconds": 0.019548459000361618
+    },
+    {
+      "completed": 8690,
+      "seconds": 0.014414208000744111
+    },
+    {
+      "completed": 8700,
+      "seconds": 0.010315333000107785
+    },
+    {
+      "completed": 8710,
+      "seconds": 0.013800333999824943
+    },
+    {
+      "completed": 8720,
+      "seconds": 0.01587695799935318
+    },
+    {
+      "completed": 8730,
+      "seconds": 0.01646883300054469
+    },
+    {
+      "completed": 8740,
+      "seconds": 0.01724554199972772
+    },
+    {
+      "completed": 8750,
+      "seconds": 0.015324333000535262
+    },
+    {
+      "completed": 8760,
+      "seconds": 0.017159375000119326
+    },
+    {
+      "completed": 8770,
+      "seconds": 0.014472333999947296
+    },
+    {
+      "completed": 8780,
+      "seconds": 0.018937999999252497
+    },
+    {
+      "completed": 8790,
+      "seconds": 0.013408499999059131
+    },
+    {
+      "completed": 8800,
+      "seconds": 0.010999666001225705
+    },
+    {
+      "completed": 8810,
+      "seconds": 0.015446708999661496
+    },
+    {
+      "completed": 8820,
+      "seconds": 0.015528915999311721
+    },
+    {
+      "completed": 8830,
+      "seconds": 0.01218545900155732
+    },
+    {
+      "completed": 8840,
+      "seconds": 0.012609415998667828
+    },
+    {
+      "completed": 8850,
+      "seconds": 0.013573959000495961
+    },
+    {
+      "completed": 8860,
+      "seconds": 0.019131249999190914
+    },
+    {
+      "completed": 8870,
+      "seconds": 0.016778750001321896
+    },
+    {
+      "completed": 8880,
+      "seconds": 0.012336874999164138
+    },
+    {
+      "completed": 8890,
+      "seconds": 0.014156540999465506
+    },
+    {
+      "completed": 8900,
+      "seconds": 0.0118979170001694
+    },
+    {
+      "completed": 8910,
+      "seconds": 0.011423167001339607
+    },
+    {
+      "completed": 8920,
+      "seconds": 0.021432999999888125
+    },
+    {
+      "completed": 8930,
+      "seconds": 0.018344832998991478
+    },
+    {
+      "completed": 8940,
+      "seconds": 0.020014499999888358
+    },
+    {
+      "completed": 8950,
+      "seconds": 0.013389583000389393
+    },
+    {
+      "completed": 8960,
+      "seconds": 0.012737041999571375
+    },
+    {
+      "completed": 8970,
+      "seconds": 0.012273750000531436
+    },
+    {
+      "completed": 8980,
+      "seconds": 0.012556916999528767
+    },
+    {
+      "completed": 8990,
+      "seconds": 0.012613000000783359
+    },
+    {
+      "completed": 9000,
+      "seconds": 0.013728040999922086
+    },
+    {
+      "completed": 9010,
+      "seconds": 0.010524416999032837
+    },
+    {
+      "completed": 9020,
+      "seconds": 0.015508792001128313
+    },
+    {
+      "completed": 9030,
+      "seconds": 0.019976166000560625
+    },
+    {
+      "completed": 9040,
+      "seconds": 0.021302041999661014
+    },
+    {
+      "completed": 9050,
+      "seconds": 0.01633337499879417
+    },
+    {
+      "completed": 9060,
+      "seconds": 0.015069708000737592
+    },
+    {
+      "completed": 9070,
+      "seconds": 0.017269833999307593
+    },
+    {
+      "completed": 9080,
+      "seconds": 0.02015354100149125
+    },
+    {
+      "completed": 9090,
+      "seconds": 0.012121708999984548
+    },
+    {
+      "completed": 9100,
+      "seconds": 0.012228040999616496
+    },
+    {
+      "completed": 9110,
+      "seconds": 0.011166874999616994
+    },
+    {
+      "completed": 9120,
+      "seconds": 0.010019458999522612
+    },
+    {
+      "completed": 9130,
+      "seconds": 0.01211820800017449
+    },
+    {
+      "completed": 9140,
+      "seconds": 0.012971707999895443
+    },
+    {
+      "completed": 9150,
+      "seconds": 0.012122166999688488
+    },
+    {
+      "completed": 9160,
+      "seconds": 0.011883291999765788
+    },
+    {
+      "completed": 9170,
+      "seconds": 0.017056750000847387
+    },
+    {
+      "completed": 9180,
+      "seconds": 0.017663791000813944
+    },
+    {
+      "completed": 9190,
+      "seconds": 0.016300083998430637
+    },
+    {
+      "completed": 9200,
+      "seconds": 0.020095125000807457
+    },
+    {
+      "completed": 9210,
+      "seconds": 0.015465624999706051
+    },
+    {
+      "completed": 9220,
+      "seconds": 0.011251957999775186
+    },
+    {
+      "completed": 9230,
+      "seconds": 0.009676792000391288
+    },
+    {
+      "completed": 9240,
+      "seconds": 0.01457562500036147
+    },
+    {
+      "completed": 9250,
+      "seconds": 0.02231620800012024
+    },
+    {
+      "completed": 9260,
+      "seconds": 0.015744207999887294
+    },
+    {
+      "completed": 9270,
+      "seconds": 0.013045458999840776
+    },
+    {
+      "completed": 9280,
+      "seconds": 0.0120051659996534
+    },
+    {
+      "completed": 9290,
+      "seconds": 0.012543417000415502
+    },
+    {
+      "completed": 9300,
+      "seconds": 0.015723124999567517
+    },
+    {
+      "completed": 9310,
+      "seconds": 0.020431458000530256
+    },
+    {
+      "completed": 9320,
+      "seconds": 0.012923791999128298
+    },
+    {
+      "completed": 9330,
+      "seconds": 0.010368208000727464
+    },
+    {
+      "completed": 9340,
+      "seconds": 0.012422874999174383
+    },
+    {
+      "completed": 9350,
+      "seconds": 0.01626245900115464
+    },
+    {
+      "completed": 9360,
+      "seconds": 0.02023774999906891
+    },
+    {
+      "completed": 9370,
+      "seconds": 0.01436291600111872
+    },
+    {
+      "completed": 9380,
+      "seconds": 0.015555416999632143
+    },
+    {
+      "completed": 9390,
+      "seconds": 0.019605499999670428
+    },
+    {
+      "completed": 9400,
+      "seconds": 0.014901874999850406
+    },
+    {
+      "completed": 9410,
+      "seconds": 0.01306129200020223
+    },
+    {
+      "completed": 9420,
+      "seconds": 0.012064291000569938
+    },
+    {
+      "completed": 9430,
+      "seconds": 0.011771374998716055
+    },
+    {
+      "completed": 9440,
+      "seconds": 0.011427500001445878
+    },
+    {
+      "completed": 9450,
+      "seconds": 0.011591624999709893
+    },
+    {
+      "completed": 9460,
+      "seconds": 0.012977874999705818
+    },
+    {
+      "completed": 9470,
+      "seconds": 0.011886459000379546
+    },
+    {
+      "completed": 9480,
+      "seconds": 0.013649458000145387
+    },
+    {
+      "completed": 9490,
+      "seconds": 0.01763787499839964
+    },
+    {
+      "completed": 9500,
+      "seconds": 0.01939529200171819
+    },
+    {
+      "completed": 9510,
+      "seconds": 0.016675124999892432
+    },
+    {
+      "completed": 9520,
+      "seconds": 0.01964587499969639
+    },
+    {
+      "completed": 9530,
+      "seconds": 0.01382608299900312
+    },
+    {
+      "completed": 9540,
+      "seconds": 0.012023917000988149
+    },
+    {
+      "completed": 9550,
+      "seconds": 0.010220374999335036
+    },
+    {
+      "completed": 9560,
+      "seconds": 0.011933583000427461
+    },
+    {
+      "completed": 9570,
+      "seconds": 0.013110083000356099
+    },
+    {
+      "completed": 9580,
+      "seconds": 0.014284749999205815
+    },
+    {
+      "completed": 9590,
+      "seconds": 0.013672958999450202
+    },
+    {
+      "completed": 9600,
+      "seconds": 0.012295541000639787
+    },
+    {
+      "completed": 9610,
+      "seconds": 0.011855917000502814
+    },
+    {
+      "completed": 9620,
+      "seconds": 0.021746832999269827
+    },
+    {
+      "completed": 9630,
+      "seconds": 0.016091041999970912
+    },
+    {
+      "completed": 9640,
+      "seconds": 0.02152229199964495
+    },
+    {
+      "completed": 9650,
+      "seconds": 0.012575665999975172
+    },
+    {
+      "completed": 9660,
+      "seconds": 0.011813334000180475
+    },
+    {
+      "completed": 9670,
+      "seconds": 0.012394332999974722
+    },
+    {
+      "completed": 9680,
+      "seconds": 0.012715917000605259
+    },
+    {
+      "completed": 9690,
+      "seconds": 0.012725041000521742
+    },
+    {
+      "completed": 9700,
+      "seconds": 0.020265334000214352
+    },
+    {
+      "completed": 9710,
+      "seconds": 0.016768790999776684
+    },
+    {
+      "completed": 9720,
+      "seconds": 0.013183041999582201
+    },
+    {
+      "completed": 9730,
+      "seconds": 0.011968749999141437
+    },
+    {
+      "completed": 9740,
+      "seconds": 0.017760167000233196
+    },
+    {
+      "completed": 9750,
+      "seconds": 0.020282999999835738
+    },
+    {
+      "completed": 9760,
+      "seconds": 0.010414000000309898
+    },
+    {
+      "completed": 9770,
+      "seconds": 0.013503375001164386
+    },
+    {
+      "completed": 9780,
+      "seconds": 0.019680499999594758
+    },
+    {
+      "completed": 9790,
+      "seconds": 0.01095970799906354
+    },
+    {
+      "completed": 9800,
+      "seconds": 0.01874958300140861
+    },
+    {
+      "completed": 9810,
+      "seconds": 0.017643041999690467
+    },
+    {
+      "completed": 9820,
+      "seconds": 0.01783633299965004
+    },
+    {
+      "completed": 9830,
+      "seconds": 0.016536916999029927
+    },
+    {
+      "completed": 9840,
+      "seconds": 0.016132333001223742
+    },
+    {
+      "completed": 9850,
+      "seconds": 0.019093375000011292
+    },
+    {
+      "completed": 9860,
+      "seconds": 0.013364833999730763
+    },
+    {
+      "completed": 9870,
+      "seconds": 0.010557999999946333
+    },
+    {
+      "completed": 9880,
+      "seconds": 0.01766279100047541
+    },
+    {
+      "completed": 9890,
+      "seconds": 0.017280416999710724
+    },
+    {
+      "completed": 9900,
+      "seconds": 0.013141333000021405
+    },
+    {
+      "completed": 9910,
+      "seconds": 0.020288708999942173
+    },
+    {
+      "completed": 9920,
+      "seconds": 0.01493487500010815
+    },
+    {
+      "completed": 9930,
+      "seconds": 0.014552332999301143
+    },
+    {
+      "completed": 9940,
+      "seconds": 0.020234208001056686
+    },
+    {
+      "completed": 9950,
+      "seconds": 0.017096249999667634
+    },
+    {
+      "completed": 9960,
+      "seconds": 0.016660625000440632
+    },
+    {
+      "completed": 9970,
+      "seconds": 0.011231249998672865
+    },
+    {
+      "completed": 9980,
+      "seconds": 0.010869084000660223
+    },
+    {
+      "completed": 9990,
+      "seconds": 0.012925666000228375
+    },
+    {
+      "completed": 10000,
+      "seconds": 0.013445667000269168
+    },
+    {
+      "completed": 10010,
+      "seconds": 0.012702791998890461
+    },
+    {
+      "completed": 10020,
+      "seconds": 0.0137555830006022
+    },
+    {
+      "completed": 10030,
+      "seconds": 0.012484791999668232
+    },
+    {
+      "completed": 10040,
+      "seconds": 0.020984374999898137
+    },
+    {
+      "completed": 10050,
+      "seconds": 0.016411665999839897
+    },
+    {
+      "completed": 10060,
+      "seconds": 0.022143416999824694
+    },
+    {
+      "completed": 10070,
+      "seconds": 0.013194000001021777
+    },
+    {
+      "completed": 10080,
+      "seconds": 0.012538832999780425
+    },
+    {
+      "completed": 10090,
+      "seconds": 0.01973895899936906
+    },
+    {
+      "completed": 10100,
+      "seconds": 0.017783500001314678
+    },
+    {
+      "completed": 10110,
+      "seconds": 0.013407915999778197
+    },
+    {
+      "completed": 10120,
+      "seconds": 0.012332833999607828
+    },
+    {
+      "completed": 10130,
+      "seconds": 0.013339999999516294
+    },
+    {
+      "completed": 10140,
+      "seconds": 0.012686250000115251
+    },
+    {
+      "completed": 10150,
+      "seconds": 0.012703000000328757
+    },
+    {
+      "completed": 10160,
+      "seconds": 0.015176165999946534
+    },
+    {
+      "completed": 10170,
+      "seconds": 0.02149950000057288
+    },
+    {
+      "completed": 10180,
+      "seconds": 0.010188874999585096
+    },
+    {
+      "completed": 10190,
+      "seconds": 0.014926374999049585
+    },
+    {
+      "completed": 10200,
+      "seconds": 0.020798375000595115
+    },
+    {
+      "completed": 10210,
+      "seconds": 0.014181000000462518
+    },
+    {
+      "completed": 10220,
+      "seconds": 0.01257087500016496
+    },
+    {
+      "completed": 10230,
+      "seconds": 0.01272462499946414
+    },
+    {
+      "completed": 10240,
+      "seconds": 0.013829499999701511
+    },
+    {
+      "completed": 10250,
+      "seconds": 0.017732874999637716
+    },
+    {
+      "completed": 10260,
+      "seconds": 0.019629292000900023
+    },
+    {
+      "completed": 10270,
+      "seconds": 0.013255457999548526
+    },
+    {
+      "completed": 10280,
+      "seconds": 0.011595625001064036
+    },
+    {
+      "completed": 10290,
+      "seconds": 0.010034999999334104
+    },
+    {
+      "completed": 10300,
+      "seconds": 0.01606958400043368
+    },
+    {
+      "completed": 10310,
+      "seconds": 0.018698249999943073
+    },
+    {
+      "completed": 10320,
+      "seconds": 0.018286249998709536
+    },
+    {
+      "completed": 10330,
+      "seconds": 0.01531095800055482
+    },
+    {
+      "completed": 10340,
+      "seconds": 0.016695958000127575
+    },
+    {
+      "completed": 10350,
+      "seconds": 0.014460124999459367
+    },
+    {
+      "completed": 10360,
+      "seconds": 0.01745741700142389
+    },
+    {
+      "completed": 10370,
+      "seconds": 0.018183332998887636
+    },
+    {
+      "completed": 10380,
+      "seconds": 0.016531458999452298
+    },
+    {
+      "completed": 10390,
+      "seconds": 0.011327791000439902
+    },
+    {
+      "completed": 10400,
+      "seconds": 0.011195541999768466
+    },
+    {
+      "completed": 10410,
+      "seconds": 0.013218416999734472
+    },
+    {
+      "completed": 10420,
+      "seconds": 0.014982375001636683
+    },
+    {
+      "completed": 10430,
+      "seconds": 0.016668165999362827
+    },
+    {
+      "completed": 10440,
+      "seconds": 0.02062024999941059
+    },
+    {
+      "completed": 10450,
+      "seconds": 0.014103458999670693
+    },
+    {
+      "completed": 10460,
+      "seconds": 0.012622833000932587
+    },
+    {
+      "completed": 10470,
+      "seconds": 0.014376208000612678
+    },
+    {
+      "completed": 10480,
+      "seconds": 0.022406583999327268
+    },
+    {
+      "completed": 10490,
+      "seconds": 0.013478749999194406
+    },
+    {
+      "completed": 10500,
+      "seconds": 0.011605958001382533
+    },
+    {
+      "completed": 10510,
+      "seconds": 0.01944550000007439
+    },
+    {
+      "completed": 10520,
+      "seconds": 0.017457041998568457
+    },
+    {
+      "completed": 10530,
+      "seconds": 0.014243708001231425
+    },
+    {
+      "completed": 10540,
+      "seconds": 0.012272874999325722
+    },
+    {
+      "completed": 10550,
+      "seconds": 0.01237816700086114
+    },
+    {
+      "completed": 10560,
+      "seconds": 0.014189124998665648
+    },
+    {
+      "completed": 10570,
+      "seconds": 0.012346875000730506
+    },
+    {
+      "completed": 10580,
+      "seconds": 0.016616458000498824
+    },
+    {
+      "completed": 10590,
+      "seconds": 0.020066582999788807
+    },
+    {
+      "completed": 10600,
+      "seconds": 0.010686042000088491
+    },
+    {
+      "completed": 10610,
+      "seconds": 0.015585875000397209
+    },
+    {
+      "completed": 10620,
+      "seconds": 0.021750957999756793
+    },
+    {
+      "completed": 10630,
+      "seconds": 0.015004999999291613
+    },
+    {
+      "completed": 10640,
+      "seconds": 0.01598379200004274
+    },
+    {
+      "completed": 10650,
+      "seconds": 0.02270574999965902
+    },
+    {
+      "completed": 10660,
+      "seconds": 0.01353779199962446
+    },
+    {
+      "completed": 10670,
+      "seconds": 0.013814708001518738
+    },
+    {
+      "completed": 10680,
+      "seconds": 0.010881082998821512
+    },
+    {
+      "completed": 10690,
+      "seconds": 0.012741917000312242
+    },
+    {
+      "completed": 10700,
+      "seconds": 0.012540375000753556
+    },
+    {
+      "completed": 10710,
+      "seconds": 0.010473791999174864
+    },
+    {
+      "completed": 10720,
+      "seconds": 0.012538332999611157
+    },
+    {
+      "completed": 10730,
+      "seconds": 0.01293762500063167
+    },
+    {
+      "completed": 10740,
+      "seconds": 0.01386833300057333
+    },
+    {
+      "completed": 10750,
+      "seconds": 0.020813208999243216
+    },
+    {
+      "completed": 10760,
+      "seconds": 0.016625457999907667
+    },
+    {
+      "completed": 10770,
+      "seconds": 0.018697792000239133
+    },
+    {
+      "completed": 10780,
+      "seconds": 0.021170415999222314
+    },
+    {
+      "completed": 10790,
+      "seconds": 0.012061041999913868
+    },
+    {
+      "completed": 10800,
+      "seconds": 0.01444012499996461
+    },
+    {
+      "completed": 10810,
+      "seconds": 0.011780208000345738
+    },
+    {
+      "completed": 10820,
+      "seconds": 0.013100625001243316
+    },
+    {
+      "completed": 10830,
+      "seconds": 0.025993041999754496
+    },
+    {
+      "completed": 10840,
+      "seconds": 0.015177874998698826
+    },
+    {
+      "completed": 10850,
+      "seconds": 0.012890042000435642
+    },
+    {
+      "completed": 10860,
+      "seconds": 0.012982125001144595
+    },
+    {
+      "completed": 10870,
+      "seconds": 0.01451387499946577
+    },
+    {
+      "completed": 10880,
+      "seconds": 0.020793207999304286
+    },
+    {
+      "completed": 10890,
+      "seconds": 0.01600512500044715
+    },
+    {
+      "completed": 10900,
+      "seconds": 0.013215249999120715
+    },
+    {
+      "completed": 10910,
+      "seconds": 0.012693250000666012
+    },
+    {
+      "completed": 10920,
+      "seconds": 0.01047837499936577
+    },
+    {
+      "completed": 10930,
+      "seconds": 0.018952250000438653
+    },
+    {
+      "completed": 10940,
+      "seconds": 0.020370042000649846
+    },
+    {
+      "completed": 10950,
+      "seconds": 0.01454849999936414
+    },
+    {
+      "completed": 10960,
+      "seconds": 0.019925333001083345
+    },
+    {
+      "completed": 10970,
+      "seconds": 0.01796250000006694
+    },
+    {
+      "completed": 10980,
+      "seconds": 0.012237749999258085
+    },
+    {
+      "completed": 10990,
+      "seconds": 0.012684999999692081
+    },
+    {
+      "completed": 11000,
+      "seconds": 0.012717999999949825
+    },
+    {
+      "completed": 11010,
+      "seconds": 0.01166262500009907
+    },
+    {
+      "completed": 11020,
+      "seconds": 0.011706000001140637
+    }
+  ],
+  "expected_pairs": 11025,
+  "tree_count": 105,
+  "denominator_complete": true,
+  "seconds": 16.51198191599906,
+  "pass": true
+}

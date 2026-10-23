@@ -1,0 +1,28 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredPrecontrols.lean:7:80: error: Tactic `decide` failed to reduce
+  @decide ((incrementBits [true, true, true]).value = [false, false, false, true])
+    (instDecidableEqList (incrementBits [true, true, true]).value [false, false, false, true])
+to `true` or `false`.
+
+After unfolding the instance `instDecidableEqList`, reduction got stuck at
+  match (incrementBits [true, true, true]).value with
+  | [] =>
+    match [false, false, false, true] with
+    | [] => isTrue ⋯
+    | head :: tail => isFalse ⋯
+  | a :: as =>
+    match [false, false, false, true] with
+    | [] => isFalse ⋯
+    | b :: bs =>
+      match decEq a b with
+      | { decide := true, reflects_decide := hab } =>
+        match as.hasDecEq bs with
+        | { decide := true, reflects_decide := habs } => isTrue ⋯
+        | { decide := false, reflects_decide := nabs } => isFalse ⋯
+      | { decide := false, reflects_decide := nab } => isFalse ⋯
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredPrecontrols.lean:10:71: error: Tactic `decide` failed to reduce
+  @decide ((compareBits [false, true] [true, false]).value = Order.greater)
+    (instDecidableEqOrder (compareBits [false, true] [true, false]).value Order.greater)
+to `true` or `false`.
+
+After unfolding the instances `instDecidableEqNat`, `Nat.decEq`, and `instDecidableEqOrder`, reduction got stuck at
+  (compareBits [false, true] [true, false]).value.ctorIdx.beq Order.greater.ctorIdx

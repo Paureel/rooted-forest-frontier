@@ -1,0 +1,10 @@
+import Materialize
+import Equivalence
+import CoreGraph
+import SourceBridge
+import CherryCoarsening
+import CoreProgram
+import CoreInvariants
+import Contraction
+import PostreleaseProducerAudit
+audit_selected "Materialize,Equivalence,CoreGraph,SourceBridge,CherryCoarsening,CoreProgram,CoreInvariants,Contraction"

@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.35975429199970677,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3991658750001079,
+      "resource_stop": null,
+      "log_sha256": "2401648453101da0ab2017f8f51c1f6a135fa626e22db3a9a12630013d71231c"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016260419997706776,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GoodPairWeightedBound",
+      "source_sha256": "40a29deccd229c1776778a5ccf7ae746e69f7c43fba41d40f7c5096d55578f20",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.862833708000835,
+      "resource_stop": null,
+      "log_sha256": "306adb618bd9eb583d1362f27afa7928454164176563fa652c258458b84acf1c"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('GoodPairWeightedBound', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairWeightedBound.lean:34:3: error: Tactic `split` failed: Could not split an `if` or `match` expression in the type\\n  a \u2208\\n    (have ss := OutputState.sourceForest S [A, B, C];\\n      match AllGoodDP.run (localTarget (some T) (A ++ B)) (owned ss (A ++ B)) with\\n      | none => { answer := none, calls := [] }\\n      | some H =>\\n        have m := additionalCost (owned ss (A ++ B)) H;\\n        if m \u2264 q - 2 then\\n          have r := q - 2 - m;\\n          have target := localTarget (some T) C;\\n          have sources := owned ss C;\\n          { answer := checked T S q (Option.map (fun K => H ++ K) (GenericForest.solve actual target sources r)),\\n            calls := [{ target := target, sources := sources, budget := r }] }\\n        else { answer := none, calls := [] }).calls\\nof `mem`\\n\\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\\n\\ncase isTrue\\nactual : GenericForest.FrontierWork.Ordinary\\nT S : Tree\\nA B C : List Nat\\nq : Nat\\na : Call\\nh\u271d : 2 \u2264 q\\nmem :\\n  a \u2208\\n    (have ss := OutputState.sourceForest S [A, B, C];\\n      match AllGoodDP.run (localTarget (some T) (A ++ B)) (owned ss (A ++ B)) with\\n      | none => { answer := none, calls := [] }\\n      | some H =>\\n        have m := additionalCost (owned ss (A ++ B)) H;\\n        if m \u2264 q - 2 then\\n          have r := q - 2 - m;\\n          have target := localTarget (some T) C;\\n          have sources := owned ss C;\\n          { answer := checked T S q (Option.map (fun K => H ++ K) (GenericForest.solve actual target sources r)),\\n            calls := [{ target := target, sources := sources, budget := r }] }\\n        else { answer := none, calls := [] }).calls\\n\u22a2 a.target = localTarget (some T) C\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairWeightedBound.lean:66:1: error: Type mismatch: After simplification, term\\n  total\\n has type\\n  \u2191(goodPairLocalSource actual T S A B C q).work +\\n      \u2191(callsForestDebit actual (fun x x_1 x_2 => 0) (GoodPairDP.runPair actual T S A B C q).calls) \u2264\\n    Rule5ActualTrace.base ^ q * \u2191(goodPairPolynomial N) +\\n      Rule5ActualTrace.base ^ (-3) *\\n        (Rule5ActualTrace.base ^ q * (geometric Rule5ActualTrace.base * forestCoefficient N Q))\\nbut is expected to have type\\n  \u2191(goodPairLocalSource actual T S A B C q).work +\\n      \u2191(callsForestDebit actual (fun x x_1 x_2 => 0) (GoodPairDP.runPair actual T S A B C q).calls) \u2264\\n    Rule5ActualTrace.base ^ q * \u2191(goodPairPolynomial N) +\\n      Rule5ActualTrace.base ^ q *\\n        (Rule5ActualTrace.base ^ (-3) * (geometric Rule5ActualTrace.base * forestCoefficient N Q))\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairWeightedBound.lean:73:25: error: Expected type must not contain free variables\\n  Hard2PaidLocal.caseMass Rule5ActualTrace.base (Hard2Overlap.Result.pair o (PairGeometry.Choice.vertex a\u271d)) \u2264\\n    4 * Rule5ActualTrace.base ^ (-4)\\n\\nHint: Use the `+revert` option to automatically clean up and revert free variables\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairWeightedBound.lean:73:25: error: Expected type must not contain free variables\\n  Hard2PaidLocal.caseMass Rule5ActualTrace.base (Hard2Overlap.Result.pair o (PairGeometry.Choice.edge a\u271d)) \u2264\\n    4 * Rule5ActualTrace.base ^ (-4)\\n\\nHint: Use the `+revert` option to automatically clean up and revert free variables\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairWeightedBound.lean:74:6: error: Expected type must not contain free variables\\n  Hard2PaidLocal.caseMass Rule5ActualTrace.base (Hard2Overlap.Result.clique a\u271d) \u2264 4 * Rule5ActualTrace.base ^ (-4)\\n\\nHint: Use the `+revert` option to automatically clean up and revert free variables\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairWeightedBound.lean:74:6: error: Expected type must not contain free variables\\n  Hard2PaidLocal.caseMass Rule5ActualTrace.base (Hard2Overlap.Result.four a\u271d\u00b2 a\u271d\u00b9 a\u271d) \u2264 4 * Rule5ActualTrace.base ^ (-4)\\n\\nHint: Use the `+revert` option to automatically clean up and revert free variables\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairWeightedBound.lean:74:6: error: Expected type must not contain free variables\\n  Hard2PaidLocal.caseMass Rule5ActualTrace.base (Hard2Overlap.Result.diagonal a\u271d\u00b2 a\u271d\u00b9 a\u271d) \u2264\\n    4 * Rule5ActualTrace.base ^ (-4)\\n\\nHint: Use the `+revert` option to automatically clean up and revert free variables\\n'))"
+}

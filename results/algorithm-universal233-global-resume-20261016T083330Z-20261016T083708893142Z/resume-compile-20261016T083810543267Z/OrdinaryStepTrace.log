@@ -1,0 +1,97 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryStepTrace.lean:47:26: error: Tactic `rfl` failed: The left-hand side
+  (match DepthOne.Result.rejected with
+    | DepthOne.Result.refused => { value := none, queries := [] }
+    | DepthOne.Result.found c =>
+      { value := if DepthOne.cutCost c ≤ q then some (DepthOne.forest S c) else none, queries := [] }
+    | DepthOne.Result.rejected =>
+      have paid := cutoff FastOrdinary.solve q;
+      match Early.common reverse c with
+      | Early.common reverse c =>
+        have p := commonPair T S reverse c;
+        if (leaves p.fst).length < (leaves T).length then
+          { value := Option.map (expandCommon T S reverse c) (FastOrdinary.solve q p.fst p.snd), queries := [(p, q)] }
+        else { value := none, queries := [] }
+      | Early.one reverse c =>
+        have p := Oriented reverse T S;
+        childrenTrace paid p.fst p.snd q [pendantChild p.snd c.a c.b]
+      | Early.high reverse c =>
+        have p := Oriented reverse T S;
+        childrenTrace paid p.fst p.snd q (branches p.snd c.a c.b)
+      | Early.rule4Forward s => rule4Trace paid s q
+      | Early.rule4Reverse s => rule4Trace paid s q
+      | Early.hard2 c d => hard2Trace paid T S c d q
+      | Early.refused => { value := none, queries := [] }).value
+is not definitionally equal to the right-hand side
+  match DepthOne.Result.rejected with
+  | DepthOne.Result.refused => none
+  | DepthOne.Result.found c => if DepthOne.cutCost c ≤ q then some (DepthOne.forest S c) else none
+  | DepthOne.Result.rejected =>
+    have paid := fun u v r => if hr : r < q then FastOrdinary.solve r u v else none;
+    match Early.common reverse c with
+    | Early.common reverse c =>
+      have p := commonPair T S reverse c;
+      if hn : (leaves p.fst).length < (leaves T).length then
+        Option.map (expandCommon T S reverse c) (FastOrdinary.solve q p.fst p.snd)
+      else none
+    | Early.one reverse c =>
+      have p := Oriented reverse T S;
+      runChildren paid p.fst p.snd q [pendantChild p.snd c.a c.b]
+    | Early.high reverse c =>
+      have p := Oriented reverse T S;
+      runChildren paid p.fst p.snd q (branches p.snd c.a c.b)
+    | Early.rule4Forward s => runRule4 paid s q
+    | Early.rule4Reverse s => runRule4 paid s q
+    | Early.hard2 c d => Hard2Dispatcher.run paid T S c d q
+    | Early.refused => none
+
+case isTrue.rejected.common
+q : Nat
+T S : Tree
+h✝ : DepthOne.proper T S = true
+hpre : DepthOne.pretest01 T S = DepthOne.Result.rejected
+reverse : Bool
+c : Candidate
+he : early T S = Early.common reverse c
+⊢ (match DepthOne.Result.rejected with
+      | DepthOne.Result.refused => { value := none, queries := [] }
+      | DepthOne.Result.found c =>
+        { value := if DepthOne.cutCost c ≤ q then some (DepthOne.forest S c) else none, queries := [] }
+      | DepthOne.Result.rejected =>
+        have paid := cutoff FastOrdinary.solve q;
+        match Early.common reverse c with
+        | Early.common reverse c =>
+          have p := commonPair T S reverse c;
+          if (leaves p.fst).length < (leaves T).length then
+            { value := Option.map (expandCommon T S reverse c) (FastOrdinary.solve q p.fst p.snd), queries := [(p, q)] }
+          else { value := none, queries := [] }
+        | Early.one reverse c =>
+          have p := Oriented reverse T S;
+          childrenTrace paid p.fst p.snd q [pendantChild p.snd c.a c.b]
+        | Early.high reverse c =>
+          have p := Oriented reverse T S;
+          childrenTrace paid p.fst p.snd q (branches p.snd c.a c.b)
+        | Early.rule4Forward s => rule4Trace paid s q
+        | Early.rule4Reverse s => rule4Trace paid s q
+        | Early.hard2 c d => hard2Trace paid T S c d q
+        | Early.refused => { value := none, queries := [] }).value =
+    match DepthOne.Result.rejected with
+    | DepthOne.Result.refused => none
+    | DepthOne.Result.found c => if DepthOne.cutCost c ≤ q then some (DepthOne.forest S c) else none
+    | DepthOne.Result.rejected =>
+      have paid := fun u v r => if hr : r < q then FastOrdinary.solve r u v else none;
+      match Early.common reverse c with
+      | Early.common reverse c =>
+        have p := commonPair T S reverse c;
+        if hn : (leaves p.fst).length < (leaves T).length then
+          Option.map (expandCommon T S reverse c) (FastOrdinary.solve q p.fst p.snd)
+        else none
+      | Early.one reverse c =>
+        have p := Oriented reverse T S;
+        runChildren paid p.fst p.snd q [pendantChild p.snd c.a c.b]
+      | Early.high reverse c =>
+        have p := Oriented reverse T S;
+        runChildren paid p.fst p.snd q (branches p.snd c.a c.b)
+      | Early.rule4Forward s => runRule4 paid s q
+      | Early.rule4Reverse s => runRule4 paid s q
+      | Early.hard2 c d => Hard2Dispatcher.run paid T S c d q
+      | Early.refused => none

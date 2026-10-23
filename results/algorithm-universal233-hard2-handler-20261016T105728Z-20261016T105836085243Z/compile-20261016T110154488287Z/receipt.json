@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3504460840013053,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3282615420012007,
+      "resource_stop": null,
+      "log_sha256": "de42541268489c005e47a2d5278a04a845d1d418e4c950a8f2c6a32bbefe3555"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016686670005583437,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Hard2GroupingBound",
+      "source_sha256": "2e047909b29e560b718824d4c5a01c3773e3d6c0f562eefe1fc1cf234e80b8d3",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8619036660002166,
+      "resource_stop": null,
+      "log_sha256": "0fb7355e842654158a78d2cdd7055ee8ff0a3c17486400acf334b75a453ee857"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Hard2GroupingBound', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/Hard2GroupingBound.lean:16:1: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  h \u2265 1\\n  g \u2265 0\\n  f \u2265 0\\n  f - g \u2264 0\\n  e \u2265 0\\n  e - 16*h \u2265 -3\\n  d \u2265 0\\n  d - 2*f \u2264 0\\n  4*d - e \u2265 0\\n  c \u2265 0\\n  b \u2265 0\\n  a \u2265 0\\n  a - b \u2265 0\\n  2*a - c \u2265 0\\nwhere\\n a := \u2191N\\n b := \u2191(treeNodes T)\\n c := \u2191U.length\\n d := \u2191(U.length + 2) * \u2191(treeNodes T)\\n e := \u2191(meterRestrict U T).work\\n f := \u2191(N + 1) * \u2191N\\n g := \u2191(N + 1) * \u2191N.succ\\n h := \u2191(N + 1) * \u2191(N + 1)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/Hard2GroupingBound.lean:27:89: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  j \u2265 0\\n  i \u2265 0\\n  h \u2265 0\\n  g \u2265 0\\n  8*g - h \u2265 0\\n  f \u2265 0\\n  e \u2265 0\\n  8*e - f \u2265 0\\n  d \u2265 0\\n  b \u2265 0\\n  a \u2265 0\\n  a - b \u2265 0\\n  2*a - d \u2265 0\\n  2*a - i + 2*j \u2264 -2\\nwhere\\n a := \u2191N\\n b := \u2191ss.length\\n d := \u2191U.length\\n e := \u2191((N + 1) ^ 2)\\n f := \u2191(meterLeaves s).work\\n g := \u2191((2 * N + 1) ^ 2)\\n h := \u2191(meterContained (leaves s) U).work\\n i := \u2191N * \u2191(2 * N)\\n j := \u2191N * \u2191N\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/Hard2GroupingBound.lean:29:32: error: `dsimp` made no progress\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/Hard2GroupingBound.lean:38:7: error: unsolved goals\\ncase none\\nT : Tree\\nU : List Nat\\nN : Nat\\ntn : treeNodes T \u2264 N\\nh : restrict U T = none\\n\u22a2 (match restrict U T with\\n      | none => []\\n      | some t => leaves t).length \u2264\\n    N\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/Hard2GroupingBound.lean:39:86: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  e \u2265 0\\n  d \u2265 0\\n  c \u2265 0\\n  c - d \u2265 0\\n  b \u2265 0\\n  b - c \u2265 0\\n  a \u2265 0\\n  a - b \u2265 0\\n  a - e \u2264 -1\\nwhere\\n a := \u2191N\\n b := \u2191(treeNodes T)\\n c := \u2191(treeNodes t)\\n d := \u2191(leaves t).length\\n e := \u2191(match (some T).bind (restrict U) with\\n    | none => []\\n    | some t => leaves t).length\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/Hard2GroupingBound.lean:45:7: error: unsolved goals\\ncase none\\nT : Tree\\nU : List Nat\\nN : Nat\\ntn : treeNodes T \u2264 N\\nh : restrict U T = none\\n\u22a2 (match restrict U T with\\n    | none => 0\\n    | some t => treeNodes t) \u2264\\n    N\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/Hard2GroupingBound.lean:46:30: error: Application type mismatch: The argument\\n  restricted_nodes U T t h\\nhas type\\n  treeNodes t \u2264 treeNodes T\\nbut is expected to have type\\n  GenericForest.targetNodes ((some T).bind (restrict U)) \u2264 treeNodes T\\nin the application\\n  Nat.le_trans (restricted_nodes U T t h)\\n'))"
+}

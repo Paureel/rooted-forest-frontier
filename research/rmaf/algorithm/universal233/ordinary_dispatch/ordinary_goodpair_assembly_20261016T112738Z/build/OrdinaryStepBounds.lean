@@ -1,0 +1,125 @@
+import OrdinaryStepTrace
+namespace OrdinaryDispatch.WorkRecursion
+open RMAF ForestState Universal233 Universal233.CherryBranching
+open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration
+open OrdinaryDispatch.FastOrdinary
+
+theorem ordinaryStepTrace_bounds (rec : Nat→Tree→Tree→Option CommonForest) (q : Nat)
+ {T S : Tree} (hp : DepthOne.proper T S=true) (p : Tree×Tree) (r : Nat)
+ (mem : (p,r)∈(ordinaryStepTrace rec q T S).queries) :
+ r≤q ∧ DepthOne.proper p.1 p.2=true ∧ (leaves p.1).length≤(leaves T).length ∧
+ (leaves p.2).length≤(leaves T).length ∧ (r=q→(leaves p.1).length<(leaves T).length) := by
+ have paid (b : r<q ∧ DepthOne.proper p.1 p.2=true ∧
+     (leaves p.1).length≤(leaves T).length ∧ (leaves p.2).length≤(leaves T).length) :
+     r≤q ∧ DepthOne.proper p.1 p.2=true ∧ (leaves p.1).length≤(leaves T).length ∧
+     (leaves p.2).length≤(leaves T).length ∧ (r=q→(leaves p.1).length<(leaves T).length) :=
+  ⟨Nat.le_of_lt b.1,b.2.1,b.2.2.1,b.2.2.2,by intro eq;omega⟩
+ simp only [ordinaryStepTrace,hp,ite_true] at mem
+ cases pre : DepthOne.pretest01 T S with
+ | refused => simp only [pre,List.not_mem_nil] at mem
+ | found c => simp only [pre,List.not_mem_nil] at mem
+ | rejected =>
+  simp only [pre] at mem
+  cases he : early T S with
+  | common reverse c =>
+   have sel : select (Oriented reverse T S).1 (Oriented reverse T S).2=some (.common,c) := by
+    simpa only [he,EarlySound] using early_sound T S
+   have ready := common_pair_ready hp sel
+   have len := common_pair_label_count hp sel
+   have sizes := ((DepthOne.proper_iff _ _).1 ready.1).2.2.length_eq
+   simp only [he,ready.2,ite_true,List.mem_cons,List.not_mem_nil,or_false,Prod.mk.injEq] at mem
+   obtain ⟨rfl,rfl⟩ := mem
+   exact ⟨Nat.le_refl _,ready.1,by omega,by omega,fun _=>ready.2⟩
+  | one reverse c =>
+   have sel : select (Oriented reverse T S).1 (Oriented reverse T S).2=some (.one,c) := by
+    simpa only [he,EarlySound] using early_sound T S
+   have b := oneTrace_bounds (cutoff rec q) q (oriented_proper hp reverse) sel p r (by simpa only [he] using mem)
+   have len := oriented_size hp reverse
+   apply paid
+   simpa only [len] using b
+  | high reverse c =>
+   have sel : select (Oriented reverse T S).1 (Oriented reverse T S).2=some (.high,c) := by
+    simpa only [he,EarlySound] using early_sound T S
+   have b := highTrace_bounds (cutoff rec q) q (oriented_proper hp reverse) sel p r (by simpa only [he] using mem)
+   have len := oriented_size hp reverse
+   apply paid
+   simpa only [len] using b
+  | rule4Forward s => exact paid (rule4Trace_bounds (cutoff rec q) s q p r (by simpa only [he] using mem))
+  | rule4Reverse s =>
+   have b := rule4Trace_bounds (cutoff rec q) s q p r (by simpa only [he] using mem)
+   have len := ((DepthOne.proper_iff T S).1 hp).2.2.length_eq
+   apply paid
+   simpa only [←len] using b
+  | hard2 c d =>
+   have facts : select T S=some (.hard2,c) ∧ select S T=some (.hard2,d) ∧
+       Rule4.select T S=none ∧ Rule4.select S T=none := by
+    simpa only [he,EarlySound] using early_sound T S
+   exact paid (hard2Trace_query_bounds (cutoff rec q) q hp facts.1 facts.2.1 facts.2.2.1 facts.2.2.2 p r (by simpa only [he] using mem))
+  | refused => simp only [he,List.not_mem_nil] at mem
+
+theorem ordinaryStepTrace_lex (rec : Nat→Tree→Tree→Option CommonForest) (q : Nat)
+ (T S : Tree) (p : Tree×Tree) (r : Nat)
+ (mem : (p,r)∈(ordinaryStepTrace rec q T S).queries) :
+ Prod.Lex (fun a b : Nat=>a<b) (fun a b : Nat=>a<b)
+  (r,(leaves p.1).length) (q,(leaves T).length) := by
+ by_cases hp : DepthOne.proper T S=true
+ · have b := ordinaryStepTrace_bounds rec q hp p r mem
+   by_cases eq : r=q
+   · subst r;exact Prod.Lex.right _ (b.2.2.2.2 rfl)
+   · exact Prod.Lex.left _ _ (by omega)
+ · simp [ordinaryStepTrace,hp] at mem
+
+/-- The subunit mass is proved only for paid stages. A common stage has a
+single call at unchanged q and is handled by the decreasing leaf count. -/
+theorem ordinaryStepTrace_paid_mass (rec : Nat→Tree→Tree→Option CommonForest) (q : Nat)
+ {T S : Tree} (hp : DepthOne.proper T S=true) (notCommon : commonStage T S=false) :
+ Rule5ActualTrace.mass Rule5ActualTrace.base q (ordinaryStepTrace rec q T S).queries
+ ≤Rule5ActualTrace.gamma Rule5ActualTrace.base := by
+ unfold ordinaryStepTrace
+ simp only [hp,ite_true]
+ cases pre : DepthOne.pretest01 T S with
+ | refused => exact Rule5ActualTrace.gamma_positive
+ | found c => exact Rule5ActualTrace.gamma_positive
+ | rejected =>
+  cases he : early T S with
+  | common reverse c => simp only [commonStage,he,Bool.true_eq_false] at notCommon
+  | one reverse c =>
+   have sel : select (Oriented reverse T S).1 (Oriented reverse T S).2=some (.one,c) := by
+    simpa only [he,EarlySound] using early_sound T S
+   exact oneTrace_mass (cutoff rec q) q (oriented_proper hp reverse) sel
+  | high reverse c =>
+   have sel : select (Oriented reverse T S).1 (Oriented reverse T S).2=some (.high,c) := by
+    simpa only [he,EarlySound] using early_sound T S
+   exact highTrace_mass (cutoff rec q) q (oriented_proper hp reverse) sel
+  | rule4Forward s => exact rule4Trace_mass (cutoff rec q) s q
+  | rule4Reverse s => exact rule4Trace_mass (cutoff rec q) s q
+  | hard2 c d =>
+   have facts : select T S=some (.hard2,c) ∧ select S T=some (.hard2,d) ∧
+       Rule4.select T S=none ∧ Rule4.select S T=none := by
+    simpa only [he,EarlySound] using early_sound T S
+   exact hard2Trace_mass (cutoff rec q) q hp facts.1 facts.2.1 facts.2.2.1 facts.2.2.2
+  | refused => exact Rule5ActualTrace.gamma_positive
+
+theorem ordinaryStepTrace_common_or_paid (rec : Nat→Tree→Tree→Option CommonForest) (q : Nat)
+ {T S : Tree} (hp : DepthOne.proper T S=true) :
+ (∃p,(ordinaryStepTrace rec q T S).queries=[(p,q)] ∧
+   DepthOne.proper p.1 p.2=true ∧ (leaves p.1).length+1=(leaves T).length) ∨
+ Rule5ActualTrace.mass Rule5ActualTrace.base q (ordinaryStepTrace rec q T S).queries
+  ≤Rule5ActualTrace.gamma Rule5ActualTrace.base := by
+ cases pre : DepthOne.pretest01 T S with
+ | refused => right;simp only [ordinaryStepTrace,hp,ite_true,pre];exact Rule5ActualTrace.gamma_positive
+ | found c => right;simp only [ordinaryStepTrace,hp,ite_true,pre];exact Rule5ActualTrace.gamma_positive
+ | rejected =>
+  cases he : early T S with
+  | common reverse c =>
+   have sel : select (Oriented reverse T S).1 (Oriented reverse T S).2=some (.common,c) := by
+    simpa only [he,EarlySound] using early_sound T S
+   exact Or.inl ⟨commonPair T S reverse c,ordinaryStepTrace_common rec q hp pre he,
+     (common_pair_ready hp sel).1,common_pair_label_count hp sel⟩
+  | one reverse c => exact Or.inr (ordinaryStepTrace_paid_mass rec q hp (by simp only [commonStage,he]))
+  | high reverse c => exact Or.inr (ordinaryStepTrace_paid_mass rec q hp (by simp only [commonStage,he]))
+  | rule4Forward s => exact Or.inr (ordinaryStepTrace_paid_mass rec q hp (by simp only [commonStage,he]))
+  | rule4Reverse s => exact Or.inr (ordinaryStepTrace_paid_mass rec q hp (by simp only [commonStage,he]))
+  | hard2 c d => exact Or.inr (ordinaryStepTrace_paid_mass rec q hp (by simp only [commonStage,he]))
+  | refused => exact Or.inr (ordinaryStepTrace_paid_mass rec q hp (by simp only [commonStage,he]))
+end OrdinaryDispatch.WorkRecursion

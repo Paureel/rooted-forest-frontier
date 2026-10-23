@@ -1,0 +1,7 @@
+import Rule5SelectedSource
+#check Universal233.Rule5ExecutionSource.run_selected_source_value
+#print axioms Universal233.Rule5ExecutionSource.run_selected_source_value
+#check Universal233.Rule5ExecutionSource.run_selected_source_split
+#print axioms Universal233.Rule5ExecutionSource.run_selected_source_split
+#check Universal233.Rule5ExecutionSource.dispatch_source_value
+#print axioms Universal233.Rule5ExecutionSource.dispatch_source_value

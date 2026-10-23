@@ -1,0 +1,9 @@
+import ELOuter
+#check OrdinaryDispatch.EarlyLocalWork.meterFront_value
+#print axioms OrdinaryDispatch.EarlyLocalWork.meterFront_value
+#check OrdinaryDispatch.EarlyLocalWork.front_found_solve
+#print axioms OrdinaryDispatch.EarlyLocalWork.front_found_solve
+#check OrdinaryDispatch.EarlyLocalWork.meterFront_bound
+#print axioms OrdinaryDispatch.EarlyLocalWork.meterFront_bound
+#check OrdinaryDispatch.EarlyLocalWork.weightedFront_bound
+#print axioms OrdinaryDispatch.EarlyLocalWork.weightedFront_bound

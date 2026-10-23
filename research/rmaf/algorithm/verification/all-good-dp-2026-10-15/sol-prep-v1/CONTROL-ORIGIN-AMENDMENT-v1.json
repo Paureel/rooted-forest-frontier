@@ -1,0 +1,14 @@
+{
+ "version":"pre-candidate-exact-import-closure-strengthening-v1",
+ "reason":"Reused toy auditor scans all declared Toy source origins; add an exact imported-module closure gate so a new non-Toy source module cannot escape that selected-source inventory.",
+ "cleanSourceModules":["ToyClean"],
+ "reviewerModules":["ClosedImports"],
+ "standardPrefixes":["Init","Init.","Std","Std.","Lean","Lean."],
+ "corruptModule":"HiddenAlien",
+ "corruptSource":"Std-only unused custom False axiom in a module outside the Toy prefix",
+ "cleanExpected":"accept exact registered source closure",
+ "corruptExpected":"reject unmapped source origin HiddenAlien before accepting selected-origin inventory",
+ "expectedCorruptCatches":1,
+ "candidateContact":false,
+ "preservePriorExpectations":true
+}

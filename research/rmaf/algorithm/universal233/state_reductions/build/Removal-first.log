@@ -1,0 +1,61 @@
+research/rmaf/algorithm/universal233/state_reductions/build/Removal.lean:25:28: error: Type mismatch: After simplification, term
+  hB
+ has type
+  B = C ∨ B ∈ F
+but is expected to have type
+  B ∈ F
+research/rmaf/algorithm/universal233/state_reductions/build/Removal.lean:27:42: error: Type mismatch: After simplification, term
+  he
+ has type
+  ¬C = B
+but is expected to have type
+  (?m.76 == ?m.75) = false
+research/rmaf/algorithm/universal233/state_reductions/build/Removal.lean:29:6: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b ≤ 0
+  a - b - c + d ≤ -1
+where
+ a := ↑(List.count x B)
+ b := ↑(List.count x F.flatten)
+ c := ↑(List.count x C)
+ d := ↑(List.count x ((C :: F).erase B).flatten)
+research/rmaf/algorithm/universal233/state_reductions/build/Removal.lean:54:64: error: unsolved goals
+L : List Nat
+F : List (List Nat)
+a : Nat
+hp : partitionCheck L F = true
+nd : L.Nodup
+ha : [a] ∈ F
+B : List Nat
+hB : B ∈ F.erase [a]
+hx : a ∈ (F.erase [a]).flatten
+hxB : a ∈ B
+hxl : a ∈ L
+hc : List.count a (F.erase [a]).flatten + List.count a [a] = List.count a F.flatten
+⊢ ?m.159 = a
+research/rmaf/algorithm/universal233/state_reductions/build/Removal.lean:44:55: warning: This simp argument is unused:
+  hxa
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Ne.symm hxa]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/state_reductions/build/Removal.lean:73:39: error(lean.unknownIdentifier): Unknown constant `Bool.bne_eq_true_iff_ne`
+research/rmaf/algorithm/universal233/state_reductions/build/Removal.lean:74:22: error: Type mismatch
+  ((List.Nodup.mem_erase_iff nd).mp h).left
+has type
+  x ≠ a
+but is expected to have type
+  (x != a) = true
+research/rmaf/algorithm/universal233/state_reductions/build/Removal.lean:74:76: error: Application type mismatch: The argument
+  h
+has type
+  (x != a) = true
+but is expected to have type
+  x ≠ a
+in the application
+  And.intro h

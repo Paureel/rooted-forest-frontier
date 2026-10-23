@@ -1,0 +1,5 @@
+import ProducerGeneratorStep
+#check GenericForest.BinaryProducer.Generator.attemptBits_value
+#print axioms GenericForest.BinaryProducer.Generator.attemptBits_value
+#check GenericForest.BinaryProducer.Generator.stepBits_value
+#print axioms GenericForest.BinaryProducer.Generator.stepBits_value

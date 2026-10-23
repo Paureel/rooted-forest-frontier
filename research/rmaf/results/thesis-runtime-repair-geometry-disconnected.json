@@ -1,0 +1,186 @@
+{
+  "status": "PASS",
+  "scope": "locally admissible disconnected three-protected endpoint state; not claimed reachable from original unprotected trees",
+  "expected_end_case": "AC",
+  "legal_end_branches": 0,
+  "trace": [
+    {
+      "F1": "(((a,((x,y),(u,v))),((p,q),(r,(b,(s,t))))))rho",
+      "F2": [
+        "((((x,p),q),(y,r)))rho",
+        "((u,s),(v,t))",
+        "(a,b)"
+      ],
+      "rule": {
+        "pair": [
+          "x",
+          "y"
+        ],
+        "case": "A3BC",
+        "pendants": [
+          "p",
+          "q",
+          "r"
+        ],
+        "branches": [
+          {
+            "name": "A",
+            "cuts": [
+              "x"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "B",
+            "cuts": [
+              "p",
+              "q",
+              "r"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "C",
+            "cuts": [
+              "y"
+            ],
+            "protect2": [
+              "x"
+            ],
+            "protect1": [
+              "x"
+            ],
+            "legal": true
+          }
+        ],
+        "uncle": "u,v"
+      },
+      "protected_F1": [
+        "a"
+      ],
+      "protected_F2": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "F1": "(((a,(x,(u,v))),((p,q),(r,(b,(s,t))))))rho",
+      "F2": [
+        "((((x,p),q),r))rho",
+        "((u,s),(v,t))",
+        "(a,b)"
+      ],
+      "rule": {
+        "pair": [
+          "u",
+          "v"
+        ],
+        "case": "A2BC",
+        "pendants": [
+          "s",
+          "t"
+        ],
+        "branches": [
+          {
+            "name": "A",
+            "cuts": [
+              "u"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "B",
+            "cuts": [
+              "s",
+              "t"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "C",
+            "cuts": [
+              "v"
+            ],
+            "protect2": [
+              "u",
+              "s",
+              "t"
+            ],
+            "protect1": [
+              "u"
+            ],
+            "legal": true
+          }
+        ],
+        "uncle": "x"
+      },
+      "protected_F1": [
+        "a",
+        "x"
+      ],
+      "protected_F2": [
+        "a",
+        "b",
+        "x"
+      ]
+    },
+    {
+      "F1": "(((a,(x,u)),((p,q),(r,(b,(s,t))))))rho",
+      "F2": [
+        "((((x,p),q),r))rho",
+        "((u,s),t)",
+        "(a,b)"
+      ],
+      "rule": {
+        "pair": [
+          "x",
+          "u"
+        ],
+        "case": "AC",
+        "pendants": [],
+        "branches": [
+          {
+            "name": "A",
+            "cuts": [
+              "x"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": false
+          },
+          {
+            "name": "C",
+            "cuts": [
+              "u"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": false
+          }
+        ],
+        "uncle": "a"
+      },
+      "protected_F1": [
+        "a",
+        "u",
+        "x"
+      ],
+      "protected_F2": [
+        "a",
+        "b",
+        "s",
+        "t",
+        "u",
+        "x"
+      ]
+    }
+  ]
+}

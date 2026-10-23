@@ -1,0 +1,42 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Witness01.lean:48:78: error: Type mismatch
+  h
+has type
+  Nat
+of sort `Type` but is expected to have type
+  h ∈ ?m.126 → h ∈ leaves S
+of sort `Prop`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Witness01.lean:44:9: error: unsolved goals
+case none.refl
+S : Tree
+hn : (leaves S).Nodup
+hc : none ∈ candidates S
+hp : partitionCheck (leaves S) (forest S none) = true
+hh : CutHistory S (sourceCuts none)
+hm : ([], leaves S) ∈ components S none
+a : Vertex
+x : Nat
+ha : LeafAt S a x
+hx : x ∈ leaves S
+⊢ ∀ (p : Vertex), p ∈ sourceCuts none → Pre p a → p = []
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Witness01.lean:61:54: error(lean.unknownIdentifier): Unknown identifier `p`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Witness01.lean:60:44: error: unsolved goals
+S : Tree
+hn : (leaves S).Nodup
+r : Vertex
+hc : some r ∈ candidates S
+hp : partitionCheck (leaves S) (forest S (some r)) = true
+hh : CutHistory S (sourceCuts (some r))
+hpe : r ∈ edges S
+hv : Valid S r
+hnr : r ≠ []
+hnA : subtreeLabels S r ≠ []
+hnB : complement S r ≠ []
+⊢ ?m.255 = r
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Witness01.lean:73:30: error: Application type mismatch: The argument
+  List.filter_subset ?m.274 ?m.275
+has type
+  List.filter ?m.274 ?m.272 ⊆ List.filter ?m.274 ?m.273
+but is expected to have type
+  complement S p ⊆ leaves S
+in the application
+  labels_of_subset S (complement S p) (List.filter_subset ?m.274 ?m.275)

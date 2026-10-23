@@ -1,0 +1,42 @@
+{
+  "phase": "preregistered before candidate content; no Lean compilation in preparation",
+  "accepted_proof_axioms": ["propext", "Classical.choice", "Quot.sound"],
+  "source_gates": [
+    "Match exact author manifest and copy frozen sources/dependencies into a new isolated location.",
+    "Rebuild every positive source without sorry, admit, custom axiom or native_decide; retain full output/source/log SHA256.",
+    "Enumerate every declaration by originating compiled module, including generated/private names and all declaration kinds; a source regex or namespace inventory is insufficient.",
+    "Collect complete transitive axiom dependencies; reject any originating axiom declaration or dependency outside the three allowed standard axioms.",
+    "A work/value projection theorem alone does not certify implementation work. Trace cost units and coverage of every required source operation, global receipt-append volumes, initialization, pruning/refusal and continuation work.",
+    "Separate structural operation bounds, library/oracle contracts and input/counter bit-size assumptions from compiler/machine instruction or cycle claims.",
+    "Keep all three main milestones OPEN; a scoped source-work theorem does not prove source coverage, original residual components, raw mass or a full faster solver."
+  ],
+  "plants": [
+    {
+      "id": "clean-count-proof",
+      "source": "namespace WorkAuditClean\ntheorem bill : (3 : Nat) = 3 := rfl\n#print axioms bill\nend WorkAuditClean\n",
+      "expected_compile": "success",
+      "expected_audit": "ACCEPT-no-custom-axiom"
+    },
+    {
+      "id": "hidden-private-custom-axiom",
+      "source": "namespace WorkAuditPlant\nprivate axiom hiddenFreeAppend : (3 : Nat) = 0\nprivate theorem privateBill : (3 : Nat) = 0 := hiddenFreeAppend\ntheorem freeAppend : (3 : Nat) = 0 := privateBill\n#print axioms freeAppend\nend WorkAuditPlant\n",
+      "expected_compile": "success",
+      "expected_audit": "REJECT-private-originating-axiom-and-public/private-dependent-theorems",
+      "required_inventory": "The private axiom and privateBill must appear in module-origin inventory; exact generated private prefixes depend on the isolated module filename."
+    },
+    {
+      "id": "explicit-false-count",
+      "source": "namespace WorkAuditFalse\ntheorem zeroAppend : (3 : Nat) = 0 := by decide\nend WorkAuditFalse\n",
+      "expected_compile": "failure",
+      "expected_diagnostic": "explicit decide proof that proposition is false, not a generic compiler refusal"
+    },
+    {
+      "id": "broken-import-is-not-falsity",
+      "source": "import DefinitelyMissingWorkReviewModule\ntheorem irrelevant : True := True.intro\n",
+      "expected_compile": "failure",
+      "expected_audit": "exclude from mathematical falsity evidence"
+    }
+  ],
+  "execution_status": "UNEXECUTED-until-root-release",
+  "additional_independent_replications": 0
+}

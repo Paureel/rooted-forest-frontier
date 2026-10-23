@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "id": "rooted-maf",
+  "title": "Rooted MAF",
+  "target": "An exact algorithm returning a minimum-component rooted agreement forest, with a proved O*(c^k) bound for c < 2.3391.",
+  "parameter": "k = optimum number of components; conversion to cuts and root augmentation must be explicit.",
+  "conventions": "Ordinary rooted MAF, not acyclic MAF. No added rho leaf by default (baseline v2 Section 2, footnote 2). A leaf partition must have equal rooted restrictions and pairwise vertex-disjoint minimal embeddings in both trees. k counts components; the baseline recursion uses q remaining cuts with initial q=k-1.",
+  "baseline": {"base": 2.3391, "status": "source-reported", "url": "https://arxiv.org/abs/2409.18634v2", "latest_audit": "OPEN: bounded source audit complete; search and proof-interface debts retained", "earlier_claim": {"base": 2, "status": "under review", "title": "Whidden 2013 thesis", "url": "https://dalspace.library.dal.ca/bitstreams/3b246ff4-5ec2-452f-95ab-ef1aed255373/download", "detail": "Chapter 6 contains an O(2^q n) algorithm and proof argument. Root augmentation and proof reconstruction remain to be reconciled; this prior art blocks an unqualified novelty claim."}},
+  "acceptance": ["Full-text and subsequent-literature audit", "Exact oracle with frozen planted controls and a separate implementation", "Complete correctness and termination proofs", "Worst-case complexity proof in the original k parameter", "Lean kernel checks and axiom audits with no sorry or custom unproved assumptions", "Fresh semantic and independent verification"],
+  "may_assume": ["Lean standard library axioms, recorded by #print axioms", "Published lemmas only with source locator and exact hypotheses; imported mathematical assumptions remain explicitly conditional until formalized"],
+  "must_not_assume": ["An improved branching rule is exhaustive", "Small-instance tests imply universal correctness", "A reduced input size alone improves the exponential base", "A compiled conditional theorem proves its missing hypothesis"],
+  "deliveries": ["A fully proved improved algorithm", "A precise missing lemma with the resulting conditional recurrence, counterexamples to failed routes, and a replayable next experiment"],
+  "errata": "Version corrections in the research log; retain earlier results and their original conventions."
+}

@@ -1,0 +1,3 @@
+import BoundedFrontier
+#check GenericForest.FrontierSize.source_work_bound_size_capped
+#print axioms GenericForest.FrontierSize.source_work_bound_size_capped

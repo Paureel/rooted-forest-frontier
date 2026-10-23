@@ -1,0 +1,5 @@
+# Producer raw-output path amendment
+
+Final preparation bookkeeping found that the v2 driver versioned its main receipt but retained the `-occurrences-v1.json` raw output suffix. Its rerun therefore reused the v1 raw inventory paths. The v1 failed source, log, structured command/gate receipt and metadata-failure explanation remain intact; the exact first-run raw JSON bytes are not independently retained and must not be claimed as such. The surviving v1-named raw inventories belong to the successful v2 rerun. No mathematical expectation, scientific toy source or auditor byte changed, and no classification candidate had been contacted.
+
+This limitation is preserved explicitly. Driver v3 uses distinct raw inventory and main receipt paths and records the actual driver/auditor digests in its receipts. It retains the exact v2 expectations and all earlier artifacts. A new measured pilot must pass before the fixed battery reruns. Final positive detector credit comes from the separately named v3 outputs. This corrects evidence naming; it does not restore missing first-run raw-byte provenance or grant extra replication credit.

@@ -1,0 +1,5 @@
+import NumericStateBounds
+#check OrdinaryDispatch.GlobalNumeric.common_builder_caps
+#print axioms OrdinaryDispatch.GlobalNumeric.common_builder_caps
+#check OrdinaryDispatch.GlobalNumeric.forest_desc_invariant
+#print axioms OrdinaryDispatch.GlobalNumeric.forest_desc_invariant

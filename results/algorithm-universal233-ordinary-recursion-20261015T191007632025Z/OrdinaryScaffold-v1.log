@@ -1,0 +1,28 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-recursion-20261015T191007632025Z/OrdinaryScaffold.lean:31:11: error: Tactic `assumption` failed
+
+q : Nat
+T S : Tree
+h✝ : DepthOne.proper T S = true
+u v : Tree
+r : Nat
+hr : r < q
+⊢ Prod.Lex (fun a₁ a₂ => a₁ < a₂) (fun a₁ a₂ => a₁ < a₂) (r, (leaves u).length) (q, (leaves T).length)
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-recursion-20261015T191007632025Z/OrdinaryScaffold.lean:31:11: error: Tactic `assumption` failed
+
+q : Nat
+T S : Tree
+a✝ :
+  (y : (_ : Nat) ×' (_ : Tree) ×' Tree) →
+    (invImage (fun x => PSigma.casesOn x fun q T => PSigma.casesOn T fun T S => (q, (leaves T).length))
+            Prod.instWellFoundedRelation).1
+        y ⟨q, ⟨T, S⟩⟩ →
+      Option (List (List Nat))
+h✝ : DepthOne.proper T S = true
+paid : Tree → Tree → Nat → Option (List (List Nat)) := fun u v r => if hr : r < q then a✝ ⟨r, ⟨u, v⟩⟩ ⋯ else none
+c : Candidate
+z : Nat := commonFresh T
+t : Tree := contract c.a c.b z T
+s : Tree := contract c.a c.b z S
+hn : (leaves t).length < (leaves T).length
+⊢ Prod.Lex (fun a₁ a₂ => a₁ < a₂) (fun a₁ a₂ => a₁ < a₂) (q, (leaves (contract c.a c.b (commonFresh T) T)).length)
+    (q, (leaves T).length)

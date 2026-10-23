@@ -1,0 +1,130 @@
+{
+  "date": "2026-10-23",
+  "scope": "Requested README/timeline packaging; no mathematical or novelty acceptance",
+  "repository_integrity": {
+    "status": "passed",
+    "imported_files_checked": 96384,
+    "imported_bytes_checked": 1199529813,
+    "tracked_files_at_check": 98088,
+    "corrupted_import_control": "rejected"
+  },
+  "initial_required_make_check": {
+    "status": "failed after integrity target passed",
+    "failure": "System Python was older than repository requirement: int.bit_count unavailable in edge-cut control",
+    "record_directory": ".verification/20261023T083043057989Z",
+    "resolution": "No research code changed. Only the failed verify-small target rerun with project Python3.12.14; passed integrity target was not rerun."
+  },
+  "successful_finite_check": {
+    "started_utc": "20261023T083148100406Z",
+    "status": "passed",
+    "mode": "finite-regression",
+    "commands": [
+      {
+        "name": "partition-controls",
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.venv/bin/python3",
+          "/var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/rooted-forest-check-68wqohmu/research/rmaf/oracle/oracle.py",
+          "controls"
+        ],
+        "exit_code": 0,
+        "seconds": 0.026406458000110433,
+        "stdout": "partition-controls.stdout.txt",
+        "stderr": "partition-controls.stderr.txt"
+      },
+      {
+        "name": "partition-comparator-mutation",
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.venv/bin/python3",
+          "/var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/rooted-forest-check-68wqohmu/research/rmaf/oracle/mutation_check.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.049076083000272774,
+        "stdout": "partition-comparator-mutation.stdout.txt",
+        "stderr": "partition-comparator-mutation.stderr.txt"
+      },
+      {
+        "name": "edge-cut-controls-and-n3-pilot",
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.venv/bin/python3",
+          "/var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/rooted-forest-check-68wqohmu/research/rmaf/verification/edge_cut.py",
+          "--max-n",
+          "3"
+        ],
+        "exit_code": 0,
+        "seconds": 0.023997458999929222,
+        "stdout": "edge-cut-controls-and-n3-pilot.stdout.txt",
+        "stderr": "edge-cut-controls-and-n3-pilot.stderr.txt"
+      },
+      {
+        "name": "finite-two-route-comparison",
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.venv/bin/python3",
+          "/var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/rooted-forest-check-68wqohmu/research/rmaf/verification/compare_results.py",
+          "--oracle",
+          "/var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/rooted-forest-check-68wqohmu/research/rmaf/results/oracle-corpus-n3-n4.json",
+          "--output",
+          "/var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/rooted-forest-check-68wqohmu/research/rmaf/results/comparison.json",
+          "--plant"
+        ],
+        "exit_code": 0,
+        "seconds": 0.029400249999980588,
+        "stdout": "finite-two-route-comparison.stdout.txt",
+        "stderr": "finite-two-route-comparison.stderr.txt"
+      },
+      {
+        "name": "exact-recurrence-controls",
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.venv/bin/python3",
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/exports/rooted-forest-frontier/research/rmaf/baseline-recurrence-check.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.01590775000022404,
+        "stdout": "exact-recurrence-controls.stdout.txt",
+        "stderr": "exact-recurrence-controls.stderr.txt"
+      }
+    ],
+    "scope": "Known controls and 234 ordered n3/n4 pairs; finite regression only.",
+    "lineage": "Archived leaf-partition and edge-cut cores are reused unchanged. Shared definition and Python runtime. These contacted discovery cases are not fresh algorithm certification.",
+    "wrapper_sha256": "e7e74363b749f9a1d86d4b5a6716ecdd88018690e808aab6cb0748e5de292421"
+  },
+  "actual_coverage": {
+    "actual_batches": [
+      {
+        "n": 3,
+        "ordered_pairs": 9
+      },
+      {
+        "n": 4,
+        "ordered_pairs": 225
+      }
+    ],
+    "actual_ordered_pairs": 234,
+    "source_comparator_declared_scope": "All ordered labelled non-plane rooted binary tree pairs supplied in oracle corpus, n=3..5; finite checks only.",
+    "source_label_limit": "The preserved original comparator hardcodes n=3..5 in prose. This wrapper supplies only n=3 and n=4; no five-leaf comparison was executed.",
+    "status": "finite-regression-only"
+  },
+  "presentation_checks": {
+    "svg_xml": "passed",
+    "readme_first_line_image": "passed",
+    "source_file_hashes": "passed",
+    "git_diff_check_after_generated_whitespace_normalization": "passed",
+    "plotted_rows": [
+      "B2344",
+      "B23391",
+      "SUB233"
+    ],
+    "axes": "log/log",
+    "connector": [
+      [
+        2024.74,
+        2.3391
+      ],
+      [
+        2026.81,
+        2.33
+      ]
+    ],
+    "root_visual_inspection": "passed"
+  },
+  "deferred": "No full Lean/research/native certification or hosted CI; all campaigns remain paused."
+}

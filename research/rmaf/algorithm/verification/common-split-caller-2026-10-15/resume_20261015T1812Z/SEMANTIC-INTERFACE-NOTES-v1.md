@@ -1,0 +1,15 @@
+# Executed/source review notes, continuation
+
+`INTEGRITY-BUILD-CORRESPONDENCE-v1.json`: all 139 READY files,28 permitted inputs,1066 candidate members and 163 external pins match;173 distinct source copies match release sources;173 saved exact compiler commands/logs and current scientific outputs are present. Current binary hashes are pinned now. Historical olean birth hashes were not present in the predecessor reports and are not invented. No source rebuild was repeated.
+
+Read `scientific-src/CallerSetup.lean` in full: Setup fields are trees/labels, original nodup/partition/common-split guards, actual ordinary/marked restriction equations, representative membership and marker freshness only. No minimum, coverage, reconstruction or work conclusion is stored. `reconstruct` chooses `pickMerge` only when both actual reply length costs match the ordinary reply costs, otherwise returns the literal `FX++FY`.
+
+Read `GuardedDefs.lean` and `GuardedExact.lean` in full: `runGuarded` admits exactly ordinary depth01 `.found (some p)`; every other pretest result is outer refusal. Actual answer theorem converts that concrete successful pretest to outside minimum 1, maps GuardedIH to ActualIH and invokes `runWithOutside_exact`. Nonrefusal iff outside minimum 1 depends on Setup and outside properness/completeness, and is not a source-state applicability theorem.
+
+Read `PaidDefs.lean` in full: actual jobs are [] at q0 and `[ordinaryX@(q-1),markedX@(q-1)]` otherwise. `runPaid` maps cb over that list and requires exactly two successful replies; it reconstructs from those replies then tests actual output cost≤q. `BoundedExact none` excludes EVERY affordable original AF; success includes agreement, affordability and global minimality. These are conditional callback premises, not a recursively implemented solver. Invocation eagerness/order was precontact UNKNOWN and remains without blind order credit.
+
+Read `OutsideDefs.lean` and `OutsideExact.lean` in full: marked outside uses actual depth01; `.rejected` supplies `swap(x,gamma)([x]::FY)`. Actual extension validity and cost 2 plus rejected lower bound give minimum 2. `.refused` is impossible under marked properness derived from Setup. No external exact depth2 oracle is used.
+
+Read `PickMerge.lean`, `LiteralMerge.lean`, `CallerResources.lean` and `CallerFinal.lean` in full. Literal stable candidate is obtained from the SAME actual FM/FN via marker owner normal forms and actual Cartesian membership. `pickMerge_actual_spec` applies `best` to those actual candidates with original agreement checker, upper bound from that candidate and original split sum lower bound. Candidate length theorem counts all owner guesses and duplicates only. Mass theorem pays precisely the two q-1 calls:2/c and 200/233 at233/100, no source toll. These source readings are pending final all-producer gate and quantitative readout comparisons.
+
+An exploratory read of `PaidCalls.lean` failed because that module does not exist. No result is inferred; actual entry modules/imports will be followed. `OutputDefs.lean` was read and concerns forest materialization, not the paid caller's missing module name.

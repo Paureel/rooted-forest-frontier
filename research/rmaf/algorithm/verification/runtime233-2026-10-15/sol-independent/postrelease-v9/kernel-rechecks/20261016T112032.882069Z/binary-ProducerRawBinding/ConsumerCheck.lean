@@ -1,0 +1,11 @@
+import ProducerRawBinding
+#check GenericForest.BinaryProducer.rawProducer_value
+#print axioms GenericForest.BinaryProducer.rawProducer_value
+#check GenericForest.BinaryProducer.branchesProducer_value
+#print axioms GenericForest.BinaryProducer.branchesProducer_value
+#check GenericForest.BinaryProducer.generatedRawParent_value
+#print axioms GenericForest.BinaryProducer.generatedRawParent_value
+#check GenericForest.BinaryProducer.branchesProducer_multiplicity_paid
+#print axioms GenericForest.BinaryProducer.branchesProducer_multiplicity_paid
+#check GenericForest.BinaryProducer.branchesProducer_exponential_count
+#print axioms GenericForest.BinaryProducer.branchesProducer_exponential_count

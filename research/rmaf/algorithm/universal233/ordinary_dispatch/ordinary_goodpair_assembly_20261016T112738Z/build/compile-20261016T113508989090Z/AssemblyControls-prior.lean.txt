@@ -1,0 +1,16 @@
+import NumericReach
+import GoodPairSelectedBound
+namespace OrdinaryDispatch.GoodPairGlobalAssembly.Controls
+open RMAF Universal233 OrdinaryCommonSplit.Source
+open OrdinaryDispatch.GlobalNumeric GenericForest.FrontierWork
+
+theorem fresh_width_escape : labelMax [0,3]+1=4 ∧ labelMax [0,3]+2=5 ∧
+ ¬(4<2^2) ∧ semanticWidth 2 2 0=9 ∧ 5<2^(semanticWidth 2 2 0) := by decide +kernel
+
+theorem budget_not_reduced_size : semanticWidth 2 2 8=25 ∧ 2<8 := by decide +kernel
+
+def duplicateQueries : List OrdinaryDispatch.WorkRecursion.Query:=
+ [((.leaf 0,.leaf 0),8),((.leaf 0,.leaf 0),8)]
+
+theorem duplicate_work : queryWork (fun _ _ _=>1) duplicateQueries=2 := by decide +kernel
+end OrdinaryDispatch.GoodPairGlobalAssembly.Controls

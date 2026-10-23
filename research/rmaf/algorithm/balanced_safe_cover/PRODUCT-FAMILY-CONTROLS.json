@@ -1,0 +1,14 @@
+{
+  "version":1,
+  "frozen_before_probe":true,
+  "family":"Common rooted binary spine with ordinary anchor label0; private gadget i has labels3i+1,3i+2,3i+3, source=((a,c),b), target=((a,b),c). No implicit rho.",
+  "generator":"If b<r return empty. Otherwise select ceil(r/2) gadget indices in fixed spine order; cut only their source pendant a edges; emit one forest with those singletons and the remainder.",
+  "cases":[
+    {"r":0,"n":1,"budget":0,"expected_original_optimum":0,"expected_original_optima":1,"expected_precuts":0,"expected_tau":0,"expected_completion":0,"expected_surviving_original_optima":1,"expected_outputs":1},
+    {"r":1,"n":4,"budget":1,"expected_original_optimum":1,"expected_original_optima":3,"expected_precuts":1,"expected_tau":0,"expected_completion":0,"expected_surviving_original_optima":1,"expected_outputs":1},
+    {"r":2,"n":7,"budget":2,"expected_original_optimum":2,"expected_original_optima":9,"expected_precuts":1,"expected_tau":1,"expected_completion":1,"expected_surviving_original_optima":3,"expected_outputs":1},
+    {"r":3,"n":10,"budget":3,"expected_original_optimum":3,"expected_original_optima":27,"expected_precuts":2,"expected_tau":1,"expected_completion":1,"expected_surviving_original_optima":3,"expected_outputs":1}
+  ],
+  "requirements":["Each output original cuts exactly realize the reported nonempty components.","Output is pure-bridge and tau<=floor(b/2), with independent degree/embedding predicate evaluated.","Charged precuts+completion=original optimum and some original optimum survives.","Generator on b=r-1 returns empty; no optimum oracle enters generator."],
+  "scope":"Restricted family target only. Frozen source-inspired expected controls; development oracle evidence is not fresh independent certification or a general reduced-pair theorem."
+}

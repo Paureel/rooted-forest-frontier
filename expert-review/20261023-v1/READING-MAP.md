@@ -1,0 +1,28 @@
+# Portable proof reading map
+
+Read PROOF.md Sections 1-12 as the current assembly. The following table resolves aliases in the byte-preserved detailed appendices. They are historical author/reviewer packet names, not missing external hypotheses or instructions to inspect an absent local checkout. All detailed files named in the right column are included in this bundle.
+
+| Historical name or role | Portable current location |
+|---|---|
+| Whole theorem v2, current read order, global cost join v3 | mathematics/MATHEMATICAL-WHOLE-THEOREM-v2.txt; mathematics/MATHEMATICAL-FINAL-READ-ORDER-v1.txt; mathematics/MATHEMATICAL-GLOBAL-COST-JOIN-v3.txt |
+| Three semantic-owner v3 dynamic documents | mathematics/DYNAMIC-EVALUATION-ADEQUACY-v1.md; mathematics/DYNAMIC-ADEQUACY-CENSUS-v1.md; mathematics/DYNAMIC-CONSTRUCTOR-PREMISES-v1.md |
+| Required existential/actual ledger identification | mathematics/DYNAMIC-GRAPH-DETERMINISM-v1.md; full RouteLedger and graph constructor TYPES in interfaces/GRAPH--GRAPH-CONSTRUCTOR-FULL-TYPES-v1.txt and GRAPH--WRAPPER-FULL-TYPES-v1.txt |
+| bound-projection-v1 | mathematics/FINITE-CALLER-TABLE-v1.txt; GENERATOR-OCCURRENCE-CREDIT-v1.txt; FOREST-AND-SCHEDULER-CREDIT-v1.txt; SOURCE-INCIDENCE-v2.txt; OPTIMIZER-AND-ONE-RECOVERY-v1.txt; RULE4-REFUSED-STATE-LEMMA-v1.txt |
+| payload-ledger-correction-v2 | mathematics/PAYLOAD-CORRECTION-v2.txt and CORRECTED-COUNT-v2.txt; active LOCAL-CREDIT-ROOT-ARITHMETIC-ADDENDUM-v3.txt and LOCAL-CREDIT-MATERIALIZATION-MAX-ADDENDUM-v4.txt in that same directory |
+| pure-optimizer-primitive-types-public-v1/TYPES.json | Original packet at interfaces/legacy/OPTIMIZER-PRIMITIVE-TYPES-v1.json; complete three primitive VALUE theorem TYPES also in interfaces/GRAPH--OPTIMIZER-PRIMITIVE-FULL-TYPES-v1.txt; actual formal theorem proofs in formal/pools/p07-build/OWScan.lean and RWFinal.lean |
+| PURE-OPTIMIZER-PRIMITIVES-RELEASE-v1.json | Preserved administrative release at interfaces/legacy/PURE-OPTIMIZER-PRIMITIVES-RELEASE-v1.json; its original public path resolves to interfaces/legacy/OPTIMIZER-PRIMITIVE-TYPES-v1.json in this bundle |
+| METER-RECEIPT-TYPE-v1.json | Original packet at interfaces/legacy/METER-RECEIPT-TYPE-v1.json; exact source definition in formal/pools/p07-build/QueryWork.lean: Universal233.PaidQueries.MeterReceipt, fields value/queries/callerWork/recursiveWork; role and hashes also in mathematics/SCALAR-CATALOGUE-v1.md |
+| Scalar-catalogue multiplication/power syntax index | interfaces/legacy/MULTIPLICATION-AND-POWER-SYNTAX-v1.txt; its original source locators resolve through formal/SOURCE-MAP.json and the runtime-interfaces context |
+| Setup/LiteralGeometry/Choice proof-field TYPES | algorithm/CONSTRUCTOR-DATA-v1.json and RULE4-DATA-v1.json; full formal definitions are resolved by formal/SOURCE-MAP.json and runtime-interfaces context |
+| Primitive values, bounds, positivity, source occurrence and full query TYPE releases | interfaces/SOURCE--FULL-INTERFACE-TYPES-v1.txt; GRAPH--OCCURRENCE-FULL-TYPES-v1.txt; GRAPH--OPTIMIZER-PRIMITIVE-FULL-TYPES-v1.txt; extra/SELECTED--FULL-TYPES-AND-PURE-RELATIONS-v1.txt |
+| SourceRule5PaidSelectionV3.prepare body | interfaces/prepare/PURE-BODY-AND-FULL-TYPE-v1.txt and actual formal source in the runtime-interfaces context |
+| Returned G0 and actual caller | formal/pools/p05-rule5_g0_native_integration_20261022/G0Native.lean; formal/pools/p06-rule5_actual_caller_20261022/WholeFunctional.lean |
+| Exact fixed P and source exponential theorem | formal/pools/p08-source_cost_join_20261022/ExplicitSourceOptimizer.lean; its imports are listed in formal/BUILD-ORDER.json; scalar-only views in interfaces/SOURCE--SCALARS-BASE-v1.json and RELATION--PURE-SCALAR-AND-RELATION-DEFINITIONS-v1.json |
+| canonical fca source provider, original module names and source/object pins | formal/pools/p07-build/ source copies; formal/SOURCE-MAP.json; algorithm/SOURCE-INDEX-v1.tsv; selected original records under verification/original-records/ |
+| mathematical entry amendment v2 | algorithm/ENTRY-v2.txt; canonical OPTIMIZE has U in r8 and r4=0; superseded r0 or arbitrary optimizer-q wording is not the active entry |
+| original projection plus exact two-field amendment | mathematics/BASE-PROJECTION-v1.md, algorithm/ACCOUNTING-READ-SITES-v1.txt and algorithm/PROJECTION-AMENDMENT-v2.md |
+| support proof terms behind printed TYPES | formal/CONTEXTS.json selects the exact provider context; formal/SOURCE-MAP.json locates each source; these are full sources rather than dummy TYPE stubs |
+
+Older files contain dates, former OPEN labels, root-release permissions and instructions to earlier isolated agents. These records are preserved to keep scope/provenance visible. They do not restrict an outside expert's reading of the supplied bundle or grant a new scientific campaign. Current closure is the explicit main proof and its named corrected addenda; current limitations are PROOF.md Section 11 and verification/VERIFICATION-LIMITS.md. A historical theorem/provider hash refers to an old compiled object not shipped here; its source is supplied for inspection, and no new rebuild is implied by its hash.
+
+The packet is self-contained for the submitted mathematical argument and its project proof dependencies, relative to standard Lean libraries if rebuilding. It is not a full archive of every prior experiment or optional numeric campaign. Missing legacy administrative ledgers which do not enter the argument are not presented as proof evidence. If a mathematical premise cannot be resolved by this map and the full sources, please report its exact use-site as an unresolved submission dependency.

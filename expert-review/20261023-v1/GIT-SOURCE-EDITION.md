@@ -1,0 +1,9 @@
+# Git source edition of the expert review packet
+
+This directory contains the complete text proof, algorithm and electronic proof-source dependencies from the 23 October 2026 transfer package. The private repository's no-binary policy excludes the derived PDF and the 3.6 MB zip. Nothing needed to read the mathematical argument or inspect its project formal sources has been omitted; PROOF.md is the PDF's source. The PDF and normal zip are supplied locally to the owner for sending to an expert.
+
+The transfer packet's original MANIFEST.json and CHECKSUMS.sha256 are preserved byte-for-byte. They include PROOF.pdf, which is intentionally absent in this Git edition. **In this directory use `shasum -a 256 -c CHECKSUMS-SOURCE.sha256`**, rather than the original transfer checksum command. The separate source checksum inventory covers every present file except itself. OMITTED-DERIVED-ARTIFACTS.json records the omitted PDF/zip hashes and the local transfer integrity result.
+
+Start with PROOF.md, then READING-MAP.md and verification/VERIFICATION-LIMITS.md. Existing qualified shared-support mathematical acceptance is distinct from a new external human review, an end-to-end machine theorem and a certified executable. The latter have not been completed. The original archive and its selected-result.json record remain historical; the dated current review is in ../../certificates/mathematical-review-20261023-v1.json.
+
+All research, monitoring, dashboard work and certification campaigns remain paused. This Git update imports the review package only. No expert is contacted or given access by this commit. The author-side copy/layout scripts retain their workstation locators and are not portable proof-checker commands. For an optional clean Lean component rebuild read formal/REBUILD.md; none was performed for this import.

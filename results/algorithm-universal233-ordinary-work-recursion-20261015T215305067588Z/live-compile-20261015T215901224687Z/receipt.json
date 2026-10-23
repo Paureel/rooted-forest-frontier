@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "8483bfeb83e0c9b38e2d82fba5628b08e7e409a383df7e2c6bd4687611d350d0",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3279788749987347,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.33434370900067734,
+      "resource_stop": null,
+      "log_sha256": "86ee9fc36d44f3e1b3a094124418ae861f62e39b03aff606c1857c906895f0b0"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.00161975000082748,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "ChildrenTrace",
+      "source_sha256": "3baeb733aae426e26d73d4a5e501dc93a046474722eaad3a30632f9e64c8c267",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8422766669991688,
+      "resource_stop": null,
+      "log_sha256": "2934d43ce08720b6c768934feab49cada429cf8b3ab70e3b80804f8ca23bf47f"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('ChildrenTrace', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ChildrenTrace.lean:14:1: error: Type mismatch: After simplification, term\\n  Rule5ActualTrace.runForestJobs_value actual T S q cs\\n has type\\n  @Eq (Option Rule5ActualTrace.Forest)\\n    (Rule5ActualTrace.runForestJobs actual T S q (Rule5OrdinaryDispatch.forestJobs T q cs))\\n    (best List.length (Rule5OrdinaryDispatch.accepted T S q) (List.filterMap (childCall (forestChild actual T) q) cs))\\nbut is expected to have type\\n  @Eq (Option (List (List Nat))) (Rule5ActualTrace.runForestJobs actual T S q (Rule5OrdinaryDispatch.forestJobs T q cs))\\n    (best List.length (ordinaryAccepted T S q) (List.filterMap (childCall (forestChild actual T) q) cs))\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ChildrenTrace.lean:53:3: warning: `simp` already closes the goal\\n\\nHint: Use `simp` instead of `simpa`:\\n  [apply] simp [eq, cost]\\n\\nNote: This linter can be disabled with `set_option linter.unnecessarySimpa false`\\n'))"
+}

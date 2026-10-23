@@ -1,0 +1,17 @@
+# Fresh nonauthor review of the G4 repair attempt
+
+This review pin is written before the coordinator reads the two proof routes' conclusions. The original `../REPAIR-TARGET.md` remains the scientific target. Read this pin first and write a durable skeleton immediately. Inspect supporting inputs one at a time.
+
+The reviewer authored none of the adversary or proof-route deliverables. Work from the original Chapter 2/6 source and the five frozen fixture families first. Write a fresh evaluator with no implementation imports from the parent, the initial runtime review, or any repair arm. Reading source and control certificates is permitted and must be recorded. Controls are exposed calibration data, not a held-out theorem test.
+
+Before reading candidate proof details, reconstruct the critical source interfaces: the G4.1 all-three-legal A3BC state with P={a}, Q empty, exactly three pendants; C cuts the shallower endpoint and protects the deeper endpoint; the G4 union/reset rules; the depth rule; source-priority and batch cut legality; preservation under suppression; root removal and common-subtree merging. The desired count includes the current invocation and targets `1+I(A)+I(B)+I(C) <= alpha*2^(K-1)-2`. A full-call-tree history is the reachability convention. No two-credit cap is granted.
+
+Then read the completed adversary, geometry and recurrence deliverables one at a time. Grade each conclusion separately as an actual source-state theorem, an ordinary unformalized proof argument, a conditional recurrence theorem, a finite checked fact, or an unproved premise. Any source-state counterexample needs a legal history in the claimed regime; otherwise label it abstract/local and state the missing history obligation. No asymptotic lower bound follows from a failed allowance substitution.
+
+Reproduce the frozen exact values: 9/16 versus 1/2; the nine-leaf dead C child; the thirteen-leaf assignment |P|=3,|Q|=2; the live two-active-leaf C child with three pendants; the wrong orientation rejection and passing reverse twin. Rebuild any new decisive witness independently from its explicit tree data and exact branch sequence. Execute a known-false control and a controlled mutation of a candidate claim on a copy; record the expected and observed failure. Do not certify a harness that only passes.
+
+Recompile each accepted Lean module from its final source and inspect printed axioms. Preserve failed attempts; do not count them as accepted. Do not use sorry, custom axioms or native_decide. Arithmetic with descendant allowances as hypotheses stays conditional until the structural premise is established. A universal statement over a finite abstract transition table does not establish that the source algorithm stays in the table.
+
+The interface ruling must cover printed pp117,119–123,125–126: each child release to the smaller-budget hypothesis, every credited continuation, additive constants, three-credit states, and actual negative budgets below -3. Check both the narrower two-active-leaf delivery and any proposed three/four-active-leaf extension. State the smallest remaining falsifiable lemma precisely.
+
+Use `./bootloops-python` and `./bootloops-lean`. Consult the scientific skills and toolkit guide before coding. Freeze pilot size and timeout from measured runtimes before widening a search. Keep all output local, with complete provenance and valid dashboard records. No change to source receipts, upstream toolkit, aggregate theorem count, correctness/transfer work, or the original target is authorized.

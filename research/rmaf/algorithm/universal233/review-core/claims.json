@@ -1,0 +1,457 @@
+{
+  "review": "fresh nonauthor core verification",
+  "frozen_delivery": "core/replay/20261015T063857Z/",
+  "scope": "core only; no geometry/safe-cover/root proofs read",
+  "verdict_vocabulary": [
+    "CONFIRMED",
+    "REFUTED",
+    "OPEN"
+  ],
+  "claims": [
+    {
+      "id": "actual_source_graph",
+      "status": "CONFIRMED",
+      "statement": "SourcePartition has actual vertex support, terminal-exact ownership, finite-walk connectedness and support disjointness; no generator-coverage premise.",
+      "interface": "RMAF.Tree actual unsuppressed graph",
+      "source": "CoreGraph.lean:9-30,189-195",
+      "evidence": [
+        "rebuild/CoreGraph.log",
+        "module-inventory-verdict.json"
+      ],
+      "limit": "No checker-to-support equivalence theorem follows from the definition."
+    },
+    {
+      "id": "mixed_cherry_singleton",
+      "status": "CONFIRMED",
+      "statement": "A monochromatic source partition at an actual unequal-color cherry has at least one singleton leaf block.",
+      "interface": "Same actual unsuppressed source Tree; singleton among current leaf occurrences",
+      "source": "CoreGraph.lean:230-242",
+      "evidence": [
+        "rebuild/CoreGraph.log",
+        "module-inventory-verdict.json",
+        "graph-controls-n5.json"
+      ],
+      "limit": "Does not simulate deletion or recursion."
+    },
+    {
+      "id": "unique_color_singleton",
+      "status": "CONFIRMED",
+      "statement": "A color unique among actual current leaf occurrences forces that occurrence singleton in its block.",
+      "interface": "Actual LeafAt, Monochromatic, explicit occurrence uniqueness",
+      "source": "CoreGraph.lean:246-251",
+      "evidence": [
+        "rebuild/CoreGraph.log",
+        "module-inventory-verdict.json",
+        "graph-controls-n5.json"
+      ],
+      "limit": "Current program group-count uniqueness needs a leaf correspondence theorem."
+    },
+    {
+      "id": "homogeneous_cherry_coarsening",
+      "status": "CONFIRMED",
+      "statement": "There exists a monochromatic same-Tree coarsening joining equal-color cherry leaves, preserving old owner equality in the refinement direction.",
+      "interface": "SourcePartition, CherryAt, Monochromatic, child color equality",
+      "source": "CherryCoarsening.lean:158-204",
+      "evidence": [
+        "rebuild/CherryCoarsening.log",
+        "module-inventory-verdict.json",
+        "graph-controls-n5.json"
+      ],
+      "limit": "No grouped quotient or original-label recursive lift theorem."
+    },
+    {
+      "id": "third_block_parent_surgery",
+      "status": "CONFIRMED",
+      "statement": "Other supports remain connected after removing a cherry parent occupied by a third block; root and leafless-support cases are permitted.",
+      "interface": "Other support cannot contain either cherry leaf; at-most-one-neighbor walk pruning",
+      "source": "CherryCoarsening.lean:13-16,56-71,99-114",
+      "evidence": [
+        "rebuild/CherryCoarsening.log",
+        "rebuild/CoreGraph.log",
+        "graph-controls-n5.json"
+      ],
+      "limit": "Finite controls include 3896 third-parent coarsenings and separate leafless/root fixtures; universal support follows from Lean proposition."
+    },
+    {
+      "id": "candidate_rule_order_and_totality",
+      "status": "CONFIRMED",
+      "statement": "Budget recursion implements normalize, finish-at-one-color, unique-color detachment, then two mixed-cherry alternatives; invalid cases explicitly refuse.",
+      "interface": "Executable Nat-budget-total candidate; no optimum query",
+      "source": "CoreProgram.lean:21-126",
+      "evidence": [
+        "rebuild/CoreProgram.log",
+        "rebuild/ReviewOperational-second.log"
+      ],
+      "limit": "Valid-input refusal exclusions and semantic correctness remain OPEN."
+    },
+    {
+      "id": "visited_prefix_bound",
+      "status": "CONFIRMED",
+      "statement": "For every q and arbitrary program state, visited+1 <= 2^(q+1).",
+      "interface": "Instrumented run q, including q=0 visited prefixes",
+      "source": "CoreProgram.lean:133-183",
+      "evidence": [
+        "rebuild/CoreProgram.log",
+        "module-inventory-verdict.json",
+        "rebuild/ReviewOperational-second.log"
+      ],
+      "limit": "Counts recursive prefixes; no per-node operation bound."
+    },
+    {
+      "id": "attempt_bound",
+      "status": "CONFIRMED",
+      "statement": "For every q and arbitrary program state, childAttempts <= 2*visited.",
+      "interface": "Actual run counters include root, duplicate, invalid-erase and over-budget attempts",
+      "source": "CoreProgram.lean:185-228",
+      "evidence": [
+        "rebuild/CoreProgram.log",
+        "module-inventory-verdict.json",
+        "rebuild/ReviewOperational-second.log"
+      ],
+      "limit": "No claim that every recorded cut is realized."
+    },
+    {
+      "id": "combined_prefix_work_bound",
+      "status": "CONFIRMED",
+      "statement": "For every q and arbitrary program state, visited+childAttempts+3 <= 3*2^(q+1).",
+      "interface": "Instrumented run counters; generate caps initial q by leaves-1",
+      "source": "CoreProgram.lean:233-237,124-126",
+      "evidence": [
+        "rebuild/CoreProgram.log",
+        "module-inventory-verdict.json",
+        "rebuild/ReviewOperational-second.log"
+      ],
+      "limit": "Full O*(2^q) work needs polynomial per-node size/time and reconstruction."
+    },
+    {
+      "id": "normalization_payload_purity",
+      "status": "CONFIRMED",
+      "statement": "Normalization preserves ordered original-label payload and purity; fromTree groups are pure.",
+      "interface": "GTree syntactic payload/color predicates",
+      "source": "CoreInvariants.lean:8-59",
+      "evidence": [
+        "rebuild/CoreInvariants.log",
+        "module-inventory-verdict.json"
+      ],
+      "limit": "No graph contraction/suppression simulation."
+    },
+    {
+      "id": "syntactic_cut_records",
+      "status": "CONFIRMED",
+      "statement": "Every generate output has distinct nonempty recorded addresses.",
+      "interface": "GoodCuts is Nodup and no empty root address",
+      "source": "CoreInvariants.lean:61-125",
+      "evidence": [
+        "rebuild/CoreInvariants.log",
+        "module-inventory-verdict.json"
+      ],
+      "limit": "Does not imply endpoints are source vertices."
+    },
+    {
+      "id": "syntactic_output_charge",
+      "status": "CONFIRMED",
+      "statement": "Every generate output has block-list length = cut-list length+1.",
+      "interface": "OutputShape list-length equality",
+      "source": "CoreInvariants.lean:127-173",
+      "evidence": [
+        "rebuild/CoreInvariants.log",
+        "module-inventory-verdict.json"
+      ],
+      "limit": "Does not imply graph components, leafbearing residuals, nonredundancy, or realized cost."
+    },
+    {
+      "id": "literal_author_controls_reexecution",
+      "status": "CONFIRMED",
+      "statement": "All nine frozen positive kernel-reduction controls rebuilt; all three false controls rejected specifically as false propositions.",
+      "interface": "Source-bound reexecution; not independent fixture derivation",
+      "source": "CoreProgram.lean:269-291; False*.lean",
+      "evidence": [
+        "lean-replay-verdict.json",
+        "rebuild/FalseExactPartition.log",
+        "rebuild/FalseOneBranch.log",
+        "rebuild/FalseRootCut.log"
+      ],
+      "limit": "Reviewer added separately predicted operational controls and a fresh graph evaluator."
+    },
+    {
+      "id": "complete_declaration_axiom_audit",
+      "status": "CONFIRMED",
+      "statement": "All 621 declarations from the five originating modules, including generated/private declarations, were audited; only three permitted standard axioms occur.",
+      "interface": "422 core + 199 shared RMAF dependency declarations",
+      "source": "rebuild/ModuleInventory.lean",
+      "evidence": [
+        "module-inventory-verdict.json",
+        "rebuild/ModuleInventory.log",
+        "rebuild/ModulePlantAudit.log"
+      ],
+      "limit": "574-name namespace pass was incomplete and is superseded; module-origin pass includes 47 extra private generated declarations."
+    },
+    {
+      "id": "exact_partition_preservation_strengthening",
+      "status": "REFUTED",
+      "statement": "Homogeneous coarsening preserves every input partition exactly.",
+      "interface": "Misleading stronger claim; three singleton blocks at ((0,1),2), colors 0=1",
+      "source": "FalseExactPartition.lean",
+      "evidence": [
+        "rebuild/FalseExactPartition.log",
+        "graph-controls-n5.json"
+      ],
+      "limit": "Refinement/coarsening statement itself is CONFIRMED."
+    },
+    {
+      "id": "keep_third_parent_strengthening",
+      "status": "REFUTED",
+      "statement": "The cherry parent may remain in a third support after adding it to the merged support.",
+      "interface": "Misleading stronger surgery; third block owns root,parent,leaf2",
+      "source": "exact_graph_controls.py:controls",
+      "evidence": [
+        "graph-controls-n5.json"
+      ],
+      "limit": "Exact graph support disjointness rejects overlap."
+    },
+    {
+      "id": "syntactic_implies_realized_strengthening",
+      "status": "REFUTED",
+      "statement": "GoodCuts plus OutputShape implies realized nonredundant original source cuts.",
+      "interface": "Misleading stronger implication; fake Output has nonexistent endpoint; distinct actual cuts may isolate leafless root",
+      "source": "rebuild/ReviewOperational.lean; exact_graph_controls.py:controls",
+      "evidence": [
+        "rebuild/ReviewOperational-second.log",
+        "graph-controls-n5.json"
+      ],
+      "limit": "Counterexamples do not claim reachability from valid generate calls."
+    },
+    {
+      "id": "checker_to_support_bridge",
+      "status": "OPEN",
+      "statement": "Construct SourcePartition from exact partitionCheck and pairwiseEmbeddings conditions with identical leaf-block equality.",
+      "interface": "First external ordinary-solver interface at generate T color q",
+      "source": "core/FIRST-GAP.md; RMAF.lean:126-152",
+      "evidence": [
+        "INTERFACE-TRACE.md"
+      ],
+      "limit": "Not delivered, not assumed as a structure field."
+    },
+    {
+      "id": "normalize_grouped_quotient",
+      "status": "OPEN",
+      "statement": "Transport iterated same-graph coarsening to normalized groups with actual quotient supports and original-label refinement lift.",
+      "interface": "First internal call: CoreProgram.step line 110 normalize current",
+      "source": "CoreProgram.lean:110; core/FIRST-GAP.md",
+      "evidence": [
+        "INTERFACE-TRACE.md"
+      ],
+      "limit": "Payload/purity preservation does not discharge graph quotient/suppression simulation."
+    },
+    {
+      "id": "singleton_erase_simulation",
+      "status": "OPEN",
+      "statement": "Transport surviving source supports and refinement lift through selected-group deletion and unary/root suppression.",
+      "interface": "CoreProgram.attempt line 102 erase; step lines 113-115",
+      "source": "CoreProgram.lean:102-105,113-115",
+      "evidence": [
+        "INTERFACE-TRACE.md"
+      ],
+      "limit": "Local singleton theorem alone does not transport the remaining graph."
+    },
+    {
+      "id": "original_cut_realization",
+      "status": "OPEN",
+      "statement": "Recorded original edges realize detached/live label components without leafless components and with nonredundant cuts.",
+      "interface": "CoreProgram.attempt line 105 and emission line 112",
+      "source": "CoreProgram.lean:105,112",
+      "evidence": [
+        "INTERFACE-TRACE.md"
+      ],
+      "limit": "Syntactic endpoint uniqueness and length equality are insufficient."
+    },
+    {
+      "id": "recursive_coverage",
+      "status": "OPEN",
+      "statement": "Every source-valid monochromatic partition refines some emitted core.",
+      "interface": "Universal production generator on actual graph/partition semantics",
+      "source": "ALGORITHM-233-UNIVERSAL-TARGET.md; core/REPORT.md",
+      "evidence": [
+        "INTERFACE-TRACE.md"
+      ],
+      "limit": "No accepted theorem in delivered modules; finite controls and prefix counts do not establish this."
+    },
+    {
+      "id": "realized_cost_lower_bound",
+      "status": "OPEN",
+      "statement": "Every realized output has cost >= r-1.",
+      "interface": "Universal production generator on actual graph/partition semantics",
+      "source": "ALGORITHM-233-UNIVERSAL-TARGET.md; core/REPORT.md",
+      "evidence": [
+        "INTERFACE-TRACE.md"
+      ],
+      "limit": "No accepted theorem in delivered modules; finite controls and prefix counts do not establish this."
+    },
+    {
+      "id": "raw_mass_bound",
+      "status": "OPEN",
+      "statement": "Realized core mass <= c^(1-r) for c>=2.",
+      "interface": "Universal production generator on actual graph/partition semantics",
+      "source": "ALGORITHM-233-UNIVERSAL-TARGET.md; core/REPORT.md",
+      "evidence": [
+        "INTERFACE-TRACE.md"
+      ],
+      "limit": "No accepted theorem in delivered modules; finite controls and prefix counts do not establish this."
+    },
+    {
+      "id": "full_core_generation_runtime",
+      "status": "OPEN",
+      "statement": "All core construction, validation, output copying, deduplication and reconstruction costs satisfy O*(2^q).",
+      "interface": "Universal production generator on actual graph/partition semantics",
+      "source": "ALGORITHM-233-UNIVERSAL-TARGET.md; core/REPORT.md",
+      "evidence": [
+        "INTERFACE-TRACE.md"
+      ],
+      "limit": "No accepted theorem in delivered modules; finite controls and prefix counts do not establish this."
+    },
+    {
+      "id": "valid_input_refusal_exclusions",
+      "status": "OPEN",
+      "statement": "All candidate refusal cases are unreachable on valid production inputs.",
+      "interface": "Universal production generator on actual graph/partition semantics",
+      "source": "ALGORITHM-233-UNIVERSAL-TARGET.md; core/REPORT.md",
+      "evidence": [
+        "INTERFACE-TRACE.md"
+      ],
+      "limit": "No accepted theorem in delivered modules; finite controls and prefix counts do not establish this."
+    }
+  ],
+  "first_gap": {
+    "external": "checker_to_support_bridge",
+    "internal_conditional_on_external": "normalize_grouped_quotient",
+    "call": "CoreProgram.step:110"
+  },
+  "main_milestones": {
+    "Algorithm": "OPEN",
+    "Correctness": "OPEN",
+    "Smaller base": "OPEN"
+  },
+  "finite_graph_scope": {
+    "leaf_counts": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "labels": "distinct traversal-order labels",
+    "internal_support_assignments": "used leaf owner or free; extra leafless blocks only explicit fixtures",
+    "totals": {
+      "trees": 22,
+      "assignments": 216107,
+      "valid_supports": 3319,
+      "colorings": 84267,
+      "mixed": 75063,
+      "unique": 110806,
+      "homogeneous": 42992,
+      "third_parent": 3896,
+      "root_cherry": 4
+    },
+    "plants_caught": 8
+  },
+  "complete_audit": {
+    "status": "CONFIRMED",
+    "module_origin_count": 621,
+    "core_count": 422,
+    "shared_dependency_count": 199,
+    "module_counts": {
+      "CherryCoarsening": 21,
+      "CoreGraph": 79,
+      "CoreInvariants": 55,
+      "CoreProgram": 267,
+      "RMAF": 199
+    },
+    "namespace_audit_count": 574,
+    "additional_private_generated_names": [
+      "_private.CoreGraph.0.Universal233.CoreGraph.subtree.match_1.eq_1",
+      "_private.CoreGraph.0.Universal233.CoreGraph.subtree.match_1.eq_2",
+      "_private.CoreGraph.0.Universal233.CoreGraph.subtree.match_1.eq_3",
+      "_private.CoreGraph.0.Universal233.CoreGraph.subtree.match_1.splitter",
+      "_private.CoreInvariants.0.Universal233.CoreProgram.attempt.match_1.eq_1",
+      "_private.CoreInvariants.0.Universal233.CoreProgram.attempt.match_1.eq_2",
+      "_private.CoreInvariants.0.Universal233.CoreProgram.attempt.match_1.splitter",
+      "_private.CoreInvariants.0.Universal233.CoreProgram.fromTree.match_1.eq_1",
+      "_private.CoreInvariants.0.Universal233.CoreProgram.fromTree.match_1.eq_2",
+      "_private.CoreInvariants.0.Universal233.CoreProgram.fromTree.match_1.splitter",
+      "_private.CoreInvariants.0.Universal233.CoreProgram.instReprGTree.repr.match_1.eq_1",
+      "_private.CoreInvariants.0.Universal233.CoreProgram.instReprGTree.repr.match_1.eq_2",
+      "_private.CoreInvariants.0.Universal233.CoreProgram.instReprGTree.repr.match_1.splitter",
+      "_private.CoreInvariants.0.Universal233.CoreProgram.normalize.match_1.eq_1",
+      "_private.CoreInvariants.0.Universal233.CoreProgram.normalize.match_1.eq_2",
+      "_private.CoreInvariants.0.Universal233.CoreProgram.normalize.match_1.splitter",
+      "_private.CoreInvariants.0.Universal233.CoreProgram.normalize.match_1.splitter._sparseCasesOn_2",
+      "_private.CoreInvariants.0.Universal233.CoreProgram.payload.match_1.eq_1",
+      "_private.CoreInvariants.0.Universal233.CoreProgram.payload.match_1.eq_2",
+      "_private.CoreInvariants.0.Universal233.CoreProgram.payload.match_1.splitter",
+      "_private.CoreProgram.0.Universal233.CoreProgram.attempt.match_1.eq_1",
+      "_private.CoreProgram.0.Universal233.CoreProgram.attempt.match_1.eq_2",
+      "_private.CoreProgram.0.Universal233.CoreProgram.attempt.match_1.splitter",
+      "_private.CoreProgram.0.Universal233.CoreProgram.run.match_1.eq_1",
+      "_private.CoreProgram.0.Universal233.CoreProgram.run.match_1.eq_2",
+      "_private.CoreProgram.0.Universal233.CoreProgram.run.match_1.splitter",
+      "_private.RMAF.0.RMAF.assignments.match_1.eq_1",
+      "_private.RMAF.0.RMAF.assignments.match_1.eq_2",
+      "_private.RMAF.0.RMAF.assignments.match_1.splitter",
+      "_private.RMAF.0.RMAF.best.match_1.eq_1",
+      "_private.RMAF.0.RMAF.best.match_1.eq_2",
+      "_private.RMAF.0.RMAF.best.match_1.splitter",
+      "_private.RMAF.0.RMAF.best.match_3.eq_1",
+      "_private.RMAF.0.RMAF.best.match_3.eq_2",
+      "_private.RMAF.0.RMAF.best.match_3.splitter",
+      "_private.RMAF.0.RMAF.instReprTree.repr.match_1.eq_1",
+      "_private.RMAF.0.RMAF.instReprTree.repr.match_1.eq_2",
+      "_private.RMAF.0.RMAF.instReprTree.repr.match_1.splitter",
+      "_private.RMAF.0.RMAF.restrict.match_1.eq_1",
+      "_private.RMAF.0.RMAF.restrict.match_1.eq_2",
+      "_private.RMAF.0.RMAF.restrict.match_1.eq_3",
+      "_private.RMAF.0.RMAF.restrict.match_1.eq_4",
+      "_private.RMAF.0.RMAF.restrict.match_1.splitter",
+      "_private.RMAF.0.RMAF.sameShape.match_1.eq_1",
+      "_private.RMAF.0.RMAF.sameShape.match_1.eq_2",
+      "_private.RMAF.0.RMAF.sameShape.match_1.eq_3",
+      "_private.RMAF.0.RMAF.sameShape.match_1.splitter"
+    ],
+    "unmatched_namespace_names": [],
+    "axiom_union_observed": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "missing_record_plant": "CAUGHT",
+    "custom_axiom_outside_namespace_plant": "CAUGHT",
+    "timings": [
+      {
+        "source": "ModuleInventory.lean",
+        "source_sha256": "df3b47b40d312883760b7e23b75eddb6f9d32930ad85c3a41d041afca0b44008",
+        "returncode": 0,
+        "seconds": 4.274270083999909
+      },
+      {
+        "source": "PlantModel.lean",
+        "source_sha256": "6602beac4a421c53111c82814982c8f8aac27c40bf3f577251c54190f3154b82",
+        "returncode": 0,
+        "seconds": 0.27798504200018215
+      },
+      {
+        "source": "ModulePlantAudit.lean",
+        "source_sha256": "422df85732ecfb196dbdb81a95eb254b5d2aa3d5c46ee2a6d356fea055bcf268",
+        "returncode": 1,
+        "seconds": 4.308457500000259
+      }
+    ]
+  },
+  "independence": {
+    "copied_Lean": "fresh source execution, not independent proof discovery",
+    "graph_code": "fresh explicit adjacency/BFS, no author/prototype imports",
+    "shared_layers": [
+      "RMAF.Tree mathematical spec",
+      "read proposed surgery",
+      "Lean kernel"
+    ],
+    "controls_frozen_before_census": true
+  }
+}

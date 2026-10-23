@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f6f8">
+  <title>BootLoops · Workspace</title>
+  <link rel="icon" href="/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+  <script src="/proof.js" defer></script>
+</head>
+<body>
+  <aside class="rail" aria-label="Navigation">
+    <a href="/" class="mark" aria-label="BootLoops home"><img src="/mark.svg" alt=""></a>
+    <button class="rail-button active" data-mode="auto" aria-label="Workspace" title="Workspace"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1.3"/><rect x="14" y="4" width="6" height="6" rx="1.3"/><rect x="4" y="14" width="6" height="6" rx="1.3"/><rect x="14" y="14" width="6" height="6" rx="1.3"/></svg></button>
+    <button class="rail-button" data-mode="history" aria-label="Run history" title="History"><svg viewBox="0 0 24 24"><path d="M4 7v5h5M4.5 12A7.5 7.5 0 1 0 7 6.5M12 8v4l3 2"/></svg></button>
+    <button class="rail-button" id="learnButton" aria-label="How to read the dashboard" title="How to read it"><svg viewBox="0 0 24 24"><path d="M4 5c4-1 6 0 8 2 2-2 4-3 8-2v14c-4-1-6 0-8 2-2-2-4-3-8-2ZM12 7v14"/></svg></button>
+    <div class="rail-bottom"><span class="local-mark" title="This workspace only">L</span></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar">
+      <div class="brand">BootLoops<span class="brand-separator"></span><span class="workspace-name">bootscience</span></div>
+      <div class="top-actions"><span class="connection" id="connection"><i></i><span>Connecting</span></span><button class="icon-button" id="infoButton" aria-label="Monitoring information" title="Monitoring information"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 11v5m0-9v1"/></svg></button></div>
+    </header>
+    <main>
+      <div class="page-heading">
+        <div><div class="eyebrow">WORKSPACE</div><h1 id="runTitle">Certified integral</h1></div>
+        <div class="mode-switch" role="group" aria-label="View"><button data-mode="auto" class="active">Live</button><button data-mode="proof">Proof</button><button data-mode="history">History</button><button data-mode="demo">Demo</button></div>
+      </div>
+      <div id="proofView" class="proof-layout" hidden>
+        <div class="proof-main">
+          <section class="panel proof-flow"><div class="panel-heading"><h2>Research</h2><span id="proofFreshness"></span></div><svg id="proofFlow" viewBox="0 0 850 110" aria-label="Research workflow"></svg><div id="proofCounts" class="readouts"></div><button id="baselineCaveat" class="baseline-caveat" hidden></button><div id="proofRoutes" class="proof-routes"></div></section>
+          <section class="panel"><div class="panel-heading"><h2>Lemmas</h2><div class="panel-actions"><button class="text-button" id="proofGraphToggle">All nodes</button><button class="icon-button" id="proofMeaning" aria-label="Read the graph" title="Read the graph">?</button></div></div><div class="lemma-canvas"><svg id="lemmaGraph" viewBox="0 0 850 280" aria-label="Proof dependencies"></svg></div><div class="proof-legend"><span class="checked">Checked</span><span class="tested">Tested</span><span class="open">Open</span><span class="refuted">Refuted</span></div></section>
+          <section class="panel"><div class="panel-heading"><h2>Checkpoints</h2><span id="proofHistoryCount"></span></div><div id="proofHistory" class="proof-history"></div></section>
+        </div>
+        <div class="proof-side">
+          <section class="panel forest-panel"><div class="panel-heading"><h2>Forest</h2><select id="forestExample" aria-label="Tree example"></select></div><svg id="forestSvg" viewBox="0 0 510 280" aria-label="Two rooted trees and agreement-forest blocks"></svg><div id="forestBlocks" class="forest-blocks"></div><div id="forestCaption" class="forest-caption"></div></section>
+          <div id="proofMapSlot"></div>
+        </div>
+      </div>
+      <div class="main-grid">
+        <section class="panel flow-panel" aria-labelledby="flowHeading">
+          <div class="panel-heading"><h2 id="flowHeading">Flow</h2><div class="panel-actions"><span class="status-badge demo" id="runBadge">Demo</span><button class="icon-button" id="flowHelp" aria-label="About the flow" title="About the flow"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M10 9a2 2 0 0 1 4 0c0 2-2 2-2 4m0 2v1"/></svg></button></div></div>
+          <div class="flow-canvas" id="flowCanvas"><svg id="flowSvg" viewBox="0 0 800 215" role="group" aria-label="Computation flow"></svg></div>
+          <div class="focus-row"><div><span class="focus-dot" id="focusDot"></span><span id="focusLabel">Set the question</span></div><span class="focus-tool" id="focusTool">Input</span></div>
+          <div class="chart-wrap"><svg id="mainChart" viewBox="0 0 800 170" role="img" aria-label="Run visualization"></svg><div class="chart-label" id="chartLabel">4 / (1 + x²)</div><button class="chart-info icon-button" id="chartHelp" aria-label="Explain this plot" title="Explain this plot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 11v5m0-9v1"/></svg></button></div>
+          <div class="demo-controls" id="demoControls"><button class="round-control" id="demoPlay" aria-label="Pause demonstration"><svg viewBox="0 0 24 24"><path d="M9 6v12m6-12v12"/></svg></button><div class="demo-steps" id="demoSteps" aria-label="Demonstration step"></div><button class="icon-button" id="demoReset" aria-label="Restart demonstration" title="Restart"><svg viewBox="0 0 24 24"><path d="M4 7v5h5M4.5 12A7.5 7.5 0 1 0 7 6.5"/></svg></button><span class="control-divider"></span><label for="precision">Digits</label><input id="precision" type="range" min="20" max="100" value="60" step="10"><output id="precisionValue" for="precision">60</output></div>
+          <div class="readouts" id="readouts"></div>
+        </section>
+        <section class="panel map-panel" aria-labelledby="mapHeading">
+          <div class="panel-heading"><h2 id="mapHeading">Toolkit</h2><div class="map-toggle" role="group" aria-label="Map layer"><button data-layer="tools" class="active">Tools</button><button data-layer="protocols">Protocols</button></div></div>
+          <div class="map-toolbar"><div class="search"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input id="toolSearch" type="search" placeholder="Find a tool" aria-label="Find a tool" autocomplete="off"></div><span id="mapCount">50</span></div>
+          <div class="map-canvas"><svg id="mapSvg" viewBox="0 0 490 415" role="group" aria-label="Interactive toolkit map"></svg><div class="map-tooltip" id="mapTooltip" role="tooltip"></div><div class="search-empty" id="searchEmpty" hidden>No matches</div></div>
+          <div class="map-footer"><div class="check-bar" id="installationBar" aria-label="Installation validation"></div><button id="installationButton" class="text-button">45 passed <span>· 3 need data · 2 platform limits</span><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button></div>
+        </section>
+        <section class="panel checks-panel" aria-labelledby="checksHeading"><div class="panel-heading"><h2 id="checksHeading">Checks</h2><span id="checkScope">Illustrative</span></div><div id="gateGrid" class="gate-grid"></div></section>
+        <section class="panel path-panel" aria-labelledby="pathHeading"><div class="panel-heading"><h2 id="pathHeading">In use</h2><span id="pathScope">Demo route</span></div><div id="toolPath" class="tool-path"></div></section>
+      </div>
+      <section class="panel history-panel" aria-labelledby="historyHeading">
+        <div class="panel-heading"><h2 id="historyHeading">Runs <span id="historyCount"></span></h2><button class="text-button" id="historyExpand">All runs <svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button></div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+      <footer class="page-footer"><span><i></i>Local only</span><button class="text-button" id="outputButton">Output <svg viewBox="0 0 24 24"><path d="m5 5 7 7-7 7m9 0h5"/></svg></button></footer>
+    </main>
+  </div>
+  <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" hidden><div class="drawer-head"><span id="drawerEyebrow">TOOL</span><button class="icon-button" id="drawerClose" aria-label="Close details"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></svg></button></div><div id="drawerContent"></div></aside>
+  <div class="startup-error" id="startupError" hidden><h2>Connection unavailable</h2><p>Start <code>./bootloops-dashboard</code> in this workspace, then reload.</p><button id="reloadButton">Reload</button></div>
+</body>
+</html>

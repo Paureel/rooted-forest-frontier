@@ -1,0 +1,7 @@
+import PaidExecutionBounds
+#check Universal233.Rule5ExecutionSource.request_state_caps
+#print axioms Universal233.Rule5ExecutionSource.request_state_caps
+#check Universal233.Rule5ExecutionSource.answers_payload
+#print axioms Universal233.Rule5ExecutionSource.answers_payload
+#check Universal233.Rule5ExecutionSource.best_for_prefix_work
+#print axioms Universal233.Rule5ExecutionSource.best_for_prefix_work

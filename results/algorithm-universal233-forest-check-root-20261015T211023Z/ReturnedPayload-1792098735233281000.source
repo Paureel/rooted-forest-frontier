@@ -1,0 +1,56 @@
+import FastExact
+import Monomial
+namespace GenericForest.CheckCorrespondence
+open RMAF ForestState Universal233 SourceCoverage FrontierWork
+
+def ReturnedPayloadBound (actual : Ordinary) : Prop :=
+ ∀T S q F,DepthOne.proper T S=true → actual T S q=some F →
+ F.flatten.Perm (leaves T) ∧ F.length≤(leaves T).length ∧ (∀B,B∈F → B≠[])
+
+def ProperOrdinarySound (actual : Ordinary) : Prop :=
+ ∀T S q F,DepthOne.proper T S=true → actual T S q=some F → agreement T S F=true
+
+theorem returned_payload_of_sound (actual : Ordinary) (sound : ProperOrdinarySound actual) : ReturnedPayloadBound actual := by
+ intro T S q F proper answer
+ have af:=sound T S q F proper answer
+ have partition : partitionCheck (leaves T) F=true:=by
+  simp only [agreement,Bool.and_eq_true] at af
+  exact af.1.1.1.1
+ have nd : (leaves T).Nodup:=by
+  simp only [DepthOne.proper,Bool.and_eq_true,decide_eq_true_eq] at proper
+  exact proper.1.1
+ exact ⟨RestrictionBridge.checked_flatten_perm (leaves T) F nd partition,
+  partitionCheck_block_bound (leaves T) F partition,fun B mem=>partitionCheck_nonempty _ _ partition B mem⟩
+
+theorem fast_returned_payload : ReturnedPayloadBound (fun T S q=>OrdinaryDispatch.FastOrdinary.solve q T S) := by
+ apply returned_payload_of_sound
+ intro T S q F proper answer
+ exact (OrdinaryDispatch.FastOrdinary.actual_ordinary_IH.sound T S q F proper answer).1
+
+theorem returned_payload_support (actual : Ordinary) (bound : ReturnedPayloadBound actual)
+ (T S : Tree) (q : Nat) (F : Forest) (proper : DepthOne.proper T S=true) (answer : actual T S q=some F) :
+ (∀x,x∈F.flatten → x∈leaves T) ∧ F.flatten.length=(leaves T).length ∧
+ F.length+F.flatten.length≤2*(leaves T).length := by
+ have data:=bound T S q F proper answer
+ exact ⟨fun _ hx=>data.1.mem_iff.1 hx,data.1.length_eq,by have eq:=data.1.length_eq;omega⟩
+
+def labelBits (x : Nat) : Nat := x.size+1
+
+def payloadBitCells (F : Forest) : Nat := (F.flatten.map labelBits).sum
+
+theorem returned_payload_bit_cells (actual : Ordinary) (bound : ReturnedPayloadBound actual)
+ (T S : Tree) (q : Nat) (F : Forest) (B : Nat) (proper : DepthOne.proper T S=true)
+ (answer : actual T S q=some F) (bits : ∀x,x∈leaves T → labelBits x≤B) :
+ payloadBitCells F≤(leaves T).length*B := by
+ have data:=returned_payload_support actual bound T S q F proper answer
+ have h:=LocalPolynomial.nat_sum_le_constant F.flatten labelBits B (fun x hx=>bits x (data.1 x hx))
+ simpa only [payloadBitCells,data.2.1] using h
+
+theorem fast_returned_payload_bit_cells (T S : Tree) (q : Nat) (F : Forest) (B : Nat)
+ (proper : DepthOne.proper T S=true) (answer : OrdinaryDispatch.FastOrdinary.solve q T S=some F)
+ (bits : ∀x,x∈leaves T → labelBits x≤B) :
+ F.flatten.length=(leaves T).length ∧ F.length≤(leaves T).length ∧ payloadBitCells F≤(leaves T).length*B :=
+ ⟨(returned_payload_support _ fast_returned_payload T S q F proper answer).2.1,
+ (fast_returned_payload T S q F proper answer).2.1,
+ returned_payload_bit_cells _ fast_returned_payload T S q F B proper answer bits⟩
+end GenericForest.CheckCorrespondence

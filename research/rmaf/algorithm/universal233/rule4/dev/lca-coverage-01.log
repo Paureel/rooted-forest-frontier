@@ -1,0 +1,121 @@
+research/rmaf/algorithm/universal233/rule4/LcaCoverage.lean:14:42: error(lean.invalidField): Invalid field `cons`: The environment does not contain `Exists.cons`, so it is not possible to project the field `cons` from an expression
+  ih v
+of type `∃ t, lca u v ++ t = u`
+research/rmaf/algorithm/universal233/rule4/LcaCoverage.lean:25:42: error(lean.invalidField): Invalid field `cons`: The environment does not contain `Exists.cons`, so it is not possible to project the field `cons` from an expression
+  ih v
+of type `∃ t, lca u v ++ t = v`
+research/rmaf/algorithm/universal233/rule4/LcaCoverage.lean:41:59: error(lean.invalidField): Invalid field `cons`: The environment does not contain `Exists.cons`, so it is not possible to project the field `cons` from an expression
+  ih (List.prefix_append w ut) (List.prefix_append w vt) ((path_same_side s z (w ++ ut) (w ++ vt)).mp hp)
+of type `∃ t, w ++ t = z`
+research/rmaf/algorithm/universal233/rule4/LcaCoverage.lean:58:30: error: Application type mismatch: The argument
+  List.prefix_append ?m.145 ?m.146
+has type
+  ?m.145 <+: ?m.145 ++ ?m.146
+but is expected to have type
+  w ++ [s] <+: w ++ s :: tail
+in the application
+  And.intro (List.prefix_append ?m.145 ?m.146)
+research/rmaf/algorithm/universal233/rule4/LcaCoverage.lean:122:47: error: Type mismatch: After simplification, term
+  hx
+ has type
+  x ∈ leaves W
+but is expected to have type
+  x ∈ subtreeLabels S (lca u v)
+research/rmaf/algorithm/universal233/rule4/LcaCoverage.lean:195:85: error: unsolved goals
+T S : Tree
+F : List (List Nat)
+hn : (leaves S).Nodup
+hF : agreement T S F = true
+a b c : Nat
+hab : a ≠ b
+hcS : HasCherry a c S
+q r : RMAF.Vertex
+hcuts : pendantOriginal S a b = [q, r]
+hql : subtreeLabels S q = [c]
+B : List Nat
+hB : B ∈ F
+ha : a ∈ B
+hcB : ¬c ∈ B
+hb : [b] ∈ F
+hno : ∀ (x : Nat), x ∈ B → ¬x ∈ subtreeLabels S r
+checks : partitionCheck (leaves S) F = true ∧ pairwiseEmbeddings S F = true
+hal : a ∈ leaves S
+hbl : b ∈ leaves S
+u : RMAF.Vertex
+hu : LeafAt S u a
+v : RMAF.Vertex
+hv : LeafAt S v b
+w : VertexGeometry.Vertex := lca u v
+W : Tree
+hW : subtree S w = some W
+hWtree : treeAt S w = some W
+hWlabels : subtreeLabels S w = leaves W
+haW : a ∈ leaves W
+cover : ∀ (x : Nat), x ∈ leaves W → x = a ∨ x = b ∨ x = c ∨ x ∈ subtreeLabels S r
+hbB : ¬b ∈ B
+hc : [c] ∈ F
+d : Nat
+hdB : d ∈ B
+hdl : d ∈ leaves S
+hda : d ≠ a
+hdW : ¬d ∈ leaves W
+hBparent : w ∈ minimalVertices B S
+hr : r ∈ pendantOriginal S a b
+hrw : lca u v <+: r
+Xinside : ∀ (x : Nat), x ∈ subtreeLabels S r → x ∈ leaves W
+mono : ∀ (H : List Nat), H ∈ F → ∀ (x y : Nat), x ∈ H → y ∈ H → (x ∈ subtreeLabels S r ↔ y ∈ subtreeLabels S r)
+x : Nat
+xs : List Nat
+hH : x :: xs ∈ F
+hne : x :: xs ≠ []
+hxc : x = c
+⊢ ?m.827 = c ∨ ?m.827 ∈ xs
+research/rmaf/algorithm/universal233/rule4/LcaCoverage.lean:195:101: error: unsolved goals
+T S : Tree
+F : List (List Nat)
+hn : (leaves S).Nodup
+hF : agreement T S F = true
+a b c : Nat
+hab : a ≠ b
+hcS : HasCherry a c S
+q r : RMAF.Vertex
+hcuts : pendantOriginal S a b = [q, r]
+hql : subtreeLabels S q = [c]
+B : List Nat
+hB : B ∈ F
+ha : a ∈ B
+hcB : ¬c ∈ B
+hb : [b] ∈ F
+hno : ∀ (x : Nat), x ∈ B → ¬x ∈ subtreeLabels S r
+checks : partitionCheck (leaves S) F = true ∧ pairwiseEmbeddings S F = true
+hal : a ∈ leaves S
+hbl : b ∈ leaves S
+u : RMAF.Vertex
+hu : LeafAt S u a
+v : RMAF.Vertex
+hv : LeafAt S v b
+w : VertexGeometry.Vertex := lca u v
+W : Tree
+hW : subtree S w = some W
+hWtree : treeAt S w = some W
+hWlabels : subtreeLabels S w = leaves W
+haW : a ∈ leaves W
+cover : ∀ (x : Nat), x ∈ leaves W → x = a ∨ x = b ∨ x = c ∨ x ∈ subtreeLabels S r
+hbB : ¬b ∈ B
+hc : [c] ∈ F
+d : Nat
+hdB : d ∈ B
+hdl : d ∈ leaves S
+hda : d ≠ a
+hdW : ¬d ∈ leaves W
+hBparent : w ∈ minimalVertices B S
+hr : r ∈ pendantOriginal S a b
+hrw : lca u v <+: r
+Xinside : ∀ (x : Nat), x ∈ subtreeLabels S r → x ∈ leaves W
+mono : ∀ (H : List Nat), H ∈ F → ∀ (x y : Nat), x ∈ H → y ∈ H → (x ∈ subtreeLabels S r ↔ y ∈ subtreeLabels S r)
+x : Nat
+xs : List Nat
+hH : x :: xs ∈ F
+hne : x :: xs ≠ []
+hxc : x = c
+⊢ ?m.827 = c

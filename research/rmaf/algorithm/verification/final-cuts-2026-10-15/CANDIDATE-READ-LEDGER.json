@@ -1,0 +1,259 @@
+{
+  "phase": "root exact release AFTER55 immutable readiness entries",
+  "author_manifest_sha256": "95569c46912bff25f74cd01174bc51a934e7395524922271e6de4538fbdc4fb3",
+  "statement_records": [
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/RecoveryProgram.lean",
+      "sha256": "2578e67e9473ec6d3324896d6e632d0c32f14f16d15fae6df9ab79505a5b0fbf",
+      "line": 9,
+      "declaration": "def blockColor",
+      "verbatim": "def blockColor : List (List Nat) \u2192 Nat \u2192 Nat\n  | [], _ => 0\n  | b :: bs, x => if b.contains x then b.headD 0 else blockColor bs x"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/RecoveryProgram.lean",
+      "sha256": "2578e67e9473ec6d3324896d6e632d0c32f14f16d15fae6df9ab79505a5b0fbf",
+      "line": 13,
+      "declaration": "def inputCheck",
+      "verbatim": "def inputCheck (S : Tree) (P : List (List Nat)) : Bool :=\n  decide (leaves S).Nodup && partitionCheck (leaves S) P && pairwiseEmbeddings S P"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/RecoveryProgram.lean",
+      "sha256": "2578e67e9473ec6d3324896d6e632d0c32f14f16d15fae6df9ab79505a5b0fbf",
+      "line": 16,
+      "declaration": "def recover",
+      "verbatim": "def recover (S : Tree) (P : List (List Nat)) : Option Output :=\n  if inputCheck S P then (generate S (blockColor P) (P.length - 1)).outputs.head?\n  else none"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/BlockColors.lean",
+      "sha256": "eda77ce4f09493a505a68a418ea9cda444e5757ae47c0096198436d60c0caee9",
+      "line": 9,
+      "declaration": "theorem checked_flatten_nodup",
+      "verbatim": "theorem checked_flatten_nodup (S : Tree) (P : List (List Nat))\n    (hp : partitionCheck (leaves S) P = true) : P.flatten.Nodup := by\n  apply List.nodup_iff_count_of_mem.2\n  intro x hx\n  have hs := partitionCheck_subset _ P hp hx\n  have hh : (leaves S).all (fun x => P.flatten.count x == 1) = true := by\n    simp only [partitionCheck,Bool.and_eq_true] at hp\n    exact hp.1.2\n  exact beq_iff_eq.1 (List.all_eq_true.1 hh x hs)"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/BlockColors.lean",
+      "sha256": "eda77ce4f09493a505a68a418ea9cda444e5757ae47c0096198436d60c0caee9",
+      "line": 55,
+      "declaration": "theorem checked_rank",
+      "verbatim": "theorem checked_rank (S : Tree) (P : List (List Nat))\n    (hp : partitionCheck (leaves S) P = true) : inputRank S (blockColor P) = P.length := by\n  have hn := checked_flatten_nodup S P hp\n  have he := partitionCheck_nonempty _ P hp\n  have hrep := representative_nodup P hn he\n  have hperm : (dedupNat ((leaves S).map (blockColor P))).Perm\n      (P.map (fun b => b.headD 0)) := by\n    apply (List.perm_ext_iff_of_nodup (dedupNat_nodup _) hrep).2\n    intro i\n    rw [mem_dedupNat]\n    constructor\n    \u00b7 intro hi\n      obtain \u27e8x,hx,hxi\u27e9 := List.mem_map.1 hi\n      obtain \u27e8b,hb,hxb\u27e9 := Integration.partitionCheck_covers _ P hp x hx\n      exact List.mem_map.2 \u27e8b,hb,(color_of_mem P hn b hb x hxb).symm.trans hxi\u27e9\n    \u00b7 intro hi\n      obtain \u27e8b,hb,hbi\u27e9 := List.mem_map.1 hi\n      have hh := head_mem b (he b hb)"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/BlockColors.lean",
+      "sha256": "eda77ce4f09493a505a68a418ea9cda444e5757ae47c0096198436d60c0caee9",
+      "line": 77,
+      "declaration": "theorem checked_separation",
+      "verbatim": "theorem checked_separation (S : Tree) (P : List (List Nat))\n    (hp : partitionCheck (leaves S) P = true) (b : List Nat) (hb : b \u2208 P) (x : Nat) :\n    x \u2208 b \u2194 x \u2208 leaves S \u2227 blockColor P x = blockColor P (b.headD 0) := by\n  exact rank_partition_color_classes S (blockColor P) P hp\n    (checked_monochromatic S P hp) (checked_rank S P hp).symm b hb x"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/Permutations.lean",
+      "sha256": "22805551146044da1a43e96dd8812a130ddd92f164eedf9642ba069e9e6add13",
+      "line": 9,
+      "declaration": "def BlockPermutation",
+      "verbatim": "def BlockPermutation (P Q : List (List Nat)) : Prop :=\n  \u2203 f : List Nat \u2192 List Nat, (Q.map f).Perm P \u2227 \u2200 b, b \u2208 Q \u2192 (f b).Perm b"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/Permutations.lean",
+      "sha256": "22805551146044da1a43e96dd8812a130ddd92f164eedf9642ba069e9e6add13",
+      "line": 65,
+      "declaration": "theorem checked_block_permutation",
+      "verbatim": "theorem checked_block_permutation (S : Tree) (P Q : List (List Nat))\n    (hp : partitionCheck (leaves S) P = true) (hq : partitionCheck (leaves S) Q = true)\n    (hmq : \u2200 b, b \u2208 Q \u2192 LabelMonochromatic (blockColor P) b)\n    (hlq : Q.length = P.length) : BlockPermutation P Q := by\n  have hnP := checked_flatten_nodup S P hp\n  have hnQ := checked_flatten_nodup S Q hq\n  have hrep := representative_nodup P hnP (partitionCheck_nonempty _ P hp)\n  let f := fun b : List Nat => blockForKey P (blockColor P (b.headD 0))\n  have hfP : P.map f = P := by\n    calc P.map f = P.map id := by\n           apply List.map_congr_left\n           intro b hb\n           have hh := head_mem b (partitionCheck_nonempty _ P hp b hb)\n           dsimp [f]\n           rw [color_of_mem P hnP b hb _ hh]\n           exact blockForKey_head P hrep b hb\n         _ = P := List.map_id P\n  have hkeys := representative_colors_perm S (blockColor P) P Q hp hq"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/Permutations.lean",
+      "sha256": "22805551146044da1a43e96dd8812a130ddd92f164eedf9642ba069e9e6add13",
+      "line": 219,
+      "declaration": "theorem agreement_block_permutation",
+      "verbatim": "theorem agreement_block_permutation (T S : Tree) (P Q : List (List Nat))\n    (h : BlockPermutation P Q) : agreement T S P = agreement T S Q := by\n  obtain \u27e8f,hp,hf\u27e9 := h\n  exact (agreement_outer_perm T S hp).symm.trans (agreement_inner_perm T S Q f hf)"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/Recovery.lean",
+      "sha256": "0b46c541b53760e67877fe5b9be4954be341b8f29bd62a4b9789a60b3609e9c3",
+      "line": 27,
+      "declaration": "theorem recover_checked",
+      "verbatim": "theorem recover_checked (S : Tree) (P : List (List Nat))\n    (hn : (leaves S).Nodup) (hp : partitionCheck (leaves S) P = true)\n    (he : pairwiseEmbeddings S P = true) :\n    \u2203 o, recover S P = some o \u2227\n      (generate S (blockColor P) (P.length - 1)).outputs = [o] \u2227\n      o.sourceCuts.length = P.length - 1 \u2227 o.partition.length = P.length \u2227\n      CutRealization.RealizedOutput S o \u2227 BlockPermutation P o.partition \u2227\n      partitionCheck (leaves S) o.partition = true := by\n  have hr := checked_rank S P hp\n  have hf : RankFeasible S (blockColor P) :=\n    \u27e8P,hp,he,checked_monochromatic S P hp,hr.symm\u27e9\n  obtain \u27e8o,ho,hcost\u27e9 := feasible_unique S (blockColor P) hn hf (P.length - 1) (by omega)\n  have hmem : o \u2208 (generate S (blockColor P) (P.length - 1)).outputs := by rw [ho]; simp\n  have hcheck := CutRealization.generate_partition_check S (blockColor P) _ o hmem\n  have hmono := CutRealization.generate_monochromatic S (blockColor P) _ o hmem\n  have hpcount := generate_partition_cost S (blockColor P) _ o hmem\n  have hpos := inputRank_pos S (blockColor P)\n  have hc : o.sourceCuts.length = P.length - 1 := by omega"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/Recovery.lean",
+      "sha256": "0b46c541b53760e67877fe5b9be4954be341b8f29bd62a4b9789a60b3609e9c3",
+      "line": 53,
+      "declaration": "theorem recover_sound",
+      "verbatim": "theorem recover_sound (S : Tree) (P : List (List Nat)) (o : Output)\n    (ho : recover S P = some o) :\n    CutRealization.RealizedOutput S o \u2227 o.sourceCuts.length = P.length - 1 \u2227\n      o.partition.length = P.length \u2227 BlockPermutation P o.partition \u2227\n      partitionCheck (leaves S) o.partition = true := by\n  obtain \u27e8hn,hp,he\u27e9 := recover_some_guards S P o ho\n  obtain \u27e8o',ho',_,hc,hl,hr,hperm,hcheck\u27e9 := recover_checked S P hn hp he\n  have heq : o' = o := Option.some.inj (ho'.symm.trans ho)\n  subst o'\n  exact \u27e8hr,hc,hl,hperm,hcheck\u27e9"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/Recovery.lean",
+      "sha256": "0b46c541b53760e67877fe5b9be4954be341b8f29bd62a4b9789a60b3609e9c3",
+      "line": 64,
+      "declaration": "theorem recover_edges",
+      "verbatim": "theorem recover_edges (S : Tree) (P : List (List Nat)) (o : Output)\n    (ho : recover S P = some o) :\n    o.sourceCuts.Nodup \u2227 \u2200 v, v \u2208 o.sourceCuts \u2192 CoreGraph.Valid S v \u2227 v \u2260 [] := by\n  have hr := (recover_sound S P o ho).1\n  refine \u27e8hr.1.1,?_\u27e9\n  intro v hv\n  exact \u27e8hr.2.1 v hv,hr.1.2 v hv\u27e9"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/Recovery.lean",
+      "sha256": "0b46c541b53760e67877fe5b9be4954be341b8f29bd62a4b9789a60b3609e9c3",
+      "line": 74,
+      "declaration": "theorem recover_success_iff",
+      "verbatim": "theorem recover_success_iff (S : Tree) (P : List (List Nat)) :\n    (\u2203 o, recover S P = some o) \u2194 inputCheck S P = true := by\n  constructor\n  \u00b7 rintro \u27e8o,ho\u27e9\n    exact (inputCheck_iff S P).2 (recover_some_guards S P o ho)\n  \u00b7 intro h\n    obtain \u27e8hn,hp,he\u27e9 := (inputCheck_iff S P).1 h\n    obtain \u27e8o,ho,_\u27e9 := recover_checked S P hn hp he\n    exact \u27e8o,ho\u27e9"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/Recovery.lean",
+      "sha256": "0b46c541b53760e67877fe5b9be4954be341b8f29bd62a4b9789a60b3609e9c3",
+      "line": 87,
+      "declaration": "theorem recover_original_agreement",
+      "verbatim": "theorem recover_original_agreement (T S : Tree) (P : List (List Nat))\n    (hn : (leaves S).Nodup) (ha : agreement T S P = true) :\n    \u2203 o, recover S P = some o \u2227 agreement T S o.partition = true \u2227\n      o.sourceCuts.length = P.length - 1 \u2227 o.partition.length = P.length \u2227\n      CutRealization.RealizedOutput S o \u2227 BlockPermutation P o.partition := by\n  have hag := ha\n  simp only [agreement,Bool.and_eq_true] at hag\n  obtain \u27e8o,ho,_,hc,hl,hr,hperm,_\u27e9 := recover_checked S P hn hag.1.1.1.2 hag.2\n  exact \u27e8o,ho,(agreement_block_permutation T S P o.partition hperm) \u25b8 ha,hc,hl,hr,hperm\u27e9"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/Recovery.lean",
+      "sha256": "0b46c541b53760e67877fe5b9be4954be341b8f29bd62a4b9789a60b3609e9c3",
+      "line": 100,
+      "declaration": "theorem accepted_guards",
+      "verbatim": "theorem accepted_guards (S : Tree) (P : List (List Nat)) (o : Output)\n    (ho : recover S P = some o) :\n    (leaves S).Nodup \u2227 P.flatten.Nodup \u2227\n    (\u2200 b, b \u2208 P \u2192 b \u2260 []) \u2227\n    (\u2200 x, x \u2208 leaves S \u2192 P.flatten.count x = 1) \u2227\n    (\u2200 x, x \u2208 P.flatten \u2192 x \u2208 leaves S) \u2227 pairwiseEmbeddings S P = true := by\n  obtain \u27e8hn,hp,he\u27e9 := recover_some_guards S P o ho\n  refine \u27e8hn,checked_flatten_nodup S P hp,partitionCheck_nonempty _ P hp,?_,?_,he\u27e9\n  \u00b7 intro x hx\n    have hh : (leaves S).all (fun x => P.flatten.count x == 1) = true := by\n      simp only [partitionCheck,Bool.and_eq_true] at hp\n      exact hp.1.2\n    exact beq_iff_eq.1 (List.all_eq_true.1 hh x hx)\n  \u00b7 intro x hx\n    exact partitionCheck_subset _ P hp hx"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/FinalWork.lean",
+      "sha256": "e9e7acd538ab031b655d343bf4b24a8f095c41cc4d95d7946527fc5a8dbbb922",
+      "line": 13,
+      "declaration": "def guardCharge",
+      "verbatim": "def guardCharge (S : Tree) (P : List (List Nat)) : Nat :=\n  4096 * (treeNodes S + P.flatten.length + P.length + 2)^8"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/FinalWork.lean",
+      "sha256": "e9e7acd538ab031b655d343bf4b24a8f095c41cc4d95d7946527fc5a8dbbb922",
+      "line": 18,
+      "declaration": "def colorCharge",
+      "verbatim": "def colorCharge (S : Tree) (P : List (List Nat)) : Nat :=\n  32 * (leaves S).length * (P.flatten.length + P.length + 1)"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/FinalWork.lean",
+      "sha256": "e9e7acd538ab031b655d343bf4b24a8f095c41cc4d95d7946527fc5a8dbbb922",
+      "line": 28,
+      "declaration": "def meterColor",
+      "verbatim": "def meterColor : List (List Nat) \u2192 Nat \u2192 ColorMeasured\n  | [], _ => \u27e80,1\u27e9\n  | b :: P, x =>\n    if b.contains x then \u27e8b.headD 0,8*(b.length+1)+2\u27e9\n    else let r := meterColor P x\n         \u27e8r.value,8*(b.length+1)+r.work+2\u27e9"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/FinalWork.lean",
+      "sha256": "e9e7acd538ab031b655d343bf4b24a8f095c41cc4d95d7946527fc5a8dbbb922",
+      "line": 41,
+      "declaration": "theorem meterColor_work",
+      "verbatim": "theorem meterColor_work (P : List (List Nat)) (x : Nat) :\n    (meterColor P x).work \u2264 32*(P.flatten.length+P.length+1) := by\n  induction P with\n  | nil => simp [meterColor]\n  | cons b P ih =>\n    simp only [meterColor]\n    split <;> simp only [List.flatten_cons,List.length_append,List.length_cons]\n    \u00b7 omega\n    \u00b7 omega"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/FinalWork.lean",
+      "sha256": "e9e7acd538ab031b655d343bf4b24a8f095c41cc4d95d7946527fc5a8dbbb922",
+      "line": 51,
+      "declaration": "theorem total_color_work",
+      "verbatim": "theorem total_color_work (P : List (List Nat)) (xs : List Nat) :\n    (xs.map (fun x => (meterColor P x).work)).sum \u2264\n      32*xs.length*(P.flatten.length+P.length+1) := by\n  induction xs with\n  | nil => simp\n  | cons x xs ih =>\n    have hx := meterColor_work P x\n    simp only [List.map_cons,List.sum_cons,List.length_cons]\n    have hh := Nat.add_le_add hx ih\n    have he : 32*(P.flatten.length+P.length+1) +\n        32*xs.length*(P.flatten.length+P.length+1) =\n        32*(xs.length+1)*(P.flatten.length+P.length+1) := by\n      simp only [Nat.mul_add,Nat.add_mul,Nat.mul_one]\n      omega\n    exact he \u25b8 hh"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/FinalWork.lean",
+      "sha256": "e9e7acd538ab031b655d343bf4b24a8f095c41cc4d95d7946527fc5a8dbbb922",
+      "line": 72,
+      "declaration": "def meterRecover",
+      "verbatim": "def meterRecover (S : Tree) (P : List (List Nat)) : RecoveryMeasured :=\n  if inputCheck S P then\n    let g := meterGenerate S (blockColor P) (P.length - 1)\n    \u27e8g.measured.receipt.outputs.head?,guardCharge S P + g.measured.work + colorCharge S P + 1\u27e9\n  else \u27e8none,guardCharge S P\u27e9"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/FinalWork.lean",
+      "sha256": "e9e7acd538ab031b655d343bf4b24a8f095c41cc4d95d7946527fc5a8dbbb922",
+      "line": 78,
+      "declaration": "theorem meterRecover_value",
+      "verbatim": "theorem meterRecover_value (S : Tree) (P : List (List Nat)) :\n    (meterRecover S P).value = recover S P := by\n  simp only [meterRecover,recover,meterGenerate_receipt]\n  split <;> rfl"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/FinalWork.lean",
+      "sha256": "e9e7acd538ab031b655d343bf4b24a8f095c41cc4d95d7946527fc5a8dbbb922",
+      "line": 83,
+      "declaration": "theorem checked_flatten_perm",
+      "verbatim": "theorem checked_flatten_perm (S : Tree) (P : List (List Nat))\n    (hn : (leaves S).Nodup) (hp : partitionCheck (leaves S) P = true) :\n    P.flatten.Perm (leaves S) := by\n  apply List.perm_iff_count.2\n  intro x\n  by_cases hx : x \u2208 leaves S\n  \u00b7 have hh : (leaves S).all (fun x => P.flatten.count x == 1) = true := by\n      simp only [partitionCheck,Bool.and_eq_true] at hp\n      exact hp.1.2\n    rw [beq_iff_eq.1 (List.all_eq_true.1 hh x hx),List.nodup_iff_count_of_mem.1 hn x hx]\n  \u00b7 have hxP : x \u2209 P.flatten := fun hxP => hx (partitionCheck_subset _ P hp hxP)\n    rw [List.count_eq_zero_of_not_mem hxP,List.count_eq_zero_of_not_mem hx]"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/FinalWork.lean",
+      "sha256": "e9e7acd538ab031b655d343bf4b24a8f095c41cc4d95d7946527fc5a8dbbb922",
+      "line": 109,
+      "declaration": "def finalPolynomial",
+      "verbatim": "def finalPolynomial (S : Tree) (P : List (List Nat)) : Nat :=\n  (guardCharge S P + colorCharge S P + initialCharge S + 1) +\n    2*(cap (inputResource S)+6)*P.length"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/FinalWork.lean",
+      "sha256": "e9e7acd538ab031b655d343bf4b24a8f095c41cc4d95d7946527fc5a8dbbb922",
+      "line": 116,
+      "declaration": "theorem final_work_bound",
+      "verbatim": "theorem final_work_bound (S : Tree) (P : List (List Nat))\n    (hn : (leaves S).Nodup) (hp : partitionCheck (leaves S) P = true)\n    (he : pairwiseEmbeddings S P = true) :\n    (meterRecover S P).work \u2264 finalPolynomial S P * 2^(P.length - 1) := by\n  have hflat := (checked_flatten_perm S P hn hp).length_eq\n  have hcount := blocks_le_flatten P (partitionCheck_nonempty _ P hp)\n  have hpos := RankDichotomy.inputRank_pos S (blockColor P)\n  rw [checked_rank S P hp] at hpos\n  have hcap : min (P.length - 1) ((leaves S).length - 1) = P.length - 1 := by omega\n  have hguard := (inputCheck_iff S P).2 \u27e8hn,hp,he\u27e9\n  have hcore := generate_work_bound S (blockColor P) (P.length - 1)\n  rw [hcap] at hcore\n  have hfactor : (cap (inputResource S)+6)*(P.length - 1+1)*2^(P.length - 1+1) =\n      (2*(cap (inputResource S)+6)*P.length)*2^(P.length - 1) := by\n    have hlen : P.length - 1+1 = P.length := by omega\n    rw [Nat.pow_succ,hlen]\n    ac_rfl\n  rw [hfactor] at hcore"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/FinalWork.lean",
+      "sha256": "e9e7acd538ab031b655d343bf4b24a8f095c41cc4d95d7946527fc5a8dbbb922",
+      "line": 143,
+      "declaration": "theorem final_work_actual_cost",
+      "verbatim": "theorem final_work_actual_cost (S : Tree) (P : List (List Nat))\n    (hn : (leaves S).Nodup) (hp : partitionCheck (leaves S) P = true)\n    (he : pairwiseEmbeddings S P = true) :\n    \u2203 o, recover S P = some o \u2227 CutRealization.RealizedOutput S o \u2227\n      o.sourceCuts.length = P.length - 1 \u2227\n      (meterRecover S P).work \u2264 finalPolynomial S P * 2^o.sourceCuts.length := by\n  obtain \u27e8o,ho,_,hc,_,hr,_\u27e9 := recover_checked S P hn hp he\n  exact \u27e8o,ho,hr,hc,hc \u25b8 final_work_bound S P hn hp he\u27e9"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/FinalWork.lean",
+      "sha256": "e9e7acd538ab031b655d343bf4b24a8f095c41cc4d95d7946527fc5a8dbbb922",
+      "line": 165,
+      "declaration": "theorem final_work_absorbed",
+      "verbatim": "theorem final_work_absorbed (S : Tree) (P : List (List Nat))\n    (hn : (leaves S).Nodup) (hp : partitionCheck (leaves S) P = true)\n    (he : pairwiseEmbeddings S P = true) (q : Nat) (hq : P.length - 1 \u2264 q)\n    (c : Rat) (hc : 2 \u2264 c) :\n    ((meterRecover S P).work : Rat) \u2264 (finalPolynomial S P : Rat)*c^q := by\n  have hnat := Rat.natCast_le_natCast.2 (final_work_bound S P hn hp he)\n  rw [Rat.natCast_mul,Rat.natCast_pow] at hnat\n  have hbase := qpow_base_mono 2 c (by decide) hc (P.length - 1)\n  have hexp := SourceCoverage.qpow_mono c (by grind) hq\n  have hpow := Rat.le_trans hbase hexp\n  have hpoly : 0 \u2264 (finalPolynomial S P : Rat) := Rat.natCast_le_natCast.2 (Nat.zero_le _)\n  exact Rat.le_trans hnat (Rat.mul_le_mul_of_nonneg_left hpow hpoly)"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/OriginalGraph.lean",
+      "sha256": "1f228db7d7df4cbe7d368747fbffef83641b6a52bc2629be350504bb7c322d88",
+      "line": 60,
+      "declaration": "def ResidualAdj",
+      "verbatim": "def ResidualAdj (T : Tree) (cuts : List RMAF.Vertex) (u v : RMAF.Vertex) : Prop :=\n  Adj T u v \u2227 \u2200 p, p \u2208 cuts \u2192\n    \u00ac (u = p.dropLast \u2227 v = p) \u2227 \u00ac (v = p.dropLast \u2227 u = p)"
+    },
+    {
+      "grade": "READ copied actual source statement; proof/consumer interpretation in CONSUMER-TRACE",
+      "source": "research/rmaf/algorithm/verification/final-cuts-2026-10-15/isolated/Realization.lean",
+      "sha256": "d440b98eeff7fd5955532d804063817f615fd92f3da5e0c049453af8f712bcb9",
+      "line": 29,
+      "declaration": "def RealizedOutput",
+      "verbatim": "def RealizedOutput (T : Tree) (o : Output) : Prop :=\n  GoodCuts o.sourceCuts \u2227\n  (\u2200 p, p \u2208 o.sourceCuts \u2192 Valid T p) \u2227\n  \u2203 components : List (RMAF.Vertex \u00d7 List Nat),\n    components.map Prod.fst = o.sourceCuts ++ [[]] \u2227\n    components.map Prod.snd = o.partition \u2227\n    (\u2200 r L, (r,L) \u2208 components \u2192 ComponentLabels T o.sourceCuts r L) \u2227\n    (components.map Prod.fst).Nodup \u2227\n    (\u2200 v, Valid T v \u2192 \u2203 r, r \u2208 components.map Prod.fst \u2227 ResidualWalk T o.sourceCuts r v) \u2227\n    (\u2200 r, r \u2208 components.map Prod.fst \u2192 \u2200 s, s \u2208 components.map Prod.fst \u2192\n      (ResidualWalk T o.sourceCuts r s \u2194 r = s)) \u2227\n    (\u2200 v, Valid T v \u2192 \u2203 a x, LeafAt T a x \u2227 ResidualWalk T o.sourceCuts v a) \u2227\n    o.partition.length = o.sourceCuts.length + 1"
+    }
+  ],
+  "primary_canonical_import_body_map": "PROVENANCE-MAP.json",
+  "all_origin_inventory": "AXIOM-INVENTORY.json",
+  "read_author_prose": [
+    "RESULT.md",
+    "COST-MODEL.md",
+    "INTERFACE.md",
+    "FIRST-GAP.md"
+  ],
+  "read_canonical_receipt": "results/algorithm-universal233-final-cuts-replay-20261015T105812Z/certificate.json",
+  "read_bound_result": "results/algorithm-universal233-final-cuts-20261015T105907Z.json",
+  "interface_printer_inspected": "Actual source contains only import FinalRegression and18 #check lines,no declarations; not executed/reused",
+  "inferred_not_kernel_extracted": [
+    "SOURCE-COST-REVIEW conservative guard/color/source correspondence",
+    "semantic actual original-graph interpretation and remaining main-call obligations",
+    "accepted bit-cost model and serialization interpretation"
+  ],
+  "background_unverified": "none used to support a mathematical conclusion",
+  "candidate_negative_controls": "4 rejected explicit false propositions; excluded from positive modules",
+  "forbidden_contacts": "none; no live main/allgood/genericforest/outputstate or other fresh-reviewer implementation; no author/child contact",
+  "same_lineage_extra_replications": 0,
+  "fresh_context_prose_referee": "PENDING separate root assignment,no self-credit"
+}

@@ -1,0 +1,18 @@
+{
+  "frozen_before_route_search": true,
+  "scope": "GLOBAL-Q finite development instrument; not independent certification",
+  "positive": [
+    {"id":"singleton", "S":"a", "T":"a", "opt":0},
+    {"id":"identical", "S":[["a","b"],["c","d"]], "T":[["a","b"],["c","d"]], "opt":0},
+    {"id":"bad-triple", "S":[["a","c"],"b"], "T":[["a","b"],"c"], "opt":1},
+    {"id":"crossing", "S":[["a","c"],["b","d"]], "T":[["a","b"],["c","d"]], "opt":2}
+  ],
+  "corruptions": [
+    {"id":"wrong-topology", "S":[["a","c"],"b"], "T":[["a","b"],"c"], "claimed_opt":0, "reject":true},
+    {"id":"empty-source-piece", "S":["a","b"], "cuts":[[0,1],[0,2]], "reject":true},
+    {"id":"false-star-one-edge", "spokes":3, "threshold":1, "claimed_balanced_with_one_edge":true, "reject":true}
+  ],
+  "search_proposal": "Q2-ONE: every optimum source quotient with b edges has one edge whose deletion leaves at most floor(b/2) optimum residual edges in each component",
+  "failure_condition": "An exact original optimum K with no such quotient edge kills Q2-ONE only; it does not refute safe-cover existence or one-optimum coverage.",
+  "pilot": "One six-leaf source-target pair, all original source-cut subsets up to its first successful cut count; record elapsed wall time. No larger run is authorized by this control file."
+}

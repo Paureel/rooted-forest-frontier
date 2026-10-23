@@ -1,0 +1,296 @@
+{
+  "scope": "producer development controls; not fresh independent verification",
+  "utc": "2026-10-14T14:51:13.584194+00:00",
+  "seconds": 0.00036299999919719994,
+  "positive_count": 8,
+  "wrong_output_twins": 8,
+  "malformed_count": 4,
+  "outside_premise_count": 1,
+  "null": "exact-zero",
+  "comparison_mutant": "CAUGHT",
+  "rows": [
+    {
+      "case": "R1-close-both",
+      "verdict": "EXACT-PASS",
+      "values": {
+        "parent_count": 2,
+        "parent_cost": 2,
+        "left_regions": {
+          "a": [
+            ""
+          ]
+        },
+        "left_boundary": "a",
+        "left_count": 1,
+        "left_cost": 0,
+        "right_regions": {
+          "b": [
+            ""
+          ]
+        },
+        "right_boundary": "b",
+        "right_count": 1,
+        "right_cost": 0,
+        "kind": "closeBoth",
+        "toll": 2
+      }
+    },
+    {
+      "case": "R2-extend-left",
+      "verdict": "EXACT-PASS",
+      "values": {
+        "parent_count": 2,
+        "parent_cost": 1,
+        "left_regions": {
+          "a": [
+            ""
+          ]
+        },
+        "left_boundary": "a",
+        "left_count": 1,
+        "left_cost": 0,
+        "right_regions": {
+          "b": [
+            ""
+          ]
+        },
+        "right_boundary": "b",
+        "right_count": 1,
+        "right_cost": 0,
+        "kind": "extendLeft",
+        "toll": 1
+      }
+    },
+    {
+      "case": "R3-extend-right",
+      "verdict": "EXACT-PASS",
+      "values": {
+        "parent_count": 2,
+        "parent_cost": 1,
+        "left_regions": {
+          "a": [
+            ""
+          ]
+        },
+        "left_boundary": "a",
+        "left_count": 1,
+        "left_cost": 0,
+        "right_regions": {
+          "b": [
+            ""
+          ]
+        },
+        "right_boundary": "b",
+        "right_count": 1,
+        "right_cost": 0,
+        "kind": "extendRight",
+        "toll": 1
+      }
+    },
+    {
+      "case": "R4-merge",
+      "verdict": "EXACT-PASS",
+      "values": {
+        "parent_count": 1,
+        "parent_cost": 0,
+        "left_regions": {
+          "o": [
+            ""
+          ]
+        },
+        "left_boundary": "o",
+        "left_count": 1,
+        "left_cost": 0,
+        "right_regions": {
+          "o": [
+            ""
+          ]
+        },
+        "right_boundary": "o",
+        "right_count": 1,
+        "right_cost": 0,
+        "kind": "merge",
+        "toll": 0
+      }
+    },
+    {
+      "case": "R5-parent-closed-child-root",
+      "verdict": "EXACT-PASS",
+      "values": {
+        "parent_count": 2,
+        "parent_cost": 2,
+        "left_regions": {
+          "ab": [
+            "",
+            "0",
+            "1"
+          ]
+        },
+        "left_boundary": "ab",
+        "left_count": 1,
+        "left_cost": 0,
+        "right_regions": {
+          "c": [
+            ""
+          ]
+        },
+        "right_boundary": "c",
+        "right_count": 1,
+        "right_cost": 0,
+        "kind": "closeBoth",
+        "toll": 2
+      }
+    },
+    {
+      "case": "R6-unused-child-root",
+      "verdict": "EXACT-PASS",
+      "values": {
+        "parent_count": 3,
+        "parent_cost": 3,
+        "left_regions": {
+          "a": [
+            "0"
+          ],
+          "b": [
+            "1"
+          ]
+        },
+        "left_boundary": null,
+        "left_count": 2,
+        "left_cost": 2,
+        "right_regions": {
+          "c": [
+            ""
+          ]
+        },
+        "right_boundary": "c",
+        "right_count": 1,
+        "right_cost": 0,
+        "kind": "closeBoth",
+        "toll": 1
+      }
+    },
+    {
+      "case": "R7-extend-unused-other-root",
+      "verdict": "EXACT-PASS",
+      "values": {
+        "parent_count": 3,
+        "parent_cost": 2,
+        "left_regions": {
+          "a": [
+            ""
+          ]
+        },
+        "left_boundary": "a",
+        "left_count": 1,
+        "left_cost": 0,
+        "right_regions": {
+          "b": [
+            "0"
+          ],
+          "c": [
+            "1"
+          ]
+        },
+        "right_boundary": null,
+        "right_count": 2,
+        "right_cost": 2,
+        "kind": "extendLeft",
+        "toll": 0
+      }
+    },
+    {
+      "case": "R8-repeated-label-survivors",
+      "verdict": "EXACT-PASS",
+      "values": {
+        "parent_count": 3,
+        "parent_cost": 2,
+        "left_regions": {
+          "o": [
+            "",
+            "0"
+          ],
+          "b": [
+            "1"
+          ]
+        },
+        "left_boundary": "o",
+        "left_count": 2,
+        "left_cost": 1,
+        "right_regions": {
+          "o": [
+            "",
+            "1"
+          ],
+          "c": [
+            "0"
+          ]
+        },
+        "right_boundary": "o",
+        "right_count": 2,
+        "right_cost": 1,
+        "kind": "merge",
+        "toll": 0
+      }
+    },
+    {
+      "case": "omit-close-toll",
+      "verdict": "CORRUPTION-CAUGHT-CLEAN-TWIN-PASS"
+    },
+    {
+      "case": "parent-closed-root-is-not-child-boundary",
+      "verdict": "CORRUPTION-CAUGHT-CLEAN-TWIN-PASS"
+    },
+    {
+      "case": "unused-root-invented",
+      "verdict": "CORRUPTION-CAUGHT-CLEAN-TWIN-PASS"
+    },
+    {
+      "case": "double-count-merge",
+      "verdict": "CORRUPTION-CAUGHT-CLEAN-TWIN-PASS"
+    },
+    {
+      "case": "charge-extended-open",
+      "verdict": "CORRUPTION-CAUGHT-CLEAN-TWIN-PASS"
+    },
+    {
+      "case": "merge-equal-valued-distinct-indices",
+      "verdict": "CORRUPTION-CAUGHT-CLEAN-TWIN-PASS"
+    },
+    {
+      "case": "fill-unused-child-root",
+      "verdict": "CORRUPTION-CAUGHT-CLEAN-TWIN-PASS"
+    },
+    {
+      "case": "lose-closed-root-owner",
+      "verdict": "CORRUPTION-CAUGHT-CLEAN-TWIN-PASS"
+    },
+    {
+      "case": "duplicate-index",
+      "verdict": "INPUT-REJECTED",
+      "reason": "duplicate enumeration"
+    },
+    {
+      "case": "omitted-index",
+      "verdict": "INPUT-REJECTED",
+      "reason": "incomplete enumeration"
+    },
+    {
+      "case": "overlap",
+      "verdict": "INPUT-REJECTED",
+      "reason": "overlapping supports"
+    },
+    {
+      "case": "wrong-root-owner",
+      "verdict": "INPUT-REJECTED",
+      "reason": "wrong root owner"
+    },
+    {
+      "case": "raw-leafless-open-incursion",
+      "verdict": "OUTSIDE-CHILD-ROOT-LIVENESS",
+      "reason": "nonlive child root"
+    }
+  ],
+  "source_sha256": "2335059dfb4c33f3f038ccebd855bd574c4eebe7d187058e98ed385d2cc3e70d",
+  "fixtures_sha256": "6faf7bd90f2b599da43a29fd53caa5fe787bfeca94ff102809488a201b0d6448"
+}

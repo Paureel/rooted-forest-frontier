@@ -1,0 +1,45 @@
+{
+  "schema": "mathematical-ordinary-source-binding-additive-v2",
+  "scope": "Narrow computation/projection amendment, not algorithm/cost acceptance. Interpret the frozen v1 package with only this explicit additional field projection and its three existing-procedure bodies.",
+  "base": {
+    "directory": "../math_pseudocode_v1",
+    "manifest": "../math_pseudocode_v1/IDENTITY-MANIFEST-v1.json",
+    "manifest_sha256": "ae6b35f2235de3a9a76435467bd2bd7405129b9199ab2175a1a49fb9e9b4fcff",
+    "binding": "../math_pseudocode_v1/SOURCE-BINDING-v1.json",
+    "binding_sha256": "14689d75c73b0039f912578eece9b5cabc93d13d15cafeadd56a0386befb67c0",
+    "projection_sha256": "bea8491ac52e3cec5f7a61fd673c7d2c0187540e30f27ea3214b463ac51f5a04",
+    "procedure_appendix_sha256": "d5f87b83baa49236c92db749b214dca5a10156c6da27d60de0928f2a14c410f0",
+    "preservation": "All original v1 files and their seal stay byte-identical; their projection defect is preserved as history. Unmentioned interfaces,body identities,fields,fees,input conventions and remaining proof obligations are inherited."
+  },
+  "amendment": "PROJECTION-AMENDMENT-v2.md",
+  "additional_omitted_fields": [
+    {"module": "RWInitial", "qualified_record": "OrdinaryDispatch.RecoveryLocalWork.Built", "field": "coloring", "type": "Nat", "declaration_line": 9, "producer_lines": [12,14], "consumer_lines": [14,44]},
+    {"module": "RWInitial", "qualified_record": "OrdinaryDispatch.RecoveryLocalWork.InitialMeasured", "field": "coloring", "type": "Nat", "declaration_line": 37, "producer_lines": [44,45], "retained_consumers": []}
+  ],
+  "effective_recovery_schemas": {
+    "Built": "value:GTree only; unbox to the actual GTree",
+    "InitialMeasured": "value:Option(Nat*GTree) only; unbox to the actual option",
+    "Group": "origin,labels,color retained; leaf color is the actual color(x).value",
+    "Receipt": "outputs,refusals,visited,childAttempts,pruned all retained",
+    "effect": "Only the two exact coloring fields and their work-only dependency arithmetic/loads/constructor slots are newly omitted. No global color/coloring rule."
+  },
+  "existing_procedure_interpretations": {
+    "RWInitial.meterBuild": "Evaluate the same color callback once per reached leaf,retain its actual value,build the same groups/trees and paths in left-before-right order; no omitted .work or .coloring read.",
+    "RWInitial.meterInitial": "Retain first Leaves/Nodup,second Leaves/length,real build and capped budget; return the same actual Option pair; omit the dead coloring diagnostic.",
+    "RWInitial.meterGenerate": "Same init.value case and same real meterRun invocation or retained malformed Receipt; no init.coloring consumer exists."
+  },
+  "source_identity": {
+    "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/outer_paidcase_combine_source_20261016T120127Z/build/RWInitial.lean",
+    "source_sha256": "ed0845f599bbf1966343f325b6f2eb6c5a3a6c919006d36863f52724b9663f8a",
+    "namespace": "OrdinaryDispatch.RecoveryLocalWork",
+    "ranges": [[6,14],[34,45],[82,86]],
+    "saved_view_sha256": {
+      "Built_InitialMeasured": "9d80945ab720d4343d185f5aa8ee04446a67e83796f8b60e33268d99cc3e5234",
+      "meterBuild_meterInitial": "e1416c1e228b09a1d20b7e0defcb97d4bf3b2506767a5b1987d7fabbb043c3e5",
+      "meterGenerate": "fcb3911ded3a1086512b2c424c7b788b92a3b3501c3a43f5a703e1b1cc90343e"
+    },
+    "use": "Existing frozen computation/type views only; no new source body,proof value,peer outcome or transitive grant."
+  },
+  "control_constants": {"source": "frozen v1 literal text bound, transferred by deletion only", "S":367507,"Fmax_slots":735030,"Fmax_heap_words":2205090,"Kmax_return_tags":367508,"new_runtime_procedures":0,"new_runtime_callsites":0},
+  "remaining": "Whole canonical value/source-occurrence coupling,actual local/global cost/width/space proof and independent whole acceptance remain open. Use the v2 projection for later counting/source interfaces; no actual v1 run/cost theorem is asserted."
+}

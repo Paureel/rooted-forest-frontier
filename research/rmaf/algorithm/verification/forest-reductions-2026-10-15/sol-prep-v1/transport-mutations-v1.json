@@ -1,0 +1,374 @@
+{
+  "status": "CONTROLS-PASS",
+  "startedUTC": "2026-10-15T10:36:35.305885+00:00",
+  "roundtripCount": 8,
+  "roundtrips": [
+    {
+      "id": "root",
+      "targetRoundtrip": true,
+      "sourceRoundtripCount": 1,
+      "originalTarget": [
+        0,
+        1
+      ],
+      "expandedTarget": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "triple-singleton-last",
+      "targetRoundtrip": true,
+      "sourceRoundtripCount": 2,
+      "originalTarget": [
+        [
+          0,
+          1
+        ],
+        2
+      ],
+      "expandedTarget": [
+        [
+          0,
+          1
+        ],
+        2
+      ]
+    },
+    {
+      "id": "triple-singleton-first",
+      "targetRoundtrip": true,
+      "sourceRoundtripCount": 2,
+      "originalTarget": [
+        [
+          0,
+          1
+        ],
+        2
+      ],
+      "expandedTarget": [
+        [
+          0,
+          1
+        ],
+        2
+      ]
+    },
+    {
+      "id": "nonroot",
+      "targetRoundtrip": true,
+      "sourceRoundtripCount": 1,
+      "originalTarget": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "expandedTarget": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "id": "different-address-swapped",
+      "targetRoundtrip": true,
+      "sourceRoundtripCount": 1,
+      "originalTarget": [
+        [
+          0,
+          1
+        ],
+        2
+      ],
+      "expandedTarget": [
+        [
+          0,
+          1
+        ],
+        2
+      ]
+    },
+    {
+      "id": "unrelated-components",
+      "targetRoundtrip": true,
+      "sourceRoundtripCount": 2,
+      "originalTarget": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "expandedTarget": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "id": "root-swapped",
+      "targetRoundtrip": true,
+      "sourceRoundtripCount": 1,
+      "originalTarget": [
+        1,
+        0
+      ],
+      "expandedTarget": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "nonzero-cost-cherry",
+      "targetRoundtrip": true,
+      "sourceRoundtripCount": 1,
+      "originalTarget": [
+        [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        3
+      ],
+      "expandedTarget": [
+        [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        3
+      ]
+    }
+  ],
+  "sequence": {
+    "T": [
+      [
+        0,
+        1
+      ],
+      2
+    ],
+    "ss": [
+      2,
+      [
+        0,
+        1
+      ]
+    ],
+    "F": [
+      [
+        2
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "singleton": 2,
+    "a": 0,
+    "b": 1,
+    "z": 3,
+    "cleanup": {
+      "T": [
+        0,
+        1
+      ],
+      "ss": [
+        [
+          0,
+          1
+        ]
+      ],
+      "F": [
+        [
+          1,
+          0
+        ]
+      ],
+      "cost": 0
+    },
+    "contract": {
+      "T": 3,
+      "ss": [
+        3
+      ],
+      "F": [
+        [
+          3
+        ]
+      ],
+      "cost": 0
+    },
+    "expand": {
+      "T": [
+        0,
+        1
+      ],
+      "ss": [
+        [
+          0,
+          1
+        ]
+      ],
+      "F": [
+        [
+          0,
+          1
+        ]
+      ],
+      "cost": 0
+    },
+    "reconstructedF": [
+      [
+        0,
+        1
+      ],
+      [
+        2
+      ]
+    ],
+    "reconstructedCost": 0
+  },
+  "null": {
+    "T": null,
+    "ss": [],
+    "F": [],
+    "valid": true,
+    "cost": 0
+  },
+  "mutations": [
+    {
+      "id": "hull-unary-erasure",
+      "clean": [
+        "0",
+        "00",
+        "000",
+        "01"
+      ],
+      "corrupt": [
+        "0",
+        "000",
+        "01"
+      ],
+      "expected": [
+        "0",
+        "00",
+        "000",
+        "01"
+      ],
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': ['0', '000', '01'], 'expected': ['0', '00', '000', '01']}"
+    },
+    {
+      "id": "source-cost-minus-one",
+      "clean": 0,
+      "corrupt": 1,
+      "expected": 0,
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': 1, 'expected': 0}"
+    },
+    {
+      "id": "omit-reverse-direction",
+      "clean": [
+        "forward",
+        "reverse"
+      ],
+      "corrupt": [
+        "forward"
+      ],
+      "expected": [
+        "forward",
+        "reverse"
+      ],
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': ['forward'], 'expected': ['forward', 'reverse']}"
+    },
+    {
+      "id": "fabricated-reconstruction",
+      "clean": true,
+      "corrupt": false,
+      "expected": true,
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': False, 'expected': True}"
+    },
+    {
+      "id": "missing-component-readiness",
+      "clean": false,
+      "corrupt": true,
+      "expected": false,
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': True, 'expected': False}"
+    },
+    {
+      "id": "accept-nonfresh-z",
+      "clean": false,
+      "corrupt": true,
+      "expected": false,
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': True, 'expected': False}"
+    },
+    {
+      "id": "drop-surviving-label",
+      "clean": [
+        3,
+        2
+      ],
+      "corrupt": [
+        3
+      ],
+      "expected": [
+        3,
+        2
+      ],
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': [3], 'expected': [3, 2]}"
+    },
+    {
+      "id": "weak-endpoint-clearance",
+      "clean": false,
+      "corrupt": true,
+      "expected": false,
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': True, 'expected': False}"
+    },
+    {
+      "id": "reassignment-cost-equality",
+      "clean": false,
+      "corrupt": true,
+      "expected": false,
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': True, 'expected': False}"
+    },
+    {
+      "id": "duplicate-state-labels",
+      "clean": false,
+      "corrupt": true,
+      "expected": false,
+      "caught": true,
+      "finding": "{'check': 'record equality', 'got': True, 'expected': False}"
+    }
+  ],
+  "seconds": 0.0006444999999075662
+}

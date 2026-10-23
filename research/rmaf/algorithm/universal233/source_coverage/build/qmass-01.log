@@ -1,0 +1,151 @@
+research/rmaf/algorithm/universal233/source_coverage/RationalMass.lean:58:2: error: unsolved goals
+case isTrue
+b : Rat
+q delta : Nat
+hb : 2 ≤ b
+ih :
+  ∀ (t : GTree) (d : List Group) (c : List Vertex),
+    (origins t).Nodup → scaledQMass b (q + c.length) (run q t d c).outputs * b ^ (colorCount t - 1) ≤ b ^ q
+t : GTree
+d : List Group
+c : List Vertex
+g : Group
+hn : (origins t).Nodup
+v : Vertex
+hv : GroupLeafAt t v g
+hvr : v ≠ []
+hr : ∀ (u : GTree) (a : GLeafErase t u v g), colorCount t - 1 ≤ colorCount u - 1 + delta
+h✝ : g.origin = []
+⊢ 0 ≤ b ^ (q + delta)
+research/rmaf/algorithm/universal233/source_coverage/RationalMass.lean:60:4: error: unsolved goals
+case isFalse.isTrue
+b : Rat
+q delta : Nat
+hb : 2 ≤ b
+ih :
+  ∀ (t : GTree) (d : List Group) (c : List Vertex),
+    (origins t).Nodup → scaledQMass b (q + c.length) (run q t d c).outputs * b ^ (colorCount t - 1) ≤ b ^ q
+t : GTree
+d : List Group
+c : List Vertex
+g : Group
+hn : (origins t).Nodup
+v : Vertex
+hv : GroupLeafAt t v g
+hvr : v ≠ []
+hr : ∀ (u : GTree) (a : GLeafErase t u v g), colorCount t - 1 ≤ colorCount u - 1 + delta
+h✝¹ : ¬g.origin = []
+h✝ : c.contains g.origin = true
+⊢ 0 ≤ b ^ (q + delta)
+research/rmaf/algorithm/universal233/source_coverage/RationalMass.lean:62:6: error: unsolved goals
+case h_1
+b : Rat
+q delta : Nat
+hb : 2 ≤ b
+ih :
+  ∀ (t : GTree) (d : List Group) (c : List Vertex),
+    (origins t).Nodup → scaledQMass b (q + c.length) (run q t d c).outputs * b ^ (colorCount t - 1) ≤ b ^ q
+t : GTree
+d : List Group
+c : List Vertex
+g : Group
+hn : (origins t).Nodup
+v : Vertex
+hv : GroupLeafAt t v g
+hvr : v ≠ []
+hr : ∀ (u : GTree) (a : GLeafErase t u v g), colorCount t - 1 ≤ colorCount u - 1 + delta
+h✝¹ : ¬g.origin = []
+h✝ : ¬c.contains g.origin = true
+x✝ : Option GTree
+heq✝ : erase g.origin t = none
+⊢ 0 ≤ b ^ (q + delta)
+research/rmaf/algorithm/universal233/source_coverage/RationalMass.lean:91:13: error: unsolved goals
+case zero.finish
+b : Rat
+hb : 2 ≤ b
+t : GTree
+d : List Group
+c : List Vertex
+hn : (origins t).Nodup
+hc : choose (normalize t) = Choice.finish
+hr : colorCount t = 1
+⊢ 1 + 0 ≤ 1
+research/rmaf/algorithm/universal233/source_coverage/RationalMass.lean:94:12: error: unsolved goals
+case zero.one
+b : Rat
+hb : 2 ≤ b
+t : GTree
+d : List Group
+c : List Vertex
+hn : (origins t).Nodup
+g : Group
+hc : choose (normalize t) = Choice.one g
+⊢ 0 ≤ 1
+research/rmaf/algorithm/universal233/source_coverage/RationalMass.lean:95:14: error: unsolved goals
+case zero.two
+b✝ : Rat
+hb : 2 ≤ b✝
+t : GTree
+d : List Group
+c : List Vertex
+hn : (origins t).Nodup
+a b : Group
+hc : choose (normalize t) = Choice.two a b
+⊢ 0 ≤ 1
+research/rmaf/algorithm/universal233/source_coverage/RationalMass.lean:96:17: error: unsolved goals
+case zero.refuse
+b : Rat
+hb : 2 ≤ b
+t : GTree
+d : List Group
+c : List Vertex
+hn : (origins t).Nodup
+why : String
+hc : choose (normalize t) = Choice.refuse why
+⊢ 0 ≤ 1
+research/rmaf/algorithm/universal233/source_coverage/RationalMass.lean:101:13: error: unsolved goals
+case succ.finish
+b : Rat
+hb : 2 ≤ b
+q : Nat
+ih :
+  ∀ (t : GTree) (d : List Group) (c : List Vertex),
+    (origins t).Nodup → scaledQMass b (q + c.length) (run q t d c).outputs * b ^ (colorCount t - 1) ≤ b ^ q
+t : GTree
+d : List Group
+c : List Vertex
+hn : (origins t).Nodup
+hnn : (origins (normalize t)).Nodup
+hrank : colorCount (normalize t) = colorCount t
+hc : choose (normalize t) = Choice.finish
+hr : colorCount t = 1
+⊢ b ^ (q + 1) + 0 ≤ b ^ (q + 1)
+research/rmaf/algorithm/universal233/source_coverage/RationalMass.lean:137:17: error: unsolved goals
+case succ.refuse
+b : Rat
+hb : 2 ≤ b
+q : Nat
+ih :
+  ∀ (t : GTree) (d : List Group) (c : List Vertex),
+    (origins t).Nodup → scaledQMass b (q + c.length) (run q t d c).outputs * b ^ (colorCount t - 1) ≤ b ^ q
+t : GTree
+d : List Group
+c : List Vertex
+hn : (origins t).Nodup
+hnn : (origins (normalize t)).Nodup
+hrank : colorCount (normalize t) = colorCount t
+why : String
+hc : choose (normalize t) = Choice.refuse why
+⊢ 0 ≤ b ^ (q + 1)
+research/rmaf/algorithm/universal233/source_coverage/RationalMass.lean:150:2: error: unsolved goals
+case isFalse
+t : Tree
+color : Nat → Nat
+q : Nat
+b : Rat
+hb : 2 ≤ b
+h✝ : ¬(leaves t).Nodup
+⊢ 0 ≤ b ^ min q ((leaves t).length - 1)
+real 0.44
+user 0.40
+sys 0.18

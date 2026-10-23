@@ -1,0 +1,7 @@
+Lean.Environment.constants (env : Lean.Environment) : Lean.ConstMap
+Lean.Environment.allImportedModuleNames (env : Lean.Environment) : Array Lean.Name
+Lean.collectAxioms {m : Type → Type} [Monad m] [Lean.MonadEnv m] (constName : Lean.Name) : m (Array Lean.Name)
+Lean.ConstantInfo.isUnsafe : Lean.ConstantInfo → Bool
+Lean.SMap.toList.{u, v} {α : Type u} {β : Type v} [BEq α] [Hashable α] (m : Lean.SMap α β) : List (α × β)
+Lean.Environment.getModuleIdxFor? (env : Lean.Environment) (declName : Lean.Name) : Option Lean.ModuleIdx
+Lean.Environment.checked (self : Lean.Environment) : Task Lean.Kernel.Environment

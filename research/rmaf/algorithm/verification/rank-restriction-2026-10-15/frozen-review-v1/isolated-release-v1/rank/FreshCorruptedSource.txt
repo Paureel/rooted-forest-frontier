@@ -1,0 +1,52 @@
+import SourceValidity
+import RationalMass
+
+/-! Actual source-rank hypotheses and the stronger all-emission cost branch.
+The feasibility test is a finite partition/embedding/monochromaticity check;
+it does not call an optimum oracle or assume anything about generated traces. -/
+namespace Universal233.RankDichotomy
+open RMAF CoreProgram SourceCoverage VertexGeometry
+
+def inputRank (T : Tree) (color : Nat → Nat) : Nat :=
+  (dedupNat ((leaves T).map color)).length
+
+def RankFeasible (T : Tree) (color : Nat → Nat) : Prop :=
+  ∃ bs : List (List Nat), partitionCheck (leaves T) bs = true ∧
+    pairwiseEmbeddings T bs = true ∧
+    (∀ b, b ∈ bs → LabelMonochromatic color b) ∧ bs.length = inputRank T color
+
+theorem inputRank_pos (T : Tree) (color : Nat → Nat) : 0 < inputRank T color := by
+  have hp := colorCount_pos (fromTree color [] T)
+  simpa only [colorCount, fromTree_colors, inputRank] using hp
+
+theorem generate_partition_cost (T : Tree) (color : Nat → Nat) (q : Nat) (o : Output)
+    (ho : o ∈ (generate T color q).outputs) : o.partition.length = o.sourceCuts.length + 1 := by
+  obtain ⟨_,_,_,_,_,_,_,_,_,_,hcost⟩ := CutRealization.generate_original_realization T color q o ho
+  exact hcost
+
+theorem infeasible_cost (T : Tree) (color : Nat → Nat) (q : Nat)
+    (hf : ¬RankFeasible T color) (o : Output) (ho : o ∈ (generate T color q).outputs) :
+    inputRank T color ≤ o.sourceCuts.length := by
+  have hlo := generate_color_cost T color q o ho
+  change inputRank T color ≤ o.sourceCuts.length + 1 at hlo
+  apply Classical.byContradiction
+  intro hn
+  have heq : o.sourceCuts.length + 1 = inputRank T color := by omega
+  have hvalid := Assembly.generated_source_valid T color q o ho
+  have hlen := generate_partition_cost T color q o ho
+  exact hf ⟨o.partition,hvalid.1,hvalid.2,CutRealization.generate_monochromatic T color q o ho,by omega⟩
+
+theorem below_rank_outputs_empty (T : Tree) (color : Nat → Nat) (q : Nat)
+    (hq : q < inputRank T color - 1) : (generate T color q).outputs = [] := by
+  cases he : (generate T color q).outputs with
+  | nil => rfl
+  | cons o os =>
+      have ho : o ∈ (generate T color q).outputs := by rw [he]; simp
+      have hlo := generate_color_cost T color q o ho
+      have hhi := generate_output_budget T color q o ho
+      change inputRank T color ≤ o.sourceCuts.length + 1 at hlo
+      omega
+
+end Universal233.RankDichotomy
+
+-- deliberately changed byte control

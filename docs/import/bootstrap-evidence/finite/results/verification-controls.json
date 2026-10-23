@@ -1,0 +1,125 @@
+{
+  "method": "independent edge-subset enumeration",
+  "rows": [
+    {
+      "id": "one-leaf-null",
+      "expected_k": 1,
+      "result": {
+        "k": 1,
+        "forest": [
+          "a"
+        ],
+        "cut_masks": [
+          0,
+          0
+        ],
+        "cut_counts": [
+          0,
+          0
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "two-leaf-null",
+      "expected_k": 1,
+      "result": {
+        "k": 1,
+        "forest": [
+          "(a,b)"
+        ],
+        "cut_masks": [
+          0,
+          0
+        ],
+        "cut_counts": [
+          0,
+          0
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "three-leaf-identical",
+      "expected_k": 1,
+      "result": {
+        "k": 1,
+        "forest": [
+          "((a,b),c)"
+        ],
+        "cut_masks": [
+          0,
+          0
+        ],
+        "cut_counts": [
+          0,
+          0
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "three-leaf-conflict",
+      "expected_k": 2,
+      "result": {
+        "k": 2,
+        "forest": [
+          "(a,b)",
+          "c"
+        ],
+        "cut_masks": [
+          1,
+          4
+        ],
+        "cut_counts": [
+          1,
+          1
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "crossed-quartet",
+      "expected_k": 3,
+      "result": {
+        "k": 3,
+        "forest": [
+          "(a,b)",
+          "c",
+          "d"
+        ],
+        "cut_masks": [
+          17,
+          36
+        ],
+        "cut_counts": [
+          2,
+          2
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "label-mismatch",
+      "rejected": true,
+      "reason": "leaf labels differ"
+    },
+    {
+      "id": "duplicate-label",
+      "rejected": true,
+      "reason": "duplicate leaf label"
+    },
+    {
+      "id": "not-binary",
+      "rejected": true,
+      "reason": "input must be a rooted binary tree"
+    },
+    {
+      "id": "planted-wrong-comparison",
+      "rejected": true,
+      "reason": "exact integer mismatch: 2 != 3"
+    }
+  ],
+  "fixture_sha256": "f286236779308232e32d6400bd891165b985fed8edbd46779f00101a9b402d31",
+  "implementation_sha256": "8b192eeafd55338efdd9b233ab6d19e69269368237e33572b7c464e186c3f234"
+}

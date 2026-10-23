@@ -1,0 +1,5 @@
+import OWBudgets
+#check OrdinaryDispatch.OptimizerLocalWork.scan_trial_budget_range
+#print axioms OrdinaryDispatch.OptimizerLocalWork.scan_trial_budget_range
+#check OrdinaryDispatch.OptimizerLocalWork.actual_trial_budget_cap
+#print axioms OrdinaryDispatch.OptimizerLocalWork.actual_trial_budget_cap

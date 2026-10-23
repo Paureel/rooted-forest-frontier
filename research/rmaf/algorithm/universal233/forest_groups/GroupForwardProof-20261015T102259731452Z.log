@@ -1,0 +1,42 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/build/GroupForwardProof.lean:12:10: error: Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce
+
+case w
+t u s : Tree
+U : List Nat
+F : List (List Nat)
+hu : restrict U t = some u
+hsU : leaves s ⊆ U
+⊢ family (leaves s) F = family (leaves s) F
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/build/GroupForwardProof.lean:15:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (family (leaves s) F).all (restrictionAgrees u s)
+in the target expression
+  (partitionCheck (leaves s) (family (leaves s) F) && (family (leaves s) F).all (targetAgrees (some u) s) &&
+      pairwiseEmbeddings s (family (leaves s) F)) =
+    (partitionCheck (leaves s) (family (leaves s) F) && (family (leaves s) F).all (targetAgrees (some t) s) &&
+      pairwiseEmbeddings s (family (leaves s) F))
+
+t u s : Tree
+U : List Nat
+F : List (List Nat)
+hu : restrict U t = some u
+hsU : leaves s ⊆ U
+he : (family (leaves s) F).all (restrictionAgrees u s) = (family (leaves s) F).all (restrictionAgrees t s)
+⊢ (partitionCheck (leaves s) (family (leaves s) F) && (family (leaves s) F).all (targetAgrees (some u) s) &&
+      pairwiseEmbeddings s (family (leaves s) F)) =
+    (partitionCheck (leaves s) (family (leaves s) F) && (family (leaves s) F).all (targetAgrees (some t) s) &&
+      pairwiseEmbeddings s (family (leaves s) F))
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/build/GroupForwardProof.lean:8:25: warning: This simp argument is unused:
+  targetAgrees
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [sourceCheck]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/build/GroupForwardProof.lean:33:13: error: Application type mismatch: The argument
+  local_proper (some t) ss Q hp hq own U hU
+has type
+  proper (localTarget (some t) U) (owned ss U) = true
+but is expected to have type
+  proper (some u) (owned ss U) = true
+in the application
+  And.intro (local_proper (some t) ss Q hp hq own U hU)

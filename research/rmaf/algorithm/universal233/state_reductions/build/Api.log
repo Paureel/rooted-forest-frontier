@@ -1,0 +1,28 @@
+research/rmaf/algorithm/universal233/state_reductions/build/Api.lean:2:7: error(lean.unknownIdentifier): Unknown constant `List.eq_singleton_iff_unique_mem`
+research/rmaf/algorithm/universal233/state_reductions/build/Api.lean:3:7: error(lean.unknownIdentifier): Unknown constant `List.eq_singleton_iff`
+List.length_erase_of_mem.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {a : α} {l : List α} (h : a ∈ l) :
+  (l.erase a).length = l.length - 1
+research/rmaf/algorithm/universal233/state_reductions/build/Api.lean:5:7: error(lean.unknownIdentifier): Unknown constant `List.length_erase_add_one`
+List.mem_erase_of_ne.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {a b : α} {l : List α} (ab : a ≠ b) :
+  a ∈ l.erase b ↔ a ∈ l
+List.mem_of_mem_erase.{u_1} {α : Type u_1} [BEq α] {a b : α} {l : List α} (h : a ∈ l.erase b) : a ∈ l
+research/rmaf/algorithm/universal233/state_reductions/build/Api.lean:8:7: error(lean.unknownIdentifier): Unknown constant `List.erase_eq_filter`
+research/rmaf/algorithm/universal233/state_reductions/build/Api.lean:9:7: error(lean.unknownIdentifier): Unknown constant `List.nodup_flatten`
+research/rmaf/algorithm/universal233/state_reductions/build/Api.lean:10:7: error(lean.unknownIdentifier): Unknown constant `List.nodup_iff_count_le_one`
+List.eq_nil_iff_forall_not_mem.{u_1} {α : Type u_1} {l : List α} : l = [] ↔ ∀ (a : α), ¬a ∈ l
+List.count_le_count_cons.{u_1} {α : Type u_1} [BEq α] {a b : α} {l : List α} : List.count a l ≤ List.count a (b :: l)
+research/rmaf/algorithm/universal233/state_reductions/build/Api.lean:13:7: error(lean.unknownIdentifier): Unknown constant `List.count_le_count_of_sublist`
+research/rmaf/algorithm/universal233/state_reductions/build/Api.lean:14:7: error(lean.unknownIdentifier): Unknown constant `List.count_eq_one`
+List.count_erase.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {a b : α} {l : List α} :
+  List.count a (l.erase b) = List.count a l - if (b == a) = true then 1 else 0
+List.count_erase_self.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {a : α} {l : List α} :
+  List.count a (l.erase a) = List.count a l - 1
+List.erase_cons_head.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] (a : α) (l : List α) : (a :: l).erase a = l
+List.filter_eq_self.{u_1} {α✝ : Type u_1} {p : α✝ → Bool} {l : List α✝} :
+  List.filter p l = l ↔ ∀ (a : α✝), a ∈ l → p a = true
+research/rmaf/algorithm/universal233/state_reductions/build/Api.lean:19:7: error(lean.unknownIdentifier): Unknown constant `List.pairwise_of_pairwise_cons`
+List.nodup_iff_pairwise_ne.{u_1} {α✝ : Type u_1} {l : List α✝} : l.Nodup ↔ List.Pairwise (fun x1 x2 => x1 ≠ x2) l
+List.filter_sublist.{u_1} {α : Type u_1} {p : α → Bool} {l : List α} : (List.filter p l).Sublist l
+List.erase_sublist.{u_1} {α : Type u_1} [BEq α] {a : α} {l : List α} : (l.erase a).Sublist l
+List.isEmpty_iff.{u_1} {α : Type u_1} {l : List α} : l.isEmpty = true ↔ l = []
+List.subset_def.{u_1} {α : Type u_1} {l₁ l₂ : List α} : l₁ ⊆ l₂ ↔ ∀ {a : α}, a ∈ l₁ → a ∈ l₂

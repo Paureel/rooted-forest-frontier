@@ -1,0 +1,81 @@
+import ActualInspection
+namespace GenericForest.ScalarBits
+open Universal233.WholeSourceWork
+
+def bit (b : Bool) : Nat := if b then 1 else 0
+def decode : List Bool → Nat | []=>0 | b::bs=>bit b+2*decode bs
+
+inductive Order where | less | equal | greater deriving DecidableEq,Repr
+
+def digitOrder (a b : Bool) : Order := if a==b then .equal else if a then .greater else .less
+
+def compareBits : List Bool → List Bool → Charged Order
+ | [],[]=>⟨.equal,2⟩
+ | a::as,[]=>let r:=compareBits as [];⟨if r.value=.equal then digitOrder a false else r.value,r.work+8⟩
+ | [],b::bs=>let r:=compareBits [] bs;⟨if r.value=.equal then digitOrder false b else r.value,r.work+8⟩
+ | a::as,b::bs=>let r:=compareBits as bs;⟨if r.value=.equal then digitOrder a b else r.value,r.work+8⟩
+termination_by xs ys=>xs.length+ys.length
+
+def OrderSpec (r : Order) (x y : Nat) : Prop :=
+ match r with | .less=>x<y | .equal=>x=y | .greater=>y<x
+
+theorem digit_spec (a b : Bool) : OrderSpec (digitOrder a b) (bit a) (bit b) := by cases a <;> cases b <;> simp [OrderSpec,digitOrder,bit]
+
+theorem compareBits_spec (xs ys : List Bool) : OrderSpec (compareBits xs ys).value (decode xs) (decode ys) := by
+ induction xs generalizing ys with
+ | nil=>
+  induction ys with
+  | nil=>simp [compareBits,OrderSpec,decode]
+  | cons b bs ih=>
+   cases b <;> cases hr : (compareBits [] bs).value <;>
+    simp_all [compareBits,OrderSpec,digitOrder,decode,bit] <;> omega
+ | cons a as ih=>
+  cases ys with
+  | nil=>
+   have h:=ih []
+   cases a <;> cases hr : (compareBits as []).value <;>
+    simp_all [compareBits,OrderSpec,digitOrder,decode,bit] <;> omega
+  | cons b bs=>
+   have h:=ih bs
+   cases a <;> cases b <;> cases hr : (compareBits as bs).value <;>
+    simp_all [compareBits,OrderSpec,digitOrder,decode,bit] <;> omega
+
+theorem compareBits_work (xs ys : List Bool) : (compareBits xs ys).work≤8*(xs.length+ys.length+1) := by
+ induction xs generalizing ys with
+ | nil=>
+  induction ys with
+  | nil=>simp [compareBits,OrderSpec,decode]
+  | cons b bs ih=>simp only [compareBits,List.length_nil,List.length_cons] at *;omega
+ | cons a as ih=>
+  cases ys with
+  | nil=>have h:=ih [];simp only [compareBits,List.length_nil,List.length_cons] at *;omega
+  | cons b bs=>have h:=ih bs;simp only [compareBits,List.length_cons] at *;omega
+
+def equalBits (xs ys : List Bool) : Charged Bool :=
+ let r:=compareBits xs ys;⟨decide (r.value=.equal),r.work+2⟩
+def leBits (xs ys : List Bool) : Charged Bool :=
+ let r:=compareBits xs ys;⟨decide (r.value≠.greater),r.work+2⟩
+def maxBits (xs ys : List Bool) : Charged (List Bool) :=
+ let r:=compareBits xs ys
+ let out:=if r.value=.greater then xs else ys
+ ⟨out,r.work+4*(out.length+1)⟩
+
+@[simp] theorem equalBits_value (xs ys : List Bool) : (equalBits xs ys).value=(decode xs==decode ys) := by
+ have h:=compareBits_spec xs ys
+ cases hr : (compareBits xs ys).value <;> simp only [hr,OrderSpec] at h <;> simp [equalBits,hr] <;> omega
+@[simp] theorem leBits_value (xs ys : List Bool) : (leBits xs ys).value=decide (decode xs≤decode ys) := by
+ have h:=compareBits_spec xs ys
+ cases hr : (compareBits xs ys).value <;> simp only [hr,OrderSpec] at h <;> simp [leBits,hr] <;> omega
+@[simp] theorem maxBits_value (xs ys : List Bool) : decode (maxBits xs ys).value=max (decode xs) (decode ys) := by
+ have h:=compareBits_spec xs ys
+ cases hr : (compareBits xs ys).value <;> simp only [hr,OrderSpec] at h <;> simp only [maxBits,hr] <;> simp <;> omega
+
+theorem compare_family_work (xs ys : List Bool) :
+ (equalBits xs ys).work≤10*(xs.length+ys.length+1) ∧
+ (leBits xs ys).work≤10*(xs.length+ys.length+1) ∧
+ (maxBits xs ys).work≤12*(xs.length+ys.length+1) := by
+ have h:=compareBits_work xs ys
+ have out : (if (compareBits xs ys).value=Order.greater then xs else ys).length≤xs.length+ys.length:=by split <;> omega
+ simp only [equalBits,leBits,maxBits]
+ omega
+end GenericForest.ScalarBits

@@ -1,0 +1,86 @@
+research/rmaf/algorithm/universal233/final_cut_recovery/Permutations.lean:28:6: error: Type mismatch: After simplification, term
+  ih hh.right hb
+ has type
+  blockForKey P (b.head?.getD 0) = b
+but is expected to have type
+  (if a.head?.getD 0 = b.head?.getD 0 then a else blockForKey P (b.head?.getD 0)) = b
+research/rmaf/algorithm/universal233/final_cut_recovery/Permutations.lean:75:4: error: Tactic `simp` failed with a nested error:
+maximum recursion depth has been reached
+use `set_option maxRecDepth <num>` to increase limit
+use `set_option diagnostics true` to get diagnostic information
+research/rmaf/algorithm/universal233/final_cut_recovery/Permutations.lean:85:25: error(lean.unknownIdentifier): Unknown constant `List.sublist_flatten`
+research/rmaf/algorithm/universal233/final_cut_recovery/Permutations.lean:87:25: error(lean.unknownIdentifier): Unknown constant `List.sublist_flatten`
+research/rmaf/algorithm/universal233/final_cut_recovery/Permutations.lean:151:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (f b).isEmpty
+in the target expression
+  ((fun b => !b.isEmpty) ∘ f) b = !b.isEmpty
+
+L : List Nat
+Q : List (List Nat)
+f : List Nat → List Nat
+h : ∀ (b : List Nat), b ∈ Q → (f b).Perm b
+b : List Nat
+hb : b ∈ Q
+⊢ ((fun b => !b.isEmpty) ∘ f) b = !b.isEmpty
+research/rmaf/algorithm/universal233/final_cut_recovery/Permutations.lean:153:34: error: Ambiguous term
+  Vertex
+Possible interpretations:
+  VertexGeometry.Vertex : Type
+  
+  RMAF.Vertex : Type
+research/rmaf/algorithm/universal233/final_cut_recovery/Permutations.lean:153:34: error: Ambiguous term
+  Vertex
+Possible interpretations:
+  VertexGeometry.Vertex : Type
+  
+  RMAF.Vertex : Type
+research/rmaf/algorithm/universal233/final_cut_recovery/Permutations.lean:157:30: error(lean.unknownIdentifier): Unknown constant `List.contains_eq_false_iff`
+research/rmaf/algorithm/universal233/final_cut_recovery/Permutations.lean:169:8: warning: declaration uses `sorry`
+research/rmaf/algorithm/universal233/final_cut_recovery/Permutations.lean:169:66: warning: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+research/rmaf/algorithm/universal233/final_cut_recovery/Permutations.lean:185:45: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  minimalVertices (f c) T
+in the target expression
+  ((fun c => disjointVertices (minimalVertices b T) (minimalVertices c T)) ∘ f) c =
+    disjointVertices (minimalVertices b T) (minimalVertices c T)
+
+case cons.e_x
+T : Tree
+f : List Nat → List Nat
+b : List Nat
+Q : List (List Nat)
+ih : (∀ (b : List Nat), b ∈ Q → (f b).Perm b) → pairwiseEmbeddings T (List.map f Q) = pairwiseEmbeddings T Q
+h : ∀ (b_1 : List Nat), b_1 ∈ b :: Q → (f b_1).Perm b_1
+c : List Nat
+hc : c ∈ Q
+⊢ ((fun c => disjointVertices (minimalVertices b T) (minimalVertices c T)) ∘ f) c =
+    disjointVertices (minimalVertices b T) (minimalVertices c T)
+research/rmaf/algorithm/universal233/final_cut_recovery/Permutations.lean:193:85: error: unsolved goals
+T S : Tree
+Q : List (List Nat)
+f : List Nat → List Nat
+h : ∀ (b : List Nat), b ∈ Q → (f b).Perm b
+b : List Nat
+hb : b ∈ Q
+⊢ (restrictionAgrees T S ∘ f) b =
+    match restrict b T, restrict b S with
+    | some s, some v => sameShape s v
+    | x, x_1 => false
+research/rmaf/algorithm/universal233/final_cut_recovery/Permutations.lean:197:33: warning: This simp argument is unused:
+  restrict_label_perm T (h b hb)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [restrictionAgrees, restrict_label_perm S (h b hb)]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/final_cut_recovery/Permutations.lean:197:64: warning: This simp argument is unused:
+  restrict_label_perm S (h b hb)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [restrictionAgrees, restrict_label_perm T (h b hb)]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

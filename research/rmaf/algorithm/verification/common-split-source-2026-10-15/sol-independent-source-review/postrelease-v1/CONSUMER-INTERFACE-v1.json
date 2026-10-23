@@ -1,0 +1,163 @@
+{
+  "target": "OrdinaryCommonSplit.common_split_derived_minimum",
+  "producer": "DerivedMinimum",
+  "global_minimum_assumed": false,
+  "return": "IsMinimum T S (commonSplitValue m n mr ng)",
+  "exact_value": "if mr=m and ng=n then m+n else m+n+1",
+  "local_minima_definition": "Each IsMinimum includes an actual agreement-forest witness with exact cost and a lower bound for every actual agreement forest.",
+  "legitimate_public_inputs": [
+    {
+      "fields": [
+        "T",
+        "S",
+        "tx",
+        "sx",
+        "ty",
+        "sy",
+        "mxT",
+        "mxS",
+        "myT",
+        "myS"
+      ],
+      "type": "actual binary Nat-labelled Trees"
+    },
+    {
+      "fields": [
+        "nt",
+        "ns"
+      ],
+      "type": "distinct original leaf labels"
+    },
+    {
+      "fields": [
+        "hpT",
+        "hpS"
+      ],
+      "type": "actual partitionCheck(leaves original,[X,Y])=true; entails both nonempty, disjoint, full and identical labels"
+    },
+    {
+      "fields": [
+        "edgeT",
+        "edgeS"
+      ],
+      "type": "actual nonroot address p, subtree lookup u, leaves u permutation Y or X; independently oriented"
+    },
+    {
+      "fields": [
+        "htx",
+        "hsx",
+        "hty",
+        "hsy"
+      ],
+      "type": "literal original restrictions"
+    },
+    {
+      "fields": [
+        "hMXT",
+        "hMXS",
+        "hMYT",
+        "hMYS"
+      ],
+      "type": "literal representative restriction plus swap rename"
+    },
+    {
+      "fields": [
+        "hx",
+        "hy"
+      ],
+      "type": "actual x in X, y in Y"
+    },
+    {
+      "fields": [
+        "frT",
+        "frS",
+        "fgT",
+        "fgS"
+      ],
+      "type": "markers absent from both original leaf sets"
+    },
+    {
+      "fields": [
+        "hm",
+        "hn",
+        "hr",
+        "hg"
+      ],
+      "type": "four TRUE witnessed LOCAL minima"
+    }
+  ],
+  "no_public_desired_property_fields": [
+    "global optimum",
+    "projected agreement",
+    "safe cover",
+    "reachability",
+    "marker normalization",
+    "merged topology",
+    "merged original embeddings",
+    "output list",
+    "polynomial witness extraction"
+  ],
+  "actual_consumers": [
+    {
+      "consumer": "original_sum_lower",
+      "inputs_proved": "actual split clip count plus both actual clipped AFs",
+      "result": "lower bound for every original AF"
+    },
+    {
+      "consumer": "equal_sum_marked_upper",
+      "inputs_proved": "equality-case crossing existence and arbitrary-block marked projection in both directions",
+      "result": "any global AF at m+n forces both marked stability inequalities"
+    },
+    {
+      "consumer": "stable_marked_normal_form",
+      "inputs_proved": "actual marked lift, singleton deletion contradiction, partition-selected marker block and permutations",
+      "result": "unmarked local agreement, both original marked hull clearances, head topology and exact count"
+    },
+    {
+      "consumer": "original_union_glue",
+      "inputs_proved": "actual one-hole cut contexts, both marked head comparisons, all four orientation branches",
+      "result": "actual union block topology"
+    },
+    {
+      "consumer": "merge_embeddings",
+      "inputs_proved": "original split side guards, respective input local/marked embeddings and cut-hull replacement",
+      "result": "merged original hull clearance separately for T and S"
+    },
+    {
+      "consumer": "original_forest_merge_of_checked_embeddings",
+      "inputs_proved": "literal concatenation, actual union topology, independently derived T and S embeddings",
+      "result": "actual global AF and one-block saving"
+    },
+    {
+      "consumer": "DerivedMinimum stable branch",
+      "inputs_proved": "two actual marked minimum witnesses plus prior consumers",
+      "result": "exists original AF cost m+n and every-AF lower bound"
+    },
+    {
+      "consumer": "DerivedMinimum unstable branch",
+      "inputs_proved": "two actual unmarked minimum witnesses; concatenate; equality contradiction from forced stability",
+      "result": "exists original AF cost m+n+1 and every-AF lower bound"
+    }
+  ],
+  "orientation_scope": "Actual proof case splits cover XX,XY,YX,YY independently; no missing finite bucket is assumed impossible.",
+  "representative_scope": "The public theorem quantifies arbitrary actual representatives and fresh markers. Projection proves contraction topology for arbitrary representatives. No separately exported numerical representative-invariance theorem was found or newly proved.",
+  "caller_distinction": "This is an existential mathematical graph theorem conditioned on four witnessed true local minima. It is not an executable caller computing those minima or extracting an arbitrary output forest.",
+  "future_caller_obligations": [
+    "guarded source-case applicability and outside minimum",
+    "literal marked callback construction and bounded budgets",
+    "paid capped queries",
+    "executable exact output-list/forest reconstruction",
+    "state validity and strict recursive progress",
+    "mutual recursion and termination",
+    "global recurrence/runtime/base"
+  ],
+  "excluded_and_open": [
+    "new caller1066 and live applicability",
+    "all3main",
+    "global runtime",
+    "base",
+    "compiled-machine",
+    "novelty",
+    "new independent mathematical replication"
+  ]
+}

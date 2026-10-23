@@ -1,0 +1,35 @@
+{
+  "instrument_sha256": "404a19b13905c68b5a6f7ea630887a52904b9d79944a0fe6bed544db91ed8b03",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "7eea19a9328fe34f405062167f395782a2b29a2d658af8d88f3af6b216326091",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3460634580005717,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "153c319c3b2c2d54befa690a48a3fbbbd2db2dc8c18aefa0b02fc0ddf68015f9",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.33118054199985636,
+      "resource_stop": null,
+      "log_sha256": "861899b2ec84744ec90eba617574cbd7865afedc8321ab0baadb9c6befea3b8d"
+    },
+    {
+      "module": "OptimizerSourceBodies",
+      "source_sha256": "a9c725ee697b9942f75567f4e38e195251c7a0d74c44cef0a13069748a367c98",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.954250917000536,
+      "resource_stop": null,
+      "log_sha256": "9f83335ce0873970244e627f2a6e2f670374cd6c9807fbbe88974bba6babbcaf"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('OptimizerSourceBodies', \"/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_global_assembly_20261016T103025Z/build/OptimizerSourceBodies.lean:14:53: error: unexpected token 'theorem'; expected term\\n/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_global_assembly_20261016T103025Z/build/OptimizerSourceBodies.lean:18:7: error: unsolved goals\\ncase none\\nS : Tree\\nr : Scan\\nh : r.selected = none\\n\u22a2 (sorry S r).value = { search := r, output := none, recoveries := [] }\\n/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_global_assembly_20261016T103025Z/build/OptimizerSourceBodies.lean:19:9: error: unsolved goals\\ncase some\\nS : Tree\\nr : Scan\\nq : Nat\\nF : CommonForest\\nh : r.selected = some (q, F)\\n\u22a2 (sorry S r).value =\\n    { search := r, output := FinalCutRecovery.recover S F, recoveries := [(F, FinalCutRecovery.recover S F)] }\\n/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_global_assembly_20261016T103025Z/build/OptimizerSourceBodies.lean:18:15: warning: declaration uses `sorry`\\n/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_global_assembly_20261016T103025Z/build/OptimizerSourceBodies.lean:19:60: warning: This simp argument is unused:\\n  RecoveryLocalWork.meterRecover_value\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp [sourceFinishMeter, finish, h]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_global_assembly_20261016T103025Z/build/OptimizerSourceBodies.lean:27:7: error: unsolved goals\\ncase none\\nS : Tree\\nr : Scan\\nh : r.selected = none\\n\u22a2 (sorry S r).work \u2264 12\\n/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_global_assembly_20261016T103025Z/build/OptimizerSourceBodies.lean:27:15: warning: declaration uses `sorry`\\n/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_global_assembly_20261016T103025Z/build/OptimizerSourceBodies.lean:79:3: error: Type mismatch: After simplification, term\\n  bound\\n has type\\n  @LE.le Nat instLENat ((meterPreflight T S).work + 8) (0 + (preflightFee N + 12 * 0 + 32) + 0)\\nbut is expected to have type\\n  @LE.le Nat instLENat\\n    (if false = true then\\n        {\\n          value :=\\n            (sourceFinishMeter S\\n                (meterScan (fun b => { value := FastOrdinary.solve b T S, work := w b }) 0\\n                    (leaves T).length).value).value,\\n          work :=\\n            (meterPreflight T S).work +\\n                  (meterScan (fun b => { value := FastOrdinary.solve b T S, work := w b }) 0 (leaves T).length).work +\\n                (sourceFinishMeter S\\n                    (meterScan (fun b => { value := FastOrdinary.solve b T S, work := w b }) 0\\n                        (leaves T).length).value).work +\\n              8 }\\n      else\\n        { value := { search := { selected := none, trials := [] }, output := none, recoveries := [] },\\n          work := (meterPreflight T S).work + 8 }).work\\n    ((List.map (fun t => w t.fst)\\n            (if false = true then finish S (scan (fun q => FastOrdinary.solve q T S) 0 (leaves T).length)\\n                else\\n                  { search := { selected := none, trials := [] }, output := none,\\n                    recoveries := [] }).search.trials).sum +\\n        (preflightFee N +\\n            12 *\\n              (if false = true then finish S (scan (fun q => FastOrdinary.solve q T S) 0 (leaves T).length)\\n                    else\\n                      { search := { selected := none, trials := [] }, output := none,\\n                        recoveries := [] }).search.trials.length +\\n          32) +\\n      (List.map (fun call => (RecoveryLocalWork.meterRecover S call.fst).work)\\n          (if false = true then finish S (scan (fun q => FastOrdinary.solve q T S) 0 (leaves T).length)\\n            else { search := { selected := none, trials := [] }, output := none, recoveries := [] }).recoveries).sum)\\n\"))"
+}

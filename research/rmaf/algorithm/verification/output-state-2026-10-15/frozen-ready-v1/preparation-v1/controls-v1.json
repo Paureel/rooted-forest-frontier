@@ -1,0 +1,55 @@
+{
+  "phase":"PRE-CANDIDATE", "candidate_contacts":0, "extra_independent_replications":0,
+  "fixtures": {
+    "target_overlap":{"S":[[0,1],[2,3]],"T":[[0,2],[1,3]],"Q":[[0,1],[2,3]]},
+    "source_overlap":{"S":[[0,2],[1,3]],"T":[[0,1],[2,3]],"Q":[[0,1],[2,3]]},
+    "singleton":{"S":0,"T":0,"Q":[[0]]},
+    "wrong_rooted":{"S":[[0,1],2],"T":[0,[1,2]],"Q":[[0,1,2]]},
+    "grouped":{"T":[[[[0,1],2],[[3,4],[5,6]]],7],"S":[[[0,[1,2]],[[3,5],[4,6]]],7],"Q":[[0,1,2],[3,5],[4,6],[7]]}
+  },
+  "literal_cases":[
+    {"id":"target_overlap_refined","fixture":"target_overlap","F":[[0,1],[2],[3]],"expected":{"Q_checked":true,"source_Q_clear":true,"target_Q_clear":false,"state":true,"original_AF":true,"refines":true,"additional":1,"source_count":2,"sources":[[0,1],[2,3]],"proper":true}},
+    {"id":"target_overlap_Q_invalid","fixture":"target_overlap","F":[[0,1],[2,3]],"expected":{"state":false,"original_AF":false,"refines":true,"additional":0}},
+    {"id":"source_overlap_omitted_guard","fixture":"source_overlap","F":[[0,1],[2,3]],"expected":{"Q_checked":true,"source_Q_clear":false,"target_Q_clear":true,"state":true,"original_AF":false,"refines":true,"sources":[[0,1],[2,3]],"additional":0}},
+    {"id":"full_Q_one_source","fixture":"target_overlap","Q":[[0,1,2,3]],"F":[[0,1],[2],[3]],"expected":{"Q_checked":true,"source_Q_clear":true,"target_Q_clear":true,"source_count":1,"state":true,"original_AF":true,"refines":true,"additional":2,"sources":[[[0,1],[2,3]]]}},
+    {"id":"singleton_Q_zero","fixture":"target_overlap","Q":[[0],[1],[2],[3]],"F":[[0],[1],[2],[3]],"expected":{"Q_checked":true,"source_Q_clear":true,"target_Q_clear":true,"source_count":4,"state":true,"original_AF":true,"refines":true,"additional":0}},
+    {"id":"singleton_Q_forces_refinement","fixture":"target_overlap","Q":[[0],[1],[2],[3]],"F":[[0,1],[2],[3]],"expected":{"state":false,"original_AF":true,"refines":false,"additional":0}},
+    {"id":"singleton_original","fixture":"singleton","F":[[0]],"expected":{"sources":[0],"source_count":1,"Q_checked":true,"source_Q_clear":true,"target_Q_clear":true,"state":true,"original_AF":true,"refines":true,"additional":0,"proper":true}},
+    {"id":"reordered_lists_literal_sources","fixture":"target_overlap","Q":[[3,2],[1,0]],"F":[[3],[2],[1,0]],"expected":{"sources":[[2,3],[0,1]],"state":true,"original_AF":true,"refines":true,"additional":1,"source_count":2}},
+    {"id":"empty_Q_no_empty_Tree","fixture":"target_overlap","Q":[],"F":[[0],[1],[2],[3]],"expected":{"Q_checked":false,"source_count":0,"sources":[],"state":false,"proper":false,"original_AF":true,"refines":false,"additional":4}},
+    {"id":"empty_block_dropped_unchecked","fixture":"target_overlap","Q":[[0,1],[],[2,3]],"F":[[0,1],[2],[3]],"expected":{"Q_checked":false,"source_count":2,"state":true,"proper":true,"original_AF":true,"refines":true,"additional":1,"Q_subtraction":0}},
+    {"id":"absent_block_dropped_unchecked","fixture":"target_overlap","Q":[[0,1],[8],[2,3]],"F":[[0,1],[2],[3]],"expected":{"Q_checked":false,"source_count":2,"sources":[[0,1],[2,3]],"state":true,"additional":1,"Q_subtraction":0}},
+    {"id":"duplicate_block_rejected","fixture":"target_overlap","Q":[[0,1],[0,1],[2,3]],"F":[[0,1],[2],[3]],"expected":{"Q_checked":false,"source_Q_clear":false,"source_count":3,"proper":false,"state":false,"original_AF":true,"additional":0}},
+    {"id":"repeat_label_Q_restriction_ignores_repeat","fixture":"target_overlap","Q":[[0,0,1],[2,3]],"F":[[0,1],[2],[3]],"expected":{"Q_checked":false,"source_count":2,"sources":[[0,1],[2,3]],"proper":true,"state":true,"additional":1}},
+    {"id":"absent_label_inside_Q","fixture":"target_overlap","Q":[[0,1,8],[2,3]],"F":[[0,1],[2],[3]],"expected":{"Q_checked":false,"source_count":2,"sources":[[0,1],[2,3]],"proper":true,"state":true,"additional":1}},
+    {"id":"missing_label_Q_rejected","fixture":"target_overlap","Q":[[0,1],[2]],"F":[[0,1],[2],[3]],"expected":{"Q_checked":false,"proper":false,"state":false,"original_AF":true,"refines":false}},
+    {"id":"empty_final_block_rejected","fixture":"target_overlap","F":[[0,1],[],[2],[3]],"expected":{"state":false,"original_AF":false}},
+    {"id":"repeated_final_label_rejected","fixture":"target_overlap","F":[[0,0,1],[2],[3]],"expected":{"state":false,"original_AF":false}},
+    {"id":"absent_final_label_rejected","fixture":"target_overlap","F":[[0,1],[2],[3],[8]],"expected":{"state":false,"original_AF":false,"refines":false}},
+    {"id":"wrong_rooted_topology_rejected","fixture":"wrong_rooted","F":[[0,1,2]],"expected":{"Q_checked":true,"proper":true,"state":false,"original_AF":false,"refines":true}},
+    {"id":"wrong_rooted_split_accepted","fixture":"wrong_rooted","F":[[0,1],[2]],"expected":{"state":true,"original_AF":true,"additional":1}},
+    {"id":"grouped_B_singletons","fixture":"grouped","F":[[0,1],[2],[3],[5],[4],[6],[7]],"expected":{"Q_checked":true,"source_Q_clear":true,"target_Q_clear":false,"state":true,"original_AF":true,"refines":true,"additional":3,"source_count":4,"sources":[[0,[1,2]],[3,5],[4,6],7]}},
+    {"id":"grouped_B_cheaper","fixture":"grouped","F":[[0,1],[2],[3,5],[4],[6],[7]],"expected":{"state":true,"original_AF":true,"refines":true,"additional":2}},
+    {"id":"grouped_omitted_B_piece","fixture":"grouped","F":[[0,1],[2],[3,5],[7]],"expected":{"state":false,"original_AF":false}},
+    {"id":"grouped_unsplit_A_fabricated_zero","fixture":"grouped","F":[[0,1,2],[3,5],[4],[6],[7]],"expected":{"state":false,"original_AF":false,"additional":1}}
+  ],
+  "partition_banks":[
+    {"fixture":"target_overlap","labels":[0,1,2,3],"denominator":15,"state_accepts":[[[0],[1],[2],[3]],[[0,1],[2],[3]],[[0],[1],[2,3]]],"original_refinement_accepts":[[[0],[1],[2],[3]],[[0,1],[2],[3]],[[0],[1],[2,3]]]},
+    {"fixture":"source_overlap","labels":[0,1,2,3],"denominator":15,"state_accepts":[[[0],[1],[2],[3]],[[0,1],[2],[3]],[[0],[1],[2,3]],[[0,1],[2,3]]],"original_refinement_accepts":[[[0],[1],[2],[3]],[[0,1],[2],[3]],[[0],[1],[2,3]]]}
+  ],
+  "grouping":{
+    "fixture":"grouped","A":[0,1,2],"B":[[3,5],[4,6]],"C":[7],"FA":[[0,1],[2]],"FC":[[7]],
+    "Bsingletons":[[3],[5],[4],[6]],"Bcheaper":[[3,5],[4],[6]],
+    "expected":{"A_cost":1,"C_cost":0,"B_singletons_cost":2,"B_cheaper_cost":1,"parent_singletons_cost":3,"parent_cheaper_cost":2,"B_internal_target_clear":false,"cross_group_clear":true,"source_permutation":true,"actual_sideOutputs_derived":false,"recursive_solver_implemented":false},
+    "mock_calls":[
+      {"id":"q3_singletons","q":3,"contract":true,"groups_ok":true,"choice":"Bsingletons","expected":{"access":true,"calls":1,"child_budget":2,"witness":true,"child_cost":2,"parent_cost":3}},
+      {"id":"q2_cheaper","q":2,"contract":true,"groups_ok":true,"choice":"Bcheaper","expected":{"access":true,"calls":1,"child_budget":1,"witness":true,"child_cost":1,"parent_cost":2}},
+      {"id":"q1_no_budget_completion","q":1,"contract":true,"groups_ok":true,"choice":null,"expected":{"access":true,"calls":1,"child_budget":0,"witness":false,"child_cost":null,"parent_cost":null}},
+      {"id":"q0_no_call","q":0,"contract":true,"groups_ok":true,"choice":null,"expected":{"access":false,"calls":0,"child_budget":null,"witness":false,"child_cost":null,"parent_cost":null}},
+      {"id":"missing_contract_no_access","q":3,"contract":false,"groups_ok":true,"choice":null,"expected":{"access":false,"calls":0,"child_budget":null,"witness":false,"child_cost":null,"parent_cost":null}},
+      {"id":"invalid_group_ownership_no_access","q":3,"contract":true,"groups_ok":false,"choice":null,"expected":{"access":false,"calls":0,"child_budget":null,"witness":false,"child_cost":null,"parent_cost":null}}
+    ]
+  },
+  "limits":{"pilot_cases":4,"pilot_seconds":5,"battery_seconds":15,"max_partition_labels":4,"std_compile_seconds":30},
+  "future_status":{"candidate_proof_acceptance":"OPEN","actual_sideOutputs_premises":"OPEN_UNTIL_RELEASE","full_recursive_contract":"OPEN","algorithm":"OPEN","correctness":"OPEN","smaller_base":"OPEN","fresh_context_prose_referee":"RESERVED_AFTER_SOURCE_REVIEW"}
+}

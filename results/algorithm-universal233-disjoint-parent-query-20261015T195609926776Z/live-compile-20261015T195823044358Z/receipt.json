@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "aaee88fbb9ccb20555966346d0e96754f52dfab822f066cbe9c82b9922e17ec3",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.36459629199998744,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3499361250005677,
+      "resource_stop": null,
+      "log_sha256": "0aaacb2a666f9571a3f24de064846831142a5d01606197d518addb2b11461a14"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0017490829995949753,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "AllGoodParents",
+      "source_sha256": "4f5773cf17c2ece1aee5d7e1716043b1042bdb86df84b3d6588e82b548fe662e",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.7670874579998781,
+      "resource_stop": null,
+      "log_sha256": "ce009ffce104c11c0a640cb2032a697912055f4646df2316158d396a0daa03dd"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('AllGoodParents', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-disjoint-parent-query-20261015T195609926776Z/AllGoodParents.lean:27:13: error: Invalid projection: Projections cannot be used on functions, and\\n  DepthOne.rejected_lower_bound T S rejected\\nhas function type\\n  \u2200 (F : List (List Nat)), agreement T S F = true \u2192 2 \u2264 F.length - 1\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-disjoint-parent-query-20261015T195609926776Z/AllGoodParents.lean:25:82: error: unsolved goals\\nT S : Tree\\nP : Forest\\nq : Nat\\nsame : \u2200 (x : Nat), x \u2208 leaves T \u2194 x \u2208 leaves S\\npart : partitionCheck (leaves S) P = true\\net : pairwiseEmbeddings T P = true\\nes : pairwiseEmbeddings S P = true\\ngood : List.all P (restrictionAgrees T S) = true\\nthree : List.length P = 3\\nrejected : DepthOne.pretest01 T S = DepthOne.Result.rejected\\nha : agreement T S P = true\\n\u22a2 QueryExact T S q (direct P q)\\n'))"
+}

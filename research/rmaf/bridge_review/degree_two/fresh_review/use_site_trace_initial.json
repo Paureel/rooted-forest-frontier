@@ -1,0 +1,68 @@
+[
+  {
+    "site": "DegreeTwo.agreement_replace",
+    "source": "lean/PartitionRefinement.lean:121",
+    "inputs": [
+      "original agreement",
+      "nonempty b0,b1",
+      "permutation (b0++b1) B",
+      "restriction agreement b0",
+      "restriction agreement b1",
+      "EmbSub t b0 B",
+      "EmbSub t b1 B",
+      "EmbSub u b0 B",
+      "EmbSub u b1 B",
+      "disjoint supports t",
+      "disjoint supports u"
+    ],
+    "remaining_transport": [
+      "restriction agreement b0",
+      "restriction agreement b1",
+      "disjoint supports u"
+    ],
+    "verdict": "conditional consumer confirmed"
+  },
+  {
+    "site": "DegreeTwo.agreement_replace_and_clear",
+    "source": "lean/PartitionRefinement.lean:233",
+    "additional_inputs": [
+      "old marks mt in t",
+      "old marks mu in u",
+      "v in old t support",
+      "v absent from both new t supports"
+    ],
+    "verdict": "conditional consumer confirmed; same cross-tree gap"
+  },
+  {
+    "site": "G3 component degree transfer",
+    "source": "lean/DegreeCounting.lean:95",
+    "inputs": [
+      "B subset S",
+      "v in B support",
+      "v not selected B occurrence",
+      "actualDegree t S v = 2"
+    ],
+    "verdict": "confirmed with explicit nonterminal premise"
+  },
+  {
+    "site": "G4 unique affected occurrence",
+    "source": "lean/PartitionRefinement.lean:183",
+    "inputs": [
+      "original pairwiseEmbeddings on before++B::after",
+      "v in B support"
+    ],
+    "verdict": "other list occurrences avoid v; applying local refinement still requires cross-tree facts"
+  },
+  {
+    "site": "PureBridge.ExchangeSystem.clearRest",
+    "source": "research/rmaf/pure_bridge/lean/PureBridge.lean:79",
+    "remaining": [
+      "concrete remainder representation and validity including old marks/interactions",
+      "locate occupied piece or use unchanged avoiding state",
+      "prove component-to-piece degree hypotheses",
+      "cross-tree refinement of occupied piece",
+      "preserve full forest state and define cost correspondence"
+    ],
+    "verdict": "uninstantiated by scoped release"
+  }
+]

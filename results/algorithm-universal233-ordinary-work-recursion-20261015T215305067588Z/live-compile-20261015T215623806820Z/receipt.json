@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "8483bfeb83e0c9b38e2d82fba5628b08e7e409a383df7e2c6bd4687611d350d0",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.32926462499926856,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.33835691700005555,
+      "resource_stop": null,
+      "log_sha256": "519c08d354eede47e282fd0c13cf47e09413aee1849871ab1e96075ce40f66c3"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016313329997501569,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "ForestNatSplit",
+      "source_sha256": "b12262555736987afafd8c1501b82c24fa70ab72ca91683bba21aeb54e2f11e1",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8444277910002711,
+      "resource_stop": null,
+      "log_sha256": "20b57935ba077a79880a60f159bba6080f443e3a05d0cabbe75907f7bbbfa6e9"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('ForestNatSplit', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatSplit.lean:17:57: error: Function expected at\\n  Rat.le_refl\\nbut this term has type\\n  ?m.64 \u2264 ?m.64\\n\\nNote: Expected a function because this term is being applied to the argument\\n  _\\n'))"
+}

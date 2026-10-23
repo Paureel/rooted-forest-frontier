@@ -1,0 +1,57 @@
+import BinaryProducerScheduleWork
+namespace GenericForest.BinaryProducer
+open BinaryProvider GenericForest.ScalarBits GenericForest.CheckCorrespondence Universal233.WholeSourceWork
+
+def properPair (T S : BinaryProvider.Tree) : Charged Bool :=
+ let a:=leavesCopy T;let b:=leavesCopy S
+ let n:=nodupLabels a.value;let m:=nodupLabels b.value
+ let c:=containedLabels a.value b.value;let d:=containedLabels b.value a.value
+ ⟨n.value&&m.value&&c.value&&d.value,a.work+b.work+n.work+m.work+c.work+d.work+8⟩
+
+theorem properPair_value (T S : BinaryProvider.Tree) :
+ (properPair T S).value=Universal233.DepthOne.proper (treeValue T) (treeValue S) := by
+ let W:=(checkerCapacity (some T) [S] [] []).value.length
+ have ready:=checkerCapacity_ready (some T) [S] [] []
+ have tc : TreeWidth W T:=ready.target T (by simp)
+ have sc : TreeWidth W S:=ready.sources S (by simp)
+ have a:=(nodupLabels_projects W (leavesBits T) tc).1
+ have b:=(nodupLabels_projects W (leavesBits S) sc).1
+ have c:=(containedLabels_projects W (leavesBits T) (leavesBits S) tc sc).1
+ have d:=(containedLabels_projects W (leavesBits S) (leavesBits T) sc tc).1
+ simp only [id_eq,meterNodup_value,meterContained_value,leaves_projection] at a b c d
+ simp only [properPair,leavesCopy_value,a,b,c,d,Universal233.DepthOne.proper]
+ apply Bool.eq_iff_iff.mpr
+ simp only [Bool.and_eq_true,decide_eq_true_eq,RestrictionBridge.contained,List.all_eq_true,List.contains_iff]
+ constructor
+ · rintro ⟨⟨⟨nt,ns⟩,ts⟩,st⟩
+   exact ⟨⟨nt,ns⟩,(List.perm_ext_iff_of_nodup nt ns).2 (fun x=>⟨ts x,st x⟩)⟩
+ · rintro ⟨⟨nt,ns⟩,perm⟩
+   exact ⟨⟨⟨nt,ns⟩,fun x hx=>perm.mem_iff.mp hx⟩,fun x hx=>perm.mem_iff.mpr hx⟩
+
+/-- Local two-tree agreement evaluator. This does not assert the separately
+owned general RMAF agreement/K reduction or its weighted assembly. -/
+def agreementPair (T S : BinaryProvider.Tree) (F : BinaryProvider.Forest) : Charged Bool :=
+ let c:=checkerCapacity (some T) [S] [] F
+ let a:=leavesCopy T;let b:=leavesCopy S
+ let p:=partitionLabels c.value a.value F;let q:=partitionLabels c.value b.value F
+ let r:=allChecks (restrictionAgreesLabels T S) F
+ let e:=pairwiseLabels T F;let f:=pairwiseLabels S F
+ ⟨p.value&&q.value&&r.value&&e.value&&f.value,c.work+a.work+b.work+p.work+q.work+r.work+e.work+f.work+12⟩
+
+theorem agreementPair_value (T S : BinaryProvider.Tree) (F : BinaryProvider.Forest) :
+ (agreementPair T S F).value=RMAF.agreement (treeValue T) (treeValue S) (forestValue F) := by
+ let C:=(checkerCapacity (some T) [S] [] F).value
+ have r:=checkerCapacity_ready (some T) [S] [] F
+ have tc : TreeWidth C.length T:=r.target T (by simp)
+ have sc : TreeWidth C.length S:=r.sources S (by simp)
+ have a:=(partitionLabels_projects C.length C (leavesBits T) F r.width r.positive tc r.forest r.forestCells).1
+ have b:=(partitionLabels_projects C.length C (leavesBits S) F r.width r.positive sc r.forest r.forestCells).1
+ have c:=(allChecks_projects C.length blockValue (restrictionAgreesLabels T S)
+   (meterRestrictionAgrees (treeValue T) (treeValue S)) F
+   (fun B hB=>restrictionAgreesLabels_projects C.length T S B tc sc (r.forest B hB))).1
+ have d:=(pairwiseLabels_projects C.length T F tc r.forest).1
+ have e:=(pairwiseLabels_projects C.length S F sc r.forest).1
+ simp only [id_eq,C,forestValue,meterPartition_value,meterAll_value,meterRestrictionAgrees_value,meterPairwise_value,leaves_projection] at a b c d e
+ simp only [agreementPair,leavesCopy_value,a,b,c,d,e,RMAF.agreement]
+ rfl
+end GenericForest.BinaryProducer

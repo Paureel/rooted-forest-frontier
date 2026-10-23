@@ -1,0 +1,3 @@
+import ProducerGeneratorChoose
+#check GenericForest.BinaryProducer.Generator.chooseBits_value
+#print axioms GenericForest.BinaryProducer.Generator.chooseBits_value

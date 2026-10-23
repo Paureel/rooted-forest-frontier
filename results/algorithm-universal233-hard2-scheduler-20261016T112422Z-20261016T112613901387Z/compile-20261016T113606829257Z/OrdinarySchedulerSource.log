@@ -1,0 +1,61 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerSource.lean:18:112: error: unsolved goals
+actual : GenericForest.FrontierWork.Ordinary
+T S : Tree
+U : List Nat
+b : Nat
+⊢ (match restrict U T, restrict U S with
+      | some t', some s' =>
+        { value := Option.map (fun F => (F.length - 1, F)) (GenericForest.solve actual (some t') [s'] b),
+          work :=
+            (meterRestrict U T).work + (meterRestrict U S).work +
+                (Option.map List.length (GenericForest.solve actual (some t') [s'] b)).getD 0 +
+              12 }
+      | x, x_1 => { value := none, work := (meterRestrict U T).work + (meterRestrict U S).work + 8 }).value =
+    match restrict U T, restrict U S with
+    | some t, some s => Option.map (fun F => (List.length F - 1, F)) (GenericForest.solve actual (some t) [s] b)
+    | x, x_1 => none
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerSource.lean:69:10: error: unsolved goals
+case some
+actual : GenericForest.FrontierWork.Ordinary
+T S : Tree
+Q : List (List Nat)
+b : Nat
+js : List (PaidQueries.Job (List Nat) MafScheduler.Forest)
+h : MafScheduler.prepare T S Q = some js
+⊢ {
+      answer :=
+        Option.map (fun xs => List.flatMap Prod.snd xs)
+          (PaidQueries.schedule (fun p b => MafScheduler.recursive T S (asTree (GenericForest.solve actual)) p b) b
+              js).answers,
+      calls :=
+        List.filterMap
+          (fun ub =>
+            match restrict ub.fst T, restrict ub.fst S with
+            | some t, some s => some { target := some t, sources := [s], budget := ub.snd }
+            | x, x_1 => none)
+          (PaidQueries.meterSchedule (fun p b => MafScheduler.recursive T S (asTree (GenericForest.solve actual)) p b)
+              (fun x x_1 => 0) b js).queries } =
+    {
+      answer :=
+        Option.map (fun xs => List.flatMap Prod.snd xs)
+          (PaidQueries.schedule (MafScheduler.recursive T S (asTree (GenericForest.solve actual))) b js).answers,
+      calls :=
+        List.filterMap
+          (fun ub =>
+            match restrict ub.fst T, restrict ub.fst S with
+            | some t, some s => some { target := some t, sources := [s], budget := ub.snd }
+            | x, x_1 => none)
+          (PaidQueries.meterSchedule (MafScheduler.recursive T S (asTree (GenericForest.solve actual))) (fun x x_1 => 0)
+              b js).queries }
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerSource.lean:87:12: warning: Possibly looping simp theorem: `ordinarySource.eq_1`
+
+Note: Possibly caused by: `ordinaryLocalSource_value` and `callsForestDebit_split`
+
+Hint: You can disable a simp theorem from the default simp set by passing `- theoremName` to `simp`.
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerSource.lean:87:53: warning: Possibly looping simp theorem: `callsForestDebit_split`
+
+Hint: You can disable a simp theorem from the default simp set by passing `- theoremName` to `simp`.
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerSource.lean:87:1: error: Tactic `simp` failed with a nested error:
+maximum recursion depth has been reached
+use `set_option maxRecDepth <num>` to increase limit
+use `set_option diagnostics true` to get diagnostic information

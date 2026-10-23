@@ -1,0 +1,48 @@
+research/rmaf/thesis_complexity/repair/adversary/AdversaryArithmetic.lean:6:61: error: Tactic `decide` failed to reduce
+  @decide (1 / 4 + 1 / 8 + 3 / 16 = 9 / 16) (instDecidableEqRat (1 / 4 + 1 / 8 + 3 / 16) (9 / 16))
+to `true` or `false`.
+
+After unfolding the instances `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, and `instDecidableEqRat.decEq`, reduction got stuck at
+  match ((1 / 4 + 1 / 8).add (3 / 16)).num, (Rat.mul 9 (Rat.inv 16)).num with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | { decide := true, reflects_decide := h } => isTrue ⋯
+    | { decide := false, reflects_decide := h } => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | { decide := true, reflects_decide := h } => isTrue ⋯
+    | { decide := false, reflects_decide := h } => isFalse ⋯
+research/rmaf/thesis_complexity/repair/adversary/AdversaryArithmetic.lean:7:57: error: Tactic `decide` failed to reduce
+  @decide (9 / 16 - 1 / 2 = 1 / 16) (instDecidableEqRat (9 / 16 - 1 / 2) (1 / 16))
+to `true` or `false`.
+
+After unfolding the instances `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, and `instDecidableEqRat.decEq`, reduction got stuck at
+  match ((9 / 16).sub (1 / 2)).num, (Rat.mul 1 (Rat.inv 16)).num with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | { decide := true, reflects_decide := h } => isTrue ⋯
+    | { decide := false, reflects_decide := h } => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | { decide := true, reflects_decide := h } => isTrue ⋯
+    | { decide := false, reflects_decide := h } => isFalse ⋯
+research/rmaf/thesis_complexity/repair/adversary/AdversaryArithmetic.lean:8:60: error: Tactic `decide` failed to reduce
+  @decide (1 / 4 + 1 / 8 + 1 / 8 = 1 / 2) (instDecidableEqRat (1 / 4 + 1 / 8 + 1 / 8) (1 / 2))
+to `true` or `false`.
+
+After unfolding the instances `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, and `instDecidableEqRat.decEq`, reduction got stuck at
+  match ((1 / 4 + 1 / 8).add (1 / 8)).num, (Rat.mul 1 (Rat.inv 2)).num with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | { decide := true, reflects_decide := h } => isTrue ⋯
+    | { decide := false, reflects_decide := h } => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | { decide := true, reflects_decide := h } => isTrue ⋯
+    | { decide := false, reflects_decide := h } => isFalse ⋯

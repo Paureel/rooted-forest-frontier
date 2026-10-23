@@ -1,0 +1,16 @@
+# Source fees
+
+The source readings use the exact listed completed packages. BOOptimize.lean and BOScan.lean are in the frozen budget package; RecoveryProgram.lean, FinalWork.lean, CoreProgram.lean and Work.lean are in the frozen functional closure. The completed early package supplies the already proved properness/checker primitives and its pinned readonly transitive import closure.
+
+| Actual call | Read source fragment | Derived local work |
+|---|---|---|
+| BOOptimize.lean `optimize` | `if DepthOne.proper T S then` and fuel `(leaves T).length` | meterPreflight charges all repeated properness leaves/nodup/Perm scans, one fuel leaf materialization, a recursive list-length traversal and eight control slots; at most 256*(N+1)^2 |
+| BOScan.lean `scan` | `let answer := query start`; `let tail := scan query (start+1) fuel` | One callback per visited trial, twelve local slots for let/match/pair/Option/cons/successor; two terminal slots. No forest-cell scan or copy occurs |
+| BOOptimize.lean `finish` | `let answer := FinalCutRecovery.recover S F`; `[(F,answer)]` | One selected recovery and twelve reference/record slots; refusal eight slots. The final fee 32 additionally covers outer administration and the scan terminal allowance |
+| RecoveryProgram.lean `inputCheck` | `decide (leaves S).Nodup && partitionCheck (leaves S) P && pairwiseEmbeddings S P` | Two leaf materializations, raw nodup, partition and hull traversals. The raw node/block/cell cap is proved before acceptance |
+| RecoveryProgram.lean `blockColor` | `if b.contains x then b.headD 0 else blockColor bs x` | The exact completed meterColor contains/early-stop scan is charged for every original leaf; no arbitrary unit color oracle |
+| RecoveryProgram.lean `recover` | `(generate S (blockColor P) (P.length - 1)).outputs.head?` | Literal P.length traversal plus subtraction/head/control slots, one frozen generator provider. The unproved provider interpretation is isolated in FIRST-GAP-v1.md |
+
+The two terminal scan slots cover the zero-case dispatch and empty scan record; nil and none are reused constants. The twelve per-trial slots cover branch/control, pair/Option/cons/record construction and the failure successor, with payloads retained by reference. Reference constructor fees cover fixed structural operations only. Label/counter Nat encodings are excluded; Nat equality, order, successor, subtraction, min and copies remain scalar slots. The input label cap L and original-budget cap must be used by a separate scalar implementation. Generic scan permits arbitrary start/fuel; the optimizer's actual start 0 / fuel n and `actual_scanned_budget_cap` prove its budgets are below original n without assuming q bounded by a reduced state.
+
+For the raw recovery guard, choose R at least treeNodes S, P.length and P.flatten.length. Each raw block length is at most the literal flatten length, so the checker/hull premises hold even for rejected P. The derived guard bound is 2048*(R+1)^5. Choosing R as the sum of the three literal sizes proves that this guard plus P.length/head/control fits the existing 4096*(treeNodes S+P.flatten.length+P.length+2)^8 coefficient. The proof derives the smaller operation count first and compares with the old coefficient afterward.

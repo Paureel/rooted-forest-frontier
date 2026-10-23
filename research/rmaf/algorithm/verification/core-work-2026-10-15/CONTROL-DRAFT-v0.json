@@ -1,0 +1,1564 @@
+{
+  "scope": "independently constructed literal structural-cost ledgers before candidate content",
+  "expected_source": "manual expansion of the four permitted source definitions, no ledger output",
+  "declared_controls": 28,
+  "declared_plants": 59,
+  "size_pilot_ids": [
+    "fromTree-nonempty-original-prefix",
+    "normalization-homogeneous-payload-appends",
+    "generate-zero-budget-initial-check-and-colors",
+    "two-output-source-run-joins-left-output-record"
+  ],
+  "controls": [
+    {
+      "id": "empty-left-append-call-still-present",
+      "op": "append",
+      "input": {
+        "domain": "literal",
+        "left": [],
+        "right": [
+          1,
+          2
+        ]
+      },
+      "value_fields": {
+        "$": [
+          1,
+          2
+        ]
+      },
+      "counts": {
+        "append.literal.calls": 1,
+        "append.literal.left_cells": 0
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "omit_kind",
+          "target": "append.literal.calls"
+        },
+        {
+          "kind": "duplicate_record"
+        }
+      ]
+    },
+    {
+      "id": "nonempty-left-append-work",
+      "op": "append",
+      "input": {
+        "domain": "literal",
+        "left": [
+          10,
+          11,
+          12
+        ],
+        "right": [
+          20
+        ]
+      },
+      "value_fields": {
+        "$": [
+          10,
+          11,
+          12,
+          20
+        ]
+      },
+      "counts": {
+        "append.literal.calls": 1,
+        "append.literal.left_cells": 3
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "append.literal.left_cells"
+        },
+        {
+          "kind": "missing_record"
+        }
+      ]
+    },
+    {
+      "id": "combine-materializes-both-left-lists",
+      "op": "combine",
+      "input": {
+        "left": {
+          "outputs": [
+            "L0",
+            "L1",
+            "L2"
+          ],
+          "refusals": [
+            "a",
+            "b"
+          ],
+          "visited": 2,
+          "attempts": 4,
+          "pruned": 6
+        },
+        "right": {
+          "outputs": [
+            "R0",
+            "R1"
+          ],
+          "refusals": [
+            "c"
+          ],
+          "visited": 3,
+          "attempts": 5,
+          "pruned": 7
+        }
+      },
+      "value_fields": {
+        "outputs": [
+          "L0",
+          "L1",
+          "L2",
+          "R0",
+          "R1"
+        ],
+        "refusals": [
+          "a",
+          "b",
+          "c"
+        ],
+        "visited": 5,
+        "childAttempts": 9,
+        "pruned": 13
+      },
+      "counts": {
+        "append.receipt_outputs.calls": 1,
+        "append.receipt_outputs.left_cells": 3,
+        "append.receipt_refusals.calls": 1,
+        "append.receipt_refusals.left_cells": 2,
+        "counter.add": 3
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "append.receipt_outputs.left_cells"
+        },
+        {
+          "kind": "zero_kind",
+          "target": "append.receipt_refusals.left_cells"
+        },
+        {
+          "kind": "duplicate_output"
+        },
+        {
+          "kind": "missing_output"
+        }
+      ]
+    },
+    {
+      "id": "combine-empty-left-lists",
+      "op": "combine",
+      "input": {
+        "left": {
+          "outputs": [],
+          "refusals": []
+        },
+        "right": {
+          "outputs": [
+            "R"
+          ],
+          "refusals": [
+            "r"
+          ]
+        }
+      },
+      "value_fields": {
+        "outputs": [
+          "R"
+        ],
+        "refusals": [
+          "r"
+        ],
+        "visited": 0,
+        "childAttempts": 0,
+        "pruned": 0
+      },
+      "counts": {
+        "append.receipt_outputs.calls": 1,
+        "append.receipt_outputs.left_cells": 0,
+        "append.receipt_refusals.calls": 1,
+        "append.receipt_refusals.left_cells": 0,
+        "counter.add": 3
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "append.receipt_outputs.calls"
+        },
+        {
+          "kind": "missing_record"
+        }
+      ]
+    },
+    {
+      "id": "combine-left-output-length-eight",
+      "op": "combine",
+      "input": {
+        "left": {
+          "outputs": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "refusals": []
+        },
+        "right": {
+          "outputs": [
+            8
+          ],
+          "refusals": []
+        }
+      },
+      "value_fields": {
+        "outputs": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "refusals": [],
+        "visited": 0,
+        "childAttempts": 0,
+        "pruned": 0
+      },
+      "counts": {
+        "append.receipt_outputs.calls": 1,
+        "append.receipt_outputs.left_cells": 8,
+        "counter.add": 3
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "append.receipt_outputs.left_cells"
+        }
+      ]
+    },
+    {
+      "id": "combine-left-output-length-sixteen",
+      "op": "combine",
+      "input": {
+        "left": {
+          "outputs": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "refusals": []
+        },
+        "right": {
+          "outputs": [
+            16
+          ],
+          "refusals": []
+        }
+      },
+      "value_fields": {
+        "outputs": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "refusals": [],
+        "visited": 0,
+        "childAttempts": 0,
+        "pruned": 0
+      },
+      "counts": {
+        "append.receipt_outputs.calls": 1,
+        "append.receipt_outputs.left_cells": 16,
+        "counter.add": 3
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "append.receipt_outputs.left_cells"
+        },
+        {
+          "kind": "duplicate_record"
+        }
+      ]
+    },
+    {
+      "id": "singleton-fromTree-color-oracle",
+      "op": "fromTree",
+      "input": {
+        "tree": 7,
+        "colors": {
+          "kind": "id"
+        },
+        "oracle_tariff": 3
+      },
+      "value_fields": {
+        "$": {
+          "root": "",
+          "groups": [
+            [
+              "",
+              [
+                7
+              ],
+              7
+            ]
+          ]
+        }
+      },
+      "counts": {
+        "fromTree.visit": 1,
+        "oracle.color_calls": 1,
+        "oracle.tariff_units": 3,
+        "append.origin.calls": 0
+      },
+      "metadata": {
+        "input_label_max_bits": 3
+      },
+      "plants": [
+        {
+          "kind": "omit_kind",
+          "target": "oracle.color_calls"
+        },
+        {
+          "kind": "metadata",
+          "target": "input_label_max_bits",
+          "wrong": 1
+        }
+      ]
+    },
+    {
+      "id": "fromTree-three-leaves-original-address-work",
+      "op": "fromTree",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": {
+          "kind": "id"
+        },
+        "oracle_tariff": 5
+      },
+      "value_fields": {
+        "$": {
+          "root": "",
+          "groups": [
+            [
+              "00",
+              [
+                0
+              ],
+              0
+            ],
+            [
+              "01",
+              [
+                1
+              ],
+              1
+            ],
+            [
+              "1",
+              [
+                2
+              ],
+              2
+            ]
+          ]
+        }
+      },
+      "counts": {
+        "fromTree.visit": 5,
+        "oracle.color_calls": 3,
+        "oracle.tariff_units": 15,
+        "append.origin.calls": 4,
+        "append.origin.left_cells": 2
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "omit_kind",
+          "target": "oracle.color_calls"
+        },
+        {
+          "kind": "zero_kind",
+          "target": "append.origin.left_cells"
+        }
+      ]
+    },
+    {
+      "id": "fromTree-nonempty-original-prefix",
+      "op": "fromTree",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": {
+          "kind": "id"
+        },
+        "prefix": "10"
+      },
+      "value_fields": {
+        "$": {
+          "root": "10",
+          "groups": [
+            [
+              "1000",
+              [
+                0
+              ],
+              0
+            ],
+            [
+              "1001",
+              [
+                1
+              ],
+              1
+            ],
+            [
+              "101",
+              [
+                2
+              ],
+              2
+            ]
+          ]
+        }
+      },
+      "counts": {
+        "fromTree.visit": 5,
+        "oracle.color_calls": 3,
+        "append.origin.calls": 4,
+        "append.origin.left_cells": 10
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "append.origin.left_cells"
+        },
+        {
+          "kind": "duplicate_record"
+        }
+      ]
+    },
+    {
+      "id": "normalization-homogeneous-payload-appends",
+      "op": "normalize",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": {
+          "kind": "constant",
+          "value": 7
+        }
+      },
+      "value_fields": {
+        "$": {
+          "root": "",
+          "groups": [
+            [
+              "",
+              [
+                0,
+                1,
+                2
+              ],
+              7
+            ]
+          ]
+        }
+      },
+      "counts": {
+        "normalize.visit": 5,
+        "compare.normalize_color": 2,
+        "append.normalize_payload.calls": 2,
+        "append.normalize_payload.left_cells": 3,
+        "oracle.color_calls": 0
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "append.normalize_payload.left_cells"
+        },
+        {
+          "kind": "zero_kind",
+          "target": "normalize.visit"
+        }
+      ]
+    },
+    {
+      "id": "normalization-mixed-comparison-still-charged",
+      "op": "normalize",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": {
+          "kind": "table",
+          "values": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      "value_fields": {
+        "$": {
+          "root": "",
+          "groups": [
+            [
+              "0",
+              [
+                0,
+                1
+              ],
+              0
+            ],
+            [
+              "1",
+              [
+                2
+              ],
+              1
+            ]
+          ]
+        }
+      },
+      "counts": {
+        "normalize.visit": 5,
+        "compare.normalize_color": 2,
+        "append.normalize_payload.calls": 1,
+        "append.normalize_payload.left_cells": 1
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "compare.normalize_color"
+        },
+        {
+          "kind": "missing_record"
+        }
+      ]
+    },
+    {
+      "id": "groups-left-appends",
+      "op": "groups",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": {
+          "kind": "id"
+        }
+      },
+      "value_fields": {
+        "$": [
+          [
+            "00",
+            [
+              0
+            ],
+            0
+          ],
+          [
+            "01",
+            [
+              1
+            ],
+            1
+          ],
+          [
+            "1",
+            [
+              2
+            ],
+            2
+          ]
+        ]
+      },
+      "counts": {
+        "groups.visit": 5,
+        "append.groups.calls": 2,
+        "append.groups.left_cells": 3
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "append.groups.left_cells"
+        }
+      ]
+    },
+    {
+      "id": "erase-suppressed-survivor-still-visits",
+      "op": "erase",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": {
+          "kind": "id"
+        },
+        "chosen": "00"
+      },
+      "value_fields": {
+        "$": {
+          "root": "",
+          "groups": [
+            [
+              "01",
+              [
+                1
+              ],
+              1
+            ],
+            [
+              "1",
+              [
+                2
+              ],
+              2
+            ]
+          ]
+        }
+      },
+      "counts": {
+        "erase.visit": 5,
+        "compare.origin": 5
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "erase.visit"
+        },
+        {
+          "kind": "duplicate_record"
+        }
+      ]
+    },
+    {
+      "id": "erase-original-root-cost",
+      "op": "erase",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": {
+          "kind": "id"
+        },
+        "chosen": ""
+      },
+      "value_fields": {
+        "$": {
+          "root": null,
+          "groups": []
+        }
+      },
+      "counts": {
+        "erase.visit": 1,
+        "compare.origin": 1
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "erase.visit"
+        }
+      ]
+    },
+    {
+      "id": "choose-filter-find-list-work",
+      "op": "choose",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": {
+          "kind": "table",
+          "values": [
+            0,
+            0,
+            1
+          ]
+        },
+        "normalize_input": true
+      },
+      "value_fields": {
+        "$": {
+          "kind": "one",
+          "origins": [
+            "0"
+          ]
+        }
+      },
+      "counts": {
+        "choose.calls": 1,
+        "groups.visit": 3,
+        "append.groups.left_cells": 1,
+        "choose.all_predicate": 2,
+        "choose.find_predicate": 1,
+        "choose.filter_predicate": 2,
+        "choose.filter_kept_cells": 1,
+        "length.filtered.cells": 1,
+        "compare.count": 1,
+        "mixedCherry.visit": 0
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "choose.filter_predicate"
+        },
+        {
+          "kind": "missing_record"
+        }
+      ]
+    },
+    {
+      "id": "choose-refusal-after-real-search",
+      "op": "choose",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "colors": {
+          "kind": "table",
+          "values": [
+            0,
+            0,
+            1,
+            1
+          ]
+        }
+      },
+      "value_fields": {
+        "$": {
+          "kind": "refuse",
+          "refusals": [
+            "unnormalized homogeneous cherry"
+          ]
+        }
+      },
+      "counts": {
+        "choose.calls": 1,
+        "groups.visit": 7,
+        "append.groups.left_cells": 4,
+        "choose.all_predicate": 3,
+        "choose.find_predicate": 4,
+        "choose.filter_predicate": 16,
+        "choose.filter_kept_cells": 8,
+        "length.filtered.cells": 8,
+        "mixedCherry.visit": 3,
+        "compare.cherry_color": 1
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "choose.all_predicate"
+        },
+        {
+          "kind": "zero_kind",
+          "target": "choose.filter_predicate"
+        }
+      ]
+    },
+    {
+      "id": "attempt-root-refusal-cost",
+      "op": "attempt",
+      "input": {
+        "tree": 0,
+        "colors": {
+          "kind": "id"
+        },
+        "group": [
+          "",
+          [
+            0
+          ],
+          0
+        ]
+      },
+      "value_fields": {
+        "outputs": [],
+        "refusals": [
+          "attempt to cut original root"
+        ],
+        "visited": 0,
+        "childAttempts": 1,
+        "pruned": 0
+      },
+      "counts": {
+        "attempt.calls": 1,
+        "compare.origin": 1,
+        "erase.visit": 0,
+        "refusal.list_cells": 1
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "attempt.calls"
+        },
+        {
+          "kind": "duplicate_record"
+        }
+      ]
+    },
+    {
+      "id": "attempt-duplicate-refusal-cost",
+      "op": "attempt",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": {
+          "kind": "table",
+          "values": [
+            0,
+            0,
+            1
+          ]
+        },
+        "normalize_input": true,
+        "group": [
+          "0",
+          [
+            0,
+            1
+          ],
+          0
+        ],
+        "cuts": [
+          "0"
+        ]
+      },
+      "value_fields": {
+        "outputs": [],
+        "refusals": [
+          "duplicate original source cut"
+        ],
+        "visited": 0,
+        "childAttempts": 1,
+        "pruned": 0
+      },
+      "counts": {
+        "attempt.calls": 1,
+        "compare.origin": 2,
+        "cuts.contains_calls": 1,
+        "cuts.contains_cells": 1,
+        "erase.visit": 0,
+        "refusal.list_cells": 1
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "compare.origin"
+        }
+      ]
+    },
+    {
+      "id": "attempt-entire-refusal-cost",
+      "op": "attempt",
+      "input": {
+        "tree": 2,
+        "prefix": "1",
+        "colors": {
+          "kind": "id"
+        },
+        "group": [
+          "1",
+          [
+            2
+          ],
+          2
+        ]
+      },
+      "value_fields": {
+        "outputs": [],
+        "refusals": [
+          "attempt removed entire current source"
+        ],
+        "visited": 0,
+        "childAttempts": 1,
+        "pruned": 0
+      },
+      "counts": {
+        "attempt.calls": 1,
+        "compare.origin": 2,
+        "cuts.contains_calls": 1,
+        "erase.visit": 1,
+        "prune.callback": 0,
+        "refusal.list_cells": 1
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "erase.visit"
+        }
+      ]
+    },
+    {
+      "id": "attempt-prune-still-pays-local-erase",
+      "op": "attempt",
+      "input": {
+        "tree": [
+          0,
+          1
+        ],
+        "colors": {
+          "kind": "id"
+        },
+        "group": [
+          "0",
+          [
+            0
+          ],
+          0
+        ]
+      },
+      "value_fields": {
+        "outputs": [],
+        "refusals": [],
+        "visited": 0,
+        "childAttempts": 1,
+        "pruned": 1
+      },
+      "counts": {
+        "attempt.calls": 1,
+        "compare.origin": 4,
+        "erase.visit": 3,
+        "prune.callback": 1,
+        "attempt.cons_cells": 2,
+        "counter.add": 1
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "erase.visit"
+        },
+        {
+          "kind": "omit_kind",
+          "target": "prune.callback"
+        }
+      ]
+    },
+    {
+      "id": "run-zero-budget-local-work",
+      "op": "run",
+      "input": {
+        "tree": [
+          0,
+          1
+        ],
+        "colors": {
+          "kind": "id"
+        },
+        "budget": 0
+      },
+      "value_fields": {
+        "outputs": [],
+        "refusals": [],
+        "visited": 1,
+        "childAttempts": 1,
+        "pruned": 1
+      },
+      "counts": {
+        "run.calls": 1,
+        "step.calls": 1,
+        "normalize.visit": 3,
+        "groups.visit": 3,
+        "choose.calls": 1,
+        "choose.filter_predicate": 2,
+        "erase.visit": 3,
+        "attempt.calls": 1,
+        "prune.callback": 1,
+        "counter.add": 2,
+        "oracle.color_calls": 0
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "normalize.visit"
+        },
+        {
+          "kind": "omit_kind",
+          "target": "prune.callback"
+        },
+        {
+          "kind": "missing_record"
+        }
+      ]
+    },
+    {
+      "id": "generate-zero-budget-initial-check-and-colors",
+      "op": "generate",
+      "input": {
+        "tree": [
+          0,
+          1
+        ],
+        "colors": {
+          "kind": "id"
+        },
+        "budget": 0,
+        "oracle_tariff": 7
+      },
+      "value_fields": {
+        "outputs": [],
+        "refusals": [],
+        "visited": 1,
+        "childAttempts": 1,
+        "pruned": 1
+      },
+      "counts": {
+        "generate.calls": 1,
+        "leaves.visit": 6,
+        "append.leaves.left_cells": 2,
+        "initial.nodup_calls": 1,
+        "initial.nodup_input_cells": 2,
+        "compare.label": 1,
+        "fromTree.visit": 3,
+        "oracle.color_calls": 2,
+        "oracle.tariff_units": 14,
+        "length.initial.cells": 2,
+        "budget.min": 1,
+        "normalize.visit": 3,
+        "choose.calls": 1,
+        "groups.visit": 3,
+        "erase.visit": 3,
+        "prune.callback": 1
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "omit_kind",
+          "target": "initial.nodup_calls"
+        },
+        {
+          "kind": "omit_kind",
+          "target": "oracle.color_calls"
+        },
+        {
+          "kind": "zero_kind",
+          "target": "normalize.visit"
+        }
+      ]
+    },
+    {
+      "id": "duplicate-input-pays-check-but-not-colors",
+      "op": "generate",
+      "input": {
+        "tree": [
+          7,
+          7
+        ],
+        "colors": {
+          "kind": "id"
+        },
+        "budget": 3
+      },
+      "value_fields": {
+        "outputs": [],
+        "refusals": [
+          "duplicate original label"
+        ],
+        "visited": 0,
+        "childAttempts": 0,
+        "pruned": 0
+      },
+      "counts": {
+        "generate.calls": 1,
+        "leaves.visit": 3,
+        "append.leaves.left_cells": 1,
+        "initial.nodup_calls": 1,
+        "initial.nodup_input_cells": 2,
+        "compare.label": 1,
+        "fromTree.visit": 0,
+        "oracle.color_calls": 0,
+        "budget.min": 0,
+        "normalize.visit": 0,
+        "refusal.list_cells": 1
+      },
+      "metadata": {
+        "input_label_max_bits": 3
+      },
+      "plants": [
+        {
+          "kind": "omit_kind",
+          "target": "initial.nodup_calls"
+        },
+        {
+          "kind": "metadata",
+          "target": "input_label_max_bits",
+          "wrong": 1
+        }
+      ]
+    },
+    {
+      "id": "generate-finish-materializes-output",
+      "op": "generate",
+      "input": {
+        "tree": [
+          0,
+          1
+        ],
+        "colors": {
+          "kind": "id"
+        },
+        "budget": 9
+      },
+      "value_fields": {
+        "outputs": [
+          {
+            "partition": [
+              [
+                0
+              ],
+              [
+                1
+              ]
+            ],
+            "cuts": [
+              "0"
+            ]
+          }
+        ],
+        "refusals": [],
+        "visited": 2,
+        "childAttempts": 1,
+        "pruned": 0
+      },
+      "counts": {
+        "fromTree.visit": 3,
+        "oracle.color_calls": 2,
+        "run.calls": 2,
+        "normalize.visit": 4,
+        "groups.visit": 5,
+        "choose.all_predicate": 3,
+        "choose.filter_predicate": 2,
+        "erase.visit": 3,
+        "prune.callback": 0,
+        "finish.map_cells": 1,
+        "finish.flatmap_group_cells": 1,
+        "append.finish_payload.left_cells": 1,
+        "append.finish_partition.left_cells": 1,
+        "finish.output_cells": 1
+      },
+      "metadata": {
+        "input_budget_bits": 4
+      },
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "append.finish_payload.left_cells"
+        },
+        {
+          "kind": "omit_kind",
+          "target": "oracle.color_calls"
+        },
+        {
+          "kind": "metadata",
+          "target": "input_budget_bits",
+          "wrong": 1
+        }
+      ]
+    },
+    {
+      "id": "oversized-budget-bit-width-survives-clipping",
+      "op": "generate",
+      "input": {
+        "tree": [
+          0,
+          1
+        ],
+        "colors": {
+          "kind": "id"
+        },
+        "budget": 340282366920938463463374607431768211456
+      },
+      "value_fields": {
+        "outputs": [
+          {
+            "partition": [
+              [
+                0
+              ],
+              [
+                1
+              ]
+            ],
+            "cuts": [
+              "0"
+            ]
+          }
+        ],
+        "refusals": [],
+        "visited": 2,
+        "childAttempts": 1,
+        "pruned": 0
+      },
+      "counts": {
+        "fromTree.visit": 3,
+        "oracle.color_calls": 2,
+        "budget.min": 1,
+        "run.calls": 2,
+        "normalize.visit": 4,
+        "prune.callback": 0
+      },
+      "metadata": {
+        "input_budget_bits": 129,
+        "max_nat_operand_bits": 129
+      },
+      "plants": [
+        {
+          "kind": "metadata",
+          "target": "input_budget_bits",
+          "wrong": 1
+        },
+        {
+          "kind": "metadata",
+          "target": "max_nat_operand_bits",
+          "wrong": 1
+        }
+      ]
+    },
+    {
+      "id": "encoded-labels-and-oracle-tariff",
+      "op": "generate",
+      "input": {
+        "tree": [
+          0,
+          340282366920938463463374607431768211456
+        ],
+        "colors": {
+          "kind": "id"
+        },
+        "budget": 1,
+        "oracle_tariff": 11
+      },
+      "value_fields": {
+        "outputs": [
+          {
+            "partition": [
+              [
+                0
+              ],
+              [
+                340282366920938463463374607431768211456
+              ]
+            ],
+            "cuts": [
+              "0"
+            ]
+          }
+        ],
+        "refusals": [],
+        "visited": 2,
+        "childAttempts": 1,
+        "pruned": 0
+      },
+      "counts": {
+        "fromTree.visit": 3,
+        "oracle.color_calls": 2,
+        "oracle.tariff_units": 22,
+        "compare.label": 1,
+        "compare.normalize_color": 1,
+        "run.calls": 2
+      },
+      "metadata": {
+        "input_label_max_bits": 129,
+        "max_nat_operand_bits": 129
+      },
+      "plants": [
+        {
+          "kind": "metadata",
+          "target": "input_label_max_bits",
+          "wrong": 1
+        },
+        {
+          "kind": "metadata",
+          "target": "max_nat_operand_bits",
+          "wrong": 1
+        },
+        {
+          "kind": "omit_kind",
+          "target": "oracle.tariff_units"
+        }
+      ]
+    },
+    {
+      "id": "two-pruned-children-still-join-receipts",
+      "op": "run",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "colors": {
+          "kind": "table",
+          "values": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "budget": 0
+      },
+      "value_fields": {
+        "outputs": [],
+        "refusals": [],
+        "visited": 1,
+        "childAttempts": 2,
+        "pruned": 2
+      },
+      "counts": {
+        "normalize.visit": 7,
+        "choose.calls": 1,
+        "groups.visit": 7,
+        "choose.all_predicate": 2,
+        "choose.filter_predicate": 16,
+        "length.filtered.cells": 8,
+        "mixedCherry.visit": 3,
+        "attempt.calls": 2,
+        "erase.visit": 14,
+        "compare.origin": 16,
+        "prune.callback": 2,
+        "append.receipt_outputs.calls": 1,
+        "append.receipt_outputs.left_cells": 0,
+        "append.receipt_refusals.calls": 1,
+        "counter.add": 6
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "normalize.visit"
+        },
+        {
+          "kind": "zero_kind",
+          "target": "append.receipt_outputs.calls"
+        }
+      ]
+    },
+    {
+      "id": "two-output-source-run-joins-left-output-record",
+      "op": "generate",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "colors": {
+          "kind": "table",
+          "values": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        "budget": 2
+      },
+      "value_fields": {
+        "outputs": [
+          {
+            "partition": [
+              [
+                2
+              ],
+              [
+                0
+              ],
+              [
+                1,
+                3
+              ]
+            ],
+            "cuts": [
+              "10",
+              "00"
+            ]
+          },
+          {
+            "partition": [
+              [
+                3
+              ],
+              [
+                1
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            "cuts": [
+              "11",
+              "01"
+            ]
+          }
+        ],
+        "refusals": [],
+        "visited": 5,
+        "childAttempts": 4,
+        "pruned": 0
+      },
+      "counts": {
+        "leaves.visit": 14,
+        "append.leaves.left_cells": 8,
+        "initial.nodup_calls": 1,
+        "compare.label": 6,
+        "fromTree.visit": 7,
+        "oracle.color_calls": 4,
+        "append.origin.left_cells": 4,
+        "run.calls": 5,
+        "step.calls": 5,
+        "normalize.visit": 23,
+        "groups.visit": 21,
+        "choose.calls": 5,
+        "choose.all_predicate": 9,
+        "choose.find_predicate": 9,
+        "choose.filter_predicate": 31,
+        "length.filtered.cells": 16,
+        "mixedCherry.visit": 3,
+        "attempt.calls": 4,
+        "erase.visit": 24,
+        "compare.origin": 30,
+        "prune.callback": 0,
+        "append.receipt_outputs.left_cells": 1,
+        "append.receipt_refusals.left_cells": 0,
+        "counter.add": 10,
+        "append.finish_payload.left_cells": 4,
+        "append.finish_partition.left_cells": 4
+      },
+      "metadata": {},
+      "plants": [
+        {
+          "kind": "zero_kind",
+          "target": "append.receipt_outputs.left_cells"
+        },
+        {
+          "kind": "duplicate_output"
+        },
+        {
+          "kind": "missing_output"
+        },
+        {
+          "kind": "omit_kind",
+          "target": "initial.nodup_calls"
+        }
+      ]
+    }
+  ],
+  "additional_independent_replications": 0
+}

@@ -1,0 +1,68 @@
+'FreshPairReview.original_vertex_treeAt' depends on axioms: [propext, Quot.sound]
+'FreshPairReview.descendants_treeAt' depends on axioms: [propext, Quot.sound]
+'FreshPairReview.side_yes' depends on axioms: [propext, Quot.sound]
+'FreshPairReview.side_no' depends on axioms: [propext, Quot.sound]
+'FreshPairReview.actual_clear_disj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FreshPairReview.selector_edge_exchange' depends on axioms: [propext, Classical.choice, Quot.sound]
+PairGeometry.actual_selector_exists (t : Tree) (A B : List Nat) (hn : (leaves t).Nodup)
+  (hd : ∀ (x : Nat), x ∈ A → x ∈ B → False) (hover : ∃ v, v ∈ minimalVertices A t ∧ v ∈ minimalVertices B t) :
+  (∃ v, v ∈ minimalVertices A t ∧ v ∈ minimalVertices B t ∧ ((regions A t v).length = 3 ∨ (regions B t v).length = 3)) ∨
+    ∃ p s,
+      (p, p ++ [s]) ∈ PairGeometry.edges t ∧
+        p ∈ minimalVertices A t ∧
+          p ∈ minimalVertices B t ∧
+            p ++ [s] ∈ minimalVertices A t ∧
+              p ++ [s] ∈ minimalVertices B t ∧
+                (∀ (inside : Bool), PairGeometry.sideLabels A t (p ++ [s]) inside ≠ []) ∧
+                  (∀ (inside : Bool), PairGeometry.sideLabels B t (p ++ [s]) inside ≠ []) ∧
+                    PairGeometry.ActualClear t A B (p ++ [s])
+PairGeometry.choose_complete (t : Tree) (A B : List Nat) (hp : PairGeometry.properInput t A B = true)
+  (hover : ∃ v, v ∈ minimalVertices A t ∧ v ∈ minimalVertices B t) :
+  ∃ o, PairGeometry.choose t A B = some o ∧ PairGeometry.ValidChoice t A B o
+PairGeometry.choose_binary_when_two (t : Tree) (A B : List Nat) (hp : PairGeometry.properInput t A B = true)
+  (hover : ∃ v, v ∈ minimalVertices A t ∧ v ∈ minimalVertices B t)
+  (htwo :
+    ∀ (v : RMAF.Vertex),
+      v ∈ minimalVertices A t → v ∈ minimalVertices B t → (regions A t v).length = 2 ∧ (regions B t v).length = 2) :
+  ∃ e,
+    PairGeometry.choose t A B = some (PairGeometry.Choice.edge e) ∧
+      PairGeometry.ValidChoice t A B (PairGeometry.Choice.edge e)
+PairGeometry.region_count_actual_hull_degree (t : Tree) (A : List Nat) (v : VertexGeometry.Vertex)
+  (hn : ¬selectedLeaves A t v) (hv : v ∈ minimalVertices A t) : (regions A t v).length = PairGeometry.hullDegree t A v
+BinaryExchange.binary_exchange (s t u : Tree) (P : List (List Nat)) (A B : List Nat) (v : RMAF.Vertex)
+  (_hs : (leaves s).Nodup) (ht : (leaves t).Nodup) (_sameLabels : ∀ (x : Nat), x ∈ leaves s ↔ x ∈ leaves t)
+  (hP : partitionCheck (leaves s) P = true) (hPS : pairwiseEmbeddings s P = true) (hAparent : A ∈ P) (hBparent : B ∈ P)
+  (hAB : A ≠ B) (_edge : v ≠ []) (hedge : treeAt t v = some u) (hAm : (mixed A fun x => (leaves u).contains x) = true)
+  (_hBm : (mixed B fun x => (leaves u).contains x) = true) (_clearAY : Disj t (yes A fun x => (leaves u).contains x) B)
+  (_clearAN : Disj t (no A fun x => (leaves u).contains x) B)
+  (clearBY : Disj t (yes B fun x => (leaves u).contains x) A) (clearBN : Disj t (no B fun x => (leaves u).contains x) A)
+  (clearOther : ∀ (E : List Nat), E ∈ P → E ≠ A → E ≠ B → Disj t E A ∧ Disj t E B) (hA : restrictionAgrees s t A = true)
+  (F : List (List Nat)) (hF : agreement s t F = true) (hf : Refines F P) :
+  have F' := exchange A B F u;
+  agreement s t F' = true ∧
+    Refines F' P ∧
+      List.count A F' = 1 ∧
+        (∀ (C : List Nat),
+            C ∈ F' →
+              BinaryExchange.Sub C B → (∀ (x : Nat), x ∈ C → x ∈ leaves u) ∨ ∀ (x : Nat), x ∈ C → ¬x ∈ leaves u) ∧
+          F'.length ≤ F.length ∧ outside A B F' = outside A B F
+BinaryExchange.descendant_final_source_edge (s t u : Tree) (v : RMAF.Vertex) (C : List Nat) (hn : (leaves t).Nodup)
+  (he : treeAt t v = some u) (ha : restrictionAgrees s t C = true) (hCl : BinaryExchange.Sub C (leaves s))
+  (hm : (mixed C fun x => (leaves u).contains x) = true) :
+  ∃ w z, w ≠ [] ∧ treeAt s w = some z ∧ ∀ (x : Nat), x ∈ C → (x ∈ leaves z ↔ x ∈ leaves u)
+FreshPairReview.selector_edge_exchange (s t : Tree) (P : List (List Nat)) (A B : List Nat)
+  (e : RMAF.Vertex × RMAF.Vertex) (hs : (leaves s).Nodup) (sameLabels : ∀ (x : Nat), x ∈ leaves s ↔ x ∈ leaves t)
+  (hP : partitionCheck (leaves s) P = true) (hPS : pairwiseEmbeddings s P = true) (hAP : A ∈ P) (hBP : B ∈ P)
+  (hAB : A ≠ B) (hchoose : PairGeometry.choose t A B = some (PairGeometry.Choice.edge e))
+  (clearOther : ∀ (E : List Nat), E ∈ P → E ≠ A → E ≠ B → Disj t E A ∧ Disj t E B) (hA : restrictionAgrees s t A = true)
+  (F : List (List Nat)) (hF : agreement s t F = true) (hf : Refines F P) :
+  ∃ u,
+    treeAt t e.snd = some u ∧
+      have F' := exchange A B F u;
+      agreement s t F' = true ∧
+        Refines F' P ∧
+          List.count A F' = 1 ∧
+            (∀ (C : List Nat),
+                C ∈ F' →
+                  BinaryExchange.Sub C B → (∀ (x : Nat), x ∈ C → x ∈ leaves u) ∨ ∀ (x : Nat), x ∈ C → ¬x ∈ leaves u) ∧
+              F'.length ≤ F.length ∧ outside A B F' = outside A B F

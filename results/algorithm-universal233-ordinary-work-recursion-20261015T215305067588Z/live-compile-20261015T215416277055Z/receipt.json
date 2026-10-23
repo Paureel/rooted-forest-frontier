@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "8483bfeb83e0c9b38e2d82fba5628b08e7e409a383df7e2c6bd4687611d350d0",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 1.0386902499994903,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.9313994170006481,
+      "resource_stop": null,
+      "log_sha256": "e865bd743a016f9b01323621e8593ddec67de96154ad9ca636214ce0eb641c70"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0028671250001934823,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "ForestNatWork",
+      "source_sha256": "d80a530517589c2cdd9538bf2f63ed5bf46b63c5d4526a5f6251b1bf2e637246",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 1.6857614170003217,
+      "resource_stop": null,
+      "log_sha256": "c5ab707ecdee53505fcd9e87846ef7234d712821e9d814411ed800a58e070aa9"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('ForestNatWork', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:47:5: error: `simp` made no progress\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:49:9: error: unsolved goals\\ncase ind.none\\nordinary : Ordinary\\nW : OrdinaryWork\\nq : Nat\\nss : List Tree\\nih : \u2200 (m : Nat), m < q \u2192 \u2200 (ss : List Tree), \u2191(forestWork ordinary W none ss m) = sourceWork ordinary W none ss m\\nchild :\\n  \u2200 (t : Tree) (h : Overlap),\\n    \u2191(List.map\\n            (fun io =>\\n              if _hd : 1 \u2264 io.snd.sourceCuts.length \u2227 io.snd.sourceCuts.length \u2264 q then\\n                forestWork ordinary W none (replace ss io.fst io.snd.partition) (q - io.snd.sourceCuts.length)\\n              else 0)\\n            (branches t ss h q)).sum =\\n      (List.map\\n          (fun io =>\\n            if _hd : 1 \u2264 io.snd.sourceCuts.length \u2227 io.snd.sourceCuts.length \u2264 q then\\n              sourceWork ordinary W none (replace ss io.fst io.snd.partition) (q - io.snd.sourceCuts.length)\\n            else 0)\\n          (branches t ss h q)).sum\\n\u22a2 \u2191(nonrecursiveBill ordinary W none ss q) = \u2191(nonrecursiveBill ordinary W none ss q) + 0\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:52:9: error: unsolved goals\\ncase ind.some.nil\\nordinary : Ordinary\\nW : OrdinaryWork\\nq : Nat\\nt : Tree\\nih :\\n  \u2200 (m : Nat), m < q \u2192 \u2200 (ss : List Tree), \u2191(forestWork ordinary W (some t) ss m) = sourceWork ordinary W (some t) ss m\\nchild :\\n  \u2200 (t_1 : Tree) (h : Overlap),\\n    \u2191(List.map\\n            (fun io =>\\n              if _hd : 1 \u2264 io.snd.sourceCuts.length \u2227 io.snd.sourceCuts.length \u2264 q then\\n                forestWork ordinary W (some t) (replace [] io.fst io.snd.partition) (q - io.snd.sourceCuts.length)\\n              else 0)\\n            (branches t_1 [] h q)).sum =\\n      (List.map\\n          (fun io =>\\n            if _hd : 1 \u2264 io.snd.sourceCuts.length \u2227 io.snd.sourceCuts.length \u2264 q then\\n              sourceWork ordinary W (some t) (replace [] io.fst io.snd.partition) (q - io.snd.sourceCuts.length)\\n            else 0)\\n          (branches t_1 [] h q)).sum\\n\u22a2 \u2191(nonrecursiveBill ordinary W (some t) [] q) = \u2191(nonrecursiveBill ordinary W (some t) [] q) + 0\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:55:10: error: unsolved goals\\ncase ind.some.cons.nil\\nordinary : Ordinary\\nW : OrdinaryWork\\nq : Nat\\nt : Tree\\nih :\\n  \u2200 (m : Nat), m < q \u2192 \u2200 (ss : List Tree), \u2191(forestWork ordinary W (some t) ss m) = sourceWork ordinary W (some t) ss m\\ns : Tree\\nchild :\\n  \u2200 (t_1 : Tree) (h : Overlap),\\n    \u2191(List.map\\n            (fun io =>\\n              if _hd : 1 \u2264 io.snd.sourceCuts.length \u2227 io.snd.sourceCuts.length \u2264 q then\\n                forestWork ordinary W (some t) (replace [s] io.fst io.snd.partition) (q - io.snd.sourceCuts.length)\\n              else 0)\\n            (branches t_1 [s] h q)).sum =\\n      (List.map\\n          (fun io =>\\n            if _hd : 1 \u2264 io.snd.sourceCuts.length \u2227 io.snd.sourceCuts.length \u2264 q then\\n              sourceWork ordinary W (some t) (replace [s] io.fst io.snd.partition) (q - io.snd.sourceCuts.length)\\n            else 0)\\n          (branches t_1 [s] h q)).sum\\n\u22a2 \u2191(nonrecursiveBill ordinary W (some t) [s] q) = \u2191(nonrecursiveBill ordinary W (some t) [s] q) + 0\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:61:14: error: unsolved goals\\ncase ind.some.cons.cons.e_a.isTrue.none\\nordinary : Ordinary\\nW : OrdinaryWork\\nq : Nat\\nt : Tree\\nih :\\n  \u2200 (m : Nat), m < q \u2192 \u2200 (ss : List Tree), \u2191(forestWork ordinary W (some t) ss m) = sourceWork ordinary W (some t) ss m\\ns u : Tree\\ntail : List Tree\\nchild :\\n  \u2200 (t_1 : Tree) (h : Overlap),\\n    \u2191(List.map\\n            (fun io =>\\n              if _hd : 1 \u2264 io.snd.sourceCuts.length \u2227 io.snd.sourceCuts.length \u2264 q then\\n                forestWork ordinary W (some t) (replace (s :: u :: tail) io.fst io.snd.partition)\\n                  (q - io.snd.sourceCuts.length)\\n              else 0)\\n            (branches t_1 (s :: u :: tail) h q)).sum =\\n      (List.map\\n          (fun io =>\\n            if _hd : 1 \u2264 io.snd.sourceCuts.length \u2227 io.snd.sourceCuts.length \u2264 q then\\n              sourceWork ordinary W (some t) (replace (s :: u :: tail) io.fst io.snd.partition)\\n                (q - io.snd.sourceCuts.length)\\n            else 0)\\n          (branches t_1 (s :: u :: tail) h q)).sum\\nh\u271d : (proper (some t) (s :: u :: tail) && !agrees (some t) (s :: u :: tail) (List.map leaves (s :: u :: tail))) = true\\nhover : overlap t (s :: u :: tail) = none\\n\u22a2 \u21910 = 0\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:49:68: warning: This simp argument is unused:\\n  Rat.natCast_add\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp [forestWork.eq_def, GenericForest.sourceWork.eq_def]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:52:76: warning: This simp argument is unused:\\n  Rat.natCast_add\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp [forestWork.eq_def, GenericForest.sourceWork.eq_def, overlap]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:55:69: warning: This simp argument is unused:\\n  Rat.natCast_add\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp [forestWork.eq_def, GenericForest.sourceWork.eq_def]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n'))"
+}

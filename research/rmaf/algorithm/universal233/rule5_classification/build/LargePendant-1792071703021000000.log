@@ -1,0 +1,59 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/LargePendant.lean:299:82: error: unsolved goals
+T S U V : Tree
+X : List Nat
+e : RMAF.Vertex
+p q : Nat
+F : List (List Nat)
+B C : List Nat
+hnT : (leaves T).Nodup
+hnS : (leaves S).Nodup
+hU : subtree S e = some U
+hxU : leaves U = X
+hV : restrict X T = some V
+cat : Caterpillar V
+ch : HasCherry p q V
+good : restrictionAgrees T S X = true
+outside : ∀ (z : Nat), z ∈ leaves T → ¬z ∈ X → ∃ r, r ∈ cuts T p q ∧ z ∈ subtreeLabels T r
+ha : agreement T S F = true
+hB : B ∈ F
+hC : C ∈ F
+bc : B ≠ C
+x z u v : Nat
+xB : x ∈ B
+zB : z ∈ B
+xX : x ∈ X
+zX : ¬z ∈ X
+uC : u ∈ C
+vC : v ∈ C
+uX : u ∈ X
+vX : v ∈ X
+uv : u ≠ v
+parts :
+  partitionCheck (leaves T) F = true ∧
+    partitionCheck (leaves S) F = true ∧
+      (∀ (C : List Nat), C ∈ F → restrictionAgrees T S C = true) ∧
+        List.Pairwise (BinaryExchange.Disj T) F ∧ List.Pairwise (BinaryExchange.Disj S) F
+sourceChecks : partitionCheck (leaves S) F = true ∧ pairwiseEmbeddings S F = true
+targetEmb : pairwiseEmbeddings T F = true
+uS : u ∈ leaves S
+vS : v ∈ leaves S
+xS : x ∈ leaves S
+zS : z ∈ leaves S
+uT : u ∈ leaves T
+vT : v ∈ leaves T
+zT : z ∈ leaves T
+w : RMAF.Vertex
+W : Tree
+hW : subtree S w = some W
+uW : u ∈ leaves W
+vW : v ∈ leaves W
+wuv : w ∈ minimalVertices [u, v] S
+eW : e <+: w
+Wsub : leaves W ⊆ X
+zW : ¬z ∈ leaves W
+wC : w ∈ minimalVertices C S
+xW : ¬x ∈ leaves W
+tri : restrictionAgrees T S [u, v, x] = true
+atW : BinaryExchange.treeAt S w = some W
+cl : BinaryExchange.Cluster (fun x_1 => x_1 ∈ [u, v, x]) (fun x => (leaves W).contains x) T
+⊢ ?m.488 = u ∨ ?m.488 = v ∨ ?m.488 = x

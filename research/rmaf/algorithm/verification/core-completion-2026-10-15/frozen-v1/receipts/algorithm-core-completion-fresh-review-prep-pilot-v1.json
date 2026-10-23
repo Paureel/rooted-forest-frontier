@@ -1,0 +1,959 @@
+{
+  "kind": "core-completion-independent-pre-candidate-pilot",
+  "status": "PRE-CANDIDATE-CONTROLS-PASS; NO-CANDIDATE-ACCEPTANCE",
+  "date": "2026-10-15T08:07:33.520640+00:00",
+  "rows": {
+    "graph": [
+      {
+        "id": "root-singleton",
+        "result": {
+          "components": [
+            {
+              "vertices": [
+                0
+              ],
+              "addresses": [
+                []
+              ],
+              "labels": [
+                7
+              ]
+            }
+          ],
+          "leaf_partition": [
+            [
+              7
+            ]
+          ],
+          "nonempty": true,
+          "count": 1,
+          "cuts_plus_one": true,
+          "cuts": 0
+        }
+      },
+      {
+        "id": "root-child-cut",
+        "result": {
+          "components": [
+            {
+              "vertices": [
+                0,
+                2
+              ],
+              "addresses": [
+                [],
+                [
+                  1
+                ]
+              ],
+              "labels": [
+                1
+              ]
+            },
+            {
+              "vertices": [
+                1
+              ],
+              "addresses": [
+                [
+                  0
+                ]
+              ],
+              "labels": [
+                0
+              ]
+            }
+          ],
+          "leaf_partition": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "nonempty": true,
+          "count": 2,
+          "cuts_plus_one": true,
+          "cuts": 1
+        }
+      },
+      {
+        "id": "unlabeled-root-rejected",
+        "result": {
+          "components": [
+            {
+              "vertices": [
+                0
+              ],
+              "addresses": [
+                []
+              ],
+              "labels": []
+            },
+            {
+              "vertices": [
+                1
+              ],
+              "addresses": [
+                [
+                  0
+                ]
+              ],
+              "labels": [
+                0
+              ]
+            },
+            {
+              "vertices": [
+                2
+              ],
+              "addresses": [
+                [
+                  1
+                ]
+              ],
+              "labels": [
+                1
+              ]
+            }
+          ],
+          "leaf_partition": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "nonempty": false,
+          "count": 3,
+          "cuts_plus_one": true,
+          "cuts": 2
+        }
+      },
+      {
+        "id": "suppression-retains-original-parent",
+        "result": {
+          "components": [
+            {
+              "vertices": [
+                0,
+                1,
+                2
+              ],
+              "addresses": [
+                [],
+                [
+                  0
+                ],
+                [
+                  1
+                ]
+              ],
+              "labels": [
+                2
+              ]
+            },
+            {
+              "vertices": [
+                3
+              ],
+              "addresses": [
+                [
+                  0,
+                  0
+                ]
+              ],
+              "labels": [
+                0
+              ]
+            },
+            {
+              "vertices": [
+                4
+              ],
+              "addresses": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "labels": [
+                1
+              ]
+            }
+          ],
+          "leaf_partition": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "nonempty": true,
+          "count": 3,
+          "cuts_plus_one": true,
+          "cuts": 2
+        }
+      },
+      {
+        "id": "contracted-clade-cut",
+        "result": {
+          "components": [
+            {
+              "vertices": [
+                0,
+                2
+              ],
+              "addresses": [
+                [],
+                [
+                  1
+                ]
+              ],
+              "labels": [
+                2
+              ]
+            },
+            {
+              "vertices": [
+                1,
+                3,
+                4
+              ],
+              "addresses": [
+                [
+                  0
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              "labels": [
+                0,
+                1
+              ]
+            }
+          ],
+          "leaf_partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "nonempty": true,
+          "count": 2,
+          "cuts_plus_one": true,
+          "cuts": 1
+        }
+      },
+      {
+        "id": "crossed-original-witness",
+        "result": {
+          "components": [
+            {
+              "vertices": [
+                0,
+                1,
+                2,
+                3,
+                5
+              ],
+              "addresses": [
+                [],
+                [
+                  0
+                ],
+                [
+                  1
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              "labels": [
+                0,
+                2
+              ]
+            },
+            {
+              "vertices": [
+                4
+              ],
+              "addresses": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "labels": [
+                1
+              ]
+            },
+            {
+              "vertices": [
+                6
+              ],
+              "addresses": [
+                [
+                  1,
+                  1
+                ]
+              ],
+              "labels": [
+                3
+              ]
+            }
+          ],
+          "leaf_partition": [
+            [
+              0,
+              2
+            ],
+            [
+              1
+            ],
+            [
+              3
+            ]
+          ],
+          "nonempty": true,
+          "count": 3,
+          "cuts_plus_one": true,
+          "cuts": 2
+        }
+      }
+    ],
+    "invalid_cuts": [
+      {
+        "id": "root-is-not-edge",
+        "rejected": "not an original nonroot edge address"
+      },
+      {
+        "id": "duplicate-address",
+        "rejected": "duplicate original edge"
+      },
+      {
+        "id": "nonvertex-address",
+        "rejected": "not an original vertex"
+      }
+    ],
+    "program": [
+      {
+        "id": "singleton-arbitrary-label",
+        "receipt": {
+          "outputs": [
+            {
+              "partition": [
+                [
+                  7
+                ]
+              ],
+              "cuts": []
+            }
+          ],
+          "refusals": [],
+          "visited": 1,
+          "attempts": 0,
+          "pruned": 0,
+          "trace": []
+        },
+        "original_graph_certificates": [
+          {
+            "components": [
+              {
+                "vertices": [
+                  0
+                ],
+                "addresses": [
+                  []
+                ],
+                "labels": [
+                  7
+                ]
+              }
+            ],
+            "leaf_partition": [
+              [
+                7
+              ]
+            ],
+            "nonempty": true,
+            "count": 1,
+            "cuts_plus_one": true,
+            "cuts": 0
+          }
+        ]
+      },
+      {
+        "id": "homogeneous-root",
+        "receipt": {
+          "outputs": [
+            {
+              "partition": [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ]
+              ],
+              "cuts": []
+            }
+          ],
+          "refusals": [],
+          "visited": 1,
+          "attempts": 0,
+          "pruned": 0,
+          "trace": []
+        },
+        "original_graph_certificates": [
+          {
+            "components": [
+              {
+                "vertices": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6
+                ],
+                "addresses": [
+                  [],
+                  [
+                    0
+                  ],
+                  [
+                    1
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "labels": [
+                  0,
+                  1,
+                  2,
+                  3
+                ]
+              }
+            ],
+            "leaf_partition": [
+              [
+                0,
+                1,
+                2,
+                3
+              ]
+            ],
+            "nonempty": true,
+            "count": 1,
+            "cuts_plus_one": true,
+            "cuts": 0
+          }
+        ]
+      },
+      {
+        "id": "homogeneous-cherry",
+        "receipt": {
+          "outputs": [
+            {
+              "partition": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2
+                ]
+              ],
+              "cuts": [
+                [
+                  0
+                ]
+              ]
+            }
+          ],
+          "refusals": [],
+          "visited": 2,
+          "attempts": 1,
+          "pruned": 0,
+          "trace": [
+            {
+              "chosen": [
+                0
+              ],
+              "current_parent": [],
+              "original_parent": [],
+              "original_path": [
+                [],
+                [
+                  0
+                ]
+              ],
+              "pruned": false
+            }
+          ]
+        },
+        "original_graph_certificates": [
+          {
+            "components": [
+              {
+                "vertices": [
+                  0,
+                  2
+                ],
+                "addresses": [
+                  [],
+                  [
+                    1
+                  ]
+                ],
+                "labels": [
+                  2
+                ]
+              },
+              {
+                "vertices": [
+                  1,
+                  3,
+                  4
+                ],
+                "addresses": [
+                  [
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    1
+                  ]
+                ],
+                "labels": [
+                  0,
+                  1
+                ]
+              }
+            ],
+            "leaf_partition": [
+              [
+                0,
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            "nonempty": true,
+            "count": 2,
+            "cuts_plus_one": true,
+            "cuts": 1
+          }
+        ]
+      },
+      {
+        "id": "distinct-colors-suppression",
+        "receipt": {
+          "outputs": [
+            {
+              "partition": [
+                [
+                  1
+                ],
+                [
+                  0
+                ],
+                [
+                  2
+                ]
+              ],
+              "cuts": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  0
+                ]
+              ]
+            }
+          ],
+          "refusals": [],
+          "visited": 3,
+          "attempts": 2,
+          "pruned": 0,
+          "trace": [
+            {
+              "chosen": [
+                0,
+                0
+              ],
+              "current_parent": [
+                0
+              ],
+              "original_parent": [
+                0
+              ],
+              "original_path": [
+                [
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              "pruned": false
+            },
+            {
+              "chosen": [
+                0,
+                1
+              ],
+              "current_parent": [],
+              "original_parent": [
+                0
+              ],
+              "original_path": [
+                [],
+                [
+                  0
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              "pruned": false
+            }
+          ]
+        },
+        "original_graph_certificates": [
+          {
+            "components": [
+              {
+                "vertices": [
+                  0,
+                  1,
+                  2
+                ],
+                "addresses": [
+                  [],
+                  [
+                    0
+                  ],
+                  [
+                    1
+                  ]
+                ],
+                "labels": [
+                  2
+                ]
+              },
+              {
+                "vertices": [
+                  3
+                ],
+                "addresses": [
+                  [
+                    0,
+                    0
+                  ]
+                ],
+                "labels": [
+                  0
+                ]
+              },
+              {
+                "vertices": [
+                  4
+                ],
+                "addresses": [
+                  [
+                    0,
+                    1
+                  ]
+                ],
+                "labels": [
+                  1
+                ]
+              }
+            ],
+            "leaf_partition": [
+              [
+                0
+              ],
+              [
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            "nonempty": true,
+            "count": 3,
+            "cuts_plus_one": true,
+            "cuts": 2
+          }
+        ]
+      }
+    ],
+    "partitions": [],
+    "proper_labels": [
+      {
+        "labels": [
+          2,
+          0,
+          1
+        ],
+        "n": 3,
+        "expected": true,
+        "actual": true
+      },
+      {
+        "labels": [
+          0,
+          0,
+          1
+        ],
+        "n": 3,
+        "expected": false,
+        "actual": false
+      },
+      {
+        "labels": [
+          0,
+          2
+        ],
+        "n": 2,
+        "expected": false,
+        "actual": false
+      },
+      {
+        "labels": [
+          7
+        ],
+        "n": 1,
+        "expected": false,
+        "actual": false
+      }
+    ],
+    "mass": [],
+    "negative": [
+      {
+        "id": "root-singleton",
+        "kind": "false-component-count",
+        "caught": true
+      },
+      {
+        "id": "root-child-cut",
+        "kind": "false-component-count",
+        "caught": true
+      },
+      {
+        "id": "unlabeled-root-rejected",
+        "kind": "false-component-count",
+        "caught": true
+      },
+      {
+        "id": "suppression-retains-original-parent",
+        "kind": "false-component-count",
+        "caught": true
+      },
+      {
+        "id": "contracted-clade-cut",
+        "kind": "false-component-count",
+        "caught": true
+      },
+      {
+        "id": "crossed-original-witness",
+        "kind": "false-component-count",
+        "caught": true
+      },
+      {
+        "kind": "invalid-binary-Nat-syntax",
+        "tree": null,
+        "caught": true
+      },
+      {
+        "kind": "invalid-binary-Nat-syntax",
+        "tree": [
+          -1,
+          0
+        ],
+        "caught": true
+      },
+      {
+        "kind": "invalid-binary-Nat-syntax",
+        "tree": [
+          true,
+          0
+        ],
+        "caught": true
+      },
+      {
+        "kind": "invalid-binary-Nat-syntax",
+        "tree": [
+          0,
+          1,
+          2
+        ],
+        "caught": true
+      },
+      {
+        "id": "singleton-arbitrary-label",
+        "kind": "false-prefix-visit-count",
+        "caught": true
+      },
+      {
+        "id": "singleton-arbitrary-label",
+        "kind": "duplicated-emitted-label",
+        "caught": true
+      },
+      {
+        "id": "homogeneous-root",
+        "kind": "false-prefix-visit-count",
+        "caught": true
+      },
+      {
+        "id": "homogeneous-root",
+        "kind": "duplicated-emitted-label",
+        "caught": true
+      },
+      {
+        "id": "homogeneous-cherry",
+        "kind": "false-prefix-visit-count",
+        "caught": true
+      },
+      {
+        "id": "homogeneous-cherry",
+        "kind": "duplicated-emitted-label",
+        "caught": true
+      },
+      {
+        "id": "distinct-colors-suppression",
+        "kind": "false-prefix-visit-count",
+        "caught": true
+      },
+      {
+        "id": "distinct-colors-suppression",
+        "kind": "duplicated-emitted-label",
+        "caught": true
+      },
+      {
+        "kind": "false-properness-expectation",
+        "caught": true
+      },
+      {
+        "kind": "false-properness-expectation",
+        "caught": true
+      },
+      {
+        "kind": "false-properness-expectation",
+        "caught": true
+      },
+      {
+        "kind": "false-properness-expectation",
+        "caught": true
+      },
+      {
+        "kind": "planted-custom-axiom-or-proof-token",
+        "caught": true
+      },
+      {
+        "kind": "planted-custom-axiom-or-proof-token",
+        "caught": true
+      },
+      {
+        "kind": "planted-custom-axiom-or-proof-token",
+        "caught": true
+      },
+      {
+        "kind": "forged-module-origin-path",
+        "caught": true
+      },
+      {
+        "kind": "forged-module-origin-sha256",
+        "caught": true
+      }
+    ]
+  },
+  "failure": null,
+  "seconds": 0.0036303340002632467,
+  "stage": "PRE-CANDIDATE",
+  "candidate_contact": false,
+  "candidate_compilation": false,
+  "independence": "new code; stdlib and this frozen own instrument only; prior global contacts disclosed",
+  "freeze_sha256": "d5c56f944a51a7c230f92f881f378ec53fb5f1e657ba141c4c352c5e4ee6cf8b",
+  "source_and_control_hashes": [
+    {
+      "path": "research/rmaf/algorithm/verification/core-completion-2026-10-15/CONTROLS-v1.json",
+      "sha256": "237ad2479f010ab9c67151f82cf2e1101b9bd876fbdd5f3ad7e761b56ac0da02"
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/core-completion-2026-10-15/independent_instrument.py",
+      "sha256": "d5cb7216e7076c9e9df4c04557855617cc041b985f78bdf15a7718b446105b9d"
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/core-completion-2026-10-15/run_frozen_controls.py",
+      "sha256": "3e8af8b329a443254c839cdfb90ac90086f1126adacc6be1223598aaf0998595"
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/core-completion-2026-10-15/LATER-LEAN-GATE.md",
+      "sha256": "bec832c94510fbc40041326bcb958ec039ee03d6e4c76cfacd6c95fb68644e56"
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/core-completion-2026-10-15/later-controls/FalseCount.lean.template",
+      "sha256": "0cd0d2cdcff70b465c8abb54478678e238d44e5f6adde6c04376bef92b6f55fa"
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/core-completion-2026-10-15/later-controls/FalseDuplicateList.lean.template",
+      "sha256": "25e9f0779f1de1900bb38122cd2ccb209f51f6cf29255c10ce88f12f30cfe4cc"
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/core-completion-2026-10-15/later-controls/FalseEmittedCost.lean.template",
+      "sha256": "3fcc233b8c17f6e87245a170bb91e7025fe4ef437d33fecc7f2bd9b065e33de7"
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/core-completion-2026-10-15/later-controls/FalseRefinement.lean.template",
+      "sha256": "986312fcdab7f0e8501b5c02fe97615c51663d7683d65401fdebfe3da8bde314"
+    }
+  ]
+}

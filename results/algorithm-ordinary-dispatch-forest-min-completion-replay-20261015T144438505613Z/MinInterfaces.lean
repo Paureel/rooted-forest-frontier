@@ -1,0 +1,14 @@
+import MinimumCompletionControls
+#check ForestMinCompletion.LocalOrdinaryIH
+#check ForestMinCompletion.nat_minimum_from_witness
+#check ForestMinCompletion.minimum_from_original_AF
+#check ForestMinCompletion.minimum_feasible_from_original_AF
+#check ForestMinCompletion.minimumCallback
+#check ForestMinCompletion.minimumCallback_sound
+#check ForestMinCompletion.minimumCallback_complete
+#check ForestMinCompletion.minimumCallback_none_iff
+#check ForestMinCompletion.ghost
+#check ForestMinCompletion.ghost_eq_actual
+#check ForestMinCompletion.ghost_above_budget
+#check ForestMinCompletion.ghost_global_ordinaryIH
+#check ForestMinCompletion.ordinaryIH_extension

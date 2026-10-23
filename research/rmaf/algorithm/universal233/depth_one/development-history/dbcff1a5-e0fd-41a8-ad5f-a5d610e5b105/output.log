@@ -1,0 +1,145 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:14:15: error: unsolved goals
+case node.cons.false
+l r : Tree
+hl : ∀ (p : Vertex), p ∈ vertices l ↔ Valid l p
+hr : ∀ (p : Vertex), p ∈ vertices r ↔ Valid r p
+p : List Bool
+⊢ p ∈ vertices l ↔ ∃ s, subtree l p = some s
+
+case node.cons.true
+l r : Tree
+hl : ∀ (p : Vertex), p ∈ vertices l ↔ Valid l p
+hr : ∀ (p : Vertex), p ∈ vertices r ↔ Valid r p
+p : List Bool
+⊢ p ∈ vertices r ↔ ∃ s, subtree r p = some s
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:14:59: warning: This simp argument is unused:
+  ← hl
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [vertices, Valid, subtree, ← hr]
+
+Note: Simp arguments with `←` have the additional effect of removing the other direction from the simp set, even if the simp argument itself is unused. If the hint above does not work, try replacing `←` with `-` to only get that effect and silence this warning.
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:14:63: warning: This simp argument is unused:
+  ← hr
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [vertices, Valid, subtree, ← hl]
+
+Note: Simp arguments with `←` have the additional effect of removing the other direction from the simp set, even if the simp argument itself is unused. If the hint above does not work, try replacing `←` with `-` to only get that effect and silence this warning.
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:47:12: error(lean.unknownIdentifier): Unknown identifier `leafAt_label`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:52:8: error(lean.unknownIdentifier): Unknown identifier `leafAt_label`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:67:31: error: Application type mismatch: The argument
+  hs
+has type
+  subtree (l.node r) (false :: p) = some s
+of sort `Prop` but is expected to have type
+  Tree
+of sort `Type` in the application
+  ih hs
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:68:30: error: Application type mismatch: The argument
+  hs
+has type
+  subtree (l.node r) (true :: p) = some s
+of sort `Prop` but is expected to have type
+  Tree
+of sort `Type` in the application
+  ih hs
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:124:10: error: Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce
+
+case e_x.e_y.w
+L A B C D : List Nat
+hA : A.Perm C
+hB : B.Perm D
+hflat : (A ++ B).Perm (C ++ D)
+hnA : A.isEmpty = C.isEmpty
+hnB : B.isEmpty = D.isEmpty
+⊢ L = L
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:126:4: error: Type mismatch
+  List.Perm.all_eq hflat
+has type
+  (A ++ B).all ?m.284 = (C ++ D).all ?m.284
+but is expected to have type
+  A ++ B = C ++ D
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:130:13: error: don't know how to synthesize implicit argument `a`
+  @List.Perm.mem_iff Nat ?m.13 A C hA
+context:
+T S : Tree
+A B C D : List Nat
+hA : A.Perm C
+hB : B.Perm D
+⊢ Nat
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:130:7: error: failed to infer `have` declaration type
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:129:83: error: unsolved goals
+T S : Tree
+A B C D : List Nat
+hA : A.Perm C
+hB : B.Perm D
+⊢ agreement T S [A, B] = agreement T S [C, D]
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:150:34: error: Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce
+
+case w
+T S : Tree
+A B : List Nat
+hp : (A ++ B).Perm (B ++ A)
+L : List Nat
+⊢ L = L
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:140:49: error: unsolved goals
+case mp
+T S : Tree
+A B : List Nat
+hp : (A ++ B).Perm (B ++ A)
+hc : ∀ (L : List Nat), partitionCheck L [A, B] = partitionCheck L [B, A]
+h :
+  (((((((!A.isEmpty) = true ∧ (!B.isEmpty) = true) ∧ ((leaves T).all fun x => List.count x (A ++ B) == 1) = true) ∧
+            ((A ++ B).all fun x => (leaves T).contains x) = true) ∧
+          (((!A.isEmpty) = true ∧ (!B.isEmpty) = true) ∧ ((leaves S).all fun x => List.count x (A ++ B) == 1) = true) ∧
+            ((A ++ B).all fun x => (leaves S).contains x) = true) ∧
+        restrictionAgrees T S A = true ∧ restrictionAgrees T S B = true) ∧
+      Clear (minimalVertices B T) (minimalVertices A T)) ∧
+    Clear (minimalVertices B S) (minimalVertices A S)
+⊢ ((((((True ∧ True) ∧ ((leaves T).all fun x => List.count x (B ++ A) == 1) = true) ∧
+            ((B ++ A).all fun x => (leaves T).contains x) = true) ∧
+          ((True ∧ True) ∧ ((leaves S).all fun x => List.count x (B ++ A) == 1) = true) ∧
+            ((B ++ A).all fun x => (leaves S).contains x) = true) ∧
+        True ∧ True) ∧
+      True) ∧
+    True
+
+case mpr
+T S : Tree
+A B : List Nat
+hp : (A ++ B).Perm (B ++ A)
+hc : ∀ (L : List Nat), partitionCheck L [A, B] = partitionCheck L [B, A]
+h :
+  (((((((!B.isEmpty) = true ∧ (!A.isEmpty) = true) ∧ ((leaves T).all fun x => List.count x (B ++ A) == 1) = true) ∧
+            ((B ++ A).all fun x => (leaves T).contains x) = true) ∧
+          (((!B.isEmpty) = true ∧ (!A.isEmpty) = true) ∧ ((leaves S).all fun x => List.count x (B ++ A) == 1) = true) ∧
+            ((B ++ A).all fun x => (leaves S).contains x) = true) ∧
+        restrictionAgrees T S B = true ∧ restrictionAgrees T S A = true) ∧
+      Clear (minimalVertices B T) (minimalVertices A T)) ∧
+    Clear (minimalVertices B S) (minimalVertices A S)
+⊢ ((((((True ∧ True) ∧ ((leaves T).all fun x => List.count x (A ++ B) == 1) = true) ∧
+            ((A ++ B).all fun x => (leaves T).contains x) = true) ∧
+          ((True ∧ True) ∧ ((leaves S).all fun x => List.count x (A ++ B) == 1) = true) ∧
+            ((A ++ B).all fun x => (leaves S).contains x) = true) ∧
+        True ∧ True) ∧
+      True) ∧
+    True
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:155:45: warning: This simp argument is unused:
+  Bool.and_eq_true
+
+Hint: Omit it from the simp argument list.
+  [apply] simp_all only [List.isEmpty_iff]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/depth_one/build/Lemmas.lean:155:62: warning: This simp argument is unused:
+  List.isEmpty_iff
+
+Hint: Omit it from the simp argument list.
+  [apply] simp_all only [Bool.and_eq_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

@@ -1,0 +1,7 @@
+import BinaryProducerAccounting
+#check GenericForest.BinaryProducer.disjoint_allocated_width
+#print axioms GenericForest.BinaryProducer.disjoint_allocated_width
+#check GenericForest.BinaryProducer.disjointProducer_accounted
+#print axioms GenericForest.BinaryProducer.disjointProducer_accounted
+#check GenericForest.BinaryProducer.disjoint_setup_paid
+#print axioms GenericForest.BinaryProducer.disjoint_setup_paid

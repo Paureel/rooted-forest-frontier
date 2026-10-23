@@ -1,0 +1,232 @@
+[
+  {
+    "module": "RMAF",
+    "line": 13,
+    "declarationLine": "def leaves : Tree \u2192 List Nat"
+  },
+  {
+    "module": "RMAF",
+    "line": 36,
+    "declarationLine": "def sameShape : Tree \u2192 Tree \u2192 Bool"
+  },
+  {
+    "module": "RMAF",
+    "line": 84,
+    "declarationLine": "def restrict (selected : List Nat) : Tree \u2192 Option Tree"
+  },
+  {
+    "module": "RMAF",
+    "line": 111,
+    "declarationLine": "def prependSide (side : Bool) (vs : List Vertex) : List Vertex :="
+  },
+  {
+    "module": "RMAF",
+    "line": 116,
+    "declarationLine": "def rootedSpan (selected : List Nat) : Tree \u2192 List Vertex"
+  },
+  {
+    "module": "RMAF",
+    "line": 126,
+    "declarationLine": "def minimalVertices (selected : List Nat) : Tree \u2192 List Vertex"
+  },
+  {
+    "module": "RMAF",
+    "line": 135,
+    "declarationLine": "def disjointVertices (a b : List Vertex) : Bool :="
+  },
+  {
+    "module": "RMAF",
+    "line": 138,
+    "declarationLine": "def pairwiseEmbeddings (t : Tree) : List (List Nat) \u2192 Bool"
+  },
+  {
+    "module": "RMAF",
+    "line": 144,
+    "declarationLine": "def restrictionAgrees (t u : Tree) (b : List Nat) : Bool :="
+  },
+  {
+    "module": "RMAF",
+    "line": 149,
+    "declarationLine": "def partitionCheck (labels : List Nat) (bs : List (List Nat)) : Bool :="
+  },
+  {
+    "module": "RMAF",
+    "line": 154,
+    "declarationLine": "def agreement (t u : Tree) (bs : List (List Nat)) : Bool :="
+  },
+  {
+    "module": "RMAF",
+    "line": 161,
+    "declarationLine": "def blocks (a : List Nat) : List (List Nat) :="
+  },
+  {
+    "module": "RMAF",
+    "line": 166,
+    "declarationLine": "def assignments (length tags : Nat) : List (List Nat) :="
+  },
+  {
+    "module": "RMAF",
+    "line": 211,
+    "declarationLine": "def best {\u03b1 : Type} (cost : \u03b1 \u2192 Nat) (valid : \u03b1 \u2192 Bool) : List \u03b1 \u2192 Option \u03b1"
+  },
+  {
+    "module": "RMAF",
+    "line": 282,
+    "declarationLine": "def solve (n : Nat) (t u : Tree) : Option (List Nat) :="
+  },
+  {
+    "module": "RMAF",
+    "line": 308,
+    "declarationLine": "def leftTree : Tree := .node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))"
+  },
+  {
+    "module": "RMAF",
+    "line": 309,
+    "declarationLine": "def rightTree : Tree := .node (.node (.leaf 0) (.node (.leaf 1) (.leaf 2))) (.leaf 3)"
+  },
+  {
+    "module": "RMAF",
+    "line": 314,
+    "declarationLine": "def exampleInstance : Instance := {"
+  },
+  {
+    "module": "RMAF",
+    "line": 332,
+    "declarationLine": "def isolatedEndpoint (a : List Nat) : Bool :="
+  },
+  {
+    "module": "StateRestriction",
+    "line": 7,
+    "declarationLine": "def join : Option Tree \u2192 Option Tree \u2192 Option Tree"
+  },
+  {
+    "module": "StateRestriction",
+    "line": 53,
+    "declarationLine": "def optionLeaves : Option Tree \u2192 List Nat"
+  },
+  {
+    "module": "StateEmbedding",
+    "line": 6,
+    "declarationLine": "def Clear (a b : List Vertex) : Prop := \u2200 v, v \u2208 a \u2192 v \u2208 b \u2192 False"
+  },
+  {
+    "module": "StatePartition",
+    "line": 5,
+    "declarationLine": "def contained (B U : List Nat) : Bool := B.all (U.contains \u00b7)"
+  },
+  {
+    "module": "StatePartition",
+    "line": 6,
+    "declarationLine": "def family (U : List Nat) (F : List (List Nat)) := F.filter (contained \u00b7 U)"
+  },
+  {
+    "module": "StatePartition",
+    "line": 7,
+    "declarationLine": "def Refines (F Q : List (List Nat)) : Prop := \u2200 B \u2208 F, \u2203 U \u2208 Q, B \u2286 U"
+  },
+  {
+    "module": "State",
+    "line": 7,
+    "declarationLine": "def labels : Option Tree \u2192 List Nat"
+  },
+  {
+    "module": "State",
+    "line": 11,
+    "declarationLine": "def targetEmbeddings : Option Tree \u2192 List (List Nat) \u2192 Bool"
+  },
+  {
+    "module": "State",
+    "line": 15,
+    "declarationLine": "def targetAgrees : Option Tree \u2192 Tree \u2192 List Nat \u2192 Bool"
+  },
+  {
+    "module": "State",
+    "line": 19,
+    "declarationLine": "def proper (T : Option Tree) (ss : List Tree) : Bool :="
+  },
+  {
+    "module": "State",
+    "line": 22,
+    "declarationLine": "def sourceCheck (T : Option Tree) (F : List (List Nat)) (s : Tree) : Bool :="
+  },
+  {
+    "module": "State",
+    "line": 26,
+    "declarationLine": "def agrees (T : Option Tree) (ss : List Tree) (F : List (List Nat)) : Bool :="
+  },
+  {
+    "module": "State",
+    "line": 31,
+    "declarationLine": "def additionalCost (ss : List Tree) (F : List (List Nat)) := F.length - ss.length"
+  },
+  {
+    "module": "State",
+    "line": 33,
+    "declarationLine": "def cleanupTarget (T : Option Tree) (a : Nat) := T.bind (restrict ((labels T).erase a))"
+  },
+  {
+    "module": "State",
+    "line": 34,
+    "declarationLine": "def cleanupSources (ss : List Tree) (a : Nat) := ss.erase (.leaf a)"
+  },
+  {
+    "module": "State",
+    "line": 35,
+    "declarationLine": "def cleanupForest (F : List (List Nat)) (a : Nat) := F.erase [a]"
+  },
+  {
+    "module": "State",
+    "line": 37,
+    "declarationLine": "def cherry (a b : Nat) : Tree \u2192 Bool"
+  },
+  {
+    "module": "State",
+    "line": 43,
+    "declarationLine": "def contract (a b z : Nat) : Tree \u2192 Tree"
+  },
+  {
+    "module": "State",
+    "line": 49,
+    "declarationLine": "def expand (a b z : Nat) : Tree \u2192 Tree"
+  },
+  {
+    "module": "State",
+    "line": 53,
+    "declarationLine": "def cherryReady (T : Option Tree) (ss : List Tree) (a b z : Nat) : Bool :="
+  },
+  {
+    "module": "State",
+    "line": 58,
+    "declarationLine": "def contractBlock (a b z : Nat) (B : List Nat) : List Nat :="
+  },
+  {
+    "module": "State",
+    "line": 61,
+    "declarationLine": "def expandBlock (a b z : Nat) (B : List Nat) : List Nat :="
+  },
+  {
+    "module": "Reverse",
+    "line": 148,
+    "declarationLine": "def feasible (T : Option Tree) (ss : List Tree) (q : Nat) : Prop :="
+  },
+  {
+    "module": "CherryTopology",
+    "line": 26,
+    "declarationLine": "def OptionIso (x y : Option Tree) : Prop :="
+  },
+  {
+    "module": "Replacement",
+    "line": 131,
+    "declarationLine": "def reassignedForest (F : List (List Nat)) (A : List Nat) (b : Nat) :="
+  },
+  {
+    "module": "BlockPartition",
+    "line": 6,
+    "declarationLine": "def Coalesced (F : List (List Nat)) (a b : Nat) := \u2200 B \u2208 F, a \u2208 B \u2194 b \u2208 B"
+  },
+  {
+    "module": "StateContract",
+    "line": 6,
+    "declarationLine": "def QuotientShape (a b : Nat) (t : Tree) : Prop :="
+  }
+]

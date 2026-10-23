@@ -1,0 +1,22 @@
+import PlantModel
+import KeptControls
+import Lean
+open Lean Elab Command
+run_cmd do
+  let env ← getEnv
+  let modules : List Name := [`RMAF, `Geometry, `Bridge, `Composition, `CoreGraph, `CherryCoarsening, `CoreProgram, `CoreInvariants, `SourceBridge, `Contraction, `Normalization, `InitialLift, `Suppression, `EraseLift, `Origins, `Branches, `CutRecords, `FullTransport, `Coverage, `Entrypoint, `OutputBudget, `ColorBudget, `ColorSteps, `RawMass, `RationalMass, `ParentColors, `OriginalGraph, `Display, `Regions, `History, `Realization, `OwnerCover, `CutCoverage, `InitialCoverage, `Cost, `ValidPartition, `KeptGraph, `KeptRun, `KeptParent, `KeptConsumers, `KeptControls, `PlantModel]
+  let ns := (env.constants.map₁.toList ++ env.constants.map₂.toList).map (·.1)
+  let ns := (ns.filter fun n =>
+    match env.getModuleIdxFor? n with
+    | some idx => modules.contains env.header.moduleNames[idx.toNat]!
+    | none => false).eraseDups
+  for n in ns do
+    let some idx := env.getModuleIdxFor? n | throwError "missing origin module"
+    let mod := env.header.moduleNames[idx.toNat]!
+    logInfo m!"MODULE|{mod}|{n}"
+  for n in ns do
+    let axs ← collectAxioms n
+    logInfo m!"MODAUDIT|{n}|{String.intercalate "," (axs.toList.map toString)}"
+    for a in axs do
+      unless a == `propext || a == `Quot.sound || a == `Classical.choice do
+        throwError m!"REJECT_CUSTOM_AXIOM|{n}|{a}"

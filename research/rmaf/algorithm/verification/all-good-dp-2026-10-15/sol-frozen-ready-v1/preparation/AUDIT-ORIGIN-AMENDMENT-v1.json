@@ -1,0 +1,8 @@
+{
+  "version":"pre-candidate-exact-origin-strengthening-v1",
+  "reason":"Code inspection of v4 comparator found only a Toy prefix check for module names; literal clean names were exact, but an incorrect different Toy module would evade that origin check.",
+  "preserve":["all previous expectations, sources, failures and results"],
+  "cleanOriginPairs":"each literal clean declaration must have origin ToyClean; all after-forcing generated toy rows must have attributed origin ToyGenerated, with raw origin and adapter retained",
+  "strongerCorruptTwin":{"replaceFirstCleanOriginWith":"ToyWrong","expected":"reject wrong-module-origin by exact origin equality despite matching Toy prefix"},
+  "candidateContact":"none; strengthening before release, not prompted by candidate output"
+}

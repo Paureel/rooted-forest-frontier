@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "purpose": "Minimize measured failing cut-only chain cover within leaf deletions of CHAIN-PIN-v3; no global minimum claim",
+  "source": "CHAIN-PIN-v3.json",
+  "leaves_required": [9,10],
+  "minimum_leaves": 7,
+  "enumeration": "Every subset of source labels containing 9 and10 with cardinality7 through11, in size then lexicographic order; restrict both original trees and keep cherry[9,10].",
+  "admission": "Use exact Figure16 exclusions in both orientations, actual two pendant cuts, deterministic tidying, three live components, exactly two edge overlaps, endpoint vertex disjointness.",
+  "failure": "Every overlap edge pair's complete four-assignment cover, after equal-partition deduplication and safe coarser-child dominance, has full paid branching mass greater than1 at 231/100. No optimum oracle participates in this test.",
+  "known_controls": "Original n11 source must reproduce three edge pairs all with full vector[1,1,4,4,4,4]; route's n10 chain must reproduce a passing edge pair. Malformed/inadmissible n9 source stays rejected.",
+  "execution": "At most512 subset states, core/eligibility only; exact partition and reconstruction run only on smallest found refuter. Time cap30s, retains denominator and partial verdict on cap."
+}

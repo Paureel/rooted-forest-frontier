@@ -1,0 +1,31 @@
+from pathlib import Path
+import json,hashlib
+R=Path.cwd();P=R/'research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v9';sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+old=json.loads((P/'OWN-CONTROL-RESULTS-v9.json').read_text());accepted=[x for x in old['records'] if not x['case']['name'].startswith('Global')];extra=[]
+for f in (P/'control-runs-v9.2').glob('*/receipt.json'):
+ accepted+=json.loads(f.read_text())['records'];extra.append(dict(path=str(f.relative_to(P)),sha256=sha(f)))
+new=old|dict(records=accepted,sources=old['sources']+extra,status='COMPLETED_WITH_RETAINED_SETUP_AND_IMPORT_PRECEDENCE_CORRECTIONS',qualification='Original global controls retained but final evidence uses corrected adapter-first thin licensed root. Same sources/expectations;32positive including1public value proof,7false; baseline1/1. No new independence.')
+assert sum(x['case']['statements'] for x in accepted if x['case']['expected']=='pass')==33
+assert sum(x['case']['statements'] for x in accepted if x['case']['expected']=='false')==8
+(P/'OWN-CONTROL-RESULTS-v9.1.json').write_text(json.dumps(new,indent=2)+'\n')
+imp=json.loads((P/'IMPORT-PRECEDENCE-CORRECTION-v9.1.json').read_text());done=[]
+for f in (P/'kernel-rechecks-v9.1').glob('*/receipt.json'):done.append(dict(path=str(f.relative_to(P)),sha256=sha(f),modules=len(json.loads(f.read_text())['records'])))
+imp.update(status='CORRECTED_FOUR_GLOBAL_SOURCE_RECHECKS_AND_GLOBAL_CONTROLS_PASSED',corrected_kernel_receipts=done,corrected_controls=extra,final_source_modules=36,final_type_axiom_reports=95,retained_initial_source_compiles=36,all_successful_compiles_including_retained_original_global=40,all_printed_type_reports_including_retained_original_global=111,actual_own_adapter_precedes_thin_root=True,unlicensed_author_global_and_rule4_build_dirs_excluded_from_corrected_roots=True)
+(P/'CLEAN-IMPORT-RECEIPT-v9.1.json').write_text(json.dumps(imp,indent=2)+'\n')
+ctx=json.loads((P/'CONTEXTS-v9.json').read_text());ctx['original_global_context_retained_not_final']=ctx['global_context'];ctx['global_context']=imp['corrected_roots'];ctx['qualification']='Corrected global adapter-first own thin licensed-object copies exclude author global/Rule4 directories with unlicensed aliases; inherited pinned roots and all same-lineage imported body/origin/initializer/control-namespace qualifications retained. Context availability is not full observed closure.';(P/'CONTEXTS-v9.1.json').write_text(json.dumps(ctx,indent=2)+'\n')
+lim=json.loads((P/'READ-LIMITATIONS-v9.json').read_text());lim['import_precedence_correction']='Final path check found unlicensed dependency alias hardlinks in author global build directory shadowing v6 adapter; original global source/control runs retained but excluded from final scientific evidence. All4global sources/16reports and7true/1false globalcontrols repeated in adapter-first thin copy root containing only11exactlicensed global/Rule4 objects; receipts and pins retained. No changed theorem, source or arithmetic expectation.';(P/'READ-LIMITATIONS-v9.1.json').write_text(json.dumps(lim,indent=2)+'\n')
+report=(P/'SCOPED-REVIEW-v9.md').read_text();report=report.replace('CONTEXTS-v9.json','CONTEXTS-v9.1.json').replace('OWN-CONTROL-RESULTS-v9.json','OWN-CONTROL-RESULTS-v9.1.json').replace('READ-LIMITATIONS-v9.json','READ-LIMITATIONS-v9.1.json')
+needle='The old own v6 OWBudgets adapter changes only the direct import line'
+pos=report.index(needle);end=report.index('\n\n',pos)
+addition='\n\nA final import-precedence check found dependency hardlinks in the author global build directory absent from its licensed payload list. They could shadow the old own adapter. Original global source/control runs are retained but excluded from final scientific evidence. I repeated all4 global sources/16 reports and7true/1false global controls with the own v6 adapter first and a thin own directory containing11 exact licensed global/Rule4 object copies, excluding the author global/Rule4 build roots. The corrected runs passed. Thus the final36 selected modules/95 reports comprise32 original nonglobal plus4 corrected global; all40 successful source compiles/111 printed reports remain as history. [Correction and exact pins]('+str(P/'CLEAN-IMPORT-RECEIPT-v9.1.json')+').'
+report=report[:end]+addition+report[end:]
+(P/'SCOPED-REVIEW-v9.1.md').write_text(report)
+# Mechanical audit variant: same checks, accept only corrected global records.
+s=(P/'check_evidence_v9.py').read_text().replace("P/'OWN-CONTROL-RESULTS-v9.json'","P/'OWN-CONTROL-RESULTS-v9.1.json'").replace("P/'SCOPED-REVIEW-v9.md'","P/'SCOPED-REVIEW-v9.1.md'").replace("P/'EVIDENCE-AUDIT-v9.json'","P/'EVIDENCE-AUDIT-v9.1.json'").replace("'READ-LIMITATIONS-v9.json'","'READ-LIMITATIONS-v9.1.json'")
+s=s.replace("for f in sorted((P/'kernel-rechecks').glob('*/receipt.json')):","for f in sorted(P.glob('kernel-rechecks*/*/receipt.json')):")
+s=s.replace("planned=next(i for i in json.loads((P/'RECHECK-PLAN-v9.json').read_text())['modules'] if i['package']==v['package']);", "planfile='RECHECK-PLAN-v9.1.json' if 'kernel-rechecks-v9.1' in str(f) else 'RECHECK-PLAN-v9.json';planned=next(i for i in json.loads((P/planfile).read_text())['modules'] if i['package']==v['package']);")
+s=s.replace("assert sha(build/(v['module']+'.olean'))==v['fresh_olean_sha256'];recs.append(v)","assert sha(build/(v['module']+'.olean'))==v['fresh_olean_sha256'];\n  if not (v['package'].startswith('global-') and 'kernel-rechecks-v9.1' not in str(f)):recs.append(v)")
+s=s.replace("for f in (P/'control-runs').glob('*/plan.source.json'):","for f in P.glob('control-runs*/*/plan.source.json'):")
+s=s.replace("for rel,pin in plan['own_prerequisite_pins'].items():assert sha(R/rel)==pin", "for rel,pin in plan['own_prerequisite_pins'].items():assert sha(R/rel)==pin\ncorrected=json.loads((P/'RECHECK-PLAN-v9.1.json').read_text())\nfor rel,pin in corrected['own_prerequisite_pins'].items():assert sha(R/rel)==pin\nimp=json.loads((P/'CLEAN-IMPORT-RECEIPT-v9.1.json').read_text())\nfor x in imp['copies']:assert idx[x['original']]==x['sha256']==sha(R/x['original'])==sha(P/x['own'])")
+(P/'check_evidence_v9.1.py').write_text(s);(P/'check_evidence_v9.1.py').chmod(0o444)
+print('Final accepted controls',len(accepted),'corrected global receipts',len(done))

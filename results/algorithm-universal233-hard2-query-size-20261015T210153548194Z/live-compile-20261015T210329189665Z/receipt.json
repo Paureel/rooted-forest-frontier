@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "5aa7a9bc0bebdfb9ab7941593ba86db27b536f3ef261f130f2d24e1d4c4d7a43",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.34310083300078986,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.33197479199952795,
+      "resource_stop": null,
+      "log_sha256": "334575892be467fd5a82e07da5ac1373458b78b26547303227fff11163ae4ede"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0015429579998453846,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PaidTargets",
+      "source_sha256": "7bca74cb457afa6e84a5ed3ff12faa580152f23a312d03de266d57eef9c046ff",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.7730279580009665,
+      "resource_stop": null,
+      "log_sha256": "74c9eeb8fdad27e0eefc2c6421cce38c90e00cc13adb91833f71980ed898ca0b"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('PaidTargets', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-query-size-20261015T210153548194Z/PaidTargets.lean:11:3: error: Tactic `split` failed: Could not split an `if` or `match` expression in the type\\n  call \u2208\\n    (have ss := OutputState.sourceForest S [A, B, C];\\n      match AllGoodDP.run (localTarget (some T) (A ++ B)) (owned ss (A ++ B)) with\\n      | none => { answer := none, calls := [] }\\n      | some H =>\\n        have m := additionalCost (owned ss (A ++ B)) H;\\n        if m \u2264 q - 2 then\\n          have r := q - 2 - m;\\n          have target := localTarget (some T) C;\\n          have sources := owned ss C;\\n          { answer := checked T S q (Option.map (fun K => H ++ K) (GenericForest.solve actual target sources r)),\\n            calls := [{ target := target, sources := sources, budget := r }] }\\n        else { answer := none, calls := [] }).calls\\nof `mem`\\n\\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\\n\\ncase isTrue\\nactual : Ordinary\\nT S : Tree\\nA B C : List Nat\\nq : Nat\\ncall : Call\\nh\u271d : 2 \u2264 q\\nmem :\\n  call \u2208\\n    (have ss := OutputState.sourceForest S [A, B, C];\\n      match AllGoodDP.run (localTarget (some T) (A ++ B)) (owned ss (A ++ B)) with\\n      | none => { answer := none, calls := [] }\\n      | some H =>\\n        have m := additionalCost (owned ss (A ++ B)) H;\\n        if m \u2264 q - 2 then\\n          have r := q - 2 - m;\\n          have target := localTarget (some T) C;\\n          have sources := owned ss C;\\n          { answer := checked T S q (Option.map (fun K => H ++ K) (GenericForest.solve actual target sources r)),\\n            calls := [{ target := target, sources := sources, budget := r }] }\\n        else { answer := none, calls := [] }).calls\\n\u22a2 TargetBound T call.target\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-query-size-20261015T210153548194Z/PaidTargets.lean:39:5: error: Tactic `split` failed: Could not split an `if` or `match` expression in the type\\n  call \u2208\\n    (have A := PaidAssembly.leftParent S p\u271d;\\n      have B := PaidAssembly.rightParent S r\u271d;\\n      have C := PaidAssembly.rootParent S p\u271d r\u271d;\\n      have X := first o\u271d A B C;\\n      have Y := second o\u271d A B C;\\n      have Z := third o\u271d A B C;\\n      if (restrictionAgrees S T X && restrictionAgrees S T Y) = true then GoodPairDP.runPair actual T S X Y Z q\\n      else\\n        if (restrictionAgrees S T X || restrictionAgrees S T Y) = true then\\n          Hard2PaidLocal.runHardPaid actual T S q c (Result.pair o\u271d (PairGeometry.Choice.edge edge\u271d))\\n        else badPair actual T S X Y Z edge\u271d q).calls\\nof `mem`\\n\\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\\n\\ncase h_1\\nactual : Ordinary\\nT S : Tree\\nc : Candidate\\nq : Nat\\ncall : Call\\nx\u271d : List Vertex\\np\u271d r\u271d : Vertex\\nheq\u271d : c.originalCuts = [p\u271d, r\u271d]\\nout\u271d : Result\\no\u271d : Order\\nedge\u271d : VertexGeometry.Vertex \u00d7 VertexGeometry.Vertex\\nmem :\\n  call \u2208\\n    (have A := PaidAssembly.leftParent S p\u271d;\\n      have B := PaidAssembly.rightParent S r\u271d;\\n      have C := PaidAssembly.rootParent S p\u271d r\u271d;\\n      have X := first o\u271d A B C;\\n      have Y := second o\u271d A B C;\\n      have Z := third o\u271d A B C;\\n      if (restrictionAgrees S T X && restrictionAgrees S T Y) = true then GoodPairDP.runPair actual T S X Y Z q\\n      else\\n        if (restrictionAgrees S T X || restrictionAgrees S T Y) = true then\\n          Hard2PaidLocal.runHardPaid actual T S q c (Result.pair o\u271d (PairGeometry.Choice.edge edge\u271d))\\n        else badPair actual T S X Y Z edge\u271d q).calls\\n\u22a2 TargetBound T call.target\\n'))"
+}

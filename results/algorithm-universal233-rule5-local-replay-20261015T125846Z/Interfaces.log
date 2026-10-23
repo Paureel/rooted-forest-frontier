@@ -1,0 +1,96 @@
+Universal233.Rule5Local.actual_one_incident_split {T : RMAF.Tree} {X : List Nat} {q : RMAF.Vertex}
+  (hn : (RMAF.leaves T).Nodup) (hi : Universal233.Rule5Local.incident T X = [q]) :
+  Universal233.CoreGraph.Valid T q ∧
+    q ≠ [] ∧
+      ((∀ (x : Nat), x ∈ RMAF.leaves T → (x ∈ X ↔ x ∈ Universal233.HardParent.subtreeLabels T q)) ∨
+        ∀ (x : Nat), x ∈ RMAF.leaves T → (x ∈ X ↔ ¬x ∈ Universal233.HardParent.subtreeLabels T q))
+Universal233.Rule5Local.commonSplit_emits {T S : RMAF.Tree} {X : List Nat} {q p : RMAF.Vertex} {a b : Nat}
+  (hn : (RMAF.leaves T).Nodup) (hi : Universal233.Rule5Local.incident T X = [q])
+  (hp : p ∈ Universal233.CherryBranching.cuts S a b)
+  (hX : ∀ (x : Nat), x ∈ Universal233.HardParent.subtreeLabels S p ↔ x ∈ X) :
+  ∃ w,
+    Universal233.Rule5Local.commonSplit? T S a b X = some w ∧
+      w.targetArc = q ∧
+        Universal233.CoreGraph.Valid T w.targetArc ∧
+          w.targetArc ≠ [] ∧
+            Universal233.CoreGraph.Valid S w.sourceArc ∧
+              w.sourceArc ≠ [] ∧
+                (∀ (x : Nat), x ∈ Universal233.HardParent.subtreeLabels S w.sourceArc ↔ x ∈ X) ∧
+                  ((∀ (x : Nat),
+                      x ∈ RMAF.leaves T → (x ∈ X ↔ x ∈ Universal233.HardParent.subtreeLabels T w.targetArc)) ∨
+                    ∀ (x : Nat), x ∈ RMAF.leaves T → (x ∈ X ↔ ¬x ∈ Universal233.HardParent.subtreeLabels T w.targetArc))
+Universal233.Rule5Local.original_crossing_clusters_exclude_block {T S U V : RMAF.Tree} {q r : RMAF.Vertex}
+  {F : List (List Nat)} {B : List Nat} {u v w : Nat} (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (hU : Universal233.CoreGraph.subtree T q = some U) (hV : Universal233.CoreGraph.subtree S r = some V)
+  (uU : u ∈ RMAF.leaves U) (vU : v ∈ RMAF.leaves U) (wU : ¬w ∈ RMAF.leaves U) (uV : u ∈ RMAF.leaves V)
+  (vV : ¬v ∈ RMAF.leaves V) (wV : w ∈ RMAF.leaves V) (ha : RMAF.agreement T S F = true) (hB : B ∈ F) (uB : u ∈ B)
+  (vB : v ∈ B) (wB : w ∈ B) : False
+Universal233.Rule5Local.figure153_block_exclusion {a b c x : Nat} {X U : RMAF.Tree} {S : List Nat} {F : List (List Nat)}
+  {B : List Nat} (hnX : (RMAF.leaves X).Nodup) (hx : x ∈ RMAF.leaves X)
+  (outside : ∀ (y : Nat), y ∈ RMAF.leaves X → y ≠ b ∧ y ≠ c) (hab : a ≠ b) (hac : a ≠ c) (hax : a ≠ x) (hbc : b ≠ c)
+  (hbx : b ≠ x) (hcx : c ≠ x) (hs : ∀ (y : Nat), y ∈ S → ¬y ∈ [b, c, x]) (hbU : b ∈ RMAF.leaves U)
+  (hxU : x ∈ RMAF.leaves U)
+  (ha : RMAF.agreement ((RMAF.Tree.leaf c).node U) (Universal233.Rule5Local.figure15Source a b c X S) F = true)
+  (hB : B ∈ F) (hbB : b ∈ B) (hcB : c ∈ B) (hxB : x ∈ B) : False
+Universal233.Rule5Local.splitTwo_original {T S : RMAF.Tree} {F : List (List Nat)} {a b : Nat} {q r : RMAF.Vertex}
+  (hn : (RMAF.leaves S).Nodup) (hc : Universal233.CherryBranching.cuts S a b = [q, r])
+  (ha : RMAF.agreement T S F = true) :
+  RMAF.agreement T S (Universal233.Rule5Local.splitTwo F S q r) = true ∧
+    (Universal233.Rule5Local.splitTwo F S q r).length ≤ F.length + 2
+Universal233.Rule5Local.splitTwo_refines {T S : RMAF.Tree} {F : List (List Nat)} {a b : Nat} {q r : RMAF.Vertex}
+  (hc : Universal233.CherryBranching.cuts S a b = [q, r]) (ha : RMAF.agreement T S F = true) :
+  VertexGeometry.Refines (Universal233.Rule5Local.splitTwo F S q r)
+    (Universal233.CherryBranching.pendantPartition S a b)
+Universal233.Rule5Local.actual_hard2_exchange_from_split_saving {T S : RMAF.Tree} {F : List (List Nat)}
+  {p q r : RMAF.Vertex} {a b : Nat} (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S) (ha : RMAF.agreement T S F = true)
+  (ch : Universal233.CoreGraph.CherryAt T p a b) (hc : Universal233.CherryBranching.cuts S a b = [q, r])
+  (singleton : [a] ∈ F) (saving : (Universal233.Rule5Local.splitTwo F S q r).length ≤ F.length + 1) :
+  ∃ G,
+    RMAF.agreement T S G = true ∧
+      G.length ≤ F.length ∧ VertexGeometry.Refines G (Universal233.CherryBranching.pendantPartition S a b)
+Universal233.Rule5Local.actual_hard2_exchange_from_split_saving_b {T S : RMAF.Tree} {F : List (List Nat)}
+  {p q r : RMAF.Vertex} {a b : Nat} (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S) (ha : RMAF.agreement T S F = true)
+  (ch : Universal233.CoreGraph.CherryAt T p a b) (hc : Universal233.CherryBranching.cuts S a b = [q, r])
+  (singleton : [b] ∈ F) (saving : (Universal233.Rule5Local.splitTwo F S q r).length ≤ F.length + 1) :
+  ∃ G,
+    RMAF.agreement T S G = true ∧
+      G.length ≤ F.length ∧ VertexGeometry.Refines G (Universal233.CherryBranching.pendantPartition S a b)
+Universal233.Rule5Local.case321_split_saving {T S X W : RMAF.Tree} {v w : RMAF.Vertex} {F : List (List Nat)} {a c : Nat}
+  (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (he : Universal233.CoreGraph.subtree S v = some (((RMAF.Tree.leaf a).node X).node (RMAF.Tree.leaf c)))
+  (hw : Universal233.CoreGraph.subtree T w = some W)
+  (Wlabels : ∀ (x : Nat), x ∈ RMAF.leaves W ↔ x ∈ RMAF.leaves X ∨ x = c) (ha : RMAF.agreement T S F = true)
+  (nonsingle : ¬[a] ∈ F) :
+  (Universal233.CherryBranching.splitForest (Universal233.CherryBranching.splitForest F (RMAF.leaves X)) [c]).length ≤
+    F.length + 1
+Universal233.Rule5Local.actual_case321_exchange {T S X W : RMAF.Tree} {v w p : RMAF.Vertex} {F : List (List Nat)}
+  {a b c : Nat} (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S)
+  (he : Universal233.CoreGraph.subtree S v = some (((RMAF.Tree.leaf a).node X).node (RMAF.Tree.leaf c)))
+  (hw : Universal233.CoreGraph.subtree T w = some W)
+  (Wlabels : ∀ (x : Nat), x ∈ RMAF.leaves W ↔ x ∈ RMAF.leaves X ∨ x = c) (ch : Universal233.CoreGraph.CherryAt T p a b)
+  (hc : Universal233.CherryBranching.cuts S a b = [v ++ [false, true], v ++ [true]])
+  (ha : RMAF.agreement T S F = true) :
+  [a] ∈ F ∨
+    ∃ G,
+      RMAF.agreement T S G = true ∧
+        G.length ≤ F.length ∧ VertexGeometry.Refines G (Universal233.CherryBranching.pendantPartition S a b)
+Universal233.Rule5Local.case323_split_saving {S X U : RMAF.Tree} {v : RMAF.Vertex} {F : List (List Nat)} {a c : Nat}
+  (hnT : (RMAF.leaves ((RMAF.Tree.leaf c).node U)).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (he : Universal233.CoreGraph.subtree S v = some (((RMAF.Tree.leaf a).node X).node (RMAF.Tree.leaf c)))
+  (ha : RMAF.agreement ((RMAF.Tree.leaf c).node U) S F = true) (single : [a] ∈ F) :
+  (Universal233.CherryBranching.splitForest (Universal233.CherryBranching.splitForest F (RMAF.leaves X)) [c]).length ≤
+    F.length + 1
+Universal233.Rule5Local.actual_case323_exchange {S X U : RMAF.Tree} {v p : RMAF.Vertex} {F : List (List Nat)}
+  {a b c : Nat} (hnT : (RMAF.leaves ((RMAF.Tree.leaf c).node U)).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves ((RMAF.Tree.leaf c).node U) ↔ x ∈ RMAF.leaves S)
+  (he : Universal233.CoreGraph.subtree S v = some (((RMAF.Tree.leaf a).node X).node (RMAF.Tree.leaf c)))
+  (ch : Universal233.CoreGraph.CherryAt ((RMAF.Tree.leaf c).node U) p a b)
+  (hc : Universal233.CherryBranching.cuts S a b = [v ++ [false, true], v ++ [true]])
+  (ha : RMAF.agreement ((RMAF.Tree.leaf c).node U) S F = true) :
+  [b] ∈ F ∨
+    ∃ G,
+      RMAF.agreement ((RMAF.Tree.leaf c).node U) S G = true ∧
+        G.length ≤ F.length ∧ VertexGeometry.Refines G (Universal233.CherryBranching.pendantPartition S a b)

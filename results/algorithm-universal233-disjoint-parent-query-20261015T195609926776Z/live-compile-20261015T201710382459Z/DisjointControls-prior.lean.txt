@@ -1,0 +1,30 @@
+import DisjointCounts
+namespace OrdinaryDispatch.DisjointParents.Controls
+open RMAF Universal233 Universal233.BothBad
+
+def noAnswer : Ordinary := fun _ _ _=>none
+def four (a b c d : Nat) : Tree := .node (.node (.leaf a) (.leaf b)) (.node (.leaf c) (.leaf d))
+def hardT : Tree := .node (four 0 1 2 3) (.node (four 4 5 6 7) (.leaf 8))
+def hardS : Tree := .node (four 0 2 1 3) (.node (four 4 6 5 7) (.leaf 8))
+def hardP : OrdinaryDispatch.Forest := [[0,1,2,3],[4,5,6,7],[8]]
+def three (a b c : Nat) : Tree := .node (.node (.leaf a) (.leaf b)) (.leaf c)
+def smallT : Tree := .node (three 0 1 2) (.node (three 3 4 5) (.leaf 6))
+def smallS : Tree := .node (three 0 2 1) (.node (three 3 5 4) (.leaf 6))
+def smallP : OrdinaryDispatch.Forest := [[0,1,2],[3,4,5],[6]]
+
+theorem hard_guards : partitionCheck (leaves hardS) hardP=true ∧
+ pairwiseEmbeddings hardS hardP=true ∧ pairwiseEmbeddings hardT hardP=true ∧
+ MafScheduler.badParents hardT hardS hardP=2 := by decide
+
+theorem actual_failure_trace : ((query noAnswer hardT hardS hardP 6).calls.map Call.budget)=[2] ∧
+ (query noAnswer hardT hardS hardP 6).answer=none := by cbv
+
+theorem paid_before_query : (query noAnswer hardT hardS hardP 1).answer=none ∧
+ (query noAnswer hardT hardS hardP 1).calls=[] := by cbv
+
+theorem resolved_costs_not_free :
+ (query noAnswer smallT smallS smallP 4).answer.any
+  (fun F=>agreement smallT smallS F && decide (F.length-1=4))=true ∧
+ (query noAnswer smallT smallS smallP 4).calls=[] := by cbv
+
+end OrdinaryDispatch.DisjointParents.Controls

@@ -1,0 +1,1849 @@
+{
+  "grade": "AUTHOR KERNEL REPLAY; independent nonauthor review pending",
+  "production_algorithm_proved": false,
+  "kernel_checks_passed": true,
+  "builds": [
+    {
+      "module": "RMAF",
+      "exit": 0,
+      "seconds": 5.207185
+    },
+    {
+      "module": "Geometry",
+      "exit": 0,
+      "seconds": 0.5295
+    },
+    {
+      "module": "Bridge",
+      "exit": 0,
+      "seconds": 0.49277
+    },
+    {
+      "module": "Composition",
+      "exit": 0,
+      "seconds": 0.328382
+    },
+    {
+      "module": "CoreGraph",
+      "exit": 0,
+      "seconds": 0.34797
+    },
+    {
+      "module": "CherryCoarsening",
+      "exit": 0,
+      "seconds": 0.318885
+    },
+    {
+      "module": "CoreProgram",
+      "exit": 0,
+      "seconds": 0.518435
+    },
+    {
+      "module": "CoreInvariants",
+      "exit": 0,
+      "seconds": 0.366948
+    },
+    {
+      "module": "SourceBridge",
+      "exit": 0,
+      "seconds": 0.383866
+    },
+    {
+      "module": "Contraction",
+      "exit": 0,
+      "seconds": 0.387927
+    },
+    {
+      "module": "Normalization",
+      "exit": 0,
+      "seconds": 0.363891
+    },
+    {
+      "module": "InitialLift",
+      "exit": 0,
+      "seconds": 0.307692
+    },
+    {
+      "module": "Suppression",
+      "exit": 0,
+      "seconds": 0.361661
+    },
+    {
+      "module": "EraseLift",
+      "exit": 0,
+      "seconds": 0.482787
+    },
+    {
+      "module": "Origins",
+      "exit": 0,
+      "seconds": 0.330521
+    },
+    {
+      "module": "Branches",
+      "exit": 0,
+      "seconds": 0.388497
+    },
+    {
+      "module": "CutRecords",
+      "exit": 0,
+      "seconds": 0.312054
+    },
+    {
+      "module": "Controls",
+      "exit": 0,
+      "seconds": 0.31257
+    },
+    {
+      "module": "Audit",
+      "exit": 0,
+      "seconds": 0.31086
+    },
+    {
+      "module": "FalseControls",
+      "exit": 1,
+      "seconds": 0.276048
+    }
+  ],
+  "declarations": {
+    "RMAF": [
+      "RMAF.Tree",
+      "RMAF.leaves",
+      "RMAF.Instance",
+      "RMAF.RootedIso",
+      "RMAF.sameShape",
+      "RMAF.sameShape_refl",
+      "RMAF.sameShape_correct",
+      "RMAF.restrict",
+      "RMAF.restrict_of_contains",
+      "RMAF.Vertex",
+      "RMAF.prependSide",
+      "RMAF.rootedSpan",
+      "RMAF.minimalVertices",
+      "RMAF.disjointVertices",
+      "RMAF.pairwiseEmbeddings",
+      "RMAF.restrictionAgrees",
+      "RMAF.partitionCheck",
+      "RMAF.agreement",
+      "RMAF.blocks",
+      "RMAF.assignments",
+      "RMAF.assignments_complete",
+      "RMAF.assignments_sound",
+      "RMAF.best",
+      "RMAF.best_none_iff",
+      "RMAF.best_spec",
+      "RMAF.best_exists",
+      "RMAF.solve",
+      "RMAF.assignment_solver_optimal",
+      "RMAF.assignment_solver_winner_valid",
+      "RMAF.Controls.leftTree",
+      "RMAF.Controls.rightTree",
+      "RMAF.Controls.proper_labels_left",
+      "RMAF.Controls.proper_labels_right",
+      "RMAF.Controls.exampleInstance",
+      "RMAF.Controls.different_full_trees",
+      "RMAF.Controls.two_component_witness",
+      "RMAF.Controls.overlap_rejected",
+      "RMAF.Controls.singleton_control",
+      "RMAF.Controls.minimum_is_two",
+      "RMAF.Controls.isolatedEndpoint",
+      "RMAF.Controls.endpoint_branch_costs_three",
+      "RMAF.Controls.every_agreement_at_least_two",
+      "RMAF.Controls.every_isolated_endpoint_at_least_three",
+      "RMAF.Controls.endpoint_only_rule_refuted"
+    ],
+    "Geometry": [
+      "VertexGeometry.Vertex",
+      "VertexGeometry.PathAt",
+      "VertexGeometry.Hull",
+      "VertexGeometry.Prefix",
+      "VertexGeometry.ProperPrefix",
+      "VertexGeometry.region",
+      "VertexGeometry.SameRegion",
+      "VertexGeometry.singleton_occupies",
+      "VertexGeometry.region_self",
+      "VertexGeometry.region_root_not_up",
+      "VertexGeometry.path_to_root_not_up",
+      "VertexGeometry.path_from_root_not_up",
+      "VertexGeometry.path_region_ne",
+      "VertexGeometry.path_sym",
+      "VertexGeometry.not_up_path_to_root",
+      "VertexGeometry.region_ne_path",
+      "VertexGeometry.avoids_iff_monochromatic",
+      "VertexGeometry.region_eq_three_iff",
+      "VertexGeometry.region_le_three",
+      "VertexGeometry.nonlabel_region_lt_three",
+      "VertexGeometry.occupied_nonlabel_two_directions",
+      "VertexGeometry.jointRegion",
+      "VertexGeometry.TwoJointRegions",
+      "VertexGeometry.two_joint_coordinate_separation",
+      "VertexGeometry.two_joint_same_separator",
+      "VertexGeometry.two_region_coincident_occupancy",
+      "VertexGeometry.Occupies",
+      "VertexGeometry.Clear",
+      "VertexGeometry.DisjointParents",
+      "VertexGeometry.distinct_parents_no_joint_owner",
+      "VertexGeometry.clique_three_survivor_cover",
+      "VertexGeometry.chain_four_ownership_cover",
+      "VertexGeometry.chain_two_paid_cover",
+      "VertexGeometry.lca",
+      "VertexGeometry.lca_on_path",
+      "VertexGeometry.lca_left_root",
+      "VertexGeometry.lca_right_root",
+      "VertexGeometry.median",
+      "VertexGeometry.median_on_three_paths",
+      "VertexGeometry.region_root_when_up",
+      "VertexGeometry.region_path_closed",
+      "VertexGeometry.Convex",
+      "VertexGeometry.hull_convex",
+      "VertexGeometry.vertex_helly_three",
+      "VertexGeometry.leaf_hull_helly_three",
+      "VertexGeometry.sameRegion_iff_path_avoids",
+      "VertexGeometry.jointRegion_iff_path_avoids"
+    ],
+    "Bridge": [
+      "VertexGeometry.Join",
+      "VertexGeometry.Reach",
+      "VertexGeometry.Nonempty",
+      "VertexGeometry.reach_root",
+      "VertexGeometry.path_same_side",
+      "VertexGeometry.path_same_side_to_root",
+      "VertexGeometry.path_cross_left",
+      "VertexGeometry.path_other_to_root_impossible",
+      "VertexGeometry.path_other_same_impossible",
+      "VertexGeometry.path_root_same_impossible",
+      "VertexGeometry.nonempty_join",
+      "VertexGeometry.reach_join_side",
+      "VertexGeometry.reach_join_right",
+      "VertexGeometry.hull_join_root",
+      "VertexGeometry.hull_join_left",
+      "VertexGeometry.hull_join_right",
+      "VertexGeometry.selectedLeaves",
+      "VertexGeometry.path_identical",
+      "VertexGeometry.reach_singleton",
+      "VertexGeometry.hull_singleton",
+      "VertexGeometry.hull_subset_reach",
+      "VertexGeometry.hull_or_reach",
+      "VertexGeometry.rootedSpan_root",
+      "VertexGeometry.isEmpty_true",
+      "VertexGeometry.rootspan_empty_from_correct",
+      "VertexGeometry.rootedSpan_correct",
+      "VertexGeometry.minimalVertices_correct",
+      "VertexGeometry.selected_leaf_reach_implies_self",
+      "VertexGeometry.selected_leaves_disjoint",
+      "VertexGeometry.disjoint_parent_overlap_nonlabel",
+      "VertexGeometry.executable_vertex_helly",
+      "VertexGeometry.executable_avoids_regions",
+      "VertexGeometry.selected_leaves_mono",
+      "VertexGeometry.executable_two_region_coincidence",
+      "VertexGeometry.leafList",
+      "VertexGeometry.leafList_correct",
+      "VertexGeometry.regions",
+      "VertexGeometry.regionList_mem",
+      "VertexGeometry.executable_region_count_two_or_three",
+      "VertexGeometry.executable_disjointVertices",
+      "VertexGeometry.executable_pairwiseEmbeddings",
+      "VertexGeometry.jointColors",
+      "VertexGeometry.jointColors_mem",
+      "VertexGeometry.two_members_length",
+      "VertexGeometry.jointColors_at_least_two",
+      "VertexGeometry.twoJointRegions_of_count_two",
+      "VertexGeometry.executable_joint_region_dichotomy",
+      "VertexGeometry.singleton_selected_exists",
+      "VertexGeometry.singleton_selected_address_unique",
+      "VertexGeometry.colorLabel",
+      "VertexGeometry.colorLabel_at_address",
+      "VertexGeometry.selected_decompose_label",
+      "VertexGeometry.LabelMonochromatic",
+      "VertexGeometry.original_label_avoids_iff",
+      "VertexGeometry.executable_root_region_count_two",
+      "VertexGeometry.executable_chain_targets_distinct",
+      "VertexGeometry.findCommon",
+      "VertexGeometry.commonPredicateCalls",
+      "VertexGeometry.commonPredicateCalls_bound",
+      "VertexGeometry.findCommon_sound",
+      "VertexGeometry.findCommon_complete",
+      "VertexGeometry.executable_clique_selector"
+    ],
+    "Composition": [
+      "VertexGeometry.Refines",
+      "VertexGeometry.refines_trans",
+      "VertexGeometry.Clears",
+      "VertexGeometry.executable_span_monotone",
+      "VertexGeometry.refinement_preserves_avoidance",
+      "VertexGeometry.conditional_core_child_preserves_target",
+      "VertexGeometry.SourceEdge",
+      "VertexGeometry.InSourceParent",
+      "VertexGeometry.distinct_parent_cut_separation",
+      "VertexGeometry.distinct_parent_cut_cost",
+      "VertexGeometry.two_parent_ownership_cover",
+      "VertexGeometry.PieceHulls",
+      "VertexGeometry.pieceHulls_occupies",
+      "VertexGeometry.pieceHulls_clear",
+      "VertexGeometry.pairwise_rel_of_distinct_mem",
+      "VertexGeometry.agreement_graph_factors",
+      "VertexGeometry.ownership_from_original_agreement",
+      "VertexGeometry.executable_clique_survivor_cover",
+      "VertexGeometry.executable_chain_four_cover",
+      "VertexGeometry.executable_chain_paid_cover"
+    ],
+    "CoreGraph": [
+      "Universal233.CoreGraph.subtree",
+      "Universal233.CoreGraph.Valid",
+      "Universal233.CoreGraph.LeafAt",
+      "Universal233.CoreGraph.CherryAt",
+      "Universal233.CoreGraph.Adj",
+      "Universal233.CoreGraph.Walk",
+      "Universal233.CoreGraph.Walk.start",
+      "Universal233.CoreGraph.Walk.finish",
+      "Universal233.CoreGraph.Adj.symm",
+      "Universal233.CoreGraph.Adj.ne",
+      "Universal233.CoreGraph.Walk.trans",
+      "Universal233.CoreGraph.Walk.mono",
+      "Universal233.CoreGraph.Walk.reverse",
+      "Universal233.CoreGraph.Walk.avoid_one_neighbor",
+      "Universal233.CoreGraph.subtree_append",
+      "Universal233.CoreGraph.cherry_left",
+      "Universal233.CoreGraph.cherry_right",
+      "Universal233.CoreGraph.cherry_parent_valid",
+      "Universal233.CoreGraph.cherry_parent_not_terminal",
+      "Universal233.CoreGraph.cherry_neighbor_cases",
+      "Universal233.CoreGraph.cherry_adj_left",
+      "Universal233.CoreGraph.cherry_adj_right",
+      "Universal233.CoreGraph.LeafAt.valid",
+      "Universal233.CoreGraph.leaf_no_child",
+      "Universal233.CoreGraph.leaf_neighbor_parent",
+      "Universal233.CoreGraph.walk_from_leaf_visits_parent",
+      "Universal233.CoreGraph.SourcePartition",
+      "Universal233.CoreGraph.SingletonBlock",
+      "Universal233.CoreGraph.Monochromatic",
+      "Universal233.CoreGraph.own_terminal",
+      "Universal233.CoreGraph.nonsingleton_parent",
+      "Universal233.CoreGraph.mixed_cherry_singleton",
+      "Universal233.CoreGraph.unique_color_singleton",
+      "Universal233.CoreGraph.mixed_root_cherry_singleton"
+    ],
+    "CherryCoarsening": [
+      "Universal233.CoreGraph.mergeOwner",
+      "Universal233.CoreGraph.mergeSupport",
+      "Universal233.CoreGraph.mergeSupport_actual",
+      "Universal233.CoreGraph.mergeSupport_terminal",
+      "Universal233.CoreGraph.other_cherry_neighbors_unique",
+      "Universal233.CoreGraph.mergeSupport_from_parent",
+      "Universal233.CoreGraph.mergeSupport_connected",
+      "Universal233.CoreGraph.mergeSupport_disjoint",
+      "Universal233.CoreGraph.coarsenCherry",
+      "Universal233.CoreGraph.Refines",
+      "Universal233.CoreGraph.coarsenCherry_refines",
+      "Universal233.CoreGraph.coarsenCherry_same_block",
+      "Universal233.CoreGraph.coarsenCherry_monochromatic",
+      "Universal233.CoreGraph.homogeneous_cherry_coarsening"
+    ],
+    "CoreProgram": [
+      "Universal233.CoreProgram.Group",
+      "Universal233.CoreProgram.GTree",
+      "Universal233.CoreProgram.fromTree",
+      "Universal233.CoreProgram.groups",
+      "Universal233.CoreProgram.normalize",
+      "Universal233.CoreProgram.erase",
+      "Universal233.CoreProgram.mixedCherry",
+      "Universal233.CoreProgram.Choice",
+      "Universal233.CoreProgram.choose",
+      "Universal233.CoreProgram.Output",
+      "Universal233.CoreProgram.Receipt",
+      "Universal233.CoreProgram.combine",
+      "Universal233.CoreProgram.prefixRoot",
+      "Universal233.CoreProgram.attempt",
+      "Universal233.CoreProgram.step",
+      "Universal233.CoreProgram.run",
+      "Universal233.CoreProgram.generate",
+      "Universal233.CoreProgram.maxVisits",
+      "Universal233.CoreProgram.attempt_visited_bound",
+      "Universal233.CoreProgram.step_visited_bound",
+      "Universal233.CoreProgram.run_visited_bound",
+      "Universal233.CoreProgram.maxVisits_pow",
+      "Universal233.CoreProgram.run_visited_exponential",
+      "Universal233.CoreProgram.attempt_attempts_bound",
+      "Universal233.CoreProgram.step_attempts_bound",
+      "Universal233.CoreProgram.run_attempts_bound",
+      "Universal233.CoreProgram.run_prefix_work_bound",
+      "Universal233.CoreProgram.Controls.crossed",
+      "Universal233.CoreProgram.Controls.parity",
+      "Universal233.CoreProgram.Controls.insertBy",
+      "Universal233.CoreProgram.Controls.sortBy",
+      "Universal233.CoreProgram.Controls.lexBy",
+      "Universal233.CoreProgram.Controls.natLE",
+      "Universal233.CoreProgram.Controls.canonicalPartition",
+      "Universal233.CoreProgram.Controls.parts",
+      "Universal233.CoreProgram.Controls.costs",
+      "Universal233.CoreProgram.Controls.crossed_both",
+      "Universal233.CoreProgram.Controls.crossed_paid",
+      "Universal233.CoreProgram.Controls.crossed_budget_refusal",
+      "Universal233.CoreProgram.Controls.cherry3",
+      "Universal233.CoreProgram.Controls.homColor",
+      "Universal233.CoreProgram.Controls.homogeneous",
+      "Universal233.CoreProgram.Controls.distinct_colors",
+      "Universal233.CoreProgram.Controls.three_color_quartet",
+      "Universal233.CoreProgram.Controls.same_color_root",
+      "Universal233.CoreProgram.Controls.singleton",
+      "Universal233.CoreProgram.Controls.duplicate_refused"
+    ],
+    "CoreInvariants": [
+      "Universal233.CoreProgram.payload",
+      "Universal233.CoreProgram.normalize_payload",
+      "Universal233.CoreProgram.PureGroups",
+      "Universal233.CoreProgram.fromTree_pure",
+      "Universal233.CoreProgram.normalize_pure",
+      "Universal233.CoreProgram.GoodCuts",
+      "Universal233.CoreProgram.goodCuts_nil",
+      "Universal233.CoreProgram.goodCuts_cons",
+      "Universal233.CoreProgram.attempt_outputs_good",
+      "Universal233.CoreProgram.step_outputs_good",
+      "Universal233.CoreProgram.run_outputs_good",
+      "Universal233.CoreProgram.generate_cut_records",
+      "Universal233.CoreProgram.OutputShape",
+      "Universal233.CoreProgram.attempt_output_shape",
+      "Universal233.CoreProgram.step_output_shape",
+      "Universal233.CoreProgram.run_output_shape",
+      "Universal233.CoreProgram.generate_recorded_charge"
+    ],
+    "SourceBridge": [
+      "Universal233.Integration.valid_root",
+      "Universal233.Integration.valid_cons",
+      "Universal233.Integration.valid_leaf_only",
+      "Universal233.Integration.adj_down",
+      "Universal233.Integration.walk_down",
+      "Universal233.Integration.adj_root_child",
+      "Universal233.Integration.convex_down",
+      "Universal233.Integration.convex_root_walk",
+      "Universal233.Integration.convex_connected",
+      "Universal233.Integration.rootedSpan_actual",
+      "Universal233.Integration.minimalVertices_actual",
+      "Universal233.Integration.minimalVertices_connected",
+      "Universal233.Integration.leafAt_selected",
+      "Universal233.Integration.selected_at_leaf",
+      "Universal233.Integration.minimalVertices_terminal",
+      "Universal233.Integration.partitionCheck_covers",
+      "Universal233.Integration.leafAt_label",
+      "Universal233.Integration.checked_support_unique",
+      "Universal233.Integration.idxOf_injective_on",
+      "Universal233.Integration.HasCheckedSupport",
+      "Universal233.Integration.checkedOwner",
+      "Universal233.Integration.checkedSupport",
+      "Universal233.Integration.checkedOwner_at_support",
+      "Universal233.Integration.checkedSupport_terminal",
+      "Universal233.Integration.checkedSourcePartition",
+      "Universal233.Integration.checkedSourcePartition_owner",
+      "Universal233.Integration.checkedSourcePartition_monochromatic",
+      "Universal233.Integration.sourcePartition_from_checks"
+    ],
+    "Contraction": [
+      "Universal233.Integration.CherryContraction",
+      "Universal233.Integration.contraction_cherry",
+      "Universal233.Integration.contraction_parent",
+      "Universal233.Integration.contraction_valid",
+      "Universal233.Integration.contraction_terminal",
+      "Universal233.Integration.adj_subgraph",
+      "Universal233.Integration.walk_change_tree",
+      "Universal233.Integration.cherry_children_ne",
+      "Universal233.Integration.same_block_cherry_parent",
+      "Universal233.Integration.contractOwner",
+      "Universal233.Integration.contractSupport",
+      "Universal233.Integration.contraction_support_connected",
+      "Universal233.Integration.contractPartition",
+      "Universal233.Integration.cherryProjection",
+      "Universal233.Integration.contractPartition_owner",
+      "Universal233.Integration.contractPartition_monochromatic"
+    ],
+    "Normalization": [
+      "Universal233.Integration.skeleton",
+      "Universal233.Integration.groupAt",
+      "Universal233.Integration.GroupLeafAt",
+      "Universal233.Integration.groupLeaf_leaf",
+      "Universal233.Integration.groupLeaf_skeleton",
+      "Universal233.Integration.GContract",
+      "Universal233.Integration.gcontract_graph",
+      "Universal233.Integration.projection_cons",
+      "Universal233.Integration.projection_other",
+      "Universal233.Integration.gcontract_group_image",
+      "Universal233.Integration.GroupedTransport",
+      "Universal233.Integration.groupedTransport_refl",
+      "Universal233.Integration.groupedTransport_trans",
+      "Universal233.Integration.gcontract_transport",
+      "Universal233.Integration.GContracts",
+      "Universal233.Integration.gcontracts_trans",
+      "Universal233.Integration.gcontracts_left",
+      "Universal233.Integration.gcontracts_right",
+      "Universal233.Integration.normalize_gcontracts",
+      "Universal233.Integration.gcontracts_transport",
+      "Universal233.Integration.normalize_source_transport"
+    ],
+    "InitialLift": [
+      "Universal233.Integration.recolor",
+      "Universal233.Integration.recolor_subtree",
+      "Universal233.Integration.recolor_valid",
+      "Universal233.Integration.recolor_leaf",
+      "Universal233.Integration.recolorPartition",
+      "Universal233.Integration.recolorPartition_monochromatic",
+      "Universal233.Integration.fromTree_skeleton",
+      "Universal233.Integration.fromTree_group_leaf",
+      "Universal233.Integration.retreePartition",
+      "Universal233.Integration.initialPartition",
+      "Universal233.Integration.initialPartition_owner",
+      "Universal233.Integration.initialPartition_monochromatic",
+      "Universal233.Integration.checked_normalization_lift"
+    ],
+    "Suppression": [
+      "Universal233.Integration.region_child_same",
+      "Universal233.Integration.region_adj_same",
+      "Universal233.Integration.walk_avoids_region",
+      "Universal233.Integration.source_support_convex",
+      "Universal233.Integration.invalid_region",
+      "Universal233.Integration.valid_convex",
+      "Universal233.Integration.LeafErasure",
+      "Universal233.Integration.erasureEmbedding",
+      "Universal233.Integration.erasure_leaf",
+      "Universal233.Integration.erasure_root_path",
+      "Universal233.Integration.erasure_path",
+      "Universal233.Integration.erasureTerminals",
+      "Universal233.Integration.erasureHull_actual",
+      "Universal233.Integration.erasureHull_image",
+      "Universal233.Integration.erasePartition",
+      "Universal233.Integration.erasePartition_monochromatic"
+    ],
+    "EraseLift": [
+      "Universal233.Integration.origins",
+      "Universal233.Integration.groupLeaf_origin_mem",
+      "Universal233.Integration.erase_of_origin_absent",
+      "Universal233.Integration.GLeafErase",
+      "Universal233.Integration.erase_leaf_realization",
+      "Universal233.Integration.gLeafErase_graph",
+      "Universal233.Integration.gLeafErase_group_lift",
+      "Universal233.Integration.gLeafErase_group_survives",
+      "Universal233.Integration.gLeafErase_embedding_avoids",
+      "Universal233.Integration.erase_leaf_source_transport"
+    ],
+    "Origins": [
+      "Universal233.Integration.fromTree_origin_suffix",
+      "Universal233.Integration.fromTree_origins_nodup",
+      "Universal233.Integration.normalize_origins_sublist",
+      "Universal233.Integration.normalize_origins_nodup",
+      "Universal233.Integration.erase_origins_sublist",
+      "Universal233.Integration.erase_origins_nodup",
+      "Universal233.Integration.reachable_origins_actual"
+    ],
+    "Branches": [
+      "Universal233.Integration.groupLeaf_of_groups_mem",
+      "Universal233.Integration.groupLeaf_mem_groups",
+      "Universal233.Integration.skeleton_leaf_group",
+      "Universal233.Integration.groupLeaf_address_unique",
+      "Universal233.Integration.choose_one_selected",
+      "Universal233.Integration.choose_one_nonroot",
+      "Universal233.Integration.unique_filter_group",
+      "Universal233.Integration.choose_one_source_singleton",
+      "Universal233.Integration.GCherryAt",
+      "Universal233.Integration.gcherry_graph",
+      "Universal233.Integration.gcherry_left",
+      "Universal233.Integration.gcherry_right",
+      "Universal233.Integration.option_or_some",
+      "Universal233.Integration.mixedCherry_selected",
+      "Universal233.Integration.choose_two_selected",
+      "Universal233.Integration.choose_two_source_singleton",
+      "Universal233.Integration.FullyNormalized",
+      "Universal233.Integration.normalize_fullyNormalized",
+      "Universal233.Integration.normalized_cherry_mixed",
+      "Universal233.Integration.mixedCherry_complete",
+      "Universal233.Integration.groups_nonempty",
+      "Universal233.Integration.choose_normalized_no_refusal"
+    ],
+    "CutRecords": [
+      "Universal233.Integration.nonrootOrigins",
+      "Universal233.Integration.RootZeroOnly",
+      "Universal233.Integration.CutsAvoid",
+      "Universal233.Integration.nonrootOrigins_sublist",
+      "Universal233.Integration.fromTree_rootZeroOnly",
+      "Universal233.Integration.normalize_nonroot_sublist",
+      "Universal233.Integration.normalize_rootZeroOnly",
+      "Universal233.Integration.erase_nonroot_sublist",
+      "Universal233.Integration.erase_rootZeroOnly",
+      "Universal233.Integration.groupLeaf_origin_nonempty",
+      "Universal233.Integration.erase_chosen_absent",
+      "Universal233.Integration.normalize_cutsAvoid",
+      "Universal233.Integration.erase_cutsAvoid",
+      "Universal233.Integration.attempt_singleton_source",
+      "Universal233.Integration.SourceAttempt",
+      "Universal233.Integration.step_source_progress",
+      "Universal233.Integration.initial_step_source_progress"
+    ],
+    "Controls": [
+      "Universal233.Integration.Controls.twoLabels",
+      "Universal233.Integration.Controls.parity",
+      "Universal233.Integration.Controls.clean_partition_check",
+      "Universal233.Integration.Controls.clean_embedding_check",
+      "Universal233.Integration.Controls.cleanPartition",
+      "Universal233.Integration.Controls.clean_distinct_owners",
+      "Universal233.Integration.Controls.whole_hull_walk",
+      "Universal233.Integration.Controls.exact_original_payload_normalization",
+      "Universal233.Integration.Controls.expandedTree",
+      "Universal233.Integration.Controls.expandedErasure",
+      "Universal233.Integration.Controls.suppression_expands_edge_to_path",
+      "Universal233.Integration.Controls.suppressed_edge_is_not_original_edge",
+      "Universal233.Integration.Controls.suppression_original_path",
+      "Universal233.Integration.Controls.clean_erase_source_partition"
+    ]
+  },
+  "hashes": {
+    "research/rmaf/lean/RMAF.lean": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+    "research/rmaf/algorithm/universal233/geometry/Geometry.lean": "b98de754ee29fdeae54aebc6e03ffb7e8262dcb299f61b7ac5ca9bcee4887a9d",
+    "research/rmaf/algorithm/universal233/geometry/Bridge.lean": "ba12f3b99d87efecce407dab54d95df003fc5e735cb12e314734c346317c9583",
+    "research/rmaf/algorithm/universal233/geometry/Composition.lean": "097b9184ebacd913524fc3f0a130057004f95e30ba15f485adb9e0b7934578df",
+    "research/rmaf/algorithm/universal233/core/CoreGraph.lean": "7099d4aa48a771f1d56e11bd36447a51d7e3c57094a6779c0d40acec11dca7a0",
+    "research/rmaf/algorithm/universal233/core/CherryCoarsening.lean": "2f7142129ee2bc7bc188c629d1e6f225211278f5689dcb1dea38cc516247c0b8",
+    "research/rmaf/algorithm/universal233/core/CoreProgram.lean": "9aa92355dfecf6e0e3d7707c1c284cabcb2f3846b6682e3b55b719e35cb7311f",
+    "research/rmaf/algorithm/universal233/core/CoreInvariants.lean": "c4801fbfa04dcf83e9f79c91fe9e9834d0f7d030298a9e3ef1671c14de30ad19",
+    "research/rmaf/algorithm/universal233/integration/SourceBridge.lean": "2eb4542a64461399029c6d3e0cb6dddd77d8b5b555d17e03abf8066a1cf7e93f",
+    "research/rmaf/algorithm/universal233/integration/Contraction.lean": "956d7acadd05b9aba389d45e34699776999f745c063e9d5d66062e5816f3f8b4",
+    "research/rmaf/algorithm/universal233/integration/Normalization.lean": "4dd4c1239d02e2452d94dcf254b7ca073c844428bbf07d3219dac3dc9e4b615c",
+    "research/rmaf/algorithm/universal233/integration/InitialLift.lean": "2fb05bd9dfc20a7bfe9e128615ac3eb7b3ed0054fae63ca37d12c7bfb33fc811",
+    "research/rmaf/algorithm/universal233/integration/Suppression.lean": "cf76359d9dff313237e2565aded7bff1c68fdb605690846d82145b5237bd978c",
+    "research/rmaf/algorithm/universal233/integration/EraseLift.lean": "3a9a1df4eb4549fa44af20cd785e4fd183261b2b01227c12f5bda9e36473e5f1",
+    "research/rmaf/algorithm/universal233/integration/Origins.lean": "43b33498a9a48f3434986d2e382ade610f60e3d4cbff60cbb461c25d60eefb23",
+    "research/rmaf/algorithm/universal233/integration/Branches.lean": "638fffbede206252d81802ea6b14269e2a58ddae69653857c97c8bd17661dce3",
+    "research/rmaf/algorithm/universal233/integration/CutRecords.lean": "6e14f512ff9304ded10766a26d2e9e9678ccc904c28a11cdc1bfddbb853a73a3",
+    "research/rmaf/algorithm/universal233/integration/Controls.lean": "d374f330c4358fb3d52d5e5fa19ece78bd12664b132dd5c3c3a49ce7f9ad890c",
+    "research/rmaf/algorithm/universal233/integration/FalseControls.lean": "4ef03ff8b6b305ec07174f9207b2e507bc6f560c91e42b8b7c06b7284172078a",
+    "research/rmaf/algorithm/universal233/integration/replay.py": "c4bb6b8bc4c18dc29dd9189521b8fc33b9b395c9e53c1a28f3b268066719804d",
+    "bootloops-lean": "a66ede51d0879307f64c9c15642feb5467e3c84a63f93e949a39d8fdf979526e",
+    "research/rmaf/algorithm/universal233/integration/lean-toolchain": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c"
+  },
+  "axioms": {
+    "RMAF.Tree": [],
+    "RMAF.leaves": [],
+    "RMAF.Instance": [],
+    "RMAF.RootedIso": [],
+    "RMAF.sameShape": [
+      "propext"
+    ],
+    "RMAF.sameShape_refl": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "RMAF.sameShape_correct": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "RMAF.restrict": [],
+    "RMAF.restrict_of_contains": [
+      "propext"
+    ],
+    "RMAF.Vertex": [],
+    "RMAF.prependSide": [],
+    "RMAF.rootedSpan": [],
+    "RMAF.minimalVertices": [],
+    "RMAF.disjointVertices": [],
+    "RMAF.pairwiseEmbeddings": [],
+    "RMAF.restrictionAgrees": [
+      "propext"
+    ],
+    "RMAF.partitionCheck": [],
+    "RMAF.agreement": [
+      "propext"
+    ],
+    "RMAF.blocks": [
+      "propext"
+    ],
+    "RMAF.assignments": [],
+    "RMAF.assignments_complete": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "RMAF.assignments_sound": [
+      "Quot.sound",
+      "propext"
+    ],
+    "RMAF.best": [],
+    "RMAF.best_none_iff": [
+      "Quot.sound",
+      "propext"
+    ],
+    "RMAF.best_spec": [
+      "Quot.sound",
+      "propext"
+    ],
+    "RMAF.best_exists": [
+      "Quot.sound",
+      "propext"
+    ],
+    "RMAF.solve": [
+      "propext"
+    ],
+    "RMAF.assignment_solver_optimal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "RMAF.assignment_solver_winner_valid": [
+      "Quot.sound",
+      "propext"
+    ],
+    "RMAF.Controls.leftTree": [],
+    "RMAF.Controls.rightTree": [],
+    "RMAF.Controls.proper_labels_left": [],
+    "RMAF.Controls.proper_labels_right": [],
+    "RMAF.Controls.exampleInstance": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "RMAF.Controls.different_full_trees": [
+      "propext"
+    ],
+    "RMAF.Controls.two_component_witness": [
+      "propext"
+    ],
+    "RMAF.Controls.overlap_rejected": [
+      "propext"
+    ],
+    "RMAF.Controls.singleton_control": [
+      "propext"
+    ],
+    "RMAF.Controls.minimum_is_two": [
+      "propext"
+    ],
+    "RMAF.Controls.isolatedEndpoint": [
+      "propext"
+    ],
+    "RMAF.Controls.endpoint_branch_costs_three": [
+      "propext"
+    ],
+    "RMAF.Controls.every_agreement_at_least_two": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "RMAF.Controls.every_isolated_endpoint_at_least_three": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "RMAF.Controls.endpoint_only_rule_refuted": [
+      "propext"
+    ],
+    "VertexGeometry.Vertex": [],
+    "VertexGeometry.PathAt": [],
+    "VertexGeometry.Hull": [],
+    "VertexGeometry.Prefix": [],
+    "VertexGeometry.ProperPrefix": [],
+    "VertexGeometry.region": [],
+    "VertexGeometry.SameRegion": [],
+    "VertexGeometry.singleton_occupies": [],
+    "VertexGeometry.region_self": [
+      "propext"
+    ],
+    "VertexGeometry.region_root_not_up": [
+      "propext"
+    ],
+    "VertexGeometry.path_to_root_not_up": [
+      "propext"
+    ],
+    "VertexGeometry.path_from_root_not_up": [
+      "propext"
+    ],
+    "VertexGeometry.path_region_ne": [
+      "propext"
+    ],
+    "VertexGeometry.path_sym": [],
+    "VertexGeometry.not_up_path_to_root": [
+      "propext"
+    ],
+    "VertexGeometry.region_ne_path": [
+      "propext"
+    ],
+    "VertexGeometry.avoids_iff_monochromatic": [
+      "propext"
+    ],
+    "VertexGeometry.region_eq_three_iff": [
+      "propext"
+    ],
+    "VertexGeometry.region_le_three": [
+      "propext"
+    ],
+    "VertexGeometry.nonlabel_region_lt_three": [
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.occupied_nonlabel_two_directions": [
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.jointRegion": [],
+    "VertexGeometry.TwoJointRegions": [],
+    "VertexGeometry.two_joint_coordinate_separation": [
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.two_joint_same_separator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.two_region_coincident_occupancy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.Occupies": [],
+    "VertexGeometry.Clear": [],
+    "VertexGeometry.DisjointParents": [],
+    "VertexGeometry.distinct_parents_no_joint_owner": [],
+    "VertexGeometry.clique_three_survivor_cover": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.chain_four_ownership_cover": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.chain_two_paid_cover": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.lca": [],
+    "VertexGeometry.lca_on_path": [
+      "propext"
+    ],
+    "VertexGeometry.lca_left_root": [
+      "propext"
+    ],
+    "VertexGeometry.lca_right_root": [
+      "propext"
+    ],
+    "VertexGeometry.median": [],
+    "VertexGeometry.median_on_three_paths": [
+      "propext"
+    ],
+    "VertexGeometry.region_root_when_up": [
+      "propext"
+    ],
+    "VertexGeometry.region_path_closed": [
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.Convex": [],
+    "VertexGeometry.hull_convex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.vertex_helly_three": [
+      "propext"
+    ],
+    "VertexGeometry.leaf_hull_helly_three": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.sameRegion_iff_path_avoids": [
+      "propext"
+    ],
+    "VertexGeometry.jointRegion_iff_path_avoids": [
+      "propext"
+    ],
+    "VertexGeometry.Join": [],
+    "VertexGeometry.Reach": [],
+    "VertexGeometry.Nonempty": [],
+    "VertexGeometry.reach_root": [],
+    "VertexGeometry.path_same_side": [
+      "propext"
+    ],
+    "VertexGeometry.path_same_side_to_root": [
+      "propext"
+    ],
+    "VertexGeometry.path_cross_left": [
+      "propext"
+    ],
+    "VertexGeometry.path_other_to_root_impossible": [
+      "propext"
+    ],
+    "VertexGeometry.path_other_same_impossible": [
+      "propext"
+    ],
+    "VertexGeometry.path_root_same_impossible": [
+      "propext"
+    ],
+    "VertexGeometry.nonempty_join": [],
+    "VertexGeometry.reach_join_side": [
+      "propext"
+    ],
+    "VertexGeometry.reach_join_right": [
+      "propext"
+    ],
+    "VertexGeometry.hull_join_root": [
+      "propext"
+    ],
+    "VertexGeometry.hull_join_left": [
+      "propext"
+    ],
+    "VertexGeometry.hull_join_right": [
+      "propext"
+    ],
+    "VertexGeometry.selectedLeaves": [],
+    "VertexGeometry.path_identical": [
+      "propext"
+    ],
+    "VertexGeometry.reach_singleton": [
+      "propext"
+    ],
+    "VertexGeometry.hull_singleton": [
+      "propext"
+    ],
+    "VertexGeometry.hull_subset_reach": [
+      "propext"
+    ],
+    "VertexGeometry.hull_or_reach": [
+      "propext"
+    ],
+    "VertexGeometry.rootedSpan_root": [
+      "propext"
+    ],
+    "VertexGeometry.isEmpty_true": [
+      "propext"
+    ],
+    "VertexGeometry.rootspan_empty_from_correct": [
+      "propext"
+    ],
+    "VertexGeometry.rootedSpan_correct": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.minimalVertices_correct": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.selected_leaf_reach_implies_self": [
+      "propext"
+    ],
+    "VertexGeometry.selected_leaves_disjoint": [],
+    "VertexGeometry.disjoint_parent_overlap_nonlabel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.executable_vertex_helly": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.executable_avoids_regions": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.selected_leaves_mono": [],
+    "VertexGeometry.executable_two_region_coincidence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.leafList": [],
+    "VertexGeometry.leafList_correct": [
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.regions": [],
+    "VertexGeometry.regionList_mem": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.executable_region_count_two_or_three": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.executable_disjointVertices": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.executable_pairwiseEmbeddings": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.jointColors": [],
+    "VertexGeometry.jointColors_mem": [
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.two_members_length": [
+      "propext"
+    ],
+    "VertexGeometry.jointColors_at_least_two": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.twoJointRegions_of_count_two": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.executable_joint_region_dichotomy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.singleton_selected_exists": [
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.singleton_selected_address_unique": [
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.colorLabel": [],
+    "VertexGeometry.colorLabel_at_address": [
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.selected_decompose_label": [
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.LabelMonochromatic": [],
+    "VertexGeometry.original_label_avoids_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.executable_root_region_count_two": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.executable_chain_targets_distinct": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.findCommon": [],
+    "VertexGeometry.commonPredicateCalls": [],
+    "VertexGeometry.commonPredicateCalls_bound": [
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.findCommon_sound": [
+      "propext"
+    ],
+    "VertexGeometry.findCommon_complete": [
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.executable_clique_selector": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.Refines": [],
+    "VertexGeometry.refines_trans": [],
+    "VertexGeometry.Clears": [],
+    "VertexGeometry.executable_span_monotone": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.refinement_preserves_avoidance": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.conditional_core_child_preserves_target": [],
+    "VertexGeometry.SourceEdge": [],
+    "VertexGeometry.InSourceParent": [],
+    "VertexGeometry.distinct_parent_cut_separation": [],
+    "VertexGeometry.distinct_parent_cut_cost": [
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.two_parent_ownership_cover": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.PieceHulls": [],
+    "VertexGeometry.pieceHulls_occupies": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.pieceHulls_clear": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.pairwise_rel_of_distinct_mem": [
+      "propext"
+    ],
+    "VertexGeometry.agreement_graph_factors": [
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.ownership_from_original_agreement": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.executable_clique_survivor_cover": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.executable_chain_four_cover": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "VertexGeometry.executable_chain_paid_cover": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreGraph.subtree": [],
+    "Universal233.CoreGraph.Valid": [],
+    "Universal233.CoreGraph.LeafAt": [],
+    "Universal233.CoreGraph.CherryAt": [],
+    "Universal233.CoreGraph.Adj": [],
+    "Universal233.CoreGraph.Walk": [],
+    "Universal233.CoreGraph.Walk.start": [],
+    "Universal233.CoreGraph.Walk.finish": [],
+    "Universal233.CoreGraph.Adj.symm": [],
+    "Universal233.CoreGraph.Adj.ne": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreGraph.Walk.trans": [],
+    "Universal233.CoreGraph.Walk.mono": [],
+    "Universal233.CoreGraph.Walk.reverse": [],
+    "Universal233.CoreGraph.Walk.avoid_one_neighbor": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreGraph.subtree_append": [
+      "propext"
+    ],
+    "Universal233.CoreGraph.cherry_left": [
+      "propext"
+    ],
+    "Universal233.CoreGraph.cherry_right": [
+      "propext"
+    ],
+    "Universal233.CoreGraph.cherry_parent_valid": [],
+    "Universal233.CoreGraph.cherry_parent_not_terminal": [],
+    "Universal233.CoreGraph.cherry_neighbor_cases": [
+      "propext"
+    ],
+    "Universal233.CoreGraph.cherry_adj_left": [
+      "propext"
+    ],
+    "Universal233.CoreGraph.cherry_adj_right": [
+      "propext"
+    ],
+    "Universal233.CoreGraph.LeafAt.valid": [],
+    "Universal233.CoreGraph.leaf_no_child": [
+      "propext"
+    ],
+    "Universal233.CoreGraph.leaf_neighbor_parent": [
+      "propext"
+    ],
+    "Universal233.CoreGraph.walk_from_leaf_visits_parent": [
+      "propext"
+    ],
+    "Universal233.CoreGraph.SourcePartition": [],
+    "Universal233.CoreGraph.SingletonBlock": [],
+    "Universal233.CoreGraph.Monochromatic": [],
+    "Universal233.CoreGraph.own_terminal": [],
+    "Universal233.CoreGraph.nonsingleton_parent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreGraph.mixed_cherry_singleton": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreGraph.unique_color_singleton": [],
+    "Universal233.CoreGraph.mixed_root_cherry_singleton": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreGraph.mergeOwner": [],
+    "Universal233.CoreGraph.mergeSupport": [],
+    "Universal233.CoreGraph.mergeSupport_actual": [
+      "propext"
+    ],
+    "Universal233.CoreGraph.mergeSupport_terminal": [
+      "propext"
+    ],
+    "Universal233.CoreGraph.other_cherry_neighbors_unique": [
+      "propext"
+    ],
+    "Universal233.CoreGraph.mergeSupport_from_parent": [
+      "propext"
+    ],
+    "Universal233.CoreGraph.mergeSupport_connected": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreGraph.mergeSupport_disjoint": [
+      "propext"
+    ],
+    "Universal233.CoreGraph.coarsenCherry": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreGraph.Refines": [],
+    "Universal233.CoreGraph.coarsenCherry_refines": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreGraph.coarsenCherry_same_block": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreGraph.coarsenCherry_monochromatic": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreGraph.homogeneous_cherry_coarsening": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreProgram.Group": [],
+    "Universal233.CoreProgram.GTree": [],
+    "Universal233.CoreProgram.fromTree": [],
+    "Universal233.CoreProgram.groups": [],
+    "Universal233.CoreProgram.normalize": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.erase": [],
+    "Universal233.CoreProgram.mixedCherry": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.Choice": [],
+    "Universal233.CoreProgram.choose": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.Output": [],
+    "Universal233.CoreProgram.Receipt": [],
+    "Universal233.CoreProgram.combine": [],
+    "Universal233.CoreProgram.prefixRoot": [],
+    "Universal233.CoreProgram.attempt": [],
+    "Universal233.CoreProgram.step": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.run": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.generate": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.maxVisits": [],
+    "Universal233.CoreProgram.attempt_visited_bound": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.step_visited_bound": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreProgram.run_visited_bound": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreProgram.maxVisits_pow": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreProgram.run_visited_exponential": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreProgram.attempt_attempts_bound": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreProgram.step_attempts_bound": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreProgram.run_attempts_bound": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreProgram.run_prefix_work_bound": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreProgram.Controls.crossed": [],
+    "Universal233.CoreProgram.Controls.parity": [],
+    "Universal233.CoreProgram.Controls.insertBy": [],
+    "Universal233.CoreProgram.Controls.sortBy": [],
+    "Universal233.CoreProgram.Controls.lexBy": [],
+    "Universal233.CoreProgram.Controls.natLE": [],
+    "Universal233.CoreProgram.Controls.canonicalPartition": [],
+    "Universal233.CoreProgram.Controls.parts": [],
+    "Universal233.CoreProgram.Controls.costs": [],
+    "Universal233.CoreProgram.Controls.crossed_both": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.Controls.crossed_paid": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.Controls.crossed_budget_refusal": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.Controls.cherry3": [],
+    "Universal233.CoreProgram.Controls.homColor": [],
+    "Universal233.CoreProgram.Controls.homogeneous": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.Controls.distinct_colors": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.Controls.three_color_quartet": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.Controls.same_color_root": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.Controls.singleton": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.Controls.duplicate_refused": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.payload": [],
+    "Universal233.CoreProgram.normalize_payload": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.PureGroups": [],
+    "Universal233.CoreProgram.fromTree_pure": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreProgram.normalize_pure": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.GoodCuts": [],
+    "Universal233.CoreProgram.goodCuts_nil": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreProgram.goodCuts_cons": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.attempt_outputs_good": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.step_outputs_good": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.run_outputs_good": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.generate_cut_records": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.CoreProgram.OutputShape": [],
+    "Universal233.CoreProgram.attempt_output_shape": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.step_output_shape": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.run_output_shape": [
+      "propext"
+    ],
+    "Universal233.CoreProgram.generate_recorded_charge": [
+      "propext"
+    ],
+    "Universal233.Integration.valid_root": [],
+    "Universal233.Integration.valid_cons": [],
+    "Universal233.Integration.valid_leaf_only": [
+      "propext"
+    ],
+    "Universal233.Integration.adj_down": [],
+    "Universal233.Integration.walk_down": [],
+    "Universal233.Integration.adj_root_child": [],
+    "Universal233.Integration.convex_down": [],
+    "Universal233.Integration.convex_root_walk": [
+      "propext"
+    ],
+    "Universal233.Integration.convex_connected": [
+      "propext"
+    ],
+    "Universal233.Integration.rootedSpan_actual": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.minimalVertices_actual": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.minimalVertices_connected": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.leafAt_selected": [
+      "propext"
+    ],
+    "Universal233.Integration.selected_at_leaf": [
+      "propext"
+    ],
+    "Universal233.Integration.minimalVertices_terminal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.partitionCheck_covers": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.leafAt_label": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.checked_support_unique": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.idxOf_injective_on": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.HasCheckedSupport": [],
+    "Universal233.Integration.checkedOwner": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.checkedSupport": [],
+    "Universal233.Integration.checkedOwner_at_support": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.checkedSupport_terminal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.checkedSourcePartition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.checkedSourcePartition_owner": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.checkedSourcePartition_monochromatic": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.sourcePartition_from_checks": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.CherryContraction": [],
+    "Universal233.Integration.contraction_cherry": [],
+    "Universal233.Integration.contraction_parent": [],
+    "Universal233.Integration.contraction_valid": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.contraction_terminal": [
+      "propext"
+    ],
+    "Universal233.Integration.adj_subgraph": [],
+    "Universal233.Integration.walk_change_tree": [],
+    "Universal233.Integration.cherry_children_ne": [],
+    "Universal233.Integration.same_block_cherry_parent": [
+      "propext"
+    ],
+    "Universal233.Integration.contractOwner": [],
+    "Universal233.Integration.contractSupport": [],
+    "Universal233.Integration.contraction_support_connected": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.contractPartition": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.cherryProjection": [],
+    "Universal233.Integration.contractPartition_owner": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.contractPartition_monochromatic": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.skeleton": [],
+    "Universal233.Integration.groupAt": [],
+    "Universal233.Integration.GroupLeafAt": [],
+    "Universal233.Integration.groupLeaf_leaf": [
+      "propext"
+    ],
+    "Universal233.Integration.groupLeaf_skeleton": [
+      "propext"
+    ],
+    "Universal233.Integration.GContract": [],
+    "Universal233.Integration.gcontract_graph": [],
+    "Universal233.Integration.projection_cons": [
+      "propext"
+    ],
+    "Universal233.Integration.projection_other": [
+      "propext"
+    ],
+    "Universal233.Integration.gcontract_group_image": [
+      "propext"
+    ],
+    "Universal233.Integration.GroupedTransport": [],
+    "Universal233.Integration.groupedTransport_refl": [],
+    "Universal233.Integration.groupedTransport_trans": [],
+    "Universal233.Integration.gcontract_transport": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.GContracts": [],
+    "Universal233.Integration.gcontracts_trans": [],
+    "Universal233.Integration.gcontracts_left": [],
+    "Universal233.Integration.gcontracts_right": [],
+    "Universal233.Integration.normalize_gcontracts": [
+      "propext"
+    ],
+    "Universal233.Integration.gcontracts_transport": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.normalize_source_transport": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.recolor": [],
+    "Universal233.Integration.recolor_subtree": [],
+    "Universal233.Integration.recolor_valid": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.recolor_leaf": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.recolorPartition": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.recolorPartition_monochromatic": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.fromTree_skeleton": [
+      "propext"
+    ],
+    "Universal233.Integration.fromTree_group_leaf": [
+      "propext"
+    ],
+    "Universal233.Integration.retreePartition": [],
+    "Universal233.Integration.initialPartition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.initialPartition_owner": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.initialPartition_monochromatic": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.checked_normalization_lift": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.region_child_same": [
+      "propext"
+    ],
+    "Universal233.Integration.region_adj_same": [
+      "propext"
+    ],
+    "Universal233.Integration.walk_avoids_region": [
+      "propext"
+    ],
+    "Universal233.Integration.source_support_convex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.invalid_region": [
+      "propext"
+    ],
+    "Universal233.Integration.valid_convex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.LeafErasure": [],
+    "Universal233.Integration.erasureEmbedding": [],
+    "Universal233.Integration.erasure_leaf": [
+      "propext"
+    ],
+    "Universal233.Integration.erasure_root_path": [],
+    "Universal233.Integration.erasure_path": [],
+    "Universal233.Integration.erasureTerminals": [],
+    "Universal233.Integration.erasureHull_actual": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.erasureHull_image": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.erasePartition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.erasePartition_monochromatic": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.origins": [],
+    "Universal233.Integration.groupLeaf_origin_mem": [
+      "propext"
+    ],
+    "Universal233.Integration.erase_of_origin_absent": [
+      "propext"
+    ],
+    "Universal233.Integration.GLeafErase": [],
+    "Universal233.Integration.erase_leaf_realization": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.gLeafErase_graph": [],
+    "Universal233.Integration.gLeafErase_group_lift": [
+      "propext"
+    ],
+    "Universal233.Integration.gLeafErase_group_survives": [
+      "propext"
+    ],
+    "Universal233.Integration.gLeafErase_embedding_avoids": [
+      "propext"
+    ],
+    "Universal233.Integration.erase_leaf_source_transport": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.fromTree_origin_suffix": [
+      "propext"
+    ],
+    "Universal233.Integration.fromTree_origins_nodup": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.normalize_origins_sublist": [
+      "propext"
+    ],
+    "Universal233.Integration.normalize_origins_nodup": [
+      "propext"
+    ],
+    "Universal233.Integration.erase_origins_sublist": [
+      "propext"
+    ],
+    "Universal233.Integration.erase_origins_nodup": [
+      "propext"
+    ],
+    "Universal233.Integration.reachable_origins_actual": [
+      "propext"
+    ],
+    "Universal233.Integration.groupLeaf_of_groups_mem": [
+      "propext"
+    ],
+    "Universal233.Integration.groupLeaf_mem_groups": [
+      "propext"
+    ],
+    "Universal233.Integration.skeleton_leaf_group": [
+      "propext"
+    ],
+    "Universal233.Integration.groupLeaf_address_unique": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.choose_one_selected": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.choose_one_nonroot": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.unique_filter_group": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.choose_one_source_singleton": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.GCherryAt": [],
+    "Universal233.Integration.gcherry_graph": [],
+    "Universal233.Integration.gcherry_left": [],
+    "Universal233.Integration.gcherry_right": [],
+    "Universal233.Integration.option_or_some": [],
+    "Universal233.Integration.mixedCherry_selected": [
+      "propext"
+    ],
+    "Universal233.Integration.choose_two_selected": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.choose_two_source_singleton": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.FullyNormalized": [],
+    "Universal233.Integration.normalize_fullyNormalized": [
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.normalized_cherry_mixed": [],
+    "Universal233.Integration.mixedCherry_complete": [
+      "propext"
+    ],
+    "Universal233.Integration.groups_nonempty": [
+      "propext"
+    ],
+    "Universal233.Integration.choose_normalized_no_refusal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.nonrootOrigins": [],
+    "Universal233.Integration.RootZeroOnly": [],
+    "Universal233.Integration.CutsAvoid": [],
+    "Universal233.Integration.nonrootOrigins_sublist": [],
+    "Universal233.Integration.fromTree_rootZeroOnly": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.normalize_nonroot_sublist": [
+      "propext"
+    ],
+    "Universal233.Integration.normalize_rootZeroOnly": [
+      "propext"
+    ],
+    "Universal233.Integration.erase_nonroot_sublist": [
+      "propext"
+    ],
+    "Universal233.Integration.erase_rootZeroOnly": [
+      "propext"
+    ],
+    "Universal233.Integration.groupLeaf_origin_nonempty": [
+      "propext"
+    ],
+    "Universal233.Integration.erase_chosen_absent": [
+      "propext"
+    ],
+    "Universal233.Integration.normalize_cutsAvoid": [
+      "propext"
+    ],
+    "Universal233.Integration.erase_cutsAvoid": [
+      "propext"
+    ],
+    "Universal233.Integration.attempt_singleton_source": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.SourceAttempt": [],
+    "Universal233.Integration.step_source_progress": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.initial_step_source_progress": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.Controls.twoLabels": [],
+    "Universal233.Integration.Controls.parity": [],
+    "Universal233.Integration.Controls.clean_partition_check": [],
+    "Universal233.Integration.Controls.clean_embedding_check": [],
+    "Universal233.Integration.Controls.cleanPartition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.Controls.clean_distinct_owners": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.Controls.whole_hull_walk": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Universal233.Integration.Controls.exact_original_payload_normalization": [
+      "propext"
+    ],
+    "Universal233.Integration.Controls.expandedTree": [],
+    "Universal233.Integration.Controls.expandedErasure": [],
+    "Universal233.Integration.Controls.suppression_expands_edge_to_path": [],
+    "Universal233.Integration.Controls.suppressed_edge_is_not_original_edge": [
+      "propext"
+    ],
+    "Universal233.Integration.Controls.suppression_original_path": [],
+    "Universal233.Integration.Controls.clean_erase_source_partition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "explicit_declaration_count": 449,
+  "false_controls_rejected": 3,
+  "meaning": "all explicit declarations in exact copied source stack kernel-checked with only standard axioms; three false controls rejected; full source generator coverage and original cut/mass/runtime remain OPEN"
+}

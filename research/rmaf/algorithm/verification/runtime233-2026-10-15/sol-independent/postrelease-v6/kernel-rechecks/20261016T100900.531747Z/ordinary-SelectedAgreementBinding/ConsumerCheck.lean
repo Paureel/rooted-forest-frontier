@@ -1,0 +1,9 @@
+import SelectedAgreementBinding
+#check OrdinaryDispatch.FullSourceWork.selected_arm_closed_checker
+#print axioms OrdinaryDispatch.FullSourceWork.selected_arm_closed_checker
+#check OrdinaryDispatch.FullSourceWork.selectedArmSource_value
+#print axioms OrdinaryDispatch.FullSourceWork.selectedArmSource_value
+#check OrdinaryDispatch.FullSourceWork.selectedArmSource_split
+#print axioms OrdinaryDispatch.FullSourceWork.selectedArmSource_split
+#check OrdinaryDispatch.FullSourceWork.selectedArmSource_local
+#print axioms OrdinaryDispatch.FullSourceWork.selectedArmSource_local

@@ -1,0 +1,320 @@
+{
+  "kind": "frozen_precontact_controls",
+  "rows": [
+    {
+      "name": "empty_mass",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "name": "singleton_q",
+      "actual": 0,
+      "expected": 0,
+      "pass": true
+    },
+    {
+      "name": "identical_q",
+      "actual": 0,
+      "expected": 0,
+      "pass": true
+    },
+    {
+      "name": "incompatible_triple_zero",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "name": "incompatible_triple_one",
+      "actual": 1,
+      "expected": 1,
+      "pass": true
+    },
+    {
+      "name": "crossed_valid_partition",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "overlap_invalid_partition",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "name": "overlap_invalid_reason",
+      "actual": "span_overlap",
+      "expected": "span_overlap",
+      "pass": true
+    },
+    {
+      "name": "overlap_identical_terminal_invalid",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "name": "overlap_identical_clean_twin",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "two_mixed_branches_cover",
+      "actual": [
+        true,
+        true
+      ],
+      "expected": [
+        true,
+        true
+      ],
+      "pass": true
+    },
+    {
+      "name": "missing_branch_detected",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "name": "group_cut_partition",
+      "actual": [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      ],
+      "pass": true
+    },
+    {
+      "name": "group_cut_charge",
+      "actual": [
+        1
+      ],
+      "expected": [
+        1
+      ],
+      "pass": true
+    },
+    {
+      "name": "three_colors_charge",
+      "actual": [
+        2
+      ],
+      "expected": [
+        2
+      ],
+      "pass": true
+    },
+    {
+      "name": "root_suppression_partition",
+      "actual": [
+        [
+          [
+            0,
+            3
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          [
+            0,
+            3
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      ],
+      "pass": true
+    },
+    {
+      "name": "root_suppression_charge",
+      "actual": [
+        2
+      ],
+      "expected": [
+        2
+      ],
+      "pass": true
+    },
+    {
+      "name": "charge_clean_twin",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "name": "false_charge_caught",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "name": "mass_clean_twin",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "name": "false_mass_caught",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "name": "valid_edge_cut_count",
+      "actual": 1,
+      "expected": 1,
+      "pass": true
+    },
+    {
+      "name": "invalid_edge_caught",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    }
+  ],
+  "passed": 23,
+  "denominator": 23,
+  "all_pass": true,
+  "core": [
+    {
+      "partition": [
+        [
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2
+        ]
+      ],
+      "cuts": [
+        [
+          1,
+          2
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "history": [
+        {
+          "op": "mixed_cherry",
+          "labels": [
+            0
+          ],
+          "actual_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "op": "unique_color",
+          "labels": [
+            2
+          ],
+          "actual_edge": [
+            4,
+            5
+          ]
+        },
+        {
+          "op": "contract_homogeneous",
+          "labels": [
+            1,
+            3
+          ]
+        }
+      ],
+      "charge": 2
+    },
+    {
+      "partition": [
+        [
+          0,
+          2
+        ],
+        [
+          1
+        ],
+        [
+          3
+        ]
+      ],
+      "cuts": [
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "history": [
+        {
+          "op": "mixed_cherry",
+          "labels": [
+            1
+          ],
+          "actual_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "op": "unique_color",
+          "labels": [
+            3
+          ],
+          "actual_edge": [
+            4,
+            6
+          ]
+        },
+        {
+          "op": "contract_homogeneous",
+          "labels": [
+            0,
+            2
+          ]
+        }
+      ],
+      "charge": 2
+    }
+  ]
+}

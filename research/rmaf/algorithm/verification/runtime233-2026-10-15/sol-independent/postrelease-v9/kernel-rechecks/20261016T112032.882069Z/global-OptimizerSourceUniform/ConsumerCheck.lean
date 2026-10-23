@@ -1,0 +1,7 @@
+import OptimizerSourceUniform
+#check OrdinaryDispatch.GlobalSourceAssembly.sourceOptimize_uniform_233
+#print axioms OrdinaryDispatch.GlobalSourceAssembly.sourceOptimize_uniform_233
+#check OrdinaryDispatch.GlobalSourceAssembly.partialSourceOptimize_value
+#print axioms OrdinaryDispatch.GlobalSourceAssembly.partialSourceOptimize_value
+#check OrdinaryDispatch.GlobalSourceAssembly.partialSourceOptimize_bound
+#print axioms OrdinaryDispatch.GlobalSourceAssembly.partialSourceOptimize_bound

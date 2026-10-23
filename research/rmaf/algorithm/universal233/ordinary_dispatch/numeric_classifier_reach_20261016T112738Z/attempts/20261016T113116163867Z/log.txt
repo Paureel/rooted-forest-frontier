@@ -1,0 +1,154 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:35:17: error: unsolved goals
+case node.leaf.leaf
+label✝¹ label✝ : Label
+⊢ decode label✝¹ = labelValue label✝¹ ∧ decode label✝ = labelValue label✝
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:36:109: warning: This simp argument is unused:
+  List.map_map
+
+Hint: Omit it from the simp argument list.
+  [apply] simp_all [cherriesBits, Universal233.CherryBranching.cherries, treeValue, cherryValue, Function.comp_def]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:36:122: warning: This simp argument is unused:
+  Function.comp_def
+
+Hint: Omit it from the simp argument list.
+  [apply] simp_all [cherriesBits, Universal233.CherryBranching.cherries, treeValue, cherryValue, List.map_map]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:65:28: error: Application type mismatch: The argument
+  hd
+has type
+  d ∈ (cherriesBits (u.node v)).value
+but is expected to have type
+  c ∈ (cherriesBits (u.node v)).value
+in the application
+  ir hd
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:66:119: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  f ≥ 0
+  e ≥ 0
+  c ≥ 0
+  c - e - f ≥ 3
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+where
+ a := ↑(treeNodes (treeValue (u.node v)))
+ b := ↑(List.length { parent := true :: d.parent, a := d.a, b := d.b }.parent)
+ c := ↑(List.length d.parent)
+ e := ↑(treeNodes (treeValue u))
+ f := ↑(treeNodes (treeValue v))
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:71:27: error: Application type mismatch: The argument
+  hd
+has type
+  d ∈ (cherriesBits (u.node v)).value
+but is expected to have type
+  c ∈ (cherriesBits (u.node v)).value
+in the application
+  il hd
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:72:116: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  g ≥ 0
+  f ≥ 0
+  e ≥ 0
+  c ≥ 0
+  c - e - f - g ≥ 2
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+where
+ a := ↑(treeNodes (treeValue (u.node v)))
+ b := ↑(List.length { parent := false :: d.parent, a := d.a, b := d.b }.parent)
+ c := ↑(List.length d.parent)
+ e := ↑(treeNodes (treeValue u))
+ f := ↑(treeNodes (treeValue v))
+ g := ↑(treeNodes (treeValue r))
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:74:27: error: Application type mismatch: The argument
+  hd
+has type
+  d ∈ (cherriesBits r).value
+but is expected to have type
+  c ∈ (cherriesBits r).value
+in the application
+  ir hd
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:75:118: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  f ≥ 0
+  e ≥ 0
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+  a - c + e + f ≤ -2
+where
+ a := ↑(treeNodes (treeValue r))
+ b := ↑(List.length { parent := true :: d.parent, a := d.a, b := d.b }.parent)
+ c := ↑(List.length d.parent)
+ e := ↑(treeNodes (treeValue u))
+ f := ↑(treeNodes (treeValue v))
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:63:70: warning: This simp argument is unused:
+  cherriesBits
+
+Hint: Omit it from the simp argument list.
+  [apply] simp at hd
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:113:111: error: unsolved goals
+case cons.isTrue
+p : Universal233.CherryBranching.Priority
+head✝ : CandidateBits
+tail✝ : List CandidateBits
+tail_ih✝ :
+  Option.map candidateValue (findClass p tail✝).value =
+    Option.map candidateValue (List.find? ((fun c => cutClass p c.originalCuts) ∘ candidateValue) tail✝)
+h✝ : cutClass p head✝.originalCuts = true
+⊢ candidateValue head✝ =
+    { parent := head✝.parent, a := decode head✝.a, b := decode head✝.b, originalCuts := head✝.originalCuts }
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:130:65: error: Invalid `⟨...⟩` notation: The expected type of this term could not be determined
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:150:2: error: Function expected at
+  selectPriorityBits
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  T
+
+Hint: The identifier `selectPriorityBits` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:151:12: error: Invalid argument: Variable `selectPriorityBits` is not a proposition or let-declaration
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:150:117: error: unsolved goals
+x✝ : Sort u_1
+selectPriorityBits : x✝
+T S : Tree
+⊢ sorry =
+    match
+      List.find? (fun c => c.originalCuts.isEmpty)
+        (Universal233.CherryBranching.candidates (treeValue T) (treeValue S)) with
+    | some c => some (Universal233.CherryBranching.Priority.common, c)
+    | none =>
+      match
+        List.find? (fun c => c.originalCuts.length == 1)
+          (Universal233.CherryBranching.candidates (treeValue T) (treeValue S)) with
+      | some c => some (Universal233.CherryBranching.Priority.one, c)
+      | none =>
+        match
+          List.find? (fun c => decide (3 ≤ c.originalCuts.length))
+            (Universal233.CherryBranching.candidates (treeValue T) (treeValue S)) with
+        | some c => some (Universal233.CherryBranching.Priority.high, c)
+        | none =>
+          Option.map (fun c => (Universal233.CherryBranching.Priority.hard2, c))
+            (Universal233.CherryBranching.candidates (treeValue T) (treeValue S)).head?
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:151:31: warning: This simp argument is unused:
+  selectCandidatesBits_value
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [selectPriorityBits, candidatesBits_value, Universal233.CherryBranching.select]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:151:58: warning: This simp argument is unused:
+  candidatesBits_value
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [selectPriorityBits, selectCandidatesBits_value, Universal233.CherryBranching.select]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

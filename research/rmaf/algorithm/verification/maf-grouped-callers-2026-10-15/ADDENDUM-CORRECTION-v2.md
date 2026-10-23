@@ -1,0 +1,5 @@
+# Addendum comparator correction before candidate contact
+
+Inspection after the first addendum run found that its supplied-Boolean catch used a tautological None-is-None expression rather than executing a table comparator. Its minimum-attainment catch also recorded a previously asserted fact rather than exercising a named acceptance predicate. The v1 source/result remain retained and those two catch records are not accepted as demonstrated detectors. This is a control implementation correction; no root fixture or expected mathematical value changes.
+
+The new v2 source introduces a finite table_valid comparator for the exact three child budgets, checks its clean table, corrupts a feasible returned witness to None while adding a true supplied-contract flag, and requires comparator rejection. It also checks an explicit attained predicate on both the valid minimum witness and the valid nonminimum singleton witness. The opaque runtime-field and poisoned-function controls are unchanged. Freeze v2 before execution. This uses only the same local four-label control oracle; no candidate or author contact occurs. Preserve all old versions and earlier lineage corrections.

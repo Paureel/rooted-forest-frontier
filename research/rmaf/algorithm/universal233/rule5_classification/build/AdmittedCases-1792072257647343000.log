@@ -1,0 +1,20 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_classification/build/AdmittedCases.lean:122:3: error: unsolved goals
+case inr.refine_2
+T S : Tree
+i : RMAF.Vertex
+a b : Nat
+ha : admitted T S a b = true
+ch : CherryAt T i a b
+parts :
+  properPair T S = true ∧
+    earlierClear T S = true ∧
+      earlierClear S T = true ∧ pairwiseEmbeddings T (pendantPartition S a b) = true ∧ (cuts S a b).length = 2
+u v : RMAF.Vertex
+cutEq : cuts S a b = [u, v]
+P : pendantPartition S a b = [subtreeLabels S u, subtreeLabels S v, coreLabels S a b]
+hp : partitionCheck (leaves T) [subtreeLabels S u, subtreeLabels S v, coreLabels S a b] = true
+he : pairwiseEmbeddings T [subtreeLabels S u, subtreeLabels S v, coreLabels S a b] = true
+em : v ∈ cuts S a b
+B : List Nat
+⊢ (B = coreLabels S a b ∨ B = subtreeLabels S u) ∨ B = subtreeLabels S v ↔
+    B = coreLabels S a b ∨ B = subtreeLabels S u ∨ B = subtreeLabels S v

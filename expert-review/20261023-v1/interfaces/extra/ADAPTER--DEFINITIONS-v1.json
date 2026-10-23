@@ -1,0 +1,48 @@
+{
+  "scope": "Exactly three pure graph adapter return definitions. No theorem proof values, existence or equality premise is granted.",
+  "fragments": [
+    {
+      "names": [
+        "SourceMafCallbackV3.missingReturn",
+        "SourceMafCallbackV3.forestReturn"
+      ],
+      "source_binding_only": "research/rmaf/algorithm/universal233/ordinary_dispatch/source_callback_pairing_20261022/v3/MafCallbackExecutionV3.lean",
+      "source_sha256": "4ea5631704742cbcfd0b71e710e83bce268701972fe4c9be939ea2e2a70ac988",
+      "object_sha256": "e65e940436b1e4cb5a7cd3cfd57e8ea290574e998bb00b17772763352c8bd54c",
+      "source_context_lines": [
+        "namespace SourceMafCallbackV3",
+        "open RMAF Universal233 WholeSourceWork CoreWork",
+        "open GenericForest.CheckCorrespondence GenericForest.FrontierWork",
+        "open OrdinaryDispatch.Hard2SourceWork OrdinaryDispatch.WorkIntegration",
+        "open SourceForestV3 SourceCouplingV2",
+        "open SourceDisjointV2 (ordinarySpec)"
+      ],
+      "line_range": [
+        21,
+        28
+      ],
+      "pure_definitions": "def missingReturn (T S : Tree) (U : List Nat) : Return :=\n  \u27e8\u27e8none,(meterRestrict U T).work+(meterRestrict U S).work+8\u27e9,[],[],[]\u27e9\n\ndef forestReturn (T S : Tree) (U : List Nat) (b : Nat) (t s : Tree)\n    (out : SourceForestV3.Result) : Return :=\n  \u27e8\u27e8out.value.map (fun F=>(F.length-1,F)),\n      (meterRestrict U T).work+(meterRestrict U S).work+(out.value.map List.length).getD 0+12\u27e9,\n    [\u27e8some t,[s],b\u27e9],[out.debit],out.slots\u27e9\n"
+    },
+    {
+      "names": [
+        "SourceGroupCallbackV3.finish"
+      ],
+      "source_binding_only": "research/rmaf/algorithm/universal233/ordinary_dispatch/source_callback_pairing_20261022/v3/GroupCallbackExecutionV3.lean",
+      "source_sha256": "88857eddc42f008dd0bc14a3a56732dc4484036135480e0005f1a2dd0dbd4ff9",
+      "object_sha256": "21c92ae1998aa0f52becc4d7eda705db6f6d27fee686bd54220d4543fd70e7b4",
+      "source_context_lines": [
+        "namespace SourceGroupCallbackV3",
+        "open RMAF Universal233 WholeSourceWork CoreWork SourceForestV3",
+        "open OrdinaryDispatch.Hard2SourceWork OrdinaryDispatch.WorkIntegration",
+        "open GenericForest.FrontierWork Universal233.GroupedFullQuery",
+        "open SourceCouplingV2 (Mode enabled)",
+        "open SourceDisjointV2 (ordinarySpec)"
+      ],
+      "line_range": [
+        10,
+        13
+      ],
+      "pure_definitions": "def finish (p : Problem) (out : SourceForestV3.Result) : Charged (Option (Nat\u00d7F)) :=\n  match out.value with\n  | none=>\u27e8none,4\u27e9\n  | some F=>let c:=additionalCostMeter p.sources F;\u27e8some (c.value,F),c.work+12\u27e9\n"
+    }
+  ]
+}

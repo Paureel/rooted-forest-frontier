@@ -1,0 +1,5 @@
+# Graph bank launch decision
+
+Valid `graph-pilot-run2.json`, same machine and v2 semantic code: ten completed pairs, 56 agreements, 24 t1 checks and 17 high checks; total semantic bank time 0.001222916s. The first two three-leaf pairs were excluded from the steady-state window; the remaining three-leaf pair costs are 0.000030791–0.000069916s and show no increasing trend. The five-leaf planted pair costs 0.000707041s. This is a measured size effect, not an assumed flat pair cost.
+
+The frozen bank has 341 pairs (1+1+9+225+105), each at most five leaves. Projection uses the measured five-leaf cost for all 341 pairs and a deliberately conservative factor20 for source shape/cache variation: 341*0.000707041*20 < 4.83s, conditional on per-pair costs staying within that envelope. This is an upper planning allowance, not a runtime theorem. The frozen timeout remains120s. Launch the bounded bank after 22/22 graph mutations and six invalid input rejections passed in `graph-controls-run2.json`. Monitor completed pair counts and preserve failures; any severalfold rate collapse voids this projection.

@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.35079954100001487,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3197380000001431,
+      "resource_stop": null,
+      "log_sha256": "6f9696364202aafe2428c019e02126a41df1ac745e1d1c5978102d515879b2f4"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.001674042000558984,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Hard2GraphSourceBound",
+      "source_sha256": "617e14263cffca865699ce6a8a3afcd1ed965137aeb97e880072c79580b4279e",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 1.011941666999519,
+      "resource_stop": null,
+      "log_sha256": "bcce70481233bc0fe0a79e7e5192a1aa555f988204404c5ce8f6110698fb8b92"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Hard2GraphSourceBound', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSourceBound.lean:12:48: error: No goals to be solved\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSourceBound.lean:13:41: error: No goals to be solved\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSourceBound.lean:24:4: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  i \u2265 0\\n  h \u2265 0\\n  g \u2265 0\\n  4*g - h \u2265 0\\n  f \u2265 0\\n  f - g \u2265 0\\n  e \u2265 0\\n  d \u2265 0\\n  c \u2265 0\\n  b \u2265 0\\n  2*b - h + i \u2264 -2\\n  a \u2265 0\\n  a - b \u2265 0\\n  a - c \u2265 0\\n  a - d \u2265 0\\n  a - e \u2265 0\\nwhere\\n a := \u2191N\\n b := \u2191(treeNodes (l.node r))\\n c := \u2191(treeNodes l)\\n d := \u2191(treeNodes r)\\n e := \u2191(leaves (l.node r)).length\\n f := \u2191N * \u2191N\\n g := \u2191(leaves (l.node r)).length * \u2191(leaves (l.node r)).length\\n h := \u2191(leavesMeter (l.node r)).work\\n i := \u2191(4 * N) * \u2191N\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSourceBound.lean:93:12: error: `simp` made no progress\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSourceBound.lean:93:12: error: `simp` made no progress\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSourceBound.lean:109:81: error: Type mismatch: After simplification, term\\n  x\\n has type\\n  (meterJointColors (second o A B C) T v w).value.length * treeNodes T \u2264 N * N.succ\\nbut is expected to have type\\n  16 * (((second o A B C).length + treeNodes T + 2) * treeNodes T) \u2264 32 * ((N + 1) * (N + 1))\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSourceBound.lean:172:103: error: Application type mismatch: The argument\\n  a\\nhas type\\n  (subtreeLabelsMeter S p).value.length \u2264 N\\nbut is expected to have type\\n  (leftParent S p).length \u2264 N\\nin the application\\n  hard2SelectMeter_bound T (leftParent S p) (rightParent S r) (rootParent S p r) N three tn a\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSourceBound.lean:175:14: warning: This simp argument is unused:\\n  Charged.work\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp only\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n'))"
+}

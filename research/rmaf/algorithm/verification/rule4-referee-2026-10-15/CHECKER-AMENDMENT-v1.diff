@@ -1,0 +1,65 @@
+--- research/rmaf/algorithm/verification/rule4-referee-2026-10-15/first-pass/check_records_v1.py	2026-10-15 16:40:47
++++ research/rmaf/algorithm/verification/rule4-referee-2026-10-15/check_records_v1.py	2026-10-15 16:41:26
+@@ -251,17 +251,6 @@
+     ]: add(id,"tokens",path,True,start=start,end=end,tokens=tokens)
+     add("historical-table-raw-width","table_width",AUTHOR+"INTERFACE.md",4,line=26)
+     results = [evaluate(spec) for spec in specs]
+-    manifests = [(AUTHOR+"RULE4-MANIFEST-v1.json","immutable_files",ROOT),
+-                 (POST+"SOURCE-REVIEW-MANIFEST-v1.json","files",ROOT/POST)]
+-    membership = []
+-    for path,key,base in manifests:
+-        index = {str((base/x["path"]).resolve()):x for x in obj(path)[key]}
+-        for p,item in list(READS.items()):
+-            if p not in index: continue
+-            pin = index[p]
+-            assert item["sha256"] == pin["sha256"], p
+-            assert item["bytes"] == pin.get("bytes", item["bytes"]), p
+-            membership.append({"path":p,"manifest":path,"matched":True})
+     human = {
+         str((OUT/"TARGET-v1.md").relative_to(ROOT)):"complete; first contact",
+         ALG+"RULE4-REVIEW-STATUS-v1.md":"complete 1–13",
+@@ -274,6 +263,14 @@
+         POST+"cold-source/RMAF.lean":"100–160 only",
+         PRE+"CONTACTS-v1.json":"complete",
+         PRE+"REVIEW-SKELETON-v1.md":"failure excerpts 29–35,97–117,129–145 only",
++        AUTHOR+"RULE4-MANIFEST-v1.json":"header and named-key previews; full JSON machine parse only",
++        POST+"SOURCE-REVIEW-MANIFEST-v1.json":"first 60 lines; full JSON machine parse only",
++        POST+"runtime-python-all-v2.json":"header, named-key and tail previews; full JSON machine parse only",
++        POST+"lean-runtime-all-v2-validation.json":"initial large display truncated; no full human-read credit; full JSON machine parse only",
++        POST+"producer-validation-all.json":"first 28 lines; full JSON machine parse only",
++        POST+"guard-readout-validation-v3.json":"named-key preview; full JSON machine parse only",
++        POST+"installed-used-pins.json":"named-key preview; full JSON machine parse only",
++        POST+"false-source-execution-v2.json":"error_headers, stdout and execution metadata excerpts; full JSON machine parse only",
+         "bootloops/tools/README.md":"complete across displayed slices; initial batch truncated then explicit slices",
+         "bootloops/tools/emitall/GUIDE.md":"complete",
+         **{".agents/skills/"+n+"/SKILL.md":"complete; prose-lint repeated slices repaired initial display cap" for n in ["referee-sim","prose-lint","reading-contract","tool-stewardship","planted-truth","independence-bookkeeping"]},
+@@ -281,10 +278,28 @@
+     for path,scope in human.items():
+         read(path,scope)
+         READS[str(ROOT/path)]["human_read"] = scope
++    manifests = [(AUTHOR+"RULE4-MANIFEST-v1.json","immutable_files",ROOT),
++                 (POST+"SOURCE-REVIEW-MANIFEST-v1.json","files",ROOT/POST)]
++    membership = []
++    for path,key,base in manifests:
++        index = {str((base/x["path"]).resolve()):x for x in obj(path)[key]}
++        for p,item in list(READS.items()):
++            if p not in index: continue
++            pin = index[p]
++            assert item["sha256"] == pin["sha256"], p
++            assert item["bytes"] == pin.get("bytes", item["bytes"]), p
++            membership.append({"path":p,"manifest":path,"matched":True})
++    audience_rows = [line for line in report.splitlines() if line.startswith("| ") and
++                     (" | Correctness | " in line or " | Novelty | " in line)]
++    audience_axes = {}
++    for line in audience_rows:
++        cells = [x.strip() for x in line.strip().strip("|").split("|")]
++        audience_axes.setdefault(cells[0],[]).append(cells[1])
++    assert len(audience_axes) == 5 and all(sorted(x)==["Correctness","Novelty"] for x in audience_axes.values())
+     for item in READS.values():
+         item["machine_contacts"] = sorted(set(item["machine_contacts"]))
+     write_json("READ-LEDGER-v1.json", list(READS.values()))
+-    write_json("FACT-CHECKS-v1.json", {"scope":"retrieved record consistency only; no scientific replay", "checks":results,"manifest_membership":membership,"seconds":time.monotonic()-began})
++    write_json("FACT-CHECKS-v1.json", {"scope":"retrieved record consistency only; no scientific replay", "checks":results,"manifest_membership":membership,"audience_axes":audience_axes,"seconds":time.monotonic()-began})
+     initial = OUT/"INITIAL-CONTACT-PINS-v1.json"
+     current = {p: x["sha256"] for p,x in READS.items() if not p.startswith(str(OUT)+"/")}
+     if initial.exists():

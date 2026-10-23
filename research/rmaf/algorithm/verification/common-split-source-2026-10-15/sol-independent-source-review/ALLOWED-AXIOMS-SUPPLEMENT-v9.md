@@ -1,0 +1,3 @@
+# Allowed-axiom positive controls v9, pre-candidate
+
+A Std-only clean producer explicitly uses each allowed standard axiom. Expected exact closures: TrustAllowed.allowedPropext → [propext]; TrustAllowed.allowedChoice → [Classical.choice]; TrustAllowed.allowedQuot → [Quot.sound]. All must be accepted, while NativeBad's actually generated custom native-decide axiom remains rejected. This tests acceptance of the declared three rather than only empty closures. Values/expectations are fixed before compilation; no mathematical X0 or candidate contact is added. Each operation capped30 seconds using measured tiny-control timings.

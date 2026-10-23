@@ -1,0 +1,79 @@
+Universal233.BothBad.ExactAt (solve : Universal233.BothBad.ForestSolver) (t : Option RMAF.Tree) (ss : List RMAF.Tree)
+  (b : Nat) : Prop
+Universal233.BothBad.ExactSolverHyp (solve : Universal233.BothBad.ForestSolver) : Prop
+Universal233.BothBad.selected_binary_core_cover (S T : RMAF.Tree) (A B C : List Nat) (e : RMAF.Vertex × RMAF.Vertex)
+  (F : List (List Nat)) (hs : (RMAF.leaves S).Nodup) (ht : (RMAF.leaves T).Nodup)
+  (hp : RMAF.partitionCheck (RMAF.leaves S) [A, B, C] = Bool.true)
+  (hchoose : PairGeometry.choose T A B = Option.some (PairGeometry.Choice.edge e))
+  (hF : RMAF.agreement T S F = Bool.true) (hr : Universal233.SourceCoverage.RefinesBlocks F [A, B, C]) (q : Nat)
+  (hq : F.length - 1 ≤ q) :
+  ∃ o,
+    o ∈ Universal233.BothBad.outputs S A B (PairGeometry.descendants T e.snd) q ∧
+      Universal233.PaidAssembly.OutputWitness S [A, B, C] F q o
+Universal233.BothBad.solvePair_conditional_cover (solve : Universal233.BothBad.ForestSolver) (S T : RMAF.Tree)
+  (A B C : List Nat) (edge : RMAF.Vertex × RMAF.Vertex) (q : Nat) (F : Universal233.BothBad.Forest)
+  (hs : (RMAF.leaves S).Nodup) (ht : (RMAF.leaves T).Nodup) (same : ∀ (x : Nat), x ∈ RMAF.leaves S ↔ x ∈ RMAF.leaves T)
+  (hp : RMAF.partitionCheck (RMAF.leaves S) [A, B, C] = Bool.true)
+  (hsource : RMAF.pairwiseEmbeddings S [A, B, C] = Bool.true) (hbadA : RMAF.restrictionAgrees S T A = Bool.false)
+  (hbadB : RMAF.restrictionAgrees S T B = Bool.false) (hgoodC : RMAF.restrictionAgrees S T C = Bool.true)
+  (hchoose : PairGeometry.choose T A B = Option.some (PairGeometry.Choice.edge edge)) (hac : BinaryExchange.Disj T A C)
+  (hbc : BinaryExchange.Disj T B C) (hF : RMAF.agreement T S F = Bool.true)
+  (hRef : Universal233.SourceCoverage.RefinesBlocks F [A, B, C]) (hcost : List.length F - 1 ≤ q)
+  (IH : Universal233.BothBad.ExactSolverHyp solve) :
+  ∃ H,
+    (Universal233.BothBad.solvePair solve S T A B C edge q).answer = Option.some H ∧
+      RMAF.agreement T S H = Bool.true ∧ List.length H - 1 ≤ q ∧ List.length H ≤ List.length F
+Universal233.BothBad.retained_paid_lower (T S : RMAF.Tree) (A B C D : List Nat)
+  (aout o : Universal233.CoreProgram.Output) (q0 : Nat) (F : Universal233.BothBad.Forest) (hs : (RMAF.leaves S).Nodup)
+  (ht : (RMAF.leaves T).Nodup) (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S)
+  (hp : RMAF.partitionCheck (RMAF.leaves S) [A, B, C] = Bool.true)
+  (ho : o ∈ Universal233.PairAssembly.sideOutputs S A B D q0)
+  (safe : Universal233.BinaryCheap.OppositeSafe S T A B C aout o)
+  (hk : Universal233.BothBad.knownOne T S A = Option.some aout.partition) (hF : RMAF.agreement T S F = Bool.true)
+  (href : RestrictionBridge.Refines F o.partition) : 1 ≤ List.length F - o.partition.length
+Universal233.BothBad.retained_candidate (solve : Universal233.BothBad.ForestSolver) (T S : RMAF.Tree)
+  (A B C D : List Nat) (aout o : Universal233.CoreProgram.Output) (q0 b : Nat) (F : Universal233.BothBad.Forest)
+  (hs : (RMAF.leaves S).Nodup) (ht : (RMAF.leaves T).Nodup) (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S)
+  (hp : RMAF.partitionCheck (RMAF.leaves S) [A, B, C] = Bool.true)
+  (ho : o ∈ Universal233.PairAssembly.sideOutputs S A B D q0)
+  (safe : Universal233.BinaryCheap.OppositeSafe S T A B C aout o)
+  (hk : Universal233.BothBad.knownOne T S A = Option.some aout.partition)
+  (goodC : RMAF.restrictionAgrees S T C = Bool.true) (hF : RMAF.agreement T S F = Bool.true)
+  (href : RestrictionBridge.Refines F o.partition) (hbudget : List.length F - o.partition.length ≤ b + 1)
+  (IH :
+    Universal233.BothBad.ExactAt solve (ForestGroups.localTarget (Option.some T) B)
+      (ForestGroups.owned (OutputState.sourceForest S o.partition) B) b) :
+  ∃ H,
+    (Universal233.BothBad.dispatch solve T S
+            { output := o, mode := Universal233.BothBad.Mode.retained A B C aout.partition, budget := b }).answer =
+        Option.some H ∧
+      RMAF.agreement T S H = Bool.true ∧
+        RestrictionBridge.Refines H o.partition ∧
+          List.length H - o.partition.length ≤ b + 1 ∧ List.length H ≤ List.length F
+Universal233.BothBad.solvePair_actual_mass (solve : Universal233.BothBad.ForestSolver) (S T : RMAF.Tree)
+  (A B C : List Nat) (edge : RMAF.Vertex × RMAF.Vertex) (q : Nat) (c : Rat) (hc : 2 ≤ c) (h3 : c ≤ 3)
+  (hs : (RMAF.leaves S).Nodup) (ht : (RMAF.leaves T).Nodup) (same : ∀ (x : Nat), x ∈ RMAF.leaves S ↔ x ∈ RMAF.leaves T)
+  (hp : RMAF.partitionCheck (RMAF.leaves S) [A, B, C] = Bool.true)
+  (hsource : RMAF.pairwiseEmbeddings S [A, B, C] = Bool.true) (hbadA : RMAF.restrictionAgrees S T A = Bool.false)
+  (hbadB : RMAF.restrictionAgrees S T B = Bool.false) (hgoodC : RMAF.restrictionAgrees S T C = Bool.true)
+  (hchoose : PairGeometry.choose T A B = Option.some (PairGeometry.Choice.edge edge)) (hac : BinaryExchange.Disj T A C)
+  (hbc : BinaryExchange.Disj T B C) :
+  Universal233.BothBad.traceMass c q (Universal233.BothBad.solvePair solve S T A B C edge q).calls ≤ 4 * c ^ (-4)
+Universal233.BothBad.solvePair_calls_drop (solve : Universal233.BothBad.ForestSolver) (S T : RMAF.Tree)
+  (A B C : List Nat) (edge : RMAF.Vertex × RMAF.Vertex) (q : Nat) (a : Universal233.BothBad.Call)
+  (hs : (RMAF.leaves S).Nodup) (ht : (RMAF.leaves T).Nodup) (hl : ∀ (x : Nat), x ∈ RMAF.leaves S → x ∈ RMAF.leaves T)
+  (hp : RMAF.partitionCheck (RMAF.leaves S) [A, B, C] = Bool.true)
+  (hchoose : PairGeometry.choose T A B = Option.some (PairGeometry.Choice.edge edge))
+  (ha : a ∈ (Universal233.BothBad.solvePair solve S T A B C edge q).calls) : a.budget + 3 ≤ q
+Universal233.BothBad.corePrefixBill_bound (S : RMAF.Tree) (A B D : List Nat) (q : Nat) :
+  Universal233.BothBad.corePrefixBill S A B D q ≤ 4 * Universal233.BothBad.coreEnvelope S q
+Universal233.BothBad.profilePair_value (solve : Universal233.BothBad.ForestSolver)
+  (charge : Universal233.BothBad.Call → Nat) (S T : RMAF.Tree) (A B C : List Nat) (edge : RMAF.Vertex × RMAF.Vertex)
+  (q : Nat) :
+  (Universal233.BothBad.profilePair solve charge S T A B C edge q).value =
+    Universal233.BothBad.solvePair solve S T A B C edge q
+Universal233.BothBad.profilePair_recursive (solve : Universal233.BothBad.ForestSolver)
+  (charge : Universal233.BothBad.Call → Nat) (S T : RMAF.Tree) (A B C : List Nat) (edge : RMAF.Vertex × RMAF.Vertex)
+  (q : Nat) :
+  (Universal233.BothBad.profilePair solve charge S T A B C edge q).recursiveWork =
+    (List.map charge (Universal233.BothBad.solvePair solve S T A B C edge q).calls).sum

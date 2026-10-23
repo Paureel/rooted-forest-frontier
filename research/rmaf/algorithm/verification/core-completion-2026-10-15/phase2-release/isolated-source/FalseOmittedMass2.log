@@ -1,0 +1,21 @@
+FalseOmittedMass2.lean:14:44: error: Tactic `decide` failed to reduce
+  @decide (rawQMass 2 duplicated = 1 / 2) (instDecidableEqRat (rawQMass 2 duplicated) (1 / 2))
+to `true` or `false`.
+
+Reduction got stuck at
+  match
+    (((fun o => 2 ^ (-↑o.sourceCuts.length)) (os.getD 0 { partition := [], sourceCuts := [] })).add
+        (List.foldr (fun x1 x2 => x1 + x2) 0
+          (List.map (fun o => 2 ^ (-↑o.sourceCuts.length))
+            [os.getD 0 { partition := [], sourceCuts := [] }, os.getD 1 { partition := [], sourceCuts := [] }]))).num,
+    (Rat.mul 1 (Rat.inv 2)).num with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | { decide := true, reflects_decide := h } => isTrue ⋯
+    | { decide := false, reflects_decide := h } => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | { decide := true, reflects_decide := h } => isTrue ⋯
+    | { decide := false, reflects_decide := h } => isFalse ⋯

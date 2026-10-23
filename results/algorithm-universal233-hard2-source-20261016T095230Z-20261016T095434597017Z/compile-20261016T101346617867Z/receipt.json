@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3611809579997498,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.4447955830000865,
+      "resource_stop": null,
+      "log_sha256": "aa5b1da62205241c90b8e421527733b5997ea5a956c47ec2b1975ecb325783b1"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0019182080004611635,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Hard2FullOutputSource",
+      "source_sha256": "8adcecf2c5ac8af4e05e09d8c9b415f409230d85162e7e00e34d739c950b4967",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 1.1366468329997588,
+      "resource_stop": null,
+      "log_sha256": "9410b0ad4b91e8670e5a64750e24bc87b733c6fb4fe72698e02f9efbe3a6a39c"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Hard2FullOutputSource', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2FullOutputSource.lean:73:62: error(lean.unknownIdentifier): Unknown identifier `queryWork_append`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2FullOutputSource.lean:75:4: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  k \u2265 0\\n  j \u2265 0\\n  i \u2265 0\\n  g \u2265 0\\n  f \u2265 0\\n  e \u2265 0\\n  d \u2265 0\\n  c \u2265 0\\n  c - d \u2265 0\\n  b \u2265 0\\n  b - j + k \u2264 -1\\n  a \u2265 0\\n  a + b \u2265 0\\nwhere\\n a := \u2191(fullOutputsSource actual (fun x x_1 x_2 => 0) T S q os).work\\n b := \u2191(queryWork W\\n    (List.flatMap (fun call => frontier actual call.target call.sources call.budget)\\n      (fullOutputsSource actual (fun x x_1 x_2 => 0) T S q os).value.calls))\\n c := \u2191q\\n d := \u2191o.sourceCuts.length\\n e := \u2191(sourceForestMeter S o.partition).work\\n f := \u2191(forestWork actual (fun x x_1 x_2 => 0) (some T) (sourceForestMeter S o.partition).value\\n    (q - o.sourceCuts.length))\\n g := \u2191(checkedMeter T S q\\n      (GenericForest.solve actual (some T) (sourceForestMeter S o.partition).value (q - o.sourceCuts.length))).work\\n i := \u2191(chooseMeter\\n      (checkedMeter T S q\\n          (GenericForest.solve actual (some T) (sourceForestMeter S o.partition).value (q - o.sourceCuts.length))).value\\n      (fullOutputsSource actual (fun x x_1 x_2 => 0) T S q os).value.answer).work\\n j := \u2191(queryWork W\\n    (frontier actual (some T) (sourceForestMeter S o.partition).value (q - o.sourceCuts.length) ++\\n      List.flatMap (fun call => frontier actual call.target call.sources call.budget)\\n        (fullOutputsSource actual (fun x x_1 x_2 => 0) T S q os).value.calls))\\n k := \u2191(queryWork W (frontier actual (some T) (sourceForestMeter S o.partition).value (q - o.sourceCuts.length)))\\n'))"
+}

@@ -1,0 +1,70 @@
+{
+  "status": "PASS_AUTHOR_EXACT_GOODPAIR_PREPARE_INTERFACE_DEPENDENCY_GATE",
+  "audit": "results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/author-audit-v2/certificate.json",
+  "audit_sha256": "38aa3ffda9042490e33e248a2ebd0893810933a5c48529a9bb6fa9cd45c709e6",
+  "runtime": [
+    "appendLabelsMeter",
+    "localTargetMeter",
+    "ownedMeter",
+    "additionalCostMeter",
+    "callsForestDebit",
+    "goodPairLocalSource",
+    "goodPairSource",
+    "properBlockMeter",
+    "ordinarySlotMeter",
+    "ordinaryPrepareMeter"
+  ],
+  "required_direct_references": {
+    "goodPairLocalSource": [
+      "AllGoodDP.LocalWork.meterRun",
+      "OrdinaryDispatch.Hard2SourceWork.ownedMeter",
+      "OrdinaryDispatch.Hard2SourceWork.localTargetMeter",
+      "OrdinaryDispatch.Hard2SourceWork.appendLabelsMeter",
+      "OrdinaryDispatch.Hard2SourceWork.additionalCostMeter",
+      "OrdinaryDispatch.Hard2SourceWork.checkedMeter"
+    ],
+    "goodPairSource_split": [
+      "OrdinaryDispatch.Hard2SourceWork.callsForestDebit_split",
+      "OrdinaryDispatch.Hard2SourceWork.goodPairLocalSource_value"
+    ],
+    "goodPairSource_bound": [
+      "OrdinaryDispatch.Hard2SourceWork.goodPairLocalSource_bound",
+      "OrdinaryDispatch.Hard2SourceWork.callsForestDebit_weighted",
+      "OrdinaryDispatch.GoodPairDP.runPair_mass"
+    ],
+    "selected_goodPairSource_bound": [
+      "OrdinaryDispatch.Hard2SourceWork.goodPairSource_bound",
+      "Universal233.Hard2Overlap.select_sound",
+      "Universal233.Hard2Overlap.actual_source_inputs"
+    ],
+    "hardPaidSource_uniform_bound": [
+      "OrdinaryDispatch.Hard2SourceWork.hardPaidSource_bound",
+      "OrdinaryDispatch.Hard2SourceWork.hardPaid_caseMass_uniform"
+    ],
+    "ordinarySlotMeter": [
+      "OrdinaryDispatch.EarlyLocalWork.meterPretest",
+      "OrdinaryDispatch.EarlyLocalWork.meterForest",
+      "GenericForest.CheckCorrespondence.meterRestrict"
+    ],
+    "ordinaryPrepareMeter_value": [
+      "OrdinaryDispatch.Hard2SourceWork.ordinarySlotMeter_value"
+    ],
+    "ordinaryPrepareMeter_bound": [
+      "OrdinaryDispatch.Hard2SourceWork.ordinarySlotMeter_bound"
+    ]
+  },
+  "known_answer_theorems": [
+    "owned_duplicate_occurrences",
+    "local_restriction_literal",
+    "repeated_union_has_copy_fee",
+    "q1_refusal_paid",
+    "q2_positive_dp_blocks_callback",
+    "q3_actual_residual_and_reconstruction",
+    "q3_forest_local_debit_paid",
+    "proper_block_original_scans",
+    "resolved_slot_literal",
+    "prepare_refuses_but_charges_tail"
+  ],
+  "independent_credit": 0,
+  "all_global_native_milestones": "OPEN"
+}

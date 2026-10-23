@@ -1,0 +1,7 @@
+import PrefixGuardEnvelope
+#check Universal233.Rule5PrefixLocalWork.guard_prefix_work
+#print axioms Universal233.Rule5PrefixLocalWork.guard_prefix_work
+#check Universal233.Rule5PrefixLocalWork.guard_prefix_scaled
+#print axioms Universal233.Rule5PrefixLocalWork.guard_prefix_scaled
+#check Universal233.Rule5PrefixLocalWork.prefix_false_refuses
+#print axioms Universal233.Rule5PrefixLocalWork.prefix_false_refuses

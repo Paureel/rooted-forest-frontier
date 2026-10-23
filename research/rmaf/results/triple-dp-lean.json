@@ -1,0 +1,159 @@
+{
+  "status": "passed",
+  "version": "Lean (version 4.35.0, arm64-apple-darwin24.6.0, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "builds": [
+    {
+      "file": "TripleDP.lean",
+      "returncode": 0,
+      "negative": false,
+      "checked_axioms": [
+        [
+          "TripleDP.candidate_some",
+          "propext, Classical.choice, Quot.sound"
+        ],
+        [
+          "TripleDP.table_correct",
+          "propext, Classical.choice, Quot.sound"
+        ],
+        [
+          "TripleDP.table_optimal",
+          "propext, Classical.choice, Quot.sound"
+        ],
+        [
+          "TripleDP.table_none_iff",
+          "propext, Classical.choice, Quot.sound"
+        ],
+        [
+          "TripleDP.minimum_pair_sum",
+          "propext, Classical.choice, Quot.sound"
+        ],
+        [
+          "TripleDP.join_exact",
+          "propext, Quot.sound"
+        ],
+        [
+          "TripleDP.join_records_union",
+          "propext"
+        ],
+        [
+          "TripleDP.proper_mask",
+          ""
+        ],
+        [
+          "TripleDP.exactly_six_joins",
+          "propext"
+        ],
+        [
+          "TripleDP.bad_triple_control",
+          "propext"
+        ],
+        [
+          "TripleDP.bad_triple_one_region_impossible",
+          "propext"
+        ],
+        [
+          "TripleDP.cross_children_use_root",
+          "propext"
+        ],
+        [
+          "TripleDP.root_absent_no_crossing",
+          "propext"
+        ],
+        [
+          "TripleDP.child_restriction_closed",
+          "propext"
+        ],
+        [
+          "TripleDP.at_most_one_open",
+          ""
+        ],
+        [
+          "TripleDP.exact_transition_count",
+          "propext, Quot.sound"
+        ],
+        [
+          "TripleDP.states_linear",
+          "propext, Quot.sound"
+        ],
+        [
+          "TripleDP.transitions_linear",
+          "propext, Quot.sound"
+        ],
+        [
+          "TripleDP.total_transition_bound",
+          "propext, Quot.sound"
+        ]
+      ],
+      "sha256": "6b544504b68dd6638caa40200914dee5720be1cdc38ce5f180de1dc792944298",
+      "seconds": 0.8247666250008479,
+      "log": "research/rmaf/triple_dp/TripleDP-audit.log"
+    },
+    {
+      "file": "SemanticControls.lean",
+      "returncode": 0,
+      "negative": false,
+      "checked_axioms": [
+        [
+          "TripleSemanticControls.canonical_proper_triples",
+          "propext"
+        ],
+        [
+          "TripleSemanticControls.proper_triple_valid",
+          "propext, Quot.sound"
+        ],
+        [
+          "TripleSemanticControls.bad_full_triple_rejected",
+          "propext"
+        ],
+        [
+          "TripleSemanticControls.arbitrary_label_proper_triples",
+          "propext, Classical.choice, Quot.sound"
+        ],
+        [
+          "TripleSemanticControls.full_triple_agrees_iff",
+          "propext, Classical.choice, Quot.sound"
+        ],
+        [
+          "TripleSemanticControls.leaves_positive",
+          "propext, Quot.sound"
+        ],
+        [
+          "TripleSemanticControls.one_leaf_structure",
+          "propext, Classical.choice, Quot.sound"
+        ],
+        [
+          "TripleSemanticControls.two_leaf_structure",
+          "propext, Classical.choice, Quot.sound"
+        ],
+        [
+          "TripleSemanticControls.three_leaf_structure",
+          "propext, Classical.choice, Quot.sound"
+        ]
+      ],
+      "sha256": "81d1b2f63e85d78c46d20680f0400a63a8a012bca488b014588378daf2219964",
+      "seconds": 3.076611041000433,
+      "log": "research/rmaf/triple_dp/SemanticControls-audit.log"
+    },
+    {
+      "file": "NegativeControl.lean",
+      "returncode": 1,
+      "negative": true,
+      "checked_axioms": [],
+      "sha256": "bb5ccbf9c5b9f1e59766f69361ab83d1eb013444ed6b126690c954d2a002d2fb",
+      "seconds": 0.3796097499998723,
+      "log": "research/rmaf/triple_dp/NegativeControl-audit.log"
+    }
+  ],
+  "theorem_count": 28,
+  "shared_semantics": {
+    "source": "research/rmaf/lean/RMAF.lean",
+    "sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+    "rebuilt": true,
+    "log": "research/rmaf/triple_dp/shared-semantics-build.log"
+  },
+  "limitations": [
+    "Full graph/MAF-to-DP correspondence remains OPEN.",
+    "SemanticControls shares RMAF.lean executable definitions.",
+    "Generic table is a specification; Python refinement is not formally linked."
+  ]
+}

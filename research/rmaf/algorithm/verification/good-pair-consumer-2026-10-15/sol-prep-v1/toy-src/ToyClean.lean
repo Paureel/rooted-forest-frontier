@@ -1,0 +1,10 @@
+import AuditSupport
+namespace ToyClean
+structure Packet where
+  value : Nat
+private def hidden : Nat := 11
+def ordinary : Nat := 7
+theorem harmless : True := True.intro
+end ToyClean
+
+audit_local "ToyClean"

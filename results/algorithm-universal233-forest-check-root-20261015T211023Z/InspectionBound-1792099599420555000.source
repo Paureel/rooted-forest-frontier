@@ -1,0 +1,81 @@
+import CheckBounds
+namespace GenericForest.CheckCorrespondence
+open RMAF ForestState RestrictionBridge Universal233 SourceCoverage WholeSourceWork CoreWork
+
+def StatePayloadSize (T : Option Tree) (F : Forest) : Prop :=
+ F.length≤(labels T).length ∧ F.flatten.length≤(labels T).length
+
+theorem state_payload_of_partition (T : Option Tree) (ss : List Tree) (F : Forest)
+ (proper : ForestState.proper T ss=true) (partition : partitionCheck (labels T) F=true) :
+ StatePayloadSize T F := by
+ have nd:=(proper_parts T ss proper).1
+ have perm:=checked_flatten_perm (labels T) F nd partition
+ exact ⟨partitionCheck_block_bound _ _ partition,by have h:=perm.length_eq;omega⟩
+
+theorem state_payload_of_agrees (T : Option Tree) (ss : List Tree) (F : Forest)
+ (ag : agrees T ss F=true) : StatePayloadSize T F := by
+ have parts:=agrees_parts T ss F ag
+ exact state_payload_of_partition T ss F parts.1 parts.2.1
+
+theorem state_payload_source (T : Option Tree) (ss : List Tree) (proper : ForestState.proper T ss=true) :
+ StatePayloadSize T (ss.map leaves) := state_payload_of_partition T ss _ proper (proper_parts T ss proper).2
+
+theorem state_payload_forest_return (actual : Ordinary) (T : Option Tree) (ss : List Tree) (q : Nat) (F : Forest)
+ (answer : solve actual T ss q=some F) : StatePayloadSize T F :=
+ state_payload_of_agrees T ss F (solve_sound actual T ss q F answer).1
+
+theorem state_payload_ordinary_return (actual : Ordinary) (bound : ReturnedPayloadBound actual)
+ (T S : Tree) (q : Nat) (F : Forest) (proper : DepthOne.proper T S=true) (answer : actual T S q=some F) :
+ StatePayloadSize (some T) F := by
+ have h:=bound T S q F proper answer
+ exact ⟨h.2.1,by have eq:=h.1.length_eq;change F.flatten.length≤(leaves T).length;omega⟩
+
+/-- Arbitrary accepted OR rejected payload of bounded semantic size. -/
+theorem checked_work_le_inspection (T : Option Tree) (ss : List Tree) (q : Nat) (F : Forest)
+ (payload : StatePayloadSize T F) : (meterChecked T ss q F).work≤inspectionBill T ss q := by
+ let N:=targetNodes T+sourceNodes ss+ss.length+q
+ have tn : targetNodes T≤N:=by dsimp [N];omega
+ have sn : sourceNodes ss≤N:=by dsimp [N];omega
+ have sl : ss.length≤N:=by dsimp [N];omega
+ have lab:=Nat.le_trans (labels_nodes T) tn
+ have fl:=Nat.le_trans payload.1 lab
+ have cells:=Nat.le_trans payload.2 lab
+ have h:=meterChecked_cap T ss q F N tn sn sl fl cells
+ have lifted:=cap_lift N 908 6 8 _ h (by decide)
+ have coeff:=Nat.mul_le_mul_right ((N+1)^8) (show 908≤4096 by decide)
+ exact Nat.le_trans lifted coeff
+
+theorem accepted_work_le_inspection (T : Option Tree) (ss : List Tree) (q : Nat) (F : Forest)
+ (payload : StatePayloadSize T F) : (meterAccepted T ss q F).work≤inspectionBill T ss q := by
+ have h:=checked_work_le_inspection T ss q F payload
+ simp only [meterChecked] at h;omega
+
+theorem agrees_work_le_inspection (T : Option Tree) (ss : List Tree) (q : Nat) (F : Forest)
+ (payload : StatePayloadSize T F) : (meterAgrees T ss F).work≤inspectionBill T ss q := by
+ have h:=accepted_work_le_inspection T ss q F payload
+ simp only [meterAccepted] at h;omega
+
+theorem fast_callback_checked_bound (T S : Tree) (q : Nat) (F : Forest)
+ (proper : DepthOne.proper T S=true) (answer : OrdinaryDispatch.FastOrdinary.solve q T S=some F) :
+ (meterChecked (some T) [S] q F).value=checked (some T) [S] q F ∧
+ (meterChecked (some T) [S] q F).work≤inspectionBill (some T) [S] q :=
+ ⟨meterChecked_value _ _ _ _,checked_work_le_inspection _ _ _ _
+   (state_payload_ordinary_return _ fast_returned_payload T S q F proper answer)⟩
+
+/-- Every retained raw occurrence is charged, including repeated or rejected ones. -/
+theorem raw_checks_bound (T : Option Tree) (ss : List Tree) (q : Nat) (candidates : List Forest)
+ (payload : ∀F∈candidates,StatePayloadSize T F) :
+ (candidates.map (fun F=>(meterAccepted T ss q F).work)).sum≤candidates.length*inspectionBill T ss q :=
+ LocalPolynomial.nat_sum_le_constant candidates _ _ (fun F hF=>accepted_work_le_inspection T ss q F (payload F hF))
+
+/-- Literal recursive answers are bounded before the parent's acceptance scan.
+No rejection at the parent is used to justify this payload bound. -/
+theorem raw_recursive_checks_bound (actual : Ordinary) (T : Option Tree) (ss : List Tree) (q : Nat)
+ (requests : List (List Tree×Nat)) (candidates : List Forest)
+ (origin : ∀F∈candidates,∃r∈requests,solve actual T r.1 r.2=some F) :
+ (candidates.map (fun F=>(meterAccepted T ss q F).work)).sum≤candidates.length*inspectionBill T ss q := by
+ apply raw_checks_bound
+ intro F hF
+ obtain ⟨r,_,hr⟩:=origin F hF
+ exact state_payload_forest_return actual T r.1 r.2 F hr
+end GenericForest.CheckCorrespondence

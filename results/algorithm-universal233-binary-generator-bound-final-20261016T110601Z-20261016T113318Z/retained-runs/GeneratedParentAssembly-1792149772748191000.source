@@ -1,0 +1,45 @@
+import OverlapCaps
+namespace GenericForest.BinaryProducer
+open BinaryProvider GenericForest.ScalarBits Universal233.WholeSourceWork Universal233.CoreWork
+
+theorem resource_covers_nodes (N : Nat) : N≤Generator.inputResource N := by unfold Generator.inputResource;omega
+
+theorem rawLocalCost_mono_sources (N W I D B M S T : Nat) (h : S≤T) :
+ rawLocalCost N W I D B S M≤rawLocalCost N W I D B T M := by
+ have m:=Nat.mul_le_mul_left (56*(I+1)+24*(I+2)+(restrictCost N W+6)*(M+1)+4*M+9) (Nat.add_le_add_right h 1)
+ unfold rawLocalCost replaceCost;omega
+
+def generatedParentCost (W N B S Q : Nat) := branchesCost W N B (S+1) S N+
+ 13*(rawLocalCost (Generator.inputResource N) W (S+1) (Generator.inputResource N) B S (Generator.inputResource N+1)+
+ parentCallCost (Generator.inputResource N) W Q)+8
+
+/-- The generated branch caps and complete generation bill are discharged by
+actual providers. The displayed callback trace and returned-answer caps remain
+separate recursive obligations. -/
+theorem generatedRawParent_complete_local
+ (solve : Option BinaryProvider.Tree→List BinaryProvider.Tree→Bits→Charged (Option BinaryProvider.Forest))
+ (W N B S Q : Nat) (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (h : OverlapBits) (q : Bits)
+ (tw : TreeWidth W t) (tn : treeNodes (treeValue t)≤N) (sw : SourcesWidth W ss)
+ (sn : ∀s∈ss,treeNodes (treeValue s)≤N) (ssn : ss.length≤S)
+ (bp : 1≤B) (qw : q.length≤B) (overlap : (overlapProducer t ss).value=some h)
+ (payload : ∀F∈(rawCandidates solve (some t) ss q (branchesProducer t ss h q).value).value,
+  BinaryCaller.Caps (Generator.inputResource N) W Q (some t) ss q F) :
+ (generatedRawParent solve t ss h q).work≤
+ rawCallbackWork solve (some t) ss q (branchesProducer t ss h q).value+
+ generatedParentCost W N B S Q*2^(decode q) := by
+ have hc:=overlapProducer_caps N S t ss tn ssn h overlap
+ have left : h.left.length≤S+1:=by exact Nat.le_trans hc.1 (by omega)
+ have right : h.right.length≤S+1:=by exact Nat.le_trans hc.2.1 (by omega)
+ have caps:=branchesProducer_caps W N (S+1) t ss h q sw sn left right
+ have generation:=branchesProducer_cost W N B (S+1) S N t ss h q tw tn sw sn ssn bp qw (by omega) left right hc.2.2
+ have local:=generatedRawParent_ledger solve t ss h q (Generator.inputResource N) W (S+1) (Generator.inputResource N) B (Generator.inputResource N+1) Q
+  (by omega) qw sw (fun s hs=>Nat.le_trans (sn s hs) (resource_covers_nodes N)) caps payload
+ have pow : 1≤2^(decode q):=Nat.one_le_pow _ _ (by decide)
+ have count : 12*2^(decode q)+1≤13*2^(decode q):=by omega
+ have sc:=Nat.mul_le_mul_left (rawLocalCost (Generator.inputResource N) W (S+1) (Generator.inputResource N) B S (Generator.inputResource N+1)+parentCallCost (Generator.inputResource N) W Q) count
+ have lm:=rawLocalCost_mono_sources (Generator.inputResource N) W (S+1) (Generator.inputResource N) B (Generator.inputResource N+1) ss.length S ssn
+ have inflate:=Nat.mul_le_mul_right (12*2^(decode q)+1) (Nat.add_le_add_right lm (parentCallCost (Generator.inputResource N) W Q))
+ unfold generatedParentCost
+ simp only [Nat.add_mul,Nat.mul_assoc]
+ omega
+end GenericForest.BinaryProducer

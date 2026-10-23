@@ -1,0 +1,23 @@
+List.Nodup.count.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {a : α} {l : List α} (h : l.Nodup) :
+  List.count a l = if a ∈ l then 1 else 0
+List.count_eq_zero.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {a : α} {l : List α} : List.count a l = 0 ↔ ¬a ∈ l
+List.count_pos_iff.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {a : α} {l : List α} : 0 < List.count a l ↔ a ∈ l
+List.Sublist.count_le.{u_1} {α : Type u_1} [BEq α] {l₁ l₂ : List α} (a : α) (h : l₁.Sublist l₂) :
+  List.count a l₁ ≤ List.count a l₂
+research/rmaf/algorithm/universal233/state_reductions/build/Api2.lean:6:7: error(lean.unknownIdentifier): Unknown constant `List.count_le_count`
+research/rmaf/algorithm/universal233/state_reductions/build/Api2.lean:7:7: error(lean.unknownIdentifier): Unknown constant `List.mem_erase_iff`
+research/rmaf/algorithm/universal233/state_reductions/build/Api2.lean:8:7: error(lean.unknownIdentifier): Unknown constant `List.not_mem_erase`
+List.Nodup.not_mem_erase.{u_1} {α : Type u_1} [BEq α] {l : List α} [LawfulBEq α] {a : α} (h : l.Nodup) : ¬a ∈ l.erase a
+List.Nodup.erase.{u_1} {α : Type u_1} [BEq α] {l : List α} [LawfulBEq α] (a : α) : l.Nodup → (l.erase a).Nodup
+research/rmaf/algorithm/universal233/state_reductions/build/Api2.lean:11:7: error(lean.unknownIdentifier): Unknown constant `List.map_erase`
+research/rmaf/algorithm/universal233/state_reductions/build/Api2.lean:12:7: error(lean.unknownIdentifier): Unknown constant `List.erase_map`
+research/rmaf/algorithm/universal233/state_reductions/build/Api2.lean:13:7: error(lean.unknownIdentifier): Unknown constant `List.pairwise_iff_get`
+List.pairwise_filter.{u_1} {α : Type u_1} {R : α → α → Prop} {p : α → Bool} {l : List α} :
+  List.Pairwise R (List.filter p l) ↔ List.Pairwise (fun x y => p x = true → p y = true → R x y) l
+List.Pairwise.imp_of_mem.{u_1} {α : Type u_1} {l : List α} {R S : α → α → Prop}
+  (H : ∀ {a b : α}, a ∈ l → b ∈ l → R a b → S a b) (p : List.Pairwise R l) : List.Pairwise S l
+research/rmaf/algorithm/universal233/state_reductions/build/Api2.lean:16:7: error(lean.unknownIdentifier): Unknown constant `List.Nodup.filter`
+List.mem_map.{u_1, u_2} {α : Type u_1} {β : Type u_2} {b : β} {f : α → β} {l : List α} :
+  b ∈ List.map f l ↔ ∃ a, a ∈ l ∧ f a = b
+research/rmaf/algorithm/universal233/state_reductions/build/Api2.lean:18:7: error(lean.unknownIdentifier): Unknown constant `List.erase_eq_self`
+research/rmaf/algorithm/universal233/state_reductions/build/Api2.lean:19:7: error(lean.unknownIdentifier): Unknown constant `List.mem_split`

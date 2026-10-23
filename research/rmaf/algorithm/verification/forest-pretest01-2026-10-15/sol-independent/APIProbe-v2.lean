@@ -1,0 +1,16 @@
+import Lean
+open Lean
+#print ConstMap
+#print EnvironmentHeader
+#print KVMap
+#print DataValue
+#print ConstantInfo
+#print DefinitionVal
+#print RecursorVal
+#print OpaqueVal
+#check SMap.toList
+#check Expr.find?
+#check privateToUserName?
+#check Json.mkObj
+#check ToJson.toJson
+#check hash

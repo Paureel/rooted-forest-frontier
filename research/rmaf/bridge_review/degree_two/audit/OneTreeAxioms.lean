@@ -1,0 +1,60 @@
+import LocalSplit
+import DegreeCounting
+import LocalSplitControls
+import AgreementBlock
+
+#print axioms DegreeTwo.belowTest
+#print axioms DegreeTwo.belowBlock
+#print axioms DegreeTwo.outsideBlock
+#print axioms DegreeTwo.belowTest_iff
+#print axioms DegreeTwo.belowBlock_mem
+#print axioms DegreeTwo.outsideBlock_mem
+#print axioms DegreeTwo.split_blocks_perm
+#print axioms DegreeTwo.split_blocks_disjoint
+#print axioms DegreeTwo.belowBlock_support_mono
+#print axioms DegreeTwo.outsideBlock_support_mono
+#print axioms DegreeTwo.belowBlock_terminal_below
+#print axioms DegreeTwo.belowBlock_support_below
+#print axioms DegreeTwo.outsideBlock_support_outside
+#print axioms DegreeTwo.split_supports_disjoint
+#print axioms DegreeTwo.exactTwo_has_child
+#print axioms DegreeTwo.leaf_no_child
+#print axioms DegreeTwo.actual_degree_two_nonterminal
+#print axioms DegreeTwo.belowBlock_nonempty_of_child
+#print axioms DegreeTwo.child_not_prefix_parent
+#print axioms DegreeTwo.outsideBlock_nonempty_at_cut
+#print axioms DegreeTwo.belowBlock_avoids_cut
+#print axioms DegreeTwo.retained_neighbor
+#print axioms DegreeTwo.outsideBlock_avoids_cut
+#print axioms DegreeTwo.belowBlock_nodup
+#print axioms DegreeTwo.outsideBlock_nodup
+#print axioms DegreeTwo.actual_one_tree_split
+#print axioms DegreeTwo.edgeBool
+#print axioms DegreeTwo.edgeBool_iff
+#print axioms DegreeTwo.eraseDups_nodup
+#print axioms DegreeTwo.supportNeighbors
+#print axioms DegreeTwo.supportNeighbors_mem
+#print axioms DegreeTwo.supportNeighbors_nodup
+#print axioms DegreeTwo.supportNeighbors_length_two_iff
+#print axioms DegreeTwo.supportDegree
+#print axioms DegreeTwo.supportDegree_two_iff
+#print axioms DegreeTwo.actualDegree
+#print axioms DegreeTwo.actualDegree_two_iff
+#print axioms DegreeTwo.actualDegree_propagation
+#print axioms DegreeTwo.LocalControls.rootTree
+#print axioms DegreeTwo.LocalControls.pathTree
+#print axioms DegreeTwo.LocalControls.root_degree
+#print axioms DegreeTwo.LocalControls.path_degree
+#print axioms DegreeTwo.LocalControls.degree_three
+#print axioms DegreeTwo.LocalControls.singleton_degree
+#print axioms DegreeTwo.LocalControls.empty_degree
+#print axioms DegreeTwo.LocalControls.absent_degree
+#print axioms DegreeTwo.LocalControls.root_blocks
+#print axioms DegreeTwo.LocalControls.path_blocks
+#print axioms DegreeTwo.LocalControls.path_exact_unsuppressed
+#print axioms DegreeTwo.LocalControls.root_general_split
+#print axioms DegreeTwo.LocalControls.path_general_split
+#print axioms DegreeTwo.LocalControls.degree_three_not_exact_two
+#print axioms DegreeTwo.partitionCheck_flatten_nodup
+#print axioms DegreeTwo.partitionCheck_block
+#print axioms DegreeTwo.agreement_block

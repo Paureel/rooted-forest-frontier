@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "8483bfeb83e0c9b38e2d82fba5628b08e7e409a383df7e2c6bd4687611d350d0",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3643455420005921,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3331296249998559,
+      "resource_stop": null,
+      "log_sha256": "01b7cbe2d89ad9b8db83ee140415ec058c7152a5739fa6754fb468eefdb79ff6"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016787910008133622,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "AffordableCalls",
+      "source_sha256": "2ecd426e44296c126e22299ff10f510d0eff20baeb6531e141b601ef4bc496c5",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 1.0493791669996426,
+      "resource_stop": null,
+      "log_sha256": "feeb1fa91be5ca2f7e60a3b88625e4e8601209ef6c33dac4e45087e760397673"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('AffordableCalls', \"/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/AffordableCalls.lean:7:42: error: Invalid `\u27e8...\u27e9` notation: The expected type `Call` is not an inductive type\\n\\nNote: This notation can only be used when the expected type is an inductive type with a single constructor\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/AffordableCalls.lean:11:26: error: Invalid `\u27e8...\u27e9` notation: The expected type `Call` is not an inductive type\\n\\nNote: This notation can only be used when the expected type is an inductive type with a single constructor\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/AffordableCalls.lean:18:23: error: Function expected at\\n  traceMass\\nbut this term has type\\n  ?m.1\\n\\nNote: Expected a function because this term is being applied to the argument\\n  c\\n\\nHint: The identifier `traceMass` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/AffordableCalls.lean:20:32: error: Invalid argument: Variable `traceMass` is not a proposition or let-declaration\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/AffordableCalls.lean:20:7: error: unsolved goals\\ncase nil\\nx\u271d : Sort u_1\\ntraceMass : x\u271d\\n\u03b1 : Type\\ntarget : \u03b1 \u2192 Tree\\nsources : \u03b1 \u2192 List Tree\\ncost : \u03b1 \u2192 Nat\\nq : Nat\\nc : Rat\\n\u22a2 sorry () = 0\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/AffordableCalls.lean:24:29: error: Invalid argument: Variable `traceMass` is not a proposition or let-declaration\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/AffordableCalls.lean:25:29: error: Invalid argument: Variable `traceMass` is not a proposition or let-declaration\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/AffordableCalls.lean:20:16: warning: declaration uses `sorry`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/AffordableCalls.lean:20:16: warning: This simp argument is unused:\\n  affordableCalls\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp [traceMass, actualQueryMass, Rule4.callbackMass]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/AffordableCalls.lean:20:42: warning: This simp argument is unused:\\n  actualQueryMass\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp [affordableCalls, traceMass, Rule4.callbackMass]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/AffordableCalls.lean:32:91: error(lean.invalidField): Invalid field notation: Type of\\n  call\\nis not known; cannot resolve field `target`\\n\\nHint: Consider replacing the field projection with a call to one of the following:\\n  \u2022 `System.Platform.target`\\n  \u2022 `Lean.Meta.FunIndParamKind.target`\\n  \u2022 `Lean.SubExpr.GoalLocation.target`\\n  \u2022 `GoodPairDP.Controls.target`\\n  \u2022 `BothBad.Call.target`\\n  \u2022 `GroupedFullQuery.Problem.target`\\n  \u2022 `Rule4.Branch.target`\\n  \u2022 `Rule5Case322.Role.target`\\n  \u2022 `Rule5OrdinaryDispatch.ForestJob.target`\\n  \u2022 `Rule5PaidSelector.PaidRequest.target`\\n  \u2022 `Lean.Meta.Grind.EMatchDiagInfo.target`\\n  \u2022 `Lean.Meta.Rewrites.RewriteResultConfig.target`\\n  \u2022 `Std.Sat.AIG.ArbitraryShiftTarget.target`\\n  \u2022 `Std.Http.Protocol.H1.RedirectPlan.target`\\n  \u2022 `Lean.Elab.Tactic.Do.ProofMode.MGoal.target`\\n  \u2022 `Lean.Meta.Tactic.BVDecide.Normalize.PreProcessState.target`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/AffordableCalls.lean:32:103: error(lean.invalidField): Invalid field notation: Type of\\n  call\\nis not known; cannot resolve field `sources`\\n\\nHint: Consider replacing the field projection with a call to one of the following:\\n  \u2022 `BothBad.Call.sources`\\n  \u2022 `GroupedFullQuery.Problem.sources`\\n  \u2022 `Rule5OrdinaryDispatch.ForestJob.sources`\\n  \u2022 `Rule5PaidSelector.PaidRequest.sources`\\n  \u2022 `Lean.Meta.Grind.DelayedTheoremInstance.sources`\\n  \u2022 `Lean.Meta.Grind.EMatchDiagInfo.sources`\\n  \u2022 `Lean.Elab.Term.StructInst.StructInstView.sources`\\n  \u2022 `Lean.Meta.Grind.EMatch.Choice.sources`\\n  \u2022 `Lean.Meta.Grind.Order.Struct.sources`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/AffordableCalls.lean:32:116: error(lean.invalidField): Invalid field notation: Type of\\n  call\\nis not known; cannot resolve field `budget`\\n\\nHint: Consider replacing the field projection with a call to one of the following:\\n  \u2022 `OrdinaryCommonSplit.Caller.Job.budget`\\n  \u2022 `BothBad.Call.budget`\\n  \u2022 `BothBad.CoreRequest.budget`\\n  \u2022 `BothBad.Entry.budget`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/AffordableCalls.lean:39:11: warning: declaration uses `sorry`\\n\"))"
+}

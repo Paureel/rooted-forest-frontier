@@ -1,0 +1,98 @@
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Forest.lean:37:2: error: Type mismatch: After simplification, term
+  h
+ has type
+  (((partitionCheck (leaves s) F = true ∧ partitionCheck (leaves t) F = true) ∧
+        ∀ (x : List Nat), x ∈ F → restrictionAgrees s t x = true) ∧
+      List.Pairwise
+        (fun D E => ∀ (v : VertexGeometry.Vertex), ¬(Hull (selectedLeaves D s) v ∧ Hull (selectedLeaves E s) v)) F) ∧
+    List.Pairwise
+      (fun D E => ∀ (v : VertexGeometry.Vertex), ¬(Hull (selectedLeaves D t) v ∧ Hull (selectedLeaves E t) v)) F
+but is expected to have type
+  partitionCheck (leaves s) F = true ∧
+    partitionCheck (leaves t) F = true ∧
+      (∀ (C : List Nat), C ∈ F → restrictionAgrees s t C = true) ∧ List.Pairwise (Disj s) F ∧ List.Pairwise (Disj t) F
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Forest.lean:43:4: error(lean.unknownIdentifier): Unknown constant `List.isEmpty_eq_false`
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Forest.lean:42:2: error: Type mismatch: After simplification, term
+  h
+ has type
+  ((∀ (x : List Nat), x ∈ F → x.isEmpty = false) ∧ ∀ (x : Nat), x ∈ L → List.count x F.flatten = 1) ∧
+    ∀ (x : Nat), x ∈ F.flatten → x ∈ L
+but is expected to have type
+  (∀ (C : List Nat), C ∈ F → C ≠ []) ∧
+    (∀ (x : Nat), x ∈ L → List.count x F.flatten = 1) ∧ ∀ (x : Nat), x ∈ F.flatten → x ∈ L
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Forest.lean:49:4: error(lean.unknownIdentifier): Unknown constant `List.isEmpty_eq_false`
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Forest.lean:48:2: error: Type mismatch: After simplification, term
+  ⟨⟨hn, hc⟩, hl⟩
+ has type
+  ((∀ (C : List Nat), C ∈ F → C ≠ []) ∧ ∀ (x : Nat), x ∈ L → List.count x F.flatten = 1) ∧
+    ∀ (x : Nat), x ∈ F.flatten → x ∈ L
+but is expected to have type
+  ((∀ (x : List Nat), x ∈ F → x.isEmpty = false) ∧ ∀ (x : Nat), x ∈ L → List.count x F.flatten = 1) ∧
+    ∀ (x : Nat), x ∈ F.flatten → x ∈ L
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Forest.lean:74:22: error(lean.unknownIdentifier): Unknown constant `List.isEmpty_eq_false`
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Forest.lean:72:59: error: unsolved goals
+C E : List Nat
+q : Nat → Bool
+⊢ (E = yes C q ∨ E = no C q) ∧ E.isEmpty = false ↔ (E = yes C q ∨ E = no C q) ∧ E ≠ []
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Forest.lean:86:65: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  f ≥ 0
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  c - e - f ≥ 1
+  b ≥ 0
+  b - c ≤ 0
+where
+ b := ↑(List.count x (no as q))
+ c := ↑(List.count x as)
+ d := ↑(if a = x then 1 else 0)
+ e := ↑(List.count x (List.filter q as))
+ f := ↑(List.count x (List.filter (fun x => !q x) as))
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Forest.lean:86:65: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  f ≥ 0
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  c - e - f ≥ 1
+  b ≥ 0
+  b - c ≤ 0
+where
+ b := ↑(List.count x (no as q))
+ c := ↑(List.count x as)
+ d := ↑(if a = x then 1 else 0)
+ e := ↑(List.count x (List.filter q as))
+ f := ↑(List.count x (List.filter (fun x => !q x) as))
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Forest.lean:86:57: warning: This simp argument is unused:
+  ih
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [yes, no, hq, List.count_cons]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Forest.lean:100:2: error: Type mismatch: After simplification, term
+  hd
+ has type
+  Disj t (yes C q) (no C q)
+but is expected to have type
+  (∀ (a' : List Nat), a' = no C q → Disj t (yes C q) a') ∧ True ∧ List.Pairwise (Disj t) []
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Forest.lean:109:64: error: Invalid `←` modifier: `splitAll` is a declaration name to be unfolded
+
+Hint: The simplifier cannot "refold" definitions by name. Use `rw` for this instead,
+                      or use the `←` simp modifier with an equational lemma for `splitAll`.
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Forest.lean:109:16: error: unsolved goals
+case cons
+q : Nat → Bool
+x : Nat
+C : List Nat
+V : List (List Nat)
+ih : List.count x (splitAll V q).flatten = List.count x V.flatten
+⊢ List.count x (List.flatMap (fun C => split C q) V).flatten = List.count x V.flatten
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Forest.lean:109:75: warning: This simp argument is unused:
+  ih
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [splitAll, List.count_append, split_count, ← splitAll]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "frozen_before_construction": true,
+  "date": "2026-10-14",
+  "model": "Ordinary rooted unordered binary labelled trees; no implicit rho. Agreement partitions require exact rooted restrictions and unsuppressed vertex disjointness in both trees. Cuts are distinct source edges with no empty or redundant parts.",
+  "fixtures": [
+    {"id":"empty-null", "source":null, "target":null, "expected_optimum_cuts":0, "expected_optimum_partitions":[[]], "scope":"null plumbing extension; not a nonempty binary-tree instance"},
+    {"id":"singleton", "source":"a", "target":"a", "budget":0, "expected_optimum_cuts":0, "expected_optimum_partitions":[[["a"]]]},
+    {"id":"identical", "source":[["a","b"],["c","d"]], "target":[["a","b"],["c","d"]], "budget":0, "expected_optimum_cuts":0, "expected_optimum_partitions":[[["a","b","c","d"]]]},
+    {"id":"bad-triple", "source":[["a","c"],"b"], "target":[["a","b"],"c"], "budget":1, "expected_optimum_cuts":1, "expected_optimum_partitions":[[["a","b"],["c"]],[["a","c"],["b"]],[["b","c"],["a"]]], "expected_terminal":"compatible-or-triple", "false_unsplit_partition":[["a","b","c"]]},
+    {"id":"pure-bridge-crossing", "source":[["a","c"],["b","d"]], "target":[["a","b"],["c","d"]], "budget":2, "precut_blocks":[["a","c"],["b","d"]], "expected_precuts":1, "expected_optimum_cuts":2, "expected_optimum_partition_count":6, "expected_surviving_optimum_count":2, "expected_completion_cuts":1, "expected_tau":0, "expected_terminal":"pure-bridge", "expected_one_optimum_survival":true, "expected_all_optimum_survival":false},
+    {"id":"omitted-optimum-nonempty", "source":[[["a","c"],"b"],"r"], "target":[[["a","b"],"c"],"r"], "budget":1, "precut_blocks":[["a","b","c"],["r"]], "expected_precuts":1, "expected_optimum_cuts":1, "expected_optimum_partition_count":3, "expected_surviving_optimum_count":0, "expected_completion_cuts":1, "expected_charged_total":2, "expected_terminal":"compatible-or-triple", "expected_one_optimum_survival":false, "false_residual_as_total":1},
+    {"id":"omitted-optimum-clean-twin", "source":[[["a","c"],"b"],"r"], "target":[[["a","b"],"c"],"r"], "budget":1, "precut_blocks":[["a"],["b","c","r"]], "expected_precuts":1, "expected_optimum_cuts":1, "expected_optimum_partition_count":3, "expected_surviving_optimum_count":1, "expected_completion_cuts":0, "expected_charged_total":1, "expected_one_optimum_survival":true},
+    {"id":"failed-half-budget", "source":[[["a","c"],"b"],"r"], "target":[[["a","b"],"c"],"r"], "budget":1, "precut_blocks":[["a","b","c","r"]], "expected_precuts":0, "expected_optimum_cuts":1, "expected_tau":1, "expected_terminal":"pure-bridge", "expected_half_budget":false, "false_half_budget_numerator":1,"false_half_budget_denominator":2},
+    {"id":"false-exponent", "alpha_numerator":5,"alpha_denominator":4,"local_base_numerator":23391,"local_base_denominator":10000,"theta_numerator":1,"theta_denominator":2,"expected_squared_composed_base_numerator":584775,"expected_squared_composed_base_denominator":160000,"expected_less_than_23391_over_10000":true,"false_less_than_19_over_10":false}
+  ],
+  "failure_criteria": ["Any literal expected optimum, partition count, coverage count, precut count or completion cost differs under exact independent enumeration.","The detector accepts the unsplit wrong topology, omits precuts from total, claims every optimum survives the crossing cover, accepts tau<=b/2 in the failed-half-budget case, or accepts the composed base<1.9.","The clean twin is rejected or the nonempty omitted-optimum cover is accepted as preserving one original optimum."]
+}

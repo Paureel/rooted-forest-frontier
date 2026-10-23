@@ -1,0 +1,176 @@
+import PairSelectorSourceBound
+namespace OrdinaryDispatch.Hard2SourceWork
+open RMAF ForestState Universal233 WholeSourceWork CoreWork VertexGeometry
+open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork
+open Universal233.Hard2Overlap Universal233.PaidAssembly Universal233.Rule5PendantLocalWork Universal233.Rule5PrefixLocalWork
+
+theorem subtreeLabelsMeter_node_cap (S : Tree) (p : RMAF.Vertex) (N : Nat) (tn : treeNodes S≤N) :
+ (subtreeLabelsMeter S p).work≤8*(N+1)^2 := by
+ have h:(subtreeLabelsMeter S p).work≤4*N*N+2*treeNodes S+2:=by
+  induction S generalizing p with
+  | leaf x=>cases p with
+   | nil=>simp [subtreeLabelsMeter,leavesMeter];omega
+   | cons s p=>simp [subtreeLabelsMeter];omega
+  | node l r il ir=>
+   have ln:treeNodes l≤N:=by simp only [treeNodes] at tn;omega
+   have rn:treeNodes r≤N:=by simp only [treeNodes] at tn;omega
+   cases p with
+   | nil=>
+    have n:=Nat.le_trans (leaves_nodes (.node l r)) tn
+    have leavesBound:=leaves_work (.node l r)
+    have scale:=Nat.mul_le_mul_left 4 (Nat.mul_le_mul n n)
+    simp only [subtreeLabelsMeter]
+    simp only [Nat.mul_assoc] at leavesBound scale
+    omega
+   | cons s p=>
+    have a:=il p ln;have b:=ir p rn
+    cases s <;> simp only [subtreeLabelsMeter,Bool.false_eq_true,ite_false,ite_true,treeNodes] <;> omega
+ have k:4*N*N+2*treeNodes S+2≤8*(N+1)^2:=by
+  simp only [Nat.pow_two,Nat.mul_add,Nat.add_mul,Nat.mul_one,Nat.one_mul,Nat.mul_assoc];omega
+ exact Nat.le_trans h k
+
+theorem hard2RootMeter_bound (S : Tree) (p r : RMAF.Vertex) (N : Nat) (sn : treeNodes S≤N) :
+ (hard2RootMeter S p r).work≤42*(N+1)^3 := by
+ have sl:=Nat.le_trans (leaves_nodes S) sn
+ have a:=subtreeLabelsMeter_node_cap S p N sn;have b:=subtreeLabelsMeter_node_cap S r N sn
+ have al:=Nat.le_trans (subtree_labels_payload S p).1 sl;have bl:=Nat.le_trans (subtree_labels_payload S r).1 sl
+ have pos2:1≤(N+1)^2:=Nat.one_le_pow _ _ (by omega)
+ have point (x : Nat) (_ : x∈leaves S) :
+  (let a:=subtreeLabelsMeter S p;let b:=subtreeLabelsMeter S r
+   let ca:=meterContains x a.value;let cb:=meterContains x b.value
+   (⟨!ca.value&&!cb.value,a.work+b.work+ca.work+cb.work+4⟩:Charged Bool)).work≤28*(N+1)^2:=by
+  have ca:=meterContains_bound x (subtreeLabelsMeter S p).value;have cb:=meterContains_bound x (subtreeLabelsMeter S r).value
+  have pp:(N+1)≤(N+1)^2:=by simpa only [Nat.pow_one] using pow_mono N 1 2 (by decide)
+  have ac:4*((subtreeLabelsMeter S p).value.length+1)≤4*(N+1)^2:=Nat.le_trans (by omega) (Nat.mul_le_mul_left 4 pp)
+  have bc:4*((subtreeLabelsMeter S r).value.length+1)≤4*(N+1)^2:=Nat.le_trans (by omega) (Nat.mul_le_mul_left 4 pp)
+  dsimp only;omega
+ have f:=hard2_cap_filter _ (leaves S) N 28 2 sl point
+ change _≤32*(N+1)^3 at f
+ have l:=cap_lift N 8 2 3 _ (meterLeaves_cap S N sn) (by decide)
+ have pos3:1≤(N+1)^3:=Nat.one_le_pow _ _ (by omega)
+ simp only [hard2RootMeter,meterLeaves_value]
+ dsimp only at f ⊢
+ omega
+
+theorem hard2ParentsMeter_bound (S : Tree) (p r : RMAF.Vertex) (N : Nat) (sn : treeNodes S≤N) :
+ (hard2ParentsMeter S p r).work≤62*(N+1)^3 := by
+ have a:=cap_lift N 8 2 3 _ (subtreeLabelsMeter_node_cap S p N sn) (by decide)
+ have b:=cap_lift N 8 2 3 _ (subtreeLabelsMeter_node_cap S r N sn) (by decide)
+ have c:=hard2RootMeter_bound S p r N sn
+ have pos:1≤(N+1)^3:=Nat.one_le_pow _ _ (by omega)
+ simp only [hard2ParentsMeter];omega
+
+theorem common_source_cap (T : Tree) (A B C : List Nat) (N : Nat) (tn : treeNodes T≤N) :
+ (meterCommon (minimalVertices A T) (minimalVertices B T) (minimalVertices C T)).work≤32*(N+1)^3 := by
+ have tl:=leaves_nodes T
+ have len:=Nat.le_trans (minimal_length A T) tn
+ have c:=meterCommon_bound (minimalVertices A T) (minimalVertices B T) (minimalVertices C T) N
+  (fun v hv=>by have h:=minimal_address A T v hv;omega)
+  (Nat.le_trans (minimal_length B T) tn) (Nat.le_trans (minimal_length C T) tn)
+ have scale:=Nat.mul_le_mul_left (32*((N+1)*(N+1))) (Nat.add_le_add_right len 1)
+ exact Nat.le_trans c (by simpa only [commonCap,Nat.pow_succ,Nat.pow_zero,Nat.mul_one,Nat.one_mul,Nat.mul_assoc] using scale)
+
+theorem hard2OverlapMeter_bound (T : Tree) (A B : List Nat) (N : Nat)
+ (tn : treeNodes T≤N) (al : A.length≤N) (bl : B.length≤N) :
+ (hard2OverlapMeter T A B).work≤180*(N+1)^3 := by
+ have a:=meterMinimal_polynomial T A N tn al;have b:=meterMinimal_polynomial T B N tn bl
+ have c:=common_source_cap T A B B N tn
+ have pos:1≤(N+1)^3:=Nat.one_le_pow _ _ (by omega)
+ simp only [hard2OverlapMeter,meterMinimal_value];omega
+
+theorem hard2Overlap_address (T : Tree) (A B : List Nat) (v : RMAF.Vertex)
+ (h:Hard2Overlap.overlap T A B=some v) : v.length≤treeNodes T := by
+ have a:=(findCommon_sound _ _ _ v h).1
+ have addr:=minimal_address A T v a;have len:=leaves_nodes T;omega
+
+theorem dups_meter_length {α : Type} [BEq α] (xs acc : List α) :
+ (meterDupsLoop xs acc).value.length≤xs.length+acc.length := by
+ induction xs generalizing acc with
+ | nil=>simp [meterDupsLoop]
+ | cons x xs ih=>
+  have a:=ih acc;have b:=ih (x::acc)
+  simp only [meterDupsLoop,List.length_cons]
+  split <;> simp only [Charged.value] <;> simp only [List.length_cons] at b <;> omega
+
+theorem joint_source_length (D : List Nat) (T : Tree) (v w : RMAF.Vertex) :
+ (meterJointColors D T v w).value.length≤treeNodes T := by
+ have h:=dups_meter_length ((leafList D T).map (jointRegion v w)) []
+ have l:=leafList_length D T
+ simpa only [meterJointColors,meterDups,meterJointMap_value,meterLeafList_value,List.length_map,List.length_nil,Nat.add_zero] using Nat.le_trans h (by simpa using l)
+
+theorem hard2ChainMeter_bound (T : Tree) (A B C : List Nat) (o : Order) (v w : RMAF.Vertex) (N : Nat)
+ (tn : treeNodes T≤N) (al : A.length≤N) (bl : B.length≤N) (cl : C.length≤N)
+ (vn : v.length≤N) (wn : w.length≤N) :
+ (hard2ChainMeter T A B C o v w).work≤74*(N+1)^2 := by
+ have dl:(second o A B C).length≤N:=by cases o <;> assumption
+ have h:=meterJointColors_bound (second o A B C) T v w
+ have l:=Nat.le_trans (joint_source_length (second o A B C) T v w) tn
+ have a:16*((second o A B C).length+treeNodes T+2)*treeNodes T≤32*(N+1)^2:=by
+  exact Nat.mul_le_mul (by omega) (Nat.le_trans tn (Nat.le_succ N)) |> fun x=>by simpa only [Nat.pow_two,Nat.mul_assoc] using x
+ have b:jointMapCap v w*treeNodes T≤14*(N+1)^2:=by
+  apply Nat.le_trans (Nat.mul_le_mul (show jointMapCap v w≤14*(N+1) by unfold jointMapCap;omega) (Nat.le_trans tn (Nat.le_succ N)))
+  simp only [Nat.pow_two,Nat.mul_assoc];exact Nat.le_refl _
+ have c:8*(treeNodes T+1)*(treeNodes T+1)≤8*(N+1)^2:=by
+  simpa only [Nat.pow_two,Nat.mul_assoc] using Nat.mul_le_mul (Nat.mul_le_mul_left 8 (Nat.add_le_add_right tn 1)) (Nat.add_le_add_right tn 1)
+ have pos:1≤(N+1)^2:=Nat.one_le_pow _ _ (by omega)
+ have nn:N≤(N+1)^2:=Nat.le_trans (Nat.le_succ N) (by simpa only [Nat.pow_one] using pow_mono N 1 2 (by decide))
+ simp only [hard2ChainMeter]
+ unfold jointGateCap at h
+ omega
+
+theorem hard2IsolatedMeter_bound (T : Tree) (A B C : List Nat) (o : Order) (N : Nat)
+ (three : 3≤N) (tn : treeNodes T≤N) (al : A.length≤N) (bl : B.length≤N) (cl : C.length≤N) :
+ (hard2IsolatedMeter T A B C o).work≤1206*(N+1)^6 := by
+ have fl:(first o A B C).length≤N:=by cases o <;> assumption
+ have sl:(second o A B C).length≤N:=by cases o <;> assumption
+ have h:=pairChooseMeter_bound T _ _ N three tn fl sl
+ have pos:1≤(N+1)^6:=Nat.one_le_pow _ _ (by omega)
+ simp only [hard2IsolatedMeter];omega
+
+theorem cliqueSelection_source_cap (T : Tree) (A B C : List Nat) (N : Nat)
+ (tn : treeNodes T≤N) (al : A.length≤N) (bl : B.length≤N) (cl : C.length≤N) :
+ (meterCliqueSelection T A B C).work≤180*(N+1)^3 := by
+ have a:=meterMinimal_polynomial T A N tn al;have b:=meterMinimal_polynomial T B N tn bl;have c:=meterMinimal_polynomial T C N tn cl
+ have r:=common_source_cap T A B C N tn
+ have pos:1≤(N+1)^3:=Nat.one_le_pow _ _ (by omega)
+ simp only [meterCliqueSelection,meterMinimal_value];omega
+
+theorem hard2SelectMeter_bound (T : Tree) (A B C : List Nat) (N : Nat)
+ (three : 3≤N) (tn : treeNodes T≤N) (al : A.length≤N) (bl : B.length≤N) (cl : C.length≤N) :
+ (hard2SelectMeter T A B C).work≤2000*(N+1)^6 := by
+ have ab:=cap_lift N 180 3 6 _ (hard2OverlapMeter_bound T A B N tn al bl) (by decide)
+ have bc:=cap_lift N 180 3 6 _ (hard2OverlapMeter_bound T B C N tn bl cl) (by decide)
+ have ac:=cap_lift N 180 3 6 _ (hard2OverlapMeter_bound T A C N tn al cl) (by decide)
+ have chain (o : Order) (v w : RMAF.Vertex) (vn : v.length≤N) (wn : w.length≤N) :=
+  cap_lift N 74 2 6 _ (hard2ChainMeter_bound T A B C o v w N tn al bl cl vn wn) (by decide)
+ have iso (o : Order):=(hard2IsolatedMeter_bound T A B C o N three tn al bl cl)
+ have clique:=cap_lift N 180 3 6 _ (cliqueSelection_source_cap T A B C N tn al bl cl) (by decide)
+ have pos:1≤(N+1)^6:=Nat.one_le_pow _ _ (by omega)
+ cases hab:Hard2Overlap.overlap T A B <;> cases hbc:Hard2Overlap.overlap T B C <;> cases hac:Hard2Overlap.overlap T A C
+ all_goals simp only [hard2SelectMeter,hard2OverlapMeter_value,hab,hbc,hac]
+ all_goals first
+  | omega
+  | have hi:=iso .abc;omega
+  | have hi:=iso .acb;omega
+  | have hi:=iso .bca;omega
+  | have cv:=chain .abc _ _ (Nat.le_trans (hard2Overlap_address _ _ _ _ hab) tn) (Nat.le_trans (hard2Overlap_address _ _ _ _ hbc) tn);omega
+  | have cv:=chain .bac _ _ (Nat.le_trans (hard2Overlap_address _ _ _ _ hab) tn) (Nat.le_trans (hard2Overlap_address _ _ _ _ hac) tn);omega
+  | have cv:=chain .acb _ _ (Nat.le_trans (hard2Overlap_address _ _ _ _ hac) tn) (Nat.le_trans (hard2Overlap_address _ _ _ _ hbc) tn);omega
+
+theorem runHard2Meter_bound (T S : Tree) (c : CherryBranching.Candidate) (N : Nat)
+ (three : 3≤N) (tn : treeNodes T≤N) (sn : treeNodes S≤N) :
+ (runHard2Meter T S c).work≤2100*(N+1)^6 := by
+ have sl:=Nat.le_trans (leaves_nodes S) sn
+ have pos:1≤(N+1)^6:=Nat.one_le_pow _ _ (by omega)
+ unfold runHard2Meter
+ split
+ · rename_i p r hc
+   have a:=Nat.le_trans (subtree_labels_payload S p).1 sl
+   have b:=Nat.le_trans (subtree_labels_payload S r).1 sl
+   have cl:(rootParent S p r).length≤N:=Nat.le_trans (List.length_filter_le _ _) sl
+   have parents:=cap_lift N 62 3 6 _ (hard2ParentsMeter_bound S p r N sn) (by decide)
+   have sel:=hard2SelectMeter_bound T (leftParent S p) (rightParent S r) (rootParent S p r) N three tn a b cl
+   simp only [hard2ParentsMeter_value]
+   omega
+ · simp only [Charged.work];omega
+end OrdinaryDispatch.Hard2SourceWork

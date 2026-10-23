@@ -1,0 +1,5 @@
+import BoundedCommonPolynomial
+#check Universal233.Rule5LocalWork.actual_common_bounded_polynomial
+#print axioms Universal233.Rule5LocalWork.actual_common_bounded_polynomial
+#check Universal233.Rule5LocalWork.reconstruct_value
+#print axioms Universal233.Rule5LocalWork.reconstruct_value

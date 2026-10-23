@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "positive": [
+    {"id":"actual-root-edge-ids","cuts":[4,5,6],"path":[4,6,7],"parent":null,"expected":[5]},
+    {"id":"available-parent","cuts":[3,4],"path":[3,4],"parent":2,"expected":[2]},
+    {"id":"parent-already-cut","cuts":[2,3,4],"path":[3,4],"parent":2,"expected":[2]},
+    {"id":"root-corridor-isolation","vertices":[0,1,2,3],"edges":[[0,0,1],[1,0,2],[2,0,3]],"cuts":[0,1,2],"path":[0,1],"required":[2],"parent":null,"start":0,"excluded":3}
+  ],
+  "negative": {"id":"invented-root-parent","cuts":[4,5,6],"path":[4,6,7],"parent":null,"false_expected":[3,5],"expected_lean_failure":"decide proved that the proposition is false"},
+  "acceptance":"Positive compilation succeeds; intentional false conclusion is rejected. No sorry, custom axioms, or native_decide."
+}

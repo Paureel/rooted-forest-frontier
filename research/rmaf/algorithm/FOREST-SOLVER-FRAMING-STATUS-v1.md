@@ -1,0 +1,7 @@
+# Generic forest framing status
+
+The [scope companion](verification/forest-solver-referee-2026-10-15/sol-reader-v1/SCOPE-COMPANION-v1.md) is adopted alongside the [source-review status](FOREST-SOLVER-REVIEW-STATUS-v1.md). Root read the complete reader report, companion, two-pass lint record and actual edit diffs as a different editor, then read the complete HTML-rendered report and companion through a local text extraction. Heading, Unicode, comment, missing-tail and table controls passed; no visual-layout or browser inspection is claimed. The frozen reader manifest remains unchanged, with its historical pending fields superseded by this separate record.
+
+The main presentation finding is the historical API work row's omitted premises. The companion supplies rational c>=2, K>=0, q<=Q, initial properness, and the fixed-target LocalBillBound quantified over every proper source list and budget up to Q. It distinguishes the defined bill from an operation bound, expands OrdinaryIH into its exact/minimum/completeness requirements, and keeps the one-source mutual-recursion boundary explicit. The preserved theorem needs no correction from this bounded reader review.
+
+The companion retains the source/Name/proof-body qualifications and all failure/control chronology. The editorial checks add no mathematical replication, Lean proof replay, global runtime or novelty acceptance. Algorithm, Correctness and Smaller base remain OPEN.

@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "frozen_before_oracle_code": true,
+  "scope": "Root-labelled unary rho augmentation; ordinary agreement forests with no acyclicity requirement.",
+  "cases": [
+    {
+      "name": "singleton-null",
+      "a": "a",
+      "b": "a",
+      "k": 1,
+      "krho": 1
+    },
+    {
+      "name": "identical-cherry",
+      "a": [
+        "a",
+        "b"
+      ],
+      "b": [
+        "a",
+        "b"
+      ],
+      "k": 1,
+      "krho": 1
+    },
+    {
+      "name": "incompatible-triple",
+      "a": [
+        [
+          "a",
+          "b"
+        ],
+        "c"
+      ],
+      "b": [
+        "a",
+        [
+          "b",
+          "c"
+        ]
+      ],
+      "k": 2,
+      "krho": 2
+    },
+    {
+      "name": "opposite-ancestry-two-blocks",
+      "a": [
+        "a",
+        [
+          "b",
+          [
+            "c",
+            "d"
+          ]
+        ]
+      ],
+      "b": [
+        "c",
+        [
+          "d",
+          [
+            "a",
+            "b"
+          ]
+        ]
+      ],
+      "k": 2,
+      "krho": 2,
+      "ordinary_witness": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ]
+    },
+    {
+      "name": "crossing-pairs-invalid",
+      "a": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "b": [
+        [
+          "a",
+          "c"
+        ],
+        [
+          "b",
+          "d"
+        ]
+      ],
+      "k": 3,
+      "krho": 3,
+      "invalid_witness": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ]
+    }
+  ],
+  "malformed_rejections": [
+    "duplicate leaf",
+    "unary source input",
+    "unequal labels",
+    "empty block",
+    "duplicate partition member",
+    "missing partition leaf",
+    "rho label collision"
+  ],
+  "mutation_rejections": [
+    "change opposite-ancestry expected krho from 3 to 2",
+    "disable vertex-disjointness and accept crossing witness"
+  ],
+  "candidate_theorems": [
+    "K <= Krho <= K+1",
+    "rho-singleton constrained optimum equals K+1",
+    "deleting rho maps every augmented forest to an ordinary forest without increasing component count"
+  ],
+  "failure": "Any exact control mismatch or missed corruption stops scans; preserve failure before repair.",
+  "hand_reasoning": "Singleton and equal trees have one component. Unequal rooted triples need one split. Opposite ancestry has disjoint AB/CD with inverted ancestor order, while every 3-label restriction differs and every other 2+2 split overlaps; rho cannot join AB or CD without crossing the other block, so Krho=3. Crossing cherries have no common 3-label restriction and every 2+2 candidate has overlapping spans in one input."
+}

@@ -1,0 +1,111 @@
+{
+  "runs": [
+    {
+      "module": "FreshStatementsV2",
+      "expected": "compile",
+      "returncode": 0,
+      "seconds": 0.3227234590012813,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "FreshStatementsV2.olean",
+        "FreshStatementsV2.lean"
+      ],
+      "log_sha256": "84a99ec830a4fa69ec59968ab553e35377628e749c1e9e6c03e7f0aaa6082ade"
+    },
+    {
+      "module": "FreshV2FalseControls",
+      "expected": "false",
+      "returncode": 1,
+      "seconds": 0.2954250000002503,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "FreshV2FalseControls.olean",
+        "FreshV2FalseControls.lean"
+      ],
+      "log_sha256": "2c97c2159b5397b25f6754634b51aac06d890063e208b134e8ac5846686a6069"
+    },
+    {
+      "module": "FreshV2FalseSourceColorV3",
+      "expected": "false",
+      "returncode": 1,
+      "seconds": 0.2831017089993111,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "FreshV2FalseSourceColorV3.olean",
+        "FreshV2FalseSourceColorV3.lean"
+      ],
+      "log_sha256": "dec4abd8aac29b5e52ed27cbe31020b0c366d93f3c13e3f645c48651e950f0a0"
+    },
+    {
+      "module": "FreshV2FalseSourceColor",
+      "expected": "Ambiguous",
+      "returncode": 1,
+      "seconds": 0.3177107909996266,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "FreshV2FalseSourceColor.olean",
+        "FreshV2FalseSourceColor.lean"
+      ],
+      "log_sha256": "231c148997d3457983dbda300763fcbb398621cecdc1336f3fbc15f2c4055bae"
+    },
+    {
+      "module": "PretestSlots",
+      "expected": "compile",
+      "returncode": 1,
+      "seconds": 0.33257475000027625,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "PretestSlots.olean",
+        "PretestSlots.lean"
+      ],
+      "log_sha256": "f6c1e6e6cee20b0578f0e4cc980954526785d99a4d8a0e9213ee6a55b52daaf6"
+    }
+  ],
+  "audits": {},
+  "false_controls": {
+    "FalseControls": {
+      "origin_sha256": "5a4ffc22927e59931f343004d6f1f79b91947a6c61c3270228610731ea6fcd7c",
+      "copied_source_sha256": "5a4ffc22927e59931f343004d6f1f79b91947a6c61c3270228610731ea6fcd7c",
+      "adapter": null,
+      "false_propositions_rejected": 4,
+      "diagnostic_kind": "false",
+      "error_lines": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "postproof": false
+    },
+    "FalseSourceColorV3": {
+      "origin_sha256": "77c56722c63ccd3afbff0bcd479bbff54caaaa10971b456fa6b72930ca81ce3a",
+      "copied_source_sha256": "77c56722c63ccd3afbff0bcd479bbff54caaaa10971b456fa6b72930ca81ce3a",
+      "adapter": null,
+      "false_propositions_rejected": 1,
+      "diagnostic_kind": "false",
+      "error_lines": [
+        "4"
+      ],
+      "postproof": true
+    },
+    "FalseSourceColor": {
+      "origin_sha256": "e634ea5147b4a4c1b5c0241e5112c5fa48b7dbb531f7d9eda932f47269b62329",
+      "copied_source_sha256": "e634ea5147b4a4c1b5c0241e5112c5fa48b7dbb531f7d9eda932f47269b62329",
+      "adapter": null,
+      "false_propositions_rejected": 0,
+      "diagnostic_kind": "Ambiguous",
+      "error_lines": [
+        "3"
+      ],
+      "postproof": true
+    }
+  },
+  "all_main_milestones": "OPEN",
+  "verdict": "OPEN-INTERFACE-GATE-FAILURE",
+  "error": "AssertionError(('PretestSlots', \"PretestSlots.lean:22:38: error: Application type mismatch: The argument\\n  h\\nhas type\\n  pretest01 T S = Result.rejected\\nbut is expected to have type\\n  Result.rejected = Result.rejected\\nin the application\\n  And.intro h\\nPretestSlots.lean:26:33: error: Application type mismatch: The argument\\n  h\\nhas type\\n  pretest01 T S = Result.found none\\nbut is expected to have type\\n  Result.found none = Result.found none\\nin the application\\n  And.intro h\\nPretestSlots.lean:27:45: error: Application type mismatch: The argument\\n  h\\nhas type\\n  pretest01 T S = Result.found (some p)\\nbut is expected to have type\\n  Result.found (some p) = Result.found (some p)\\nin the application\\n  And.intro h\\n'FreshDepthOneConsumer.exact_zero_one_or_remaining_two' depends on axioms: [propext,\\n sorryAx,\\n Classical.choice,\\n Quot.sound]\\n\"))"
+}

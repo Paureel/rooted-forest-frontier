@@ -1,0 +1,7 @@
+import BinaryProducerLocalCaps
+#check GenericForest.BinaryProducer.ordinaryAnswer_work
+#print axioms GenericForest.BinaryProducer.ordinaryAnswer_work
+#check GenericForest.BinaryProducer.componentBits_caps
+#print axioms GenericForest.BinaryProducer.componentBits_caps
+#check GenericForest.BinaryProducer.jobsBits_count
+#print axioms GenericForest.BinaryProducer.jobsBits_count

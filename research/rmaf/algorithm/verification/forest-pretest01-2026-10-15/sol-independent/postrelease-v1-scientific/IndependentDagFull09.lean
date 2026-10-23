@@ -1,0 +1,10 @@
+import ForestReverse
+import ForestProgram
+import ForestSelection
+import ForestConditional
+import ForestQueries
+import MafCaller
+import LocalSlots
+import Regional
+import PostreleaseProducerAudit
+audit_selected "ForestReverse,ForestProgram,ForestSelection,ForestConditional,ForestQueries,MafCaller,LocalSlots,Regional"

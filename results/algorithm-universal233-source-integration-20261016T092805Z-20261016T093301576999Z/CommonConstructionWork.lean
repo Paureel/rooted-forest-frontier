@@ -1,0 +1,111 @@
+import GeneralAgreementWork
+namespace OrdinaryDispatch.FullSourceWork
+open RMAF ForestState Universal233 WholeSourceWork CoreWork
+open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork
+
+def labelMaxMeter : List Nat→Charged Nat
+ | []=>⟨0,1⟩
+ | x::xs=>let r:=labelMaxMeter xs;⟨Nat.max x r.value,r.work+4⟩
+@[simp] theorem labelMaxMeter_value (xs : List Nat) :
+ (labelMaxMeter xs).value=OrdinaryCommonSplit.Source.labelMax xs := by
+ induction xs <;> simp_all [labelMaxMeter,OrdinaryCommonSplit.Source.labelMax]
+theorem labelMaxMeter_bound (xs : List Nat) : (labelMaxMeter xs).work≤4*(xs.length+1) := by
+ induction xs <;> simp_all only [labelMaxMeter,List.length_nil,List.length_cons] <;> omega
+
+def commonFreshMeter (T : Tree) : Charged Nat :=
+ let a:=meterLeaves T;let b:=labelMaxMeter a.value;⟨b.value+1,a.work+b.work+4⟩
+@[simp] theorem commonFreshMeter_value (T : Tree) :
+ (commonFreshMeter T).value=OrdinaryDispatch.commonFresh T := by
+ simp [commonFreshMeter,OrdinaryDispatch.commonFresh]
+theorem commonFreshMeter_bound (T : Tree) (N : Nat) (tn : treeNodes T≤N) :
+ (commonFreshMeter T).work≤16*(N+1)^2 := by
+ have a:=leaves_meter_square T N tn
+ have b:=labelMaxMeter_bound (leaves T)
+ have l:=Nat.le_trans (leaves_nodes T) tn
+ have pos:1≤(N+1)^2:=Nat.one_le_pow _ _ (by omega)
+ have square:N+1≤(N+1)^2:=by simp only [Nat.pow_two];exact Nat.le_mul_self _
+ simp only [commonFreshMeter,meterLeaves_value]
+ omega
+
+/-- Equality to a leaf observes the outer tree constructor and at most one
+label equality. Its unit-source bill is separate from scalar bit cost. -/
+def leafEqualMeter (T : Tree) (a : Nat) : Charged Bool :=
+ ⟨match T with | .leaf x=>x==a | .node _ _=>false,4⟩
+@[simp] theorem leafEqualMeter_value (T : Tree) (a : Nat) :
+ (leafEqualMeter T a).value=(T==.leaf a) := by
+ cases T <;> simp [leafEqualMeter,BEq.beq]
+
+def contractMeter (a b z : Nat) : Tree→Charged Tree
+ | .leaf x=>⟨.leaf x,2⟩
+ | .node l r=>
+  let la:=leafEqualMeter l a;let rb:=leafEqualMeter r b
+  let lb:=leafEqualMeter l b;let ra:=leafEqualMeter r a
+  if (la.value&&rb.value)||(lb.value&&ra.value) then ⟨.leaf z,24⟩
+  else let x:=contractMeter a b z l;let y:=contractMeter a b z r
+       ⟨.node x.value y.value,x.work+y.work+24⟩
+@[simp] theorem contractMeter_value (a b z : Nat) (T : Tree) :
+ (contractMeter a b z T).value=ForestState.contract a b z T := by
+ induction T with
+ | leaf x=>rfl
+ | node l r ihl ihr=>simp only [contractMeter,leafEqualMeter_value,ForestState.contract];split <;> simp_all
+theorem contractMeter_bound (a b z : Nat) (T : Tree) :
+ (contractMeter a b z T).work≤32*treeNodes T := by
+ induction T with
+ | leaf x=>simp [contractMeter,treeNodes]
+ | node l r ihl ihr=>simp only [contractMeter,treeNodes,Nat.mul_add,Nat.mul_one];split <;> dsimp only <;> omega
+
+def commonPairMeter (T S : Tree) (reverse : Bool) (c : CherryBranching.Candidate) : Charged (Tree×Tree) :=
+ let p:=FastOrdinary.Oriented reverse T S
+ let z:=commonFreshMeter p.1;let t:=contractMeter c.a c.b z.value p.1;let s:=contractMeter c.a c.b z.value p.2
+ ⟨(t.value,s.value),z.work+t.work+s.work+8⟩
+@[simp] theorem commonPairMeter_value (T S : Tree) (reverse : Bool) (c : CherryBranching.Candidate) :
+ (commonPairMeter T S reverse c).value=FastOrdinary.commonPair T S reverse c := by
+ simp [commonPairMeter,FastOrdinary.commonPair]
+theorem commonPairMeter_bound (T S : Tree) (reverse : Bool) (c : CherryBranching.Candidate) (N : Nat)
+ (tn : treeNodes T≤N) (sn : treeNodes S≤N) :
+ (commonPairMeter T S reverse c).work≤128*(N+1)^2 := by
+ have p : treeNodes (FastOrdinary.Oriented reverse T S).1≤N ∧ treeNodes (FastOrdinary.Oriented reverse T S).2≤N := by
+  cases reverse <;> simp_all [FastOrdinary.Oriented]
+ have z:=commonFreshMeter_bound (FastOrdinary.Oriented reverse T S).1 N p.1
+ have t:=contractMeter_bound c.a c.b (commonFreshMeter (FastOrdinary.Oriented reverse T S).1).value (FastOrdinary.Oriented reverse T S).1
+ have s:=contractMeter_bound c.a c.b (commonFreshMeter (FastOrdinary.Oriented reverse T S).1).value (FastOrdinary.Oriented reverse T S).2
+ have square:N+1≤(N+1)^2:=by simp only [Nat.pow_two];exact Nat.le_mul_self _
+ simp only [commonPairMeter]
+ omega
+
+def expandBlockMeter (a b z : Nat) : List Nat→Charged (List Nat)
+ | []=>⟨[],1⟩
+ | x::xs=>
+  let r:=expandBlockMeter a b z xs
+  ⟨(if x==z then [a,b] else [x])++r.value,r.work+12⟩
+@[simp] theorem expandBlockMeter_value (a b z : Nat) (B : List Nat) :
+ (expandBlockMeter a b z B).value=expandBlock a b z B := by
+ induction B <;> simp_all [expandBlockMeter,expandBlock]
+theorem expandBlockMeter_bound (a b z : Nat) (B : List Nat) :
+ (expandBlockMeter a b z B).work≤12*(B.length+1) := by
+ induction B <;> simp_all only [expandBlockMeter,List.length_nil,List.length_cons] <;> omega
+
+def expandCommonMeter (T S : Tree) (reverse : Bool) (c : CherryBranching.Candidate) (F : List (List Nat)) : Charged (List (List Nat)) :=
+ let z:=commonFreshMeter (FastOrdinary.Oriented reverse T S).1
+ let r:=meterMap (expandBlockMeter c.a c.b z.value) F
+ ⟨r.value,z.work+r.work+4⟩
+@[simp] theorem expandCommonMeter_value (T S : Tree) (reverse : Bool) (c : CherryBranching.Candidate) (F : List (List Nat)) :
+ (expandCommonMeter T S reverse c F).value=FastOrdinary.expandCommon T S reverse c F := by
+ simp [expandCommonMeter,FastOrdinary.expandCommon]
+theorem expandCommonMeter_bound (T S : Tree) (reverse : Bool) (c : CherryBranching.Candidate) (F : List (List Nat)) (N : Nat)
+ (tn : treeNodes T≤N) (sn : treeNodes S≤N) (payload : Rule5LocalWork.cells F≤N) :
+ (expandCommonMeter T S reverse c F).work≤64*(N+1)^2 := by
+ have p : treeNodes (FastOrdinary.Oriented reverse T S).1≤N := by cases reverse <;> simp_all [FastOrdinary.Oriented]
+ have z:=commonFreshMeter_bound (FastOrdinary.Oriented reverse T S).1 N p
+ have lengths : ∀B∈F,B.length≤N := by
+  intro B hb;have h:=Rule5LocalWork.block_len F B hb;unfold Rule5LocalWork.cells at payload;omega
+ have r:=meterMap_bound (expandBlockMeter c.a c.b (commonFreshMeter (FastOrdinary.Oriented reverse T S).1).value) F (12*(N+1))
+  (fun B hb=>Nat.le_trans (expandBlockMeter_bound _ _ _ B) (Nat.mul_le_mul_left 12 (Nat.add_le_add_right (lengths B hb) 1)))
+ have fl:F.length≤N:=by unfold Rule5LocalWork.cells at payload;omega
+ have cap:12*(N+1)+4≤16*(N+1):=by omega
+ have product:=Nat.mul_le_mul cap (Nat.add_le_add_right fl 1)
+ have pos:1≤(N+1)^2:=Nat.one_le_pow _ _ (by omega)
+ simp only [expandCommonMeter]
+ simp only [Nat.pow_two,Nat.mul_assoc] at product pos z ⊢
+ omega
+end OrdinaryDispatch.FullSourceWork

@@ -1,0 +1,133 @@
+{
+  "status": "PRODUCER_GATE_PASS",
+  "schema_extension": "post-contact zero-count producer; unchanged Lean detector",
+  "controls": [
+    {
+      "id": "actual empty producer",
+      "pass": true
+    },
+    {
+      "id": "origin-full-CleanA-v3.json",
+      "pass": true
+    },
+    {
+      "id": "origin-full-CleanA+CleanB-v3.json",
+      "pass": true
+    },
+    {
+      "id": "origin-full-GeneratedPrivateClean-v3.json",
+      "pass": true
+    },
+    {
+      "control": "origin-full-UnusedAxiom-v3.json",
+      "reject": true,
+      "reason": "direct custom axiom UnusedAxiom:BlindUnused.unused"
+    },
+    {
+      "control": "origin-full-PrivateAxiom-v3.json",
+      "reject": true,
+      "reason": "direct custom axiom PrivateAxiom:_private.PrivateAxiom.0.BlindPrivate.hidden"
+    },
+    {
+      "control": "origin-full-CleanA+PrivateAxiom-v3.json",
+      "reject": true,
+      "reason": "direct custom axiom PrivateAxiom:_private.PrivateAxiom.0.BlindPrivate.hidden"
+    },
+    {
+      "control": "origin-full-CleanA+HostileCoalesced-v3.json",
+      "reject": true,
+      "reason": "direct custom axiom HostileCoalesced:BlindPlant.shared"
+    },
+    {
+      "id": "private-twin-clean-v3.json",
+      "pass": true
+    },
+    {
+      "control": "private-twin-both-v3.json",
+      "reject": true,
+      "reason": "direct custom axiom PrivateHostileTwin:_private.SamePrivate.0.BlindPrivateTwin.shared"
+    },
+    {
+      "control": "missing nonzero row",
+      "reject": true,
+      "reason": "missing/duplicate occurrence index"
+    },
+    {
+      "control": "duplicate nonzero row",
+      "reject": true,
+      "reason": "duplicate occurrence"
+    },
+    {
+      "control": "fake zero count with rows",
+      "reject": true,
+      "reason": "fake empty producer"
+    },
+    {
+      "control": "missing empty header",
+      "reject": true,
+      "reason": "exact producer headers"
+    },
+    {
+      "control": "duplicate empty header",
+      "reject": true,
+      "reason": "exact producer headers"
+    },
+    {
+      "control": "body receipt alteration",
+      "reject": true,
+      "reason": "body hash changed"
+    },
+    {
+      "control": "actual body adaptation",
+      "reject": true,
+      "reason": "exact stored type/body adaptation"
+    },
+    {
+      "control": "actual import adaptation",
+      "reject": true,
+      "reason": "actual stored import changed"
+    }
+  ],
+  "commands": [
+    {
+      "label": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/postrelease-v1/empty-control-compile-v3",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+        "-o",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/postrelease-v1/empty-control/build/ImportOnly.olean",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/postrelease-v1/empty-control/ImportOnly.lean"
+      ],
+      "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/postrelease-v1/empty-control",
+      "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/postrelease-v1/empty-control/build",
+      "returncode": 0,
+      "seconds": 0.34197491699887905,
+      "log": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/postrelease-v1/empty-control-compile-v3.log"
+    },
+    {
+      "label": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/postrelease-v1/empty-control-audit-v3",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+        "--run",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/origin/ProducerAudit_v1.lean",
+        "ImportOnly"
+      ],
+      "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/postrelease-v1/empty-control",
+      "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/postrelease-v1/empty-control/build",
+      "returncode": 0,
+      "seconds": 1.4688224169985915,
+      "log": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/postrelease-v1/empty-control-audit-v3.log"
+    }
+  ],
+  "modules": 71,
+  "nonempty_producers": 70,
+  "stored_occurrences": 2659,
+  "unique_resolved_names": 2638,
+  "standard_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "direct_custom_axioms": [],
+  "raw_inventory_sha256": "d82207fcfad63b2cf7fb3bd47f54f5ce38473dcf8a7fe0071f5f28110dae079f",
+  "instrument_sha256": "f23b1f7060136a9821cbe9e9d78ae33f444adb789e99ad56a7e4b809800215df"
+}

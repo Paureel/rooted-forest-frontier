@@ -1,0 +1,7 @@
+import BinaryProducerSource
+#check GenericForest.BinaryProducer.sourceForestBits_value
+#print axioms GenericForest.BinaryProducer.sourceForestBits_value
+#check GenericForest.BinaryProducer.replaceBits_value
+#print axioms GenericForest.BinaryProducer.replaceBits_value
+#check GenericForest.BinaryProducer.replaceBits_width
+#print axioms GenericForest.BinaryProducer.replaceBits_width

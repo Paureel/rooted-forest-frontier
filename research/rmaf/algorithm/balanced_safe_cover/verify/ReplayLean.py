@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+"""One-shot independent isolated Lean source replay. No parent audit code reused."""
+import hashlib,json,os,re,shutil,subprocess,time
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[5]
+HERE=Path(__file__).resolve().parent
+BUILD=HERE/'lean-isolated';BUILD.mkdir(exist_ok=True)
+LEAN=ROOT/'.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean'
+ROUTE=HERE.parent
+sources=[('RMAF',ROOT/'research/rmaf/lean/RMAF.lean',21,False),
+         ('ConsumerCore',ROUTE/'lean/ConsumerCore.lean',12,False),
+         ('BalancedCounter',ROUTE/'lean/BalancedCounter.lean',12,False),
+         ('ProductTopology',ROUTE/'lean/ProductTopology.lean',6,False)]
+for name in ['FalsePrecut','FalseHalfBudget','FalseExponent','FalseCoverage','FalseProductTopology']:
+    sources.append((name,ROUTE/'lean'/f'{name}.lean',0,True))
+for name,count,neg in [('EdgeLocalization',9,False),('NegativeArithmetic',3,False),('FalseStar',0,True),('QuotientFalseExponent',0,True)]:
+    filename='FalseExponent' if name=='QuotientFalseExponent' else name
+    sources.append((name,ROUTE/'quotient'/f'{filename}.lean',count,neg))
+reports=[];started=time.perf_counter()
+allowed={'propext','Classical.choice','Quot.sound'}
+for name,path,count,negative in sources:
+    raw=path.read_text();clean=re.sub(r'/\-.*?\-/','',raw,flags=re.S);clean=re.sub(r'--[^\n]*','',clean)
+    forbidden=re.findall(r'\b(?:sorry|admit|axiom|native_decide)\b',clean)
+    if forbidden:raise RuntimeError((path,forbidden))
+    dest=BUILD/f'{name}.lean';dest.write_text(raw)
+    env=os.environ.copy();env['LEAN_PATH']=str(BUILD)
+    t=time.perf_counter();p=subprocess.run([str(LEAN),'-o',str(BUILD/f'{name}.olean'),str(dest)],cwd=BUILD,env=env,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+    elapsed=time.perf_counter()-t;log=BUILD/f'{name}.log';log.write_text(p.stdout)
+    prints=[line for line in p.stdout.splitlines() if 'depends on axioms:' in line or 'does not depend on any axioms' in line]
+    axioms=set()
+    for line in prints:
+        if 'depends on axioms:' in line:
+            ax=line.split('depends on axioms:')[1].strip(' []').split(', ');axioms.update(ax)
+    if negative:
+        reason_ok=('evaluated to false' in p.stdout or 'decide' in p.stdout and ('failed' in p.stdout or 'is false' in p.stdout))
+        passed=p.returncode!=0 and reason_ok and 'sorryAx' not in p.stdout
+    else:passed=p.returncode==0 and len(prints)==count and axioms<=allowed
+    report=dict(name=name,source=str(path.relative_to(ROOT)),source_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),isolated_source_sha256=hashlib.sha256(dest.read_bytes()).hexdigest(),returncode=p.returncode,seconds=elapsed,expected_negative=negative,expected_print_count=count,axiom_print_count=len(prints),axiom_reports=prints,axioms=sorted(axioms),log=str(log.relative_to(ROOT)),passed=passed)
+    reports.append(report)
+    (ROOT/'research/rmaf/results/algorithm-balanced-cover-verify-lean.json').write_text(json.dumps(dict(status='running',reports=reports),indent=2)+'\n')
+    print(json.dumps({k:report[k] for k in ['name','returncode','seconds','axiom_print_count','passed']}),flush=True)
+    if not passed:raise RuntimeError('audit failed: '+name)
+receipt=dict(status='passed',route_statements=30,dependency_statements=21,quotient_statements=12,false_controls_rejected=7,shared_with_author='exact Lean source statements, standard Lean compiler and axioms; no author audit orchestration',source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),total_seconds=time.perf_counter()-started,reports=reports)
+(ROOT/'research/rmaf/results/algorithm-balanced-cover-verify-lean.json').write_text(json.dumps(receipt,indent=2)+'\n')

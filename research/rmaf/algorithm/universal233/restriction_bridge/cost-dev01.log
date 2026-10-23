@@ -1,0 +1,33 @@
+research/rmaf/algorithm/universal233/restriction_bridge/Cost.lean:31:12: error: Invalid projection: Projections cannot be used on functions, and
+  List.map_congr_left
+has function type
+  (∀ (a : ?m.69), a ∈ ?m.70 → ?m.72 a = ?m.73 a) → List.map ?m.72 ?m.70 = List.map ?m.73 ?m.70
+research/rmaf/algorithm/universal233/restriction_bridge/Cost.lean:32:12: error: No goals to be solved
+research/rmaf/algorithm/universal233/restriction_bridge/Cost.lean:35:4: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  c ≥ 0
+  b ≥ 0
+  b - c ≥ 1
+  a ≥ 0
+where
+ a := ↑(List.map (fun B => List.countP (fun x => contained B x) Q) F).sum
+ b := ↑(List.countP (fun x => contained B x) Q)
+ c := ↑(List.countP (contained B) Q)
+research/rmaf/algorithm/universal233/restriction_bridge/Cost.lean:64:10: error: Invalid projection: Projections cannot be used on functions, and
+  List.map_congr_left
+has function type
+  (∀ (a : ?m.32), a ∈ ?m.33 → ?m.35 a = ?m.36 a) → List.map ?m.35 ?m.33 = List.map ?m.36 ?m.33
+research/rmaf/algorithm/universal233/restriction_bridge/Cost.lean:65:10: error: No goals to be solved
+research/rmaf/algorithm/universal233/restriction_bridge/Cost.lean:61:61: error: unsolved goals
+case cons
+labels : List Nat
+Q : List (List Nat)
+hQ : partitionCheck labels Q = true
+head✝ : List Nat
+tail✝ : List (List Nat)
+hF : partitionCheck labels (head✝ :: tail✝) = true
+href : Refines (head✝ :: tail✝) Q
+hm :
+  List.countP (fun x => contained head✝ x) Q = 1 ∧
+    ∀ (a : List Nat), a ∈ tail✝ → List.countP (fun x => contained a x) Q = 1
+⊢ 1 + (List.map (fun x => 1) tail✝).sum = tail✝.length + 1

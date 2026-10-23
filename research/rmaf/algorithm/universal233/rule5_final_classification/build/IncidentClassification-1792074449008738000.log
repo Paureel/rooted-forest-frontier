@@ -1,0 +1,37 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/IncidentClassification.lean:142:38: error: Application type mismatch: The argument
+  List.prefix_append p [s]
+has type
+  p <+: p ++ [s]
+but is expected to have type
+  Pre ?m.66 (p.concat s)
+in the application
+  valid_ancestor hq (List.prefix_append p [s])
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/IncidentClassification.lean:180:43: error: Application type mismatch: The argument
+  hp
+has type
+  partitionCheck (leaves T) [X, [c], C] = true
+of sort `Prop` but is expected to have type
+  List Nat
+of sort `Type` in the application
+  partitionCheck_covers hp
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/IncidentClassification.lean:215:43: error: unsolved goals
+T : Tree
+X C : List Nat
+c : Nat
+hn : (leaves T).Nodup
+hp : partitionCheck (leaves T) [X, [c], C] = true
+he : pairwiseEmbeddings T [X, [c], C] = true
+d : Nat
+hd : d ∈ C
+color : RMAF.Vertex → Bool := fun q => decide (OutsideLabel T X q c)
+q r : RMAF.Vertex
+hq : q ∈ incident T X
+hr : r ∈ incident T X
+eq : color q = color r
+neq : ¬q = r
+clash : ∀ (x : Nat), OutsideLabel T X q x → OutsideLabel T X r x → x ∈ leaves T → False
+qc : OutsideLabel T X q c
+rc : OutsideLabel T X r c
+⊢ ?m.124 = X ∨ ?m.124 = [c] ∨ ?m.124 = C
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/IncidentClassification.lean:215:56: error: `simp` made no progress
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_final_classification/build/IncidentClassification.lean:226:30: error(lean.unknownIdentifier): Unknown constant `List.pairwise_iff_get`

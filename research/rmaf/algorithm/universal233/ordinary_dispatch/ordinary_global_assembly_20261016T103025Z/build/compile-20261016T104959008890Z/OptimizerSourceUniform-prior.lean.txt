@@ -1,0 +1,75 @@
+import OptimizerSourceBodies
+namespace OrdinaryDispatch.GlobalSourceAssembly
+open RMAF Universal233 WholeSourceWork CoreWork
+open OrdinaryDispatch.FullSourceWork OrdinaryDispatch.WorkRecursion
+open OrdinaryDispatch.OptimizerLocalWork OrdinaryDispatch.BudgetOptimization OrdinaryDispatch.RecoveryLocalWork
+
+/-- Generic uniform-query composition for the ACTUAL wrapper and new source
+recovery. The explicit per-query premise is not an ordinary-solve cost theorem. -/
+theorem sourceOptimize_uniform_233 (w : Nat→Nat) (P : Nat) (T S : Tree) (N : Nat)
+ (hp : DepthOne.proper T S=true) (tn : treeNodes T≤N) (sn : treeNodes S≤N)
+ (perQuery : ∀b,b<(leaves T).length→(w b:Rat)≤(P:Rat)*(233/100:Rat)^b) :
+ ∃o,(optimize T S).output=some o ∧ 0<o.partition.length ∧
+ o.sourceCuts.length+1=o.partition.length ∧
+ ((sourceOptimizeMeter w T S).work:Rat)≤
+ (( (leaves T).length*P+512*(N+1)^2+recoverySourceEnvelope (leaves T).length:Nat):Rat)*
+ (233/100:Rat)^(o.partition.length-1) := by
+ obtain ⟨q,F,o,selected,tr,out,rec,yes,recovered,af,oaf,realized,edges,valid,cuts,parts,minimum,qn⟩:=optimization_exact T S hp
+ obtain ⟨qt,Ft,selectedt,trial⟩:=actual_trial_work T S hp w
+ have eqt : qt=q:=congrArg Prod.fst (Option.some.inj (selectedt.symm.trans selected))
+ rw [eqt] at trial
+ have decision:=decision_sum_bound w (fun _=>(P:Rat)) q (233/100:Rat) (by decide +kernel)
+  Rat.natCast_nonneg (fun _ _=>Rat.le_refl _) (fun b hb=>perQuery b (Nat.lt_of_le_of_lt hb qn))
+ have power : (0:Rat)≤(233/100:Rat)^q:=Rat.le_trans (by decide +kernel : (0:Rat)≤1)
+  (by simpa only [Rule5ActualTrace.base] using call_base_pow_ge_one q)
+ have scale:=Rat.mul_le_mul_of_nonneg_right
+  (Rat.natCast_le_natCast.2 (Nat.mul_le_mul_right P (Nat.succ_le_of_lt qn))) power
+ have decisionBound : (trialWork w (optimize T S).search.trials:Rat)≤
+  ((leaves T).length*P:Nat)*(233/100:Rat)^q := by
+  rw [trial]
+  exact Rat.le_trans decision (by simpa only [Rat.natCast_mul,Rat.mul_assoc] using scale)
+ have wrapperBound : (wrapperCharge (preflightFee N) 12 32 (optimize T S):Rat)≤
+  (512*(N+1)^2:Nat)*(233/100:Rat)^q := by
+  simpa only [Rule5ActualTrace.base] using nat_local_exponential _ _ q (wrapper_polynomial w T S N tn sn)
+ obtain ⟨qr,Fr,orr,selectedr,recr,meter,rbound⟩:=optimizer_recovery_233 T S hp
+ have eqr : qr=q:=congrArg Prod.fst (Option.some.inj (selectedr.symm.trans selected))
+ rw [eqr] at rbound
+ have fees:=Rat.natCast_le_natCast.2 (sourceOptimize_actual_fees w T S N tn sn)
+ have total:=rat_add_bounds (rat_add_bounds decisionBound wrapperBound) rbound
+ have full : ((sourceOptimizeMeter w T S).work:Rat)≤
+  (((leaves T).length*P+512*(N+1)^2+recoverySourceEnvelope (leaves T).length:Nat):Rat)*(233/100:Rat)^q := by
+  apply Rat.le_trans fees
+  simpa only [sourceTotalCharge,recoverySourceDebit,Rat.natCast_add,Rat.add_mul] using total
+ refine ⟨o,out,?_,?_,?_⟩
+ · rw [parts];exact Nat.zero_lt_succ q
+ · rw [cuts,parts]
+ · have qe : o.partition.length-1=q:=by rw [parts,Nat.add_sub_cancel]
+   simpa only [qe] using full
+
+/-- Actual query subtotal, all failed/successful optimizer trials, derived
+wrapper operations and source-metered final recovery. PARTIAL until the
+remaining ordinary handler bodies have their own source sheets. -/
+def partialSourceOptimize (T S : Tree) : Charged Execution :=
+ sourceOptimizeMeter (fun b=>closedSourceSubtotal b T S) T S
+
+def partialOptimizeCoefficient (n : Nat) : Nat :=
+ n*closedQueryPolynomial n+512*(2*n+1)^2+recoverySourceEnvelope n
+
+theorem partialSourceOptimize_value (T S : Tree) :
+ (partialSourceOptimize T S).value=optimize T S := sourceOptimizeMeter_value _ _ _
+
+theorem partialSourceOptimize_bound (T S : Tree) (hp : DepthOne.proper T S=true) :
+ ∃o,(optimize T S).output=some o ∧ 0<o.partition.length ∧
+ o.sourceCuts.length+1=o.partition.length ∧
+ ((partialSourceOptimize T S).work:Rat)≤
+ (partialOptimizeCoefficient (leaves T).length:Rat)*(233/100:Rat)^(o.partition.length-1) := by
+ have te:=treeNodes_le_twice_leaves T
+ have se:=treeNodes_le_twice_leaves S
+ have same:=((DepthOne.proper_iff T S).1 hp).2.2.length_eq
+ have tn : treeNodes T≤2*(leaves T).length:=Nat.le_trans (Nat.le_succ _) (Nat.le_of_eq te)
+ have sn : treeNodes S≤2*(leaves T).length:=by
+  rw [same];exact Nat.le_trans (Nat.le_succ _) (Nat.le_of_eq se)
+ simpa only [partialSourceOptimize,partialOptimizeCoefficient] using
+  sourceOptimize_uniform_233 (fun b=>closedSourceSubtotal b T S) (closedQueryPolynomial (leaves T).length)
+   T S (2*(leaves T).length) hp tn sn (closedSourceQuery_bound T S hp)
+end OrdinaryDispatch.GlobalSourceAssembly

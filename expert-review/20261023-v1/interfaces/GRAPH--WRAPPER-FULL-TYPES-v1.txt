@@ -1,0 +1,29 @@
+inductive SourceFullOutputsV3.HardPaidExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        Nat →
+          Universal233.CherryBranching.Candidate →
+            Universal233.Hard2Overlap.Result →
+              OrdinaryDispatch.Hard2SourceWork.SourceExecution → List.{0} SourceFullOutputsV3.Cell → Prop
+number of parameters: 7
+constructors:
+SourceFullOutputsV3.HardPaidExec.run : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {q : Nat} {c : Universal233.CherryBranching.Candidate}
+  {out : Universal233.Hard2Overlap.Result} {r : OrdinaryDispatch.Hard2SourceWork.SourceExecution}
+  {cells : List.{0} SourceFullOutputsV3.Cell},
+  SourceFullOutputsV3.OutputsExec OrdExec mode T S q 0
+      (OrdinaryDispatch.Hard2SourceWork.actualOutputsMeter S T c q out).value r cells →
+    SourceFullOutputsV3.HardPaidExec OrdExec mode T S q c out (SourceFullOutputsV3.finishHard T S q c out r) cells
+inductive SourceRule4V3.Rule4Exec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    {T S : RMAF.Tree} →
+      Universal233.Rule4.Choice T S →
+        Nat → Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F) → List.{0} SourceRule4V3.Cell → Prop
+number of parameters: 6
+constructors:
+SourceRule4V3.Rule4Exec.run : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {s : Universal233.Rule4.Choice T S} {q : Nat}
+  {r : Universal233.WholeSourceWork.Charged (List.{0} SourceForestV3.F)} {cells : List.{0} SourceRule4V3.Cell},
+  SourceRule4V3.AnswersExec OrdExec mode q 0 (OrdinaryDispatch.FullSourceWork.rule4BranchesMeter s).value r cells →
+    SourceRule4V3.Rule4Exec OrdExec mode s q (SourceRule4V3.finish s r) cells

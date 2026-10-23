@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "frozen_before_implementation": true,
+  "scope": "production-side reproduction and by-construction controls; no independent certification",
+  "abstract": [
+    {"id":"empty", "m":0, "rows":[], "optimum":0, "factors":0},
+    {"id":"equal-column", "m":4, "rows":[15], "optimum":1, "factors":1},
+    {"id":"triangle", "m":3, "rows":[3,6,5], "optimum":2, "factors":1},
+    {"id":"two-singletons", "m":2, "rows":[1,2], "optimum":2, "factors":2},
+    {"id":"two-triangles", "m":6, "rows":[3,6,5,24,48,40], "optimum":4, "factors":2},
+    {"id":"row-subsumption", "m":2, "rows":[3,1], "optimum":1, "factors":1}
+  ],
+  "ordinary": [
+    {"id":"empty", "source":null, "target":null, "optimum":0},
+    {"id":"singleton", "source":"a", "target":"a", "optimum":0},
+    {"id":"identical-cherry", "source":["a","b"], "target":["a","b"], "optimum":0},
+    {"id":"crossed-quartet", "source":[["a","b"],["c","d"]], "target":[["a","c"],["b","d"]], "optimum":2},
+    {"id":"equal-halves-kill", "source":["a",["b",["c","d"]]], "target":["a",[["b","c"],"d"]], "optimum":1},
+    {"id":"quotient-star", "source":[[[[["a","b"],"c"],"d"],"e"],"f"], "target":[["a","c"],[["b","e"],["d","f"]]], "optimum":3},
+    {"id":"matched-m1", "source":["a1","b1"], "target":["a1","b1"], "optimum":0},
+    {"id":"matched-m2", "source":[["a1","a2"],["b1","b2"]], "target":[["a1","b1"],["a2","b2"]], "optimum":2},
+    {"id":"matched-m3", "source":[["a1",["a2","a3"]],["b1",["b2","b3"]]], "target":[["a1","b1"],[["a2","b2"],["a3","b3"]]], "optimum":3}
+  ]
+}

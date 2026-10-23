@@ -1,0 +1,144 @@
+{
+  "id": "pure-bridge",
+  "title": "Pure-bridge completion and local exchange",
+  "status": "conditional",
+  "summary": "24 Lean theorems checked: deepest-root convex geometry, conditional exact exchange, and a finite degree-two mark counterexample with costs 1,1,1,2. General graph realization and unrestricted safe cover remain open.",
+  "metrics": {
+    "generated_instances": 5000,
+    "local_mark_queries": 44582,
+    "role_swap_cases": 44582,
+    "empty_region_cases": 8729,
+    "one_cut_inequalities": 162558,
+    "pure_completions": 4194,
+    "nonpure_completions_skipped": 806,
+    "whole_overlap_checks": 9958,
+    "root_mark_cases": 22291,
+    "clique3_cases": 276,
+    "lean_theorems": 24,
+    "lean_negative_controls_rejected": 3
+  },
+  "claims": [
+    {
+      "id": "pure-elimination",
+      "label": "Pure-bridge elimination",
+      "status": "tested",
+      "detail": "4194 finite pure completion instances matched exhaustive source-edge-cut combinations. General graph realization of the exchange interface remains open."
+    },
+    {
+      "id": "role-swap",
+      "label": "Marked role swap and q_J \u2264 d_D",
+      "status": "tested",
+      "detail": "44582 exact finite role swaps; general partition equivalence and target r\u22121 split construction remain graph obligations."
+    },
+    {
+      "id": "unrestricted",
+      "label": "Unrestricted improved exponential bound",
+      "status": "open",
+      "detail": "No safe-cover lemma; no improvement claimed. Whidden prior-bound audit remains open."
+    },
+    {
+      "id": "purity-essential",
+      "label": "Dropping purity fails",
+      "status": "refuted",
+      "detail": "Six-leaf counterexample: greedy marking costs 2; exact optimum 1."
+    },
+    {
+      "id": "joint-mark-synergy",
+      "label": "Separate zero penalties do not compose",
+      "status": "checked",
+      "detail": "Concrete degree-two marks have costs 1,1,1,2. Kernel theorem in the imported RMAF executable model; graph correspondence still open."
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "deepest-root",
+      "label": "Deepest-root neighborhood",
+      "status": "checked",
+      "detail": "Lean theorem for rooted path-convex regions in the binary address tree; graph embeddings must still be shown to realize this structure.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/pure_bridge/lean/PureBridge.lean"
+      ]
+    },
+    {
+      "id": "exchange",
+      "label": "Free and paid optimum identities",
+      "status": "conditional",
+      "detail": "Kernel-checked given ExchangeSystem fields, especially one-unit repair of the entire remaining feasible state. No additive-penalty assumption.",
+      "depends_on": [
+        "deepest-root"
+      ],
+      "artifacts": [
+        "research/rmaf/pure_bridge/lean/PureBridge.lean",
+        "research/rmaf/pure_bridge/lean/audit/certificate.json"
+      ]
+    },
+    {
+      "id": "role-swap-formal",
+      "label": "Role-swap optimum and budget arithmetic",
+      "status": "conditional",
+      "detail": "Kernel-checked for a common feasible partition family with at least r pieces and the supplied h\u2264d+r\u22121 bound.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/pure_bridge/lean/PureBridge.lean"
+      ]
+    },
+    {
+      "id": "joint-mark-formal",
+      "label": "Finite degree-two synergy",
+      "status": "checked",
+      "detail": "All bounded assignments with both marks cost at least two, while either mark alone has optimum one. Shares existing RMAF semantics.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/pure_bridge/lean/MarkInteraction.lean",
+        "results/pure-bridge-mark-interaction.json"
+      ]
+    }
+  ],
+  "artifacts": [
+    "research/rmaf/pure_bridge/JOURNAL.md",
+    "research/rmaf/pure_bridge/check_geometry.py",
+    "results/pure-bridge-adversary.json",
+    "results/pure-bridge-boundaries.json",
+    "research/rmaf/pure_bridge/lean/audit/certificate.json",
+    "research/rmaf/pure_bridge/FORMAL.md",
+    "research/rmaf/pure_bridge/README.md",
+    "research/rmaf/pure_bridge/VERIFY_SPEC.json",
+    "research/rmaf/pure_bridge/lean/MarkInteraction.lean",
+    "results/pure-bridge-mark-interaction.json"
+  ],
+  "example": {
+    "tree_a": [
+      [
+        0,
+        1
+      ],
+      [
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    ],
+    "forest": [
+      [
+        2
+      ],
+      [
+        4
+      ],
+      [
+        0,
+        1,
+        3,
+        5
+      ]
+    ],
+    "k": 3,
+    "caption": "Purity-free greedy failure: source is the two-component forest (2,4) and ((0,1),(3,5)); exact refinement has three components (one additional cut), while the greedy extension uses four."
+  }
+}

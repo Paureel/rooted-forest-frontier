@@ -1,0 +1,236 @@
+{
+  "case": {
+    "id": "root-nonclade-A",
+    "tree": [
+      [
+        0,
+        [
+          1,
+          2
+        ]
+      ],
+      3
+    ],
+    "parents": [
+      [
+        0,
+        2
+      ],
+      [
+        1
+      ],
+      [
+        3
+      ]
+    ],
+    "beta": {
+      "1": 0
+    },
+    "proper_source": true,
+    "restriction_A": [
+      0,
+      2
+    ],
+    "restriction_C": 3,
+    "budgets": [
+      {
+        "q": 1,
+        "outputs": [],
+        "preservation": []
+      },
+      {
+        "q": 2,
+        "outputs": [
+          {
+            "partition": [
+              [
+                3
+              ],
+              [
+                1
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            "cuts": [
+              [
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          }
+        ],
+        "preservation": [
+          true
+        ]
+      }
+    ],
+    "suppressed_chosen_path_at_full_budget": false,
+    "target": null,
+    "local_certificate": null
+  },
+  "actual": {
+    "outputs": [
+      {
+        "partition": [
+          [
+            0,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            3
+          ]
+        ],
+        "cuts": [
+          [
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      }
+    ],
+    "refusals": [],
+    "visited": 3,
+    "attempts": 2,
+    "pruned": 0,
+    "trace": [
+      {
+        "chosen": [
+          0,
+          1,
+          0
+        ],
+        "current_parent": [
+          0,
+          1
+        ],
+        "original_parent": [
+          0,
+          1
+        ],
+        "original_path": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "pruned": false
+      },
+      {
+        "chosen": [
+          0
+        ],
+        "current_parent": [],
+        "original_parent": [],
+        "original_path": [
+          [],
+          [
+            0
+          ]
+        ],
+        "pruned": false
+      }
+    ]
+  },
+  "diagnosis": "Hand-trace omitted normalize between removal of B and next choose. Original vertex 0 contracts labels0,2; preorder selects that whole group before original leaf3. Root pin cost2/preservation remain true.",
+  "original_residuals": [
+    {
+      "components": [
+        {
+          "vertices": [
+            0,
+            2
+          ],
+          "addresses": [
+            [],
+            [
+              1
+            ]
+          ],
+          "labels": [
+            3
+          ]
+        },
+        {
+          "vertices": [
+            1,
+            3,
+            4,
+            6
+          ],
+          "addresses": [
+            [
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "labels": [
+            0,
+            2
+          ]
+        },
+        {
+          "vertices": [
+            5
+          ],
+          "addresses": [
+            [
+              0,
+              1,
+              0
+            ]
+          ],
+          "labels": [
+            1
+          ]
+        }
+      ],
+      "leaf_partition": [
+        [
+          0,
+          2
+        ],
+        [
+          1
+        ],
+        [
+          3
+        ]
+      ],
+      "nonempty": true,
+      "count": 3,
+      "cuts_plus_one": true,
+      "cuts": 2
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-20261015T211149845269Z/Hard2SourceBill.lean:64:14: error: don't know how to synthesize implicit argument `q`
+  @Hard2Trace.combined_mass actual T S c ?m.121 out proper0 hard selected b (Rat.le_of_lt base) upper
+context:
+actual : Ordinary
+W : OrdinaryWork
+T S : Tree
+c : Candidate
+q : Nat
+out : Result
+proper0 : DepthOne.proper T S = true
+hard : CherryBranching.select T S = some (Priority.hard2, c)
+selected : runHard2 T S c = some out
+b D : Rat
+base : 2 < b
+upper : b ≤ 3
+positive : 0 ≤ D
+bill : BelowWorkBill W (leaves T).length q b D
+sum :
+  (List.map (fun call => GenericForest.sourceWork actual W call.target call.sources call.budget)
+        (Hard2Combine.combine actual T S c.a c.b q (paidCase actual T S c q out)).calls).sum ≤
+    (D + geometric b * forestCoefficient (leaves T).length q) * b ^ q *
+      traceMass b q (Hard2Combine.combine actual T S c.a c.b q (paidCase actual T S c q out)).calls
+⊢ Nat
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-20261015T211149845269Z/Hard2SourceBill.lean:64:6: error: failed to infer `have` declaration type
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-20261015T211149845269Z/Hard2SourceBill.lean:59:94: error: unsolved goals
+actual : Ordinary
+W : OrdinaryWork
+T S : Tree
+c : Candidate
+q : Nat
+out : Result
+proper0 : DepthOne.proper T S = true
+hard : CherryBranching.select T S = some (Priority.hard2, c)
+selected : runHard2 T S c = some out
+b D : Rat
+base : 2 < b
+upper : b ≤ 3
+positive : 0 ≤ D
+bill : BelowWorkBill W (leaves T).length q b D
+sum :
+  (List.map (fun call => GenericForest.sourceWork actual W call.target call.sources call.budget)
+        (Hard2Combine.combine actual T S c.a c.b q (paidCase actual T S c q out)).calls).sum ≤
+    (D + geometric b * forestCoefficient (leaves T).length q) * b ^ q *
+      traceMass b q (Hard2Combine.combine actual T S c.a c.b q (paidCase actual T S c q out)).calls
+⊢ (List.map (fun call => GenericForest.sourceWork actual W call.target call.sources call.budget)
+        (Hard2Combine.combine actual T S c.a c.b q (paidCase actual T S c q out)).calls).sum ≤
+    (D + geometric b * forestCoefficient (leaves T).length q) * b ^ q * (2 * b ^ (-1) + 4 * b ^ (-4))

@@ -1,0 +1,47 @@
+import PersistentScalar
+namespace GenericForest.BinaryProvider
+open Universal233.WholeSourceWork GenericForest.ScalarBits RMAF
+abbrev Label:=Bits
+abbrev Block:=List Label
+abbrev Forest:=List Block
+inductive Tree where
+ | leaf (label : Label)
+ | node (left right : Tree)
+ deriving DecidableEq,Repr
+
+/-- Mathematical projections, excluded from every runtime companion body. -/
+def labelValue (x : Label) :=decode x
+def blockValue (B : Block) :=B.map labelValue
+def forestValue (F : Forest) :=F.map blockValue
+def treeValue : Tree→RMAF.Tree
+ | .leaf x=>.leaf (labelValue x)
+ | .node l r=>.node (treeValue l) (treeValue r)
+def sourcesValue (ss : List Tree) :=ss.map treeValue
+def targetValue (T : Option Tree) :=T.map treeValue
+
+def leavesBits : Tree→Block
+ | .leaf x=>[x] | .node l r=>leavesBits l++leavesBits r
+
+def LabelWidth (W : Nat) (x : Label) :=x.length≤W
+def BlockWidth (W : Nat) (B : Block) :=∀x∈B,LabelWidth W x
+def ForestWidth (W : Nat) (F : Forest) :=∀B∈F,BlockWidth W B
+def TreeWidth (W : Nat) (T : Tree) :=BlockWidth W (leavesBits T)
+def SourcesWidth (W : Nat) (ss : List Tree) :=∀s∈ss,TreeWidth W s
+
+def Projects {α β : Type} (W : Nat) (projection : α→β) (a : Charged α) (b : Charged β) : Prop :=
+ projection a.value=b.value ∧ a.work≤ScalarBits.beta W*b.work
+
+@[simp] theorem blockValue_length (B : Block) : (blockValue B).length=B.length := List.length_map
+@[simp] theorem forestValue_length (F : Forest) : (forestValue F).length=F.length := List.length_map
+@[simp] theorem blockValue_append (A B : Block) : blockValue (A++B)=blockValue A++blockValue B := List.map_append
+@[simp] theorem forestValue_append (F G : Forest) : forestValue (F++G)=forestValue F++forestValue G := List.map_append
+@[simp] theorem forestValue_flatten (F : Forest) : (forestValue F).flatten=blockValue F.flatten := by
+ induction F <;> simp_all [forestValue,blockValue]
+@[simp] theorem leaves_projection (T : Tree) : blockValue (leavesBits T)=RMAF.leaves (treeValue T) := by
+ induction T <;> simp_all [leavesBits,treeValue,blockValue,RMAF.leaves]
+
+theorem treeWidth_left (W : Nat) (l r : Tree) (h : TreeWidth W (.node l r)) : TreeWidth W l :=
+ fun x hx=>h x (by simp [leavesBits,hx])
+theorem treeWidth_right (W : Nat) (l r : Tree) (h : TreeWidth W (.node l r)) : TreeWidth W r :=
+ fun x hx=>h x (by simp [leavesBits,hx])
+end GenericForest.BinaryProvider

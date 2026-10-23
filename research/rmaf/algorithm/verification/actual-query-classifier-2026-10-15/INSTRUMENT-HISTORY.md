@@ -1,0 +1,15 @@
+# Detector and execution history
+
+Readiness remains exactly the60 entries at READY-ARTIFACTS.json SHA655f32eef6ee281e4d820e49e26d2b20bbf694f11e27cb0605ca4c5d2ac5f535. Its frozen V1 pilot failed the missing minimum-access metadata invariant; INSTRUMENT-REPAIR-v2.md, both engines and original failed log remain. No readiness input, expected value or threshold changed after release.
+
+Candidate ReviewActual-query-v1.lean.txt and ReviewActual-rank-v1.lean.txt plus ACTUAL-QUERY-v1-failed.log / ACTUAL-RANK-v1-failed.log retain initial readout syntax/import failures. Parenthesizing dbg_trace's concatenation and explicitly importing Lean JSON support repaired compilation. These failures receive no scientific rejection credit.
+
+ACTUAL-*-v2-interleaved.log retains successful execution with corrupt merged stderr/stdout framing. The first parser failure is algorithm-query-classifier-fresh-review-actual-comparison-v1-failed.log. Final run_actual.py captures streams independently; each stdout/stderr has its own retained file, and the convenience combined log concatenates complete streams rather than merging writes. Final sources and hashes are in ACTUAL-RUNS-final.json. No scientific input/expectation was changed.
+
+algorithm-query-classifier-fresh-review-actual-comparison-v2.log records the comparator failure on mixed-known-and-two-hard-budget2 / trace.0.budget=3. The new adapter had assigned the same mutable list to its actual trace and independent spy, so the corruption changed both. compare_actual_v1.py.txt retains that source. Deep-copying both observations separately repairs the detector, and all111 corruptions reject in ACTUAL-COMPARISON.json. This is a detector repair exposed by the fixed corrupt twin, not evidence that the candidate caller was wrong. The unchanged frozen reference already kept the two lists separate.
+
+The35/111 reference-event checks are supplemented with actual16 query/16 classifier/1 rank values and dbg_trace spies. Callback and solver observations are actual evaluated invocations. Source-operation counts remain the independent ordinary-list ledger/inspection contract; comparing those fields does not produce an extracted fine-operation trace. Two append-toy cases remain diagnostic only. Supplemental mass checks retain6 clean/12 false claims. The generic first-seen16-comparison reference is explicitly separated from candidate tail-first10; no model rewrite hides the difference.
+
+ORIGIN-DETECTOR-RECEIPT.json preserves clean full-origin inventories and deliberately compiled used/unused private-axiom controls. It also records explicit missing/duplicate/wrong-origin/source-corruption diagnoses. Custom axioms occur ONLY in detector plants excluded from the65 accepted scientific modules. The7 author false statements and the1 post-candidate scope false statement have explicit decide-is-false logs. The old broken-import toy remains EXCLUDE-falsity.
+
+All original frozen expectations and failures are preserved. Same reviewer/ledger lineage, zero additional replications. No children or authors were contacted in this phase.

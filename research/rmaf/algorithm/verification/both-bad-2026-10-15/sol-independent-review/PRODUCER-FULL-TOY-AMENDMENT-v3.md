@@ -1,0 +1,5 @@
+# Stored producer scope extension v3
+
+Freeze before this fourth stored-array entry. Reuse the already frozen ToyGood, ToyGenerated, ToyUnused, ToyPrivate source bytes. Compile a new AuditProducerFull adapter importing these plus OriginAudit/ProducerAudit; scan their stored producer occurrences with the new gate. Expected clean-origin/private/generated count28 plus2 unused-axiom-module declarations plus3 private-axiom-module declarations =33 stored occurrences and33 resolved names, without coalescence in this fixed suite. Expect direct custom-axiom rejections from both ToyUnused and ToyPrivate, and private producer dependencies also visible. All28 earlier clean-name records, private seed and generated recursor must be present in stored form; exact kind/body inspection is retained. Compiler extra names reported separately.
+
+Prior producer batch measured15.69s for4 cold builds and3 dual audits; fourth adapter bounded30s with conservative5s projection. This extension concerns detector coverage only, does not revise any graph/core expectations or candidate conclusions. No candidate has been contacted.

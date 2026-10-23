@@ -1,0 +1,19 @@
+import Regression
+
+#print Universal233.RankDichotomy.inputRank
+#print Universal233.RankDichotomy.RankFeasible
+#check Universal233.CoreProgram.generate
+#check Universal233.Assembly.generated_source_valid
+#check Universal233.SourceCoverage.generate_rawQ_mass
+#check Universal233.RankDichotomy.below_rank_outputs_empty
+#check Universal233.RankDichotomy.feasible_unique
+#check Universal233.RankDichotomy.feasible_unique_color_classes
+#check Universal233.RankDichotomy.infeasible_cost
+#check Universal233.RankDichotomy.generate_tail_mass
+#check Universal233.RankDichotomy.infeasible_mass
+#print axioms Universal233.RankDichotomy.below_rank_outputs_empty
+#print axioms Universal233.RankDichotomy.feasible_unique
+#print axioms Universal233.RankDichotomy.feasible_unique_color_classes
+#print axioms Universal233.RankDichotomy.infeasible_cost
+#print axioms Universal233.RankDichotomy.generate_tail_mass
+#print axioms Universal233.RankDichotomy.infeasible_mass

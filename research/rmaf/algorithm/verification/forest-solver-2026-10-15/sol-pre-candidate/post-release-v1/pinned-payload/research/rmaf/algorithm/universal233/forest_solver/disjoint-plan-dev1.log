@@ -1,0 +1,72 @@
+research/rmaf/algorithm/universal233/forest_solver/build/ForestDisjointPlan.lean:30:8: error: unsolved goals
+t : Tree
+m : Tree × Tree → Nat
+s : Tree
+ss : List Tree
+ih :
+  (∀ (s : Tree), s ∈ ss → componentPair t s = some (pair t s)) →
+    (∀ (s : Tree), s ∈ ss → DepthOne.proper (pair t s).fst (pair t s).snd = true) →
+      (∀ (s : Tree), s ∈ ss → LocalMinimum (pair t s).fst (pair t s).snd (m (pair t s))) →
+        ∃ js,
+          jobs t ss = some js ∧
+            List.map Job.problem js = List.map (pair t) ss ∧
+              ∀ (j : Job (Tree × Tree) Forest), j ∈ js → Planned m (PairValid m) j
+actual : ∀ (s_1 : Tree), s_1 ∈ s :: ss → componentPair t s_1 = some (pair t s_1)
+pp : ∀ (s_1 : Tree), s_1 ∈ s :: ss → DepthOne.proper (pair t s_1).fst (pair t s_1).snd = true
+mm : ∀ (s_1 : Tree), s_1 ∈ s :: ss → LocalMinimum (pair t s_1).fst (pair t s_1).snd (m (pair t s_1))
+tail : List (Job (Tree × Tree) Forest)
+ht : jobs t ss = some tail
+hkeys : List.map Job.problem tail = List.map (pair t) ss
+hplan : ∀ (j : Job (Tree × Tree) Forest), j ∈ tail → Planned m (PairValid m) j
+pact : componentPair t s = some (pair t s)
+pproper : DepthOne.proper (pair t s).fst (pair t s).snd = true
+pmin : LocalMinimum (pair t s).fst (pair t s).snd (m (pair t s))
+he : DepthOne.pretest01 (pair t s).fst (pair t s).snd = DepthOne.Result.rejected
+⊢ (Job.hard (pair t s)).problem = pair t s
+research/rmaf/algorithm/universal233/forest_solver/build/ForestDisjointPlan.lean:45:8: error: unsolved goals
+t : Tree
+m : Tree × Tree → Nat
+s : Tree
+ss : List Tree
+ih :
+  (∀ (s : Tree), s ∈ ss → componentPair t s = some (pair t s)) →
+    (∀ (s : Tree), s ∈ ss → DepthOne.proper (pair t s).fst (pair t s).snd = true) →
+      (∀ (s : Tree), s ∈ ss → LocalMinimum (pair t s).fst (pair t s).snd (m (pair t s))) →
+        ∃ js,
+          jobs t ss = some js ∧
+            List.map Job.problem js = List.map (pair t) ss ∧
+              ∀ (j : Job (Tree × Tree) Forest), j ∈ js → Planned m (PairValid m) j
+actual : ∀ (s_1 : Tree), s_1 ∈ s :: ss → componentPair t s_1 = some (pair t s_1)
+pp : ∀ (s_1 : Tree), s_1 ∈ s :: ss → DepthOne.proper (pair t s_1).fst (pair t s_1).snd = true
+mm : ∀ (s_1 : Tree), s_1 ∈ s :: ss → LocalMinimum (pair t s_1).fst (pair t s_1).snd (m (pair t s_1))
+tail : List (Job (Tree × Tree) Forest)
+ht : jobs t ss = some tail
+hkeys : List.map Job.problem tail = List.map (pair t) ss
+hplan : ∀ (j : Job (Tree × Tree) Forest), j ∈ tail → Planned m (PairValid m) j
+pact : componentPair t s = some (pair t s)
+pproper : DepthOne.proper (pair t s).fst (pair t s).snd = true
+pmin : LocalMinimum (pair t s).fst (pair t s).snd (m (pair t s))
+c : Option Vertex
+he : DepthOne.pretest01 (pair t s).fst (pair t s).snd = DepthOne.Result.found c
+ha : agreement (pair t s).fst (pair t s).snd (DepthOne.forest (pair t s).snd c) = true
+hcost : (DepthOne.forest (pair t s).snd c).length - 1 = DepthOne.cutCost c
+hminimal : ∀ (F : List (List Nat)), agreement (pair t s).fst (pair t s).snd F = true → DepthOne.cutCost c ≤ F.length - 1
+F : List (List Nat)
+hF : agreement (pair t s).fst (pair t s).snd F = true
+hopt : F.length - 1 = m (pair t s)
+hlow : m (pair t s) ≤ (DepthOne.forest (pair t s).snd c).length - 1
+hupp : DepthOne.cutCost c ≤ F.length - 1
+hcm : DepthOne.cutCost c = m (pair t s)
+j : Job (Tree × Tree) Forest := Job.resolved (pair t s) (DepthOne.cutCost c) (DepthOne.forest s c)
+⊢ (Job.resolved (pair t s) (DepthOne.cutCost c) (DepthOne.forest s c)).problem = pair t s
+research/rmaf/algorithm/universal233/forest_solver/build/ForestDisjointPlan.lean:49:19: error: Application type mismatch: The argument
+  ha
+has type
+  agreement (pair t s).fst (pair t s).snd (DepthOne.forest (pair t s).snd c) = true
+but is expected to have type
+  PairValid m (pair t s) (DepthOne.forest s c)
+in the application
+  And.intro ha
+research/rmaf/algorithm/universal233/forest_solver/build/ForestDisjointPlan.lean:49:14: error: Invalid `⟨...⟩` notation: The expected type `(DepthOne.cutCost c).le 1` has more than one constructor
+
+Note: This notation can only be used when the expected type is an inductive type with a single constructor

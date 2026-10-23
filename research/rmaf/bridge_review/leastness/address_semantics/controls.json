@@ -1,0 +1,13 @@
+{
+  "frozen_before_proof": true,
+  "origin": "Hand-written addresses and labels; no candidate Lean source read or executed. Addresses are strings with 0=left and 1=right.",
+  "failure_rule": "Exact ordered equality for ambient addresses and selected occurrences. Any mismatch fails. Corrupted candidate must fail while clean twin passes.",
+  "fixtures": [
+    {"id":"singleton", "tree":7, "selection":[7], "vertices":[""], "occurrences":[["",7]], "terminals":[""]},
+    {"id":"empty", "tree":[2,3], "selection":[], "vertices":["","0","1"], "occurrences":[["0",2],["1",3]], "terminals":[]},
+    {"id":"absent", "tree":[2,3], "selection":[9], "vertices":["","0","1"], "occurrences":[["0",2],["1",3]], "terminals":[]},
+    {"id":"duplicates", "tree":[5,[5,8]], "selection":[5,5], "vertices":["","0","1","10","11"], "occurrences":[["0",5],["10",5],["11",8]], "terminals":["0","10"]},
+    {"id":"deep", "tree":[9,[8,[1,2]]], "selection":[1,2], "vertices":["","0","1","10","11","110","111"], "occurrences":[["0",9],["10",8],["110",1],["111",2]], "terminals":["110","111"]},
+    {"id":"crossing", "tree":[[0,1],[2,3]], "selection":[0,2], "vertices":["","0","00","01","1","10","11"], "occurrences":[["00",0],["01",1],["10",2],["11",3]], "terminals":["00","10"]}
+  ]
+}

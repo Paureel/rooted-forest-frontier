@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "0066694b97730a99b442354edfe748c18b8d126fca844de9e068a475b1ab2c84",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3525712079999721,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.29049262499938777,
+      "resource_stop": null,
+      "log_sha256": "d8f91ccecb9bddbca3312d9ed061defbe9f97014bed09af25c4f393b09b18c77"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.001579416999447858,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "TwoGroupDP",
+      "source_sha256": "1483921c1ea4fe6b11e39eef5538bdea1f5334b3642b243beb1d80d324831904",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.6830351669996162,
+      "resource_stop": null,
+      "log_sha256": "a8c6de0999df8549092a5a6e2d10f98c671f05f7d5e9ac3de0513d9fe4633006"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('TwoGroupDP', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-pair-query-20261015T195944423783Z/TwoGroupDP.lean:62:1: error: Tactic `split` failed: Could not split an `if` or `match` expression in the type\\n  (do\\n      let H \u2190 some H\\n      if additionalCost (owned ss U) H \u2264 b then do\\n          let K \u2190 GenericForest.solve actual (localTarget T V) (owned ss V) (b - additionalCost (owned ss U) H)\\n          pure (H ++ K)\\n        else none) =\\n    some F\\nof `hf`\\n\\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\\n\\nactual : Ordinary\\nT : Option Tree\\nss : List Tree\\nU V : List Nat\\nb : Nat\\nih : ForestMinCompletion.LocalOrdinaryIH b actual\\nhp : proper T ss = true\\nhq : partitionCheck (labels T) [U, V] = true\\nown : Owns ss [U, V]\\ncross : CrossClear T ss [U, V]\\ngood : AllGoodDP.allGood (localTarget T U) (owned ss U) = true\\nF : Forest\\nH : List (List Nat)\\nhf :\\n  (do\\n      let H \u2190 some H\\n      if additionalCost (owned ss U) H \u2264 b then do\\n          let K \u2190 GenericForest.solve actual (localTarget T V) (owned ss V) (b - additionalCost (owned ss U) H)\\n          pure (H ++ K)\\n        else none) =\\n    some F\\nhH : AllGoodDP.run (localTarget T U) (owned ss U) = some H\\nhvalid : agrees (localTarget T U) (owned ss U) H = true\\nhbal : additionalCost (owned ss U) H + (owned ss U).length = H.length\\nhmin :\\n  \u2200 (G : List (List Nat)),\\n    agrees (localTarget T U) (owned ss U) G = true \u2192 additionalCost (owned ss U) H \u2264 additionalCost (owned ss U) G\\n\u22a2 agrees T ss F = true \u2227\\n    additionalCost ss F \u2264 b \u2227 \u2200 (G : List (List Nat)), agrees T ss G = true \u2192 List.length F \u2264 G.length\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-pair-query-20261015T195944423783Z/TwoGroupDP.lean:61:12: warning: This simp argument is unused:\\n  Option.bind_some\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp only at hf\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n'))"
+}

@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.34639058300126635,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3163749170016672,
+      "resource_stop": null,
+      "log_sha256": "b4f85ca2787f1563fcfcfeb8335d50244aba5a957938012e3831a92c5b0c5ab4"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0015817500006960472,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GoodPairSource",
+      "source_sha256": "563c469b41488dfefb7c76310e2878499cbb1ad75ccf4572af8cebac79c07c65",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.881587457999558,
+      "resource_stop": null,
+      "log_sha256": "b5a9a5b34cd723a26c04ffd9c001990da6b2327b69f7bea5a00a1f6b021038f2"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('GoodPairSource', 'localTarget (some T) (A ++ B))\\n                            (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))).work +\\n                      12 +\\n                    (appendLabelsMeter A B).work +\\n                  (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +\\n                (additionalCostMeter (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H\u271d).work +\\n              8 +\\n            4 }).value\\nis not definitionally equal to the right-hand side\\n  match some H with\\n  | none => { answer := none, calls := [] }\\n  | some H =>\\n    if additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H \u2264 q - 2 then\\n      {\\n        answer :=\\n          checked T S q\\n            (Option.map (fun K => H ++ K)\\n              (GenericForest.solve actual (localTarget (some T) C)\\n                (owned (List.filterMap (fun B => restrict B S) [A, B, C]) C)\\n                (q - 2 - additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H))),\\n        calls :=\\n          [{ target := localTarget (some T) C, sources := owned (List.filterMap (fun B => restrict B S) [A, B, C]) C,\\n              budget :=\\n                q - 2 - additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H }] }\\n    else { answer := none, calls := [] }\\n\\ncase h_2\\nactual : GenericForest.FrontierWork.Ordinary\\nT S : Tree\\nA B C : List Nat\\nq : Nat\\nh : 2 \u2264 q\\nH : List (List Nat)\\nhd :\\n  AllGoodDP.run (localTarget (some T) (A ++ B)) (owned (List.filterMap (fun D => restrict D S) [A, B, C]) (A ++ B)) =\\n    some H\\nx\u271d : Option (List (List Nat))\\nH\u271d : List (List Nat)\\nheq\u271d : some H = some H\u271d\\n\u22a2 (if additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H\u271d \u2264 q - 2 then\\n        {\\n          value :=\\n            {\\n              answer :=\\n                checked T S q\\n                  (Option.map (fun K => H\u271d ++ K)\\n                    (GenericForest.solve actual (localTarget (some T) C)\\n                      (owned (List.filterMap (fun B => restrict B S) [A, B, C]) C)\\n                      (q - 2 - additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H\u271d))),\\n              calls :=\\n                [{ target := localTarget (some T) C,\\n                    sources := owned (List.filterMap (fun B => restrict B S) [A, B, C]) C,\\n                    budget :=\\n                      q - 2 -\\n                        additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H\u271d }] },\\n          work :=\\n            (sourceForestMeter S [A, B, C]).work + (appendLabelsMeter A B).work +\\n                                        (localTargetMeter (some T) (A ++ B)).work +\\n                                      (appendLabelsMeter A B).work +\\n                                    (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +\\n                                  (AllGoodDP.LocalWork.meterRun (localTarget (some T) (A ++ B))\\n                                      (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))).work +\\n                                12 +\\n                              (appendLabelsMeter A B).work +\\n                            (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +\\n                          (additionalCostMeter (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))\\n                              H\u271d).work +\\n                        8 +\\n                      (localTargetMeter (some T) C).work +\\n                    (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) C).work +\\n                  2 * H\u271d.length +\\n                (checkedMeter T S q\\n                    (Option.map (fun K => H\u271d ++ K)\\n                      (GenericForest.solve actual (localTarget (some T) C)\\n                        (owned (List.filterMap (fun B => restrict B S) [A, B, C]) C)\\n                        (q - 2 -\\n                          additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))\\n                            H\u271d)))).work +\\n              16 }\\n      else\\n        { value := { answer := none, calls := [] },\\n          work :=\\n            (sourceForestMeter S [A, B, C]).work + (appendLabelsMeter A B).work +\\n                                (localTargetMeter (some T) (A ++ B)).work +\\n                              (appendLabelsMeter A B).work +\\n                            (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +\\n                          (AllGoodDP.LocalWork.meterRun (localTarget (some T) (A ++ B))\\n                              (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))).work +\\n                        12 +\\n                      (appendLabelsMeter A B).work +\\n                    (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +\\n                  (additionalCostMeter (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H\u271d).work +\\n                8 +\\n              4 }).value =\\n    match some H with\\n    | none => { answer := none, calls := [] }\\n    | some H =>\\n      if additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H \u2264 q - 2 then\\n        {\\n          answer :=\\n            checked T S q\\n              (Option.map (fun K => H ++ K)\\n                (GenericForest.solve actual (localTarget (some T) C)\\n                  (owned (List.filterMap (fun B => restrict B S) [A, B, C]) C)\\n                  (q - 2 - additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H))),\\n          calls :=\\n            [{ target := localTarget (some T) C, sources := owned (List.filterMap (fun B => restrict B S) [A, B, C]) C,\\n                budget :=\\n                  q - 2 - additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H }] }\\n      else { answer := none, calls := [] }\\n'))"
+}

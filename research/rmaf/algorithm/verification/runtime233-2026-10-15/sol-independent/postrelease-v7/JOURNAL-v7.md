@@ -1,0 +1,9 @@
+# Phase7 internal source/interface review
+
+Exact ROOT-RELEASE-v7 was read and pinned before the immediately written new skeleton. All prior1022 own files are preserved by SHA256, bytes, modes and inodes; phase6 all221 manifest payloads matched. Release path union is a reading license only. Same previously contacted isolated reviewer, zero new blind or replication credit. No children, peers, author auditor/oracle/control programs, unfinished siblings, root live records or other reviewers.
+
+Reusing calibrated bounded reader, Lean and own control runner; no cold rebuild. New arithmetic expectations will be frozen before execution. Source reads are pinned and logged. Selected fresh source rechecks use explicitly named same-lineage import roots, hash available binaries, and do not establish origin, initializer or transitive dependency semantics. Any prebuilt author proof/control namespace imports are disclosed separately from prohibited program/source execution.
+
+Resources: initial subprocess60s, Lean3072MiB, 16MiB raw and line output, disk floor3GiB; compressed/storage ceiling256MiB. Prior timings justify short rechecks only. Full W/w and abstract bit runtime233 and native/compiler/heap semantics remain OPEN.
+
+Completion:37 selected exact source compiles and90 actual type/axiom reports passed.41 new hand truths and7 precise false propositions passed after baseline1/1; two setup failures and one ledger row-count bookkeeping assertion retained. All28 reviewed ledger rows are source-located. Full cost premises are printed by primitive/provider/local/global/native boundary; source/reference scopes only survive. Mechanical evidence audit matched1022 prior own files and2741 distinct kernel pin paths. Two internal prose/qualifier passes completed; no external referee or new blind/replication credit. Finalization freezes only this phase7 directory.

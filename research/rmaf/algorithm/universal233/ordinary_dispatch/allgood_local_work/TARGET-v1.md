@@ -1,0 +1,7 @@
+# Concrete all-good DP local work consumer
+
+New author continuation, saved before code. Own only this new directory and new result roots. The actual consumer is AllGoodDP.run/candidate in hard2 GoodPairDP/full paid queries, not a support inventory. Reuse the sealed work integration source root without edits. Initial q=k-1, ordinary rooted binary inputs, no implicit rho. Original hulls retain vertices. All MAIN/novelty/full source-bit-payload claims OPEN.
+
+Close actual ColorDP.table local work by executable counted companions for changes, edgeCost, best/choose and table; every best comparison traverses actual paint payload and is charged, no constant row-cost shortcut. Derive output paint size/labels and literal owner scans; include block splitting/filter reconstruction and allGood guard before claiming the whole AllGoodDP.run bill. Scalar operations are unit source steps until the separately assigned exact binary primitive lift is consumed; no native Nat/IR theorem is inferred. No desired work-bound record fields or runtime oracles. Disclose same-author lineage.
+
+Use unchanged frozen compiler/extractor/gates, fresh true/false/source/import controls, measured timing pilots/caps and live3GiB free margin. Preserve every frozen/failed record. Do not inspect reviewer or unfinished sibling proof source. Copy writable frozen inodes if necessary; never modify a frozen inode or reset a package.

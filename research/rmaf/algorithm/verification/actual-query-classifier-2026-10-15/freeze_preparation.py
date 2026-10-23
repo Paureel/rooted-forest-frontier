@@ -1,0 +1,10 @@
+from pathlib import Path
+import json,hashlib,datetime
+root=Path(__file__).resolve().parents[5];b=Path(__file__).resolve().parent;h=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+old=root/'research/rmaf/algorithm/verification/whole-source-work-2026-10-15/ARTIFACTS.json';assert h(old)=='2526f8cb77fad799770557765a9d862d54e84fd31a0c1d49e20afd4254741580'
+assert h(b/'core_ledger.py')=='1cdd44a66ee70b62c9291cc6c41102a3951ac952959a973c46674a9f54da54b3'
+files=[b/n for n in ['TARGET-v1.md','OPERATION-SPEC.md','control_engine.py','core_ledger.py','define_controls.py','CONTROL-PIN.json','KERNEL-GATES.json','run_std_toys.py','freeze_preparation.py']]+[p for p in (b/'std-toys').iterdir() if p.is_file()]+list((b/'frozen-inputs').iterdir())
+contacts={'permitted_math_inputs':['root TARGET-v1','already-contacted original frozen CoreProgram','own corrected core cost correspondence'],'instrument_reuse':{'source':'prior independent core_ledger.py','sha256':h(b/'core_ledger.py'),'same_lineage':True,'new_replications':0},'fresh_code':'scheduler/mock/independent spy,probe wrapper,trace/mass/rank diagnostics,Std-only audit toys','author_sources_controls_receipts_audits':'UNREAD','barred_live_and_other_verifier_work':'UNREAD','author_or_child_contact':False,'previous237_manifest_identity_only':h(old),'scientific_candidate_compilations':0}
+(b/'SOURCE-CONTACTS.json').write_text(json.dumps(contacts,indent=2)+'\n');files.append(b/'SOURCE-CONTACTS.json')
+pin=json.loads((b/'CONTROL-PIN.json').read_text());out={'status':'FROZEN-BEFORE-ANY-INSTRUMENT-OR-STD-TOY-EXECUTION','created_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'file_hashes':{str(p.relative_to(root)):h(p) for p in files},'controls':pin['declared_controls'],'corrupt_twins':pin['declared_plants'],'all_three_main_milestones':'OPEN','independent_replications_added':0}
+p=b/'PRE-CANDIDATE-FREEZE.json';p.write_text(json.dumps(out,indent=2)+'\n');print(json.dumps({'pinned_files':len(files),'controls':out['controls'],'corrupt_twins':out['corrupt_twins'],'freeze_sha256':h(p)}))

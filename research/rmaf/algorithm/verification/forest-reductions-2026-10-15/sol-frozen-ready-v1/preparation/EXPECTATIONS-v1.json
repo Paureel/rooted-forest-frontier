@@ -1,0 +1,46 @@
+{
+  "version": "literal-v1-pre-execution", "q": [0,1,2,3,4,5,8,1000000000],
+  "fixtures": [
+    {"id":"root","T":[0,1],"ss":[[0,1]],"a":0,"b":1,"z":2,"proper":true,"ready":true,"minimum":0,"contractT":2,"contractSS":[2]},
+    {"id":"triple-singleton-last","T":[[0,1],2],"ss":[[0,1],2],"a":0,"b":1,"z":3,"proper":true,"ready":true,"minimum":0,"contractT":[3,2],"contractSS":[3,2],"singleton":2,"cleanupT":[0,1],"cleanupSS":[[0,1]]},
+    {"id":"triple-singleton-first","T":[[0,1],2],"ss":[2,[0,1]],"a":0,"b":1,"z":3,"proper":true,"ready":true,"minimum":0,"contractT":[3,2],"contractSS":[2,3],"singleton":2,"cleanupT":[0,1],"cleanupSS":[[0,1]]},
+    {"id":"last","T":0,"ss":[0],"a":0,"b":1,"z":2,"proper":true,"ready":false,"minimum":0,"singleton":0,"cleanupT":null,"cleanupSS":[]},
+    {"id":"split-components","T":[0,1],"ss":[0,1],"a":0,"b":1,"z":2,"proper":true,"ready":false,"minimum":0},
+    {"id":"nonroot","T":[[0,1],[2,3]],"ss":[[[0,1],[2,3]]],"a":0,"b":1,"z":4,"proper":true,"ready":true,"minimum":0,"contractT":[4,[2,3]],"contractSS":[[4,[2,3]]]},
+    {"id":"different-address-swapped","T":[[0,1],2],"ss":[[2,[1,0]]],"a":0,"b":1,"z":3,"proper":true,"ready":true,"minimum":0,"contractT":[3,2],"contractSS":[[2,3]]},
+    {"id":"unrelated-components","T":[[0,1],[2,3]],"ss":[[1,0],[3,2]],"a":0,"b":1,"z":4,"proper":true,"ready":true,"minimum":0,"contractT":[4,[2,3]],"contractSS":[4,[3,2]]},
+    {"id":"root-swapped","T":[1,0],"ss":[[0,1]],"a":1,"b":0,"z":2,"proper":true,"ready":true,"minimum":0,"contractT":2,"contractSS":[2]},
+    {"id":"nonzero-cost-cherry","T":[[[0,1],2],3],"ss":[[[[1,0],3],2]],"a":0,"b":1,"z":4,"proper":true,"ready":true,"minimum":1,"contractT":[[4,2],3],"contractSS":[[[4,3],2]]},
+    {"id":"target-only","T":[[0,1],2],"ss":[[[0,2],1]],"a":0,"b":1,"z":3,"proper":true,"ready":false,"minimum":1},
+    {"id":"source-only","T":[[0,2],1],"ss":[[[0,1],2]],"a":0,"b":1,"z":3,"proper":true,"ready":false,"minimum":1},
+    {"id":"fresh-alias-b","T":[0,1],"ss":[[0,1]],"a":0,"b":1,"z":1,"proper":true,"ready":false,"minimum":0},
+    {"id":"fresh-alias-a","T":[0,1],"ss":[[0,1]],"a":0,"b":1,"z":0,"proper":true,"ready":false,"minimum":0},
+    {"id":"repeated-endpoint","T":[0,1],"ss":[[0,1]],"a":0,"b":0,"z":2,"proper":true,"ready":false,"minimum":0},
+    {"id":"absent-endpoint","T":[0,1],"ss":[[0,1]],"a":0,"b":9,"z":2,"proper":true,"ready":false,"minimum":0},
+    {"id":"unequal-source-labels","T":[0,1],"ss":[[0,2]],"a":0,"b":1,"z":3,"proper":false,"ready":false,"minimum":null},
+    {"id":"duplicate-source-labels","T":[0,1],"ss":[[0,1],0],"a":0,"b":1,"z":2,"proper":false,"ready":false,"minimum":null},
+    {"id":"duplicate-target-labels","T":[0,0],"ss":[0,0],"a":0,"b":1,"z":2,"proper":false,"ready":false,"minimum":null},
+    {"id":"none-empty","T":null,"ss":[],"a":0,"b":1,"z":2,"proper":true,"ready":false,"minimum":0},
+    {"id":"none-nonempty","T":null,"ss":[0],"a":0,"b":1,"z":2,"proper":false,"ready":false,"minimum":null}
+  ],
+  "agreements": [
+    {"fixture":"root","F":[[0],[1]],"valid":true,"cost":1,"coalesced":[[0,1]],"coalescedCost":0},
+    {"fixture":"triple-singleton-last","F":[[0,1],[2]],"valid":true,"cost":0,"cleanupF":[[0,1]],"contractF":[[3],[2]]},
+    {"fixture":"triple-singleton-first","F":[[2],[1,0]],"valid":true,"cost":0,"cleanupF":[[1,0]],"contractF":[[2],[3]]},
+    {"fixture":"last","F":[[0]],"valid":true,"cost":0,"cleanupF":[]},
+    {"fixture":"split-components","F":[[0],[1]],"valid":true,"cost":0},
+    {"fixture":"different-address-swapped","F":[[2,0],[1]],"valid":true,"cost":1,"coalesced":[[2,0,1]],"coalescedCost":0},
+    {"fixture":"root","F":[[0,1],[1]],"valid":false,"cost":1},
+    {"fixture":"root","F":[[0],[1],[]],"valid":false,"cost":2},
+    {"fixture":"root","F":[[0],[9]],"valid":false,"cost":1}
+  ],
+  "geometry": [
+    {"id":"suppressed-original-path","T":[[[0,1],2],3],"B":[0,2],"hull":["0","00","000","01"],"restriction":[0,2]},
+    {"id":"singleton-original-address","T":[[[0,1],2],3],"B":[1],"hull":["001"],"restriction":1},
+    {"id":"weak-clearance-base","T":[0,1],"B":[0],"C":[1],"hull":["0"],"restriction":0,"disjoint":true,"addedB":[0,1],"addedDisjoint":false},
+    {"id":"empty-selection","T":[[0,1],2],"B":[],"hull":[],"restriction":null}
+  ],
+  "mutations": ["hull-unary-erasure","source-cost-minus-one","omit-reverse-direction","fabricated-reconstruction","missing-component-readiness","accept-nonfresh-z","drop-surviving-label","weak-endpoint-clearance","reassignment-cost-equality","missing-origin","duplicate-origin","explicit-false-lean","public-unused-axiom","private-unused-axiom","imported-unused-axiom","generated-lazy-origin"],
+  "runtime": {"pilotFixtureCount":4,"fixedFixtureCount":21,"maxLabels":4,"maxSecondsPerProcess":60},
+  "sourceAudit": {"sourceOrigin":"every compiled declaration attributable to each released source module including private/generated entries", "customAxioms":"reject every nonstandard axiom, including unused/source-global/imported", "allowAxioms":["propext","Classical.choice","Quot.sound"], "inventoryComparison":"exact origin-set equality; duplicates reject; missing reject; lazy realizations included after forcing checker commands"}
+}

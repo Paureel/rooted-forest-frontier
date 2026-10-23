@@ -1,0 +1,23 @@
+research/rmaf/algorithm/universal233/whole_source_work/RuntimeAssembly.lean:57:68: error: Tactic `decide` failed to reduce
+  @decide (2 < runtimeBase ∧ runtimeBase < mkRat 23391 10000 ∧ cliqueFactor < 1 ∧ chainFactor < 1 ∧ diagonalFactor < 1)
+    instDecidableAnd
+to `true` or `false`.
+
+After unfolding the instances `decEq`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `isFalse`, `isTrue`, `Int.decEq`, `Int.decLe`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `Nat.decEq`, and `Rat.instDecidableLt`, reduction got stuck at
+  match 0 - (cliqueFactor.num + 1) with
+  | Int.ofNat m => isTrue ⋯
+  | Int.negSucc i => isFalse ⋯
+research/rmaf/algorithm/universal233/whole_source_work/RuntimeAssembly.lean:65:8: error(lean.unknownIdentifier): Unknown constant `Rat.sub_mul`
+research/rmaf/algorithm/universal233/whole_source_work/RuntimeAssembly.lean:66:15: error: Function expected at
+  Rat.add_le_add_left
+but this term has type
+  ?m.52 + ?m.50 ≤ ?m.52 + ?m.51 ↔ ?m.50 ≤ ?m.51
+
+Note: Expected a function because this term is being applied to the argument
+  hmargin
+research/rmaf/algorithm/universal233/whole_source_work/RuntimeAssembly.lean:63:78: error: unsolved goals
+beta overhead K R : Rat
+hmargin : overhead ≤ (1 - beta) * K
+hrec : R ≤ beta * K + overhead
+he : beta * K + (1 - beta) * K = K
+⊢ R ≤ K

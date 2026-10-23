@@ -1,0 +1,5 @@
+import StoredSourceSite
+#check OrdinaryDispatch.StoredNumeric.commonPayload_source_site
+#print axioms OrdinaryDispatch.StoredNumeric.commonPayload_source_site
+#check OrdinaryDispatch.StoredNumeric.global_common_payload_fee
+#print axioms OrdinaryDispatch.StoredNumeric.global_common_payload_fee

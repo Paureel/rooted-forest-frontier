@@ -1,0 +1,121 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/charge_route/isolated/ChargeCore.lean:75:29: error: Type mismatch: After simplification, term
+  mem
+ has type
+  o = a ∨ o ∈ xs
+but is expected to have type
+  o ∈ xs
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/charge_route/isolated/ChargeCore.lean:104:17: error(lean.unknownIdentifier): Unknown constant `Bool.and_eq_true.mp`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/charge_route/isolated/ChargeCore.lean:98:58: warning: This simp argument is unused:
+  hl
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hri]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/charge_route/isolated/ChargeCore.lean:98:62: warning: This simp argument is unused:
+  hri
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hl]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/charge_route/isolated/ChargeCore.lean:136:40: error(lean.unknownIdentifier): Unknown constant `Bool.and_eq_true.mp`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/charge_route/isolated/ChargeCore.lean:134:38: error: unsolved goals
+I : Type
+inst✝ : DecidableEq I
+enum : FiniteIndex I
+live : I → Bool
+root : Option I
+rootLive : ∀ (o : I), root = some o → live o = true
+hs :
+  (closedCharge enum.elems live root + weight enum.elems fun i => live i && decide (root = some i)) =
+    weight enum.elems live
+o : I
+hr : root = some o
+i : I
+a✝ : i ∈ enum.elems
+hi : (live i && decide (root = some i)) = true
+⊢ i = o
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/charge_route/isolated/ChargeCore.lean:131:12: warning: This simp argument is unused:
+  hr
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/charge_route/isolated/ChargeCore.lean:189:4: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  g ≥ 0
+  f ≥ 0
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  b + c - d - e - f + g ≤ -1
+  a ≥ 0
+  a + b + c - d ≤ 0
+where
+ a := ↑(closedCharge enum.elems right rightRoot)
+ b := ↑(match leftRoot with
+  | none => 0
+  | some val => 1)
+ c := ↑(match rightRoot with
+  | none => 0
+  | some val => 1)
+ d := ↑(closedCharge enum.elems (fun x => true) none)
+ e := ↑(boundaryCharge leftRoot)
+ f := ↑(boundaryCharge rightRoot)
+ g := ↑(closedCharge enum.elems (fun x => true) parent)
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/charge_route/isolated/ChargeCore.lean:192:4: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  f ≥ 0
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a + d + e - f ≥ 1
+  a + b - c ≤ 0
+where
+ a := ↑(closedCharge enum.elems right rightRoot)
+ b := ↑(match rightRoot with
+  | none => 0
+  | some val => 1)
+ c := ↑(closedCharge enum.elems (fun x => true) (some o))
+ d := ↑(closedCharge enum.elems left leftRoot)
+ e := ↑(boundaryCharge rightRoot)
+ f := ↑(closedCharge enum.elems (fun x => true) parent)
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/charge_route/isolated/ChargeCore.lean:195:4: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  f ≥ 0
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a + b - c ≤ 0
+  a + b - c - d - e + f ≤ -1
+where
+ a := ↑(closedCharge enum.elems right (some o))
+ b := ↑(match leftRoot with
+  | none => 0
+  | some val => 1)
+ c := ↑(closedCharge enum.elems (fun x => true) (some o))
+ d := ↑(closedCharge enum.elems right rightRoot)
+ e := ↑(boundaryCharge leftRoot)
+ f := ↑(closedCharge enum.elems (fun x => true) parent)
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/charge_route/isolated/ChargeCore.lean:198:4: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  c + d - e ≥ 1
+  b ≥ 0
+  a ≥ 0
+  a - b ≤ 0
+where
+ a := ↑(closedCharge enum.elems right (some o))
+ b := ↑(closedCharge enum.elems (fun x => true) (some o))
+ c := ↑(closedCharge enum.elems left leftRoot)
+ d := ↑(closedCharge enum.elems right rightRoot)
+ e := ↑(closedCharge enum.elems (fun x => true) parent)

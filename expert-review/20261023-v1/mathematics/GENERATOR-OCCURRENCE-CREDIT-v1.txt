@@ -1,0 +1,75 @@
+GENERATOR OCCURRENCES, ATTEMPTS AND COPIED SPINES
+
+Author construction. This is an ordinary mathematical argument about the released projected implementation. It is not independent acceptance, a literal instruction count, or a declaration that a source scalar is a measured cost. U0 is the abstract elementary data/control count before gamma. Analysis work/counters in the arguments below are not executed.
+
+Binding. Use math_pseudocode_v1 manifest ae6b35f2235de3a9a76435467bd2bd7405129b9199ab2175a1a49fb9e9b4fcff plus the exact two-field deletion in math_projection_amendment_v2 manifest61da6aca. Plain CoreProgram.generate/run/step/attempt is different from eager RecoveryLocalWork.meterGenerate/meterRun/meterStep/meterAttempt. The following two arguments preserve that distinction.
+
+1. An exact plain-generator occurrence inequality.
+
+For r=CoreWork.meterRun b t d c, write v=r.receipt.visited, a=r.receipt.childAttempts, p=r.prunedCalls, and z=r.copied. Direct simultaneous induction on the two recurrences meterRun and meterStep, with the meterAttempt cases expanded, proves:
+
+  r.receipt = CoreProgram.run b t d c;
+  r.receipt.pruned = p;
+  a <= 2*v;
+  r.work >= 256*v + z + p.
+
+Here z is exactly the sum, over every reached two-attempt step, of the length of the LEFT result's outputs spine plus its refusals spine. It counts occurrences, including equal lists produced by different branches. It is not the size of the final output set.
+
+Proof. localCharge(t,d,c)=256*(footprint(t)+length(d)+length(c)+1)^3>=256. A finish/refuse step contributes one visit and its charge. A one-attempt step contributes that visit, forwards the attempted result's copied/pruned counters and work, and adds at most one childAttempt. A two-attempt step adds the two actual attempted results, one visit, at most two childAttempts, and exactly appendCells(left.receipt) to both work and copied. combine concatenates both retained outputs and refusals in the displayed order; prefixRoot adds exactly one visit. In meterAttempt, root/duplicate/erasure refusals contribute one attempt and no visit/work/copy/prune. This satisfies the occurrence inequality after charging that attempt to its enclosing one/two step. Successful attempts invoke exactly the displayed continuation and add one childAttempt. The depth-zero continuation has visited=0, childAttempts=0, pruned=1 and work=1. These base and sum equations prove the four statements. In particular a refusal with meterAttempt.work=0 is paid by the enclosing step; it is never deleted.
+
+2. Payload invariant for an actual generated run.
+
+Let n=treeNodes(s)>=1, and consider generate(s,color,budget), with no restriction on budget. The duplicate-label refusal uses only the initial checks. Otherwise its actual run depth is min(budget,length(leaves(s))-1). Every fromTree origin is an actual vertex path of s, of length<=n. At every attempted state:
+
+  the current GTree has <=n constructor occurrences;
+  each current/detached Group has an original path of length<=n;
+  all group label lists together, current plus detached, have <=length(leaves(s))<=n cells;
+  length(d)<=n and length(c)<=n;
+  every emitted Output has <=n+1 partition blocks, <=n total label cells,
+  and <=n source-cut paths, each of length<=n.
+
+Proof. fromTree gives one leaf Group for each original leaf. normalize replaces two homogeneous leaf Groups by their union and preserves total labels, origins drawn from original nodes, and the node upper bound. erase only removes or contracts nodes and preserves the remaining label occurrences. choose returns an actually present Group; a successful attempt moves its labels to d and prepends its origin to c. The actual root/duplicate/whole-source refusal cases do not recurse. The depth bound alone bounds the number of appended d/c cells even without using cut uniqueness. A depth-zero attempted continuation is the pruned receipt; its arguments also satisfy the displayed bounds. finish maps detached label references and adds the remaining current labels, preserving the total. None of these bounds identifies equal branches or assumes success.
+
+The physical representation may share immutable substructures; these bounds are on occurrence traversals, so sharing cannot invalidate them. Diagnostic output/refusal LIST lengths may be exponential. They are deliberately not bounded by n: their traversals are instead covered by z and the actual recursive occurrence tree.
+
+3. A constructive U0 envelope for the plain run.
+
+For clarity, count <=256 abstract operations for a list/control visit, and <=128*(f+1) for construction/access/copy of a fixed f-field record. These are conservative refinements of U0; they do not include gamma. Every record in this generator has at most five computational fields. Primitive scalar additions/comparisons are one abstract operation each; no operand-width premise is used.
+
+For one reached step, excluding its recursive continuation bodies and the two left-spine receipt appends, the following are actual visit/copy bounds under the invariant in(2):
+
+  normalize: <=n tree visits and <=n^2 label-spine copies;
+  groups: <=n tree visits and <=n^2 group-spine copies;
+  all-color test: <=n group visits;
+  unique search: <=n filters of <=n groups and <=n result-length scans;
+  mixedCherry: <=n tree visits;
+  each of at most two attempts: <=n cut-list visits with <=n path comparisons
+    plus <=n erase-node visits with <=n path comparisons;
+  finish: <=n detached/group visits, <=n^2 flatten/append visits;
+  fixed result/options/receipt/counter/control: <=4096 abstract operations.
+
+The choose body may short-circuit; counting every listed alternative is an upper bound, while the actual continuation is invoked only at its written site. There are fewer than64 listed primitive traversal families, each bounded by4096*(n+1)^3 with the above unit convention. Their sum is <=2^18*(n+1)^3. Copying the two left receipt spines costs <=256*(appendCells(left)+2). Absorb its two terminators into the per-step allowance. Each pruned continuation costs <=1024. Initial leaves/Nodup, the repeated leaves/length, and the actual p++[side] construction cost <=2^18*(n+1)^3 excluding the actual color calls. initialCharge=128*(n+1)^3 therefore pays this initial term with factor2^11.
+
+It follows by summing these concrete bounds and applying(1) that
+
+  U0_plain_generate <= 2^20*(n+1)^3 *
+    (CoreWork.meterGenerate(s,color,budget).measured.work + ColorCredit + 1),
+
+where ColorCredit is the sum of the analysis credit of the ACTUALLY invoked initial color calls, provided each such call's abstract count is bounded by the same coefficient times that credit. Equivalently keep the actual color counts additively outside this inequality. There is one actual color invocation per leaf on the successful initial-label check and none on the duplicate-label refusal. This is a count argument, not the interpretation of initialCharge/localCharge as runtime counts.
+
+For GenericForest.raw the color is exactly colorLabel(t,v); generationBill explicitly contains the sum of meterColorLabel(t,v,x).work for every source leaf, as well as CoreWork.meterGenerate(...).measured.work. The plain color body is realized by singleton leaf-address enumeration and the literal region scan. meterLeafList charges every tree/selected-membership visit and each prepend/append returned-path cell; meterRegion charges every compared path head. With the same256/128 convention each actual color count is <=2^12*(its work+1), and its work>=1. Thus, for a selected source of at most n nodes,
+
+  U0_raw <= 2^22*(n+1)^3 * generationBill(t,ss,i,v,q)
+             +1024*(length(ss)+1).
+
+The final term is the actual list-index traversal/outer option. It can be charged to the containing forest inspectionBill. The analysis definition is the exact canonical CoreWork binding, not RecoveryLocalWork.
+
+4. Separate eager recovery generator.
+
+Recovery's meterAttempt executes vertexContains and erase BEFORE testing root/duplicate. Its analysis fee is exactly contains.work+erased.work+16 on every case, so those actual refused computations remain covered. meterStep executes normalize and choose, and its two-attempt case adds 4*(appendCells(left)+1)+32. Every reached helper work recurrence adds its subhelper work and a positive per-visit increment; groups/normalize/output additionally add literal left-spine length terms at their actual append sites. In particular the eager erase recurrence includes BOTH child work terms even on a root match, and eager mixed includes both subtrees.
+
+To make the comparison explicit: address/contains/map/filter/find/length/group/mixed steps require <=1024 local abstract operations per exposed cell/node; their displayed increments are >=1. Each visited node in normalize has <=1024 fixed actions and its copied label spine is paid by normalizeFee=4*(left.labels.length+1)+12 in the leaf/leaf case, or8 otherwise. Output maps/copies have the displayed ds.work+gs.work+flat.work+4*(ds.length+1)+12. The largest fixed generator wrapper has fewer than128 actions. Choosing factor2^16 therefore bounds every local row and every copied list cell by its written increment. Induction sums subwork with the same factor: U0_projected_RW_generate <=2^16*(its exact original analysis work+1), with color subcounts treated at their actual color invocations by the same induction. No per-depth multiplication of this factor occurs.
+
+The v2 amendment deletes only the two unused Built.coloring/InitialMeasured.coloring fields. It does not omit color(x).value or any Group.color, guard, counter, receipt or attempt. The original init/build work still credits the ACTUAL color call; neither coloring nor work is supplied as runtime data.
+
+This lemma covers plain generation and eager recovery generation, every attempted and refused branch, retained receipts, their finite payloads, and merge-spine copies. It does not by itself prove the complete local ordinary debit theorem: caller-specific checks, forest recursion, Hard2/Rule5 diagnostics and summand binding must still be combined at their exact sites.

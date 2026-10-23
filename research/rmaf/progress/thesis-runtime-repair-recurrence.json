@@ -1,0 +1,77 @@
+{
+  "id": "thesis-runtime-repair-recurrence",
+  "title": "Whidden G4 recurrence repair",
+  "status": "open",
+  "summary": "Conditional G4.1 joint composition checked; required C allowance weakened to alpha*2^(K-3)+2. Universal source coverage remains open.",
+  "metrics": {
+    "named_controls_passed": 31,
+    "negative_budget_states": 40,
+    "credit_states": 10,
+    "enumerated_schemas": 37,
+    "passing_schemas": 35,
+    "exceptional_schemas": 2,
+    "closure_mutations_caught": 3,
+    "positive_lean_exit": 0,
+    "negative_lean_exit": 1
+  },
+  "claims": [
+    {
+      "id": "conditional-joint",
+      "label": "Conditional joint G4.1 composition",
+      "status": "conditional",
+      "detail": "Lean proves target from explicit A/B bounds and a finite C-prefix frontier test; source-wide existence of the required certificates remains open."
+    },
+    {
+      "id": "three-credit",
+      "label": "Three-credit states included",
+      "status": "finite-check",
+      "detail": "Ten states 0<=q<=p<=3 are represented. The frozen p=3,q=2 trace has only its cost-two B branch legal. No universal p<=3 cap is imported."
+    },
+    {
+      "id": "state-coverage",
+      "label": "Algorithm transition coverage",
+      "status": "open",
+      "detail": "The proposed finite coefficient table is not asserted to cover arbitrary state transitions or every source history. Explicit closure mutations fail."
+    },
+    {
+      "id": "universal-runtime",
+      "label": "Universal runtime repair",
+      "status": "open",
+      "detail": "No universal G4 bound or O(2^k) acceptance. No source-reachable counterexample to the candidate two-active-leaf lemma is claimed."
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "weak-C-interface",
+      "label": "Weaker sufficient C allowance",
+      "status": "checked",
+      "detail": "Kernel-checked: C<=alpha*2^(K-3)+2 suffices given the source A/B allowances; exact when those allowances are attained."
+    },
+    {
+      "id": "affine-frontier",
+      "label": "Finite prefix composition",
+      "status": "checked",
+      "detail": "Kernel-checked list frontier composition, invocation offsets, and use-site composition. Forest-to-prefix interpretation is a separate structural premise."
+    },
+    {
+      "id": "multiplicative-credit",
+      "label": "Finite credit arithmetic",
+      "status": "checked",
+      "detail": "Kernel-checked finite weights, 35 enumerated passing schemas, two retained exceptional schemas, and negative budget -4 with alpha=128."
+    },
+    {
+      "id": "source-frontier-existence",
+      "label": "Source-reachable C prefix existence",
+      "status": "open",
+      "detail": "Requires legal source cuts, priority/orientation, trivial merges/root removals, and valid empty-credit induction exits for every relevant G4 history."
+    }
+  ],
+  "artifacts": [
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_complexity/repair/recurrence/report.md",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_complexity/repair/recurrence/state-invariant.md",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_complexity/repair/recurrence/RepairArithmetic.lean",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_complexity/repair/recurrence/source-ledger.md",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_complexity/repair/recurrence/review-precheck.md",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-runtime-repair-recurrence-summary.json"
+  ]
+}

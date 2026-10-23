@@ -1,0 +1,55 @@
+{
+  "provenance": "Shared TARGET-v1 literal values and constructed controls; no profile author/referee code or proof contact.",
+  "T1": {
+    "S": [[[1, 2], [[3, 5], [4, 6]]], 7],
+    "T": [[[1, [3, 4]], [2, [5, 6]]], 7],
+    "P": [[1, 2], [3, 4, 5, 6], [7]],
+    "A": [1, 2], "B": [3, 4, 5, 6],
+    "expected_shared_vertices": ["0", "00", "01"],
+    "expected_mutually_clear_edges": [["0", "00"], ["0", "01"]],
+    "expected_global_partition_generation_count": 877,
+    "expected_refinement_constrained_min_components": 5,
+    "expected_refinement_constrained_A_retained_min_components": 5,
+    "literal_F": [[1], [2], [3, 5], [4], [6], [7]],
+    "literal_exchange": [[1, 2], [3], [5], [4], [6], [7]]
+  },
+  "root_promoted6": {
+    "S": [[1, 2], [[3, 5], [4, 6]]],
+    "T": [[1, [3, 4]], [2, [5, 6]]],
+    "P": [[1, 2], [3, 4, 5, 6]],
+    "A": [1, 2], "B": [3, 4, 5, 6],
+    "expected_shared_vertices": ["", "0", "1"],
+    "expected_refinement_constrained_min_components": 4,
+    "expected_refinement_constrained_A_retained_min_components": 4,
+    "expected_global_partition_generation_count": 203
+  },
+  "false_unqualified_three_region": {
+    "S": [[1, 2], [[3, 4], 5]],
+    "T": [[1, 2], [[3, 4], 5]],
+    "P": [[1, 2], [3, 4, 5]],
+    "A": [1, 2], "B": [3, 4, 5],
+    "vertex": "10",
+    "F": [[1, 2], [3, 4, 5]],
+    "required_B_regions": [[3], [4], [5]],
+    "expected_F_components": 2,
+    "expected_min_components_retaining_A_and_B_regions": 4,
+    "scope": "Deliberately unqualified three-region extension. A has only one occupied region; target A/B do not overlap. This is a false plant, not an in-regime E refuter."
+  },
+  "genuine_three_region_probe": {
+    "S": [[1, [2, 3]], [4, [5, 6]]],
+    "T": [[1, 4], [[2, 5], [3, 6]]],
+    "P": [[1, 2, 3], [4, 5, 6]],
+    "A": [1, 2, 3], "B": [4, 5, 6],
+    "vertex": "1",
+    "expected_refinement_constrained_min_components": 4,
+    "expected_refinement_constrained_A_retained_min_components": 4,
+    "scope": "A genuinely three-occupied-region fixture, not binary E. Do not call it a false plant without an actual failing agreement partition."
+  },
+  "hostile_substitutions": [
+    {"name": "B_left_wrong_rooted_triple", "leaf": 3, "S_graft": [[30, 31], 32], "T_graft": [[30, 32], 31]},
+    {"name": "B_left_two_cut_crossed_quartet", "leaf": 3, "S_graft": [[30, 31], [32, 33]], "T_graft": [[30, 32], [31, 33]]},
+    {"name": "B_right_two_cut_crossed_quartet", "leaf": 5, "S_graft": [[50, 51], [52, 53]], "T_graft": [[50, 52], [51, 53]]},
+    {"name": "A_homeomorphic_rooted_triple", "leaf": 1, "S_graft": [[10, 11], 12], "T_graft": [[10, 11], 12]},
+    {"name": "outside_parent_wrong_rooted_triple", "leaf": 7, "S_graft": [[70, 71], 72], "T_graft": [[70, 72], 71]}
+  ]
+}

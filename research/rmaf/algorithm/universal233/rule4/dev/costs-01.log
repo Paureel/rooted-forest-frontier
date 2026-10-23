@@ -1,0 +1,110 @@
+research/rmaf/algorithm/universal233/rule4/Costs.lean:10:59: error: No goals to be solved
+research/rmaf/algorithm/universal233/rule4/Costs.lean:10:9: error: unsolved goals
+case swap
+T : Tree
+a b : Nat
+hn : (leaves ((Tree.leaf b).node (Tree.leaf a))).Nodup
+hh : b ≠ a
+⊢ a ≠ b
+research/rmaf/algorithm/universal233/rule4/Costs.lean:51:2: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  h ≥ 0
+  g ≥ 0
+  g - h ≥ 1
+  f ≥ 0
+  f - g ≥ 1
+  f - h ≥ 1
+  0 ≤ e ≤ 1
+  d ≥ 2
+where
+ d := ↑(pendantOriginal T a c).length
+ e := ↑(pendantOriginal T s.raw.a s.raw.c).length
+ f := ↑s.raw.c
+ g := ↑s.raw.b
+ h := ↑s.raw.a
+research/rmaf/algorithm/universal233/rule4/Costs.lean:60:29: error: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)
+  d = (pendantOriginal T s.raw.a s.raw.c).length ∨ d ∈ []
+
+case inr.inr
+T S : Tree
+s : Choice T S
+d : Nat
+hm : 2 ≤ (pendantOriginal T s.raw.a s.raw.c).length
+h✝ : d = (pendantOriginal T s.raw.a s.raw.c).length ∨ d ∈ []
+⊢ 0 < d
+research/rmaf/algorithm/universal233/rule4/Costs.lean:59:33: warning: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [costs, List.mem_cons] at hd
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/rule4/Costs.lean:91:3: error: Application type mismatch: The argument
+  List.filter (fun d => decide (d ≤ q)) ds
+has type
+  List Nat
+but is expected to have type
+  List Int
+in the application
+  List.map (fun d => c ^ (-d)) (List.filter (fun d => decide (d ≤ q)) ds)
+research/rmaf/algorithm/universal233/rule4/Costs.lean:94:27: error: Application type mismatch: The argument
+  ds
+has type
+  List Nat
+but is expected to have type
+  List Int
+in the application
+  List.map (fun d => c ^ (-d)) ds
+research/rmaf/algorithm/universal233/rule4/Costs.lean:100:38: error: No goals to be solved
+research/rmaf/algorithm/universal233/rule4/Costs.lean:101:38: error: No goals to be solved
+research/rmaf/algorithm/universal233/rule4/Costs.lean:96:17: warning: declaration uses `sorry`
+research/rmaf/algorithm/universal233/rule4/Costs.lean:100:25: warning: This simp argument is unused:
+  hd
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [callbackMass] at ih ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/rule4/Costs.lean:101:25: warning: This simp argument is unused:
+  hd
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [callbackMass] at ih ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/rule4/Costs.lean:105:8: warning: declaration uses `sorry`
+research/rmaf/algorithm/universal233/rule4/Costs.lean:111:19: warning: This simp argument is unused:
+  List.map_cons
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [costs, List.map_nil, List.sum_cons, List.sum_nil, Rat.add_zero] at hp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/rule4/Costs.lean:111:33: warning: This simp argument is unused:
+  List.map_nil
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [costs, List.map_cons, List.sum_cons, List.sum_nil, Rat.add_zero] at hp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/rule4/Costs.lean:111:46: warning: This simp argument is unused:
+  List.sum_cons
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [costs, List.map_cons, List.map_nil, List.sum_nil, Rat.add_zero] at hp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/rule4/Costs.lean:111:60: warning: This simp argument is unused:
+  List.sum_nil
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [costs, List.map_cons, List.map_nil, List.sum_cons, Rat.add_zero] at hp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/rule4/Costs.lean:111:73: warning: This simp argument is unused:
+  Rat.add_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [costs, List.map_cons, List.map_nil, List.sum_cons, List.sum_nil] at hp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

@@ -1,0 +1,9 @@
+import ERInterface
+#check OrdinaryDispatch.EarlyLocalWork.cherry_select_envelope
+#print axioms OrdinaryDispatch.EarlyLocalWork.cherry_select_envelope
+#check OrdinaryDispatch.EarlyLocalWork.rule4_select_envelope
+#print axioms OrdinaryDispatch.EarlyLocalWork.rule4_select_envelope
+#check OrdinaryDispatch.EarlyLocalWork.earlier_clear_primitive_envelopes
+#print axioms OrdinaryDispatch.EarlyLocalWork.earlier_clear_primitive_envelopes
+#check OrdinaryDispatch.EarlyLocalWork.meterFirstChoice_none_checks
+#print axioms OrdinaryDispatch.EarlyLocalWork.meterFirstChoice_none_checks

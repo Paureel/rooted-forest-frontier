@@ -1,0 +1,39 @@
+{
+  "phase": "pre-candidate plan; source/kernel execution waits for coordinator release",
+  "scope": "audit-detector controls only; contaminated modules are never accepted proof evidence",
+  "allowed_axioms": ["propext", "Classical.choice", "Quot.sound"],
+  "module_origin_rule": "Enumerate all constant declarations originating in every released module, including generated and private declarations; explicit source theorem/definition counts are not an exhaustive environment inventory.",
+  "plants": [
+    {
+      "id": "clean-axiom-twin",
+      "source": "namespace AuditClean\ntheorem good : True := True.intro\n#print axioms good\nend AuditClean\n",
+      "expected_compile_exit": 0,
+      "expected_custom_axiom_detector": "ACCEPT-no-custom-axiom"
+    },
+    {
+      "id": "custom-axiom-must-be-caught",
+      "source": "namespace AuditPlant\naxiom hiddenBad : False\nprivate theorem privateLeak : False := hiddenBad\ntheorem leak : False := privateLeak\n#print axioms leak\nend AuditPlant\n",
+      "expected_compile_exit": 0,
+      "expected_custom_axiom_detector": "REJECT-AuditPlant.hiddenBad",
+      "expected_private_origin_enumeration": "include the generated privateLeak declaration and its custom axiom dependency"
+    },
+    {
+      "id": "explicit-false-proposition",
+      "source": "namespace AuditFalse\ntheorem bad : False := by decide\nend AuditFalse\n",
+      "expected_compile_exit": "nonzero",
+      "expected_diagnostic": "explicit decide proof that proposition is false; not generic compiler refusal"
+    },
+    {
+      "id": "broken-import-does-not-count-as-falsity",
+      "source": "import DefinitelyMissingIntegrationReviewModule\ntheorem unrelated : True := True.intro\n",
+      "expected_compile_exit": "nonzero",
+      "expected_false_proposition_detector": "REJECT-as-control-evidence; no explicit false-proposition diagnostic"
+    }
+  ],
+  "consumer_boundary": [
+    "separate local chosen-singleton continuation from full residual original components",
+    "do not infer actual cut edges or original-label lifts from origin names alone",
+    "review finite-budget coverage, cost, mass and total work at actual consuming calls",
+    "all three main algorithm milestones remain OPEN"
+  ]
+}

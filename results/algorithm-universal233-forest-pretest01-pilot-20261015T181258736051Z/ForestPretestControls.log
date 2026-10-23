@@ -1,0 +1,32 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestPretestControls.lean:37:11: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Inhabited Tree
+
+Hint: Adding the command `deriving instance Inhabited for RMAF.Tree` may allow Lean to derive the missing instance.
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestPretestControls.lean:37:45: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Inhabited Tree
+
+Hint: Adding the command `deriving instance Inhabited for RMAF.Tree` may allow Lean to derive the missing instance.
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestPretestControls.lean:41:29: error: Tactic `decide` failed to reduce
+  @decide
+    (((mirrors t).all fun u =>
+        sourceMirrors.all fun sources =>
+          match pretest01 (some u) sources with
+          | Result.found F => agrees (some u) sources F && decide (additionalCost sources F = 1)
+          | x => false) =
+      true)
+    (instDecidableEqBool
+      ((mirrors t).all fun u =>
+        sourceMirrors.all fun sources =>
+          match pretest01 (some u) sources with
+          | Result.found F => agrees (some u) sources F && decide (additionalCost sources F = 1)
+          | x => false)
+      true)
+to `true` or `false`.
+
+After unfolding the instances `instDecidableEqBool` and `Bool.decEq`, reduction got stuck at
+  sourceMirrors.all fun sources =>
+    match pretest01 (some (((Tree.leaf 0).node (Tree.leaf 1)).node ((Tree.leaf 2).node (Tree.leaf 3)))) sources with
+    | Result.found F =>
+      agrees (some (((Tree.leaf 0).node (Tree.leaf 1)).node ((Tree.leaf 2).node (Tree.leaf 3)))) sources F &&
+        decide (additionalCost sources F = 1)
+    | x => false

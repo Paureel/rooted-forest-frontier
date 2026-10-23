@@ -1,0 +1,22 @@
+{
+  "version":1,
+  "frozen_before_new_proof_execution":true,
+  "new_blind_credit":false,
+  "definitions":["Tree","leaves","HasCherry constructors","ForestState.contract","DepthOne.proper","commonPair","commonFresh","labelMax","Oriented","early","QueryExact","expandCommon","expandBlock"],
+  "independent_contraction_core":"HasCherry plus original leaf Nodup; independently prove leaf multiset normal form a,b,rest -> z,rest, length decrease, freshness Nodup and permutation transport",
+  "explicit_reused_structural_primitives":[
+    {"name":"Universal233.CherryBranching.selected_spec","source":"cold/Priority.lean:12","strength":"selection implies candidate membership and priority cut count; actual common gives cut count zero","status":"reused literal selector reflection"},
+    {"name":"Universal233.CherryBranching.selected_actual","source":"cold/Priority.lean:65","strength":"selected candidate has actual target CherryAt and literal source cuts","status":"reused enumeration/selector reflection"},
+    {"name":"Universal233.Rule5Classification.zero_cuts_hasCherry","source":"cold/OutsideCore.lean:12","strength":"unique source labels, distinct present endpoints and empty literal cuts imply syntactic source HasCherry","status":"reused structural source-tree fact; its proof dependencies will be retained, no independent credit for this fact"}
+  ],
+  "primitive_source_read":"Priority.lean all; OutsideCore.lean zero_cuts_hasCherry actual proof; Restriction.lean HasCherry/CherryAt definitions and actual_hasCherry proof inspected but planned reconstruction in own namespace",
+  "must_not_assume":["common_pair_ready","common_pair_exact","selected_common_ready","selected_common_query_exact","common_reduced_proper","contraction_proper","common_cherry_state_strict_decrease","selected_common_label_decrease","common_query_equivalence","common_cherry_decision_equivalence","common_cherry_contract_agreement","common_cherry_expand_agreement","solve_exact","external_exact","actual_ordinary_IH","actual_local_ordinary_IH"],
+  "lift_plan":"Prove quantified QueryExact transport from explicit expansion-validity and original-to-contracted coarsening obligations; leave these geometric obligations OPEN unless independently proved",
+  "controls":[
+    {"name":"left-cherry","tree":"((0,1),2)","a":0,"b":1,"z":3,"contracted_leaves":[3,2],"length_decrease":1,"nodup":true},
+    {"name":"right-reversed-cherry","tree":"(2,(1,0))","a":0,"b":1,"z":3,"contracted_leaves":[2,3],"length_decrease":1,"nodup":true},
+    {"name":"dropped-uniqueness","tree":"((0,1),(0,1))","a":0,"b":1,"z":3,"original_leaf_count":4,"contracted_leaf_count":2,"claimed_one_leaf_decrease":false},
+    {"name":"dropped-freshness","tree":"((0,1),2)","a":0,"b":1,"z":2,"contracted_leaves":[2,2],"claimed_nodup":false}
+  ],
+  "required_qualification":"Previous actual solverlink170 author dependencies remain reused; new logical roots must have actual closure checked and forbidden target names absent. No full independent/novelty/runtime/native claim."
+}

@@ -1,0 +1,161 @@
+{
+  "id": "setup",
+  "title": "Lean 4.35",
+  "status": "checked",
+  "summary": "Pinned Lean ready. 102 auxiliary theorems audited; 21 core theorems counted separately. Full algorithm and faster bound remain open.",
+  "metrics": {
+    "lean_version": "4.35.0",
+    "checked_theorems": 102
+  },
+  "claims": [
+    {
+      "id": "lean-install",
+      "label": "Pinned runtime",
+      "status": "checked",
+      "detail": "Official arm64 Lean 4.35.0, local elan; shell profiles unchanged."
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "audit-audit",
+      "label": "Baseline arithmetic",
+      "status": "checked",
+      "verification": "lean",
+      "detail": "3 kernel-checked declarations; only arithmetic or generic composition/counting. No structural MAF reduction or faster algorithm is certified.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/audit/baseline.log",
+        "research/rmaf/audit/certificate.json"
+      ]
+    },
+    {
+      "id": "audit-branching",
+      "label": "Branch arithmetic",
+      "status": "checked",
+      "verification": "lean",
+      "detail": "8 kernel-checked declarations; only arithmetic or generic composition/counting. No structural MAF reduction or faster algorithm is certified.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/audit/branching.log",
+        "research/rmaf/audit/certificate.json"
+      ]
+    },
+    {
+      "id": "audit-decomposition",
+      "label": "Generic composition",
+      "status": "checked",
+      "verification": "lean",
+      "detail": "2 kernel-checked declarations; only arithmetic or generic composition/counting. No structural MAF reduction or faster algorithm is certified.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/audit/decomposition.log",
+        "research/rmaf/audit/certificate.json"
+      ]
+    },
+    {
+      "id": "audit-pure-bridge",
+      "label": "Conditional exchange",
+      "status": "conditional",
+      "verification": "lean",
+      "detail": "16 kernel-checked declarations. Abstract rooted-region geometry and optimum identities under explicit clearance and repair hypotheses. Graph realization remains open.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/pure_bridge/lean/PureBridge.lean",
+        "research/rmaf/pure_bridge/lean/audit/certificate.json"
+      ]
+    },
+    {
+      "id": "audit-mark-interaction",
+      "label": "Marks interact",
+      "status": "checked",
+      "verification": "lean",
+      "detail": "8 kernel-checked declarations. Finite executable-model costs 1,1,1,2: two individually free degree-two marks require one extra cut jointly. Full graph-model correspondence remains open.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/pure_bridge/lean/MarkInteraction.lean",
+        "research/rmaf/pure_bridge/lean/audit/certificate.json"
+      ]
+    },
+    {
+      "id": "audit-triple-dp",
+      "label": "DP proof components",
+      "status": "conditional",
+      "verification": "lean",
+      "detail": "28 kernel-checked declarations. Minimum-per-state automaton optimality, masks, region facts, arbitrary distinct-label triple facts, tree shape classification and operation arithmetic. Graph-to-automaton correctness and Python refinement remain open.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/triple_dp/TripleDP.lean",
+        "research/rmaf/triple_dp/SemanticControls.lean",
+        "research/rmaf/results/triple-dp-lean.json"
+      ]
+    },
+    {
+      "id": "audit-thesis-transfer",
+      "label": "Root-marker transfer pieces",
+      "status": "conditional",
+      "verification": "lean",
+      "detail": "11 kernel-checked declarations: marker incompatibility, shared original-root obstruction, and optimum/count identities with explicit forest-map assumptions. Full reduction, unary/binary rho equivalence and thesis algorithm remain unformalized.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/thesis_transfer/Transfer.lean",
+        "research/rmaf/thesis_transfer/TRANSFER-PROOF.md",
+        "research/rmaf/results/thesis-transfer-lean.json"
+      ]
+    },
+    {
+      "id": "audit-graph-region",
+      "label": "Connected graph geometry",
+      "status": "checked",
+      "verification": "lean",
+      "detail": "18 kernel-checked theorems: finite connected address-tree supports realize the exact RootedRegion interface, preserving all vertices, and instantiate the deepest-root theorem. Executable hull extraction, split transport and full algorithm remain open. Imported theorems and two audited definitions are excluded from this count.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/bridge_review/lean/GraphRegion.lean",
+        "research/rmaf/bridge_review/lean/GraphControls.lean",
+        "research/rmaf/bridge_review/lean/audit/certificate.json"
+      ]
+    },
+    {
+      "id": "audit-connected-regions",
+      "label": "Single-region decomposition",
+      "status": "checked",
+      "verification": "lean",
+      "detail": "8 kernel-checked theorems, independently replayed: root/child path-convex decomposition and an LCA-closed gapped counterexample. Labelled-family trimming, disjointness and cost correspondence remain open.",
+      "depends_on": [
+        "audit-triple-dp"
+      ],
+      "artifacts": [
+        "research/rmaf/triple_dp/ConnectedRegions.lean",
+        "research/rmaf/results/triple-dp-connected-lean.json",
+        "research/rmaf/results/triple-dp-verification-connected-wrapper.json"
+      ]
+    }
+  ],
+  "artifacts": [
+    "research/rmaf/audit/certificate.json",
+    "research/rmaf/audit_routes.py",
+    "research/rmaf/pure_bridge/lean/audit/certificate.json",
+    "research/rmaf/results/triple-dp-lean.json",
+    "research/rmaf/results/thesis-transfer-lean.json",
+    "research/rmaf/bridge_review/lean/audit/certificate.json",
+    "research/rmaf/results/triple-dp-connected-lean.json",
+    "research/rmaf/results/triple-dp-verification-connected-wrapper.json"
+  ],
+  "sources": [
+    {
+      "title": "Official Lean release",
+      "url": "https://github.com/leanprover/lean4/releases/tag/v4.35.0",
+      "locator": "Pinned stable release"
+    }
+  ],
+  "count_scope": {
+    "core_excluded": 21,
+    "baseline_branching_decomposition": 13,
+    "pure_bridge_including_marks": 24,
+    "triple_dp": 36,
+    "unique_campaign_theorems": 123,
+    "source_hashes_checked_at": "20261014T131452Z",
+    "thesis_transfer": 11,
+    "graph_interface_review": 18
+  }
+}

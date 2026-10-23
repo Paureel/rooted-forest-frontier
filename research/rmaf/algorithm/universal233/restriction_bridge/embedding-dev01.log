@@ -1,0 +1,29 @@
+research/rmaf/algorithm/universal233/restriction_bridge/Embedding.lean:9:67: error(lean.unknownIdentifier): Unknown constant `List.contains_eq_false`
+research/rmaf/algorithm/universal233/restriction_bridge/Embedding.lean:10:2: error: Tactic `rfl` failed: The left-hand side
+  ∀ (x : Vertex), x ∈ a → (!b.contains x) = true
+is not definitionally equal to the right-hand side
+  Clear a b
+
+a b : List Vertex
+⊢ (∀ (x : Vertex), x ∈ a → (!b.contains x) = true) ↔ Clear a b
+research/rmaf/algorithm/universal233/restriction_bridge/Embedding.lean:9:49: warning: This simp argument is unused:
+  Bool.not_eq_true
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [disjointVertices, List.all_eq_true, List.contains_eq_false]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/restriction_bridge/Embedding.lean:20:62: error: unknown tactic
+research/rmaf/algorithm/universal233/restriction_bridge/Embedding.lean:22:66: error: unknown tactic
+research/rmaf/algorithm/universal233/restriction_bridge/Embedding.lean:22:48: error: unsolved goals
+a b c : List Vertex
+⊢ (∀ (v : Vertex), v ∈ a ∨ v ∈ b → ¬v ∈ c) ↔ (∀ (v : Vertex), v ∈ a → ¬v ∈ c) ∧ ∀ (v : Vertex), v ∈ b → ¬v ∈ c
+research/rmaf/algorithm/universal233/restriction_bridge/Embedding.lean:76:35: error(lean.unknownIdentifier): Unknown constant `List.isEmpty_eq_true`
+research/rmaf/algorithm/universal233/restriction_bridge/Embedding.lean:77:9: error: Application type mismatch: The argument
+  hs
+has type
+  (rootedSpan B t).isEmpty = true
+but is expected to have type
+  rootedSpan B t = []
+in the application
+  And.intro hs

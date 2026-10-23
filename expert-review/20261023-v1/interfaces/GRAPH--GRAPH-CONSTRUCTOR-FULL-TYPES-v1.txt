@@ -1,0 +1,1626 @@
+58 exact current relational datatypes/structures with ALL complete constructor signatures and5 requested boundary TYPES. These are logical witnesses to be constructed from actual evaluations; no execution, chronology, coverage or fee is granted by their availability.
+
+inductive SourceCouplingV2.Mode : Type
+number of parameters: 0
+constructors:
+SourceCouplingV2.Mode.direct : SourceCouplingV2.Mode
+SourceCouplingV2.Mode.cutoff : Nat → SourceCouplingV2.Mode
+structure SourceCouplingV2.Slot (P A : Type) : Type
+number of parameters: 2
+fields:
+  SourceCouplingV2.Slot.index : Nat
+  SourceCouplingV2.Slot.query : Prod.{0, 0} P Nat
+  SourceCouplingV2.Slot.returned : Option.{0} (Prod.{0, 0} Nat A)
+  SourceCouplingV2.Slot.live : Bool
+constructor:
+  SourceCouplingV2.Slot.mk {P A : Type} (index : Nat) (query : Prod.{0, 0} P Nat)
+    (returned : Option.{0} (Prod.{0, 0} Nat A)) (live : Bool) : SourceCouplingV2.Slot P A
+inductive SourceCouplingV2.Run : {P A : Type} →
+  (P → Nat → Option.{0} (Prod.{0, 0} Nat A) → Prop) →
+    SourceCouplingV2.Mode →
+      Nat →
+        Nat →
+          List.{0} (Universal233.PaidQueries.Job P A) →
+            Universal233.PaidQueries.MeterReceipt P A → List.{0} (SourceCouplingV2.Slot P A) → Nat → Prop
+number of parameters: 5
+constructors:
+SourceCouplingV2.Run.nil : ∀ {P A : Type} {Child : P → Nat → Option.{0} (Prod.{0, 0} Nat A) → Prop}
+  {mode : SourceCouplingV2.Mode} {b k : Nat},
+  SourceCouplingV2.Run Child mode b k List.nil.{0} SourceCouplingV2.emptyReceipt List.nil.{0} 16
+SourceCouplingV2.Run.resolved : ∀ {P A : Type} {Child : P → Nat → Option.{0} (Prod.{0, 0} Nat A) → Prop}
+  {mode : SourceCouplingV2.Mode} {b k : Nat} {js : List.{0} (Universal233.PaidQueries.Job P A)}
+  {r : Universal233.PaidQueries.MeterReceipt P A} {slots : List.{0} (SourceCouplingV2.Slot P A)} {ticks : Nat} {p : P}
+  {c : Nat} {a : A},
+  SourceCouplingV2.Run Child mode b k js r slots ticks →
+    SourceCouplingV2.Run Child mode b k (List.cons.{0} (Universal233.PaidQueries.Job.resolved p c a) js)
+      (SourceCouplingV2.resolvedReceipt c a r) slots (HAdd.hAdd.{0, 0, 0} ticks 24)
+SourceCouplingV2.Run.refused : ∀ {P A : Type} {Child : P → Nat → Option.{0} (Prod.{0, 0} Nat A) → Prop}
+  {mode : SourceCouplingV2.Mode} {b k : Nat} {p : P} {js : List.{0} (Universal233.PaidQueries.Job P A)},
+  Eq.{1} (SourceCouplingV2.enabled mode b) Bool.false →
+    SourceCouplingV2.Run Child mode b k (List.cons.{0} (Universal233.PaidQueries.Job.hard p) js)
+      (SourceCouplingV2.failedReceipt p b)
+      (List.cons.{0} { index := k, query := Prod.mk.{0, 0} p b, returned := Option.none.{0}, live := Bool.false }
+        List.nil.{0})
+      32
+SourceCouplingV2.Run.failed : ∀ {P A : Type} {Child : P → Nat → Option.{0} (Prod.{0, 0} Nat A) → Prop}
+  {mode : SourceCouplingV2.Mode} {b : Nat} {p : P} {k : Nat} {js : List.{0} (Universal233.PaidQueries.Job P A)},
+  Eq.{1} (SourceCouplingV2.enabled mode b) Bool.true →
+    Child p b Option.none.{0} →
+      SourceCouplingV2.Run Child mode b k (List.cons.{0} (Universal233.PaidQueries.Job.hard p) js)
+        (SourceCouplingV2.failedReceipt p b)
+        (List.cons.{0} { index := k, query := Prod.mk.{0, 0} p b, returned := Option.none.{0}, live := Bool.true }
+          List.nil.{0})
+        32
+SourceCouplingV2.Run.success : ∀ {P A : Type} {Child : P → Nat → Option.{0} (Prod.{0, 0} Nat A) → Prop}
+  {mode : SourceCouplingV2.Mode} {b : Nat} {p : P} {x : Prod.{0, 0} Nat A} {k : Nat}
+  {js : List.{0} (Universal233.PaidQueries.Job P A)} {r : Universal233.PaidQueries.MeterReceipt P A}
+  {slots : List.{0} (SourceCouplingV2.Slot P A)} {ticks : Nat},
+  Eq.{1} (SourceCouplingV2.enabled mode b) Bool.true →
+    Child p b (Option.some.{0} x) →
+      SourceCouplingV2.Run Child mode b (HAdd.hAdd.{0, 0, 0} k 1) js r slots ticks →
+        SourceCouplingV2.Run Child mode b k (List.cons.{0} (Universal233.PaidQueries.Job.hard p) js)
+          (SourceCouplingV2.successReceipt p b x r)
+          (List.cons.{0} { index := k, query := Prod.mk.{0, 0} p b, returned := Option.some.{0} x, live := Bool.true }
+            slots)
+          (HAdd.hAdd.{0, 0, 0} ticks 32)
+inductive SourceCouplingV2.Schedule : {P A : Type} →
+  (P → Nat → Option.{0} (Prod.{0, 0} Nat A) → Prop) →
+    SourceCouplingV2.Mode →
+      Nat →
+        List.{0} (Universal233.PaidQueries.Job P A) →
+          Universal233.PaidQueries.MeterReceipt P A → List.{0} (SourceCouplingV2.Slot P A) → Nat → Prop
+number of parameters: 6
+constructors:
+SourceCouplingV2.Schedule.refused : ∀ {P A : Type} {Child : P → Nat → Option.{0} (Prod.{0, 0} Nat A) → Prop}
+  {mode : SourceCouplingV2.Mode} {q : Nat} {js : List.{0} (Universal233.PaidQueries.Job P A)},
+  LT.lt.{0} q
+      (HAdd.hAdd.{0, 0, 0} (Universal233.PaidQueries.knownCost js)
+        (HMul.hMul.{0, 0, 0} 2 (Universal233.PaidQueries.pending js))) →
+    SourceCouplingV2.Schedule Child mode q js
+      { value := { answers := Option.none.{0}, calls := List.nil.{0}, visits := 0 }, queries := List.nil.{0},
+        callerWork := HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 8 (List.length.{0} js)) 8, recursiveWork := 0 }
+      List.nil.{0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 64 (List.length.{0} js)) 64)
+SourceCouplingV2.Schedule.run : ∀ {P A : Type} {Child : P → Nat → Option.{0} (Prod.{0, 0} Nat A) → Prop}
+  {mode : SourceCouplingV2.Mode} {q : Nat} {js : List.{0} (Universal233.PaidQueries.Job P A)}
+  {rr : Universal233.PaidQueries.MeterReceipt P A} {ss : List.{0} (SourceCouplingV2.Slot P A)} {tt : Nat},
+  ¬LT.lt.{0} q
+        (HAdd.hAdd.{0, 0, 0} (Universal233.PaidQueries.knownCost js)
+          (HMul.hMul.{0, 0, 0} 2 (Universal233.PaidQueries.pending js))) →
+    SourceCouplingV2.Run Child mode (Universal233.PaidQueries.allocated q js) 0 js rr ss tt →
+      SourceCouplingV2.Schedule Child mode q js (SourceCouplingV2.scheduledReceipt q js rr) ss
+        (HAdd.hAdd.{0, 0, 0}
+          (HAdd.hAdd.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} tt (HMul.hMul.{0, 0, 0} 64 (List.length.{0} js))) 64)
+          (HMul.hMul.{0, 0, 0} 8 (Universal233.PaidQueries.postCharge rr.value)))
+inductive SourceForestSingletonV2.Invoke : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceDisjointV2.F → Prop) →
+  SourceCouplingV2.Mode →
+    Nat →
+      Prod.{0, 0} RMAF.Tree RMAF.Tree →
+        Nat →
+          Option.{0} SourceDisjointV2.F →
+            SourceCouplingV2.Slot (Prod.{0, 0} RMAF.Tree RMAF.Tree) SourceDisjointV2.F → Prop
+number of parameters: 5
+constructors:
+SourceForestSingletonV2.Invoke.refused : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceDisjointV2.F → Prop} {mode : SourceCouplingV2.Mode}
+  {k : Nat} {p : Prod.{0, 0} RMAF.Tree RMAF.Tree} {b : Nat},
+  Eq.{1} (SourceCouplingV2.enabled mode b) Bool.false →
+    SourceForestSingletonV2.Invoke OrdExec mode k p b Option.none.{0}
+      { index := k, query := Prod.mk.{0, 0} p b, returned := Option.none.{0}, live := Bool.false }
+SourceForestSingletonV2.Invoke.returned : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceDisjointV2.F → Prop} {mode : SourceCouplingV2.Mode}
+  {k : Nat} {p : Prod.{0, 0} RMAF.Tree RMAF.Tree} {b : Nat} {answer : Option.{0} SourceDisjointV2.F},
+  Eq.{1} (SourceCouplingV2.enabled mode b) Bool.true →
+    OrdExec (Prod.fst.{0, 0} p) (Prod.snd.{0, 0} p) b answer →
+      SourceForestSingletonV2.Invoke OrdExec mode k p b answer
+        { index := k, query := Prod.mk.{0, 0} p b,
+          returned :=
+            Option.map.{0, 0} (fun fs => Prod.mk.{0, 0} (HSub.hSub.{0, 0, 0} (List.length.{0} fs) 1) fs) answer,
+          live := Bool.true }
+inductive SourceDisjointV2.PairChild : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceDisjointV2.F → Prop) →
+  Prod.{0, 0} RMAF.Tree RMAF.Tree → Nat → Option.{0} (Prod.{0, 0} Nat SourceDisjointV2.F) → Prop
+number of parameters: 3
+constructors:
+SourceDisjointV2.PairChild.returned : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceDisjointV2.F → Prop}
+  {p : Prod.{0, 0} RMAF.Tree RMAF.Tree} {b : Nat} {a : Option.{0} SourceDisjointV2.F},
+  OrdExec (Prod.fst.{0, 0} p) (Prod.snd.{0, 0} p) b a →
+    SourceDisjointV2.PairChild OrdExec p b
+      (Option.map.{0, 0} (fun fs => Prod.mk.{0, 0} (HSub.hSub.{0, 0, 0} (List.length.{0} fs) 1) fs) a)
+structure SourceForestV3.Result : Type
+number of parameters: 0
+fields:
+  SourceForestV3.Result.value : Option.{0} SourceForestV3.F
+  SourceForestV3.Result.debit : Nat
+  SourceForestV3.Result.slots : List.{0} SourceForestV3.S
+constructor:
+  SourceForestV3.Result.mk (value : Option.{0} SourceForestV3.F) (debit : Nat) (slots : List.{0} SourceForestV3.S) :
+    SourceForestV3.Result
+inductive SourceForestV3.ForestExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode → Nat → Option.{0} RMAF.Tree → List.{0} RMAF.Tree → Nat → SourceForestV3.Result → Prop
+number of parameters: 2
+constructors:
+SourceForestV3.ForestExec.improper : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T : Option.{0} RMAF.Tree} {ss : List.{0} RMAF.Tree} {k q : Nat},
+  Eq.{1} (ForestState.proper T ss) Bool.false →
+    SourceForestV3.ForestExec OrdExec mode k T ss q
+      { value := Option.none.{0}, debit := GenericForest.inspectionBill T ss q, slots := List.nil.{0} }
+SourceForestV3.ForestExec.agreed : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T : Option.{0} RMAF.Tree} {ss : List.{0} RMAF.Tree} {k q : Nat},
+  Eq.{1} (ForestState.proper T ss) Bool.true →
+    Eq.{1} (ForestState.agrees T ss (List.map.{0, 0} RMAF.leaves ss)) Bool.true →
+      SourceForestV3.ForestExec OrdExec mode k T ss q
+        { value := Option.some.{0} (List.map.{0, 0} RMAF.leaves ss), debit := GenericForest.inspectionBill T ss q,
+          slots := List.nil.{0} }
+SourceForestV3.ForestExec.absent : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {ss : List.{0} RMAF.Tree} {k q : Nat},
+  Eq.{1} (ForestState.proper Option.none.{0} ss) Bool.true →
+    Eq.{1} (ForestState.agrees Option.none.{0} ss (List.map.{0, 0} RMAF.leaves ss)) Bool.false →
+      SourceForestV3.ForestExec OrdExec mode k Option.none.{0} ss q
+        { value := Option.none.{0}, debit := GenericForest.inspectionBill Option.none.{0} ss q, slots := List.nil.{0} }
+SourceForestV3.ForestExec.singleton : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {t s : RMAF.Tree} {k q : Nat} {answer : Option.{0} SourceDisjointV2.F}
+  {slot : SourceCouplingV2.Slot (Prod.{0, 0} RMAF.Tree RMAF.Tree) SourceDisjointV2.F},
+  Eq.{1} (ForestState.proper (Option.some.{0} t) (List.cons.{0} s List.nil.{0})) Bool.true →
+    Eq.{1}
+        (ForestState.agrees (Option.some.{0} t) (List.cons.{0} s List.nil.{0})
+          (List.map.{0, 0} RMAF.leaves (List.cons.{0} s List.nil.{0})))
+        Bool.false →
+      SourceForestSingletonV2.Invoke OrdExec mode k (Prod.mk.{0, 0} t s) q answer slot →
+        SourceForestV3.ForestExec OrdExec mode k (Option.some.{0} t) (List.cons.{0} s List.nil.{0}) q
+          {
+            value :=
+              Option.bind.{0, 0} answer (GenericForest.checked (Option.some.{0} t) (List.cons.{0} s List.nil.{0}) q),
+            debit :=
+              HAdd.hAdd.{0, 0, 0} (GenericForest.inspectionBill (Option.some.{0} t) (List.cons.{0} s List.nil.{0}) q) 0,
+            slots := List.cons.{0} slot List.nil.{0} }
+SourceForestV3.ForestExec.noJobs : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {t : RMAF.Tree} {ss : List.{0} RMAF.Tree} {k q : Nat},
+  Eq.{1} (ForestState.proper (Option.some.{0} t) ss) Bool.true →
+    Eq.{1} (ForestState.agrees (Option.some.{0} t) ss (List.map.{0, 0} RMAF.leaves ss)) Bool.false →
+      Ne.{1} (List.length.{0} ss) 1 →
+        Eq.{1} (GenericForest.overlap t ss) Option.none.{0} →
+          Eq.{1} (GenericForest.jobs t ss) Option.none.{0} →
+            SourceForestV3.ForestExec OrdExec mode k (Option.some.{0} t) ss q
+              { value := Option.none.{0}, debit := GenericForest.inspectionBill (Option.some.{0} t) ss q,
+                slots := List.nil.{0} }
+SourceForestV3.ForestExec.disjoint : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {t : RMAF.Tree} {ss : List.{0} RMAF.Tree}
+  {js : List.{0} (Universal233.PaidQueries.Job (Prod.{0, 0} RMAF.Tree RMAF.Tree) GenericForest.Forest)} {q k : Nat}
+  {r : Universal233.PaidQueries.MeterReceipt (Prod.{0, 0} RMAF.Tree RMAF.Tree) SourceDisjointV2.F}
+  {slots : List.{0} (SourceCouplingV2.Slot (Prod.{0, 0} RMAF.Tree RMAF.Tree) SourceDisjointV2.F)},
+  Eq.{1} (ForestState.proper (Option.some.{0} t) ss) Bool.true →
+    Eq.{1} (ForestState.agrees (Option.some.{0} t) ss (List.map.{0, 0} RMAF.leaves ss)) Bool.false →
+      Ne.{1} (List.length.{0} ss) 1 →
+        Eq.{1} (GenericForest.overlap t ss) Option.none.{0} →
+          Eq.{1} (GenericForest.jobs t ss) (Option.some.{0} js) →
+            SourceForestV3.ScheduleAt (SourceDisjointV2.PairChild OrdExec) mode q js k r slots →
+              SourceForestV3.ForestExec OrdExec mode k (Option.some.{0} t) ss q
+                {
+                  value :=
+                    Option.bind.{0, 0} r.value.answers fun xs =>
+                      GenericForest.checked (Option.some.{0} t) ss q (List.flatMap.{0, 0} Prod.snd.{0, 0} xs),
+                  debit :=
+                    HAdd.hAdd.{0, 0, 0} (GenericForest.inspectionBill (Option.some.{0} t) ss q)
+                      (HAdd.hAdd.{0, 0, 0} r.callerWork r.recursiveWork),
+                  slots := slots }
+SourceForestV3.ForestExec.overlap : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {t : RMAF.Tree} {ss : List.{0} RMAF.Tree} {h : GenericForest.Overlap} {k q : Nat}
+  {answers : List.{0} SourceForestV3.F} {debit : Nat} {slots : List.{0} SourceForestV3.S},
+  Eq.{1} (ForestState.proper (Option.some.{0} t) ss) Bool.true →
+    Eq.{1} (ForestState.agrees (Option.some.{0} t) ss (List.map.{0, 0} RMAF.leaves ss)) Bool.false →
+      Ne.{1} (List.length.{0} ss) 1 →
+        Eq.{1} (GenericForest.overlap t ss) (Option.some.{0} h) →
+          SourceForestV3.BranchesExec OrdExec mode k (Option.some.{0} t) ss q (GenericForest.branches t ss h q) answers
+              debit slots →
+            SourceForestV3.ForestExec OrdExec mode k (Option.some.{0} t) ss q
+              { value := RMAF.best List.length.{0} (GenericForest.accepted (Option.some.{0} t) ss q) answers,
+                debit := HAdd.hAdd.{0, 0, 0} (SourceForestV3.overlapLocal t ss h q) debit, slots := slots }
+inductive SourceForestV3.BranchesExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    Nat →
+      Option.{0} RMAF.Tree →
+        List.{0} RMAF.Tree →
+          Nat → List.{0} SourceForestV3.B → List.{0} SourceForestV3.F → Nat → List.{0} SourceForestV3.S → Prop
+number of parameters: 2
+constructors:
+SourceForestV3.BranchesExec.nil : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {k : Nat} {T : Option.{0} RMAF.Tree} {ss : List.{0} RMAF.Tree} {q : Nat},
+  SourceForestV3.BranchesExec OrdExec mode k T ss q List.nil.{0} List.nil.{0} 0 List.nil.{0}
+SourceForestV3.BranchesExec.skip : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {q : Nat} {io : SourceForestV3.B} {k : Nat} {T : Option.{0} RMAF.Tree}
+  {ss : List.{0} RMAF.Tree} {bs : List.{0} SourceForestV3.B} {answers : List.{0} SourceForestV3.F} {debit : Nat}
+  {slots : List.{0} SourceForestV3.S},
+  ¬SourceForestV3.eligible q io →
+    SourceForestV3.BranchesExec OrdExec mode k T ss q bs answers debit slots →
+      SourceForestV3.BranchesExec OrdExec mode k T ss q (List.cons.{0} io bs) answers debit slots
+SourceForestV3.BranchesExec.take : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {q : Nat} {io : SourceForestV3.B} {k : Nat} {T : Option.{0} RMAF.Tree}
+  {ss : List.{0} RMAF.Tree} {out : SourceForestV3.Result} {bs : List.{0} SourceForestV3.B}
+  {answers : List.{0} SourceForestV3.F} {debit : Nat} {slots : List.{0} SourceForestV3.S},
+  SourceForestV3.eligible q io →
+    SourceForestV3.ForestExec OrdExec mode k T
+        (GenericForest.replace ss (Prod.fst.{0, 0} io) (Prod.snd.{0, 0} io).partition)
+        (HSub.hSub.{0, 0, 0} q (SourceForestV3.cutCount io)) out →
+      SourceForestV3.BranchesExec OrdExec mode (HAdd.hAdd.{0, 0, 0} k (List.length.{0} out.slots)) T ss q bs answers
+          debit slots →
+        SourceForestV3.BranchesExec OrdExec mode k T ss q (List.cons.{0} io bs)
+          (match out.value with
+          | Option.none.{0} => answers
+          | Option.some.{0} fs => List.cons.{0} fs answers)
+          (HAdd.hAdd.{0, 0, 0} out.debit debit) (HAppend.hAppend.{0, 0, 0} out.slots slots)
+inductive SourceForestV3.ChildrenExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      Nat →
+        Nat →
+          List.{0} Universal233.CherryBranching.Child →
+            Universal233.Rule5SelectedLocalWork.ForestReceipt (List.{0} SourceForestV3.F) →
+              List.{0} Nat → List.{0} SourceForestV3.S → Prop
+number of parameters: 4
+constructors:
+SourceForestV3.ChildrenExec.nil : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T : RMAF.Tree} {q k : Nat},
+  SourceForestV3.ChildrenExec OrdExec mode T q k List.nil.{0}
+    { value := List.nil.{0}, localWork := 1, recursiveWork := 0, calls := List.nil.{0} } List.nil.{0} List.nil.{0}
+SourceForestV3.ChildrenExec.refused : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T : RMAF.Tree} {q k : Nat} {cs : List.{0} Universal233.CherryBranching.Child}
+  {r : Universal233.Rule5SelectedLocalWork.ForestReceipt (List.{0} SourceForestV3.F)} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S} {c : Universal233.CherryBranching.Child},
+  ¬LE.le.{0} c.paid q →
+    SourceForestV3.ChildrenExec OrdExec mode T q k cs r debits slots →
+      SourceForestV3.ChildrenExec OrdExec mode T q k (List.cons.{0} c cs)
+        (SourceChildrenV2.prependChild
+          { value := Option.none.{0}, localWork := 2, recursiveWork := 0, calls := List.nil.{0} } r)
+        debits slots
+SourceForestV3.ChildrenExec.returned : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T : RMAF.Tree} {q k : Nat} {out : SourceForestV3.Result}
+  {cs : List.{0} Universal233.CherryBranching.Child}
+  {r : Universal233.Rule5SelectedLocalWork.ForestReceipt (List.{0} SourceForestV3.F)} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S} {c : Universal233.CherryBranching.Child},
+  LE.le.{0} c.paid q →
+    SourceForestV3.ForestExec OrdExec mode k (Option.some.{0} T) c.sourceForest (HSub.hSub.{0, 0, 0} q c.paid) out →
+      SourceForestV3.ChildrenExec OrdExec mode T q (HAdd.hAdd.{0, 0, 0} k (List.length.{0} out.slots)) cs r debits
+          slots →
+        SourceForestV3.ChildrenExec OrdExec mode T q k (List.cons.{0} c cs)
+          (SourceChildrenV2.prependChild
+            { value := out.value, localWork := 4, recursiveWork := 0,
+              calls := List.cons.{0} { child := c, budget := HSub.hSub.{0, 0, 0} q c.paid } List.nil.{0} }
+            r)
+          (List.cons.{0} out.debit debits) (HAppend.hAppend.{0, 0, 0} out.slots slots)
+inductive SourceForestV3.ScheduleAt : {P A : Type} →
+  (P → Nat → Option.{0} (Prod.{0, 0} Nat A) → Prop) →
+    SourceCouplingV2.Mode →
+      Nat →
+        List.{0} (Universal233.PaidQueries.Job P A) →
+          Nat → Universal233.PaidQueries.MeterReceipt P A → List.{0} (SourceCouplingV2.Slot P A) → Prop
+number of parameters: 7
+constructors:
+SourceForestV3.ScheduleAt.refused : ∀ {P A : Type} {Child : P → Nat → Option.{0} (Prod.{0, 0} Nat A) → Prop}
+  {mode : SourceCouplingV2.Mode} {q : Nat} {js : List.{0} (Universal233.PaidQueries.Job P A)} {k : Nat},
+  LT.lt.{0} q
+      (HAdd.hAdd.{0, 0, 0} (Universal233.PaidQueries.knownCost js)
+        (HMul.hMul.{0, 0, 0} 2 (Universal233.PaidQueries.pending js))) →
+    SourceForestV3.ScheduleAt Child mode q js k
+      { value := { answers := Option.none.{0}, calls := List.nil.{0}, visits := 0 }, queries := List.nil.{0},
+        callerWork := HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 8 (List.length.{0} js)) 8, recursiveWork := 0 }
+      List.nil.{0}
+SourceForestV3.ScheduleAt.run : ∀ {P A : Type} {Child : P → Nat → Option.{0} (Prod.{0, 0} Nat A) → Prop}
+  {mode : SourceCouplingV2.Mode} {q : Nat} {js : List.{0} (Universal233.PaidQueries.Job P A)} {k : Nat}
+  {r : Universal233.PaidQueries.MeterReceipt P A} {slots : List.{0} (SourceCouplingV2.Slot P A)} {ticks : Nat},
+  ¬LT.lt.{0} q
+        (HAdd.hAdd.{0, 0, 0} (Universal233.PaidQueries.knownCost js)
+          (HMul.hMul.{0, 0, 0} 2 (Universal233.PaidQueries.pending js))) →
+    SourceCouplingV2.Run Child mode (Universal233.PaidQueries.allocated q js) k js r slots ticks →
+      SourceForestV3.ScheduleAt Child mode q js k (SourceCouplingV2.scheduledReceipt q js r) slots
+inductive SourceCommonV3.CommonExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  Nat →
+    RMAF.Tree →
+      RMAF.Tree →
+        Bool →
+          Universal233.CherryBranching.Candidate →
+            Nat → Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F) → List.{0} SourceForestV3.S → Prop
+number of parameters: 7
+constructors:
+SourceCommonV3.CommonExec.refused : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {q : Nat} {T S : RMAF.Tree} {reverse : Bool} {c : Universal233.CherryBranching.Candidate} {k : Nat},
+  ¬SourceCommonV3.smaller T S reverse c →
+    SourceCommonV3.CommonExec OrdExec q T S reverse c k (SourceCommonV3.refused T S reverse c) List.nil.{0}
+SourceCommonV3.CommonExec.returned : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {q : Nat} {T S : RMAF.Tree} {reverse : Bool} {c : Universal233.CherryBranching.Candidate} {k : Nat}
+  {answer : Option.{0} SourceForestV3.F},
+  SourceCommonV3.smaller T S reverse c →
+    OrdExec (Prod.fst.{0, 0} (SourceCommonV3.pair T S reverse c)) (Prod.snd.{0, 0} (SourceCommonV3.pair T S reverse c))
+        q answer →
+      SourceCommonV3.CommonExec OrdExec q T S reverse c k (SourceCommonV3.returned T S reverse c answer)
+        (List.cons.{0}
+          { index := k, query := Prod.mk.{0, 0} (SourceCommonV3.pair T S reverse c) q,
+            returned :=
+              Option.map.{0, 0} (fun fs => Prod.mk.{0, 0} (HSub.hSub.{0, 0, 0} (List.length.{0} fs) 1) fs) answer,
+            live := Bool.true }
+          List.nil.{0})
+structure SourceRule4V3.Cell : Type
+number of parameters: 0
+fields:
+  SourceRule4V3.Cell.branchIndex : Nat
+  SourceRule4V3.Cell.branch : Universal233.Rule4.Branch
+  SourceRule4V3.Cell.state : Universal233.WholeSourceWork.Charged (List.{0} RMAF.Tree)
+  SourceRule4V3.Cell.result : Option.{0} SourceForestV3.Result
+constructor:
+  SourceRule4V3.Cell.mk (branchIndex : Nat) (branch : Universal233.Rule4.Branch)
+    (state : Universal233.WholeSourceWork.Charged (List.{0} RMAF.Tree)) (result : Option.{0} SourceForestV3.Result) :
+    SourceRule4V3.Cell
+inductive SourceRule4V3.AnswersExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    Nat →
+      Nat →
+        List.{0} Universal233.Rule4.Branch →
+          Universal233.WholeSourceWork.Charged (List.{0} SourceForestV3.F) → List.{0} SourceRule4V3.Cell → Prop
+number of parameters: 3
+constructors:
+SourceRule4V3.AnswersExec.nil : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {q i : Nat},
+  SourceRule4V3.AnswersExec OrdExec mode q i List.nil.{0} { value := List.nil.{0}, work := 1 } List.nil.{0}
+SourceRule4V3.AnswersExec.refused : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {q i : Nat} {bs : List.{0} Universal233.Rule4.Branch}
+  {r : Universal233.WholeSourceWork.Charged (List.{0} SourceForestV3.F)} {cells : List.{0} SourceRule4V3.Cell}
+  {b : Universal233.Rule4.Branch},
+  SourceRule4V3.AnswersExec OrdExec mode q (HAdd.hAdd.{0, 0, 0} i 1) bs r cells →
+    ¬LE.le.{0} b.cost q →
+      SourceRule4V3.AnswersExec OrdExec mode q i (List.cons.{0} b bs)
+        { value := r.value,
+          work := HAdd.hAdd.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 (List.length.{0} b.cuts)) 4) r.work }
+        (List.cons.{0}
+          { branchIndex := i, branch := b, state := OrdinaryDispatch.FullSourceWork.rule4StateMeter b,
+            result := Option.none.{0} }
+          cells)
+SourceRule4V3.AnswersExec.returned : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {q i : Nat} {bs : List.{0} Universal233.Rule4.Branch}
+  {r : Universal233.WholeSourceWork.Charged (List.{0} SourceForestV3.F)} {cells : List.{0} SourceRule4V3.Cell}
+  {b : Universal233.Rule4.Branch} {out : SourceForestV3.Result},
+  SourceRule4V3.AnswersExec OrdExec mode q (HAdd.hAdd.{0, 0, 0} i 1) bs r cells →
+    LE.le.{0} b.cost q →
+      SourceForestV3.ForestExec OrdExec mode 0 (Option.some.{0} b.target)
+          (OrdinaryDispatch.FullSourceWork.rule4StateMeter b).value (HSub.hSub.{0, 0, 0} q b.cost) out →
+        SourceRule4V3.AnswersExec OrdExec mode q i (List.cons.{0} b bs)
+          { value := HAppend.hAppend.{0, 0, 0} (Option.toList.{0} out.value) r.value,
+            work :=
+              HAdd.hAdd.{0, 0, 0}
+                (HAdd.hAdd.{0, 0, 0}
+                  (HAdd.hAdd.{0, 0, 0}
+                    (HAdd.hAdd.{0, 0, 0} (OrdinaryDispatch.FullSourceWork.rule4StateMeter b).work
+                      (HMul.hMul.{0, 0, 0} 2 (List.length.{0} b.cuts)))
+                    8)
+                  out.debit)
+                r.work }
+          (List.cons.{0}
+            { branchIndex := i, branch := b, state := OrdinaryDispatch.FullSourceWork.rule4StateMeter b,
+              result := Option.some.{0} out }
+            cells)
+structure SourceFullOutputsV3.Cell : Type
+number of parameters: 0
+fields:
+  SourceFullOutputsV3.Cell.outputIndex : Nat
+  SourceFullOutputsV3.Cell.output : Universal233.CoreProgram.Output
+  SourceFullOutputsV3.Cell.result : Option.{0} SourceForestV3.Result
+constructor:
+  SourceFullOutputsV3.Cell.mk (outputIndex : Nat) (output : Universal233.CoreProgram.Output)
+    (result : Option.{0} SourceForestV3.Result) : SourceFullOutputsV3.Cell
+inductive SourceFullOutputsV3.OutputsExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        Nat →
+          Nat →
+            List.{0} Universal233.CoreProgram.Output →
+              OrdinaryDispatch.Hard2SourceWork.SourceExecution → List.{0} SourceFullOutputsV3.Cell → Prop
+number of parameters: 5
+constructors:
+SourceFullOutputsV3.OutputsExec.nil : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {q i : Nat},
+  SourceFullOutputsV3.OutputsExec OrdExec mode T S q i List.nil.{0}
+    { value := { answer := Option.none.{0}, calls := List.nil.{0} }, work := 2 } List.nil.{0}
+SourceFullOutputsV3.OutputsExec.refused : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {q i : Nat} {os : List.{0} Universal233.CoreProgram.Output}
+  {r : OrdinaryDispatch.Hard2SourceWork.SourceExecution} {cells : List.{0} SourceFullOutputsV3.Cell}
+  {o : Universal233.CoreProgram.Output},
+  SourceFullOutputsV3.OutputsExec OrdExec mode T S q (HAdd.hAdd.{0, 0, 0} i 1) os r cells →
+    ¬LE.le.{0} (List.length.{0} o.sourceCuts) q →
+      SourceFullOutputsV3.OutputsExec OrdExec mode T S q i (List.cons.{0} o os)
+        { value := r.value,
+          work :=
+            HAdd.hAdd.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 (List.length.{0} o.sourceCuts)) r.work) 6 }
+        (List.cons.{0} { outputIndex := i, output := o, result := Option.none.{0} } cells)
+SourceFullOutputsV3.OutputsExec.returned : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {q i : Nat} {os : List.{0} Universal233.CoreProgram.Output}
+  {r : OrdinaryDispatch.Hard2SourceWork.SourceExecution} {cells : List.{0} SourceFullOutputsV3.Cell}
+  {out : SourceForestV3.Result} {o : Universal233.CoreProgram.Output},
+  SourceFullOutputsV3.OutputsExec OrdExec mode T S q (HAdd.hAdd.{0, 0, 0} i 1) os r cells →
+    LE.le.{0} (List.length.{0} o.sourceCuts) q →
+      SourceForestV3.ForestExec OrdExec mode 0 (Option.some.{0} T)
+          (Universal233.Rule5SelectedLocalWork.sourceForestMeter S o.partition).value
+          (HSub.hSub.{0, 0, 0} q (List.length.{0} o.sourceCuts)) out →
+        SourceFullOutputsV3.OutputsExec OrdExec mode T S q i (List.cons.{0} o os)
+          (SourceFullOutputsV3.prependOutput T S q o out r)
+          (List.cons.{0} { outputIndex := i, output := o, result := Option.some.{0} out } cells)
+structure SourceGoodPairV3.Prep : Type
+number of parameters: 0
+fields:
+  SourceGoodPairV3.Prep.sources : Universal233.Rule5PrefixLocalWork.Measured (List.{0} RMAF.Tree)
+  SourceGoodPairV3.Prep.dp : Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F)
+  SourceGoodPairV3.Prep.work : Nat
+constructor:
+  SourceGoodPairV3.Prep.mk (sources : Universal233.Rule5PrefixLocalWork.Measured (List.{0} RMAF.Tree))
+    (dp : Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F)) (work : Nat) : SourceGoodPairV3.Prep
+inductive SourceGoodPairV3.GoodExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        List.{0} Nat →
+          List.{0} Nat →
+            List.{0} Nat → Nat → OrdinaryDispatch.Hard2SourceWork.SourceExecution → List.{0} SourceForestV3.S → Prop
+number of parameters: 8
+constructors:
+SourceGoodPairV3.GoodExec.small : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {A B C : List.{0} Nat} {q : Nat},
+  ¬LE.le.{0} 2 q →
+    SourceGoodPairV3.GoodExec OrdExec mode T S A B C q
+      { value := { answer := Option.none.{0}, calls := List.nil.{0} }, work := 6 } List.nil.{0}
+SourceGoodPairV3.GoodExec.dpRefused : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {A B C : List.{0} Nat} {q : Nat},
+  LE.le.{0} 2 q →
+    Eq.{1} (SourceGoodPairV3.prepare T S A B C).dp.value Option.none.{0} →
+      SourceGoodPairV3.GoodExec OrdExec mode T S A B C q
+        { value := { answer := Option.none.{0}, calls := List.nil.{0} },
+          work := HAdd.hAdd.{0, 0, 0} (SourceGoodPairV3.prepare T S A B C).work 4 }
+        List.nil.{0}
+SourceGoodPairV3.GoodExec.scoreRefused : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {A B C : List.{0} Nat} {q : Nat} {H : SourceForestV3.F},
+  LE.le.{0} 2 q →
+    Eq.{1} (SourceGoodPairV3.prepare T S A B C).dp.value (Option.some.{0} H) →
+      ¬LE.le.{0} (SourceGoodPairV3.score (SourceGoodPairV3.prepare T S A B C) A B H).value (HSub.hSub.{0, 0, 0} q 2) →
+        SourceGoodPairV3.GoodExec OrdExec mode T S A B C q
+          { value := { answer := Option.none.{0}, calls := List.nil.{0} },
+            work := HAdd.hAdd.{0, 0, 0} (SourceGoodPairV3.score (SourceGoodPairV3.prepare T S A B C) A B H).work 4 }
+          List.nil.{0}
+SourceGoodPairV3.GoodExec.returned : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {A B C : List.{0} Nat} {q : Nat} {H : SourceForestV3.F}
+  {out : SourceForestV3.Result},
+  LE.le.{0} 2 q →
+    Eq.{1} (SourceGoodPairV3.prepare T S A B C).dp.value (Option.some.{0} H) →
+      LE.le.{0} (SourceGoodPairV3.score (SourceGoodPairV3.prepare T S A B C) A B H).value (HSub.hSub.{0, 0, 0} q 2) →
+        SourceForestV3.ForestExec OrdExec mode 0
+            (OrdinaryDispatch.Hard2SourceWork.localTargetMeter (Option.some.{0} T) C).value
+            (OrdinaryDispatch.Hard2SourceWork.ownedMeter (SourceGoodPairV3.prepare T S A B C).sources.value C).value
+            (HSub.hSub.{0, 0, 0} (HSub.hSub.{0, 0, 0} q 2)
+              (SourceGoodPairV3.score (SourceGoodPairV3.prepare T S A B C) A B H).value)
+            out →
+          SourceGoodPairV3.GoodExec OrdExec mode T S A B C q
+            (SourceGoodPairV3.finish T S C q (SourceGoodPairV3.prepare T S A B C)
+              (SourceGoodPairV3.score (SourceGoodPairV3.prepare T S A B C) A B H) H out)
+            out.slots
+inductive SourceBothBadFoldV3.EntriesExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        Nat →
+          Nat →
+            List.{0} Universal233.BothBad.Entry →
+              OrdinaryDispatch.Hard2SourceWork.SourceExecution → List.{0} Nat → List.{0} SourceForestV3.S → Prop
+number of parameters: 5
+constructors:
+SourceBothBadFoldV3.EntriesExec.nil : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {q k : Nat},
+  SourceBothBadFoldV3.EntriesExec OrdExec mode T S q k List.nil.{0}
+    { value := { answer := Option.none.{0}, calls := List.nil.{0} }, work := 2 } List.nil.{0} List.nil.{0}
+SourceBothBadFoldV3.EntriesExec.cons : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {q : Nat} {e : Universal233.BothBad.Entry} {k : Nat}
+  {r : OrdinaryDispatch.Hard2SourceWork.SourceExecution} {debits : List.{0} Nat} {slots : List.{0} SourceForestV3.S}
+  {es : List.{0} Universal233.BothBad.Entry} {rr : OrdinaryDispatch.Hard2SourceWork.SourceExecution} {dd : List.{0} Nat}
+  {ss : List.{0} SourceForestV3.S},
+  SourceBothBadDispatchV3.DispatchExec OrdExec mode T S e k r debits slots →
+    SourceBothBadFoldV3.EntriesExec OrdExec mode T S q (HAdd.hAdd.{0, 0, 0} k (List.length.{0} slots)) es rr dd ss →
+      SourceBothBadFoldV3.EntriesExec OrdExec mode T S q k (List.cons.{0} e es) (SourceBothBadFoldV3.prepend T S q r rr)
+        (HAppend.hAppend.{0, 0, 0} debits dd) (HAppend.hAppend.{0, 0, 0} slots ss)
+inductive SourceBothBadDispatchV3.DispatchExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        Universal233.BothBad.Entry →
+          Nat → OrdinaryDispatch.Hard2SourceWork.SourceExecution → List.{0} Nat → List.{0} SourceForestV3.S → Prop
+number of parameters: 6
+constructors:
+SourceBothBadDispatchV3.DispatchExec.ordinary : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {e : Universal233.BothBad.Entry} {k : Nat} {r : OrdinaryDispatch.Hard2SourceWork.SourceExecution}
+  {debits : List.{0} Nat} {slots : List.{0} SourceForestV3.S},
+  Eq.{1} e.mode Universal233.BothBad.Mode.ordinary →
+    SourceOrdinaryLocalV3.LocalExec OrdExec mode T S e.output.partition e.budget k r debits slots →
+      SourceBothBadDispatchV3.DispatchExec OrdExec mode T S e k r debits slots
+SourceBothBadDispatchV3.DispatchExec.full : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {e : Universal233.BothBad.Entry} {k : Nat} {out : SourceForestV3.Result},
+  Eq.{1} e.mode Universal233.BothBad.Mode.full →
+    SourceForestV3.ForestExec OrdExec mode k (Option.some.{0} T)
+        (Universal233.Rule5SelectedLocalWork.sourceForestMeter S e.output.partition).value e.budget out →
+      SourceBothBadDispatchV3.DispatchExec OrdExec mode T S e k (SourceBothBadDispatchV3.fullReturn T S e out)
+        (List.cons.{0} out.debit List.nil.{0}) out.slots
+SourceBothBadDispatchV3.DispatchExec.retained : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {e : Universal233.BothBad.Entry} {k : Nat} {parent residual completed : List.{0} Nat}
+  {known : Universal233.BothBad.Forest} {out : SourceForestV3.Result},
+  Eq.{1} e.mode (Universal233.BothBad.Mode.retained parent residual completed known) →
+    SourceForestV3.ForestExec OrdExec mode k
+        (OrdinaryDispatch.Hard2SourceWork.localTargetMeter (Option.some.{0} T) residual).value
+        (OrdinaryDispatch.Hard2SourceWork.ownedMeter
+            (Universal233.Rule5SelectedLocalWork.sourceForestMeter S e.output.partition).value residual).value
+        e.budget out →
+      SourceBothBadDispatchV3.DispatchExec OrdExec mode T S e k
+        (SourceBothBadDispatchV3.retainedReturn T S e residual completed known out)
+        (List.cons.{0} out.debit List.nil.{0}) out.slots
+inductive SourceBothBadPairV3.PairExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        List.{0} Nat →
+          List.{0} Nat →
+            List.{0} Nat →
+              Prod.{0, 0} RMAF.Vertex RMAF.Vertex →
+                Nat →
+                  Nat →
+                    OrdinaryDispatch.Hard2SourceWork.SourceExecution → List.{0} Nat → List.{0} SourceForestV3.S → Prop
+number of parameters: 10
+constructors:
+SourceBothBadPairV3.PairExec.run : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {A B C : List.{0} Nat} {edge : Prod.{0, 0} RMAF.Vertex RMAF.Vertex}
+  {q k : Nat} {r : OrdinaryDispatch.Hard2SourceWork.SourceExecution} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S},
+  SourceBothBadFoldV3.EntriesExec OrdExec mode T S q k (SourceBothBadPairV3.entries T S A B C edge q) r debits slots →
+    SourceBothBadPairV3.PairExec OrdExec mode T S A B C edge q k (SourceBothBadPairV3.finish T S A B C edge q r) debits
+      slots
+inductive SourceOrdinaryLocalV3.LocalExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        List.{0} (List.{0} Nat) →
+          Nat → Nat → OrdinaryDispatch.Hard2SourceWork.SourceExecution → List.{0} Nat → List.{0} SourceForestV3.S → Prop
+number of parameters: 7
+constructors:
+SourceOrdinaryLocalV3.LocalExec.refused : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {Q : List.{0} (List.{0} Nat)} {b k : Nat},
+  Eq.{1} (OrdinaryDispatch.Hard2SourceWork.ordinaryPrepareMeter T S Q).value Option.none.{0} →
+    SourceOrdinaryLocalV3.LocalExec OrdExec mode T S Q b k
+      { value := { answer := Option.none.{0}, calls := List.nil.{0} },
+        work := HAdd.hAdd.{0, 0, 0} (OrdinaryDispatch.Hard2SourceWork.ordinaryPrepareMeter T S Q).work 4 }
+      List.nil.{0} List.nil.{0}
+SourceOrdinaryLocalV3.LocalExec.prepared : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {Q : List.{0} (List.{0} Nat)} {b k : Nat}
+  {js : List.{0} (Universal233.PaidQueries.Job (List.{0} Nat) (List.{0} (List.{0} Nat)))}
+  {r : SourceRetainedSchedulerV3.M} {calls : List.{0} Universal233.BothBad.Call} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S},
+  Eq.{1} (OrdinaryDispatch.Hard2SourceWork.ordinaryPrepareMeter T S Q).value (Option.some.{0} js) →
+    SourceRetainedSchedulerV3.Schedule OrdExec mode T S b js k r calls debits slots →
+      SourceOrdinaryLocalV3.LocalExec OrdExec mode T S Q b k (SourceOrdinaryLocalV3.finish T S Q r) debits slots
+inductive SourceRetainedSchedulerV3.Run : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        Nat →
+          Nat →
+            List.{0} SourceRetainedSchedulerV3.J →
+              SourceRetainedSchedulerV3.M →
+                List.{0} Universal233.BothBad.Call → List.{0} Nat → List.{0} SourceForestV3.S → Prop
+number of parameters: 5
+constructors:
+SourceRetainedSchedulerV3.Run.nil : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {b k : Nat},
+  SourceRetainedSchedulerV3.Run OrdExec mode T S b k List.nil.{0}
+    { value := { answers := Option.some.{0} List.nil.{0}, calls := List.nil.{0}, visits := 0 }, queries := List.nil.{0},
+      callerWork := 2, recursiveWork := 0 }
+    List.nil.{0} List.nil.{0} List.nil.{0}
+SourceRetainedSchedulerV3.Run.resolved : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {b k : Nat} {js : List.{0} SourceRetainedSchedulerV3.J}
+  {r : SourceRetainedSchedulerV3.M} {calls : List.{0} Universal233.BothBad.Call} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S} {U : List.{0} Nat} {c : Nat} {a : SourceForestV3.F},
+  SourceRetainedSchedulerV3.Run OrdExec mode T S b k js r calls debits slots →
+    SourceRetainedSchedulerV3.Run OrdExec mode T S b k (List.cons.{0} (Universal233.PaidQueries.Job.resolved U c a) js)
+      (SourceRetainedSchedulerV3.resolved c a r) calls debits slots
+SourceRetainedSchedulerV3.Run.failed : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {b : Nat} {U : List.{0} Nat} {k : Nat}
+  {ret : SourceMafCallbackV3.Return} {js : List.{0} SourceRetainedSchedulerV3.J},
+  SourceMafCallbackV3.MafExec OrdExec mode T S U b k ret →
+    Eq.{1} ret.meter.value Option.none.{0} →
+      SourceRetainedSchedulerV3.Run OrdExec mode T S b k (List.cons.{0} (Universal233.PaidQueries.Job.hard U) js)
+        (SourceRetainedSchedulerV3.failed U b ret.meter.work) ret.calls ret.debits ret.slots
+SourceRetainedSchedulerV3.Run.succeeded : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {b : Nat} {U : List.{0} Nat} {k : Nat}
+  {ret : SourceMafCallbackV3.Return} {a : Prod.{0, 0} Nat SourceForestV3.F} {js : List.{0} SourceRetainedSchedulerV3.J}
+  {r : SourceRetainedSchedulerV3.M} {calls : List.{0} Universal233.BothBad.Call} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S},
+  SourceMafCallbackV3.MafExec OrdExec mode T S U b k ret →
+    Eq.{1} ret.meter.value (Option.some.{0} a) →
+      SourceRetainedSchedulerV3.Run OrdExec mode T S b (HAdd.hAdd.{0, 0, 0} k (List.length.{0} ret.slots)) js r calls
+          debits slots →
+        SourceRetainedSchedulerV3.Run OrdExec mode T S b k (List.cons.{0} (Universal233.PaidQueries.Job.hard U) js)
+          (SourceRetainedSchedulerV3.succeeded U b a ret.meter.work r) (HAppend.hAppend.{0, 0, 0} ret.calls calls)
+          (HAppend.hAppend.{0, 0, 0} ret.debits debits) (HAppend.hAppend.{0, 0, 0} ret.slots slots)
+inductive SourceRetainedSchedulerV3.Schedule : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        Nat →
+          List.{0} SourceRetainedSchedulerV3.J →
+            Nat →
+              SourceRetainedSchedulerV3.M →
+                List.{0} Universal233.BothBad.Call → List.{0} Nat → List.{0} SourceForestV3.S → Prop
+number of parameters: 7
+constructors:
+SourceRetainedSchedulerV3.Schedule.refused : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {q : Nat} {js : List.{0} SourceRetainedSchedulerV3.J} {k : Nat},
+  LT.lt.{0} q
+      (HAdd.hAdd.{0, 0, 0} (OrdinaryDispatch.Hard2SourceWork.knownCostMeter js).value
+        (HMul.hMul.{0, 0, 0} 2 (OrdinaryDispatch.Hard2SourceWork.pendingMeter js).value)) →
+    SourceRetainedSchedulerV3.Schedule OrdExec mode T S q js k
+      { value := { answers := Option.none.{0}, calls := List.nil.{0}, visits := 0 }, queries := List.nil.{0},
+        callerWork :=
+          HAdd.hAdd.{0, 0, 0}
+            (HAdd.hAdd.{0, 0, 0}
+              (HAdd.hAdd.{0, 0, 0} (OrdinaryDispatch.Hard2SourceWork.knownCostMeter js).work
+                (OrdinaryDispatch.Hard2SourceWork.pendingMeter js).work)
+              (List.length.{0} js))
+            24,
+        recursiveWork := 0 }
+      List.nil.{0} List.nil.{0} List.nil.{0}
+SourceRetainedSchedulerV3.Schedule.run : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {q : Nat} {js : List.{0} SourceRetainedSchedulerV3.J} {k : Nat}
+  {r : SourceRetainedSchedulerV3.M} {calls : List.{0} Universal233.BothBad.Call} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S},
+  ¬LT.lt.{0} q
+        (HAdd.hAdd.{0, 0, 0} (OrdinaryDispatch.Hard2SourceWork.knownCostMeter js).value
+          (HMul.hMul.{0, 0, 0} 2 (OrdinaryDispatch.Hard2SourceWork.pendingMeter js).value)) →
+    SourceRetainedSchedulerV3.Run OrdExec mode T S (OrdinaryDispatch.Hard2SourceWork.allocatedMeter q js).value k js r
+        calls debits slots →
+      SourceRetainedSchedulerV3.Schedule OrdExec mode T S q js k (SourceRetainedSchedulerV3.scheduled q js r) calls
+        debits slots
+structure SourceMafCallbackV3.Return : Type
+number of parameters: 0
+fields:
+  SourceMafCallbackV3.Return.meter : Universal233.WholeSourceWork.Charged
+      (Option.{0} (Prod.{0, 0} Nat SourceForestV3.F))
+  SourceMafCallbackV3.Return.calls : List.{0} Universal233.BothBad.Call
+  SourceMafCallbackV3.Return.debits : List.{0} Nat
+  SourceMafCallbackV3.Return.slots : List.{0} SourceForestV3.S
+constructor:
+  SourceMafCallbackV3.Return.mk
+    (meter : Universal233.WholeSourceWork.Charged (Option.{0} (Prod.{0, 0} Nat SourceForestV3.F)))
+    (calls : List.{0} Universal233.BothBad.Call) (debits : List.{0} Nat) (slots : List.{0} SourceForestV3.S) :
+    SourceMafCallbackV3.Return
+inductive SourceMafCallbackV3.MafExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode → RMAF.Tree → RMAF.Tree → List.{0} Nat → Nat → Nat → SourceMafCallbackV3.Return → Prop
+number of parameters: 7
+constructors:
+SourceMafCallbackV3.MafExec.missing : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {U : List.{0} Nat} {b k : Nat},
+  Eq.{1} (GenericForest.CheckCorrespondence.meterRestrict U T).value Option.none.{0} ∨
+      Eq.{1} (GenericForest.CheckCorrespondence.meterRestrict U S).value Option.none.{0} →
+    SourceMafCallbackV3.MafExec OrdExec mode T S U b k (SourceMafCallbackV3.missingReturn T S U)
+SourceMafCallbackV3.MafExec.returned : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {U : List.{0} Nat} {b k : Nat} {t s : RMAF.Tree}
+  {out : SourceForestV3.Result},
+  Eq.{1} (GenericForest.CheckCorrespondence.meterRestrict U T).value (Option.some.{0} t) →
+    Eq.{1} (GenericForest.CheckCorrespondence.meterRestrict U S).value (Option.some.{0} s) →
+      SourceForestV3.ForestExec OrdExec mode k (Option.some.{0} t) (List.cons.{0} s List.nil.{0}) b out →
+        SourceMafCallbackV3.MafExec OrdExec mode T S U b k (SourceMafCallbackV3.forestReturn T S U b t s out)
+inductive SourceGroupEvaluationV3.EvaluationExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        List.{0} Nat →
+          List.{0} Nat →
+            List.{0} Nat →
+              Nat →
+                Nat →
+                  List.{0} Universal233.CoreProgram.Output →
+                    OrdinaryDispatch.Hard2SourceWork.GroupEvaluationSource →
+                      List.{0} Nat → List.{0} SourceForestV3.S → Prop
+number of parameters: 8
+constructors:
+SourceGroupEvaluationV3.EvaluationExec.nil : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {A B C : List.{0} Nat} {q k : Nat},
+  SourceGroupEvaluationV3.EvaluationExec OrdExec mode T S A B C q k List.nil.{0}
+    { value := { candidates := List.nil.{0}, queries := List.nil.{0} }, work := 2 } List.nil.{0} List.nil.{0}
+SourceGroupEvaluationV3.EvaluationExec.cons : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {A B C : List.{0} Nat} {q k : Nat} {o : Universal233.CoreProgram.Output}
+  {r : Universal233.WholeSourceWork.Charged Universal233.BothBadGrouped.OutputResult} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S} {os : List.{0} Universal233.CoreProgram.Output}
+  {rr : OrdinaryDispatch.Hard2SourceWork.GroupEvaluationSource} {dd : List.{0} Nat} {ss : List.{0} SourceForestV3.S},
+  SourceGroupOutputV3.OutputExec OrdExec mode T S A B C q k o r debits slots →
+    SourceGroupEvaluationV3.EvaluationExec OrdExec mode T S A B C q (HAdd.hAdd.{0, 0, 0} k (List.length.{0} slots)) os
+        rr dd ss →
+      SourceGroupEvaluationV3.EvaluationExec OrdExec mode T S A B C q k (List.cons.{0} o os)
+        (SourceGroupEvaluationV3.prepend r rr) (HAppend.hAppend.{0, 0, 0} debits dd)
+        (HAppend.hAppend.{0, 0, 0} slots ss)
+inductive SourceGroupOutputV3.OutputExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        List.{0} Nat →
+          List.{0} Nat →
+            List.{0} Nat →
+              Nat →
+                Nat →
+                  Universal233.CoreProgram.Output →
+                    Universal233.WholeSourceWork.Charged Universal233.BothBadGrouped.OutputResult →
+                      List.{0} Nat → List.{0} SourceForestV3.S → Prop
+number of parameters: 10
+constructors:
+SourceGroupOutputV3.OutputExec.unaffordable : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {A B C : List.{0} Nat} {q k : Nat} {o : Universal233.CoreProgram.Output},
+  ¬LE.le.{0} (List.length.{0} o.sourceCuts) q →
+    SourceGroupOutputV3.OutputExec OrdExec mode T S A B C q k o
+      { value := Universal233.BothBadGrouped.OutputResult.unaffordable,
+        work := HAdd.hAdd.{0, 0, 0} (List.length.{0} o.sourceCuts) 8 }
+      List.nil.{0} List.nil.{0}
+SourceGroupOutputV3.OutputExec.refused : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {A B C : List.{0} Nat} {q k : Nat}
+  {o : Universal233.CoreProgram.Output},
+  LE.le.{0} (List.length.{0} o.sourceCuts) q →
+    Eq.{1} (OrdinaryDispatch.Hard2SourceWork.groupJobsForMeter T S A B C o).value Option.none.{0} →
+      SourceGroupOutputV3.OutputExec OrdExec mode T S A B C q k o
+        { value := Universal233.BothBadGrouped.OutputResult.refused,
+          work :=
+            HAdd.hAdd.{0, 0, 0}
+              (HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 (List.length.{0} o.sourceCuts))
+                (OrdinaryDispatch.Hard2SourceWork.groupJobsForMeter T S A B C o).work)
+              12 }
+        List.nil.{0} List.nil.{0}
+SourceGroupOutputV3.OutputExec.scheduled : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {A B C : List.{0} Nat} {q k : Nat} {o : Universal233.CoreProgram.Output}
+  {js : List.{0} (Universal233.PaidQueries.Job Universal233.GroupedFullQuery.Problem (List.{0} (List.{0} Nat)))}
+  {r : SourceGroupLiteralV3.Receipt} {debits : List.{0} Nat} {slots : List.{0} SourceForestV3.S},
+  LE.le.{0} (List.length.{0} o.sourceCuts) q →
+    Eq.{1} (OrdinaryDispatch.Hard2SourceWork.groupJobsForMeter T S A B C o).value (Option.some.{0} js) →
+      SourceGroupLiteralV3.Schedule OrdExec mode (HSub.hSub.{0, 0, 0} q (List.length.{0} o.sourceCuts)) js k r debits
+          slots →
+        SourceGroupOutputV3.OutputExec OrdExec mode T S A B C q k o (SourceGroupOutputV3.finish T S A B C o r) debits
+          slots
+inductive SourceGroupLiteralV3.Run : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    Nat →
+      Nat →
+        List.{0} SourceGroupLiteralV3.J → SourceGroupLiteralV3.Receipt → List.{0} Nat → List.{0} SourceForestV3.S → Prop
+number of parameters: 3
+constructors:
+SourceGroupLiteralV3.Run.nil : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {b k : Nat},
+  SourceGroupLiteralV3.Run OrdExec mode b k List.nil.{0}
+    {
+      value :=
+        { value := { answers := Option.some.{0} List.nil.{0}, calls := List.nil.{0}, visits := 0 },
+          queries := List.nil.{0}, callerWork := 2, recursiveWork := 0 },
+      localWork := 2, callbackWork := 0 }
+    List.nil.{0} List.nil.{0}
+SourceGroupLiteralV3.Run.resolved : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {b k : Nat} {js : List.{0} SourceGroupLiteralV3.J} {r : SourceGroupLiteralV3.Receipt}
+  {debits : List.{0} Nat} {slots : List.{0} SourceForestV3.S} {p : Universal233.GroupedFullQuery.Problem} {c : Nat}
+  {a : SourceForestV3.F},
+  SourceGroupLiteralV3.Run OrdExec mode b k js r debits slots →
+    SourceGroupLiteralV3.Run OrdExec mode b k (List.cons.{0} (Universal233.PaidQueries.Job.resolved p c a) js)
+      (SourceGroupLiteralV3.resolved c a r) debits slots
+SourceGroupLiteralV3.Run.failed : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {b : Nat} {p : Universal233.GroupedFullQuery.Problem} {k : Nat}
+  {a : Universal233.WholeSourceWork.Charged (Option.{0} (Prod.{0, 0} Nat SourceForestV3.F))} {debit : Nat}
+  {slots : List.{0} SourceForestV3.S} {js : List.{0} SourceGroupLiteralV3.J},
+  SourceGroupCallbackV3.CallbackExec OrdExec mode p b k a debit slots →
+    Eq.{1} a.value Option.none.{0} →
+      SourceGroupLiteralV3.Run OrdExec mode b k (List.cons.{0} (Universal233.PaidQueries.Job.hard p) js)
+        (SourceGroupLiteralV3.failed p b a) (List.cons.{0} debit List.nil.{0}) slots
+SourceGroupLiteralV3.Run.succeeded : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {b : Nat} {p : Universal233.GroupedFullQuery.Problem} {k : Nat}
+  {a : Universal233.WholeSourceWork.Charged (Option.{0} (Prod.{0, 0} Nat SourceForestV3.F))} {debit : Nat}
+  {slots : List.{0} SourceForestV3.S} {x : Prod.{0, 0} Nat SourceForestV3.F} {js : List.{0} SourceGroupLiteralV3.J}
+  {r : SourceGroupLiteralV3.Receipt} {debits : List.{0} Nat} {ss : List.{0} SourceForestV3.S},
+  SourceGroupCallbackV3.CallbackExec OrdExec mode p b k a debit slots →
+    Eq.{1} a.value (Option.some.{0} x) →
+      SourceGroupLiteralV3.Run OrdExec mode b (HAdd.hAdd.{0, 0, 0} k (List.length.{0} slots)) js r debits ss →
+        SourceGroupLiteralV3.Run OrdExec mode b k (List.cons.{0} (Universal233.PaidQueries.Job.hard p) js)
+          (SourceGroupLiteralV3.succeeded p b a x r) (List.cons.{0} debit debits) (HAppend.hAppend.{0, 0, 0} slots ss)
+inductive SourceGroupLiteralV3.Schedule : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    Nat →
+      List.{0} SourceGroupLiteralV3.J →
+        Nat → SourceGroupLiteralV3.Receipt → List.{0} Nat → List.{0} SourceForestV3.S → Prop
+number of parameters: 5
+constructors:
+SourceGroupLiteralV3.Schedule.refused : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {q : Nat} {js : List.{0} SourceGroupLiteralV3.J} {k : Nat},
+  LT.lt.{0} q
+      (HAdd.hAdd.{0, 0, 0} (OrdinaryDispatch.Hard2SourceWork.knownCostMeter js).value
+        (HMul.hMul.{0, 0, 0} 2 (OrdinaryDispatch.Hard2SourceWork.pendingMeter js).value)) →
+    SourceGroupLiteralV3.Schedule OrdExec mode q js k
+      {
+        value :=
+          { value := { answers := Option.none.{0}, calls := List.nil.{0}, visits := 0 }, queries := List.nil.{0},
+            callerWork := HAdd.hAdd.{0, 0, 0} (HMul.hMul.{0, 0, 0} 8 (List.length.{0} js)) 8, recursiveWork := 0 },
+        localWork :=
+          HAdd.hAdd.{0, 0, 0}
+            (HAdd.hAdd.{0, 0, 0}
+              (HAdd.hAdd.{0, 0, 0} (OrdinaryDispatch.Hard2SourceWork.knownCostMeter js).work
+                (OrdinaryDispatch.Hard2SourceWork.pendingMeter js).work)
+              (List.length.{0} js))
+            24,
+        callbackWork := 0 }
+      List.nil.{0} List.nil.{0}
+SourceGroupLiteralV3.Schedule.run : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {q : Nat} {js : List.{0} SourceGroupLiteralV3.J} {k : Nat}
+  {r : SourceGroupLiteralV3.Receipt} {debits : List.{0} Nat} {slots : List.{0} SourceForestV3.S},
+  ¬LT.lt.{0} q
+        (HAdd.hAdd.{0, 0, 0} (OrdinaryDispatch.Hard2SourceWork.knownCostMeter js).value
+          (HMul.hMul.{0, 0, 0} 2 (OrdinaryDispatch.Hard2SourceWork.pendingMeter js).value)) →
+    SourceGroupLiteralV3.Run OrdExec mode (OrdinaryDispatch.Hard2SourceWork.allocatedMeter q js).value k js r debits
+        slots →
+      SourceGroupLiteralV3.Schedule OrdExec mode q js k (SourceGroupLiteralV3.finishSchedule q js r) debits slots
+inductive SourceGroupCallbackV3.CallbackExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    Universal233.GroupedFullQuery.Problem →
+      Nat →
+        Nat →
+          Universal233.WholeSourceWork.Charged (Option.{0} (Prod.{0, 0} Nat SourceForestV3.F)) →
+            Nat → List.{0} SourceForestV3.S → Prop
+number of parameters: 5
+constructors:
+SourceGroupCallbackV3.CallbackExec.run : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {p : Universal233.GroupedFullQuery.Problem} {b k : Nat} {out : SourceForestV3.Result},
+  SourceForestV3.ForestExec OrdExec mode k p.target p.sources b out →
+    SourceGroupCallbackV3.CallbackExec OrdExec mode p b k (SourceGroupCallbackV3.finish p out) out.debit out.slots
+inductive SourceGroupPairV3.PairExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        List.{0} Nat →
+          List.{0} Nat →
+            List.{0} Nat →
+              Prod.{0, 0} RMAF.Vertex RMAF.Vertex →
+                Nat →
+                  Nat →
+                    OrdinaryDispatch.Hard2SourceWork.GroupPairSourceExecution →
+                      List.{0} Nat → List.{0} SourceForestV3.S → Prop
+number of parameters: 10
+constructors:
+SourceGroupPairV3.PairExec.run : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {A B C : List.{0} Nat} {edge : Prod.{0, 0} RMAF.Vertex RMAF.Vertex}
+  {q k : Nat} {r : OrdinaryDispatch.Hard2SourceWork.GroupEvaluationSource} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S},
+  SourceGroupEvaluationV3.EvaluationExec OrdExec mode T S A B C q k (SourceGroupPairV3.outputs T S A B edge q) r debits
+      slots →
+    SourceGroupPairV3.PairExec OrdExec mode T S A B C edge q k (SourceGroupPairV3.finish T S A B edge q r) debits slots
+inductive SourceBadPairV3.LocalExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        List.{0} Nat →
+          List.{0} Nat →
+            List.{0} Nat →
+              Prod.{0, 0} RMAF.Vertex RMAF.Vertex →
+                Nat →
+                  Nat →
+                    OrdinaryDispatch.Hard2SourceWork.SourceExecution → List.{0} Nat → List.{0} SourceForestV3.S → Prop
+number of parameters: 10
+constructors:
+SourceBadPairV3.LocalExec.agrees : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {A B C : List.{0} Nat} {edge : Prod.{0, 0} RMAF.Vertex RMAF.Vertex}
+  {q k : Nat} {r : OrdinaryDispatch.Hard2SourceWork.SourceExecution} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S},
+  Eq.{1} (GenericForest.CheckCorrespondence.meterRestrictionAgrees S T C).value Bool.true →
+    SourceBothBadPairV3.PairExec OrdExec mode T S A B C edge q k r debits slots →
+      SourceBadPairV3.LocalExec OrdExec mode T S A B C edge q k (SourceBadPairV3.agreesReturn T S C r) debits slots
+SourceBadPairV3.LocalExec.grouped : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {A B C : List.{0} Nat} {edge : Prod.{0, 0} RMAF.Vertex RMAF.Vertex}
+  {q k : Nat} {r : OrdinaryDispatch.Hard2SourceWork.GroupPairSourceExecution} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S},
+  Ne.{1} (GenericForest.CheckCorrespondence.meterRestrictionAgrees S T C).value Bool.true →
+    SourceGroupPairV3.PairExec OrdExec mode T S A B C edge q k r debits slots →
+      SourceBadPairV3.LocalExec OrdExec mode T S A B C edge q k (SourceBadPairV3.groupedReturn T S C r) debits slots
+inductive SourceRule5SelectedArmV3.ArmExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        Nat →
+          Nat →
+            Nat →
+              Nat →
+                Universal233.Rule5FinalClassification.FinalSelection →
+                  Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F) → List.{0} SourceForestV3.S → Prop
+number of parameters: 9
+constructors:
+SourceRule5SelectedArmV3.ArmExec.run : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {a b q k : Nat}
+  {z : Universal233.Rule5FinalClassification.FinalSelection}
+  {r : Universal233.Rule5SelectedLocalWork.ForestReceipt (List.{0} SourceForestV3.F)} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S},
+  SourceForestV3.ChildrenExec OrdExec mode T q k
+      (Universal233.Rule5SelectedLocalWork.selectedChildrenMeter S a b z).value r debits slots →
+    SourceRule5SelectedArmV3.ArmExec OrdExec mode T S a b q k z (SourceRule5SelectedArmV3.finish T S a b q z r debits)
+      slots
+inductive SourceRule5SelectedV3.SelectedExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        Nat →
+          Nat →
+            Nat →
+              Nat →
+                Universal233.Rule5FinalClassification.FinalSelection →
+                  Universal233.WholeSourceWork.Charged Universal233.Rule5OrdinaryDispatch.Result →
+                    List.{0} SourceForestV3.S → Prop
+number of parameters: 8
+constructors:
+SourceRule5SelectedV3.SelectedExec.prefixArm : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {a b q k : Nat} {s : Universal233.Rule5Classification.LocalSelection}
+  {r : Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F)} {slots : List.{0} SourceForestV3.S},
+  SourceRule5SelectedArmV3.ArmExec OrdExec mode T S a b q k
+      (Universal233.Rule5FinalClassification.FinalSelection.prefix s) r slots →
+    SourceRule5SelectedV3.SelectedExec OrdExec mode T S a b q k
+      (Universal233.Rule5FinalClassification.FinalSelection.prefix s) (SourceRule5SelectedV3.armReturn r) slots
+SourceRule5SelectedV3.SelectedExec.firstArm : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {a b q k : Nat} {d : Universal233.Rule5FinalClassification.BadSelection} {u v : RMAF.Vertex}
+  {r : Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F)} {slots : List.{0} SourceForestV3.S},
+  SourceRule5SelectedArmV3.ArmExec OrdExec mode T S a b q k
+      (Universal233.Rule5FinalClassification.FinalSelection.remaining d
+        (Universal233.Rule5FinalClassification.BoundarySelection.first u v))
+      r slots →
+    SourceRule5SelectedV3.SelectedExec OrdExec mode T S a b q k
+      (Universal233.Rule5FinalClassification.FinalSelection.remaining d
+        (Universal233.Rule5FinalClassification.BoundarySelection.first u v))
+      (SourceRule5SelectedV3.armReturn r) slots
+SourceRule5SelectedV3.SelectedExec.thirdArm : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {a b q k : Nat} {d : Universal233.Rule5FinalClassification.BadSelection} {u v : RMAF.Vertex}
+  {r : Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F)} {slots : List.{0} SourceForestV3.S},
+  SourceRule5SelectedArmV3.ArmExec OrdExec mode T S a b q k
+      (Universal233.Rule5FinalClassification.FinalSelection.remaining d
+        (Universal233.Rule5FinalClassification.BoundarySelection.third u v))
+      r slots →
+    SourceRule5SelectedV3.SelectedExec OrdExec mode T S a b q k
+      (Universal233.Rule5FinalClassification.FinalSelection.remaining d
+        (Universal233.Rule5FinalClassification.BoundarySelection.third u v))
+      (SourceRule5SelectedV3.armReturn r) slots
+SourceRule5SelectedV3.SelectedExec.commonArm : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {a b q k : Nat} {d : Universal233.Rule5FinalClassification.BadSelection}
+  {r : Universal233.Rule5ExecutionSource.CommonReceipt (Option.{0} SourceForestV3.F)}
+  {slots : List.{0} SourceForestV3.S} {x : RMAF.Vertex},
+  SourceRule5CommonV3.CommonExec OrdExec mode T S a b q k d r slots →
+    SourceRule5SelectedV3.SelectedExec OrdExec mode T S a b q k
+      (Universal233.Rule5FinalClassification.FinalSelection.remaining d
+        (Universal233.Rule5FinalClassification.BoundarySelection.one x))
+      (SourceRule5SelectedV3.commonReturn r) slots
+SourceRule5SelectedV3.SelectedExec.paidArm : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {a b q k : Nat}
+  {r : Universal233.Rule5ExecutionSource.PaidExecutionReceipt Universal233.Rule5PaidOrdinary.SelectedResult}
+  {slots : List.{0} SourceForestV3.S} {d : Universal233.Rule5FinalClassification.BadSelection} {u v : RMAF.Vertex},
+  SourceRule5PaidSelectionV3.SolvedExec OrdExec mode T S a b q k r slots →
+    SourceRule5SelectedV3.SelectedExec OrdExec mode T S a b q k
+      (Universal233.Rule5FinalClassification.FinalSelection.remaining d
+        (Universal233.Rule5FinalClassification.BoundarySelection.second u v))
+      (SourceRule5SelectedV3.paidReturn r) slots
+inductive SourceRule5DispatchV3.DispatchExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        Nat →
+          Nat →
+            Nat →
+              Nat →
+                Universal233.WholeSourceWork.Charged Universal233.Rule5OrdinaryDispatch.Result →
+                  List.{0} SourceForestV3.S → Prop
+number of parameters: 8
+constructors:
+SourceRule5DispatchV3.DispatchExec.refused : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {a b q k : Nat},
+  Eq.{1} (Universal233.Rule5PendantLocalWork.finalMeter Universal233.ClassifierCheckFee.checkFee T S a b).value
+      Option.none.{0} →
+    SourceRule5DispatchV3.DispatchExec OrdExec mode T S a b q k
+      { value := Universal233.Rule5OrdinaryDispatch.Result.selectorRefused,
+        work :=
+          HAdd.hAdd.{0, 0, 0}
+            (Universal233.Rule5PendantLocalWork.finalMeter Universal233.ClassifierCheckFee.checkFee T S a b).work 2 }
+      List.nil.{0}
+SourceRule5DispatchV3.DispatchExec.selected : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {a b q k : Nat} {z : Universal233.Rule5FinalClassification.FinalSelection}
+  {r : Universal233.WholeSourceWork.Charged Universal233.Rule5OrdinaryDispatch.Result}
+  {slots : List.{0} SourceForestV3.S},
+  Eq.{1} (Universal233.Rule5PendantLocalWork.finalMeter Universal233.ClassifierCheckFee.checkFee T S a b).value
+      (Option.some.{0} z) →
+    SourceRule5SelectedV3.SelectedExec OrdExec mode T S a b q k z r slots →
+      SourceRule5DispatchV3.DispatchExec OrdExec mode T S a b q k (SourceRule5DispatchV3.finish T S a b r) slots
+inductive SourceRule5CommonJobsV3.JobsExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    Nat →
+      List.{0} OrdinaryCommonSplit.Caller.Job →
+        Universal233.Rule5ExecutionSource.CommonReceipt (List.{0} (Option.{0} SourceForestV3.F)) →
+          List.{0} SourceForestV3.S → Prop
+number of parameters: 2
+constructors:
+SourceRule5CommonJobsV3.JobsExec.nil : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {k : Nat},
+  SourceRule5CommonJobsV3.JobsExec OrdExec mode k List.nil.{0}
+    { value := List.nil.{0}, localWork := 1, recursiveWork := 0, calls := List.nil.{0} } List.nil.{0}
+SourceRule5CommonJobsV3.JobsExec.cons : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {k : Nat} {a : Option.{0} SourceDisjointV2.F}
+  {slot : SourceCouplingV2.Slot (Prod.{0, 0} RMAF.Tree RMAF.Tree) SourceDisjointV2.F}
+  {js : List.{0} OrdinaryCommonSplit.Caller.Job}
+  {r : Universal233.Rule5ExecutionSource.CommonReceipt (List.{0} (Option.{0} SourceForestV3.F))}
+  {slots : List.{0} SourceForestV3.S} {j : OrdinaryCommonSplit.Caller.Job},
+  SourceForestSingletonV2.Invoke OrdExec mode k (Prod.mk.{0, 0} j.T j.S) j.budget a slot →
+    SourceRule5CommonJobsV3.JobsExec OrdExec mode (HAdd.hAdd.{0, 0, 0} k 1) js r slots →
+      SourceRule5CommonJobsV3.JobsExec OrdExec mode k (List.cons.{0} j js) (SourceRule5CommonJobsV3.prepend j a r)
+        (List.cons.{0} slot slots)
+inductive SourceRule5CommonV3.PaidExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    OrdinaryCommonSplit.Caller.Setup →
+      Nat →
+        Nat →
+          SourceForestV3.F →
+            SourceForestV3.F →
+              Universal233.Rule5ExecutionSource.CommonReceipt (Option.{0} SourceForestV3.F) →
+                List.{0} SourceForestV3.S → Prop
+number of parameters: 7
+constructors:
+SourceRule5CommonV3.PaidExec.run : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {d : OrdinaryCommonSplit.Caller.Setup} {q k : Nat} {FY FN : SourceForestV3.F}
+  {asw : Universal233.Rule5ExecutionSource.CommonReceipt (List.{0} (Option.{0} SourceForestV3.F))}
+  {slots : List.{0} SourceForestV3.S},
+  SourceRule5CommonJobsV3.JobsExec OrdExec mode k (Universal233.Rule5ExecutionSource.paidJobsMeter d q).value asw
+      slots →
+    SourceRule5CommonV3.PaidExec OrdExec mode d q k FY FN (SourceRule5CommonV3.paidReturn d q FY FN asw) slots
+inductive SourceRule5CommonV3.OutsideExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    OrdinaryCommonSplit.Caller.Setup →
+      Nat →
+        Nat →
+          SourceForestV3.F →
+            Universal233.Rule5ExecutionSource.CommonReceipt (Option.{0} SourceForestV3.F) →
+              List.{0} SourceForestV3.S → Prop
+number of parameters: 6
+constructors:
+SourceRule5CommonV3.OutsideExec.refused : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {d : OrdinaryCommonSplit.Caller.Setup} {q k : Nat} {FY : SourceForestV3.F},
+  Eq.{1} (Universal233.Rule5ExecutionSource.outsideReplyMeter d FY).value Option.none.{0} →
+    SourceRule5CommonV3.OutsideExec OrdExec mode d q k FY
+      { value := Option.none.{0},
+        localWork := HAdd.hAdd.{0, 0, 0} (Universal233.Rule5ExecutionSource.outsideReplyMeter d FY).work 2,
+        recursiveWork := 0, calls := List.nil.{0} }
+      List.nil.{0}
+SourceRule5CommonV3.OutsideExec.paid : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {d : OrdinaryCommonSplit.Caller.Setup} {q k : Nat} {FY : SourceForestV3.F}
+  {FN : List.{0} (List.{0} Nat)} {r : Universal233.Rule5ExecutionSource.CommonReceipt (Option.{0} SourceForestV3.F)}
+  {slots : List.{0} SourceForestV3.S},
+  Eq.{1} (Universal233.Rule5ExecutionSource.outsideReplyMeter d FY).value (Option.some.{0} FN) →
+    SourceRule5CommonV3.PaidExec OrdExec mode d q k FY FN r slots →
+      SourceRule5CommonV3.OutsideExec OrdExec mode d q k FY (SourceRule5CommonV3.outsideReturn d FY r) slots
+inductive SourceRule5CommonV3.GuardedExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    OrdinaryCommonSplit.Caller.Setup →
+      Nat →
+        Nat →
+          Universal233.Rule5ExecutionSource.CommonReceipt (Option.{0} (Option.{0} SourceForestV3.F)) →
+            List.{0} SourceForestV3.S → Prop
+number of parameters: 5
+constructors:
+SourceRule5CommonV3.GuardedExec.refused : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {d : OrdinaryCommonSplit.Caller.Setup} {q k : Nat},
+  (¬Exists.{1} fun p =>
+        Eq.{1} (OrdinaryDispatch.EarlyLocalWork.meterPretest d.ty d.sy).value
+          (Universal233.DepthOne.Result.found (Option.some.{0} p))) →
+    SourceRule5CommonV3.GuardedExec OrdExec mode d q k
+      { value := Option.none.{0},
+        localWork := HAdd.hAdd.{0, 0, 0} (OrdinaryDispatch.EarlyLocalWork.meterPretest d.ty d.sy).work 2,
+        recursiveWork := 0, calls := List.nil.{0} }
+      List.nil.{0}
+SourceRule5CommonV3.GuardedExec.found : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {d : OrdinaryCommonSplit.Caller.Setup} {q k : Nat} {p : RMAF.Vertex}
+  {r : Universal233.Rule5ExecutionSource.CommonReceipt (Option.{0} SourceForestV3.F)}
+  {slots : List.{0} SourceForestV3.S},
+  Eq.{1} (OrdinaryDispatch.EarlyLocalWork.meterPretest d.ty d.sy).value
+      (Universal233.DepthOne.Result.found (Option.some.{0} p)) →
+    SourceRule5CommonV3.OutsideExec OrdExec mode d q k
+        (OrdinaryDispatch.EarlyLocalWork.meterForest d.sy (Option.some.{0} p)).value r slots →
+      SourceRule5CommonV3.GuardedExec OrdExec mode d q k (SourceRule5CommonV3.guardedReturn d p r) slots
+inductive SourceRule5CommonV3.CommonExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        Nat →
+          Nat →
+            Nat →
+              Nat →
+                Universal233.Rule5FinalClassification.BadSelection →
+                  Universal233.Rule5ExecutionSource.CommonReceipt (Option.{0} SourceForestV3.F) →
+                    List.{0} SourceForestV3.S → Prop
+number of parameters: 9
+constructors:
+SourceRule5CommonV3.CommonExec.refused : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {a b q k : Nat}
+  {d : Universal233.Rule5FinalClassification.BadSelection},
+  Eq.{1} (Universal233.Rule5RemainingLocalWork.commonSetupMeter T S a b d).value Option.none.{0} →
+    SourceRule5CommonV3.CommonExec OrdExec mode T S a b q k d
+      { value := Option.none.{0},
+        localWork := HAdd.hAdd.{0, 0, 0} (Universal233.Rule5RemainingLocalWork.commonSetupMeter T S a b d).work 2,
+        recursiveWork := 0, calls := List.nil.{0} }
+      List.nil.{0}
+SourceRule5CommonV3.CommonExec.built : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {a b q k : Nat}
+  {d : Universal233.Rule5FinalClassification.BadSelection} {setup : OrdinaryCommonSplit.Caller.Setup}
+  {r : Universal233.Rule5ExecutionSource.CommonReceipt (Option.{0} (Option.{0} SourceForestV3.F))}
+  {slots : List.{0} SourceForestV3.S},
+  Eq.{1} (Universal233.Rule5RemainingLocalWork.commonSetupMeter T S a b d).value (Option.some.{0} setup) →
+    SourceRule5CommonV3.GuardedExec OrdExec mode setup q k r slots →
+      SourceRule5CommonV3.CommonExec OrdExec mode T S a b q k d (SourceRule5CommonV3.commonReturn T S a b d r) slots
+inductive SourceRule5PaidRequestV3.RequestExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    Universal233.Rule5PaidSelector.PaidRequest →
+      Nat →
+        Universal233.Rule5ExecutionSource.PaidExecutionReceipt (Option.{0} SourceForestV3.F) →
+          List.{0} SourceForestV3.S → Prop
+number of parameters: 4
+constructors:
+SourceRule5PaidRequestV3.RequestExec.run : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {j : Universal233.Rule5PaidSelector.PaidRequest} {k : Nat} {a : Universal233.Rule5ExecutionSource.CurrentReceipt}
+  {slots : List.{0} SourceForestV3.S},
+  SourceRule5CurrentV3.CurrentExec OrdExec mode (Option.some.{0} j.target) j.sources j.residual k a slots →
+    SourceRule5PaidRequestV3.RequestExec OrdExec mode j k (SourceRule5PaidRequestV3.requestReturn a) slots
+inductive SourceRule5PaidRequestV3.AnswerListExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    Nat →
+      List.{0} Universal233.Rule5PaidSelector.PaidRequest →
+        Universal233.Rule5ExecutionSource.PaidExecutionReceipt (List.{0} SourceForestV3.F) →
+          List.{0} SourceForestV3.S → Prop
+number of parameters: 2
+constructors:
+SourceRule5PaidRequestV3.AnswerListExec.nil : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode} {k : Nat},
+  SourceRule5PaidRequestV3.AnswerListExec OrdExec mode k List.nil.{0}
+    { value := List.nil.{0}, prefixWork := 1, forestDebit := 0, ordinaryCalls := List.nil.{0} } List.nil.{0}
+SourceRule5PaidRequestV3.AnswerListExec.cons : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {j : Universal233.Rule5PaidSelector.PaidRequest} {k : Nat}
+  {a : Universal233.Rule5ExecutionSource.PaidExecutionReceipt (Option.{0} SourceForestV3.F)}
+  {slots : List.{0} SourceForestV3.S} {js : List.{0} Universal233.Rule5PaidSelector.PaidRequest}
+  {r : Universal233.Rule5ExecutionSource.PaidExecutionReceipt (List.{0} SourceForestV3.F)}
+  {ss : List.{0} SourceForestV3.S},
+  SourceRule5PaidRequestV3.RequestExec OrdExec mode j k a slots →
+    SourceRule5PaidRequestV3.AnswerListExec OrdExec mode (HAdd.hAdd.{0, 0, 0} k (List.length.{0} slots)) js r ss →
+      SourceRule5PaidRequestV3.AnswerListExec OrdExec mode k (List.cons.{0} j js) (SourceRule5PaidRequestV3.prepend a r)
+        (HAppend.hAppend.{0, 0, 0} slots ss)
+inductive SourceRule5PaidSelectionV3.AnswersExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    {T S : RMAF.Tree} →
+      Universal233.Rule5PaidSelector.SelectedPaid T S →
+        Nat →
+          Nat →
+            Universal233.Rule5ExecutionSource.PaidExecutionReceipt (List.{0} SourceForestV3.F) →
+              List.{0} SourceForestV3.S → Prop
+number of parameters: 7
+constructors:
+SourceRule5PaidSelectionV3.AnswersExec.run : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {R : Universal233.Rule5PaidSelector.SelectedPaid T S} {q k : Nat}
+  {r : Universal233.Rule5ExecutionSource.PaidExecutionReceipt (List.{0} SourceForestV3.F)}
+  {slots : List.{0} SourceForestV3.S},
+  SourceRule5PaidRequestV3.AnswerListExec OrdExec mode k
+      (Universal233.Rule5ExecutionSource.requestsMeter R.geometry q).value r slots →
+    SourceRule5PaidSelectionV3.AnswersExec OrdExec mode R q k (SourceRule5PaidSelectionV3.answersReturn R q r) slots
+inductive SourceRule5PaidSelectionV3.BestExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    {T S : RMAF.Tree} →
+      Universal233.Rule5PaidSelector.SelectedPaid T S →
+        Nat →
+          Nat →
+            Universal233.Rule5ExecutionSource.PaidExecutionReceipt (Option.{0} SourceForestV3.F) →
+              List.{0} SourceForestV3.S → Prop
+number of parameters: 7
+constructors:
+SourceRule5PaidSelectionV3.BestExec.run : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {R : Universal233.Rule5PaidSelector.SelectedPaid T S} {q k : Nat}
+  {r : Universal233.Rule5ExecutionSource.PaidExecutionReceipt (List.{0} SourceForestV3.F)}
+  {slots : List.{0} SourceForestV3.S},
+  SourceRule5PaidSelectionV3.AnswersExec OrdExec mode R q k r slots →
+    SourceRule5PaidSelectionV3.BestExec OrdExec mode R q k (SourceRule5PaidSelectionV3.bestReturn T S q r) slots
+inductive SourceRule5PaidSelectionV3.SolvedExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        Nat →
+          Nat →
+            Nat →
+              Nat →
+                Universal233.Rule5ExecutionSource.PaidExecutionReceipt Universal233.Rule5PaidOrdinary.SelectedResult →
+                  List.{0} SourceForestV3.S → Prop
+number of parameters: 8
+constructors:
+SourceRule5PaidSelectionV3.SolvedExec.refused : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {a b q k : Nat},
+  Eq.{1} (SourceRule5PaidSelectionV3.prepare T S a b).value Option.none.{0} →
+    SourceRule5PaidSelectionV3.SolvedExec OrdExec mode T S a b q k
+      { value := Universal233.Rule5PaidOrdinary.SelectedResult.builderRefused,
+        prefixWork := HAdd.hAdd.{0, 0, 0} (SourceRule5PaidSelectionV3.prepare T S a b).work 2, forestDebit := 0,
+        ordinaryCalls := List.nil.{0} }
+      List.nil.{0}
+SourceRule5PaidSelectionV3.SolvedExec.built : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {a b q k : Nat} {R : Universal233.Rule5PaidSelector.SelectedPaid T S}
+  {r : Universal233.Rule5ExecutionSource.PaidExecutionReceipt (Option.{0} SourceForestV3.F)}
+  {slots : List.{0} SourceForestV3.S},
+  Eq.{1} (SourceRule5PaidSelectionV3.prepare T S a b).value (Option.some.{0} R) →
+    SourceRule5PaidSelectionV3.BestExec OrdExec mode R q k r slots →
+      SourceRule5PaidSelectionV3.SolvedExec OrdExec mode T S a b q k (SourceRule5PaidSelectionV3.solvedReturn T S a b r)
+        slots
+inductive SourceRule5CurrentV3.CurrentExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    Option.{0} RMAF.Tree →
+      List.{0} RMAF.Tree →
+        Nat → Nat → Universal233.Rule5ExecutionSource.CurrentReceipt → List.{0} SourceForestV3.S → Prop
+number of parameters: 6
+constructors:
+SourceRule5CurrentV3.CurrentExec.malformed : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T : Option.{0} RMAF.Tree} {ss : List.{0} RMAF.Tree} {r k : Nat},
+  Eq.{1} (Universal233.Rule5ExecutionSource.forestPretestMeter T ss).value ForestPretest01.Result.refused →
+    SourceRule5CurrentV3.CurrentExec OrdExec mode T ss r k
+      { value := Universal233.Rule5PaidOrdinary.CurrentResult.malformed,
+        prefixWork := HAdd.hAdd.{0, 0, 0} (Universal233.Rule5ExecutionSource.forestPretestMeter T ss).work 2,
+        forestDebit := 0, ordinaryCalls := List.nil.{0} }
+      List.nil.{0}
+SourceRule5CurrentV3.CurrentExec.found : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T : Option.{0} RMAF.Tree} {ss : List.{0} RMAF.Tree} {r k : Nat}
+  {F0 : ForestPretest01.Forest},
+  Eq.{1} (Universal233.Rule5ExecutionSource.forestPretestMeter T ss).value (ForestPretest01.Result.found F0) →
+    SourceRule5CurrentV3.CurrentExec OrdExec mode T ss r k
+      {
+        value :=
+          Universal233.Rule5PaidOrdinary.CurrentResult.answered
+            (ite.{1} (LE.le.{0} (ForestState.additionalCost ss F0) r) (Option.some.{0} F0) Option.none.{0}),
+        prefixWork :=
+          HAdd.hAdd.{0, 0, 0}
+            (HAdd.hAdd.{0, 0, 0}
+              (HAdd.hAdd.{0, 0, 0} (Universal233.Rule5ExecutionSource.forestPretestMeter T ss).work
+                (List.length.{0} F0))
+              (List.length.{0} ss))
+            4,
+        forestDebit := 0, ordinaryCalls := List.nil.{0} }
+      List.nil.{0}
+SourceRule5CurrentV3.CurrentExec.low : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T : Option.{0} RMAF.Tree} {ss : List.{0} RMAF.Tree} {r k : Nat},
+  Eq.{1} (Universal233.Rule5ExecutionSource.forestPretestMeter T ss).value ForestPretest01.Result.rejected →
+    LE.le.{0} r 1 →
+      SourceRule5CurrentV3.CurrentExec OrdExec mode T ss r k
+        { value := Universal233.Rule5PaidOrdinary.CurrentResult.answered Option.none.{0},
+          prefixWork := HAdd.hAdd.{0, 0, 0} (Universal233.Rule5ExecutionSource.forestPretestMeter T ss).work 3,
+          forestDebit := 0, ordinaryCalls := List.nil.{0} }
+        List.nil.{0}
+SourceRule5CurrentV3.CurrentExec.hard : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T : Option.{0} RMAF.Tree} {ss : List.{0} RMAF.Tree} {r k : Nat}
+  {out : SourceForestV3.Result},
+  Eq.{1} (Universal233.Rule5ExecutionSource.forestPretestMeter T ss).value ForestPretest01.Result.rejected →
+    ¬LE.le.{0} r 1 →
+      SourceForestV3.ForestExec OrdExec mode k T ss r out →
+        SourceRule5CurrentV3.CurrentExec OrdExec mode T ss r k (SourceRule5CurrentV3.hardReturn T ss out) out.slots
+inductive SourceDisjointRunV3.DisjointExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        Nat →
+          Nat →
+            Nat →
+              Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F) →
+                List.{0} Universal233.BothBad.Call → List.{0} SourceForestV3.S → Prop
+number of parameters: 7
+constructors:
+SourceDisjointRunV3.DisjointExec.run : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {a b q : Nat}
+  {r : Universal233.Rule5SelectedLocalWork.ForestReceipt (List.{0} SourceForestV3.F)} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S} {qr : OrdinaryDispatch.Hard2SourceWork.SourceExecution}
+  {qslots : List.{0} SourceForestV3.S},
+  SourceForestV3.ChildrenExec OrdExec mode T q 0
+      (List.cons.{0} (Universal233.Rule5SelectedLocalWork.singletonChildMeter S a).value
+        (List.cons.{0} (Universal233.Rule5SelectedLocalWork.singletonChildMeter S b).value List.nil.{0}))
+      r debits slots →
+    SourceDisjointQueryV3.QueryExec OrdExec mode T S (Universal233.Rule5PendantLocalWork.partitionMeter S a b).value q
+        (List.length.{0} slots) qr qslots →
+      SourceDisjointRunV3.DisjointExec OrdExec mode T S a b q (SourceDisjointRunV3.finish T S a b q r debits qr)
+        (HAppend.hAppend.{0, 0, 0} (SourceDisjointRunV3.childrenCalls T r) qr.value.calls)
+        (HAppend.hAppend.{0, 0, 0} slots qslots)
+inductive SourceDisjointQueryV3.QueryExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        List.{0} (List.{0} Nat) →
+          Nat → Nat → OrdinaryDispatch.Hard2SourceWork.SourceExecution → List.{0} SourceForestV3.S → Prop
+number of parameters: 7
+constructors:
+SourceDisjointQueryV3.QueryExec.refused : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {parts : List.{0} (List.{0} Nat)} {q k : Nat},
+  ¬LE.le.{0} (HSub.hSub.{0, 0, 0} (List.length.{0} parts) 1) q →
+    SourceDisjointQueryV3.QueryExec OrdExec mode T S parts q k
+      { value := { answer := Option.none.{0}, calls := List.nil.{0} },
+        work := HAdd.hAdd.{0, 0, 0} (HAdd.hAdd.{0, 0, 0} (List.length.{0} parts) 8) 0 }
+      List.nil.{0}
+SourceDisjointQueryV3.QueryExec.returned : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {parts : List.{0} (List.{0} Nat)} {q k : Nat} {r : OrdinaryDispatch.Hard2SourceWork.SourceExecution}
+  {debits : List.{0} Nat} {slots : List.{0} SourceForestV3.S},
+  LE.le.{0} (HSub.hSub.{0, 0, 0} (List.length.{0} parts) 1) q →
+    SourceOrdinaryLocalV3.LocalExec OrdExec mode T S parts
+        (HSub.hSub.{0, 0, 0} q (HSub.hSub.{0, 0, 0} (List.length.{0} parts) 1)) k r debits slots →
+      SourceDisjointQueryV3.QueryExec OrdExec mode T S parts q k (SourceDisjointQueryV3.finish T S parts q r debits)
+        slots
+inductive SourceUnitCombineV3.CombineExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        Nat →
+          Nat →
+            Nat →
+              Universal233.BothBad.Execution →
+                Nat → OrdinaryDispatch.Hard2SourceWork.SourceExecution → List.{0} SourceForestV3.S → Prop
+number of parameters: 9
+constructors:
+SourceUnitCombineV3.CombineExec.run : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {a b q : Nat} {paid : Universal233.BothBad.Execution} {k : Nat}
+  {r : Universal233.Rule5SelectedLocalWork.ForestReceipt (List.{0} SourceForestV3.F)} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S},
+  SourceForestV3.ChildrenExec OrdExec mode T q k (OrdinaryDispatch.OuterSource.unitChildrenMeter S a b).value r debits
+      slots →
+    SourceUnitCombineV3.CombineExec OrdExec mode T S a b q paid k (SourceUnitCombineV3.finish T S a b q paid r debits)
+      slots
+inductive SourcePaidCaseV3.SelectedExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        Universal233.CherryBranching.Candidate →
+          Nat →
+            Universal233.Hard2Overlap.Result →
+              OrdinaryDispatch.OuterSource.PaidRoute →
+                OrdinaryDispatch.Hard2SourceWork.SourceExecution →
+                  List.{0} SourcePaidCaseV3.Occurrence → List.{0} SourcePaidCaseV3.Occurrence → Prop
+number of parameters: 7
+constructors:
+SourcePaidCaseV3.SelectedExec.empty : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {c : Universal233.CherryBranching.Candidate} {q : Nat}
+  {out : Universal233.Hard2Overlap.Result},
+  SourcePaidCaseV3.SelectedExec OrdExec mode T S c q out OrdinaryDispatch.OuterSource.PaidRoute.empty
+    { value := { answer := Option.none.{0}, calls := List.nil.{0} }, work := 0 } List.nil.{0} List.nil.{0}
+SourcePaidCaseV3.SelectedExec.good : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {c : Universal233.CherryBranching.Candidate} {q : Nat}
+  {out : Universal233.Hard2Overlap.Result} {r : OrdinaryDispatch.Hard2SourceWork.SourceExecution}
+  {slots : List.{0} SourceForestV3.S} (A B C : List.{0} Nat),
+  SourceGoodPairV3.GoodExec OrdExec mode T S A B C q r slots →
+    SourcePaidCaseV3.SelectedExec OrdExec mode T S c q out (OrdinaryDispatch.OuterSource.PaidRoute.good A B C) r
+      (SourcePaidCaseV3.linear slots) (SourcePaidCaseV3.linear slots)
+SourcePaidCaseV3.SelectedExec.hard : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {c : Universal233.CherryBranching.Candidate} {q : Nat}
+  {out : Universal233.Hard2Overlap.Result} {r : OrdinaryDispatch.Hard2SourceWork.SourceExecution}
+  {cells : List.{0} SourceFullOutputsV3.Cell},
+  SourceFullOutputsV3.HardPaidExec OrdExec mode T S q c out r cells →
+    SourcePaidCaseV3.SelectedExec OrdExec mode T S c q out OrdinaryDispatch.OuterSource.PaidRoute.hard r
+      (SourceFullOutputsV3.recorded cells) (SourceFullOutputsV3.chronological cells)
+SourcePaidCaseV3.SelectedExec.bad : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {c : Universal233.CherryBranching.Candidate} {q : Nat}
+  {out : Universal233.Hard2Overlap.Result} {edge : Prod.{0, 0} RMAF.Vertex RMAF.Vertex}
+  {r : OrdinaryDispatch.Hard2SourceWork.SourceExecution} {debits : List.{0} Nat} {slots : List.{0} SourceForestV3.S}
+  (A B C : List.{0} Nat),
+  SourceBadPairV3.LocalExec OrdExec mode T S A B C edge q 0 r debits slots →
+    SourcePaidCaseV3.SelectedExec OrdExec mode T S c q out (OrdinaryDispatch.OuterSource.PaidRoute.bad A B C edge)
+      (SourceBadPairV3.complete r debits) (SourcePaidCaseV3.linear slots) (SourcePaidCaseV3.linear slots)
+inductive SourcePaidCaseV3.PaidExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        Universal233.CherryBranching.Candidate →
+          Nat →
+            Universal233.Hard2Overlap.Result →
+              OrdinaryDispatch.Hard2SourceWork.SourceExecution →
+                List.{0} SourcePaidCaseV3.Occurrence → List.{0} SourcePaidCaseV3.Occurrence → Prop
+number of parameters: 7
+constructors:
+SourcePaidCaseV3.PaidExec.run : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {c : Universal233.CherryBranching.Candidate} {q : Nat}
+  {out : Universal233.Hard2Overlap.Result} {r : OrdinaryDispatch.Hard2SourceWork.SourceExecution}
+  {recorded chronological : List.{0} SourcePaidCaseV3.Occurrence},
+  SourcePaidCaseV3.SelectedExec OrdExec mode T S c q out (OrdinaryDispatch.OuterSource.paidOuterMeter T S c out).value r
+      recorded chronological →
+    SourcePaidCaseV3.PaidExec OrdExec mode T S c q out (SourcePaidCaseV3.finish T S c out r) recorded chronological
+inductive SourcePaidUnitsV3.PaidUnitsExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  SourceCouplingV2.Mode →
+    RMAF.Tree →
+      RMAF.Tree →
+        Universal233.CherryBranching.Candidate →
+          Nat →
+            Universal233.Hard2Overlap.Result →
+              Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F) →
+                List.{0} SourcePaidUnitsV3.Occurrence → List.{0} SourcePaidUnitsV3.Occurrence → Prop
+number of parameters: 7
+constructors:
+SourcePaidUnitsV3.PaidUnitsExec.run : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T S : RMAF.Tree} {c : Universal233.CherryBranching.Candidate} {q : Nat}
+  {out : Universal233.Hard2Overlap.Result} {p : OrdinaryDispatch.Hard2SourceWork.SourceExecution}
+  {pr pc : List.{0} SourcePaidCaseV3.Occurrence} {u : OrdinaryDispatch.Hard2SourceWork.SourceExecution}
+  {us : List.{0} SourceForestV3.S},
+  SourcePaidCaseV3.PaidExec OrdExec mode T S c q out p pr pc →
+    SourceUnitCombineV3.CombineExec OrdExec mode T S c.a c.b q p.value 0 u us →
+      SourcePaidUnitsV3.PaidUnitsExec OrdExec mode T S c q out (SourcePaidUnitsV3.finish p u)
+        (SourcePaidUnitsV3.recorded pr us) (SourcePaidUnitsV3.chronological pc us)
+inductive SourceHard2NonAdmittedV3.RouteExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  RMAF.Tree →
+    RMAF.Tree →
+      Universal233.CherryBranching.Candidate →
+        Nat →
+          OrdinaryDispatch.Hard2SourceWork.Hard2Route →
+            Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F) → Prop
+number of parameters: 5
+constructors:
+SourceHard2NonAdmittedV3.RouteExec.refused : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {T S : RMAF.Tree}
+  {c : Universal233.CherryBranching.Candidate} {q : Nat},
+  SourceHard2NonAdmittedV3.RouteExec OrdExec T S c q OrdinaryDispatch.Hard2SourceWork.Hard2Route.refused
+    { value := Option.none.{0}, work := 0 }
+SourceHard2NonAdmittedV3.RouteExec.direct : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {T S : RMAF.Tree}
+  {c : Universal233.CherryBranching.Candidate} {q : Nat} (a : Option.{0} SourceForestV3.F),
+  SourceHard2NonAdmittedV3.RouteExec OrdExec T S c q (OrdinaryDispatch.Hard2SourceWork.Hard2Route.direct a)
+    { value := a, work := 0 }
+SourceHard2NonAdmittedV3.RouteExec.disjoint : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {T S : RMAF.Tree}
+  {c : Universal233.CherryBranching.Candidate} {q : Nat}
+  {r : Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F)} {calls : List.{0} Universal233.BothBad.Call}
+  {slots : List.{0} SourceForestV3.S},
+  SourceDisjointRunV3.DisjointExec OrdExec (SourceCouplingV2.Mode.cutoff q) T S c.a c.b q r calls slots →
+    SourceHard2NonAdmittedV3.RouteExec OrdExec T S c q OrdinaryDispatch.Hard2SourceWork.Hard2Route.disjointPaid r
+SourceHard2NonAdmittedV3.RouteExec.paid : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {T S : RMAF.Tree} {c : Universal233.CherryBranching.Candidate} {q : Nat} {out : Universal233.Hard2Overlap.Result}
+  {r : Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F)}
+  {rec chrono : List.{0} SourcePaidUnitsV3.Occurrence},
+  SourcePaidUnitsV3.PaidUnitsExec OrdExec (SourceCouplingV2.Mode.cutoff q) T S c q out r rec chrono →
+    SourceHard2NonAdmittedV3.RouteExec OrdExec T S c q (OrdinaryDispatch.Hard2SourceWork.Hard2Route.paid out) r
+inductive SourceHard2NonAdmittedV3.Hard2Exec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  RMAF.Tree →
+    RMAF.Tree →
+      Universal233.CherryBranching.Candidate →
+        Nat → Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F) → Prop
+number of parameters: 5
+constructors:
+SourceHard2NonAdmittedV3.Hard2Exec.run : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {T S : RMAF.Tree} {c : Universal233.CherryBranching.Candidate} {q : Nat}
+  {r : Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F)},
+  SourceHard2NonAdmittedV3.RouteExec OrdExec T S c q (OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter T S c q).value
+      r →
+    SourceHard2NonAdmittedV3.Hard2Exec OrdExec T S c q (SourceHard2NonAdmittedV3.finish T S c q r)
+inductive SourceHard2WholeV3.RouteExec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  RMAF.Tree →
+    RMAF.Tree →
+      Universal233.CherryBranching.Candidate →
+        Nat →
+          OrdinaryDispatch.Hard2SourceWork.Hard2Route →
+            Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F) → Prop
+number of parameters: 5
+constructors:
+SourceHard2WholeV3.RouteExec.other : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {T S : RMAF.Tree} {c : Universal233.CherryBranching.Candidate} {q : Nat}
+  {route : OrdinaryDispatch.Hard2SourceWork.Hard2Route}
+  {r : Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F)},
+  SourceHard2NonAdmittedV3.RouteExec OrdExec T S c q route r → SourceHard2WholeV3.RouteExec OrdExec T S c q route r
+SourceHard2WholeV3.RouteExec.admitted : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {T S : RMAF.Tree} {c : Universal233.CherryBranching.Candidate} {q : Nat}
+  {r : Universal233.WholeSourceWork.Charged Universal233.Rule5OrdinaryDispatch.Result}
+  {slots : List.{0} SourceForestV3.S},
+  SourceRule5DispatchV3.DispatchExec OrdExec (SourceCouplingV2.Mode.cutoff q) T S c.a c.b q 0 r slots →
+    SourceHard2WholeV3.RouteExec OrdExec T S c q OrdinaryDispatch.Hard2SourceWork.Hard2Route.admittedRule5
+      (SourceRule5DispatchV3.answerView r)
+inductive SourceHard2WholeV3.Hard2Exec : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  RMAF.Tree →
+    RMAF.Tree →
+      Universal233.CherryBranching.Candidate →
+        Nat → Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F) → Prop
+number of parameters: 5
+constructors:
+SourceHard2WholeV3.Hard2Exec.run : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {T S : RMAF.Tree} {c : Universal233.CherryBranching.Candidate} {q : Nat}
+  {r : Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F)},
+  SourceHard2WholeV3.RouteExec OrdExec T S c q (OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter T S c q).value r →
+    SourceHard2WholeV3.Hard2Exec OrdExec T S c q (SourceHard2WholeV3.finish T S c q r)
+inductive SourceHard2WholeV3.RouteLedger : (RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop) →
+  RMAF.Tree →
+    RMAF.Tree →
+      Universal233.CherryBranching.Candidate →
+        Nat →
+          OrdinaryDispatch.Hard2SourceWork.Hard2Route →
+            Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F) →
+              List.{0} SourceHard2WholeV3.Occurrence → List.{0} SourceHard2WholeV3.Occurrence → Prop
+number of parameters: 5
+constructors:
+SourceHard2WholeV3.RouteLedger.refused : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {T S : RMAF.Tree} {c : Universal233.CherryBranching.Candidate} {q : Nat},
+  SourceHard2WholeV3.RouteLedger OrdExec T S c q OrdinaryDispatch.Hard2SourceWork.Hard2Route.refused
+    { value := Option.none.{0}, work := 0 } List.nil.{0} List.nil.{0}
+SourceHard2WholeV3.RouteLedger.direct : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {T S : RMAF.Tree} {c : Universal233.CherryBranching.Candidate} {q : Nat} (a : Option.{0} SourceForestV3.F),
+  SourceHard2WholeV3.RouteLedger OrdExec T S c q (OrdinaryDispatch.Hard2SourceWork.Hard2Route.direct a)
+    { value := a, work := 0 } List.nil.{0} List.nil.{0}
+SourceHard2WholeV3.RouteLedger.disjoint : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {T S : RMAF.Tree} {c : Universal233.CherryBranching.Candidate} {q : Nat}
+  {r : Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F)} {calls : List.{0} Universal233.BothBad.Call}
+  {slots : List.{0} SourceForestV3.S},
+  SourceDisjointRunV3.DisjointExec OrdExec (SourceCouplingV2.Mode.cutoff q) T S c.a c.b q r calls slots →
+    SourceHard2WholeV3.RouteLedger OrdExec T S c q OrdinaryDispatch.Hard2SourceWork.Hard2Route.disjointPaid r
+      (SourceHard2WholeV3.linear slots) (SourceHard2WholeV3.linear slots)
+SourceHard2WholeV3.RouteLedger.paid : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {T S : RMAF.Tree} {c : Universal233.CherryBranching.Candidate} {q : Nat} {out : Universal233.Hard2Overlap.Result}
+  {r : Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F)}
+  {rec chrono : List.{0} SourcePaidUnitsV3.Occurrence},
+  SourcePaidUnitsV3.PaidUnitsExec OrdExec (SourceCouplingV2.Mode.cutoff q) T S c q out r rec chrono →
+    SourceHard2WholeV3.RouteLedger OrdExec T S c q (OrdinaryDispatch.Hard2SourceWork.Hard2Route.paid out) r rec chrono
+SourceHard2WholeV3.RouteLedger.admitted : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {T S : RMAF.Tree} {c : Universal233.CherryBranching.Candidate} {q : Nat}
+  {r : Universal233.WholeSourceWork.Charged Universal233.Rule5OrdinaryDispatch.Result}
+  {slots : List.{0} SourceForestV3.S},
+  SourceRule5DispatchV3.DispatchExec OrdExec (SourceCouplingV2.Mode.cutoff q) T S c.a c.b q 0 r slots →
+    SourceHard2WholeV3.RouteLedger OrdExec T S c q OrdinaryDispatch.Hard2SourceWork.Hard2Route.admittedRule5
+      (SourceRule5DispatchV3.answerView r) (SourceHard2WholeV3.linear slots) (SourceHard2WholeV3.linear slots)
+@SourceForestV3.forest_exists : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode},
+  (∀ (T S : RMAF.Tree) (b : Nat),
+      Eq.{1} (SourceCouplingV2.enabled mode b) Bool.true → Exists.{1} fun a => OrdExec T S b a) →
+    ∀ (q k : Nat) (T : Option.{0} RMAF.Tree) (ss : List.{0} RMAF.Tree),
+      Exists.{1} fun out => SourceForestV3.ForestExec OrdExec mode k T ss q out
+@SourceForestV3.forest_correspondence : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {base : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceDisjointV2.F},
+  (∀ (T S : RMAF.Tree) (b : Nat) (a : Option.{0} SourceForestV3.F), OrdExec T S b a → Eq.{1} a (base T S b)) →
+    ∀ (q k : Nat) (T : Option.{0} RMAF.Tree) (ss : List.{0} RMAF.Tree) (out : SourceForestV3.Result),
+      SourceForestV3.ForestExec OrdExec mode k T ss q out →
+        SourceForestV3.Corresponds (SourceDisjointV2.ordinarySpec mode base) k T ss q out
+@SourceForestV3.children_source_fields : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {base : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F} {T : RMAF.Tree}
+  {q k : Nat} {cs : List.{0} Universal233.CherryBranching.Child}
+  {r : Universal233.Rule5SelectedLocalWork.ForestReceipt (List.{0} SourceForestV3.F)} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S},
+  (∀ (T S : RMAF.Tree) (b : Nat) (a : Option.{0} SourceForestV3.F), OrdExec T S b a → Eq.{1} a (base T S b)) →
+    SourceForestV3.ChildrenExec OrdExec mode T q k cs r debits slots →
+      ∀ (right : RMAF.Tree),
+        Eq.{1} (SourceChildrenV2.finishSource T right q r debits)
+          (OrdinaryDispatch.FullSourceWork.runChildrenSource (SourceDisjointV2.ordinarySpec mode base)
+            (fun x x_1 x_2 => 0) T right q cs)
+@SourceForestV3.children_index : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {base : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F} {T : RMAF.Tree}
+  {q k : Nat} {cs : List.{0} Universal233.CherryBranching.Child}
+  {r : Universal233.Rule5SelectedLocalWork.ForestReceipt (List.{0} SourceForestV3.F)} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S},
+  (∀ (T S : RMAF.Tree) (b : Nat) (a : Option.{0} SourceForestV3.F), OrdExec T S b a → Eq.{1} a (base T S b)) →
+    SourceForestV3.ChildrenExec OrdExec mode T q k cs r debits slots →
+      Eq.{1} (List.map.{0, 0} (fun s => Prod.mk.{0, 0} s.index s.query) slots)
+        (CallbackPairingAuthor.indexFrom k
+          (SourceForestV3.childrenQueries (SourceDisjointV2.ordinarySpec mode base) T q cs))
+SourceOrdinaryFrontV3.front_value : ∀ (q : Nat) (T S : RMAF.Tree),
+  Eq.{1} (OrdinaryDispatch.EarlyLocalWork.meterFront q T S).value
+    (ite.{1} (Eq.{1} (Universal233.DepthOne.proper T S) Bool.true)
+      (match Universal233.DepthOne.pretest01 T S with
+      | Universal233.DepthOne.Result.refused => OrdinaryDispatch.EarlyLocalWork.Front.stop Option.none.{0}
+      | Universal233.DepthOne.Result.found c =>
+        OrdinaryDispatch.EarlyLocalWork.Front.stop
+          (ite.{1} (LE.le.{0} (Universal233.DepthOne.cutCost c) q) (Option.some.{0} (Universal233.DepthOne.forest S c))
+            Option.none.{0})
+      | Universal233.DepthOne.Result.rejected =>
+        OrdinaryDispatch.EarlyLocalWork.Front.selected (OrdinaryDispatch.FastOrdinary.early T S))
+      (OrdinaryDispatch.EarlyLocalWork.Front.stop Option.none.{0}))

@@ -1,0 +1,191 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallBound.lean:7:2: warning: Variable name `positive` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _positive
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallBound.lean:38:67: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  OfNat Prop 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  Prop
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallBound.lean:38:74: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  HAdd Nat Nat Prop
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallBound.lean:38:83: error: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallBound.lean:50:43: error(lean.unknownIdentifier): Unknown constant `Rat.mul_left_comm`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallBound.lean:49:67: error: unsolved goals
+n q : Nat
+X : Rat
+bound : X ≤ callNodeFactor * ↑(n + 1) * Rule5ActualTrace.base ^ q * Rule5ActualTrace.gamma Rule5ActualTrace.base
+t : Rat := ↑(n + 1) * Rule5ActualTrace.base ^ q
+np : 1 ≤ ↑(n + 1)
+scaled : ↑(n + 1) ≤ ↑(n + 1) * Rule5ActualTrace.base ^ q
+ht : 1 ≤ t
+tpos : 0 ≤ t
+absorb : t + callNodeFactor * Rule5ActualTrace.gamma Rule5ActualTrace.base * t ≤ callNodeFactor * t
+a : 1 + X ≤ 1 + callNodeFactor * ↑(n + 1) * Rule5ActualTrace.base ^ q * Rule5ActualTrace.gamma Rule5ActualTrace.base
+b :
+  1 + callNodeFactor * Rule5ActualTrace.gamma Rule5ActualTrace.base * t ≤
+    t + callNodeFactor * Rule5ActualTrace.gamma Rule5ActualTrace.base * t
+⊢ Rule5ActualTrace.base ^ q * (callNodeFactor * (↑(n + 1) * Rule5ActualTrace.gamma Rule5ActualTrace.base)) =
+    Rule5ActualTrace.base ^ q * (↑(n + 1) * (callNodeFactor * Rule5ActualTrace.gamma Rule5ActualTrace.base))
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallBound.lean:91:19: error: don't know how to synthesize implicit argument `c`
+  @Rat.mul_le_mul_of_nonneg_left
+    (Rule5ActualTrace.mass Rule5ActualTrace.base q (ordinaryStepTrace FastOrdinary.solve q T S).queries)
+    (Rule5ActualTrace.gamma Rule5ActualTrace.base) (callNodeFactor * ↑?m.365 * Rule5ActualTrace.base ^ q) mass
+    (Rat.mul_nonneg (Rat.mul_nonneg callNodeFactor_properties.right.left Rat.natCast_nonneg)
+      (Rat.le_trans ordinaryCallNodes_bound_aux._proof_1_7 (call_base_pow_ge_one q)))
+context:
+q : Nat
+qih :
+  ∀ (m : Nat),
+    m < q →
+      ∀ (n : Nat) (T S : Tree),
+        (leaves T).length = n →
+          DepthOne.proper T S = true →
+            ↑(ordinaryCallNodes m T S) ≤ callNodeFactor * ↑(n + 1) * Rule5ActualTrace.base ^ m
+n : Nat
+nih :
+  ∀ (m : Nat),
+    m < n →
+      ∀ (T S : Tree),
+        (leaves T).length = m →
+          DepthOne.proper T S = true →
+            ↑(ordinaryCallNodes q T S) ≤ callNodeFactor * ↑(m + 1) * Rule5ActualTrace.base ^ q
+T S : Tree
+hn : (leaves T).length = n
+hp : DepthOne.proper T S = true
+xs : List Query := ⋯
+child :
+  ∀ (p : Tree × Tree) (r : Nat),
+    (p, r) ∈ xs →
+      ↑(ordinaryCallNodes r p.fst p.snd) ≤ callNodeFactor * ↑((leaves p.fst).length + 1) * Rule5ActualTrace.base ^ r
+mass :
+  Rule5ActualTrace.mass Rule5ActualTrace.base q (ordinaryStepTrace FastOrdinary.solve q T S).queries ≤
+    Rule5ActualTrace.gamma Rule5ActualTrace.base
+point :
+  ∀ (p : Tree × Tree) (r : Nat),
+    (p, r) ∈ xs → ↑(ordinaryCallNodes r p.fst p.snd) ≤ callNodeFactor * ↑(n + 1) * Rule5ActualTrace.base ^ r
+sum :
+  ↑(queryWork (fun u v r => ordinaryCallNodes r u v) xs) ≤
+    callNodeFactor * ↑(n + 1) * Rule5ActualTrace.base ^ q * Rule5ActualTrace.mass Rule5ActualTrace.base q xs
+⊢ Rat
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallBound.lean:92:7: error: don't know how to synthesize implicit argument `a`
+  @Rat.mul_nonneg (callNodeFactor * ↑?m.365) (Rule5ActualTrace.base ^ q)
+    (Rat.mul_nonneg callNodeFactor_properties.right.left Rat.natCast_nonneg)
+    (Rat.le_trans ordinaryCallNodes_bound_aux._proof_1_7 (call_base_pow_ge_one q))
+context:
+q : Nat
+qih :
+  ∀ (m : Nat),
+    m < q →
+      ∀ (n : Nat) (T S : Tree),
+        (leaves T).length = n →
+          DepthOne.proper T S = true →
+            ↑(ordinaryCallNodes m T S) ≤ callNodeFactor * ↑(n + 1) * Rule5ActualTrace.base ^ m
+n : Nat
+nih :
+  ∀ (m : Nat),
+    m < n →
+      ∀ (T S : Tree),
+        (leaves T).length = m →
+          DepthOne.proper T S = true →
+            ↑(ordinaryCallNodes q T S) ≤ callNodeFactor * ↑(m + 1) * Rule5ActualTrace.base ^ q
+T S : Tree
+hn : (leaves T).length = n
+hp : DepthOne.proper T S = true
+xs : List Query := ⋯
+child :
+  ∀ (p : Tree × Tree) (r : Nat),
+    (p, r) ∈ xs →
+      ↑(ordinaryCallNodes r p.fst p.snd) ≤ callNodeFactor * ↑((leaves p.fst).length + 1) * Rule5ActualTrace.base ^ r
+mass :
+  Rule5ActualTrace.mass Rule5ActualTrace.base q (ordinaryStepTrace FastOrdinary.solve q T S).queries ≤
+    Rule5ActualTrace.gamma Rule5ActualTrace.base
+point :
+  ∀ (p : Tree × Tree) (r : Nat),
+    (p, r) ∈ xs → ↑(ordinaryCallNodes r p.fst p.snd) ≤ callNodeFactor * ↑(n + 1) * Rule5ActualTrace.base ^ r
+sum :
+  ↑(queryWork (fun u v r => ordinaryCallNodes r u v) xs) ≤
+    callNodeFactor * ↑(n + 1) * Rule5ActualTrace.base ^ q * Rule5ActualTrace.mass Rule5ActualTrace.base q xs
+⊢ Rat
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallBound.lean:92:23: error: don't know how to synthesize implicit argument `b`
+  @Rat.mul_nonneg callNodeFactor (↑?m.365) callNodeFactor_properties.right.left Rat.natCast_nonneg
+context:
+q : Nat
+qih :
+  ∀ (m : Nat),
+    m < q →
+      ∀ (n : Nat) (T S : Tree),
+        (leaves T).length = n →
+          DepthOne.proper T S = true →
+            ↑(ordinaryCallNodes m T S) ≤ callNodeFactor * ↑(n + 1) * Rule5ActualTrace.base ^ m
+n : Nat
+nih :
+  ∀ (m : Nat),
+    m < n →
+      ∀ (T S : Tree),
+        (leaves T).length = m →
+          DepthOne.proper T S = true →
+            ↑(ordinaryCallNodes q T S) ≤ callNodeFactor * ↑(m + 1) * Rule5ActualTrace.base ^ q
+T S : Tree
+hn : (leaves T).length = n
+hp : DepthOne.proper T S = true
+xs : List Query := ⋯
+child :
+  ∀ (p : Tree × Tree) (r : Nat),
+    (p, r) ∈ xs →
+      ↑(ordinaryCallNodes r p.fst p.snd) ≤ callNodeFactor * ↑((leaves p.fst).length + 1) * Rule5ActualTrace.base ^ r
+mass :
+  Rule5ActualTrace.mass Rule5ActualTrace.base q (ordinaryStepTrace FastOrdinary.solve q T S).queries ≤
+    Rule5ActualTrace.gamma Rule5ActualTrace.base
+point :
+  ∀ (p : Tree × Tree) (r : Nat),
+    (p, r) ∈ xs → ↑(ordinaryCallNodes r p.fst p.snd) ≤ callNodeFactor * ↑(n + 1) * Rule5ActualTrace.base ^ r
+sum :
+  ↑(queryWork (fun u v r => ordinaryCallNodes r u v) xs) ≤
+    callNodeFactor * ↑(n + 1) * Rule5ActualTrace.base ^ q * Rule5ActualTrace.mass Rule5ActualTrace.base q xs
+⊢ Rat
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallBound.lean:92:68: error: don't know how to synthesize implicit argument `a`
+  @Rat.natCast_nonneg ?m.365
+context:
+q : Nat
+qih :
+  ∀ (m : Nat),
+    m < q →
+      ∀ (n : Nat) (T S : Tree),
+        (leaves T).length = n →
+          DepthOne.proper T S = true →
+            ↑(ordinaryCallNodes m T S) ≤ callNodeFactor * ↑(n + 1) * Rule5ActualTrace.base ^ m
+n : Nat
+nih :
+  ∀ (m : Nat),
+    m < n →
+      ∀ (T S : Tree),
+        (leaves T).length = m →
+          DepthOne.proper T S = true →
+            ↑(ordinaryCallNodes q T S) ≤ callNodeFactor * ↑(m + 1) * Rule5ActualTrace.base ^ q
+T S : Tree
+hn : (leaves T).length = n
+hp : DepthOne.proper T S = true
+xs : List Query := ⋯
+child :
+  ∀ (p : Tree × Tree) (r : Nat),
+    (p, r) ∈ xs →
+      ↑(ordinaryCallNodes r p.fst p.snd) ≤ callNodeFactor * ↑((leaves p.fst).length + 1) * Rule5ActualTrace.base ^ r
+mass :
+  Rule5ActualTrace.mass Rule5ActualTrace.base q (ordinaryStepTrace FastOrdinary.solve q T S).queries ≤
+    Rule5ActualTrace.gamma Rule5ActualTrace.base
+point :
+  ∀ (p : Tree × Tree) (r : Nat),
+    (p, r) ∈ xs → ↑(ordinaryCallNodes r p.fst p.snd) ≤ callNodeFactor * ↑(n + 1) * Rule5ActualTrace.base ^ r
+sum :
+  ↑(queryWork (fun u v r => ordinaryCallNodes r u v) xs) ≤
+    callNodeFactor * ↑(n + 1) * Rule5ActualTrace.base ^ q * Rule5ActualTrace.mass Rule5ActualTrace.base q xs
+⊢ Nat
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallBound.lean:91:10: error: failed to infer `have` declaration type

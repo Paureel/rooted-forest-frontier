@@ -1,0 +1,3 @@
+import PaidTargets
+#check OrdinaryDispatch.Hard2Size.combined_query_potential
+#print axioms OrdinaryDispatch.Hard2Size.combined_query_potential

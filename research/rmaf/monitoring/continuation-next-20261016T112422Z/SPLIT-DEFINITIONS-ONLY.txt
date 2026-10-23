@@ -1,0 +1,4 @@
+def splitBlock (X B : List Nat) : List (List Nat) :=
+ [B.filter X.contains,B.filter (fun x=>!X.contains x)].filter (fun B=>!B.isEmpty)
+
+def splitForest (X : List Nat) (F : List (List Nat)) := F.flatMap (splitBlock X)

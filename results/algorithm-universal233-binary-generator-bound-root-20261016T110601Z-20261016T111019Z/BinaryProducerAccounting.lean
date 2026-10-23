@@ -1,0 +1,89 @@
+import BinaryProducerControls
+namespace GenericForest.BinaryProducer
+open BinaryProvider GenericForest.ScalarBits Universal233.WholeSourceWork
+
+def JobCap (L : Nat) : Job (BinaryProvider.Tree×BinaryProvider.Tree) BinaryProvider.Forest→Prop
+ | .hard p=>TreeWidth L p.1 ∧ TreeWidth L p.2
+ | .resolved p c F=>TreeWidth L p.1 ∧ TreeWidth L p.2 ∧ c.length≤1 ∧ ForestWidth L F
+
+theorem componentBits_width (L : Nat) (t s : BinaryProvider.Tree) (p : BinaryProvider.Tree×BinaryProvider.Tree)
+ (tc : TreeWidth L t) (sc : TreeWidth L s) (h : (componentBits t s).value=some p) :
+ TreeWidth L p.1 ∧ TreeWidth L p.2 := by
+ simp only [componentBits,leavesCopy_value] at h
+ cases hr : (restrictLabels (leavesBits s) t).value with
+ | none=>simp [hr] at h
+ | some u=>
+  simp only [hr,Option.map_some,Option.some.injEq] at h
+  subst p
+  exact ⟨restrictedWidth L _ t u tc hr,sc⟩
+
+/-- Concrete jobs preserve label storage from caller inputs. Resolved cost
+registers are literal zero/one; represented pretest outputs share their labels. -/
+theorem jobsBits_caps (L : Nat) (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree)
+ (tc : TreeWidth L t) (sc : SourcesWidth L ss) :
+ ∀js,(jobsBits t ss).value=some js→∀j∈js,JobCap L j := by
+ induction ss with
+ | nil=>intro js h;simp only [jobsBits,Option.some.injEq] at h;subst js;simp
+ | cons s ss ih=>
+  have sw:=sc s (by simp)
+  have tail : SourcesWidth L ss:=fun u hu=>sc u (by simp [hu])
+  intro js h
+  cases c : (componentBits t s).value with
+  | none=>simp [jobsBits,c] at h
+  | some p=>
+   have pc:=componentBits_width L t s p tc sw c
+   cases b : (pretestBits p.1 p.2).value with
+   | refused=>simp only [jobsBits,c,b] at h;contradiction
+   | rejected=>
+    cases r : (jobsBits t ss).value with
+    | none=>simp only [jobsBits,c,b,r,Option.map_none] at h;contradiction
+    | some ys=>
+     simp only [jobsBits,c,b,r,Option.map_some,Option.some.injEq] at h;subst js
+     intro j hj;rcases List.mem_cons.mp hj with rfl|hj
+     · exact pc
+     · exact ih tail ys r j hj
+   | found cut=>
+    cases r : (jobsBits t ss).value with
+    | none=>simp only [jobsBits,c,b,r,Option.map_none] at h;contradiction
+    | some ys=>
+     simp only [jobsBits,c,b,r,Option.map_some,Option.some.injEq] at h;subst js
+     intro j hj;rcases List.mem_cons.mp hj with rfl|hj
+     · refine ⟨pc.1,pc.2,?_,(forestBits_caps L s cut sw).1⟩
+       cases cut <;> simp [cutBits]
+     · exact ih tail ys r j hj
+
+theorem jobsBits_resolved_cost_width (L : Nat) (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree)
+ (tc : TreeWidth L t) (sc : SourcesWidth L ss)
+ (js : List (Job (BinaryProvider.Tree×BinaryProvider.Tree) BinaryProvider.Forest)) (h : (jobsBits t ss).value=some js) :
+ ∀j∈js,CostWidth 1 j := by
+ intro j hj
+ have ready:=jobsBits_caps L t ss tc sc js h j hj
+ cases j with
+ | hard p=>trivial
+ | resolved p c F=>exact ready.2.2.1
+
+theorem disjoint_allocated_width (L : Nat) (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits)
+ (tc : TreeWidth L t) (sc : SourcesWidth L ss)
+ (js : List (Job (BinaryProvider.Tree×BinaryProvider.Tree) BinaryProvider.Forest)) (h : (jobsBits t ss).value=some js) :
+ (allocationBits q (knownBits js).value (pendingBits js).value).value.length≤q.length+2*ss.length+3 := by
+ have a:=allocated_local_width 1 q js (jobsBits_resolved_cost_width L t ss tc sc js h)
+ have n:=jobsBits_count t ss js h;omega
+
+theorem disjointProducer_accounted
+ (ordinary : BinaryProvider.Tree→BinaryProvider.Tree→Bits→Charged (Option BinaryProvider.Forest))
+ (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits)
+ (js : List (Job (BinaryProvider.Tree×BinaryProvider.Tree) BinaryProvider.Forest)) (h : (jobsBits t ss).value=some js) :
+ (disjointProducer ordinary t ss q).work=(jobsBits t ss).work+
+  (scheduleBits (ordinaryAnswer ordinary) q js).work+
+  (BinaryCaller.disjointFinish t ss q (scheduleBits (ordinaryAnswer ordinary) q js).value.answers).work+8 := by
+ simp only [disjointProducer,h]
+
+theorem disjoint_setup_paid
+ (ordinary : BinaryProvider.Tree→BinaryProvider.Tree→Bits→Charged (Option BinaryProvider.Forest))
+ (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits)
+ (js : List (Job (BinaryProvider.Tree×BinaryProvider.Tree) BinaryProvider.Forest)) (h : (jobsBits t ss).value=some js)
+ (xs : List (Bits×BinaryProvider.Forest)) (a : (scheduleBits (ordinaryAnswer ordinary) q js).value.answers=some xs) :
+ (checkerCapacity (some t) ss q (xs.flatMap Prod.snd)).work≤(disjointProducer ordinary t ss q).work := by
+ rw [disjointProducer_accounted ordinary t ss q js h,a]
+ simp only [BinaryCaller.disjointFinish,BinaryCaller.flattenAnswers_value,checkerFromInput];omega
+end GenericForest.BinaryProducer

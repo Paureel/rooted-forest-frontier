@@ -1,0 +1,177 @@
+{
+  "id": "triple-dp",
+  "title": "Triple-component terminal completion",
+  "status": "conditional",
+  "summary": "Candidate terminal DP passed separate-author finite replication on 18,534 cases. Author-route Lean audits cover 36 supporting statements; fresh replay covers 27. G1\u2013G3 and graph/Python correspondence remain open.",
+  "metrics": {
+    "controls_passed": 13,
+    "exhaustive_comparisons": 18165,
+    "lean_checks": 36,
+    "large_witness_n": 600,
+    "large_witness_m": 200,
+    "reconstruction_visits": 1199,
+    "checked_theorems": 36,
+    "fresh_verifier_cases": 18534,
+    "fresh_verifier_partitions": 283285,
+    "fresh_core_lean_checks": 19,
+    "posthoc_mixed_cases": 50,
+    "reachable_overlapping_bad_colors": 2,
+    "connected_region_lean_checks": 8,
+    "fresh_connected_lean_checks": 8,
+    "fresh_distinct_lean_checks": 27
+  },
+  "claims": [
+    {
+      "id": "terminal-exactness",
+      "label": "Exact triple terminal solver",
+      "status": "tested",
+      "detail": "Same-author edge-cut census: 9,660 n=5 plus 8,505 n=6 cases. Fresh-author partition/triple/path oracle: 10,029 n\u22645 plus 8,505 n=6 cases and 283,285 total partitions. All pass exact optimum, witness and characterization comparisons. Overlapping domains, finite evidence only."
+    },
+    {
+      "id": "complexity",
+      "label": "DP operation accounting",
+      "status": "conditional",
+      "detail": "Exact K=1+g+6b states; candidates/internal=1+3g+18b; closing scans/internal=2K, plus K at root; backtrace 2n\u22121 visits. Lean count arithmetic and all executed counters pass; Python runtime refinement remains unproved."
+    },
+    {
+      "id": "same-color-merge",
+      "label": "Adjacent same-color regions always merge",
+      "status": "refuted",
+      "detail": "Frozen one-color incompatible triple has optimum two; merging its regions yields forbidden full triple."
+    },
+    {
+      "id": "reachable-overlap-child",
+      "label": "Legal baseline child with two overlapping bad triples",
+      "status": "checked",
+      "detail": "Concrete nine-leaf Whidden(t=3) all-pendant branch child: three paid cuts, three additional cuts, seven full components. All nine cross-color pair spans intersect, supplying a finite matching lower bound. Original-instance optimum and safe cover are not claimed."
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "min-plus-table",
+      "label": "Minimum per boundary state preserves optimum",
+      "status": "checked",
+      "detail": "Universal theorem over supplied finite transition rules. This does not establish graph-to-rule correspondence.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/triple_dp/TripleDP.lean",
+        "research/rmaf/results/triple-dp-lean.json"
+      ]
+    },
+    {
+      "id": "closing-factorization",
+      "label": "Independent child minima factor",
+      "status": "checked",
+      "detail": "Lean minimum_pair_sum proves min of Cartesian sum equals sum of minima for nonempty finite lists.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/triple_dp/TripleDP.lean"
+      ]
+    },
+    {
+      "id": "bad-triple-local",
+      "label": "Proper labelled triple partitions agree",
+      "status": "checked",
+      "detail": "Arbitrary distinct labels, three representative shapes, four proper partitions checked universally in RMAF executable semantics. Sibling-swap transport and graph correspondence remain open.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/triple_dp/SemanticControls.lean"
+      ]
+    },
+    {
+      "id": "single-region-decomposition",
+      "label": "Root/child path-convex region decomposition",
+      "status": "checked",
+      "detail": "Eight supporting statements prove exact single-region root/child decomposition on binary addresses and a counterexample to LCA closure alone. Family disjointness, label trimming and cost preservation remain G2.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/triple_dp/ConnectedRegions.lean",
+        "research/rmaf/results/triple-dp-connected-lean.json"
+      ]
+    },
+    {
+      "id": "graph-correspondence",
+      "label": "Graph forests correspond to DP derivations",
+      "status": "open",
+      "detail": "G1 suppression/restriction span transfer; G2 cost-preserving graph/derivation directions up to trimming; G3 specialized automaton/Python refinement remain unresolved. Raw-support bijection is unnecessary and false without a normal form.",
+      "depends_on": [
+        "min-plus-table",
+        "closing-factorization",
+        "bad-triple-local"
+      ],
+      "artifacts": [
+        "research/rmaf/triple_dp/PROOF.md"
+      ]
+    }
+  ],
+  "artifacts": [
+    "research/rmaf/triple_dp/WORK.md",
+    "research/rmaf/triple_dp/controls.json",
+    "research/rmaf/triple_dp/solver.py",
+    "research/rmaf/triple_dp/cut_oracle.py",
+    "research/rmaf/results/triple-dp-controls.json",
+    "research/rmaf/results/triple-dp-census-n5.json",
+    "research/rmaf/results/triple-dp-census-n6.json",
+    "research/rmaf/triple_dp/PROOF.md",
+    "research/rmaf/triple_dp/README.md",
+    "research/rmaf/triple_dp/TripleDP.lean",
+    "research/rmaf/triple_dp/SemanticControls.lean",
+    "research/rmaf/results/triple-dp-lean.json",
+    "research/rmaf/results/triple-dp-baseline-child.json",
+    "research/rmaf/results/triple-dp-large-witness-replay.json",
+    "research/rmaf/triple_dp/source-manifest.json",
+    "research/rmaf/triple_dp/mixed_checks.py",
+    "research/rmaf/triple_dp/reachable_child.py",
+    "research/rmaf/results/triple-dp-mixed-sample.json",
+    "research/rmaf/results/triple-dp-reachable-overlap-child.json",
+    "research/rmaf/triple_dp/verification/README.md",
+    "research/rmaf/triple_dp/verification/referee_sim_PROOF.md",
+    "research/rmaf/results/triple-dp-verification-full.json",
+    "research/rmaf/results/triple-dp-verification-n6-full.json",
+    "research/rmaf/results/triple-dp-verification-lean-replay.log",
+    "research/rmaf/triple_dp/ConnectedRegions.lean",
+    "research/rmaf/triple_dp/audit_connected.py",
+    "research/rmaf/results/triple-dp-connected-lean.json",
+    "research/rmaf/results/triple-dp-verification-connected.json",
+    "research/rmaf/results/triple-dp-verification-connected-scope.md",
+    "research/rmaf/results/triple-dp-verification-connected-wrapper.json",
+    "research/rmaf/results/triple-dp-verification-connected-wrapper-comparison.json"
+  ],
+  "example": {
+    "tree_a": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "c",
+        "d"
+      ]
+    ],
+    "tree_b": [
+      [
+        "a",
+        "c"
+      ],
+      [
+        "b",
+        "d"
+      ]
+    ],
+    "forest": [
+      [
+        "a"
+      ],
+      [
+        "b"
+      ],
+      [
+        "c",
+        "d"
+      ]
+    ],
+    "k": 3,
+    "caption": "Actual baseline Rule-4 a-cut child: one paid cut plus one triple-completion cut; not a safe-cover claim.",
+    "title": "Baseline Rule-4 triple child"
+  }
+}

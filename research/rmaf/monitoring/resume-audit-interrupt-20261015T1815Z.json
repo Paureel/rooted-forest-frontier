@@ -1,0 +1,45 @@
+{
+  "at": "2026-10-15T18:16:04.608664+00:00",
+  "reason": "Author explicitly requested stopping its two new raw-audit pipelines before disk exhaustion; no scientific source or evidence deleted",
+  "signals": [
+    {
+      "pid": 4869,
+      "ppid": 4865,
+      "executable": "lean",
+      "scripts": [
+        "ExtractShard5.lean"
+      ],
+      "result": "SIGINT sent"
+    },
+    {
+      "pid": 4865,
+      "ppid": 3684,
+      "executable": "python3",
+      "scripts": [
+        "track.py",
+        "ExtractShard5.lean"
+      ],
+      "result": "SIGINT sent"
+    },
+    {
+      "pid": 3677,
+      "ppid": 1829,
+      "executable": "python3",
+      "scripts": [
+        "track.py",
+        "resume_pool_audit.py"
+      ],
+      "result": "SIGINT sent"
+    },
+    {
+      "pid": 3684,
+      "ppid": 3677,
+      "executable": "python3",
+      "scripts": [
+        "resume_pool_audit.py"
+      ],
+      "result": "SIGINT sent"
+    }
+  ],
+  "dashboard_and_other_authors_targeted": false
+}

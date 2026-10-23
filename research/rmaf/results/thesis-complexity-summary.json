@@ -1,0 +1,70 @@
+{
+  "id": "thesis-complexity",
+  "title": "Whidden Chapter 6 independent complexity reconstruction",
+  "status": "open",
+  "summary": "Reachable local credit-substitution gap and three-credit state documented; universal runtime theorem remains open.",
+  "metrics": {
+    "arithmetic_control_cases": 9,
+    "structural_control_cases": 4,
+    "diagnostic_transition_rows": 44,
+    "witness_leaf_counts_excluding_rho": [
+      9,
+      13
+    ],
+    "lean_axiom_prints": 28,
+    "lean_negative_control_rejected": true
+  },
+  "claims": [
+    {
+      "id": "g4-exception-arithmetic",
+      "label": "Exceptional G4 bound substitution",
+      "status": "checked",
+      "detail": "Exact 9/16 > 1/2 coefficient; affine gap X-3 universally proved in Lean. Checks concern the supplied bound substitution, not actual runtime."
+    },
+    {
+      "id": "g4-reachable",
+      "label": "Nine-leaf exceptional transition",
+      "status": "tested",
+      "detail": "Depth rule, ordered predicates, protection and cuts checked by same-author Python and Lean predicates; fresh source-model review pending."
+    },
+    {
+      "id": "three-credits",
+      "label": "Reachable cardinality-three analysis state",
+      "status": "tested",
+      "detail": "13-leaf trace reaches P={a,x,u},Q={x,u} under literal G4 union instruction; formal finite predicates compiled."
+    },
+    {
+      "id": "theorem-6-13",
+      "label": "Universal O(2^q n) theorem",
+      "status": "open",
+      "detail": "A joint G4 estimate or strengthened C-child bound, expanded state domain, per-node linear overhead proof, and fresh semantic review remain."
+    },
+    {
+      "id": "smallest-obligation",
+      "label": "G4.1 empty-Q three-pendant joint bound",
+      "status": "open",
+      "detail": "For every reachable J with P={a},Q=empty,s=3, derive 1+I_A+I_B+I_C <= B(K,1,0). Sufficient candidate: I_C <= alpha*2^(K-3)-1; unproved for G4 subtrees with three/four active leaves."
+    }
+  ],
+  "artifacts": [
+    "research/rmaf/thesis_complexity/report.md",
+    "research/rmaf/thesis_complexity/transition-ledger.md",
+    "research/rmaf/thesis_complexity/source-notes.md",
+    "research/rmaf/thesis_complexity/Credit.lean",
+    "research/rmaf/thesis_complexity/Trace.lean",
+    "research/rmaf/results/thesis-complexity-arithmetic.json",
+    "research/rmaf/results/thesis-complexity-reachable-trace.json",
+    "research/rmaf/results/thesis-complexity-three-credit-trace.json",
+    "research/rmaf/results/thesis-complexity-lean.log",
+    "research/rmaf/results/thesis-complexity-trace-lean.log",
+    "research/rmaf/results/thesis-complexity-lean-negative.log"
+  ],
+  "limits": [
+    "No asymptotic lower-bound counterexample.",
+    "No full MAF solver or universal algorithm semantics formalized.",
+    "Python and Lean are same-author translations; fresh source-to-model review required.",
+    "No unaugmented-root transfer or novelty claim.",
+    "Toolkit suite not run by this arm; no upstream toolkit changes."
+  ],
+  "source_sha256": "0dd9ced63f26ab608dc484cfe853d52171565b0cc704bb61336dd64a15c2bbe9"
+}

@@ -1,0 +1,7 @@
+import RWLocal
+#check OrdinaryDispatch.RecoveryLocalWork.meterAttempt_bound
+#print axioms OrdinaryDispatch.RecoveryLocalWork.meterAttempt_bound
+#check OrdinaryDispatch.RecoveryLocalWork.meterStep_value
+#print axioms OrdinaryDispatch.RecoveryLocalWork.meterStep_value
+#check OrdinaryDispatch.RecoveryLocalWork.meterStep_bound
+#print axioms OrdinaryDispatch.RecoveryLocalWork.meterStep_bound

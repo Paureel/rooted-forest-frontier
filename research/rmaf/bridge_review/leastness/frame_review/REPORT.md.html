@@ -1,0 +1,47 @@
+
+<h1 id="label-Exact+minimal+embedding+from+the+unchanged+extractor">Exact minimal embedding from the unchanged extractor<span><a href="#label-Exact+minimal+embedding+from+the+unchanged+extractor">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p><code>LeastEmbedding.embedding</code> constructs <code>BridgeReview.MinimalEmbedding</code> from an actual tree <code>t : RMAF.Tree</code>, a selection <code>S</code>, and witnesses <code>x ∈ leaves t</code> and <code>x ∈ S</code>. Its support list is exactly <code>RMAF.minimalVertices S t</code>. Its ambient and terminal lists have proved interpretations as actual vertex addresses and selected leaf occurrences. Ambient inclusion, terminal preservation and leastness are proved; none is a constructor argument. The author audit kernel-checks this interface. The independent semantic verdict is recorded separately in <code>acceptance.json</code> and the fresh review receipts.</p>
+
+<p>The unchanged source is <code>research/rmaf/lean/RMAF.lean</code>, SHA256 <code>4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9</code>. The result is about this ordered binary tree and address model. It does not supply cross-tree restriction/suppression transport, G2–G7, the full exchange construction, a safe-cover theorem, an unrestricted runtime bound or novelty.</p>
+
+<h2 id="label-Mathematical+statement+and+construction">Mathematical statement and construction<span><a href="#label-Mathematical+statement+and+construction">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>An address is a finite Boolean list, with false for a left child and true for a right child. <code>ValidVertex t v</code> is the inductive root/child occurrence relation. <code>LeafOccurrence t v x</code> is the inductive leaf relation, retaining both address and label. <code>TreeAddresses.lean</code> proves</p>
+<ul><li>
+<p>membership in <code>vertices t</code> is equivalent to <code>ValidVertex t v</code>;</p>
+</li><li>
+<p>membership in <code>terminals S t</code> is equivalent to an actual leaf occurrence at  that address with a label in S;</p>
+</li><li>
+<p>a label belongs to <code>leaves t</code> exactly when it has a leaf occurrence;</p>
+</li><li>
+<p>two leaf occurrences at the same address have the same label; each label  occurring in <code>leaves t</code> has exactly one address when <code>leaves t</code> has no  repeated labels;</p>
+</li><li>
+<p>each permutation field of <code>RMAF.Instance</code> supplies this uniqueness for  every label below <code>Instance.n</code>, and excludes other labels.</p>
+</li></ul>
+
+<p>Arbitrary repeated-label trees are included in the constructor theorem. Selecting such a label selects every occurrence. Repeated entries in the selection do not repeat terminal addresses. <code>vertices_nodup</code> and <code>terminals_nodup</code> are proved for all trees and selections. Empty or entirely absent selections have empty output and do not satisfy the constructor&#39;s explicit occurring-selected-label premise. A selected singleton-root leaf is included.</p>
+
+<p><code>ExtractorLeastness.lean</code> proves by structural recursion that every rooted-span vertex has a selected terminal descendant, all selected terminals survive <code>minimalVertices</code>, and every emitted vertex is an actual vertex. It also proves that any common prefix of all selected terminals is a prefix of every emitted minimal vertex. In the two occupied child branches this common prefix is empty; in a single occupied branch the recursive argument retains that child&#39;s address prefix. No unproved equality with a separately defined hull is imported.</p>
+
+<p>For a competing <code>ConnectedSupport</code>, its already proved graph-to-region map gives a root above all its vertices and convexity along ancestor paths. Its root is therefore a common ancestor of the selected terminals. Given an emitted vertex v, choose a selected terminal below v. The common-ancestor lemma places the competitor&#39;s root above v; its convexity places v in the competitor. This is <code>minimal_least</code>. It holds for every connected competitor containing the selected terminals, even without requiring that competitor to stay in the input ambient tree. It therefore supplies the narrower ambient-bounded <code>minimal</code> field.</p>
+
+<p>The constructor uses the previously audited <code>extractedSupport</code> for connectivity and exact support-list preservation. <code>embedding_region_exact</code> identifies the existing <code>MinimalEmbedding.region</code> membership with the unchanged extractor. <code>embedding_consumer</code> calls the original <code>MinimalEmbedding.deepest_root_in_neighbor</code>, retaining its depth and overlap hypotheses, and returns exact extractor membership. Equality of coordinates from different input trees is only equality of address lists; this theorem does not establish a correspondence between those trees.</p>
+
+<h2 id="label-Executed+evidence+and+provenance">Executed evidence and provenance<span><a href="#label-Executed+evidence+and+provenance">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The isolated author build in <code>audit/certificate.json</code> rebuilt RMAF, PureBridge, GraphRegion, ExecutableConnectivity, TreeAddresses, ExtractorLeastness, ActualEmbedding and LeastnessControls into a new import directory. It checked 66 named new theorems: 22 semantic, 13 extractor, 7 constructor/interface and 24 control theorems. The generated inventory prints axioms for those theorems and 9 definitions: all 75 reports use only the standard permitted axioms <code>propext</code>, <code>Classical.choice</code> and <code>Quot.sound</code>, or none. Production sources contain no custom axiom, <code>sorry</code>, <code>admit</code>, <code>native_decide</code> or unsafe declaration. Imported old declarations and independent finite-panel equalities are outside this scoped count. The parent maintains the project aggregate.</p>
+
+<p>The nine frozen fixtures cover crossing quartet leaves, a singleton, siblings, empty and absent selection, a singleton-root tree, repeated labels, repeated selection and a deep omitted initial root path. Their 18 exact terminal/support values compile. Six additional theorems include the critical distinction: an added input root leaves the sibling support connected but violates leastness. They also prove failure of path deletion, invalid ambient address and missing selected terminal. Five separate false assertions are rejected by Lean&#39;s explicit <code>decide</code> falsity diagnostic. A true proposition with an ill-typed proof is rejected as a malformed control, and is not counted as a false proposition; its correctly typed twin compiles. Six planted diagnostic-parser cases pass.</p>
+
+<p>The pre-construction adversary used edge deletion and exhaustive connected ambient subsets, with fresh code and no candidate leastness proof access. Its bounded corpus has 816 cases and 85,488 ambient subsets; 826 finite source equalities (including ten hand fixtures) compile. Five corruptions and clean twins pass, two false assertions fail semantically, and a malformed proof is separately rejected. Its ordinary edge-separation derivation is not advertised as an additional universal Lean proof. These finite checks cannot prove the unbounded claim. Full records are in <code>adversary/</code>.</p>
+
+<p>The main author had prior source knowledge from the completed connectivity checkpoint. Its controls were frozen before new leastness proof construction, not before all source contact. The semantic module author is a coauthor, not an independent verifier. The fresh reviewer starts from the target, freezes a prefix/LCA derivation and exact controls, and writes a new graph-support intersection enumerator before inspecting the candidate. All arms share the formal statement, Lean kernel and original RMAF source. The author audit driver and parser derive from the preceding executable audit and are not an independent mathematical reference. These dependencies are explicit in <code>INDEPENDENCE.json</code>.</p>
+
+<p>Failed development attempts are retained. The first general proof attempt had Lean API elaboration errors. The first fixture generator omitted parentheses around leaf constructors. Repairing that syntax changed no frozen expected value. Those failures do not count as negative mathematical controls.</p>
+
+<h2 id="label-Scope+of+acceptance">Scope of acceptance<span><a href="#label-Scope+of+acceptance">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The new result fills the ambient interpretation, selected-occurrence and leastness fields missing from the earlier exact executable connectivity checkpoint. Its original consumer call is kernel-checked. The broader bridge route still needs transport between restricted or suppressed source and target trees, degree-two split realization, marked-interaction and exchange interfaces, and the safe-cover/Whidden <code>2^q</code> audit. No running-time or novelty conclusion follows from these local support theorems.</p>
+
+<p>The exact audit command is <code>./bootloops-python research/rmaf/bridge_review/leastness/audit.py</code>. The project-wide <code>bootloops-check</code> suite was not run: this checkpoint changes only new Lean proof and audit files and uses a complete isolated rebuild of its actual dependency chain. No unavailable engine is needed for this checkpoint.</p>

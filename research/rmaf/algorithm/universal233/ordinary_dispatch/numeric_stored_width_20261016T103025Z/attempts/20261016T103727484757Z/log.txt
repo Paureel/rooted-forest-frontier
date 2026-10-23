@@ -1,0 +1,78 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredContract.lean:14:67: error: unsolved goals
+case leaf
+a : Bits
+label✝ : Label
+⊢ (decode label✝ == decode a) = (RMAF.Tree.leaf (decode label✝) == RMAF.Tree.leaf (decode a))
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredContract.lean:39:17: error: unsolved goals
+case node.isTrue
+a b z : Bits
+l r : GenericForest.BinaryProvider.Tree
+il : treeValue (contractBits a b z l).value = ForestState.contract (decode a) (decode b) (decode z) (treeValue l)
+ir : treeValue (contractBits a b z r).value = ForestState.contract (decode a) (decode b) (decode z) (treeValue r)
+h✝ :
+  treeValue l = RMAF.Tree.leaf (decode a) ∧ treeValue r = RMAF.Tree.leaf (decode b) ∨
+    treeValue l = RMAF.Tree.leaf (decode b) ∧ treeValue r = RMAF.Tree.leaf (decode a)
+⊢ labelValue z = decode z
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredContract.lean:67:120: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  g ≥ 0
+  f ≥ 0
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  c - d ≥ 0
+  c - e ≥ 0
+  c - f ≥ 0
+  100*c - g ≤ -99
+where
+ c := ↑B
+ d := ↑(List.length a)
+ e := ↑(List.length b)
+ f := ↑(List.length z)
+ g := ↑(List.length x)
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredContract.lean:114:1: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  t ≥ 0
+  s ≥ 0
+  s - t ≥ 0
+  q ≥ 0
+  p ≥ 0
+  p - q ≥ 0
+  o ≥ 0
+  n ≥ 0
+  m ≥ 0
+  m - n ≥ 0
+  m - o ≥ 0
+  k ≥ 0
+  j ≥ 0
+  j - k ≥ 0
+  j - k + 2*m - q - t ≤ -1
+  i ≥ 0
+  h ≥ 0
+  g ≥ 0
+  f ≥ 0
+  f - g ≥ 0
+  f - h ≥ 0
+  f - i ≥ -1
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  c - d ≥ 0
+  c - e ≥ 0
+where
+ c := ↑N
+ d := ↑(treeNodes (treeValue T))
+ e := ↑(treeNodes (treeValue S))
+ f := ↑B
+ g := ↑(List.length a)
+ h := ↑(List.length b)
+ i := ↑(List.length (freshOne T).value)
+ j := ↑(freshOneFee N B)
+ k := ↑(freshOne T).work
+ m := ↑(400 * (B + 2)) * ↑N
+ n := ↑(400 * (B + 2)) * ↑(treeNodes (treeValue T))
+ o := ↑(400 * (B + 2)) * ↑(treeNodes (treeValue S))
+ p := ↑(400 * (B + (1 + 1))) * ↑(treeNodes (treeValue T))
+ q := ↑(contractBits a b (freshOne T).value T).work
+ s := ↑(400 * (B + (1 + 1))) * ↑(treeNodes (treeValue S))
+ t := ↑(contractBits a b (freshOne T).value S).work

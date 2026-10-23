@@ -1,0 +1,12 @@
+'TripleDP.FreshIndexReview.conditional_consumer' depends on axioms: [propext, Quot.sound]
+@family_consumer_equations : ∀ {I J α : Type} {l r : BTree α} [inst : DecidableEq I] [inst_1 : DecidableEq J]
+  (L : Family l I) (R : Family r J) (o : I) (p : J),
+  L.boundary = some o →
+    R.boundary = some p →
+      ∀ (G : Family (l.node r) (Joined o p)),
+        G.finite = mergedFinite L.finite R.finite o p →
+          G.boundary = some Joined.boundary →
+            G.blockCount = L.blockCount + R.blockCount - 1 ∧
+              G.closedIndices = closedEnumeration L.finite.elems R.finite.elems o p ∧ G.cost = L.cost + R.cost
+@mergedFinite : {I J : Type} →
+  [DecidableEq I] → [DecidableEq J] → FiniteIndex I → FiniteIndex J → (o : I) → (p : J) → FiniteIndex (Joined o p)

@@ -1,0 +1,135 @@
+import GeneratorShape
+namespace GenericForest.BinaryProducer.Generator
+open BinaryProvider GenericForest.ScalarBits Universal233.WholeSourceWork
+
+def treeUnit (W M : Nat) := (4*W+5)*M+32
+
+theorem groupsBits_cost (M : Nat) (T : GTree) (h : size T≤M) :
+ (groupsBits T).work≤(4*M+16)*size T := by
+ induction T with
+ | leaf g=>
+  have z:=Nat.mul_le_mul_left (4*M+16) (size_pos (.leaf g))
+  simp only [Nat.mul_one] at z
+  simp only [groupsBits];omega
+ | node p l r ihl ihr=>
+  have hl : size l≤M:=by simp only [size] at h;omega
+  have hr : size r≤M:=by simp only [size] at h;omega
+  have a:=ihl hl;have b:=ihr hr
+  have n:=Nat.le_trans (groups_length l) hl
+  have ap : (appendSpine (groupsBits l).value (groupsBits r).value).work≤4*M+1:=by
+   simp only [appendSpine_work];omega
+  simp only [groupsBits,size,Nat.mul_add,Nat.mul_one];omega
+
+theorem normalizeBits_cost (W M : Nat) (T : GTree) (h : size T≤M) (w : Wide W T) :
+ (normalizeBits T).work≤treeUnit W M*size T := by
+ induction T with
+ | leaf g=>
+  have z:=Nat.mul_le_mul_left (treeUnit W M) (size_pos (.leaf g))
+  have u : 32≤treeUnit W M:=by unfold treeUnit;omega
+  simp only [Nat.mul_one] at z
+  simp only [normalizeBits];omega
+ | node p l r ihl ihr=>
+  have hl : size l≤M:=by simp only [size] at h;omega
+  have hr : size r≤M:=by simp only [size] at h;omega
+  have a:=ihl hl w.1;have b:=ihr hr w.2
+  have nw:=normalize_wide W l w.1
+  have ns:=Nat.le_trans (normalize_size l) hl
+  have u : 32≤treeUnit W M:=by unfold treeUnit;omega
+  have pay : (normalizeBits l).work+(normalizeBits r).work+treeUnit W M≤treeUnit W M*size (.node p l r):=by
+   simp only [size,Nat.mul_add,Nat.mul_one];omega
+  cases el : (normalizeBits l).value with
+  | leaf x=>
+   cases er : (normalizeBits r).value with
+   | leaf y=>
+    simp only [el,Wide,size] at nw ns
+    have ap:=appendLabels_work x.labels y.labels W nw
+    have ax : (appendLabels x.labels y.labels).work≤(4*W+5)*M+1:=by
+     have mul:=Nat.mul_le_mul_left (4*W+5) (show x.labels.length≤M by omega);omega
+    have au : (appendLabels x.labels y.labels).work+20≤treeUnit W M:=by unfold treeUnit;omega
+    simp only [normalizeBits,el,er]
+    split <;> simp only [colorEq] <;> omega
+   | node q x y=>simp only [normalizeBits,el,er];omega
+  | node q x y=>cases er : (normalizeBits r).value <;> simp only [normalizeBits,el,er] <;> omega
+
+theorem eraseBits_cost (M : Nat) (p : RMAF.Vertex) (T : GTree) (h : size T≤M) :
+ (eraseBits p T).work≤(4*M+16)*size T := by
+ induction T with
+ | leaf g=>
+  have a:=Universal233.WholeSourceWork.meterAddressEq_bound g.origin p
+  simp only [size] at h
+  have z:=Nat.mul_le_mul_left (4*M+16) (size_pos (.leaf g))
+  simp only [Nat.mul_one] at z
+  simp only [eraseBits];omega
+ | node v l r ihl ihr=>
+  have hl : size l≤M:=by simp only [size] at h;omega
+  have hr : size r≤M:=by simp only [size] at h;omega
+  have a:=ihl hl;have b:=ihr hr
+  have eq:=Universal233.WholeSourceWork.meterAddressEq_bound v p
+  have vl : v.length≤M:=by simp only [size] at h;omega
+  dsimp only [eraseBits];split
+  all_goals dsimp only [Charged.work];simp only [size,Nat.mul_add,Nat.mul_one];omega
+
+theorem mixedBits_cost (T : GTree) : (mixedBits T).work≤8*size T := by
+ induction T with
+ | leaf g=>simp only [mixedBits,size];omega
+ | node p l r ihl ihr=>
+  cases l <;> cases r <;> simp_all only [mixedBits,size,Nat.mul_add,Nat.mul_one] <;> omega
+
+theorem allColors_cost (c : Color) (gs : List Group) : (allColors c gs).work≤12*gs.length+1 := by
+ induction gs <;> simp_all only [allColors,colorEq,List.length_cons,List.length_nil,Nat.mul_add,Nat.mul_zero,Nat.mul_one] <;> omega
+
+theorem filterColor_cost (c : Color) (gs : List Group) :
+ (filterColor c gs).work=14*gs.length+1 ∧ (filterColor c gs).value.length≤gs.length := by
+ induction gs with
+ | nil=>simp [filterColor]
+ | cons g gs ih=>
+  simp only [filterColor,colorEq,List.length_cons]
+  constructor
+  · omega
+  · by_cases hh : (g.color.1==c.1 && g.color.2==c.2)=true <;> simp only [hh,Bool.false_eq_true,ite_true,ite_false,List.length_cons] <;> omega
+
+def uniqueCost (M : Nat) := 14*M+1+16*(M+1)^2+56*(M+2)+8
+
+theorem uniqueBits_cost (M : Nat) (g : Group) (gs : List Group) (h : gs.length≤M) :
+ (uniqueBits g gs).work≤uniqueCost M := by
+ have f:=filterColor_cost g.color gs
+ have n:=spineCounter_work (filterColor g.color gs).value
+ have nl:=spineCounter_length (filterColor g.color gs).value
+ have e:=copiedEqual_work (M+1) (spineCounter (filterColor g.color gs).value).value [true] (by omega) (by simp)
+ have power:=Nat.mul_le_mul_left 16 (Nat.pow_le_pow_left (show (filterColor g.color gs).value.length+1≤M+1 by omega) 2)
+ dsimp only [uniqueBits];unfold uniqueCost;omega
+
+theorem findUnique_cost (M : Nat) (gs more : List Group) (h : gs.length≤M) :
+ (findUnique gs more).work≤(uniqueCost M+4)*(more.length+1) := by
+ induction more with
+ | nil=>simp [findUnique] <;> omega
+ | cons g more ih=>
+  have a:=uniqueBits_cost M g gs h
+  dsimp only [findUnique];split <;> dsimp only [Charged.work]
+  all_goals simp only [List.length_cons,Nat.mul_add,Nat.mul_one] at *;omega
+
+def chooseCost (W M : Nat) := (4*M+16)*M+(12*M+1)+(uniqueCost M+4)*(M+1)+8*M+20
+
+theorem chooseBits_cost (W M : Nat) (T : GTree) (h : size T≤M) :
+ (chooseBits T).work≤chooseCost W M := by
+ have g:=Nat.le_trans (groupsBits_cost M T h) (Nat.mul_le_mul_left (4*M+16) h)
+ have gl:=Nat.le_trans (groups_length T) h
+ have a (c : Color) : (allColors c (groupsBits T).value).work≤12*M+1:=by have z:=allColors_cost c (groupsBits T).value;omega
+ have u:=Nat.le_trans (findUnique_cost M (groupsBits T).value (groupsBits T).value gl)
+  (Nat.mul_le_mul_left (uniqueCost M+4) (Nat.add_le_add_right gl 1))
+ have mx:=Nat.le_trans (mixedBits_cost T) (Nat.mul_le_mul_left 8 h)
+ dsimp only [chooseBits]
+ cases hg : (groupsBits T).value with
+ | nil=>simp only;unfold chooseCost;omega
+ | cons first rest=>
+  have aa:=a first.color
+  simp only [hg] at aa u
+  cases ha : (allColors first.color (first::rest)).value <;> simp only [ha,Bool.false_eq_true,ite_false,ite_true]
+  · cases hu : (findUnique (first::rest) (first::rest)).value
+    · simp only
+      cases hm : (mixedBits T).value
+      · simp only;unfold chooseCost;omega
+      · rename_i ab;rcases ab with ⟨x,y⟩;simp only [colorEq];unfold chooseCost;omega
+    · simp only;unfold chooseCost;omega
+  · unfold chooseCost;omega
+end GenericForest.BinaryProducer.Generator

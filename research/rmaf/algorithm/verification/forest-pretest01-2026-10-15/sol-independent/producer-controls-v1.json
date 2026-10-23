@@ -1,0 +1,124 @@
+{
+  "phase": "prerelease",
+  "pilot": false,
+  "commands": [
+    {
+      "module": "PlantForeign",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+        "-o",
+        "PlantForeign.olean",
+        "PlantForeign.lean"
+      ],
+      "timeout_seconds": 60,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS",
+      "seconds": 0.3078426249999211,
+      "source_sha256": "d5b9a51fb5ba95fcc40882d479976c102d025d23dc29cd685485976cc74ccaab"
+    },
+    {
+      "module": "PlantPrivate",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+        "-o",
+        "PlantPrivate.olean",
+        "PlantPrivate.lean"
+      ],
+      "timeout_seconds": 60,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS",
+      "seconds": 0.23609241699978156,
+      "source_sha256": "3a019647a768a272b9230723a0791040757dec7eb394fb8fdc9128d32f7e826e"
+    },
+    {
+      "module": "PlantUnused",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+        "-o",
+        "PlantUnused.olean",
+        "PlantUnused.lean"
+      ],
+      "timeout_seconds": 60,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS",
+      "seconds": 0.23456516700025531,
+      "source_sha256": "6c9de71cd99ab7ce947eb985cc863660c99630e03969689137eb382b37b5e471"
+    },
+    {
+      "module": "PlantBodyOnly",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+        "-o",
+        "PlantBodyOnly.olean",
+        "PlantBodyOnly.lean"
+      ],
+      "timeout_seconds": 60,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS",
+      "seconds": 0.23379508300013185,
+      "source_sha256": "569c8cf2163fa6fcba25693e0afa59348f7226ead821dc301da2c0e3226d8194"
+    },
+    {
+      "module": "PlantCollisionA",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+        "-o",
+        "PlantCollisionA.olean",
+        "PlantCollisionA.lean"
+      ],
+      "timeout_seconds": 60,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS",
+      "seconds": 0.23855441600017002,
+      "source_sha256": "2b4151c62f7e5adaa890ea30b9874264b763689bddfa1f2c8954f45976094c29"
+    },
+    {
+      "module": "PlantCollisionB",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+        "-o",
+        "PlantCollisionB.olean",
+        "PlantCollisionB.lean"
+      ],
+      "timeout_seconds": 60,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS",
+      "seconds": 0.27486329199973625,
+      "source_sha256": "329ddf4c12fb4305a7c264b191bd715af7cd380dbac78e048c836685f24d1746"
+    },
+    {
+      "module": "PlantScanAB",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+        "PlantScanAB.lean"
+      ],
+      "timeout_seconds": 60,
+      "exit_code": 1,
+      "stdout": "PlantScanAB.lean:1:0: error: import PlantCollisionB failed, environment already contains 'PlantCollision.shared' from PlantCollisionA\n",
+      "stderr": "",
+      "status": "FAIL",
+      "seconds": 0.44602691599993705,
+      "source_sha256": "5c8809fffcabe28c274ef8b23e5e8041ea408b0d5fe67021f1a48e2b88a852b1"
+    }
+  ],
+  "controls": [],
+  "recorder_sha256": "48aa36df7308ec8bdd86f20902398e0655a842bfe2115611966b5211e11532fa",
+  "runtime_binary_sha256": "d1d9c26a539f54fe839d2aa7760bf1ac1dd76a30b26e2c9684bebf2900038fcf",
+  "disk_free_before": 4114178048,
+  "status": "FAIL",
+  "failure": "Traceback (most recent call last):\n  File \"/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-pretest01-2026-10-15/sol-independent/producer_controls-v1.py\", line 136, in main\n    rows_ab=execute('PlantScanAB',False,result['commands'])\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-pretest01-2026-10-15/sol-independent/producer_controls-v1.py\", line 40, in execute\n    require(row['status']=='PASS','command failed: '+module)\n  File \"/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-pretest01-2026-10-15/sol-independent/producer_controls-v1.py\", line 20, in require\n    raise AssertionError(message)\nAssertionError: command failed: PlantScanAB\n",
+  "seconds": 1.9756659999998192,
+  "disk_free_after": 4117471232
+}

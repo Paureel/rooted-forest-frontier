@@ -1,0 +1,32 @@
+{
+  "command": [
+    ".venv/bin/python3",
+    "-c",
+    "import os; os.write(1,os.urandom(8192).hex().encode())"
+  ],
+  "limits": {
+    "name": "calibration-compressed-unsandboxed",
+    "wall": 30,
+    "rss": 3221225472,
+    "raw": 16777216,
+    "line": 8388608,
+    "compressed": 128,
+    "floor": 3221225472,
+    "cmd": [
+      "--",
+      ".venv/bin/python3",
+      "-c",
+      "import os; os.write(1,os.urandom(8192).hex().encode())"
+    ]
+  },
+  "started_unix": 1792150051.886663,
+  "initial_free_bytes": 15028768768,
+  "measurement": "psutil recursive RSS samples plus wait4 direct-child ru_maxrss",
+  "exit_code": 0,
+  "violation": "compressed_output",
+  "wall_seconds": 0.037611542000377085,
+  "peak_rss_bytes": 15564800,
+  "raw_bytes": 16384,
+  "rss_observations": 2,
+  "compressed_bytes": 9570
+}

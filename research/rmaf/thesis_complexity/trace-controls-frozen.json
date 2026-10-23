@@ -1,0 +1,9 @@
+{
+ "birth":"2026-10-14; hand-authored before trace-checker code; after a real candidate was reasoned about, so diagnostic controls, not held-out scientific evidence",
+ "representation":"node carries incoming-edge protection; unary rho-labelled root retained; unlabeled unary nodes suppressed",
+ "positive":{"tree":"((a,b),c)","cut":"b","expected_tree":"(a,c)","protected_before":["a,b"],"protected_after":["a"]},
+ "negative":{"tree":"((a,b),c)","cut":"b","protected_before":["b"],"expected_legal":false},
+ "state_negative":{"expected_selected_pair":["a","d"],"injected_pair":["x","y"],"reason":"x,y outside deepest protected-edge top-endpoint subtree"},
+ "null":"cut empty set preserves tree and protection",
+ "failure":"Any wrong expected tree, lost inherited protection, accepted protected cut, accepted ineligible pair, or changed null result invalidates checker."
+}

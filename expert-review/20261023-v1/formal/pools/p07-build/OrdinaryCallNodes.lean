@@ -1,0 +1,42 @@
+import OrdinaryStepBounds
+namespace OrdinaryDispatch.WorkRecursion
+open RMAF ForestState Universal233 Universal233.CherryBranching
+open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration
+
+/-- Every invocation in the literal ordinary callback tree is counted once,
+including the initial call, failed answers, duplicates and common calls.
+This is a call count; it is not a primitive or machine operation cost. -/
+def ordinaryCallNodes (q : Nat) (T S : Tree) : Nat :=
+ 1+(((ordinaryStepTrace FastOrdinary.solve q T S).queries.attach).map fun pb=>
+  ordinaryCallNodes pb.val.2 pb.val.1.1 pb.val.1.2).sum
+termination_by (q,(leaves T).length)
+decreasing_by
+ exact ordinaryStepTrace_lex FastOrdinary.solve q T S _ _ pb.property
+
+theorem ordinaryCallNodes_eq (q : Nat) (T S : Tree) :
+ ordinaryCallNodes q T S=1+queryWork (fun u v r=>ordinaryCallNodes r u v)
+  (ordinaryStepTrace FastOrdinary.solve q T S).queries := by
+ rw [ordinaryCallNodes.eq_def]
+ unfold queryWork
+ exact congrArg (fun L : List Nat=>1+L.sum)
+  (List.attach_map_val (l:=(ordinaryStepTrace FastOrdinary.solve q T S).queries)
+   (f:=fun pb : Query=>ordinaryCallNodes pb.2 pb.1.1 pb.1.2))
+
+def callNodeFactor : Rat := 1024
+
+theorem callNodeFactor_properties :
+ 1≤callNodeFactor ∧ 0≤callNodeFactor ∧
+ 1+callNodeFactor*Rule5ActualTrace.gamma Rule5ActualTrace.base≤callNodeFactor := by
+ decide +kernel
+
+theorem call_base_pow_ge_one (q : Nat) : (1:Rat)≤Rule5ActualTrace.base^q := by
+ induction q with
+ | zero => simp only [Rat.pow_zero];exact Rat.le_refl
+ | succ q ih =>
+  rw [Rat.pow_succ]
+  have cp : (1:Rat)≤Rule5ActualTrace.base := by decide +kernel
+  have p := Rat.mul_le_mul_of_nonneg_right ih (by decide +kernel : 0≤Rule5ActualTrace.base)
+  simp only [Rat.one_mul] at p
+  exact Rat.le_trans cp p
+
+end OrdinaryDispatch.WorkRecursion

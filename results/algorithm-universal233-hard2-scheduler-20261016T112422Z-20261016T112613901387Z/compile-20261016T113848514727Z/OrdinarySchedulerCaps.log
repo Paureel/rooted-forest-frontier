@@ -1,0 +1,85 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:122:11: error: unsolved goals
+case cons.resolved.none
+P A : Type
+f : P → Nat → Charged (Option (Nat × A))
+b : Nat
+ok : A → Prop
+js : List (Job P A)
+ih :
+  (∀ (p : P) (c : Nat) (a : A), Job.resolved p c a ∈ js → ok a) →
+    (∀ (p : P), Job.hard p ∈ js → ∀ (x : Nat × A), (f p b).value = some x → ok x.snd) →
+      ∀ (xs : List (Nat × A)), (runSourceMeter f b js).value.answers = some xs → ∀ (x : Nat × A), x ∈ xs → ok x.snd
+xs : List (Nat × A)
+rr : ∀ (p : P) (c : Nat) (a : A), Job.resolved p c a ∈ js → ok a
+cc : ∀ (p : P), Job.hard p ∈ js → ∀ (x : Nat × A), (f p b).value = some x → ok x.snd
+p : P
+c : Nat
+a : A
+resolved : ∀ (p_1 : P) (c_1 : Nat) (a_1 : A), Job.resolved p_1 c_1 a_1 ∈ Job.resolved p c a :: js → ok a_1
+callback : ∀ (p_1 : P), Job.hard p_1 ∈ Job.resolved p c a :: js → ∀ (x : Nat × A), (f p_1 b).value = some x → ok x.snd
+ht : (runSourceMeter f b js).value.answers = none
+h : none = some xs
+⊢ ∀ (x : Nat × A), x ∈ xs → ok x.snd
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:130:11: error: unsolved goals
+case cons.hard.none
+P A : Type
+f : P → Nat → Charged (Option (Nat × A))
+b : Nat
+ok : A → Prop
+js : List (Job P A)
+ih :
+  (∀ (p : P) (c : Nat) (a : A), Job.resolved p c a ∈ js → ok a) →
+    (∀ (p : P), Job.hard p ∈ js → ∀ (x : Nat × A), (f p b).value = some x → ok x.snd) →
+      ∀ (xs : List (Nat × A)), (runSourceMeter f b js).value.answers = some xs → ∀ (x : Nat × A), x ∈ xs → ok x.snd
+xs : List (Nat × A)
+rr : ∀ (p : P) (c : Nat) (a : A), Job.resolved p c a ∈ js → ok a
+cc : ∀ (p : P), Job.hard p ∈ js → ∀ (x : Nat × A), (f p b).value = some x → ok x.snd
+p : P
+resolved : ∀ (p_1 : P) (c : Nat) (a : A), Job.resolved p_1 c a ∈ Job.hard p :: js → ok a
+callback : ∀ (p_1 : P), Job.hard p_1 ∈ Job.hard p :: js → ∀ (x : Nat × A), (f p_1 b).value = some x → ok x.snd
+hf : (f p b).value = none
+h : none = some xs
+⊢ ∀ (x : Nat × A), x ∈ xs → ok x.snd
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:132:13: error: unsolved goals
+case cons.hard.some.none
+P A : Type
+f : P → Nat → Charged (Option (Nat × A))
+b : Nat
+ok : A → Prop
+js : List (Job P A)
+ih :
+  (∀ (p : P) (c : Nat) (a : A), Job.resolved p c a ∈ js → ok a) →
+    (∀ (p : P), Job.hard p ∈ js → ∀ (x : Nat × A), (f p b).value = some x → ok x.snd) →
+      ∀ (xs : List (Nat × A)), (runSourceMeter f b js).value.answers = some xs → ∀ (x : Nat × A), x ∈ xs → ok x.snd
+xs : List (Nat × A)
+rr : ∀ (p : P) (c : Nat) (a : A), Job.resolved p c a ∈ js → ok a
+cc : ∀ (p : P), Job.hard p ∈ js → ∀ (x : Nat × A), (f p b).value = some x → ok x.snd
+p : P
+resolved : ∀ (p_1 : P) (c : Nat) (a : A), Job.resolved p_1 c a ∈ Job.hard p :: js → ok a
+callback : ∀ (p_1 : P), Job.hard p_1 ∈ Job.hard p :: js → ∀ (x : Nat × A), (f p_1 b).value = some x → ok x.snd
+y : Nat × A
+hf : (f p b).value = some y
+ht : (runSourceMeter f b js).value.answers = none
+h : none = some xs
+⊢ ∀ (x : Nat × A), x ∈ xs → ok x.snd
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:122:58: warning: This simp argument is unused:
+  Option.noConfusion
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [runSourceMeter, ht, Option.map_none] at h
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:130:42: warning: This simp argument is unused:
+  Option.noConfusion
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [runSourceMeter, hf] at h
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:132:63: warning: This simp argument is unused:
+  Option.noConfusion
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [runSourceMeter, hf, ht, Option.map_none] at h
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

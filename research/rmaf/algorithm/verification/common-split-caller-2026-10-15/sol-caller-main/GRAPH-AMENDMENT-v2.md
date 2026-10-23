@@ -1,0 +1,3 @@
+# Prerelease schema control refinement
+
+Candidate remains unopened. Scoped graph v2 adds an actual Setup-shaped key validator and feeds it a copy with an injected outside_minimum field. The original v1 plant tested absence of a desired field by a comparator assertion; v2 tests rejection of the injected field itself. Original v1 controls, scripts, pilot and all six/five-case receipts remain. Literal EXPECTATIONS are unchanged. Rerun v2 controls then its small pilot and six-case bank; this is still the same own graph engine, with zero additional replication credit. Five already-completed transformations use the unchanged v1 mathematical routines.

@@ -1,0 +1,36 @@
+ForestMinCompletion.LocalOrdinaryIH (K : Nat) (actual : RMAF.Tree → RMAF.Tree → Nat → Option GenericForest.Forest) :
+  Prop
+ForestMinCompletion.nat_minimum_from_witness (P : Nat → Prop) (n : Nat) : P n → ∃ m, P m ∧ ∀ (k : Nat), P k → m ≤ k
+ForestMinCompletion.minimum_from_original_AF {t s : RMAF.Tree} {F : GenericForest.Forest}
+  (ha : RMAF.agreement t s F = true) :
+  ∃ M, RMAF.agreement t s M = true ∧ ∀ (G : List (List Nat)), RMAF.agreement t s G = true → M.length ≤ G.length
+ForestMinCompletion.minimum_feasible_from_original_AF {t s : RMAF.Tree} {b : Nat}
+  (feasible : ∃ F, RMAF.agreement t s F = true ∧ List.length F - 1 ≤ b) :
+  ∃ M,
+    RMAF.agreement t s M = true ∧
+      M.length - 1 ≤ b ∧ ∀ (G : List (List Nat)), RMAF.agreement t s G = true → M.length ≤ G.length
+ForestMinCompletion.minimumCallback (t s : RMAF.Tree) (b : Nat) : Option GenericForest.Forest
+ForestMinCompletion.minimumCallback_sound {t s : RMAF.Tree} {b : Nat} {F : GenericForest.Forest}
+  (answer : ForestMinCompletion.minimumCallback t s b = some F) :
+  RMAF.agreement t s F = true ∧
+    List.length F - 1 ≤ b ∧ ∀ (G : List (List Nat)), RMAF.agreement t s G = true → List.length F ≤ G.length
+ForestMinCompletion.minimumCallback_complete {t s : RMAF.Tree} {b : Nat} {G : GenericForest.Forest}
+  (ha : RMAF.agreement t s G = true) (budget : List.length G - 1 ≤ b) :
+  ∃ F, ForestMinCompletion.minimumCallback t s b = some F
+ForestMinCompletion.minimumCallback_none_iff (t s : RMAF.Tree) (b : Nat) :
+  ForestMinCompletion.minimumCallback t s b = none ↔ ¬∃ F, RMAF.agreement t s F = true ∧ List.length F - 1 ≤ b
+ForestMinCompletion.ghost (K : Nat) (actual : RMAF.Tree → RMAF.Tree → Nat → Option GenericForest.Forest)
+  (t s : RMAF.Tree) (b : Nat) : Option GenericForest.Forest
+ForestMinCompletion.ghost_eq_actual (K : Nat) (actual : RMAF.Tree → RMAF.Tree → Nat → Option GenericForest.Forest)
+  (t s : RMAF.Tree) (b : Nat) (low : b ≤ K) : ForestMinCompletion.ghost K actual t s b = actual t s b
+ForestMinCompletion.ghost_above_budget (K : Nat) (actual : RMAF.Tree → RMAF.Tree → Nat → Option GenericForest.Forest)
+  (t s : RMAF.Tree) (b : Nat) (high : K < b) :
+  ForestMinCompletion.ghost K actual t s b = ForestMinCompletion.minimumCallback t s b
+ForestMinCompletion.ghost_global_ordinaryIH {K : Nat}
+  {actual : RMAF.Tree → RMAF.Tree → Nat → Option GenericForest.Forest}
+  (localIH : ForestMinCompletion.LocalOrdinaryIH K actual) :
+  GenericForest.OrdinaryIH (ForestMinCompletion.ghost K actual)
+ForestMinCompletion.ordinaryIH_extension {K : Nat} {actual : RMAF.Tree → RMAF.Tree → Nat → Option GenericForest.Forest}
+  (localIH : ForestMinCompletion.LocalOrdinaryIH K actual) :
+  ∃ completed,
+    GenericForest.OrdinaryIH completed ∧ ∀ (t s : RMAF.Tree) (b : Nat), b ≤ K → completed t s b = actual t s b

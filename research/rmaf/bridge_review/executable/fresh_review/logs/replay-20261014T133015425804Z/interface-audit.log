@@ -1,0 +1,17 @@
+'FreshExecutableReview.exact_walk' depends on axioms: [propext, Quot.sound]
+'FreshExecutableReview.region_from_occurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FreshExecutableReview.occurrence_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FreshExecutableReview.through_original_consumer' depends on axioms: [propext, Classical.choice, Quot.sound]
+minimalVertices_connected : ∀ (selected : List Nat) (t : Tree), Connected (minimalVertices selected t)
+minimalVertices_nonempty_of_leaf : ∀ (selected : List Nat) (t : Tree) (x : Nat),
+  x ∈ leaves t → x ∈ selected → minimalVertices selected t ≠ []
+extractedSupport : (selected : List Nat) → (t : Tree) → minimalVertices selected t ≠ [] → ConnectedSupport
+extractedSupport_exact : ∀ (selected : List Nat) (t : Tree) (hne : minimalVertices selected t ≠ []),
+  (extractedSupport selected t hne).first :: (extractedSupport selected t hne).rest = minimalVertices selected t
+extractedRegion_exact : ∀ (selected : List Nat) (t : Tree) (hne : minimalVertices selected t ≠ []) (v : Vertex),
+  (extractedRegion selected t hne).member v ↔ v ∈ minimalVertices selected t
+deepest_extracted_root_in_neighbor : ∀ (sa sb : List Nat) (ta tb : Tree) (ha : minimalVertices sa ta ≠ [])
+  (hb : minimalVertices sb tb ≠ []),
+  List.length (extractedSupport sb tb hb).root ≤ List.length (extractedSupport sa ta ha).root →
+    (∃ z, z ∈ minimalVertices sa ta ∧ z ∈ minimalVertices sb tb) →
+      (extractedSupport sa ta ha).root ∈ minimalVertices sb tb

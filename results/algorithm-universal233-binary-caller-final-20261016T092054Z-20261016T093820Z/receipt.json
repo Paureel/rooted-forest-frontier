@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "status": "SOURCE_CALL_SITE_REFINEMENT_WITH_EXPLICIT_PRODUCER_PREMISES",
+  "root": "results/algorithm-universal233-binary-caller-final-20261016T092054Z-20261016T093820Z",
+  "replay_root": "results/algorithm-universal233-binary-caller-replay-20261016T092054Z-20261016T094230Z",
+  "modules": [
+    "CallerPrecontrols",
+    "CallerCaps",
+    "BinaryCallerSetup",
+    "BinaryCallerSites",
+    "BinaryCallerPayload",
+    "BinaryCallerActual",
+    "BinaryCallerControls",
+    "BinaryCallerOrdinaryBounds"
+  ],
+  "dependency_pairs": 489,
+  "dependency_rebuilds": 0,
+  "positive_groups": 7,
+  "positive_assertions": 20,
+  "false_controls": [
+    {
+      "module": "CallerFalseBudgetWidth",
+      "claim": "(checkerCapacity (some pair) [pair] q8 badF).value.length\u22642",
+      "result": "CAUGHT_AGAINST_KERNEL_CHECKED_TWIN"
+    },
+    {
+      "module": "CallerFalseNoSetup",
+      "claim": "setupCallsWork (some pair) [pair] q8 [badF,badF]=0",
+      "result": "CAUGHT_AGAINST_KERNEL_CHECKED_TWIN"
+    },
+    {
+      "module": "CallerFalseDedup",
+      "claim": "setupCallsWork (some pair) [pair] q8 [badF,badF]=(checkerCapacity (some pair) [pair] q8 badF).work",
+      "result": "CAUGHT_AGAINST_KERNEL_CHECKED_TWIN"
+    },
+    {
+      "module": "CallerFalseFlatten",
+      "claim": "(flattenAnswers xs).value=F",
+      "result": "CAUGHT_AGAINST_KERNEL_CHECKED_TWIN"
+    },
+    {
+      "module": "CallerFalseTie",
+      "claim": "(bestCandidates (some pair) [pair] q8 [badF,paddedF,F]).value=some F",
+      "result": "CAUGHT_AGAINST_KERNEL_CHECKED_TWIN"
+    },
+    {
+      "module": "CallerFalsePayment",
+      "claim": "decode (payBudget q8 [(),(),()]).value=6",
+      "result": "CAUGHT_AGAINST_KERNEL_CHECKED_TWIN"
+    },
+    {
+      "module": "CallerFalseSetupFloor",
+      "claim": "(bestCandidates (some pair) [pair] q8 [badF,badF]).work<setupCallsWork (some pair) [pair] q8 [badF,badF]",
+      "result": "CAUGHT_AGAINST_KERNEL_CHECKED_TWIN"
+    }
+  ],
+  "hostile_axiom": "CAUGHT",
+  "conversion_control": "CAUGHT_BY_SAME_RUNTIME_SCAN",
+  "own_stored_occurrences": 186,
+  "own_audit_producers": 8,
+  "previous_stored_occurrences_reused": 1585,
+  "audits": [
+    {
+      "module": "CallerStored1792143746263087000",
+      "directory": "results/algorithm-universal233-binary-caller-final-20261016T092054Z-20261016T093820Z/audit-1792143746263087000",
+      "producers": [
+        "CallerPrecontrols",
+        "CallerCaps",
+        "BinaryCallerSetup"
+      ],
+      "occurrences": 47
+    },
+    {
+      "module": "CallerStored1792143747072478000",
+      "directory": "results/algorithm-universal233-binary-caller-final-20261016T092054Z-20261016T093820Z/audit-1792143747072478000",
+      "producers": [
+        "BinaryCallerSites",
+        "BinaryCallerPayload",
+        "BinaryCallerActual"
+      ],
+      "occurrences": 120
+    },
+    {
+      "module": "CallerStored1792143748043088000",
+      "directory": "results/algorithm-universal233-binary-caller-final-20261016T092054Z-20261016T093820Z/audit-1792143748043088000",
+      "producers": [
+        "BinaryCallerControls",
+        "BinaryCallerOrdinaryBounds"
+      ],
+      "occurrences": 19
+    }
+  ],
+  "runtime_definitions": 9,
+  "runtime_references": 253,
+  "standard_boundary_names": 66,
+  "source_replay": "MATCHED_ALL_OWN_TYPES_BODIES_ACTUAL_AXIOM_RECORDS",
+  "independent_credit": 0,
+  "whole_solver_runtime": "OPEN",
+  "nativeIR": "OPEN",
+  "first_remaining": "Construct represented singleton/scheduler/raw-candidate outputs at the actual producer sites and prove the displayed representation equations and stored-label/state caps for those producers; integrate the charged local bounds in the separately owned weighted recurrence."
+}

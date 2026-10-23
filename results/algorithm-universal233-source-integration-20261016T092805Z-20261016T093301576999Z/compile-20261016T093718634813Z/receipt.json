@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3166873340001075,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.279934959000002,
+      "resource_stop": null,
+      "log_sha256": "b0f9982ea5dec7f6398276978bcb7245cee917cea453acf38f43fff34a8b940f"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0014809580002292932,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "ChildrenSourceBound",
+      "source_sha256": "da12aa5fd09b23959fc45ec4fafc29b4b844dfb8d752f9c441f3f878c7f66029",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 1.6477344580002864,
+      "resource_stop": null,
+      "log_sha256": "9d50e96c44673c1385a20ae53a297ff4ae6a0cc1b6a0d72b6d1f35edb25bc64c"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('ChildrenSourceBound', \"e * forestCoefficient N Q * Rule5ActualTrace.base ^ q)\\nlen : js.length \u2264 m\\n\u22a2 \u2191(childForestDebit actual (fun x x_1 x_2 => 0) T q cs) \u2264\\n    \u2191m * (geometric Rule5ActualTrace.base * forestCoefficient N Q) * Rule5ActualTrace.base ^ q\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:78:2: warning: Variable name `sel` is not explicitly referenced.\\n\\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\\n  [apply] _sel\\n\\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:78:64: warning: Variable name `budget` is not explicitly referenced.\\n\\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\\n  [apply] _budget\\n\\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:102:1: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  p \u2265 0\\n  o \u2265 0\\n  n \u2265 0\\n  m \u2265 0\\n  l \u2265 0\\n  k \u2265 0\\n  k - l \u2265 0\\n  k - m \u2265 0\\n  j \u2265 0\\n  i \u2265 0\\n  h \u2265 0\\n  h - i \u2265 0\\n  g \u2265 0\\n  f \u2265 0\\n  f - g \u2265 0\\n  f - j \u2264 0\\n  e \u2265 0\\n  3*e + m \u2265 -16\\n  9*e + 3*m - n \u2265 -52\\n  d \u2265 0\\n  b \u2265 0\\n  b - d \u2265 0\\n  a \u2265 0\\n  a - e \u2265 0\\n  3*a + k \u2265 -16\\n  9*a - g + h + j + 3*k - o \u2264 -55\\nwhere\\n a := \u2191N\\n b := \u2191Q\\n d := \u2191q\\n e := \u2191(leaves S).length\\n f := \u2191(branchesBudget (leaves S).length)\\n g := \u2191(branchesMeter S c.a c.b).work\\n h := \u2191(pendantChildBudget N)\\n i := \u2191(pendantChildBudget (leaves S).length)\\n j := \u2191(branchesBudget N)\\n k := \u2191(agreementK N)\\n l := \u2191(agreementK (leaves S).length)\\n m := \u2191(agreementK (leaves T).length)\\n n := \u2191(runChildrenMeter actual (fun x => 0) (fun F => (agreementMeter T S F).work) T S q\\n      [singletonChild S c.a, singletonChild S c.b, pendantChild S c.a c.b]).localWork\\n o := \u2191(runChildrenMeter actual (fun x => 0) (fun F => (agreementMeter T S F).work) T S q\\n      (branches S c.a c.b)).localWork\\n p := \u2191(childForestDebit actual (fun x x_1 x_2 => 0) T q (branches S c.a c.b))\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:114:6: error: unexpected token 'local'; expected '(', ':=', '|' or term\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:114:6: error: Missing cases:\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:109:67: error: unsolved goals\\nactual : GenericForest.FrontierWork.Ordinary\\nT S : Tree\\nc : Candidate\\npr : Priority\\nq N Q : Nat\\nhp : DepthOne.proper T S = true\\nsel : select T S = some (pr, c)\\nsize : (leaves T).length \u2264 N\\nbudget : q \u2264 Q\\ncs : List Child\\ncount : cs.length \u2264 3\\nmembers : \u2200 (x : Child), x \u2208 cs \u2192 x \u2208 branches S c.a c.b\\nwork : Nat\\nbound : work \u2264 simpleLocalPolynomial N + childForestDebit actual (fun x x_1 x_2 => 0) T q cs\\nforest :\\n  \u2191(childForestDebit actual (fun x x_1 x_2 => 0) T q cs) \u2264\\n    \u21913 * (geometric Rule5ActualTrace.base * forestCoefficient N Q) * Rule5ActualTrace.base ^ q\\ncap : \u2191work \u2264 \u2191(simpleLocalPolynomial N) + \u2191(childForestDebit actual (fun x x_1 x_2 => 0) T q cs)\\n\u22a2 \u2191work \u2264 simpleSourceCoefficient N Q * Rule5ActualTrace.base ^ q\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:114:11: error: unexpected token ':='; expected 'binder_predicate', 'builtin_cbv_simproc', 'builtin_dsimproc', 'builtin_simproc', 'cbv_simproc', 'def_eval_config_item', 'dsimproc', 'elab', 'elab_rules', 'grind_pattern', 'infix', 'infixl', 'infixr', 'instance', 'macro', 'macro_rules', 'notation', 'postfix', 'prefix', 'simproc', 'syntax' or 'unif_hint'\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:116:26: error: unexpected token 'have'; expected 'binder_predicate', 'builtin_cbv_simproc', 'builtin_dsimproc', 'builtin_simproc', 'cbv_simproc', 'def_eval_config_item', 'dsimproc', 'elab', 'elab_rules', 'grind_pattern', 'infix', 'infixl', 'infixr', 'instance', 'macro', 'macro_rules', 'notation', 'postfix', 'prefix', 'simproc', 'syntax' or 'unif_hint'\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:117:55: error: unexpected token ')'; expected 'binder_predicate', 'builtin_cbv_simproc', 'builtin_dsimproc', 'builtin_simproc', 'cbv_simproc', 'def_eval_config_item', 'dsimproc', 'elab', 'elab_rules', 'grind_pattern', 'infix', 'infixl', 'infixr', 'instance', 'macro', 'macro_rules', 'notation', 'postfix', 'prefix', 'simproc', 'syntax' or 'unif_hint'\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:125:72: error: No goals to be solved\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:125:13: error: unsolved goals\\nactual : GenericForest.FrontierWork.Ordinary\\nT S : Tree\\nc : Candidate\\nq N Q : Nat\\nhp : DepthOne.proper T S = true\\nsel : select T S = some (Priority.one, c)\\nsize : (leaves T).length \u2264 N\\nbudget : q \u2264 Q\\nx : Child\\nhx : x \u2208 [pendantChild S c.a c.b]\\neq : x = pendantChild S c.a c.b\\n\u22a2 x \u2208 branches S c.a c.b\\n\"))"
+}

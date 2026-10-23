@@ -1,0 +1,64 @@
+import StatePartition
+
+/-! Problem-local literal finite forest states. No desired reduction fields. -/
+namespace ForestState
+open RMAF RestrictionBridge
+
+def labels : Option Tree → List Nat
+  | none => []
+  | some t => leaves t
+
+def targetEmbeddings : Option Tree → List (List Nat) → Bool
+  | none, F => F.isEmpty
+  | some t, F => pairwiseEmbeddings t F
+
+def targetAgrees : Option Tree → Tree → List Nat → Bool
+  | none, _, _ => false
+  | some t, s, B => restrictionAgrees t s B
+
+def proper (T : Option Tree) (ss : List Tree) : Bool :=
+  decide (labels T).Nodup && partitionCheck (labels T) (ss.map leaves)
+
+def sourceCheck (T : Option Tree) (F : List (List Nat)) (s : Tree) : Bool :=
+  let G := family (leaves s) F
+  partitionCheck (leaves s) G && G.all (targetAgrees T s) && pairwiseEmbeddings s G
+
+def agrees (T : Option Tree) (ss : List Tree) (F : List (List Nat)) : Bool :=
+  proper T ss && partitionCheck (labels T) F &&
+  F.all (fun B => ss.any (fun s => contained B (leaves s))) &&
+  targetEmbeddings T F && ss.all (sourceCheck T F)
+
+def additionalCost (ss : List Tree) (F : List (List Nat)) := F.length - ss.length
+
+def cleanupTarget (T : Option Tree) (a : Nat) := T.bind (restrict ((labels T).erase a))
+def cleanupSources (ss : List Tree) (a : Nat) := ss.erase (.leaf a)
+def cleanupForest (F : List (List Nat)) (a : Nat) := F.erase [a]
+
+def cherry (a b : Nat) : Tree → Bool
+  | .leaf _ => false
+  | .node l r =>
+    ((l == .leaf a && r == .leaf b) || (l == .leaf b && r == .leaf a)) ||
+    cherry a b l || cherry a b r
+
+def contract (a b z : Nat) : Tree → Tree
+  | .leaf x => .leaf x
+  | .node l r =>
+    if (l == .leaf a && r == .leaf b) || (l == .leaf b && r == .leaf a)
+    then .leaf z else .node (contract a b z l) (contract a b z r)
+
+def expand (a b z : Nat) : Tree → Tree
+  | .leaf x => if x == z then .node (.leaf a) (.leaf b) else .leaf x
+  | .node l r => .node (expand a b z l) (expand a b z r)
+
+def cherryReady (T : Option Tree) (ss : List Tree) (a b z : Nat) : Bool :=
+  proper T ss && a != b && !(labels T).contains z &&
+  (match T with | none => false | some t => cherry a b t) &&
+  ss.any (cherry a b)
+
+def contractBlock (a b z : Nat) (B : List Nat) : List Nat :=
+  if B.contains a then z :: (B.filter (fun x => x != a && x != b)) else B
+
+def expandBlock (a b z : Nat) (B : List Nat) : List Nat :=
+  B.flatMap (fun x => if x == z then [a,b] else [x])
+
+end ForestState

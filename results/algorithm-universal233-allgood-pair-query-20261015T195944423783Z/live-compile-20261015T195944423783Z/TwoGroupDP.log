@@ -1,0 +1,48 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-pair-query-20261015T195944423783Z/TwoGroupDP.lean:62:1: error: Tactic `split` failed: Could not split an `if` or `match` expression in the type
+  (do
+      let H ← some H
+      if additionalCost (owned ss U) H ≤ b then do
+          let K ← GenericForest.solve actual (localTarget T V) (owned ss V) (b - additionalCost (owned ss U) H)
+          pure (H ++ K)
+        else none) =
+    some F
+of `hf`
+
+Hint: Use `set_option trace.split.failure true` to display additional diagnostic information
+
+actual : Ordinary
+T : Option Tree
+ss : List Tree
+U V : List Nat
+b : Nat
+ih : ForestMinCompletion.LocalOrdinaryIH b actual
+hp : proper T ss = true
+hq : partitionCheck (labels T) [U, V] = true
+own : Owns ss [U, V]
+cross : CrossClear T ss [U, V]
+good : AllGoodDP.allGood (localTarget T U) (owned ss U) = true
+F : Forest
+H : List (List Nat)
+hf :
+  (do
+      let H ← some H
+      if additionalCost (owned ss U) H ≤ b then do
+          let K ← GenericForest.solve actual (localTarget T V) (owned ss V) (b - additionalCost (owned ss U) H)
+          pure (H ++ K)
+        else none) =
+    some F
+hH : AllGoodDP.run (localTarget T U) (owned ss U) = some H
+hvalid : agrees (localTarget T U) (owned ss U) H = true
+hbal : additionalCost (owned ss U) H + (owned ss U).length = H.length
+hmin :
+  ∀ (G : List (List Nat)),
+    agrees (localTarget T U) (owned ss U) G = true → additionalCost (owned ss U) H ≤ additionalCost (owned ss U) G
+⊢ agrees T ss F = true ∧
+    additionalCost ss F ≤ b ∧ ∀ (G : List (List Nat)), agrees T ss G = true → List.length F ≤ G.length
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-pair-query-20261015T195944423783Z/TwoGroupDP.lean:61:12: warning: This simp argument is unused:
+  Option.bind_some
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only at hf
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

@@ -1,0 +1,99 @@
+{
+  "source_bound_import_graph": {
+    "RMAF": [
+      "Std"
+    ],
+    "PureBridge": [
+      "Std"
+    ],
+    "GraphRegion": [
+      "PureBridge"
+    ],
+    "ExecutableConnectivity": [
+      "RMAF",
+      "GraphRegion"
+    ],
+    "TreeAddresses": [
+      "RMAF"
+    ],
+    "ExtractorLeastness": [
+      "TreeAddresses",
+      "ExecutableConnectivity"
+    ],
+    "ActualEmbedding": [
+      "ExtractorLeastness"
+    ],
+    "DegreePropagation": [
+      "ActualEmbedding"
+    ],
+    "PartitionRefinement": [
+      "RMAF"
+    ],
+    "ConsumerControls": [
+      "PartitionRefinement"
+    ],
+    "LocalSplit": [
+      "DegreePropagation",
+      "PartitionRefinement"
+    ],
+    "DegreeCounting": [
+      "LocalSplit"
+    ],
+    "LocalSplitControls": [
+      "DegreeCounting"
+    ],
+    "AgreementBlock": [
+      "PartitionRefinement"
+    ],
+    "GraphRouteControls": [
+      "ActualEmbedding"
+    ],
+    "DegreePropagationControls": [
+      "DegreePropagation",
+      "GraphRouteControls"
+    ],
+    "RestrictionTransport": [
+      "RMAF"
+    ],
+    "SupportAlgebra": [
+      "RestrictionTransport"
+    ],
+    "SupportProfile": [
+      "SupportAlgebra"
+    ],
+    "ActualSupportTransport": [
+      "SupportProfile"
+    ],
+    "Controls": [
+      "RMAF"
+    ],
+    "TransportUseSites": [
+      "ActualSupportTransport",
+      "Controls"
+    ],
+    "ActualRefinement": [
+      "DegreeCounting",
+      "AgreementBlock",
+      "ActualSupportTransport"
+    ],
+    "RefinementControls": [
+      "ActualRefinement",
+      "ConsumerControls"
+    ]
+  },
+  "acyclic": true,
+  "unreleased_imports": [],
+  "restriction_route_dependency": "Only RMAF plus its own algebra/profile modules; no graph route/LocalSplit/ActualRefinement import",
+  "assembly_dependency": "Both previously separate derivations imported only after completion",
+  "final_local_hypotheses": [
+    "(leaves t).Nodup",
+    "B.Nodup",
+    "every B label occurs in t",
+    "restrictionAgrees t u B = true",
+    "actualDegree t B v = 2"
+  ],
+  "residual_transport_hypotheses": [],
+  "legitimate_intermediate_hypothesis": "actual_disjoint_transport assumes source support disjointness; actual_two_tree_split derives it using actual_one_tree_split",
+  "original_definitions_unchanged": true,
+  "axiom_reports": "Every explicit named declaration from all rebuilt sources; only allowed standard axioms, per-declaration reports in rebuild_final_receipt.json"
+}

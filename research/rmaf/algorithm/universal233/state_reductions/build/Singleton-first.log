@@ -1,0 +1,44 @@
+research/rmaf/algorithm/universal233/state_reductions/build/Singleton.lean:33:2: error: unsolved goals
+case pos
+L : List Nat
+F : List (List Nat)
+h : partitionCheck L F = true
+x : Nat
+hx : x ∈ L
+⊢ 1 ≤ 1
+research/rmaf/algorithm/universal233/state_reductions/build/Singleton.lean:68:22: error: Application type mismatch: The argument
+  hm
+has type
+  B ∈ F
+but is expected to have type
+  partitionCheck L F = true
+in the application
+  ih hm
+research/rmaf/algorithm/universal233/state_reductions/build/Singleton.lean:70:8: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b - c ≥ 1
+where
+ a := ↑(List.count x B)
+ b := ↑(List.count x C)
+ c := ↑(List.count x F.flatten)
+research/rmaf/algorithm/universal233/state_reductions/build/Singleton.lean:79:65: error: unsolved goals
+T : Option Tree
+ss : List Tree
+a : Nat
+hp : proper T ss = true
+ha : Tree.leaf a ∈ ss
+hQ : partitionCheck (labels T) (List.map leaves ss) = true
+hleaf : [a] ∈ List.map leaves ss
+⊢ ?m.51 = a
+research/rmaf/algorithm/universal233/state_reductions/build/Singleton.lean:76:59: error: unsolved goals
+T : Option Tree
+ss : List Tree
+a : Nat
+hp : proper T ss = true
+ha : Tree.leaf a ∈ ss
+hQ : partitionCheck (labels T) (List.map leaves ss) = true
+hleaf : [a] ∈ List.map leaves ss
+⊢ a ∈ labels T ∧ ∀ (s : Tree), s ∈ ss → a ∈ leaves s → s = Tree.leaf a

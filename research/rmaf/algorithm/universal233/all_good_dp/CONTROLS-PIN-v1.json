@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "pinned_before_universal_proof": true,
+  "purpose": "Development controls, not fresh nonauthor acceptance",
+  "cases": [
+    {"name":"empty", "target":null, "sources":[], "minimum_additional_cost":0},
+    {"name":"one_matching", "target":[19,701], "sources":[[19,701]], "minimum_additional_cost":0},
+    {"name":"two_clear", "target":[[0,1],[2,3]], "sources":[[0,1],[2,3]], "minimum_additional_cost":0},
+    {"name":"crossed_quartet", "target":[[0,1],[2,3]], "sources":[[0,2],[1,3]], "minimum_additional_cost":1},
+    {"name":"six_caterpillar", "target":[0,[1,[2,[3,[4,5]]]]], "sources":[[0,3],[1,4],[2,5]], "minimum_additional_cost":2},
+    {"name":"permuted", "target":[[31,7],[501,83]], "sources":[[83,7],[501,31]], "minimum_additional_cost":1},
+    {"name":"bad_topology", "target":[[0,1],[2,3]], "sources":[[[0,2],[1,3]]], "all_good":false}
+  ],
+  "manual_truth": {
+    "empty":"The only partition is empty; its cost is zero.",
+    "one_matching":"The source leaf block is itself an agreement, with one block minus one source.",
+    "two_clear":"The two displayed cherries are disjoint target embeddings and give two blocks minus two sources.",
+    "crossed_quartet":"A zero-cost partition would retain both owner pairs; their target minimal embeddings both contain the root. Split one pair to get three blocks and cost one.",
+    "six_caterpillar":"Every two of the three owner-pair hulls overlap along the caterpillar spine; at most one pair can remain unsplit. Five blocks are necessary and retaining {2,5} plus four singleton leaves attains five minus three = two.",
+    "permuted":"A bijective relabeling, child swaps, and reordered sources of the crossed quartet preserve the explicit one-overlap obstruction."
+  },
+  "fixed_false_controls": [
+    "crossed_quartet_minimum_is_zero",
+    "two_clear_additional_equals_parsimony_changes",
+    "crossed_quartet_source_blocks_already_agree",
+    "leafless_three_vertex_color_region_can_disappear_without_charging_its_boundary_changes"
+  ],
+  "pass_criteria": "All seven literal guards and six exact minima agree with this pin; each deliberately mismatched expected minimum must be caught; false Lean assertions must fail; no expected values may be regenerated from DP output."
+}

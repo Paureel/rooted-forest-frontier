@@ -1,0 +1,866 @@
+{
+  "source": "research/rmaf/algorithm/verification/integration-2026-10-15/isolated/FreshComparisons.lean",
+  "assertions": 76,
+  "controls_with_compiled_fields": 30,
+  "mapping": [
+    {
+      "theorem": "FreshIntegrationChecks.control_001",
+      "control_id": "empty-partition-null",
+      "field": "partition",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(RMAF.partitionCheck [] [])",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_002",
+      "control_id": "proper-partition-order-invariant",
+      "field": "partition",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(RMAF.partitionCheck [0, 1, 2, 3, 4] [[4, 3], [2], [1, 0]])",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_003",
+      "control_id": "empty-block",
+      "field": "partition",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(RMAF.partitionCheck [0, 1, 2, 3, 4] [[0, 1, 2, 3, 4], []])",
+      "expected_lean_literal": "false"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_004",
+      "control_id": "duplicate-inside",
+      "field": "partition",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(RMAF.partitionCheck [0, 1, 2, 3, 4] [[0, 0], [1, 2, 3, 4]])",
+      "expected_lean_literal": "false"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_005",
+      "control_id": "duplicate-across",
+      "field": "partition",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(RMAF.partitionCheck [0, 1, 2, 3, 4] [[0, 1], [1, 2, 3, 4]])",
+      "expected_lean_literal": "false"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_006",
+      "control_id": "missing-label",
+      "field": "partition",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(RMAF.partitionCheck [0, 1, 2, 3, 4] [[0, 1], [2, 3]])",
+      "expected_lean_literal": "false"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_007",
+      "control_id": "foreign-label",
+      "field": "partition",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(RMAF.partitionCheck [0, 1, 2, 3, 4] [[0, 1], [2, 3, 4, 8]])",
+      "expected_lean_literal": "false"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_008",
+      "control_id": "embedding-clean-clades",
+      "field": "embeddings",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(RMAF.pairwiseEmbeddings (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4))) [[0, 1, 2], [3, 4]])",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_009",
+      "control_id": "embedding-overlap-despite-disjoint-labels",
+      "field": "embeddings",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(RMAF.pairwiseEmbeddings (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4))) [[0, 2], [1, 3, 4]])",
+      "expected_lean_literal": "false"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_010",
+      "control_id": "swapped-children-agreement",
+      "field": "agreement",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(RMAF.agreement (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4))) (.node (.node (.leaf 4) (.leaf 3)) (.node (.leaf 2) (.node (.leaf 1) (.leaf 0)))) [[0, 1, 2, 3, 4]])",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_011",
+      "control_id": "swapped-children-agreement",
+      "field": "proper_inputs",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((decide (leaves (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4)))).Nodup) && (decide (leaves (.node (.node (.leaf 4) (.leaf 3)) (.node (.leaf 2) (.node (.leaf 1) (.leaf 0))))).Nodup) && (leaves (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4)))).all (fun x => (leaves (.node (.node (.leaf 4) (.leaf 3)) (.node (.leaf 2) (.node (.leaf 1) (.leaf 0))))).contains x) && (leaves (.node (.node (.leaf 4) (.leaf 3)) (.node (.leaf 2) (.node (.leaf 1) (.leaf 0))))).all (fun x => (leaves (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4)))).contains x))",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_012",
+      "control_id": "topology-mismatch-with-disjoint-clades",
+      "field": "agreement",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(RMAF.agreement (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4))) (.node (.node (.node (.leaf 0) (.leaf 2)) (.leaf 1)) (.node (.leaf 3) (.leaf 4))) [[0, 1, 2], [3, 4]])",
+      "expected_lean_literal": "false"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_013",
+      "control_id": "topology-mismatch-with-disjoint-clades",
+      "field": "proper_inputs",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((decide (leaves (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4)))).Nodup) && (decide (leaves (.node (.node (.node (.leaf 0) (.leaf 2)) (.leaf 1)) (.node (.leaf 3) (.leaf 4)))).Nodup) && (leaves (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4)))).all (fun x => (leaves (.node (.node (.node (.leaf 0) (.leaf 2)) (.leaf 1)) (.node (.leaf 3) (.leaf 4)))).contains x) && (leaves (.node (.node (.node (.leaf 0) (.leaf 2)) (.leaf 1)) (.node (.leaf 3) (.leaf 4)))).all (fun x => (leaves (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4)))).contains x))",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_014",
+      "control_id": "singleton-agreement-clean",
+      "field": "agreement",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(RMAF.agreement (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4))) (.node (.node (.node (.leaf 0) (.leaf 2)) (.leaf 1)) (.node (.leaf 3) (.leaf 4))) [[0], [1], [2], [3], [4]])",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_015",
+      "control_id": "singleton-agreement-clean",
+      "field": "proper_inputs",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((decide (leaves (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4)))).Nodup) && (decide (leaves (.node (.node (.node (.leaf 0) (.leaf 2)) (.leaf 1)) (.node (.leaf 3) (.leaf 4)))).Nodup) && (leaves (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4)))).all (fun x => (leaves (.node (.node (.node (.leaf 0) (.leaf 2)) (.leaf 1)) (.node (.leaf 3) (.leaf 4)))).contains x) && (leaves (.node (.node (.node (.leaf 0) (.leaf 2)) (.leaf 1)) (.node (.leaf 3) (.leaf 4)))).all (fun x => (leaves (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4)))).contains x))",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_016",
+      "control_id": "duplicate-tree-labels-raw-boolean-is-not-instance",
+      "field": "agreement",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(RMAF.agreement (.node (.leaf 0) (.leaf 0)) (.node (.leaf 0) (.leaf 0)) [[0]])",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_017",
+      "control_id": "duplicate-tree-labels-raw-boolean-is-not-instance",
+      "field": "proper_inputs",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((decide (leaves (.node (.leaf 0) (.leaf 0))).Nodup) && (decide (leaves (.node (.leaf 0) (.leaf 0))).Nodup) && (leaves (.node (.leaf 0) (.leaf 0))).all (fun x => (leaves (.node (.leaf 0) (.leaf 0))).contains x) && (leaves (.node (.leaf 0) (.leaf 0))).all (fun x => (leaves (.node (.leaf 0) (.leaf 0))).contains x))",
+      "expected_lean_literal": "false"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_018",
+      "control_id": "normalization-all-homogeneous-root",
+      "field": "groups",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(groups (normalize (fromTree (fun x : Nat => if x = 0 then 7 else if x = 1 then 7 else if x = 2 then 7 else if x = 3 then 7 else if x = 4 then 7 else 0) [] (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4))))))",
+      "expected_lean_literal": "[\u27e8[], [0, 1, 2, 3, 4], 7\u27e9]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_019",
+      "control_id": "normalization-all-homogeneous-root",
+      "field": "root_origin",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(rootOrigin (normalize (fromTree (fun x : Nat => if x = 0 then 7 else if x = 1 then 7 else if x = 2 then 7 else if x = 3 then 7 else if x = 4 then 7 else 0) [] (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4))))))",
+      "expected_lean_literal": "[]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_020",
+      "control_id": "normalization-all-homogeneous-root",
+      "field": "idempotent",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(decide (normalize (normalize (fromTree (fun x : Nat => if x = 0 then 7 else if x = 1 then 7 else if x = 2 then 7 else if x = 3 then 7 else if x = 4 then 7 else 0) [] (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4))))) = (normalize (fromTree (fun x : Nat => if x = 0 then 7 else if x = 1 then 7 else if x = 2 then 7 else if x = 3 then 7 else if x = 4 then 7 else 0) [] (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4)))))))",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_021",
+      "control_id": "normalization-homogeneous-clades",
+      "field": "groups",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(groups (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else if x = 3 then 1 else if x = 4 then 1 else 0) [] (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4))))))",
+      "expected_lean_literal": "[\u27e8[false, false], [0, 1], 0\u27e9, \u27e8[false, true], [2], 1\u27e9, \u27e8[true], [3, 4], 1\u27e9]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_022",
+      "control_id": "normalization-homogeneous-clades",
+      "field": "root_origin",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(rootOrigin (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else if x = 3 then 1 else if x = 4 then 1 else 0) [] (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4))))))",
+      "expected_lean_literal": "[]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_023",
+      "control_id": "normalization-homogeneous-clades",
+      "field": "idempotent",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(decide (normalize (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else if x = 3 then 1 else if x = 4 then 1 else 0) [] (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4))))) = (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else if x = 3 then 1 else if x = 4 then 1 else 0) [] (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4)))))))",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_024",
+      "control_id": "erase-root-entire",
+      "field": "root_origin",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((erase [] (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2))))).map rootOrigin)",
+      "expected_lean_literal": "none"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_025",
+      "control_id": "erase-root-entire",
+      "field": "groups",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((erase [] (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2))))).map groups)",
+      "expected_lean_literal": "none"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_026",
+      "control_id": "erase-unary-retains-surviving-original-origin",
+      "field": "root_origin",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((erase [false] (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2))))).map rootOrigin)",
+      "expected_lean_literal": "(some [true])"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_027",
+      "control_id": "erase-unary-retains-surviving-original-origin",
+      "field": "groups",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((erase [false] (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2))))).map groups)",
+      "expected_lean_literal": "(some [\u27e8[true], [2], 1\u27e9])"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_028",
+      "control_id": "surviving-owner-not-erased-owner",
+      "field": "root_origin",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((erase [false] (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2))))).map rootOrigin)",
+      "expected_lean_literal": "(some [true])"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_029",
+      "control_id": "choose-unique-color-before-mixed-cherry",
+      "field": "kind/origins",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(choiceView (choose (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else if x = 3 then 1 else if x = 4 then 1 else 0) [] (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4)))))))",
+      "expected_lean_literal": "(1, [[false, false]])"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_030",
+      "control_id": "choose-mixed-when-no-unique-color",
+      "field": "kind/origins",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(choiceView (choose (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 1 else if x = 2 then 0 else if x = 3 then 1 else if x = 4 then 1 else 0) [] (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4)))))))",
+      "expected_lean_literal": "(2, [[false, false, false], [false, false, true]])"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_031",
+      "control_id": "choose-homogeneous-finish",
+      "field": "kind/origins",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(choiceView (choose (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 0 else if x = 3 then 0 else if x = 4 then 0 else 0) [] (.node (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) (.node (.leaf 3) (.leaf 4)))))))",
+      "expected_lean_literal": "(0, [])"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_032",
+      "control_id": "choose-unnormalized-homogeneous-cherry-refusal",
+      "field": "kind/origins",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(choiceView (choose (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else if x = 3 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))))))",
+      "expected_lean_literal": "(3, [])"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_033",
+      "control_id": "attempt-root-guard",
+      "field": "chosen_is_current_group",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((groups (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2))))).contains \u27e8[], [0, 1, 2], 0\u27e9)",
+      "expected_lean_literal": "false"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_034",
+      "control_id": "attempt-root-guard",
+      "field": "current_origins_unique",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(decide (origins (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2))))).Nodup)",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_035",
+      "control_id": "attempt-root-guard",
+      "field": "chosen_origin_is_actual_edge",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((Universal233.CoreGraph.subtree (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) []).isSome && !([] == ([] : Vertex)))",
+      "expected_lean_literal": "false"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_036",
+      "control_id": "attempt-root-guard",
+      "field": "child_attempts",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)))) [] [] \u27e8[], [0, 1, 2], 0\u27e9).childAttempts",
+      "expected_lean_literal": "1"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_037",
+      "control_id": "attempt-root-guard",
+      "field": "continuation_called",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)))) [] [] \u27e8[], [0, 1, 2], 0\u27e9).outputs",
+      "expected_lean_literal": "[]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_038",
+      "control_id": "attempt-root-guard",
+      "field": "guard_outcome",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)))) [] [] \u27e8[], [0, 1, 2], 0\u27e9).refusals",
+      "expected_lean_literal": "[\"attempt to cut original root\"]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_039",
+      "control_id": "attempt-duplicate-guard",
+      "field": "chosen_is_current_group",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((groups (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2))))).contains \u27e8[false], [0, 1], 0\u27e9)",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_040",
+      "control_id": "attempt-duplicate-guard",
+      "field": "current_origins_unique",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(decide (origins (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2))))).Nodup)",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_041",
+      "control_id": "attempt-duplicate-guard",
+      "field": "chosen_origin_is_actual_edge",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((Universal233.CoreGraph.subtree (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) [false]).isSome && !([false] == ([] : Vertex)))",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_042",
+      "control_id": "attempt-duplicate-guard",
+      "field": "child_attempts",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)))) [] [[false]] \u27e8[false], [0, 1], 0\u27e9).childAttempts",
+      "expected_lean_literal": "1"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_043",
+      "control_id": "attempt-duplicate-guard",
+      "field": "continuation_called",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)))) [] [[false]] \u27e8[false], [0, 1], 0\u27e9).outputs",
+      "expected_lean_literal": "[]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_044",
+      "control_id": "attempt-duplicate-guard",
+      "field": "guard_outcome",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)))) [] [[false]] \u27e8[false], [0, 1], 0\u27e9).refusals",
+      "expected_lean_literal": "[\"duplicate original source cut\"]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_045",
+      "control_id": "attempt-whole-current-guard",
+      "field": "chosen_is_current_group",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((groups (normalize (.leaf \u27e8[true], [2], 1\u27e9))).contains \u27e8[true], [2], 1\u27e9)",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_046",
+      "control_id": "attempt-whole-current-guard",
+      "field": "current_origins_unique",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(decide (origins (normalize (.leaf \u27e8[true], [2], 1\u27e9))).Nodup)",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_047",
+      "control_id": "attempt-whole-current-guard",
+      "field": "chosen_origin_is_actual_edge",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((Universal233.CoreGraph.subtree (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) [true]).isSome && !([true] == ([] : Vertex)))",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_048",
+      "control_id": "attempt-whole-current-guard",
+      "field": "child_attempts",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (.leaf \u27e8[true], [2], 1\u27e9)) [] [] \u27e8[true], [2], 1\u27e9).childAttempts",
+      "expected_lean_literal": "1"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_049",
+      "control_id": "attempt-whole-current-guard",
+      "field": "continuation_called",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (.leaf \u27e8[true], [2], 1\u27e9)) [] [] \u27e8[true], [2], 1\u27e9).outputs",
+      "expected_lean_literal": "[]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_050",
+      "control_id": "attempt-whole-current-guard",
+      "field": "guard_outcome",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (.leaf \u27e8[true], [2], 1\u27e9)) [] [] \u27e8[true], [2], 1\u27e9).refusals",
+      "expected_lean_literal": "[\"attempt removed entire current source\"]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_051",
+      "control_id": "attempt-clean-original-cut",
+      "field": "chosen_is_current_group",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((groups (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2))))).contains \u27e8[false], [0, 1], 0\u27e9)",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_052",
+      "control_id": "attempt-clean-original-cut",
+      "field": "current_origins_unique",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(decide (origins (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2))))).Nodup)",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_053",
+      "control_id": "attempt-clean-original-cut",
+      "field": "chosen_origin_is_actual_edge",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((Universal233.CoreGraph.subtree (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) [false]).isSome && !([false] == ([] : Vertex)))",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_054",
+      "control_id": "attempt-clean-original-cut",
+      "field": "child_attempts",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)))) [] [] \u27e8[false], [0, 1], 0\u27e9).childAttempts",
+      "expected_lean_literal": "1"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_055",
+      "control_id": "attempt-clean-original-cut",
+      "field": "continuation_called/next_root/next_groups/forwarded detached and cuts",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)))) [] [] \u27e8[false], [0, 1], 0\u27e9).outputs",
+      "expected_lean_literal": "[\u27e8[[3], [3, 1, 2]], [[false]]\u27e9, \u27e8[[0, 1]], [[false]]\u27e9]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_056",
+      "control_id": "attempt-clean-original-cut",
+      "field": "guard_outcome",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)))) [] [] \u27e8[false], [0, 1], 0\u27e9).refusals",
+      "expected_lean_literal": "[]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_057",
+      "control_id": "attempt-stale-valid-edge-not-a-current-group",
+      "field": "chosen_is_current_group",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((groups (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2))))).contains \u27e8[false, false], [0], 0\u27e9)",
+      "expected_lean_literal": "false"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_058",
+      "control_id": "attempt-stale-valid-edge-not-a-current-group",
+      "field": "current_origins_unique",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(decide (origins (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2))))).Nodup)",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_059",
+      "control_id": "attempt-stale-valid-edge-not-a-current-group",
+      "field": "chosen_origin_is_actual_edge",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((Universal233.CoreGraph.subtree (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) [false, false]).isSome && !([false, false] == ([] : Vertex)))",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_060",
+      "control_id": "attempt-stale-valid-edge-not-a-current-group",
+      "field": "child_attempts",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)))) [] [] \u27e8[false, false], [0], 0\u27e9).childAttempts",
+      "expected_lean_literal": "1"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_061",
+      "control_id": "attempt-stale-valid-edge-not-a-current-group",
+      "field": "continuation_called/next_root/next_groups/forwarded detached and cuts",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)))) [] [] \u27e8[false, false], [0], 0\u27e9).outputs",
+      "expected_lean_literal": "[\u27e8[[1], [2, 0, 0, 1], [3, 1, 2]], [[false, false]]\u27e9, \u27e8[[0]], [[false, false]]\u27e9]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_062",
+      "control_id": "attempt-stale-valid-edge-not-a-current-group",
+      "field": "guard_outcome",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)))) [] [] \u27e8[false, false], [0], 0\u27e9).refusals",
+      "expected_lean_literal": "[]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_063",
+      "control_id": "attempt-forged-group-metadata-not-guarded",
+      "field": "chosen_is_current_group",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((groups (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2))))).contains \u27e8[false], [0], 0\u27e9)",
+      "expected_lean_literal": "false"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_064",
+      "control_id": "attempt-forged-group-metadata-not-guarded",
+      "field": "current_origins_unique",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(decide (origins (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2))))).Nodup)",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_065",
+      "control_id": "attempt-forged-group-metadata-not-guarded",
+      "field": "chosen_origin_is_actual_edge",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((Universal233.CoreGraph.subtree (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) [false]).isSome && !([false] == ([] : Vertex)))",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_066",
+      "control_id": "attempt-forged-group-metadata-not-guarded",
+      "field": "child_attempts",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)))) [] [] \u27e8[false], [0], 0\u27e9).childAttempts",
+      "expected_lean_literal": "1"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_067",
+      "control_id": "attempt-forged-group-metadata-not-guarded",
+      "field": "continuation_called/next_root/next_groups/forwarded detached and cuts",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)))) [] [] \u27e8[false], [0], 0\u27e9).outputs",
+      "expected_lean_literal": "[\u27e8[[3], [3, 1, 2]], [[false]]\u27e9, \u27e8[[0]], [[false]]\u27e9]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_068",
+      "control_id": "attempt-forged-group-metadata-not-guarded",
+      "field": "guard_outcome",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (fromTree (fun x : Nat => if x = 0 then 0 else if x = 1 then 0 else if x = 2 then 1 else 0) [] (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)))) [] [] \u27e8[false], [0], 0\u27e9).refusals",
+      "expected_lean_literal": "[]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_069",
+      "control_id": "attempt-duplicate-origin-state",
+      "field": "chosen_is_current_group",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((groups (normalize (.node [] (.leaf \u27e8[false], [0], 0\u27e9) (.leaf \u27e8[false], [2], 1\u27e9)))).contains \u27e8[false], [0], 0\u27e9)",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_070",
+      "control_id": "attempt-duplicate-origin-state",
+      "field": "current_origins_unique",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(decide (origins (normalize (.node [] (.leaf \u27e8[false], [0], 0\u27e9) (.leaf \u27e8[false], [2], 1\u27e9)))).Nodup)",
+      "expected_lean_literal": "false"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_071",
+      "control_id": "attempt-duplicate-origin-state",
+      "field": "chosen_origin_is_actual_edge",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((Universal233.CoreGraph.subtree (.node (.node (.leaf 0) (.leaf 1)) (.leaf 2)) [false]).isSome && !([false] == ([] : Vertex)))",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_072",
+      "control_id": "attempt-duplicate-origin-state",
+      "field": "child_attempts",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (.node [] (.leaf \u27e8[false], [0], 0\u27e9) (.leaf \u27e8[false], [2], 1\u27e9))) [] [] \u27e8[false], [0], 0\u27e9).childAttempts",
+      "expected_lean_literal": "1"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_073",
+      "control_id": "attempt-duplicate-origin-state",
+      "field": "continuation_called",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (.node [] (.leaf \u27e8[false], [0], 0\u27e9) (.leaf \u27e8[false], [2], 1\u27e9))) [] [] \u27e8[false], [0], 0\u27e9).outputs",
+      "expected_lean_literal": "[]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_074",
+      "control_id": "attempt-duplicate-origin-state",
+      "field": "guard_outcome",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(attempt probe (normalize (.node [] (.leaf \u27e8[false], [0], 0\u27e9) (.leaf \u27e8[false], [2], 1\u27e9))) [] [] \u27e8[false], [0], 0\u27e9).refusals",
+      "expected_lean_literal": "[\"attempt removed entire current source\"]"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_075",
+      "control_id": "single-leaf-original-root-agreement",
+      "field": "agreement",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "(RMAF.agreement (.leaf 0) (.leaf 0) [[0]])",
+      "expected_lean_literal": "true"
+    },
+    {
+      "theorem": "FreshIntegrationChecks.control_076",
+      "control_id": "single-leaf-original-root-agreement",
+      "field": "proper_inputs",
+      "expected_from": "frozen CONTROL-PIN.json literal or documented probe encoding",
+      "expression": "((decide (leaves (.leaf 0)).Nodup) && (decide (leaves (.leaf 0)).Nodup) && (leaves (.leaf 0)).all (fun x => (leaves (.leaf 0)).contains x) && (leaves (.leaf 0)).all (fun x => (leaves (.leaf 0)).contains x))",
+      "expected_lean_literal": "true"
+    }
+  ],
+  "unsupported_fields": [
+    {
+      "control_id": "normalization-does-not-preserve-every-fine-owner",
+      "fields": [
+        "monochromatic_groups",
+        "each_group_has_one_owner",
+        "group_owner_ids"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "normalization-owner-transport-clean",
+      "fields": [
+        "monochromatic_groups",
+        "each_group_has_one_owner",
+        "group_owner_ids"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "refinement-direction",
+      "fields": [
+        "F_refines_Q",
+        "Q_refines_F"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "refinement-overlap-is-not-containment",
+      "fields": [
+        "F_refines_Q",
+        "Q_refines_F"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "mixed-cherry-left-singleton-clean",
+      "fields": [
+        "actual",
+        "terminal_exact",
+        "connected",
+        "disjoint",
+        "valid",
+        "leafless_support",
+        "monochromatic",
+        "chosen_singletons"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "mixed-cherry-right-singleton-clean",
+      "fields": [
+        "actual",
+        "terminal_exact",
+        "connected",
+        "disjoint",
+        "valid",
+        "leafless_support",
+        "monochromatic",
+        "chosen_singletons"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "mixed-alternative-needs-disjoint-supports",
+      "fields": [
+        "actual",
+        "terminal_exact",
+        "connected",
+        "disjoint",
+        "valid",
+        "leafless_support",
+        "monochromatic",
+        "chosen_singletons"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "leafless-support-satisfies-weak-structure",
+      "fields": [
+        "actual",
+        "terminal_exact",
+        "connected",
+        "disjoint",
+        "valid",
+        "leafless_support",
+        "monochromatic",
+        "chosen_singletons"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "support-missing-terminal",
+      "fields": [
+        "actual",
+        "terminal_exact",
+        "connected",
+        "disjoint",
+        "valid",
+        "leafless_support",
+        "monochromatic",
+        "chosen_singletons"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "support-nonactual-address",
+      "fields": [
+        "actual",
+        "terminal_exact",
+        "connected",
+        "disjoint",
+        "valid",
+        "leafless_support",
+        "monochromatic",
+        "chosen_singletons"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "support-disconnected",
+      "fields": [
+        "actual",
+        "terminal_exact",
+        "connected",
+        "disjoint",
+        "valid",
+        "leafless_support",
+        "monochromatic",
+        "chosen_singletons"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "original-edge-vs-suppressed-edge",
+      "fields": [
+        "actual"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "cut-one-clade-clean",
+      "fields": [
+        "actual_edges",
+        "distinct",
+        "components",
+        "leafless_components",
+        "leaf_regions",
+        "cut_count",
+        "exact_partition_and_cost"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "distinct-actual-cuts-leafless-root-trap",
+      "fields": [
+        "actual_edges",
+        "distinct",
+        "components",
+        "leafless_components",
+        "leaf_regions",
+        "cut_count",
+        "exact_partition_and_cost"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "duplicate-cut-name-trap",
+      "fields": [
+        "actual_edges",
+        "distinct",
+        "components",
+        "leafless_components",
+        "leaf_regions",
+        "cut_count",
+        "exact_partition_and_cost"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "original-root-is-not-edge",
+      "fields": [
+        "actual_edges",
+        "distinct",
+        "components",
+        "leafless_components",
+        "leaf_regions",
+        "cut_count",
+        "exact_partition_and_cost"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "stale-cut-origin-trap",
+      "fields": [
+        "actual_edges",
+        "distinct",
+        "components",
+        "leafless_components",
+        "leaf_regions",
+        "cut_count",
+        "exact_partition_and_cost"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "surviving-owner-not-erased-owner",
+      "fields": [
+        "surviving_owner"
+      ],
+      "reason": "source partition owner construction is noncomputable; reviewed exact erasure owner theorem, no executable Boolean owner API"
+    },
+    {
+      "control_id": "unique-color-singleton-clean",
+      "fields": [
+        "actual",
+        "terminal_exact",
+        "connected",
+        "disjoint",
+        "valid",
+        "leafless_support",
+        "monochromatic",
+        "chosen_singletons"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    },
+    {
+      "control_id": "mixed-alternative-needs-monochromatic-partition",
+      "fields": [
+        "actual",
+        "terminal_exact",
+        "connected",
+        "disjoint",
+        "valid",
+        "leafless_support",
+        "monochromatic",
+        "chosen_singletons"
+      ],
+      "reason": "original graph/support/cut/refinement relation is independently checked in all49 graph controls; no corresponding decidable release API; universal source statements reviewed separately"
+    }
+  ],
+  "false_controls": [
+    "attempt-stale-valid-edge-not-a-current-group",
+    "embedding-overlap-despite-disjoint-labels"
+  ],
+  "pre_candidate_control_source_sha256": "05479fb261b4f8d032077ed16e90952df30dfbc9511ac6227ff0fc2b53971ebc",
+  "sources_sha256": {
+    "research/rmaf/algorithm/verification/integration-2026-10-15/isolated/FreshComparisons.lean": "79eaf575de7b44e060d6f10d071bf84209a5c6b5e577ec1dcdfc39ff67648ce5",
+    "research/rmaf/algorithm/verification/integration-2026-10-15/isolated/FreshComparisonsFalse.lean": "c0a4d64d8563cce74c417a0b8bc342cd0932a2f89858494ae0f57267e4afb02b"
+  },
+  "scope": "post-contact adapter of frozen literal expectations to actual released interfaces; no extra replication or original-component theorem"
+}

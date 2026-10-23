@@ -1,0 +1,137 @@
+outgoing tob whose tail lies on the path froma toc inT. If there are no other arcs outgoing
+from this path then Whidden(t = 1)would apply, contradiction. (See also Figure 10). For
+safety, suppose none of the three branches apply. Thena is in a non-singleton componentB.
+IfB containsb, then we are in the first branch. IfB does not containc or any taxa fromX2,
+we are also in the first branch. IfB contains taxa fromX2, but notc, we can cut offX2 and
+add b (which will necessarily be a singleton) toB, irrespective of whetherB contains taxa
+from outside{a,b,c}∪X2: again, we are back in the first branch. The remaining case is that
+B includes c. Then (due to{a,c}being a cherry inT′)the two arcs outgoing from the path
+from a to c in T cannot be inB i.e. they must be cut. Hence, the third branch applies.◀
+Consider a potential invocation of Whidden(t = 2), where X1 and X2 are as defined
+in the statement of branching rule 4, and letS =X\ ({a,b}∪X1∪X2). (So, the branch
+of Whidden(t = 2)that cuts off X1 and X2, splitsT′into three components with taxa
+X1,X 2 and S∪{a,b}). Assuming branching rule 4 does not apply,X1 and X2 are not both
+singletons. Also, if one of them is a singleton, it does not form a cherry witha or b. We are
+now almost ready to invoke a specially-modified version of Whidden(t = 2), but we have to
+first deal with a very specific boundary situation when both the following conditions hold:
+1.T[X 1],T[X 2]andT[S∪{a,b}]are mutually disjoint inT.
+2.At least two ofX 1,X 2,S∪{a,b}are homeomorphic.
+The only purpose of our next branching rule,Branching rule 5, is to catch this situation.
+For convenience, we give the definition of this branching rule at the same time as the proof
+of its correctness; to guide the reader we show the actual branching strategy in red text.
+▶ Lemma 13.Let T and T′be two rooted trees onX without common cherries. Suppose
+Whidden( t = 1)does not apply, and neither does branching rule 4. Suppose Whidden (t = 2)
+does apply. That is:{a,b}is a cherry inT and∅⊂X1,X 2⊂(X\{a,b})are the two subsets
+of taxa that are pendant on the path froma to b in T′, whereX1 is closer toa than X2 is to
+a. LetS =X\ ({a,b}∪X1∪X2). Suppose thatT [Xi],T [Xj]and T [S∪{a,b}]are mutually
+disjoint inT, and at least two ofXi,Xj,S∪{a,b}are homeomorphic. Then there is a safe
+branching rule, denotedbranching rule 5, with recursion at mostT (k−1) + 3T (k−2),
+which yields a branching factor of at most 2.3028.
+Proof. First, recall that due to the non-applicability of branching rule 4, at most one ofX1
+and X2 is a singleton, and if one of them is a singleton it does not form a cherry witha or b.
+
+=== PDF PAGE 19 ===
+D. Mestel, S. Chaplick, S. Kelk, R. Meuwese 19
+Now, if all three ofX1,X 2,S∪{a,b}are homeomorphic, theT (k−2)branch of Whidden
+(t = 2)would simply return TRUE/0 instantly, because the three sets already constitute a
+valid agreement forest. Hence in this situation we can simply execute the standard Whidden
+(t = 2)branching, observing that the usual recursion, which is2T (k−1) +T (k−2), collapses
+to2T(k−1). This has a branching factor of 2, which is less than 2.3028.
+From this point on, we can henceforth assume thatexactly twoof the three sets are
+homeomorphic. Figure 11 describes the situation at this point.
+a
+b
+T ′
+X2
+X1
+S
+X2
+X1
+T
+b
+a
+S
+Figure 11The starting point for our technical analysis. HereX1 and X2 are not both singletons;
+a and b do not form cherries inT′with X1 or X2; T [X1], T [X2]and T [S∪{a,b}]are mutually
+disjoint inT, and exactly two ofX1,X 2,S∪{a,b}induce homeomorphic subtrees inT andT′. Here
+X2 is shown as being sibling tob in T′but it might also be ancestral toa and X1 i.e. “above”X1
+inT ′.
+Suppose Xi, (say)X1, is homeomorphic and|X1|≥2. Let{p,q}be a cherry inX1; this
+must exist. To prevent{p,q}being a common cherry inT, and assuming that Whidden
+(t = 1or t≥3) does not apply anywhere, we observe crucially thatT [{p,q}]must have at
+least two outgoing arcs inT. These outgoing arcs can only be created by edges outgoing
+to T [X2]and T [S∪{a,b}]. This has several consequences:X1 has at most one cherry (so
+T|X1 =T′|X1 is in fact a caterpillar) andX2 cannot be homeomorphic non-singleton (as
+T′|X2 would then also contain a cherry, meaning there are simply too many cherries inT to
+‘hit’). See Figure 12.
+p
+q
+T
+S∪{a, b}
+X2
+X1
+p
+q
+X1
+T ′
+Figure 12If one ofX1,X 2 is homeomorphic non-singleton, sayX1, then it contains a cherry
+{p,q}, and inT, X2 and S∪{a,b}will be pendant to the path fromp to q. X1 will also be a
+caterpillar, andX2 will not be homeomorphic non-singleton. Note that the location ofX2 and
+S∪{a,b}on the path fromptoqcan vary.
+Hence, ifX1 andX2 each have at least 2 taxa, then at most one of them is homeomorphic.
+Conversely, if they are both homeomorphic, at least one of them is a singleton.
+We can distinguish the following cases.
+Case 1: At least one of X1,X 2, say Xj, is homeomorphic and |Xj|≥3.It follows
+that Xi (i̸=j) is either a singleton, or non-homeomorphic, but we do not directly need
+this information. Similarly, the following argument is agnostic to the (non-)homeomorphic
+status ofS∪{a,b}. We know thatXj is a non-singleton caterpillar with a unique cherry
+{p,q}. Furthermore, inT, T [Xi]and T [S∪{a,b}]must be pendant to the embedding of
+this cherry (see the remark in the previous paragraph; also, in Figure 12,Xj =X1 and
+Xi =X2). As a result of this (a) any component of a forest that contains at least one
+taxon fromXi∪S∪{a,b}, can contain at most one taxon fromXj. This is because, if
+such a component contained two or more taxa fromXj, the component would have a
+
+=== PDF PAGE 20 ===
+20 Improved FPT branching algorithms for maximum agreement forests
+cherry comprising two taxa fromXj (due to the pendancy ofT′[Xj]). However, due to the
+topology ofT - recall thatT|Xj is a caterpillar andT [Xi],T [S∪{a,b}]are outgoing from
+its only cherry - these two taxa cannot form a cherry in the embedding of the component
+in T. Also, (b) there can be at most one component that contains taxa from bothXj
+and outside it, due to the pendancy ofT′[Xj]. We use insights (a) and (b) to now argue
+that bothT [Xi]and T [S∪{a,b}]can definitely be cut off (which is equivalent to cutting
+off T′[Xi]and T′[Xj]). Suppose this is not the case for some agreement forest. First,
+suppose B contains at least one taxon fromXi, and at least one taxon fromS∪{a,b}
+but no taxa fromXj. Then at least one ofp,q will be a singleton. We cutB into its
+Xi and S∪{a,b}parts with a single cut, and then compensate by introducingXj as a
+single component (which saves at least one cut, due to absorbing singletonp or q). On
+the other hand, suppose that there is a componentB that contains at least one taxon
+from Xi∪S∪{a,b}and exactly one taxon fromXj. Crucially, all taxa in(Xj\B )will
+be singleton components6, sinceB entersT′[Xj]via its root (due to pendancy ofT′[Xj])
+but T [Xj]via the cherry at the bottom. Given that|Xj|≥3, there are at least two such
+singletons. We can then cutB into itsXi, S∪{a,b}and Xj parts (requiring at most
+two cuts), and compensate by introducingXj as a single component (which absorbs the
+at least two singletons); done. The recursion isT (k) = T (k−2), which has a branching
+factor of 1.
+Case 2: At least one of X1,X 2, say Xj, is homeomorphic and |Xj|= 2.The
+analysis for|Xj|≥3from Case 1 holds almost entirely here, except at the very end when
+we leverage the|Xj|≥3assumption. To avoid extensive case analysis, we accommodate
+this via a comparatively weakened analysis. Our branches are now: (1) Cut offX1,X 2
+(which is the situation discussed in the previous paragraph); (2) Cut offp and a, (3) Cut
+offp and b, (4) Cut offq and a, (5) Cut offq and b. The argument is straightforward: if
+a and b are together in a component, then via the standard Whidden(t = 2)argument,
+(1) holds. Otherwise, at least one ofa and b is a singleton. Now, we know from the
+previous paragraph that if (1) does not hold, at least one ofp and q will be a singleton.
+The recursion isT(k) = 5T(k−2), which has a branching factor of 2.2361.
+Case 3: Exactly one of X1,X 2 is non-homeomorphic, and the other is a
+singleton.Hence, S∪{a,b}is homeomorphic. Now, supposeT|(S∪{a,b}) = T′|(S∪
+{a,b})contains a cherry {p,q}such that{p,q}∩{a,b}=∅. In this case, the same
+branching from Case 2 works. That is becauseX1 and X2 must both be pendant to
+T [{p,q}], by the same arguments as given in Case 1. SoX1,X 2 are pendant to the
+cherry{p,q}in T, and are pendant to the cherry{a,b}in T′. If{p,q}are together in
+a component, or{a,b}are together in a component, thenX1,X 2 are both cut off, i.e.
+branch (1) holds. Otherwise at most one ofp and q can be in a non-singleton component,
+and at most one ofa,b can be in a non-singleton component, i.e. at least one of branches
+(2)-(5) holds.
+We may thus assume thatS∪{a,b}has no second cherry, i.e.T|(S∪{a,b}) = T′|(S∪{a,b})
+is a caterpillar. This situation is shown in Figure 13.
+Now, letXj be the non-homeomorphic set.

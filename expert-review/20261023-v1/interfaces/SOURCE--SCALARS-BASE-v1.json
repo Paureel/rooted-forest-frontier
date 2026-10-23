@@ -1,0 +1,1906 @@
+{
+  "definitions": [
+    {
+      "name": "OrdinaryDispatch.OuterSource.outerPolynomial",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.OuterSource",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open OrdinaryDispatch.Hard2SourceWork OrdinaryDispatch.FullSourceWork",
+          "open OrdinaryDispatch.FastOrdinary OrdinaryDispatch.GoodPairGlobalAssembly OrdinaryDispatch.GlobalNumeric",
+          "open OrdinaryDispatch.ExtendedSourceAssembly OrdinaryDispatch.GlobalSourceAssembly"
+        ]
+      },
+      "definition": "def outerPolynomial (N Q : Nat) : Nat:=\n paidOuterPolynomial (2*N+3)+combinePolynomial N Q+32*(2^50*(N+Q+2)^8)+2\n"
+    },
+    {
+      "name": "OrdinaryDispatch.OuterSource.outerJoinedPolynomial",
+      "type": "Nat \u2192 Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.OuterSource",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open OrdinaryDispatch.Hard2SourceWork OrdinaryDispatch.FullSourceWork",
+          "open OrdinaryDispatch.FastOrdinary OrdinaryDispatch.GoodPairGlobalAssembly OrdinaryDispatch.GlobalNumeric",
+          "open OrdinaryDispatch.ExtendedSourceAssembly OrdinaryDispatch.GlobalSourceAssembly"
+        ]
+      },
+      "definition": "def outerJoinedPolynomial (N Q L : Nat) : Nat:=joinedLocalPolynomial N Q L+outerPolynomial N Q\n"
+    },
+    {
+      "name": "OrdinaryDispatch.OuterSource.paidOuterPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.OuterSource",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open OrdinaryDispatch.Hard2SourceWork OrdinaryDispatch.FullSourceWork",
+          "open Universal233.Hard2Overlap Universal233.PaidAssembly GenericForest.CheckCorrespondence",
+          "open Universal233.Rule5SelectedLocalWork Universal233.Rule5PendantLocalWork"
+        ]
+      },
+      "definition": "def paidOuterPolynomial (N : Nat) :=62*(N+1)^3+512*(N+1)^2+64\n"
+    },
+    {
+      "name": "OrdinaryDispatch.OuterSource.combinePolynomial",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.OuterSource",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork Universal233.BothBad",
+          "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open OrdinaryDispatch.Hard2SourceWork OrdinaryDispatch.FullSourceWork",
+          "open Universal233.Rule5SelectedLocalWork Universal233.Rule5PendantLocalWork",
+          "open Universal233.CherryBranching"
+        ]
+      },
+      "definition": "def combinePolynomial (N Q : Nat) :=\n 4*singletonChildBudget N+2*(agreementK N+3*N+16)+2*Q+50\n"
+    },
+    {
+      "name": "Universal233.Rule5SelectedLocalWork.singletonPartitionBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5SelectedLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5PendantLocalWork",
+          "open CherryBranching CoreWork Rule5Classification"
+        ]
+      },
+      "definition": "def singletonPartitionBudget (n : Nat) :=4*n*n+3*n+6\n"
+    },
+    {
+      "name": "Universal233.Rule5SelectedLocalWork.pairPartitionBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5SelectedLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5PendantLocalWork",
+          "open CherryBranching CoreWork Rule5Classification"
+        ]
+      },
+      "definition": "def pairPartitionBudget (n : Nat) :=4*n*n+4*n+8\n"
+    },
+    {
+      "name": "Universal233.Rule5SelectedLocalWork.singletonChildBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5SelectedLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5PendantLocalWork",
+          "open CherryBranching CoreWork Rule5Classification"
+        ]
+      },
+      "definition": "def singletonChildBudget (n : Nat) :=singletonPartitionBudget n+(4*(n+2)*(2*n)+3)*2+6\n"
+    },
+    {
+      "name": "Universal233.Rule5SelectedLocalWork.pairChildBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5SelectedLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5PendantLocalWork",
+          "open CherryBranching CoreWork Rule5Classification"
+        ]
+      },
+      "definition": "def pairChildBudget (n : Nat) :=pairPartitionBudget n+(4*(n+2)*(2*n)+3)*3+6\n"
+    },
+    {
+      "name": "Universal233.Rule5SelectedLocalWork.fiveChildrenBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5SelectedLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5PendantLocalWork",
+          "open CherryBranching CoreWork Rule5Classification"
+        ]
+      },
+      "definition": "def fiveChildrenBudget (n : Nat) :=pendantChildBudget n+4*pairChildBudget n+6\n"
+    },
+    {
+      "name": "OrdinaryDispatch.FullSourceWork.agreementK",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.FullSourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.CheckCorrespondence"
+        ]
+      },
+      "definition": "def agreementK (n : Nat) : Nat := 1024*(12*n+2)^5\n"
+    },
+    {
+      "name": "OrdinaryDispatch.GoodPairGlobalAssembly.joinedLocalPolynomial",
+      "type": "Nat \u2192 Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.GoodPairGlobalAssembly",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.FrontierWork OrdinaryDispatch.FullSourceWork OrdinaryDispatch.Hard2SourceWork",
+          "open OrdinaryDispatch.WorkRecursion OrdinaryDispatch.WorkIntegration OrdinaryDispatch.GlobalSourceAssembly",
+          "open OrdinaryDispatch.ExtendedSourceAssembly OrdinaryDispatch.GlobalNumeric Universal233.Rule5ClosedSource"
+        ]
+      },
+      "definition": "def joinedLocalPolynomial (N Q L : Nat) : Nat:=\n extendedLocalPolynomial N Q+goodPairUniformPolynomial (2*N+3) Q+C5 N Q (semanticWidth N L Q)\n"
+    },
+    {
+      "name": "Universal233.Rule5ClosedSource.C5",
+      "type": "Nat \u2192 Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ClosedSource",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5ExecutionSource",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork OrdinaryDispatch.WorkRecursion OrdinaryDispatch.WorkIntegration",
+          "open WholeSourceWork CoreWork GenericForest GenericForest.CheckCorrespondence GenericForest.FrontierWork",
+          "open Rule5RemainingLocalWork Rule5PendantLocalWork Rule5FinalClassification Rule5Classification Rule5Local Rule5SelectedLocalWork",
+          "open ClassifierCheckFee PaidLiteralDecisionWork"
+        ]
+      },
+      "definition": "def C5 (N Q L : Nat) : Nat :=prefixCap N+80*(2^50*(N+Q+L+2)^8)+4\n"
+    },
+    {
+      "name": "Universal233.Rule5ClosedSource.sideCap",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ClosedSource",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5ExecutionSource",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork WholeSourceWork CoreWork GenericForest.CheckCorrespondence",
+          "open Rule5RemainingLocalWork Rule5PendantLocalWork Rule5FinalClassification Rule5Classification Rule5Local Rule5SelectedLocalWork",
+          "open ClassifierCheckFee PaidLiteralDecisionWork"
+        ]
+      },
+      "definition": "def sideCap (n M : Nat) :=cutsBudget n+(sideAtBudget M+4)*(2*n+1)+2\n"
+    },
+    {
+      "name": "Universal233.Rule5ClosedSource.withoutCap",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ClosedSource",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5ExecutionSource",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork WholeSourceWork CoreWork GenericForest.CheckCorrespondence",
+          "open Rule5RemainingLocalWork Rule5PendantLocalWork Rule5FinalClassification Rule5Classification Rule5Local Rule5SelectedLocalWork",
+          "open ClassifierCheckFee PaidLiteralDecisionWork"
+        ]
+      },
+      "definition": "def withoutCap (n M : Nat) :=sideCap n M+(16*(M+1)^2+4*(M+1)+5)*(2*n+1)+2\n"
+    },
+    {
+      "name": "Universal233.Rule5ClosedSource.typeCap",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ClosedSource",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5ExecutionSource",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork WholeSourceWork CoreWork GenericForest.CheckCorrespondence",
+          "open Rule5RemainingLocalWork Rule5PendantLocalWork Rule5FinalClassification Rule5Classification Rule5Local Rule5SelectedLocalWork",
+          "open ClassifierCheckFee PaidLiteralDecisionWork"
+        ]
+      },
+      "definition": "def typeCap (n M : Nat) :=(cutsBudget n+partitionBudget n+4)+(singletonPartitionBudget n+4)+2*(arcPartitionBudget M (2*M+1)+3)+5\n"
+    },
+    {
+      "name": "Universal233.Rule5ClosedSource.literalPlanCap",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ClosedSource",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5ExecutionSource",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork WholeSourceWork CoreWork GenericForest.CheckCorrespondence",
+          "open Rule5RemainingLocalWork Rule5PendantLocalWork Rule5FinalClassification Rule5Classification Rule5Local Rule5SelectedLocalWork",
+          "open ClassifierCheckFee PaidLiteralDecisionWork"
+        ]
+      },
+      "definition": "def literalPlanCap (n M : Nat) :=sideCap n M+withoutCap n M+3*M+typeCap n M+7+M+2\n"
+    },
+    {
+      "name": "Universal233.Rule5ClosedSource.guardedPlanCap",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ClosedSource",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5ExecutionSource",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork WholeSourceWork CoreWork GenericForest.CheckCorrespondence",
+          "open Rule5RemainingLocalWork Rule5PendantLocalWork Rule5FinalClassification Rule5Classification Rule5Local Rule5SelectedLocalWork",
+          "open ClassifierCheckFee PaidLiteralDecisionWork"
+        ]
+      },
+      "definition": "def guardedPlanCap (n M : Nat) :=literalPlanCap n M+5*(guardBudget M+4)+2\n"
+    },
+    {
+      "name": "Universal233.Rule5ClosedSource.requestsCap",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ClosedSource",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5ExecutionSource",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork WholeSourceWork CoreWork GenericForest.CheckCorrespondence",
+          "open Rule5RemainingLocalWork Rule5PendantLocalWork Rule5FinalClassification Rule5Classification Rule5Local Rule5SelectedLocalWork",
+          "open ClassifierCheckFee PaidLiteralDecisionWork"
+        ]
+      },
+      "definition": "def requestsCap (n M : Nat) :=guardedPlanCap n M+4*(requestBudget M+3)+3\n"
+    },
+    {
+      "name": "Universal233.Rule5ClosedSource.answersCap",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ClosedSource",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5ExecutionSource",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork WholeSourceWork CoreWork GenericForest.CheckCorrespondence",
+          "open Rule5RemainingLocalWork Rule5PendantLocalWork Rule5FinalClassification Rule5Classification Rule5Local Rule5SelectedLocalWork",
+          "open ClassifierCheckFee PaidLiteralDecisionWork"
+        ]
+      },
+      "definition": "def answersCap (n M : Nat) :=requestsCap n M+4*(currentPrefixBudget (2*M)+4)+3\n"
+    },
+    {
+      "name": "Universal233.Rule5ClosedSource.bestCap",
+      "type": "Nat \u2192 Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ClosedSource",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5ExecutionSource",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork WholeSourceWork CoreWork GenericForest.CheckCorrespondence",
+          "open Rule5RemainingLocalWork Rule5PendantLocalWork Rule5FinalClassification Rule5Classification Rule5Local Rule5SelectedLocalWork",
+          "open ClassifierCheckFee PaidLiteralDecisionWork"
+        ]
+      },
+      "definition": "def bestCap (n M k : Nat) :=answersCap n M+4*(agreementK k+3*k+7)+7\n"
+    },
+    {
+      "name": "Universal233.Rule5ClosedSource.paidPrefixCap",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ClosedSource",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5ExecutionSource",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork WholeSourceWork CoreWork GenericForest.CheckCorrespondence",
+          "open Rule5RemainingLocalWork Rule5PendantLocalWork Rule5FinalClassification Rule5Classification Rule5Local Rule5SelectedLocalWork",
+          "open ClassifierCheckFee PaidLiteralDecisionWork"
+        ]
+      },
+      "definition": "def paidPrefixCap (N : Nat) :=paidSelectedBudget N N (checkCap (2*N)) (literalBudget (2*N))+bestCap N (4*N) (2*N)+2\n"
+    },
+    {
+      "name": "Universal233.Rule5ClosedSource.prefixCap",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ClosedSource",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5ExecutionSource",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork WholeSourceWork CoreWork GenericForest.CheckCorrespondence",
+          "open Rule5RemainingLocalWork Rule5PendantLocalWork Rule5FinalClassification Rule5Classification Rule5Local Rule5SelectedLocalWork",
+          "open ClassifierCheckFee PaidLiteralDecisionWork"
+        ]
+      },
+      "definition": "def prefixCap (N : Nat) :=finalBudget N N (checkCap (2*N))+\n forestArmBudget N N (agreementK N)+commonBudget N N (2*N)+paidPrefixCap N+20\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.localTailBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching Rule5Classification Rule5FinalClassification"
+        ]
+      },
+      "definition": "def localTailBudget (n K : Nat) :=selectLargeBudget n K+selectSizeTwoBudget n K+selectOutsideBudget n K+4*n+5\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.localBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching Rule5Classification Rule5FinalClassification"
+        ]
+      },
+      "definition": "def localBudget (nt ns K : Nat) :=admittedBudget nt ns K+localTailBudget ns K+2*ns+5\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.finalBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching Rule5Classification Rule5FinalClassification"
+        ]
+      },
+      "definition": "def finalBudget (nt ns K : Nat) :=localBudget nt ns K+badCandidatesBudget ns K+\n (4*ns*ns+2*ns+2)+boundaryBudget ns nt+7*ns+9\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.boundaryBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching Rule5FinalClassification"
+        ]
+      },
+      "definition": "def boundaryBudget (k n : Nat) :=incidentBudget k n+2*outsideCheckBudget k n+2*paintBudget k n+10\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.paintBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching"
+        ]
+      },
+      "definition": "def paintBudget (k n : Nat) :=minimalBudget k n+(2*n+2)*(2*n)+2\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.outsideCheckBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching"
+        ]
+      },
+      "definition": "def outsideCheckBudget (k n : Nat) :=4*n*n+4*n+paintBudget k n+5\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.minimalBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork"
+        ]
+      },
+      "definition": "def minimalBudget (k n : Nat) : Nat := 2*n*(64*(k+1)*n*n+16*n+4)\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.incidentAtBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching"
+        ]
+      },
+      "definition": "def incidentAtBudget (k n : Nat) :=2*minimalBudget k n+2*((2*n+2)*(2*n)+1)+2*n+5\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.incidentBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching"
+        ]
+      },
+      "definition": "def incidentBudget (k n : Nat) :=64*n*n+(incidentAtBudget k n+2)*(2*n)+2\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.largeAtBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching Rule5Classification"
+        ]
+      },
+      "definition": "def largeAtBudget (n K : Nat) :=2*(4*n*n+2*n+2)+n+K+5\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.selectLargeBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching Rule5Classification"
+        ]
+      },
+      "definition": "def selectLargeBudget (n K : Nat) :=cutsBudget n+(largeAtBudget n K+4)*(2*n)+3\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.sizeTwoAtBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching Rule5Classification"
+        ]
+      },
+      "definition": "def sizeTwoAtBudget (n K : Nat) :=4*n*n+4*n+K+8\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.selectSizeTwoBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching Rule5Classification"
+        ]
+      },
+      "definition": "def selectSizeTwoBudget (n K : Nat) :=cutsBudget n+(sizeTwoAtBudget n K+4)*(2*n)+3\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.cutGuardBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork"
+        ]
+      },
+      "definition": "def cutGuardBudget (n : Nat) : Nat :=2*minimalBudget 2 n+2*(2*n+2)*(2*n)+2*n+8\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.cutsBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork"
+        ]
+      },
+      "definition": "def cutsBudget (n : Nat) : Nat :=64*n*n+(cutGuardBudget n+2)*(2*n)+2\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.outsideGuardBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching Rule5Classification"
+        ]
+      },
+      "definition": "def outsideGuardBudget (n K : Nat) :=coreBudget n+2*n+K+4\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.outsideAtBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching Rule5Classification"
+        ]
+      },
+      "definition": "def outsideAtBudget (n K : Nat) :=(outsideGuardBudget n K+2)*7+5\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.selectOutsideBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching Rule5Classification"
+        ]
+      },
+      "definition": "def selectOutsideBudget (n K : Nat) :=16*n*n+(outsideAtBudget n K+4)*n+3\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.payloadCap",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching"
+        ]
+      },
+      "definition": "def payloadCap (n : Nat) := n*(2*n)\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.blocksBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching"
+        ]
+      },
+      "definition": "def blocksBudget (n : Nat) := (4*n*n+2*n+3)*(2*n)+1\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.pendantPayloadBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching"
+        ]
+      },
+      "definition": "def pendantPayloadBudget (n : Nat) :=cutsBudget n+blocksBudget n+payloadCap n+2*n+3\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.coreBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching"
+        ]
+      },
+      "definition": "def coreBudget (n : Nat) :=4*n*n+(pendantPayloadBudget n+2*payloadCap n+3)*n+2\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.partitionBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching"
+        ]
+      },
+      "definition": "def partitionBudget (n : Nat) :=cutsBudget n+blocksBudget n+coreBudget n+2*n+3\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.admittedGuardBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching"
+        ]
+      },
+      "definition": "def admittedGuardBudget (nt ns K : Nat) : Nat :=\n properPolynomial (nt+ns)+(16*nt*nt+8*nt+2)+earlierBudget nt ns+earlierBudget ns nt+\n admittedRule4Budget nt ns+admittedRule4Budget ns nt+cutsBudget ns+2*ns+K+\n (K+3)*(2*ns+1)+2*ns+20\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.admittedBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching"
+        ]
+      },
+      "definition": "def admittedBudget (nt ns K : Nat) :=partitionBudget ns+(admittedGuardBudget nt ns K+2*ns+4)*10+2\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.candidatesBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching"
+        ]
+      },
+      "definition": "def candidatesBudget (nt ns : Nat) :=16*nt*nt+(cutsBudget ns+6)*nt+2\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.earlierBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching"
+        ]
+      },
+      "definition": "def earlierBudget (nt ns : Nat) :=candidatesBudget nt ns+(2*ns+2)*nt+2\n"
+    },
+    {
+      "name": "Universal233.Rule5PrefixLocalWork.properPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PrefixLocalWork",
+        "open": [
+          "open RMAF"
+        ]
+      },
+      "definition": "def properPolynomial (N : Nat) : Nat :=\n 16*(N+1)*(N+1)+8*N*N+2*(4*N*N+2*N+3)*N+8\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.rule4ArcBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching"
+        ]
+      },
+      "definition": "def rule4ArcBudget (n : Nat) :=4*n*n+2*n+2+2*(16*n*n+8*n+2)+3\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.rule4CandidateBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching"
+        ]
+      },
+      "definition": "def rule4CandidateBudget (n : Nat) :=2*n+(rule4ArcBudget n+1)*(2*n)+3\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.admittedRule4Budget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching"
+        ]
+      },
+      "definition": "def admittedRule4Budget (nt ns : Nat) :=candidatesBudget nt ns+(rule4CandidateBudget ns+1)*nt+2\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.badAtBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching Rule5FinalClassification"
+        ]
+      },
+      "definition": "def badAtBudget (n K : Nat) :=4*n*n+6*n+K+10\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.badRowBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching Rule5FinalClassification"
+        ]
+      },
+      "definition": "def badRowBudget (n K : Nat) :=cutsBudget n+(badAtBudget n K+4)*(2*n)+2\n"
+    },
+    {
+      "name": "Universal233.Rule5PendantLocalWork.badCandidatesBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5PendantLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork CherryBranching Rule5FinalClassification"
+        ]
+      },
+      "definition": "def badCandidatesBudget (n K : Nat) :=cutsBudget n+(badRowBudget n K+4*n+2)*(2*n)+2\n"
+    },
+    {
+      "name": "Universal233.ClassifierCheckFee.requestSize",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.ClassifierCheckFee",
+        "open": [
+          "open RMAF CoreWork Rule5PrefixLocalWork Rule5PendantLocalWork",
+          "open GenericForest.CheckCorrespondence"
+        ]
+      },
+      "definition": "def requestSize (N : Nat) :=payloadCap N+2*N+1\n"
+    },
+    {
+      "name": "Universal233.ClassifierCheckFee.checkCap",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.ClassifierCheckFee",
+        "open": [
+          "open RMAF CoreWork Rule5PrefixLocalWork Rule5PendantLocalWork",
+          "open GenericForest.CheckCorrespondence"
+        ]
+      },
+      "definition": "def checkCap (N : Nat) :=120*(requestSize N+1)^5+128*(N+1)^2+2\n"
+    },
+    {
+      "name": "Universal233.Rule5ExecutionSource.commonBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ExecutionSource",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork",
+          "open OrdinaryCommonSplit OrdinaryCommonSplit.Caller OrdinaryCommonSplit.Source",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork",
+          "open WholeSourceWork CoreWork GenericForest.CheckCorrespondence",
+          "open Rule5RemainingLocalWork Rule5PendantLocalWork Rule5FinalClassification Rule5Classification Rule5Local Rule5CommonSelector"
+        ]
+      },
+      "definition": "def commonBudget (nt ns x : Nat) :=commonSetupBudget nt ns x+guardedBudget nt+3\n"
+    },
+    {
+      "name": "Universal233.Rule5RemainingLocalWork.commonSetupBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5RemainingLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5PendantLocalWork",
+          "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification Rule5CommonSelector",
+          "open OrdinaryCommonSplit OrdinaryCommonSplit.Source OrdinaryCommonSplit.Caller"
+        ]
+      },
+      "definition": "def commonSetupBudget (nt ns x : Nat) :=4*ns*ns+2*ns+2+coreBudget ns+ns+\n setupBudget (nt+ns+2) x nt+3\n"
+    },
+    {
+      "name": "Universal233.Rule5RemainingLocalWork.setupBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5RemainingLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent CoreWork Rule5PrefixLocalWork Rule5PendantLocalWork",
+          "open GenericForest.CheckCorrespondence OrdinaryCommonSplit OrdinaryCommonSplit.Source"
+        ]
+      },
+      "definition": "def setupBudget (N k n : Nat) :=\n 16*(N+1)*(N+1)+2*(4*N*N+partitionCap N+3)+(2*N+1)+\n 4*N*N+(5*N+5)*(N+1)+incidentBudget k n+8*N*N+N+2*(6*N+1)+\n 4*(4*(N+2)*(2*N))+4*((4*(N+3)+4)*(2*N)+3)+40\n"
+    },
+    {
+      "name": "GenericForest.CheckCorrespondence.partitionCap",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "GenericForest.CheckCorrespondence",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork"
+        ]
+      },
+      "definition": "def partitionCap (N : Nat) : Nat := 128*(N+1)^2\n"
+    },
+    {
+      "name": "Universal233.Rule5ExecutionSource.guardedBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ExecutionSource",
+        "open": [
+          "open RMAF CoreGraph Rule5PrefixLocalWork",
+          "open OrdinaryCommonSplit OrdinaryCommonSplit.Caller OrdinaryCommonSplit.Source",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork",
+          "open WholeSourceWork CoreWork GenericForest.CheckCorrespondence"
+        ]
+      },
+      "definition": "def guardedBudget (n : Nat) :=400000*(2*n+1)^6+128*(2*n+1)^3+\n outsideBudget (2*n) (4*n+2)+paidBudget n+8\n"
+    },
+    {
+      "name": "Universal233.Rule5ExecutionSource.paidBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ExecutionSource",
+        "open": [
+          "open RMAF CoreGraph Rule5PrefixLocalWork",
+          "open OrdinaryCommonSplit OrdinaryCommonSplit.Caller OrdinaryCommonSplit.Source",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork",
+          "open WholeSourceWork CoreWork GenericForest.CheckCorrespondence"
+        ]
+      },
+      "definition": "def paidBudget (n : Nat) :=Rule5LocalWork.commonPolynomial (2*n) (agreementK n)+4*n+30\n"
+    },
+    {
+      "name": "Universal233.Rule5LocalWork.commonPolynomial",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5LocalWork",
+        "open": [
+          "open RMAF OrdinaryCommonSplit OrdinaryCommonSplit.Caller RestrictionBridge"
+        ]
+      },
+      "definition": "def commonPolynomial (N K : Nat) : Nat :=\n 9*N+((8*(N+2)^2+2)*N+2)*N+7+(K+2*(2*N+2)+2)*(N*N)\n"
+    },
+    {
+      "name": "Universal233.Rule5ExecutionSource.outsideBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ExecutionSource",
+        "open": [
+          "open RMAF CoreGraph Rule5PrefixLocalWork",
+          "open OrdinaryCommonSplit OrdinaryCommonSplit.Caller OrdinaryCommonSplit.Source",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork",
+          "open WholeSourceWork CoreWork GenericForest.CheckCorrespondence"
+        ]
+      },
+      "definition": "def outsideBudget (N M : Nat) :=400000*(N+1)^6+128*(N+1)^3+5*M+15\n"
+    },
+    {
+      "name": "Universal233.Rule5SelectedLocalWork.forestArmBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5SelectedLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5PendantLocalWork",
+          "open CherryBranching CoreWork Rule5Classification Rule5FinalClassification Rule5OrdinaryDispatch"
+        ]
+      },
+      "definition": "def forestArmBudget (nt ns K : Nat) :=selectedChildrenBudget ns+5*(K+3*nt+16)+6\n"
+    },
+    {
+      "name": "Universal233.Rule5SelectedLocalWork.selectedChildrenBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5SelectedLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5PendantLocalWork",
+          "open CherryBranching CoreWork Rule5Classification Rule5FinalClassification Rule5SourceOrientation",
+          "open Rule5OrdinaryDispatch"
+        ]
+      },
+      "definition": "def selectedChildrenBudget (n : Nat) :=fiveChildrenBudget n+siblingChildrenBudget n n+3\n"
+    },
+    {
+      "name": "Universal233.Rule5SelectedLocalWork.pendantChildBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5SelectedLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5PendantLocalWork",
+          "open CherryBranching CoreWork GenericForest.CheckCorrespondence"
+        ]
+      },
+      "definition": "def pendantChildBudget (n : Nat) :=partitionBudget n+cutsBudget n+2*n+\n (4*(n+2)*(2*n)+3)*(2*n+1)+7\n"
+    },
+    {
+      "name": "Universal233.Rule5SelectedLocalWork.siblingChildrenBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5SelectedLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5PendantLocalWork",
+          "open CherryBranching CoreWork Rule5Classification Rule5FinalClassification Rule5SourceOrientation"
+        ]
+      },
+      "definition": "def siblingChildrenBudget (n m : Nat) :=10*m+12+singletonChildBudget n+pendantChildBudget n+4\n"
+    },
+    {
+      "name": "Universal233.Rule5RemainingLocalWork.paidSelectedBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5RemainingLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5PendantLocalWork Rule5PaidSelector Rule5Classification Rule5FinalClassification Case322PaidGuard"
+        ]
+      },
+      "definition": "def paidSelectedBudget (nt ns Kc Kl : Nat) :=finalBudget nt ns Kc+secondBuilderBudget nt ns nt Kl+3\n"
+    },
+    {
+      "name": "Universal233.Rule5RemainingLocalWork.oneBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5RemainingLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5PendantLocalWork Rule5PaidSelector Rule5Classification Rule5FinalClassification Case322PaidGuard"
+        ]
+      },
+      "definition": "def oneBudget (n m K : Nat) :=2*m+2*leafAddressBudget n+K+8\n"
+    },
+    {
+      "name": "Universal233.Rule5RemainingLocalWork.secondBuilderBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5RemainingLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5PendantLocalWork Rule5PaidSelector Rule5Classification Rule5FinalClassification Case322PaidGuard"
+        ]
+      },
+      "definition": "def secondBuilderBudget (nt ns m K : Nat) :=rowsBudget ns+(oneBudget nt m K+2)*(32*ns)+2\n"
+    },
+    {
+      "name": "Universal233.Rule5RemainingLocalWork.leafAddressBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5RemainingLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5PendantLocalWork Rule5PaidSelector"
+        ]
+      },
+      "definition": "def leafAddressBudget (n : Nat) :=64*n*n+(2*n+8)*(2*n)+2\n"
+    },
+    {
+      "name": "Universal233.Rule5RemainingLocalWork.rowsBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5RemainingLocalWork",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork Rule5PendantLocalWork Rule5PaidSelector"
+        ]
+      },
+      "definition": "def rowsBudget (n : Nat) :=64*n*n+(32*n+619)*(2*n)+2\n"
+    },
+    {
+      "name": "Universal233.PaidLiteralDecisionWork.membershipBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.PaidLiteralDecisionWork",
+        "open": [
+          "open RMAF CoreGraph HardParent CoreWork Rule5PrefixLocalWork Rule5PendantLocalWork Rule5RemainingLocalWork",
+          "open Rule5PaidSelector Rule5Classification Rule5FinalClassification Case322PaidGuard Case322Extraction"
+        ]
+      },
+      "definition": "def membershipBudget (N : Nat) :=4*N*N+2*N+2\n"
+    },
+    {
+      "name": "Universal233.PaidLiteralDecisionWork.minMemBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.PaidLiteralDecisionWork",
+        "open": [
+          "open RMAF CoreGraph HardParent CoreWork Rule5PrefixLocalWork Rule5PendantLocalWork Rule5RemainingLocalWork",
+          "open Rule5PaidSelector Rule5Classification Rule5FinalClassification Case322PaidGuard Case322Extraction"
+        ]
+      },
+      "definition": "def minMemBudget (N : Nat) :=4*N*N+minimalBudget N N+(2*N+2)*(2*N)+3\n"
+    },
+    {
+      "name": "Universal233.PaidLiteralDecisionWork.tailMemBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.PaidLiteralDecisionWork",
+        "open": [
+          "open RMAF CoreGraph HardParent CoreWork Rule5PrefixLocalWork Rule5PendantLocalWork Rule5RemainingLocalWork",
+          "open Rule5PaidSelector Rule5Classification Rule5FinalClassification Case322PaidGuard Case322Extraction"
+        ]
+      },
+      "definition": "def tailMemBudget (N : Nat) :=2*N+minMemBudget N+2\n"
+    },
+    {
+      "name": "Universal233.PaidLiteralDecisionWork.incidentEqBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.PaidLiteralDecisionWork",
+        "open": [
+          "open RMAF CoreGraph HardParent CoreWork Rule5PrefixLocalWork Rule5PendantLocalWork Rule5RemainingLocalWork",
+          "open Rule5PaidSelector Rule5Classification Rule5FinalClassification Case322PaidGuard Case322Extraction"
+        ]
+      },
+      "definition": "def incidentEqBudget (N : Nat) :=4*N*N+incidentBudget N N+(2*N+3)*2+4\n"
+    },
+    {
+      "name": "Universal233.PaidLiteralDecisionWork.boundaryBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.PaidLiteralDecisionWork",
+        "open": [
+          "open RMAF CoreGraph HardParent CoreWork Rule5PrefixLocalWork Rule5PendantLocalWork Rule5RemainingLocalWork",
+          "open Rule5PaidSelector Rule5Classification Rule5FinalClassification Case322PaidGuard Case322Extraction"
+        ]
+      },
+      "definition": "def boundaryBudget (N : Nat) :=8*N*N+5*N+7\n"
+    },
+    {
+      "name": "Universal233.PaidLiteralDecisionWork.literalBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.PaidLiteralDecisionWork",
+        "open": [
+          "open RMAF CoreGraph HardParent CoreWork Rule5PrefixLocalWork Rule5PendantLocalWork Rule5RemainingLocalWork",
+          "open Rule5PaidSelector Rule5Classification Rule5FinalClassification Case322PaidGuard Case322Extraction"
+        ]
+      },
+      "definition": "def literalBudget (N : Nat) :=\n properPolynomial N+(8*N+31)+cherryBudget N+(cutsBudget N+2*N+3)+labelsBudget N N N+\n 2*membershipBudget N+1+3*(2*N+6)+(2*incidentEqBudget N+1)+\n 2*tailMemBudget N+2*(minMemBudget N+1)+boundaryBudget N+9+18\n"
+    },
+    {
+      "name": "Universal233.PaidLiteralDecisionWork.cherryBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.PaidLiteralDecisionWork",
+        "open": [
+          "open RMAF CoreGraph HardParent CoreWork Rule5PrefixLocalWork Rule5PendantLocalWork Rule5RemainingLocalWork",
+          "open Rule5PaidSelector Rule5Classification Rule5FinalClassification Case322PaidGuard Case322Extraction"
+        ]
+      },
+      "definition": "def cherryBudget (n : Nat) :=64*n*n+(4*n+26)*(2*n)+2\n"
+    },
+    {
+      "name": "Universal233.PaidLiteralDecisionWork.labelPointBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.PaidLiteralDecisionWork",
+        "open": [
+          "open RMAF CoreGraph HardParent CoreWork Rule5PrefixLocalWork Rule5PendantLocalWork Rule5RemainingLocalWork",
+          "open Rule5PaidSelector Rule5Classification Rule5FinalClassification Case322PaidGuard Case322Extraction"
+        ]
+      },
+      "definition": "def labelPointBudget (nc nx : Nat) :=4*nc*nc+4*nx*nx+2*nc+2*nx+6\n"
+    },
+    {
+      "name": "Universal233.PaidLiteralDecisionWork.labelsBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.PaidLiteralDecisionWork",
+        "open": [
+          "open RMAF CoreGraph HardParent CoreWork Rule5PrefixLocalWork Rule5PendantLocalWork Rule5RemainingLocalWork",
+          "open Rule5PaidSelector Rule5Classification Rule5FinalClassification Case322PaidGuard Case322Extraction"
+        ]
+      },
+      "definition": "def labelsBudget (nt nc nx : Nat) :=4*nt*nt+(labelPointBudget nc nx+1)*nt+2\n"
+    },
+    {
+      "name": "Universal233.Rule5ExecutionSource.requestBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ExecutionSource",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork",
+          "open OrdinaryDispatch.EarlyLocalWork WholeSourceWork CoreWork GenericForest GenericForest.CheckCorrespondence",
+          "open CherryBranching Rule5Case322 Rule5PendantLocalWork Rule5SelectedLocalWork Case322Extraction Case322PaidGuard Rule5PaidSelector"
+        ]
+      },
+      "definition": "def requestBudget (N : Nat) :=(4*(N+2)*N+3)*N+2*N+8\n"
+    },
+    {
+      "name": "Universal233.Rule5ExecutionSource.guardBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ExecutionSource",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork",
+          "open OrdinaryDispatch.EarlyLocalWork WholeSourceWork CoreWork GenericForest.CheckCorrespondence",
+          "open CherryBranching Rule5Case322 Rule5PendantLocalWork"
+        ]
+      },
+      "definition": "def guardBudget (N : Nat) :=((2*N+2)*N+4)*(N+1)+(4*(N+1)+7)*(N+1)+\n 8*(N+1)^2+partitionCap N+120*(N+1)^5+arcPartitionBudget N N+32*(N+1)+3*N+18\n"
+    },
+    {
+      "name": "Universal233.Rule5ExecutionSource.arcStepBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ExecutionSource",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork BinaryExchange",
+          "open OrdinaryDispatch.EarlyLocalWork WholeSourceWork CoreWork GenericForest.CheckCorrespondence",
+          "open CherryBranching Rule5Case322"
+        ]
+      },
+      "definition": "def arcStepBudget (N : Nat) :=16*(N+1)^2+(64*(N+1)^2+5)*(N+2)+4\n"
+    },
+    {
+      "name": "Universal233.Rule5ExecutionSource.arcPartitionBudget",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ExecutionSource",
+        "open": [
+          "open RMAF CoreGraph HardParent Rule5PrefixLocalWork BinaryExchange",
+          "open OrdinaryDispatch.EarlyLocalWork WholeSourceWork CoreWork GenericForest.CheckCorrespondence",
+          "open CherryBranching Rule5Case322"
+        ]
+      },
+      "definition": "def arcPartitionBudget (N A : Nat) :=8*(N+1)^2+arcStepBudget N*(A+1)+3\n"
+    },
+    {
+      "name": "Universal233.Rule5ExecutionSource.sideAtBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ExecutionSource",
+        "open": [
+          "open RMAF CoreGraph HardParent VertexGeometry Rule5PrefixLocalWork",
+          "open OrdinaryDispatch.EarlyLocalWork WholeSourceWork CoreWork GenericForest.CheckCorrespondence",
+          "open CherryBranching Rule5Case322 Rule5PendantLocalWork Rule5SelectedLocalWork Case322Extraction Case322PaidGuard Rule5PaidSelector"
+        ]
+      },
+      "definition": "def sideAtBudget (N : Nat) :=32*(N+1)^2+12*N+13\n"
+    },
+    {
+      "name": "Universal233.Rule5ExecutionSource.currentPrefixBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ExecutionSource",
+        "open": [
+          "open RMAF ForestState CoreGraph HardParent Rule5PrefixLocalWork",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork OrdinaryDispatch.WorkRecursion",
+          "open WholeSourceWork CoreWork GenericForest GenericForest.CheckCorrespondence GenericForest.FrontierWork"
+        ]
+      },
+      "definition": "def currentPrefixBudget (N : Nat) := forestPretestBudget N+2*N+6\n"
+    },
+    {
+      "name": "Universal233.Rule5ExecutionSource.forestPretestBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "Universal233.Rule5ExecutionSource",
+        "open": [
+          "open RMAF ForestState CoreGraph HardParent Rule5PrefixLocalWork",
+          "open OrdinaryCommonSplit OrdinaryCommonSplit.Caller OrdinaryCommonSplit.Source",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork",
+          "open WholeSourceWork CoreWork GenericForest GenericForest.CheckCorrespondence"
+        ]
+      },
+      "definition": "def forestPretestBudget (N : Nat) :=164*(N+1)^3+8192*(N+1)^5+\n (888*(2*N+3)^6+4*N+12)*(N+1)+5\n"
+    },
+    {
+      "name": "OrdinaryDispatch.GoodPairGlobalAssembly.goodPairUniformPolynomial",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.GoodPairGlobalAssembly",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.FrontierWork OrdinaryDispatch.FullSourceWork OrdinaryDispatch.Hard2SourceWork",
+          "open OrdinaryDispatch.WorkRecursion OrdinaryDispatch.WorkIntegration OrdinaryDispatch.GlobalSourceAssembly",
+          "open OrdinaryDispatch.ExtendedSourceAssembly OrdinaryDispatch.FastOrdinary",
+          "open Universal233.Hard2Overlap Universal233.PaidAssembly"
+        ]
+      },
+      "definition": "def goodPairUniformPolynomial (N Q : Nat) : Nat:=goodPairPolynomial N+16*(2^50*(N+Q+2)^8)\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.goodPairPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState ForestGroups Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.CheckCorrespondence GenericForest.FrontierWork",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.FullSourceWork",
+          "open Universal233.Rule5SelectedLocalWork"
+        ]
+      },
+      "definition": "def goodPairPolynomial (N : Nat):=goodPairDPPolynomial N+agreementK N+512*(N+1)^3\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.goodPairDPPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState ForestGroups Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.CheckCorrespondence GenericForest.FrontierWork",
+          "open OrdinaryDispatch.EarlyLocalWork Universal233.Rule5SelectedLocalWork"
+        ]
+      },
+      "definition": "def goodPairDPPolynomial (N : Nat) :=AllGoodDP.LocalWork.guardPolynomial (3*N+3)+1048576*(N+1)^4+16\n"
+    },
+    {
+      "name": "AllGoodDP.LocalWork.guardPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "AllGoodDP.LocalWork",
+        "open": [
+          "open RMAF ForestState Universal233.WholeSourceWork Universal233.CoreWork"
+        ]
+      },
+      "definition": "def guardPolynomial (N : Nat) : Nat := 320*(N+1)^3\n"
+    },
+    {
+      "name": "OrdinaryDispatch.GlobalNumeric.semanticWidth",
+      "type": "Nat \u2192 Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.GlobalNumeric",
+        "open": [
+          "open RMAF ForestState Universal233",
+          "open OrdinaryDispatch.WorkRecursion OrdinaryDispatch.FastOrdinary"
+        ]
+      },
+      "definition": "def semanticWidth (N L Q : Nat) : Nat := L+2*(Q+N)+3\n"
+    },
+    {
+      "name": "OrdinaryDispatch.ExtendedSourceAssembly.extendedLocalPolynomial",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.ExtendedSourceAssembly",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.FrontierWork OrdinaryDispatch.FullSourceWork OrdinaryDispatch.Hard2SourceWork",
+          "open OrdinaryDispatch.WorkRecursion OrdinaryDispatch.WorkIntegration OrdinaryDispatch.GlobalSourceAssembly",
+          "open OrdinaryDispatch.BudgetOptimization OrdinaryDispatch.RecoveryLocalWork"
+        ]
+      },
+      "definition": "def extendedLocalPolynomial (N Q : Nat) : Nat:=closedLocalPolynomial N Q+hardPaidUniformPolynomial (2*N+3) Q\n"
+    },
+    {
+      "name": "OrdinaryDispatch.GlobalSourceAssembly.commonCoefficient",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.GlobalSourceAssembly",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork",
+          "open OrdinaryDispatch.FullSourceWork OrdinaryDispatch.Hard2SourceWork",
+          "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open OrdinaryDispatch.FastOrdinary OrdinaryDispatch.EarlyLocalWork"
+        ]
+      },
+      "definition": "def commonCoefficient (N : Nat) : Nat :=256*(2*N+1)^2\n"
+    },
+    {
+      "name": "OrdinaryDispatch.GlobalSourceAssembly.simpleNatCoefficient",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.GlobalSourceAssembly",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork",
+          "open OrdinaryDispatch.FullSourceWork OrdinaryDispatch.Hard2SourceWork",
+          "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open OrdinaryDispatch.FastOrdinary OrdinaryDispatch.EarlyLocalWork"
+        ]
+      },
+      "definition": "def simpleNatCoefficient (N Q : Nat) : Nat :=simpleLocalPolynomial N+48*(2^50*(N+Q+2)^8)\n"
+    },
+    {
+      "name": "OrdinaryDispatch.GlobalSourceAssembly.closedLocalPolynomial",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.GlobalSourceAssembly",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork",
+          "open OrdinaryDispatch.FullSourceWork OrdinaryDispatch.Hard2SourceWork",
+          "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open OrdinaryDispatch.FastOrdinary OrdinaryDispatch.EarlyLocalWork"
+        ]
+      },
+      "definition": "def closedLocalPolynomial (N Q : Nat) : Nat :=\n prefixCoefficient N+commonCoefficient N+simpleNatCoefficient N Q+rule4SourcePolynomial N Q+\n hard2FrontCoefficient (2*N+3)\n"
+    },
+    {
+      "name": "OrdinaryDispatch.FullSourceWork.prefixCoefficient",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.FullSourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open OrdinaryDispatch.EarlyLocalWork"
+        ]
+      },
+      "definition": "def prefixCoefficient (N : Nat) : Nat := 2097152*(2*N+1)^6\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.hard2FrontCoefficient",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open Universal233.Hard2Overlap GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open Universal233.Rule5PendantLocalWork Universal233.Rule5PrefixLocalWork",
+          "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration"
+        ]
+      },
+      "definition": "def hard2FrontCoefficient (N : Nat) :=partitionBudget N+2700*(N+1)^6\n"
+    },
+    {
+      "name": "OrdinaryDispatch.FullSourceWork.simpleLocalPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.FullSourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 Universal233.CherryBranching Universal233.SourceCoverage",
+          "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open Universal233.Rule5SelectedLocalWork",
+          "open Universal233.Rule5PendantLocalWork"
+        ]
+      },
+      "definition": "def simpleLocalPolynomial (N : Nat) : Nat :=\n pendantChildBudget N+branchesBudget N+3*(agreementK N+3*N+16)+8\n"
+    },
+    {
+      "name": "OrdinaryDispatch.FullSourceWork.branchesBudget",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.FullSourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 Universal233.CherryBranching",
+          "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open Universal233.Rule5SelectedLocalWork"
+        ]
+      },
+      "definition": "def branchesBudget (n : Nat) :=2*singletonChildBudget n+pendantChildBudget n+4\n"
+    },
+    {
+      "name": "OrdinaryDispatch.FullSourceWork.rule4BranchCap",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.FullSourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork CoreGraph CherryBranching SourceCoverage",
+          "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open Universal233.Rule5SelectedLocalWork Universal233.Rule5PendantLocalWork Universal233.Rule5PrefixLocalWork",
+          "open Universal233.HardParent GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork"
+        ]
+      },
+      "definition": "def rule4BranchCap (N : Nat) := 8*N+cutsBudget N+18\n"
+    },
+    {
+      "name": "OrdinaryDispatch.FullSourceWork.rule4LocalPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.FullSourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork CoreGraph CherryBranching SourceCoverage",
+          "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open Universal233.Rule5SelectedLocalWork Universal233.Rule5PendantLocalWork Universal233.Rule5PrefixLocalWork",
+          "open Universal233.HardParent GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork"
+        ]
+      },
+      "definition": "def rule4LocalPolynomial (N : Nat) : Nat :=\n rule4BranchCap N+3*(rule4StateCap N (2*N+2)+2*(2*N+2)+8)+1+3*(1+2*N+4)+1+2\n"
+    },
+    {
+      "name": "OrdinaryDispatch.FullSourceWork.rule4SourcePolynomial",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.FullSourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork CoreGraph CherryBranching SourceCoverage",
+          "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open Universal233.Rule5SelectedLocalWork Universal233.Rule5PendantLocalWork Universal233.Rule5PrefixLocalWork",
+          "open Universal233.HardParent GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork"
+        ]
+      },
+      "definition": "def rule4SourcePolynomial (N Q : Nat) : Nat :=\n rule4LocalPolynomial N+48*(2^50*(N+Q+2)^8)\n"
+    },
+    {
+      "name": "OrdinaryDispatch.FullSourceWork.rule4SubtreeCap",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.FullSourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork CoreGraph",
+          "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open Universal233.Rule5SelectedLocalWork Universal233.Rule5PendantLocalWork Universal233.Rule5PrefixLocalWork",
+          "open Universal233.HardParent GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork"
+        ]
+      },
+      "definition": "def rule4SubtreeCap (N : Nat) := 4*N*N+2*N+2\n"
+    },
+    {
+      "name": "OrdinaryDispatch.FullSourceWork.rule4OutsideCap",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.FullSourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork CoreGraph",
+          "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open Universal233.Rule5SelectedLocalWork Universal233.Rule5PendantLocalWork Universal233.Rule5PrefixLocalWork",
+          "open Universal233.HardParent GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork"
+        ]
+      },
+      "definition": "def rule4OutsideCap (N L : Nat) := (rule4SubtreeCap N+4*(N+1)+6)*(L+1)\n"
+    },
+    {
+      "name": "OrdinaryDispatch.FullSourceWork.rule4PartitionCap",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.FullSourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork CoreGraph",
+          "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open Universal233.Rule5SelectedLocalWork Universal233.Rule5PendantLocalWork Universal233.Rule5PrefixLocalWork",
+          "open Universal233.HardParent GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork"
+        ]
+      },
+      "definition": "def rule4PartitionCap (N L : Nat) :=\n (rule4SubtreeCap N+1)*L+1+8*(2*N+1)^2+(rule4OutsideCap N L+4)*(N+1)+L+4\n"
+    },
+    {
+      "name": "OrdinaryDispatch.FullSourceWork.rule4StateCap",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.FullSourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork CoreGraph",
+          "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open Universal233.Rule5SelectedLocalWork Universal233.Rule5PendantLocalWork Universal233.Rule5PrefixLocalWork",
+          "open Universal233.HardParent GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork"
+        ]
+      },
+      "definition": "def rule4StateCap (N L : Nat) := rule4PartitionCap N L+(4*(N+2)*(2*N)+3)*(L+1)+5\n"
+    },
+    {
+      "name": "OrdinaryDispatch.ExtendedSourceAssembly.hardPaidUniformPolynomial",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.ExtendedSourceAssembly",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork",
+          "open Universal233.Hard2Overlap Universal233.Hard2PaidLocal",
+          "open GenericForest.FrontierWork OrdinaryDispatch.FullSourceWork OrdinaryDispatch.Hard2SourceWork",
+          "open OrdinaryDispatch.WorkRecursion OrdinaryDispatch.WorkIntegration OrdinaryDispatch.GlobalSourceAssembly"
+        ]
+      },
+      "definition": "def hardPaidUniformPolynomial (N Q : Nat) : Nat :=hardPaidPolynomial N Q+16*(2^50*(N+Q+2)^8)\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.hardPaidPolynomial",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork CoreProgram SourceCoverage",
+          "open GenericForest.FrontierWork GenericForest.CheckCorrespondence",
+          "open OrdinaryDispatch.FullSourceWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open Universal233.Rule5SelectedLocalWork Universal233.Hard2PaidLocal Universal233.Hard2Overlap"
+        ]
+      },
+      "definition": "def hardPaidPolynomial (N Q : Nat) :=2*(hard2GenerationPolynomial N*(Q+1)+12*outputLocalPolynomial N)+6\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.generationPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork CoreProgram VertexGeometry",
+          "open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork Universal233.Rule5PendantLocalWork",
+          "open Universal233.Hard2PaidLocal Universal233.Hard2Overlap Universal233.PaidAssembly"
+        ]
+      },
+      "definition": "def generationPolynomial (N : Nat) :=128*(N+1)^3+16*(1024*(N*(N+2)+N+2)^3+6)+12\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.taggedPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork CoreProgram VertexGeometry",
+          "open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork Universal233.Rule5PendantLocalWork",
+          "open Universal233.Hard2PaidLocal Universal233.Hard2Overlap Universal233.PaidAssembly"
+        ]
+      },
+      "definition": "def taggedPolynomial (N : Nat) :=8*(N+1)+3*(2*(16*(N+3)*N+4*(N+1)+3)+3)+8\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.generationCallPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork CoreProgram VertexGeometry",
+          "open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork Universal233.Rule5PendantLocalWork",
+          "open Universal233.Hard2PaidLocal Universal233.Hard2Overlap Universal233.PaidAssembly"
+        ]
+      },
+      "definition": "def generationCallPolynomial (N : Nat) :=generationPolynomial N+N*taggedPolynomial N\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.hard2GenerationPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork CoreProgram VertexGeometry",
+          "open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork Universal233.Rule5PendantLocalWork",
+          "open Universal233.Hard2PaidLocal Universal233.Hard2Overlap Universal233.PaidAssembly"
+        ]
+      },
+      "definition": "def hard2GenerationPolynomial (N : Nat) :=4*generationCallPolynomial N+52+262*(N+1)^3+8\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.outputLocalPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork CoreProgram",
+          "open GenericForest.FrontierWork GenericForest.CheckCorrespondence",
+          "open OrdinaryDispatch.FullSourceWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+          "open Universal233.Rule5SelectedLocalWork Universal233.BothBad"
+        ]
+      },
+      "definition": "def outputLocalPolynomial (N : Nat) :=2*N+(4*(N+2)*N+3)*N+1+agreementK N+3*N+24\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.disjointRunPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork SourceCoverage",
+          "open GenericForest.CheckCorrespondence GenericForest.FrontierWork",
+          "open Universal233.BothBad Universal233.PaidQueries Universal233.CherryBranching",
+          "open Universal233.Rule5SelectedLocalWork Universal233.Rule5PendantLocalWork",
+          "open Universal233.Hard2Overlap Universal233.PaidAssembly",
+          "open OrdinaryDispatch.WorkIntegration OrdinaryDispatch.FullSourceWork OrdinaryDispatch.WorkRecursion"
+        ]
+      },
+      "definition": "def disjointRunPolynomial (N : Nat):=\n 2*singletonChildBudget N+partitionBudget N+2*(agreementK N+3*N+16)+\n disjointQueryPolynomial N 3+2*N+32\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.disjointQueryPolynomial",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork SourceCoverage",
+          "open GenericForest.CheckCorrespondence GenericForest.FrontierWork",
+          "open Universal233.BothBad Universal233.PaidQueries",
+          "open OrdinaryDispatch.WorkIntegration OrdinaryDispatch.FullSourceWork",
+          "open OrdinaryDispatch.WorkRecursion"
+        ]
+      },
+      "definition": "def disjointQueryPolynomial (N L : Nat):=\n ordinaryLocalPolynomial N L+agreementK (ordinaryCheckSize N L)+N*L+L+24\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.ordinaryCheckSize",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open Universal233.BothBad Universal233.PaidQueries",
+          "open OrdinaryDispatch.WorkIntegration OrdinaryDispatch.FullSourceWork"
+        ]
+      },
+      "definition": "def ordinaryCheckSize (N L : Nat):=N*(L+1)+N\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.ordinaryLocalPolynomial",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open Universal233.BothBad Universal233.PaidQueries",
+          "open OrdinaryDispatch.WorkIntegration"
+        ]
+      },
+      "definition": "def ordinaryLocalPolynomial (N L : Nat):=\n (ordinarySlotPolynomial N+8)*L+2+128*(L+1)+\n (64*(N+1)^2)*L+(2*N+12)*L+6+(32*(N+1)^2+12)*L+2+16\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.ordinarySlotPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open Universal233.PaidQueries Universal233.MafScheduler"
+        ]
+      },
+      "definition": "def ordinarySlotPolynomial (N : Nat):=401000*(N+1)^6\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.localBadPairCoefficient",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.CheckCorrespondence GenericForest.FrontierWork",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.WorkIntegration",
+          "open OrdinaryDispatch.FullSourceWork OrdinaryDispatch.WorkRecursion",
+          "open LocalDispatchEnvelope"
+        ]
+      },
+      "definition": "def localBadPairCoefficient (N Q : Nat) :=\n plannerExecutionCoefficient N Q+56*(N+1)^3+128*(N+1)^2+22\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.localBadPairPolynomial",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.CheckCorrespondence GenericForest.FrontierWork",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.WorkIntegration",
+          "open OrdinaryDispatch.FullSourceWork OrdinaryDispatch.WorkRecursion",
+          "open LocalDispatchEnvelope"
+        ]
+      },
+      "definition": "def localBadPairPolynomial (N Q : Nat) := 2*localBadPairCoefficient N Q+6\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.badPairLocalPolynomial",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.CheckCorrespondence GenericForest.FrontierWork",
+          "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.WorkIntegration",
+          "open OrdinaryDispatch.FullSourceWork OrdinaryDispatch.WorkRecursion",
+          "open LocalDispatchEnvelope"
+        ]
+      },
+      "definition": "def badPairLocalPolynomial (N Q : Nat) := localBadPairPolynomial N Q+groupedBadPairPolynomial N Q\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.LocalDispatchEnvelope.plannerExecutionCoefficient",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork.LocalDispatchEnvelope",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork GenericForest.CheckCorrespondence",
+          "open Universal233.BothBad Universal233.BinaryCheap Universal233.RankConsumer"
+        ]
+      },
+      "definition": "def plannerExecutionCoefficient (N Q : Nat) := bothBadPlanCoefficient N Q+6*executionPolynomial N\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.LocalDispatchEnvelope.executionPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork.LocalDispatchEnvelope",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.CheckCorrespondence Universal233.BothBad",
+          "open OrdinaryDispatch.FullSourceWork Universal233.Rule5SelectedLocalWork"
+        ]
+      },
+      "definition": "def executionPolynomial (N : Nat) := dispatchPolynomial N+\n agreementK (payloadSize N)+payloadSize N+4*N+30\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.LocalDispatchEnvelope.payloadSize",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork.LocalDispatchEnvelope",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork ForestGroups",
+          "open GenericForest.CheckCorrespondence GenericForest.FrontierWork",
+          "open Universal233.BothBad Universal233.PaidQueries Universal233.Rule5SelectedLocalWork",
+          "open OrdinaryDispatch.WorkIntegration OrdinaryDispatch.FullSourceWork"
+        ]
+      },
+      "definition": "def payloadSize (N : Nat) := 2*N*N+4*N+4\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.LocalDispatchEnvelope.materialPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork.LocalDispatchEnvelope",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork ForestGroups",
+          "open GenericForest.CheckCorrespondence GenericForest.FrontierWork",
+          "open Universal233.BothBad Universal233.PaidQueries Universal233.Rule5SelectedLocalWork",
+          "open OrdinaryDispatch.WorkIntegration OrdinaryDispatch.FullSourceWork"
+        ]
+      },
+      "definition": "def materialPolynomial (N : Nat) := (4*(N+2)*N+3)*N+1\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.LocalDispatchEnvelope.dispatchPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork.LocalDispatchEnvelope",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork ForestGroups",
+          "open GenericForest.CheckCorrespondence GenericForest.FrontierWork",
+          "open Universal233.BothBad Universal233.PaidQueries Universal233.Rule5SelectedLocalWork",
+          "open OrdinaryDispatch.WorkIntegration OrdinaryDispatch.FullSourceWork"
+        ]
+      },
+      "definition": "def dispatchPolynomial (N : Nat) := ordinaryLocalPolynomial N N+materialPolynomial N+\n 16*(N+1)^2+64*(N+1)^3+2*N+64\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.cheapOutputCoefficient",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open Universal233.BothBad Universal233.PaidQueries"
+        ]
+      },
+      "definition": "def cheapOutputCoefficient (N Q : Nat):=generationPolynomial N*(Q+1)+N*(12*(N+1)+8)\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.bothBadPlanCoefficient",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open Universal233.BothBad Universal233.PaidQueries"
+        ]
+      },
+      "definition": "def bothBadPlanCoefficient (N Q : Nat):=\n 4*cheapOutputCoefficient N Q+(2*Q+24)*6+cheapPlanFixedPolynomial N+128\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.cheapPlanFixedPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open Universal233.BothBad Universal233.PaidQueries Universal233.BinaryCheap"
+        ]
+      },
+      "definition": "def cheapPlanFixedPolynomial (N : Nat):=402000*(N+1)^6\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.groupedBadPairPolynomial",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open GenericForest.FrontierWork GenericForest GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open OrdinaryDispatch.WorkIntegration OrdinaryDispatch.FullSourceWork OrdinaryDispatch.WorkRecursion"
+        ]
+      },
+      "definition": "def groupedBadPairPolynomial (N Q : Nat):=2*groupedBadPairCoefficient N Q+6\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.groupedMaterialCoefficient",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open GenericForest GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open OrdinaryDispatch.WorkIntegration OrdinaryDispatch.FullSourceWork OrdinaryDispatch.WorkRecursion"
+        ]
+      },
+      "definition": "def groupedMaterialCoefficient (N Q : Nat):=groupedPairCoefficient N Q+148\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.groupedBadPairCoefficient",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open GenericForest GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open OrdinaryDispatch.WorkIntegration OrdinaryDispatch.FullSourceWork OrdinaryDispatch.WorkRecursion"
+        ]
+      },
+      "definition": "def groupedBadPairCoefficient (N Q : Nat):=groupedMaterialCoefficient N Q+128*(N+1)^2+8\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.groupedBestCoefficient",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState ForestGroups Universal233 WholeSourceWork CoreWork",
+          "open GenericForest GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open OrdinaryDispatch.FullSourceWork",
+          "open Universal233.GroupedFullQuery Universal233.PaidQueries Universal233.Rule5SelectedLocalWork"
+        ]
+      },
+      "definition": "def groupedBestCoefficient (N : Nat):=agreementK N+6*N+28\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.groupedPairCoefficient",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState ForestGroups Universal233 WholeSourceWork CoreWork",
+          "open GenericForest GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open OrdinaryDispatch.FullSourceWork",
+          "open Universal233.GroupedFullQuery Universal233.PaidQueries Universal233.Rule5SelectedLocalWork"
+        ]
+      },
+      "definition": "def groupedPairCoefficient (N Q : Nat):=\n 56*(N+1)^3+groupedGeneratorCoefficient N Q+6*groupedEvaluationCoefficient N+6*groupedBestCoefficient N+24\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.groupedEvaluationCoefficient",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState ForestGroups Universal233 WholeSourceWork CoreWork",
+          "open GenericForest GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open Universal233.GroupedFullQuery Universal233.PaidQueries Universal233.Rule5SelectedLocalWork"
+        ]
+      },
+      "definition": "def groupedEvaluationCoefficient (N : Nat):=groupRunOutputPolynomial N+4*N+58\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.groupRunOutputPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState ForestGroups Universal233 WholeSourceWork CoreWork",
+          "open GenericForest GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open Universal233.GroupedFullQuery Universal233.PaidQueries Universal233.Rule5SelectedLocalWork"
+        ]
+      },
+      "definition": "def groupRunOutputPolynomial (N : Nat):=2*N+groupJobsForPolynomial N+384+2*(2*N+16)+20\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.groupProblemPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState ForestGroups Universal233 WholeSourceWork CoreWork",
+          "open GenericForest GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open Universal233.GroupedFullQuery Universal233.PaidQueries Universal233.Rule5SelectedLocalWork"
+        ]
+      },
+      "definition": "def groupProblemPolynomial (N : Nat):=16*(N+1)^2+64*(N+1)^3+12\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.groupPretestSize",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState ForestGroups Universal233 WholeSourceWork CoreWork",
+          "open GenericForest GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open Universal233.GroupedFullQuery Universal233.PaidQueries Universal233.Rule5SelectedLocalWork"
+        ]
+      },
+      "definition": "def groupPretestSize (N : Nat):=N*N+N+1\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.groupJobsForPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState ForestGroups Universal233 WholeSourceWork CoreWork",
+          "open GenericForest GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open Universal233.GroupedFullQuery Universal233.PaidQueries Universal233.Rule5SelectedLocalWork"
+        ]
+      },
+      "definition": "def groupJobsForPolynomial (N : Nat):=\n (4*(N+2)*N+8)*(N+1)+2*N+4+3*(groupProblemPolynomial N+4)+\n 2*(groupPrepareOnePolynomial (groupPretestSize N)+8)+18\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.groupPrepareOnePolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open GenericForest GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open Universal233.GroupedFullQuery Universal233.PaidQueries"
+        ]
+      },
+      "definition": "def groupPrepareOnePolynomial (N : Nat):=forestPretestPolynomial N+2*N+21\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.forestPretestPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open GenericForest GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork"
+        ]
+      },
+      "definition": "def forestPretestPolynomial (N : Nat):=\n 164*(N+1)^3+pretestConstructionPolynomial N+\n (888*(2*N+3)^6+2*(2*N+5)+12)*(N+1)+18\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.unchangedForestPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open GenericForest GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork"
+        ]
+      },
+      "definition": "def unchangedForestPolynomial (N : Nat):=(8*(N+1)^2+4)*(N+1)\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.oneCutStepPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open GenericForest GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork"
+        ]
+      },
+      "definition": "def oneCutStepPolynomial (N : Nat):=\n (8*(N+1)*N+4)+(128*(N+1)^3+unchangedForestPolynomial N+16)*(N+1)+\n (8*(N+1)^2+12)*(N+1)+2*N+12\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.pretestConstructionPolynomial",
+      "type": "Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+          "open GenericForest GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork"
+        ]
+      },
+      "definition": "def pretestConstructionPolynomial (N : Nat):=\n unchangedForestPolynomial N+oneCutStepPolynomial N*N+6\n"
+    },
+    {
+      "name": "OrdinaryDispatch.Hard2SourceWork.groupedGeneratorCoefficient",
+      "type": "Nat \u2192 Nat \u2192 Nat",
+      "context": {
+        "namespace": "OrdinaryDispatch.Hard2SourceWork",
+        "open": [
+          "open RMAF ForestState ForestGroups Universal233 WholeSourceWork CoreWork CoreProgram",
+          "open GenericForest GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork",
+          "open Universal233.GroupedFullQuery Universal233.PaidQueries Universal233.Rule5SelectedLocalWork"
+        ]
+      },
+      "definition": "def groupedGeneratorCoefficient (N Q : Nat):=2*cheapOutputCoefficient N Q+10\n"
+    }
+  ]
+}

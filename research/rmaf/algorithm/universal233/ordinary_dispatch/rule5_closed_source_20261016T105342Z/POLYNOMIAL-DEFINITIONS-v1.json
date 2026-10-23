@@ -1,0 +1,226 @@
+{
+  "finalBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def finalBudget (nt ns K : Nat) :=localBudget nt ns K+badCandidatesBudget ns K+\n (4*ns*ns+2*ns+2)+boundaryBudget ns nt+7*ns+9\n"
+  },
+  "localBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def localBudget (nt ns K : Nat) :=admittedBudget nt ns K+localTailBudget ns K+2*ns+5\n"
+  },
+  "admittedBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def admittedBudget (nt ns K : Nat) :=partitionBudget ns+(admittedGuardBudget nt ns K+2*ns+4)*10+2\n"
+  },
+  "partitionBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def partitionBudget (n : Nat) :=cutsBudget n+blocksBudget n+coreBudget n+2*n+3\n"
+  },
+  "cutsBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def cutsBudget (n : Nat) : Nat :=64*n*n+(cutGuardBudget n+2)*(2*n)+2\n"
+  },
+  "cutGuardBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def cutGuardBudget (n : Nat) : Nat :=2*minimalBudget 2 n+2*(2*n+2)*(2*n)+2*n+8\n"
+  },
+  "minimalBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def minimalBudget (k n : Nat) : Nat := 2*n*(64*(k+1)*n*n+16*n+4)\n"
+  },
+  "blocksBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def blocksBudget (n : Nat) := (4*n*n+2*n+3)*(2*n)+1\n"
+  },
+  "coreBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def coreBudget (n : Nat) :=4*n*n+(pendantPayloadBudget n+2*payloadCap n+3)*n+2\n"
+  },
+  "pendantPayloadBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def pendantPayloadBudget (n : Nat) :=cutsBudget n+blocksBudget n+payloadCap n+2*n+3\n"
+  },
+  "payloadCap": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def payloadCap (n : Nat) := n*(2*n)"
+  },
+  "admittedGuardBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def admittedGuardBudget (nt ns K : Nat) : Nat :=\n properPolynomial (nt+ns)+(16*nt*nt+8*nt+2)+earlierBudget nt ns+earlierBudget ns nt+\n admittedRule4Budget nt ns+admittedRule4Budget ns nt+cutsBudget ns+2*ns+K+\n (K+3)*(2*ns+1)+2*ns+20\n"
+  },
+  "properPolynomial": {
+    "namespace": "Universal233.Rule5PrefixLocalWork",
+    "definition": "def properPolynomial (N : Nat) : Nat :=\n 16*(N+1)*(N+1)+8*N*N+2*(4*N*N+2*N+3)*N+8\n"
+  },
+  "earlierBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def earlierBudget (nt ns : Nat) :=candidatesBudget nt ns+(2*ns+2)*nt+2\n"
+  },
+  "candidatesBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def candidatesBudget (nt ns : Nat) :=16*nt*nt+(cutsBudget ns+6)*nt+2\n"
+  },
+  "admittedRule4Budget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def admittedRule4Budget (nt ns : Nat) :=candidatesBudget nt ns+(rule4CandidateBudget ns+1)*nt+2\n"
+  },
+  "rule4CandidateBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def rule4CandidateBudget (n : Nat) :=2*n+(rule4ArcBudget n+1)*(2*n)+3\n"
+  },
+  "rule4ArcBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def rule4ArcBudget (n : Nat) :=4*n*n+2*n+2+2*(16*n*n+8*n+2)+3\n"
+  },
+  "localTailBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def localTailBudget (n K : Nat) :=selectLargeBudget n K+selectSizeTwoBudget n K+selectOutsideBudget n K+4*n+5"
+  },
+  "selectLargeBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def selectLargeBudget (n K : Nat) :=cutsBudget n+(largeAtBudget n K+4)*(2*n)+3\n"
+  },
+  "largeAtBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def largeAtBudget (n K : Nat) :=2*(4*n*n+2*n+2)+n+K+5\n"
+  },
+  "selectSizeTwoBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def selectSizeTwoBudget (n K : Nat) :=cutsBudget n+(sizeTwoAtBudget n K+4)*(2*n)+3\n"
+  },
+  "sizeTwoAtBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def sizeTwoAtBudget (n K : Nat) :=4*n*n+4*n+K+8\n"
+  },
+  "selectOutsideBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def selectOutsideBudget (n K : Nat) :=16*n*n+(outsideAtBudget n K+4)*n+3\n"
+  },
+  "outsideAtBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def outsideAtBudget (n K : Nat) :=(outsideGuardBudget n K+2)*7+5\n"
+  },
+  "outsideGuardBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def outsideGuardBudget (n K : Nat) :=coreBudget n+2*n+K+4"
+  },
+  "badCandidatesBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def badCandidatesBudget (n K : Nat) :=cutsBudget n+(badRowBudget n K+4*n+2)*(2*n)+2\n"
+  },
+  "badRowBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def badRowBudget (n K : Nat) :=cutsBudget n+(badAtBudget n K+4)*(2*n)+2\n"
+  },
+  "badAtBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def badAtBudget (n K : Nat) :=4*n*n+6*n+K+10\n"
+  },
+  "boundaryBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def boundaryBudget (k n : Nat) :=incidentBudget k n+2*outsideCheckBudget k n+2*paintBudget k n+10\n"
+  },
+  "incidentBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def incidentBudget (k n : Nat) :=64*n*n+(incidentAtBudget k n+2)*(2*n)+2\n"
+  },
+  "incidentAtBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def incidentAtBudget (k n : Nat) :=2*minimalBudget k n+2*((2*n+2)*(2*n)+1)+2*n+5\n"
+  },
+  "outsideCheckBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def outsideCheckBudget (k n : Nat) :=4*n*n+4*n+paintBudget k n+5\n"
+  },
+  "paintBudget": {
+    "namespace": "Universal233.Rule5PendantLocalWork",
+    "definition": "def paintBudget (k n : Nat) :=minimalBudget k n+(2*n+2)*(2*n)+2\n"
+  },
+  "forestArmBudget": {
+    "namespace": "Universal233.Rule5SelectedLocalWork",
+    "definition": "def forestArmBudget (nt ns K : Nat) :=selectedChildrenBudget ns+5*(K+3*nt+16)+6\n"
+  },
+  "selectedChildrenBudget": {
+    "namespace": "Universal233.Rule5SelectedLocalWork",
+    "definition": "def selectedChildrenBudget (n : Nat) :=fiveChildrenBudget n+siblingChildrenBudget n n+3\n"
+  },
+  "fiveChildrenBudget": {
+    "namespace": "Universal233.Rule5SelectedLocalWork",
+    "definition": "def fiveChildrenBudget (n : Nat) :=pendantChildBudget n+4*pairChildBudget n+6\n"
+  },
+  "pendantChildBudget": {
+    "namespace": "Universal233.Rule5SelectedLocalWork",
+    "definition": "def pendantChildBudget (n : Nat) :=partitionBudget n+cutsBudget n+2*n+\n (4*(n+2)*(2*n)+3)*(2*n+1)+7\n"
+  },
+  "pairChildBudget": {
+    "namespace": "Universal233.Rule5SelectedLocalWork",
+    "definition": "def pairChildBudget (n : Nat) :=pairPartitionBudget n+(4*(n+2)*(2*n)+3)*3+6\n"
+  },
+  "pairPartitionBudget": {
+    "namespace": "Universal233.Rule5SelectedLocalWork",
+    "definition": "def pairPartitionBudget (n : Nat) :=4*n*n+4*n+8\n"
+  },
+  "siblingChildrenBudget": {
+    "namespace": "Universal233.Rule5SelectedLocalWork",
+    "definition": "def siblingChildrenBudget (n m : Nat) :=10*m+12+singletonChildBudget n+pendantChildBudget n+4\n"
+  },
+  "singletonChildBudget": {
+    "namespace": "Universal233.Rule5SelectedLocalWork",
+    "definition": "def singletonChildBudget (n : Nat) :=singletonPartitionBudget n+(4*(n+2)*(2*n)+3)*2+6"
+  },
+  "singletonPartitionBudget": {
+    "namespace": "Universal233.Rule5SelectedLocalWork",
+    "definition": "def singletonPartitionBudget (n : Nat) :=4*n*n+3*n+6"
+  },
+  "commonBudget": {
+    "namespace": "Universal233.Rule5ExecutionSource",
+    "definition": "def commonBudget (nt ns x : Nat) :=commonSetupBudget nt ns x+guardedBudget nt+3\n"
+  },
+  "commonSetupBudget": {
+    "namespace": "Universal233.Rule5RemainingLocalWork",
+    "definition": "def commonSetupBudget (nt ns x : Nat) :=4*ns*ns+2*ns+2+coreBudget ns+ns+\n setupBudget (nt+ns+2) x nt+3\n"
+  },
+  "setupBudget": {
+    "namespace": "Universal233.Rule5RemainingLocalWork",
+    "definition": "def setupBudget (N k n : Nat) :=\n 16*(N+1)*(N+1)+2*(4*N*N+partitionCap N+3)+(2*N+1)+\n 4*N*N+(5*N+5)*(N+1)+incidentBudget k n+8*N*N+N+2*(6*N+1)+\n 4*(4*(N+2)*(2*N))+4*((4*(N+3)+4)*(2*N)+3)+40\n"
+  },
+  "partitionCap": {
+    "namespace": "GenericForest.CheckCorrespondence",
+    "definition": "def partitionCap (N : Nat) : Nat := 128*(N+1)^2\n"
+  },
+  "guardedBudget": {
+    "namespace": "Universal233.Rule5ExecutionSource",
+    "definition": "def guardedBudget (n : Nat) :=400000*(2*n+1)^6+128*(2*n+1)^3+\n outsideBudget (2*n) (4*n+2)+paidBudget n+8\n"
+  },
+  "outsideBudget": {
+    "namespace": "Universal233.Rule5ExecutionSource",
+    "definition": "def outsideBudget (N M : Nat) :=400000*(N+1)^6+128*(N+1)^3+5*M+15\n"
+  },
+  "paidBudget": {
+    "namespace": "Universal233.Rule5ExecutionSource",
+    "definition": "def paidBudget (n : Nat) :=Rule5LocalWork.commonPolynomial (2*n) (agreementK n)+4*n+30\n"
+  },
+  "commonPolynomial": {
+    "namespace": "Universal233.Rule5LocalWork",
+    "definition": "def commonPolynomial (N K : Nat) : Nat :=\n 9*N+((8*(N+2)^2+2)*N+2)*N+7+(K+2*(2*N+2)+2)*(N*N)\n"
+  },
+  "paidSelectedBudget": {
+    "namespace": "Universal233.Rule5RemainingLocalWork",
+    "definition": "def paidSelectedBudget (nt ns Kc Kl : Nat) :=finalBudget nt ns Kc+secondBuilderBudget nt ns nt Kl+3\n"
+  },
+  "secondBuilderBudget": {
+    "namespace": "Universal233.Rule5RemainingLocalWork",
+    "definition": "def secondBuilderBudget (nt ns m K : Nat) :=rowsBudget ns+(oneBudget nt m K+2)*(32*ns)+2\n"
+  },
+  "rowsBudget": {
+    "namespace": "Universal233.Rule5RemainingLocalWork",
+    "definition": "def rowsBudget (n : Nat) :=64*n*n+(32*n+619)*(2*n)+2\n"
+  },
+  "oneBudget": {
+    "namespace": "Universal233.Rule5RemainingLocalWork",
+    "definition": "def oneBudget (n m K : Nat) :=2*m+2*leafAddressBudget n+K+8\n"
+  },
+  "leafAddressBudget": {
+    "namespace": "Universal233.Rule5RemainingLocalWork",
+    "definition": "def leafAddressBudget (n : Nat) :=64*n*n+(2*n+8)*(2*n)+2\n"
+  }
+}

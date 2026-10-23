@@ -1,0 +1,89 @@
+import PersistentEntry
+namespace GenericForest.BinaryCaller
+open GenericForest.BinaryProvider GenericForest.ScalarBits GenericForest.CheckCorrespondence
+open Universal233.WholeSourceWork
+
+/-- Storage premises accompany the original caps. Decoded budget and stored
+budget width are distinct, because arbitrary padding has a real cost. -/
+structure Caps (N L Q : Nat) (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits) (F : BinaryProvider.Forest) : Prop where
+ targetNodes : targetNodes (targetValue T)≤N
+ sourceNodes : sourceNodes (sourcesValue ss)≤N
+ sourceCount : ss.length≤N
+ targetWidth : TargetWidth L T
+ sourceWidth : SourcesWidth L ss
+ budget : decode q≤Q
+ budgetWidth : q.length≤Q+1
+ forestWidth : ForestWidth L F
+ forestCount : F.length≤N
+ forestCells : F.flatten.length≤N
+
+theorem flatten_width (W : Nat) (F : BinaryProvider.Forest) (fc : ForestWidth W F) : BlockWidth W F.flatten := by
+ intro x hx;obtain ⟨B,hB,hx⟩:=List.mem_flatten.mp hx;exact fc B hB x hx
+
+theorem labelsCapacity_cap (W : Nat) (B : Block) (bc : BlockWidth W B) :
+ (labelsCapacity B).value.length≤W+1 := by
+ induction B with
+ | nil=>simp [labelsCapacity]
+ | cons x xs ih=>
+  have xw:=bc x (by simp)
+  change x.length≤W at xw
+  have r:=ih (fun y hy=>bc y (by simp [hy]))
+  simp only [labelsCapacity,widenCapacity_length];omega
+
+theorem prepareCapacity_cap (W : Nat) (B : Block) (F : BinaryProvider.Forest) (bc : BlockWidth W B) (fc : ForestWidth W F) :
+ (prepareCapacity B F).value.length≤max (W+1) F.flatten.length := by
+ have c:=labelsCapacity_cap W (B++F.flatten) (by
+  intro x hx;rcases List.mem_append.mp hx with hb|hf
+  · exact bc x hb
+  · exact flatten_width W F fc x hf)
+ have n:=spineCounter_length F.flatten
+ simp only [prepareCapacity,flattenLabels_value,appendLabels_value,widenCapacity_length];omega
+
+theorem targetLeaf_count (N L : Nat) (T : Option BinaryProvider.Tree) (tw : TargetWidth L T)
+ (tn : targetNodes (targetValue T)≤N) : (targetLabelsCopy T).value.length≤N := by
+ have a:=targetLabelsCopy_projects L T tw
+ have e:=congrArg List.length a.1
+ simp only [blockValue_length,meterLabels_value] at e
+ have n:=labels_nodes (targetValue T);omega
+
+theorem sourceLeaf_count (N L : Nat) (ss : List BinaryProvider.Tree) (sw : SourcesWidth L ss)
+ (sn : sourceNodes (sourcesValue ss)≤N) : (sourceLeavesCopy ss).value.flatten.length≤N := by
+ have a:=sourceLeavesCopy_projects L ss sw
+ have e:=congrArg (fun F : List (List Nat)=>F.flatten.length) a.1
+ simp only [forestValue_flatten,blockValue_length,meterSourceLeaves_value] at e
+ have n:=source_leaves_cells (sourcesValue ss);omega
+
+theorem width_mono (A B : Nat) (h : A≤B) (xs : Block) (xw : BlockWidth A xs) : BlockWidth B xs:=
+ fun x hx=>Nat.le_trans (xw x hx) h
+
+theorem checkerCapacity_global_width (N L Q : Nat) (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits) (F : BinaryProvider.Forest)
+ (c : Caps N L Q T ss q F) : (checkerCapacity T ss q F).value.length≤L+Q+2*N+3 := by
+ let W:=L+Q+1
+ have lw : L≤W:=by dsimp [W];omega
+ have tw:=targetLabelsCopy_width L T c.targetWidth
+ have sw:=sourceLeavesCopy_width L ss c.sourceWidth
+ have sn:=sourceLeaf_count N L ss c.sourceWidth c.sourceNodes
+ have bw : BlockWidth W (q::(targetLabelsCopy T).value):=by
+  intro x hx;rcases List.mem_cons.mp hx with rfl|hx
+  · exact Nat.le_trans c.budgetWidth (by dsimp [W];omega)
+  · exact Nat.le_trans (tw x hx) lw
+ have fw : ForestWidth W (F++(sourceLeavesCopy ss).value):=by
+  intro B hB;rcases List.mem_append.mp hB with hf|hs
+  · exact width_mono L W lw B (c.forestWidth B hf)
+  · exact width_mono L W lw B (sw B hs)
+ have base:=prepareCapacity_cap W _ _ bw fw
+ have fl:=spineCounter_length F;have sl:=spineCounter_length ss
+ have fc:=c.forestCells;have fn:=c.forestCount;have snum:=c.sourceCount
+ rw [checkerCapacity_width]
+ simp only [List.flatten_append,List.length_append] at base
+ dsimp only [W] at base
+ omega
+
+theorem bitCells_bound (W : Nat) (B : Block) (bc : BlockWidth W B) : B.flatten.length≤W*B.length := by
+ induction B with
+ | nil=>simp
+ | cons x xs ih=>
+  have r:=ih (fun y hy=>bc y (by simp [hy]));have h:=bc x (by simp)
+  change x.length≤W at h
+  simp only [List.flatten_cons,List.length_append,List.length_cons,Nat.mul_add,Nat.mul_one];omega
+end GenericForest.BinaryCaller

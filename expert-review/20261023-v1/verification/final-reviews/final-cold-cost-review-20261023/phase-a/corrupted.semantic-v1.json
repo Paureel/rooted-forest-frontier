@@ -1,0 +1,112 @@
+{
+  "cases": [
+    {
+      "diagnostic": {
+        "code": "DUPLICATE_COPY_UNDERCOUNT",
+        "expected": 6,
+        "observed": 2
+      },
+      "id": "N1",
+      "status": "CAUGHT"
+    },
+    {
+      "diagnostic": {
+        "code": "EAGER_REFUSED_WORK_OMITTED",
+        "expected": 151,
+        "observed": 75
+      },
+      "id": "N2",
+      "status": "CAUGHT"
+    },
+    {
+      "diagnostic": {
+        "code": "METADATA_ALLOCATION_OMITTED",
+        "expected": 3,
+        "observed": 0
+      },
+      "id": "N3",
+      "status": "CAUGHT"
+    },
+    {
+      "diagnostic": {
+        "code": "RETAINED_CELLS_CONFUSED_WITH_WIDTH",
+        "expected": 11,
+        "observed": 4
+      },
+      "id": "N4",
+      "status": "CAUGHT"
+    },
+    {
+      "diagnostic": {
+        "code": "ARITHMETIC_OPERAND_MULTIPLICITY",
+        "expected": 16,
+        "observed": 12
+      },
+      "id": "N5",
+      "status": "CAUGHT"
+    },
+    {
+      "diagnostic": {
+        "code": "CIRCULAR_WIDTH_DEPENDENCY",
+        "expected": "acyclic",
+        "observed": [
+          "allocation",
+          "desired_bill",
+          "fee",
+          "width",
+          "allocation"
+        ]
+      },
+      "id": "N6",
+      "status": "CAUGHT"
+    },
+    {
+      "diagnostic": {
+        "code": "OPTIMIZER_FAILED_TRIALS_OMITTED",
+        "expected": 28,
+        "observed": 20
+      },
+      "id": "N7",
+      "status": "CAUGHT"
+    },
+    {
+      "diagnostic": {
+        "code": "RECOVERY_MULTIPLICITY",
+        "expected": 1,
+        "observed": 2
+      },
+      "id": "N8",
+      "status": "CAUGHT"
+    },
+    {
+      "diagnostic": {
+        "code": "INEQUALITY_FALSE",
+        "lhs": "28",
+        "residual": "4",
+        "rhs": "24"
+      },
+      "id": "N9",
+      "status": "CAUGHT"
+    },
+    {
+      "diagnostic": {
+        "code": "SOURCE_BOUND_FALSE",
+        "lhs": "6",
+        "residual": "2",
+        "rhs": "4"
+      },
+      "id": "N10",
+      "status": "CAUGHT"
+    }
+  ],
+  "engine_qualification": "shared BootLoops Python integer/Fraction engine; no external/kernel credit",
+  "exit_code": 23,
+  "mode": "corrupted",
+  "runtime": {
+    "executable": "/Users/paurel/Documents/ChatGPT/bootscience/.venv/bin/python3",
+    "implementation": "CPython",
+    "version": "3.12.14"
+  },
+  "scope": "synthetic calibration only; no candidate verdict",
+  "status": "TEN_CORRUPTIONS_CAUGHT_EXPECTED_FAILURE_CHILD"
+}

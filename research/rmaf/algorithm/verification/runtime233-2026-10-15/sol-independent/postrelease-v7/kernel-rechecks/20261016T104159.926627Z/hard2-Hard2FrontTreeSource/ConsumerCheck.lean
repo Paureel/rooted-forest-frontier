@@ -1,0 +1,5 @@
+import Hard2FrontTreeSource
+#check OrdinaryDispatch.Hard2SourceWork.hard2FrontTreeSource_bound
+#print axioms OrdinaryDispatch.Hard2SourceWork.hard2FrontTreeSource_bound
+#check OrdinaryDispatch.Hard2SourceWork.ordinaryOwnedSourceSubtotal_bound
+#print axioms OrdinaryDispatch.Hard2SourceWork.ordinaryOwnedSourceSubtotal_bound

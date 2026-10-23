@@ -1,0 +1,12 @@
+import CompleteNamedSources
+open Universal233.Rule5ExecutionSource Universal233.Rule5RemainingLocalWork
+#check forest_pretest_value
+#check paid_selected_value
+#check forestPretestMeter
+#check originalAcceptedMeter
+#check Universal233.Rule5PaidOrdinary.currentQuery
+#check Universal233.Rule5PaidOrdinary.currentAnswer
+#check Universal233.Rule5ActualTrace.commonTrace
+#check Universal233.Rule5ActualTrace.directQueries
+#check requestsMeter
+#check Universal233.Rule5PaidSelector.requests

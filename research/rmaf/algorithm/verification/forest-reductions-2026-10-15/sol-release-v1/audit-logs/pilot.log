@@ -1,0 +1,1239 @@
+MODULE	pilot	RMAF	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/RMAF.olean
+MODULE	pilot	StateRestriction	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/StateRestriction.olean
+MODULE	pilot	StateEmbedding	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/StateEmbedding.olean
+MODULE	pilot	StatePartition	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/StatePartition.olean
+MODULE	pilot	State	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/State.olean
+MODULE	pilot	Singleton	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/Singleton.olean
+MODULE	pilot	Removal	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/Removal.olean
+MODULE	pilot	Forward	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/Forward.olean
+MODULE	pilot	LeafClear	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/LeafClear.olean
+MODULE	pilot	Reverse	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/Reverse.olean
+MODULE	pilot	CherryGraph	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/CherryGraph.olean
+MODULE	pilot	CherryTopology	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/CherryTopology.olean
+MODULE	pilot	Endpoint	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/Endpoint.olean
+MODULE	pilot	Replacement	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/Replacement.olean
+MODULE	pilot	Contraction	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/Contraction.olean
+MODULE	pilot	BlockPartition	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/BlockPartition.olean
+MODULE	pilot	QuotientGeometry	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/QuotientGeometry.olean
+MODULE	pilot	QuotientTopology	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/QuotientTopology.olean
+MODULE	pilot	StateContract	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/StateContract.olean
+MODULE	pilot	Expansion	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/Expansion.olean
+MODULE	pilot	StateExpand	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/StateExpand.olean
+MODULE	pilot	GraphControls	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/GraphControls.olean
+MODULE	pilot	CompletionConsumers	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/CompletionConsumers.olean
+MODULE	pilot	Controls	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/Controls.olean
+MODULE	pilot	Consumers	/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/forest-reductions-2026-10-15/sol-release-v1/isolated/Consumers.olean
+ROW	pilot	RestrictionBridge.contained_iff._simp_1_2	StatePartition	theorem	propext,Quot.sound	StatePartition	direct
+TYPE	pilot	RestrictionBridge.contained_iff._simp_1_2	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	RMAF.Tree.leaf.injEq	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	RMAF.Tree.leaf.injEq	"∀ (a a_1 : Nat), (RMAF.Tree.leaf a = RMAF.Tree.leaf a_1) = (a = a_1)"
+ROW	pilot	RestrictionBridge.Refines	StatePartition	definition		StatePartition	direct
+ROW	pilot	ForestState.CherryAt.below.casesOn	CherryGraph	definition		CherryGraph	direct
+ROW	pilot	RMAF.Instance._sizeOf_1	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.Tree	RMAF	inductive		RMAF	direct
+ROW	pilot	completion_consumer_3	CompletionConsumers	theorem	propext,Classical.choice,Quot.sound	CompletionConsumers	direct
+TYPE	pilot	completion_consumer_3	"∃ G,\n  ForestState.agrees (some LeftCherry) [RightCherry] G = true ∧\n    G.length ≤ [[17], [31, 47], [59]].length ∧ ∃ B, B ∈ G ∧ 17 ∈ B ∧ 31 ∈ B"
+ROW	pilot	RMAF.RootedIso.straight	RMAF	constructor		RMAF	direct
+ROW	pilot	ForestState.source_label_owner._proof_1_1	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.source_label_owner._proof_1_1	"∀ (x : Nat) (v : RMAF.Tree) (vs : List RMAF.Tree),\n  List.count x (RMAF.leaves v) + List.count x (List.map RMAF.leaves vs).flatten = 1 →\n    0 < List.count x (RMAF.leaves v) → 0 < List.count x (List.map RMAF.leaves vs).flatten → False"
+ROW	pilot	RMAF.sameShape.eq_3	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	RMAF.sameShape.eq_3	"∀ (x x_1 : RMAF.Tree),\n  (∀ (a b : Nat), x = RMAF.Tree.leaf a → x_1 = RMAF.Tree.leaf b → False) →\n    (∀ (a b c d : RMAF.Tree), x = a.node b → x_1 = c.node d → False) → RMAF.sameShape x x_1 = false"
+ROW	pilot	RMAF.pairwiseEmbeddings.eq_def	StateEmbedding	theorem		StateEmbedding	direct
+TYPE	pilot	RMAF.pairwiseEmbeddings.eq_def	"∀ (t : RMAF.Tree) (x : List (List Nat)),\n  RMAF.pairwiseEmbeddings t x =\n    match x with\n    | [] => true\n    | b :: bs =>\n      (bs.all fun c => RMAF.disjointVertices (RMAF.minimalVertices b t) (RMAF.minimalVertices c t)) &&\n        RMAF.pairwiseEmbeddings t bs"
+ROW	pilot	RMAF.pairwiseEmbeddings._sunfold	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.source_family_partition._simp_1_1	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.source_family_partition._simp_1_1	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	RMAF.Instance.ctorIdx	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.RootedIso.below.casesOn	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.RootedIso.below	RMAF	inductive		RMAF	direct
+ROW	pilot	RestrictionBridge.clear_cons_left	StateEmbedding	theorem	propext	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_cons_left	"∀ (v : RMAF.Vertex) (a b : List RMAF.Vertex), RestrictionBridge.Clear (v :: a) b ↔ ¬v ∈ b ∧ RestrictionBridge.Clear a b"
+ROW	pilot	_private.CherryTopology.0.ForestState.cherry.match_1.eq_2	CherryTopology	theorem		CherryTopology	direct
+TYPE	pilot	_private.CherryTopology.0.ForestState.cherry.match_1.eq_2	"∀ (motive : RMAF.Tree → Sort u_1) (l r : RMAF.Tree) (h_1 : (a : Nat) → motive (RMAF.Tree.leaf a))\n  (h_2 : (l r : RMAF.Tree) → motive (l.node r)),\n  (match l.node r with\n    | RMAF.Tree.leaf a => h_1 a\n    | l.node r => h_2 l r) =\n    h_2 l r"
+ROW	pilot	ForestState.expandBlock_saturated._simp_1_1	Expansion	theorem	propext,Classical.choice,Quot.sound	Expansion	direct
+TYPE	pilot	ForestState.expandBlock_saturated._simp_1_1	"∀ (C : List Nat) (a b z x : Nat), (x ∈ ForestState.expandBlock a b z C) = (z ∈ C ∧ (x = a ∨ x = b) ∨ x ∈ C ∧ x ≠ z)"
+ROW	pilot	_private.StateEmbedding.0.RMAF.instReprTree.repr.match_1.eq_1	StateEmbedding	theorem		StateEmbedding	direct
+TYPE	pilot	_private.StateEmbedding.0.RMAF.instReprTree.repr.match_1.eq_1	"∀ (motive : RMAF.Tree → Sort u_1) (a : Nat) (h_1 : (a : Nat) → motive (RMAF.Tree.leaf a))\n  (h_2 : (a a_1 : RMAF.Tree) → motive (a.node a_1)),\n  (match RMAF.Tree.leaf a with\n    | RMAF.Tree.leaf a => h_1 a\n    | a.node a_1 => h_2 a a_1) =\n    h_1 a"
+ROW	pilot	ForestState.checked_flatten_nodup._proof_1_1	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.checked_flatten_nodup._proof_1_1	"¬1 ≤ 1 → False"
+ROW	pilot	ForestState.singleton_decision_equivalence	Reverse	theorem	propext,Classical.choice,Quot.sound	Reverse	direct
+TYPE	pilot	ForestState.singleton_decision_equivalence	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree) (a q : Nat),\n  ForestState.proper T ss = true →\n    RMAF.Tree.leaf a ∈ ss →\n      (ForestState.feasible T ss q ↔\n        ForestState.feasible (ForestState.cleanupTarget T a) (ForestState.cleanupSources ss a) q)"
+ROW	pilot	ForestState.singleton_cleanup_reverse._simp_1_4	Reverse	theorem	propext	Reverse	direct
+TYPE	pilot	ForestState.singleton_cleanup_reverse._simp_1_4	"∀ {a b c : Prop}, ((a ∧ b) ∧ c) = (a ∧ b ∧ c)"
+ROW	pilot	RestrictionBridge.restrict_inside	StateRestriction	theorem	propext,Quot.sound	StateRestriction	direct
+TYPE	pilot	RestrictionBridge.restrict_inside	"∀ (t u : RMAF.Tree) (U B : List Nat), RMAF.restrict U t = some u → B ⊆ U → RMAF.restrict B u = RMAF.restrict B t"
+ROW	pilot	ForestState.common_cherry_expand_agreement._simp_1_2	StateExpand	theorem	propext	StateExpand	direct
+TYPE	pilot	ForestState.common_cherry_expand_agreement._simp_1_2	"∀ {a b c : Prop}, ((a ∧ b) ∧ c) = (a ∧ b ∧ c)"
+ROW	pilot	RMAF.Tree._sizeOf_1	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.option_restricted_absent	QuotientTopology	theorem	propext,Quot.sound	QuotientTopology	direct
+TYPE	pilot	ForestState.option_restricted_absent	"∀ (t : RMAF.Tree) (B : List Nat) (x : Nat), ¬x ∈ RMAF.leaves t → ¬x ∈ RestrictionBridge.optionLeaves (RMAF.restrict B t)"
+ROW	pilot	RMAF.assignment_solver_optimal	RMAF	theorem	propext,Classical.choice,Quot.sound	RMAF	direct
+TYPE	pilot	RMAF.assignment_solver_optimal	"∀ (n : Nat) (t u : RMAF.Tree) (winner : List Nat),\n  RMAF.solve n t u = some winner →\n    RMAF.agreement t u (RMAF.blocks winner) = true ∧\n      ∀ (a : List Nat),\n        a.length = n →\n          (∀ (x : Nat), x ∈ a → x < n) →\n            RMAF.agreement t u (RMAF.blocks a) = true → (RMAF.blocks winner).length ≤ (RMAF.blocks a).length"
+ROW	pilot	RMAF.Tree.noConfusion	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.together_coalesced	BlockPartition	theorem	propext,Quot.sound	BlockPartition	direct
+TYPE	pilot	ForestState.together_coalesced	"∀ (L : List Nat) (F : List (List Nat)) (a b : Nat),\n  RMAF.partitionCheck L F = true → ∀ (A : List Nat), A ∈ F → a ∈ A → b ∈ A → ForestState.Coalesced F a b"
+ROW	pilot	_private.RMAF.0.RMAF.sameShape.match_1.splitter	RMAF	definition	propext	RMAF	direct
+ROW	pilot	RMAF.best._sunfold	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.common_cherry_state_decision_equivalence	StateExpand	theorem	propext,Classical.choice,Quot.sound	StateExpand	direct
+TYPE	pilot	ForestState.common_cherry_state_decision_equivalence	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree) (a b z q : Nat),\n  ForestState.cherryReady T ss a b z = true →\n    (ForestState.feasible T ss q ↔\n      ForestState.feasible (Option.map (ForestState.contract a b z) T) (List.map (ForestState.contract a b z) ss) q)"
+ROW	pilot	ForestState.map_cleanup_sources	Removal	theorem	propext,Quot.sound	Removal	direct
+TYPE	pilot	ForestState.map_cleanup_sources	"∀ (ss : List RMAF.Tree) (a : Nat),\n  List.map RMAF.leaves (ForestState.cleanupSources ss a) = (List.map RMAF.leaves ss).erase [a]"
+ROW	pilot	ForestState.reassignment_partition._proof_1_3	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.reassignment_partition._proof_1_3	"∀ (F : List (List Nat)) (A : List Nat) (b x : Nat),\n  List.count x (F.erase A).flatten + List.count x A = 1 → ¬List.count x A + List.count x (F.erase A).flatten = 1 → False"
+ROW	pilot	ForestState.partition_remove_singleton._proof_1_3	Removal	theorem	propext,Quot.sound	Removal	direct
+TYPE	pilot	ForestState.partition_remove_singleton._proof_1_3	"∀ (F : List (List Nat)) (a : Nat),\n  List.count a F.flatten = 1 →\n    0 < List.count a (F.erase [a]).flatten → List.count a (F.erase [a]).flatten + 1 = List.count a F.flatten → False"
+ROW	pilot	RestrictionBridge.optionLeaves.match_1	StateRestriction	definition		StateRestriction	direct
+ROW	pilot	ForestState.expand_join	CherryTopology	theorem		CherryTopology	direct
+TYPE	pilot	ForestState.expand_join	"∀ (a b z : Nat) (l r : Option RMAF.Tree),\n  Option.map (ForestState.expand a b z) (RestrictionBridge.join l r) =\n    RestrictionBridge.join (Option.map (ForestState.expand a b z) l) (Option.map (ForestState.expand a b z) r)"
+ROW	pilot	_private.CherryTopology.0.ForestState.OptionIso.match_1.eq_3	CherryTopology	theorem	propext	CherryTopology	direct
+TYPE	pilot	_private.CherryTopology.0.ForestState.OptionIso.match_1.eq_3	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (x x_1 : Option RMAF.Tree) (h_1 : Unit → motive none none)\n  (h_2 : (t u : RMAF.Tree) → motive (some t) (some u)) (h_3 : (x x_2 : Option RMAF.Tree) → motive x x_2),\n  (x = none → x_1 = none → False) →\n    (∀ (t u : RMAF.Tree), x = some t → x_1 = some u → False) →\n      (match x, x_1 with\n        | none, none => h_1 ()\n        | some t, some u => h_2 t u\n        | x, x_4 => h_3 x x_4) =\n        h_3 x x_1"
+ROW	pilot	_private.StateExpand.0.RMAF.restrictionAgrees.match_1.splitter	StateExpand	definition	propext	StateExpand	direct
+ROW	pilot	ForestState.contraction_nodup._proof_1_2	Contraction	theorem	propext,Quot.sound	Contraction	direct
+TYPE	pilot	ForestState.contraction_nodup._proof_1_2	"¬0 ≤ 1 → False"
+ROW	pilot	ForestState.contraction_additional_cost	BlockPartition	theorem	propext	BlockPartition	direct
+TYPE	pilot	ForestState.contraction_additional_cost	"∀ (ss : List RMAF.Tree) (F : List (List Nat)) (a b z : Nat),\n  ForestState.additionalCost (List.map (ForestState.contract a b z) ss) (List.map (ForestState.contractBlock a b z) F) =\n    ForestState.additionalCost ss F"
+ROW	pilot	ForestState.targetEmbeddings.eq_1	Forward	theorem		Forward	direct
+TYPE	pilot	ForestState.targetEmbeddings.eq_1	"∀ (x : List (List Nat)), ForestState.targetEmbeddings none x = x.isEmpty"
+ROW	pilot	RestrictionBridge.clear_cons_right._simp_1	StateEmbedding	theorem	propext	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_cons_right._simp_1	"∀ (v : RMAF.Vertex) (a b : List RMAF.Vertex),\n  RestrictionBridge.Clear a (v :: b) = (¬v ∈ a ∧ RestrictionBridge.Clear a b)"
+ROW	pilot	RMAF.Tree.ctorElimType	RMAF	definition		RMAF	direct
+ROW	pilot	_private.RMAF.0.RMAF.restrict.match_1.eq_3	RMAF	theorem		RMAF	direct
+TYPE	pilot	_private.RMAF.0.RMAF.restrict.match_1.eq_3	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (b : RMAF.Tree) (h_1 : Unit → motive none none)\n  (h_2 : (a : RMAF.Tree) → motive (some a) none) (h_3 : (b : RMAF.Tree) → motive none (some b))\n  (h_4 : (a b : RMAF.Tree) → motive (some a) (some b)),\n  (match none, some b with\n    | none, none => h_1 ()\n    | some a, none => h_2 a\n    | none, some b => h_3 b\n    | some a, some b => h_4 a b) =\n    h_3 b"
+ROW	pilot	RMAF.restrict_of_contains	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	RMAF.restrict_of_contains	"∀ (t : RMAF.Tree) (selected : List Nat),\n  (∀ (x : Nat), x ∈ RMAF.leaves t → selected.contains x = true) → RMAF.restrict selected t = some t"
+ROW	pilot	RightCherry	GraphControls	definition		GraphControls	direct
+ROW	pilot	state_consumer_7	Consumers	theorem	propext	Consumers	direct
+TYPE	pilot	state_consumer_7	"ForestState.agrees\n    (some (((RMAF.Tree.leaf 17).node (RMAF.Tree.leaf 31)).node ((RMAF.Tree.leaf 47).node (RMAF.Tree.leaf 59))))\n    [(RMAF.Tree.leaf 17).node (RMAF.Tree.leaf 31), (RMAF.Tree.leaf 47).node (RMAF.Tree.leaf 59)]\n    [[17], [31], [47, 59]] =\n  true"
+ROW	pilot	_private.Forward.0.ForestState.targetEmbeddings.match_1.eq_2	Forward	theorem		Forward	direct
+TYPE	pilot	_private.Forward.0.ForestState.targetEmbeddings.match_1.eq_2	"∀ (motive : Option RMAF.Tree → List (List Nat) → Sort u_1) (t : RMAF.Tree) (F : List (List Nat))\n  (h_1 : (F : List (List Nat)) → motive none F) (h_2 : (t : RMAF.Tree) → (F : List (List Nat)) → motive (some t) F),\n  (match some t, F with\n    | none, F => h_1 F\n    | some t, F => h_2 t F) =\n    h_2 t F"
+ROW	pilot	RMAF.Instance.noConfusionType	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.targetEmbeddings.eq_2	Forward	theorem		Forward	direct
+TYPE	pilot	ForestState.targetEmbeddings.eq_2	"∀ (x : List (List Nat)) (t : RMAF.Tree), ForestState.targetEmbeddings (some t) x = RMAF.pairwiseEmbeddings t x"
+ROW	pilot	RMAF.Instance.rec	RMAF	recursor		RMAF	direct
+ROW	pilot	RMAF.Controls.exampleInstance._proof_1	RMAF	theorem	propext,Classical.choice,Quot.sound	RMAF	direct
+TYPE	pilot	RMAF.Controls.exampleInstance._proof_1	"(RMAF.leaves RMAF.Controls.leftTree).Perm (List.range 4)"
+ROW	pilot	_private.RMAF.0.RMAF.instReprTree.repr.match_1.eq_2	RMAF	theorem		RMAF	direct
+TYPE	pilot	_private.RMAF.0.RMAF.instReprTree.repr.match_1.eq_2	"∀ (motive : RMAF.Tree → Sort u_1) (a a_1 : RMAF.Tree) (h_1 : (a : Nat) → motive (RMAF.Tree.leaf a))\n  (h_2 : (a a_2 : RMAF.Tree) → motive (a.node a_2)),\n  (match a.node a_1 with\n    | RMAF.Tree.leaf a => h_1 a\n    | a.node a_2 => h_2 a a_2) =\n    h_2 a a_1"
+ROW	pilot	ForestState.optionIso_refl	CherryTopology	theorem	propext,Classical.choice,Quot.sound	CherryTopology	direct
+TYPE	pilot	ForestState.optionIso_refl	"∀ (x : Option RMAF.Tree), ForestState.OptionIso x x"
+ROW	pilot	RMAF.Tree.node.injEq	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	RMAF.Tree.node.injEq	"∀ (a a_1 a_2 a_3 : RMAF.Tree), (a.node a_1 = a_2.node a_3) = (a = a_2 ∧ a_1 = a_3)"
+ROW	pilot	RestrictionBridge.clear_append_left	StateEmbedding	theorem	propext	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_append_left	"∀ (a b c : List RMAF.Vertex),\n  RestrictionBridge.Clear (a ++ b) c ↔ RestrictionBridge.Clear a c ∧ RestrictionBridge.Clear b c"
+ROW	pilot	RestrictionBridge.clear_nil_left._simp_1	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_nil_left._simp_1	"∀ (a : List RMAF.Vertex), RestrictionBridge.Clear [] a = True"
+ROW	pilot	ForestState.agrees.eq_1	Singleton	theorem	propext	Singleton	direct
+TYPE	pilot	ForestState.agrees.eq_1	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree) (F : List (List Nat)),\n  ForestState.agrees T ss F =\n    ((ForestState.proper T ss && RMAF.partitionCheck (ForestState.labels T) F &&\n          F.all fun B => ss.any fun s => RestrictionBridge.contained B (RMAF.leaves s)) &&\n        ForestState.targetEmbeddings T F &&\n      ss.all (ForestState.sourceCheck T F))"
+ROW	pilot	ForestState.targetAgrees.eq_2	Singleton	theorem	propext	Singleton	direct
+TYPE	pilot	ForestState.targetAgrees.eq_2	"∀ (x : RMAF.Tree) (x_1 : List Nat) (t : RMAF.Tree),\n  ForestState.targetAgrees (some t) x x_1 = RMAF.restrictionAgrees t x x_1"
+ROW	pilot	_private.StateEmbedding.0.RMAF.pairwiseEmbeddings.match_1.eq_1	StateEmbedding	theorem		StateEmbedding	direct
+TYPE	pilot	_private.StateEmbedding.0.RMAF.pairwiseEmbeddings.match_1.eq_1	"∀ (motive : List (List Nat) → Sort u_1) (h_1 : Unit → motive [])\n  (h_2 : (b : List Nat) → (bs : List (List Nat)) → motive (b :: bs)),\n  (match [] with\n    | [] => h_1 ()\n    | b :: bs => h_2 b bs) =\n    h_1 ()"
+ROW	pilot	RMAF.best_none_iff	RMAF	theorem	propext,Quot.sound	RMAF	direct
+TYPE	pilot	RMAF.best_none_iff	"∀ {α : Type} (cost : α → Nat) (valid : α → Bool) (xs : List α),\n  RMAF.best cost valid xs = none ↔ ∀ (a : α), a ∈ xs → valid a = false"
+ROW	pilot	_private.CherryTopology.0.RMAF.restrictionAgrees.match_1.eq_1	CherryTopology	theorem	propext	CherryTopology	direct
+TYPE	pilot	_private.CherryTopology.0.RMAF.restrictionAgrees.match_1.eq_1	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (s v : RMAF.Tree)\n  (h_1 : (s v : RMAF.Tree) → motive (some s) (some v)) (h_2 : (x x_1 : Option RMAF.Tree) → motive x x_1),\n  (match some s, some v with\n    | some s, some v => h_1 s v\n    | x, x_1 => h_2 x x_1) =\n    h_1 s v"
+ROW	pilot	RestrictionBridge.clear_prepend_same._simp_1	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_prepend_same._simp_1	"∀ (s : Bool) (a b : List RMAF.Vertex),\n  RestrictionBridge.Clear (RMAF.prependSide s a) (RMAF.prependSide s b) = RestrictionBridge.Clear a b"
+ROW	pilot	RestrictionBridge.join.eq_3	StateRestriction	theorem		StateRestriction	direct
+TYPE	pilot	RestrictionBridge.join.eq_3	"∀ (b : RMAF.Tree), RestrictionBridge.join none (some b) = some b"
+ROW	pilot	U	Controls	definition		Controls	direct
+ROW	pilot	RMAF.best._f	RMAF	definition		RMAF	direct
+ROW	pilot	_private.RMAF.0.RMAF.restrict.match_1.eq_1	RMAF	theorem		RMAF	direct
+TYPE	pilot	_private.RMAF.0.RMAF.restrict.match_1.eq_1	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (h_1 : Unit → motive none none)\n  (h_2 : (a : RMAF.Tree) → motive (some a) none) (h_3 : (b : RMAF.Tree) → motive none (some b))\n  (h_4 : (a b : RMAF.Tree) → motive (some a) (some b)),\n  (match none, none with\n    | none, none => h_1 ()\n    | some a, none => h_2 a\n    | none, some b => h_3 b\n    | some a, some b => h_4 a b) =\n    h_1 ()"
+ROW	pilot	RestrictionBridge.root_not_prepend	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.root_not_prepend	"∀ (s : Bool) (a : List RMAF.Vertex), ¬[] ∈ RMAF.prependSide s a"
+ROW	pilot	RMAF.best.eq_2	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.best.eq_2	"∀ {α : Type} (cost : α → Nat) (valid : α → Bool) (a : α) (as : List α),\n  RMAF.best cost valid (a :: as) =\n    if valid a = true then\n      match RMAF.best cost valid as with\n      | none => some a\n      | some b => if cost a ≤ cost b then some a else some b\n    else RMAF.best cost valid as"
+ROW	pilot	RMAF.Controls.endpoint_branch_costs_three	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	RMAF.Controls.endpoint_branch_costs_three	"((List.filter\n        (fun a =>\n          RMAF.agreement RMAF.Controls.leftTree RMAF.Controls.rightTree (RMAF.blocks a) &&\n            RMAF.Controls.isolatedEndpoint a)\n        (RMAF.assignments 4 4)).all\n    fun a => decide (3 ≤ (RMAF.blocks a).length)) =\n  true"
+ROW	pilot	RMAF.prependSide	RMAF	definition		RMAF	direct
+ROW	pilot	RestrictionBridge.contained_iff	StatePartition	theorem	propext,Quot.sound	StatePartition	direct
+TYPE	pilot	RestrictionBridge.contained_iff	"∀ (B U : List Nat), RestrictionBridge.contained B U = true ↔ B ⊆ U"
+ROW	pilot	ForestState.labels.eq_1	Forward	theorem		Forward	direct
+TYPE	pilot	ForestState.labels.eq_1	"ForestState.labels none = []"
+ROW	pilot	ForestState.checked_flatten_nodup	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.checked_flatten_nodup	"∀ (L : List Nat) (F : List (List Nat)), RMAF.partitionCheck L F = true → F.flatten.Nodup"
+ROW	pilot	ForestState.agrees_from_checks._simp_1_3	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.agrees_from_checks._simp_1_3	"∀ (B U : List Nat), (RestrictionBridge.contained B U = true) = (B ⊆ U)"
+ROW	pilot	ForestState.expanded_not_endpoint	Contraction	theorem	propext,Classical.choice,Quot.sound	Contraction	direct
+TYPE	pilot	ForestState.expanded_not_endpoint	"∀ (t : RMAF.Tree) (a b z : Nat),\n  ¬a ∈ RMAF.leaves t →\n    ¬b ∈ RMAF.leaves t → ForestState.expand a b z t ≠ RMAF.Tree.leaf a ∧ ForestState.expand a b z t ≠ RMAF.Tree.leaf b"
+ROW	pilot	ForestState.CherryAt.to_cherry	Replacement	theorem	propext	Replacement	direct
+TYPE	pilot	ForestState.CherryAt.to_cherry	"∀ {t : RMAF.Tree} {a b : Nat} {w : RMAF.Vertex}, ForestState.CherryAt a b t w → ForestState.cherry a b t = true"
+ROW	pilot	RestrictionBridge.contained	StatePartition	definition		StatePartition	direct
+ROW	pilot	RestrictionBridge.optionLeaves.eq_1	StateRestriction	theorem		StateRestriction	direct
+TYPE	pilot	RestrictionBridge.optionLeaves.eq_1	"RestrictionBridge.optionLeaves none = []"
+ROW	pilot	ForestState.expand	State	definition		State	direct
+ROW	pilot	_private.StateRestriction.0.RestrictionBridge.join.match_1.eq_3	StateRestriction	theorem		StateRestriction	direct
+TYPE	pilot	_private.StateRestriction.0.RestrictionBridge.join.match_1.eq_3	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (b : RMAF.Tree) (h_1 : Unit → motive none none)\n  (h_2 : (a : RMAF.Tree) → motive (some a) none) (h_3 : (b : RMAF.Tree) → motive none (some b))\n  (h_4 : (a b : RMAF.Tree) → motive (some a) (some b)),\n  (match none, some b with\n    | none, none => h_1 ()\n    | some a, none => h_2 a\n    | none, some b => h_3 b\n    | some a, some b => h_4 a b) =\n    h_3 b"
+ROW	pilot	RMAF.best_exists	RMAF	theorem	propext,Quot.sound	RMAF	direct
+TYPE	pilot	RMAF.best_exists	"∀ {α : Type} (cost : α → Nat) (valid : α → Bool) (xs : List α) (a : α),\n  a ∈ xs → valid a = true → ∃ b, RMAF.best cost valid xs = some b"
+ROW	pilot	_private.Singleton.0.ForestState.targetAgrees.match_1.eq_1	Singleton	theorem		Singleton	direct
+TYPE	pilot	_private.Singleton.0.ForestState.targetAgrees.match_1.eq_1	"∀ (motive : Option RMAF.Tree → RMAF.Tree → List Nat → Sort u_1) (x : RMAF.Tree) (x_1 : List Nat)\n  (h_1 : (x : RMAF.Tree) → (x_2 : List Nat) → motive none x x_2)\n  (h_2 : (t s : RMAF.Tree) → (B : List Nat) → motive (some t) s B),\n  (match none, x, x_1 with\n    | none, x, x_2 => h_1 x x_2\n    | some t, s, B => h_2 t s B) =\n    h_1 x x_1"
+ROW	pilot	RMAF.instReprTree.repr._unsafe_rec	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.separated_cherry_forces_singleton	CherryGraph	theorem	propext,Classical.choice,Quot.sound	CherryGraph	direct
+TYPE	pilot	ForestState.separated_cherry_forces_singleton	"∀ (t : RMAF.Tree) (F : List (List Nat)) (a b : Nat),\n  ForestState.cherry a b t = true →\n    RMAF.partitionCheck (RMAF.leaves t) F = true →\n      ∀ (A B : List Nat),\n        A ∈ F →\n          B ∈ F →\n            a ∈ A →\n              b ∈ B →\n                ¬b ∈ A →\n                  ¬a ∈ B →\n                    RMAF.disjointVertices (RMAF.minimalVertices A t) (RMAF.minimalVertices B t) = true →\n                      A = [a] ∨ B = [b]"
+ROW	pilot	RMAF.Controls.proper_labels_right	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.Controls.proper_labels_right	"RMAF.leaves RMAF.Controls.rightTree = [0, 1, 2, 3]"
+ROW	pilot	RestrictionBridge.optionLeaves.eq_2	StateRestriction	theorem		StateRestriction	direct
+TYPE	pilot	RestrictionBridge.optionLeaves.eq_2	"∀ (t : RMAF.Tree), RestrictionBridge.optionLeaves (some t) = RMAF.leaves t"
+ROW	pilot	RMAF.pairwiseEmbeddings.eq_1	StateEmbedding	theorem		StateEmbedding	direct
+TYPE	pilot	RMAF.pairwiseEmbeddings.eq_1	"∀ (t : RMAF.Tree), RMAF.pairwiseEmbeddings t [] = true"
+ROW	pilot	ForestState.agrees_block_source_clear	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.agrees_block_source_clear	"∀ (t : RMAF.Tree) (ss : List RMAF.Tree) (F : List (List Nat)),\n  ForestState.agrees (some t) ss F = true →\n    ∀ (s : RMAF.Tree),\n      s ∈ ss →\n        ∀ (A B : List Nat),\n          A ∈ F →\n            B ∈ F →\n              A ⊆ RMAF.leaves s →\n                B ⊆ RMAF.leaves s →\n                  A ≠ B → RMAF.disjointVertices (RMAF.minimalVertices A s) (RMAF.minimalVertices B s) = true"
+ROW	pilot	_private.Contraction.0.ForestState.labels.match_1.eq_1	Contraction	theorem		Contraction	direct
+TYPE	pilot	_private.Contraction.0.ForestState.labels.match_1.eq_1	"∀ (motive : Option RMAF.Tree → Sort u_1) (h_1 : Unit → motive none) (h_2 : (t : RMAF.Tree) → motive (some t)),\n  (match none with\n    | none => h_1 ()\n    | some t => h_2 t) =\n    h_1 ()"
+ROW	pilot	ForestState.contract_expandBlock_mask._simp_1_2	Expansion	theorem	propext,Classical.choice,Quot.sound	Expansion	direct
+TYPE	pilot	ForestState.contract_expandBlock_mask._simp_1_2	"∀ (C : List Nat) (a b z x : Nat), (x ∈ ForestState.expandBlock a b z C) = (z ∈ C ∧ (x = a ∨ x = b) ∨ x ∈ C ∧ x ≠ z)"
+ROW	pilot	ForestState.sourceCheck.eq_1	Singleton	theorem	propext	Singleton	direct
+TYPE	pilot	ForestState.sourceCheck.eq_1	"∀ (T : Option RMAF.Tree) (F : List (List Nat)) (s : RMAF.Tree),\n  ForestState.sourceCheck T F s =\n    (RMAF.partitionCheck (RMAF.leaves s) (RestrictionBridge.family (RMAF.leaves s) F) &&\n        (RestrictionBridge.family (RMAF.leaves s) F).all (ForestState.targetAgrees T s) &&\n      RMAF.pairwiseEmbeddings s (RestrictionBridge.family (RMAF.leaves s) F))"
+ROW	pilot	ForestState.expand.eq_2	CherryTopology	theorem		CherryTopology	direct
+TYPE	pilot	ForestState.expand.eq_2	"∀ (a b z : Nat) (l r : RMAF.Tree),\n  ForestState.expand a b z (l.node r) = (ForestState.expand a b z l).node (ForestState.expand a b z r)"
+ROW	pilot	RMAF.Tree.ctorElim	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.restrict	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.cherry_at_exists	CherryGraph	theorem	propext	CherryGraph	direct
+TYPE	pilot	ForestState.cherry_at_exists	"∀ (t : RMAF.Tree) (a b : Nat), ForestState.cherry a b t = true → ∃ w, ForestState.CherryAt a b t w"
+ROW	pilot	RMAF.instDecidableEqTree.decEq._proof_7	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.instDecidableEqTree.decEq._proof_7	"∀ (a a_1 b b_1 : RMAF.Tree), ¬a = b → a.node a_1 = b.node b_1 → False"
+ROW	pilot	ForestState.singleton_span_nonempty	LeafClear	theorem	propext,Quot.sound	LeafClear	direct
+TYPE	pilot	ForestState.singleton_span_nonempty	"∀ (t : RMAF.Tree) (a : Nat), a ∈ RMAF.leaves t → (RMAF.rootedSpan [a] t).isEmpty = false"
+ROW	pilot	RMAF.assignment_solver_winner_valid	RMAF	theorem	propext,Quot.sound	RMAF	direct
+TYPE	pilot	RMAF.assignment_solver_winner_valid	"∀ (n : Nat) (t u : RMAF.Tree) (winner : List Nat),\n  RMAF.solve n t u = some winner → winner.length = n ∧ ∀ (x : Nat), x ∈ winner → x < n"
+ROW	pilot	RMAF.Tree.node.inj	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.Tree.node.inj	"∀ {a a_1 a_2 a_3 : RMAF.Tree}, a.node a_1 = a_2.node a_3 → a = a_2 ∧ a_1 = a_3"
+ROW	pilot	RestrictionBridge.clear_prepend_other'	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_prepend_other'	"∀ (a b : List RMAF.Vertex), RestrictionBridge.Clear (RMAF.prependSide true a) (RMAF.prependSide false b)"
+ROW	pilot	RMAF.RootedIso.below.straight	RMAF	constructor		RMAF	direct
+ROW	pilot	RMAF.RootedIso.below.leaf	RMAF	constructor		RMAF	direct
+ROW	pilot	RMAF.minimalVertices.eq_def	StateEmbedding	theorem		StateEmbedding	direct
+TYPE	pilot	RMAF.minimalVertices.eq_def	"∀ (selected : List Nat) (x : RMAF.Tree),\n  RMAF.minimalVertices selected x =\n    match x with\n    | RMAF.Tree.leaf x => if selected.contains x = true then [[]] else []\n    | l.node r =>\n      have ls := RMAF.rootedSpan selected l;\n      have rs := RMAF.rootedSpan selected r;\n      if ls.isEmpty = true then RMAF.prependSide true (RMAF.minimalVertices selected r)\n      else\n        if rs.isEmpty = true then RMAF.prependSide false (RMAF.minimalVertices selected l)\n        else [] :: (RMAF.prependSide false ls ++ RMAF.prependSide true rs)"
+ROW	pilot	_private.CherryGraph.0.ForestState.cherry.match_1.splitter	CherryGraph	definition		CherryGraph	direct
+ROW	pilot	ForestState.initial_state_agreement_iff._simp_1_2	Singleton	theorem	propext	Singleton	direct
+TYPE	pilot	ForestState.initial_state_agreement_iff._simp_1_2	"∀ {a b c : Prop}, ((a ∧ b) ∧ c) = (a ∧ b ∧ c)"
+ROW	pilot	ForestState.CherryAt.parent_in_minimal._simp_1_1	CherryGraph	theorem	propext	CherryGraph	direct
+TYPE	pilot	ForestState.CherryAt.parent_in_minimal._simp_1_1	"∀ {α : Type u_1} {a : α} {s t : List α}, (a ∈ s ++ t) = (a ∈ s ∨ a ∈ t)"
+ROW	pilot	ForestState.contract._f	State	definition		State	direct
+ROW	pilot	ForestState.contract_join_left_absent	QuotientTopology	theorem	propext	QuotientTopology	direct
+TYPE	pilot	ForestState.contract_join_left_absent	"∀ (a b z : Nat) (l r : Option RMAF.Tree),\n  ¬a ∈ RestrictionBridge.optionLeaves l →\n    ¬b ∈ RestrictionBridge.optionLeaves l →\n      Option.map (ForestState.contract a b z) (RestrictionBridge.join l r) =\n        RestrictionBridge.join (Option.map (ForestState.contract a b z) l) (Option.map (ForestState.contract a b z) r)"
+ROW	pilot	_private.StateRestriction.0.RestrictionBridge.join.match_1.eq_2	StateRestriction	theorem		StateRestriction	direct
+TYPE	pilot	_private.StateRestriction.0.RestrictionBridge.join.match_1.eq_2	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (a : RMAF.Tree) (h_1 : Unit → motive none none)\n  (h_2 : (a : RMAF.Tree) → motive (some a) none) (h_3 : (b : RMAF.Tree) → motive none (some b))\n  (h_4 : (a b : RMAF.Tree) → motive (some a) (some b)),\n  (match some a, none with\n    | none, none => h_1 ()\n    | some a, none => h_2 a\n    | none, some b => h_3 b\n    | some a, some b => h_4 a b) =\n    h_2 a"
+ROW	pilot	ForestState.CherryAt.left	CherryGraph	constructor		CherryGraph	direct
+ROW	pilot	RestrictionBridge.clear_iff	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_iff	"∀ (a b : List RMAF.Vertex), RMAF.disjointVertices a b = true ↔ RestrictionBridge.Clear a b"
+ROW	pilot	state_consumer_6	Consumers	theorem	propext,Classical.choice,Quot.sound	Consumers	direct
+TYPE	pilot	state_consumer_6	"(ForestState.labels (ForestState.cleanupTarget (some T) 17)).length + 1 = (ForestState.labels (some T)).length"
+ROW	pilot	ForestState.CherryAt.below	CherryGraph	inductive		CherryGraph	direct
+ROW	pilot	RestrictionBridge.join.eq_4	StateRestriction	theorem		StateRestriction	direct
+TYPE	pilot	RestrictionBridge.join.eq_4	"∀ (a b : RMAF.Tree), RestrictionBridge.join (some a) (some b) = some (a.node b)"
+ROW	pilot	RMAF.RootedIso.recOn	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.contract_expandBlock_mask._simp_1_1	Expansion	theorem	propext	Expansion	direct
+TYPE	pilot	ForestState.contract_expandBlock_mask._simp_1_1	"∀ {α : Type u_1} [inst : BEq α] [LawfulBEq α] {a : α} {as : List α}, (as.contains a = true) = (a ∈ as)"
+ROW	pilot	ForestState.source_label_owner._proof_1_2	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.source_label_owner._proof_1_2	"∀ (x : Nat) (v : RMAF.Tree) (vs : List RMAF.Tree),\n  List.count x (RMAF.leaves v) + List.count x (List.map RMAF.leaves vs).flatten = 1 →\n    0 < List.count x (RMAF.leaves v) → 0 < List.count x (List.map RMAF.leaves vs).flatten → False"
+ROW	pilot	ForestState.expandBlock_mem	Expansion	theorem	propext,Classical.choice,Quot.sound	Expansion	direct
+TYPE	pilot	ForestState.expandBlock_mem	"∀ (C : List Nat) (a b z x : Nat), x ∈ ForestState.expandBlock a b z C ↔ z ∈ C ∧ (x = a ∨ x = b) ∨ x ∈ C ∧ x ≠ z"
+ROW	pilot	ForestState.cherry.eq_2	CherryGraph	theorem		CherryGraph	direct
+TYPE	pilot	ForestState.cherry.eq_2	"∀ (a b : Nat) (l r : RMAF.Tree),\n  ForestState.cherry a b (l.node r) =\n    (l == RMAF.Tree.leaf a && r == RMAF.Tree.leaf b || l == RMAF.Tree.leaf b && r == RMAF.Tree.leaf a ||\n        ForestState.cherry a b l ||\n      ForestState.cherry a b r)"
+ROW	pilot	ForestState.singleton_cleanup_forward._simp_1_3	Forward	theorem	propext,Quot.sound	Forward	direct
+TYPE	pilot	ForestState.singleton_cleanup_forward._simp_1_3	"∀ (B U : List Nat), (RestrictionBridge.contained B U = true) = (B ⊆ U)"
+ROW	pilot	ForestState.checked_block_nodup	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.checked_block_nodup	"∀ (L : List Nat) (F : List (List Nat)), RMAF.partitionCheck L F = true → ∀ (B : List Nat), B ∈ F → B.Nodup"
+ROW	pilot	_private.Contraction.0.ForestState.cherry.match_1.eq_1	Contraction	theorem		Contraction	direct
+TYPE	pilot	_private.Contraction.0.ForestState.cherry.match_1.eq_1	"∀ (motive : RMAF.Tree → Sort u_1) (a : Nat) (h_1 : (a : Nat) → motive (RMAF.Tree.leaf a))\n  (h_2 : (l r : RMAF.Tree) → motive (l.node r)),\n  (match RMAF.Tree.leaf a with\n    | RMAF.Tree.leaf a => h_1 a\n    | l.node r => h_2 l r) =\n    h_1 a"
+ROW	pilot	ForestState.expand_restrict_absent	CherryTopology	theorem	propext,Quot.sound	CherryTopology	direct
+TYPE	pilot	ForestState.expand_restrict_absent	"∀ (a b z : Nat) (t : RMAF.Tree) (B : List Nat),\n  ¬z ∈ RMAF.leaves t → Option.map (ForestState.expand a b z) (RMAF.restrict B t) = RMAF.restrict B t"
+ROW	pilot	ForestState.singleton_cleanup_reverse	Reverse	theorem	propext,Classical.choice,Quot.sound	Reverse	direct
+TYPE	pilot	ForestState.singleton_cleanup_reverse	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree) (G : List (List Nat)) (a : Nat),\n  ForestState.proper T ss = true →\n    RMAF.Tree.leaf a ∈ ss →\n      ForestState.agrees (ForestState.cleanupTarget T a) (ForestState.cleanupSources ss a) G = true →\n        ForestState.agrees T ss ([a] :: G) = true"
+ROW	pilot	ForestState.agrees_parts._simp_1_2	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.agrees_parts._simp_1_2	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	ForestState.cherry_ready_strict_decrease	Contraction	theorem	propext,Quot.sound	Contraction	direct
+TYPE	pilot	ForestState.cherry_ready_strict_decrease	"∀ (t : RMAF.Tree) (ss : List RMAF.Tree) (a b z : Nat),\n  ForestState.cherryReady (some t) ss a b z = true →\n    (RMAF.leaves (ForestState.contract a b z t)).length + 1 = (ForestState.labels (some t)).length"
+ROW	pilot	RestrictionBridge.join_leaves	StateRestriction	theorem	propext	StateRestriction	direct
+TYPE	pilot	RestrictionBridge.join_leaves	"∀ (a b : Option RMAF.Tree),\n  RestrictionBridge.optionLeaves (RestrictionBridge.join a b) =\n    RestrictionBridge.optionLeaves a ++ RestrictionBridge.optionLeaves b"
+ROW	pilot	ForestState.partition_by_counts	BlockPartition	theorem	propext,Quot.sound	BlockPartition	direct
+TYPE	pilot	ForestState.partition_by_counts	"∀ (L : List Nat) (F : List (List Nat)),\n  L.Nodup →\n    (∀ (B : List Nat), B ∈ F → B ≠ []) →\n      (∀ (x : Nat), List.count x F.flatten = List.count x L) → RMAF.partitionCheck L F = true"
+ROW	pilot	ForestState.contract_join_right_absent	QuotientTopology	theorem	propext	QuotientTopology	direct
+TYPE	pilot	ForestState.contract_join_right_absent	"∀ (a b z : Nat) (l r : Option RMAF.Tree),\n  ¬a ∈ RestrictionBridge.optionLeaves r →\n    ¬b ∈ RestrictionBridge.optionLeaves r →\n      Option.map (ForestState.contract a b z) (RestrictionBridge.join l r) =\n        RestrictionBridge.join (Option.map (ForestState.contract a b z) l) (Option.map (ForestState.contract a b z) r)"
+ROW	pilot	RMAF.RootedIso.rec	RMAF	recursor		RMAF	direct
+ROW	pilot	RestrictionBridge.join.eq_1	StateRestriction	theorem		StateRestriction	direct
+TYPE	pilot	RestrictionBridge.join.eq_1	"RestrictionBridge.join none none = none"
+ROW	pilot	ForestState.quotient_shape_restriction	Expansion	theorem	propext,Quot.sound	Expansion	direct
+TYPE	pilot	ForestState.quotient_shape_restriction	"∀ (t u : RMAF.Tree) (B : List Nat) (a b : Nat),\n  ForestState.QuotientShape a b t → (a ∈ B ↔ b ∈ B) → RMAF.restrict B t = some u → ForestState.QuotientShape a b u"
+ROW	pilot	RMAF.instDecidableEqTree.decEq._proof_3	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.instDecidableEqTree.decEq._proof_3	"∀ (a : Nat) (a_1 a_2 : RMAF.Tree), RMAF.Tree.leaf a = a_1.node a_2 → False"
+ROW	pilot	RMAF.leaves.eq_def	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.leaves.eq_def	"∀ (x : RMAF.Tree),\n  RMAF.leaves x =\n    match x with\n    | RMAF.Tree.leaf x => [x]\n    | l.node r => RMAF.leaves l ++ RMAF.leaves r"
+ROW	pilot	ForestState.initial_state_agreement_iff	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.initial_state_agreement_iff	"∀ (t s : RMAF.Tree) (F : List (List Nat)),\n  ForestState.proper (some t) [s] = true → (ForestState.agrees (some t) [s] F = true ↔ RMAF.agreement t s F = true)"
+ROW	pilot	ForestState.proper.eq_1	Singleton	theorem		Singleton	direct
+TYPE	pilot	ForestState.proper.eq_1	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree),\n  ForestState.proper T ss =\n    (decide (ForestState.labels T).Nodup && RMAF.partitionCheck (ForestState.labels T) (List.map RMAF.leaves ss))"
+ROW	pilot	RestrictionBridge.sameShape_restrict_inside	StateRestriction	theorem	propext,Quot.sound	StateRestriction	direct
+TYPE	pilot	RestrictionBridge.sameShape_restrict_inside	"∀ (T S t s : RMAF.Tree) (U B : List Nat),\n  RMAF.restrict U T = some t →\n    RMAF.restrict U S = some s → B ⊆ U → RMAF.restrictionAgrees t s B = RMAF.restrictionAgrees T S B"
+ROW	pilot	RMAF.instDecidableEqTree.decEq._proof_4	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.instDecidableEqTree.decEq._proof_4	"∀ (a a_1 : RMAF.Tree) (a_2 : Nat), a.node a_1 = RMAF.Tree.leaf a_2 → False"
+ROW	pilot	RestrictionBridge.restrict_compose_mask._simp_1_1	StateRestriction	theorem	propext	StateRestriction	direct
+TYPE	pilot	RestrictionBridge.restrict_compose_mask._simp_1_1	"∀ {α : Type u_1} [inst : BEq α] [LawfulBEq α] {a : α} {as : List α}, (as.contains a = true) = (a ∈ as)"
+ROW	pilot	ForestState.common_cherry_no_larger._proof_1_1	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.common_cherry_no_larger._proof_1_1	"∀ (F : List (List Nat)) (a : Nat) (B : List Nat),\n  (ForestState.reassignedForest F B a).length + 1 = F.length →\n    ¬(ForestState.reassignedForest F B a).length ≤ F.length → False"
+ROW	pilot	_private.Expansion.0.RMAF.restrictionAgrees.match_1.splitter._sparseCasesOn_2	Expansion	definition	propext	Expansion	direct
+ROW	pilot	state_consumer_2	Consumers	theorem	propext,Classical.choice,Quot.sound	Consumers	direct
+TYPE	pilot	state_consumer_2	"ForestState.feasible (some (RMAF.Tree.leaf 17)) [RMAF.Tree.leaf 17] 0 ↔ ForestState.feasible none [] 0"
+ROW	pilot	_private.StateRestriction.0.RestrictionBridge.optionLeaves.match_1.eq_1	StateRestriction	theorem		StateRestriction	direct
+TYPE	pilot	_private.StateRestriction.0.RestrictionBridge.optionLeaves.match_1.eq_1	"∀ (motive : Option RMAF.Tree → Sort u_1) (h_1 : Unit → motive none) (h_2 : (t : RMAF.Tree) → motive (some t)),\n  (match none with\n    | none => h_1 ()\n    | some t => h_2 t) =\n    h_1 ()"
+ROW	pilot	RMAF.assignments_complete	RMAF	theorem	propext,Classical.choice,Quot.sound	RMAF	direct
+TYPE	pilot	RMAF.assignments_complete	"∀ (n tags : Nat) (a : List Nat), a.length = n → (∀ (x : Nat), x ∈ a → x < tags) → a ∈ RMAF.assignments n tags"
+ROW	pilot	RestrictionBridge.clear_cons_left._simp_1	StateEmbedding	theorem	propext	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_cons_left._simp_1	"∀ (v : RMAF.Vertex) (a b : List RMAF.Vertex),\n  RestrictionBridge.Clear (v :: a) b = (¬v ∈ b ∧ RestrictionBridge.Clear a b)"
+ROW	pilot	ForestState.nodup_append_avoid_right._proof_1_1	CherryTopology	theorem	propext,Quot.sound	CherryTopology	direct
+TYPE	pilot	ForestState.nodup_append_avoid_right._proof_1_1	"∀ (l r : RMAF.Tree) (x : Nat),\n  0 < List.count x (RMAF.leaves l) →\n    0 < List.count x (RMAF.leaves r) → List.count x (RMAF.leaves l) + List.count x (RMAF.leaves r) ≤ 1 → False"
+ROW	pilot	RestrictionBridge.pairwise_transport._simp_1_4	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.pairwise_transport._simp_1_4	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	RestrictionBridge.checked_nonempty	StatePartition	theorem	propext,Quot.sound	StatePartition	direct
+TYPE	pilot	RestrictionBridge.checked_nonempty	"∀ (labels : List Nat) (F : List (List Nat)), RMAF.partitionCheck labels F = true → ∀ (B : List Nat), B ∈ F → B ≠ []"
+ROW	pilot	_private.StateRestriction.0.RestrictionBridge.optionLeaves.match_1.splitter	StateRestriction	definition		StateRestriction	direct
+ROW	pilot	ForestState.expand._f	State	definition		State	direct
+ROW	pilot	ForestState.contractBlock_other_mask	QuotientGeometry	theorem	propext,Quot.sound	QuotientGeometry	direct
+TYPE	pilot	ForestState.contractBlock_other_mask	"∀ (B : List Nat) (a b z x : Nat), x ≠ a → x ≠ b → x ≠ z → B.contains x = (ForestState.contractBlock a b z B).contains x"
+ROW	pilot	RMAF.Instance.labels_left	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.Instance.labels_left	"∀ (self : RMAF.Instance), (RMAF.leaves self.left).Perm (List.range self.n)"
+ROW	pilot	_private.StateRestriction.0.RestrictionBridge.join.match_1.eq_1	StateRestriction	theorem		StateRestriction	direct
+TYPE	pilot	_private.StateRestriction.0.RestrictionBridge.join.match_1.eq_1	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (h_1 : Unit → motive none none)\n  (h_2 : (a : RMAF.Tree) → motive (some a) none) (h_3 : (b : RMAF.Tree) → motive none (some b))\n  (h_4 : (a b : RMAF.Tree) → motive (some a) (some b)),\n  (match none, none with\n    | none, none => h_1 ()\n    | some a, none => h_2 a\n    | none, some b => h_3 b\n    | some a, some b => h_4 a b) =\n    h_1 ()"
+ROW	pilot	ForestState.cherry_ready_strict_decrease._simp_1_4	Contraction	theorem	propext,Quot.sound	Contraction	direct
+TYPE	pilot	ForestState.cherry_ready_strict_decrease._simp_1_4	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.any p = true) = ∃ x, x ∈ l ∧ p x = true"
+ROW	pilot	ForestState.rootedIso_trans	CherryTopology	theorem		CherryTopology	direct
+TYPE	pilot	ForestState.rootedIso_trans	"∀ {t u v : RMAF.Tree}, RMAF.RootedIso t u → RMAF.RootedIso u v → RMAF.RootedIso t v"
+ROW	pilot	ForestState.checked_block_nodup._proof_1_2	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.checked_block_nodup._proof_1_2	"∀ (B : List Nat) (x : Nat) (C : List Nat) (F : List (List Nat)),\n  List.count x B ≤ List.count x F.flatten → ¬List.count x B ≤ List.count x C + List.count x F.flatten → False"
+ROW	pilot	RestrictionBridge.minimal_nil_of_span_nil	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.minimal_nil_of_span_nil	"∀ (B : List Nat) (t : RMAF.Tree), RMAF.rootedSpan B t = [] → RMAF.minimalVertices B t = []"
+ROW	pilot	RestrictionBridge.contained_iff._simp_1	StatePartition	theorem	propext,Quot.sound	StatePartition	direct
+TYPE	pilot	RestrictionBridge.contained_iff._simp_1	"∀ (B U : List Nat), (RestrictionBridge.contained B U = true) = (B ⊆ U)"
+ROW	pilot	_private.StateContract.0.RMAF.restrictionAgrees.match_1.splitter._sparseCasesOn_2	StateContract	definition	propext	StateContract	direct
+ROW	pilot	RMAF.Instance.casesOn	RMAF	definition		RMAF	direct
+ROW	pilot	_private.StateEmbedding.0.RMAF.pairwiseEmbeddings.match_1.eq_2	StateEmbedding	theorem		StateEmbedding	direct
+TYPE	pilot	_private.StateEmbedding.0.RMAF.pairwiseEmbeddings.match_1.eq_2	"∀ (motive : List (List Nat) → Sort u_1) (b : List Nat) (bs : List (List Nat)) (h_1 : Unit → motive [])\n  (h_2 : (b : List Nat) → (bs : List (List Nat)) → motive (b :: bs)),\n  (match b :: bs with\n    | [] => h_1 ()\n    | b :: bs => h_2 b bs) =\n    h_2 b bs"
+ROW	pilot	ForestState.common_cherry_decision_reverse	StateExpand	theorem	propext,Classical.choice,Quot.sound	StateExpand	direct
+TYPE	pilot	ForestState.common_cherry_decision_reverse	"∀ (t : RMAF.Tree) (ss : List RMAF.Tree) (a b z q : Nat),\n  ForestState.cherryReady (some t) ss a b z = true →\n    ForestState.feasible (some (ForestState.contract a b z t)) (List.map (ForestState.contract a b z) ss) q →\n      ForestState.feasible (some t) ss q"
+ROW	pilot	ForestState.reassignedForest.eq_1	Replacement	theorem		Replacement	direct
+TYPE	pilot	ForestState.reassignedForest.eq_1	"∀ (F : List (List Nat)) (A : List Nat) (b : Nat), ForestState.reassignedForest F A b = (b :: A) :: (F.erase A).erase [b]"
+ROW	pilot	ForestState.singleton_cleanup_forward._simp_1_1	Forward	theorem	propext,Quot.sound	Forward	direct
+TYPE	pilot	ForestState.singleton_cleanup_forward._simp_1_1	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	RMAF.Controls.endpoint_only_rule_refuted	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	RMAF.Controls.endpoint_only_rule_refuted	"RMAF.agreement RMAF.Controls.leftTree RMAF.Controls.rightTree (RMAF.blocks [0, 0, 1, 0]) = true ∧\n  (RMAF.blocks [0, 0, 1, 0]).length = 2 ∧ RMAF.Controls.isolatedEndpoint [0, 0, 1, 0] = false"
+ROW	pilot	_private.Singleton.0.ForestState.targetAgrees.match_1.splitter	Singleton	definition		Singleton	direct
+ROW	pilot	_private.Contraction.0.ForestState.cherry.match_1.splitter	Contraction	definition		Contraction	direct
+ROW	pilot	RestrictionBridge.disjoint_transport	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.disjoint_transport	"∀ (t u : RMAF.Tree) (U B C : List Nat),\n  RMAF.restrict U t = some u →\n    B ⊆ U →\n      C ⊆ U →\n        (RMAF.disjointVertices (RMAF.minimalVertices B t) (RMAF.minimalVertices C t) = true ↔\n          RMAF.disjointVertices (RMAF.minimalVertices B u) (RMAF.minimalVertices C u) = true)"
+ROW	pilot	RMAF.Tree.node	RMAF	constructor		RMAF	direct
+ROW	pilot	RestrictionBridge.clear_prepend_other._simp_1	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_prepend_other._simp_1	"∀ (a b : List RMAF.Vertex), RestrictionBridge.Clear (RMAF.prependSide false a) (RMAF.prependSide true b) = True"
+ROW	pilot	RMAF.rootedSpan.eq_def	StateEmbedding	theorem		StateEmbedding	direct
+TYPE	pilot	RMAF.rootedSpan.eq_def	"∀ (selected : List Nat) (x : RMAF.Tree),\n  RMAF.rootedSpan selected x =\n    match x with\n    | RMAF.Tree.leaf x => if selected.contains x = true then [[]] else []\n    | l.node r =>\n      have ls := RMAF.rootedSpan selected l;\n      have rs := RMAF.rootedSpan selected r;\n      if (ls.isEmpty && rs.isEmpty) = true then [] else [] :: (RMAF.prependSide false ls ++ RMAF.prependSide true rs)"
+ROW	pilot	ForestState.quotient_pairwise	StateContract	theorem	propext,Classical.choice,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.quotient_pairwise	"∀ (s : RMAF.Tree) (F : List (List Nat)) (a b z : Nat),\n  ForestState.QuotientShape a b s →\n    (RMAF.leaves s).Nodup →\n      ¬z ∈ RMAF.leaves s →\n        (∀ (B : List Nat), B ∈ F → ¬z ∈ B) →\n          ForestState.Coalesced F a b →\n            RMAF.pairwiseEmbeddings s F = true →\n              RMAF.pairwiseEmbeddings (ForestState.contract a b z s) (List.map (ForestState.contractBlock a b z) F) =\n                true"
+ROW	pilot	RestrictionBridge.restrict_leaves	StateRestriction	theorem	propext,Quot.sound	StateRestriction	direct
+TYPE	pilot	RestrictionBridge.restrict_leaves	"∀ (t : RMAF.Tree) (U : List Nat),\n  RestrictionBridge.optionLeaves (RMAF.restrict U t) = List.filter (fun x => U.contains x) (RMAF.leaves t)"
+ROW	pilot	ForestState.singleton_leaves_iff	Removal	theorem	propext,Quot.sound	Removal	direct
+TYPE	pilot	ForestState.singleton_leaves_iff	"∀ (s : RMAF.Tree) (a : Nat), RMAF.leaves s = [a] ↔ s = RMAF.Tree.leaf a"
+ROW	pilot	RestrictionBridge.unary_right_clear	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.unary_right_clear	"∀ (l r : RMAF.Tree) (B C : List Nat),\n  RMAF.rootedSpan B l = [] →\n    RMAF.rootedSpan C l = [] →\n      (RestrictionBridge.Clear (RMAF.rootedSpan B (l.node r)) (RMAF.minimalVertices C (l.node r)) ↔\n          RestrictionBridge.Clear (RMAF.rootedSpan B r) (RMAF.minimalVertices C r)) ∧\n        (RestrictionBridge.Clear (RMAF.minimalVertices B (l.node r)) (RMAF.minimalVertices C (l.node r)) ↔\n          RestrictionBridge.Clear (RMAF.minimalVertices B r) (RMAF.minimalVertices C r))"
+ROW	pilot	ForestState.labels	State	definition		State	direct
+ROW	pilot	ForestState.OptionIso.eq_1	CherryTopology	theorem	propext	CherryTopology	direct
+TYPE	pilot	ForestState.OptionIso.eq_1	"ForestState.OptionIso none none = True"
+ROW	pilot	ForestState.CherryAt.restriction_expand_iso	CherryTopology	theorem	propext,Classical.choice,Quot.sound	CherryTopology	direct
+TYPE	pilot	ForestState.CherryAt.restriction_expand_iso	"∀ {t : RMAF.Tree} {a b : Nat} {w : RMAF.Vertex},\n  ForestState.CherryAt a b t w →\n    ∀ (B : List Nat),\n      (RMAF.leaves t).Nodup →\n        a ∈ B →\n          ¬b ∈ B →\n            ForestState.OptionIso (Option.map (ForestState.expand a b a) (RMAF.restrict B t)) (RMAF.restrict (b :: B) t)"
+ROW	pilot	RMAF.RootedIso.swapped	RMAF	constructor		RMAF	direct
+ROW	pilot	ForestState.quotient_shape_coalesced	StateContract	theorem	propext	StateContract	direct
+TYPE	pilot	ForestState.quotient_shape_coalesced	"∀ (s : RMAF.Tree) (a b : Nat), ForestState.QuotientShape a b s → (a ∈ RMAF.leaves s ↔ b ∈ RMAF.leaves s)"
+ROW	pilot	ForestState.CherryAt.quotient_geometry._simp_1_1	QuotientGeometry	theorem	propext,Quot.sound	QuotientGeometry	direct
+TYPE	pilot	ForestState.CherryAt.quotient_geometry._simp_1_1	"∀ (B : List Nat) (a b z : Nat), ¬z ∈ B → (z ∈ ForestState.contractBlock a b z B) = (a ∈ B)"
+ROW	pilot	RMAF.sameShape.eq_2	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	RMAF.sameShape.eq_2	"∀ (a b c d : RMAF.Tree),\n  RMAF.sameShape (a.node b) (c.node d) =\n    (RMAF.sameShape a c && RMAF.sameShape b d || RMAF.sameShape a d && RMAF.sameShape b c)"
+ROW	pilot	_private.StateRestriction.0.RestrictionBridge.join.match_1.eq_4	StateRestriction	theorem		StateRestriction	direct
+TYPE	pilot	_private.StateRestriction.0.RestrictionBridge.join.match_1.eq_4	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (a b : RMAF.Tree) (h_1 : Unit → motive none none)\n  (h_2 : (a : RMAF.Tree) → motive (some a) none) (h_3 : (b : RMAF.Tree) → motive none (some b))\n  (h_4 : (a b : RMAF.Tree) → motive (some a) (some b)),\n  (match some a, some b with\n    | none, none => h_1 ()\n    | some a, none => h_2 a\n    | none, some b => h_3 b\n    | some a, some b => h_4 a b) =\n    h_4 a b"
+ROW	pilot	ForestState.cherry_ready_strict_decrease._simp_1_5	Contraction	theorem	propext	Contraction	direct
+TYPE	pilot	ForestState.cherry_ready_strict_decrease._simp_1_5	"∀ {a b c : Prop}, ((a ∧ b) ∧ c) = (a ∧ b ∧ c)"
+ROW	pilot	ForestState.checked_block_nodup._proof_1_3	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.checked_block_nodup._proof_1_3	"∀ (F : List (List Nat)) (B : List Nat) (x : Nat),\n  List.count x B ≤ List.count x F.flatten → List.count x F.flatten ≤ 1 → ¬List.count x B ≤ 1 → False"
+ROW	pilot	ForestState.expandBlock_count._simp_1_2	Expansion	theorem	propext	Expansion	direct
+TYPE	pilot	ForestState.expandBlock_count._simp_1_2	"∀ {α : Sort u_1} {a b : α}, (a = b) = (b = a)"
+ROW	pilot	RestrictionBridge.node_clear_congr	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.node_clear_congr	"∀ (l r ul ur : RMAF.Tree) (B C : List Nat),\n  (RMAF.rootedSpan B l).isEmpty = (RMAF.rootedSpan B ul).isEmpty →\n    (RMAF.rootedSpan B r).isEmpty = (RMAF.rootedSpan B ur).isEmpty →\n      (RMAF.rootedSpan C l).isEmpty = (RMAF.rootedSpan C ul).isEmpty →\n        (RMAF.rootedSpan C r).isEmpty = (RMAF.rootedSpan C ur).isEmpty →\n          (RestrictionBridge.Clear (RMAF.rootedSpan B l) (RMAF.minimalVertices C l) ↔\n              RestrictionBridge.Clear (RMAF.rootedSpan B ul) (RMAF.minimalVertices C ul)) →\n            (RestrictionBridge.Clear (RMAF.rootedSpan B r) (RMAF.minimalVertices C r) ↔\n                RestrictionBridge.Clear (RMAF.rootedSpan B ur) (RMAF.minimalVertices C ur)) →\n              (RestrictionBridge.Clear (RMAF.rootedSpan C l) (RMAF.minimalVertices B l) ↔\n                  RestrictionBridge.Clear (RMAF.rootedSpan C ul) (RMAF.minimalVertices B ul)) →\n                (RestrictionBridge.Clear (RMAF.rootedSpan C r) (RMAF.minimalVertices B r) ↔\n                    RestrictionBridge.Clear (RMAF.rootedSpan C ur) (RMAF.minimalVertices B ur)) →\n                  (RestrictionBridge.Clear (RMAF.minimalVertices B l) (RMAF.minimalVertices C l) ↔\n                      RestrictionBridge.Clear (RMAF.minimalVertices B ul) (RMAF.minimalVertices C ul)) →\n                    (RestrictionBridge.Clear (RMAF.minimalVertices B r) (RMAF.minimalVertices C r) ↔\n                        RestrictionBridge.Clear (RMAF.minimalVertices B ur) (RMAF.minimalVertices C ur)) →\n                      (RestrictionBridge.Clear (RMAF.rootedSpan B (l.node r)) (RMAF.minimalVertices C (l.node r)) ↔\n                          RestrictionBridge.Clear (RMAF.rootedSpan B (ul.node ur))\n                            (RMAF.minimalVertices C (ul.node ur))) ∧\n                        (RestrictionBridge.Clear (RMAF.minimalVertices B (l.node r))\n                            (RMAF.minimalVertices C (l.node r)) ↔\n                          RestrictionBridge.Clear (RMAF.minimalVertices B (ul.node ur))\n                            (RMAF.minimalVertices C (ul.node ur)))"
+ROW	pilot	ForestState.CherryAt.contract_count	Contraction	theorem	propext,Quot.sound	Contraction	direct
+TYPE	pilot	ForestState.CherryAt.contract_count	"∀ {t : RMAF.Tree} {a b : Nat} {w : RMAF.Vertex},\n  ForestState.CherryAt a b t w →\n    ∀ (z x : Nat),\n      (RMAF.leaves t).Nodup →\n        ¬z ∈ RMAF.leaves t →\n          List.count x (RMAF.leaves (ForestState.contract a b z t)) =\n            if x = z then 1 else if x = a ∨ x = b then 0 else List.count x (RMAF.leaves t)"
+ROW	pilot	RMAF.Instance.n	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.cleanupSources.eq_1	Singleton	theorem		Singleton	direct
+TYPE	pilot	ForestState.cleanupSources.eq_1	"∀ (ss : List RMAF.Tree) (a : Nat), ForestState.cleanupSources ss a = ss.erase (RMAF.Tree.leaf a)"
+ROW	pilot	RMAF.assignments._unsafe_rec	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.reassignment_length._proof_1_2	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.reassignment_length._proof_1_2	"∀ (F : List (List Nat)) (A : List Nat),\n  0 < (F.erase A).length →\n    0 < F.length → (F.erase A).length = F.length - 1 → ¬F.length - 1 - 1 + 1 + 1 = F.length → False"
+ROW	pilot	ForestState.cherry._f	State	definition		State	direct
+ROW	pilot	ForestState.reassignment_partition._proof_1_4	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.reassignment_partition._proof_1_4	"∀ (F : List (List Nat)) (A : List Nat) (b x : Nat),\n  List.count x (F.erase A).flatten + List.count x A = 1 →\n    List.count x ((F.erase A).erase [x]).flatten + 1 = List.count x (F.erase A).flatten →\n      ¬List.count x A + 1 + List.count x ((F.erase A).erase [x]).flatten = 1 → False"
+ROW	pilot	ForestState.reassignedForest	Replacement	definition		Replacement	direct
+ROW	pilot	RMAF.pairwiseEmbeddings._unsafe_rec	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.contractBlock	State	definition		State	direct
+ROW	pilot	_private.StateEmbedding.0.RMAF.instReprTree.repr.match_1.eq_2	StateEmbedding	theorem		StateEmbedding	direct
+TYPE	pilot	_private.StateEmbedding.0.RMAF.instReprTree.repr.match_1.eq_2	"∀ (motive : RMAF.Tree → Sort u_1) (a a_1 : RMAF.Tree) (h_1 : (a : Nat) → motive (RMAF.Tree.leaf a))\n  (h_2 : (a a_2 : RMAF.Tree) → motive (a.node a_2)),\n  (match a.node a_1 with\n    | RMAF.Tree.leaf a => h_1 a\n    | a.node a_2 => h_2 a a_2) =\n    h_2 a a_1"
+ROW	pilot	ForestState.quotient_topology	StateContract	theorem	propext,Classical.choice,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.quotient_topology	"∀ (t s : RMAF.Tree) (B : List Nat) (a b z : Nat),\n  ForestState.QuotientShape a b t →\n    ForestState.QuotientShape a b s →\n      (RMAF.leaves t).Nodup →\n        (RMAF.leaves s).Nodup →\n          ¬z ∈ RMAF.leaves t →\n            ¬z ∈ RMAF.leaves s →\n              ¬z ∈ B →\n                (a ∈ B ↔ b ∈ B) →\n                  RMAF.restrictionAgrees t s B = true →\n                    RMAF.restrictionAgrees (ForestState.contract a b z t) (ForestState.contract a b z s)\n                        (ForestState.contractBlock a b z B) =\n                      true"
+ROW	pilot	_private.RMAF.0.RMAF.assignments.match_1.eq_2	RMAF	theorem		RMAF	direct
+TYPE	pilot	_private.RMAF.0.RMAF.assignments.match_1.eq_2	"∀ (motive : Nat → Sort u_1) (n : Nat) (h_1 : Unit → motive 0) (h_2 : (n : Nat) → motive n.succ),\n  (match n.succ with\n    | 0 => h_1 ()\n    | n.succ => h_2 n) =\n    h_2 n"
+ROW	pilot	ForestState.expanded_block_clear	StateExpand	theorem	propext,Classical.choice,Quot.sound	StateExpand	direct
+TYPE	pilot	ForestState.expanded_block_clear	"∀ (s : RMAF.Tree) (C D : List Nat) (a b z : Nat),\n  ForestState.QuotientShape a b s →\n    (RMAF.leaves s).Nodup →\n      ¬z ∈ RMAF.leaves s →\n        ¬a ∈ C →\n          ¬b ∈ C →\n            ¬a ∈ D →\n              ¬b ∈ D →\n                z ≠ a →\n                  z ≠ b →\n                    (RMAF.disjointVertices (RMAF.minimalVertices (ForestState.expandBlock a b z C) s)\n                          (RMAF.minimalVertices (ForestState.expandBlock a b z D) s) =\n                        true ↔\n                      RMAF.disjointVertices (RMAF.minimalVertices C (ForestState.contract a b z s))\n                          (RMAF.minimalVertices D (ForestState.contract a b z s)) =\n                        true)"
+ROW	pilot	ForestState.quotient_expand_contract_iso	Expansion	theorem	propext,Classical.choice,Quot.sound	Expansion	direct
+TYPE	pilot	ForestState.quotient_expand_contract_iso	"∀ (t : RMAF.Tree) (a b z : Nat),\n  ForestState.QuotientShape a b t →\n    (RMAF.leaves t).Nodup →\n      ¬z ∈ RMAF.leaves t → RMAF.RootedIso (ForestState.expand a b z (ForestState.contract a b z t)) t"
+ROW	pilot	_private.CherryTopology.0.ForestState.cherry.match_1.eq_1	CherryTopology	theorem		CherryTopology	direct
+TYPE	pilot	_private.CherryTopology.0.ForestState.cherry.match_1.eq_1	"∀ (motive : RMAF.Tree → Sort u_1) (a : Nat) (h_1 : (a : Nat) → motive (RMAF.Tree.leaf a))\n  (h_2 : (l r : RMAF.Tree) → motive (l.node r)),\n  (match RMAF.Tree.leaf a with\n    | RMAF.Tree.leaf a => h_1 a\n    | l.node r => h_2 l r) =\n    h_1 a"
+ROW	pilot	_private.StateContract.0.RMAF.restrictionAgrees.match_1.splitter	StateContract	definition	propext	StateContract	direct
+ROW	pilot	RMAF.sameShape.eq_1	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	RMAF.sameShape.eq_1	"∀ (a b : Nat), RMAF.sameShape (RMAF.Tree.leaf a) (RMAF.Tree.leaf b) = (a == b)"
+ROW	pilot	ForestState.contractBlock_mem._simp_1_2	StateContract	theorem	propext	StateContract	direct
+TYPE	pilot	ForestState.contractBlock_mem._simp_1_2	"∀ {a b : Prop}, (a ∧ b) = (b ∧ a)"
+ROW	pilot	RMAF.partitionCheck.eq_1	StatePartition	theorem		StatePartition	direct
+TYPE	pilot	RMAF.partitionCheck.eq_1	"∀ (labels : List Nat) (bs : List (List Nat)),\n  RMAF.partitionCheck labels bs =\n    (((bs.all fun b => !b.isEmpty) && labels.all fun x => List.count x bs.flatten == 1) &&\n      bs.flatten.all fun x => labels.contains x)"
+ROW	pilot	RMAF.best_spec._proof_1_4	RMAF	theorem	propext,Quot.sound	RMAF	direct
+TYPE	pilot	RMAF.best_spec._proof_1_4	"∀ {α : Type} (cost : α → Nat) (a v : α), ¬cost a ≤ cost v → ¬cost v ≤ cost a → False"
+ROW	pilot	RestrictionBridge.clear_iff._simp_1_3	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_iff._simp_1_3	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	RMAF.Instance.left	RMAF	definition		RMAF	direct
+ROW	pilot	_private.RMAF.0.RMAF.restrict.match_1.eq_2	RMAF	theorem		RMAF	direct
+TYPE	pilot	_private.RMAF.0.RMAF.restrict.match_1.eq_2	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (a : RMAF.Tree) (h_1 : Unit → motive none none)\n  (h_2 : (a : RMAF.Tree) → motive (some a) none) (h_3 : (b : RMAF.Tree) → motive none (some b))\n  (h_4 : (a b : RMAF.Tree) → motive (some a) (some b)),\n  (match some a, none with\n    | none, none => h_1 ()\n    | some a, none => h_2 a\n    | none, some b => h_3 b\n    | some a, some b => h_4 a b) =\n    h_2 a"
+ROW	pilot	ForestState.disjoint_symmetry	CherryGraph	theorem	propext,Quot.sound	CherryGraph	direct
+TYPE	pilot	ForestState.disjoint_symmetry	"∀ (A B : List RMAF.Vertex), RMAF.disjointVertices A B = true ↔ RMAF.disjointVertices B A = true"
+ROW	pilot	ForestState.CherryAt.below.swapped	CherryGraph	constructor		CherryGraph	direct
+ROW	pilot	ForestState.partition_add_singleton	Reverse	theorem	propext,Classical.choice,Quot.sound	Reverse	direct
+TYPE	pilot	ForestState.partition_add_singleton	"∀ (L : List Nat) (G : List (List Nat)) (a : Nat),\n  L.Nodup → a ∈ L → RMAF.partitionCheck (L.erase a) G = true → RMAF.partitionCheck L ([a] :: G) = true"
+ROW	pilot	RestrictionBridge.clear_symm	StateEmbedding	theorem		StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_symm	"∀ (a b : List RMAF.Vertex), RestrictionBridge.Clear a b ↔ RestrictionBridge.Clear b a"
+ROW	pilot	ForestState.nodup_count_one._proof_1_1	BlockPartition	theorem	propext,Quot.sound	BlockPartition	direct
+TYPE	pilot	ForestState.nodup_count_one._proof_1_1	"∀ (B : List Nat) (x : Nat), 0 < List.count x B → List.count x B ≤ 1 → ¬List.count x B = 1 → False"
+ROW	pilot	ForestState.additionalCost	State	definition		State	direct
+ROW	pilot	RMAF.sameShape._unsafe_rec	RMAF	definition	propext	RMAF	direct
+ROW	pilot	ForestState.common_cherry_decision_forward._simp_1_2	StateContract	theorem	propext	StateContract	direct
+TYPE	pilot	ForestState.common_cherry_decision_forward._simp_1_2	"∀ {a b c : Prop}, ((a ∧ b) ∧ c) = (a ∧ b ∧ c)"
+ROW	pilot	ForestState.reassignment_preserves_agreement	Replacement	theorem	propext,Classical.choice,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.reassignment_preserves_agreement	"∀ (t : RMAF.Tree) (ss : List RMAF.Tree) (F : List (List Nat)) (a b : Nat) (A : List Nat),\n  ForestState.agrees (some t) ss F = true →\n    ForestState.cherry a b t = true →\n      ∀ (s0 : RMAF.Tree),\n        s0 ∈ ss →\n          ForestState.cherry a b s0 = true →\n            A ∈ F →\n              [b] ∈ F → a ∈ A → ¬b ∈ A → ForestState.agrees (some t) ss (ForestState.reassignedForest F A b) = true"
+ROW	pilot	RMAF.sameShape._sunfold	RMAF	definition	propext	RMAF	direct
+ROW	pilot	_private.RMAF.0.RMAF.sameShape.match_1.eq_3	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	_private.RMAF.0.RMAF.sameShape.match_1.eq_3	"∀ (motive : RMAF.Tree → RMAF.Tree → Sort u_1) (x x_1 : RMAF.Tree)\n  (h_1 : (a b : Nat) → motive (RMAF.Tree.leaf a) (RMAF.Tree.leaf b))\n  (h_2 : (a b c d : RMAF.Tree) → motive (a.node b) (c.node d)) (h_3 : (x x_2 : RMAF.Tree) → motive x x_2),\n  (∀ (a b : Nat), x = RMAF.Tree.leaf a → x_1 = RMAF.Tree.leaf b → False) →\n    (∀ (a b c d : RMAF.Tree), x = a.node b → x_1 = c.node d → False) →\n      (match x, x_1 with\n        | RMAF.Tree.leaf a, RMAF.Tree.leaf b => h_1 a b\n        | a.node b, c.node d => h_2 a b c d\n        | x, x_4 => h_3 x x_4) =\n        h_3 x x_1"
+ROW	pilot	RestrictionBridge.clear_append_right	StateEmbedding	theorem	propext	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_append_right	"∀ (a b c : List RMAF.Vertex),\n  RestrictionBridge.Clear a (b ++ c) ↔ RestrictionBridge.Clear a b ∧ RestrictionBridge.Clear a c"
+ROW	pilot	ForestState.flatten_count_erase	Removal	theorem	propext,Quot.sound	Removal	direct
+TYPE	pilot	ForestState.flatten_count_erase	"∀ (F : List (List Nat)) (B : List Nat),\n  B ∈ F → ∀ (x : Nat), List.count x (F.erase B).flatten + List.count x B = List.count x F.flatten"
+ROW	pilot	RestrictionBridge.restrict_labels	StateRestriction	theorem	propext,Quot.sound	StateRestriction	direct
+TYPE	pilot	RestrictionBridge.restrict_labels	"∀ (t u : RMAF.Tree) (U : List Nat),\n  RMAF.restrict U t = some u → RMAF.leaves u = List.filter (fun x => U.contains x) (RMAF.leaves t)"
+ROW	pilot	RestrictionBridge.literal_clear_transport	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.literal_clear_transport	"∀ (t u : RMAF.Tree) (U B C : List Nat),\n  RMAF.restrict U t = some u →\n    B ⊆ U →\n      C ⊆ U →\n        (RestrictionBridge.Clear (RMAF.rootedSpan B t) (RMAF.minimalVertices C t) ↔\n            RestrictionBridge.Clear (RMAF.rootedSpan B u) (RMAF.minimalVertices C u)) ∧\n          (RestrictionBridge.Clear (RMAF.minimalVertices B t) (RMAF.minimalVertices C t) ↔\n            RestrictionBridge.Clear (RMAF.minimalVertices B u) (RMAF.minimalVertices C u))"
+ROW	pilot	ForestState.subset_singleton_eq	Singleton	theorem	propext,Classical.choice,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.subset_singleton_eq	"∀ (B : List Nat) (a : Nat), B ≠ [] → B ⊆ [a] → B.Nodup → B = [a]"
+ROW	pilot	ForestState.contraction_nodup	Contraction	theorem	propext,Quot.sound	Contraction	direct
+TYPE	pilot	ForestState.contraction_nodup	"∀ (t : RMAF.Tree) (a b z : Nat),\n  (RMAF.leaves t).Nodup →\n    ForestState.cherry a b t = true → ¬z ∈ RMAF.leaves t → (RMAF.leaves (ForestState.contract a b z t)).Nodup"
+ROW	pilot	ForestState.initial_state_agreement_iff._simp_1_7	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.initial_state_agreement_iff._simp_1_7	"∀ (B U : List Nat), (RestrictionBridge.contained B U = true) = (B ⊆ U)"
+ROW	pilot	_private.CherryTopology.0.RMAF.restrictionAgrees.match_1.eq_2	CherryTopology	theorem	propext	CherryTopology	direct
+TYPE	pilot	_private.CherryTopology.0.RMAF.restrictionAgrees.match_1.eq_2	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (x x_1 : Option RMAF.Tree)\n  (h_1 : (s v : RMAF.Tree) → motive (some s) (some v)) (h_2 : (x x_2 : Option RMAF.Tree) → motive x x_2),\n  (∀ (s v : RMAF.Tree), x = some s → x_1 = some v → False) →\n    (match x, x_1 with\n      | some s, some v => h_1 s v\n      | x, x_3 => h_2 x x_3) =\n      h_2 x x_1"
+ROW	pilot	ForestState.target_agrees_cleanup	Forward	theorem	propext,Quot.sound	Forward	direct
+TYPE	pilot	ForestState.target_agrees_cleanup	"∀ (T : Option RMAF.Tree) (a : Nat) (s : RMAF.Tree) (B : List Nat),\n  B ⊆ (ForestState.labels T).erase a →\n    ForestState.targetAgrees (ForestState.cleanupTarget T a) s B = ForestState.targetAgrees T s B"
+ROW	pilot	RestrictionBridge.clear_nil_right._simp_1	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_nil_right._simp_1	"∀ (a : List RMAF.Vertex), RestrictionBridge.Clear a [] = True"
+ROW	pilot	ForestState.block_sub_quotient_iff	StateContract	theorem	propext,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.block_sub_quotient_iff	"∀ (s : RMAF.Tree) (B : List Nat) (a b z : Nat),\n  ForestState.QuotientShape a b s →\n    (RMAF.leaves s).Nodup →\n      ¬z ∈ RMAF.leaves s →\n        ¬z ∈ B →\n          (a ∈ B ↔ b ∈ B) →\n            (ForestState.contractBlock a b z B ⊆ RMAF.leaves (ForestState.contract a b z s) ↔ B ⊆ RMAF.leaves s)"
+ROW	pilot	RMAF.Controls.exampleInstance	RMAF	definition	propext,Classical.choice,Quot.sound	RMAF	direct
+ROW	pilot	RMAF.rootedSpan._sunfold	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.OptionIso.eq_3	CherryTopology	theorem	propext	CherryTopology	direct
+TYPE	pilot	ForestState.OptionIso.eq_3	"∀ (x y : Option RMAF.Tree),\n  (x = none → y = none → False) →\n    (∀ (t u : RMAF.Tree), x = some t → y = some u → False) → ForestState.OptionIso x y = False"
+ROW	pilot	ForestState.geometry_mask_equal	Endpoint	theorem	propext	Endpoint	direct
+TYPE	pilot	ForestState.geometry_mask_equal	"∀ (t : RMAF.Tree) (B D : List Nat),\n  (∀ (x : Nat), x ∈ RMAF.leaves t → B.contains x = D.contains x) →\n    RMAF.rootedSpan B t = RMAF.rootedSpan D t ∧ RMAF.minimalVertices B t = RMAF.minimalVertices D t"
+ROW	pilot	RMAF.Vertex	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.best.eq_1	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.best.eq_1	"∀ {α : Type} (cost : α → Nat) (valid : α → Bool), RMAF.best cost valid [] = none"
+ROW	pilot	ForestState.Coalesced	BlockPartition	definition		BlockPartition	direct
+ROW	pilot	completion_consumer_4	CompletionConsumers	theorem	propext,Quot.sound	CompletionConsumers	direct
+TYPE	pilot	completion_consumer_4	"RMAF.disjointVertices (RMAF.minimalVertices [31, 17, 47] LeftCherry) (RMAF.minimalVertices [59] LeftCherry) = true"
+ROW	pilot	RestrictionBridge.count_family_flatten	StatePartition	theorem	propext,Quot.sound	StatePartition	direct
+TYPE	pilot	RestrictionBridge.count_family_flatten	"∀ (F : List (List Nat)) (U : List Nat) (x : Nat),\n  (∀ (B : List Nat), B ∈ F → x ∈ B → B ⊆ U) →\n    List.count x (RestrictionBridge.family U F).flatten = List.count x F.flatten"
+ROW	pilot	ForestState.pairwise_of_distinct	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.pairwise_of_distinct	"∀ (t : RMAF.Tree) (F : List (List Nat)),\n  F.Nodup →\n    (∀ (A : List Nat),\n        A ∈ F →\n          ∀ (B : List Nat),\n            B ∈ F → A ≠ B → RMAF.disjointVertices (RMAF.minimalVertices A t) (RMAF.minimalVertices B t) = true) →\n      RMAF.pairwiseEmbeddings t F = true"
+ROW	pilot	ForestState.contraction_proper	StateContract	theorem	propext,Classical.choice,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.contraction_proper	"∀ (t : RMAF.Tree) (ss : List RMAF.Tree) (a b z : Nat),\n  ForestState.proper (some t) ss = true →\n    ForestState.cherry a b t = true →\n      ¬z ∈ RMAF.leaves t →\n        ∀ (s0 : RMAF.Tree),\n          s0 ∈ ss →\n            ForestState.cherry a b s0 = true →\n              ForestState.proper (some (ForestState.contract a b z t)) (List.map (ForestState.contract a b z) ss) = true"
+ROW	pilot	RMAF.Controls.exampleInstance._proof_2	RMAF	theorem	propext,Classical.choice,Quot.sound	RMAF	direct
+TYPE	pilot	RMAF.Controls.exampleInstance._proof_2	"(RMAF.leaves RMAF.Controls.rightTree).Perm (List.range 4)"
+ROW	pilot	ForestState.non_singleton_extra	CherryGraph	theorem	propext,Classical.choice,Quot.sound	CherryGraph	direct
+TYPE	pilot	ForestState.non_singleton_extra	"∀ (L B : List Nat) (a : Nat), a ∈ B → B ⊆ L → B.Nodup → B ≠ [a] → ∃ x, x ∈ L ∧ x ∈ B ∧ x ≠ a"
+ROW	pilot	ForestState.optionIso_join	CherryTopology	theorem	propext	CherryTopology	direct
+TYPE	pilot	ForestState.optionIso_join	"∀ (l r l' r' : Option RMAF.Tree),\n  ForestState.OptionIso l l' →\n    ForestState.OptionIso r r' → ForestState.OptionIso (RestrictionBridge.join l r) (RestrictionBridge.join l' r')"
+ROW	pilot	RestrictionBridge.minimal_empty	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.minimal_empty	"∀ (B : List Nat) (t : RMAF.Tree), (RMAF.minimalVertices B t).isEmpty = (RMAF.restrict B t).isNone"
+ROW	pilot	ForestState.contract._sunfold	State	definition		State	direct
+ROW	pilot	ForestState.contracted_no_endpoints	StateExpand	theorem	propext,Quot.sound	StateExpand	direct
+TYPE	pilot	ForestState.contracted_no_endpoints	"∀ (t : RMAF.Tree) (a b z : Nat),\n  ForestState.QuotientShape a b t →\n    (RMAF.leaves t).Nodup →\n      ¬z ∈ RMAF.leaves t →\n        z ≠ a →\n          z ≠ b → ¬a ∈ RMAF.leaves (ForestState.contract a b z t) ∧ ¬b ∈ RMAF.leaves (ForestState.contract a b z t)"
+ROW	pilot	ForestState.expand.eq_1	CherryTopology	theorem		CherryTopology	direct
+TYPE	pilot	ForestState.expand.eq_1	"∀ (a b z a_1 : Nat),\n  ForestState.expand a b z (RMAF.Tree.leaf a_1) =\n    if (a_1 == z) = true then (RMAF.Tree.leaf a).node (RMAF.Tree.leaf b) else RMAF.Tree.leaf a_1"
+ROW	pilot	ForestState.expanded_forest_count	Expansion	theorem	propext,Classical.choice,Quot.sound	Expansion	direct
+TYPE	pilot	ForestState.expanded_forest_count	"∀ (G : List (List Nat)) (a b z x : Nat),\n  a ≠ b →\n    (∀ (C : List Nat), C ∈ G → ¬a ∈ C) →\n      (∀ (C : List Nat), C ∈ G → ¬b ∈ C) →\n        z ≠ a →\n          z ≠ b →\n            List.count x (List.map (ForestState.expandBlock a b z) G).flatten =\n              if x = a ∨ x = b then List.count z G.flatten else if x = z then 0 else List.count x G.flatten"
+ROW	pilot	RestrictionBridge.span_empty	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.span_empty	"∀ (B : List Nat) (t : RMAF.Tree), (RMAF.rootedSpan B t).isEmpty = (RMAF.restrict B t).isNone"
+ROW	pilot	ForestState.cleanup_proper	Removal	theorem	propext,Classical.choice,Quot.sound	Removal	direct
+TYPE	pilot	ForestState.cleanup_proper	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree) (a : Nat),\n  ForestState.proper T ss = true →\n    RMAF.Tree.leaf a ∈ ss → ForestState.proper (ForestState.cleanupTarget T a) (ForestState.cleanupSources ss a) = true"
+ROW	pilot	_private.RMAF.0.RMAF.sameShape.match_1.eq_2	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	_private.RMAF.0.RMAF.sameShape.match_1.eq_2	"∀ (motive : RMAF.Tree → RMAF.Tree → Sort u_1) (a b c d : RMAF.Tree)\n  (h_1 : (a b : Nat) → motive (RMAF.Tree.leaf a) (RMAF.Tree.leaf b))\n  (h_2 : (a b c d : RMAF.Tree) → motive (a.node b) (c.node d)) (h_3 : (x x_1 : RMAF.Tree) → motive x x_1),\n  (match a.node b, c.node d with\n    | RMAF.Tree.leaf a, RMAF.Tree.leaf b => h_1 a b\n    | a.node b, c.node d => h_2 a b c d\n    | x, x_1 => h_3 x x_1) =\n    h_2 a b c d"
+ROW	pilot	RMAF.RootedIso.below.swapped	RMAF	constructor		RMAF	direct
+ROW	pilot	RMAF.sameShape	RMAF	definition	propext	RMAF	direct
+ROW	pilot	ForestState.common_cherry_decision_forward._simp_1_1	StateContract	theorem	propext,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.common_cherry_decision_forward._simp_1_1	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.any p = true) = ∃ x, x ∈ l ∧ p x = true"
+ROW	pilot	RMAF.assignments_sound	RMAF	theorem	propext,Quot.sound	RMAF	direct
+TYPE	pilot	RMAF.assignments_sound	"∀ (n tags : Nat) (a : List Nat), a ∈ RMAF.assignments n tags → a.length = n ∧ ∀ (x : Nat), x ∈ a → x < tags"
+ROW	pilot	RestrictionBridge.empty_selection._simp_1_1	StateEmbedding	theorem	propext	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.empty_selection._simp_1_1	"∀ {α : Type u_1} {l : List α}, (l.isEmpty = true) = (l = [])"
+ROW	pilot	RMAF.instDecidableEqTree.decEq._proof_6	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.instDecidableEqTree.decEq._proof_6	"∀ (a a_1 b : RMAF.Tree), ¬a_1 = b → a.node a_1 = a.node b → False"
+ROW	pilot	RestrictionBridge.optionLeaves	StateRestriction	definition		StateRestriction	direct
+ROW	pilot	RMAF.instDecidableEqTree.decEq	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.CherryAt.contract_length._proof_1_4	Contraction	theorem	propext,Quot.sound	Contraction	direct
+TYPE	pilot	ForestState.CherryAt.contract_length._proof_1_4	"∀ {a b : Nat} (z : Nat) {l r : RMAF.Tree},\n  (RMAF.leaves (ForestState.contract a b z l)).length + 1 = (RMAF.leaves l).length →\n    ¬(RMAF.leaves (ForestState.contract a b z l)).length + (RMAF.leaves r).length + 1 =\n          (RMAF.leaves l).length + (RMAF.leaves r).length →\n      False"
+ROW	pilot	ForestState.cleanupTarget	State	definition		State	direct
+ROW	pilot	ForestState.contractBlock_mem	StateContract	theorem	propext,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.contractBlock_mem	"∀ (B : List Nat) (a b z x : Nat),\n  ¬z ∈ B → (a ∈ B ↔ b ∈ B) → (x ∈ ForestState.contractBlock a b z B ↔ x = z ∧ a ∈ B ∨ x ≠ z ∧ x ≠ a ∧ x ≠ b ∧ x ∈ B)"
+ROW	pilot	ForestState.OptionIso	CherryTopology	definition	propext	CherryTopology	direct
+ROW	pilot	_private.StateContract.0.RMAF.restrictionAgrees.match_1.eq_1	StateContract	theorem	propext	StateContract	direct
+TYPE	pilot	_private.StateContract.0.RMAF.restrictionAgrees.match_1.eq_1	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (s v : RMAF.Tree)\n  (h_1 : (s v : RMAF.Tree) → motive (some s) (some v)) (h_2 : (x x_1 : Option RMAF.Tree) → motive x x_1),\n  (match some s, some v with\n    | some s, some v => h_1 s v\n    | x, x_1 => h_2 x x_1) =\n    h_1 s v"
+ROW	pilot	ForestState.endpoint_reassignment_embeddings	Endpoint	theorem	propext,Quot.sound	Endpoint	direct
+TYPE	pilot	ForestState.endpoint_reassignment_embeddings	"∀ (t : RMAF.Tree) (A C : List Nat) (a b : Nat),\n  (RMAF.leaves t).Nodup →\n    ForestState.cherry a b t = true →\n      a ∈ A →\n        ¬b ∈ A →\n          ¬a ∈ C →\n            ¬b ∈ C →\n              RMAF.disjointVertices (RMAF.minimalVertices A t) (RMAF.minimalVertices C t) = true →\n                RMAF.disjointVertices (RMAF.minimalVertices (b :: A) t) (RMAF.minimalVertices C t) = true"
+ROW	pilot	RMAF.Tree.leaf.inj	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.Tree.leaf.inj	"∀ {a a_1 : Nat}, RMAF.Tree.leaf a = RMAF.Tree.leaf a_1 → a = a_1"
+ROW	pilot	_private.RMAF.0.RMAF.best.match_1.eq_2	RMAF	theorem		RMAF	direct
+TYPE	pilot	_private.RMAF.0.RMAF.best.match_1.eq_2	"∀ {α : Type} (motive : Option α → Sort u_1) (b : α) (h_1 : Unit → motive none) (h_2 : (b : α) → motive (some b)),\n  (match some b with\n    | none => h_1 ()\n    | some b => h_2 b) =\n    h_2 b"
+ROW	pilot	RMAF.leaves._sunfold	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.restrict.eq_def	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.restrict.eq_def	"∀ (selected : List Nat) (x : RMAF.Tree),\n  RMAF.restrict selected x =\n    match x with\n    | RMAF.Tree.leaf x => if selected.contains x = true then some (RMAF.Tree.leaf x) else none\n    | l.node r =>\n      match RMAF.restrict selected l, RMAF.restrict selected r with\n      | none, none => none\n      | some a, none => some a\n      | none, some b => some b\n      | some a, some b => some (a.node b)"
+ROW	pilot	ForestState.proper	State	definition		State	direct
+ROW	pilot	ForestState.singleton_forced	Singleton	theorem	propext,Classical.choice,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.singleton_forced	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree) (F : List (List Nat)) (a : Nat),\n  ForestState.agrees T ss F = true →\n    RMAF.Tree.leaf a ∈ ss → [a] ∈ F ∧ List.count [a] F = 1 ∧ ∀ (B : List Nat), B ∈ F → a ∈ B → B = [a]"
+ROW	pilot	ForestState.cherryReady	State	definition		State	direct
+ROW	pilot	RMAF.instReprTree.repr._f	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.CherryAt.labels	CherryGraph	theorem	propext	CherryGraph	direct
+TYPE	pilot	ForestState.CherryAt.labels	"∀ {t : RMAF.Tree} {a b : Nat} {w : RMAF.Vertex}, ForestState.CherryAt a b t w → a ∈ RMAF.leaves t ∧ b ∈ RMAF.leaves t"
+ROW	pilot	ForestState.sourceCheck	State	definition	propext	State	direct
+ROW	pilot	_private.Singleton.0.ForestState.targetAgrees.match_1.eq_2	Singleton	theorem		Singleton	direct
+TYPE	pilot	_private.Singleton.0.ForestState.targetAgrees.match_1.eq_2	"∀ (motive : Option RMAF.Tree → RMAF.Tree → List Nat → Sort u_1) (t s : RMAF.Tree) (B : List Nat)\n  (h_1 : (x : RMAF.Tree) → (x_1 : List Nat) → motive none x x_1)\n  (h_2 : (t s : RMAF.Tree) → (B : List Nat) → motive (some t) s B),\n  (match some t, s, B with\n    | none, x, x_1 => h_1 x x_1\n    | some t, s, B => h_2 t s B) =\n    h_2 t s B"
+ROW	pilot	ForestState.singleton_cleanup_reverse._simp_1_2	Reverse	theorem	propext,Quot.sound	Reverse	direct
+TYPE	pilot	ForestState.singleton_cleanup_reverse._simp_1_2	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.any p = true) = ∃ x, x ∈ l ∧ p x = true"
+ROW	pilot	RMAF.Tree.node.elim	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.leaves._unsafe_rec	RMAF	definition		RMAF	direct
+ROW	pilot	RestrictionBridge.checked_count	StatePartition	theorem	propext,Quot.sound	StatePartition	direct
+TYPE	pilot	RestrictionBridge.checked_count	"∀ (labels : List Nat) (F : List (List Nat)),\n  RMAF.partitionCheck labels F = true → ∀ {x : Nat}, x ∈ labels → List.count x F.flatten = 1"
+ROW	pilot	RMAF.best._unsafe_rec	RMAF	definition		RMAF	direct
+ROW	pilot	_private.Expansion.0.RMAF.restrictionAgrees.match_1.eq_1	Expansion	theorem	propext	Expansion	direct
+TYPE	pilot	_private.Expansion.0.RMAF.restrictionAgrees.match_1.eq_1	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (s v : RMAF.Tree)\n  (h_1 : (s v : RMAF.Tree) → motive (some s) (some v)) (h_2 : (x x_1 : Option RMAF.Tree) → motive x x_1),\n  (match some s, some v with\n    | some s, some v => h_1 s v\n    | x, x_1 => h_2 x x_1) =\n    h_1 s v"
+ROW	pilot	ForestState.checked_forest_nodup	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.checked_forest_nodup	"∀ (L : List Nat) (F : List (List Nat)), RMAF.partitionCheck L F = true → F.Nodup"
+ROW	pilot	ForestState.CherryAt.recOn	CherryGraph	definition		CherryGraph	direct
+ROW	pilot	ForestState.singleton_cleanup_forward._simp_1_11	Forward	theorem	propext	Forward	direct
+TYPE	pilot	ForestState.singleton_cleanup_forward._simp_1_11	"∀ {a b c : Prop}, ((a ∧ b) ∧ c) = (a ∧ b ∧ c)"
+ROW	pilot	ForestState.feasible	Reverse	definition	propext	Reverse	direct
+ROW	pilot	RestrictionBridge.contained_iff._simp_1_3	StatePartition	theorem	propext	StatePartition	direct
+TYPE	pilot	RestrictionBridge.contained_iff._simp_1_3	"∀ {α : Type u_1} {l₁ l₂ : List α}, (l₁ ⊆ l₂) = ∀ {a : α}, a ∈ l₁ → a ∈ l₂"
+ROW	pilot	ForestState.partition_remove_singleton	Removal	theorem	propext,Classical.choice,Quot.sound	Removal	direct
+TYPE	pilot	ForestState.partition_remove_singleton	"∀ (L : List Nat) (F : List (List Nat)) (a : Nat),\n  RMAF.partitionCheck L F = true → L.Nodup → [a] ∈ F → RMAF.partitionCheck (L.erase a) (F.erase [a]) = true"
+ROW	pilot	ForestState.quotient_tree_mem	StateContract	theorem	propext,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.quotient_tree_mem	"∀ (s : RMAF.Tree) (a b z x : Nat),\n  ForestState.QuotientShape a b s →\n    (RMAF.leaves s).Nodup →\n      ¬z ∈ RMAF.leaves s →\n        (x ∈ RMAF.leaves (ForestState.contract a b z s) ↔\n          x = z ∧ a ∈ RMAF.leaves s ∨ x ≠ z ∧ x ≠ a ∧ x ≠ b ∧ x ∈ RMAF.leaves s)"
+ROW	pilot	_private.RMAF.0.RMAF.assignments.match_1.splitter	RMAF	definition		RMAF	direct
+ROW	pilot	RestrictionBridge.clear_nil_left	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_nil_left	"∀ (a : List RMAF.Vertex), RestrictionBridge.Clear [] a"
+ROW	pilot	RMAF.solve	RMAF	definition	propext	RMAF	direct
+ROW	pilot	ForestState.common_cherry_no_larger	Replacement	theorem	propext,Classical.choice,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.common_cherry_no_larger	"∀ (t : RMAF.Tree) (ss : List RMAF.Tree) (F : List (List Nat)) (a b : Nat),\n  ForestState.agrees (some t) ss F = true →\n    ForestState.cherry a b t = true →\n      (∃ s, s ∈ ss ∧ ForestState.cherry a b s = true) →\n        ∃ G, ForestState.agrees (some t) ss G = true ∧ G.length ≤ F.length ∧ ∃ B, B ∈ G ∧ a ∈ B ∧ b ∈ B"
+ROW	pilot	RMAF.Tree.node.sizeOf_spec	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.Tree.node.sizeOf_spec	"∀ (a a_1 : RMAF.Tree), sizeOf (a.node a_1) = 1 + sizeOf a + sizeOf a_1"
+ROW	pilot	RestrictionBridge.unique_label_owner._proof_1_2	StatePartition	theorem	propext,Quot.sound	StatePartition	direct
+TYPE	pilot	RestrictionBridge.unique_label_owner._proof_1_2	"∀ (x : Nat) (A : List Nat) (Q : List (List Nat)),\n  List.count x A + List.count x Q.flatten = 1 → 0 < List.count x A → 0 < List.count x Q.flatten → False"
+ROW	pilot	ForestState.checked_unique_block	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.checked_unique_block	"∀ (L : List Nat) (F : List (List Nat)),\n  RMAF.partitionCheck L F = true → ∀ (A B : List Nat), A ∈ F → B ∈ F → ∀ (x : Nat), x ∈ A → x ∈ B → A = B"
+ROW	pilot	ForestState.singleton_source_owner	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.singleton_source_owner	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree) (a : Nat),\n  ForestState.proper T ss = true →\n    RMAF.Tree.leaf a ∈ ss →\n      a ∈ ForestState.labels T ∧ ∀ (s : RMAF.Tree), s ∈ ss → a ∈ RMAF.leaves s → s = RMAF.Tree.leaf a"
+ROW	pilot	RestrictionBridge.join	StateRestriction	definition		StateRestriction	direct
+ROW	pilot	ForestState.CherryAt.below.right	CherryGraph	constructor		CherryGraph	direct
+ROW	pilot	_private.Forward.0.RMAF.restrictionAgrees.match_1.eq_2	Forward	theorem	propext	Forward	direct
+TYPE	pilot	_private.Forward.0.RMAF.restrictionAgrees.match_1.eq_2	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (x x_1 : Option RMAF.Tree)\n  (h_1 : (s v : RMAF.Tree) → motive (some s) (some v)) (h_2 : (x x_2 : Option RMAF.Tree) → motive x x_2),\n  (∀ (s v : RMAF.Tree), x = some s → x_1 = some v → False) →\n    (match x, x_1 with\n      | some s, some v => h_1 s v\n      | x, x_3 => h_2 x x_3) =\n      h_2 x x_1"
+ROW	pilot	ForestState.partition_counts	BlockPartition	theorem	propext,Quot.sound	BlockPartition	direct
+TYPE	pilot	ForestState.partition_counts	"∀ (L : List Nat) (F : List (List Nat)),\n  RMAF.partitionCheck L F = true → L.Nodup → ∀ (x : Nat), List.count x F.flatten = List.count x L"
+ROW	pilot	ForestState.singleton_additional_cost._proof_1_4	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.singleton_additional_cost._proof_1_4	"∀ (ss : List RMAF.Tree) (F : List (List Nat)),\n  0 < ss.length → ¬F.length - 1 - (ss.length - 1) = F.length - ss.length → False"
+ROW	pilot	RMAF.restrict._unsafe_rec	RMAF	definition		RMAF	direct
+ROW	pilot	RestrictionBridge.unique_label_owner._proof_1_3	StatePartition	theorem	propext,Quot.sound	StatePartition	direct
+TYPE	pilot	RestrictionBridge.unique_label_owner._proof_1_3	"∀ (x : Nat) (A : List Nat) (Q : List (List Nat)),\n  List.count x A + List.count x Q.flatten = 1 → List.count x A = 0 → ¬List.count x Q.flatten = 1 → False"
+ROW	pilot	ForestState.common_cherry_decision_equivalence	StateExpand	theorem	propext,Classical.choice,Quot.sound	StateExpand	direct
+TYPE	pilot	ForestState.common_cherry_decision_equivalence	"∀ (t : RMAF.Tree) (ss : List RMAF.Tree) (a b z q : Nat),\n  ForestState.cherryReady (some t) ss a b z = true →\n    (ForestState.feasible (some t) ss q ↔\n      ForestState.feasible (some (ForestState.contract a b z t)) (List.map (ForestState.contract a b z) ss) q)"
+ROW	pilot	RMAF.Tree.brecOn.eq	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.Tree.brecOn.eq	"∀ {motive : RMAF.Tree → Sort u} (t : RMAF.Tree) (F_1 : (t : RMAF.Tree) → RMAF.Tree.below t → motive t),\n  RMAF.Tree.brecOn t F_1 = F_1 t (RMAF.Tree.brecOn.go t F_1).2"
+ROW	pilot	ForestState.CherryAt.brecOn	CherryGraph	theorem		CherryGraph	direct
+TYPE	pilot	ForestState.CherryAt.brecOn	"∀ {a b : Nat} {motive : (a_1 : RMAF.Tree) → (a_2 : RMAF.Vertex) → ForestState.CherryAt a b a_1 a_2 → Prop}\n  {a_1 : RMAF.Tree} {a_2 : RMAF.Vertex} (t : ForestState.CherryAt a b a_1 a_2),\n  (∀ (a_3 : RMAF.Tree) (a_4 : RMAF.Vertex) (t : ForestState.CherryAt a b a_3 a_4),\n      ForestState.CherryAt.below t → motive a_3 a_4 t) →\n    motive a_1 a_2 t"
+ROW	pilot	ForestState.agrees	State	definition	propext	State	direct
+ROW	pilot	ForestState.quotient_tree_count	StateContract	theorem	propext,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.quotient_tree_count	"∀ (s : RMAF.Tree) (a b z x : Nat),\n  ForestState.QuotientShape a b s →\n    (RMAF.leaves s).Nodup →\n      ¬z ∈ RMAF.leaves s →\n        List.count x (RMAF.leaves (ForestState.contract a b z s)) =\n          if x = z then List.count a (RMAF.leaves s) else if x = a ∨ x = b then 0 else List.count x (RMAF.leaves s)"
+ROW	pilot	ForestState.common_cherry_decision_forward	StateContract	theorem	propext,Classical.choice,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.common_cherry_decision_forward	"∀ (t : RMAF.Tree) (ss : List RMAF.Tree) (a b z q : Nat),\n  ForestState.cherryReady (some t) ss a b z = true →\n    ForestState.feasible (some t) ss q →\n      ForestState.feasible (some (ForestState.contract a b z t)) (List.map (ForestState.contract a b z) ss) q"
+ROW	pilot	RMAF.restrictionAgrees.eq_1	StateRestriction	theorem	propext	StateRestriction	direct
+TYPE	pilot	RMAF.restrictionAgrees.eq_1	"∀ (t u : RMAF.Tree) (b : List Nat),\n  RMAF.restrictionAgrees t u b =\n    match RMAF.restrict b t, RMAF.restrict b u with\n    | some s, some v => RMAF.sameShape s v\n    | x, x_1 => false"
+ROW	pilot	RMAF.pairwiseEmbeddings._f	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.restrict._f	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.proper_parts	Singleton	theorem	propext	Singleton	direct
+TYPE	pilot	ForestState.proper_parts	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree),\n  ForestState.proper T ss = true →\n    (ForestState.labels T).Nodup ∧ RMAF.partitionCheck (ForestState.labels T) (List.map RMAF.leaves ss) = true"
+ROW	pilot	ForestState.quotient_tree_restriction	StateContract	theorem	propext,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.quotient_tree_restriction	"∀ (s : RMAF.Tree) (B : List Nat) (a b z : Nat),\n  ForestState.QuotientShape a b s →\n    (RMAF.leaves s).Nodup →\n      ¬z ∈ RMAF.leaves s →\n        ¬z ∈ B →\n          (a ∈ B ↔ b ∈ B) →\n            RMAF.restrict (ForestState.contractBlock a b z B) (ForestState.contract a b z s) =\n              Option.map (ForestState.contract a b z) (RMAF.restrict B s)"
+ROW	pilot	ForestState.quotient_source_flatten_counts	StateContract	theorem	propext,Classical.choice,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.quotient_source_flatten_counts	"∀ (ss : List RMAF.Tree) (a b z : Nat),\n  (∀ (s : RMAF.Tree), s ∈ ss → ForestState.QuotientShape a b s) →\n    (∀ (s : RMAF.Tree), s ∈ ss → (RMAF.leaves s).Nodup) →\n      (∀ (s : RMAF.Tree), s ∈ ss → ¬z ∈ RMAF.leaves s) →\n        ∀ (x : Nat),\n          List.count x (List.map RMAF.leaves (List.map (ForestState.contract a b z) ss)).flatten =\n            List.count x (List.map (ForestState.contractBlock a b z) (List.map RMAF.leaves ss)).flatten"
+ROW	pilot	ForestState.initial_state_agreement_iff._simp_1_6	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.initial_state_agreement_iff._simp_1_6	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.any p = true) = ∃ x, x ∈ l ∧ p x = true"
+ROW	pilot	ForestState.cherry.match_1	State	definition		State	direct
+ROW	pilot	ForestState.CherryAt.rec	CherryGraph	recursor		CherryGraph	direct
+ROW	pilot	RestrictionBridge.checked_covers	StatePartition	theorem	propext,Quot.sound	StatePartition	direct
+TYPE	pilot	RestrictionBridge.checked_covers	"∀ (labels : List Nat) (F : List (List Nat)),\n  RMAF.partitionCheck labels F = true → ∀ {x : Nat}, x ∈ labels → ∃ B, B ∈ F ∧ x ∈ B"
+ROW	pilot	ForestState.rootedIso_leaf_iff	QuotientTopology	theorem	propext	QuotientTopology	direct
+TYPE	pilot	ForestState.rootedIso_leaf_iff	"∀ {t u : RMAF.Tree}, RMAF.RootedIso t u → ∀ (x : Nat), t = RMAF.Tree.leaf x ↔ u = RMAF.Tree.leaf x"
+ROW	pilot	ForestState.count_filter_exact	BlockPartition	theorem	propext,Quot.sound	BlockPartition	direct
+TYPE	pilot	ForestState.count_filter_exact	"∀ (B : List Nat) (p : Nat → Bool) (x : Nat), List.count x (List.filter p B) = if p x = true then List.count x B else 0"
+ROW	pilot	completion_consumer_6	CompletionConsumers	theorem	propext,Quot.sound	CompletionConsumers	direct
+TYPE	pilot	completion_consumer_6	"(ForestState.labels (Option.map (ForestState.contract 17 31 89) (some LeftCherry))).length + 1 =\n  (ForestState.labels (some LeftCherry)).length"
+ROW	pilot	RestrictionBridge.clear_append_right._simp_1	StateEmbedding	theorem	propext	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_append_right._simp_1	"∀ (a b c : List RMAF.Vertex),\n  RestrictionBridge.Clear a (b ++ c) = (RestrictionBridge.Clear a b ∧ RestrictionBridge.Clear a c)"
+ROW	pilot	RMAF.prependSide.eq_1	StateEmbedding	theorem		StateEmbedding	direct
+TYPE	pilot	RMAF.prependSide.eq_1	"∀ (side : Bool) (vs : List RMAF.Vertex), RMAF.prependSide side vs = List.map (fun x => side :: x) vs"
+ROW	pilot	RMAF.Tree.leaf.elim	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.instDecidableEqTree.decEq._sunfold	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.contract.eq_def	Contraction	theorem		Contraction	direct
+TYPE	pilot	ForestState.contract.eq_def	"∀ (a b z : Nat) (x : RMAF.Tree),\n  ForestState.contract a b z x =\n    match x with\n    | RMAF.Tree.leaf x => RMAF.Tree.leaf x\n    | l.node r =>\n      if (l == RMAF.Tree.leaf a && r == RMAF.Tree.leaf b || l == RMAF.Tree.leaf b && r == RMAF.Tree.leaf a) = true then\n        RMAF.Tree.leaf z\n      else (ForestState.contract a b z l).node (ForestState.contract a b z r)"
+ROW	pilot	ForestState.tree_of_singleton_leaves._proof_1_1	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.tree_of_singleton_leaves._proof_1_1	"∀ (l r : RMAF.Tree),\n  0 < (RMAF.leaves l).length →\n    0 < (RMAF.leaves r).length → (RMAF.leaves l).length + (RMAF.leaves r).length = 0 + 1 → False"
+ROW	pilot	ForestState.source_family_partition	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.source_family_partition	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree) (F : List (List Nat)),\n  ForestState.proper T ss = true →\n    RMAF.partitionCheck (ForestState.labels T) F = true →\n      (∀ (B : List Nat), B ∈ F → ∃ s, s ∈ ss ∧ B ⊆ RMAF.leaves s) →\n        ∀ (s : RMAF.Tree),\n          s ∈ ss → RMAF.partitionCheck (RMAF.leaves s) (RestrictionBridge.family (RMAF.leaves s) F) = true"
+ROW	pilot	ForestState.OptionIso._sparseCasesOn_1	CherryTopology	definition	propext	CherryTopology	direct
+ROW	pilot	completion_consumer_1	CompletionConsumers	theorem	propext,Classical.choice,Quot.sound	CompletionConsumers	direct
+TYPE	pilot	completion_consumer_1	"ForestState.feasible (some LeftCherry) [RightCherry] 0 ↔\n  ForestState.feasible (some (ForestState.contract 17 31 89 LeftCherry)) [ForestState.contract 17 31 89 RightCherry] 0"
+ROW	pilot	ForestState.CherryAt.contract_count._simp_1_4	Contraction	theorem	propext	Contraction	direct
+TYPE	pilot	ForestState.CherryAt.contract_count._simp_1_4	"∀ {α : Sort u_1} {a b : α}, (a = b) = (b = a)"
+ROW	pilot	ForestState.OptionIso._sparseCasesOn_2	CherryTopology	definition	propext	CherryTopology	direct
+ROW	pilot	ForestState.expand._unsafe_rec	State	definition		State	direct
+ROW	pilot	RMAF.Tree._sizeOf_inst	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.Tree.casesOn	RMAF	definition		RMAF	direct
+ROW	pilot	_private.RMAF.0.RMAF.best.match_1.eq_1	RMAF	theorem		RMAF	direct
+TYPE	pilot	_private.RMAF.0.RMAF.best.match_1.eq_1	"∀ {α : Type} (motive : Option α → Sort u_1) (h_1 : Unit → motive none) (h_2 : (b : α) → motive (some b)),\n  (match none with\n    | none => h_1 ()\n    | some b => h_2 b) =\n    h_1 ()"
+ROW	pilot	RestrictionBridge.clear_append_left._simp_1	StateEmbedding	theorem	propext	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_append_left._simp_1	"∀ (a b c : List RMAF.Vertex),\n  RestrictionBridge.Clear (a ++ b) c = (RestrictionBridge.Clear a c ∧ RestrictionBridge.Clear b c)"
+ROW	pilot	ForestState.restrict_add_absent	CherryTopology	theorem	propext,Quot.sound	CherryTopology	direct
+TYPE	pilot	ForestState.restrict_add_absent	"∀ (t : RMAF.Tree) (B : List Nat) (b : Nat), ¬b ∈ RMAF.leaves t → RMAF.restrict (b :: B) t = RMAF.restrict B t"
+ROW	pilot	RMAF.Tree.ctorIdx	RMAF	definition		RMAF	direct
+ROW	pilot	_private.StateRestriction.0.RestrictionBridge.optionLeaves.match_1.eq_2	StateRestriction	theorem		StateRestriction	direct
+TYPE	pilot	_private.StateRestriction.0.RestrictionBridge.optionLeaves.match_1.eq_2	"∀ (motive : Option RMAF.Tree → Sort u_1) (t : RMAF.Tree) (h_1 : Unit → motive none)\n  (h_2 : (t : RMAF.Tree) → motive (some t)),\n  (match some t with\n    | none => h_1 ()\n    | some t => h_2 t) =\n    h_2 t"
+ROW	pilot	RMAF.minimalVertices	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.CherryAt.endpoint_clear_congr	Endpoint	theorem	propext,Quot.sound	Endpoint	direct
+TYPE	pilot	ForestState.CherryAt.endpoint_clear_congr	"∀ {t : RMAF.Tree} {a b : Nat} {w : RMAF.Vertex},\n  ForestState.CherryAt a b t w →\n    ∀ (A C : List Nat),\n      (RMAF.leaves t).Nodup →\n        a ∈ A →\n          ¬b ∈ A →\n            ¬a ∈ C →\n              ¬b ∈ C →\n                (RestrictionBridge.Clear (RMAF.rootedSpan A t) (RMAF.minimalVertices C t) ↔\n                    RestrictionBridge.Clear (RMAF.rootedSpan (b :: A) t) (RMAF.minimalVertices C t)) ∧\n                  (RestrictionBridge.Clear (RMAF.rootedSpan C t) (RMAF.minimalVertices A t) ↔\n                      RestrictionBridge.Clear (RMAF.rootedSpan C t) (RMAF.minimalVertices (b :: A) t)) ∧\n                    (RestrictionBridge.Clear (RMAF.minimalVertices A t) (RMAF.minimalVertices C t) ↔\n                      RestrictionBridge.Clear (RMAF.minimalVertices (b :: A) t) (RMAF.minimalVertices C t))"
+ROW	pilot	ForestState.pairwise_of_distinct._simp_1_1	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.pairwise_of_distinct._simp_1_1	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	ForestState.reassignment_partition	Replacement	theorem	propext,Classical.choice,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.reassignment_partition	"∀ (L : List Nat) (F : List (List Nat)) (A : List Nat) (b : Nat),\n  RMAF.partitionCheck L F = true →\n    A ∈ F → [b] ∈ F → ¬b ∈ A → RMAF.partitionCheck L (ForestState.reassignedForest F A b) = true"
+ROW	pilot	RMAF.Controls.proper_labels_left	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.Controls.proper_labels_left	"RMAF.leaves RMAF.Controls.leftTree = [0, 1, 2, 3]"
+ROW	pilot	RMAF.Instance.recOn	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.contract.eq_1	Contraction	theorem		Contraction	direct
+TYPE	pilot	ForestState.contract.eq_1	"∀ (a b z a_1 : Nat), ForestState.contract a b z (RMAF.Tree.leaf a_1) = RMAF.Tree.leaf a_1"
+ROW	pilot	RMAF.Tree.brecOn.go	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.contraction_nodup._proof_1_1	Contraction	theorem	propext,Quot.sound	Contraction	direct
+TYPE	pilot	ForestState.contraction_nodup._proof_1_1	"∀ (z x : Nat), ¬1 ≤ 1 → False"
+ROW	pilot	RMAF.Tree.recOn	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.minimalVertices._sunfold	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.common_cherry_expand_agreement	StateExpand	theorem	propext,Classical.choice,Quot.sound	StateExpand	direct
+TYPE	pilot	ForestState.common_cherry_expand_agreement	"∀ (t : RMAF.Tree) (ss : List RMAF.Tree) (G : List (List Nat)) (a b z : Nat),\n  ForestState.cherryReady (some t) ss a b z = true →\n    ForestState.agrees (some (ForestState.contract a b z t)) (List.map (ForestState.contract a b z) ss) G = true →\n      ForestState.agrees (some t) ss (List.map (ForestState.expandBlock a b z) G) = true"
+ROW	pilot	RestrictionBridge.contained.eq_1	StatePartition	theorem		StatePartition	direct
+TYPE	pilot	RestrictionBridge.contained.eq_1	"∀ (B U : List Nat), RestrictionBridge.contained B U = B.all fun x => U.contains x"
+ROW	pilot	ForestState.CherryAt.contract_restriction	QuotientTopology	theorem	propext,Quot.sound	QuotientTopology	direct
+TYPE	pilot	ForestState.CherryAt.contract_restriction	"∀ {t : RMAF.Tree} {a b : Nat} {w : RMAF.Vertex},\n  ForestState.CherryAt a b t w →\n    ∀ (z : Nat) (B : List Nat),\n      (RMAF.leaves t).Nodup →\n        ¬z ∈ RMAF.leaves t →\n          ¬z ∈ B →\n            (a ∈ B ↔ b ∈ B) →\n              RMAF.restrict (ForestState.contractBlock a b z B) (ForestState.contract a b z t) =\n                Option.map (ForestState.contract a b z) (RMAF.restrict B t)"
+ROW	pilot	RMAF.RootedIso.casesOn	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.instReprTree.repr.match_1	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.expanded_block_sub_iff._simp_1_1	StateExpand	theorem	propext	StateExpand	direct
+TYPE	pilot	ForestState.expanded_block_sub_iff._simp_1_1	"∀ {α : Type u_1} [inst : BEq α] [LawfulBEq α] {a : α} {as : List α}, (as.contains a = true) = (a ∈ as)"
+ROW	pilot	ForestState.partition_remove_singleton._proof_1_2	Removal	theorem	propext,Quot.sound	Removal	direct
+TYPE	pilot	ForestState.partition_remove_singleton._proof_1_2	"∀ (F : List (List Nat)) (a x : Nat),\n  List.count x (F.erase [a]).flatten + List.count x [a] = List.count x F.flatten →\n    List.count x F.flatten = 1 → List.count x [a] = 0 → ¬List.count x (F.erase [a]).flatten = 1 → False"
+ROW	pilot	ForestState.quotient_pairwise._simp_1_1	StateContract	theorem	propext,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.quotient_pairwise._simp_1_1	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	ForestState.cherry.eq_1	CherryGraph	theorem		CherryGraph	direct
+TYPE	pilot	ForestState.cherry.eq_1	"∀ (a b a_1 : Nat), ForestState.cherry a b (RMAF.Tree.leaf a_1) = false"
+ROW	pilot	RMAF.Tree.below	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.targetAgrees.match_1	State	definition		State	direct
+ROW	pilot	_private.StateExpand.0.RMAF.restrictionAgrees.match_1.splitter._sparseCasesOn_2	StateExpand	definition	propext	StateExpand	direct
+ROW	pilot	RestrictionBridge.restricted_labels_exact	StateRestriction	theorem	propext,Quot.sound	StateRestriction	direct
+TYPE	pilot	RestrictionBridge.restricted_labels_exact	"∀ (t u : RMAF.Tree) (U : List Nat),\n  RMAF.restrict U t = some u → ∀ {x : Nat}, x ∈ RMAF.leaves u ↔ x ∈ RMAF.leaves t ∧ x ∈ U"
+ROW	pilot	_private.Forward.0.RMAF.restrictionAgrees.match_1.splitter._sparseCasesOn_2	Forward	definition	propext	Forward	direct
+ROW	pilot	ForestState.map_cleanup_sources._simp_1_1	Removal	theorem	propext	Removal	direct
+TYPE	pilot	ForestState.map_cleanup_sources._simp_1_1	"∀ {α : Type u_1} [inst : BEq α] [LawfulBEq α] {a b : α}, ((a == b) = true) = (a = b)"
+ROW	pilot	_private.Forward.0.RMAF.restrictionAgrees.match_1.splitter	Forward	definition	propext	Forward	direct
+ROW	pilot	ForestState.labels.eq_2	Forward	theorem		Forward	direct
+TYPE	pilot	ForestState.labels.eq_2	"∀ (t : RMAF.Tree), ForestState.labels (some t) = RMAF.leaves t"
+ROW	pilot	ForestState.family_add_absent	Reverse	theorem	propext,Quot.sound	Reverse	direct
+TYPE	pilot	ForestState.family_add_absent	"∀ (U : List Nat) (G : List (List Nat)) (a : Nat),\n  ¬a ∈ U → RestrictionBridge.family U ([a] :: G) = RestrictionBridge.family U G"
+ROW	pilot	RMAF.Controls.different_full_trees	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	RMAF.Controls.different_full_trees	"RMAF.sameShape RMAF.Controls.leftTree RMAF.Controls.rightTree = false"
+ROW	pilot	_private.Expansion.0.RMAF.restrictionAgrees.match_1.eq_2	Expansion	theorem	propext	Expansion	direct
+TYPE	pilot	_private.Expansion.0.RMAF.restrictionAgrees.match_1.eq_2	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (x x_1 : Option RMAF.Tree)\n  (h_1 : (s v : RMAF.Tree) → motive (some s) (some v)) (h_2 : (x x_2 : Option RMAF.Tree) → motive x x_2),\n  (∀ (s v : RMAF.Tree), x = some s → x_1 = some v → False) →\n    (match x, x_1 with\n      | some s, some v => h_1 s v\n      | x, x_3 => h_2 x x_3) =\n      h_2 x x_1"
+ROW	pilot	ForestState.family_singleton_reconstruction	Reverse	theorem	propext,Classical.choice,Quot.sound	Reverse	direct
+TYPE	pilot	ForestState.family_singleton_reconstruction	"∀ (T : Option RMAF.Tree) (G : List (List Nat)) (a : Nat),\n  (ForestState.labels T).Nodup →\n    RMAF.partitionCheck (ForestState.labels (ForestState.cleanupTarget T a)) G = true →\n      RestrictionBridge.family [a] ([a] :: G) = [[a]]"
+ROW	pilot	RMAF.Controls.every_agreement_at_least_two._proof_1_1	RMAF	theorem	propext,Quot.sound	RMAF	direct
+TYPE	pilot	RMAF.Controls.every_agreement_at_least_two._proof_1_1	"∀ (a winner : List Nat),\n  (RMAF.blocks winner).length = 2 →\n    (RMAF.blocks winner).length ≤ (RMAF.blocks a).length → ¬2 ≤ (RMAF.blocks a).length → False"
+ROW	pilot	ForestState.singleton_no_selection	LeafClear	theorem	propext,Quot.sound	LeafClear	direct
+TYPE	pilot	ForestState.singleton_no_selection	"∀ (t : RMAF.Tree) (a : Nat), ¬a ∈ RMAF.leaves t → RMAF.rootedSpan [a] t = [] ∧ RMAF.minimalVertices [a] t = []"
+ROW	pilot	ForestState.cleanupForest	State	definition		State	direct
+ROW	pilot	ForestState.remaining_forest_sub	Forward	theorem	propext,Classical.choice,Quot.sound	Forward	direct
+TYPE	pilot	ForestState.remaining_forest_sub	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree) (F : List (List Nat)) (a : Nat),\n  ForestState.agrees T ss F = true →\n    RMAF.Tree.leaf a ∈ ss → ∀ (B : List Nat), B ∈ ForestState.cleanupForest F a → B ⊆ (ForestState.labels T).erase a"
+ROW	pilot	RMAF.sameShape_correct	RMAF	theorem	propext,Classical.choice,Quot.sound	RMAF	direct
+TYPE	pilot	RMAF.sameShape_correct	"∀ (t u : RMAF.Tree), RMAF.sameShape t u = true ↔ RMAF.RootedIso t u"
+ROW	pilot	ForestState.agrees_from_checks	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.agrees_from_checks	"∀ (t : RMAF.Tree) (ss : List RMAF.Tree) (F : List (List Nat)),\n  ForestState.proper (some t) ss = true →\n    RMAF.partitionCheck (RMAF.leaves t) F = true →\n      (∀ (B : List Nat), B ∈ F → ∃ s, s ∈ ss ∧ B ⊆ RMAF.leaves s) →\n        RMAF.pairwiseEmbeddings t F = true →\n          (∀ (s : RMAF.Tree),\n              s ∈ ss → ∀ (B : List Nat), B ∈ F → B ⊆ RMAF.leaves s → RMAF.restrictionAgrees t s B = true) →\n            (∀ (s : RMAF.Tree),\n                s ∈ ss →\n                  ∀ (A : List Nat),\n                    A ∈ F →\n                      ∀ (B : List Nat),\n                        B ∈ F →\n                          A ⊆ RMAF.leaves s →\n                            B ⊆ RMAF.leaves s →\n                              A ≠ B →\n                                RMAF.disjointVertices (RMAF.minimalVertices A s) (RMAF.minimalVertices B s) = true) →\n              ForestState.agrees (some t) ss F = true"
+ROW	pilot	_private.Forward.0.ForestState.targetEmbeddings.match_1.splitter	Forward	definition		Forward	direct
+ROW	pilot	ForestState.CherryAt.parent_in_span	CherryGraph	theorem	propext,Quot.sound	CherryGraph	direct
+TYPE	pilot	ForestState.CherryAt.parent_in_span	"∀ {t : RMAF.Tree} {a b : Nat} {w : RMAF.Vertex},\n  ForestState.CherryAt a b t w → ∀ (B : List Nat), a ∈ B → w ∈ RMAF.rootedSpan B t"
+ROW	pilot	ForestState.span_nonempty_of_selected	CherryGraph	theorem	propext,Quot.sound	CherryGraph	direct
+TYPE	pilot	ForestState.span_nonempty_of_selected	"∀ (t : RMAF.Tree) (B : List Nat) (x : Nat), x ∈ RMAF.leaves t → x ∈ B → (RMAF.rootedSpan B t).isEmpty = false"
+ROW	pilot	ForestState.family_erase_absent	Forward	theorem	propext,Quot.sound	Forward	direct
+TYPE	pilot	ForestState.family_erase_absent	"∀ (U : List Nat) (F : List (List Nat)) (a : Nat),\n  ¬a ∈ U → RestrictionBridge.family U (F.erase [a]) = RestrictionBridge.family U F"
+ROW	pilot	RMAF.Controls.every_isolated_endpoint_at_least_three	RMAF	theorem	propext,Classical.choice,Quot.sound	RMAF	direct
+TYPE	pilot	RMAF.Controls.every_isolated_endpoint_at_least_three	"∀ (a : List Nat),\n  a.length = 4 →\n    (∀ (x : Nat), x ∈ a → x < 4) →\n      RMAF.agreement RMAF.Controls.leftTree RMAF.Controls.rightTree (RMAF.blocks a) = true →\n        RMAF.Controls.isolatedEndpoint a = true → 3 ≤ (RMAF.blocks a).length"
+ROW	pilot	ForestState.cleanupTarget.eq_1	Forward	theorem		Forward	direct
+TYPE	pilot	ForestState.cleanupTarget.eq_1	"∀ (T : Option RMAF.Tree) (a : Nat),\n  ForestState.cleanupTarget T a = T.bind (RMAF.restrict ((ForestState.labels T).erase a))"
+ROW	pilot	_private.StateExpand.0.RMAF.restrictionAgrees.match_1.eq_1	StateExpand	theorem	propext	StateExpand	direct
+TYPE	pilot	_private.StateExpand.0.RMAF.restrictionAgrees.match_1.eq_1	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (s v : RMAF.Tree)\n  (h_1 : (s v : RMAF.Tree) → motive (some s) (some v)) (h_2 : (x x_1 : Option RMAF.Tree) → motive x x_1),\n  (match some s, some v with\n    | some s, some v => h_1 s v\n    | x, x_1 => h_2 x x_1) =\n    h_1 s v"
+ROW	pilot	ForestState.expandBlock.eq_1	Expansion	theorem		Expansion	direct
+TYPE	pilot	ForestState.expandBlock.eq_1	"∀ (a b z : Nat) (B : List Nat),\n  ForestState.expandBlock a b z B = List.flatMap (fun x => if (x == z) = true then [a, b] else [x]) B"
+ROW	pilot	state_consumer_4	Consumers	theorem	propext,Classical.choice,Quot.sound	Consumers	direct
+TYPE	pilot	state_consumer_4	"RMAF.restrictionAgrees T S [31, 17, 47] = true"
+ROW	pilot	RMAF.leaves	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.CherryAt.casesOn	CherryGraph	definition		CherryGraph	direct
+ROW	pilot	ForestState.singleton_cleanup_forward	Forward	theorem	propext,Classical.choice,Quot.sound	Forward	direct
+TYPE	pilot	ForestState.singleton_cleanup_forward	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree) (F : List (List Nat)) (a : Nat),\n  ForestState.agrees T ss F = true →\n    RMAF.Tree.leaf a ∈ ss →\n      ForestState.agrees (ForestState.cleanupTarget T a) (ForestState.cleanupSources ss a)\n          (ForestState.cleanupForest F a) =\n        true"
+ROW	pilot	ForestState.expandBlock_mem._simp_1_2	Expansion	theorem	propext,Quot.sound	Expansion	direct
+TYPE	pilot	ForestState.expandBlock_mem._simp_1_2	"∀ {α : Type u_1} {β : Type u_2} {f : α → List β} {b : β} {l : List α}, (b ∈ List.flatMap f l) = ∃ a, a ∈ l ∧ b ∈ f a"
+ROW	pilot	_private.CherryTopology.0.ForestState.OptionIso.match_1.splitter	CherryTopology	definition	propext	CherryTopology	direct
+ROW	pilot	ForestState.agrees_parts._simp_1_3	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.agrees_parts._simp_1_3	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.any p = true) = ∃ x, x ∈ l ∧ p x = true"
+ROW	pilot	ForestState.partition_empty	Forward	theorem	propext,Quot.sound	Forward	direct
+TYPE	pilot	ForestState.partition_empty	"∀ (F : List (List Nat)), RMAF.partitionCheck [] F = true → F = []"
+ROW	pilot	ForestState.additionalCost.eq_1	Singleton	theorem		Singleton	direct
+TYPE	pilot	ForestState.additionalCost.eq_1	"∀ (ss : List RMAF.Tree) (F : List (List Nat)), ForestState.additionalCost ss F = F.length - ss.length"
+ROW	pilot	RMAF.Tree.node.noConfusion	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.Instance.right	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.rootedIso_refl	CherryTopology	theorem	propext,Classical.choice,Quot.sound	CherryTopology	direct
+TYPE	pilot	ForestState.rootedIso_refl	"∀ (t : RMAF.Tree), RMAF.RootedIso t t"
+ROW	pilot	RMAF.best_spec	RMAF	theorem	propext,Quot.sound	RMAF	direct
+TYPE	pilot	RMAF.best_spec	"∀ {α : Type} (cost : α → Nat) (valid : α → Bool) (xs : List α) (b : α),\n  RMAF.best cost valid xs = some b → b ∈ xs ∧ valid b = true ∧ ∀ (a : α), a ∈ xs → valid a = true → cost b ≤ cost a"
+ROW	pilot	ForestState.synchronized_endpoint_reassignment_topology	CherryTopology	theorem	propext,Classical.choice,Quot.sound	CherryTopology	direct
+TYPE	pilot	ForestState.synchronized_endpoint_reassignment_topology	"∀ (T S : RMAF.Tree) (a b : Nat) (B : List Nat),\n  (RMAF.leaves T).Nodup →\n    (RMAF.leaves S).Nodup →\n      ForestState.cherry a b T = true →\n        ForestState.cherry a b S = true →\n          a ∈ B → ¬b ∈ B → RMAF.restrictionAgrees T S B = true → RMAF.restrictionAgrees T S (b :: B) = true"
+ROW	pilot	ForestState.reassignment_preserves_agreement._simp_1_2	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.reassignment_preserves_agreement._simp_1_2	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	ForestState.CherryAt.contract_length._proof_1_5	Contraction	theorem	propext,Quot.sound	Contraction	direct
+TYPE	pilot	ForestState.CherryAt.contract_length._proof_1_5	"∀ {a b : Nat} (z : Nat) {l r : RMAF.Tree},\n  (RMAF.leaves (ForestState.contract a b z r)).length + 1 = (RMAF.leaves r).length →\n    ¬(RMAF.leaves l).length + (RMAF.leaves (ForestState.contract a b z r)).length + 1 =\n          (RMAF.leaves l).length + (RMAF.leaves r).length →\n      False"
+ROW	pilot	ForestState.OptionIso.match_1	CherryTopology	definition	propext	CherryTopology	direct
+ROW	pilot	RMAF.blocks	RMAF	definition	propext	RMAF	direct
+ROW	pilot	ForestState.OptionIso._sparseCasesOn_2.else_eq	CherryTopology	theorem	propext	CherryTopology	direct
+TYPE	pilot	ForestState.OptionIso._sparseCasesOn_2.else_eq	"∀ {α : Type u} {motive : Option α → Sort u_1} (t : Option α) (some : (val : α) → motive (some val))\n  («else» : Nat.hasNotBit 2 t.ctorIdx → motive t) (h : Nat.hasNotBit 2 t.ctorIdx),\n  ForestState.OptionIso._sparseCasesOn_2 t some «else» = «else» h"
+ROW	pilot	RootCherry	GraphControls	definition		GraphControls	direct
+ROW	pilot	_private.RMAF.0.RMAF.restrict.match_1.splitter	RMAF	definition		RMAF	direct
+ROW	pilot	RestrictionBridge.Clear	StateEmbedding	definition		StateEmbedding	direct
+ROW	pilot	RMAF.Controls.singleton_control	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	RMAF.Controls.singleton_control	"RMAF.agreement RMAF.Controls.leftTree RMAF.Controls.rightTree [[0], [1], [2], [3]] = true"
+ROW	pilot	ForestState.cleanup_labels._simp_1_2	Removal	theorem	propext	Removal	direct
+TYPE	pilot	ForestState.cleanup_labels._simp_1_2	"∀ {α : Type u_1} [inst : BEq α] [LawfulBEq α] {a b : α}, ((a != b) = true) = (a ≠ b)"
+ROW	pilot	ForestState.cherry.eq_def	CherryGraph	theorem		CherryGraph	direct
+TYPE	pilot	ForestState.cherry.eq_def	"∀ (a b : Nat) (x : RMAF.Tree),\n  ForestState.cherry a b x =\n    match x with\n    | RMAF.Tree.leaf a => false\n    | l.node r =>\n      l == RMAF.Tree.leaf a && r == RMAF.Tree.leaf b || l == RMAF.Tree.leaf b && r == RMAF.Tree.leaf a ||\n          ForestState.cherry a b l ||\n        ForestState.cherry a b r"
+ROW	pilot	RMAF.rootedSpan._f	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.CherryAt.parent_in_minimal._simp_1_2	CherryGraph	theorem	propext	CherryGraph	direct
+TYPE	pilot	ForestState.CherryAt.parent_in_minimal._simp_1_2	"∀ {α : Type u_1} {a b : α}, (a ∈ [b]) = (a = b)"
+ROW	pilot	ForestState.reassignment_length	Replacement	theorem	propext,Classical.choice,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.reassignment_length	"∀ (L : List Nat) (F : List (List Nat)) (A : List Nat) (b : Nat),\n  RMAF.partitionCheck L F = true → A ∈ F → [b] ∈ F → ¬b ∈ A → (ForestState.reassignedForest F A b).length + 1 = F.length"
+ROW	pilot	ForestState.rootedIso_symm	CherryTopology	theorem		CherryTopology	direct
+TYPE	pilot	ForestState.rootedIso_symm	"∀ {t u : RMAF.Tree}, RMAF.RootedIso t u → RMAF.RootedIso u t"
+ROW	pilot	RMAF.agreement	RMAF	definition	propext	RMAF	direct
+ROW	pilot	ForestState.CherryAt.parent_in_minimal	CherryGraph	theorem	propext,Quot.sound	CherryGraph	direct
+TYPE	pilot	ForestState.CherryAt.parent_in_minimal	"∀ {t : RMAF.Tree} {a b : Nat} {w : RMAF.Vertex},\n  ForestState.CherryAt a b t w →\n    ∀ (B : List Nat), a ∈ B → ¬b ∈ B → (∃ x, x ∈ RMAF.leaves t ∧ x ∈ B ∧ x ≠ a) → w ∈ RMAF.minimalVertices B t"
+ROW	pilot	state_consumer_5	Consumers	theorem	propext,Classical.choice,Quot.sound	Consumers	direct
+TYPE	pilot	state_consumer_5	"[17] = [17] ∨ [31, 47] = [31]"
+ROW	pilot	RestrictionBridge.clear_prepend_other	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_prepend_other	"∀ (a b : List RMAF.Vertex), RestrictionBridge.Clear (RMAF.prependSide false a) (RMAF.prependSide true b)"
+ROW	pilot	ForestState.labels.match_1	State	definition		State	direct
+ROW	pilot	ForestState.node_quotient_clear_congr	QuotientGeometry	theorem	propext,Quot.sound	QuotientGeometry	direct
+TYPE	pilot	ForestState.node_quotient_clear_congr	"∀ (l r u v : RMAF.Tree) (B C D E : List Nat),\n  (RMAF.rootedSpan B l).isEmpty = (RMAF.rootedSpan D u).isEmpty →\n    (RMAF.rootedSpan B r).isEmpty = (RMAF.rootedSpan D v).isEmpty →\n      (RMAF.rootedSpan C l).isEmpty = (RMAF.rootedSpan E u).isEmpty →\n        (RMAF.rootedSpan C r).isEmpty = (RMAF.rootedSpan E v).isEmpty →\n          (RestrictionBridge.Clear (RMAF.rootedSpan B l) (RMAF.minimalVertices C l) ↔\n              RestrictionBridge.Clear (RMAF.rootedSpan D u) (RMAF.minimalVertices E u)) →\n            (RestrictionBridge.Clear (RMAF.rootedSpan B r) (RMAF.minimalVertices C r) ↔\n                RestrictionBridge.Clear (RMAF.rootedSpan D v) (RMAF.minimalVertices E v)) →\n              (RestrictionBridge.Clear (RMAF.rootedSpan C l) (RMAF.minimalVertices B l) ↔\n                  RestrictionBridge.Clear (RMAF.rootedSpan E u) (RMAF.minimalVertices D u)) →\n                (RestrictionBridge.Clear (RMAF.rootedSpan C r) (RMAF.minimalVertices B r) ↔\n                    RestrictionBridge.Clear (RMAF.rootedSpan E v) (RMAF.minimalVertices D v)) →\n                  (RestrictionBridge.Clear (RMAF.minimalVertices B l) (RMAF.minimalVertices C l) ↔\n                      RestrictionBridge.Clear (RMAF.minimalVertices D u) (RMAF.minimalVertices E u)) →\n                    (RestrictionBridge.Clear (RMAF.minimalVertices B r) (RMAF.minimalVertices C r) ↔\n                        RestrictionBridge.Clear (RMAF.minimalVertices D v) (RMAF.minimalVertices E v)) →\n                      (RestrictionBridge.Clear (RMAF.rootedSpan B (l.node r)) (RMAF.minimalVertices C (l.node r)) ↔\n                          RestrictionBridge.Clear (RMAF.rootedSpan D (u.node v)) (RMAF.minimalVertices E (u.node v))) ∧\n                        (RestrictionBridge.Clear (RMAF.minimalVertices B (l.node r))\n                            (RMAF.minimalVertices C (l.node r)) ↔\n                          RestrictionBridge.Clear (RMAF.minimalVertices D (u.node v))\n                            (RMAF.minimalVertices E (u.node v)))"
+ROW	pilot	ForestState.expand_absent._simp_1_1	CherryTopology	theorem	propext	CherryTopology	direct
+TYPE	pilot	ForestState.expand_absent._simp_1_1	"∀ {α : Sort u_1} {a b : α}, (a = b) = (b = a)"
+ROW	pilot	RMAF.assignments.eq_1	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.assignments.eq_1	"∀ (tags : Nat), RMAF.assignments 0 tags = [[]]"
+ROW	pilot	ForestState.agrees_parts._simp_1_5	Singleton	theorem	propext	Singleton	direct
+TYPE	pilot	ForestState.agrees_parts._simp_1_5	"∀ {a b c : Prop}, ((a ∧ b) ∧ c) = (a ∧ b ∧ c)"
+ROW	pilot	_private.RMAF.0.RMAF.sameShape.match_1.eq_1	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	_private.RMAF.0.RMAF.sameShape.match_1.eq_1	"∀ (motive : RMAF.Tree → RMAF.Tree → Sort u_1) (a b : Nat)\n  (h_1 : (a b : Nat) → motive (RMAF.Tree.leaf a) (RMAF.Tree.leaf b))\n  (h_2 : (a b c d : RMAF.Tree) → motive (a.node b) (c.node d)) (h_3 : (x x_1 : RMAF.Tree) → motive x x_1),\n  (match RMAF.Tree.leaf a, RMAF.Tree.leaf b with\n    | RMAF.Tree.leaf a, RMAF.Tree.leaf b => h_1 a b\n    | a.node b, c.node d => h_2 a b c d\n    | x, x_1 => h_3 x x_1) =\n    h_1 a b"
+ROW	pilot	RMAF.pairwiseEmbeddings	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.nodup_append_avoid_right	CherryTopology	theorem	propext,Quot.sound	CherryTopology	direct
+TYPE	pilot	ForestState.nodup_append_avoid_right	"∀ (l r : RMAF.Tree) (x : Nat), (RMAF.leaves (l.node r)).Nodup → x ∈ RMAF.leaves l → ¬x ∈ RMAF.leaves r"
+ROW	pilot	ForestState.partition_add_singleton._simp_1_1	Reverse	theorem	propext,Quot.sound	Reverse	direct
+TYPE	pilot	ForestState.partition_add_singleton._simp_1_1	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	ForestState.cleanupForest.eq_1	Singleton	theorem		Singleton	direct
+TYPE	pilot	ForestState.cleanupForest.eq_1	"∀ (F : List (List Nat)) (a : Nat), ForestState.cleanupForest F a = F.erase [a]"
+ROW	pilot	_private.StateRestriction.0.RMAF.restrictionAgrees.match_1.splitter._sparseCasesOn_2	StateRestriction	definition	propext	StateRestriction	direct
+ROW	pilot	RestrictionBridge.clear_nil_right	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_nil_right	"∀ (a : List RMAF.Vertex), RestrictionBridge.Clear a []"
+ROW	pilot	RMAF.Controls.minimum_is_two	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	RMAF.Controls.minimum_is_two	"Option.map (fun a => (RMAF.blocks a).length) (RMAF.solve 4 RMAF.Controls.leftTree RMAF.Controls.rightTree) = some 2"
+ROW	pilot	ForestState.checked_forest_nodup._proof_1_1	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.checked_forest_nodup._proof_1_1	"∀ (F : List (List Nat)) (U : List Nat), ¬1 ≤ 1 → False"
+ROW	pilot	RestrictionBridge.restrict_node	StateRestriction	theorem		StateRestriction	direct
+TYPE	pilot	RestrictionBridge.restrict_node	"∀ (U : List Nat) (l r : RMAF.Tree),\n  RMAF.restrict U (l.node r) = RestrictionBridge.join (RMAF.restrict U l) (RMAF.restrict U r)"
+ROW	pilot	RestrictionBridge.checked_label	StatePartition	theorem	propext,Quot.sound	StatePartition	direct
+TYPE	pilot	RestrictionBridge.checked_label	"∀ (labels : List Nat) (F : List (List Nat)),\n  RMAF.partitionCheck labels F = true → ∀ {B : List Nat}, B ∈ F → ∀ {x : Nat}, x ∈ B → x ∈ labels"
+ROW	pilot	ForestState.cleanupSources	State	definition		State	direct
+ROW	pilot	ForestState.contraction_partition	BlockPartition	theorem	propext,Classical.choice,Quot.sound	BlockPartition	direct
+TYPE	pilot	ForestState.contraction_partition	"∀ (t : RMAF.Tree) (F : List (List Nat)) (a b z : Nat),\n  (RMAF.leaves t).Nodup →\n    ForestState.cherry a b t = true →\n      ¬z ∈ RMAF.leaves t →\n        RMAF.partitionCheck (RMAF.leaves t) F = true →\n          ForestState.Coalesced F a b →\n            RMAF.partitionCheck (RMAF.leaves (ForestState.contract a b z t))\n                (List.map (ForestState.contractBlock a b z) F) =\n              true"
+ROW	pilot	_private.RMAF.0.RMAF.instReprTree.repr.match_1.splitter	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.common_cherry_decision_forward._proof_1_3	StateContract	theorem	propext,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.common_cherry_decision_forward._proof_1_3	"∀ (t : RMAF.Tree) (ss : List RMAF.Tree) (a b z q : Nat) (F : List (List Nat)),\n  F.length - ss.length ≤ q →\n    (ForestState.proper (some t) ss = true ∧\n        a ≠ b ∧\n          ¬z ∈ ForestState.labels (some t) ∧\n            ForestState.cherry a b t = true ∧ ∃ s, s ∈ ss ∧ ForestState.cherry a b s = true) →\n      ∀ (G : List (List Nat)), G.length ≤ F.length → ¬G.length - ss.length ≤ q → False"
+ROW	pilot	ForestState.CherryAt.below.rec	CherryGraph	recursor		CherryGraph	direct
+ROW	pilot	RMAF.instDecidableEqTree.decEq._f	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.CherryAt.straight	CherryGraph	constructor		CherryGraph	direct
+ROW	pilot	RMAF.Instance.mk.noConfusion	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.sameShape_refl	RMAF	theorem	propext,Classical.choice,Quot.sound	RMAF	direct
+TYPE	pilot	RMAF.sameShape_refl	"∀ (t : RMAF.Tree), RMAF.sameShape t t = true"
+ROW	pilot	RMAF.restrictionAgrees._sparseCasesOn_1	RMAF	definition	propext	RMAF	direct
+ROW	pilot	ForestState.singleton_strict_decrease	Removal	theorem	propext,Classical.choice,Quot.sound	Removal	direct
+TYPE	pilot	ForestState.singleton_strict_decrease	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree) (F : List (List Nat)) (a : Nat),\n  ForestState.agrees T ss F = true →\n    RMAF.Tree.leaf a ∈ ss →\n      (ForestState.labels (ForestState.cleanupTarget T a)).length + 1 = (ForestState.labels T).length"
+ROW	pilot	ForestState.singleton_reconstruction_cost	Reverse	theorem	propext,Classical.choice,Quot.sound	Reverse	direct
+TYPE	pilot	ForestState.singleton_reconstruction_cost	"∀ (ss : List RMAF.Tree) (G : List (List Nat)) (a : Nat),\n  RMAF.Tree.leaf a ∈ ss →\n    ForestState.additionalCost ss ([a] :: G) = ForestState.additionalCost (ForestState.cleanupSources ss a) G"
+ROW	pilot	RMAF.instReprTree.repr._sunfold	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.pairwiseEmbeddings.eq_2	StateEmbedding	theorem		StateEmbedding	direct
+TYPE	pilot	RMAF.pairwiseEmbeddings.eq_2	"∀ (t : RMAF.Tree) (b : List Nat) (bs : List (List Nat)),\n  RMAF.pairwiseEmbeddings t (b :: bs) =\n    ((bs.all fun c => RMAF.disjointVertices (RMAF.minimalVertices b t) (RMAF.minimalVertices c t)) &&\n      RMAF.pairwiseEmbeddings t bs)"
+ROW	pilot	ForestState.pairwise_erase	Forward	theorem	propext,Quot.sound	Forward	direct
+TYPE	pilot	ForestState.pairwise_erase	"∀ (t : RMAF.Tree) (F : List (List Nat)) (B : List Nat),\n  RMAF.pairwiseEmbeddings t F = true → RMAF.pairwiseEmbeddings t (F.erase B) = true"
+ROW	pilot	RMAF.Controls.leftTree	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.expandBlock_count	Expansion	theorem	propext,Classical.choice,Quot.sound	Expansion	direct
+TYPE	pilot	ForestState.expandBlock_count	"∀ (C : List Nat) (a b z x : Nat),\n  a ≠ b →\n    ¬a ∈ C →\n      ¬b ∈ C →\n        z ≠ a →\n          z ≠ b →\n            List.count x (ForestState.expandBlock a b z C) =\n              if x = a ∨ x = b then List.count z C else if x = z then 0 else List.count x C"
+ROW	pilot	ForestState.singleton_cleanup_reverse._simp_1_1	Reverse	theorem	propext,Quot.sound	Reverse	direct
+TYPE	pilot	ForestState.singleton_cleanup_reverse._simp_1_1	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	ForestState.common_cherry_expand_agreement._simp_1_1	StateExpand	theorem	propext,Quot.sound	StateExpand	direct
+TYPE	pilot	ForestState.common_cherry_expand_agreement._simp_1_1	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.any p = true) = ∃ x, x ∈ l ∧ p x = true"
+ROW	pilot	ForestState.quotient_tree_mem._simp_1_1	StateContract	theorem	propext,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.quotient_tree_mem._simp_1_1	"∀ {α : Type u_1} [inst : BEq α] [LawfulBEq α] {a : α} {l : List α}, (0 < List.count a l) = (a ∈ l)"
+ROW	pilot	ForestState.pairwise_erase._simp_1_2	Forward	theorem	propext	Forward	direct
+TYPE	pilot	ForestState.pairwise_erase._simp_1_2	"∀ {α : Type u_1} [inst : BEq α] [LawfulBEq α] {a b : α}, ((a == b) = true) = (a = b)"
+ROW	pilot	T	Controls	definition		Controls	direct
+ROW	pilot	ForestState.expand_preserves_iso	CherryTopology	theorem	propext,Classical.choice,Quot.sound	CherryTopology	direct
+TYPE	pilot	ForestState.expand_preserves_iso	"∀ (a b z : Nat) {t u : RMAF.Tree},\n  RMAF.RootedIso t u → RMAF.RootedIso (ForestState.expand a b z t) (ForestState.expand a b z u)"
+ROW	pilot	RMAF.Controls.every_agreement_at_least_two	RMAF	theorem	propext,Classical.choice,Quot.sound	RMAF	direct
+TYPE	pilot	RMAF.Controls.every_agreement_at_least_two	"∀ (a : List Nat),\n  a.length = 4 →\n    (∀ (x : Nat), x ∈ a → x < 4) →\n      RMAF.agreement RMAF.Controls.leftTree RMAF.Controls.rightTree (RMAF.blocks a) = true → 2 ≤ (RMAF.blocks a).length"
+ROW	pilot	RMAF.rootedSpan.eq_1	StateEmbedding	theorem		StateEmbedding	direct
+TYPE	pilot	RMAF.rootedSpan.eq_1	"∀ (selected : List Nat) (a : Nat),\n  RMAF.rootedSpan selected (RMAF.Tree.leaf a) = if selected.contains a = true then [[]] else []"
+ROW	pilot	RestrictionBridge.unique_label_owner._proof_1_1	StatePartition	theorem	propext,Quot.sound	StatePartition	direct
+TYPE	pilot	RestrictionBridge.unique_label_owner._proof_1_1	"∀ (x : Nat) (A : List Nat) (Q : List (List Nat)),\n  List.count x A + List.count x Q.flatten = 1 → 0 < List.count x A → ¬List.count x Q.flatten = 0 → False"
+ROW	pilot	RestrictionBridge.local_partition	StatePartition	theorem	propext,Quot.sound	StatePartition	direct
+TYPE	pilot	RestrictionBridge.local_partition	"∀ (t u : RMAF.Tree) (U : List Nat) (F Q : List (List Nat)),\n  RMAF.restrict U t = some u →\n    RMAF.partitionCheck (RMAF.leaves t) F = true →\n      RMAF.partitionCheck (RMAF.leaves t) Q = true →\n        RestrictionBridge.Refines F Q →\n          U ∈ Q → RMAF.partitionCheck (RMAF.leaves u) (RestrictionBridge.family U F) = true"
+ROW	pilot	RestrictionBridge.unique_label_owner	StatePartition	theorem	propext,Quot.sound	StatePartition	direct
+TYPE	pilot	RestrictionBridge.unique_label_owner	"∀ (Q : List (List Nat)) (x : Nat),\n  List.count x Q.flatten = 1 → ∃ U, U ∈ Q ∧ x ∈ U ∧ List.count U Q = 1 ∧ ∀ (V : List Nat), V ∈ Q → x ∈ V → V = U"
+ROW	pilot	_private.Forward.0.ForestState.labels.match_1.eq_1	Forward	theorem		Forward	direct
+TYPE	pilot	_private.Forward.0.ForestState.labels.match_1.eq_1	"∀ (motive : Option RMAF.Tree → Sort u_1) (h_1 : Unit → motive none) (h_2 : (t : RMAF.Tree) → motive (some t)),\n  (match none with\n    | none => h_1 ()\n    | some t => h_2 t) =\n    h_1 ()"
+ROW	pilot	RMAF.restrictionAgrees.match_1	RMAF	definition	propext	RMAF	direct
+ROW	pilot	RMAF.assignments.match_1	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.agrees_block_topology	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.agrees_block_topology	"∀ (t : RMAF.Tree) (ss : List RMAF.Tree) (F : List (List Nat)),\n  ForestState.agrees (some t) ss F = true →\n    ∀ (s : RMAF.Tree), s ∈ ss → ∀ (B : List Nat), B ∈ F → B ⊆ RMAF.leaves s → RMAF.restrictionAgrees t s B = true"
+ROW	pilot	RestrictionBridge.join.eq_2	StateRestriction	theorem		StateRestriction	direct
+TYPE	pilot	RestrictionBridge.join.eq_2	"∀ (a : RMAF.Tree), RestrictionBridge.join (some a) none = some a"
+ROW	pilot	ForestState.checked_flatten_nodup._proof_1_2	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.checked_flatten_nodup._proof_1_2	"¬0 ≤ 1 → False"
+ROW	pilot	ForestState.contract	State	definition		State	direct
+ROW	pilot	ForestState.cherry._unsafe_rec	State	definition		State	direct
+ROW	pilot	_private.CherryTopology.0.RMAF.restrictionAgrees.match_1.splitter	CherryTopology	definition	propext	CherryTopology	direct
+ROW	pilot	ForestState.proper_source_nodup	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.proper_source_nodup	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree),\n  ForestState.proper T ss = true → ∀ (s : RMAF.Tree), s ∈ ss → (RMAF.leaves s).Nodup"
+ROW	pilot	RMAF.instReprTree	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.flatten_count_erase._proof_1_2	Removal	theorem	propext,Quot.sound	Removal	direct
+TYPE	pilot	ForestState.flatten_count_erase._proof_1_2	"∀ (B : List Nat) (x : Nat) (C : List Nat) (F : List (List Nat)),\n  List.count x (F.erase B).flatten + List.count x B = List.count x F.flatten →\n    ¬List.count x C + List.count x (F.erase B).flatten + List.count x B = List.count x C + List.count x F.flatten →\n      False"
+ROW	pilot	_private.RMAF.0.RMAF.best.match_1.splitter	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.contracted_forest_count	BlockPartition	theorem	propext,Classical.choice,Quot.sound	BlockPartition	direct
+TYPE	pilot	ForestState.contracted_forest_count	"∀ (F : List (List Nat)) (a b z x : Nat),\n  (∀ (B : List Nat), B ∈ F → B.Nodup) →\n    (∀ (B : List Nat), B ∈ F → ¬z ∈ B) →\n      ForestState.Coalesced F a b →\n        List.count x (List.map (ForestState.contractBlock a b z) F).flatten =\n          if x = z then List.count a F.flatten else if x = a ∨ x = b then 0 else List.count x F.flatten"
+ROW	pilot	RMAF.Instance.mk.sizeOf_spec	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.Instance.mk.sizeOf_spec	"∀ (n : Nat) (left right : RMAF.Tree) (labels_left : (RMAF.leaves left).Perm (List.range n))\n  (labels_right : (RMAF.leaves right).Perm (List.range n)),\n  sizeOf { n := n, left := left, right := right, labels_left := labels_left, labels_right := labels_right } =\n    1 + sizeOf n + sizeOf left + sizeOf right + sizeOf labels_left + sizeOf labels_right"
+ROW	pilot	ForestState.contract_expandBlock_mask	Expansion	theorem	propext,Classical.choice,Quot.sound	Expansion	direct
+TYPE	pilot	ForestState.contract_expandBlock_mask	"∀ (C : List Nat) (a b z : Nat),\n  ¬a ∈ C →\n    ¬b ∈ C →\n      z ≠ a →\n        z ≠ b →\n          ∀ (x : Nat), (ForestState.contractBlock a b z (ForestState.expandBlock a b z C)).contains x = C.contains x"
+ROW	pilot	RestrictionBridge.restriction_exists	StateRestriction	theorem	propext,Quot.sound	StateRestriction	direct
+TYPE	pilot	RestrictionBridge.restriction_exists	"∀ (t : RMAF.Tree) (U : List Nat), (∃ x, x ∈ RMAF.leaves t ∧ x ∈ U) → ∃ u, RMAF.restrict U t = some u"
+ROW	pilot	RMAF.rootedSpan.eq_2	StateEmbedding	theorem		StateEmbedding	direct
+TYPE	pilot	RMAF.rootedSpan.eq_2	"∀ (selected : List Nat) (a a_1 : RMAF.Tree),\n  RMAF.rootedSpan selected (a.node a_1) =\n    if ((RMAF.rootedSpan selected a).isEmpty && (RMAF.rootedSpan selected a_1).isEmpty) = true then []\n    else\n      [] ::\n        (RMAF.prependSide false (RMAF.rootedSpan selected a) ++ RMAF.prependSide true (RMAF.rootedSpan selected a_1))"
+ROW	pilot	RMAF.restrict.eq_1	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.restrict.eq_1	"∀ (selected : List Nat) (a : Nat),\n  RMAF.restrict selected (RMAF.Tree.leaf a) = if selected.contains a = true then some (RMAF.Tree.leaf a) else none"
+ROW	pilot	RestrictionBridge.mem_family._simp_1	StatePartition	theorem	propext,Quot.sound	StatePartition	direct
+TYPE	pilot	RestrictionBridge.mem_family._simp_1	"∀ (B U : List Nat) (F : List (List Nat)), (B ∈ RestrictionBridge.family U F) = (B ∈ F ∧ B ⊆ U)"
+ROW	pilot	ForestState.contract._unsafe_rec	State	definition		State	direct
+ROW	pilot	ForestState.contractBlock_z	QuotientGeometry	theorem	propext,Quot.sound	QuotientGeometry	direct
+TYPE	pilot	ForestState.contractBlock_z	"∀ (B : List Nat) (a b z : Nat), ¬z ∈ B → (z ∈ ForestState.contractBlock a b z B ↔ a ∈ B)"
+ROW	pilot	completion_consumer_8	CompletionConsumers	theorem	propext,Classical.choice,Quot.sound	CompletionConsumers	direct
+TYPE	pilot	completion_consumer_8	"∀ (q : Nat),\n  ForestState.feasible (some RootCherry) [RootCherry] q ↔\n    ForestState.feasible (some (ForestState.contract 17 31 89 RootCherry)) [ForestState.contract 17 31 89 RootCherry] q"
+ROW	pilot	ForestState.CherryAt.below.left	CherryGraph	constructor		CherryGraph	direct
+ROW	pilot	_private.StateRestriction.0.RMAF.restrictionAgrees.match_1.eq_2	StateRestriction	theorem	propext	StateRestriction	direct
+TYPE	pilot	_private.StateRestriction.0.RMAF.restrictionAgrees.match_1.eq_2	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (x x_1 : Option RMAF.Tree)\n  (h_1 : (s v : RMAF.Tree) → motive (some s) (some v)) (h_2 : (x x_2 : Option RMAF.Tree) → motive x x_2),\n  (∀ (s v : RMAF.Tree), x = some s → x_1 = some v → False) →\n    (match x, x_1 with\n      | some s, some v => h_1 s v\n      | x, x_3 => h_2 x x_3) =\n      h_2 x x_1"
+ROW	pilot	RMAF.rootedSpan._unsafe_rec	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.singleton_additional_cost	Singleton	theorem	propext,Classical.choice,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.singleton_additional_cost	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree) (F : List (List Nat)) (a : Nat),\n  ForestState.agrees T ss F = true →\n    RMAF.Tree.leaf a ∈ ss →\n      ForestState.additionalCost (ForestState.cleanupSources ss a) (ForestState.cleanupForest F a) =\n        ForestState.additionalCost ss F"
+ROW	pilot	RMAF.Instance.labels_right	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.Instance.labels_right	"∀ (self : RMAF.Instance), (RMAF.leaves self.right).Perm (List.range self.n)"
+ROW	pilot	ForestState.agrees_parts	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.agrees_parts	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree) (F : List (List Nat)),\n  ForestState.agrees T ss F = true →\n    ForestState.proper T ss = true ∧\n      RMAF.partitionCheck (ForestState.labels T) F = true ∧\n        (∀ (B : List Nat), B ∈ F → ∃ s, s ∈ ss ∧ B ⊆ RMAF.leaves s) ∧\n          ForestState.targetEmbeddings T F = true ∧ ∀ (s : RMAF.Tree), s ∈ ss → ForestState.sourceCheck T F s = true"
+ROW	pilot	ForestState.contract_preserves_iso._simp_1_1	QuotientTopology	theorem	propext	QuotientTopology	direct
+TYPE	pilot	ForestState.contract_preserves_iso._simp_1_1	"∀ {α : Type u_1} [inst : BEq α] [LawfulBEq α] {a b : α}, ((a == b) = true) = (a = b)"
+ROW	pilot	RestrictionBridge.family.eq_1	StatePartition	theorem		StatePartition	direct
+TYPE	pilot	RestrictionBridge.family.eq_1	"∀ (U : List Nat) (F : List (List Nat)),\n  RestrictionBridge.family U F = List.filter (fun x => RestrictionBridge.contained x U) F"
+ROW	pilot	RestrictionBridge.root_not_prepend._simp_1	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.root_not_prepend._simp_1	"∀ (s : Bool) (a : List RMAF.Vertex), ([] ∈ RMAF.prependSide s a) = False"
+ROW	pilot	ForestState.actual_separated_cherry_singleton	CherryGraph	theorem	propext,Classical.choice,Quot.sound	CherryGraph	direct
+TYPE	pilot	ForestState.actual_separated_cherry_singleton	"∀ (t : RMAF.Tree) (ss : List RMAF.Tree) (F : List (List Nat)) (a b : Nat),\n  ForestState.agrees (some t) ss F = true →\n    ForestState.cherry a b t = true →\n      ∀ (A B : List Nat), A ∈ F → B ∈ F → a ∈ A → b ∈ B → ¬b ∈ A → ¬a ∈ B → A = [a] ∨ B = [b]"
+ROW	pilot	RMAF.assignments_complete._simp_1_4	RMAF	theorem	propext,Quot.sound	RMAF	direct
+TYPE	pilot	RMAF.assignments_complete._simp_1_4	"∀ {α : Type u_1} {β : Type u_2} {f : α → List β} {b : β} {l : List α}, (b ∈ List.flatMap f l) = ∃ a, a ∈ l ∧ b ∈ f a"
+ROW	pilot	ForestState.nodup_count_one	BlockPartition	theorem	propext,Quot.sound	BlockPartition	direct
+TYPE	pilot	ForestState.nodup_count_one	"∀ (B : List Nat), B.Nodup → ∀ (x : Nat), x ∈ B → List.count x B = 1"
+ROW	pilot	_private.RMAF.0.RMAF.best.match_3.eq_1	RMAF	theorem		RMAF	direct
+TYPE	pilot	_private.RMAF.0.RMAF.best.match_3.eq_1	"∀ {α : Type} (motive : List α → Sort u_1) (h_1 : Unit → motive []) (h_2 : (a : α) → (as : List α) → motive (a :: as)),\n  (match [] with\n    | [] => h_1 ()\n    | a :: as => h_2 a as) =\n    h_1 ()"
+ROW	pilot	_private.Forward.0.RMAF.restrictionAgrees.match_1.eq_1	Forward	theorem	propext	Forward	direct
+TYPE	pilot	_private.Forward.0.RMAF.restrictionAgrees.match_1.eq_1	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (s v : RMAF.Tree)\n  (h_1 : (s v : RMAF.Tree) → motive (some s) (some v)) (h_2 : (x x_1 : Option RMAF.Tree) → motive x x_1),\n  (match some s, some v with\n    | some s, some v => h_1 s v\n    | x, x_1 => h_2 x x_1) =\n    h_1 s v"
+ROW	pilot	RMAF.instDecidableEqTree.decEq._proof_1	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.instDecidableEqTree.decEq._proof_1	"∀ (a : Nat), RMAF.Tree.leaf a = RMAF.Tree.leaf a"
+ROW	pilot	RMAF.sameShape._f	RMAF	definition	propext	RMAF	direct
+ROW	pilot	_private.CherryTopology.0.RMAF.restrictionAgrees.match_1.splitter._sparseCasesOn_2	CherryTopology	definition	propext	CherryTopology	direct
+ROW	pilot	ForestState.targetEmbeddings	State	definition		State	direct
+ROW	pilot	ForestState.cleanup_labels	Removal	theorem	propext,Classical.choice,Quot.sound	Removal	direct
+TYPE	pilot	ForestState.cleanup_labels	"∀ (T : Option RMAF.Tree) (a : Nat),\n  (ForestState.labels T).Nodup → ForestState.labels (ForestState.cleanupTarget T a) = (ForestState.labels T).erase a"
+ROW	pilot	ForestState.expandBlock_fresh._simp_1_1	Expansion	theorem	propext,Classical.choice,Quot.sound	Expansion	direct
+TYPE	pilot	ForestState.expandBlock_fresh._simp_1_1	"∀ (C : List Nat) (a b z x : Nat), (x ∈ ForestState.expandBlock a b z C) = (z ∈ C ∧ (x = a ∨ x = b) ∨ x ∈ C ∧ x ≠ z)"
+ROW	pilot	RMAF.assignments.eq_2	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.assignments.eq_2	"∀ (tags n : Nat),\n  RMAF.assignments n.succ tags =\n    List.flatMap (fun tag => List.map (fun x => tag :: x) (RMAF.assignments n tags)) (List.range tags)"
+ROW	pilot	RestrictionBridge.restrict_nested	StateRestriction	theorem	propext,Quot.sound	StateRestriction	direct
+TYPE	pilot	RestrictionBridge.restrict_nested	"∀ (t : RMAF.Tree) (U B : List Nat), B ⊆ U → (RMAF.restrict U t).bind (RMAF.restrict B) = RMAF.restrict B t"
+ROW	pilot	RMAF.sameShape._sparseCasesOn_2	RMAF	definition	propext	RMAF	direct
+ROW	pilot	RestrictionBridge.restrict_compose_mask	StateRestriction	theorem	propext,Quot.sound	StateRestriction	direct
+TYPE	pilot	RestrictionBridge.restrict_compose_mask	"∀ (t : RMAF.Tree) (U B C : List Nat),\n  (∀ (x : Nat), C.contains x = (U.contains x && B.contains x)) →\n    (RMAF.restrict U t).bind (RMAF.restrict B) = RMAF.restrict C t"
+ROW	pilot	RMAF.disjointVertices	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.Instance.mk._flat_ctor	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.OptionIso._sparseCasesOn_1.else_eq	CherryTopology	theorem	propext	CherryTopology	direct
+TYPE	pilot	ForestState.OptionIso._sparseCasesOn_1.else_eq	"∀ {α : Type u} {motive : Option α → Sort u_1} (t : Option α) (none : motive none)\n  («else» : Nat.hasNotBit 1 t.ctorIdx → motive t) (h : Nat.hasNotBit 1 t.ctorIdx),\n  ForestState.OptionIso._sparseCasesOn_1 t none «else» = «else» h"
+ROW	pilot	ForestState.partition_by_counts._simp_1_1	BlockPartition	theorem	propext,Quot.sound	BlockPartition	direct
+TYPE	pilot	ForestState.partition_by_counts._simp_1_1	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	ForestState.cherry._sunfold	State	definition		State	direct
+ROW	pilot	ForestState.CherryAt.symm	CherryGraph	theorem		CherryGraph	direct
+TYPE	pilot	ForestState.CherryAt.symm	"∀ {t : RMAF.Tree} {a b : Nat} {w : RMAF.Vertex}, ForestState.CherryAt a b t w → ForestState.CherryAt b a t w"
+ROW	pilot	RMAF.instDecidableEqTree.decEq._proof_2	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.instDecidableEqTree.decEq._proof_2	"∀ (a b : Nat), ¬a = b → RMAF.Tree.leaf a = RMAF.Tree.leaf b → False"
+ROW	pilot	_private.StateContract.0.RMAF.restrictionAgrees.match_1.eq_2	StateContract	theorem	propext	StateContract	direct
+TYPE	pilot	_private.StateContract.0.RMAF.restrictionAgrees.match_1.eq_2	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (x x_1 : Option RMAF.Tree)\n  (h_1 : (s v : RMAF.Tree) → motive (some s) (some v)) (h_2 : (x x_2 : Option RMAF.Tree) → motive x x_2),\n  (∀ (s v : RMAF.Tree), x = some s → x_1 = some v → False) →\n    (match x, x_1 with\n      | some s, some v => h_1 s v\n      | x, x_3 => h_2 x x_3) =\n      h_2 x x_1"
+ROW	pilot	ForestState.cherry_at_exists._simp_1_4	CherryGraph	theorem	propext	CherryGraph	direct
+TYPE	pilot	ForestState.cherry_at_exists._simp_1_4	"∀ {α : Type u_1} [inst : BEq α] [LawfulBEq α] {a b : α}, ((a == b) = true) = (a = b)"
+ROW	pilot	ForestState.expandBlock_saturated	Expansion	theorem	propext,Classical.choice,Quot.sound	Expansion	direct
+TYPE	pilot	ForestState.expandBlock_saturated	"∀ (C : List Nat) (a b z : Nat),\n  ¬a ∈ C → ¬b ∈ C → (a ∈ ForestState.expandBlock a b z C ↔ b ∈ ForestState.expandBlock a b z C)"
+ROW	pilot	RMAF.leaves.eq_1	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.leaves.eq_1	"∀ (a : Nat), RMAF.leaves (RMAF.Tree.leaf a) = [a]"
+ROW	pilot	_private.RMAF.0.RMAF.restrict.match_1.eq_4	RMAF	theorem		RMAF	direct
+TYPE	pilot	_private.RMAF.0.RMAF.restrict.match_1.eq_4	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (a b : RMAF.Tree) (h_1 : Unit → motive none none)\n  (h_2 : (a : RMAF.Tree) → motive (some a) none) (h_3 : (b : RMAF.Tree) → motive none (some b))\n  (h_4 : (a b : RMAF.Tree) → motive (some a) (some b)),\n  (match some a, some b with\n    | none, none => h_1 ()\n    | some a, none => h_2 a\n    | none, some b => h_3 b\n    | some a, some b => h_4 a b) =\n    h_4 a b"
+ROW	pilot	_private.StateRestriction.0.RMAF.restrictionAgrees.match_1.splitter	StateRestriction	definition	propext	StateRestriction	direct
+ROW	pilot	RMAF.instReprTree.repr	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.pairwise_erase._simp_1_1	Forward	theorem	propext,Quot.sound	Forward	direct
+TYPE	pilot	ForestState.pairwise_erase._simp_1_1	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	completion_consumer_5	CompletionConsumers	theorem	propext,Classical.choice,Quot.sound	CompletionConsumers	direct
+TYPE	pilot	completion_consumer_5	"ForestState.agrees (some LeftCherry) [RightCherry] (List.map (ForestState.expandBlock 17 31 89) [[89, 47], [59]]) = true"
+ROW	pilot	ForestState.targetEmbeddings.match_1	State	definition		State	direct
+ROW	pilot	RMAF.Instance.mk.inj	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.Instance.mk.inj	"∀ {n : Nat} {left right : RMAF.Tree} {labels_left : (RMAF.leaves left).Perm (List.range n)}\n  {labels_right : (RMAF.leaves right).Perm (List.range n)} {n_1 : Nat} {left_1 right_1 : RMAF.Tree}\n  {labels_left_1 : (RMAF.leaves left_1).Perm (List.range n_1)}\n  {labels_right_1 : (RMAF.leaves right_1).Perm (List.range n_1)},\n  { n := n, left := left, right := right, labels_left := labels_left, labels_right := labels_right } =\n      { n := n_1, left := left_1, right := right_1, labels_left := labels_left_1, labels_right := labels_right_1 } →\n    n = n_1 ∧ left = left_1 ∧ right = right_1"
+ROW	pilot	ForestState.map_cleanup_sources._simp_1_2	Removal	theorem	propext,Quot.sound	Removal	direct
+TYPE	pilot	ForestState.map_cleanup_sources._simp_1_2	"∀ (s : RMAF.Tree) (a : Nat), (RMAF.leaves s = [a]) = (s = RMAF.Tree.leaf a)"
+ROW	pilot	ForestState.CherryAt.right	CherryGraph	constructor		CherryGraph	direct
+ROW	pilot	ForestState.CherryAt.quotient_geometry	QuotientGeometry	theorem	propext,Classical.choice,Quot.sound	QuotientGeometry	direct
+TYPE	pilot	ForestState.CherryAt.quotient_geometry	"∀ {t : RMAF.Tree} {a b : Nat} {w : RMAF.Vertex},\n  ForestState.CherryAt a b t w →\n    ∀ (z : Nat) (B C : List Nat),\n      (RMAF.leaves t).Nodup →\n        ¬z ∈ RMAF.leaves t →\n          ¬z ∈ B →\n            ¬z ∈ C →\n              (a ∈ B ↔ b ∈ B) →\n                (a ∈ C ↔ b ∈ C) →\n                  (RMAF.rootedSpan B t).isEmpty =\n                      (RMAF.rootedSpan (ForestState.contractBlock a b z B) (ForestState.contract a b z t)).isEmpty ∧\n                    (RMAF.rootedSpan C t).isEmpty =\n                        (RMAF.rootedSpan (ForestState.contractBlock a b z C) (ForestState.contract a b z t)).isEmpty ∧\n                      (RestrictionBridge.Clear (RMAF.rootedSpan B t) (RMAF.minimalVertices C t) ↔\n                          RestrictionBridge.Clear\n                            (RMAF.rootedSpan (ForestState.contractBlock a b z B) (ForestState.contract a b z t))\n                            (RMAF.minimalVertices (ForestState.contractBlock a b z C) (ForestState.contract a b z t))) ∧\n                        (RestrictionBridge.Clear (RMAF.rootedSpan C t) (RMAF.minimalVertices B t) ↔\n                            RestrictionBridge.Clear\n                              (RMAF.rootedSpan (ForestState.contractBlock a b z C) (ForestState.contract a b z t))\n                              (RMAF.minimalVertices (ForestState.contractBlock a b z B)\n                                (ForestState.contract a b z t))) ∧\n                          (RestrictionBridge.Clear (RMAF.minimalVertices B t) (RMAF.minimalVertices C t) ↔\n                            RestrictionBridge.Clear\n                              (RMAF.minimalVertices (ForestState.contractBlock a b z B) (ForestState.contract a b z t))\n                              (RMAF.minimalVertices (ForestState.contractBlock a b z C) (ForestState.contract a b z t)))"
+ROW	pilot	ForestState.contract_absent	Contraction	theorem	propext	Contraction	direct
+TYPE	pilot	ForestState.contract_absent	"∀ (t : RMAF.Tree) (a b z : Nat), ¬a ∈ RMAF.leaves t → ForestState.contract a b z t = t"
+ROW	pilot	ForestState.CherryAt.contract_length	Contraction	theorem	propext,Quot.sound	Contraction	direct
+TYPE	pilot	ForestState.CherryAt.contract_length	"∀ {t : RMAF.Tree} {a b : Nat} {w : RMAF.Vertex},\n  ForestState.CherryAt a b t w →\n    ∀ (z : Nat),\n      (RMAF.leaves t).Nodup → (RMAF.leaves (ForestState.contract a b z t)).length + 1 = (RMAF.leaves t).length"
+ROW	pilot	ForestState.CherryAt.below.straight	CherryGraph	constructor		CherryGraph	direct
+ROW	pilot	ForestState.node_selection_clear_congr._simp_1_1	Endpoint	theorem	propext,Classical.choice,Quot.sound	Endpoint	direct
+TYPE	pilot	ForestState.node_selection_clear_congr._simp_1_1	"∀ (B : List Nat) (t : RMAF.Tree), ([] ∈ RMAF.rootedSpan B t) = ((RMAF.rootedSpan B t).isEmpty = false)"
+ROW	pilot	ForestState.expanded_not_endpoint._simp_1_1	Contraction	theorem	propext	Contraction	direct
+TYPE	pilot	ForestState.expanded_not_endpoint._simp_1_1	"∀ {α : Sort u_1} {a b : α}, (a = b) = (b = a)"
+ROW	pilot	ForestState.contract_preserves_iso	QuotientTopology	theorem	propext	QuotientTopology	direct
+TYPE	pilot	ForestState.contract_preserves_iso	"∀ (a b z : Nat) {t u : RMAF.Tree},\n  RMAF.RootedIso t u → RMAF.RootedIso (ForestState.contract a b z t) (ForestState.contract a b z u)"
+ROW	pilot	ForestState.CherryAt.expand_contract_iso	Contraction	theorem	propext,Classical.choice,Quot.sound	Contraction	direct
+TYPE	pilot	ForestState.CherryAt.expand_contract_iso	"∀ {t : RMAF.Tree} {a b : Nat} {w : RMAF.Vertex},\n  ForestState.CherryAt a b t w →\n    ∀ (z : Nat),\n      (RMAF.leaves t).Nodup →\n        ¬z ∈ RMAF.leaves t → RMAF.RootedIso (ForestState.expand a b z (ForestState.contract a b z t)) t"
+ROW	pilot	RestrictionBridge.clear_cons_right	StateEmbedding	theorem	propext	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_cons_right	"∀ (v : RMAF.Vertex) (a b : List RMAF.Vertex), RestrictionBridge.Clear a (v :: b) ↔ ¬v ∈ a ∧ RestrictionBridge.Clear a b"
+ROW	pilot	_private.StateEmbedding.0.RMAF.instReprTree.repr.match_1.splitter	StateEmbedding	definition		StateEmbedding	direct
+ROW	pilot	RMAF.restrict._sunfold	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.quotient_topology_reflect	Expansion	theorem	propext,Classical.choice,Quot.sound	Expansion	direct
+TYPE	pilot	ForestState.quotient_topology_reflect	"∀ (t s : RMAF.Tree) (B : List Nat) (a b z : Nat),\n  ForestState.QuotientShape a b t →\n    ForestState.QuotientShape a b s →\n      (RMAF.leaves t).Nodup →\n        (RMAF.leaves s).Nodup →\n          ¬z ∈ RMAF.leaves t →\n            ¬z ∈ RMAF.leaves s →\n              ¬z ∈ B →\n                (a ∈ B ↔ b ∈ B) →\n                  RMAF.restrictionAgrees (ForestState.contract a b z t) (ForestState.contract a b z s)\n                        (ForestState.contractBlock a b z B) =\n                      true →\n                    RMAF.restrictionAgrees t s B = true"
+ROW	pilot	RMAF.best.match_1	RMAF	definition		RMAF	direct
+ROW	pilot	completion_consumer_2	CompletionConsumers	theorem	propext,Classical.choice,Quot.sound	CompletionConsumers	direct
+TYPE	pilot	completion_consumer_2	"∀ (q : Nat),\n  ForestState.feasible (some LeftCherry) [RootCherry, (RMAF.Tree.leaf 47).node (RMAF.Tree.leaf 59)] q ↔\n    ForestState.feasible (some (ForestState.contract 17 31 89 LeftCherry))\n      (List.map (ForestState.contract 17 31 89) [RootCherry, (RMAF.Tree.leaf 47).node (RMAF.Tree.leaf 59)]) q"
+ROW	pilot	ForestState.contract_expand_inverse	Contraction	theorem	propext,Classical.choice,Quot.sound	Contraction	direct
+TYPE	pilot	ForestState.contract_expand_inverse	"∀ (t : RMAF.Tree) (a b z : Nat),\n  ¬a ∈ RMAF.leaves t → ¬b ∈ RMAF.leaves t → ForestState.contract a b z (ForestState.expand a b z t) = t"
+ROW	pilot	RMAF.Tree.leaf.noConfusion	RMAF	definition		RMAF	direct
+ROW	pilot	_private.CherryGraph.0.ForestState.cherry.match_1.eq_2	CherryGraph	theorem		CherryGraph	direct
+TYPE	pilot	_private.CherryGraph.0.ForestState.cherry.match_1.eq_2	"∀ (motive : RMAF.Tree → Sort u_1) (l r : RMAF.Tree) (h_1 : (a : Nat) → motive (RMAF.Tree.leaf a))\n  (h_2 : (l r : RMAF.Tree) → motive (l.node r)),\n  (match l.node r with\n    | RMAF.Tree.leaf a => h_1 a\n    | l.node r => h_2 l r) =\n    h_2 l r"
+ROW	pilot	ForestState.agrees_parts._simp_1_4	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.agrees_parts._simp_1_4	"∀ (B U : List Nat), (RestrictionBridge.contained B U = true) = (B ⊆ U)"
+ROW	pilot	RMAF.best.match_3	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.assignments.eq_def	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.assignments.eq_def	"∀ (length tags : Nat),\n  RMAF.assignments length tags =\n    match length with\n    | 0 => [[]]\n    | n.succ => List.flatMap (fun tag => List.map (fun x => tag :: x) (RMAF.assignments n tags)) (List.range tags)"
+ROW	pilot	ForestState.tree_of_singleton_leaves	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.tree_of_singleton_leaves	"∀ (s : RMAF.Tree) (a : Nat), RMAF.leaves s = [a] → s = RMAF.Tree.leaf a"
+ROW	pilot	RestrictionBridge.join.match_1	StateRestriction	definition		StateRestriction	direct
+ROW	pilot	RMAF.minimalVertices._f	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.Tree.noConfusionType	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.OptionIso.eq_2	CherryTopology	theorem	propext	CherryTopology	direct
+TYPE	pilot	ForestState.OptionIso.eq_2	"∀ (t u : RMAF.Tree), ForestState.OptionIso (some t) (some u) = RMAF.RootedIso t u"
+ROW	pilot	RestrictionBridge.empty_selection	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.empty_selection	"∀ (B U : List Nat) (t : RMAF.Tree),\n  B ⊆ U → RMAF.restrict U t = none → RMAF.rootedSpan B t = [] ∧ RMAF.minimalVertices B t = []"
+ROW	pilot	ForestState.flatten_count_erase._simp_1_1	Removal	theorem	propext	Removal	direct
+TYPE	pilot	ForestState.flatten_count_erase._simp_1_1	"∀ {α : Type u_1} [inst : BEq α] [LawfulBEq α] {a b : α}, ((a == b) = false) = (a ≠ b)"
+ROW	pilot	RestrictionBridge.clear_prepend_same._simp_1_3	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_prepend_same._simp_1_3	"∀ {α : Type u_1} {β : Type u_2} {b : β} {f : α → β} {l : List α}, (b ∈ List.map f l) = ∃ a, a ∈ l ∧ f a = b"
+ROW	pilot	RMAF.sameShape.match_1	RMAF	definition	propext	RMAF	direct
+ROW	pilot	_private.Forward.0.ForestState.targetEmbeddings.match_1.eq_1	Forward	theorem		Forward	direct
+TYPE	pilot	_private.Forward.0.ForestState.targetEmbeddings.match_1.eq_1	"∀ (motive : Option RMAF.Tree → List (List Nat) → Sort u_1) (F : List (List Nat))\n  (h_1 : (F : List (List Nat)) → motive none F) (h_2 : (t : RMAF.Tree) → (F : List (List Nat)) → motive (some t) F),\n  (match none, F with\n    | none, F => h_1 F\n    | some t, F => h_2 t F) =\n    h_1 F"
+ROW	pilot	ForestState.singleton_clear._proof_1_1	LeafClear	theorem	propext,Quot.sound	LeafClear	direct
+TYPE	pilot	ForestState.singleton_clear._proof_1_1	"∀ (a : Nat) (l r : RMAF.Tree),\n  0 < List.count a (RMAF.leaves l) →\n    0 < List.count a (RMAF.leaves r) → List.count a (RMAF.leaves l) + List.count a (RMAF.leaves r) ≤ 1 → False"
+ROW	pilot	ForestState.contracted_mask_absent	QuotientGeometry	theorem	propext,Quot.sound	QuotientGeometry	direct
+TYPE	pilot	ForestState.contracted_mask_absent	"∀ (t : RMAF.Tree) (B : List Nat) (a b z : Nat),\n  ¬a ∈ RMAF.leaves t →\n    ¬b ∈ RMAF.leaves t →\n      ¬z ∈ RMAF.leaves t →\n        ∀ (x : Nat), x ∈ RMAF.leaves t → B.contains x = (ForestState.contractBlock a b z B).contains x"
+ROW	pilot	ForestState.expand_absent	CherryTopology	theorem	propext,Quot.sound	CherryTopology	direct
+TYPE	pilot	ForestState.expand_absent	"∀ (a b z : Nat) (t : RMAF.Tree), ¬z ∈ RMAF.leaves t → ForestState.expand a b z t = t"
+ROW	pilot	ForestState.common_cherry_state_strict_decrease	StateExpand	theorem	propext,Quot.sound	StateExpand	direct
+TYPE	pilot	ForestState.common_cherry_state_strict_decrease	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree) (a b z : Nat),\n  ForestState.cherryReady T ss a b z = true →\n    (ForestState.labels (Option.map (ForestState.contract a b z) T)).length + 1 = (ForestState.labels T).length"
+ROW	pilot	RMAF.rootedSpan	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.sameShape._sparseCasesOn_2.else_eq	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	RMAF.sameShape._sparseCasesOn_2.else_eq	"∀ {motive : RMAF.Tree → Sort u} (t : RMAF.Tree) (node : (a a_1 : RMAF.Tree) → motive (a.node a_1))\n  («else» : Nat.hasNotBit 2 t.ctorIdx → motive t) (h : Nat.hasNotBit 2 t.ctorIdx),\n  RMAF.sameShape._sparseCasesOn_2 t node «else» = «else» h"
+ROW	pilot	ForestState.checked_forest_nodup._proof_1_2	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.checked_forest_nodup._proof_1_2	"¬0 ≤ 1 → False"
+ROW	pilot	RMAF.instDecidableEqTree.decEq._unsafe_rec	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.source_label_owner	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.source_label_owner	"∀ (ss : List RMAF.Tree) (x : Nat),\n  List.count x (List.map RMAF.leaves ss).flatten = 1 →\n    ∀ (s u : RMAF.Tree), s ∈ ss → u ∈ ss → x ∈ RMAF.leaves s → x ∈ RMAF.leaves u → s = u"
+ROW	pilot	RMAF.restrict.match_1	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.cherry	State	definition		State	direct
+ROW	pilot	ForestState.initial_state_agreement_iff._simp_1_5	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.initial_state_agreement_iff._simp_1_5	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	RMAF.leaves._f	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.remaining_sources_omit._proof_1_1	Forward	theorem	propext,Quot.sound	Forward	direct
+TYPE	pilot	ForestState.remaining_sources_omit._proof_1_1	"∀ (ss : List RMAF.Tree) (a : Nat),\n  List.count a (List.map RMAF.leaves ss).flatten = 1 →\n    0 < List.count a (List.map RMAF.leaves (ForestState.cleanupSources ss a)).flatten →\n      List.count a (List.map RMAF.leaves (ForestState.cleanupSources ss a)).flatten + 1 =\n          List.count a (List.map RMAF.leaves ss).flatten →\n        False"
+ROW	pilot	_private.RMAF.0.RMAF.best.match_3.splitter	RMAF	definition		RMAF	direct
+ROW	pilot	RestrictionBridge.span_root	StateEmbedding	theorem	propext,Classical.choice,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.span_root	"∀ (B : List Nat) (t : RMAF.Tree), [] ∈ RMAF.rootedSpan B t ↔ (RMAF.rootedSpan B t).isEmpty = false"
+ROW	pilot	ForestState.quotient_tree_clear	StateContract	theorem	propext,Classical.choice,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.quotient_tree_clear	"∀ (s : RMAF.Tree) (B C : List Nat) (a b z : Nat),\n  ForestState.QuotientShape a b s →\n    (RMAF.leaves s).Nodup →\n      ¬z ∈ RMAF.leaves s →\n        ¬z ∈ B →\n          ¬z ∈ C →\n            (a ∈ B ↔ b ∈ B) →\n              (a ∈ C ↔ b ∈ C) →\n                (RMAF.disjointVertices (RMAF.minimalVertices B s) (RMAF.minimalVertices C s) = true ↔\n                  RMAF.disjointVertices\n                      (RMAF.minimalVertices (ForestState.contractBlock a b z B) (ForestState.contract a b z s))\n                      (RMAF.minimalVertices (ForestState.contractBlock a b z C) (ForestState.contract a b z s)) =\n                    true)"
+ROW	pilot	RMAF.restrictionAgrees	RMAF	definition	propext	RMAF	direct
+ROW	pilot	ForestState.node_quotient_clear_congr._simp_1_1	QuotientGeometry	theorem	propext,Classical.choice,Quot.sound	QuotientGeometry	direct
+TYPE	pilot	ForestState.node_quotient_clear_congr._simp_1_1	"∀ (B : List Nat) (t : RMAF.Tree), ([] ∈ RMAF.rootedSpan B t) = ((RMAF.rootedSpan B t).isEmpty = false)"
+ROW	pilot	RMAF.assignments	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.agrees_from_checks._simp_1_2	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.agrees_from_checks._simp_1_2	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.any p = true) = ∃ x, x ∈ l ∧ p x = true"
+ROW	pilot	ForestState.targetAgrees.eq_1	Singleton	theorem	propext	Singleton	direct
+TYPE	pilot	ForestState.targetAgrees.eq_1	"∀ (x : RMAF.Tree) (x_1 : List Nat), ForestState.targetAgrees none x x_1 = false"
+ROW	pilot	ForestState.contractBlock_count	BlockPartition	theorem	propext,Classical.choice,Quot.sound	BlockPartition	direct
+TYPE	pilot	ForestState.contractBlock_count	"∀ (B : List Nat) (a b z x : Nat),\n  B.Nodup →\n    ¬z ∈ B →\n      (a ∈ B ↔ b ∈ B) →\n        List.count x (ForestState.contractBlock a b z B) =\n          if x = z then List.count a B else if x = a ∨ x = b then 0 else List.count x B"
+ROW	pilot	ForestState.family_erase_absent._simp_1_1	Forward	theorem	propext	Forward	direct
+TYPE	pilot	ForestState.family_erase_absent._simp_1_1	"∀ {α : Type u_1} [inst : BEq α] [LawfulBEq α] {a b : α}, ((a == b) = true) = (a = b)"
+ROW	pilot	ForestState.reassignment_partition._simp_1_1	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.reassignment_partition._simp_1_1	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	ForestState.contractBlock.eq_1	BlockPartition	theorem		BlockPartition	direct
+TYPE	pilot	ForestState.contractBlock.eq_1	"∀ (a b z : Nat) (B : List Nat),\n  ForestState.contractBlock a b z B = if B.contains a = true then z :: List.filter (fun x => x != a && x != b) B else B"
+ROW	pilot	RestrictionBridge.minimal_nil_of_span_nil._simp_1_1	StateEmbedding	theorem	propext	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.minimal_nil_of_span_nil._simp_1_1	"∀ {α : Type u_1} {l : List α}, (l.isEmpty = true) = (l = [])"
+ROW	pilot	ForestState.pairwise_distinct_members	CherryGraph	theorem	propext,Quot.sound	CherryGraph	direct
+TYPE	pilot	ForestState.pairwise_distinct_members	"∀ (t : RMAF.Tree) (F : List (List Nat)),\n  RMAF.pairwiseEmbeddings t F = true →\n    ∀ (A B : List Nat),\n      A ∈ F → B ∈ F → A ≠ B → RMAF.disjointVertices (RMAF.minimalVertices A t) (RMAF.minimalVertices B t) = true"
+ROW	pilot	ForestState.common_cherry_contract_agreement._simp_1_2	StateContract	theorem	propext	StateContract	direct
+TYPE	pilot	ForestState.common_cherry_contract_agreement._simp_1_2	"∀ {a b c : Prop}, ((a ∧ b) ∧ c) = (a ∧ b ∧ c)"
+ROW	pilot	S	Controls	definition		Controls	direct
+ROW	pilot	RMAF.RootedIso.brecOn	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.RootedIso.brecOn	"∀ {motive : (a a_1 : RMAF.Tree) → RMAF.RootedIso a a_1 → Prop} {a a_1 : RMAF.Tree} (t : RMAF.RootedIso a a_1),\n  (∀ (a a_2 : RMAF.Tree) (t : RMAF.RootedIso a a_2), RMAF.RootedIso.below t → motive a a_2 t) → motive a a_1 t"
+ROW	pilot	RMAF.Controls.isolatedEndpoint	RMAF	definition	propext	RMAF	direct
+ROW	pilot	ForestState.QuotientShape	StateContract	definition		StateContract	direct
+ROW	pilot	_private.CherryTopology.0.ForestState.cherry.match_1.splitter	CherryTopology	definition		CherryTopology	direct
+ROW	pilot	RMAF.best.eq_def	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.best.eq_def	"∀ {α : Type} (cost : α → Nat) (valid : α → Bool) (x : List α),\n  RMAF.best cost valid x =\n    match x with\n    | [] => none\n    | a :: as =>\n      if valid a = true then\n        match RMAF.best cost valid as with\n        | none => some a\n        | some b => if cost a ≤ cost b then some a else some b\n      else RMAF.best cost valid as"
+ROW	pilot	ForestState.no_selection	LeafClear	theorem	propext,Quot.sound	LeafClear	direct
+TYPE	pilot	ForestState.no_selection	"∀ (t : RMAF.Tree) (U : List Nat),\n  (∀ (x : Nat), x ∈ RMAF.leaves t → ¬x ∈ U) → RMAF.rootedSpan U t = [] ∧ RMAF.minimalVertices U t = []"
+ROW	pilot	RestrictionBridge.mem_family	StatePartition	theorem	propext,Quot.sound	StatePartition	direct
+TYPE	pilot	RestrictionBridge.mem_family	"∀ (B U : List Nat) (F : List (List Nat)), B ∈ RestrictionBridge.family U F ↔ B ∈ F ∧ B ⊆ U"
+ROW	pilot	RMAF.Instance._sizeOf_inst	RMAF	definition		RMAF	direct
+ROW	pilot	RestrictionBridge.checked_labels_iff	StatePartition	theorem	propext,Quot.sound	StatePartition	direct
+TYPE	pilot	RestrictionBridge.checked_labels_iff	"∀ (L M : List Nat) (F : List (List Nat)),\n  RMAF.partitionCheck L F = true → RMAF.partitionCheck M F = true → ∀ (x : Nat), x ∈ L ↔ x ∈ M"
+ROW	pilot	RMAF.minimalVertices._unsafe_rec	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.instDecidableEqTree	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.Tree.leaf.sizeOf_spec	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.Tree.leaf.sizeOf_spec	"∀ (a : Nat), sizeOf (RMAF.Tree.leaf a) = 1 + sizeOf a"
+ROW	pilot	ForestState.cherryReady.eq_2	Contraction	theorem		Contraction	direct
+TYPE	pilot	ForestState.cherryReady.eq_2	"∀ (ss : List RMAF.Tree) (a b z : Nat) (t : RMAF.Tree),\n  ForestState.cherryReady (some t) ss a b z =\n    (ForestState.proper (some t) ss && a != b && !(ForestState.labels (some t)).contains z &&\n        ForestState.cherry a b t &&\n      ss.any (ForestState.cherry a b))"
+ROW	pilot	ForestState.singleton_cleanup_reverse._simp_1_3	Reverse	theorem	propext,Quot.sound	Reverse	direct
+TYPE	pilot	ForestState.singleton_cleanup_reverse._simp_1_3	"∀ (B U : List Nat), (RestrictionBridge.contained B U = true) = (B ⊆ U)"
+ROW	pilot	ForestState.contractBlock_mem._simp_1_1	StateContract	theorem	propext	StateContract	direct
+TYPE	pilot	ForestState.contractBlock_mem._simp_1_1	"∀ {a b c : Prop}, ((a ∧ b) ∧ c) = (a ∧ b ∧ c)"
+ROW	pilot	ForestState.singleton_reconstruction_cost._proof_1_1	Reverse	theorem	propext,Quot.sound	Reverse	direct
+TYPE	pilot	ForestState.singleton_reconstruction_cost._proof_1_1	"∀ (ss : List RMAF.Tree) (G : List (List Nat)),\n  0 < ss.length → ¬G.length + 1 - ss.length = G.length - (ss.length - 1) → False"
+ROW	pilot	ForestState.expandBlock_fresh	Expansion	theorem	propext,Classical.choice,Quot.sound	Expansion	direct
+TYPE	pilot	ForestState.expandBlock_fresh	"∀ (C : List Nat) (a b z : Nat), z ≠ a → z ≠ b → ¬z ∈ ForestState.expandBlock a b z C"
+ROW	pilot	_private.CherryGraph.0.ForestState.cherry.match_1.eq_1	CherryGraph	theorem		CherryGraph	direct
+TYPE	pilot	_private.CherryGraph.0.ForestState.cherry.match_1.eq_1	"∀ (motive : RMAF.Tree → Sort u_1) (a : Nat) (h_1 : (a : Nat) → motive (RMAF.Tree.leaf a))\n  (h_2 : (l r : RMAF.Tree) → motive (l.node r)),\n  (match RMAF.Tree.leaf a with\n    | RMAF.Tree.leaf a => h_1 a\n    | l.node r => h_2 l r) =\n    h_1 a"
+ROW	pilot	RestrictionBridge.family	StatePartition	definition		StatePartition	direct
+ROW	pilot	ForestState.CherryAt.restriction_cherry_exists	Expansion	theorem	propext,Quot.sound	Expansion	direct
+TYPE	pilot	ForestState.CherryAt.restriction_cherry_exists	"∀ {t : RMAF.Tree} {a b : Nat} {w : RMAF.Vertex},\n  ForestState.CherryAt a b t w →\n    ∀ (B : List Nat), a ∈ B → b ∈ B → ∃ u, RMAF.restrict B t = some u ∧ ForestState.cherry a b u = true"
+ROW	pilot	RMAF.minimalVertices.eq_2	StateEmbedding	theorem		StateEmbedding	direct
+TYPE	pilot	RMAF.minimalVertices.eq_2	"∀ (selected : List Nat) (a a_1 : RMAF.Tree),\n  RMAF.minimalVertices selected (a.node a_1) =\n    if (RMAF.rootedSpan selected a).isEmpty = true then RMAF.prependSide true (RMAF.minimalVertices selected a_1)\n    else\n      if (RMAF.rootedSpan selected a_1).isEmpty = true then RMAF.prependSide false (RMAF.minimalVertices selected a)\n      else\n        [] ::\n          (RMAF.prependSide false (RMAF.rootedSpan selected a) ++ RMAF.prependSide true (RMAF.rootedSpan selected a_1))"
+ROW	pilot	ForestState.common_cherry_contract_agreement._simp_1_1	StateContract	theorem	propext,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.common_cherry_contract_agreement._simp_1_1	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.any p = true) = ∃ x, x ∈ l ∧ p x = true"
+ROW	pilot	ForestState.remaining_sources_omit	Forward	theorem	propext,Quot.sound	Forward	direct
+TYPE	pilot	ForestState.remaining_sources_omit	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree) (a : Nat),\n  ForestState.proper T ss = true →\n    RMAF.Tree.leaf a ∈ ss → ∀ (s : RMAF.Tree), s ∈ ForestState.cleanupSources ss a → ¬a ∈ RMAF.leaves s"
+ROW	pilot	RestrictionBridge.clear_prepend_other'._simp_1	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_prepend_other'._simp_1	"∀ (a b : List RMAF.Vertex), RestrictionBridge.Clear (RMAF.prependSide true a) (RMAF.prependSide false b) = True"
+ROW	pilot	RMAF.Instance.mk	RMAF	constructor		RMAF	direct
+ROW	pilot	RestrictionBridge.pairwise_transport	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.pairwise_transport	"∀ (t u : RMAF.Tree) (U : List Nat) (F : List (List Nat)),\n  RMAF.restrict U t = some u →\n    (∀ (B : List Nat), B ∈ F → B ⊆ U) → (RMAF.pairwiseEmbeddings t F = true ↔ RMAF.pairwiseEmbeddings u F = true)"
+ROW	pilot	ForestState.checked_block_nodup._proof_1_1	Singleton	theorem	propext,Quot.sound	Singleton	direct
+TYPE	pilot	ForestState.checked_block_nodup._proof_1_1	"∀ (B : List Nat) (x : Nat) (F : List (List Nat)), ¬List.count x B ≤ List.count x B + List.count x F.flatten → False"
+ROW	pilot	_private.Contraction.0.ForestState.labels.match_1.eq_2	Contraction	theorem		Contraction	direct
+TYPE	pilot	_private.Contraction.0.ForestState.labels.match_1.eq_2	"∀ (motive : Option RMAF.Tree → Sort u_1) (t : RMAF.Tree) (h_1 : Unit → motive none)\n  (h_2 : (t : RMAF.Tree) → motive (some t)),\n  (match some t with\n    | none => h_1 ()\n    | some t => h_2 t) =\n    h_2 t"
+ROW	pilot	ForestState.common_cherry_contract_agreement	StateContract	theorem	propext,Classical.choice,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.common_cherry_contract_agreement	"∀ (t : RMAF.Tree) (ss : List RMAF.Tree) (F : List (List Nat)) (a b z : Nat),\n  ForestState.agrees (some t) ss F = true →\n    ForestState.cherryReady (some t) ss a b z = true →\n      ForestState.Coalesced F a b →\n        ForestState.agrees (some (ForestState.contract a b z t)) (List.map (ForestState.contract a b z) ss)\n            (List.map (ForestState.contractBlock a b z) F) =\n          true"
+ROW	pilot	ForestState.CherryAt	CherryGraph	inductive		CherryGraph	direct
+ROW	pilot	RMAF.Tree.leaf	RMAF	constructor		RMAF	direct
+ROW	pilot	RMAF.Controls.two_component_witness	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	RMAF.Controls.two_component_witness	"RMAF.agreement RMAF.Controls.leftTree RMAF.Controls.rightTree [[0, 1, 3], [2]] = true"
+ROW	pilot	state_consumer_1	Consumers	theorem	propext,Classical.choice,Quot.sound	Consumers	direct
+TYPE	pilot	state_consumer_1	"ForestState.feasible (some T) [RMAF.Tree.leaf 17, (RMAF.Tree.leaf 31).node (RMAF.Tree.leaf 47)] 0 ↔\n  ForestState.feasible (ForestState.cleanupTarget (some T) 17)\n    (ForestState.cleanupSources [RMAF.Tree.leaf 17, (RMAF.Tree.leaf 31).node (RMAF.Tree.leaf 47)] 17) 0"
+ROW	pilot	RMAF.Tree.rec	RMAF	recursor		RMAF	direct
+ROW	pilot	ForestState.source_quotient_shape	StateContract	theorem	propext,Quot.sound	StateContract	direct
+TYPE	pilot	ForestState.source_quotient_shape	"∀ (t : RMAF.Tree) (ss : List RMAF.Tree) (a b : Nat),\n  ForestState.proper (some t) ss = true →\n    ∀ (s0 : RMAF.Tree),\n      s0 ∈ ss → ForestState.cherry a b s0 = true → ∀ (s : RMAF.Tree), s ∈ ss → ForestState.QuotientShape a b s"
+ROW	pilot	ForestState.expansion_additional_cost	BlockPartition	theorem	propext	BlockPartition	direct
+TYPE	pilot	ForestState.expansion_additional_cost	"∀ (ss : List RMAF.Tree) (F : List (List Nat)) (a b z : Nat),\n  ForestState.additionalCost (List.map (ForestState.expand a b z) ss) (List.map (ForestState.expandBlock a b z) F) =\n    ForestState.additionalCost ss F"
+ROW	pilot	_private.Contraction.0.ForestState.cherry.match_1.eq_2	Contraction	theorem		Contraction	direct
+TYPE	pilot	_private.Contraction.0.ForestState.cherry.match_1.eq_2	"∀ (motive : RMAF.Tree → Sort u_1) (l r : RMAF.Tree) (h_1 : (a : Nat) → motive (RMAF.Tree.leaf a))\n  (h_2 : (l r : RMAF.Tree) → motive (l.node r)),\n  (match l.node r with\n    | RMAF.Tree.leaf a => h_1 a\n    | l.node r => h_2 l r) =\n    h_2 l r"
+ROW	pilot	RMAF.partitionCheck	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.restrict.eq_2	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.restrict.eq_2	"∀ (selected : List Nat) (a a_1 : RMAF.Tree),\n  RMAF.restrict selected (a.node a_1) =\n    match RMAF.restrict selected a, RMAF.restrict selected a_1 with\n    | none, none => none\n    | some a, none => some a\n    | none, some b => some b\n    | some a, some b => some (a.node b)"
+ROW	pilot	ForestState.expanded_block_sub_iff	StateExpand	theorem	propext,Classical.choice,Quot.sound	StateExpand	direct
+TYPE	pilot	ForestState.expanded_block_sub_iff	"∀ (s : RMAF.Tree) (C : List Nat) (a b z : Nat),\n  ForestState.QuotientShape a b s →\n    (RMAF.leaves s).Nodup →\n      ¬z ∈ RMAF.leaves s →\n        ¬a ∈ C →\n          ¬b ∈ C →\n            z ≠ a →\n              z ≠ b → (ForestState.expandBlock a b z C ⊆ RMAF.leaves s ↔ C ⊆ RMAF.leaves (ForestState.contract a b z s))"
+ROW	pilot	RMAF.sameShape._sparseCasesOn_1	RMAF	definition	propext	RMAF	direct
+ROW	pilot	_private.Forward.0.ForestState.labels.match_1.eq_2	Forward	theorem		Forward	direct
+TYPE	pilot	_private.Forward.0.ForestState.labels.match_1.eq_2	"∀ (motive : Option RMAF.Tree → Sort u_1) (t : RMAF.Tree) (h_1 : Unit → motive none)\n  (h_2 : (t : RMAF.Tree) → motive (some t)),\n  (match some t with\n    | none => h_1 ()\n    | some t => h_2 t) =\n    h_2 t"
+ROW	pilot	RMAF.Instance.mk.injEq	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	RMAF.Instance.mk.injEq	"∀ (n : Nat) (left right : RMAF.Tree) (labels_left : (RMAF.leaves left).Perm (List.range n))\n  (labels_right : (RMAF.leaves right).Perm (List.range n)) (n_1 : Nat) (left_1 right_1 : RMAF.Tree)\n  (labels_left_1 : (RMAF.leaves left_1).Perm (List.range n_1))\n  (labels_right_1 : (RMAF.leaves right_1).Perm (List.range n_1)),\n  ({ n := n, left := left, right := right, labels_left := labels_left, labels_right := labels_right } =\n      { n := n_1, left := left_1, right := right_1, labels_left := labels_left_1, labels_right := labels_right_1 }) =\n    (n = n_1 ∧ left = left_1 ∧ right = right_1)"
+ROW	pilot	completion_consumer_7	CompletionConsumers	theorem	propext	CompletionConsumers	direct
+TYPE	pilot	completion_consumer_7	"ForestState.additionalCost [RootCherry, (RMAF.Tree.leaf 47).node (RMAF.Tree.leaf 59)]\n    (List.map (ForestState.expandBlock 17 31 89) [[89], [47, 59]]) =\n  ForestState.additionalCost\n    (List.map (ForestState.contract 17 31 89) [RootCherry, (RMAF.Tree.leaf 47).node (RMAF.Tree.leaf 59)])\n    [[89], [47, 59]]"
+ROW	pilot	ForestState.expandBlock_nonempty	Expansion	theorem	propext,Classical.choice,Quot.sound	Expansion	direct
+TYPE	pilot	ForestState.expandBlock_nonempty	"∀ (C : List Nat) (a b z : Nat), C ≠ [] → ForestState.expandBlock a b z C ≠ []"
+ROW	pilot	ForestState.common_cherry_expand_exact_cost	StateExpand	theorem	propext	StateExpand	direct
+TYPE	pilot	ForestState.common_cherry_expand_exact_cost	"∀ (ss : List RMAF.Tree) (G : List (List Nat)) (a b z : Nat),\n  ForestState.additionalCost ss (List.map (ForestState.expandBlock a b z) G) =\n    ForestState.additionalCost (List.map (ForestState.contract a b z) ss) G"
+ROW	pilot	ForestState.cherryReady.eq_1	Contraction	theorem		Contraction	direct
+TYPE	pilot	ForestState.cherryReady.eq_1	"∀ (ss : List RMAF.Tree) (a b z : Nat),\n  ForestState.cherryReady none ss a b z =\n    (ForestState.proper none ss && a != b && !(ForestState.labels none).contains z && false &&\n      ss.any (ForestState.cherry a b))"
+ROW	pilot	RMAF.RootedIso.below.rec	RMAF	recursor		RMAF	direct
+ROW	pilot	RestrictionBridge.restricted_nodup	StateRestriction	theorem	propext,Quot.sound	StateRestriction	direct
+TYPE	pilot	RestrictionBridge.restricted_nodup	"∀ (t u : RMAF.Tree) (U : List Nat), RMAF.restrict U t = some u → (RMAF.leaves t).Nodup → (RMAF.leaves u).Nodup"
+ROW	pilot	ForestState.singleton_cleanup_forward._simp_1_2	Forward	theorem	propext,Quot.sound	Forward	direct
+TYPE	pilot	ForestState.singleton_cleanup_forward._simp_1_2	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.any p = true) = ∃ x, x ∈ l ∧ p x = true"
+ROW	pilot	RMAF.instDecidableEqTree.decEq.match_1	RMAF	definition		RMAF	direct
+ROW	pilot	state_consumer_3	Consumers	theorem	propext,Classical.choice,Quot.sound	Consumers	direct
+TYPE	pilot	state_consumer_3	"ForestState.agrees (some T) [RMAF.Tree.leaf 17, (RMAF.Tree.leaf 31).node (RMAF.Tree.leaf 47)] [[17], [31, 47]] = true ∧\n  ForestState.agrees (ForestState.cleanupTarget (some T) 17)\n      (ForestState.cleanupSources [RMAF.Tree.leaf 17, (RMAF.Tree.leaf 31).node (RMAF.Tree.leaf 47)] 17)\n      (ForestState.cleanupForest [[17], [31, 47]] 17) =\n    true"
+ROW	pilot	RestrictionBridge.join_bind	StateRestriction	theorem	propext	StateRestriction	direct
+TYPE	pilot	RestrictionBridge.join_bind	"∀ (a b : Option RMAF.Tree) (B : List Nat),\n  (RestrictionBridge.join a b).bind (RMAF.restrict B) =\n    RestrictionBridge.join (a.bind (RMAF.restrict B)) (b.bind (RMAF.restrict B))"
+ROW	pilot	RMAF.RootedIso	RMAF	inductive		RMAF	direct
+ROW	pilot	RestrictionBridge.Clear.eq_1	StateEmbedding	theorem		StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.Clear.eq_1	"∀ (a b : List RMAF.Vertex), RestrictionBridge.Clear a b = ∀ (v : RMAF.Vertex), v ∈ a → v ∈ b → False"
+ROW	pilot	RMAF.instDecidableEqTree.decEq._proof_5	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.instDecidableEqTree.decEq._proof_5	"∀ (a a_1 : RMAF.Tree), a.node a_1 = a.node a_1"
+ROW	pilot	ForestState.expand._sunfold	State	definition		State	direct
+ROW	pilot	_private.CherryTopology.0.ForestState.OptionIso.match_1.eq_2	CherryTopology	theorem	propext	CherryTopology	direct
+TYPE	pilot	_private.CherryTopology.0.ForestState.OptionIso.match_1.eq_2	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (t u : RMAF.Tree) (h_1 : Unit → motive none none)\n  (h_2 : (t u : RMAF.Tree) → motive (some t) (some u)) (h_3 : (x x_1 : Option RMAF.Tree) → motive x x_1),\n  (match some t, some u with\n    | none, none => h_1 ()\n    | some t, some u => h_2 t u\n    | x, x_1 => h_3 x x_1) =\n    h_2 t u"
+ROW	pilot	ForestState.contractBlock_count._simp_1_2	BlockPartition	theorem	propext	BlockPartition	direct
+TYPE	pilot	ForestState.contractBlock_count._simp_1_2	"∀ {α : Sort u_1} {a b : α}, (a = b) = (b = a)"
+ROW	pilot	ForestState.expanded_block_topology	StateExpand	theorem	propext,Classical.choice,Quot.sound	StateExpand	direct
+TYPE	pilot	ForestState.expanded_block_topology	"∀ (t s : RMAF.Tree) (C : List Nat) (a b z : Nat),\n  ForestState.QuotientShape a b t →\n    ForestState.QuotientShape a b s →\n      (RMAF.leaves t).Nodup →\n        (RMAF.leaves s).Nodup →\n          ¬z ∈ RMAF.leaves t →\n            ¬z ∈ RMAF.leaves s →\n              ¬a ∈ C →\n                ¬b ∈ C →\n                  z ≠ a →\n                    z ≠ b →\n                      RMAF.restrictionAgrees (ForestState.contract a b z t) (ForestState.contract a b z s) C = true →\n                        RMAF.restrictionAgrees t s (ForestState.expandBlock a b z C) = true"
+ROW	pilot	RMAF.Controls.overlap_rejected	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	RMAF.Controls.overlap_rejected	"RMAF.agreement RMAF.Controls.leftTree RMAF.Controls.leftTree [[0, 2], [1, 3]] = false"
+ROW	pilot	ForestState.node_selection_clear_congr	Endpoint	theorem	propext,Quot.sound	Endpoint	direct
+TYPE	pilot	ForestState.node_selection_clear_congr	"∀ (l r : RMAF.Tree) (B D C : List Nat),\n  (RMAF.rootedSpan B l).isEmpty = (RMAF.rootedSpan D l).isEmpty →\n    (RMAF.rootedSpan B r).isEmpty = (RMAF.rootedSpan D r).isEmpty →\n      (RestrictionBridge.Clear (RMAF.rootedSpan B l) (RMAF.minimalVertices C l) ↔\n          RestrictionBridge.Clear (RMAF.rootedSpan D l) (RMAF.minimalVertices C l)) →\n        (RestrictionBridge.Clear (RMAF.rootedSpan B r) (RMAF.minimalVertices C r) ↔\n            RestrictionBridge.Clear (RMAF.rootedSpan D r) (RMAF.minimalVertices C r)) →\n          (RestrictionBridge.Clear (RMAF.rootedSpan C l) (RMAF.minimalVertices B l) ↔\n              RestrictionBridge.Clear (RMAF.rootedSpan C l) (RMAF.minimalVertices D l)) →\n            (RestrictionBridge.Clear (RMAF.rootedSpan C r) (RMAF.minimalVertices B r) ↔\n                RestrictionBridge.Clear (RMAF.rootedSpan C r) (RMAF.minimalVertices D r)) →\n              (RestrictionBridge.Clear (RMAF.minimalVertices B l) (RMAF.minimalVertices C l) ↔\n                  RestrictionBridge.Clear (RMAF.minimalVertices D l) (RMAF.minimalVertices C l)) →\n                (RestrictionBridge.Clear (RMAF.minimalVertices B r) (RMAF.minimalVertices C r) ↔\n                    RestrictionBridge.Clear (RMAF.minimalVertices D r) (RMAF.minimalVertices C r)) →\n                  (RestrictionBridge.Clear (RMAF.rootedSpan B (l.node r)) (RMAF.minimalVertices C (l.node r)) ↔\n                      RestrictionBridge.Clear (RMAF.rootedSpan D (l.node r)) (RMAF.minimalVertices C (l.node r))) ∧\n                    (RestrictionBridge.Clear (RMAF.rootedSpan C (l.node r)) (RMAF.minimalVertices B (l.node r)) ↔\n                        RestrictionBridge.Clear (RMAF.rootedSpan C (l.node r)) (RMAF.minimalVertices D (l.node r))) ∧\n                      (RestrictionBridge.Clear (RMAF.minimalVertices B (l.node r)) (RMAF.minimalVertices C (l.node r)) ↔\n                        RestrictionBridge.Clear (RMAF.minimalVertices D (l.node r)) (RMAF.minimalVertices C (l.node r)))"
+ROW	pilot	RMAF.Controls.rightTree	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.targetAgrees	State	definition	propext	State	direct
+ROW	pilot	_private.Contraction.0.ForestState.labels.match_1.splitter	Contraction	definition		Contraction	direct
+ROW	pilot	ForestState.cleanup_labels._simp_1_1	Removal	theorem	propext	Removal	direct
+TYPE	pilot	ForestState.cleanup_labels._simp_1_1	"∀ {α : Type u_1} [inst : BEq α] [LawfulBEq α] {a : α} {as : List α}, (as.contains a = true) = (a ∈ as)"
+ROW	pilot	RMAF.agreement.eq_1	Singleton	theorem	propext	Singleton	direct
+TYPE	pilot	RMAF.agreement.eq_1	"∀ (t u : RMAF.Tree) (bs : List (List Nat)),\n  RMAF.agreement t u bs =\n    (RMAF.partitionCheck (RMAF.leaves t) bs && RMAF.partitionCheck (RMAF.leaves u) bs &&\n          bs.all (RMAF.restrictionAgrees t u) &&\n        RMAF.pairwiseEmbeddings t bs &&\n      RMAF.pairwiseEmbeddings u bs)"
+ROW	pilot	ForestState.partition_remove_singleton._simp_1_1	Removal	theorem	propext,Quot.sound	Removal	direct
+TYPE	pilot	ForestState.partition_remove_singleton._simp_1_1	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	RMAF.Instance	RMAF	inductive		RMAF	direct
+ROW	pilot	RMAF.restrictionAgrees._sparseCasesOn_1.else_eq	StateRestriction	theorem	propext	StateRestriction	direct
+TYPE	pilot	RMAF.restrictionAgrees._sparseCasesOn_1.else_eq	"∀ {α : Type u} {motive : Option α → Sort u_1} (t : Option α) (some : (val : α) → motive (some val))\n  («else» : Nat.hasNotBit 2 t.ctorIdx → motive t) (h : Nat.hasNotBit 2 t.ctorIdx),\n  RMAF.restrictionAgrees._sparseCasesOn_1 t some «else» = «else» h"
+ROW	pilot	RestrictionBridge.node_clear_congr._simp_1_7	StateEmbedding	theorem	propext,Classical.choice,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.node_clear_congr._simp_1_7	"∀ (B : List Nat) (t : RMAF.Tree), ([] ∈ RMAF.rootedSpan B t) = ((RMAF.rootedSpan B t).isEmpty = false)"
+ROW	pilot	RMAF.assignments._sunfold	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.sameShape.eq_def	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	RMAF.sameShape.eq_def	"∀ (x x_1 : RMAF.Tree),\n  RMAF.sameShape x x_1 =\n    match x, x_1 with\n    | RMAF.Tree.leaf a, RMAF.Tree.leaf b => a == b\n    | a.node b, c.node d => RMAF.sameShape a c && RMAF.sameShape b d || RMAF.sameShape a d && RMAF.sameShape b c\n    | x, x_2 => false"
+ROW	pilot	_private.StateRestriction.0.RestrictionBridge.join.match_1.splitter	StateRestriction	definition		StateRestriction	direct
+ROW	pilot	ForestState.expandBlock	State	definition		State	direct
+ROW	pilot	_private.StateRestriction.0.RMAF.restrictionAgrees.match_1.eq_1	StateRestriction	theorem	propext	StateRestriction	direct
+TYPE	pilot	_private.StateRestriction.0.RMAF.restrictionAgrees.match_1.eq_1	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (s v : RMAF.Tree)\n  (h_1 : (s v : RMAF.Tree) → motive (some s) (some v)) (h_2 : (x x_1 : Option RMAF.Tree) → motive x x_1),\n  (match some s, some v with\n    | some s, some v => h_1 s v\n    | x, x_1 => h_2 x x_1) =\n    h_1 s v"
+ROW	pilot	_private.RMAF.0.RMAF.best.match_3.eq_2	RMAF	theorem		RMAF	direct
+TYPE	pilot	_private.RMAF.0.RMAF.best.match_3.eq_2	"∀ {α : Type} (motive : List α → Sort u_1) (a : α) (as : List α) (h_1 : Unit → motive [])\n  (h_2 : (a : α) → (as : List α) → motive (a :: as)),\n  (match a :: as with\n    | [] => h_1 ()\n    | a :: as => h_2 a as) =\n    h_2 a as"
+ROW	pilot	ForestState.contractBlock_mem._simp_1_3	StateContract	theorem	propext	StateContract	direct
+TYPE	pilot	ForestState.contractBlock_mem._simp_1_3	"∀ {a b c : Prop}, (a ∧ b ∧ c) = (b ∧ a ∧ c)"
+ROW	pilot	ForestState.restrict_mask_equal	CherryTopology	theorem	propext	CherryTopology	direct
+TYPE	pilot	ForestState.restrict_mask_equal	"∀ (t : RMAF.Tree) (B C : List Nat),\n  (∀ (x : Nat), x ∈ RMAF.leaves t → B.contains x = C.contains x) → RMAF.restrict B t = RMAF.restrict C t"
+ROW	pilot	RestrictionBridge.leaves_nonempty	StateRestriction	theorem	propext	StateRestriction	direct
+TYPE	pilot	RestrictionBridge.leaves_nonempty	"∀ (t : RMAF.Tree), RMAF.leaves t ≠ []"
+ROW	pilot	_private.RMAF.0.RMAF.assignments.match_1.eq_1	RMAF	theorem		RMAF	direct
+TYPE	pilot	_private.RMAF.0.RMAF.assignments.match_1.eq_1	"∀ (motive : Nat → Sort u_1) (h_1 : Unit → motive 0) (h_2 : (n : Nat) → motive n.succ),\n  (match 0 with\n    | 0 => h_1 ()\n    | n.succ => h_2 n) =\n    h_1 ()"
+ROW	pilot	ForestState.pairwise_distinct_members._simp_1_1	CherryGraph	theorem	propext,Quot.sound	CherryGraph	direct
+TYPE	pilot	ForestState.pairwise_distinct_members._simp_1_1	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	_private.Forward.0.ForestState.labels.match_1.splitter	Forward	definition		Forward	direct
+ROW	pilot	_private.CherryTopology.0.ForestState.OptionIso.match_1.eq_1	CherryTopology	theorem	propext	CherryTopology	direct
+TYPE	pilot	_private.CherryTopology.0.ForestState.OptionIso.match_1.eq_1	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (h_1 : Unit → motive none none)\n  (h_2 : (t u : RMAF.Tree) → motive (some t) (some u)) (h_3 : (x x_1 : Option RMAF.Tree) → motive x x_1),\n  (match none, none with\n    | none, none => h_1 ()\n    | some t, some u => h_2 t u\n    | x, x_1 => h_3 x x_1) =\n    h_1 ()"
+ROW	pilot	RestrictionBridge.unary_left_clear	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.unary_left_clear	"∀ (l r : RMAF.Tree) (B C : List Nat),\n  RMAF.rootedSpan B r = [] →\n    RMAF.rootedSpan C r = [] →\n      (RestrictionBridge.Clear (RMAF.rootedSpan B (l.node r)) (RMAF.minimalVertices C (l.node r)) ↔\n          RestrictionBridge.Clear (RMAF.rootedSpan B l) (RMAF.minimalVertices C l)) ∧\n        (RestrictionBridge.Clear (RMAF.minimalVertices B (l.node r)) (RMAF.minimalVertices C (l.node r)) ↔\n          RestrictionBridge.Clear (RMAF.minimalVertices B l) (RMAF.minimalVertices C l))"
+ROW	pilot	ForestState.contract.eq_2	Contraction	theorem		Contraction	direct
+TYPE	pilot	ForestState.contract.eq_2	"∀ (a b z : Nat) (l r : RMAF.Tree),\n  ForestState.contract a b z (l.node r) =\n    if (l == RMAF.Tree.leaf a && r == RMAF.Tree.leaf b || l == RMAF.Tree.leaf b && r == RMAF.Tree.leaf a) = true then\n      RMAF.Tree.leaf z\n    else (ForestState.contract a b z l).node (ForestState.contract a b z r)"
+ROW	pilot	ForestState.proper_source_owner	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.proper_source_owner	"∀ (T : Option RMAF.Tree) (ss : List RMAF.Tree),\n  ForestState.proper T ss = true →\n    ∀ (s u : RMAF.Tree), s ∈ ss → u ∈ ss → ∀ (x : Nat), x ∈ RMAF.leaves s → x ∈ RMAF.leaves u → s = u"
+ROW	pilot	RMAF.RootedIso.leaf	RMAF	constructor		RMAF	direct
+ROW	pilot	RMAF.minimalVertices.eq_1	StateEmbedding	theorem		StateEmbedding	direct
+TYPE	pilot	RMAF.minimalVertices.eq_1	"∀ (selected : List Nat) (a : Nat),\n  RMAF.minimalVertices selected (RMAF.Tree.leaf a) = if selected.contains a = true then [[]] else []"
+ROW	pilot	_private.StateExpand.0.RMAF.restrictionAgrees.match_1.eq_2	StateExpand	theorem	propext	StateExpand	direct
+TYPE	pilot	_private.StateExpand.0.RMAF.restrictionAgrees.match_1.eq_2	"∀ (motive : Option RMAF.Tree → Option RMAF.Tree → Sort u_1) (x x_1 : Option RMAF.Tree)\n  (h_1 : (s v : RMAF.Tree) → motive (some s) (some v)) (h_2 : (x x_2 : Option RMAF.Tree) → motive x x_2),\n  (∀ (s v : RMAF.Tree), x = some s → x_1 = some v → False) →\n    (match x, x_1 with\n      | some s, some v => h_1 s v\n      | x, x_3 => h_2 x x_3) =\n      h_2 x x_1"
+ROW	pilot	ForestState.reassignment_remaining	Replacement	theorem	propext,Classical.choice,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.reassignment_remaining	"∀ (L : List Nat) (F : List (List Nat)) (A : List Nat) (a b : Nat),\n  RMAF.partitionCheck L F = true →\n    A ∈ F → [b] ∈ F → a ∈ A → ∀ (B : List Nat), B ∈ (F.erase A).erase [b] → B ∈ F ∧ ¬a ∈ B ∧ ¬b ∈ B"
+ROW	pilot	ForestState.CherryAt.swapped	CherryGraph	constructor		CherryGraph	direct
+ROW	pilot	RestrictionBridge.clear_prepend_same	StateEmbedding	theorem	propext,Quot.sound	StateEmbedding	direct
+TYPE	pilot	RestrictionBridge.clear_prepend_same	"∀ (s : Bool) (a b : List RMAF.Vertex),\n  RestrictionBridge.Clear (RMAF.prependSide s a) (RMAF.prependSide s b) ↔ RestrictionBridge.Clear a b"
+ROW	pilot	ForestState.singleton_strict_decrease._proof_1_1	Removal	theorem	propext,Quot.sound	Removal	direct
+TYPE	pilot	ForestState.singleton_strict_decrease._proof_1_1	"∀ (T : Option RMAF.Tree),\n  0 < (ForestState.labels T).length → ¬(ForestState.labels T).length - 1 + 1 = (ForestState.labels T).length → False"
+ROW	pilot	RMAF.Instance.noConfusion	RMAF	definition		RMAF	direct
+ROW	pilot	RMAF.leaves.eq_2	RMAF	theorem		RMAF	direct
+TYPE	pilot	RMAF.leaves.eq_2	"∀ (a a_1 : RMAF.Tree), RMAF.leaves (a.node a_1) = RMAF.leaves a ++ RMAF.leaves a_1"
+ROW	pilot	RMAF.best	RMAF	definition		RMAF	direct
+ROW	pilot	_private.StateEmbedding.0.RMAF.pairwiseEmbeddings.match_1.splitter	StateEmbedding	definition		StateEmbedding	direct
+ROW	pilot	ForestState.singleton_clear	LeafClear	theorem	propext,Quot.sound	LeafClear	direct
+TYPE	pilot	ForestState.singleton_clear	"∀ (t : RMAF.Tree) (a : Nat) (B : List Nat),\n  (RMAF.leaves t).Nodup →\n    ¬a ∈ B →\n      RestrictionBridge.Clear (RMAF.minimalVertices [a] t) (RMAF.rootedSpan B t) ∧\n        RestrictionBridge.Clear (RMAF.minimalVertices [a] t) (RMAF.minimalVertices B t)"
+ROW	pilot	_private.RMAF.0.RMAF.instReprTree.repr.match_1.eq_1	RMAF	theorem		RMAF	direct
+TYPE	pilot	_private.RMAF.0.RMAF.instReprTree.repr.match_1.eq_1	"∀ (motive : RMAF.Tree → Sort u_1) (a : Nat) (h_1 : (a : Nat) → motive (RMAF.Tree.leaf a))\n  (h_2 : (a a_1 : RMAF.Tree) → motive (a.node a_1)),\n  (match RMAF.Tree.leaf a with\n    | RMAF.Tree.leaf a => h_1 a\n    | a.node a_1 => h_2 a a_1) =\n    h_1 a"
+ROW	pilot	RMAF.disjointVertices.eq_1	StateEmbedding	theorem		StateEmbedding	direct
+TYPE	pilot	RMAF.disjointVertices.eq_1	"∀ (a b : List RMAF.Vertex), RMAF.disjointVertices a b = a.all fun v => !b.contains v"
+ROW	pilot	RMAF.sameShape._sparseCasesOn_1.else_eq	RMAF	theorem	propext	RMAF	direct
+TYPE	pilot	RMAF.sameShape._sparseCasesOn_1.else_eq	"∀ {motive : RMAF.Tree → Sort u} (t : RMAF.Tree) (leaf : (a : Nat) → motive (RMAF.Tree.leaf a))\n  («else» : Nat.hasNotBit 1 t.ctorIdx → motive t) (h : Nat.hasNotBit 1 t.ctorIdx),\n  RMAF.sameShape._sparseCasesOn_1 t leaf «else» = «else» h"
+ROW	pilot	_private.Expansion.0.RMAF.restrictionAgrees.match_1.splitter	Expansion	definition	propext	Expansion	direct
+ROW	pilot	RMAF.assignments._f	RMAF	definition		RMAF	direct
+ROW	pilot	LeftCherry	GraphControls	definition		GraphControls	direct
+ROW	pilot	ForestState.proper_singleton_restriction	Reverse	theorem	propext,Classical.choice,Quot.sound	Reverse	direct
+TYPE	pilot	ForestState.proper_singleton_restriction	"∀ (t : RMAF.Tree) (a : Nat), (RMAF.leaves t).Nodup → a ∈ RMAF.leaves t → RMAF.restrict [a] t = some (RMAF.Tree.leaf a)"
+ROW	pilot	RMAF.pairwiseEmbeddings.match_1	RMAF	definition		RMAF	direct
+ROW	pilot	ForestState.agrees_from_checks._simp_1_1	Replacement	theorem	propext,Quot.sound	Replacement	direct
+TYPE	pilot	ForestState.agrees_from_checks._simp_1_1	"∀ {α : Type u_1} {p : α → Bool} {l : List α}, (l.all p = true) = ∀ (x : α), x ∈ l → p x = true"
+ROW	pilot	ForestState.expand.eq_def	CherryTopology	theorem		CherryTopology	direct
+TYPE	pilot	ForestState.expand.eq_def	"∀ (a b z : Nat) (x : RMAF.Tree),\n  ForestState.expand a b z x =\n    match x with\n    | RMAF.Tree.leaf x => if (x == z) = true then (RMAF.Tree.leaf a).node (RMAF.Tree.leaf b) else RMAF.Tree.leaf x\n    | l.node r => (ForestState.expand a b z l).node (ForestState.expand a b z r)"
+ROW	pilot	ForestState.common_cherry_expansion_partition	StateExpand	theorem	propext,Classical.choice,Quot.sound	StateExpand	direct
+TYPE	pilot	ForestState.common_cherry_expansion_partition	"∀ (t : RMAF.Tree) (G : List (List Nat)) (a b z : Nat),\n  (RMAF.leaves t).Nodup →\n    ForestState.cherry a b t = true →\n      ¬z ∈ RMAF.leaves t →\n        a ≠ b →\n          RMAF.partitionCheck (RMAF.leaves (ForestState.contract a b z t)) G = true →\n            RMAF.partitionCheck (RMAF.leaves t) (List.map (ForestState.expandBlock a b z) G) = true"
+ROW	pilot	ForestState.nodup_append_avoid_left	CherryTopology	theorem	propext,Quot.sound	CherryTopology	direct
+TYPE	pilot	ForestState.nodup_append_avoid_left	"∀ (l r : RMAF.Tree) (x : Nat), (RMAF.leaves (l.node r)).Nodup → x ∈ RMAF.leaves r → ¬x ∈ RMAF.leaves l"
+ROW	pilot	ForestState.geometry_add_absent	Endpoint	theorem	propext,Quot.sound	Endpoint	direct
+TYPE	pilot	ForestState.geometry_add_absent	"∀ (t : RMAF.Tree) (B : List Nat) (b : Nat),\n  ¬b ∈ RMAF.leaves t →\n    RMAF.rootedSpan (b :: B) t = RMAF.rootedSpan B t ∧ RMAF.minimalVertices (b :: B) t = RMAF.minimalVertices B t"
+ROW	pilot	RMAF.Tree.brecOn	RMAF	definition		RMAF	direct

@@ -1,0 +1,28 @@
+{
+  "phase": "Frozen before reading any current degree_two implementation/checker",
+  "checker_interface": "Python stdlib only; trees are integer leaves or length-two JSON lists, addresses are Boolean tuples; full undirected parent/child graph; support is union of paths between selected leaf occurrences; restriction is unary-suppressed unordered labelled shape; partition checks exact label cover, nonempty duplicate-free disjoint blocks, matching restrictions, and pairwise support disjointness separately in both trees.",
+  "failure_criterion": "Any exact inequality, missing expected control, unrecognized corruption, in-regime missing valid two-block refinement, or unexpected exception fails closed. Out-of-regime fires do not refute target.",
+  "fixtures": [
+    {"id":"root","t":[0,1],"u":[1,0],"B":[0,1],"v":[],"support_t":[[],[false],[true]],"degree":2,"split":[[0],[1]],"split_t":[[[false]],[[true]]],"split_u":[[[true]],[[false]]],"cost":1},
+    {"id":"suppressed","t":[[0,1],2],"u":[2,[1,0]],"B":[0,2],"v":[false],"support_t":[[],[false],[false,false],[true]],"degree":2,"split":[[0],[2]],"split_t":[[[false,false]],[[true]]],"split_u":[[[true,true]],[[false]]],"cost":1},
+    {"id":"global","t":[[0,1],[2,3]],"u":[[0,1],[2,3]],"blocks":[[0,2],[1],[3]],"v":[],"support_t_first":[[],[false],[false,false],[true],[true,false]],"refined":[[0],[2],[1],[3]],"before":3,"after":4,"cost":1},
+    {"id":"degree_three","t":[[0,1],2],"u":[[0,1],2],"B":[0,1,2],"v":[false],"support_t":[[],[false],[false,false],[false,true],[true]],"degree":3,"min_avoiding_pieces":3,"min_avoiding_cost":2,"valid_two_piece_split_exists":false},
+    {"id":"singleton","t":[0,1],"B":[0],"support_t":[[false]],"v":[false],"degree":0,"in_regime":false},
+    {"id":"empty","t":[0,1],"B":[],"support_t":[],"v":[],"degree":0,"in_regime":false},
+    {"id":"absent","t":[0,1],"B":[8],"support_t":[],"v":[],"degree":0,"in_regime":false},
+    {"id":"repeated_tree_labels","t":[0,0],"B":[0],"unique_labels":false,"in_regime":false},
+    {"id":"repeated_selection","t":[0,1],"B":[0,0,1],"unique_selection":false,"in_regime":false},
+    {"id":"joint_marks","t":[[0,2],1],"u":[[0,3],[1,[2,4]]],"B":[0,1,2],"marks_u":[[false],[true,true]],"mark_degrees":[2,2],"costs_none_first_second_both":[1,1,1,2]},
+    {"id":"different_outside_labels","t":[[0,7],2],"u":[2,[8,0]],"B":[0,2],"v":[false],"degree":2,"split":[[0],[2]],"valid":true}
+  ],
+  "mutations": [
+    {"id":"wrong_degree","fixture":"root","claim_degree":3,"must_reject":true},
+    {"id":"missing_path","fixture":"suppressed","claim_support_t":[[],[false,false],[true]],"must_reject":true},
+    {"id":"wrong_root","fixture":"root","claim_support_t":[[false],[true]],"must_reject":true},
+    {"id":"cross_tree_address","fixture":"root","claim_leaf0_addresses_equal":true,"must_reject":true},
+    {"id":"overlapping_blocks","fixture":"root","claim_split":[[0],[0,1]],"must_reject":true},
+    {"id":"wrong_cost","fixture":"root","claim_cost":0,"must_reject":true}
+  ],
+  "pilot": "Only frozen fixtures plus all unordered binary trees on {0,1,2}, all nonempty common label subsets and all support vertices. Stop on counterexample. No larger census.",
+  "lean_controls": "Rebuild positive twins; false proposition is semantic evidence only if well-typed proposition is rejected because decide evaluates false. Syntax/type/import errors are diagnostic only."
+}

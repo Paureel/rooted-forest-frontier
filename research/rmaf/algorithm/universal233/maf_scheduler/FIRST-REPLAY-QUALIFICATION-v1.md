@@ -1,0 +1,3 @@
+# Initial replay check qualification
+
+The initial replay results/algorithm-universal233-maf-scheduler-20261015T103317Z passed the same 56 source builds, 2,450 origin audits and mathematical controls. Its wrong-pin plant directly compared the expected pin to the deliberately wrong all-zero value. Before final release the replay strengthens this plant by feeding BOTH a wrong original-source pin and a wrong copy pin through the same source_valid checker used for every production source row. The new final canonical replay is named in LATEST-REPLAY.txt. The initial receipt remains preserved; no mathematical source or expected fixture value changed.

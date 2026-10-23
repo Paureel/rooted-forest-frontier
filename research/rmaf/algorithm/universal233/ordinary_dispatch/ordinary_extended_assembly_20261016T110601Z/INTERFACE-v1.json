@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "status": "PARTIAL_SOURCE_BOUND_AND_EXACT_RULE5_RESIDUAL_JOIN_REVIEW_PENDING",
+  "canonical_import": "ExtendedSourceInterface",
+  "namespace": "OrdinaryDispatch.ExtendedSourceAssembly",
+  "local_bound": "OrdinaryDispatch.ExtendedSourceAssembly.hardPaidLocalDebit_bound",
+  "source_bound": "OrdinaryDispatch.ExtendedSourceAssembly.extendedSourceSubtotal_bound",
+  "optimizer_bound": "OrdinaryDispatch.ExtendedSourceAssembly.extendedPartialOptimize_bound",
+  "optimizer_value": "OrdinaryDispatch.ExtendedSourceAssembly.extendedPartialOptimize_value",
+  "actual_paid_join_theorems": [
+    "OrdinaryDispatch.ExtendedSourceAssembly.hardPaidCaseUsed_binding",
+    "OrdinaryDispatch.ExtendedSourceAssembly.hardPaidLocalDebit_binding",
+    "OrdinaryDispatch.ExtendedSourceAssembly.hardPaid_actual_source_value",
+    "OrdinaryDispatch.ExtendedSourceAssembly.hardPaid_actual_step_queries",
+    "OrdinaryDispatch.ExtendedSourceAssembly.hardPaid_actual_step_split"
+  ],
+  "rule5_join_theorems": [
+    "OrdinaryDispatch.ExtendedSourceAssembly.concreteRule5Dispatch_value",
+    "OrdinaryDispatch.ExtendedSourceAssembly.rule5Answer_dispatch_join",
+    "OrdinaryDispatch.ExtendedSourceAssembly.concreteRule5Dispatch_split",
+    "OrdinaryDispatch.ExtendedSourceAssembly.rule5DispatchLocal_binding",
+    "OrdinaryDispatch.ExtendedSourceAssembly.rule5Dispatch_actual_step_split"
+  ],
+  "counter_definitions": {
+    "extendedLocalDebit": "previous closedLocalDebit + hardPaidLocalDebit",
+    "extendedSourceSubtotal": "sourceSubtotal extendedLocalDebit",
+    "extendedPartialOptimize": "sourceOptimizeMeter (fun b => extendedSourceSubtotal b T S) T S",
+    "rule5DispatchLocalDebit": "exact zero-ordinary-work concrete dispatchSource body only at actual admitted-rule5 route; UNBOUNDED residual",
+    "joinedDispatchSubtotal": "sourceSubtotal (fun T S q => extendedLocalDebit T S q+rule5DispatchLocalDebit T S q); exact recurrence only, no bound"
+  },
+  "coefficients": {
+    "base": "233/100",
+    "H(N,Q)": "hardPaidPolynomial N Q+16*(2^50*(N+Q+2)^8)",
+    "Lprime(N,Q)": "OrdinaryDispatch.GlobalSourceAssembly.closedLocalPolynomial N Q+H(2*N+3,Q)",
+    "Pprime(n)": "Lprime(n,n)*1024*(n+1)",
+    "Aprime(n)": "n*Pprime(n)+512*(2*n+1)^2+OrdinaryDispatch.RecoveryLocalWork.recoverySourceEnvelope n"
+  },
+  "local_mass_cap": "0<=caseMass(233/100,out)<=1; local overhead only, no change to recursive branch-mass proof",
+  "paid_branch": "literal paidCase runHardPaid path only: non-disjoint default paid cases and exactly-one-good pair-edge branch; both-good/both-bad/invalid-cut routes zero",
+  "paid_step_split": "hardPaidSource(W).work + queryWork(W,outer unit calls) = hardPaidLocalDebit + queryWork(W,complete actual ordinary step queries)",
+  "rule5_fees": {
+    "classifier": "Universal233.ClassifierCheckFee.checkFee",
+    "literal": "Universal233.PaidLiteralDecisionWork.literalFee T S a b",
+    "local_uniform_closure": "EXTERNAL_OPEN",
+    "final_answer_projection_source_fee": "EXTERNAL_OPEN"
+  },
+  "full_source_runtime": false,
+  "independent_acceptance": false,
+  "bit_native": "OPEN",
+  "q": "k-1",
+  "implicit_rho": false
+}

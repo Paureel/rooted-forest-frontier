@@ -1,0 +1,49 @@
+{
+  "status": "PUBLIC_DEFINITIONS_ONLY_NOT_CANDIDATE_RELEASE",
+  "utc": "2026-10-15T18:35:02.828231+00:00",
+  "purpose": "Definition-only excerpts. Paths identify source identity, not permission to read enclosing proofs, controls or auditor before ROOT-RELEASE.",
+  "sources": [
+    {
+      "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestPretest01.lean",
+      "source_sha256": "0fa68c759a86bac1a911d88a8955ebc71bcb63303e9175234cf92bead4ae2d55",
+      "start": 1,
+      "end": 33,
+      "text": "import ForestLocal\nimport Optimality01\n\n/-! Problem-specific full-current-source-forest depth-zero/one pretest.\nThe executable entry point enumerates only original source edges and checks\noriginal ForestState.agrees on the entire candidate. -/\nnamespace ForestPretest01\nopen RMAF RestrictionBridge ForestState\nabbrev Forest := List (List Nat)\n\ndef unchanged (ss : List Tree) : Forest := ss.map leaves\n\ndef oneCuts : List Tree \u2192 List Forest\n  | [] => []\n  | s :: ss =>\n      (Universal233.DepthOne.edges s).map\n        (fun p => Universal233.DepthOne.forest s (some p) ++ unchanged ss) ++\n      (oneCuts ss).map (leaves s :: \u00b7)\n\ndef candidates (ss : List Tree) : List Forest := unchanged ss :: oneCuts ss\n\ninductive Result where\n  | refused\n  | rejected\n  | found (F : Forest)\n  deriving DecidableEq, Repr\n\ndef pretest01 (T : Option Tree) (ss : List Tree) : Result :=\n  if proper T ss then\n    match best (additionalCost ss) (agrees T ss) (candidates ss) with\n    | none => .rejected\n    | some F => .found F\n  else .refused\n"
+    },
+    {
+      "path": "results/algorithm-universal233-forest-pretest01-replay-20261015T181834296403Z/GroupState.lean",
+      "source_sha256": "def667f28d5a9658f817fa259f2293b6d82a05c1f7916a9c4c8a9b566d4952a3",
+      "start": 1,
+      "end": 31,
+      "text": "import GroupPartition\n\n/-! Problem-local literal finite forest states. No desired reduction fields. -/\nnamespace ForestState\nopen RMAF RestrictionBridge\n\ndef labels : Option Tree \u2192 List Nat\n  | none => []\n  | some t => leaves t\n\ndef targetEmbeddings : Option Tree \u2192 List (List Nat) \u2192 Bool\n  | none, F => F.isEmpty\n  | some t, F => pairwiseEmbeddings t F\n\ndef targetAgrees : Option Tree \u2192 Tree \u2192 List Nat \u2192 Bool\n  | none, _, _ => false\n  | some t, s, B => restrictionAgrees t s B\n\ndef proper (T : Option Tree) (ss : List Tree) : Bool :=\n  decide (labels T).Nodup && partitionCheck (labels T) (ss.map leaves)\n\ndef sourceCheck (T : Option Tree) (F : List (List Nat)) (s : Tree) : Bool :=\n  let G := family (leaves s) F\n  partitionCheck (leaves s) G && G.all (targetAgrees T s) && pairwiseEmbeddings s G\n\ndef agrees (T : Option Tree) (ss : List Tree) (F : List (List Nat)) : Bool :=\n  proper T ss && partitionCheck (labels T) F &&\n  F.all (fun B => ss.any (fun s => contained B (leaves s))) &&\n  targetEmbeddings T F && ss.all (sourceCheck T F)\n\ndef additionalCost (ss : List Tree) (F : List (List Nat)) := F.length - ss.length\n"
+    },
+    {
+      "path": "results/algorithm-universal233-forest-pretest01-replay-20261015T181834296403Z/GroupPartition.lean",
+      "source_sha256": "2c682887ec490a875f9df0bf174ce76bcb5424586899287148df9d2828bc7735",
+      "start": 1,
+      "end": 7,
+      "text": "import GroupEmbedding\n\nnamespace RestrictionBridge\nopen RMAF\ndef contained (B U : List Nat) : Bool := B.all (U.contains \u00b7)\ndef family (U : List Nat) (F : List (List Nat)) := F.filter (contained \u00b7 U)\ndef Refines (F Q : List (List Nat)) : Prop := \u2200 B \u2208 F, \u2203 U \u2208 Q, B \u2286 U\n"
+    },
+    {
+      "path": "results/algorithm-universal233-forest-pretest01-replay-20261015T181834296403Z/Pretest.lean",
+      "source_sha256": "b1c811c03315de68dee43b2201c5d824a463b317024cd11679ff75c5ff5a4eba",
+      "start": 1,
+      "end": 26,
+      "text": "import CoreGraph\n\n/-! One-shot original-edge depth-zero/one pretest. The executable routine never\nenumerates assignments, set partitions, colors, or production core outputs. -/\nnamespace Universal233.DepthOne\nopen RMAF CoreGraph\n\ndef vertices : Tree \u2192 List Vertex\n  | .leaf _ => [[]]\n  | .node l r => [] :: ((vertices l).map (false :: \u00b7) ++ (vertices r).map (true :: \u00b7))\n\ndef edges : Tree \u2192 List Vertex\n  | .leaf _ => []\n  | .node l r => (vertices l).map (false :: \u00b7) ++ (vertices r).map (true :: \u00b7)\n\ndef subtreeLabels (S : Tree) (p : Vertex) : List Nat :=\n  match subtree S p with\n  | none => []\n  | some s => leaves s\n\ndef complement (S : Tree) (p : Vertex) : List Nat :=\n  (leaves S).filter (fun x => !(subtreeLabels S p).contains x)\n\ndef forest (S : Tree) : Option Vertex \u2192 List (List Nat)\n  | none => [leaves S]\n  | some p => [subtreeLabels S p,complement S p]\n"
+    },
+    {
+      "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestPermutation.lean",
+      "source_sha256": "37cfdf2392e6cd247209c6be70b96909ed643e095f099fce5a16f034014d7c41",
+      "start": 1,
+      "end": 13,
+      "text": "import ForestPretest01\n\nnamespace ForestPretest01\nopen RMAF RestrictionBridge ForestState\n\n/-- Exactly finite compositions of inner-label and outer-block permutations.\nNo desired coverage, agreement or minimum field is present. -/\ninductive ForestPerm : Forest \u2192 Forest \u2192 Prop where\n  | nil : ForestPerm [] []\n  | cons {A B : List Nat} {F G : Forest} : A.Perm B \u2192 ForestPerm F G \u2192 ForestPerm (A::F) (B::G)\n  | outer {F G : Forest} : F.Perm G \u2192 ForestPerm F G\n  | append {F G H I : Forest} : ForestPerm F G \u2192 ForestPerm H I \u2192 ForestPerm (F++H) (G++I)\n  | trans {F G H : Forest} : ForestPerm F G \u2192 ForestPerm G H \u2192 ForestPerm F H\n"
+    },
+    {
+      "path": "results/algorithm-universal233-forest-pretest01-replay-20261015T181834296403Z/RMAF.lean",
+      "source_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "start": 211,
+      "end": 218,
+      "text": "def best {\u03b1 : Type} (cost : \u03b1 \u2192 Nat) (valid : \u03b1 \u2192 Bool) : List \u03b1 \u2192 Option \u03b1\n  | [] => none\n  | a :: as =>\n      if valid a then\n        match best cost valid as with\n        | none => some a\n        | some b => if cost a \u2264 cost b then some a else some b\n      else best cost valid as\n"
+    }
+  ]
+}

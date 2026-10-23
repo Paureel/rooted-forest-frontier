@@ -1,0 +1,72 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_source_orientation_consumer/build/ConsumerControls.lean:9:98: error: Expected type must not contain free variables
+  firstChildren firstS 0 1 firstD = [singletonChild firstS 0, pendantChild firstS 0 1]
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_source_orientation_consumer/build/ConsumerControls.lean:10:98: error: Expected type must not contain free variables
+  thirdChildren thirdS 0 1 thirdD = [singletonChild thirdS 1, pendantChild thirdS 0 1]
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_source_orientation_consumer/build/ConsumerControls.lean:11:98: error: Expected type must not contain free variables
+  firstChildren firstS 1 0 firstD = [singletonChild firstS 0, pendantChild firstS 1 0]
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_source_orientation_consumer/build/ConsumerControls.lean:12:98: error: Expected type must not contain free variables
+  thirdChildren thirdS 1 0 thirdD = [singletonChild thirdS 1, pendantChild thirdS 1 0]
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_source_orientation_consumer/build/ConsumerControls.lean:13:85: error: Expected type must not contain free variables
+  siblingEndpoint? (mirror firstS) (List.map not firstD.badArc) = some 0
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_source_orientation_consumer/build/ConsumerControls.lean:14:85: error: Expected type must not contain free variables
+  siblingEndpoint? (mirror thirdS) (List.map not thirdD.badArc) = some 0
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_source_orientation_consumer/build/ConsumerControls.lean:15:71: error: Expected type must not contain free variables
+  List.map Child.paid (firstChildren firstS 0 1 firstD) = [1, 2]
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_source_orientation_consumer/build/ConsumerControls.lean:16:71: error: Expected type must not contain free variables
+  List.map Child.paid (thirdChildren thirdS 0 1 thirdD) = [1, 2]
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_source_orientation_consumer/build/ConsumerControls.lean:23:35: error(lean.unknownIdentifier): Unknown identifier `first_admitted`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_source_orientation_consumer/build/ConsumerControls.lean:26:35: error(lean.unknownIdentifier): Unknown identifier `third_admitted`
+Universal233.Rule5SourceOrientation.first_child_solver {T S : Tree} {i u w : RMAF.Vertex} {a b : Nat} {d : BadSelection}
+  (ch : CherryAt T i a b) (ad : admitted T S a b = true)
+  (hz : selectFinal T S a b = some (FinalSelection.remaining d (BoundarySelection.first u w)))
+  (solver : Child → Nat → Option (List (List Nat)))
+  (ih : ∀ (c : Child), c ∈ firstChildren S a b d → ExactBoundedChild T S solver c) (k : Nat) :
+  OriginalWithin T S k ↔ ∃ c, c ∈ firstChildren S a b d ∧ ∃ G, childCall solver k c = some G
+Universal233.Rule5SourceOrientation.third_child_solver {T S : Tree} {i u w : RMAF.Vertex} {a b : Nat} {d : BadSelection}
+  (ch : CherryAt T i a b) (ad : admitted T S a b = true)
+  (hz : selectFinal T S a b = some (FinalSelection.remaining d (BoundarySelection.third u w)))
+  (solver : Child → Nat → Option (List (List Nat)))
+  (ih : ∀ (c : Child), c ∈ thirdChildren S a b d → ExactBoundedChild T S solver c) (k : Nat) :
+  OriginalWithin T S k ↔ ∃ c, c ∈ thirdChildren S a b d ∧ ∃ G, childCall solver k c = some G
+Universal233.Rule5SourceOrientation.selected_original_endpoint_cuts {T S : Tree} {i : RMAF.Vertex} {a b : Nat}
+  {d : BadSelection} (ch : CherryAt T i a b) (sel : selectLocal T S a b = some LocalSelection.remaining)
+  (hd : selectBad T S a b = some d) :
+  ∃ x y qx qy bx byy,
+    (x = a ∧ y = b ∨ x = b ∧ y = a) ∧
+      siblingEndpoint? S d.badArc = some x ∧
+        endpointBranch S x = some bx ∧
+          endpointBranch S y = some byy ∧
+            bx.originalCuts = [qx] ∧
+              byy.originalCuts = [qy] ∧
+                bx.child = singletonChild S x ∧
+                  byy.child = singletonChild S y ∧
+                    bx.child.paid = bx.originalCuts.length ∧
+                      byy.child.paid = byy.originalCuts.length ∧
+                        LeafAt S qx x ∧
+                          qx ≠ [] ∧
+                            LeafAt S qy y ∧
+                              qy ≠ [] ∧ (highBranch S a b).originalCuts = cuts S a b ∧ (highBranch S a b).child.paid = 2
+Universal233.Rule5SourceOrientation.selected_child_states {T S : Tree} {i : RMAF.Vertex} {a b : Nat} {d : BadSelection}
+  (ch : CherryAt T i a b) (sel : selectLocal T S a b = some LocalSelection.remaining)
+  (hd : selectBad T S a b = some d) :
+  List.map Child.paid (firstChildren S a b d) = [1, 2] ∧
+    List.map Child.paid (thirdChildren S a b d) = [1, 2] ∧
+      ∀ (c : Child),
+        c ∈ firstChildren S a b d ∨ c ∈ thirdChildren S a b d →
+          c.sourceForest = List.filterMap (fun B => restrict B S) c.partition

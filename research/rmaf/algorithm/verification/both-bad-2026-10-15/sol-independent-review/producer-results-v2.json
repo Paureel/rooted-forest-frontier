@@ -1,0 +1,148 @@
+{
+  "audits": {
+    "Clean": {
+      "merged_rejected": [],
+      "producer_rejected": [],
+      "resolved_count": 3,
+      "resolved_output_sha256": "85ce470edde6c8c7297715d5d8f54efbe056e2241c276a4643a0e3f27d283e7d",
+      "source_sha256": "11f4dc0e033bbdd0dbe8a000898547040cc718df74d1460e4bd2735b1c33ce6d",
+      "stored_count": 4,
+      "stored_output_sha256": "a380750c5cfa953fc757a709f31edb078eeef6c7117dada095e928036852cdb9"
+    },
+    "Hostile": {
+      "merged_rejected": [],
+      "producer_rejected": [
+        "stored-direct-axiom:ToyProducerHostile:Shared.coalesced"
+      ],
+      "resolved_count": 3,
+      "resolved_output_sha256": "c0996e2ccd2768cc0c847f20178935662540fc2ceb20ecdaffdffa87715d03b9",
+      "source_sha256": "5419299913e3985481754d4c00d3f6f0b56bd5f1d45b3cfa6391ddb4d9572436",
+      "stored_count": 4,
+      "stored_output_sha256": "00fb19d2cc1e97282a823bc91ddae53769d66725155f33c0319dddc58b15830e"
+    },
+    "Reversed": {
+      "merged_rejected": [
+        "Shared.coalesced:Shared.coalesced"
+      ],
+      "producer_rejected": [
+        "stored-direct-axiom:ToyProducerHostile:Shared.coalesced"
+      ],
+      "resolved_count": 3,
+      "resolved_output_sha256": "8577e50b56e20ffa27293e29616f61992785c50e4343a76bff7db4af11b6eb22",
+      "source_sha256": "7c46687743b4f3037d25ea8cb61b1e025819aae842e90a76fe85c90f549dd326",
+      "stored_count": 4,
+      "stored_output_sha256": "6caef4db55fd7805616bf705555d77c530e563996a45ff7362643d08b05c9653"
+    }
+  },
+  "builds": [
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "module": "ProducerAudit",
+      "seconds": 0.9035502080005244,
+      "source_sha256": "a12f094b0cb7cf43e265093b4789a90e83f75c73e29625a8d6b668165e0c9c7b"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "module": "ToyProducer1",
+      "seconds": 0.3617367919978278,
+      "source_sha256": "94bba8b1af22935dd34e46d7803a7e85216223ac0d18ed40daaeccd4f2046faa"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "module": "ToyProducer2",
+      "seconds": 0.33698745800211327,
+      "source_sha256": "9e086d63b52df7de6e1cb626d1b4e6b78b09f49f0fdbdafcee2f6a3922d86ecb"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "module": "ToyProducerHostile",
+      "seconds": 0.38891708300070604,
+      "source_sha256": "092bed5bdbad47934f9bdbb26336d3d017e7c295f25ba198d9900bb2f049f29e"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "module": "AuditProducerClean",
+      "seconds": 4.521021332999226,
+      "source_sha256": "11f4dc0e033bbdd0dbe8a000898547040cc718df74d1460e4bd2735b1c33ce6d"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "module": "AuditProducerHostile",
+      "seconds": 4.601353666999785,
+      "source_sha256": "5419299913e3985481754d4c00d3f6f0b56bd5f1d45b3cfa6391ddb4d9572436"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "module": "AuditProducerReversed",
+      "seconds": 4.567511833000026,
+      "source_sha256": "7c46687743b4f3037d25ea8cb61b1e025819aae842e90a76fe85c90f549dd326"
+    }
+  ],
+  "plants": [
+    {
+      "caught": [
+        "occurrence-bijection"
+      ],
+      "name": "missing-occurrence"
+    },
+    {
+      "caught": [
+        "duplicate-occurrence"
+      ],
+      "name": "duplicate-occurrence"
+    },
+    {
+      "caught": [
+        "occurrence-bijection"
+      ],
+      "name": "wrong-producer"
+    },
+    {
+      "caught": [
+        "stored-record"
+      ],
+      "name": "wrong-kind"
+    },
+    {
+      "caught": [
+        "stored-record"
+      ],
+      "name": "wrong-type"
+    },
+    {
+      "caught": [
+        "stored-record"
+      ],
+      "name": "wrong-body"
+    },
+    {
+      "caught": [
+        "sources"
+      ],
+      "name": "wrong-source"
+    },
+    {
+      "caught": [
+        "imports"
+      ],
+      "name": "wrong-import"
+    },
+    {
+      "caught": [
+        "stored-record",
+        "stored-direct-axiom"
+      ],
+      "name": "axiom-behind-clean-resolved"
+    }
+  ],
+  "scope": "stored producer constants fully inventoried for Toy* modules; compiler extra names separately recorded, not claimed kernel bodies",
+  "seconds": 15.688368249997438,
+  "status": "PASS"
+}

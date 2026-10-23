@@ -1,0 +1,57 @@
+research/rmaf/algorithm/universal233/source_coverage/RawMass.lean:40:72: error: unsolved goals
+b q delta : Nat
+hb : 2 ≤ b
+ih :
+  ∀ (t : GTree) (d : List Group) (c : List Vertex),
+    (origins t).Nodup → scaledMass b (q + c.length) (run q t d c).outputs * b ^ (colorCount t - 1) ≤ b ^ q
+t : GTree
+d : List Group
+c : List Vertex
+g : Group
+hn : (origins t).Nodup
+v : Vertex
+hv : GroupLeafAt t v g
+hvr : v ≠ []
+hr : ∀ (u : GTree) (a : GLeafErase t u v g), colorCount t - 1 ≤ colorCount u - 1 + delta
+h✝¹ : ¬g.origin = []
+h✝ : ¬c.contains g.origin = true
+x✝ : Option GTree
+u : GTree
+hu hu' : erase g.origin t = some u
+herase : GLeafErase t u v g
+hchild :
+  scaledMass b (q + (g.origin :: c).length) (run q u (g :: d) (g.origin :: c)).outputs * b ^ (colorCount u - 1) ≤ b ^ q
+⊢ c.length + 1 = 1 + c.length
+research/rmaf/algorithm/universal233/source_coverage/RawMass.lean:94:18: error: Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce
+
+b : Nat
+hb : 2 ≤ b
+q : Nat
+ih :
+  ∀ (t : GTree) (d : List Group) (c : List Vertex),
+    (origins t).Nodup → scaledMass b (q + c.length) (run q t d c).outputs * b ^ (colorCount t - 1) ≤ b ^ q
+t : GTree
+d : List Group
+c : List Vertex
+hn : (origins t).Nodup
+hnn : (origins (normalize t)).Nodup
+hrank : colorCount (normalize t) = colorCount t
+g : Group
+hc : choose (normalize t) = Choice.one g
+hg : g ∈ groups (normalize t)
+hfilter : (List.filter (fun h => h.color == g.color) (groups (normalize t))).length = 1
+v : Vertex
+hv : GroupLeafAt (normalize t) v g
+hvr : v ≠ []
+u : v = []
+⊢ False
+research/rmaf/algorithm/universal233/source_coverage/RawMass.lean:98:6: error: Type mismatch: After simplification, term
+  ha
+ has type
+  (∀ (u : GTree) (a : GLeafErase (normalize t) u v g), colorCount t - 1 ≤ colorCount u - 1 + 1) →
+    scaledMass b (q + 1 + c.length) (attempt (run q) (normalize t) d c g).outputs * b ^ (colorCount t - 1) ≤ b ^ (q + 1)
+but is expected to have type
+  scaledMass b (q + 1 + c.length) (attempt (run q) (normalize t) d c g).outputs * b ^ (colorCount t - 1) ≤ b ^ (q + 1)
+real 0.43
+user 0.29
+sys 0.20

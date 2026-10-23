@@ -1,0 +1,12 @@
+Supplementary postcontact mutation harness failed before producing its receipt.
+Expected group partition was unchanged: [{0,1},{2}].
+Trial source: ((0,1),2), canonical graph from fresh_graph.tree.
+Attempted wrong-inside-group source edge: (1,2).
+
+Traceback (most recent call last):
+  File "<stdin>", line 9, in <module>
+  File "research/rmaf/algorithm/scaffold_adversary/fresh_graph.py", line 164, in cut_original
+    raise ValueError(("not a live source edge", edge))
+ValueError: ('not a live source edge', (1, 2))
+
+Diagnosis: the fixture typed an absent directed edge; canonical construction puts leaf2 at vertex1 and the {0,1} parent at vertex2. The wrong-inside-group edge is (2,3). This changes the deliberately corrupted edge, not any scientific expected value. Retain this failed harness run.

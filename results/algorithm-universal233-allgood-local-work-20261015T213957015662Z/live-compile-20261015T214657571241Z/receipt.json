@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "8483bfeb83e0c9b38e2d82fba5628b08e7e409a383df7e2c6bd4687611d350d0",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3752142499997717,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.4105629579989909,
+      "resource_stop": null,
+      "log_sha256": "e13c8a3fd2edab156192d0220bb4b53b7bc9a7ab76015c3f932013ecdc4c7a02"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0015197920001810417,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "CandidateCost",
+      "source_sha256": "12cdfdbfc21bd48eaf1f469de7c270e6e0e0c7bf91dc9e87cd9426c6f381018f",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 1.0655121250001685,
+      "resource_stop": null,
+      "log_sha256": "6c2d9a13f116e940d9b4e400ac97490425de7b9a1e189a2fea4fbee41a4acead"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('CandidateCost', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/CandidateCost.lean:22:85: error: Tactic `rfl` failed: No `[refl]` lemma registered for relation\\n  LE.le\\n\\nHint: Add the `[refl]` attribute to reflexivity lemmas for `LE.le` to use this tactic\\n\\nt : Tree\\nss : List Tree\\nhp : proper (some t) ss = true\\nn : Nat := (leaves t).length\\n\u22a2 (labels (some t)).length \u2264 (labels (some t)).length\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/CandidateCost.lean:25:123: error: Tactic `rfl` failed: No `[refl]` lemma registered for relation\\n  LE.le\\n\\nHint: Add the `[refl]` attribute to reflexivity lemmas for `LE.le` to use this tactic\\n\\nt : Tree\\nss : List Tree\\nhp : proper (some t) ss = true\\nn : Nat := (leaves t).length\\nvolume : GenericForest.targetNodes (some t) \u2264 2 * n \u2227 GenericForest.sourceNodes ss \u2264 2 * n \u2227 ss.length \u2264 2 * n\\nht : treeNodes t \u2264 2 * n\\nhs : ss.length \u2264 2 * n\\ns : Tree\\nhm : s \u2208 ss\\n\u22a2 (labels (some t)).length \u2264 (labels (some t)).length\\n'))"
+}

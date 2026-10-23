@@ -1,0 +1,1217 @@
+
+=== PDF PAGE 1 ===
+A Kernel for the Maximum Agreement Forest Problem
+on Multiple Binary Phylogenetic Trees
+S. Kelk, R. Meuwese, L.J.J. van Iersel ∗
+Abstract
+The maximum agreement forest (MAF) problem in phylogenetics takes as
+input a set oft≥2 binary phylogenetic treesTon the same set of taxaX.
+It asks for a partition ofXinto the smallest number of blocks such that the
+subtrees induced by these blocks are disjoint and have common topology across
+all the trees inT. We produce a modified version of the well-known chain
+reduction rule in order to prove that after exhaustive application of reduction
+rules each tree hasO(t·r·k) leaves, wherekis the natural parameter (the
+number of blocks) andr= min{max{k,3}, t+ 1}. We prove this bound for
+both the unrooted and rooted version of the problem, and demonstrate that
+the boundr, the length to which common chains are truncated, is tight. Our
+results constitute the first kernels for MAF in thet >2 regime.
+1 Introduction
+A phylogenetic treeTon a set of species (or more generally,taxa)Xis a tree whose
+leaves are bijectively labelled byX. Such trees are commonplace in the study of
+the evolution of species; interior nodes represent ‘branching’ events in history, such
+as speciation events. Taken as a whole,Ttherefore represents a hypothesis about
+how the speciesXevolved from common ancestors [14]. In this article we are
+only concerned withbinaryphylogenetic trees, i.e. in which each interior node
+represents a bifurcation of lineages. These trees come in two variants: rooted, in
+which the direction of evolution is designated, and unrooted in which the direction
+of evolution has not yet been determined.
+Given a set oft≥2 phylogenetic treesT, all on the same setX, themaxi-
+mum agreement forestproblem (MAF) asks for a partition ofXinto the smallest
+number of blocks such that the subtrees induced by these blocks are disjoint and
+have common topology across all the trees inT. MAF can be used as a measure of
+∗steven.kelk@maastrichtuniversity.nl,L.J.J.vanIersel@tudelft.nl,R.H.Meuwese@
+tudelft.nl. Kelk is at the Department of Advanced Computing Sciences, Maastricht University,
+The Netherlands and Meuwese and Van Iersel are at the Delft Institute of Applied Mathematics,
+Delft University of Technology, The Netherlands.
+1
+arXiv:2602.22281v3  [math.CO]  11 Jun 2026
+
+=== PDF PAGE 2 ===
+dissimilarity; this can be particularly useful if the tree inference process has con-
+structed a set of competing tree hypotheses, not just one, and we wish to summarize
+their shared structure.
+Unfortunately, the variants of MAF on rooted trees (rMAF) and unrooted trees
+(uMAF) are both already NP-hard whent= 2 [1, 3, 9]. This has led to more than
+two decades of research aiming to tame this worst-case intractability, particularly in
+the area of parameterized complexity and approximation algorithms. Rather than
+list the full history of results in this area we refer to papers with detailed surveys
+of the literature such as [4, 12, 15, 16].
+In this article our focus is on parameterized complexity. Fort= 2, both ker-
+nelization and branching algorithms are known. For uMAF, a branching algorithm
+with running timeO ∗(2.846k) was recently proposed [13], where herekrefers to
+the number of blocks in an optimal solution and ‘*’ suppressess polynomial terms.
+The same article presents a branching algorithm for rMAF with running time
+O∗(2.3391k), very slightly improving upon the previous best ofO ∗(2.3431k) [6].
+Linear kernels for uMAF and rMAF were established in 2001 and 2004 respec-
+tively [1, 3], using two reduction rules known as thecommon subtreeandcommon
+chainreduction rules. The state of the art kernel for rMAF augments this with a
+third reduction rule and (up to constant terms) achieves a kernel size of 9k[11].
+For uMAF, augmenting the two original reduction rules with eight new rules also
+yields a kernel of size 9k[12].
+Fort >2 progress has been comparatively slow. For rMAF, a branching al-
+gorithm exists that runs in timeO ∗(2.42k) [16], and for uMAF the best known
+branching algorithm runs in timeO ∗(4k)[15]. However, to date no explicit kernel-
+ization results have been proven 1.
+In this article, we fill this gap by showing that the common subtree reduction
+rule, when combined with a modified version of the common chain reduction rule,
+reduces the number of leaves in each tree toO(t·r·k) wherer= min{max{k,3}, t+
+1}andkis the natural parameter (the number of blocks). This bound holds for
+both uMAF and rMAF. In proving this we have to forego the ‘generator’ machinery
+that has been used in the recentt= 2 kernelization literature to produce small
+kernels: this machinery breaks down fort >2. For this reason the analysis of the
+size of our kernel bears more resemblance to earlier work in this area, specifically
+[1, 3]. The dependency ontin the size of the kernel stems from the fact that the
+modified common chain rule truncates chains to lengthr, which is a function of
+tandk; in contrast, in thet= 2 kernelization literature truncation to constant
+length is sufficient. We show that our choice ofris tight, i.e. there exist inputs in
+which shortening common chains to length less thanralters the size of an optimum
+solution. Since, fort= 2, our bounds perfectly match the known bounds under
+subtree and chain reduction, another contribution of this article is to provide a
+simpler proof of these kernelization results.
+1The aforementioned branching algorithms in [15, 16] automatically imply the existence of a
+kernel whose size isexponentialink. This leverages the well-known equivalence between the
+existence of fixed parameter tractable (FPT) algorithms and kernels, see e.g. Lemma 2.2 of [7].
+2
+
+=== PDF PAGE 3 ===
+Our kernel might be of interest to participants of the Parameterized Algorithms
+and Computational Experiments competition 2026 (PACE 2026), since the exact
+track of this competition asks participants to solve rMAF instances on potentially
+multiple trees [5].
+We conclude with a discussion of open problems and future research directions.
+Most notably, do rMAF and uMAF admit kernels whose size is at mostpolynomial
+inonlyk, as opposed to polynomial inkandt, or exponential ink?
+2 Preliminaries
+Anunrooted binary phylogenetic treeonXis an undirected treeT= (V(T), E(T))
+where every internal node has degree 3 and whose leaves (degree-1 nodes) are
+bijectively labelled by a set of leaf labels (or more formallytaxa)X, where|X|=
+n. When it is clear from the context we will often refer to an unrooted binary
+phylogenetic tree as simply a tree. For every taxonx∈Xitsparentin a treeT
+is the node adjacent tox. AcherryinTis a pair of distinct taxax, y∈Xwhich
+have a common parent inT.
+We refer toB⊆X, with|B| ≥1, as ablock. For a blockBwe writeT[B] to
+denote the minimal subtree ofTspanning exactly all the taxa inB. Furthermore
+we writeT|Bto denote the phylogenetic tree obtained fromT[B] by suppressing
+nodes of degree 2. SubtreeT[B] is calledpendantinTif there exists an edge such
+that deleting it splitsTinto exactly two subtrees, where one tree has taxaBand
+the other has taxaX\B. Thedegreeof a blockBin a treeT, denoted asdeg T (B),
+is the number of edges inTthat have exactly one endpoint inT[B] (informally, the
+number of edges which need to be cut to splitBfromX\B). Hence,deg T (B) = 1
+precisely ifT[B] is pendant.
+Form≥1, letC= (x 1, x2 . . . , xm) be a sequence of distinct taxa inX. We
+callCanm-chaininT, or simply achaininT, if for eachi∈ {1, . . . m−1}the
+parent ofx i is either equal to, or adjacent to, the parent ofx i+12. Note that if
+(x1, x2 . . . , xm) is anm-chain inTthen so is (x m, xm−1 . . . , x1). Chain (x 1, . . . , xm)
+ismaximalif there is no chain (y 1, . . . , ym′) with{x 1, . . . , xm}⊊{y 1, . . . , ym′}.
+Examples of subtrees and chains are given in Figure 1.
+For leaf-labelled (not necessarily binary) treesT, T ′ both having leaf setX, we
+writeT=T ′ if there is an isomorphism betweenTandT ′ that preserves the leaf
+labelsX. We are now ready to define the main structure studied in this paper.
+Definition 1.LetTbe a set of unrooted phylogenetic trees onX. An(unrooted)
+agreement forestF={B 1, B2, . . . , Bk}forTis a partition ofXsuch that the
+following conditions hold.
+1. For alli∈ {1,2, . . . , k},T|B i =T ′|Bi for every pair of treesT, T ′ ∈ T.
+2Due to the fact we are working with binary treesx i andx i+1 can only share a parent ifi= 1
+ori=m−1, and{x i, xi+1}form a cherry.
+3
+
+=== PDF PAGE 4 ===
+T
+a
+b
+c
+d
+e f g
+h
+i
+j
+k
+l m
+Figure 1: An unrooted binary phylogenetic treeTonX={a, . . . , m}. For example,
+T[{a, b, c, d}]is a pendant subtree,(e, f, g)is a3-chain withdeg T ({e, f, g}) = 2and
+(j, k, l, m)is a4-chain inTwithdeg T ({j, k, l, m}) = 1.
+2. For each pairi, j∈ {1,2, . . . , k}withi̸=j, the subtreesT[B i] andT[B j] are
+vertex-disjoint inTfor every treeT∈ T.
+T
+a
+b
+c d
+e
+f
+T ′
+a b
+c d
+e f
+Figure 2: Example of an unrooted agreement forestF={{a, b, c, d},{e},{f}}for
+phylogenetic treesTandT ′. This is a maximum agreeement forest: a smaller
+agreement forest is not possible.
+ThesizeofFis simply|F|, i.e., the number of blocks in the partition. An
+agreement forest with minimum size is called amaximumagreement forest (MAF),
+see Figure 2 for an example. In this paper, we consider the following problem:
+The Unrooted Maximum Agreement Forest Problem
+Input:A setTof unrooted binary phylogenetic trees onXand an integerk.
+Question:Does there esist an unrooted agreement forestFforTof size at
+mostk?
+There is also arootedversion of the agreement forest problem. Arootedbinary
+phylogenetic tree onXis a tree with a single indegree-0 and outdegree-2root,
+where the leaves are bijectively labelled byXand all other nodes have indegree
+1 and outdegree 2. Edges are directed away from the root. If|X|= 1 then the
+single node labelled with the unique element ofXis regarded as a rooted binary
+phylogenetic tree. In this rooted contextT=T ′ if there is an isomorphism between
+TandT ′ that respects the direction of the edges (and, as usual, preserves the leaf
+labelsX). Core definitions, such asT[B] andT|B, go through unchanged, with
+one crucial exception: when constructingT|BfromT[B], the unique node ofT[B]
+with indegree-0 and outdegree-2 (i.e. its root) is not suppressed. The substructures
+for rooted trees are similar to their unrooted counterparts, as shown in Figure 3.
+4
+
+=== PDF PAGE 5 ===
+However, chains are slightly different. In a rooted phylogenetic tree chains have an
+orientation, starting with the taxon closest to the root. For example in Figure 3
+(g, f, e) is a chain ofT, but (e, f, g) is not.
+T
+a b c d
+e
+f
+g h
+i
+j k
+Figure 3: A rooted binary phylogenetic treeT. For example,T[{a, b, c, d}]is a
+pendant subtree,(g, f, e)is a 3-chain and(h, i, j, k)a 4-chain inT.
+LetTbe a set of rooted binary phylogenetic trees onX. A(rooted) agreement
+forestforTis defined identically to the unrooted case; the only difference is the
+different semantics of isomorphism in theT|B i =T ′|Bi condition. See Figure 4 for
+an example.
+T
+a b c
+d e
+T ′
+a b
+c
+d e
+Figure 4: Example of a rooted agreement forestF r ={{a, b, c},{d, e}}for the
+rooted phylogenetic treesTandT ′. This is a maximum agreement forest because
+an agreement forest with fewer blocks is not possible.
+Now the problem becomes:
+The Rooted Maximum Agreement Forest Problem
+Input:A setTof rooted binary phylogenetic trees onXand an integerk r.
+Question:Does there exist a rooted agreement forestF r forTof size at
+mostk r?
+Where necessary we will write uMAF and rMAF to distinguish the unrooted
+and rooted versions of the problem.
+We will use the following observation freely in the remainder of the article, which
+holds for both uMAF and rMAF, and which follows directly from the definitions.
+It shows that the size of a maximum agreement forest is non-increasing under the
+action of deleting taxa from the trees.
+5
+
+=== PDF PAGE 6 ===
+Observation 1:LetTbe a set of (rooted or unrooted) binary phylogenetic trees
+onXandFan agreement forest forT. IfX ′ ⊆Xthen
+F ′ ={B∩X ′ |B∈F, B∩X ′ ̸=∅}
+is an agreement forest forT ′ ={T|X ′ |T∈ T }and|F ′| ≤ |F|.
+In the main part of the article we will focus solely on uMAF. However, as we
+will point out later in Section 4.1 the results go through almost entirely unchanged
+for rMAF.
+3 Reduction Rules
+LetTbe a set of unrooted binary phylogenetic trees onXandS⊆X. We say
+thatSinduces a common pendant subtreeofTifT[S] is pendant in every tree
+T∈ TandT[S] =T ′[S] for each pair of treesT, T ′ ∈ T 3. IfSinduces a common
+pendant subtree ofT, then thesubtree reduction rulepicks an arbitrarys∈Sand
+replaces each treeT∈ TbyT|((X\S)∪ {s}), see Figure 5.
+T
+a
+b
+c d
+e
+f
+T ′
+a
+b
+c d
+e
+f
+TS
+a
+b e
+f
+c
+T ′
+S
+a
+be
+f
+c
+Subtree
+Reduction
+Figure 5: Example of applying the subtree reduction rule onT={T, T ′}with
+S={c, d}, reducing the common pendant subtree to a single taxonc.
+The following lemma is folklore in the phylogenetics literature; correctness for
+two trees is straightforward (see [1, 3] for related discussions) and extends without
+effort to three or more trees.
+Lemma 1:LetTbe a set of unrooted binary phylogenetic trees onXand letT S
+be the result of applying the subtree reduction rule. Then there exists an unrooted
+agreement forest ofT S of size at mostkif and only ifThas an unrooted agreement
+forest of size at mostk.
+There is another well-known reduction rule called thechain reductionrule. It is
+known that when the input consists of precisely two trees, we can reduce a common
+chain of length 4 or more to a common 3-chain. When combined with the subtree
+3Note the use ofT[.] here: the pendant subtree should be ‘rooted’ at the same location in every
+tree inT.
+6
+
+=== PDF PAGE 7 ===
+reduction rule this is sufficient to obtain a kernel of size 15k[10]. However, there
+is no chain reduction rule known for more than two trees. In the next section we
+extend the chain reduction to multiple trees and then use it to produce a kernel.
+3.1 Chain Reduction for Multiple Trees
+LetTbe a set of unrooted binary phylogenetic trees onX. We say that a sequence
+of taxaCis acommon chainofTifCis a chain in eachT∈ T. The intuition behind
+the following reduction rule is to shorten long common chains without altering
+the size of an optimal solution. LetC ′ = (x 1, . . . , xm) be a commonm-chain
+wherem > randr= min{max{k,3}, t+ 1}. Here,kis the target parameter,
+i.e. the valuekin the question “Is there an agreement forest with at mostk
+blocks?” Note thatr≥3, becauset≥2. Thechain reduction rulereduces
+every treeT∈ Tby removing all butrtaxa from the chain. More formally: let
+XC = (X\ {x r+1, xr+2 . . . , xm}), then replace eachT∈ TbyT C =T|X C. (Note
+that deleting anym−rtaxa fromC ′ has the same effect; there is nothing special
+about deleting the lastm−rtaxa).
+T
+a
+b c d e f
+g
+T ′ a
+b c d e f
+g
+TC
+a
+b c d
+g
+T ′
+C
+a
+b c d
+g
+Chain
+Reduction
+Figure 6: Example of applying the chain reduction rule onT={T, T ′}where
+C ′ = (b, c, d, e, f)is a long common chain. We reduce it to the smaller chain
+C= (b, c, d).
+Whent= 2 we get the well-known reduction rule which reduces a common
+chain to a common 3-chain. This is proven in [1] to be safe. In the next lemma we
+prove safeness fort≥2.
+Lemma 2:LetTbe a set oftunrooted binary phylogenetic trees onXandC ′ a
+commonm-chain ofTwithm > r= min{max{k,3}, t+ 1}. LetT C be the result of
+applying the chain reduction rule with respect toC ′. Then there exists an unrooted
+agreement forest ofT C of size at mostkif and only ifThas an unrooted agreement
+forest of size at mostk.
+Proof.LetFbe an unrooted agreement forest forTof sizek. It then follows from
+Observation 1 (takeX ′ equal toX C) that there exists an unrooted agreement forest
+ofT C of size at mostk. This completes one direction of the proof.
+To prove the other direction, suppose there exists an unrooted agreement forest
+FC ofT C of size at mostk. We say that a chain ispreservedby an unrooted
+7
+
+=== PDF PAGE 8 ===
+agreement forest if all its elements are in the same block of the unrooted agreement
+forest. LetCbe the truncated common chain (x 1, . . . , xr). For convenience we
+overloadCto also denote the set of taxa{x 1, . . . , xr}. Suppose thatCis not
+preserved inF C.
+We will prove that there exists an unrooted agreement forestF ′
+C ofT C of size
+at mostkin whichCis preserved and contained in blockB C. From this (and the
+fact thatr≥3) it will follow that the taxax r+1, . . . , xm can simply be added to
+the blockB C to obtain an agreement forest of size at mostkfor the original set of
+treesT 4.
+We call a blockB∈F C aninside-outblock ifBcontains at least one taxon of
+Cand at least one taxon not inC. We claim thatF C has at most two inside-out
+blocks. To see this, consider anyT∈ T C and observe that there are at most two
+edges that are incident to a vertex ofT[X C] and to a vertex not inT[X C]. Let
+e1, er be these edges (if they exist), wheree 1 is incident to the parent ofx 1 and
+er is incident to the parent ofx r. For each inside-out blockB,T[B] contains at
+least one ofe 1, er. By the definition of an unrooted agreement forest, for any two
+blocksB 1, B2 ∈F C, the subtreesT[B 1] andT[B 2] are vertex-disjoint and hence
+edge-disjoint. It follows that there can be at most two inside-out blocks. We will
+split into three cases: two, one or zero inside-out blocks.
+The first case we consider is thatF C has exactly twoinside-out blocksB,
+B′. In this case, we merge the two inside-out blocks and any blocks that are
+completely contained withinCinto a single blockB C, giving partitionF ′
+C ofX C.
+This is depicted schematically in Figure 7, where for simplicity we assumeC=
+(x1, x2, x3, x4, x5).
+T
+B B′
+x1 x2 x3 x4 x5
+e1 e5
+T
+BC
+x1 x2 x3 x4 x5
+e1 e5
+Figure 7: IfF C has two inside-out blocksB(green) andB ′ (blue) then in every tree
+T∈ T C,T[B]andT[B ′]enter the chain in the same way. In this exampleT[B]will
+always usee 1 but note 5, andT[B ′]will always usee 5 but note 1, in everyT∈ T C.
+This allowsB,B ′ and the remainder of the chainCto be merged together into a
+single blockB C (red).
+Clearly the size ofF ′
+C is at most the size ofF C. We now argue thatF ′
+C is
+an unrooted agreement forest ofT C.F ′
+C satisfies the non-overlapping condition
+because any block that would overlap withB C would also overlap withBorB ′
+contradicting thatF C is an unrooted agreement forest. To see that the topological
+equality condition is also satisfied, consider the two edgese 1, er defined above.
+Assume without loss of generality thatT[B] usese 1 for someT∈ T C. ThenT[B]
+usese 1 andT[B ′] usese r in each treeT∈ T C. From this together with the notion
+4It is well-known that for both rooted and unrooted binary phylogenetic trees common chains
+of length at least 3 can be extended in this way; informally, three taxa are sufficient to ensure that
+the truncated chain is ‘oriented’ the same way in every tree inT C.
+8
+
+=== PDF PAGE 9 ===
+thatChas the exact same topology in every treeT∈ T C it follows that for the
+merged blockB C the equalityT|B C =T ′|BC holds for allT, T ′ ∈ T C.
+The second case is thatF C hasexactly one inside-out blockB. If|B∩C| ≥3
+then observe that eitherT[B] usese 1 (but note r) in every treeT∈ T C,e r (but
+note 1) in every treeT∈ T C, or bothe 1 ande r in every treeT∈ T C. Whichever
+situation applies, mergingBwith all other blocks that intersectCyields the desired
+agreement forest. This is depicted in Figure 8.
+T
+B
+x1 x2 x3 x4 x5
+e1 e5
+T
+BC
+x1 x2 x3 x4 x5
+e1 e5
+Figure 8: IfF C has exactly one inside-out blockB(green) and|B∩C| ≥3then
+T[B]must use the edgese 1 ande r in the same way for everyT∈ T C. In this
+exampleT[B]usese 1 but note 5, so this will hold for allT∈ T C. This allows us to
+mergeBwith the remainder ofCto obtainB C (red).
+If|B∩C|= 2 then we distinguish two subcases. In the first subcase,T[B]
+always usese 1 (but note r), always usese r (but note 1), or always uses bothe 1 and
+er, ranging across all treesT∈ T C. Here, as in the case|B∩C|= 3, mergingB
+with all other blocks that intersectCyields the desired agreement forest. This is
+summarized in Figure 9.
+T1
+B
+x1 x2 x3 x4 x5
+e1 e5
+T2
+B
+x1 x2 x3 x4 x5
+e1 e5
+T3
+B
+x1 x2 x3 x4 x5
+e1 e5
+T1
+BC
+x1 x2 x3 x4 x5
+e1 e5
+T2
+BC
+x1 x2 x3 x4 x5
+e1 e5
+T3
+BC
+x1 x2 x3 x4 x5
+e1 e5
+Figure 9: IfF C has exactly one inside-out blockB(green) and|B∩C|= 2, and
+T[B]uses the edgese 1 ande r in the same way for everyT∈ T C - so in every tree it
+behaves like inT 1, or in every tree it behaves like inT 2, or in every tree it behaves
+like inT 3 - then we can mergeBwith the remainder ofCto obtainB C (red).
+In the second subcase there are distinct treesT, T ′ ∈ T C whereT[B] usese 1 but
+note r, whileT ′[B] usese r but note 15. Combined with the fact thatr≥3, this
+means that|C\B| ≥1 and all taxa inC\Bare singleton blocks in the agreement
+5If|B∩C|= 2 and some treeThas the property thatT[B] uses bothe 1 ande r, then all trees
+T∈ T C have this property.
+9
+
+=== PDF PAGE 10 ===
+forest. We splitBintoB\CandB∩Cand then mergeB∩Cwith the singleton
+blocks inC\B. This does not increase the size of the agreement forest, so we are
+done with the|B∩C|= 2 case. This is depicted in Figure 10.
+T1
+B
+x1 x2 x3 x4 x5
+e1 e5
+T2
+B
+x1 x2 x3 x4 x5
+e1 e5
+T1
+BC
+x1 x2 x3 x4 x5
+e1 e5
+T2
+BC
+x1 x2 x3 x4 x5
+e1 e5
+Figure 10: IfF C has exactly one inside-out blockB(green) and|B∩C|= 2, and
+T[B]uses the edgese 1 ande r in different ways - so in at least one tree it behaves like
+inT 1, and in at least one tree it behaves like inT 2 - then all the taxa inC\(B∩C)
+are necessarily singletons inF C (shown in orange). In this case we can splitB∩C
+off fromBand merge it with these singletons to obtainB C (red).
+If|B∩C|= 1 we proceed as follows. Consider an arbitrary treeT∈ T C. Then
+T[B] uses one or both of the edgese 1, er, and this can vary for differentT∈ T C.
+Observe that due tor≥3 and|B∩C|= 1 there is at least one block in the
+agreement forest distinct fromBthat intersectsC.
+IfT[B] usese 1 (but note r) for allT∈ T C, orT[B] usese r (but note 1) for all
+T∈ T C, we can simply mergeBwith all other blocks that intersectCand we are
+done; see Figure 11.
+T1
+B
+x1 x2 x3 x4 x5
+e1 e5
+T2
+B
+x1 x2 x3 x4 x5
+e1 e5
+T1
+BC
+x1 x2 x3 x4 x5
+e1 e5
+T2
+BC
+x1 x2 x3 x4 x5
+e1 e5
+Figure 11: IfF C has exactly one inside-out blockB(green) and|B∩C|= 1, and
+T[B]always behaves like inT 1, or always behaves like inT 2, then we can mergeB
+with the remainder ofCto obtainB C (red).
+If there exist distinct treesT, T ′ ∈ T C such thatT[B] usese 1 (but note r) and
+T ′[B] usese r (but note 1), then the at least two taxa inC\Bare both singleton
+taxa. Now, select an arbitraryT∈ T C and letxbe the single taxon in|B∩C|. Let
+LandRbe the taxa in the two sibling subtrees ofxinT|B. (If|B|= 2 then only
+one ofLandRwill be non-empty, sayL, otherwise they will both be non-empty).
+Figure 12 clarifies this concept.
+Now, we splitBinto{x},Land (if it exists)Rbut compensate for this by
+10
+
+=== PDF PAGE 11 ===
+T|B
+L R
+x
+Figure 12: The definition of the setsLandRas used in Figure 13 (wherex=x 3).
+HereTcan be any tree inT C.
+merging{x}with the at least two singleton blocks corresponding to taxa inC\B.
+This does not increase the size of the agreement forest overall, so we are done. See
+Figure 13.
+Suppose then that there exists a treeT∈ T C such thatT[B] uses bothe 1 ande r.
+The same split-and-merge tactic withLandRas used in the previous paragraph
+also works here. This concludes the case that|B∩C|= 1. This is also depicted in
+Figure 13.
+T1
+B
+x1 x2 x3 x4 x5
+e1 e5
+T2
+B
+x1 x2 x3 x4 x5
+e1 e5
+T3
+B
+x1 x2 x3 x4 x5
+e1 e5
+T1
+BC
+x1 x2 x3 x4 x5
+e1 e5
+T2
+BC
+x1 x2 x3 x4 x5
+e1 e5
+T3
+BC
+x1 x2 x3 x4 x5
+e1 e5
+Figure 13: IfF C has exactly one inside-out blockB(green) and|B∩C|= 1, and at
+least one of the two following situations holds – (i) in at least one treeT[B]behaves
+like inT 1 and in at least one treeT[B]behaves like inT 2, (ii) in at least one tree
+T[B]behaves like inT 3 – then all the taxa in(C\B)are necessarily singletons
+(shown in orange). After splittingBintoL,Rand(B∩C)(see Figure 12 for
+the definition ofLandR) all the blocks intersectingCcan be merged into a single
+blockB C (red).
+The third case is thatF C hasno inside-out blocks. We say thatBis abypass
+blockwith respect toT∈ T C ifB∩C=∅butT[B] uses bothe 1 ande r. IfF C has
+no bypass blocks with respect to any treeT∈ T C, then we can constructF ′
+C from
+FC simply by merging all blocks contained inCinto a single blockCand we are
+done.
+Now assume thatF C has at least one bypass blockBwith respect to some
+T∈ T C. This implies that all elements ofCare singleton blocks inF C, soF C
+has size at leastr+ 1. SinceF C has size at mostkby assumption, it follows that
+3≤r < kand hence thatr=t+ 1. In this case, we constructF ′
+C fromF C as
+11
+
+=== PDF PAGE 12 ===
+follows. While there exists a treeT∈ T C for whichBis a bypass block with respect
+toT, splitBintoB L, BR whereT[B L] is incident to edgee 1 andT[B R] is incident
+to edgee r.
+After repeating this for all trees for which there is a bypass block (possibly
+splitting the same block multiple times), merge all blocks contained inC(which
+are all singletons) into a single blockC. See Figure 14. It is again easy to see
+thatF ′
+C is an unrooted agreement forest. Clearly there is not overlap because there
+are no bypass blocks any more. Isomorphism again holds becauseChas the exact
+same topology in every tree and we only split bypasses.
+T1
+B
+x1 x2 x3 x4 x5
+e1 e5
+T2
+B′
+x1 x2 x3 x4 x5
+e1 e5
+T1
+C
+x1 x2 x3 x4 x5
+e1 e5
+T2
+C
+x1 x2 x3 x4 x5
+e1 e5
+Figure 14:B(green) andB ′ (blue) are examples of bypass blocks. As soon as
+there is at least one bypass block inF C, all the taxa inCare necessarily singletons
+(shown in orange). After splitting all bypass blocks these singletons can be merged
+into a single blockC, show in in red.
+The total number of times a block is split is at mosttand after that we merged
+t+ 1 singleton blocks into a single block. Hence, the size ofF ′
+C is at mostk.
+3.2 Tightness of the Truncation Length
+It is natural to ask whether the truncation lengthr= min{max{k,3}, t+1}used in
+the chain reduction can be improved i.e. reduced in size. We show that for various
+combinations oftandkthe bound is tight. (Fort= 2 reducing chains to length 3
+is already well-known to be tight).
+Our first family of tight examples is as follows; we show for everyt≥3 that
+there is an instance where reducing thet+ 1 term totinr= min{max{k,3}, t+ 1}
+is not safe.
+Lett≥3. Constructtdifferent treesT 1, . . . Tt by starting with a (t+ 1)-chain
+and denote the taxa in this chain 1,2, . . . , t, t+ 1. Then for eachT i inTinsert
+a common chainC ′ = (x 1, x2,· · ·, x m) after theith taxon in thet-chain; we let
+m= 2(t+ 2). Finally, inT 2 (but not in any of the other trees) we reverse the order
+of the chainC ′, resulting inx m being sibling to taxon 1 in that tree. See Figure
+15.
+Note that if we truncateC ′ to a chainCof lengtht, then the resulting modified
+set of trees has an agreement forest of size at mostt+ 1: we take the taxa from
+the (t+ 1)-chain as a single block, together with|C|=tsingleton blocks. We will
+12
+
+=== PDF PAGE 13 ===
+show that the original trees did not have an agreement forest of sizet+ 1 or less.
+From this we will conclude that taking a truncation length of min{max{k,3}, t}
+and parameterk= (t+ 1) is not safe, because the first set of trees do not have an
+agreement forest of size at mostt+ 1, but the reduced trees do.
+Consider then the original set of trees. Note firstly that if any blockBof an
+agreement forest of the original trees contains two or more taxa fromC ′, then no
+two taxa from{1,2, . . . , t, t+ 1}can be in the same block of the forest. Moreover,
+if|B∩C ′| ≥3, thenBcannot contain any taxa from{1,2, . . . , t, t+ 1}, meaning
+that the forest has at leastt+ 2 blocks. So suppose there is no blockBwith the
+property that|B∩C ′| ≥3. Then due to the choice ofm= 2(t+ 2) it follows that
+the forest contains at leastt+ 2 blocks; we are done.
+T1 1
+2 3 4 t
+t+ 1− →C′
+T2 1
+2 3 4 t
+t+ 1← −C′
+T3 1
+2 3 4 t
+t+ 1− →C′
+Tt 1
+2 3 4 t
+t+ 1− →C′
+ReduceC ′
+toC
+TC11
+2 3 4 t
+t+ 1− →C
+TC21
+2 3 4 t
+t+ 1← −C
+TC31
+2 3 4 t
+t+ 1− →C
+TCt1
+2 3 4 t
+t+ 1− →C
+Figure 15: If we take the common chainC ′ to have length 2(t+2) then truncating it
+to a lengthtcommon chainCalters the size of a maximum agreement forest from
+at leastt+ 2to at mostt+ 1.
+13
+
+=== PDF PAGE 14 ===
+Our second family of tight examples shows that for everyk≥4 a truncation
+length of min{max{k−1,3}, t+ 1}is also not safe. The construction is similar to
+the previous case, except that we takem= 2k+ 1,t=k+ 2 and the chainC ′ inT 2
+is not reversed. That is, there aret=k+2 trees and each of these trees is obtained
+by inserting the chainC ′ into a starting chain comprisingt+ 1 =k+ 3 taxa.
+After truncation of the common chain to length min{max{k−1,3}, t+ 1}=k−1,
+observe that the reduced trees have an agreement forest of sizek(i.e. the original
+taxa{1,2, . . . , t, t+1}in one block, andk−1 singleton blocks corresponding to taxa
+inC). Before truncation, note that if a blockBhas the property that|B∩C ′| ≥3,
+then the taxa{2, . . . , t}must be in separate blocks, meaning that there will be at
+leastt−1 =k+1> kblocks in the forest. But if no such blockBexists, then there
+will be at least (2k+ 1)/2> kblocks. Hence, prior to truncation, an agreement
+forest contains at leastk+ 1 blocks.
+4 Bounding the Number of Leaves in Each Tree
+Lemma 3:LetTbe a set oftunrooted binary phylogenetic trees onXandFan
+unrooted agreement forest forTof sizek≥2. If neither the subtree nor the chain
+reduction are applicable inT, then for each blockB∈F, it holds that
+|B| ≤2r
+X
+T∈T
+degT (B)−3r
+withr= min{max{k,3}, t+ 1}andt≥2.
+Proof.LetB∈Fandd= P
+T∈T degT (B). Note that if|B|= 1 thend=t≥2 and
+the right hand side of the claimed inequality evaluates to at least 4r−3r=r≥3,
+so the claim holds immediately. Hence we can focus on|B| ≥2.
+For an arbitrary treeT ∗ ∈ T, consider the treeT B obtained fromT ∗|Bas
+follows. For an edgeeofT ∗|Band treeT∈ T, letn(e, T) be the number of
+internal vertices on the path inT[B] corresponding to 6 edgee. Subdivide each
+edgeeofT ∗|Bby P
+T∈T n(e, T) degree-2 vertices. Call the obtained treeT full
+B .
+Then, inT full
+B , delete all leaves and suppress their parents if they become degree-
+2. (Note however that we do not suppress vertices that were degree 2beforethe
+deletion of the leaves). This gives treeT B, see Figure 16 for an example.
+Observe that the total number of degree-2 vertices and leaves ofT B isdand
+thatd≥t≥2.
+We prove by induction ondthat a treeSwithdvertices of degree at most 2
+has at most 2d−3 edges. Ifd= 2 thenShas exactly one edge and we are done.
+Ifd≥3, letS ′ be the result of deleting a leaf and suppressing its neighbour if it
+becomes degree-2. This reduces the number of vertices of degree at most 2 by 1.
+6Ife={u, v}then the path corresponding toeinT[B] is the path that starts atuand ends
+atv. The interior vertices of this path are the degree-2 vertices that are suppressed in order to
+createeinT|B.
+14
+
+=== PDF PAGE 15 ===
+T1
+T full
+B
+TB
+a
+b
+c
+e
+d
+f
+g
+h
+i
+j
+k
+T2
+a
+b
+c
+e
+d
+f
+g
+h
+i
+j
+k
+T3
+a
+b
+c
+e
+d
+f
+g
+h
+i
+j
+k
+l
+m
+n
+o
+n
+o
+l
+m
+l
+m
+n
+o
+a
+b
+c
+e
+d
+f
+g
+h
+i
+j
+k
+a
+b, c
+d, e, f
+g, h
+i, j, k
+p
+p
+p
+Figure 16: Example of the construction of treesT full
+B andT B in the proof of
+Lemma 3 withB={a, b, . . . , k}. Each edge ofT B is labelled by the leaves that
+are charged to it. The edges labelledb, candg, hare considered in the first case
+of the proof, the edges labelledd, e, fandi, j, kare considered in the second case,
+while the edge labelledais considered in the third case.
+15
+
+=== PDF PAGE 16 ===
+By induction,S ′ has at most 2(d−1)−3 = 2d−5 edges and thereforeShas at
+most 2d−3 edges. Hence,T B has at most 2d−3 edges.
+We now show that the number of leaves ofT full
+B is at mostrmwithmthe
+number of edges ofT B. Consider any maximal chainCofT full
+B . Then the leaves
+ofCare deleted fromT full
+B in the construction ofT B and their neighbours are
+suppressed if they get degree-2. Observe that it is not possible that a neighbour of
+a leaf had degree-3 inT full
+B and becomes degree-1 inT B because then the subtree
+reduction would have been applicable inT. Hence, we can distinguish the following
+three cases. In each case we will map or “charge” each leaf to an edge ofT B. We
+will do this in such a way that leaves from different maximal chains ofT full
+B are
+charged to different edges ofT B, which will make it possible to bound the total
+number of leaves.
+Thefirst caseis that all neighbours of leaves inCare suppressed. Letebe
+the edge ofT B created by suppressing these neighbours. Charge all leaves ofCto
+edgee.
+Thesecond caseis that|C| ≥2 and there is at least one leafxinCsuch that
+the neighbourvofxinT full
+B is a degree-2 vertex, and thus is not suppressed when
+xis deleted. Note that there can be at most two such leaves sinceCis a chain. If
+there are exactlytwosuch leaves, thenBis a common chain, soB=C, andd= 2.
+In this case,T B has exactly one edge and we charge all leaves ofBto it. If there
+is exactlyonesuch leafx, then all other neighbours of leaves inCare suppressed,
+creating an edgee. Charge all the leaves ofC, includingx, toe.
+It remains to consider thethird case: thatC={x}and the neighbourvofx
+inT full
+B has degree 2. Thenvis not suppressed. Consider the edgeeofT full
+B
+incident tovbut not tox. Chargextoe. Observe that no other leaves are charged
+toebecause otherwiseCwould not have been maximal.
+In general, leaves from different maximal chains ofT full
+B are never charged to
+the same edge ofT B. Moreover, each maximal chain contains at mostrleaves
+because otherwise the chain reduction would have been applicable inT. Hence, it
+follows that the number of leaves ofT full
+B is at most the number of edges ofT B
+timesr.
+This concludes the proof since|B|is equal to the number of leaves ofT full
+B ,
+which we have shown to be at mostrtimes the number of edges ofT B, which we
+have shown to be at most 2d−3.
+Lemma 4:For everyT∈ Tthe sum of the degrees of each blockBinFis bounded
+as follows, wherekis the size ofF:
+X
+B
+degT (B)≤2k−2.
+Proof.LetTbe any tree inTand letBbe a block ofF. ConsiderT[B]. IfThas
+an edgeesuch that one endpointuofeis a node ofT[B] and the other endpoint
+vis not, andvdoes not lie onT[B ′] for anyB ′ ∈F, thenvis necessarily not a
+16
+
+=== PDF PAGE 17 ===
+leaf (because every taxon is in some block of the forest), and thus has degree larger
+than 1. If we expandT[B] with the edgee, then the degree of this expanded block
+(i.e. the number of edges that have exactly one endpoint on the expanded block) is
+at least as large as the degree ofBinT: this is because there is at least one edge
+incident tovthat is not equal toe. We iterate this procedure to exhaustion i.e.
+until the point that no blockB∈Fcan be further expanded inT. At this point,
+there will be exactlyk−1 edges inTthat are not part of any expanded block, and
+each such edge will have its endpoints on two distinct expanded blocks. Hence, the
+total degree of the expanded blocks inTwill be exactly 2(k−1). By construction,
+this is an upper bound on the sum of the degrees of the original blocks inT, soP
+B degT (B)≤2k−2.
+Theorem 1:LetTbe a set oftunrooted binary phylogenetic trees onX. If there
+exists an unrooted agreement forest ofTof size at mostkand neither the subtree
+nor chain reduction is applicable, then every tree inThas at most4trk−4tr−3rk
+taxa, withr= min{max{k,3}, t+ 1}.
+Proof.LetFbe an unrooted agreement forest ofTof size at mostk. We can
+bound the number of leaves in each tree as follows.
+|X| ≤
+X
+B∈F
+|B|
+≤
+X
+B
+ 
+2r
+X
+T
+degT (B)−3r
+!
+(Lemma 3)
+= 2r
+X
+T
+X
+B
+degT (B)−
+X
+B
+3r
+= 2r
+X
+T
+X
+B
+degT (B)−3rk
+≤2r
+X
+T
+(2k−2)−3rk(Lemma 4)
+=t2r(2k−2)−3rk
+= 4trk−4tr−3rk.
+We note that fort= 2, at which pointr= 3, the above bound becomes
+24k−24−9k= 15k−24. This matches exactly with the analysis in [10] which
+shows that for these two reduction rules the kernel has at most 15d TBR −9 taxa
+whered TBR, theTree Bisection and Reconnectdistance, is defined to be equal to
+the size of a maximum agreeement forestminus one. Their analysis is tight: they
+show two trees for which the kernel has exactly 15d TBR −9 taxa. Hence, fort= 2,
+our analysis is also tight.
+17
+
+=== PDF PAGE 18 ===
+4.1 Adapting to Rooted Trees
+It is well-known that the subtree reduction rule holds in the case of multiple rooted
+trees. The chain reduction rule is also safe for the case of multiple rooted trees, as
+the next lemma shows.
+Lemma 5:LetTbe a set of rooted binary phylogenetic trees onXandC ′ a
+common chain ofT. LetT C be the result of applying the chain reduction rule.
+Then there exists a rooted agreement forest ofT C of size at mostk r if and only if
+Thas a rooted agreement forest of size at mostk r.
+Proof.In the proof for the unrooted variation of the chain reduction rule, Lemma 2,
+there were three main cases to discuss:F C had 2, 1 or 0 inside-out blocks. A careful
+re-reading of that proof shows that all these cases and their various subcases go
+through in the rooted case.
+LetF r be a rooted agreement forest. We define theoutdegreeof a blockBinT,
+outdegT (B), to be the number of edges ofTwhich have their tail onT[B] but not
+their head. We state the following modification of Lemma 4 without proof.
+Lemma 6:For everyT∈ Tthe sum of the outdegrees of each blockBinF r is
+bounded as follows, wherek r is the size ofF r:
+X
+B
+outdegT (B)≤k r −1.
+Lemma 3 also requires some adjustment. Consider a blockBofF r where
+T|Bhasc≥1 cherries (hereTis an arbitrary tree fromT). To avoid triggering
+the subtree reduction it must hold that, for each such cherry{x, y}, at least one
+treeT∈ Thas the property that some edge ofTnot withinT[B] has its tail
+on the (undirected) path betweenxandyinT. Hence, P
+T outdegT (B)≥c. IfP
+T outdegT (B) =cthen it is possible thatBhas up tor(2c−1) taxa. This is
+because a rooted binary tree oncleaves has 2(c−1) = 2c−2 edges, each of which
+can correspond to anr-chain, butBcan also have an extrar-chain that feeds into
+the top of the tree. This is summarized in the next lemma; note that the lemma
+only holds for non-singleton blocks, as P
+T outdegT (B) = 0 for singleton blocks.
+See also Figure 17.
+Lemma 7:The number of taxa in a non-singleton blockBofF r is at most
+|B| ≤2r
+X
+T
+outdegT (B)−r
+withr= min{max{k r,3}, t+ 1}andtthe number of trees.
+This means that Theorem 1 can also be adjusted to incorporate rooted agree-
+ment forests and provide a very similar result.
+18
+
+=== PDF PAGE 19 ===
+T1
+c
+d
+e
+B2
+f
+g
+h
+i
+l
+j
+k
+m
+n
+a
+b
+T2
+c
+d
+e
+B1
+f
+g
+h
+i
+l
+j
+k
+m
+n
+a
+b
+T3
+B3
+c
+d
+e
+f
+g
+h
+i
+l
+j
+k
+m
+n
+a
+b
+Figure 17: Illustration of Lemma 7. BlockB 2 ={d, e, . . . , m}has total outdegree,
+over all trees, of3, so it may contain up to5rtaxa. For ease of illustration, we
+used chains of length2, leading to|B 2|= 10.
+Theorem 2:LetTbe a set oftrooted binary phylogenetic trees onX. If there
+exists a rooted agreement forest forTof size at mostk r and neither the subtree nor
+chain reduction is applicable, then every tree inThas at most(2tr+ 1)(k r −1)−r
+taxa, withr= min{max{k r,3}, t+ 1}.
+Proof.Consider a rooted agreement forestF r of size at mostk r. We may assume
+that at least one block ofF r has size at least 2 since otherwise we can simply merge
+two arbitrary blocks. We can then bound the number of leaves in each tree as
+follows.
+|X| ≤
+X
+B∈Fr
+|B|
+=
+X
+|B|=1
+1 +
+X
+|B|>1
+|B|
+≤k r −1 +
+X
+|B|>1
+ 
+2r
+X
+T
+outdegT (B)−r
+!
+(Lemma 7)
+≤k r −1 +
+X
+B
+ 
+2r
+X
+T
+outdegT (B)
+!
+−r
+≤k r −1 + 2r
+X
+T
+(kr −1)−r(Lemma 6)
+=k r −1 + 2tr(k r −1)−r
+= (2tr+ 1)(k r −1)−r.
+19
+
+=== PDF PAGE 20 ===
+Fort= 2 and thusr= 3 this gives 13k r −16. We note that when restricted
+to the subtree and chain reduction rule the analysis in [11] also yields a bound of
+13kr −16 fort= 2; more precisely, 13d rSPR −3 whered rSPR (therooted Subtree
+Prune and Regraftdistance) is equal tok r −1. Their bound is tight 7, including
+additive terms, and thus so is ours.
+Remark.The second family of tight examples given for unrooted trees in Sec-
+tion 3.2, which shows that thekcannot be reduced tok−1 inr= min{max{k,3}, t+
+1}, works unchanged for rooted trees; the trees can simply be rooted on the edge
+incident to taxon 1.
+However, a slightly more complex construction is required to show that fort≥2
+rooted trees,t+1 cannot be reduced totinr= min{max{k,3}, t+1}. We construct
+the following set ofttrees. Every tree contains a chainC ′ withm= 2t+ 1 taxa,
+and 2tother distinct taxa labeledx i andy i, 1≤i≤t. To constructT i we start
+by taking a cherry on{x 1, y1}, placing this on the left side of the root, and on the
+right side of the root we place the remaining taxax 2, y2, x3, y3, . . . , xt, yt in a chain
+(so there are two cherries in total). We then cyclically increment the indices of the
+labels (i−1) times. Note in particular that applying a cyclical increment tox t and
+yt sends them back tox 1 andy 1 respectively. We complete the construction ofT i
+by inserting the chainC ′ between taxax i+1 andy i+1 (fori < t) or between taxa
+x1 andy 1 (fori=t). The construction is summarized in Figure 18. Note that for
+clarity the figure assumest≥3, but the construction also works fort= 2.
+Fort= 2, truncatingC ′ to length 2 reduces the size of a maximum agreement
+forest from 4 to 3 (we omit details), so truncation to lengthtis not safe fort= 2
+(atk= 3). So, we assumet≥3. It is easy to verify that, if the chainC ′ is
+truncated to lengtht, the resulting trees have an agreement forest with at most
+2tblocks: thettaxa from the truncated chain become singletons, together with
+blocks{x i, yi}for 1≤i≤t. We will show that prior to truncation an agreement
+forest has at least 2t+ 1 blocks. From this we will conclude that a truncation
+length of min{max{k,3}, t}is not safe, because when takingk= 2t(noting that
+min{max{2t,3}, t}=t) the original trees do not have an agreement forest of size at
+most 2t, but the reduced trees do. So, consider a maximum agreement forest of the
+original trees. If there is no blockBsuch that|B∩C ′| ≥2, then there are at least
+m= 2t+1 blocks in the forest, so we are done. Hence, assume that there is at least
+one blockBwhere|B∩C ′| ≥2 and letc, dbe distinct taxa inB∩C ′. Observe that
+Bcannot contain any taxon from outsideC ′. To see why, suppose it containedx j
+for somej(the same reasoning will hold fory j). In some treex j appears in the
+cherry left of the root, i.e. ‘above’C ′, while in some treex j appears in the cherry
+‘underneath’C ′: these two trees induce different topology subtrees on{c, d, x j},
+violating the definition of an agreement forest. Moving on, it follows that no two
+taxa from outsideC ′ can be in the same blockB ′ ̸=Bof the agreement forest. This
+7The construction shown in Figure 3 of [11] to demonstrate tightness for the three reduction
+rules considered there, can be adapted to show tightness when only the subtree and chain reduction
+rule are considered. This can be achieved by placing 3 taxa on each “edge side” of the underlying
+generator.
+20
+
+=== PDF PAGE 21 ===
+is because, by construction, for every two distinct taxa in{x 1, y1, ..., xt, yt}there
+exists some treeT j in which one of the two taxa is aboveC ′, and the other taxon is
+belowC ′, soT j[B] andT j[B′] would intersect, again contradicting the definition of
+an agreement forest. This means that the taxa{x 1, y1, ..., xt, yt}induce 2tsingleton
+blocks in the forest. CountingBtoo, that yields at least 2t+ 1 blocks.
+T1
+x1 y1 x2
+− →C′
+y2
+xt yt
+T2
+x2 y2 x3
+− →C′
+y3
+x1 y1
+Tt
+xt yt x1
+− →C′
+y1
+xt−1 yt−1
+Figure 18: If we take the common chainC ′ to have length2t+ 1then truncating it
+to a lengthtcommon chainCalters the size of a maximum agreement forest from
+at least2t+ 1to at most2t.
+5 Future Work
+Although the truncation lengthrused in our chain reduction is in some sense tight,
+it is unclear whether the overall bound on the size of the kernel is tight fort >2.
+Fort= 2 our bounds perfectly match existing bounds which are known to be
+tight under subtree and chain reduction. The main question is whether fort >2
+the counting in Lemmas 3 and 4 (and their rooted analogues) can be undertaken
+more carefully. Fort= 2 the introduction of generators made the counting much
+easier [10], and subsequently became the basis for new, more powerful reduction
+rules [11, 12]. Generators are in essence a static, graph-based representation of
+maximum agreement forests, but they do not work fort >2. Finding an alternative
+to generators fort >2 seems an important direction for future research.
+Relatedly, it is natural to ask whether the design and deployment of new, addi-
+tional reduction rules can produce a smaller kernel. A natural starting point would
+be to analyze the extra rules that have already been developed fort= 2. For the
+rooted problem this is the ‘3-2 chain reduction’ described in [11]. In contrast, for
+the unrooted problem there are eight extra reduction rules known [12]. Although
+the generator machinery is not available to us in thet >2 regime some of these
+reduction rules might still be correct. In such a case the main challenge will be
+measuring the impact of the reduction rules on the size of the kernel.
+Currently, depending on whethert≪k,k≪tort≈kwe obtain a kernel with
+O(t2k),O(tk 2) orO(t 3) (equivalentlyO(k 3)) leaves respectively. 8 In an applied
+context it is plausible that the first scenario (comparing a small number of highly
+8Measured in bits the size of the kernel is slightly larger. This is because a reasonable encoding
+oftbinary phylogenetic trees each onnleaves requiresN= Θ(tnlogn) bits.
+21
+
+=== PDF PAGE 22 ===
+discordant gene trees) or the second scenario (comparing a large number of broadly
+similar gene trees) will often occur. Possibly specialized reduction rules can be
+designed for each of these scenarios separately.
+Perhaps the most tantalizing open question is whether rMAF and uMAF admit
+a kernel whose size is polynomial inonlyk. The results in the present article show
+that they admit a kernel whose size is at most polynomial inkandt. On the other
+hand, the branching algorithms for rMAF and uMAF with running timesO ∗(ck) in
+[15, 16] automatically imply the existence of a ‘trivial’ kernel whose size is (single)
+exponential in onlyk(see e.g. Lemma 2.2 of [7] for a proof of this implication; it is
+a foundational fact in parameterized complexity). The number of distinct binary
+phylogenetic trees onnleaves is bounded by a function ofn, but the bound is
+super-exponential (see Proposition 2.1.4 and Corollary 2.2.4 of [14]), so to obtain a
+polynomial kernel inkit will be necessary to produce a reduced instance on at most
+poly(k) trees and poly(k) leaves. A potentially relevant fact here is that, for rMAF
+and uMAF, there is no obvious functionfofkwhereby we can say “Ift≥f(k)
+then a MAF with at mostkblocks does not exist.” To see this, observe that two
+distinct trees, each onn/2 leaves, can be connected together with a single edge to
+obtainO(n 2) trees onnleaves, which have a MAF of size only 2. Indeed, it might
+be that a kernel whose size is bounded by a polynomial ofksimply does not exist,
+under reasonable complexity-theoretic assumptions. The literature on kernel-size
+lower bounds (using techniques such ascross-composition[2]; see also the chapter
+on lower bounds in [8]) could be very useful in this regard.
+6 Acknowledgements
+Ruben Meuwese was supported by the Dutch Research Council (NWO), project
+OCENW.GROOT.2019.015. We thank the anonymous reviewers for their helpful
+feedback. We also thank Enrico Iurlano and Johannes Varg for pointing out an
+error in the tightness construction in an earlier version of the article.
+References
+[1] B. Allen and M. Steel. Subtree transfer operations and their induced metrics
+on evolutionary trees.Annals of Combinatorics, 5(1):1–15, 2001. doi: 10.1007/
+s00026-001-8006-8.
+[2] H. Bodlaender, B. Jansen, and S. Kratsch. Kernelization lower bounds by
+cross-composition.SIAM Journal on Discrete Mathematics, 28(1):277–305,
+2014. doi: 10.1137/120880240.
+[3] M. Bordewich and C. Semple. On the computational complexity of the rooted
+subtree prune and regraft distance.Annals of Combinatorics., 8(4):409–423,
+January 2004. doi: 10.1007/s00026-004-0229-z.
+22
+
+=== PDF PAGE 23 ===
+[4] L. Bulteau and M. Weller. Parameterized algorithms in bioinformatics: An
+overview.Algorithms, 12(12):256, 2019. doi: doi.org/10.3390/a12120256.
+[5] PACE Challenge. Pace 2026 - (rooted) maximum-agreement forest.https:
+//pacechallenge.org/2026/maf/, 2026. Accessed: 2026-01-23.
+[6] Z-Z. Chen, Y. Fan, and L. Wang. Faster exact computation of rSPR distance.
+Journal of Combinatorial Optimization, 29(3):605–635, 2015. doi: 10.1007/
+s10878-013-9695-8.
+[7] M. Cygan, F. Fomin, L. Kowalik, D. Lokshtanov, D. Marx, M. Pilipczuk,
+M. Pilipczuk, and S. Saurabh.Parameterized Algorithms. Springer, 2015. doi:
+10.1007/978-3-319-21275-3.
+[8] F. Fomin, D. Lokshtanov, S. Saurabh, and M. Zehavi.Kernelization: theory
+of parameterized preprocessing. Cambridge University Press, 2019. doi: 10.
+1017/9781107415157.
+[9] J. Hein, T. Jiang, L. Wang, and K. Zhang. On the complexity of comparing
+evolutionary trees.Discrete Applied Mathematics, 71(1-3):153–169, 1996. doi:
+10.1016/S0166-218X(96)00062-5.
+[10] S. Kelk and S. Linz. A tight kernel for computing the tree bisection and recon-
+nection distance between two phylogenetic trees.SIAM Journal on Discrete
+Mathematics, 33(3):1556–1574, 2019. doi: 10.1137/18M122724X.
+[11] S. Kelk, S. Linz, and R. Meuwese. Cyclic generators and an improved linear
+kernel for the rooted subtree prune and regraft distance.Information Process-
+ing Letters, 180:106336, 2023. doi: 10.1016/j.ipl.2022.106336.
+[12] S. Kelk, S. Linz, and R. Meuwese. Deep kernelization for the tree bisection
+and reconnection (TBR) distance in phylogenetics.Journal of Computer and
+System Sciences, 142:103519, 2024. doi: 10.1016/j.jcss.2024.103519.
+[13] D. Mestel, S. Chaplick, S. Kelk, and R. Meuwese. Split-or-decompose: Im-
+proved FPT branching algorithms for maximum agreement forests.Journal
+of Computer and System Sciences, 160:103800, 2026. doi: 10.1016/j.jcss.2026.
+103800.
+[14] C. Semple and M. Steel.Phylogenetics. 2003. doi: 10.1093/oso/9780198509424.
+001.0001.
+[15] F. Shi, J. Wang, J. Chen, Q. Feng, and J. Guo. Algorithms for parameterized
+maximum agreement forest problem on multiple trees.Theoretical Computer
+Science, 554:207–216, 2014. doi: 10.1016/j.tcs.2013.12.025.
+[16] F. Shi, J. Chen, Q. Feng, and J. Wang. A parameterized algorithm for the
+maximum agreement forest problem on multiple rooted multifurcating trees.
+Journal of Computer and System Sciences, 97:28–44, 2018. doi: 10.1016/j.jcss.
+2018.03.002.
+23

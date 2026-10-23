@@ -1,0 +1,35 @@
+import PaidConsumers
+namespace Universal233.Hard2Overlap
+open RMAF VertexGeometry SourceCoverage CoreProgram Integration BinaryExchange
+
+theorem selected_pair_guards {T S : Tree} {A B C : List Nat} {o : Order} {choice : PairGeometry.Choice}
+ (ht : (leaves T).Nodup) (hl : ∀x,x∈leaves S → x∈leaves T)
+ (hp : partitionCheck (leaves S) [A,B,C]=true)
+ (hsource : pairwiseEmbeddings S [A,B,C]=true)
+ (selected : select T A B C=some (.pair o choice)) :
+ let A':=first o A B C
+ let B':=second o A B C
+ let C':=third o A B C
+ partitionCheck (leaves S) [A',B',C']=true ∧ pairwiseEmbeddings S [A',B',C']=true ∧
+ A'≠B' ∧ PairGeometry.properInput T A' B'=true ∧
+ PairGeometry.choose T A' B'=some choice ∧ PairGeometry.ValidChoice T A' B' choice ∧
+ (∀E,E∈[A',B',C'] → E≠A' → E≠B' → Disj T E A' ∧ Disj T E B') := by
+ obtain ⟨ac,bc,hchoose,hvalid⟩ := select_sound ht hl hp selected
+ have pp := permuted_partition o hp
+ have pe : pairwiseEmbeddings S (parents o A B C)=true := by
+  rw [FinalCutRecovery.embeddings_outer_perm S (parents_perm o A B C)]
+  exact hsource
+ have proper := partition_pair_proper ht hl pp
+ have ab := (Assembly.parent_partition_disjoint S _ _ _ pp).1
+ have ne : first o A B C≠second o A B C := by
+  obtain ⟨x,hx⟩ := nonempty_witness _ (partitionCheck_nonempty _ _ pp _ (by simp [parents]))
+  intro eq
+  exact ab x hx (eq ▸ hx)
+ refine ⟨pp,pe,ne,proper,hchoose,hvalid,?_⟩
+ intro E mem nea neb
+ simp only [List.mem_cons,List.not_mem_nil,or_false] at mem
+ rcases mem with rfl|rfl|rfl
+ · exact False.elim (nea rfl)
+ · exact False.elim (neb rfl)
+ · exact ⟨FreshPairReview.actual_clear_disj T _ _ (clear_symm ac),FreshPairReview.actual_clear_disj T _ _ (clear_symm bc)⟩
+end Universal233.Hard2Overlap

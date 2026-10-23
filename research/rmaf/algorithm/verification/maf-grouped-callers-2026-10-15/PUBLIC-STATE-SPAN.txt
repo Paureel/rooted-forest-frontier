@@ -1,0 +1,28 @@
+namespace ForestState
+open RMAF RestrictionBridge
+
+def labels : Option Tree → List Nat
+  | none => []
+  | some t => leaves t
+
+def targetEmbeddings : Option Tree → List (List Nat) → Bool
+  | none, F => F.isEmpty
+  | some t, F => pairwiseEmbeddings t F
+
+def targetAgrees : Option Tree → Tree → List Nat → Bool
+  | none, _, _ => false
+  | some t, s, B => restrictionAgrees t s B
+
+def proper (T : Option Tree) (ss : List Tree) : Bool :=
+  decide (labels T).Nodup && partitionCheck (labels T) (ss.map leaves)
+
+def sourceCheck (T : Option Tree) (F : List (List Nat)) (s : Tree) : Bool :=
+  let G := family (leaves s) F
+  partitionCheck (leaves s) G && G.all (targetAgrees T s) && pairwiseEmbeddings s G
+
+def agrees (T : Option Tree) (ss : List Tree) (F : List (List Nat)) : Bool :=
+  proper T ss && partitionCheck (labels T) F &&
+  F.all (fun B => ss.any (fun s => contained B (leaves s))) &&
+  targetEmbeddings T F && ss.all (sourceCheck T F)
+
+def additionalCost (ss : List Tree) (F : List (List Nat)) := F.length - ss.length

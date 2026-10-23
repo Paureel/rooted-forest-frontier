@@ -1,0 +1,180 @@
+#!/usr/bin/env python3
+"""One-shot fresh verifier. Original-edge deletion enumeration; zero route code reuse.
+Use: ./bootloops-python this-file --phase plants|fixtures|product --out PATH.
+See INSTRUMENT-PIN.md for meaning, known-answer controls and scope.
+"""
+import argparse, hashlib, itertools, json, time
+from fractions import Fraction
+from pathlib import Path
+
+def blockkey(p):
+    return tuple(sorted((tuple(sorted(map(str,b))) for b in p),key=lambda x:(len(x),x)))
+
+class Raw:
+    def __init__(self,t):
+        self.t=t; self.children={}; self.leaf={}; self.edges=[]; self.parent={}
+        def build(x,a=''):
+            self.children[a]=[]
+            if isinstance(x,(str,int)):
+                s=str(x)
+                if s in self.leaf: raise ValueError('duplicate label')
+                self.leaf[s]=a
+            elif x is not None:
+                if len(x)!=2: raise ValueError('not binary')
+                for i,y in enumerate(x):
+                    b=a+str(i); self.children[a].append(b); self.edges.append((a,b));self.parent[b]=a;build(y,b)
+        if t is not None: build(t)
+        self.labels=frozenset(self.leaf)
+    def restriction(self,B):
+        B=frozenset(map(str,B))
+        def rec(x):
+            if isinstance(x,(str,int)): return ('L',str(x)) if str(x) in B else None
+            if x is None:return None
+            c=[z for z in (rec(x[0]),rec(x[1])) if z is not None]
+            if not c:return None
+            if len(c)==1:return c[0]
+            return ('N',*sorted(c,key=repr))
+        return rec(self.t)
+    def restricted_tree(self,B):
+        B=frozenset(map(str,B))
+        def rec(x):
+            if isinstance(x,(str,int)):return str(x) if str(x) in B else None
+            if x is None:return None
+            c=[z for z in (rec(x[0]),rec(x[1])) if z is not None]
+            return None if not c else c[0] if len(c)==1 else c
+        return rec(self.t)
+    def support(self,B):
+        paths=[self.leaf[str(x)] for x in B]
+        if not paths:return frozenset()
+        root=paths[0]
+        for p in paths[1:]:
+            while not p.startswith(root):root=root[:-1]
+        return frozenset(p[:j] for p in paths for j in range(len(root),len(p)+1))
+    def edge_partitions(self):
+        if not self.labels:return {():[[]]}
+        ans={}
+        # Every edge-subset is a genuine cut certificate; reject empty components.
+        for mask in range(1<<len(self.edges)):
+            deleted=[e for i,e in enumerate(self.edges) if mask>>i&1]
+            rep={v:v for v in self.children}
+            def find(v):
+                while rep[v]!=v:v=rep[v]
+                return v
+            for i,(u,v) in enumerate(self.edges):
+                if not(mask>>i&1):rep[find(v)]=find(u)
+            groups={find(v):[] for v in self.children}
+            for lab,v in self.leaf.items():groups[find(v)].append(lab)
+            if any(not g for g in groups.values()):continue
+            p=blockkey(groups.values())
+            if len(deleted)!=len(p)-1:raise AssertionError('cut component mismatch')
+            ans.setdefault(p,[]).append(deleted)
+        return ans
+    def embedding(self,p):
+        return [{'block':list(b),'lca_support_vertices':sorted(self.support(b)),
+                 'support_edges':[list(e) for e in self.edges if set(e)<=self.support(b)],
+                 'restriction':self.restriction(b)} for b in p]
+
+def disjoint_support(raw,p):
+    used=set()
+    for b in p:
+        s=raw.support(b)
+        if used&s:return False
+        used|=s
+    return True
+
+def agreement(S,T,p):
+    return (S.labels==T.labels and frozenset(x for b in p for x in b)==S.labels
+            and disjoint_support(S,p) and disjoint_support(T,p)
+            and all(S.restriction(b)==T.restriction(b) for b in p))
+
+def refines(p,q):return all(any(set(b)<=set(c) for c in q) for b in p)
+
+def solve(s,t):
+    S,T=Raw(s),Raw(t)
+    if S.labels!=T.labels:raise ValueError('label mismatch')
+    cuts=S.edge_partitions()
+    aps=[p for p in cuts if agreement(S,T,p)]
+    best=min((max(0,len(p)-1) for p in aps),default=None)
+    opts=sorted((p for p in aps if max(0,len(p)-1)==best),key=repr)
+    return S,T,cuts,aps,best,opts
+
+def score(s,t,blocks=None):
+    started=time.perf_counter(); S,T,cuts,aps,best,opts=solve(s,t)
+    q=blockkey(blocks) if blocks is not None else blockkey([S.labels]) if S.labels else ()
+    if q not in cuts:raise ValueError('not realizable by nonempty original cuts')
+    r=max(0,len(q)-1); refinements=[p for p in aps if refines(p,q)]
+    completion=min((max(0,len(p)-len(q)) for p in refinements),default=None)
+    tau=max((solve(S.restricted_tree(b),T.restricted_tree(b))[4] for b in q),default=0)
+    survivors=[p for p in opts if refines(p,q)]
+    return dict(optimum_cuts=best,optimum_partitions=opts,optimum_partition_count=len(opts),
+        precuts=r,precut_blocks=q,source_cut_realizations=cuts[q],
+        surviving_optimum_count=len(survivors),surviving_optimum_partitions=survivors,
+        completion_cuts=completion,charged_total=r+completion,tau=tau,
+        one_optimum_survival=bool(survivors),all_optimum_survival=len(survivors)==len(opts),
+        source_embedding=S.embedding(q),target_embedding=T.embedding(q),
+        original_optimum_embeddings=[dict(partition=p,source=S.embedding(p),target=T.embedding(p),
+            source_cut_realizations=cuts[p]) for p in opts],
+        source_partition_count=len(cuts),agreement_partition_count=len(aps),seconds=time.perf_counter()-started)
+
+def compare(observed,expected,step):
+    if observed!=expected:
+        residual=observed-expected if isinstance(observed,(int,Fraction)) and isinstance(expected,(int,Fraction)) else None
+        raise ValueError(json.dumps(dict(failing_step=step,observed=observed,expected=expected,residual=residual),default=str))
+
+def plants():
+    reports=[]
+    for i,s,t in [('null',None,None),('singleton','x','x'),('two-leaf',['x','y'],['x','y'])]:
+        r=score(s,t);compare(r['optimum_cuts'],0,i);reports.append(dict(id=i,observed=r['optimum_cuts'],expected=0))
+    caught=None
+    try:compare(score(['x','y'],['x','y'])['optimum_cuts'],1,'deliberately_corrupted_comparator_input')
+    except ValueError as e:caught=json.loads(str(e))
+    if not caught:raise AssertionError('corruption not caught')
+    return dict(clean_plants=reports,deliberate_corruption=caught,corruption_caught=True)
+
+def fixtures():
+    manifest=json.loads((Path(__file__).parent.parent/'FROZEN-CONTROLS.json').read_text())
+    rows=[]
+    for f in manifest['fixtures']:
+        if 'source' not in f:
+            alpha=Fraction(f['alpha_numerator'],f['alpha_denominator']);c=Fraction(f['local_base_numerator'],f['local_base_denominator']);sq=alpha*alpha*c
+            compare(sq,Fraction(f['expected_squared_composed_base_numerator'],f['expected_squared_composed_base_denominator']),f['id']+'.square')
+            compare(sq<c*c,f['expected_less_than_23391_over_10000'],f['id']+'.benchmark')
+            compare(sq<Fraction(19,10)**2,f['false_less_than_19_over_10'],f['id']+'.false-1.9')
+            rows.append(dict(id=f['id'],squared_composed_base=str(sq),less_than_benchmark=sq<c*c,less_than_1_9=sq<Fraction(19,10)**2));continue
+        r=score(f['source'],f['target'],f.get('precut_blocks'))
+        for k,v in f.items():
+            if k.startswith('expected_') and k!='expected_optimum_partitions' and k[9:] in r:compare(r[k[9:]],v,f['id']+'.'+k)
+        if 'expected_optimum_partitions' in f:compare(sorted(map(blockkey,f['expected_optimum_partitions']),key=repr),sorted(r['optimum_partitions'],key=repr),f['id']+'.partitions')
+        if 'expected_half_budget' in f:compare(2*r['tau']<=f['budget'],f['expected_half_budget'],f['id']+'.half_budget')
+        if 'false_unsplit_partition' in f:compare(agreement(Raw(f['source']),Raw(f['target']),blockkey(f['false_unsplit_partition'])),False,f['id']+'.false_topology')
+        rows.append(dict(id=f['id'],**r))
+    compare(len(rows),9,'fixture_denominator')
+    n4=score(['a',['b',['c','d']]],['a',[['b','c'],'d']],[['a','b'],['c','d']])
+    for k,v in dict(optimum_cuts=1,precuts=1,optimum_partition_count=3,surviving_optimum_count=0,completion_cuts=1,charged_total=2,tau=0).items():compare(n4[k],v,'n4.'+k)
+    return dict(fixture_count=len(rows),fixtures=rows,equal_halves_n4=n4)
+
+def product_tree(r):
+    s=t='0'
+    for i in reversed(range(r)):
+        a,b,c=map(str,(3*i+1,3*i+2,3*i+3));s=[[[a,c],b],s];t=[[[a,b],c],t]
+    return s,t
+
+def product(max_r):
+    mf=json.loads((Path(__file__).parent.parent/'PRODUCT-FAMILY-CONTROLS.json').read_text());rows=[]
+    for f in mf['cases']:
+        r=f['r']
+        if r>max_r:continue
+        s,t=product_tree(r);selected={str(3*i+1) for i in range((r+1)//2)};q=[[x] for x in sorted(selected)]+[list(Raw(s).labels-selected)]
+        if not q[-1]:q=q[:-1]
+        x=score(s,t,q)
+        mapping=dict(original_optimum='optimum_cuts',original_optima='optimum_partition_count',precuts='precuts',tau='tau',completion='completion_cuts',surviving_original_optima='surviving_optimum_count')
+        for a,b in mapping.items():compare(x[b],f['expected_'+a],f'product-r{r}.{a}')
+        compare(x['charged_total'],r,f'product-r{r}.charge');compare(2*x['tau']<=r,True,f'product-r{r}.tau-half')
+        rows.append(dict(r=r,source=s,target=t,**x,outputs=1,below_budget_outputs=0 if r else 'outside b>=0'))
+    return dict(max_r=max_r,cases=rows,scope='finite original-edge evidence; pure-bridge predicate not yet independently audited')
+
+if __name__=='__main__':
+    ap=argparse.ArgumentParser();ap.add_argument('--phase',choices=['plants','fixtures','product'],required=True);ap.add_argument('--max-r',type=int,default=2);ap.add_argument('--out',required=True);a=ap.parse_args()
+    started=time.perf_counter();result=plants() if a.phase=='plants' else fixtures() if a.phase=='fixtures' else product(a.max_r)
+    receipt=dict(phase=a.phase,source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),elapsed_seconds=time.perf_counter()-started,result=result)
+    Path(a.out).write_text(json.dumps(receipt,indent=2,default=str)+'\n');print(json.dumps(dict(phase=a.phase,elapsed_seconds=receipt['elapsed_seconds'],out=a.out)))

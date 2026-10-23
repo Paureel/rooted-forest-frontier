@@ -1,0 +1,113 @@
+{
+  "scope": "Only named pure graph-helper computations/plain data fields and immediate occurrence-indexing/label aliases; no theorem bodies or proof values. Analysis debits are not runtime cost oracles.",
+  "fragments": [
+    {
+      "names": [
+        "SourceBothBadPairV3.entries",
+        "SourceBothBadPairV3.finish"
+      ],
+      "source_binding_only": "research/rmaf/algorithm/universal233/ordinary_dispatch/source_callback_pairing_20261022/v3/BothBadPairExecutionV3.lean",
+      "source_sha256": "feb540c27a936d9226492a29febc6b447d735205e7d74333d306791e8f91052f",
+      "object_sha256": "a51096956b1b5bcec4acbf53873e7caf568a7b0d008876eed55143ab263ec6a9",
+      "source_context_lines": [
+        "namespace SourceBothBadPairV3",
+        "open RMAF Universal233 WholeSourceWork CoreWork SourceForestV3",
+        "open OrdinaryDispatch.Hard2SourceWork OrdinaryDispatch.WorkIntegration",
+        "open SourceCouplingV2 (enabled)",
+        "open SourceDisjointV2 (ordinarySpec)"
+      ],
+      "line_range": [
+        9,
+        17
+      ],
+      "pure_definitions_or_plain_field_types": "def entries (T S : Tree) (A B C : List Nat) (edge : Vertex\u00d7Vertex) (q : Nat) : List BothBad.Entry :=\n  let d:=pairDescendantsMeter T edge.2\n  (bothBadPlanMeter S T A B C d.value q).value\n\ndef finish (T S : Tree) (A B C : List Nat) (edge : Vertex\u00d7Vertex) (q : Nat)\n    (r : SourceExecution) : SourceExecution :=\n  let d:=pairDescendantsMeter T edge.2\n  let p:=bothBadPlanMeter S T A B C d.value q\n  \u27e8r.value,d.work+p.work+r.work+12\u27e9\n"
+    },
+    {
+      "names": [
+        "SourceGoodPairV3.Prep",
+        "SourceGoodPairV3.prepare",
+        "SourceGoodPairV3.score",
+        "SourceGoodPairV3.finish"
+      ],
+      "source_binding_only": "research/rmaf/algorithm/universal233/ordinary_dispatch/source_callback_pairing_20261022/v3/GoodPairExecutionV3.lean",
+      "source_sha256": "6fad1392a5be1e8a818902f4cf8a2d8154631a6a2a76ea67ce066bc2567fc5a7",
+      "object_sha256": "76c2e68af8b308a727463e784e33b64319eefcc02fb4193b0f2a9046aa3423c5",
+      "source_context_lines": [
+        "namespace SourceGoodPairV3",
+        "open RMAF Universal233 WholeSourceWork CoreWork",
+        "open GenericForest GenericForest.FrontierWork GenericForest.CheckCorrespondence",
+        "open OrdinaryDispatch.Hard2SourceWork OrdinaryDispatch.WorkIntegration",
+        "open Universal233.Rule5SelectedLocalWork SourceForestV3 SourceCouplingV2",
+        "open SourceDisjointV2 (ordinarySpec)"
+      ],
+      "line_range": [
+        10,
+        37
+      ],
+      "pure_definitions_or_plain_field_types": "structure Prep where\n  sources : Rule5PrefixLocalWork.Measured (List Tree)\n  dp : Charged (Option F)\n  work : Nat\n\ndef prepare (T S : Tree) (A B C : List Nat) : Prep :=\n  let ss:=sourceForestMeter S [A,B,C]\n  let u1:=appendLabelsMeter A B\n  let t:=localTargetMeter (some T) u1.value\n  let u2:=appendLabelsMeter A B\n  let ds:=ownedMeter ss.value u2.value\n  let dp:=AllGoodDP.LocalWork.meterRun t.value ds.value\n  \u27e8ss,dp,ss.work+u1.work+t.work+u2.work+ds.work+dp.work+12\u27e9\n\ndef score (p : Prep) (A B : List Nat) (H : F) : Charged Nat :=\n  let u3:=appendLabelsMeter A B\n  let sources:=ownedMeter p.sources.value u3.value\n  let s:=additionalCostMeter sources.value H\n  \u27e8s.value,p.work+u3.work+sources.work+s.work+8\u27e9\n\ndef finish (T S : Tree) (C : List Nat) (q : Nat) (p : Prep) (s : Charged Nat)\n    (H : F) (out : SourceForestV3.Result) : SourceExecution :=\n  let target:=localTargetMeter (some T) C\n  let sources:=ownedMeter p.sources.value C\n  let residual:=q-2-s.value\n  let checked:=checkedMeter T S q (out.value.map (fun K=>H++K))\n  \u27e8\u27e8checked.value,[\u27e8target.value,sources.value,residual\u27e9]\u27e9,\n    (s.work+target.work+sources.work+2*H.length+checked.work+16)+(out.debit+0)\u27e9\n"
+    },
+    {
+      "names": [
+        "SourcePaidUnitsV3.Occurrence",
+        "SourcePaidUnitsV3.labelPaid",
+        "SourcePaidUnitsV3.labelUnits",
+        "SourcePaidUnitsV3.recorded",
+        "SourcePaidUnitsV3.chronological",
+        "SourcePaidUnitsV3.finish"
+      ],
+      "source_binding_only": "research/rmaf/algorithm/universal233/ordinary_dispatch/source_callback_pairing_20261022/v3/PaidUnitsCompleteV3.lean",
+      "source_sha256": "e4c97d9aad5744146be0a8606d79d4bcd4f78348f2035560ab1d267200482810",
+      "object_sha256": "7bd490fba15181d104c18e95ceea0a018e803da752469bc3841cd84d57b7f0fe",
+      "source_context_lines": [
+        "namespace SourcePaidUnitsV3",
+        "open RMAF Universal233 WholeSourceWork SourceForestV3",
+        "open OrdinaryDispatch.Hard2SourceWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.OuterSource",
+        "open OrdinaryDispatch.CompleteSource",
+        "open SourceCouplingV2 (Mode enabled)",
+        "open SourceDisjointV2 (ordinarySpec)"
+      ],
+      "line_range": [
+        9,
+        21
+      ],
+      "pure_definitions_or_plain_field_types": "abbrev Occurrence := (Bool\u00d7(Nat\u00d7Nat))\u00d7SourceForestV3.S\n\ndef labelPaid (xs : List SourcePaidCaseV3.Occurrence) : List Occurrence :=\n  xs.map (fun o=>((true,o.1),o.2))\ndef labelUnits (xs : List SourceForestV3.S) : List Occurrence :=\n  (CallbackPairingAuthor.indexFrom 0 xs).map (fun o=>((false,(0,o.1)),o.2))\ndef recorded (paid : List SourcePaidCaseV3.Occurrence) (units : List SourceForestV3.S) :=\n  labelUnits units++labelPaid paid\ndef chronological (paid : List SourcePaidCaseV3.Occurrence) (units : List SourceForestV3.S) :=\n  labelPaid paid++labelUnits units\n\ndef finish (p units : SourceExecution) : Charged (Option F) :=\n  \u27e8units.value.answer,p.work+units.work+2\u27e9\n"
+    },
+    {
+      "names": [
+        "SourcePaidCaseV3.Occurrence"
+      ],
+      "source_binding_only": "research/rmaf/algorithm/universal233/ordinary_dispatch/source_callback_pairing_20261022/v3/PaidCaseExecutionV3.lean",
+      "source_sha256": "e4823b8725255e293e1ed331119e3c973a275c99b59d0366b97ee47922eec568",
+      "object_sha256": "18fd317cc16d3a480a33f56d57ec3708014827a57f72e983ed90738b7620f389",
+      "source_context_lines": [
+        "namespace SourcePaidCaseV3",
+        "open RMAF Universal233 WholeSourceWork CoreWork SourceForestV3",
+        "open GenericForest.FrontierWork",
+        "open OrdinaryDispatch.Hard2SourceWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.OuterSource",
+        "open OrdinaryDispatch.CompleteSource",
+        "open SourceCouplingV2 (Mode enabled)"
+      ],
+      "line_range": [
+        10,
+        10
+      ],
+      "pure_definitions_or_plain_field_types": "abbrev Occurrence := (Nat\u00d7Nat)\u00d7SourceForestV3.S\n"
+    },
+    {
+      "names": [
+        "CallbackPairingAuthor.indexFrom"
+      ],
+      "source_binding_only": "research/rmaf/algorithm/universal233/ordinary_dispatch/source_callback_pairing_20261022/OccurrenceLaws.lean",
+      "source_sha256": "9a24ec5197d198966acba6397302a80d20ac73c584749d421b02de93226bf14c",
+      "object_sha256": "32b7c4518eda05f601e96edec0a4ee71c5925a0e3c78d221085a3d11803325ce",
+      "source_context_lines": [
+        "namespace CallbackPairingAuthor"
+      ],
+      "line_range": [
+        6,
+        8
+      ],
+      "pure_definitions_or_plain_field_types": "def indexFrom {\u03b1 : Type} (k : Nat) : List \u03b1 \u2192 List (Nat \u00d7 \u03b1)\n  | [] => []\n  | x::xs => (k,x)::indexFrom (k+1) xs\n"
+    }
+  ]
+}

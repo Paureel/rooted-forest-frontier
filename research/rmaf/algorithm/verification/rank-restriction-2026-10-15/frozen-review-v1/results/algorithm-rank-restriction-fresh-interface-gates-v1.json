@@ -1,0 +1,107 @@
+{
+  "runs": [
+    {
+      "module": "FreshRankStatements",
+      "directory": "research/rmaf/algorithm/verification/rank-restriction-2026-10-15/isolated-release-v1/rank",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "FreshRankStatements.olean",
+        "FreshRankStatements.lean"
+      ],
+      "seconds": 0.47489020799912396,
+      "returncode": 0,
+      "expected": "compile",
+      "log_sha256": "0c4dd5baead735d80364297abec69b309ec4e2c7b4df5a9b7716fbaddf4fc2fe"
+    },
+    {
+      "module": "FreshRestrictionStatements",
+      "directory": "research/rmaf/algorithm/verification/rank-restriction-2026-10-15/isolated-release-v1/restriction",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "FreshRestrictionStatements.olean",
+        "FreshRestrictionStatements.lean"
+      ],
+      "seconds": 0.32180775000051653,
+      "returncode": 0,
+      "expected": "compile",
+      "log_sha256": "027b03409b10d02feff93c5f7095efcc51faefe22d4b43cb0461b824ae8200e3"
+    },
+    {
+      "module": "FreshFalseRank",
+      "directory": "research/rmaf/algorithm/verification/rank-restriction-2026-10-15/isolated-release-v1/rank",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "FreshFalseRank.olean",
+        "FreshFalseRank.lean"
+      ],
+      "seconds": 0.3756120420002844,
+      "returncode": 1,
+      "expected": "false",
+      "log_sha256": "90a7d41a577d3c31b886fdefa887bb4cf54d7e1d35388d7d8693604376cb4d03"
+    },
+    {
+      "module": "FreshFalseRestriction",
+      "directory": "research/rmaf/algorithm/verification/rank-restriction-2026-10-15/isolated-release-v1/restriction",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "FreshFalseRestriction.olean",
+        "FreshFalseRestriction.lean"
+      ],
+      "seconds": 0.30780841700106976,
+      "returncode": 1,
+      "expected": "false",
+      "log_sha256": "46d8553c1794ff3d0de34c35577fcd4a08b064a43c416c9042c2fcad0ee6035c"
+    }
+  ],
+  "audits": {},
+  "negative_controls": {
+    "rank": {
+      "rejected_false_claims": 3,
+      "error_start_lines": [
+        "5",
+        "6",
+        "11"
+      ],
+      "origin": "research/rmaf/algorithm/universal233/rank_dichotomy/FalseControls.lean",
+      "origin_sha256": "58752eb07f70889510f5a0910846c6ef0e0f96ff84a28f7353b1ad84b64b3e28",
+      "adapter": [
+        "import Controls",
+        "import RankControls"
+      ]
+    },
+    "restriction": {
+      "rejected_false_claims": 5,
+      "error_start_lines": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "origin": "research/rmaf/algorithm/universal233/restriction_bridge/FalseControls.lean",
+      "origin_sha256": "05e6d98fb79a8b3fb818b760406ba334cd35dc9cda7822749fd86c7b6ebaa779",
+      "adapter": null
+    }
+  },
+  "statement_readouts": {
+    "rank": {
+      "source_sha256": "0458b499790988be29778a51a9072d8cc2e163b02752244b756b76a3c8a55ac0",
+      "log_sha256": "0c4dd5baead735d80364297abec69b309ec4e2c7b4df5a9b7716fbaddf4fc2fe"
+    },
+    "restriction": {
+      "source_sha256": "e6318e1995111c96d36766b18027c8907f3855d7670b7f76c7ade955ee1e6af3",
+      "log_sha256": "027b03409b10d02feff93c5f7095efcc51faefe22d4b43cb0461b824ae8200e3"
+    }
+  },
+  "source_pin_control": {
+    "clean_sha256": "fc3336d4dd996330f077cd7407d6e63796b332b625b374ccde34ef278c04d7aa",
+    "corrupt_sha256": "0322da278ec1b51126a9ebf2e8d9eeaafc12e8f6f6d5152f3d7899647c950362",
+    "clean_passed": true,
+    "corruption_rejected": true
+  },
+  "verdict": "PASS-EXECUTABLE-STATEMENT-READOUTS-8-FALSE-CLAIMS-AND-SOURCE-PIN-CONTROL"
+}

@@ -1,0 +1,55 @@
+import ChildrenSourceBound
+namespace OrdinaryDispatch.FullSourceWork
+open RMAF ForestState Universal233 Universal233.CherryBranching
+open CoreGraph
+open GenericForest.FrontierWork OrdinaryDispatch.WorkRecursion
+open Universal233.Rule5SelectedLocalWork Universal233.Rule5FinalClassification
+open Universal233.Rule5PendantLocalWork Universal233.Rule5OrdinaryDispatch
+
+/-- Instantiate the selected forest-arm checker with the literal general
+agreement meter. Its cost follows from returned payloads, not a caller fee
+premise. Classifier check fees remain their separate named source boundary. -/
+theorem selected_arm_closed_checker (actual : GenericForest.FrontierWork.Ordinary)
+ (classifierFee : CheckRequest→Nat) (forestFee : ForestQuery→Nat)
+ (T S : Tree) (a b q : Nat) {z : FinalSelection}
+ (hp : DepthOne.proper T S=true)
+ (sel : (finalMeter classifierFee T S a b).value=some z) :
+ (forestArmMeter actual forestFee (fun F=>(agreementMeter T S F).work) T S a b q z).localWork≤
+ forestArmBudget (leaves T).length (leaves S).length (agreementK (leaves T).length) := by
+ apply forest_arm_local actual classifierFee forestFee _ T S a b q _ sel ((DepthOne.proper_iff T S).1 hp).1
+ intro F flat blocks _
+ exact ordinary_children_checker T S hp F flat blocks
+
+/-- Exact selected arm construction/execution plus each actual full forest
+counter. Common-one and paid-second are excluded by the ForestArm witness. -/
+def selectedArmSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+ (T S : Tree) (a b q : Nat) (z : FinalSelection) : WholeSourceWork.Charged (Option (List (List Nat))) :=
+ let cs:=selectedChildrenMeter S a b z
+ let r:=runChildrenSource actual W T S q cs.value
+ ⟨r.value,cs.work+r.work+2⟩
+
+theorem selectedArmSource_value (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+ (T S : Tree) (a b q : Nat) (z : FinalSelection) (ready : ForestArm z) :
+ Result.answered (selectedArmSource actual W T S a b q z).value=runSelected actual T S a b q z := by
+ exact forest_arm_value actual (fun _=>0) (fun F=>(agreementMeter T S F).work) T S a b q z ready
+
+theorem selectedArmSource_split (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+ (T S : Tree) (a b q : Nat) (z : FinalSelection) :
+ (selectedArmSource actual W T S a b q z).work=
+ (selectedArmSource actual (fun _ _ _=>0) T S a b q z).work+
+ queryWork W (childrenTrace actual T S q (selectedChildrenMeter S a b z).value).queries := by
+ simp only [selectedArmSource]
+ rw [runChildrenSource_split actual W T S q (selectedChildrenMeter S a b z).value]
+ omega
+
+theorem selectedArmSource_local (actual : GenericForest.FrontierWork.Ordinary)
+ (classifierFee : CheckRequest→Nat) (T S : Tree) (a b q : Nat) {z : FinalSelection}
+ (hp : DepthOne.proper T S=true)
+ (sel : (finalMeter classifierFee T S a b).value=some z) :
+ (selectedArmSource actual (fun _ _ _=>0) T S a b q z).work≤
+ forestArmBudget (leaves T).length (leaves S).length (agreementK (leaves T).length)+
+ childForestDebit actual (fun _ _ _=>0) T q (selectedChildrenMeter S a b z).value := by
+ have h:=selected_arm_closed_checker actual classifierFee (fun _=>0) T S a b q hp sel
+ simp only [forestArmMeter,selectedArmSource,runChildrenSource] at h ⊢
+ omega
+end OrdinaryDispatch.FullSourceWork

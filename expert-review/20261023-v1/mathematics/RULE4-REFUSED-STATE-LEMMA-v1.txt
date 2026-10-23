@@ -1,0 +1,52 @@
+RULE4: FIXED THREE-STATE POLYNOMIAL, INCLUDING EVERY REFUSAL
+
+Implementation binding and unit convention.
+Use math_pseudocode_v1 manifest ae6b35f2235de3a9a76435467bd2bd7405129b9199ab2175a1a49fb9e9b4fcff with the deletion-only recovery amendment v2. This lemma uses only Rule4CallerSource, PendantSubtrees, PendantCutWork, PendantVertices, SelectedRestriction, Executable and the exact Choice/RawChoice data types in that packet. It does not depend on the corrected recovery coloring seam.
+
+U0 counts reached abstract data/control operations BEFORE the finite representation/activation factor gamma: a fixed record constructor/projection/copy, call/return dispatch, primitive scalar operation and each exposed list/tree visit are paid operations. The activation owner realizes fixed records as actual cons sequences and supplies gamma/F. The coefficients below count only a conservative refinement into data/cons/list actions; gamma is not multiplied into them. No runtime operation evaluates analysis work/debit/forestWork/C, and a projected work scalar is never passed as data.
+
+Domain and payload catalogue.
+Assume N>=1 and BOTH ordinary trees T,S have at most N leaf occurrences. This is the exact reached-state leaf domain furnished by the separately supplied reachable_invariant TYPE; no q<=current leaves assumption is used. By constructor induction, nodes(t)+1=2*length(leaves(t)), so each tree has fewer than2N nodes. Put M=2N+2. Every actual vertex of either tree has length<=M; every subtree has<=M nodes and<=M leaves.
+
+rule4BranchesMeter constructs exactly three Branch records, regardless of q:
+  (T,S,[cHead,xHead],false),
+  (T,S,[leafAddress(a,S).getD([])],false),
+  (S,T,cuts(T,a,c),true).
+The first cut-list has length2, the second length1, and the third length<=nodes(T)<=M. The third follows because cutsMeter filters the actual verticesMeter result; it never adds or deduplicates entries. Every returned path is an actual vertex path. The first two paths are bounded as well: Choice.LocalGuard states that pendantOriginal(S,a,b) is a permutation of[cHead,xHead], and pendantOriginal is literally a filter of vertices(S); leafAddress's structural recursion returns a root-to-leaf path or the empty default. Both tree orientations retain the same N bound. These deductions use the full logical domain of the executed/tested choice; no proof token is an extra input and no cut uniqueness is assumed.
+
+For any one of these branches, write k=length(cuts)<=M and n=nodes(source)<=M. blocksMeter emits exactly k lists of subtree labels. Each such list has length<=M. The outside filter emits a sublist of Leaves(source), also length<=M. Thus the constructed partition has k+1 blocks, at most(k+1)*M label occurrences; sourceForestMeter emits at most k+1 restricted trees, each with<=M nodes and<=M leaves. Its total occurrence-node payload is <=(k+1)*M. All duplicate paths/blocks are still traversed and constructed; these bounds use their lengths, not distinct counts. A transient constructed/refused state therefore has O(N^2) payload even though its individual ordinary target/source trees have O(N) size.
+
+Explicit per-helper U0 bounds.
+Every fixed wrapper step in these bodies requires fewer than64 abstract data/control actions excluding the displayed subcalls and loops: branch/option tests, fixed field accesses, closure construction, parameter/return copies and at most a fixed cons/record constructor. The elementary list control contributes at most256 per visited cell, including its recursive call/return and selected cons construction. These are conservative counts of the displayed finite syntax, not assigned source charges. With actual k,n,path/list sizes bounded above, direct recurrences give:
+
+(1) Leaves(source): <=1024*(M+1)^2. Its binary tree traversal visits each node once and append copies a total<=n^2 left-spine cells.
+(2) subtreeLabelsMeter(source,p): <=32*(length(p)+1)+1024*(M+1)^2 <=2048*(M+1)^2. Each path step reads/tests one tree node and consumes one side; the endpoint computes the real leaves, or returns empty on mismatch.
+(3) blocksMeter(source,cuts): k actual subtreeLabels calls and k outer cons cells, hence <=4096*(k+1)*(M+1)^2.
+(4) rule4OutsideMeter(source,cuts,x): at most k actual subtreeLabels calls and k actual membership scans of lists of length<=M, including eager/all control. Hence <=4096*(k+1)*(M+1)^2. This is not one cached membership calculation.
+(5) rule4PartitionMeter: blocks, one actual Leaves, the outside predicate once per visited source leaf, then the literal outer append. Its U0 is at most
+  4096*(k+1)*(M+1)^2 +1024*(M+1)^2
+  +M*(4096*(k+1)*(M+1)^2+256)+256*(k+1)+64
+  <=8192*(k+1)*(M+1)^3.
+The separate b.value.length inside the original omitted work expression is not executed by this projection; the actual b.value++[outside] append is executed. Every retained value-producing let remains.
+(6) sourceForestMeter: for each of the k+1 blocks perform the actual restrict traversal on the entire source tree, with actual selected membership scans. Each restrict costs<=2048*(M+1)^2 and produces<=M tree nodes. Option filtering, tail recursion and output cons control are paid, giving <=8192*(k+1)*(M+1)^2.
+(7) rule4StateMeter combines(5),(6), with paid parameter/result handling, so
+  StateU0 <=32768*(k+1)*(M+1)^3.
+These are structural recurrences on the actual data, independent of declared source work and independent of whether any later cutoff succeeds.
+
+All three actual state constructions therefore cost at most
+  3*32768*(M+1)^4 <=2^17*(M+1)^4 <=2^24*(N+1)^4,
+since M+1=2N+3<=3*(N+1) and3^4<2^7. This bounds ALL state work, so in particular it bounds exactly the state work omitted by the source meter on refused branches. It is safe to charge affordable states to this administrative bound as well; no state is removed or assumed free.
+
+Why all three occur.
+rule4AnswersSource is tail first, then calls rule4StateMeter, then tests b.cost<=q. Projection retains that eager state call, and b.cost is the actual length(b.cuts) method. The fixed list has exactly three occurrences; each gets one state construction even if all three are over budget or contain equal data. An empty answer list or a zero number of affordable FOREST calls does not reduce this count. The helper-observer controls exercise exactly that distinction; they do not establish the displayed RAM/data-operation coefficients.
+
+Additional Rule4 administration and source credits.
+Each affordability uses a fresh cuts-length traversal. An affordable branch recomputes it for q-b.cost; both traversals are bounded by64*(k+1). The singleton optionToList/append copies at most one head, not the tail answer sequence. These fixed operations fit64 times the exact source per-branch scalar2*k+4, including every refusal. Source analysis has base1 and these positive per-branch increments; on an affordable branch it additionally includes forestWork(actual,0,target,state,q-k). Thus the sum of the three ACTUALLY affordable forestWork credits is <=rule4AnswersSource(...,W=0).work<=completeLocalDebit at a Rule4-selected ordinary node. This is a scalar summand statement; actual FOREST cost still needs its separate recurrence proof against forestWork.
+
+For the branch builder itself, vertices output<=M and all selected paths have length<=M. A cutGuard executes dropLast, up to two minimal/span computations with a two-label selected set and path-membership scans; the saved core recurrences bound it by2^18*(M+1)^4. cutFilter visits<=M actual vertices. Hence cutsMeter costs<=2^20*(M+1)^5; leafAddress, the three Branch constructors and cut-list cells give BranchesU0<=2^21*(M+1)^5<=2^29*(N+1)^5. No short circuit deletes a guard that the literal body eagerly computes.
+
+BEST_LENGTH receives at most three successful forest references. Each Some FOREST result satisfies partitionCheck(Leaves(target),F): immediate agreement returns that checked partition, checked returns require accepted, and best selects only an accepted candidate. A partitionCheck-true list has all blocks nonempty and exactly one flattened occurrence of each target label, so length(F)<=length(Leaves(target))<=N. This is a value-size postcondition, not a supplied answer or a cost premise. Thus all retained length comparisons and option/copy/control in this final three-element best traversal cost<=1024*(N+1).
+
+Combining branch construction, ALL three state constructions, actual cut-length guards, tail/list/option control and final best gives the explicit non-FOREST administrative bound
+  Rule4AdministrativeU0 <=2^30*(N+1)^5.
+The completed local debit has the separately licensed property d>=2. Therefore the proved omitted-state overhead alone is <=2^24*(N+1)^4*(d+1), and the full proved Rule4 administration is <=2^30*(N+1)^5*(d+1). This is a derived polynomial followed by absorption, not the false inference that positivity itself proves a traversal bound. If a separate forest lemma proves ForestU0<=J*forestWork for the same local occurrence, the Rule4 case follows with coefficient2^30*(N+1)^5+J. Until that forest lemma and the remaining cases are proved, no whole LC0 theorem is claimed.

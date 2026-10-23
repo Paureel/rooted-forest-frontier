@@ -1,0 +1,5 @@
+import HardPaidSourceBound
+#check OrdinaryDispatch.Hard2SourceWork.binary_prefix_absorb
+#print axioms OrdinaryDispatch.Hard2SourceWork.binary_prefix_absorb
+#check OrdinaryDispatch.Hard2SourceWork.hardPaidSource_bound
+#print axioms OrdinaryDispatch.Hard2SourceWork.hardPaidSource_bound

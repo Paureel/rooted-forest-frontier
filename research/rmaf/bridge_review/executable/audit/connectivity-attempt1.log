@@ -1,0 +1,149 @@
+research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean:81:6: error: Tactic `subst` failed: did not find equation for eliminating 'v'
+
+case pos
+selected : List Nat
+x : Nat
+v : Vertex
+hx : selected.contains x = true
+hv : x ∈ selected ∧ v = []
+⊢ Walk (fun x_1 => x_1 ∈ rootedSpan selected (Tree.leaf x)) [] v
+research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean:83:4: error: unsolved goals
+case neg
+selected : List Nat
+x : Nat
+v : Vertex
+hx : ¬selected.contains x = true
+hv : x ∈ selected ∧ v = []
+⊢ Walk (fun x_1 => x_1 ∈ rootedSpan selected (Tree.leaf x)) [] v
+research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean:87:4: error: unsolved goals
+case pos
+selected : List Nat
+l r : Tree
+ihl : ∀ (v : Vertex), v ∈ rootedSpan selected l → Walk (fun x => x ∈ rootedSpan selected l) [] v
+ihr : ∀ (v : Vertex), v ∈ rootedSpan selected r → Walk (fun x => x ∈ rootedSpan selected r) [] v
+v : Vertex
+hn : ((rootedSpan selected l).isEmpty && decide ((rootedSpan selected r).isEmpty = true)) = true
+hv :
+  (rootedSpan selected l = [] → ¬rootedSpan selected r = []) ∧
+    (v = [] ∨ v ∈ prependSide false (rootedSpan selected l) ∨ v ∈ prependSide true (rootedSpan selected r))
+⊢ Walk (fun x => x ∈ rootedSpan selected (l.node r)) [] v
+research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean:89:70: error: unsolved goals
+selected : List Nat
+l r : Tree
+ihl : ∀ (v : Vertex), v ∈ rootedSpan selected l → Walk (fun x => x ∈ rootedSpan selected l) [] v
+ihr : ∀ (v : Vertex), v ∈ rootedSpan selected r → Walk (fun x => x ∈ rootedSpan selected r) [] v
+v : Vertex
+hv : v ∈ rootedSpan selected (l.node r)
+hn : ¬((rootedSpan selected l).isEmpty && decide ((rootedSpan selected r).isEmpty = true)) = true
+⊢ rootedSpan selected l = [] → ¬rootedSpan selected r = []
+research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean:80:24: warning: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [rootedSpan] at hv
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean:83:24: warning: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [rootedSpan] at hv
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean:87:24: warning: This simp argument is unused:
+  hn
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [rootedSpan] at hv
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean:90:26: warning: This simp argument is unused:
+  hn
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [rootedSpan, joinSpan]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean:116:6: error: Tactic `subst` failed: did not find equation for eliminating 'u'
+
+case pos
+selected : List Nat
+x : Nat
+u v : Vertex
+hx : selected.contains x = true
+hu : x ∈ selected ∧ u = []
+hv : x ∈ selected ∧ v = []
+⊢ Walk (fun x_1 => x_1 ∈ minimalVertices selected (Tree.leaf x)) u v
+research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean:118:4: error: unsolved goals
+case neg
+selected : List Nat
+x : Nat
+u v : Vertex
+hv : v ∈ minimalVertices selected (Tree.leaf x)
+hx : ¬selected.contains x = true
+hu : x ∈ selected ∧ u = []
+⊢ Walk (fun x_1 => x_1 ∈ minimalVertices selected (Tree.leaf x)) u v
+research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean:115:29: warning: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices] at hu hv
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean:118:29: warning: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices] at hu
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean:140:11: error: unsolved goals
+case leaf
+selected : List Nat
+x : Nat
+hs : x ∈ selected
+hx : x ∈ leaves (Tree.leaf x)
+⊢ x ∈ selected
+research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean:143:22: warning: This simp argument is unused:
+  List.contains_iff_mem.mpr hs
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [rootedSpan]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean:154:11: error: unsolved goals
+case leaf
+selected : List Nat
+x : Nat
+hs : x ∈ selected
+hx : x ∈ leaves (Tree.leaf x)
+⊢ x ∈ selected
+research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean:157:27: warning: This simp argument is unused:
+  List.contains_iff_mem.mpr hs
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'ExecutableBridge.adj_symmetric' does not depend on any axioms
+'ExecutableBridge.walk_trans' does not depend on any axioms
+'ExecutableBridge.walk_reverse' does not depend on any axioms
+'ExecutableBridge.walk_map' does not depend on any axioms
+'ExecutableBridge.adj_prepend' does not depend on any axioms
+'ExecutableBridge.connected_prepend' depends on axioms: [propext, Quot.sound]
+'ExecutableBridge.join_left_walk' depends on axioms: [propext, Quot.sound]
+'ExecutableBridge.join_right_walk' depends on axioms: [propext, Quot.sound]
+'ExecutableBridge.rootedSpan_walk' depends on axioms: [propext, sorryAx, Quot.sound]
+'ExecutableBridge.rootedSpan_connected' depends on axioms: [propext, sorryAx, Quot.sound]
+'ExecutableBridge.minimalVertices_connected' depends on axioms: [propext, sorryAx, Quot.sound]
+'ExecutableBridge.isEmpty_false_of_nonempty' does not depend on any axioms
+'ExecutableBridge.rootedSpan_nonempty_of_leaf' depends on axioms: [propext, sorryAx]
+'ExecutableBridge.minimalVertices_nonempty_of_leaf' depends on axioms: [propext, sorryAx]
+'ExecutableBridge.extractedSupport' depends on axioms: [propext, sorryAx, Quot.sound]
+'ExecutableBridge.extractedSupport_exact' depends on axioms: [propext, sorryAx, Quot.sound]
+'ExecutableBridge.extractedRegion' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ExecutableBridge.extractedRegion_exact' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ExecutableBridge.deepest_extracted_root_in_neighbor' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,131 @@
+{
+  "campaign": "integration review reported integer counts only; no scientific re-evaluation",
+  "quote_source": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/integration-2026-10-15/VERDICT.md",
+  "defaults": {
+    "mode": "exact"
+  },
+  "receipts": {
+    "p": {
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/integration-2026-10-15/CANDIDATE-PIN.json"
+    },
+    "r": {
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/integration-2026-10-15/READY-ARTIFACTS.json"
+    },
+    "c": {
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/algorithm-integration-fresh-review-controls-v1.json"
+    },
+    "s": {
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/algorithm-integration-fresh-review-source-replay-v1.json"
+    },
+    "a": {
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/integration-2026-10-15/AXIOM-INVENTORY.json"
+    },
+    "f": {
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/algorithm-integration-fresh-review-comparisons-v1.json"
+    },
+    "k": {
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/algorithm-integration-fresh-review-origin-audit-v3.json"
+    },
+    "w": {
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/algorithm-integration-fresh-review-scope-witnesses-v2.json"
+    },
+    "h": {
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/algorithm-integration-fresh-review-hostile-semantics-20261015.json"
+    },
+    "l": {
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/integration-2026-10-15/PRE-CANDIDATE-RECEIPT.json"
+    }
+  },
+  "claims": [
+    {
+      "label": "author immutable files",
+      "quoted": "72",
+      "expr": "len(f('p','/rows'))"
+    },
+    {
+      "label": "readiness entries preserved",
+      "quoted": "26",
+      "expr": "len(f('r','/file_hashes'))"
+    },
+    {
+      "label": "clean controls",
+      "quoted": "49",
+      "expr": "f('c','/clean_passed')"
+    },
+    {
+      "label": "false expected twins caught",
+      "quoted": "49",
+      "expr": "f('c','/false_expectations_caught')"
+    },
+    {
+      "label": "positive frozen modules",
+      "quoted": "18",
+      "expr": "f('s','/positive_modules')"
+    },
+    {
+      "label": "module-origin declarations",
+      "quoted": "1415",
+      "expr": "f('a','/total_originating_declarations')"
+    },
+    {
+      "label": "private declarations",
+      "quoted": "144",
+      "expr": "len(f('a','/private_declarations'))"
+    },
+    {
+      "label": "names beyond author explicit inventory",
+      "quoted": "966",
+      "expr": "len(f('a','/additional_to_author_explicit_inventory'))"
+    },
+    {
+      "label": "author explicit inventory matched",
+      "quoted": "449",
+      "expr": "len(f('a','/author449_comparison'))"
+    },
+    {
+      "label": "finite compiled assertions",
+      "quoted": "76",
+      "expr": "f('f','/assertions')"
+    },
+    {
+      "label": "controls with executable fields",
+      "quoted": "30",
+      "expr": "f('f','/controls_with_compiled_fields')"
+    },
+    {
+      "label": "author explicit false diagnostics",
+      "quoted": "3",
+      "expr": "f('s','/rows/18/explicit_false_diagnostics')"
+    },
+    {
+      "label": "fresh explicit false diagnostics",
+      "quoted": "2",
+      "expr": "f('f','/rows/1/explicit_false_diagnostics')"
+    },
+    {
+      "label": "detector explicit false diagnostics",
+      "quoted": "1",
+      "expr": "f('k','/kernel_plant_rows/2/explicit_false_diagnostics')"
+    },
+    {
+      "label": "total explicit false diagnostics",
+      "quoted": "6",
+      "expr": "f('s','/rows/18/explicit_false_diagnostics')+f('f','/rows/1/explicit_false_diagnostics')+f('k','/kernel_plant_rows/2/explicit_false_diagnostics')"
+    },
+    {
+      "label": "post-contact source-model witnesses",
+      "quoted": "5",
+      "expr": "len(f('h','/witnesses'))"
+    },
+    {
+      "label": "actual-code scope witnesses",
+      "quoted": "6",
+      "expr": "len(f('w','/witnesses'))"
+    },
+    {
+      "label": "extra independent replications",
+      "quoted": "0",
+      "expr": "f('l','/additional_independent_replications')"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# Timing supplement v2, before census
+
+v1 instrument and pilot receipts retained. v2 adds per-shape/split completion timings only; same scientific calculations, selection, comparisons, and expected values. Re-executed all controls:6 positive,14 caught corruptions,18 variants passed. n4 pilot v2 includes startup in total, but exposes per-group times for steady-state rate. A second fixed n4 pilot at offset100,12 groups probes a later bank window before projection; final finite bank selection unchanged. Progress is completed shape/split group plus representative JSONL rows. No run may exceed50s soft/59s hard.

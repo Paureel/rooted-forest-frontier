@@ -1,0 +1,32 @@
+{
+  "command": [
+    ".venv/bin/python3",
+    "-c",
+    "import os; os.write(1,b'x\\n'*10000)"
+  ],
+  "limits": {
+    "name": "calibration-raw-unsandboxed",
+    "wall": 30,
+    "rss": 3221225472,
+    "raw": 1024,
+    "line": 8388608,
+    "compressed": 268435456,
+    "floor": 3221225472,
+    "cmd": [
+      "--",
+      ".venv/bin/python3",
+      "-c",
+      "import os; os.write(1,b'x\\n'*10000)"
+    ]
+  },
+  "started_unix": 1792150053.314018,
+  "initial_free_bytes": 15028436992,
+  "measurement": "psutil recursive RSS samples plus wait4 direct-child ru_maxrss",
+  "exit_code": 0,
+  "violation": "raw_output",
+  "wall_seconds": 0.03231491599945002,
+  "peak_rss_bytes": 15532032,
+  "raw_bytes": 20000,
+  "rss_observations": 2,
+  "compressed_bytes": 54
+}

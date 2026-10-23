@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "5aa7a9bc0bebdfb9ab7941593ba86db27b536f3ef261f130f2d24e1d4c4d7a43",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.374285083000359,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3329219999995985,
+      "resource_stop": null,
+      "log_sha256": "63d355f884e5150bdb9e915f59f7aa04c8d8e5ca3feee58e3b67396f8d5c6cec"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016020840012060944,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "TargetBounds",
+      "source_sha256": "026b71807bde96a2d460331ab1a4bf3381dd131da89fd8b7d5be4540dea370b4",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.7417758749998029,
+      "resource_stop": null,
+      "log_sha256": "244d47b574a85076fee5f4b1c6847f3dc05e6baf19b58b8bf586ccd121663bcd"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('TargetBounds', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-query-size-20261015T210153548194Z/TargetBounds.lean:15:43: error: Application type mismatch: The argument\\n  List.length_filter_le\\nhas type\\n  \u2200 (p : ?m.34 \u2192 Bool) (l : List ?m.34), (List.filter p l).length \u2264 l.length\\nbut is expected to have type\\n  (List.filter (fun x => U.contains x) (leaves T)).length \u2264 (leaves T).length\\nin the application\\n  \u27e8fun x hx => (List.mem_filter.mp hx).left, List.length_filter_le\u27e9\\n'))"
+}

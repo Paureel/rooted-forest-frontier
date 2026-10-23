@@ -1,0 +1,35 @@
+{
+  "instrument_sha256": "404a19b13905c68b5a6f7ea630887a52904b9d79944a0fe6bed544db91ed8b03",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "7eea19a9328fe34f405062167f395782a2b29a2d658af8d88f3af6b216326091",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3547056670004167,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "153c319c3b2c2d54befa690a48a3fbbbd2db2dc8c18aefa0b02fc0ddf68015f9",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3354963329993552,
+      "resource_stop": null,
+      "log_sha256": "856bbc4f03e3a04798d955e84f31a0abe921c82bd6ea5f7e3860a1f491712ba2"
+    },
+    {
+      "module": "Rule4PayloadBound",
+      "source_sha256": "c83271b64daba35955d09e7013e3aeee6e37f5836af332178315ec1582936160",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8315256669993687,
+      "resource_stop": null,
+      "log_sha256": "0f453b80e0e397337c443f707bf12effdcda441d3cd7ed63f94a907732103716"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Rule4PayloadBound', '/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/rule4_source_bound_20261016T095230Z/build/Rule4PayloadBound.lean:105:17: error: Invalid projection: Projections cannot be used on functions, and\\n  facts.right.right.right.left.actual\\nhas function type\\n  \u2200 (q : Vertex), q \u2208 b.cuts \u2192 CoreGraph.Valid b.source q\\n/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/rule4_source_bound_20261016T095230Z/build/Rule4PayloadBound.lean:105:9: error: Tactic `rcases` failed: `x\u271d : ?m.81` is not an inductive datatype\\n/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/rule4_source_bound_20261016T095230Z/build/Rule4PayloadBound.lean:122:5: error: Type mismatch: After simplification, term\\n  Nat.le_trans cut\\n    (have this := Decidable.byContradiction fun a => rule4_selected_payload._proof_1_4 s N size len a;\\n    this)\\n has type\\n  @LE.le Nat instLENat (CherryBranching.cuts T s.raw.a s.raw.c).length (2 * N + 2)\\nbut is expected to have type\\n  @LE.le Nat instLENat (pendantOriginal T s.raw.a s.raw.c).length (2 * N + 2)\\n'))"
+}

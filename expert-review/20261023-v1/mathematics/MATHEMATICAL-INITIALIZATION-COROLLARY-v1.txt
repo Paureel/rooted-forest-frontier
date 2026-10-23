@@ -1,0 +1,66 @@
+Explicit initialization corollary for TARGET-v3, author mathematical proof
+
+Use the unchanged actual packed input and the finite DECODE body in frozen
+math_pseudocode_v1/REPRESENTATION-AND-OPERATIONS-v1.md. This is the active
+implementation's direct parsing proof; no optional numeric program is presumed.
+The postorder/digit/stack invariant and exact operation inventory are in
+MATHEMATICAL-INPUT-DECODER-v1.txt. The elementary realization is the written
+cons-specific L3/L5 construction in ram_elementary_realization_20261022,
+ELEMENTARY-REALIZATION-RELEASE-v2.json SHA27dd7f6460c1be45d469a10e61d326bb0a79a9f4a4565bd207248bb402ff0321.
+Root read its complete report/interface and matched53 pin records/51 paths;
+this is author construction with administrative/source review, NOT independent
+or instruction-level acceptance. Its domain assumptions are discharged below
+for initialization only. The whole source credit/global bound remains open.
+
+Fix the published finite constants
+ f=735030, c=367508, F=6615270, gamma=4862469317576.
+For actual input trees with each leaf count<=N, every original label width<=L,
+N,L>=1 and supplied q<=Q, define the following explicit polynomials:
+ D0=10N+4NL+1,
+ Uinit=512(D0+1),
+ H0=1+6615270*Uinit,
+ Vinit=D0+Q+H0+735030+367508+8,
+ I=16*4862469317576*Uinit*(Vinit+1)^2.
+For optimization q=0; Q is an external analysis bound, not an input optimum.
+
+The exact code has Bsource=5(nT+nS)+2*sum original label widths digits plus
+its high sentinel. Hence its actual raw input width=Bsource+1<=D0. Header/
+payload/token loops jointly consume each digit once. The existing inventory
+bounds complete actual abstract initialization, including all entry/return/
+branch/record operations, by Uinit. Captured/parser locals occupy the finite
+unpadded activations, no free host stack. Leaf/node and stack writes are real
+allocations; every popped stack cell and retired activation remains allocated.
+The direct tree+stack words alone equal11(nT+nS)-11, but H0 also pays every
+actual activation/control allocation using F per started operation.
+
+The initial heap is empty, so nil's first emission is a base case before the
+valid-record realization invariant: WRITE value0 at address0, CONST1, then
+increment HP. Its unchanged fees are6+2+4=12 and it appends exactly one word.
+The resulting address0 is the canonical nil. Count this base as one of Uinit's
+operations. All remaining packs/read/return operations satisfy the constructive
+record invariant: the initialized unpadded parser activation has valid nil or
+existing references, each new stack/Tree is complete before exposure, every
+read follows an explicitly tested nonempty stack, all old records stay intact,
+and every write uses the actual frontier. The parsing induction proves these
+facts; no EntryRep/success/trace/address premise is supplied by the caller.
+
+At every parser boundary the unread input and partial payload accumulator have
+width<=D0. Header/payload counters have values<=D0; tags/phase<=3; q has width
+<=Q+1. The whole frontier<=H0, hence any actual record pointer or field address
+has value<=H0 and width<=H0+1. Fixed literals/control tags are covered by f,c.
+Thus Vinit bounds every actual boundary operand/retained field/tag/allocation
+endpoint. The realization lemma therefore bounds internal footprint widths by
+2Vinit+3 and each counted operation's bill by16gamma(Vinit+1)^2. Its bit loops
+make no extra heap-per-bit allocations. The nil base12 is <=that per-operation
+bound. Consequently the entire initialized prefix has bill<=I and frontier
+<=H0, with no assumption of the main algorithm's running time or total memory.
+
+The returned roots decode exactly T,S by the explicit postorder stack proof;
+the budget is preserved. Duplicated/mismatched labels are not assumed away:
+subsequent QUERY/OPTIMIZE preflight computes properness. Invalid raw codes use
+the parser's displayed fault behavior and are outside the canonical Tree-code
+premise. No arbitrary externally corrupted heap promise is used. Entering the
+main finite body, and its actual calls/operation credits/semantic scalar
+catalogue/source-counter/exponential join, are still the separate named main
+obligations. This corollary supplies I/H0 and the canonical typed input state,
+not a whole O*(2.33^k) conclusion or independent acceptance.

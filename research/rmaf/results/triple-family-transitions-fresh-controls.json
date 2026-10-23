@@ -1,0 +1,271 @@
+{
+  "pilot": false,
+  "checker_sha256": "0ae2eb9a50f12eee9fcdd6b686f40132dd511e76f05b267b085f487fc76b76aa",
+  "controls_sha256": "4bb9a4893e3a879fa8a132b82e184eb81976f3bc244678457e92d122f6dde00b",
+  "rows": [
+    {
+      "kind": "positive",
+      "id": "T1-singletons",
+      "actual": {
+        "tree": [
+          "a",
+          "b"
+        ],
+        "regions": {
+          "M": [
+            "",
+            "0",
+            "1"
+          ]
+        },
+        "boundary": "M"
+      },
+      "blocks": 1,
+      "cost": 0,
+      "pass": true
+    },
+    {
+      "kind": "positive",
+      "id": "left-extra-block",
+      "actual": {
+        "tree": [
+          [
+            "a",
+            "b"
+          ],
+          "c"
+        ],
+        "regions": {
+          "M": [
+            "",
+            "0",
+            "00",
+            "1"
+          ],
+          "L:c": [
+            "01"
+          ]
+        },
+        "boundary": "M"
+      },
+      "blocks": 2,
+      "cost": 1,
+      "pass": true
+    },
+    {
+      "kind": "positive",
+      "id": "both-extra-same-color",
+      "actual": {
+        "tree": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "c",
+            "d"
+          ]
+        ],
+        "regions": {
+          "M": [
+            "",
+            "0",
+            "00",
+            "1",
+            "11"
+          ],
+          "L:c": [
+            "01"
+          ],
+          "R:c": [
+            "10"
+          ]
+        },
+        "boundary": "M"
+      },
+      "blocks": 3,
+      "cost": 2,
+      "pass": true
+    },
+    {
+      "kind": "positive",
+      "id": "asymmetric-stems",
+      "actual": {
+        "tree": [
+          [
+            [
+              "a",
+              "b"
+            ],
+            "c"
+          ],
+          [
+            "d",
+            "e"
+          ]
+        ],
+        "regions": {
+          "M": [
+            "",
+            "0",
+            "00",
+            "001",
+            "1",
+            "10"
+          ],
+          "L:a": [
+            "000"
+          ],
+          "L:c": [
+            "01"
+          ],
+          "R:e": [
+            "11"
+          ]
+        },
+        "boundary": "M"
+      },
+      "blocks": 4,
+      "cost": 3,
+      "pass": true
+    },
+    {
+      "kind": "positive",
+      "id": "unused-internal-vertex",
+      "actual": {
+        "tree": [
+          [
+            "a",
+            [
+              "b",
+              "c"
+            ]
+          ],
+          "d"
+        ],
+        "regions": {
+          "M": [
+            "",
+            "0",
+            "00",
+            "1"
+          ],
+          "L:b": [
+            "010"
+          ],
+          "L:c": [
+            "011"
+          ]
+        },
+        "boundary": "M"
+      },
+      "blocks": 3,
+      "cost": 2,
+      "pass": true
+    },
+    {
+      "kind": "malformed",
+      "id": "missing-boundary",
+      "caught": [
+        "missing designated boundary"
+      ]
+    },
+    {
+      "kind": "malformed",
+      "id": "raw-leafless-open",
+      "caught": [
+        "leafless:o"
+      ]
+    },
+    {
+      "kind": "malformed",
+      "id": "overlapping-input",
+      "caught": [
+        "disconnected:c",
+        "overlap:c"
+      ]
+    },
+    {
+      "kind": "malformed",
+      "id": "boundary-missing-root",
+      "caught": [
+        "wrong root boundary ownership"
+      ]
+    },
+    {
+      "kind": "wrong_numeric_and_clean",
+      "id": "charge-merged-open",
+      "actual": 0,
+      "wrong_rejected": 1,
+      "clean_accepted": 0
+    },
+    {
+      "kind": "wrong_numeric_and_clean",
+      "id": "retain-two-open-indices",
+      "actual": 1,
+      "wrong_rejected": 2,
+      "clean_accepted": 1
+    },
+    {
+      "kind": "wrong_numeric_and_clean",
+      "id": "coalesce-same-color-others",
+      "actual": 3,
+      "wrong_rejected": 1,
+      "clean_accepted": 3
+    },
+    {
+      "kind": "wrong_numeric_and_clean",
+      "id": "charge-closed-blocks-twice",
+      "actual": 3,
+      "wrong_rejected": 6,
+      "clean_accepted": 3
+    },
+    {
+      "kind": "support_corruption_and_clean",
+      "id": "drop-connecting-root",
+      "caught": [
+        "disconnected:M",
+        "wrong root boundary ownership",
+        "exact support/index mismatch"
+      ],
+      "clean_accepted": true
+    },
+    {
+      "kind": "support_corruption_and_clean",
+      "id": "drop-required-stem",
+      "caught": [
+        "disconnected:M",
+        "exact support/index mismatch"
+      ],
+      "clean_accepted": true
+    },
+    {
+      "kind": "support_corruption_and_clean",
+      "id": "drop-right-leaf",
+      "caught": [
+        "missing leaf coverage",
+        "exact support/index mismatch",
+        "merged label membership mismatch"
+      ],
+      "clean_accepted": true
+    },
+    {
+      "kind": "supplementary",
+      "id": "repeated-labels",
+      "leaf_occurrences": 3,
+      "blocks": 2,
+      "cost": 1,
+      "pass": true
+    },
+    {
+      "kind": "supplementary",
+      "id": "extra-valid-internal-vertex",
+      "caught": [
+        "exact support/index mismatch",
+        "unused vertex filled:01"
+      ],
+      "valid_family": true
+    }
+  ],
+  "elapsed_seconds": 0.0005529999998543644
+}

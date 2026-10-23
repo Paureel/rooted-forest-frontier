@@ -1,0 +1,21 @@
+# Current author state
+
+The actual OrdinaryScaffold.solve definition compiled with well-founded measure (cut budget, target label count). Paid ordinary callbacks have a literal strict-budget guard; common contraction has a literal same-budget strict-label guard. Malformed ordinary pairs return none. The original depth-zero/one pretest is run at the input pair, then the actual cherry priority selector chooses common, t=1, high, or hard2.
+
+ScaffoldFacts compiled: proper ordinary pairs give proper singleton forest states; a rejected pretest has an actual selected cherry; selected-none implies a leaf and cannot coexist with a proper rejected pretest; found pretests give global component minimum; fixed-query soundness/completeness and checked-minimum composition are proved.
+
+ScaffoldExact.solve_exact compiled for every proper ordinary input and every cut budget. It proves original agreement, budget, global component minimum, and bounded negative/completeness. Its actual guarded LocalOrdinaryIH is derived from recursively proved smaller-budget queries. The common branch invokes only the contracted same-budget query with strictly fewer target labels. The actual_ordinary_IH and actual_local_ordinary_IH corollaries also compiled. The ghost minimum completion is used only inside the frozen forest proof; it is absent from the executable scaffold.
+
+This is the explicitly attributed cherry scaffold with the original three-child hard2 fallback. The vector (1,1,2) has mass 56600/54289 at c=233/100, which exceeds one by 2311/54289. Therefore this scaffold does not establish the desired improved base. The intended faster algorithm, its complete integrated correctness, its source/bit/payload recurrence, and novelty remain OPEN.
+
+The dependency integration uses read-only hard links to immutable selected source and binary files, with one local LEAN_PATH. The first staging attempt deliberately stopped on a same-source binary hash difference. The second version records both serialization hashes and deduplicates only exact source bytes; no binary or producer-value equality is inferred from the hash difference. One-root import and final producer compatibility remain pending.
+
+All development failures remain saved. The first recursive definition failed only because the two Prod.Lex constructors had not been applied. The first ScaffoldFacts proof had two elaboration errors, and the first ScaffoldExact proof used an unavailable transitivity name. Each repaired proof subsequently compiled. The guarded compiler first passed a planted true formula, rejected a planted false formula, and stopped its own process under a synthetic below-floor reading. Every source change, output, and run receipt is retained.
+
+The next executable controls are pinned in CONTROLS-PIN-v1.md and prepared in ScaffoldControls.lean and ScaffoldFalseControls.lean. They have NOT been compiled or run. The final source/producer audit and immutable seal have NOT run. Research compute stopped when local free space crossed below the required 3 GiB floor; the last reported df was 3,134,980 KiB. No mathematical failure or acceptance is inferred from storage pressure.
+
+Canonical development root: results/algorithm-universal233-ordinary-recursion-20261015T191007632025Z. The original failed staging receipt remains FAILED_NOT_ACCEPTED. Successful later per-module source/hash/log receipts are separately retained under live-compile-*; do not rewrite the initial failure receipt.
+
+## Executed continuation after reserve restoration
+
+A read-only df later showed over 22 GiB free; the author made no deletions and inferred no cause. The pinned controls were then run with live storage/timeout limits. The crossed-quartet pilot passed; the combined positive controls passed after the documented file-cap repair; the corrected three contrary claims passed an exact mathematical diagnostic gate. The thin source/producer audit passed 252 imported modules, 315 new stored occurrences and 6,370 total selected occurrences. All nonproof bodies were explicitly present. The local source reference closure reached no ForestMinCompletion declaration. The final author release records these scopes; the earlier storage stop and unexecuted checkpoint remain preserved.

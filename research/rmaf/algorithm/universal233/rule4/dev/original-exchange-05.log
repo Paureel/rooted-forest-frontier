@@ -1,0 +1,32 @@
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:296:5: warning: Variable name `hn` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hn
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:351:15: error(lean.unknownIdentifier): Unknown identifier `r`
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:351:26: error(lean.unknownIdentifier): Unknown identifier `r`
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:351:58: error(lean.unknownIdentifier): Unknown identifier `r`
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:363:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  List.filter (fun x => !(subtreeLabels S q).contains x && !(subtreeLabels S r).contains x) (leaves S)
+in the target expression
+  (have A := subtreeLabels S q;
+      have B := subtreeLabels S r;
+      [A, B, List.filter (fun x => !A.contains x && !B.contains x) (leaves S)]).Perm
+    (have A := subtreeLabels S r;
+    have B := subtreeLabels S q;
+    [A, B, List.filter (fun x => !A.contains x && !B.contains x) (leaves S)])
+
+S : Tree
+q r : RMAF.Vertex
+he :
+  List.filter (fun x => !(subtreeLabels S q).contains x && !(subtreeLabels S r).contains x) (leaves S) =
+    List.filter (fun x => !(subtreeLabels S r).contains x && !(subtreeLabels S q).contains x) (leaves S)
+⊢ (have A := subtreeLabels S q;
+      have B := subtreeLabels S r;
+      [A, B, List.filter (fun x => !A.contains x && !B.contains x) (leaves S)]).Perm
+    (have A := subtreeLabels S r;
+    have B := subtreeLabels S q;
+    [A, B, List.filter (fun x => !A.contains x && !B.contains x) (leaves S)])
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:375:39: error(lean.unknownIdentifier): Unknown identifier `r`
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:375:41: error(lean.unknownIdentifier): Unknown identifier `q`

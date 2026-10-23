@@ -1,0 +1,91 @@
+import RefusalAndDomains
+import ReachWeightedSource
+namespace OrdinaryDispatch.GoodPairGlobalAssembly
+open RMAF Universal233 WholeSourceWork CoreWork
+open GenericForest.FrontierWork OrdinaryDispatch.FullSourceWork OrdinaryDispatch.Hard2SourceWork
+open OrdinaryDispatch.WorkRecursion OrdinaryDispatch.WorkIntegration OrdinaryDispatch.GlobalSourceAssembly
+open OrdinaryDispatch.ExtendedSourceAssembly OrdinaryDispatch.FastOrdinary
+open Universal233.Rule5ClosedSource OrdinaryDispatch.GlobalNumeric
+
+/-- Complete newly sealed Rule5 caller, replacing the earlier dispatch-only
+residual. Its implemented forest debits and answer projection are included. -/
+def closedRule5LocalDebit (T S : Tree) (q : Nat) : Nat:=
+ if DepthOne.proper T S then
+  match DepthOne.pretest01 T S with
+  | .rejected=>match early T S with
+   | .hard2 c _=>match (hard2FrontMeter T S c q).value with
+    | .admittedRule5=>(admittedRouteSource (fun _ _ _=>0) T S c q).work
+    | _=>0
+   | _=>0
+  | _=>0
+ else 0
+
+theorem closedRule5LocalDebit_bound (N Q L : Nat) (T S : Tree) (q : Nat)
+ (hp : DepthOne.proper T S=true) (size : (leaves T).length≤N) (budget : q≤Q)
+ (tlabs : ∀x,x∈leaves T→x<2^L) (slabs : ∀x,x∈leaves S→x<2^L) :
+ (closedRule5LocalDebit T S q:Rat)≤(C5 N Q L:Rat)*Rule5ActualTrace.base^q := by
+ have nonneg:0≤(C5 N Q L:Rat)*Rule5ActualTrace.base^q:=
+  Rat.mul_nonneg Rat.natCast_nonneg (Rat.le_trans (by decide +kernel : (0:Rat)≤1) (call_base_pow_ge_one q))
+ unfold closedRule5LocalDebit
+ simp only [hp,ite_true]
+ cases pre:DepthOne.pretest01 T S with
+ | refused=>simpa only [Rat.natCast_ofNat] using nonneg
+ | found e=>simpa only [Rat.natCast_ofNat] using nonneg
+ | rejected=>cases he:early T S with
+  | hard2 c d=>
+   dsimp only
+   have sound:=early_sound T S;rw [he] at sound
+   cases route:(hard2FrontMeter T S c q).value with
+   | refused=>simpa only [route,Rat.natCast_ofNat] using nonneg
+   | direct answer=>simpa only [route,Rat.natCast_ofNat] using nonneg
+   | disjointPaid=>simpa only [route,Rat.natCast_ofNat] using nonneg
+   | paid out=>simpa only [route,Rat.natCast_ofNat] using nonneg
+   | admittedRule5=>
+    simpa only [Rule5ActualTrace.base] using admitted_route_bound q N Q L hp sound.1 sound.2.1
+     sound.2.2.1 sound.2.2.2 route ⟨size,budget,tlabs,slabs⟩
+  | common reverse c=>simpa only [Rat.natCast_ofNat] using nonneg
+  | one reverse c=>simpa only [Rat.natCast_ofNat] using nonneg
+  | high reverse c=>simpa only [Rat.natCast_ofNat] using nonneg
+  | rule4Forward s=>simpa only [Rat.natCast_ofNat] using nonneg
+  | rule4Reverse s=>simpa only [Rat.natCast_ofNat] using nonneg
+  | refused=>simpa only [Rat.natCast_ofNat] using nonneg
+
+theorem closedRule5Local_binding (q : Nat) {T S : Tree} (hp : DepthOne.proper T S=true)
+ (pre : DepthOne.pretest01 T S=.rejected) {c d : CherryBranching.Candidate}
+ (he : early T S=.hard2 c d) (route : (hard2FrontMeter T S c q).value=.admittedRule5) :
+ closedRule5LocalDebit T S q=(admittedRouteSource (fun _ _ _=>0) T S c q).work := by
+ simp only [closedRule5LocalDebit,hp,ite_true,pre,he,route]
+
+theorem closedRule5_actual_step_split (W : GenericForest.FrontierWork.OrdinaryWork) (q : Nat) {T S : Tree}
+ (hp : DepthOne.proper T S=true) (pre : DepthOne.pretest01 T S=.rejected)
+ {c d : CherryBranching.Candidate} (he : early T S=.hard2 c d)
+ (route : (hard2FrontMeter T S c q).value=.admittedRule5) :
+ (admittedRouteSource W T S c q).work=closedRule5LocalDebit T S q+
+ queryWork W (ordinaryStepTrace FastOrdinary.solve q T S).queries := by
+ have queries:=hard2FrontMeter_queries (cutoff FastOrdinary.solve q) T S c d q
+ rw [route] at queries
+ have split:=admitted_route_split W T S c q
+ rw [actual_rule5_calls_native] at split
+ rw [closedRule5Local_binding q hp pre he route]
+ simp only [ordinaryStepTrace,hp,ite_true,pre,he]
+ rw [←queries]
+ simpa only [hard2RouteQueries,actualCallback] using split
+
+/-- Uniform current-label width derived on the actual query tree. Original L
+is never reused unchanged after fresh-marker allocation. -/
+theorem reachableRule5InputDomain (q0 N Q L : Nat) (T0 S0 : Tree)
+ (hp0 : DepthOne.proper T0 S0=true) (size0 : (leaves T0).length≤N) (initialBudget : q0≤Q)
+ (labels0 : ∀x,x∈leaves T0++leaves S0→x<2^L)
+ {d T S q} (path : Reach FastOrdinary.solve q0 T0 S0 d T S q) :
+ InputDomain T S q N Q (semanticWidth N L Q) := by
+ have cap0 : PairCap (2^L) T0 S0:=
+  ⟨fun x hx=>Nat.le_of_lt (labels0 x (List.mem_append_left _ hx)),
+   fun x hx=>Nat.le_of_lt (labels0 x (List.mem_append_right _ hx))⟩
+ have inv:=reachable_invariant FastOrdinary.solve q0 N (2^L) T0 S0 hp0 size0 cap0 path
+ have labels:=reachable_label_bits FastOrdinary.solve q0 N L T0 S0 hp0 size0 labels0 path
+ have width : semanticWidth N L q0≤semanticWidth N L Q:=by unfold semanticWidth;omega
+ have power:=Nat.pow_le_pow_right (show 1≤2 by decide) width
+ exact ⟨inv.2.2.1,by omega,
+  fun x hx=>Nat.lt_of_lt_of_le (labels x (List.mem_append_left _ hx)) power,
+  fun x hx=>Nat.lt_of_lt_of_le (labels x (List.mem_append_right _ hx)) power⟩
+end OrdinaryDispatch.GoodPairGlobalAssembly

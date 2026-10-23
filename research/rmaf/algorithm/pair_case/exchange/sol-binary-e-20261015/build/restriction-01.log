@@ -1,0 +1,190 @@
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Restriction.lean:31:19: error: unsolved goals
+case node.none.none
+C : List Nat
+l r : Tree
+hl : ∀ (x : Nat), x ∈ leaves l → ¬x ∈ C
+hr : ∀ (x : Nat), x ∈ leaves r → ¬x ∈ C
+el : restrict C l = none
+er : restrict C r = none
+⊢ ∀ (x : Nat), x ∈ leaves l ∨ x ∈ leaves r → ¬x ∈ C
+
+case node.none.some
+C : List Nat
+l r val✝ : Tree
+hl : ∀ (x : Nat), x ∈ leaves l → ¬x ∈ C
+hr : ∃ x, x ∈ leaves r ∧ x ∈ C
+el : restrict C l = none
+er : restrict C r = some val✝
+⊢ ∃ x, (x ∈ leaves l ∨ x ∈ leaves r) ∧ x ∈ C
+
+case node.some.none
+C : List Nat
+l r val✝ : Tree
+hl : ∃ x, x ∈ leaves l ∧ x ∈ C
+hr : ∀ (x : Nat), x ∈ leaves r → ¬x ∈ C
+el : restrict C l = some val✝
+er : restrict C r = none
+⊢ ∃ x, (x ∈ leaves l ∨ x ∈ leaves r) ∧ x ∈ C
+
+case node.some.some
+C : List Nat
+l r val✝¹ val✝ : Tree
+hl : ∃ x, x ∈ leaves l ∧ x ∈ C
+hr : ∃ x, x ∈ leaves r ∧ x ∈ C
+el : restrict C l = some val✝¹
+er : restrict C r = some val✝
+⊢ ∃ x, (x ∈ leaves l ∨ x ∈ leaves r) ∧ x ∈ C
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Restriction.lean:51:7: error: unknown tactic
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Restriction.lean:40:4: error: unsolved goals
+case pos
+C : List Nat
+x y : Nat
+hy : y ∈ C
+h : restrict C (Tree.leaf y) = some (Tree.leaf y)
+⊢ x = y → x ∈ C
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Restriction.lean:46:4: error: unsolved goals
+case node.none.some
+C : List Nat
+x : Nat
+l r : Tree
+hl : ∀ (u : Tree), restrict C l = some u → (x ∈ leaves u ↔ x ∈ leaves l ∧ x ∈ C)
+hr : ∀ (u : Tree), restrict C r = some u → (x ∈ leaves u ↔ x ∈ leaves r ∧ x ∈ C)
+el : restrict C l = none
+val✝ : Tree
+er : restrict C r = some val✝
+h : restrict C (l.node r) = some val✝
+hn : x ∈ leaves l → ¬x ∈ C
+⊢ x ∈ leaves r ∧ x ∈ C ↔ (x ∈ leaves l ∨ x ∈ leaves r) ∧ x ∈ C
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Restriction.lean:43:19: error: unsolved goals
+case node.some.none
+C : List Nat
+x : Nat
+l r : Tree
+hl : ∀ (u : Tree), restrict C l = some u → (x ∈ leaves u ↔ x ∈ leaves l ∧ x ∈ C)
+hr : ∀ (u : Tree), restrict C r = some u → (x ∈ leaves u ↔ x ∈ leaves r ∧ x ∈ C)
+u : Tree
+h : restrict C (l.node r) = some u
+val✝ : Tree
+el : restrict C l = some val✝
+er : restrict C r = none
+⊢ x ∈ leaves u ↔ x ∈ leaves (l.node r) ∧ x ∈ C
+
+case node.some.some
+C : List Nat
+x : Nat
+l r : Tree
+hl : ∀ (u : Tree), restrict C l = some u → (x ∈ leaves u ↔ x ∈ leaves l ∧ x ∈ C)
+hr : ∀ (u : Tree), restrict C r = some u → (x ∈ leaves u ↔ x ∈ leaves r ∧ x ∈ C)
+u : Tree
+h : restrict C (l.node r) = some u
+val✝¹ : Tree
+el : restrict C l = some val✝¹
+val✝ : Tree
+er : restrict C r = some val✝
+⊢ x ∈ leaves u ↔ x ∈ leaves (l.node r) ∧ x ∈ C
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Restriction.lean:65:61: error: unsolved goals
+case none.some
+D : List Nat
+val✝ : Tree
+⊢ restrict D val✝ =
+    match none, restrict D val✝ with
+    | none, none => none
+    | some a, none => some a
+    | none, some a => some a
+    | some a, some b => some (a.node b)
+
+case some.none
+D : List Nat
+val✝ : Tree
+⊢ restrict D val✝ =
+    match restrict D val✝, none with
+    | none, none => none
+    | some a, none => some a
+    | none, some a => some a
+    | some a, some b => some (a.node b)
+
+case some.some
+D : List Nat
+val✝¹ val✝ : Tree
+⊢ (match restrict D val✝¹, restrict D val✝ with
+    | none, none => none
+    | some a, none => some a
+    | none, some a => some a
+    | some a, some b => some (a.node b)) =
+    match restrict D val✝¹, restrict D val✝ with
+    | none, none => none
+    | some a, none => some a
+    | none, some a => some a
+    | some a, some b => some (a.node b)
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Restriction.lean:98:77: error: unknown tactic
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Restriction.lean:98:26: error: unsolved goals
+case swapped
+s t : Tree
+x : Nat
+a✝ b✝ c✝ d✝ : Tree
+h1 : RootedIso a✝ d✝
+h2 : RootedIso b✝ c✝
+ih1 : x ∈ leaves a✝ ↔ x ∈ leaves d✝
+ih2 : x ∈ leaves b✝ ↔ x ∈ leaves c✝
+⊢ x ∈ leaves d✝ ∨ x ∈ leaves c✝ ↔ x ∈ leaves c✝ ∨ x ∈ leaves d✝
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Restriction.lean:129:2: error: too many variable names provided
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Restriction.lean:130:22: error(lean.unknownIdentifier): Unknown identifier `ss`
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Restriction.lean:130:25: error(lean.unknownIdentifier): Unknown identifier `tt`
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Restriction.lean:132:28: error(lean.unknownIdentifier): Unknown identifier `ss`
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Restriction.lean:126:74: error: unsolved goals
+case none.none
+s t : Tree
+C D : List Nat
+h : false = true
+hsub : ∀ (x : Nat), x ∈ D → x ∈ C
+hne : ∃ x, x ∈ D ∧ x ∈ leaves s
+es : restrict C s = none
+et : restrict C t = none
+hi : RootedIso sorry sorry
+hr : OptIso (restrict D sorry) (restrict D sorry)
+⊢ (match restrict D s, restrict D t with
+    | some s, some v => sameShape s v
+    | x, x_1 => true) =
+    true
+
+case none.some
+s t : Tree
+C D : List Nat
+val✝ : Tree
+h : false = true
+hsub : ∀ (x : Nat), x ∈ D → x ∈ C
+hne : ∃ x, x ∈ D ∧ x ∈ leaves s
+es : restrict C s = none
+et : restrict C t = some val✝
+⊢ (match restrict D s, restrict D t with
+    | some s, some v => sameShape s v
+    | x, x_1 => true) =
+    true
+
+case some.none
+s t : Tree
+C D : List Nat
+val✝ : Tree
+h : false = true
+hsub : ∀ (x : Nat), x ∈ D → x ∈ C
+hne : ∃ x, x ∈ D ∧ x ∈ leaves s
+es : restrict C s = some val✝
+et : restrict C t = none
+⊢ (match restrict D s, restrict D t with
+    | some s, some v => sameShape s v
+    | x, x_1 => true) =
+    true
+
+case some.some
+s t : Tree
+C D : List Nat
+val✝¹ val✝ : Tree
+h : sameShape val✝¹ val✝ = true
+hsub : ∀ (x : Nat), x ∈ D → x ∈ C
+hne : ∃ x, x ∈ D ∧ x ∈ leaves s
+es : restrict C s = some val✝¹
+et : restrict C t = some val✝
+⊢ (match restrict D s, restrict D t with
+    | some s, some v => sameShape s v
+    | x, x_1 => false) =
+    true

@@ -1,0 +1,232 @@
+{
+  "case_count": 12,
+  "cases": [
+    {
+      "actual": [
+        "",
+        "0",
+        "00",
+        "1",
+        "10"
+      ],
+      "edgecut": [
+        "",
+        "0",
+        "00",
+        "1",
+        "10"
+      ],
+      "exact_equal": true,
+      "id": "quartet_cross",
+      "nonempty_iff_selected_occurrence": true
+    },
+    {
+      "actual": [
+        "01"
+      ],
+      "edgecut": [
+        "01"
+      ],
+      "exact_equal": true,
+      "id": "quartet_single",
+      "nonempty_iff_selected_occurrence": true
+    },
+    {
+      "actual": [
+        "0",
+        "00",
+        "01"
+      ],
+      "edgecut": [
+        "0",
+        "00",
+        "01"
+      ],
+      "exact_equal": true,
+      "id": "quartet_left",
+      "nonempty_iff_selected_occurrence": true
+    },
+    {
+      "actual": [],
+      "edgecut": [],
+      "exact_equal": true,
+      "id": "quartet_empty",
+      "nonempty_iff_selected_occurrence": true
+    },
+    {
+      "actual": [],
+      "edgecut": [],
+      "exact_equal": true,
+      "id": "quartet_absent",
+      "nonempty_iff_selected_occurrence": true
+    },
+    {
+      "actual": [
+        "",
+        "0",
+        "1"
+      ],
+      "edgecut": [
+        "",
+        "0",
+        "1"
+      ],
+      "exact_equal": true,
+      "id": "duplicate_siblings",
+      "nonempty_iff_selected_occurrence": true
+    },
+    {
+      "actual": [
+        "",
+        "0",
+        "00",
+        "1",
+        "10"
+      ],
+      "edgecut": [
+        "",
+        "0",
+        "00",
+        "1",
+        "10"
+      ],
+      "exact_equal": true,
+      "id": "duplicate_cross",
+      "nonempty_iff_selected_occurrence": true
+    },
+    {
+      "actual": [
+        ""
+      ],
+      "edgecut": [
+        ""
+      ],
+      "exact_equal": true,
+      "id": "root_leaf",
+      "nonempty_iff_selected_occurrence": true
+    },
+    {
+      "actual": [],
+      "edgecut": [],
+      "exact_equal": true,
+      "id": "root_absent",
+      "nonempty_iff_selected_occurrence": true
+    },
+    {
+      "actual": [
+        "11",
+        "110",
+        "111"
+      ],
+      "edgecut": [
+        "11",
+        "110",
+        "111"
+      ],
+      "exact_equal": true,
+      "id": "suppressed_initial_path",
+      "nonempty_iff_selected_occurrence": true
+    },
+    {
+      "actual": [
+        "11"
+      ],
+      "edgecut": [
+        "11"
+      ],
+      "exact_equal": true,
+      "id": "suppressed_single_path",
+      "nonempty_iff_selected_occurrence": true
+    },
+    {
+      "actual": [
+        "00"
+      ],
+      "edgecut": [
+        "00"
+      ],
+      "exact_equal": true,
+      "id": "repeated_selection",
+      "nonempty_iff_selected_occurrence": true
+    }
+  ],
+  "control_sha256": "d4f251ce0cdf7de4984b44a4024629c1be3d08518f84c79691eab977504f838b",
+  "runs": [
+    {
+      "command": [
+        "bootloops-lean",
+        "--version"
+      ],
+      "exit_code": 0,
+      "label": "lean-version",
+      "log": "lean-version.log",
+      "seconds": 0.06859341600102198
+    },
+    {
+      "command": [
+        "bootloops-lean",
+        "-o",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/bridge_review/executable/edgecut_route/RMAF.olean",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/lean/RMAF.lean"
+      ],
+      "exit_code": 0,
+      "label": "rmaf-fresh-build",
+      "log": "rmaf-fresh-build.log",
+      "seconds": 5.589257333000205
+    },
+    {
+      "command": [
+        "bootloops-lean",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/bridge_review/executable/edgecut_route/Pilot.lean"
+      ],
+      "exit_code": 0,
+      "label": "pilot",
+      "log": "pilot.log",
+      "seconds": 0.30213874999935797
+    },
+    {
+      "command": [
+        "bootloops-lean",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/bridge_review/executable/edgecut_route/ExactControls.lean"
+      ],
+      "exit_code": 0,
+      "label": "exact-controls",
+      "log": "exact-controls.log",
+      "seconds": 0.3829594580001867
+    },
+    {
+      "command": [
+        "bootloops-lean",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/bridge_review/executable/edgecut_route/False_deleted_path_vertex.lean"
+      ],
+      "exit_code": 1,
+      "label": "false-deleted_path_vertex",
+      "log": "false-deleted_path_vertex.log",
+      "seconds": 0.30076404200008255
+    },
+    {
+      "command": [
+        "bootloops-lean",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/bridge_review/executable/edgecut_route/False_inserted_initial_root.lean"
+      ],
+      "exit_code": 1,
+      "label": "false-inserted_initial_root",
+      "log": "false-inserted_initial_root.log",
+      "seconds": 0.299999458999082
+    },
+    {
+      "command": [
+        "bootloops-lean",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/bridge_review/executable/edgecut_route/False_deduplicated_occurrence.lean"
+      ],
+      "exit_code": 1,
+      "label": "false-deduplicated_occurrence",
+      "log": "false-deduplicated_occurrence.log",
+      "seconds": 0.30378770800052735
+    }
+  ],
+  "semantic_false_corruptions": 3,
+  "source_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+  "source_unchanged": true,
+  "utc": "2026-10-14T13:27:44.033903+00:00"
+}

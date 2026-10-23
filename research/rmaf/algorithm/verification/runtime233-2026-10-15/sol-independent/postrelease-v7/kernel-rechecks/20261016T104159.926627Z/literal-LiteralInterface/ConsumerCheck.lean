@@ -1,0 +1,9 @@
+import LiteralInterface
+#check Universal233.PaidLiteralDecisionWork.source_decision_value
+#print axioms Universal233.PaidLiteralDecisionWork.source_decision_value
+#check Universal233.PaidLiteralDecisionWork.paid_selected_value_concrete
+#print axioms Universal233.PaidLiteralDecisionWork.paid_selected_value_concrete
+#check Universal233.PaidLiteralDecisionWork.paid_selected_ledger_concrete
+#print axioms Universal233.PaidLiteralDecisionWork.paid_selected_ledger_concrete
+#check Universal233.PaidLiteralDecisionWork.literal_call_scalar_bits
+#print axioms Universal233.PaidLiteralDecisionWork.literal_call_scalar_bits

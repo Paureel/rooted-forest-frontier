@@ -1,0 +1,28 @@
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:30:4: error: Type mismatch
+  List.Perm.append (List.Perm.refl ?m.79) (List.Perm.append loc (List.Perm.refl ?m.88))
+has type
+  (?m.79 ++ ((List.map leaves (sourceForest s Q)).flatten ++ ?m.88)).Perm (?m.79 ++ (leaves s ++ ?m.88))
+but is expected to have type
+  ((List.map leaves pre).flatten ++ (List.map leaves (sourceForest s Q)).flatten ++ (List.map leaves post).flatten).Perm
+    ((List.map leaves pre).flatten ++ leaves s ++ (List.map leaves post).flatten)
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:33:10: error: Application type mismatch: The argument
+  ht
+has type
+  (labels (some t)).Nodup
+but is expected to have type
+  decide (leaves t).Nodup = true
+in the application
+  And.intro ht
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:38:16: error: Ambiguous term
+  leaves_nonempty
+Possible interpretations:
+  CutRealization.leaves_nonempty u : leaves u ≠ []
+  
+  RestrictionBridge.leaves_nonempty u : leaves u ≠ []
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:32:44: warning: This simp argument is unused:
+  decide_eq_true_eq
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [proper, labels, Bool.and_eq_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

@@ -1,0 +1,5 @@
+import RWTree
+#check OrdinaryDispatch.RecoveryLocalWork.meterNormalize_value
+#print axioms OrdinaryDispatch.RecoveryLocalWork.meterNormalize_value
+#check OrdinaryDispatch.RecoveryLocalWork.meterErase_bound
+#print axioms OrdinaryDispatch.RecoveryLocalWork.meterErase_bound

@@ -1,0 +1,7 @@
+import PaidCurrentSource
+#check Universal233.Rule5ExecutionSource.current_query_value
+#print axioms Universal233.Rule5ExecutionSource.current_query_value
+#check Universal233.Rule5ExecutionSource.current_answer_split
+#print axioms Universal233.Rule5ExecutionSource.current_answer_split
+#check Universal233.Rule5ExecutionSource.current_fallback_gate
+#print axioms Universal233.Rule5ExecutionSource.current_fallback_gate

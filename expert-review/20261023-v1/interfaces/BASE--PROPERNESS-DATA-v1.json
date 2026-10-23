@@ -1,0 +1,114 @@
+{
+  "scope": "These6 pure canonical properness primitive bodies only, source/object/ranges/context bound. No active proof files, values, controls or outcomes, no transitive grant.",
+  "definitions": [
+    {
+      "module": "ELPrimitives",
+      "name": "meterOrdinaryProper",
+      "context": [
+        "import ActualInspection",
+        "namespace OrdinaryDispatch.EarlyLocalWork",
+        "open RMAF Universal233 WholeSourceWork CoreWork GenericForest.CheckCorrespondence"
+      ],
+      "code": "def meterOrdinaryProper (T S : Tree) : Charged Bool :=\n let a:=meterLeaves T;let b:=meterNodup a.value\n let c:=meterLeaves S;let d:=meterNodup c.value\n let e:=meterLeaves T;let f:=meterLeaves S;let p:=meterPerm e.value f.value\n \u27e8b.value&&d.value&&p.value,a.work+b.work+c.work+d.work+e.work+f.work+p.work+4\u27e9",
+      "range": [
+        88,
+        92
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ELPrimitives.lean",
+      "source_sha256": "a33f0ef99d23bcd1d1f74055bf79320f99be5c84e40cd9ef9076a653483faa80",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ELPrimitives.olean",
+      "object_sha256": "d289927232c4523330af015618d3081eff7b8ae15df5d1177d8011254535207a"
+    },
+    {
+      "module": "ForestColorWork",
+      "name": "meterContains",
+      "context": [
+        "import Work",
+        "import WholeMass",
+        "namespace Universal233.WholeSourceWork",
+        "open RMAF VertexGeometry CoreProgram CoreWork WholeSourceMass"
+      ],
+      "code": "def meterContains (x : Nat) : List Nat \u2192 Charged Bool\n  | [] => \u27e8false,1\u27e9\n  | y::ys => if x == y then \u27e8true,4\u27e9 else\n      let r := meterContains x ys\n      \u27e8r.value,4+r.work\u27e9",
+      "range": [
+        14,
+        18
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestColorWork.lean",
+      "source_sha256": "e950a9bd36d2219c9f14ed2b72b271cea2a06cbad34fab2cbcb2f33f4f953b54",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestColorWork.olean",
+      "object_sha256": "886672b146655661385bcb77754bf1852b897fdd81b7188e16f61f5192f7607a"
+    },
+    {
+      "module": "ELPrimitives",
+      "name": "meterErase",
+      "context": [
+        "import ActualInspection",
+        "namespace OrdinaryDispatch.EarlyLocalWork",
+        "open RMAF Universal233 WholeSourceWork CoreWork GenericForest.CheckCorrespondence"
+      ],
+      "code": "def meterErase (a : Nat) : List Nat\u2192Charged (List Nat)\n | []=>\u27e8[],1\u27e9\n | x::xs=>if a==x then \u27e8xs,4\u27e9 else let r:=meterErase a xs;\u27e8x::r.value,4+r.work\u27e9",
+      "range": [
+        48,
+        50
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ELPrimitives.lean",
+      "source_sha256": "a33f0ef99d23bcd1d1f74055bf79320f99be5c84e40cd9ef9076a653483faa80",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ELPrimitives.olean",
+      "object_sha256": "d289927232c4523330af015618d3081eff7b8ae15df5d1177d8011254535207a"
+    },
+    {
+      "module": "ELPrimitives",
+      "name": "meterPerm",
+      "context": [
+        "import ActualInspection",
+        "namespace OrdinaryDispatch.EarlyLocalWork",
+        "open RMAF Universal233 WholeSourceWork CoreWork GenericForest.CheckCorrespondence"
+      ],
+      "code": "def meterPerm : List Nat\u2192List Nat\u2192Charged Bool\n | [],ys=>\u27e8ys.isEmpty,1\u27e9\n | x::xs,ys=>let c:=meterContains x ys;let e:=meterErase x ys;let r:=meterPerm xs e.value\n   \u27e8c.value&&r.value,c.work+e.work+r.work+4\u27e9",
+      "range": [
+        64,
+        67
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ELPrimitives.lean",
+      "source_sha256": "a33f0ef99d23bcd1d1f74055bf79320f99be5c84e40cd9ef9076a653483faa80",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ELPrimitives.olean",
+      "object_sha256": "d289927232c4523330af015618d3081eff7b8ae15df5d1177d8011254535207a"
+    },
+    {
+      "module": "CheckFamilies",
+      "name": "meterLeaves",
+      "context": [
+        "import HullCheckMeters",
+        "namespace GenericForest.CheckCorrespondence",
+        "open RMAF ForestState RestrictionBridge Universal233 WholeSourceWork CoreWork"
+      ],
+      "code": "def meterLeaves : Tree \u2192 Charged (List Nat)\n | .leaf x=>\u27e8[x],4\u27e9\n | .node l r=>let a:=meterLeaves l;let b:=meterLeaves r\n              \u27e8a.value++b.value,a.work+b.work+6*(a.value.length+1)\u27e9",
+      "range": [
+        8,
+        11
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CheckFamilies.lean",
+      "source_sha256": "230fac28200e8898ff11dbeb93f179a8b6e961a4ba0ed4bc5ca09caf32e29a3f",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CheckFamilies.olean",
+      "object_sha256": "1d4701d68c022b72d13ac4e9e0679a43a022e25bd9179712691ab7c7fa15d6db"
+    },
+    {
+      "module": "CheckFamilies",
+      "name": "meterNodup",
+      "context": [
+        "import HullCheckMeters",
+        "namespace GenericForest.CheckCorrespondence",
+        "open RMAF ForestState RestrictionBridge Universal233 WholeSourceWork CoreWork"
+      ],
+      "code": "def meterNodup : List Nat \u2192 Charged Bool\n | []=>\u27e8true,1\u27e9\n | x::xs=>let c:=meterContains x xs;let r:=meterNodup xs;\u27e8!c.value&&r.value,c.work+r.work+4\u27e9",
+      "range": [
+        25,
+        27
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CheckFamilies.lean",
+      "source_sha256": "230fac28200e8898ff11dbeb93f179a8b6e961a4ba0ed4bc5ca09caf32e29a3f",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CheckFamilies.olean",
+      "object_sha256": "1d4701d68c022b72d13ac4e9e0679a43a022e25bd9179712691ab7c7fa15d6db"
+    }
+  ]
+}

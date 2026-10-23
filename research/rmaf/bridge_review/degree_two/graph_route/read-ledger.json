@@ -1,0 +1,138 @@
+{
+  "entries": [
+    {
+      "path": "research/rmaf/bridge_review/DEGREE-TWO-TARGET.md",
+      "sha256": "75e9432b029d82e7a9db51680a0c21957b138e2c1b4bd9d57661fc44063d5cc3",
+      "lines": [
+        1,
+        110
+      ],
+      "status": "read",
+      "role": "target first; before skeleton",
+      "verbatim_excerpt": "# Actual degree-two refinement\n\nPinned by root on 2026-10-14 after the completed leastness checkpoint.\nThis is a new increment; preserve all completed sources and receipts.\n\n## Consumer and target\n\nRead this pin first and immediately write a workfile skeleton in `degree_two/`.\nThen consult the toolkit and applicable proving/validation skills. Own only that\nnew directory and `progress/bridge-degree-two.json`, `results/bridge-degree-two-*`.\nDo not import unfinished thesis or triple-transition work.\n\nThe consumer is G3/G4 in `pure_bridge/FORMAL.md` and the `clearRest` field in\n`pure_bridge/lean/PureBridge.lean`. The full exchange still also requires G2,\nG5\u2013G7 and other interfaces; this task must not silently claim those.\n\nProve or refute the following ordinary, unaugmented, executable-model statement.\nLet t and u be actual `RMAF.Tree` values with unique leaf labels. Let B be a\nnonempty duplicate-free list of labels occurring in both trees, and require\n`restrictionAgrees t u B = true`. Let v belong to `minimalVertices B t` and\nhave undirected degree exactly two in the graph induced by that exact support.\nDegrees count actual parent/child edges, retaining unsuppressed vertices.\n\nConstruct two nonempty disjoint label blocks B0 and B1 partitioning B such that:\n\n1. Each restricted block still agrees between t and u.\n2. Their actual minimal embeddings are disjoint in each tree and are subsets of\n   the corresponding original B embedding.\n3. Both new embeddings in t avoid v.\n4. Consequently every mark previously avoided by the B embedding stays avoided\n   in its own tree, and every other disjoint piece stays disjoint.\n5. Replacing B by B0,B1 in an actual agreement partition preserves the executable\n   agreement predicate and adds exactly one component.\n\nThe first local statement should not require t and u to have identical full\nlabel sets outside B. The whole-partition consumer does require the original\nagreement/label conditions. Make each layer's hypotheses explicit.\n\nTo connect this to the component-level version of G3, separately derive the\nneeded fact for B contained in a component label set S: if the S embedding has\ndegree two at v, B's embedding uses v, and v is not a selected leaf occurrence,\nthen the B embedding has degree two there. Do not assume this silently.\n\n## May assume\n\nUse completed, hash-bound definitions and proven lemmas from RMAF, PureBridge,\nGraphRegion, ExecutableConnectivity and the leastness checkpoint. In particular,\nthe actual extractor is connected, ambient-valid, terminal-preserving and least\namong connected supports containing its selected occurrences. RootedIso and\nsameShape_correct are available. Inspect actual statements before use.\n\nThe final leastness receipts are `results/bridge-leastness-summary.json` and\n`bridge_review/leastness/acceptance.json`. Root owns aggregate theorem counts.\n\n## Must not assume\n\nDo not assume the two-piece refinement, cross-tree address identity, transport\nthrough suppressed vertices, restriction associativity, preservation of AF by\narbitrary splitting, or correspondence between a target cut and a source cut.\nProve any such prerequisite actually used. An arbitrary split of labels in an\nagreement piece need not be a two-piece agreement refinement.\n\nDo not replace the original agreement predicate or MinimalEmbedding contract\nwith one that assumes the intended conclusion. No custom axioms, sorry, admit,\nnative_decide or failed elaboration may supply proof evidence. Conditional\nstatements must name every still-open graph/transport hypothesis.\n\n## Frozen exact fixtures and failure conditions\n\nAddresses below are Boolean lists, false=left and true=right.\n\n- Root boundary: t=(0,1), u=(1,0), B={0,1}, v=[]. Degree is two. The two singleton\n  blocks avoid v, agree, and cost one extra component. Address equality across\n  the two trees is not the required transport.\n- Suppressed path: t=((0,1),2), u=(2,(1,0)), B={0,2}, v=[false]. In t the exact\n  B support is {[],[false],[false,false],[true]}; the degree at v is two. The\n  split {0}|{2} has t supports {[false,false]} and {[true]}, while u has leaf\n  addresses [true,true] and [false]. Omitting the unsuppressed v is a mutation.\n- Global consumer: t=u=((0,1),(2,3)), blocks {0,2}|{1}|{3}, v=[]. The initial\n  agreement has three components; splitting its first block gives four singleton\n  components and preserves the other two pieces.\n- Degree-three negative: t=u=((0,1),2), B={0,1,2}, v=[false]. Degree is three;\n  avoiding v requires three singleton components. The proposed two-piece bound\n  outside the degree-two regime must fail.\n- Singleton and empty/absent selections must fail the degree-two/nonempty\n  premises, not be assigned imaginary cuts. Repeated-label inputs must not be\n  granted the unique-label hypothesis.\n- Retain the prior joint-mark example in `pure_bridge/VERIFY_SPEC.json`:\n  optima1,1,1,2 for no mark/each mark/both marks. The new result does not imply\n  additive penalties or that all new marks can be cleared with one cut.\n\nFreeze precise literals and the chosen checker interface before proof work.\nRun the positive values and deliberate wrong-degree, missing-path, wrong-root,\ncross-tree-address, overlapping-block and wrong-cost mutations first. A false\nLean proposition must fail for explicit falsity, with a positive twin; unrelated\nsyntax/type failures are diagnostic controls only.\n\n## Independent routes and acceptance\n\nUse the prove protocol: separate target pin and X0 adversary; no construction\nbefore the exact in-regime hunt. Named distinct routes are (a) deletion of v in\nthe unsuppressed support graph and (b) rooted restriction/isomorphism transport\nthrough the suppressed binary tree. Keep their fresh contexts separate until\ntheir pinned outputs are complete. Use Astra xhigh for delegated work, at most\ntwo active children, and wait for capacity rather than interrupting other work.\nPilot timings before expanding any census.\n\nA nonauthor fresh reviewer must reconstruct the exact fixtures with its own\nchecker, rebuild final Lean sources, inspect every hypothesis at the actual\npartition/clearRest use site, and check source/log bindings. Distinguish the"
+    },
+    {
+      "path": "research/rmaf/lean/RMAF.lean",
+      "sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "lines": [
+        8,
+        39
+      ],
+      "status": "read",
+      "role": "actual model definitions; before checker",
+      "verbatim_excerpt": "inductive Tree where\n  | leaf : Nat \u2192 Tree\n  | node : Tree \u2192 Tree \u2192 Tree\n  deriving DecidableEq, Repr\n\ndef leaves : Tree \u2192 List Nat\n  | .leaf x => [x]\n  | .node l r => leaves l ++ leaves r\n\n/-- Binary shape is built into Tree; these hypotheses make labelling bijective\nand ensure that the input trees have the identical canonical taxon set. -/\nstructure Instance where\n  n : Nat\n  left : Tree\n  right : Tree\n  labels_left : (leaves left).Perm (List.range n)\n  labels_right : (leaves right).Perm (List.range n)\n\n/-- Inductive rooted label-preserving isomorphism, independent of the Boolean\nchecker. No orientation of siblings is part of a phylogenetic tree. -/\ninductive RootedIso : Tree \u2192 Tree \u2192 Prop where\n  | leaf (x : Nat) : RootedIso (.leaf x) (.leaf x)\n  | straight {a b c d : Tree} : RootedIso a c \u2192 RootedIso b d \u2192\n      RootedIso (.node a b) (.node c d)\n  | swapped {a b c d : Tree} : RootedIso a d \u2192 RootedIso b c \u2192\n      RootedIso (.node a b) (.node c d)\n\n/-- A labelled rooted isomorphism may swap the children at any vertex. -/\ndef sameShape : Tree \u2192 Tree \u2192 Bool\n  | .leaf a, .leaf b => a == b\n  | .node a b, .node c d =>\n      (sameShape a c && sameShape b d) ||"
+    },
+    {
+      "path": "research/rmaf/lean/RMAF.lean",
+      "sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "lines": [
+        84,
+        158
+      ],
+      "status": "read",
+      "role": "actual extractor and agreement definitions; before checker",
+      "verbatim_excerpt": "def restrict (selected : List Nat) : Tree \u2192 Option Tree\n  | .leaf x => if selected.contains x then some (.leaf x) else none\n  | .node l r =>\n      match restrict selected l, restrict selected r with\n      | none, none => none\n      | some a, none => some a\n      | none, some b => some b\n      | some a, some b => some (.node a b)\n\ntheorem restrict_of_contains (t : Tree) (selected : List Nat)\n    (h : \u2200 x \u2208 leaves t, selected.contains x = true) :\n    restrict selected t = some t := by\n  induction t with\n  | leaf x =>\n      rw [restrict, h x (by simp [leaves])]\n      rfl\n  | node l r hl hr =>\n      have hleft : \u2200 x \u2208 leaves l, selected.contains x = true := by\n        intro x hx\n        exact h x (by simp [leaves, hx])\n      have hright : \u2200 x \u2208 leaves r, selected.contains x = true := by\n        intro x hx\n        exact h x (by simp [leaves, hx])\n      simp [restrict, hl hleft, hr hright]\n\nabbrev Vertex := List Bool\n\ndef prependSide (side : Bool) (vs : List Vertex) : List Vertex :=\n  vs.map (side :: \u00b7)\n\n/-- The rooted span includes paths from this root to every selected leaf.\nUnary path vertices must be retained for embedding-disjointness checks. -/\ndef rootedSpan (selected : List Nat) : Tree \u2192 List Vertex\n  | .leaf x => if selected.contains x then [[]] else []\n  | .node l r =>\n      let ls := rootedSpan selected l\n      let rs := rootedSpan selected r\n      if ls.isEmpty && rs.isEmpty then []\n      else [] :: (prependSide false ls ++ prependSide true rs)\n\n/-- The minimal embedding starts at the selected leaves' LCA, not the input root.\nOnce both children contribute, keep all intervening unary path vertices. -/\ndef minimalVertices (selected : List Nat) : Tree \u2192 List Vertex\n  | .leaf x => if selected.contains x then [[]] else []\n  | .node l r =>\n      let ls := rootedSpan selected l\n      let rs := rootedSpan selected r\n      if ls.isEmpty then prependSide true (minimalVertices selected r)\n      else if rs.isEmpty then prependSide false (minimalVertices selected l)\n      else [] :: (prependSide false ls ++ prependSide true rs)\n\ndef disjointVertices (a b : List Vertex) : Bool :=\n  a.all (fun v => !(b.contains v))\n\ndef pairwiseEmbeddings (t : Tree) : List (List Nat) \u2192 Bool\n  | [] => true\n  | b :: bs =>\n      bs.all (fun c => disjointVertices (minimalVertices b t) (minimalVertices c t)) &&\n      pairwiseEmbeddings t bs\n\ndef restrictionAgrees (t u : Tree) (b : List Nat) : Bool :=\n  match restrict b t, restrict b u with\n  | some s, some v => sameShape s v\n  | _, _ => false\n\ndef partitionCheck (labels : List Nat) (bs : List (List Nat)) : Bool :=\n  bs.all (fun b => !b.isEmpty) &&\n  labels.all (fun x => bs.flatten.count x == 1) &&\n  bs.flatten.all (fun x => labels.contains x)\n\ndef agreement (t u : Tree) (bs : List (List Nat)) : Bool :=\n  partitionCheck (leaves t) bs && partitionCheck (leaves u) bs &&\n  bs.all (restrictionAgrees t u) &&\n  pairwiseEmbeddings t bs && pairwiseEmbeddings u bs\n"
+    },
+    {
+      "path": "research/rmaf/pure_bridge/VERIFY_SPEC.json",
+      "sha256": "1e26132ca642cc9a23e270f18d4cc54e058a903e725ce02006fd988d949b3880",
+      "lines": [
+        3,
+        10
+      ],
+      "status": "read",
+      "role": "retrieved frozen mark/control values",
+      "verbatim_excerpt": "  \"conventions\": \"Ordinary rooted MAF without rho. Internal tree vertices are unsuppressed for disjointness. Source components are separate trees; their leaf sets partition target leaves in completion examples. Local source labels may be a subset of target labels. Cost equals final pieces minus initial source components.\",\n  \"examples\": [\n    {\"id\":\"degree-two-synergy\",\"target\":[[0,3],[1,[2,4]]],\"source\":[[0,2],1],\"mark_paths\":[[false],[true,true]],\"expected_degrees_in_source_label_span\":[2,2],\"expected_local_costs_empty_first_second_both\":[1,1,1,2]},\n    {\"id\":\"nonpure-greedy-failure\",\"target\":[[0,1],[[2,3],[4,5]]],\"source_forest\":[[2,4],[[0,1],[3,5]]],\"expected_exact_additional_cuts\":1,\"expected_deepest_keep_then_mark_additional_cuts\":2,\"exact_witness\":[[2],[4],[0,1,3,5]]},\n    {\"id\":\"degree-three-failure\",\"target\":[[0,1],2],\"source\":[[0,1],2],\"mark_paths\":[[false]],\"expected_degree\":3,\"ordinary_cost\":0,\"marked_cost\":2},\n    {\"id\":\"redundant-marks-empty-region\",\"target\":[[0,1],[2,3]],\"source\":[0,2],\"mark_paths\":[[false],[true]],\"ordinary_cost\":0,\"single_mark_costs\":[1,1],\"both_marks_cost\":1,\"nonempty_leaf_regions\":2,\"empty_regions\":1}\n  ],\n  \"hypotheses_to_attack\": [\"pure overlap requires degree two in both embeddings at every overlap vertex\", \"marked local one-cut refinement preserves every old mark and every other source/target piece\", \"globally at most one remaining piece requires repair\", \"empty marked-deletion regions are ignored when counting r\", \"role swap preserves vertex-disjointness under suppression\"],"
+    },
+    {
+      "path": "research/rmaf/bridge_review/lean/GraphRegion.lean",
+      "sha256": "5d53cadd43f7c654656040218939c2051f8592e5045227bc2506dd2cddee5455",
+      "lines": [
+        9,
+        18
+      ],
+      "status": "read",
+      "role": "completed adjacency/walk definitions; after pilot",
+      "verbatim_excerpt": "def Adj (u v : Address) : Prop :=\n  (\u2203 b : Bool, v = u ++ [b]) \u2228 (\u2203 b : Bool, u = v ++ [b])\n\ninductive Walk (P : Address \u2192 Prop) : Address \u2192 Address \u2192 Prop\n  | refl {x} : P x \u2192 Walk P x x\n  | step {x y z} : Walk P x y \u2192 Adj y z \u2192 P z \u2192 Walk P x z\n\ntheorem Walk.start {P : Address \u2192 Prop} {x y : Address} (w : Walk P x y) : P x := by\n  induction w with\n  | refl h => exact h"
+    },
+    {
+      "path": "research/rmaf/bridge_review/lean/GraphRegion.lean",
+      "sha256": "5d53cadd43f7c654656040218939c2051f8592e5045227bc2506dd2cddee5455",
+      "lines": [
+        145,
+        157
+      ],
+      "status": "read",
+      "role": "completed original leastness contract; after pilot",
+      "verbatim_excerpt": "structure MinimalEmbedding where\n  ambient : List Address\n  terminals : List Address\n  terminal_nonempty : terminals \u2260 []\n  support : ConnectedSupport\n  inAmbient : \u2200 v, v \u2208 support.first :: support.rest \u2192 v \u2208 ambient\n  containsTerminals : \u2200 v, v \u2208 terminals \u2192 v \u2208 support.first :: support.rest\n  minimal : \u2200 other : ConnectedSupport,\n    (\u2200 v, v \u2208 other.first :: other.rest \u2192 v \u2208 ambient) \u2192\n    (\u2200 v, v \u2208 terminals \u2192 v \u2208 other.first :: other.rest) \u2192\n    \u2200 v, v \u2208 support.first :: support.rest \u2192 v \u2208 other.first :: other.rest\n\n/-- G1: the actual finite graph support is carried unchanged into the existing"
+    },
+    {
+      "path": "research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean",
+      "sha256": "63044b33c7ff23cad5ec4886035ff112acb9bb42a18dd479090c4d3a638f311f",
+      "lines": [
+        170,
+        194
+      ],
+      "status": "read",
+      "role": "completed exact extractor interface; after pilot",
+      "verbatim_excerpt": "def extractedSupport (selected : List Nat) (t : Tree)\n    (hne : minimalVertices selected t \u2260 []) : ConnectedSupport where\n  first := (minimalVertices selected t).head hne\n  rest := (minimalVertices selected t).tail\n  connected := by\n    change Connected ((minimalVertices selected t).head hne :: (minimalVertices selected t).tail)\n    rw [List.cons_head_tail hne]\n    exact minimalVertices_connected selected t\n\ntheorem extractedSupport_exact (selected : List Nat) (t : Tree)\n    (hne : minimalVertices selected t \u2260 []) :\n    (extractedSupport selected t hne).first :: (extractedSupport selected t hne).rest =\n      minimalVertices selected t := List.cons_head_tail hne\n\nnoncomputable def extractedRegion (selected : List Nat) (t : Tree)\n    (hne : minimalVertices selected t \u2260 []) : PureBridge.RootedRegion :=\n  (extractedSupport selected t hne).toRootedRegion\n\ntheorem extractedRegion_exact (selected : List Nat) (t : Tree)\n    (hne : minimalVertices selected t \u2260 []) (v : Vertex) :\n    (extractedRegion selected t hne).member v \u2194 v \u2208 minimalVertices selected t := by\n  change v \u2208 (extractedSupport selected t hne).first :: (extractedSupport selected t hne).rest \u2194 _\n  rw [extractedSupport_exact]\n\n/-- Direct composition with the original consumer, with precisely the original"
+    },
+    {
+      "path": "research/rmaf/bridge_review/leastness/lean/ExtractorLeastness.lean",
+      "sha256": "8626d726a1635b06c9f58178dbb8a84cecdb55630eb138a5afc8353618b4f1b8",
+      "lines": [
+        213,
+        223
+      ],
+      "status": "read",
+      "role": "completed leastness theorem; after pilot",
+      "verbatim_excerpt": "theorem minimal_least (selected : List Nat) (t : Tree) (other : ConnectedSupport)\n    (hterm : \u2200 p, p \u2208 terminals selected t \u2192 p \u2208 other.first :: other.rest)\n    (v : Vertex) (hv : v \u2208 minimalVertices selected t) :\n    v \u2208 other.first :: other.rest := by\n  obtain \u27e8p, hp, hvp\u27e9 := minimal_terminal_descendant selected t v hv\n  have hav : other.root.IsPrefix v := minimal_below_common_ancestor selected t other.root\n    (fun q hq => other.toRootedRegion.below q (hterm q hq)) v hv\n  exact other.toRootedRegion.convex v p hav hvp (hterm p hp)\n\n#print axioms span_left_in_parent\n#print axioms span_right_in_parent"
+    },
+    {
+      "path": "research/rmaf/bridge_review/leastness/lean/ActualEmbedding.lean",
+      "sha256": "8c10ef67cec9ef067e3bf2a104c342e1d536a07546d05ffc759e6b3ded3d69a4",
+      "lines": [
+        9,
+        23
+      ],
+      "status": "read",
+      "role": "completed actual embedding construction; after pilot",
+      "verbatim_excerpt": "def embedding (selected : List Nat) (t : Tree) (x : Nat)\n    (hx : x \u2208 leaves t) (hs : x \u2208 selected) : MinimalEmbedding where\n  ambient := vertices t\n  terminals := terminals selected t\n  terminal_nonempty := terminal_nonempty hx hs\n  support := extractedSupport selected t (minimalVertices_nonempty_of_leaf selected t x hx hs)\n  inAmbient := by\n    intro v hv\n    exact minimal_in_vertices selected t v (by simpa only [extractedSupport_exact] using hv)\n  containsTerminals := by\n    intro v hv\n    simpa only [extractedSupport_exact] using terminals_in_minimal selected t v hv\n  minimal := by\n    intro other _ hterm v hv\n    exact minimal_least selected t other hterm v (by simpa only [extractedSupport_exact] using hv)"
+    },
+    {
+      "path": "research/rmaf/bridge_review/leastness/lean/ActualEmbedding.lean",
+      "sha256": "8c10ef67cec9ef067e3bf2a104c342e1d536a07546d05ffc759e6b3ded3d69a4",
+      "lines": [
+        33,
+        53
+      ],
+      "status": "read",
+      "role": "exact support/occurrence semantics; after pilot",
+      "verbatim_excerpt": "theorem embedding_support_exact (selected : List Nat) (t : Tree) (x : Nat)\n    (hx : x \u2208 leaves t) (hs : x \u2208 selected) :\n    (embedding selected t x hx hs).support.first :: (embedding selected t x hx hs).support.rest =\n      minimalVertices selected t := extractedSupport_exact selected t _\n\ntheorem embedding_ambient_iff (selected : List Nat) (t : Tree) (x : Nat)\n    (hx : x \u2208 leaves t) (hs : x \u2208 selected) (v : Vertex) :\n    v \u2208 (embedding selected t x hx hs).ambient \u2194 ValidVertex t v := mem_vertices_iff\n\ntheorem embedding_terminals_iff (selected : List Nat) (t : Tree) (x : Nat)\n    (hx : x \u2208 leaves t) (hs : x \u2208 selected) (v : Vertex) :\n    v \u2208 (embedding selected t x hx hs).terminals \u2194\n      \u2203 y, LeafOccurrence t v y \u2227 y \u2208 selected := mem_terminals_iff\n\ntheorem embedding_region_exact (selected : List Nat) (t : Tree) (x : Nat)\n    (hx : x \u2208 leaves t) (hs : x \u2208 selected) (v : Vertex) :\n    (embedding selected t x hx hs).region.member v \u2194 v \u2208 minimalVertices selected t := by\n  change v \u2208 (embedding selected t x hx hs).support.first ::\n    (embedding selected t x hx hs).support.rest \u2194 _\n  rw [embedding_support_exact]\n"
+    },
+    {
+      "path": "research/rmaf/pure_bridge/lean/PureBridge.lean",
+      "sha256": "acf08329466b6449c39c5edb0914c7af15f30690b25b8f0389cb65b2b24943f4",
+      "lines": [
+        64,
+        81
+      ],
+      "status": "read",
+      "role": "actual clearRest use site; after pilot",
+      "verbatim_excerpt": "/-- The exact abstract interface consumed by one elimination step.\n`clearRest` must be realized by splitting at most one globally feasible piece,\nwith all old marks and all remaining pairwise disjointness preserved. -/\nstructure ExchangeSystem (A R : Type) where\n  localValid : A \u2192 Prop\n  restValid : R \u2192 Prop\n  localCost : A \u2192 Nat\n  restCost : R \u2192 Nat\n  localAvoids : A \u2192 Prop\n  restAvoids : R \u2192 Prop\n  compatible : A \u2192 R \u2192 Prop\n  freeLeft : \u2200 a r, localValid a \u2192 restValid r \u2192 localAvoids a \u2192 compatible a r\n  freeRight : \u2200 a r, localValid a \u2192 restValid r \u2192 restAvoids r \u2192 compatible a r\n  collision : \u2200 a r, localValid a \u2192 restValid r \u2192 compatible a r \u2192\n    localAvoids a \u2228 restAvoids r\n  clearRest : \u2200 r, restValid r \u2192 \u2203 r', restValid r' \u2227 restAvoids r' \u2227\n    restCost r' \u2264 restCost r + 1\n"
+    },
+    {
+      "path": "research/rmaf/pure_bridge/FORMAL.md",
+      "sha256": "0b3b8ea74ce3d75127a8f3fe1249381a83fca438c7aab6fe3ddce9e673440437",
+      "lines": [
+        24,
+        33
+      ],
+      "status": "read",
+      "role": "actual G3/G4 use sites; after pilot",
+      "verbatim_excerpt": "|---|---|---|\n| G1 | The unsuppressed minimal embedding of a nonempty label subset is a `RootedRegion` under a label-preserving binary-address representation. | `deepest_root_in_neighbor` |\n| G2 | If two disjoint-label embeddings overlap only at vertices of degree two in each, every block meeting their overlap uses its whole path. Avoiding one overlap vertex therefore avoids the other complete embedding. | `freeLeft`, `freeRight` |\n| G3 | If a valid agreement piece uses a degree-two vertex of its component embedding, the labels on the two sides form a nonempty two-piece agreement refinement. The refinement avoids that vertex and preserves every prior mark and every other disjoint piece. | Local one-cut bound and `clearRest` |\n| G4 | In a global forest, at most one piece uses a fixed vertex; applying G3 to that piece preserves global feasibility. | `clearRest` for the entire remainder |\n| G5 | Deleting marked vertices and discarding leafless regions gives precisely the common refinements of the source tree and the forest of target restrictions to the nonempty regions, including embedding-disjointness under suppression. | Common partition family in `role_swap_minimum` |\n| G6 | The region leaf partition can be represented by `r\u22121` target-edge cuts even when deleted vertices leave leafless intermediate regions. Refining an ordinary `d`-cut forest by those cuts adds at most `r\u22121` pieces. | Hypothesis `h\u2264d+r\u22121` |\n| G7 | The implementation supplies attained exact marked minima and implements each elimination invariant, including compatibility with previously fixed witnesses. | Recursive algorithm correctness |\n\nThe existing research note proposes arguments for G2\u2013G6 in Sections 2\u20134. Those arguments were read as candidate mathematics. G1\u2013G7 have not been connected to the Lean exchange structures. In particular, replacing `clearRest` by separate per-component penalties would change the theorem and would not follow from the finite checks."
+    }
+  ],
+  "inferred": "ROUTE.md is a new ordinary derivation, separately labelled from the retrieved facts.",
+  "excluded": "No prior checker or sibling restriction-route source was read."
+}

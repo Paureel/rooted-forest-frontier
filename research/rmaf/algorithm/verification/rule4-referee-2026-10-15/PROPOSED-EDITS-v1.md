@@ -1,0 +1,7 @@
+# Companion placement proposal
+
+Keep the historical author and sealed source-review files unchanged. Place RULE4-SCOPE-COMPANION-v1.md on the reading path from the historical RESULT.md, INTERFACE.md, COST-MODEL.md and FIRST-GAP.md, and beside the current root status. A future versioned index may link the companion with the label: “Local Rule 4 scope, supplied child solver and implementation qualifications.” No such index edit was made here.
+
+If a later document reuses the author opening, add the admitted geometry and published-rule attribution from companion paragraphs 1–2. If it reuses COST-MODEL.md, name Python for all-admitted candidate materialization and returned-data validation, and name Lean for firstChoice and trust in ExactChild. The qualified upper bound is unchanged. If it reuses I:26 as a table row, replace the unescaped cardinality expression with G.length−1 in new prose after verifying the chosen symbol; preserve quoted historical bytes.
+
+The proposed scope statements do not accept a complete solver, mutual recursion, termination, global work induction, smaller base, runtime certification, Lean/Python equivalence or novelty. No literature comparison, new result or scientific repair accompanies them. Root different-editor review of the new companion and report remains pending.

@@ -1,0 +1,11 @@
+import Case322Instances
+#check Universal233.Rule5Case322.split_saving_without_bcx
+#check Universal233.Rule5Case322.actual_easy_exchange_unordered
+#check Universal233.Rule5Case322.actual_typeI_cover
+#check Universal233.Rule5Case322.actual_typeII_cover
+#check Universal233.Rule5Case322.actual_typeIII_cover
+#check Universal233.Rule5Case322.originalCover_roles_swap
+#check Universal233.Rule5Case322.guarded_paid_budget_identity
+#check Universal233.Rule5Case322.child_IH_minimum
+#check Universal233.Rule5Case322.callback_strict_decrease
+#check Universal233.Rule5Case322.guarded_callback_LIST_mass

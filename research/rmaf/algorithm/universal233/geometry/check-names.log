@@ -1,0 +1,10 @@
+research/rmaf/algorithm/universal233/geometry/CheckNames.lean:2:7: error(lean.unknownIdentifier): Unknown constant `List.nodup_eraseDups`
+List.mem_eraseDups.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {a : α} {l : List α} : a ∈ l.eraseDups ↔ a ∈ l
+List.nodup_cons.{u_1} {α : Type u_1} {a : α} {l : List α} : (a :: l).Nodup ↔ ¬a ∈ l ∧ l.Nodup
+research/rmaf/algorithm/universal233/geometry/CheckNames.lean:5:7: error(lean.unknownIdentifier): Unknown constant `List.disjoint_left`
+List.nodup_append.{u_1} {α : Type u_1} {l₁ l₂ : List α} :
+  (l₁ ++ l₂).Nodup ↔ l₁.Nodup ∧ l₂.Nodup ∧ ∀ (a : α), a ∈ l₁ → ∀ (b : α), b ∈ l₂ → a ≠ b
+List.pairwise_cons.{u} {α : Type u} {R : α → α → Prop} {a : α} {l : List α} :
+  List.Pairwise R (a :: l) ↔ (∀ (a' : α), a' ∈ l → R a a') ∧ List.Pairwise R l
+List.pairwise_iff_getElem.{u_1} {α : Type u_1} {R : α → α → Prop} {l : List α} :
+  List.Pairwise R l ↔ ∀ (i j : Nat) (_hi : i < l.length) (_hj : j < l.length), i < j → R l[i] l[j]

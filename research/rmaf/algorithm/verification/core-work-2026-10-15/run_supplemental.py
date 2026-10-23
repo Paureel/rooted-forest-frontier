@@ -1,0 +1,11 @@
+from pathlib import Path
+import json,subprocess,os,hashlib,time
+root=Path(__file__).resolve().parents[5];b=Path(__file__).resolve().parent;iso=b/'isolated'
+env=os.environ.copy();env['LEAN_PATH']=str(iso);rows=[]
+for e in json.loads((b/'SUPPLEMENTAL-CONTROL-PIN.json').read_text())['controls']:
+ n=e['module'];assert hashlib.sha256((iso/(n+'.lean')).read_bytes()).hexdigest()==e['source_sha256']
+ t=time.monotonic();p=subprocess.run([str(root/'bootloops-lean'),'-o',n+'.olean',n+'.lean'],cwd=iso,env=env,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=20);log=b/(n+'.log');log.write_text(p.stdout)
+ good=n=='ReviewCostClean';explicit='Tactic `decide` proved that the proposition' in p.stdout and 'is false' in p.stdout
+ assert p.returncode==0 if good else p.returncode!=0 and explicit
+ rows.append({'module':n,'returncode':p.returncode,'explicit_false_diagnostic':explicit,'seconds':time.monotonic()-t,'source_sha256':e['source_sha256'],'log_sha256':hashlib.sha256(log.read_bytes()).hexdigest()})
+(b/'SUPPLEMENTAL-CONTROLS.json').write_text(json.dumps(rows,indent=2)+'\n');print(json.dumps(rows))

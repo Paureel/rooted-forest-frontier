@@ -1,0 +1,690 @@
+{
+  "source_readings": [
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/CallerSetup.lean",
+      "sha256": "01bbb31deaebc07b98ab625795940eb0966943971fa2614421652890af1be383",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 8,
+          "text": "structure Setup where"
+        },
+        {
+          "line": 46,
+          "text": "def reconstruct (d : Setup) (FX FY FM FN : List (List Nat)) : Option (List (List Nat)) :="
+        },
+        {
+          "line": 51,
+          "text": "theorem setup_minimum (d : Setup) (m n mr ng : Nat)"
+        },
+        {
+          "line": 60,
+          "text": "theorem reconstruct_actual_spec (d : Setup) (FX FY FM FN : List (List Nat))"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/GuardedDefs.lean",
+      "sha256": "4af399a71ade5cbf5e51985f8ab21b0b9a3fdda10acb67c5b1ff308985f8836c",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 8,
+          "text": "def runGuarded (d : Setup) (q : Nat) (cb : Tree\u2192Tree\u2192Nat\u2192Option Forest) : Option (Option Forest) :="
+        },
+        {
+          "line": 13,
+          "text": "def guardedJobs (d : Setup) (q : Nat) : List Job :="
+        },
+        {
+          "line": 18,
+          "text": "def GuardedIH (d : Setup) (q : Nat) (cb : Tree\u2192Tree\u2192Nat\u2192Option Forest) : Prop :="
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/GuardedExact.lean",
+      "sha256": "9170264471121fd450a9ca727d37de647b567488e8b2eea32bce66c9863ae27c",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 5,
+          "text": "theorem outside_pair_proper (d : Setup) : DepthOne.proper d.ty d.sy=true := by"
+        },
+        {
+          "line": 13,
+          "text": "theorem found_one_minimum (T S : Tree) (p : RMAF.Vertex)"
+        },
+        {
+          "line": 24,
+          "text": "theorem runGuarded_answer_exact (d : Setup) (q : Nat)"
+        },
+        {
+          "line": 42,
+          "text": "theorem runGuarded_nonrefusal_iff (d : Setup) (q : Nat)"
+        },
+        {
+          "line": 63,
+          "text": "theorem guarded_job_progress (d : Setup) (q : Nat) (j : Job) (hj : j\u2208guardedJobs d q) :"
+        },
+        {
+          "line": 73,
+          "text": "def guardedMass (c : Rat) (d : Setup) (q : Nat) : Rat :="
+        },
+        {
+          "line": 76,
+          "text": "theorem guarded_mass_bound (c : Rat) (hc : 2\u2264c) (d : Setup) (q : Nat) :"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/CallerResources.lean",
+      "sha256": "b5c975b3018fd64d5bab708cfc2b1ceb406de16e8a1623d912c607d8f2c6f467",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 5,
+          "text": "def callbackMass (c : Rat) (d : Setup) (q : Nat) : Rat :="
+        },
+        {
+          "line": 8,
+          "text": "theorem callback_mass_eq (c : Rat) (d : Setup) (q : Nat) (positive : 0<q) :"
+        },
+        {
+          "line": 16,
+          "text": "theorem callback_mass_bound (c : Rat) (hc : 2\u2264c) (d : Setup) (q : Nat) :"
+        },
+        {
+          "line": 31,
+          "text": "theorem target_mass : (2 : Rat)*(233/100 : Rat)^(-1 : Int)=200/233 \u2227"
+        },
+        {
+          "line": 36,
+          "text": "theorem pair_map_count {\u03b1 \u03b2 \u03b3 : Type} (A : List \u03b1) (B : List \u03b2) (f : \u03b1\u2192\u03b2\u2192\u03b3) :"
+        },
+        {
+          "line": 47,
+          "text": "theorem mergeCandidates_length (X Y : List Nat) (x y rho gamma : Nat) (FM FN : Forest) :"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/CallerFinal.lean",
+      "sha256": "bb4d8089e5d9496220adb7ba4a51a6720dce89506fb939d1f91e2b980c92ed2c",
+      "read_scope": "full source in bounded tool call",
+      "declarations": []
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/PickMerge.lean",
+      "sha256": "1145b87175797005bbcf9c5e22c66483d6a1db75986355f3e6ad0173913c887a",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 5,
+          "text": "theorem pickMerge_actual_spec (T S tx sx ty sy mxT mxS myT myS : Tree)"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/LiteralMerge.lean",
+      "sha256": "707f3b1a480ffff9e58f2e4d067624f985125bab39302c397868296864a1d87c",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 5,
+          "text": "theorem literal_stable_merge_candidate (T S tx sx ty sy mxT mxS myT myS : Tree)"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/OutsideDefs.lean",
+      "sha256": "725a1bb315752ba8214c6e50cfd506750fe938a46abf64e9102deb9ccd868fb7",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 5,
+          "text": "def outsideExtension (d : Setup) (FY : Forest) : Forest :="
+        },
+        {
+          "line": 8,
+          "text": "def outsideReply (d : Setup) (FY : Forest) : Option Forest :="
+        },
+        {
+          "line": 14,
+          "text": "def runWithOutside (d : Setup) (q : Nat) (FY : Forest)"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/OutsideExact.lean",
+      "sha256": "c6d8f18ca6c7000584f9b3f5d807871f827916bb969f3ce02f2269858a147625",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 5,
+          "text": "theorem outsideExtension_spec (d : Setup) (FY : Forest)"
+        },
+        {
+          "line": 21,
+          "text": "theorem outsideReply_spec (d : Setup) (FY : Forest)"
+        },
+        {
+          "line": 47,
+          "text": "theorem runWithOutside_exact (d : Setup) (q : Nat) (FY : Forest)"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/PaidDefs.lean",
+      "sha256": "281a2ae3186d56d948f79d5d0a1ea3b97300bd559799b6c0085b0399255aec6b",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 6,
+          "text": "structure Job where"
+        },
+        {
+          "line": 12,
+          "text": "def paidJobs (d : Setup) (q : Nat) : List Job :="
+        },
+        {
+          "line": 15,
+          "text": "def runPaid (d : Setup) (q : Nat) (FY FN : Forest)"
+        },
+        {
+          "line": 26,
+          "text": "def BoundedExact (T S : Tree) (q : Nat) : Option Forest\u2192Prop"
+        },
+        {
+          "line": 31,
+          "text": "def ActualIH (d : Setup) (q : Nat) (cb : Tree\u2192Tree\u2192Nat\u2192Option Forest) : Prop :="
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/OutputDefs.lean",
+      "sha256": "322709d668f368d041c1d3fdbe09296d23c0a61d6c995e2a72e72ad4e59a82f6",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 9,
+          "text": "def sourceForest (S : Tree) (Q : List (List Nat)) : List Tree :="
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/LiteralNormal.lean",
+      "sha256": "05855eb20e58d53eea5d7b628e74c0ee3691c85e3cc98e54d6e9c6b3bc972788",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 8,
+          "text": "theorem literal_stable_marked_normal_form (T S t s mt ms : Tree) (X : List Nat) (y rho m : Nat)"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/Lemmas.lean",
+      "sha256": "74aea92ea185718676ad5d52b77dbfa09ba05536115d3852a4711bb353247923",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 8,
+          "text": "theorem mem_vertices (S : Tree) (p : Vertex) : p \u2208 vertices S \u2194 Valid S p := by"
+        },
+        {
+          "line": 19,
+          "text": "theorem mem_edges (S : Tree) (p : Vertex) : p \u2208 edges S \u2194 Valid S p \u2227 p \u2260 [] := by"
+        },
+        {
+          "line": 27,
+          "text": "theorem subtreeLabels_mem (S : Tree) (p : Vertex) (x : Nat) :"
+        },
+        {
+          "line": 52,
+          "text": "theorem subtreeLabels_subset (S : Tree) (p : Vertex) : subtreeLabels S p \u2286 leaves S := by"
+        },
+        {
+          "line": 57,
+          "text": "theorem subtree_leaves_sublist (S s : Tree) (p : Vertex) (hs : subtree S p = some s) :"
+        },
+        {
+          "line": 72,
+          "text": "theorem subtreeLabels_nodup (S : Tree) (p : Vertex) (hn : (leaves S).Nodup) :"
+        },
+        {
+          "line": 78,
+          "text": "theorem checked_flatten_perm (L : List Nat) (F : List (List Nat))"
+        },
+        {
+          "line": 91,
+          "text": "theorem checked_block_nodup (L : List Nat) (F : List (List Nat))"
+        },
+        {
+          "line": 95,
+          "text": "theorem checked_disjoint (L A B : List Nat) (hp : partitionCheck L [A,B] = true) :"
+        },
+        {
+          "line": 104,
+          "text": "theorem restrict_members (T : Tree) (A B : List Nat) (he : \u2200 x, x \u2208 A \u2194 x \u2208 B) :"
+        },
+        {
+          "line": 110,
+          "text": "theorem span_members (T : Tree) (A B : List Nat) (he : \u2200 x, x \u2208 A \u2194 x \u2208 B) :"
+        },
+        {
+          "line": 116,
+          "text": "theorem minimal_members (T : Tree) (A B : List Nat) (he : \u2200 x, x \u2208 A \u2194 x \u2208 B) :"
+        },
+        {
+          "line": 122,
+          "text": "theorem partition_pair_perm (L A B C D : List Nat) (hA : A.Perm C) (hB : B.Perm D) :"
+        },
+        {
+          "line": 132,
+          "text": "theorem agreement_pair_perm (T S : Tree) (A B C D : List Nat)"
+        },
+        {
+          "line": 143,
+          "text": "theorem agreement_pair_swap (T S : Tree) (A B : List Nat) :"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/Pretest.lean",
+      "sha256": "b1c811c03315de68dee43b2201c5d824a463b317024cd11679ff75c5ff5a4eba",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 8,
+          "text": "def vertices : Tree \u2192 List Vertex"
+        },
+        {
+          "line": 12,
+          "text": "def edges : Tree \u2192 List Vertex"
+        },
+        {
+          "line": 16,
+          "text": "def subtreeLabels (S : Tree) (p : Vertex) : List Nat :="
+        },
+        {
+          "line": 21,
+          "text": "def complement (S : Tree) (p : Vertex) : List Nat :="
+        },
+        {
+          "line": 24,
+          "text": "def forest (S : Tree) : Option Vertex \u2192 List (List Nat)"
+        },
+        {
+          "line": 28,
+          "text": "def cutCost : Option Vertex \u2192 Nat"
+        },
+        {
+          "line": 32,
+          "text": "def candidates (S : Tree) : List (Option Vertex) := none :: (edges S).map some"
+        },
+        {
+          "line": 34,
+          "text": "def proper (T S : Tree) : Bool :="
+        },
+        {
+          "line": 43,
+          "text": "def pretest01 (T S : Tree) : Result :="
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/PaidExact.lean",
+      "sha256": "bfdd29d8537898ea0cda43607b527b3e941f1621a523231419e228fe1b61c656",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 8,
+          "text": "theorem runPaid_exact (d : Setup) (q : Nat) (FY FN : Forest)"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/InsideBudget.lean",
+      "sha256": "b680249e781348c267adddda0d7652ae43780e68925a9e32f1be236d057fe6d1",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 5,
+          "text": "theorem ordinary_inside_debt (d : Setup) (hn : IsMinimum d.ty d.sy 1)"
+        },
+        {
+          "line": 19,
+          "text": "theorem marked_inside_feasible (d : Setup) (m q : Nat)"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/ProperJobs.lean",
+      "sha256": "9a20de86d462a46d67ff9e22eeb7895b1895b4a02a153b0ace9de0796a0fe77f",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 5,
+          "text": "theorem ordinary_pair_proper (d : Setup) : DepthOne.proper d.tx d.sx=true := by"
+        },
+        {
+          "line": 13,
+          "text": "theorem marked_pair_setup_proper (d : Setup) : DepthOne.proper d.mxT d.mxS=true := by"
+        },
+        {
+          "line": 26,
+          "text": "theorem marked_outside_proper (d : Setup) : DepthOne.proper d.myT d.myS=true := by"
+        },
+        {
+          "line": 39,
+          "text": "theorem actual_job_progress (d : Setup) (q : Nat) (j : Job) (hj : j\u2208paidJobs d q) :"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/OriginalProjection.lean",
+      "sha256": "61547f9f6f678b4288827fdd8bdea33a95c441190756b7c053531bffcb22c440",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 8,
+          "text": "theorem original_component_projection (T a : Tree) (X Y B : List Nat) (y m : Nat)"
+        },
+        {
+          "line": 52,
+          "text": "theorem original_crossing_projection (T S : Tree) (X Y B : List Nat) (y m : Nat)"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/Crossing.lean",
+      "sha256": "914a116bd8557ab02cff1bbd5fc63783ac22e0c81966ea65df412f73a4289857",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 5,
+          "text": "theorem crossing_occupies (T : Tree) (p : RMAF.Vertex) (s : Bool) (K : List Nat)"
+        },
+        {
+          "line": 25,
+          "text": "theorem avoids_side_mono (T : Tree) (p : RMAF.Vertex) (s : Bool) (K : List Nat)"
+        },
+        {
+          "line": 38,
+          "text": "theorem original_binary_parent_mono (T S : Tree) (F : List (List Nat)) (A B : List Nat)"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/CountOriginal.lean",
+      "sha256": "638aa9c96baa7fc57bf4624ca6eb69cbb664769f215cb12660b9541c0f921d2e",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 5,
+          "text": "theorem split_complement_labels (labels X Y : List Nat) (hp : partitionCheck labels [X,Y]=true) :"
+        },
+        {
+          "line": 16,
+          "text": "theorem split_clip_bound_of_desc (T S : Tree) (X Y : List Nat) (F : List (List Nat))"
+        },
+        {
+          "line": 34,
+          "text": "theorem actual_split_clip_bound (T S : Tree) (X Y : List Nat) (F : List (List Nat))"
+        },
+        {
+          "line": 58,
+          "text": "theorem original_sum_lower (T S tx sx ty sy : Tree) (X Y : List Nat) (m n : Nat)"
+        },
+        {
+          "line": 74,
+          "text": "theorem equal_sum_has_crossing (T S tx sx ty sy : Tree) (X Y : List Nat) (m n : Nat)"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/ChosenOwner.lean",
+      "sha256": "c0d78c5df45e2fdce40d8919a5572890988c3778ea34e8a1f83a49f9a5fcd076",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 7,
+          "text": "theorem chosen_marker_block (X : List Nat) (y : Nat) (G : List (List Nat))"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/Marked.lean",
+      "sha256": "30033d1a4165c1b07ab086e05cfa0b78c7048b7c46f50b207d0848868165e85d",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 7,
+          "text": "def marked (t : Tree) (X : List Nat) (y rho : Nat) : Option Tree :="
+        },
+        {
+          "line": 10,
+          "text": "theorem swap_fixes (y rho x : Nat) (hy : x\u2260y) (hr : x\u2260rho) : swap y rho x=x := by"
+        },
+        {
+          "line": 13,
+          "text": "theorem marked_labels (t : Tree) (X : List Nat) (y rho : Nat)"
+        },
+        {
+          "line": 47,
+          "text": "theorem marked_pair_proper (T S : Tree) (X : List Nat) (y rho : Nat)"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/CallerDefs.lean",
+      "sha256": "d1f4d41df963f0cd56e89dcb90782e790754da949d12a3dcc17c0d14e843bf51",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 7,
+          "text": "def mergeCandidates (X Y : List Nat) (x y rho gamma : Nat)"
+        },
+        {
+          "line": 14,
+          "text": "def pickMerge (T S : Tree) (X Y : List Nat) (x y rho gamma : Nat)"
+        },
+        {
+          "line": 18,
+          "text": "def replyCost (o : Option (List (List Nat))) : Option Nat := o.map (fun G => G.length-1)"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/MarkedProjection.lean",
+      "sha256": "a46b6d16e49b18ffddb68e3e8896a4148e934e99e3b65c142dcb50a85ade64e8",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 9,
+          "text": "theorem original_marked_projection (T S mt ms : Tree) (X Y B : List Nat)"
+        },
+        {
+          "line": 70,
+          "text": "theorem arbitrary_original_marked_projection (T S mt ms : Tree) (X Y B : List Nat)"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/DerivedMinimum.lean",
+      "sha256": "4bd404b044bb81251d65d885348d862681dac957bd26e3ad64699b8c31892c4f",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 5,
+          "text": "def commonSplitValue (m n mr ng : Nat) : Nat := if mr=m \u2227 ng=n then m+n else m+n+1"
+        },
+        {
+          "line": 9,
+          "text": "theorem common_split_derived_minimum (T S tx sx ty sy mxT mxS myT myS : Tree)"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/MinimumIdentity.lean",
+      "sha256": "9150996a80f6483273e5df1731568f38270ada88fd4c9fbf2c60470669b9f20d",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 5,
+          "text": "theorem OriginalSplit.swap (T : Tree) (X Y : List Nat) (h : OriginalSplit T X Y) : OriginalSplit T Y X := by"
+        },
+        {
+          "line": 9,
+          "text": "theorem equal_sum_marked_upper (T S tx sx ty sy mxT mxS myT myS : Tree)"
+        },
+        {
+          "line": 48,
+          "text": "theorem common_split_minimum_identity (T S tx sx ty sy mxT mxS myT myS : Tree)"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/ForestMerge.lean",
+      "sha256": "73847b0c5ad9f1ad176242b8566d8fdf8775a898cc6210e4722c99adf9607ade",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 5,
+          "text": "def merged (K L : List Nat) (FX FY : List (List Nat)) := (K++L)::(FX++FY)"
+        },
+        {
+          "line": 7,
+          "text": "theorem merge_partition (labels K L : List Nat) (FX FY : List (List Nat))"
+        },
+        {
+          "line": 29,
+          "text": "theorem merge_embeddings (t : Tree) (K L : List Nat) (FX FY : List (List Nat))"
+        },
+        {
+          "line": 72,
+          "text": "theorem original_forest_merge_of_checked_embeddings (T S : Tree) (K L : List Nat) (FX FY : List (List Nat))"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/OriginalSides.lean",
+      "sha256": "adaf764dea4ab19352803a51a5da0b1bf499af7916bfca3c797aea74c553cf00",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 5,
+          "text": "theorem split_ne (labels X Y : List Nat) (hp : partitionCheck labels [X,Y]=true) : X\u2260Y := by"
+        },
+        {
+          "line": 9,
+          "text": "theorem split_disjoint (labels X Y : List Nat) (hp : partitionCheck labels [X,Y]=true) :"
+        },
+        {
+          "line": 13,
+          "text": "theorem split_labels (labels X Y : List Nat) (hp : partitionCheck labels [X,Y]=true) (x : Nat) :"
+        },
+        {
+          "line": 18,
+          "text": "theorem Port.labels_of_cut (c : Port) (u : Tree) (X Y : List Nat)"
+        },
+        {
+          "line": 39,
+          "text": "def OriginalSplit (T : Tree) (X Y : List Nat) : Prop :="
+        },
+        {
+          "line": 42,
+          "text": "theorem split_filter_perm (labels X Y B : List Nat)"
+        },
+        {
+          "line": 58,
+          "text": "theorem restrict_split_filters (T : Tree) (labels X Y B : List Nat)"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/Rename.lean",
+      "sha256": "a370a6f6a7c92d4cf48ee234ea324c196dbfe8d158fd0f389b25d0e4f2cf1644",
+      "read_scope": "full source in bounded tool call",
+      "declarations": [
+        {
+          "line": 5,
+          "text": "def relabel (f : Nat \u2192 Nat) : Tree \u2192 Tree"
+        },
+        {
+          "line": 9,
+          "text": "def relabelForest (f : Nat \u2192 Nat) (F : List (List Nat)) := F.map (List.map f)"
+        },
+        {
+          "line": 11,
+          "text": "def swap (a b x : Nat) := if x=a then b else if x=b then a else x"
+        },
+        {
+          "line": 13,
+          "text": "theorem swap_involution (a b x : Nat) : swap a b (swap a b x)=x := by"
+        },
+        {
+          "line": 20,
+          "text": "theorem swap_injective (a b x y : Nat) (h : swap a b x=swap a b y) : x=y := by"
+        },
+        {
+          "line": 24,
+          "text": "theorem leaves_relabel (f : Nat \u2192 Nat) (t : Tree) : leaves (relabel f t)=(leaves t).map f := by"
+        },
+        {
+          "line": 29,
+          "text": "theorem relabel_twice (f : Nat \u2192 Nat) (inv : \u2200 x, f (f x)=x) (t : Tree) :"
+        },
+        {
+          "line": 35,
+          "text": "theorem relabel_iso (f : Nat \u2192 Nat) {t s : Tree} (h : RootedIso t s) :"
+        },
+        {
+          "line": 42,
+          "text": "theorem sameShape_relabel_swap (a b : Nat) (t s : Tree) :"
+        },
+        {
+          "line": 53,
+          "text": "theorem contains_relabel (f : Nat \u2192 Nat) (inj : \u2200 x y, f x=f y \u2192 x=y)"
+        },
+        {
+          "line": 63,
+          "text": "theorem restrict_relabel (f : Nat \u2192 Nat) (inj : \u2200 x y, f x=f y \u2192 x=y)"
+        },
+        {
+          "line": 72,
+          "text": "theorem rootedSpan_relabel (f : Nat \u2192 Nat) (inj : \u2200 x y, f x=f y \u2192 x=y)"
+        },
+        {
+          "line": 78,
+          "text": "theorem minimal_relabel (f : Nat \u2192 Nat) (inj : \u2200 x y, f x=f y \u2192 x=y)"
+        },
+        {
+          "line": 85,
+          "text": "theorem embeddings_relabel (f : Nat \u2192 Nat) (inj : \u2200 x y, f x=f y \u2192 x=y)"
+        },
+        {
+          "line": 102,
+          "text": "theorem count_relabel (f : Nat \u2192 Nat) (inj : \u2200 x y, f x=f y \u2192 x=y)"
+        },
+        {
+          "line": 113,
+          "text": "theorem partition_relabel (f : Nat \u2192 Nat) (inj : \u2200 x y, f x=f y \u2192 x=y)"
+        },
+        {
+          "line": 122,
+          "text": "theorem agreement_relabel_swap (a b : Nat) (T S : Tree) (F : List (List Nat)) :"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/scientific-src/RMAF.lean",
+      "sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "read_scope": "lines1-165 and208-224, plus exact definition/use-site searches; later unrelated solver proofs not claimed read"
+    }
+  ],
+  "all173_scope": "all exact sources integrity matched/cold-build correspondence checked and all stored occurrence records audited; only listed modules receive manual full-source-reading credit",
+  "other_contacts": "Original target/release/continuation/READY/preplan/contacts/failures/coverage/amendments; exact own predecessor instruments and controls; public author RESULT/INTERFACE/FIRST-GAP/SOURCE-WORK as claims/metadata; no author auditor/receipt certification; toolkit/skills via local files",
+  "no_live_successor_peer_author_children": true
+}

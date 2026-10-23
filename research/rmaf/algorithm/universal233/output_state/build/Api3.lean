@@ -1,0 +1,12 @@
+import Permutation
+#check List.Pairwise.of_map
+#check List.Pairwise.filter
+#check List.pairwise_map
+#check List.nodup_map_iff
+#check List.Sublist.pairwise
+#check List.Pairwise.imp
+#check List.filter_sublist
+#check List.Perm.cons_inv
+#check List.nodup_cons
+#check List.Nodup
+#check RMAF.restrict_of_contains

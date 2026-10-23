@@ -1,0 +1,308 @@
+{
+  "scope": "exact three-branch structural trace, all labels including unary rho retained; not total runtime counterexample",
+  "controls": {
+    "count": 4,
+    "passed": 4,
+    "state_corruption_caught": true,
+    "sha256": "0b76393ddf83a309b3d861ef79d2b66b9c9deeff8624026e1818b2b0dc0d353e"
+  },
+  "leaf_count_excluding_rho": 9,
+  "trace": [
+    {
+      "F1": "(((((a,c),d),(x,y)),((z,w),(t,h))))rho",
+      "F2": "((((a,((x,z),(d,((y,w),t)))),h),c))rho",
+      "protected_F1": [],
+      "protected_F2": [],
+      "P_Q_cardinalities": [
+        0,
+        0
+      ],
+      "selection": {
+        "deepest_protected_top": "a,c,d,h,rho,t,w,x,y,z",
+        "eligible": [
+          [
+            "a",
+            "c"
+          ],
+          [
+            "x",
+            "y"
+          ],
+          [
+            "z",
+            "w"
+          ],
+          [
+            "t",
+            "h"
+          ]
+        ],
+        "all_candidates": [
+          [
+            "a",
+            "c"
+          ],
+          [
+            "x",
+            "y"
+          ],
+          [
+            "z",
+            "w"
+          ],
+          [
+            "t",
+            "h"
+          ]
+        ],
+        "best_rank": [
+          5,
+          4
+        ]
+      },
+      "pair": [
+        "a",
+        "c"
+      ],
+      "case": "A2BC",
+      "uncle": "d",
+      "lca": "a,c,d,h,t,w,x,y,z",
+      "pendants": [
+        "d,t,w,x,y,z",
+        "h"
+      ],
+      "predicates": {
+        "RB": false,
+        "RB*": false,
+        "2B": false,
+        "BCY": false
+      },
+      "branches": [
+        {
+          "name": "A",
+          "cuts": [
+            "a"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": true
+        },
+        {
+          "name": "B",
+          "cuts": [
+            "d,t,w,x,y,z",
+            "h"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": true
+        },
+        {
+          "name": "C",
+          "cuts": [
+            "c"
+          ],
+          "protect2": [
+            "a",
+            "d,t,w,x,y,z",
+            "h"
+          ],
+          "protect1": [
+            "a"
+          ],
+          "legal": true
+        }
+      ],
+      "chosen_branch": "C"
+    },
+    {
+      "F1": "((((a,d),(x,y)),((z,w),(t,h))))rho",
+      "F2": "(((a,((x,z),(d,((y,w),t)))),h))rho",
+      "protected_F1": [
+        "a"
+      ],
+      "protected_F2": [
+        "a",
+        "d,t,w,x,y,z",
+        "h"
+      ],
+      "P_Q_cardinalities": [
+        1,
+        0
+      ],
+      "selection": {
+        "deepest_protected_top": "a,d",
+        "eligible": [
+          [
+            "a",
+            "d"
+          ]
+        ],
+        "all_candidates": [
+          [
+            "a",
+            "d"
+          ],
+          [
+            "x",
+            "y"
+          ],
+          [
+            "z",
+            "w"
+          ],
+          [
+            "t",
+            "h"
+          ]
+        ],
+        "best_rank": [
+          4,
+          5
+        ]
+      },
+      "pair": [
+        "d",
+        "a"
+      ],
+      "case": "A2BC",
+      "uncle": "x,y",
+      "lca": "a,d,t,w,x,y,z",
+      "pendants": [
+        "t,w,y",
+        "x,z"
+      ],
+      "predicates": {
+        "RB": false,
+        "RB*": false,
+        "2B": false,
+        "BCY": false
+      },
+      "branches": [
+        {
+          "name": "B",
+          "cuts": [
+            "t,w,y",
+            "x,z"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": true
+        },
+        {
+          "name": "A",
+          "cuts": [
+            "d"
+          ],
+          "protect2": [
+            "t,w,y",
+            "x,z"
+          ],
+          "protect1": [],
+          "legal": true
+        }
+      ],
+      "chosen_branch": "A"
+    },
+    {
+      "F1": "(((a,(x,y)),((z,w),(t,h))))rho",
+      "F2": "(((a,((x,z),((y,w),t))),h))rho",
+      "protected_F1": [
+        "a"
+      ],
+      "protected_F2": [
+        "a",
+        "h",
+        "t,w,x,y,z",
+        "t,w,y",
+        "x,z"
+      ],
+      "P_Q_cardinalities": [
+        1,
+        0
+      ],
+      "selection": {
+        "deepest_protected_top": "a,x,y",
+        "eligible": [
+          [
+            "x",
+            "y"
+          ]
+        ],
+        "all_candidates": [
+          [
+            "x",
+            "y"
+          ],
+          [
+            "z",
+            "w"
+          ],
+          [
+            "t",
+            "h"
+          ]
+        ],
+        "best_rank": [
+          4,
+          6
+        ]
+      },
+      "pair": [
+        "y",
+        "x"
+      ],
+      "case": "A3BC",
+      "uncle": "a",
+      "lca": "t,w,x,y,z",
+      "pendants": [
+        "w",
+        "t",
+        "z"
+      ],
+      "predicates": {
+        "RB": false,
+        "RB*": false,
+        "2B": false,
+        "BCY": false
+      },
+      "branches": [
+        {
+          "name": "A",
+          "cuts": [
+            "y"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": true
+        },
+        {
+          "name": "B",
+          "cuts": [
+            "w",
+            "t",
+            "z"
+          ],
+          "protect2": [],
+          "protect1": [],
+          "legal": true
+        },
+        {
+          "name": "C",
+          "cuts": [
+            "x"
+          ],
+          "protect2": [
+            "y"
+          ],
+          "protect1": [
+            "y"
+          ],
+          "legal": true
+        }
+      ]
+    }
+  ],
+  "elapsed_seconds": 0.0017207920009241207,
+  "finding": "G4.1 A3BC with incoming P={a},Q=empty is reachable by two A2BC cuts; local credit substitution overshoots"
+}

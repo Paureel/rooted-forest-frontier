@@ -1,0 +1,15 @@
+import Safety
+namespace Universal233.CherryBranching
+open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent
+
+/-- Original child edges, in original vertex traversal order. No upward edge. -/
+def cuts (S : Tree) (a b : Nat) := pendantOriginal S a b
+
+def coreLabels (S : Tree) (a b : Nat) : List Nat :=
+ (leaves S).filter fun x => !((cuts S a b).map (subtreeLabels S)).flatten.contains x
+
+def pendantPartition (S : Tree) (a b : Nat) : List (List Nat) :=
+ (cuts S a b).map (subtreeLabels S) ++ [coreLabels S a b]
+
+def componentRoots (S : Tree) (a b : Nat) : List RMAF.Vertex := cuts S a b ++ [[]]
+

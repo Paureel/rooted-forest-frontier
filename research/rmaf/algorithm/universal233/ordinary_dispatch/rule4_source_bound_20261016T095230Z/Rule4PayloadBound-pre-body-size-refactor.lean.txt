@@ -1,0 +1,123 @@
+import Rule4CallerSource
+import ChildrenSourceBound
+namespace OrdinaryDispatch.FullSourceWork
+open RMAF ForestState Universal233 WholeSourceWork CoreWork CoreGraph
+open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion
+open Universal233.Rule5SelectedLocalWork Universal233.Rule5PendantLocalWork Universal233.Rule5PrefixLocalWork
+open Universal233.HardParent GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork
+
+/-- Literal Rule4 payload caps, with no ordinary/forest callback fee input. -/
+def rule4SubtreeCap (N : Nat) := 4*N*N+2*N+2
+def rule4OutsideCap (N L : Nat) := (rule4SubtreeCap N+4*(N+1)+6)*(L+1)
+def rule4PartitionCap (N L : Nat) :=
+ (rule4SubtreeCap N+1)*L+1+8*(2*N+1)^2+(rule4OutsideCap N L+4)*(N+1)+L+4
+def rule4StateCap (N L : Nat) := rule4PartitionCap N L+(4*(N+2)*(2*N)+3)*(L+1)+5
+
+theorem rule4_subtree_bound (S : Tree) (cuts : List RMAF.Vertex) (N : Nat)
+ (size : (leaves S).length≤N) (addresses : ∀p,p∈cuts→p.length≤N) (p : RMAF.Vertex) (mem : p∈cuts) :
+ (subtreeLabelsMeter S p).work≤rule4SubtreeCap N := by
+ have h:=subtree_labels_work S p
+ have square:=Nat.mul_le_mul (Nat.mul_le_mul_left 4 size) size
+ have a:=addresses p mem
+ unfold rule4SubtreeCap
+ omega
+
+theorem rule4_outside_bound (S : Tree) (cuts : List RMAF.Vertex) (N L : Nat)
+ (size : (leaves S).length≤N) (count : cuts.length≤L) (addresses : ∀p,p∈cuts→p.length≤N) (x : Nat) :
+ (rule4OutsideMeter S cuts x).work≤rule4OutsideCap N L := by
+ have point (p : RMAF.Vertex) (mem : p∈cuts) :
+  (let s:=subtreeLabelsMeter S p;let c:=meterContains x s.value
+   (⟨!c.value,s.work+c.work+2⟩ : Charged Bool)).work≤rule4SubtreeCap N+4*(N+1)+2 := by
+  have s:=rule4_subtree_bound S cuts N size addresses p mem
+  have dom:=(subtree_labels_payload S p).1
+  have c:=meterContains_bound x (subtreeLabelsMeter S p).value
+  dsimp only
+  omega
+ have all:=meterAll_bound _ cuts (rule4SubtreeCap N+4*(N+1)+2) point
+ have scale:=Nat.mul_le_mul_left (rule4SubtreeCap N+4*(N+1)+2+4) (Nat.add_le_add_right count 1)
+ exact Nat.le_trans all (by simpa only [rule4OutsideMeter,rule4OutsideCap,Nat.add_assoc] using scale)
+
+theorem rule4_partition_payload (S : Tree) (cuts : List RMAF.Vertex) :
+ (rule4PartitionMeter S cuts).value.length=cuts.length+1 ∧
+ (∀B,B∈(rule4PartitionMeter S cuts).value→B.length≤(leaves S).length) := by
+ have blocks:=blocks_payload S cuts
+ constructor
+ · simp only [rule4PartitionMeter,List.length_append,List.length_cons,List.length_nil,blocks.1]
+ · intro B mem
+   simp only [rule4PartitionMeter,List.mem_append,List.mem_singleton] at mem
+   rcases mem with mem|rfl
+   · rw [blocks_value] at mem
+     obtain ⟨p,_,rfl⟩:=List.mem_map.1 mem
+     exact (subtreeLabels_sublist S p).length_le
+   · simp only [meterFilter_value,meterLeaves_value]
+     exact List.length_filter_le _ _
+
+theorem rule4_partition_bound (S : Tree) (cuts : List RMAF.Vertex) (N L : Nat)
+ (size : (leaves S).length≤N) (count : cuts.length≤L) (addresses : ∀p,p∈cuts→p.length≤N) :
+ (rule4PartitionMeter S cuts).work≤rule4PartitionCap N L := by
+ have bs:=blocks_work S cuts N addresses
+ have square:=Nat.mul_le_mul (Nat.mul_le_mul_left 4 size) size
+ have bcap : (blocksMeter S cuts).work≤(rule4SubtreeCap N+1)*L+1 := by
+  have m:=Nat.mul_le_mul (show 4*(leaves S).length*(leaves S).length+2*N+3≤rule4SubtreeCap N+1 by unfold rule4SubtreeCap;omega) count
+  omega
+ have nodes:=treeNodes_le_twice_leaves S
+ have nodecap : treeNodes S≤2*N := by omega
+ have l:=meterLeaves_cap S (2*N) nodecap
+ have c:=meterFilter_bound (rule4OutsideMeter S cuts) (meterLeaves S).value (rule4OutsideCap N L)
+  (fun x _=>rule4_outside_bound S cuts N L size count addresses x)
+ have lc : (meterLeaves S).value.length≤N := by simpa only [meterLeaves_value] using size
+ have cc:=Nat.mul_le_mul_left (rule4OutsideCap N L+4) (Nat.add_le_add_right lc 1)
+ have bl:=(blocks_payload S cuts).1
+ simp only [rule4PartitionMeter,rule4PartitionCap]
+ omega
+
+theorem rule4_state_bound (b : Rule4.Branch) (N L : Nat)
+ (size : (leaves b.source).length≤N) (count : b.cuts.length≤L) (addresses : ∀p,p∈b.cuts→p.length≤N) :
+ (rule4StateMeter b).work≤rule4StateCap N L := by
+ have p:=rule4_partition_bound b.source b.cuts N L size count addresses
+ have dom:=rule4_partition_payload b.source b.cuts
+ have f:=source_forest_work b.source (rule4PartitionMeter b.source b.cuts).value N
+  (fun B hB=>Nat.le_trans (dom.2 B hB) size)
+ have nodes:=treeNodes_le_twice_leaves b.source
+ have nodecap : treeNodes b.source≤2*N := by omega
+ have m:=Nat.mul_le_mul
+  (Nat.add_le_add_right (Nat.mul_le_mul_left (4*(N+2)) nodecap) 3)
+  (show (rule4PartitionMeter b.source b.cuts).value.length≤L+1 by omega)
+ simp only [rule4StateMeter,rule4StateCap]
+ omega
+
+theorem leafAddressMeter_work (a : Nat) (S : Tree) :
+ (leafAddressMeter a S).work≤4*treeNodes S := by
+ induction S with
+ | leaf x=>simp [leafAddressMeter,treeNodes]
+ | node l r il ir=>
+  cases h:(leafAddressMeter a l).value <;>
+   simp only [leafAddressMeter,h,treeNodes,Nat.mul_add,Nat.mul_one] <;> omega
+
+theorem rule4_selected_payload {T S : Tree} (s : Rule4.Choice T S) (N : Nat)
+ (size : (leaves T).length≤N) (b : Rule4.Branch) (mem : b∈Rule4.branches s) :
+ (leaves b.target).length≤N ∧ (leaves b.source).length≤N ∧
+ b.cuts.length≤2*N+2 ∧ (∀p,p∈b.cuts→p.length≤N) := by
+ have len:=s.priority.2.2.1.length_eq
+ have facts:=Rule4.selected_cut_properties s b mem
+ have addr : ∀p,p∈b.cuts→p.length≤N := by
+  intro p hp
+  obtain ⟨U,hU⟩:=facts.2.2.2.1.actual p hp
+  have d:=subtree_depth hU
+  have source : (leaves b.source).length≤N := by
+   simp only [Rule4.branches,List.mem_cons,List.not_mem_nil,or_false] at mem
+   rcases mem with rfl|rfl|rfl <;> dsimp only <;> omega
+  omega
+ refine ⟨?_,?_,?_,addr⟩
+ · simp only [Rule4.branches,List.mem_cons,List.not_mem_nil,or_false] at mem
+   rcases mem with rfl|rfl|rfl <;> dsimp only <;> omega
+ · simp only [Rule4.branches,List.mem_cons,List.not_mem_nil,or_false] at mem
+   rcases mem with rfl|rfl|rfl <;> dsimp only <;> omega
+ · simp only [Rule4.branches,List.mem_cons,List.not_mem_nil,or_false] at mem
+   rcases mem with rfl|rfl|rfl
+   · simp
+   · simp
+   · have cut:=cuts_count T s.raw.a s.raw.c
+     rw [cuts_value] at cut
+     simpa only [CherryBranching.cuts] using Nat.le_trans cut (show 2*(leaves T).length≤2*N+2 by omega)
+end OrdinaryDispatch.FullSourceWork

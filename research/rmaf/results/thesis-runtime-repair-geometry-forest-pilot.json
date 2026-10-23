@@ -1,0 +1,172 @@
+{
+  "status": "NO-FIRE-BOUNDED",
+  "metrics": {
+    "max_active_protections": 2,
+    "descendant_cut_sets": 7,
+    "protected_sibling_checks": 7
+  },
+  "geometries": 100,
+  "hits": {
+    "3": 1,
+    "4": 3
+  },
+  "maxima": {
+    "3": "0",
+    "4": "1/4"
+  },
+  "source_cut_checks": 12,
+  "witnesses": {
+    "4": {
+      "F1": "(((a,((x,y),(u,v))),((p,q),(r,s))))rho",
+      "F2": [
+        "(((y,v),((u,x),(q,(a,p)))))rho",
+        "(r,s)"
+      ],
+      "b": "p",
+      "mass": "1/4",
+      "nodes": 2,
+      "trace": [
+        {
+          "rule": {
+            "pair": [
+              "u",
+              "v"
+            ],
+            "case": "RB",
+            "pendants": [
+              "x",
+              "a,p,q"
+            ],
+            "branches": [
+              {
+                "name": "C",
+                "cuts": [
+                  "v"
+                ],
+                "protect2": [],
+                "protect1": [],
+                "legal": true
+              }
+            ],
+            "uncle": "x"
+          },
+          "branch": "C",
+          "mass": "1/2",
+          "child": [
+            {
+              "rule": {
+                "pair": [
+                  "a",
+                  "u,x"
+                ],
+                "case": "A2BC",
+                "pendants": [
+                  "p",
+                  "q"
+                ],
+                "branches": [
+                  {
+                    "name": "A",
+                    "cuts": [
+                      "a"
+                    ],
+                    "protect2": [],
+                    "protect1": [],
+                    "legal": false
+                  },
+                  {
+                    "name": "B",
+                    "cuts": [
+                      "p",
+                      "q"
+                    ],
+                    "protect2": [],
+                    "protect1": [],
+                    "legal": false
+                  },
+                  {
+                    "name": "C",
+                    "cuts": [
+                      "u,x"
+                    ],
+                    "protect2": [
+                      "a",
+                      "p",
+                      "q"
+                    ],
+                    "protect1": [
+                      "a"
+                    ],
+                    "legal": true
+                  }
+                ],
+                "uncle": "p,q,r,s"
+              },
+              "branch": "C",
+              "mass": "1",
+              "child": []
+            }
+          ]
+        }
+      ]
+    },
+    "3": {
+      "F1": "(((a,((x,y),z)),((p,q),(r,s))))rho",
+      "F2": [
+        "(((q,y),((s,a),(r,x))))rho",
+        "(p,z)"
+      ],
+      "b": "s",
+      "mass": "0",
+      "nodes": 2,
+      "trace": [
+        {
+          "rule": {
+            "pair": [
+              "x",
+              "z"
+            ],
+            "case": "AC",
+            "pendants": [],
+            "branches": [
+              {
+                "name": "A",
+                "cuts": [
+                  "x"
+                ],
+                "protect2": [],
+                "protect1": [],
+                "legal": false
+              },
+              {
+                "name": "C",
+                "cuts": [
+                  "z"
+                ],
+                "protect2": [],
+                "protect1": [],
+                "legal": true
+              }
+            ],
+            "uncle": "a"
+          },
+          "branch": "C",
+          "mass": "0",
+          "child": []
+        }
+      ]
+    }
+  },
+  "forest": true,
+  "controls": [
+    "thesis-complexity-reachable-trace.json",
+    "thesis-complexity-three-credit-trace.json",
+    "live-two-leaf",
+    "wrong-orientation",
+    "orientation-positive-twin",
+    "arbitrary-double-child-cut-caught-with-positive-twin"
+  ],
+  "elapsed_seconds": 0.0504422500016517,
+  "seed": 614,
+  "script_sha256": "6a49317ebbf6965a6773fc2d23a69c73a33cde85720b19cd35148df180bf95d5"
+}

@@ -1,0 +1,1276 @@
+{
+  "schema_version": 1,
+  "frozen_at": "2026-10-14T14:58:06.624095+00:00",
+  "stage": "before separate X0 and all construction",
+  "convention": "labelled unary rho; thesis cuts; full permitted call tree; physical protections distinct from analysis credits",
+  "alpha_control": 128,
+  "alpha_scope": "calibration only; source supplies no fixed sufficient global constant",
+  "controls": [
+    {
+      "id": "nine-leaf",
+      "reference": "research/rmaf/results/thesis-complexity-reachable-trace.json",
+      "expected_mass": "9/16",
+      "expected_parent_mass": "1/2",
+      "expected_C_legal_children": 0,
+      "quality": "certified-finite-control",
+      "provenance": "research/rmaf/thesis_complexity/repair/controls-frozen.json",
+      "scope": "exposed inherited control, not held-out discovery or a universal theorem"
+    },
+    {
+      "id": "thirteen-leaf",
+      "reference": "research/rmaf/results/thesis-complexity-three-credit-trace.json",
+      "expected_P_size": 3,
+      "expected_Q_size": 2,
+      "quality": "certified-finite-control",
+      "provenance": "research/rmaf/thesis_complexity/repair/controls-frozen.json",
+      "scope": "exposed inherited control, not held-out discovery or a universal theorem"
+    },
+    {
+      "id": "live-two-leaf",
+      "F1": "((a,(x,y)),(p,(q,r)))",
+      "F2": "(a,(((x,p),q),(y,r)))",
+      "protected_F1": [
+        "a"
+      ],
+      "protected_F2": [
+        "a",
+        "p,q,r,x,y"
+      ],
+      "chosen_pair": [
+        "x",
+        "y"
+      ],
+      "expected_case": "A3BC",
+      "expected_pendants": 3,
+      "expected_C_pendants": 3,
+      "expected_C_legal_branches": [
+        "B"
+      ],
+      "quality": "certified-finite-control",
+      "provenance": "research/rmaf/thesis_complexity/repair/controls-frozen.json",
+      "scope": "exposed inherited control, not held-out discovery or a universal theorem"
+    },
+    {
+      "id": "wrong-orientation",
+      "F1": "((a,(x,y)),(p,(q,r)))",
+      "F2": "(a,(x,(((y,p),q),r)))",
+      "protected_F1": [
+        "a"
+      ],
+      "protected_F2": [
+        "a",
+        "p,q,r,x,y"
+      ],
+      "chosen_pair": [
+        "x",
+        "y"
+      ],
+      "expected_orientation_accepted": false,
+      "if_illegally_cut_y_expected_C_pendants": 1,
+      "quality": "certified-finite-control",
+      "provenance": "research/rmaf/thesis_complexity/repair/controls-frozen.json",
+      "scope": "exposed inherited control, not held-out discovery or a universal theorem"
+    },
+    {
+      "id": "orientation-positive-twin",
+      "F1": "((a,(x,y)),(p,(q,r)))",
+      "F2": "(a,(x,(((y,p),q),r)))",
+      "protected_F1": [
+        "a"
+      ],
+      "protected_F2": [
+        "a",
+        "p,q,r,x,y"
+      ],
+      "chosen_pair": [
+        "y",
+        "x"
+      ],
+      "expected_orientation_accepted": true,
+      "expected_C_pendants": 3,
+      "quality": "certified-finite-control",
+      "provenance": "research/rmaf/thesis_complexity/repair/controls-frozen.json",
+      "scope": "exposed inherited control, not held-out discovery or a universal theorem"
+    },
+    {
+      "id": "inside-b-reached",
+      "quality": "independently-reviewed-finite-witness",
+      "provenance": "research/rmaf/results/thesis-runtime-repair-fresh-review-history-final.json",
+      "instance": {
+        "input_f1": "((((((a,t),d0),c),d),((x,y),h)),((W,X),(Y,B)))",
+        "input_f2": "(((a,((W,(x,X)),(d,(y,Y)))),(t,(c,(d0,B)))),h)",
+        "root": "labelled unary rho",
+        "initial_budget": 20,
+        "branch_sequence": [
+          "C",
+          "A",
+          "C",
+          "A"
+        ],
+        "J_budget": 16,
+        "J_pair": [
+          "x",
+          "y"
+        ],
+        "P": [
+          "a"
+        ],
+        "Q": [],
+        "b": "W,X,Y,x,y",
+        "e_active_roots": [
+          "x",
+          "y",
+          "h"
+        ]
+      },
+      "expected": {
+        "inside_b": true,
+        "C_invocations": 2,
+        "J_pendants": 3,
+        "J_e_active_roots": 3,
+        "P": [
+          "a"
+        ],
+        "Q": []
+      },
+      "scope": "Explicit numeric trees, selected protected tops and phase-credit schedule; source correspondence is supported by the separate fresh physical replay and source reading, not a universal Lean source-algorithm model."
+    },
+    {
+      "id": "false-outside-b",
+      "quality": "planted-false-conclusion",
+      "same_instance_as": "inside-b-reached",
+      "claim": "x is outside b",
+      "expected_accepted": false,
+      "lhs": 1,
+      "rhs": 0,
+      "residual": 1
+    },
+    {
+      "id": "actual-negative-budget",
+      "quality": "independently-reviewed-finite-witness",
+      "provenance": "research/rmaf/results/thesis-runtime-repair-fresh-review-interface.json",
+      "source": "thirteen-leaf replay C,A,B",
+      "initial_budget": 2,
+      "at_J": 0,
+      "B_cost": 4,
+      "child_budget": -4,
+      "actual_count": 1,
+      "original_p117_base_covers": false,
+      "extended_128_empty_cap": "5",
+      "scope": "reachable full-call-tree trace, failure precedes success"
+    },
+    {
+      "id": "false-negative-exponential",
+      "quality": "planted-abstract-arithmetic-misuse",
+      "provenance": "research/rmaf/results/thesis-runtime-repair-fresh-review-interface.json",
+      "failing_step": "unrestricted negative-budget formula",
+      "scope": "abstract arithmetic misuse; actual negative invocation is directly terminal",
+      "K": -10,
+      "p": 0,
+      "q": 0,
+      "lhs": "1",
+      "rhs": "-23/8",
+      "residual": "31/8",
+      "expected_accepted": false
+    },
+    {
+      "id": "weak-consumer-composition",
+      "quality": "checked-conditional-arithmetic",
+      "provenance": "research/rmaf/results/thesis-runtime-repair-fresh-review-interface.json",
+      "exact": {
+        "X": "128",
+        "kind": "weak-C",
+        "A": "30",
+        "B": "13",
+        "C": "18",
+        "lhs": "62",
+        "rhs": "62",
+        "slack": "0"
+      }
+    },
+    {
+      "id": "strong-consumer-composition",
+      "quality": "checked-conditional-arithmetic",
+      "provenance": "research/rmaf/results/thesis-runtime-repair-fresh-review-interface.json",
+      "exact": {
+        "X": "128",
+        "kind": "strong-C",
+        "A": "30",
+        "B": "13",
+        "C": "15",
+        "lhs": "59",
+        "rhs": "62",
+        "slack": "3"
+      }
+    },
+    {
+      "id": "G4-original-mismatch",
+      "quality": "checked-conditional-arithmetic-failure",
+      "provenance": "research/rmaf/results/thesis-runtime-repair-fresh-review-interface.json",
+      "exact": {
+        "id": "G4.1-A3-hard-exception",
+        "printed_page": 123,
+        "parent": [
+          1,
+          0
+        ],
+        "children": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            1,
+            2,
+            1
+          ]
+        ],
+        "lhs_mass": "9/16",
+        "rhs_mass": "1/2",
+        "mass_residual": "1/16",
+        "lhs_offset": -5,
+        "rhs_offset": -2,
+        "offset_residual": -3,
+        "passes": false,
+        "scope": "conditional source use site"
+      }
+    }
+  ],
+  "trace_data": {
+    "nine": {
+      "scope": "exact three-branch structural trace, all labels including unary rho retained; not total runtime counterexample",
+      "controls": {
+        "count": 4,
+        "passed": 4,
+        "state_corruption_caught": true,
+        "sha256": "0b76393ddf83a309b3d861ef79d2b66b9c9deeff8624026e1818b2b0dc0d353e"
+      },
+      "leaf_count_excluding_rho": 9,
+      "trace": [
+        {
+          "F1": "(((((a,c),d),(x,y)),((z,w),(t,h))))rho",
+          "F2": "((((a,((x,z),(d,((y,w),t)))),h),c))rho",
+          "protected_F1": [],
+          "protected_F2": [],
+          "P_Q_cardinalities": [
+            0,
+            0
+          ],
+          "selection": {
+            "deepest_protected_top": "a,c,d,h,rho,t,w,x,y,z",
+            "eligible": [
+              [
+                "a",
+                "c"
+              ],
+              [
+                "x",
+                "y"
+              ],
+              [
+                "z",
+                "w"
+              ],
+              [
+                "t",
+                "h"
+              ]
+            ],
+            "all_candidates": [
+              [
+                "a",
+                "c"
+              ],
+              [
+                "x",
+                "y"
+              ],
+              [
+                "z",
+                "w"
+              ],
+              [
+                "t",
+                "h"
+              ]
+            ],
+            "best_rank": [
+              5,
+              4
+            ]
+          },
+          "pair": [
+            "a",
+            "c"
+          ],
+          "case": "A2BC",
+          "uncle": "d",
+          "lca": "a,c,d,h,t,w,x,y,z",
+          "pendants": [
+            "d,t,w,x,y,z",
+            "h"
+          ],
+          "predicates": {
+            "RB": false,
+            "RB*": false,
+            "2B": false,
+            "BCY": false
+          },
+          "branches": [
+            {
+              "name": "A",
+              "cuts": [
+                "a"
+              ],
+              "protect2": [],
+              "protect1": [],
+              "legal": true
+            },
+            {
+              "name": "B",
+              "cuts": [
+                "d,t,w,x,y,z",
+                "h"
+              ],
+              "protect2": [],
+              "protect1": [],
+              "legal": true
+            },
+            {
+              "name": "C",
+              "cuts": [
+                "c"
+              ],
+              "protect2": [
+                "a",
+                "d,t,w,x,y,z",
+                "h"
+              ],
+              "protect1": [
+                "a"
+              ],
+              "legal": true
+            }
+          ],
+          "chosen_branch": "C"
+        },
+        {
+          "F1": "((((a,d),(x,y)),((z,w),(t,h))))rho",
+          "F2": "(((a,((x,z),(d,((y,w),t)))),h))rho",
+          "protected_F1": [
+            "a"
+          ],
+          "protected_F2": [
+            "a",
+            "d,t,w,x,y,z",
+            "h"
+          ],
+          "P_Q_cardinalities": [
+            1,
+            0
+          ],
+          "selection": {
+            "deepest_protected_top": "a,d",
+            "eligible": [
+              [
+                "a",
+                "d"
+              ]
+            ],
+            "all_candidates": [
+              [
+                "a",
+                "d"
+              ],
+              [
+                "x",
+                "y"
+              ],
+              [
+                "z",
+                "w"
+              ],
+              [
+                "t",
+                "h"
+              ]
+            ],
+            "best_rank": [
+              4,
+              5
+            ]
+          },
+          "pair": [
+            "d",
+            "a"
+          ],
+          "case": "A2BC",
+          "uncle": "x,y",
+          "lca": "a,d,t,w,x,y,z",
+          "pendants": [
+            "t,w,y",
+            "x,z"
+          ],
+          "predicates": {
+            "RB": false,
+            "RB*": false,
+            "2B": false,
+            "BCY": false
+          },
+          "branches": [
+            {
+              "name": "B",
+              "cuts": [
+                "t,w,y",
+                "x,z"
+              ],
+              "protect2": [],
+              "protect1": [],
+              "legal": true
+            },
+            {
+              "name": "A",
+              "cuts": [
+                "d"
+              ],
+              "protect2": [
+                "t,w,y",
+                "x,z"
+              ],
+              "protect1": [],
+              "legal": true
+            }
+          ],
+          "chosen_branch": "A"
+        },
+        {
+          "F1": "(((a,(x,y)),((z,w),(t,h))))rho",
+          "F2": "(((a,((x,z),((y,w),t))),h))rho",
+          "protected_F1": [
+            "a"
+          ],
+          "protected_F2": [
+            "a",
+            "h",
+            "t,w,x,y,z",
+            "t,w,y",
+            "x,z"
+          ],
+          "P_Q_cardinalities": [
+            1,
+            0
+          ],
+          "selection": {
+            "deepest_protected_top": "a,x,y",
+            "eligible": [
+              [
+                "x",
+                "y"
+              ]
+            ],
+            "all_candidates": [
+              [
+                "x",
+                "y"
+              ],
+              [
+                "z",
+                "w"
+              ],
+              [
+                "t",
+                "h"
+              ]
+            ],
+            "best_rank": [
+              4,
+              6
+            ]
+          },
+          "pair": [
+            "y",
+            "x"
+          ],
+          "case": "A3BC",
+          "uncle": "a",
+          "lca": "t,w,x,y,z",
+          "pendants": [
+            "w",
+            "t",
+            "z"
+          ],
+          "predicates": {
+            "RB": false,
+            "RB*": false,
+            "2B": false,
+            "BCY": false
+          },
+          "branches": [
+            {
+              "name": "A",
+              "cuts": [
+                "y"
+              ],
+              "protect2": [],
+              "protect1": [],
+              "legal": true
+            },
+            {
+              "name": "B",
+              "cuts": [
+                "w",
+                "t",
+                "z"
+              ],
+              "protect2": [],
+              "protect1": [],
+              "legal": true
+            },
+            {
+              "name": "C",
+              "cuts": [
+                "x"
+              ],
+              "protect2": [
+                "y"
+              ],
+              "protect1": [
+                "y"
+              ],
+              "legal": true
+            }
+          ]
+        }
+      ],
+      "elapsed_seconds": 0.0017207920009241207,
+      "finding": "G4.1 A3BC with incoming P={a},Q=empty is reachable by two A2BC cuts; local credit substitution overshoots"
+    },
+    "thirteen": {
+      "scope": "reachable count-three credit state under literal p123 union rule; not total-runtime counterexample",
+      "leaf_count_excluding_rho": 13,
+      "trace": [
+        {
+          "F1": "(((((a,c),d),((x,y),(u,v))),((z1,z2),((b2,su),(sy,sv)))))rho",
+          "F2": "((((x,(((a,(z1,(d,z2))),b2),c)),(u,su)),((y,sy),(v,sv))))rho",
+          "protected_F1": [],
+          "protected_F2": [],
+          "P_Q_cardinalities": [
+            0,
+            0
+          ],
+          "selection": {
+            "deepest_protected_top": "a,b2,c,d,rho,su,sv,sy,u,v,x,y,z1,z2",
+            "eligible": [
+              [
+                "a",
+                "c"
+              ],
+              [
+                "x",
+                "y"
+              ],
+              [
+                "u",
+                "v"
+              ],
+              [
+                "z1",
+                "z2"
+              ],
+              [
+                "b2",
+                "su"
+              ],
+              [
+                "sy",
+                "sv"
+              ]
+            ],
+            "all_candidates": [
+              [
+                "a",
+                "c"
+              ],
+              [
+                "x",
+                "y"
+              ],
+              [
+                "u",
+                "v"
+              ],
+              [
+                "z1",
+                "z2"
+              ],
+              [
+                "b2",
+                "su"
+              ],
+              [
+                "sy",
+                "sv"
+              ]
+            ],
+            "best_rank": [
+              5,
+              7
+            ]
+          },
+          "pair": [
+            "a",
+            "c"
+          ],
+          "case": "A2BC",
+          "uncle": "d",
+          "lca": "a,b2,c,d,z1,z2",
+          "pendants": [
+            "d,z1,z2",
+            "b2"
+          ],
+          "predicates": {
+            "RB": false,
+            "RB*": false,
+            "2B": false,
+            "BCY": false
+          },
+          "branches": [
+            {
+              "name": "A",
+              "cuts": [
+                "a"
+              ],
+              "protect2": [],
+              "protect1": [],
+              "legal": true
+            },
+            {
+              "name": "B",
+              "cuts": [
+                "d,z1,z2",
+                "b2"
+              ],
+              "protect2": [],
+              "protect1": [],
+              "legal": true
+            },
+            {
+              "name": "C",
+              "cuts": [
+                "c"
+              ],
+              "protect2": [
+                "a",
+                "d,z1,z2",
+                "b2"
+              ],
+              "protect1": [
+                "a"
+              ],
+              "legal": true
+            }
+          ],
+          "chosen_branch": "C"
+        },
+        {
+          "F1": "((((a,d),((x,y),(u,v))),((z1,z2),((b2,su),(sy,sv)))))rho",
+          "F2": "((((x,((a,(z1,(d,z2))),b2)),(u,su)),((y,sy),(v,sv))))rho",
+          "protected_F1": [
+            "a"
+          ],
+          "protected_F2": [
+            "a",
+            "b2",
+            "d,z1,z2"
+          ],
+          "P_Q_cardinalities": [
+            1,
+            0
+          ],
+          "selection": {
+            "deepest_protected_top": "a,d",
+            "eligible": [
+              [
+                "a",
+                "d"
+              ]
+            ],
+            "all_candidates": [
+              [
+                "a",
+                "d"
+              ],
+              [
+                "x",
+                "y"
+              ],
+              [
+                "u",
+                "v"
+              ],
+              [
+                "z1",
+                "z2"
+              ],
+              [
+                "b2",
+                "su"
+              ],
+              [
+                "sy",
+                "sv"
+              ]
+            ],
+            "best_rank": [
+              4,
+              8
+            ]
+          },
+          "pair": [
+            "d",
+            "a"
+          ],
+          "case": "A2BC",
+          "uncle": "u,v,x,y",
+          "lca": "a,d,z1,z2",
+          "pendants": [
+            "z2",
+            "z1"
+          ],
+          "predicates": {
+            "RB": false,
+            "RB*": false,
+            "2B": false,
+            "BCY": false
+          },
+          "branches": [
+            {
+              "name": "B",
+              "cuts": [
+                "z2",
+                "z1"
+              ],
+              "protect2": [],
+              "protect1": [],
+              "legal": true
+            },
+            {
+              "name": "A",
+              "cuts": [
+                "d"
+              ],
+              "protect2": [
+                "z2",
+                "z1"
+              ],
+              "protect1": [],
+              "legal": true
+            }
+          ],
+          "chosen_branch": "A"
+        },
+        {
+          "F1": "(((a,((x,y),(u,v))),((z1,z2),((b2,su),(sy,sv)))))rho",
+          "F2": "((((x,((a,(z1,z2)),b2)),(u,su)),((y,sy),(v,sv))))rho",
+          "protected_F1": [
+            "a"
+          ],
+          "protected_F2": [
+            "a",
+            "b2",
+            "z1",
+            "z1,z2",
+            "z2"
+          ],
+          "P_Q_cardinalities": [
+            1,
+            0
+          ],
+          "selection": {
+            "deepest_protected_top": "a,u,v,x,y",
+            "eligible": [
+              [
+                "x",
+                "y"
+              ],
+              [
+                "u",
+                "v"
+              ]
+            ],
+            "all_candidates": [
+              [
+                "x",
+                "y"
+              ],
+              [
+                "u",
+                "v"
+              ],
+              [
+                "z1",
+                "z2"
+              ],
+              [
+                "b2",
+                "su"
+              ],
+              [
+                "sy",
+                "sv"
+              ]
+            ],
+            "best_rank": [
+              5,
+              4
+            ]
+          },
+          "pair": [
+            "x",
+            "y"
+          ],
+          "case": "A3BC",
+          "uncle": "u,v",
+          "lca": "a,b2,su,sv,sy,u,v,x,y,z1,z2",
+          "pendants": [
+            "a,b2,z1,z2",
+            "su,u",
+            "sv,v",
+            "sy"
+          ],
+          "predicates": {
+            "RB": false,
+            "RB*": false,
+            "2B": false,
+            "BCY": false
+          },
+          "branches": [
+            {
+              "name": "A",
+              "cuts": [
+                "x"
+              ],
+              "protect2": [],
+              "protect1": [],
+              "legal": true
+            },
+            {
+              "name": "B",
+              "cuts": [
+                "a,b2,z1,z2",
+                "su,u",
+                "sv,v",
+                "sy"
+              ],
+              "protect2": [],
+              "protect1": [],
+              "legal": true
+            },
+            {
+              "name": "C",
+              "cuts": [
+                "y"
+              ],
+              "protect2": [
+                "x"
+              ],
+              "protect1": [
+                "x"
+              ],
+              "legal": true
+            }
+          ],
+          "chosen_branch": "C"
+        },
+        {
+          "F1": "(((a,(x,(u,v))),((z1,z2),((b2,su),(sy,sv)))))rho",
+          "F2": "((((x,((a,(z1,z2)),b2)),(u,su)),(sy,(v,sv))))rho",
+          "protected_F1": [
+            "a",
+            "x"
+          ],
+          "protected_F2": [
+            "a",
+            "b2",
+            "x",
+            "z1",
+            "z1,z2",
+            "z2"
+          ],
+          "P_Q_cardinalities": [
+            2,
+            1
+          ],
+          "selection": {
+            "deepest_protected_top": "u,v,x",
+            "eligible": [
+              [
+                "u",
+                "v"
+              ]
+            ],
+            "all_candidates": [
+              [
+                "u",
+                "v"
+              ],
+              [
+                "z1",
+                "z2"
+              ],
+              [
+                "b2",
+                "su"
+              ],
+              [
+                "sy",
+                "sv"
+              ]
+            ],
+            "best_rank": [
+              5,
+              4
+            ]
+          },
+          "pair": [
+            "u",
+            "v"
+          ],
+          "case": "A3BC",
+          "uncle": "x",
+          "lca": "a,b2,su,sv,sy,u,v,x,z1,z2",
+          "pendants": [
+            "su",
+            "a,b2,x,z1,z2",
+            "sy",
+            "sv"
+          ],
+          "predicates": {
+            "RB": false,
+            "RB*": false,
+            "2B": false,
+            "BCY": false
+          },
+          "branches": [
+            {
+              "name": "A",
+              "cuts": [
+                "u"
+              ],
+              "protect2": [],
+              "protect1": [],
+              "legal": true
+            },
+            {
+              "name": "B",
+              "cuts": [
+                "su",
+                "a,b2,x,z1,z2",
+                "sy",
+                "sv"
+              ],
+              "protect2": [],
+              "protect1": [],
+              "legal": true
+            },
+            {
+              "name": "C",
+              "cuts": [
+                "v"
+              ],
+              "protect2": [
+                "u"
+              ],
+              "protect1": [
+                "u"
+              ],
+              "legal": true
+            }
+          ],
+          "chosen_branch": "C"
+        },
+        {
+          "F1": "(((a,(x,u)),((z1,z2),((b2,su),(sy,sv)))))rho",
+          "F2": "((((x,((a,(z1,z2)),b2)),(u,su)),(sy,sv)))rho",
+          "protected_F1": [
+            "a",
+            "u",
+            "x"
+          ],
+          "protected_F2": [
+            "a",
+            "b2",
+            "u",
+            "x",
+            "z1",
+            "z1,z2",
+            "z2"
+          ],
+          "P_Q_cardinalities": [
+            3,
+            2
+          ],
+          "selection": {
+            "deepest_protected_top": "u,x",
+            "eligible": [
+              [
+                "x",
+                "u"
+              ]
+            ],
+            "all_candidates": [
+              [
+                "x",
+                "u"
+              ],
+              [
+                "z1",
+                "z2"
+              ],
+              [
+                "b2",
+                "su"
+              ],
+              [
+                "sy",
+                "sv"
+              ]
+            ],
+            "best_rank": [
+              4,
+              4
+            ]
+          },
+          "pair": [
+            "u",
+            "x"
+          ],
+          "case": "A2BC",
+          "uncle": "a",
+          "lca": "a,b2,su,u,x,z1,z2",
+          "pendants": [
+            "su",
+            "a,b2,z1,z2"
+          ],
+          "predicates": {
+            "RB": false,
+            "RB*": false,
+            "2B": false,
+            "BCY": false
+          },
+          "branches": [
+            {
+              "name": "B",
+              "cuts": [
+                "su",
+                "a,b2,z1,z2"
+              ],
+              "protect2": [],
+              "protect1": [],
+              "legal": true
+            },
+            {
+              "name": "A",
+              "cuts": [
+                "u"
+              ],
+              "protect2": [
+                "su",
+                "a,b2,z1,z2"
+              ],
+              "protect1": [],
+              "legal": false
+            }
+          ]
+        }
+      ],
+      "elapsed_seconds": 0.0037158750001253793,
+      "finding": "G4.2 three-way A3BC C-child gives P={a,x,u},Q={x,u}; |P|=3 violates stated cap2."
+    },
+    "inside_C_tree": {
+      "count": 2,
+      "budget": 15,
+      "scope": "full legal children under deterministic allowed tie selection; invocation counted",
+      "tree": {
+        "budget": 15,
+        "rule": {
+          "pair": [
+            "x",
+            "h"
+          ],
+          "case": "A3BC",
+          "pendants": [
+            "X",
+            "W",
+            "Y",
+            "a",
+            "B"
+          ],
+          "branches": [
+            {
+              "name": "A",
+              "cuts": [
+                "x"
+              ],
+              "protect2": [],
+              "protect1": [],
+              "legal": false
+            },
+            {
+              "name": "B",
+              "cuts": [
+                "X",
+                "W",
+                "Y",
+                "a",
+                "B"
+              ],
+              "protect2": [],
+              "protect1": [],
+              "legal": false
+            },
+            {
+              "name": "C",
+              "cuts": [
+                "h"
+              ],
+              "protect2": [
+                "x"
+              ],
+              "protect1": [
+                "x"
+              ],
+              "legal": true
+            }
+          ]
+        },
+        "children": [
+          {
+            "branch": "C",
+            "tree": {
+              "budget": 14,
+              "rule": {
+                "pair": [
+                  "x",
+                  "a"
+                ],
+                "case": "A3BC",
+                "pendants": [
+                  "X",
+                  "W",
+                  "Y"
+                ],
+                "branches": [
+                  {
+                    "name": "A",
+                    "cuts": [
+                      "x"
+                    ],
+                    "protect2": [],
+                    "protect1": [],
+                    "legal": false
+                  },
+                  {
+                    "name": "B",
+                    "cuts": [
+                      "X",
+                      "W",
+                      "Y"
+                    ],
+                    "protect2": [],
+                    "protect1": [],
+                    "legal": false
+                  },
+                  {
+                    "name": "C",
+                    "cuts": [
+                      "a"
+                    ],
+                    "protect2": [
+                      "x"
+                    ],
+                    "protect1": [
+                      "x"
+                    ],
+                    "legal": false
+                  }
+                ]
+              },
+              "children": [],
+              "count": 1
+            }
+          }
+        ],
+        "count": 2
+      }
+    }
+  },
+  "source_correspondence": {
+    "G1_C_assignment": "p118 sets P={a},Q empty for A2 C; all-three-legal is not required",
+    "G3_sole_child": "p120 resets P,Q on sole A2/A3 child; physical protections persist",
+    "G3_endpoint": "p120 old A2/current A2 two-child endpoint retains a,Q empty",
+    "depth": "p110 physical protected top restricts eligibility independently of P/Q"
+  },
+  "source_Q_ambiguity": "Thirteen-leaf Q={x,u} uses displayed p119 recurrence; prose adds the cut endpoint instead. New twelve-leaf history does not use this ambiguity.",
+  "references": [
+    {
+      "key": "old_catalog",
+      "path": "research/rmaf/thesis_complexity/repair/controls-frozen.json",
+      "sha256": "a96b66716ec2b1f2c68ce38461413859bd3ca7bb504d7f2b4f6ca85f29e55185"
+    },
+    {
+      "key": "nine",
+      "path": "research/rmaf/results/thesis-complexity-reachable-trace.json",
+      "sha256": "7f8078f182130293020e6591160ef267c928918790b1f7a287a9264f4fb3ac1e"
+    },
+    {
+      "key": "thirteen",
+      "path": "research/rmaf/results/thesis-complexity-three-credit-trace.json",
+      "sha256": "300e0bad79d29b18d8767c3117ee99f62b8dc34e31beda5d7c4a2d7595635fd2"
+    },
+    {
+      "key": "interface",
+      "path": "research/rmaf/results/thesis-runtime-repair-fresh-review-interface.json",
+      "sha256": "cd7db7820ef8b7feccd0a6b58ad07106bc22f13df950e55119cece54f56245b6"
+    },
+    {
+      "key": "inside",
+      "path": "research/rmaf/results/thesis-runtime-repair-fresh-review-history-final.json",
+      "sha256": "ceeb39b578841ea05469ec6372006dc73683a8b2584603abe1895631af960785"
+    },
+    {
+      "key": "inside_replay",
+      "path": "research/rmaf/results/thesis-runtime-repair-fresh-review-history-replay.json",
+      "sha256": "ef16e66adafc33c5db3859a9dbf661d8f5fba7a1b9d83de473d3606ad95b7200"
+    },
+    {
+      "key": "inside_lean",
+      "path": "research/rmaf/results/thesis-runtime-repair-fresh-review-history-lean.json",
+      "sha256": "a74d32b982f175095103f80e45b1c80eb8691c0f68c6e0ac361bb82d45420a16"
+    },
+    {
+      "key": "prior_summary",
+      "path": "research/rmaf/results/thesis-runtime-repair-summary.json",
+      "sha256": "81ac29d4018acf0abd27b3d669195256951c3f71265e90b9b07d01e5a67c2900"
+    },
+    {
+      "key": "prior_manifest",
+      "path": "research/rmaf/thesis_complexity/repair/manifest.json",
+      "sha256": "beb0b007a16b820779e6cef3dc73c9ba0948690e6ce1560b7570ea084d532bfb"
+    }
+  ],
+  "failure_conditions": [
+    "wrong exact fixture",
+    "accepted planted outside-b conclusion",
+    "negative terminal undercount",
+    "silent Q convention change",
+    "credit/protection conflation",
+    "unlicensed frontier allowance"
+  ]
+}

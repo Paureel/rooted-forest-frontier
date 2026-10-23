@@ -1,0 +1,96 @@
+import GroupedTargets
+namespace OrdinaryDispatch.Hard2Size
+open RMAF ForestState ForestGroups RestrictionBridge Universal233 Universal233.BothBad
+open Universal233.CherryBranching Universal233.Hard2Overlap
+open OrdinaryDispatch.Hard2Dispatcher
+
+theorem good_pair_target_bound (actual : Ordinary) (T S : Tree) (A B C : List Nat) (q : Nat)
+ (call : Call) (mem : call∈(OrdinaryDispatch.GoodPairDP.runPair actual T S A B C q).calls) : TargetBound T call.target := by
+ unfold OrdinaryDispatch.GoodPairDP.runPair at mem
+ split at mem
+ · try dsimp only at mem
+   split at mem
+   · simp at mem
+   · try dsimp only at mem
+     split at mem
+     · have eq := congrArg Call.target (List.mem_singleton.1 mem)
+       rw [eq]
+       exact local_target_bound T C
+     · simp at mem
+ · simp at mem
+
+theorem hard_paid_target_bound (actual : Ordinary) (T S : Tree) (q : Nat) (c : Candidate) (out : Result)
+ (call : Call) (mem : call∈(Hard2PaidLocal.runHardPaid actual T S q c out).calls) : TargetBound T call.target := by
+ obtain ⟨o,ho,target,_,_⟩ := Hard2PaidLocal.actual_paid_full_payment actual T S q c out call mem
+ rw [target]
+ exact self_target_bound T
+
+theorem bad_pair_target_bound (actual : Ordinary) (T S : Tree) (A B C : List Nat)
+ (edge : RMAF.Vertex×RMAF.Vertex) (q : Nat) (call : Call)
+ (mem : call∈(badPair actual T S A B C edge q).calls) : TargetBound T call.target := by
+ unfold badPair at mem
+ split at mem
+ · exact execute_target_bound (GenericForest.solve actual) T S q _ call mem
+ · exact grouped_execution_target_bound actual T S A B C edge q call mem
+
+theorem paidCase_target_bound (actual : Ordinary) (T S : Tree) (c : Candidate) (q : Nat) (out : Result)
+ (call : Call) (mem : call∈(paidCase actual T S c q out).calls) : TargetBound T call.target := by
+ unfold paidCase at mem
+ split at mem
+ · try dsimp only at mem
+   split at mem
+   · try dsimp only at mem
+     split at mem
+     · exact good_pair_target_bound actual T S _ _ _ q call mem
+     · split at mem
+       · exact hard_paid_target_bound actual T S q c _ call mem
+       · exact bad_pair_target_bound actual T S _ _ _ _ q call mem
+   · exact hard_paid_target_bound actual T S q c _ call mem
+ · simp at mem
+
+theorem unit_target_bound (S T : Tree) (a b q : Nat) (call : Call)
+ (mem : call∈Hard2Combine.unitCalls S T a b q) : TargetBound T call.target := by
+ obtain ⟨child,hchild,hm⟩ := List.mem_filterMap.1 mem
+ obtain ⟨r,hr,eq⟩ := Option.map_eq_some_iff.1 hm
+ have target : call.target=some T := (congrArg Call.target eq).symm
+ rw [target]
+ exact self_target_bound T
+
+theorem combined_target_bound (actual : Ordinary) (T S : Tree) (c : Candidate) (q : Nat) (out : Result)
+ (call : Call) (mem : call∈(Hard2Combine.combine actual T S c.a c.b q (paidCase actual T S c q out)).calls) : TargetBound T call.target := by
+ change call∈Hard2Combine.unitCalls S T c.a c.b q++(paidCase actual T S c q out).calls at mem
+ rcases List.mem_append.1 mem with unit|paid
+ · exact unit_target_bound S T c.a c.b q call unit
+ · exact paidCase_target_bound actual T S c q out call paid
+
+theorem disjoint_query_target_bound (actual : Ordinary) (T S : Tree) (P : List (List Nat)) (q : Nat)
+ (call : Call) (mem : call∈(DisjointParents.query actual T S P q).calls) : TargetBound T call.target := by
+ unfold DisjointParents.query at mem
+ split at mem
+ · exact ordinary_execution_target_bound (GenericForest.solve actual) T S P _ call mem
+ · simp at mem
+
+theorem disjoint_target_bound (actual : Ordinary) (T S : Tree) (a b q : Nat) (call : Call)
+ (mem : call∈(Hard2Trace.disjointExecution actual T S a b q).calls) : TargetBound T call.target := by
+ change call∈Hard2Combine.unitCalls S T a b q++(DisjointParents.query actual T S (pendantPartition S a b) q).calls at mem
+ rcases List.mem_append.1 mem with unit|paid
+ · exact unit_target_bound S T a b q call unit
+ · exact disjoint_query_target_bound actual T S _ q call paid
+
+theorem combined_query_potential (actual : Ordinary) {T S : Tree} {c : Candidate} {q : Nat} {out : Result}
+ (proper : DepthOne.proper T S=true) (hard : CherryBranching.select T S=some (.hard2,c))
+ (selected : runHard2 T S c=some out) (call : Call)
+ (mem : call∈(Hard2Combine.combine actual T S c.a c.b q (paidCase actual T S c q out)).calls) :
+ (labels call.target).length+2*call.budget+2≤(leaves T).length+2*q := by
+ have size := (combined_target_bound actual T S c q out call mem).2
+ have strict := Hard2Trace.combined_calls_strict actual proper hard selected call mem
+ omega
+
+theorem disjoint_query_potential (actual : Ordinary) {T S : Tree} {c : Candidate} (q : Nat)
+ (proper : DepthOne.proper T S=true) (hard : CherryBranching.select T S=some (.hard2,c))
+ (call : Call) (mem : call∈(Hard2Trace.disjointExecution actual T S c.a c.b q).calls) :
+ (labels call.target).length+2*call.budget+2≤(leaves T).length+2*q := by
+ have size := (disjoint_target_bound actual T S c.a c.b q call mem).2
+ have strict := Hard2Trace.disjointExecution_strict actual q proper hard call mem
+ omega
+end OrdinaryDispatch.Hard2Size

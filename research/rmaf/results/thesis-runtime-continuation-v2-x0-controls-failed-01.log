@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_complexity/continuation_v2/x0/evaluator.py", line 285, in <module>
+    result=controls();path=OUT/'thesis-runtime-continuation-v2-x0-controls.json';path.write_text(json.dumps(result,indent=2));print(json.dumps({k:result[k] for k in ['status','catalog_count','elapsed_seconds']}));print(f"checks={len(result['checks'])}/{len(result['checks'])}; receipt={path}")
+           ^^^^^^^^^^
+  File "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_complexity/continuation_v2/x0/evaluator.py", line 236, in controls
+    s=initial(raw[0]['F1'],raw[0]['F2']);s,rows=trace(s,[r['pair'] for r in raw],[r['chosen_branch'] for r in raw if 'chosen_branch' in r])
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_complexity/continuation_v2/x0/evaluator.py", line 217, in trace
+    s,p,ev,term=normalize(s,pair);assert term is None
+                ^^^^^^^^^^^^^^^^^
+  File "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_complexity/continuation_v2/x0/evaluator.py", line 125, in normalize
+    assert p in pairs or (p[::-1] in pairs and orientation(s,p)),('selection',p,pairs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('selection', ('d', 'a'), [('a', 'c')])

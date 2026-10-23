@@ -1,0 +1,5 @@
+import RSOutputs
+#check OrdinaryDispatch.RecoveryScalar.generate_output_caps
+#print axioms OrdinaryDispatch.RecoveryScalar.generate_output_caps
+#check OrdinaryDispatch.RecoveryScalar.checked_color_caps
+#print axioms OrdinaryDispatch.RecoveryScalar.checked_color_caps

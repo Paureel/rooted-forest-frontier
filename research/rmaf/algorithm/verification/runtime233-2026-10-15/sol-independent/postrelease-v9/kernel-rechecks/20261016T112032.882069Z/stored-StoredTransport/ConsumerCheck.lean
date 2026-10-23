@@ -1,0 +1,5 @@
+import StoredTransport
+#check OrdinaryDispatch.StoredNumeric.retained_width
+#print axioms OrdinaryDispatch.StoredNumeric.retained_width
+#check OrdinaryDispatch.StoredNumeric.retained_nodes
+#print axioms OrdinaryDispatch.StoredNumeric.retained_nodes

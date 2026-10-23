@@ -1,0 +1,2641 @@
+{
+  "cases": [
+    {
+      "case": "T1",
+      "input": {
+        "S": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              [
+                3,
+                5
+              ],
+              [
+                4,
+                6
+              ]
+            ]
+          ],
+          7
+        ],
+        "T": [
+          [
+            [
+              1,
+              [
+                3,
+                4
+              ]
+            ],
+            [
+              2,
+              [
+                5,
+                6
+              ]
+            ]
+          ],
+          7
+        ],
+        "P": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4,
+            5,
+            6
+          ],
+          [
+            7
+          ]
+        ],
+        "A": [
+          1,
+          2
+        ],
+        "B": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "expected_shared_vertices": [
+          "0",
+          "00",
+          "01"
+        ],
+        "expected_mutually_clear_edges": [
+          [
+            "0",
+            "00"
+          ],
+          [
+            "0",
+            "01"
+          ]
+        ],
+        "expected_global_partition_generation_count": 877,
+        "expected_refinement_constrained_min_components": 5,
+        "expected_refinement_constrained_A_retained_min_components": 5,
+        "literal_F": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ]
+        ],
+        "literal_exchange": [
+          [
+            1,
+            2
+          ],
+          [
+            3
+          ],
+          [
+            5
+          ],
+          [
+            4
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ]
+        ]
+      },
+      "G": {
+        "G": "FINITE-NOFIRE",
+        "choice": {
+          "kind": "mutually_clear_original_edge",
+          "edge": [
+            "0",
+            "00"
+          ]
+        },
+        "region_degree_correspondence": true,
+        "shared_vertices": [
+          "0",
+          "00",
+          "01"
+        ],
+        "vertices": [
+          {
+            "vertex": "0",
+            "graph_vertex": 2,
+            "A_regions": [
+              [
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            "B_regions": [
+              [
+                3,
+                4
+              ],
+              [
+                5,
+                6
+              ]
+            ],
+            "occupied_counts": [
+              2,
+              2
+            ],
+            "actual_hull_degrees": [
+              2,
+              2
+            ]
+          },
+          {
+            "vertex": "00",
+            "graph_vertex": 3,
+            "A_regions": [
+              [
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            "B_regions": [
+              [
+                3,
+                4
+              ],
+              [
+                5,
+                6
+              ]
+            ],
+            "occupied_counts": [
+              2,
+              2
+            ],
+            "actual_hull_degrees": [
+              2,
+              2
+            ]
+          },
+          {
+            "vertex": "01",
+            "graph_vertex": 8,
+            "A_regions": [
+              [
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            "B_regions": [
+              [
+                3,
+                4
+              ],
+              [
+                5,
+                6
+              ]
+            ],
+            "occupied_counts": [
+              2,
+              2
+            ],
+            "actual_hull_degrees": [
+              2,
+              2
+            ]
+          }
+        ],
+        "shared_edges": [
+          {
+            "valid_original_orientation": true,
+            "edge": [
+              2,
+              3
+            ],
+            "D": [
+              1,
+              3,
+              4
+            ],
+            "A_sectors": [
+              [
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            "B_sectors": [
+              [
+                3,
+                4
+              ],
+              [
+                5,
+                6
+              ]
+            ],
+            "four_nonempty": true,
+            "A_sector_clear_of_HB": [
+              true,
+              true
+            ],
+            "B_sector_clear_of_HA": [
+              true,
+              true
+            ],
+            "mutually_clear": true,
+            "original_address_edge": [
+              "0",
+              "00"
+            ]
+          },
+          {
+            "valid_original_orientation": true,
+            "edge": [
+              2,
+              8
+            ],
+            "D": [
+              2,
+              5,
+              6
+            ],
+            "A_sectors": [
+              [
+                2
+              ],
+              [
+                1
+              ]
+            ],
+            "B_sectors": [
+              [
+                5,
+                6
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "four_nonempty": true,
+            "A_sector_clear_of_HB": [
+              true,
+              true
+            ],
+            "B_sector_clear_of_HA": [
+              true,
+              true
+            ],
+            "mutually_clear": true,
+            "original_address_edge": [
+              "0",
+              "01"
+            ]
+          }
+        ],
+        "all_shared_have_two_regions": true
+      },
+      "partition_mode": "all_label_partitions_then_refinement_filter",
+      "expected_candidate_denominator": 877,
+      "cap": 2000,
+      "time_cap_seconds": 15,
+      "completed_candidates": 877,
+      "refinement_candidates": 30,
+      "valid_refining_agreement_count": 10,
+      "minimum_components_under_P": 5,
+      "minimum_components_under_P_with_A_retained": 5,
+      "E": "FINITE-NOFIRE",
+      "exchange_instances": 20,
+      "edge_exchange_records": [
+        {
+          "edge": [
+            "0",
+            "00"
+          ],
+          "guards": {
+            "admitted": true,
+            "flags": {
+              "same_original_labels": true,
+              "proper_disjoint_source_partition": true,
+              "selected_distinct_parent_blocks": true,
+              "actual_oriented_original_edge": true,
+              "four_nonempty_sectors": true,
+              "mutually_clear": true,
+              "outside_target_hulls_disjoint": true,
+              "rooted_A_homeomorphic": true
+            },
+            "sectors": {
+              "valid_original_orientation": true,
+              "edge": [
+                2,
+                3
+              ],
+              "D": [
+                1,
+                3,
+                4
+              ],
+              "A_sectors": [
+                [
+                  1
+                ],
+                [
+                  2
+                ]
+              ],
+              "B_sectors": [
+                [
+                  3,
+                  4
+                ],
+                [
+                  5,
+                  6
+                ]
+              ],
+              "four_nonempty": true,
+              "A_sector_clear_of_HB": [
+                true,
+                true
+              ],
+              "B_sector_clear_of_HA": [
+                true,
+                true
+              ],
+              "mutually_clear": true
+            }
+          },
+          "agreement_F_denominator": 10,
+          "receipts": [
+            {
+              "F": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5,
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5,
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 6,
+              "new_components": 6,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 6,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  4
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 6,
+              "new_components": 6,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 6,
+              "new_components": 6,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3,
+                  6
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 6,
+              "new_components": 6,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4,
+                  6
+                ],
+                [
+                  5
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 6,
+              "new_components": 6,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5,
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5,
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 6,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 7,
+              "new_components": 6,
+              "outside_unchanged": true
+            }
+          ],
+          "E": "FINITE-NOFIRE"
+        },
+        {
+          "edge": [
+            "0",
+            "01"
+          ],
+          "guards": {
+            "admitted": true,
+            "flags": {
+              "same_original_labels": true,
+              "proper_disjoint_source_partition": true,
+              "selected_distinct_parent_blocks": true,
+              "actual_oriented_original_edge": true,
+              "four_nonempty_sectors": true,
+              "mutually_clear": true,
+              "outside_target_hulls_disjoint": true,
+              "rooted_A_homeomorphic": true
+            },
+            "sectors": {
+              "valid_original_orientation": true,
+              "edge": [
+                2,
+                8
+              ],
+              "D": [
+                2,
+                5,
+                6
+              ],
+              "A_sectors": [
+                [
+                  2
+                ],
+                [
+                  1
+                ]
+              ],
+              "B_sectors": [
+                [
+                  5,
+                  6
+                ],
+                [
+                  3,
+                  4
+                ]
+              ],
+              "four_nonempty": true,
+              "A_sector_clear_of_HB": [
+                true,
+                true
+              ],
+              "B_sector_clear_of_HA": [
+                true,
+                true
+              ],
+              "mutually_clear": true
+            }
+          },
+          "agreement_F_denominator": 10,
+          "receipts": [
+            {
+              "F": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5,
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5,
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 6,
+              "new_components": 6,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 6,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  4
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 6,
+              "new_components": 6,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 6,
+              "new_components": 6,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3,
+                  6
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 6,
+              "new_components": 6,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4,
+                  6
+                ],
+                [
+                  5
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 6,
+              "new_components": 6,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5,
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5,
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 6,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ],
+                [
+                  7
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 7,
+              "new_components": 6,
+              "outside_unchanged": true
+            }
+          ],
+          "E": "FINITE-NOFIRE"
+        }
+      ],
+      "fires": [],
+      "construction_failures": [],
+      "seconds": 0.006272040999647288
+    },
+    {
+      "case": "root_promoted6",
+      "input": {
+        "S": [
+          [
+            1,
+            2
+          ],
+          [
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              6
+            ]
+          ]
+        ],
+        "T": [
+          [
+            1,
+            [
+              3,
+              4
+            ]
+          ],
+          [
+            2,
+            [
+              5,
+              6
+            ]
+          ]
+        ],
+        "P": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4,
+            5,
+            6
+          ]
+        ],
+        "A": [
+          1,
+          2
+        ],
+        "B": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "expected_shared_vertices": [
+          "",
+          "0",
+          "1"
+        ],
+        "expected_refinement_constrained_min_components": 4,
+        "expected_refinement_constrained_A_retained_min_components": 4,
+        "expected_global_partition_generation_count": 203
+      },
+      "G": {
+        "G": "FINITE-NOFIRE",
+        "choice": {
+          "kind": "mutually_clear_original_edge",
+          "edge": [
+            "",
+            "0"
+          ]
+        },
+        "region_degree_correspondence": true,
+        "shared_vertices": [
+          "",
+          "0",
+          "1"
+        ],
+        "vertices": [
+          {
+            "vertex": "",
+            "graph_vertex": 0,
+            "A_regions": [
+              [
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            "B_regions": [
+              [
+                3,
+                4
+              ],
+              [
+                5,
+                6
+              ]
+            ],
+            "occupied_counts": [
+              2,
+              2
+            ],
+            "actual_hull_degrees": [
+              2,
+              2
+            ]
+          },
+          {
+            "vertex": "0",
+            "graph_vertex": 1,
+            "A_regions": [
+              [
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            "B_regions": [
+              [
+                3,
+                4
+              ],
+              [
+                5,
+                6
+              ]
+            ],
+            "occupied_counts": [
+              2,
+              2
+            ],
+            "actual_hull_degrees": [
+              2,
+              2
+            ]
+          },
+          {
+            "vertex": "1",
+            "graph_vertex": 6,
+            "A_regions": [
+              [
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            "B_regions": [
+              [
+                3,
+                4
+              ],
+              [
+                5,
+                6
+              ]
+            ],
+            "occupied_counts": [
+              2,
+              2
+            ],
+            "actual_hull_degrees": [
+              2,
+              2
+            ]
+          }
+        ],
+        "shared_edges": [
+          {
+            "valid_original_orientation": true,
+            "edge": [
+              0,
+              1
+            ],
+            "D": [
+              1,
+              3,
+              4
+            ],
+            "A_sectors": [
+              [
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            "B_sectors": [
+              [
+                3,
+                4
+              ],
+              [
+                5,
+                6
+              ]
+            ],
+            "four_nonempty": true,
+            "A_sector_clear_of_HB": [
+              true,
+              true
+            ],
+            "B_sector_clear_of_HA": [
+              true,
+              true
+            ],
+            "mutually_clear": true,
+            "original_address_edge": [
+              "",
+              "0"
+            ]
+          },
+          {
+            "valid_original_orientation": true,
+            "edge": [
+              0,
+              6
+            ],
+            "D": [
+              2,
+              5,
+              6
+            ],
+            "A_sectors": [
+              [
+                2
+              ],
+              [
+                1
+              ]
+            ],
+            "B_sectors": [
+              [
+                5,
+                6
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "four_nonempty": true,
+            "A_sector_clear_of_HB": [
+              true,
+              true
+            ],
+            "B_sector_clear_of_HA": [
+              true,
+              true
+            ],
+            "mutually_clear": true,
+            "original_address_edge": [
+              "",
+              "1"
+            ]
+          }
+        ],
+        "all_shared_have_two_regions": true
+      },
+      "partition_mode": "all_label_partitions_then_refinement_filter",
+      "expected_candidate_denominator": 203,
+      "cap": 2000,
+      "time_cap_seconds": 15,
+      "completed_candidates": 203,
+      "refinement_candidates": 30,
+      "valid_refining_agreement_count": 10,
+      "minimum_components_under_P": 4,
+      "minimum_components_under_P_with_A_retained": 4,
+      "E": "FINITE-NOFIRE",
+      "exchange_instances": 20,
+      "edge_exchange_records": [
+        {
+          "edge": [
+            "",
+            "0"
+          ],
+          "guards": {
+            "admitted": true,
+            "flags": {
+              "same_original_labels": true,
+              "proper_disjoint_source_partition": true,
+              "selected_distinct_parent_blocks": true,
+              "actual_oriented_original_edge": true,
+              "four_nonempty_sectors": true,
+              "mutually_clear": true,
+              "outside_target_hulls_disjoint": true,
+              "rooted_A_homeomorphic": true
+            },
+            "sectors": {
+              "valid_original_orientation": true,
+              "edge": [
+                0,
+                1
+              ],
+              "D": [
+                1,
+                3,
+                4
+              ],
+              "A_sectors": [
+                [
+                  1
+                ],
+                [
+                  2
+                ]
+              ],
+              "B_sectors": [
+                [
+                  3,
+                  4
+                ],
+                [
+                  5,
+                  6
+                ]
+              ],
+              "four_nonempty": true,
+              "A_sector_clear_of_HB": [
+                true,
+                true
+              ],
+              "B_sector_clear_of_HA": [
+                true,
+                true
+              ],
+              "mutually_clear": true
+            }
+          },
+          "agreement_F_denominator": 10,
+          "receipts": [
+            {
+              "F": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 4,
+              "new_components": 4,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5,
+                  6
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5,
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 4,
+              "new_components": 4,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 4,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  4
+                ],
+                [
+                  6
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3,
+                  6
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4,
+                  6
+                ],
+                [
+                  5
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5,
+                  6
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5,
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 4,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 6,
+              "new_components": 5,
+              "outside_unchanged": true
+            }
+          ],
+          "E": "FINITE-NOFIRE"
+        },
+        {
+          "edge": [
+            "",
+            "1"
+          ],
+          "guards": {
+            "admitted": true,
+            "flags": {
+              "same_original_labels": true,
+              "proper_disjoint_source_partition": true,
+              "selected_distinct_parent_blocks": true,
+              "actual_oriented_original_edge": true,
+              "four_nonempty_sectors": true,
+              "mutually_clear": true,
+              "outside_target_hulls_disjoint": true,
+              "rooted_A_homeomorphic": true
+            },
+            "sectors": {
+              "valid_original_orientation": true,
+              "edge": [
+                0,
+                6
+              ],
+              "D": [
+                2,
+                5,
+                6
+              ],
+              "A_sectors": [
+                [
+                  2
+                ],
+                [
+                  1
+                ]
+              ],
+              "B_sectors": [
+                [
+                  5,
+                  6
+                ],
+                [
+                  3,
+                  4
+                ]
+              ],
+              "four_nonempty": true,
+              "A_sector_clear_of_HB": [
+                true,
+                true
+              ],
+              "B_sector_clear_of_HA": [
+                true,
+                true
+              ],
+              "mutually_clear": true
+            }
+          },
+          "agreement_F_denominator": 10,
+          "receipts": [
+            {
+              "F": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 4,
+              "new_components": 4,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5,
+                  6
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5,
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 4,
+              "new_components": 4,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 4,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  4
+                ],
+                [
+                  6
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3,
+                  6
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4,
+                  6
+                ],
+                [
+                  5
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 5,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5,
+                  6
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5,
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 5,
+              "new_components": 4,
+              "outside_unchanged": true
+            },
+            {
+              "F": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "Fprime": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ],
+                [
+                  6
+                ]
+              ],
+              "construction_succeeded": true,
+              "old_components": 6,
+              "new_components": 5,
+              "outside_unchanged": true
+            }
+          ],
+          "E": "FINITE-NOFIRE"
+        }
+      ],
+      "fires": [],
+      "construction_failures": [],
+      "seconds": 0.006068833999961498
+    }
+  ]
+}

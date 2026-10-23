@@ -1,0 +1,7 @@
+import RIWords
+#check OrdinaryDispatch.RecoveryInitialBits.ownedEqual_value
+#print axioms OrdinaryDispatch.RecoveryInitialBits.ownedEqual_value
+#check OrdinaryDispatch.RecoveryInitialBits.ownedNodup_value
+#print axioms OrdinaryDispatch.RecoveryInitialBits.ownedNodup_value
+#check OrdinaryDispatch.RecoveryInitialBits.ownedColor_work
+#print axioms OrdinaryDispatch.RecoveryInitialBits.ownedColor_work

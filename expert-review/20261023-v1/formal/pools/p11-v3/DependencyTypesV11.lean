@@ -1,0 +1,13 @@
+import CompleteNamedSources
+open RMAF Universal233 WholeSourceWork
+open OrdinaryDispatch.Hard2SourceWork
+open Universal233.Rule5ExecutionSource Universal233.Rule5FinalClassification
+#check bothBadDispatchLocalSource
+#check groupRunOutputLocalSource
+#check groupOutputAnswerMeter
+#check runSelectedSource
+#check Universal233.Rule5PendantLocalWork.finalMeter
+#check Universal233.BothBad.Entry
+#check Universal233.BothBadGrouped.Evaluation
+#check Universal233.BothBadGrouped.PairExecution
+#check Universal233.BothBadGrouped.OutputResult

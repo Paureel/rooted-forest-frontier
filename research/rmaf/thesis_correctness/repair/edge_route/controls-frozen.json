@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "frozen_before_repair_proof_construction": true,
+  "rho_convention": "labelled unary root; original edges retain their bottom-node or cluster identity",
+  "controls": [
+    {"id":"raw-cover-failure","T1":["a",["b",["c","d"]]],"T2":[[["a","c"],"b"],"d"],"pair":["c","d"],"cut_clusters":[["a","c"],["a"]],"expected_optimum_cuts":2,"expected_blocks":[["a"],["c"],["rho","b","d"]],"expected_universal_raw_cover":false,"expected_existential_covered_optimum":true},
+    {"id":"standalone-normalization-failure","T1":[["a","b"],["c","d"]],"T2":[["a","c"],["b","d"]],"F1_blocks":[["a","c"],["b"],["d"],["rho"]],"pair":["a","c"],"cut_clusters":[["a"],["c"]],"normalized_cut_clusters":[["a","c"]],"expected_original_AF":true,"expected_normalized_AF":false,"expected_active_containment":false},
+    {"id":"compatible-normalization-twin","T1":[["a","c"],["b","d"]],"T2":[["a","c"],["b","d"]],"pair":["a","c"],"cut_clusters":[["a"],["c"]],"normalized_cut_clusters":[["a","c"]],"expected_original_AF":true,"expected_normalized_AF":true,"expected_active_containment":true},
+    {"id":"root-parent-absent","T1":[["a","c"],"b"],"T2":[["a","b"],"c"],"F2_initial_cut_clusters":[["a","b","c"]],"pair":["a","c"],"cut_clusters":[["a"],["b"],["c"]],"E2_clusters":[["b"]],"normalized_cut_clusters":[["b"]],"expected_original_AF":true,"expected_normalized_AF":true,"expected_lca_parent_exists":false,"expected_active_containment":true}
+  ],
+  "negative_checks": ["wrong optimum must be rejected","bad normalization fixture must fail AF validation","omitting active containment must admit the known invalid fixture","pretending the LCA parent exists in the root fixture must be rejected"],
+  "acceptance": "Every expected Boolean and exact cut/block count must match, with no tolerance. A root-boundary census counts only executed premises with an absent LCA-parent and at least two path cuts. Counterexamples must satisfy actual AF/component compatibility; standalone-domain failures do not refute the valid-active-state target."
+}

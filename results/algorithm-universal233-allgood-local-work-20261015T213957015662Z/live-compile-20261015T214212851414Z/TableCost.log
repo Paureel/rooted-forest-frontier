@@ -1,0 +1,35 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/TableCost.lean:11:81: error: No goals to be solved
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/TableCost.lean:11:10: error: unsolved goals
+case leaf
+cs : List Nat
+owner : Nat → Nat
+hc : cs ≠ []
+x : Nat
+p : Paint
+hp : p ∈ table cs owner (Tree.leaf x)
+eq : p = Paint.leaf x (owner x)
+⊢ erase p = Tree.leaf x
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/TableCost.lean:54:1: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  j ≥ 0
+  i ≥ 0
+  h ≥ 0
+  g ≥ 0
+  g - h ≥ -1
+  f ≥ 0
+  f - j ≥ 9
+  e ≥ 0
+  e - f ≥ -8
+  e - i ≤ 0
+  d ≥ 0
+  a ≥ 0
+  a - d ≥ 0
+where
+ a := ↑N
+ d := ↑(treeNodes t)
+ e := ↑(2 * (24 * N) + 12) * ↑(table cs owner t).length
+ f := ↑(meterChoose (meterEdgeCost c) (table cs owner t)).work
+ g := ↑cs.length
+ h := ↑(table cs owner t).length
+ i := ↑(2 * (24 * N) + 12) * ↑(cs.length + 1)
+ j := ↑(48 * N + 12) * ↑(cs.length + 1)

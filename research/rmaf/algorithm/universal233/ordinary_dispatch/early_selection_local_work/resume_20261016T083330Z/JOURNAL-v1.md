@@ -1,0 +1,20 @@
+# Continued early local-work proof
+
+- Read only the new target first; immediately wrote RESUME-SKELETON-v1.json.
+- Read applicable project/toolkit and proving, controls, timing, source, acceptance, independence skills. No children or peer messages. The task overrides fresh-agent steps; this author's outcome remains CLOSED-UNVERIFIED or OPEN, with nonauthor acceptance pending.
+- Toolkit index capability search found no Lean source-counter audit package. Reuse the already controlled completed checker instrument unchanged and wrap the measured own pilot for new paths, memory cap and receipts; no new extractor or dependency rebuild.
+- All 38 own checkpoint files match the resume pins. All 4639 functional and 1072 checker immutable members match their manifests. Hash identity is not replication. Initial metadata introspection failed on dict.lower; corrected, no evidence/source mutation.
+- Existing ELPrimitives through ELOuter are retained unchanged, including their value proofs and polynomial envelopes. Existing source modes and inodes are preserved. The previous journal omitted the already compiled ELEarly/ELOuter final step; these sources now show the Rule4.select, two-orientation early and FastSolve prefix envelopes.
+- Existing CONTROLS-PIN-v1.md and X0-v1.json remain the control specification; no control regenerated. A new executed same-lineage source replay and audit will retain every failure.
+- Public interfaces planned: exact CherryBranching.select <=2048*(N+1)^5, exact Rule4.select <=262144*(N+1)^6, both-orientation Early <=1048576*(N+1)^6, nonrecursive prefix <=2097152*(N+1)^6, under literal treeNodes caps only. Raw choice bounds precede acceptance and every visited failed guard is charged. Weighted scalar model is conditional, never native/bit/compiler semantics.
+
+## Executed continuation
+
+- Replayed all ten original EL modules unchanged. Added ERInterface with public selector envelopes and a theorem that Rule4 refusal records every failed raw guard. Its three failed proof attempts are retained as sources and compiler receipts. The wrapper's first `-M=3072` attempt failed before elaboration; corrected to `-M3072`, with the failed wrapper retained. ERControls first lacked a Decidable instance for the dependent prefix match; replaced that single proof by direct reduction and retained the failure.
+- Executed output: `("crossed", [false, false, false, false, false, false, false], [6, 5, 4, 3, 2, 1, 0])`.
+- Executed output: `("toy", some 1, 24, [2, 1, 0], [(2, 1)])`; `("orientations", [1, 3, 4, 5, 6, 7, 9])`; `("primitive_work_leaf", 16)`.
+- Executed negative output: `FALSE_SOURCE_CONTROLS_CAUGHT 10`. The ten `by decide` false claims each produced `is false` diagnostics. Hash drift, missing producer, duplicate occurrence and a real custom axiom were also rejected by clean/corrupted twins.
+- Executed audit output: `PASS_AUTHOR_ACTUAL_EARLY_UNIT_SCALAR_OPEN 706 AX ['Classical.choice', 'Quot.sound', 'propext']`. This is the named source/controls/body audit result, not full algorithm or scientific acceptance.
+- All 5711 completed dependency member records retained hashes, modes and inodes. Only the exact completed EarlyControls source/olean pair needed an additional readonly snapshot; all other imports used the checker's readonly closure. No dependency compilation occurred. The compile refusal guard admits only the ten owned modules or new ER-prefixed modules.
+- Reproducibility wrapper now supports a fresh EARLY_RESUME_RECEIPT without editing sealed input files; a tiny 3+4=7 Lean run passed after that wrapper-only change. Previous wrapper and exact executed audit source are retained. The maximum measured Lean process in this receipt was under two seconds, far below the per-process 60-second cap; no scale-up was needed.
+- Applied the prose-lint honesty/number and plain-language passes. Read the referee-sim skill, but did not perform its fresh-agent step because the explicit task forbids children/contact; this is disclosed and nonauthor acceptance remains pending.

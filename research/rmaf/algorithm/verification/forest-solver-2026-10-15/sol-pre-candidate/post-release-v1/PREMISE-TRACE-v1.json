@@ -1,0 +1,1211 @@
+[
+  {
+    "consumer": "ForestProgram",
+    "premise_name": "OrdinaryIH",
+    "definitions": [
+      {
+        "module": "ForestProgram",
+        "line": 86,
+        "verbatim": "structure OrdinaryIH (ordinary : Tree \u2192 Tree \u2192 Nat \u2192 Option Forest) where\n  sound : \u2200 t s q F, DepthOne.proper t s = true \u2192 ordinary t s q = some F \u2192\n    agreement t s F = true \u2227 F.length-1 \u2264 q \u2227\n      \u2200 G, agreement t s G = true \u2192 F.length \u2264 G.length\n  complete : \u2200 t s q G, DepthOne.proper t s = true \u2192 agreement t s G = true \u2192\n    G.length-1 \u2264 q \u2192 \u2203 F, ordinary t s q = some F"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 86,
+        "text": "structure OrdinaryIH (ordinary : Tree \u2192 Tree \u2192 Nat \u2192 Option Forest) where"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestProgram",
+    "premise_name": "ExactAt",
+    "definitions": [
+      {
+        "module": "ForestProgram",
+        "line": 93,
+        "verbatim": "def ExactAt (f : Option Tree \u2192 List Tree \u2192 Nat \u2192 Option Forest) : Prop"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 93,
+        "text": "def ExactAt (f : Option Tree \u2192 List Tree \u2192 Nat \u2192 Option Forest) : Prop :="
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestProgram",
+    "premise_name": "DisjointExact",
+    "definitions": [
+      {
+        "module": "ForestProgram",
+        "line": 100,
+        "verbatim": "def DisjointExact (ordinary : Tree \u2192 Tree \u2192 Nat \u2192 Option Forest) : Prop"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 100,
+        "text": "def DisjointExact (ordinary : Tree \u2192 Tree \u2192 Nat \u2192 Option Forest) : Prop :="
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestReplace",
+    "premise_name": "source_component",
+    "definitions": [
+      {
+        "module": "Materialize",
+        "line": 5,
+        "verbatim": "theorem source_component (S : Tree) (Q : List (List Nat)) (s : Tree) :\n    s \u2208 sourceForest S Q \u2194 \u2203 U \u2208 Q, restrict U S = some s"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 52,
+        "text": "  obtain \u27e8U,hU,hr\u27e9 := (source_component s Q u).1 hu"
+      },
+      {
+        "line": 85,
+        "text": "      exact \u27e8u,by simp [replaced,(source_component r Q u).2 \u27e8U,hU,hu\u27e9],"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestReplace",
+    "premise_name": "component_labels",
+    "definitions": [
+      {
+        "module": "GroupForward",
+        "line": 26,
+        "verbatim": "theorem component_labels (t u : Tree) (U : List Nat) (Q : List (List Nat))\n    (hr : restrict U t = some u) (proper : (leaves t).Nodup)\n    (hQ : partitionCheck (leaves t) Q = true) (hU : U \u2208 Q) : (leaves u).Perm U"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 53,
+        "text": "  have hl := component_labels s u U Q hr hsn hQ hU"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestReplace",
+    "premise_name": "local_partition",
+    "definitions": [
+      {
+        "module": "GroupPartition",
+        "line": 96,
+        "verbatim": "theorem local_partition (t u : Tree) (U : List Nat) (F Q : List (List Nat))\n    (hr : restrict U t = some u) (hF : partitionCheck (leaves t) F = true)\n    (hQ : partitionCheck (leaves t) Q = true) (href : Refines F Q) (hU : U \u2208 Q) :\n    partitionCheck (leaves u) (family U F) = true"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 58,
+        "text": "  refine \u27e8\u27e8local_partition s u U (family (leaves s) F) Q hr hc.1.1 hQ href hU,?_\u27e9,?_\u27e9"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestReplace",
+    "premise_name": "source_topology",
+    "definitions": [
+      {
+        "module": "Equivalence",
+        "line": 5,
+        "verbatim": "theorem source_topology (T S s : Tree) (U B : List Nat)\n    (hs : restrict U S = some s) (sub : B \u2286 U) :\n    targetAgrees (some T) s B = restrictionAgrees T S B"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 62,
+        "text": "    rw [source_topology t s u U B hr hBU]"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestReplace",
+    "premise_name": "pairwise_transport",
+    "definitions": [
+      {
+        "module": "GroupEmbedding",
+        "line": 237,
+        "verbatim": "theorem pairwise_transport (t u : Tree) (U : List Nat) (F : List (List Nat))\n    (hu : restrict U t = some u) (sub : \u2200 B \u2208 F, B \u2286 U) :\n    pairwiseEmbeddings t F = true \u2194 pairwiseEmbeddings u F = true"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 64,
+        "text": "  \u00b7 exact (pairwise_transport s u U _ hr"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestReplace",
+    "premise_name": "generated_source_valid",
+    "definitions": [
+      {
+        "module": "SourceValidity",
+        "line": 87,
+        "verbatim": "theorem generated_source_valid (T : Tree) (color : Nat \u2192 Nat) (q : Nat) (o : Output)\n    (ho : o \u2208 (generate T color q).outputs) :\n    partitionCheck (leaves T) o.partition = true \u2227 pairwiseEmbeddings T o.partition = true"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 98,
+        "text": "  have hQ := (generated_source_valid s color q o ho).1"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestReplace",
+    "premise_name": "generate_original_realization",
+    "definitions": [
+      {
+        "module": "Realization",
+        "line": 109,
+        "verbatim": "theorem generate_original_realization (T : Tree) (color : Nat \u2192 Nat) (q : Nat)\n    (o : Output) (ho : o \u2208 (generate T color q).outputs) : RealizedOutput T o"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 105,
+        "text": "  obtain \u27e8_,_,cs,_,_,_,_,_,_,_,hc\u27e9 := generate_original_realization s color q o ho"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestReplace",
+    "premise_name": "checked_materialization",
+    "definitions": [
+      {
+        "module": "Materialize",
+        "line": 35,
+        "verbatim": "theorem checked_materialization (S : Tree) (Q : List (List Nat))\n    (properS : (leaves S).Nodup) (hQ : partitionCheck (leaves S) Q = true) :\n    (sourceForest S Q).length = Q.length \u2227\n    ((sourceForest S Q).map leaves).flatten.Perm Q.flatten \u2227\n    (\u2200 s \u2208 sourceForest S Q, \u2203 U \u2208 Q, restrict U S = some s \u2227\n      (leaves s).Perm U \u2227 (leaves s).Nodup \u2227 leaves s \u2260 [])"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 24,
+        "text": "  have mat := checked_materialization s Q hsn hQ"
+      },
+      {
+        "line": 104,
+        "text": "  have hm := (checked_materialization s o.partition hn hQ).1"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestReplace",
+    "premise_name": "checked_flatten_perm",
+    "definitions": [
+      {
+        "module": "GroupReconstruction",
+        "line": 7,
+        "verbatim": "theorem checked_flatten_perm (L : List Nat) (F : List (List Nat))\n    (proper : L.Nodup) (hp : partitionCheck L F = true) : F.flatten.Perm L"
+      },
+      {
+        "module": "Lemmas",
+        "line": 78,
+        "verbatim": "theorem checked_flatten_perm (L : List Nat) (F : List (List Nat))\n    (hn : L.Nodup) (hp : partitionCheck L F = true) : F.flatten.Perm L"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 25,
+        "text": "  have loc := mat.2.1.trans (checked_flatten_perm (leaves s) Q hsn hQ)"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestReverse",
+    "premise_name": "cross_subblocks",
+    "definitions": [
+      {
+        "module": "GroupReconstruction",
+        "line": 78,
+        "verbatim": "theorem cross_subblocks (t : Tree) (Q : List (List Nat))\n    (hq : pairwiseEmbeddings t Q = true) (U V B C : List Nat)\n    (hU : U \u2208 Q) (hV : V \u2208 Q) (hne : U \u2260 V) (hBU : B \u2286 U) (hCV : C \u2286 V) :\n    Clear (minimalVertices B t) (minimalVertices C t)"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 69,
+        "text": "    \u00b7 exact cross_subblocks s Q sourceQ U V B C hU hV he hBU hCV"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestReverse",
+    "premise_name": "checked_restrictions",
+    "definitions": [
+      {
+        "module": "Materialize",
+        "line": 9,
+        "verbatim": "theorem checked_restrictions (S : Tree) (Q : List (List Nat))\n    (properS : (leaves S).Nodup) (hQ : partitionCheck (leaves S) Q = true) :\n    \u2200 U \u2208 Q, \u2203 s, restrict U S = some s \u2227 (leaves s).Perm U"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 39,
+        "text": "    obtain \u27e8u,hu,hl\u27e9 := checked_restrictions s Q hsn hQ U hU"
+      },
+      {
+        "line": 50,
+        "text": "    obtain \u27e8u,hu,hl\u27e9 := checked_restrictions s Q hsn hQ U hU"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestReverse",
+    "premise_name": "Refines",
+    "definitions": [
+      {
+        "module": "CherryCoarsening",
+        "line": 158,
+        "verbatim": "def Refines {t} (P Q : SourcePartition t) : Prop"
+      },
+      {
+        "module": "Composition",
+        "line": 7,
+        "verbatim": "def Refines (F Q : List (List Nat)) : Prop"
+      },
+      {
+        "module": "GroupPartition",
+        "line": 7,
+        "verbatim": "def Refines (F Q : List (List Nat)) : Prop"
+      },
+      {
+        "module": "Parents",
+        "line": 5,
+        "verbatim": "def Refines (F P : List (List Nat)) : Prop"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 34,
+        "text": "    (href : RestrictionBridge.Refines (family (leaves s) F) Q)"
+      },
+      {
+        "line": 76,
+        "text": "      RestrictionBridge.Refines (family (leaves s) F) Q := by"
+      },
+      {
+        "line": 95,
+        "text": "  have href : RestrictionBridge.Refines (family (leaves s) F) Q := by"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestOverlap",
+    "premise_name": "disjoint_parent_overlap_nonlabel",
+    "definitions": [
+      {
+        "module": "Bridge",
+        "line": 348,
+        "verbatim": "theorem disjoint_parent_overlap_nonlabel (D E : List Nat) (t : RMAF.Tree) (v : Vertex)\n    (hDE : \u2200 x, x \u2208 D \u2192 x \u2208 E \u2192 False)\n    (hd : v \u2208 RMAF.minimalVertices D t) (he : v \u2208 RMAF.minimalVertices E t) :\n    \u00acselectedLeaves D t v \u2227 \u00acselectedLeaves E t v"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 77,
+        "text": "  have hn := disjoint_parent_overlap_nonlabel _ _ t v"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestOverlap",
+    "premise_name": "executable_region_count_two_or_three",
+    "definitions": [
+      {
+        "module": "Bridge",
+        "line": 427,
+        "verbatim": "theorem executable_region_count_two_or_three (D : List Nat) (t : RMAF.Tree) (v : Vertex)\n    (hn : \u00acselectedLeaves D t v) (hv : v \u2208 RMAF.minimalVertices D t) :\n    (regions D t v).length = 2 \u2228 (regions D t v).length = 3"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 79,
+        "text": "  exact \u27e8hn.1,hn.2,executable_region_count_two_or_three _ t v hn.1 hv,"
+      },
+      {
+        "line": 80,
+        "text": "    executable_region_count_two_or_three _ t v hn.2 hw\u27e9"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestOverlap",
+    "premise_name": "original_colors_at_least_two",
+    "definitions": [
+      {
+        "module": "OriginalColors",
+        "line": 41,
+        "verbatim": "theorem original_colors_at_least_two (D : List Nat) (T : Tree) (v : RMAF.Vertex)\n    (hn : (leaves T).Nodup) (hs : \u2200 x, x \u2208 D \u2192 x \u2208 leaves T)\n    (hnv : \u00acselectedLeaves D T v) (hv : v \u2208 minimalVertices D T) :\n    2 \u2264 (localColors D (colorLabel T v)).length"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 88,
+        "text": "  have hr := original_colors_at_least_two (leaves s) t v (proper_parts _ _ hp).1 hsupp hn hv"
+      },
+      {
+        "line": 100,
+        "text": "  have hsc := original_colors_at_least_two (leaves s) t v (proper_parts _ _ hp).1"
+      },
+      {
+        "line": 102,
+        "text": "  have hrc := original_colors_at_least_two (leaves r) t v (proper_parts _ _ hp).1"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestOverlap",
+    "premise_name": "generate_color_cost",
+    "definitions": [
+      {
+        "module": "ColorBudget",
+        "line": 192,
+        "verbatim": "theorem generate_color_cost (t : Tree) (color : Nat \u2192 Nat) (q : Nat) (o : Output)\n    (ho : o \u2208 (generate t color q).outputs) :\n    (dedupNat ((leaves t).map color)).length \u2264 o.sourceCuts.length + 1"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 89,
+        "text": "  have hc := generate_color_cost s (colorLabel t v) q o ho"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestOverlap",
+    "premise_name": "generate_mass_of_count",
+    "definitions": [
+      {
+        "module": "WholeMass",
+        "line": 51,
+        "verbatim": "theorem generate_mass_of_count (S : Tree) (color : Nat \u2192 Nat) (q L : Nat)\n    (b : Rat) (hb : 2 \u2264 b)\n    (hr : L + 1 \u2264 (dedupNat ((leaves S).map color)).length) :\n    rawQMass b (generate S color q).outputs \u2264 b ^ (-(L : Int))"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 104,
+        "text": "  have a := generate_mass_of_count s (colorLabel t v) q 1 c hc hsc"
+      },
+      {
+        "line": 105,
+        "text": "  have b := generate_mass_of_count r (colorLabel t v) q 1 c hc hrc"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestOverlap",
+    "premise_name": "rawQMass_append",
+    "definitions": [
+      {
+        "module": "WholeMass",
+        "line": 62,
+        "verbatim": "theorem rawQMass_append (b : Rat) (xs ys : List Output) :\n    rawQMass b (xs ++ ys) = rawQMass b xs + rawQMass b ys"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 106,
+        "text": "  rw [rawQMass_append]"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestOverlap",
+    "premise_name": "original_label_avoids_iff",
+    "definitions": [
+      {
+        "module": "Bridge",
+        "line": 588,
+        "verbatim": "theorem original_label_avoids_iff (t : RMAF.Tree) (D : List Nat) (v : Vertex)\n    (hn : (RMAF.leaves t).Nodup) (hlabels : \u2200 x, x \u2208 D \u2192 x \u2208 RMAF.leaves t)\n    (hno : \u00acselectedLeaves D t v) :\n    (v \u2209 RMAF.minimalVertices D t) \u2194 LabelMonochromatic (colorLabel t v) D"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 148,
+        "text": "    exact (original_label_avoids_iff t B v (proper_parts _ _ hp).1"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestOverlap",
+    "premise_name": "generate_partition_coverage_paid",
+    "definitions": [
+      {
+        "module": "OutputBudget",
+        "line": 69,
+        "verbatim": "theorem generate_partition_coverage_paid (t : Tree) (bs : List (List Nat)) (color : Nat \u2192 Nat)\n    (hnd : (leaves t).Nodup)\n    (hp : partitionCheck (leaves t) bs = true) (he : pairwiseEmbeddings t bs = true)\n    (hm : \u2200 b, b \u2208 bs \u2192 LabelMonochromatic color b)\n    (q : Nat) (hq : bs.length - 1 \u2264 q) :\n    \u2203 o, o \u2208 (generate t color q).outputs \u2227 RefinesBlocks bs o.partition \u2227 o.sourceCuts.length \u2264 q"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 152,
+        "text": "  obtain \u27e8o,ho,href,hbudget\u27e9 := generate_partition_coverage_paid s (family (leaves s) F)"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestConditional",
+    "premise_name": "initial_state_agreement_iff",
+    "definitions": [
+      {
+        "module": "GroupStateFacts",
+        "line": 126,
+        "verbatim": "theorem initial_state_agreement_iff (t s : Tree) (F : List (List Nat))\n    (hp : proper (some t) [s] = true) :\n    agrees (some t) [s] F = true \u2194 agreement t s F = true"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 72,
+        "text": "            have pg := (initial_state_agreement_iff t s G hp).1 ha"
+      },
+      {
+        "line": 76,
+        "text": "            have fs := (initial_state_agreement_iff t s F hp).2 hf"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestConditional",
+    "premise_name": "sources_le_blocks",
+    "definitions": [
+      {
+        "module": "GroupCostProof",
+        "line": 21,
+        "verbatim": "theorem sources_le_blocks (T : Option Tree) (ss : List Tree) (F : List (List Nat))\n    (ha : agrees T ss F = true) : ss.length \u2264 F.length"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 54,
+        "text": "        simpa using sources_le_blocks T ss G ha\u27e9"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestConditional",
+    "premise_name": "OrdinaryIH",
+    "definitions": [
+      {
+        "module": "ForestProgram",
+        "line": 86,
+        "verbatim": "structure OrdinaryIH (ordinary : Tree \u2192 Tree \u2192 Nat \u2192 Option Forest) where\n  sound : \u2200 t s q F, DepthOne.proper t s = true \u2192 ordinary t s q = some F \u2192\n    agreement t s F = true \u2227 F.length-1 \u2264 q \u2227\n      \u2200 G, agreement t s G = true \u2192 F.length \u2264 G.length\n  complete : \u2200 t s q G, DepthOne.proper t s = true \u2192 agreement t s G = true \u2192\n    G.length-1 \u2264 q \u2192 \u2203 F, ordinary t s q = some F"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 43,
+        "text": "assembly premise, not a theorem supplied by `OrdinaryIH` in this package. -/"
+      },
+      {
+        "line": 45,
+        "text": "    (ho : OrdinaryIH ordinary) (hd : DisjointExact ordinary) : ExactAt (solve ordinary) := by"
+      },
+      {
+        "line": 74,
+        "text": "            obtain \u27e8F,hF\u27e9 := ho.complete t s q G pp pg (by simpa [additionalCost] using hq)"
+      },
+      {
+        "line": 75,
+        "text": "            obtain \u27e8hf,hb,hm\u27e9 := ho.sound t s q F pp hF"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestConditional",
+    "premise_name": "DisjointExact",
+    "definitions": [
+      {
+        "module": "ForestProgram",
+        "line": 100,
+        "verbatim": "def DisjointExact (ordinary : Tree \u2192 Tree \u2192 Nat \u2192 Option Forest) : Prop"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 42,
+        "text": "/-- Downstream conditional. `DisjointExact` is a visibly additional OPEN"
+      },
+      {
+        "line": 45,
+        "text": "    (ho : OrdinaryIH ordinary) (hd : DisjointExact ordinary) : ExactAt (solve ordinary) := by"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestLocal",
+    "premise_name": "local_proper",
+    "definitions": [
+      {
+        "module": "GroupDefs",
+        "line": 67,
+        "verbatim": "theorem local_proper (T : Option Tree) (ss : List Tree) (Q : List (List Nat))\n    (hp : proper T ss = true) (hq : partitionCheck (labels T) Q = true)\n    (own : Owns ss Q) (U : List Nat) (hU : U \u2208 Q) :\n    proper (localTarget T U) (owned ss U) = true"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 52,
+        "text": "  have hh := local_proper (some t) ss (ss.map leaves) hp hQ own (leaves s) (List.mem_map.2 \u27e8s,hs,rfl\u27e9)"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestLocal",
+    "premise_name": "local_forward",
+    "definitions": [
+      {
+        "module": "GroupForwardProof",
+        "line": 22,
+        "verbatim": "theorem local_forward (T : Option Tree) (ss : List Tree) (Q F : List (List Nat))\n    (ha : agrees T ss F = true) (hq : partitionCheck (labels T) Q = true)\n    (own : Owns ss Q) (U : List Nat) (hU : U \u2208 Q) :\n    agrees (localTarget T U) (owned ss U) (family U F) = true"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 60,
+        "text": "  have hh := local_forward (some t) ss (ss.map leaves) G ha (proper_parts _ _ hp).2 own"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestLocal",
+    "premise_name": "reverse_reconstruction",
+    "definitions": [
+      {
+        "module": "GroupReconstruction",
+        "line": 126,
+        "verbatim": "theorem reverse_reconstruction (T S : Tree) (Q : List (List Nat))\n    (G : List Nat \u2192 List (List Nat)) (t s : List Nat \u2192 Tree)\n    (properT : (leaves T).Nodup) (properS : (leaves S).Nodup)\n    (hQT : partitionCheck (leaves T) Q = true)\n    (hQS : partitionCheck (leaves S) Q = true)\n    (eT : pairwiseEmbeddings T Q = true) (eS : pairwiseEmbeddings S Q = true)\n    (ht : \u2200 U \u2208 Q, restrict U T = some (t U))\n    (hs : \u2200 U \u2208 Q, restrict U S = some (s U))\n    (ha : \u2200 U \u2208 Q, agreement (t U) (s U) (G U) = true) :\n    agreement T S (Q.flatMap G) = true \u2227\n    (Q.map (fun U => (G U).length - 1)).sum = (Q.flatMap G).length - Q.length \u2227\n    (Q.flatMap G).flatten.Perm (leaves T) \u2227 (Q.flatMap G).flatten.Perm (leaves S)"
+      },
+      {
+        "module": "GroupReverseProof",
+        "line": 76,
+        "verbatim": "theorem reverse_reconstruction (T : Option Tree) (ss : List Tree) (Q : List (List Nat))\n    (G : List Nat \u2192 List (List Nat)) (hp : proper T ss = true)\n    (hq : partitionCheck (labels T) Q = true) (own : Owns ss Q)\n    (cross : CrossClear T ss Q)\n    (ha : \u2200 U \u2208 Q, agrees (localTarget T U) (owned ss U) (G U) = true) :\n    agrees T ss (Q.flatMap G) = true"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 104,
+        "text": "  have hstate := reverse_reconstruction (some t) ss (ss.map leaves) H hp hQ own cross localValid"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestLocal",
+    "premise_name": "reverse_exact_cost",
+    "definitions": [
+      {
+        "module": "GroupCostProof",
+        "line": 66,
+        "verbatim": "theorem reverse_exact_cost (T : Option Tree) (ss : List Tree) (Q : List (List Nat))\n    (G : List Nat \u2192 List (List Nat)) (hp : proper T ss = true)\n    (hq : partitionCheck (labels T) Q = true) (own : Owns ss Q)\n    (ha : \u2200 U \u2208 Q, agrees (localTarget T U) (owned ss U) (G U) = true) :\n    (Q.map (fun U => additionalCost (owned ss U) (G U))).sum = additionalCost ss (Q.flatMap G)"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 105,
+        "text": "  have hcost := reverse_exact_cost (some t) ss (ss.map leaves) H hp hQ own localValid"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestLocal",
+    "premise_name": "executable_span_monotone",
+    "definitions": [
+      {
+        "module": "Composition",
+        "line": 20,
+        "verbatim": "theorem executable_span_monotone (t : RMAF.Tree) (P Q : List Nat)\n    (hsub : \u2200 x, x \u2208 P \u2192 x \u2208 Q) :\n    \u2200 v, v \u2208 RMAF.minimalVertices P t \u2192 v \u2208 RMAF.minimalVertices Q t"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 90,
+        "text": "      (VertexGeometry.executable_span_monotone t _ U hA.2 v hv)"
+      },
+      {
+        "line": 91,
+        "text": "      (VertexGeometry.executable_span_monotone t _ V hB.2 v hw)"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestDisjointPlan",
+    "premise_name": "LocalMinimum",
+    "definitions": [
+      {
+        "module": "LocalSlots",
+        "line": 6,
+        "verbatim": "def LocalMinimum (t s : Tree) (m : Nat) : Prop"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 12,
+        "text": "    (mm : \u2200 s \u2208 ss, LocalMinimum (pair t s).1 (pair t s).2 (m (pair t s))) :"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestDisjointPlan",
+    "premise_name": "Planned",
+    "definitions": [
+      {
+        "module": "QuerySpecification",
+        "line": 5,
+        "verbatim": "def Planned (minimum : P \u2192 Nat) (valid : P \u2192 A \u2192 Prop) : Job P A \u2192 Prop\n  | .resolved p c a => c = minimum p \u2227 valid p a \u2227 c \u2264 1\n  | .hard p => 2 \u2264 minimum p\n\ndef totalMinimum (minimum : P \u2192 Nat) : List (Job P A) \u2192 Nat\n  | [] => 0\n  | j :: js => minimum j.problem + totalMinimum minimum js\n\ninductive AnswersFor (minimum : P \u2192 Nat) (valid : P \u2192 A \u2192 Prop) :\n    List (Job P A) \u2192 List (Nat \u00d7 A) \u2192 Prop where"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 14,
+        "text": "      \u2200 j \u2208 js, Planned m (PairValid m) j := by"
+      },
+      {
+        "line": 35,
+        "text": "        simpa [Planned,\u2190hcost] using hl"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestDisjointPlan",
+    "premise_name": "refused_iff",
+    "definitions": [
+      {
+        "module": "Optimality01",
+        "line": 119,
+        "verbatim": "theorem refused_iff (T S : Tree) : pretest01 T S = .refused \u2194 proper T S = false"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 26,
+        "text": "      have hr := (DepthOne.refused_iff _ _).1 he"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestDisjointPlan",
+    "premise_name": "rejected_lower_bound",
+    "definitions": [
+      {
+        "module": "Optimality01",
+        "line": 100,
+        "verbatim": "theorem rejected_lower_bound (T S : Tree) (h : pretest01 T S = .rejected) :\n    \u2200 F, agreement T S F = true \u2192 2 \u2264 F.length - 1"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 34,
+        "text": "        have hl := DepthOne.rejected_lower_bound _ _ he F hF"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestDisjointPlan",
+    "premise_name": "found_globally_minimum",
+    "definitions": [
+      {
+        "module": "Optimality01",
+        "line": 75,
+        "verbatim": "theorem found_globally_minimum (T S : Tree) (c : Option Vertex)\n    (h : pretest01 T S = .found c) :\n    agreement T S (forest S c) = true \u2227\n    (forest S c).length - 1 = cutCost c \u2227\n    \u2200 F, agreement T S F = true \u2192 cutCost c \u2264 F.length - 1"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 38,
+        "text": "      obtain \u27e8ha,hcost,hminimal\u27e9 := DepthOne.found_globally_minimum _ _ c he"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestDisjointPlan",
+    "premise_name": "cutCost_le_one",
+    "definitions": [
+      {
+        "module": "Optimality01",
+        "line": 71,
+        "verbatim": "theorem cutCost_le_one (c : Option Vertex) : cutCost c \u2264 1"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 49,
+        "text": "        exact \u27e8hcm,\u27e8ha,hcost.trans hcm\u27e9,DepthOne.cutCost_le_one c\u27e9"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestDisjoint",
+    "premise_name": "OrdinaryIH",
+    "definitions": [
+      {
+        "module": "ForestProgram",
+        "line": 86,
+        "verbatim": "structure OrdinaryIH (ordinary : Tree \u2192 Tree \u2192 Nat \u2192 Option Forest) where\n  sound : \u2200 t s q F, DepthOne.proper t s = true \u2192 ordinary t s q = some F \u2192\n    agreement t s F = true \u2227 F.length-1 \u2264 q \u2227\n      \u2200 G, agreement t s G = true \u2192 F.length \u2264 G.length\n  complete : \u2200 t s q G, DepthOne.proper t s = true \u2192 agreement t s G = true \u2192\n    G.length-1 \u2264 q \u2192 \u2203 F, ordinary t s q = some F"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 7,
+        "text": "    (ho : OrdinaryIH ordinary) : DisjointExact ordinary := by"
+      },
+      {
+        "line": 106,
+        "text": "    (ho : OrdinaryIH ordinary) : ExactAt (solve ordinary) :="
+      },
+      {
+        "line": 18,
+        "text": "    obtain \u27e8F,hF\u27e9 := ho.complete _ _ ((family (leaves s) G).length-1) _"
+      },
+      {
+        "line": 20,
+        "text": "    obtain \u27e8hf,hb,hminimal\u27e9 := ho.sound _ _ _ F (pair_actual t ss hp s hs).2.2 hF"
+      },
+      {
+        "line": 43,
+        "text": "    obtain \u27e8hag,hbudget,hmin\u27e9 := ho.sound _ _ _ F (pproper p hpk) hH"
+      },
+      {
+        "line": 52,
+        "text": "    obtain \u27e8F,hF\u27e9 := ho.complete _ _ b K (pproper p hpk) hK (by omega)"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestDisjoint",
+    "premise_name": "schedule_complete_on",
+    "definitions": [
+      {
+        "module": "Regional",
+        "line": 78,
+        "verbatim": "theorem schedule_complete_on (minimum : P \u2192 Nat) (valid : P \u2192 A \u2192 Prop)\n    (solve : P \u2192 Nat \u2192 Option (Nat \u00d7 A)) (Q : List P)\n    (hs : \u2200 p\u2208Q, \u2200 b c a, solve p b=some (c,a) \u2192 c=minimum p \u2227 valid p a)\n    (hc : \u2200 p\u2208Q, \u2200 b, minimum p\u2264b \u2192 \u2203 x, solve p b=some x)\n    (q : Nat) (js : List (Job P A)) (hp : \u2200 j\u2208js, Planned minimum valid j)\n    (hkeys : \u2200 j\u2208js, j.problem\u2208Q) (hq : totalMinimum minimum js\u2264q) :\n    \u2203 xs, (schedule solve q js).answers=some xs"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 64,
+        "text": "  obtain \u27e8xs,hxs\u27e9 := schedule_complete_on m (PairValid m) recPair keys recSound recComplete"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestDisjoint",
+    "premise_name": "schedule_sound_on",
+    "definitions": [
+      {
+        "module": "Regional",
+        "line": 56,
+        "verbatim": "theorem schedule_sound_on (minimum : P \u2192 Nat) (valid : P \u2192 A \u2192 Prop)\n    (solve : P \u2192 Nat \u2192 Option (Nat \u00d7 A)) (Q : List P)\n    (hs : \u2200 p\u2208Q, \u2200 b c a, solve p b=some (c,a) \u2192 c=minimum p \u2227 valid p a)\n    (q : Nat) (js : List (Job P A)) (hp : \u2200 j\u2208js, Planned minimum valid j)\n    (hkeys : \u2200 j\u2208js, j.problem\u2208Q) (xs : List (Nat \u00d7 A))\n    (hr : (schedule solve q js).answers=some xs) :\n    AnswersFor minimum valid js xs \u2227 answerCost xs=totalMinimum minimum js \u2227\n      totalMinimum minimum js\u2264q"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 66,
+        "text": "  obtain \u27e8hans,hansCost,haccepted\u27e9 := schedule_sound_on m (PairValid m) recPair keys recSound"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestDisjoint",
+    "premise_name": "answers_indexed",
+    "definitions": [
+      {
+        "module": "Indexing",
+        "line": 6,
+        "verbatim": "theorem answers_indexed [DecidableEq P] [Inhabited A]\n    (minimum : P \u2192 Nat) (valid : P \u2192 A \u2192 Prop)\n    (js : List (Job P A)) (xs : List (Nat \u00d7 A))\n    (ha : AnswersFor minimum valid js xs) (hn : (js.map Job.problem).Nodup) :\n    \u2203 f : P \u2192 Nat \u00d7 A, (js.map Job.problem).map f=xs \u2227\n      \u2200 j\u2208js, (f j.problem).1=minimum j.problem \u2227 valid j.problem (f j.problem).2"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 72,
+        "text": "  obtain \u27e8f,hf,hvalid\u27e9 := answers_indexed m (PairValid m) js xs hans keysND"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestDisjoint",
+    "premise_name": "totalMinimum_keys",
+    "definitions": [
+      {
+        "module": "Indexing",
+        "line": 35,
+        "verbatim": "theorem totalMinimum_keys (minimum : P \u2192 Nat) (js : List (Job P A)) :\n    totalMinimum minimum js=((js.map Job.problem).map minimum).sum"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 55,
+        "text": "    rw [totalMinimum_keys,hkeys,List.map_map]"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestDisjoint",
+    "premise_name": "disjoint_exact_of_ordinary",
+    "definitions": [
+      {
+        "module": "ForestDisjoint",
+        "line": 6,
+        "verbatim": "theorem disjoint_exact_of_ordinary (ordinary : Tree \u2192 Tree \u2192 Nat \u2192 Option Forest)\n    (ho : OrdinaryIH ordinary) : DisjointExact ordinary"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 6,
+        "text": "theorem disjoint_exact_of_ordinary (ordinary : Tree \u2192 Tree \u2192 Nat \u2192 Option Forest)"
+      },
+      {
+        "line": 107,
+        "text": "  conditional_exact ordinary ho (disjoint_exact_of_ordinary ordinary ho)"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestDisjoint",
+    "premise_name": "conditional_exact",
+    "definitions": [
+      {
+        "module": "ForestConditional",
+        "line": 44,
+        "verbatim": "theorem conditional_exact (ordinary : Tree \u2192 Tree \u2192 Nat \u2192 Option Forest)\n    (ho : OrdinaryIH ordinary) (hd : DisjointExact ordinary) : ExactAt (solve ordinary)"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 107,
+        "text": "  conditional_exact ordinary ho (disjoint_exact_of_ordinary ordinary ho)"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestWork",
+    "premise_name": "LocalBillBound",
+    "definitions": [
+      {
+        "module": "ForestWork",
+        "line": 121,
+        "verbatim": "def LocalBillBound (ordinary : Tree \u2192 Tree \u2192 Nat \u2192 Option Forest)\n    (ordinaryWork : Tree \u2192 Tree \u2192 Nat \u2192 Nat) (T : Option Tree) (Q : Nat) (c K : Rat) : Prop"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 121,
+        "text": "def LocalBillBound (ordinary : Tree \u2192 Tree \u2192 Nat \u2192 Option Forest)"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestWork",
+    "premise_name": "meterGenerate",
+    "definitions": [
+      {
+        "module": "Work",
+        "line": 408,
+        "verbatim": "def meterGenerate (t : Tree) (color : Nat \u2192 Nat) (budget : Nat) : Generated"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 29,
+        "text": "    (meterGenerate s (colorLabel t v) q).measured.work +"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestWork",
+    "premise_name": "meterColorLabel",
+    "definitions": [
+      {
+        "module": "ForestColorWork",
+        "line": 124,
+        "verbatim": "def meterColorLabel (T : Tree) (v : RMAF.Vertex) (x : Nat) : Charged Nat"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 30,
+        "text": "      ((leaves s).map fun x => (meterColorLabel t v x).work).sum"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestWork",
+    "premise_name": "meterMinimal",
+    "definitions": [
+      {
+        "module": "ForestGeometryWork",
+        "line": 63,
+        "verbatim": "def meterMinimal (D : List Nat) : Tree \u2192 Charged (List RMAF.Vertex)\n  | .leaf x =>\n    let m"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 22,
+        "text": "    (meterMinimal (leaves a) t).work + (meterMinimal (leaves b) t).work +"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestWork",
+    "premise_name": "generate_output_budget",
+    "definitions": [
+      {
+        "module": "OutputBudget",
+        "line": 58,
+        "verbatim": "theorem generate_output_budget (t : Tree) (color : Nat \u2192 Nat) (q : Nat) (o : Output)\n    (ho : o \u2208 (generate t color q).outputs) : o.sourceCuts.length \u2264 q"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 96,
+        "text": "      generate_output_budget s _ q o ho,by"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestWork",
+    "premise_name": "two_actual_cores_mass",
+    "definitions": [
+      {
+        "module": "ForestOverlap",
+        "line": 93,
+        "verbatim": "theorem two_actual_cores_mass (t : Tree) (ss : List Tree) (hp : proper (some t) ss = true)\n    (s r : Tree) (hs : s \u2208 ss) (hr : r \u2208 ss) (hne : s \u2260 r) (v : RMAF.Vertex)\n    (hv : v \u2208 minimalVertices (leaves s) t) (hw : v \u2208 minimalVertices (leaves r) t)\n    (q : Nat) (c : Rat) (hc : 2 \u2264 c) :\n    rawQMass c ((generate s (colorLabel t v) q).outputs ++\n      (generate r (colorLabel t v) q).outputs) \u2264 2 * c ^ (-1 : Int)"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 109,
+        "text": "  have hm := two_actual_cores_mass t ss hp s r (List.mem_of_getElem? hi) (List.mem_of_getElem? hj)"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestWorkBound",
+    "premise_name": "LocalBillBound",
+    "definitions": [
+      {
+        "module": "ForestWork",
+        "line": 121,
+        "verbatim": "def LocalBillBound (ordinary : Tree \u2192 Tree \u2192 Nat \u2192 Option Forest)\n    (ordinaryWork : Tree \u2192 Tree \u2192 Nat \u2192 Nat) (T : Option Tree) (Q : Nat) (c K : Rat) : Prop"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 19,
+        "text": "/-- Qualified source-operation bound. LocalBillBound covers ONLY the explicitly"
+      },
+      {
+        "line": 24,
+        "text": "    (hc : 2 \u2264 c) (hK : 0 \u2264 K) (hlocal : LocalBillBound ordinary ordinaryWork T Q c K)"
+      },
+      {
+        "line": 31,
+        "text": "    have hloc := hlocal ss q hqQ hp"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestWorkBound",
+    "premise_name": "branch_paid_proper",
+    "definitions": [
+      {
+        "module": "ForestWork",
+        "line": 78,
+        "verbatim": "theorem branch_paid_proper (t : Tree) (ss : List Tree) (hp : proper (some t) ss = true)\n    (h : Overlap) (hh : overlap t ss = some h) (q i : Nat) (o : Output)\n    (hm : (i,o) \u2208 branches t ss h q) :\n    1 \u2264 o.sourceCuts.length \u2227 o.sourceCuts.length \u2264 q \u2227\n      proper (some t) (replace ss i o.partition) = true"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 51,
+        "text": "        have paid := branch_paid_proper t ss (by simpa [ht] using hp) h hh q io.1 io.2 hio"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestWorkBound",
+    "premise_name": "branch_mass_le_one",
+    "definitions": [
+      {
+        "module": "ForestWork",
+        "line": 105,
+        "verbatim": "theorem branch_mass_le_one (t : Tree) (ss : List Tree) (hp : proper (some t) ss = true)\n    (h : Overlap) (hh : overlap t ss = some h) (q : Nat) (c : Rat) (hc : 2 \u2264 c) :\n    ((branches t ss h q).map fun io => c ^ (-(io.2.sourceCuts.length : Int))).sum \u2264 1"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 71,
+        "text": "      have hmass := branch_mass_le_one t ss (by simpa [ht] using hp) h hh q c hc"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestWorkBound",
+    "premise_name": "qpow_clear",
+    "definitions": [
+      {
+        "module": "RationalMass",
+        "line": 153,
+        "verbatim": "theorem qpow_clear (b : Rat) (hb : b \u2260 0) (B d : Nat) (hd : d \u2264 B) :\n    b ^ (B - d) = b ^ B * b ^ (-(d : Int))"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 66,
+        "text": "            rw [qpow_clear c (Rat.ne_of_gt cpos) q _ paid.2.1]"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestTrace",
+    "premise_name": "meterSchedule",
+    "definitions": [
+      {
+        "module": "QueryWork",
+        "line": 73,
+        "verbatim": "def meterSchedule (solve : P \u2192 Nat \u2192 Option (Nat \u00d7 A)) (charge : P \u2192 Nat \u2192 Nat)\n    (q : Nat) (js : List (Job P A)) : MeterReceipt P A"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 41,
+        "text": "    (hk : (p,k) \u2208 (meterSchedule"
+      },
+      {
+        "line": 46,
+        "text": "  unfold meterSchedule at hk"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestTrace",
+    "premise_name": "meter_run_query_keys",
+    "definitions": [
+      {
+        "module": "ForestTrace",
+        "line": 6,
+        "verbatim": "theorem meter_run_query_keys {P A : Type} (rec : P \u2192 Nat \u2192 Option (Nat \u00d7 A))\n    (charge : P \u2192 Nat \u2192 Nat) (b : Nat) (js : List (Job P A)) :\n    \u2200 p k, (p,k) \u2208 (meterRun rec charge b js).queries \u2192\n      k = b \u2227 \u2203 j \u2208 js, j.problem = p"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 6,
+        "text": "theorem meter_run_query_keys {P A : Type} (rec : P \u2192 Nat \u2192 Option (Nat \u00d7 A))"
+      },
+      {
+        "line": 49,
+        "text": "  \u00b7 obtain \u27e8he,j,hjj,hjp\u27e9 := meter_run_query_keys _ _ _ js p k hk"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestTrace",
+    "premise_name": "jobs_proper_and_smaller",
+    "definitions": [
+      {
+        "module": "ForestQueries",
+        "line": 67,
+        "verbatim": "theorem jobs_proper_and_smaller (t : Tree) (ss : List Tree) (hp : proper (some t) ss = true)\n    (hmultiple : 2 \u2264 ss.length) (js : List (Job (Tree \u00d7 Tree) Forest)) (hj : jobs t ss = some js)\n    (j : Job (Tree \u00d7 Tree) Forest) (hjj : j \u2208 js) :\n    DepthOne.proper j.problem.1 j.problem.2 = true \u2227\n      (leaves j.problem.1).length < (leaves t).length \u2227\n      (leaves j.problem.2).length < (leaves t).length"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 51,
+        "text": "    have hh := jobs_proper_and_smaller t ss hp hmultiple js hj j hjj"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestResource",
+    "premise_name": "treeNodes_le_twice_leaves",
+    "definitions": [
+      {
+        "module": "Work",
+        "line": 82,
+        "verbatim": "theorem treeNodes_le_twice_leaves (t : Tree) :\n    treeNodes t + 1 = 2 * (leaves t).length"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 11,
+        "text": "    have hs := treeNodes_le_twice_leaves s"
+      }
+    ],
+    "unresolved_source_statement": false
+  },
+  {
+    "consumer": "ForestResource",
+    "premise_name": "proper_source_size",
+    "definitions": [
+      {
+        "module": "ForestResource",
+        "line": 16,
+        "verbatim": "theorem proper_source_size (T : Option Tree) (ss : List Tree) (hp : proper T ss = true) :\n    sourceNodes ss + ss.length = 2*(labels T).length"
+      }
+    ],
+    "consuming_sites": [
+      {
+        "line": 16,
+        "text": "theorem proper_source_size (T : Option Tree) (ss : List Tree) (hp : proper T ss = true) :"
+      }
+    ],
+    "unresolved_source_statement": false
+  }
+]

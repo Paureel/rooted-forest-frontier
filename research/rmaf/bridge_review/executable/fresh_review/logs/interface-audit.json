@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+    "-o",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/bridge_review/executable/fresh_review/build/InterfaceAudit.olean",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/bridge_review/executable/fresh_review/build/InterfaceAudit.lean"
+  ],
+  "elapsed_seconds": 0.4350807499995426,
+  "returncode": 0,
+  "stdout": "'FreshExecutableReview.exact_walk' depends on axioms: [propext, Quot.sound]\n'FreshExecutableReview.region_from_occurrence' depends on axioms: [propext, Classical.choice, Quot.sound]\n'FreshExecutableReview.occurrence_exact' depends on axioms: [propext, Classical.choice, Quot.sound]\n'FreshExecutableReview.through_original_consumer' depends on axioms: [propext, Classical.choice, Quot.sound]\nminimalVertices_connected : \u2200 (selected : List Nat) (t : Tree), Connected (minimalVertices selected t)\nminimalVertices_nonempty_of_leaf : \u2200 (selected : List Nat) (t : Tree) (x : Nat),\n  x \u2208 leaves t \u2192 x \u2208 selected \u2192 minimalVertices selected t \u2260 []\nextractedSupport : (selected : List Nat) \u2192 (t : Tree) \u2192 minimalVertices selected t \u2260 [] \u2192 ConnectedSupport\nextractedSupport_exact : \u2200 (selected : List Nat) (t : Tree) (hne : minimalVertices selected t \u2260 []),\n  (extractedSupport selected t hne).first :: (extractedSupport selected t hne).rest = minimalVertices selected t\nextractedRegion_exact : \u2200 (selected : List Nat) (t : Tree) (hne : minimalVertices selected t \u2260 []) (v : Vertex),\n  (extractedRegion selected t hne).member v \u2194 v \u2208 minimalVertices selected t\ndeepest_extracted_root_in_neighbor : \u2200 (sa sb : List Nat) (ta tb : Tree) (ha : minimalVertices sa ta \u2260 [])\n  (hb : minimalVertices sb tb \u2260 []),\n  List.length (extractedSupport sb tb hb).root \u2264 List.length (extractedSupport sa ta ha).root \u2192\n    (\u2203 z, z \u2208 minimalVertices sa ta \u2227 z \u2208 minimalVertices sb tb) \u2192\n      (extractedSupport sa ta ha).root \u2208 minimalVertices sb tb\n",
+  "stderr": ""
+}

@@ -1,0 +1,2173 @@
+{
+  "scope": "literal finite controls before integration candidate content",
+  "lineage": "same reviewer, zero additional independent replications",
+  "expected_source": "construction and graph inspection; no checker output used",
+  "count": 49,
+  "controls": [
+    {
+      "id": "empty-partition-null",
+      "op": "partition",
+      "input": {
+        "labels": [],
+        "blocks": []
+      },
+      "expected": {
+        "partition": true
+      },
+      "false_expectation": {
+        "field": "partition",
+        "value": false
+      }
+    },
+    {
+      "id": "proper-partition-order-invariant",
+      "op": "partition",
+      "input": {
+        "labels": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "blocks": [
+          [
+            4,
+            3
+          ],
+          [
+            2
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": {
+        "partition": true
+      },
+      "false_expectation": {
+        "field": "partition",
+        "value": false
+      }
+    },
+    {
+      "id": "empty-block",
+      "op": "partition",
+      "input": {
+        "labels": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "blocks": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          []
+        ]
+      },
+      "expected": {
+        "partition": false
+      },
+      "false_expectation": {
+        "field": "partition",
+        "value": true
+      }
+    },
+    {
+      "id": "duplicate-inside",
+      "op": "partition",
+      "input": {
+        "labels": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "blocks": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            2,
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": {
+        "partition": false
+      },
+      "false_expectation": {
+        "field": "partition",
+        "value": true
+      }
+    },
+    {
+      "id": "duplicate-across",
+      "op": "partition",
+      "input": {
+        "labels": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "blocks": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2,
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": {
+        "partition": false
+      },
+      "false_expectation": {
+        "field": "partition",
+        "value": true
+      }
+    },
+    {
+      "id": "missing-label",
+      "op": "partition",
+      "input": {
+        "labels": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "blocks": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": {
+        "partition": false
+      },
+      "false_expectation": {
+        "field": "partition",
+        "value": true
+      }
+    },
+    {
+      "id": "foreign-label",
+      "op": "partition",
+      "input": {
+        "labels": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "blocks": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3,
+            4,
+            8
+          ]
+        ]
+      },
+      "expected": {
+        "partition": false
+      },
+      "false_expectation": {
+        "field": "partition",
+        "value": true
+      }
+    },
+    {
+      "id": "embedding-clean-clades",
+      "op": "embedding",
+      "input": {
+        "tree": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "blocks": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": {
+        "embeddings": true
+      },
+      "false_expectation": {
+        "field": "embeddings",
+        "value": false
+      }
+    },
+    {
+      "id": "embedding-overlap-despite-disjoint-labels",
+      "op": "embedding",
+      "input": {
+        "tree": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "blocks": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": {
+        "embeddings": false
+      },
+      "false_expectation": {
+        "field": "embeddings",
+        "value": true
+      }
+    },
+    {
+      "id": "swapped-children-agreement",
+      "op": "agreement",
+      "input": {
+        "left": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "right": [
+          [
+            4,
+            3
+          ],
+          [
+            2,
+            [
+              1,
+              0
+            ]
+          ]
+        ],
+        "blocks": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": {
+        "proper_inputs": true,
+        "agreement": true
+      },
+      "false_expectation": {
+        "field": "agreement",
+        "value": false
+      }
+    },
+    {
+      "id": "topology-mismatch-with-disjoint-clades",
+      "op": "agreement",
+      "input": {
+        "left": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "right": [
+          [
+            [
+              0,
+              2
+            ],
+            1
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "blocks": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": {
+        "proper_inputs": true,
+        "agreement": false
+      },
+      "false_expectation": {
+        "field": "agreement",
+        "value": true
+      }
+    },
+    {
+      "id": "singleton-agreement-clean",
+      "op": "agreement",
+      "input": {
+        "left": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "right": [
+          [
+            [
+              0,
+              2
+            ],
+            1
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "blocks": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ]
+        ]
+      },
+      "expected": {
+        "proper_inputs": true,
+        "agreement": true
+      },
+      "false_expectation": {
+        "field": "agreement",
+        "value": false
+      }
+    },
+    {
+      "id": "duplicate-tree-labels-raw-boolean-is-not-instance",
+      "op": "agreement",
+      "input": {
+        "left": [
+          0,
+          0
+        ],
+        "right": [
+          0,
+          0
+        ],
+        "blocks": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": {
+        "proper_inputs": false,
+        "agreement": true
+      },
+      "false_expectation": {
+        "field": "proper_inputs",
+        "value": true
+      }
+    },
+    {
+      "id": "normalization-all-homogeneous-root",
+      "op": "normalize",
+      "input": {
+        "tree": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "colors": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": {
+        "root_origin": "",
+        "groups": [
+          [
+            "",
+            [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            7
+          ]
+        ],
+        "idempotent": true
+      },
+      "false_expectation": {
+        "field": "idempotent",
+        "value": false
+      }
+    },
+    {
+      "id": "normalization-homogeneous-clades",
+      "op": "normalize",
+      "input": {
+        "tree": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "colors": [
+          0,
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": {
+        "root_origin": "",
+        "groups": [
+          [
+            "00",
+            [
+              0,
+              1
+            ],
+            0
+          ],
+          [
+            "01",
+            [
+              2
+            ],
+            1
+          ],
+          [
+            "1",
+            [
+              3,
+              4
+            ],
+            1
+          ]
+        ],
+        "idempotent": true
+      },
+      "false_expectation": {
+        "field": "root_origin",
+        "value": "0"
+      }
+    },
+    {
+      "id": "normalization-does-not-preserve-every-fine-owner",
+      "op": "owners",
+      "input": {
+        "tree": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "colors": [
+          0,
+          0,
+          1,
+          1,
+          1
+        ],
+        "blocks": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ]
+        ]
+      },
+      "expected": {
+        "monochromatic_groups": true,
+        "each_group_has_one_owner": false,
+        "group_owner_ids": [
+          null,
+          2,
+          null
+        ]
+      },
+      "false_expectation": {
+        "field": "each_group_has_one_owner",
+        "value": true
+      }
+    },
+    {
+      "id": "normalization-owner-transport-clean",
+      "op": "owners",
+      "input": {
+        "tree": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "colors": [
+          0,
+          0,
+          1,
+          1,
+          1
+        ],
+        "blocks": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": {
+        "monochromatic_groups": true,
+        "each_group_has_one_owner": true,
+        "group_owner_ids": [
+          0,
+          1,
+          2
+        ]
+      },
+      "false_expectation": {
+        "field": "each_group_has_one_owner",
+        "value": false
+      }
+    },
+    {
+      "id": "refinement-direction",
+      "op": "refinement",
+      "input": {
+        "F": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "Q": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": {
+        "F_refines_Q": true,
+        "Q_refines_F": false
+      },
+      "false_expectation": {
+        "field": "Q_refines_F",
+        "value": true
+      }
+    },
+    {
+      "id": "refinement-overlap-is-not-containment",
+      "op": "refinement",
+      "input": {
+        "F": [
+          [
+            0,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "Q": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": {
+        "F_refines_Q": false,
+        "Q_refines_F": false
+      },
+      "false_expectation": {
+        "field": "F_refines_Q",
+        "value": true
+      }
+    },
+    {
+      "id": "mixed-cherry-left-singleton-clean",
+      "op": "source_partition",
+      "input": {
+        "tree": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "colors": [
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "blocks": [
+          [
+            0
+          ],
+          [
+            1,
+            3,
+            4
+          ],
+          [
+            2
+          ]
+        ],
+        "supports": "minimal",
+        "chosen": [
+          0,
+          1
+        ]
+      },
+      "expected": {
+        "actual": true,
+        "terminal_exact": true,
+        "connected": true,
+        "disjoint": true,
+        "valid": true,
+        "leafless_support": false,
+        "monochromatic": true,
+        "chosen_singletons": [
+          true,
+          false
+        ]
+      },
+      "false_expectation": {
+        "field": "valid",
+        "value": false
+      }
+    },
+    {
+      "id": "mixed-cherry-right-singleton-clean",
+      "op": "source_partition",
+      "input": {
+        "tree": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "colors": [
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "blocks": [
+          [
+            0,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "supports": "minimal",
+        "chosen": [
+          0,
+          1
+        ]
+      },
+      "expected": {
+        "actual": true,
+        "terminal_exact": true,
+        "connected": true,
+        "disjoint": true,
+        "valid": true,
+        "leafless_support": false,
+        "monochromatic": true,
+        "chosen_singletons": [
+          false,
+          true
+        ]
+      },
+      "false_expectation": {
+        "field": "valid",
+        "value": false
+      }
+    },
+    {
+      "id": "mixed-alternative-needs-disjoint-supports",
+      "op": "source_partition",
+      "input": {
+        "tree": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "colors": [
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "blocks": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3,
+            4
+          ]
+        ],
+        "supports": "minimal",
+        "chosen": [
+          0,
+          1
+        ]
+      },
+      "expected": {
+        "actual": true,
+        "terminal_exact": true,
+        "connected": true,
+        "disjoint": false,
+        "valid": false,
+        "leafless_support": false,
+        "monochromatic": true,
+        "chosen_singletons": [
+          false,
+          false
+        ]
+      },
+      "false_expectation": {
+        "field": "valid",
+        "value": true
+      }
+    },
+    {
+      "id": "leafless-support-satisfies-weak-structure",
+      "op": "source_partition",
+      "input": {
+        "tree": [
+          0,
+          1
+        ],
+        "colors": [
+          0,
+          1
+        ],
+        "blocks": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "supports": [
+          [
+            "0"
+          ],
+          [
+            "1"
+          ],
+          [
+            ""
+          ]
+        ],
+        "chosen": [
+          0,
+          1
+        ]
+      },
+      "expected": {
+        "actual": true,
+        "terminal_exact": true,
+        "connected": true,
+        "disjoint": true,
+        "valid": true,
+        "leafless_support": true,
+        "monochromatic": true,
+        "chosen_singletons": [
+          true,
+          true
+        ]
+      },
+      "false_expectation": {
+        "field": "leafless_support",
+        "value": false
+      }
+    },
+    {
+      "id": "support-missing-terminal",
+      "op": "source_partition",
+      "input": {
+        "tree": [
+          0,
+          1
+        ],
+        "colors": [
+          0,
+          1
+        ],
+        "blocks": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "supports": [
+          [],
+          [
+            "1"
+          ]
+        ],
+        "chosen": [
+          0,
+          1
+        ]
+      },
+      "expected": {
+        "actual": true,
+        "terminal_exact": false,
+        "connected": true,
+        "disjoint": true,
+        "valid": false,
+        "leafless_support": false,
+        "monochromatic": true,
+        "chosen_singletons": [
+          true,
+          true
+        ]
+      },
+      "false_expectation": {
+        "field": "valid",
+        "value": true
+      }
+    },
+    {
+      "id": "support-nonactual-address",
+      "op": "source_partition",
+      "input": {
+        "tree": [
+          0,
+          1
+        ],
+        "colors": [
+          0,
+          1
+        ],
+        "blocks": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "supports": [
+          [
+            "0",
+            "00"
+          ],
+          [
+            "1"
+          ]
+        ],
+        "chosen": [
+          0,
+          1
+        ]
+      },
+      "expected": {
+        "actual": false,
+        "terminal_exact": true,
+        "connected": false,
+        "disjoint": true,
+        "valid": false,
+        "leafless_support": false,
+        "monochromatic": true,
+        "chosen_singletons": [
+          true,
+          true
+        ]
+      },
+      "false_expectation": {
+        "field": "actual",
+        "value": true
+      }
+    },
+    {
+      "id": "support-disconnected",
+      "op": "source_partition",
+      "input": {
+        "tree": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "colors": [
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "blocks": [
+          [
+            0,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "supports": [
+          [
+            "000",
+            "01"
+          ],
+          [
+            "001"
+          ],
+          [
+            "1",
+            "10",
+            "11"
+          ]
+        ],
+        "chosen": [
+          0,
+          1
+        ]
+      },
+      "expected": {
+        "actual": true,
+        "terminal_exact": true,
+        "connected": false,
+        "disjoint": true,
+        "valid": false,
+        "leafless_support": false,
+        "monochromatic": true,
+        "chosen_singletons": [
+          false,
+          true
+        ]
+      },
+      "false_expectation": {
+        "field": "connected",
+        "value": true
+      }
+    },
+    {
+      "id": "original-edge-vs-suppressed-edge",
+      "op": "edges",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "pairs": [
+          [
+            "",
+            "01"
+          ],
+          [
+            "0",
+            "01"
+          ],
+          [
+            "",
+            "1"
+          ],
+          [
+            "",
+            ""
+          ]
+        ]
+      },
+      "expected": {
+        "actual": [
+          false,
+          true,
+          true,
+          false
+        ]
+      },
+      "false_expectation": {
+        "field": "actual",
+        "value": [
+          true,
+          true,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "cut-one-clade-clean",
+      "op": "cuts",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "cuts": [
+          "0"
+        ],
+        "partition": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "expected": {
+        "actual_edges": true,
+        "distinct": true,
+        "components": 2,
+        "leafless_components": 0,
+        "leaf_regions": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "cut_count": 1,
+        "exact_partition_and_cost": true
+      },
+      "false_expectation": {
+        "field": "exact_partition_and_cost",
+        "value": false
+      }
+    },
+    {
+      "id": "distinct-actual-cuts-leafless-root-trap",
+      "op": "cuts",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "cuts": [
+          "0",
+          "1"
+        ],
+        "partition": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "expected": {
+        "actual_edges": true,
+        "distinct": true,
+        "components": 3,
+        "leafless_components": 1,
+        "leaf_regions": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "cut_count": 2,
+        "exact_partition_and_cost": false
+      },
+      "false_expectation": {
+        "field": "exact_partition_and_cost",
+        "value": true
+      }
+    },
+    {
+      "id": "duplicate-cut-name-trap",
+      "op": "cuts",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "cuts": [
+          "00",
+          "00"
+        ],
+        "partition": [
+          [
+            0
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": {
+        "actual_edges": true,
+        "distinct": false,
+        "components": 2,
+        "leafless_components": 0,
+        "leaf_regions": [
+          [
+            0
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "cut_count": 2,
+        "exact_partition_and_cost": false
+      },
+      "false_expectation": {
+        "field": "distinct",
+        "value": true
+      }
+    },
+    {
+      "id": "original-root-is-not-edge",
+      "op": "cuts",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "cuts": [
+          ""
+        ],
+        "partition": [
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": {
+        "actual_edges": false,
+        "distinct": true,
+        "components": 1,
+        "leafless_components": 0,
+        "leaf_regions": [
+          [
+            0,
+            1,
+            2
+          ]
+        ],
+        "cut_count": 1,
+        "exact_partition_and_cost": false
+      },
+      "false_expectation": {
+        "field": "actual_edges",
+        "value": true
+      }
+    },
+    {
+      "id": "stale-cut-origin-trap",
+      "op": "cuts",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "cuts": [
+          "000"
+        ],
+        "partition": [
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": {
+        "actual_edges": false,
+        "distinct": true,
+        "components": 1,
+        "leafless_components": 0,
+        "leaf_regions": [
+          [
+            0,
+            1,
+            2
+          ]
+        ],
+        "cut_count": 1,
+        "exact_partition_and_cost": false
+      },
+      "false_expectation": {
+        "field": "actual_edges",
+        "value": true
+      }
+    },
+    {
+      "id": "erase-root-entire",
+      "op": "erase",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": [
+          0,
+          0,
+          1
+        ],
+        "chosen": ""
+      },
+      "expected": {
+        "root_origin": null,
+        "groups": []
+      },
+      "false_expectation": {
+        "field": "root_origin",
+        "value": ""
+      }
+    },
+    {
+      "id": "erase-unary-retains-surviving-original-origin",
+      "op": "erase",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": [
+          0,
+          0,
+          1
+        ],
+        "chosen": "0"
+      },
+      "expected": {
+        "root_origin": "1",
+        "groups": [
+          [
+            "1",
+            [
+              2
+            ],
+            1
+          ]
+        ]
+      },
+      "false_expectation": {
+        "field": "root_origin",
+        "value": ""
+      }
+    },
+    {
+      "id": "surviving-owner-not-erased-owner",
+      "op": "surviving_owner",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": [
+          0,
+          0,
+          1
+        ],
+        "chosen": "0",
+        "blocks": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "expected": {
+        "root_origin": "1",
+        "surviving_owner": 1,
+        "original_root_survives": false
+      },
+      "false_expectation": {
+        "field": "surviving_owner",
+        "value": 0
+      }
+    },
+    {
+      "id": "choose-unique-color-before-mixed-cherry",
+      "op": "choose",
+      "input": {
+        "tree": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "colors": [
+          0,
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": {
+        "kind": "one",
+        "origins": [
+          "00"
+        ]
+      },
+      "false_expectation": {
+        "field": "kind",
+        "value": "two"
+      }
+    },
+    {
+      "id": "choose-mixed-when-no-unique-color",
+      "op": "choose",
+      "input": {
+        "tree": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "colors": [
+          0,
+          1,
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": {
+        "kind": "two",
+        "origins": [
+          "000",
+          "001"
+        ]
+      },
+      "false_expectation": {
+        "field": "kind",
+        "value": "finish"
+      }
+    },
+    {
+      "id": "choose-homogeneous-finish",
+      "op": "choose",
+      "input": {
+        "tree": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "colors": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": {
+        "kind": "finish",
+        "origins": []
+      },
+      "false_expectation": {
+        "field": "kind",
+        "value": "two"
+      }
+    },
+    {
+      "id": "choose-unnormalized-homogeneous-cherry-refusal",
+      "op": "choose",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "colors": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "normalize": false
+      },
+      "expected": {
+        "kind": "refuse-unnormalized",
+        "origins": []
+      },
+      "false_expectation": {
+        "field": "kind",
+        "value": "two"
+      }
+    },
+    {
+      "id": "attempt-root-guard",
+      "op": "attempt",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": [
+          0,
+          0,
+          1
+        ],
+        "cuts": [],
+        "group": [
+          "",
+          [
+            0,
+            1,
+            2
+          ],
+          0
+        ]
+      },
+      "expected": {
+        "guard_outcome": "root",
+        "child_attempts": 1,
+        "continuation_called": false,
+        "chosen_is_current_group": false,
+        "current_origins_unique": true,
+        "chosen_origin_is_actual_edge": false,
+        "next_root": null,
+        "next_groups": []
+      },
+      "false_expectation": {
+        "field": "continuation_called",
+        "value": true
+      }
+    },
+    {
+      "id": "attempt-duplicate-guard",
+      "op": "attempt",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": [
+          0,
+          0,
+          1
+        ],
+        "cuts": [
+          "0"
+        ],
+        "group": [
+          "0",
+          [
+            0,
+            1
+          ],
+          0
+        ]
+      },
+      "expected": {
+        "guard_outcome": "duplicate",
+        "child_attempts": 1,
+        "continuation_called": false,
+        "chosen_is_current_group": true,
+        "current_origins_unique": true,
+        "chosen_origin_is_actual_edge": true,
+        "next_root": null,
+        "next_groups": []
+      },
+      "false_expectation": {
+        "field": "continuation_called",
+        "value": true
+      }
+    },
+    {
+      "id": "attempt-whole-current-guard",
+      "op": "attempt",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": [
+          0,
+          0,
+          1
+        ],
+        "cuts": [],
+        "current": [
+          "g",
+          "1",
+          [
+            2
+          ],
+          1
+        ],
+        "group": [
+          "1",
+          [
+            2
+          ],
+          1
+        ]
+      },
+      "expected": {
+        "guard_outcome": "entire",
+        "child_attempts": 1,
+        "continuation_called": false,
+        "chosen_is_current_group": true,
+        "current_origins_unique": true,
+        "chosen_origin_is_actual_edge": true,
+        "next_root": null,
+        "next_groups": []
+      },
+      "false_expectation": {
+        "field": "continuation_called",
+        "value": true
+      }
+    },
+    {
+      "id": "attempt-clean-original-cut",
+      "op": "attempt",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": [
+          0,
+          0,
+          1
+        ],
+        "cuts": [],
+        "group": [
+          "0",
+          [
+            0,
+            1
+          ],
+          0
+        ]
+      },
+      "expected": {
+        "guard_outcome": "continued",
+        "child_attempts": 1,
+        "continuation_called": true,
+        "chosen_is_current_group": true,
+        "current_origins_unique": true,
+        "chosen_origin_is_actual_edge": true,
+        "next_root": "1",
+        "next_groups": [
+          [
+            "1",
+            [
+              2
+            ],
+            1
+          ]
+        ]
+      },
+      "false_expectation": {
+        "field": "chosen_is_current_group",
+        "value": false
+      }
+    },
+    {
+      "id": "attempt-stale-valid-edge-not-a-current-group",
+      "op": "attempt",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": [
+          0,
+          0,
+          1
+        ],
+        "cuts": [],
+        "group": [
+          "00",
+          [
+            0
+          ],
+          0
+        ]
+      },
+      "expected": {
+        "guard_outcome": "continued",
+        "child_attempts": 1,
+        "continuation_called": true,
+        "chosen_is_current_group": false,
+        "current_origins_unique": true,
+        "chosen_origin_is_actual_edge": true,
+        "next_root": "",
+        "next_groups": [
+          [
+            "0",
+            [
+              0,
+              1
+            ],
+            0
+          ],
+          [
+            "1",
+            [
+              2
+            ],
+            1
+          ]
+        ]
+      },
+      "false_expectation": {
+        "field": "chosen_is_current_group",
+        "value": true
+      }
+    },
+    {
+      "id": "attempt-forged-group-metadata-not-guarded",
+      "op": "attempt",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": [
+          0,
+          0,
+          1
+        ],
+        "cuts": [],
+        "group": [
+          "0",
+          [
+            0
+          ],
+          0
+        ]
+      },
+      "expected": {
+        "guard_outcome": "continued",
+        "child_attempts": 1,
+        "continuation_called": true,
+        "chosen_is_current_group": false,
+        "current_origins_unique": true,
+        "chosen_origin_is_actual_edge": true,
+        "next_root": "1",
+        "next_groups": [
+          [
+            "1",
+            [
+              2
+            ],
+            1
+          ]
+        ]
+      },
+      "false_expectation": {
+        "field": "chosen_is_current_group",
+        "value": true
+      }
+    },
+    {
+      "id": "attempt-duplicate-origin-state",
+      "op": "attempt",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": [
+          0,
+          0,
+          1
+        ],
+        "cuts": [],
+        "current": [
+          "n",
+          "",
+          [
+            "g",
+            "0",
+            [
+              0
+            ],
+            0
+          ],
+          [
+            "g",
+            "0",
+            [
+              2
+            ],
+            1
+          ]
+        ],
+        "group": [
+          "0",
+          [
+            0
+          ],
+          0
+        ]
+      },
+      "expected": {
+        "guard_outcome": "entire",
+        "child_attempts": 1,
+        "continuation_called": false,
+        "chosen_is_current_group": true,
+        "current_origins_unique": false,
+        "chosen_origin_is_actual_edge": true,
+        "next_root": null,
+        "next_groups": []
+      },
+      "false_expectation": {
+        "field": "current_origins_unique",
+        "value": true
+      }
+    },
+    {
+      "id": "single-leaf-original-root-agreement",
+      "op": "agreement",
+      "input": {
+        "left": 0,
+        "right": 0,
+        "blocks": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": {
+        "proper_inputs": true,
+        "agreement": true
+      },
+      "false_expectation": {
+        "field": "agreement",
+        "value": false
+      }
+    },
+    {
+      "id": "unique-color-singleton-clean",
+      "op": "source_partition",
+      "input": {
+        "tree": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "colors": [
+          0,
+          1,
+          2,
+          1,
+          1
+        ],
+        "blocks": [
+          [
+            0
+          ],
+          [
+            1,
+            3,
+            4
+          ],
+          [
+            2
+          ]
+        ],
+        "supports": "minimal",
+        "chosen": [
+          2,
+          0
+        ]
+      },
+      "expected": {
+        "actual": true,
+        "terminal_exact": true,
+        "connected": true,
+        "disjoint": true,
+        "valid": true,
+        "leafless_support": false,
+        "monochromatic": true,
+        "chosen_singletons": [
+          true,
+          true
+        ]
+      },
+      "false_expectation": {
+        "field": "chosen_singletons",
+        "value": [
+          false,
+          true
+        ]
+      }
+    },
+    {
+      "id": "mixed-alternative-needs-monochromatic-partition",
+      "op": "source_partition",
+      "input": {
+        "tree": [
+          [
+            [
+              0,
+              1
+            ],
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "colors": [
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "blocks": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        ],
+        "supports": "minimal",
+        "chosen": [
+          0,
+          1
+        ]
+      },
+      "expected": {
+        "actual": true,
+        "terminal_exact": true,
+        "connected": true,
+        "disjoint": true,
+        "valid": true,
+        "leafless_support": false,
+        "monochromatic": false,
+        "chosen_singletons": [
+          false,
+          false
+        ]
+      },
+      "false_expectation": {
+        "field": "monochromatic",
+        "value": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "status": "PINNED_BEFORE_RULE4_PROOF_CODE",
+  "model": "ordinary rooted binary unique equal labels; no rho; q=k-1",
+  "accepted_root": {
+    "T": [[["a","b"],["c","d"]],"e"],
+    "S": [[["a","c"],["d","e"]],"b"],
+    "oriented_candidates": [["a","b","c"],["d","c","e"]],
+    "candidate": ["a","b","c"],
+    "F": [["a","d"],["b"],["c"],["e"]],
+    "expected_exchange": [["a","b"],["c"],["d"],["e"]],
+    "branch_costs": [2,1,2],
+    "F_refines_any_branch": false
+  },
+  "accepted_outside": {
+    "T": ["f",[[["a","b"],["c","d"]],"e"]],
+    "S": ["f",[[["a","c"],["d","e"]],"b"]],
+    "candidate": ["a","b","c"],
+    "F": [["a","d","f"],["b"],["c"],["e"]],
+    "expected_exchange": [["a","b","f"],["c"],["d"],["e"]],
+    "branch_costs": [2,1,2]
+  },
+  "excluded_t1": {
+    "T": [[["a","b"],"c"],"d"],
+    "S": [[["a","c"],"d"],"b"],
+    "candidate": ["a","b","c"],
+    "source_ab_pendants": 2,
+    "swapped_ac_pendants": 1,
+    "expected_admitted": false
+  },
+  "false_plants": [
+    "The accepted-root F itself refines one of the three literal branch partitions.",
+    "The third accepted-root branch cuts both original outgoing arcs but costs one.",
+    "A role-swapped child keeps former source S as the cut source.",
+    "Source embedding disjointness may be omitted: outside block c,f is clear of block a,d in accepted-outside S.",
+    "The excluded-t1 input satisfies the global no-t1 guard."
+  ],
+  "corruptions": ["duplicate-label", "missing-source-label", "root-cut", "duplicate-cut", "missing-audit-record", "foreign-private-axiom", "source-pin-drift"],
+  "pass_criteria": "All literal expected values must hold exactly; every false plant and corruption must be rejected with a named reason. Accepted root fixture is leaf-root-boundary with no outside labels; exchanged outside fixture retains f in a-block. Sibling mirroring and a/b label relabelling must preserve admission. No broad census."
+}

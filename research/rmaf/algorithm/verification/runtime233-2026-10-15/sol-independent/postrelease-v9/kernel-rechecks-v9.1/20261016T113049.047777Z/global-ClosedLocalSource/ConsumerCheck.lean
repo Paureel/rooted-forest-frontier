@@ -1,0 +1,7 @@
+import ClosedLocalSource
+#check OrdinaryDispatch.GlobalSourceAssembly.commonLocalDebit_bound
+#print axioms OrdinaryDispatch.GlobalSourceAssembly.commonLocalDebit_bound
+#check OrdinaryDispatch.GlobalSourceAssembly.rule4LocalDebit_bound
+#print axioms OrdinaryDispatch.GlobalSourceAssembly.rule4LocalDebit_bound
+#check OrdinaryDispatch.GlobalSourceAssembly.closedLocalDebit_bound
+#print axioms OrdinaryDispatch.GlobalSourceAssembly.closedLocalDebit_bound

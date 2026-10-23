@@ -1,0 +1,9 @@
+# All-good review status
+
+The guarded all-good terminal routine has a scoped semantic and interface pass. Its guard requires distinct target labels, an exact source-label partition and agreement of each whole source tree with the corresponding restricted target. Current source hulls may overlap in the target, so further splitting can be necessary. Refusal outside this guard does not decide infeasibility.
+
+The [reader companion](verification/all-good-referee-2026-10-15/READER-COMPANION-v1.md) now accompanies the historical result and cost model. Root read the complete fresh framing report, companion, proposed substitutions, lint/contact ledger and actual pass-two diff as a different editor. Its medium guard/refusal prominence finding and two low clarity findings change no theorem or scientific acceptance. All 35 final framing members matched manifest SHA256 `45bdc355d39d2bd4b51dae73f2636e8ff1b18b235859fdcb386e45c392835564`. The framing agent checked 23 selected historical member hashes; these are different inventory units. No new kernel replay or mathematical replication was performed.
+
+The [existing cost erratum](ALL-GOOD-COST-ERRATUM-v1.md) and sealed cost correction remain in force: the frozen linear owner-helper bound is false under its stated list-copy model. The corrected coarse degree-six source envelope survives under the explicit source/bit model. The reader companion defines its symbols locally and names the guarded agreement/minimum/budget and structural/table statements checked by the kernel. The displayed operation correspondence remains mathematical source inspection, with no compiled-machine or wall-clock theorem.
+
+Original frozen documents and evidence remain unchanged. The local renderer's Unicode correction and browser-policy rejection are disclosed; no visual preview is claimed. The source grade remains SCOPED_PASS_WITH_COST_DOCUMENTATION_FINDING. Full Algorithm, Correctness, Smaller base and novelty remain OPEN.

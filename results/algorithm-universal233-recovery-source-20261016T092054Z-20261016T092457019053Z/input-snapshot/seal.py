@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+"""One-shot actual recovery source seal; snapshot owned files, preserve originals/dependencies."""
+from pathlib import Path
+import datetime,hashlib,json
+D=Path(__file__).resolve().parent;R=D.parents[5];sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();M=D/'FINAL-MANIFEST-v1.json';assert not M.exists(),'REFUSE_RESEAL'
+O=R/json.loads((D/'ACTIVE-v1.json').read_text())['receipt'];C=O/'AUDIT-CERTIFICATE-v2.json';c=json.loads(C.read_text());assert c['status']=='PASS_AUTHOR_ACTUAL_RECOVERY_SOURCE_UNIT_BIT_NATIVE_OPEN'
+originals={}
+def record(p):
+ s=p.stat();e={'path':str(p.relative_to(R)),'sha256':sha(p),'mode':oct(s.st_mode&0o777),'inode':s.st_ino,'device':s.st_dev};originals[e['path']]=e
+entries=json.loads((D/'DEPENDENCIES-BEFORE-v1.json').read_text())['members']+json.loads((D/'IMPORT-COMPATIBILITY-v1.json').read_text())['transitive_early_members']
+for e in entries:
+ p=R/e['path'];s=p.stat();assert sha(p)==e['sha256'] and oct(s.st_mode&0o777)==e['mode'] and s.st_ino==e['inode'] and s.st_dev==e['device'];record(p)
+target=R/'research/rmaf/monitoring/next-20261016T092054Z/RECOVERY-SOURCE-TARGET-v1.json';assert sha(target)=='b545959d3b63e82500325abf5e0fc81739d2bbff068436de1b167223b49e9981';record(target);(O/'TARGET-v1.json').write_bytes(target.read_bytes())
+for key,e in json.loads(target.read_text())['allowed_packages'].items():
+ p=R/e['manifest'];assert sha(p)==e['sha256'];record(p)
+ip=R/c['instrument']['path'];assert sha(ip)==c['instrument']['sha256'];record(ip)
+ready={'version':1,'status':'FROZEN_AUTHOR_ACTUAL_RECOVERY_SOURCE_UNIT_BIT_NATIVE_OPEN_REVIEW_PENDING','canonical_receipt':str(O.relative_to(R)),'canonical_import':'RWInterface','raw_refusal_import':'RWRefusals','namespace':'OrdinaryDispatch.RecoveryLocalWork','audit_certificate':str(C.relative_to(R)),'audit_certificate_sha256':sha(C),'value_interface':'meterRecover_value','source_bound_interface':'final_source_work_bound','uniform_interface':'final_source_uniform','optimizer_interface':'optimizer_recovery_once_bound','rational_233_interface':'optimizer_recovery_233','initial_source_dominance':'meterInitial_bound proves frozen128*(treeNodes t+1)^3 after actual helper work, with supplied coloring added separately','new_global_local_cap':'1024*(N+1)^3 =4*CoreWork.cap N','old_localCharge_primitive_premise':False,'new_run_envelope':'16*CoreWork.envelope q(localCap N)','final_source_coefficient':'(guardCharge+colorCharge+initialCharge+32)+32*(localCap(inputResource S)+6)*P.length','uniform_polynomial_coefficient':'recoverySourceEnvelope n=64*(BudgetOptimization.recoveryEnvelope n+32)','exponential_factor':'2^(P.length-1); 2^q for actual selected forest','pure_polynomial_total_recovery_time_proved':False,'color_contract':'color:Nat->Charged Nat, exact source color=(color x).value; sum of charged costs over original leaves iff nodup passes. Literal final meterColor implemented and bounded.','source_conditions':['(leaves S).Nodup','partitionCheck (leaves S) P=true','pairwiseEmbeddings S P=true'],'arbitrary_budget':'generate accepts any Nat budget; actual source min with original leaf count is charged','source_gap_initial_local_helpers':'AUTHOR_LEVEL_CLOSED_FOR_STATED_UNIT_SOURCE_BOUND','remaining_boundary':str((D/'BOUNDARY-v1.md').relative_to(R)),'scalar_bit_native':'OPEN','independent_credit':0,'full_algorithm_base_novelty':'ALL_OPEN','dependency_rebuilds':0,'import_pool':'new receipt:completed optimizer-fees:own completed early:completed budget:checker readonly closure','compiled_pool_differences':16,'binary_reference_imported':False}
+(D/'PUBLIC-INTERFACE-v1.json').write_text(json.dumps(ready,indent=2)+'\n')
+for p in sorted(D.rglob('*')):
+ if p.is_file() and '__pycache__' not in p.parts:
+  record(p);q=O/'input-snapshot'/p.relative_to(D);q.parent.mkdir(parents=True,exist_ok=True);q.write_bytes(p.read_bytes())
+for p in O.rglob('*'):
+ if p.is_file() and '__pycache__' not in p.parts:p.chmod(0o444)
+files=[{'path':str(p.relative_to(R)),'sha256':sha(p),'bytes':p.stat().st_size} for p in sorted(O.rglob('*')) if p.is_file() and '__pycache__' not in p.parts]
+runs=[json.loads(p.read_text()) for p in O.glob('*.run.json')]
+m={**ready,'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'no_further_writes':True,'no_write_boundary':'Manifest, immutable_files, canonical receipt and pinned originals. Continue only in new disjoint paths; preserve all hashes/modes/inodes.','immutable_files':files,'original_files':list(originals.values()),'source_modules':c['modules'],'stored_new_occurrences':c['stored_occurrences'],'axiom_union':c['axiom_union'],'controls':c['controls'],'source_false_diagnoses':12,'named_positive_runtime_checks':15,'same_lineage':True,'skipped':c['skipped'],'maximum_measured_Lean_seconds':max(r['seconds'] for r in runs),'resource_caps':{'process_seconds':60,'Lean_memory_MiB':3072,'live_disk_floor_GiB':3,'raw_output_MiB':16,'producer_raw_MiB':8,'compressed_total_MiB':256},'audit_scope':'Nine owned producers only; every nonproof/opaque body retained and actual full-proof AX/reference walk. Logical roots use standard allowed axioms. Raw failure/custom-axiom fixtures retained separately. No all-imported-body/native IR claim.','forbidden_declared_cost_imports_absent':c['forbidden_declared_cost_imports_absent'],'previous_audit_pass_preserved':'AUDIT-CERTIFICATE-v1.json:323 occurrences/eight modules; final v2:326/nine modules','all_previous_sources_controls_failures_preserved':True}
+M.write_text(json.dumps(m,indent=2)+'\n');M.chmod(0o444);h=D/'FINAL-MANIFEST-v1.sha256';h.write_text(sha(M)+'  FINAL-MANIFEST-v1.json\n');h.chmod(0o444)
+print('SEALED_ACTUAL_RECOVERY_SOURCE',len(files),'readonly members',sha(M))

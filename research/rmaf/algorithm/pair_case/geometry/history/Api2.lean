@@ -1,0 +1,9 @@
+import Std
+#check Bool.eq_iff_iff
+#check Bool.eq_of_iff
+#check Bool.eq_iff_iff_true
+#check List.filter_congr
+#check List.filterMap_length_eq_length_iff
+#check List.length_filterMap
+#check List.Pairwise.filter
+#check List.Nodup.filter

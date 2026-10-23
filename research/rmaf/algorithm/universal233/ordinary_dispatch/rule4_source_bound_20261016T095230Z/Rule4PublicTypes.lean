@@ -1,0 +1,4 @@
+import Rule4BoundInterface
+#check @OrdinaryDispatch.FullSourceWork.rule4Source_bound
+#check @OrdinaryDispatch.FullSourceWork.rule4Source_cutoff_bound
+#check @OrdinaryDispatch.FullSourceWork.rule4SourcePolynomial_explicit

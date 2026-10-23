@@ -1,0 +1,69 @@
+def Universal233.DepthOne.pretest01 : Tree → Tree → Result :=
+fun T S =>
+  if proper T S = true then
+    match best cutCost (fun c => agreement T S (forest S c)) (candidates S) with
+    | none => Result.rejected
+    | some c => Result.found c
+  else Result.refused
+def Universal233.DepthOne.proper : Tree → Tree → Bool :=
+fun T S => decide (leaves T).Nodup && decide (leaves S).Nodup && decide ((leaves T).Perm (leaves S))
+def Universal233.DepthOne.forest : Tree → Option Vertex → List (List Nat) :=
+fun S x =>
+  match x with
+  | none => [leaves S]
+  | some p => [subtreeLabels S p, complement S p]
+def Universal233.DepthOne.sourceCuts : Option Vertex → List Vertex :=
+fun x =>
+  match x with
+  | none => []
+  | some p => [p]
+def Universal233.CutRealization.RealizedOutput : Tree → Universal233.CoreProgram.Output → Prop :=
+fun T o =>
+  Universal233.CoreProgram.GoodCuts o.sourceCuts ∧
+    (∀ (p : Vertex), p ∈ o.sourceCuts → Universal233.CoreGraph.Valid T p) ∧
+      ∃ components,
+        List.map Prod.fst components = o.sourceCuts ++ [[]] ∧
+          List.map Prod.snd components = o.partition ∧
+            (∀ (r : Vertex) (L : List Nat), (r, L) ∈ components → ComponentLabels T o.sourceCuts r L) ∧
+              (List.map Prod.fst components).Nodup ∧
+                (∀ (v : Vertex),
+                    Universal233.CoreGraph.Valid T v →
+                      ∃ r, r ∈ List.map Prod.fst components ∧ ResidualWalk T o.sourceCuts r v) ∧
+                  (∀ (r : Vertex),
+                      r ∈ List.map Prod.fst components →
+                        ∀ (s : Vertex), s ∈ List.map Prod.fst components → (ResidualWalk T o.sourceCuts r s ↔ r = s)) ∧
+                    (∀ (v : Vertex),
+                        Universal233.CoreGraph.Valid T v →
+                          ∃ a x, Universal233.CoreGraph.LeafAt T a x ∧ ResidualWalk T o.sourceCuts v a) ∧
+                      o.partition.length = o.sourceCuts.length + 1
+Universal233.DepthOne.candidate_complete (T S : Tree) (F : List (List Nat)) (hn : (leaves S).Nodup)
+  (ha : agreement T S F = true) (hcost : F.length - 1 ≤ 1) :
+  ∃ c, c ∈ candidates S ∧ agreement T S (forest S c) = true ∧ cutCost c ≤ F.length - 1
+Universal233.DepthOne.source_two_split (S : Tree) (A B : List Nat) (hn : (leaves S).Nodup)
+  (hp : partitionCheck (leaves S) [A, B] = true) (he : pairwiseEmbeddings S [A, B] = true) :
+  ∃ p, p ∈ edges S ∧ ((subtreeLabels S p).Perm A ∨ (subtreeLabels S p).Perm B)
+Universal233.DepthOne.proper_iff (T S : Tree) :
+  proper T S = true ↔ (leaves T).Nodup ∧ (leaves S).Nodup ∧ (leaves T).Perm (leaves S)
+Universal233.DepthOne.refused_iff (T S : Tree) : pretest01 T S = Result.refused ↔ proper T S = false
+Universal233.DepthOne.found_globally_minimum (T S : Tree) (c : Option Vertex) (h : pretest01 T S = Result.found c) :
+  agreement T S (forest S c) = true ∧
+    (forest S c).length - 1 = cutCost c ∧ ∀ (F : List (List Nat)), agreement T S F = true → cutCost c ≤ F.length - 1
+Universal233.DepthOne.found_original_minimum (T S : Tree) (c : Option Vertex) (h : pretest01 T S = Result.found c) :
+  agreement T S (forest S c) = true ∧
+    RealizedOutput S { partition := forest S c, sourceCuts := sourceCuts c } ∧
+      (sourceCuts c).length = cutCost c ∧
+        cutCost c ≤ 1 ∧ ∀ (F : List (List Nat)), agreement T S F = true → cutCost c ≤ F.length - 1
+Universal233.DepthOne.rejected_lower_bound (T S : Tree) (h : pretest01 T S = Result.rejected) (F : List (List Nat)) :
+  agreement T S F = true → 2 ≤ F.length - 1
+Universal233.DepthOne.pretest_complete (T S : Tree) (hp : proper T S = true) (F : List (List Nat))
+  (ha : agreement T S F = true) (hcost : F.length - 1 ≤ 1) :
+  ∃ c, pretest01 T S = Result.found c ∧ agreement T S (forest S c) = true ∧ cutCost c ≤ F.length - 1
+Universal233.DepthOne.literal_realization (S : Tree) (c : Option Vertex) (hn : (leaves S).Nodup) (hc : c ∈ candidates S)
+  (hp : partitionCheck (leaves S) (forest S c) = true) :
+  RealizedOutput S { partition := forest S c, sourceCuts := sourceCuts c }
+Universal233.DepthOne.candidate_count_original_edges (S : Tree) : (candidates S).length + 1 = 2 * (leaves S).length
+Universal233.DepthOne.sameShapeCalls_bound (T S : Tree) : sameShapeCalls T S ≤ treeSize T * treeSize S
+Universal233.DepthOne.minimalVisits_bound (S : Tree) : minimalVisits S ≤ treeSize S * treeSize S
+'Universal233.DepthOne.candidate_complete' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Universal233.DepthOne.found_original_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Universal233.DepthOne.rejected_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]

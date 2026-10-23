@@ -1,0 +1,394 @@
+{
+  "status": "pass",
+  "source_scan": [
+    {
+      "source": "research/rmaf/lean/RMAF.lean",
+      "sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "imports": [
+        "Std"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": true
+    },
+    {
+      "source": "research/rmaf/pure_bridge/lean/PureBridge.lean",
+      "sha256": "acf08329466b6449c39c5edb0914c7af15f30690b25b8f0389cb65b2b24943f4",
+      "imports": [
+        "Std"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": true
+    },
+    {
+      "source": "research/rmaf/bridge_review/lean/GraphRegion.lean",
+      "sha256": "5d53cadd43f7c654656040218939c2051f8592e5045227bc2506dd2cddee5455",
+      "imports": [
+        "PureBridge"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": true
+    },
+    {
+      "source": "research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean",
+      "sha256": "63044b33c7ff23cad5ec4886035ff112acb9bb42a18dd479090c4d3a638f311f",
+      "imports": [
+        "RMAF",
+        "GraphRegion"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": true
+    },
+    {
+      "source": "research/rmaf/bridge_review/leastness/address_semantics/TreeAddresses.lean",
+      "sha256": "f2bbd08201b98893a0e824f041e9af72761933d7f29b4e9a89088d9d9e46fdb0",
+      "imports": [
+        "RMAF"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": true
+    },
+    {
+      "source": "research/rmaf/bridge_review/leastness/lean/ExtractorLeastness.lean",
+      "sha256": "8626d726a1635b06c9f58178dbb8a84cecdb55630eb138a5afc8353618b4f1b8",
+      "imports": [
+        "TreeAddresses",
+        "ExecutableConnectivity"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": true
+    },
+    {
+      "source": "research/rmaf/bridge_review/leastness/lean/ActualEmbedding.lean",
+      "sha256": "8c10ef67cec9ef067e3bf2a104c342e1d536a07546d05ffc759e6b3ded3d69a4",
+      "imports": [
+        "ExtractorLeastness"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": true
+    },
+    {
+      "source": "research/rmaf/bridge_review/degree_two/graph_route/lean/DegreePropagation.lean",
+      "sha256": "7ec489988b4b0572b1c5b3358c449d6c2722ded67fe55c6a7612ff85c9c2fe70",
+      "imports": [
+        "ActualEmbedding"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": false
+    },
+    {
+      "source": "research/rmaf/bridge_review/degree_two/graph_route/lean/GraphRouteControls.lean",
+      "sha256": "628988513ae0a9fdc32147b35db53878277e30ed2dd714c89990c82bee3355fb",
+      "imports": [
+        "ActualEmbedding"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": false
+    },
+    {
+      "source": "research/rmaf/bridge_review/degree_two/graph_route/lean/DegreePropagationControls.lean",
+      "sha256": "871d9f3301ffe1528d109d8576f61877b39879c8a476b6d00241bb70e632e9ef",
+      "imports": [
+        "DegreePropagation",
+        "GraphRouteControls"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": false
+    },
+    {
+      "source": "research/rmaf/bridge_review/degree_two/lean/PartitionRefinement.lean",
+      "sha256": "07f27f702fec3c6b1c08ed93c17a36fd59db5390a59e0e3122da4d4b5feec417",
+      "imports": [
+        "RMAF"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": false
+    },
+    {
+      "source": "research/rmaf/bridge_review/degree_two/lean/ConsumerControls.lean",
+      "sha256": "cdd929980f24f046a8c7d0278b709b12bb136fa9a66a9235c3968bfe15296cc1",
+      "imports": [
+        "PartitionRefinement"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": false
+    },
+    {
+      "source": "research/rmaf/bridge_review/degree_two/lean/LocalSplit.lean",
+      "sha256": "d543a7774c6c4c3d130e10db33cc611ff26a60a165effef580a1d0fd83403e24",
+      "imports": [
+        "DegreePropagation",
+        "PartitionRefinement"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": false
+    },
+    {
+      "source": "research/rmaf/bridge_review/degree_two/lean/DegreeCounting.lean",
+      "sha256": "d45e818a2f5be6f5881c6878658fb81d15a7f750c32133e666b268ffa239c786",
+      "imports": [
+        "LocalSplit"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": false
+    },
+    {
+      "source": "research/rmaf/bridge_review/degree_two/lean/LocalSplitControls.lean",
+      "sha256": "224c5f8ed394901becc76fc0a00e5c1fd95b2b8163762de59ed454c704756def",
+      "imports": [
+        "DegreeCounting"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": false
+    },
+    {
+      "source": "research/rmaf/bridge_review/degree_two/lean/AgreementBlock.lean",
+      "sha256": "0c2533a5fa02924a11868112ae8ad90723a4d0579deacf7ba74212b0104cf556",
+      "imports": [
+        "PartitionRefinement"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": false
+    },
+    {
+      "source": "research/rmaf/bridge_review/degree_two/restriction_route/RestrictionTransport.lean",
+      "sha256": "3fa36edcf5296f789950882c5fdae421bc513d2b2adf79708e743a7cb8d985c5",
+      "imports": [
+        "RMAF"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": false
+    },
+    {
+      "source": "research/rmaf/bridge_review/degree_two/restriction_route/SupportAlgebra.lean",
+      "sha256": "6bb56bb565a756f857f35ba42ad21a2988a78837370ec6928328261cb16644ab",
+      "imports": [
+        "RestrictionTransport"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": false
+    },
+    {
+      "source": "research/rmaf/bridge_review/degree_two/restriction_route/SupportProfile.lean",
+      "sha256": "fdeebeeec8ae6241ab7ccfa87e5237d6b5ad4d964a11a2c3420e991d7c9fc848",
+      "imports": [
+        "SupportAlgebra"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": false
+    },
+    {
+      "source": "research/rmaf/bridge_review/degree_two/restriction_route/ActualSupportTransport.lean",
+      "sha256": "dda7d490301bc23555701c5a859eea78836d9bf0ed8aefd71b0fea8cc960966e",
+      "imports": [
+        "SupportProfile"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": false
+    },
+    {
+      "source": "research/rmaf/bridge_review/degree_two/restriction_route/Controls.lean",
+      "sha256": "f8167b579c7b421e5ea5d195d63de66ca32a37d138a65b55c8d9a38da8a8fd3c",
+      "imports": [
+        "RMAF"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": false
+    },
+    {
+      "source": "research/rmaf/bridge_review/degree_two/restriction_route/TransportUseSites.lean",
+      "sha256": "824b2675de3e91c376841ac5d063786e4cfcdffd32a5c1406c0f2a3b8c99de17",
+      "imports": [
+        "ActualSupportTransport",
+        "Controls"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": false
+    },
+    {
+      "source": "research/rmaf/bridge_review/degree_two/lean/ActualRefinement.lean",
+      "sha256": "00177b38a9cd5d55365c32ca994d55644b6e8032ff64e3a82989a35adbf49796",
+      "imports": [
+        "DegreeCounting",
+        "AgreementBlock",
+        "ActualSupportTransport"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": false
+    },
+    {
+      "source": "research/rmaf/bridge_review/degree_two/lean/RefinementControls.lean",
+      "sha256": "3b9fad86e322efd26893d3c76ee58fe4315f82cce02c2dcbfcf5b7b4296a8a06",
+      "imports": [
+        "ActualRefinement",
+        "ConsumerControls"
+      ],
+      "forbidden_tokens": [],
+      "prior_checkpoint_pin": false
+    }
+  ],
+  "semantic_twins": [
+    {
+      "name": "graph-FalseAddressTransport",
+      "false_source_sha256": "2732f43f557eba1432e2f24bea81c92df72a7c78cbeddb7e2b4a924f8adc882c",
+      "twin": "research/rmaf/bridge_review/degree_two/frame_review/twins/graph-FalseAddressTransport.lean",
+      "twin_sha256": "087f3de3fe98f95d8604b4742a2c0d83f66ef8158e94f73803a3a3f7fe974808",
+      "log": "research/rmaf/bridge_review/degree_two/frame_review/logs/twin-graph-FalseAddressTransport.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "seconds": 0.3449510829996143
+    },
+    {
+      "name": "graph-FalseCost",
+      "false_source_sha256": "1dca24877d36cedd9c79cd8511232fcc164ab21db5dae3965ef1be129378a791",
+      "twin": "research/rmaf/bridge_review/degree_two/frame_review/twins/graph-FalseCost.lean",
+      "twin_sha256": "44500f85252a83d0926bd5c351e9ede37e643051e76c3071a20cfab0e0a8bb2e",
+      "log": "research/rmaf/bridge_review/degree_two/frame_review/logs/twin-graph-FalseCost.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "seconds": 0.3446234170005482
+    },
+    {
+      "name": "graph-FalseDegree",
+      "false_source_sha256": "9e2d5118e5364be7b3255c73c8ca82335c42b534f47bf67def5b52bb0c510f54",
+      "twin": "research/rmaf/bridge_review/degree_two/frame_review/twins/graph-FalseDegree.lean",
+      "twin_sha256": "c20164ecdfeda9cf1e7a5aee21026e3d06d6dc6d804ee0b3a3981abb705b5f4a",
+      "log": "research/rmaf/bridge_review/degree_two/frame_review/logs/twin-graph-FalseDegree.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "seconds": 0.30729512499965494
+    },
+    {
+      "name": "graph-FalseMissingPath",
+      "false_source_sha256": "ed7798bd0e49dde1afb46b19446022db9293109c00377c38928baccc1dab3fe1",
+      "twin": "research/rmaf/bridge_review/degree_two/frame_review/twins/graph-FalseMissingPath.lean",
+      "twin_sha256": "11961a464dcd79d7d9315f123a2732fefeaa59bacf572130b0ec076d9897f1fb",
+      "log": "research/rmaf/bridge_review/degree_two/frame_review/logs/twin-graph-FalseMissingPath.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "seconds": 0.30582808300096076
+    },
+    {
+      "name": "graph-FalseOverlap",
+      "false_source_sha256": "0ba29a9f491e29d92b5ebe10a575f824bfdca58383df1a8576760c4c3786ad55",
+      "twin": "research/rmaf/bridge_review/degree_two/frame_review/twins/graph-FalseOverlap.lean",
+      "twin_sha256": "b50743941242fc2019290a7bb715f986f4cc904d99673bc24819e486dca57582",
+      "log": "research/rmaf/bridge_review/degree_two/frame_review/logs/twin-graph-FalseOverlap.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "seconds": 0.302712208002049
+    },
+    {
+      "name": "graph-FalseRoot",
+      "false_source_sha256": "a5f2a2031789ca4af5bdaf87129e335b61badb8e4dbb72bc24d903a77ccac0c4",
+      "twin": "research/rmaf/bridge_review/degree_two/frame_review/twins/graph-FalseRoot.lean",
+      "twin_sha256": "56c723b2049fbf3caf8eb80069325c87541d5ba1ef146c6c2e58bfa218e5e2e1",
+      "log": "research/rmaf/bridge_review/degree_two/frame_review/logs/twin-graph-FalseRoot.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "seconds": 0.34030291700037196
+    },
+    {
+      "name": "parent-FalseCost",
+      "false_source_sha256": "4e3ecfd65964063843fb80549606c54cc3778187cc12b8fd29030bdebf327572",
+      "twin": "research/rmaf/bridge_review/degree_two/frame_review/twins/parent-FalseCost.lean",
+      "twin_sha256": "dd53733f0f580ae3d0f83c413f1c5dc17d1a9e21728e6874ab73c7873d8f9da7",
+      "log": "research/rmaf/bridge_review/degree_two/frame_review/logs/twin-parent-FalseCost.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "seconds": 0.3028767499999958
+    },
+    {
+      "name": "parent-FalseOverlap",
+      "false_source_sha256": "db1339834a4c6d37f454aa8fe065b9107e012ab19c4b4de204cfc8e11e5b3551",
+      "twin": "research/rmaf/bridge_review/degree_two/frame_review/twins/parent-FalseOverlap.lean",
+      "twin_sha256": "bd8b3523080913e20cfd7096c777f7d3739fab442bd79337f3b95ce432537651",
+      "log": "research/rmaf/bridge_review/degree_two/frame_review/logs/twin-parent-FalseOverlap.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "seconds": 0.3021305830006895
+    },
+    {
+      "name": "parent-FalseRootOccupied",
+      "false_source_sha256": "d59141d5cb2d1bf5759596d87d74785250b3d2ca3216943b53922191cb1f6fa4",
+      "twin": "research/rmaf/bridge_review/degree_two/frame_review/twins/parent-FalseRootOccupied.lean",
+      "twin_sha256": "56194395e398306c33225e081d83ed715734f430cd00095bc0830f4302dd4dde",
+      "log": "research/rmaf/bridge_review/degree_two/frame_review/logs/twin-parent-FalseRootOccupied.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "seconds": 0.31797699999879114
+    },
+    {
+      "name": "restriction-wrong-degree",
+      "false_source_sha256": "97305885e1f6a82ddcdb7245112ea072ba9f6947033c4969da535281c66030ba",
+      "twin": "research/rmaf/bridge_review/degree_two/frame_review/twins/restriction-wrong-degree.lean",
+      "twin_sha256": "ed93e766c67333eb4ae57fbb29d9c485d2f639c2741f97922d4bce39519182d6",
+      "log": "research/rmaf/bridge_review/degree_two/frame_review/logs/twin-restriction-wrong-degree.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "seconds": 0.3444976249993488
+    },
+    {
+      "name": "restriction-missing-path",
+      "false_source_sha256": "f46bf62c8351cc58c345f3b094259be5bcf19c4b9fa71b0a0cf66dbab0dfc3fc",
+      "twin": "research/rmaf/bridge_review/degree_two/frame_review/twins/restriction-missing-path.lean",
+      "twin_sha256": "0de44aaa703859dd7b3734b15599e62fd51972d9c79d2e158c7af950a49c7a5c",
+      "log": "research/rmaf/bridge_review/degree_two/frame_review/logs/twin-restriction-missing-path.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "seconds": 0.3076995839983283
+    },
+    {
+      "name": "restriction-wrong-root",
+      "false_source_sha256": "3a0b73ba627e9d8bd5b0157147fdf0a5600102f80f835975cdcc201fcee6b82b",
+      "twin": "research/rmaf/bridge_review/degree_two/frame_review/twins/restriction-wrong-root.lean",
+      "twin_sha256": "cc0663fe46c776d1c27fee09ebb71b44766c36e51625dcc7d614a2b08b2e7363",
+      "log": "research/rmaf/bridge_review/degree_two/frame_review/logs/twin-restriction-wrong-root.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "seconds": 0.30021845800001756
+    },
+    {
+      "name": "restriction-cross-address",
+      "false_source_sha256": "49f4806f8ebe74d7a627a8baba0e32ac3ff7197630b7696dd9a50ce9abf0e14f",
+      "twin": "research/rmaf/bridge_review/degree_two/frame_review/twins/restriction-cross-address.lean",
+      "twin_sha256": "381f0bb7e79176438a017ec193ea2e283027b1d7adcb1becd32e300d1ebdb8f9",
+      "log": "research/rmaf/bridge_review/degree_two/frame_review/logs/twin-restriction-cross-address.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "seconds": 0.3527408750014729
+    },
+    {
+      "name": "restriction-overlap",
+      "false_source_sha256": "8c6e98afdcaa1cb24775d6e62062eef8aa867acc88542611a3c483b1691329d1",
+      "twin": "research/rmaf/bridge_review/degree_two/frame_review/twins/restriction-overlap.lean",
+      "twin_sha256": "f2fe88afa8112c69001a18d143c04c3a677575b4752891a5e92f0b0c59f469cb",
+      "log": "research/rmaf/bridge_review/degree_two/frame_review/logs/twin-restriction-overlap.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "seconds": 0.34627683399958187
+    },
+    {
+      "name": "restriction-wrong-cost",
+      "false_source_sha256": "31161523956d54d2288848be98c0a56569632cafdc4600b7e15dac4691d18d98",
+      "twin": "research/rmaf/bridge_review/degree_two/frame_review/twins/restriction-wrong-cost.lean",
+      "twin_sha256": "ccf54c794c47e5f6e72d31cf0350d7cb70f200779b2055673a41ee72430de614",
+      "log": "research/rmaf/bridge_review/degree_two/frame_review/logs/twin-restriction-wrong-cost.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "seconds": 0.2998055829993973
+    },
+    {
+      "name": "restriction-repeated-labels",
+      "false_source_sha256": "a0589d785b7ac0a033c00414fed87437621045307835fbe726050b332a405bc1",
+      "twin": "research/rmaf/bridge_review/degree_two/frame_review/twins/restriction-repeated-labels.lean",
+      "twin_sha256": "175800815f8632e348f1c9b6cd027c9241ee5541c8c6af6468313af4a4b26e4c",
+      "log": "research/rmaf/bridge_review/degree_two/frame_review/logs/twin-restriction-repeated-labels.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0,
+      "seconds": 0.30187424999894574
+    }
+  ],
+  "source_snapshots": "research/rmaf/bridge_review/degree_two/frame_review/inputs",
+  "previous_checkpoint_hashes_match": true,
+  "script_sha256": "e9cdd149a4cccc094e4b04d4caf61a27a4a1740f721dd9efc443d6eba079742e"
+}

@@ -1,0 +1,32 @@
+import ScheduledBitChecks
+import ScalarPrecontrols
+namespace GenericForest.ScalarBits.Controls
+open RMAF ForestState Universal233 WholeSourceWork GenericForest.CheckCorrespondence
+set_option maxRecDepth 20000
+
+theorem comparisons : (equalBits [true] [true,false,false]).value=true ∧
+ (leBits [false,true] [true]).value=false ∧ decode (maxBits [true] [false,true]).value=2 := by decide +kernel
+
+theorem carry_borrow : decode (addBits [true,true,true,true,true] [true]).value=32 ∧
+ decode (subtractBits [false,false,false,false,false,true] [true]).value=31 ∧
+ decode (subtractBits [true] [false,false,false,false,false,true]).value=0 := by decide +kernel
+
+theorem explicit_overflow : decode (addAtWidth 5 [true,true,true,true,true] [true]).value=0 ∧
+ (bitCount 1 0 [0,0]).value=0 ∧ (referenceEq 1 0 2).value=true := by decide +kernel
+
+theorem binary_counters : decode (lengthBits 4 [0,0,0,0,0]).value=5 ∧
+ (indexBits 4 [8,9,10] [false,true]).value=some 10 ∧
+ (indexBits 4 [8,9,10] [true,true]).value=none := by decide +kernel
+
+def leaf : Tree:=.leaf 0
+
+theorem binary_checks : (bitChecked 4 (some leaf) [leaf] 0 [[0]]).value=some [[0]] ∧
+ (bitChecked 4 (some leaf) [leaf] 0 [[1]]).value=none ∧
+ (bitChecked 4 (some leaf) [leaf] 0 [[0],[0]]).value=none := by decide +kernel
+
+theorem binary_checks_charged : (bitChecked 4 (some leaf) [leaf] 0 [[1]]).work>0 ∧
+ (referenceEq 4 0 0).work=72 ∧ (copyBits [false,false,false,false]).work=17 := by decide +kernel
+
+theorem actual_bit_factor : checkerWidth 1 (some leaf) [leaf] 0=38 ∧
+ beta (checkerWidth 1 (some leaf) [leaf] 0)=9984 := by decide +kernel
+end GenericForest.ScalarBits.Controls

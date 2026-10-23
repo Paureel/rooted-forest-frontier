@@ -1,0 +1,1140 @@
+{
+  "status": "PASS_PREPROOF_ACTUAL_RULE4_CONTROLS",
+  "pin_sha256": "84992912642b23e0602be80753b91e89f43b271270ec4dcb93d0611cac831f28",
+  "source_sha256": "d28e4a8189a95cf1c9bcff3f0b6e60eb85090e431a1b838b31c42fbd504e5105",
+  "oracle_sha256": "5ee74b7e8b67b1307eab91ef8e99a97ee172269972ab581e902dbb1c2298e35c",
+  "main_milestones": "ALL THREE OPEN",
+  "independent_acceptance": false,
+  "scope": "finite preproof original-graph controls; oracle is development contact",
+  "cases": [
+    {
+      "name": "accepted_root",
+      "candidates": [
+        [
+          "a",
+          "b",
+          "c"
+        ],
+        [
+          "c",
+          "d",
+          "a"
+        ],
+        [
+          "d",
+          "c",
+          "e"
+        ]
+      ],
+      "selected": [
+        "a",
+        "b",
+        "c"
+      ],
+      "branches": [
+        {
+          "name": "pendants",
+          "cost": 2,
+          "swapped": false,
+          "target": [
+            [
+              [
+                "a",
+                "b"
+              ],
+              [
+                "c",
+                "d"
+              ]
+            ],
+            "e"
+          ],
+          "source": [
+            [
+              [
+                "a",
+                "c"
+              ],
+              [
+                "d",
+                "e"
+              ]
+            ],
+            "b"
+          ],
+          "cuts": [
+            "001",
+            "01"
+          ],
+          "partition": [
+            [
+              "c"
+            ],
+            [
+              "d",
+              "e"
+            ],
+            [
+              "a",
+              "b"
+            ]
+          ],
+          "source_forest": [
+            "c",
+            [
+              "d",
+              "e"
+            ],
+            [
+              "a",
+              "b"
+            ]
+          ],
+          "original_regions": [
+            {
+              "root": "001",
+              "vertices": [
+                "001"
+              ],
+              "labels": [
+                "c"
+              ]
+            },
+            {
+              "root": "01",
+              "vertices": [
+                "01",
+                "010",
+                "011"
+              ],
+              "labels": [
+                "d",
+                "e"
+              ]
+            },
+            {
+              "root": "",
+              "vertices": [
+                "",
+                "0",
+                "00",
+                "000",
+                "1"
+              ],
+              "labels": [
+                "a",
+                "b"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "isolate-a",
+          "cost": 1,
+          "swapped": false,
+          "target": [
+            [
+              [
+                "a",
+                "b"
+              ],
+              [
+                "c",
+                "d"
+              ]
+            ],
+            "e"
+          ],
+          "source": [
+            [
+              [
+                "a",
+                "c"
+              ],
+              [
+                "d",
+                "e"
+              ]
+            ],
+            "b"
+          ],
+          "cuts": [
+            "000"
+          ],
+          "partition": [
+            [
+              "a"
+            ],
+            [
+              "b",
+              "c",
+              "d",
+              "e"
+            ]
+          ],
+          "source_forest": [
+            "a",
+            [
+              [
+                "c",
+                [
+                  "d",
+                  "e"
+                ]
+              ],
+              "b"
+            ]
+          ],
+          "original_regions": [
+            {
+              "root": "000",
+              "vertices": [
+                "000"
+              ],
+              "labels": [
+                "a"
+              ]
+            },
+            {
+              "root": "",
+              "vertices": [
+                "",
+                "0",
+                "00",
+                "001",
+                "01",
+                "010",
+                "011",
+                "1"
+              ],
+              "labels": [
+                "b",
+                "c",
+                "d",
+                "e"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "swap-ac-pendants",
+          "cost": 2,
+          "swapped": true,
+          "target": [
+            [
+              [
+                "a",
+                "c"
+              ],
+              [
+                "d",
+                "e"
+              ]
+            ],
+            "b"
+          ],
+          "source": [
+            [
+              [
+                "a",
+                "b"
+              ],
+              [
+                "c",
+                "d"
+              ]
+            ],
+            "e"
+          ],
+          "cuts": [
+            "001",
+            "011"
+          ],
+          "partition": [
+            [
+              "b"
+            ],
+            [
+              "d"
+            ],
+            [
+              "a",
+              "c",
+              "e"
+            ]
+          ],
+          "source_forest": [
+            "b",
+            "d",
+            [
+              [
+                "a",
+                "c"
+              ],
+              "e"
+            ]
+          ],
+          "original_regions": [
+            {
+              "root": "001",
+              "vertices": [
+                "001"
+              ],
+              "labels": [
+                "b"
+              ]
+            },
+            {
+              "root": "011",
+              "vertices": [
+                "011"
+              ],
+              "labels": [
+                "d"
+              ]
+            },
+            {
+              "root": "",
+              "vertices": [
+                "",
+                "0",
+                "00",
+                "000",
+                "01",
+                "010",
+                "1"
+              ],
+              "labels": [
+                "a",
+                "c",
+                "e"
+              ]
+            }
+          ]
+        }
+      ],
+      "F": [
+        [
+          "a",
+          "d"
+        ],
+        [
+          "b"
+        ],
+        [
+          "c"
+        ],
+        [
+          "e"
+        ]
+      ],
+      "F_refines": [
+        false,
+        false,
+        false
+      ],
+      "G": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c"
+        ],
+        [
+          "d"
+        ],
+        [
+          "e"
+        ]
+      ],
+      "mode": "split-X2-and-reattach-b",
+      "mass": "43300/54289",
+      "bound": "43300/54289",
+      "final_source_cuts": [
+        "001",
+        "010",
+        "011"
+      ],
+      "oracle_clean": true,
+      "mirror_and_endpoint_swap": true,
+      "child_callback_tests": [
+        {
+          "q": 0,
+          "calls": [],
+          "answer": null
+        },
+        {
+          "q": 1,
+          "calls": [
+            {
+              "branch": "isolate-a",
+              "cost": 1,
+              "child_budget": 0,
+              "swapped": false
+            }
+          ],
+          "answer": null
+        },
+        {
+          "q": 2,
+          "calls": [
+            {
+              "branch": "pendants",
+              "cost": 2,
+              "child_budget": 0,
+              "swapped": false
+            },
+            {
+              "branch": "isolate-a",
+              "cost": 1,
+              "child_budget": 1,
+              "swapped": false
+            },
+            {
+              "branch": "swap-ac-pendants",
+              "cost": 2,
+              "child_budget": 0,
+              "swapped": true
+            }
+          ],
+          "answer": {
+            "forest": [
+              [
+                "a"
+              ],
+              [
+                "b",
+                "c",
+                "d"
+              ],
+              [
+                "e"
+              ]
+            ],
+            "k": 3,
+            "q": 2,
+            "original_source_cuts": [
+              "000",
+              "011"
+            ]
+          }
+        },
+        {
+          "q": 3,
+          "calls": [
+            {
+              "branch": "pendants",
+              "cost": 2,
+              "child_budget": 1,
+              "swapped": false
+            },
+            {
+              "branch": "isolate-a",
+              "cost": 1,
+              "child_budget": 2,
+              "swapped": false
+            },
+            {
+              "branch": "swap-ac-pendants",
+              "cost": 2,
+              "child_budget": 1,
+              "swapped": true
+            }
+          ],
+          "answer": {
+            "forest": [
+              [
+                "a"
+              ],
+              [
+                "b",
+                "c",
+                "d"
+              ],
+              [
+                "e"
+              ]
+            ],
+            "k": 3,
+            "q": 2,
+            "original_source_cuts": [
+              "000",
+              "011"
+            ]
+          }
+        },
+        {
+          "q": 4,
+          "calls": [
+            {
+              "branch": "pendants",
+              "cost": 2,
+              "child_budget": 2,
+              "swapped": false
+            },
+            {
+              "branch": "isolate-a",
+              "cost": 1,
+              "child_budget": 3,
+              "swapped": false
+            },
+            {
+              "branch": "swap-ac-pendants",
+              "cost": 2,
+              "child_budget": 2,
+              "swapped": true
+            }
+          ],
+          "answer": {
+            "forest": [
+              [
+                "a"
+              ],
+              [
+                "b",
+                "c",
+                "d"
+              ],
+              [
+                "e"
+              ]
+            ],
+            "k": 3,
+            "q": 2,
+            "original_source_cuts": [
+              "000",
+              "011"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "accepted_outside",
+      "candidates": [
+        [
+          "a",
+          "b",
+          "c"
+        ],
+        [
+          "c",
+          "d",
+          "a"
+        ],
+        [
+          "d",
+          "c",
+          "e"
+        ]
+      ],
+      "selected": [
+        "a",
+        "b",
+        "c"
+      ],
+      "branches": [
+        {
+          "name": "pendants",
+          "cost": 2,
+          "swapped": false,
+          "target": [
+            "f",
+            [
+              [
+                [
+                  "a",
+                  "b"
+                ],
+                [
+                  "c",
+                  "d"
+                ]
+              ],
+              "e"
+            ]
+          ],
+          "source": [
+            "f",
+            [
+              [
+                [
+                  "a",
+                  "c"
+                ],
+                [
+                  "d",
+                  "e"
+                ]
+              ],
+              "b"
+            ]
+          ],
+          "cuts": [
+            "1001",
+            "101"
+          ],
+          "partition": [
+            [
+              "c"
+            ],
+            [
+              "d",
+              "e"
+            ],
+            [
+              "a",
+              "b",
+              "f"
+            ]
+          ],
+          "source_forest": [
+            "c",
+            [
+              "d",
+              "e"
+            ],
+            [
+              "f",
+              [
+                "a",
+                "b"
+              ]
+            ]
+          ],
+          "original_regions": [
+            {
+              "root": "1001",
+              "vertices": [
+                "1001"
+              ],
+              "labels": [
+                "c"
+              ]
+            },
+            {
+              "root": "101",
+              "vertices": [
+                "101",
+                "1010",
+                "1011"
+              ],
+              "labels": [
+                "d",
+                "e"
+              ]
+            },
+            {
+              "root": "",
+              "vertices": [
+                "",
+                "0",
+                "1",
+                "10",
+                "100",
+                "1000",
+                "11"
+              ],
+              "labels": [
+                "a",
+                "b",
+                "f"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "isolate-a",
+          "cost": 1,
+          "swapped": false,
+          "target": [
+            "f",
+            [
+              [
+                [
+                  "a",
+                  "b"
+                ],
+                [
+                  "c",
+                  "d"
+                ]
+              ],
+              "e"
+            ]
+          ],
+          "source": [
+            "f",
+            [
+              [
+                [
+                  "a",
+                  "c"
+                ],
+                [
+                  "d",
+                  "e"
+                ]
+              ],
+              "b"
+            ]
+          ],
+          "cuts": [
+            "1000"
+          ],
+          "partition": [
+            [
+              "a"
+            ],
+            [
+              "b",
+              "c",
+              "d",
+              "e",
+              "f"
+            ]
+          ],
+          "source_forest": [
+            "a",
+            [
+              "f",
+              [
+                [
+                  "c",
+                  [
+                    "d",
+                    "e"
+                  ]
+                ],
+                "b"
+              ]
+            ]
+          ],
+          "original_regions": [
+            {
+              "root": "1000",
+              "vertices": [
+                "1000"
+              ],
+              "labels": [
+                "a"
+              ]
+            },
+            {
+              "root": "",
+              "vertices": [
+                "",
+                "0",
+                "1",
+                "10",
+                "100",
+                "1001",
+                "101",
+                "1010",
+                "1011",
+                "11"
+              ],
+              "labels": [
+                "b",
+                "c",
+                "d",
+                "e",
+                "f"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "swap-ac-pendants",
+          "cost": 2,
+          "swapped": true,
+          "target": [
+            "f",
+            [
+              [
+                [
+                  "a",
+                  "c"
+                ],
+                [
+                  "d",
+                  "e"
+                ]
+              ],
+              "b"
+            ]
+          ],
+          "source": [
+            "f",
+            [
+              [
+                [
+                  "a",
+                  "b"
+                ],
+                [
+                  "c",
+                  "d"
+                ]
+              ],
+              "e"
+            ]
+          ],
+          "cuts": [
+            "1001",
+            "1011"
+          ],
+          "partition": [
+            [
+              "b"
+            ],
+            [
+              "d"
+            ],
+            [
+              "a",
+              "c",
+              "e",
+              "f"
+            ]
+          ],
+          "source_forest": [
+            "b",
+            "d",
+            [
+              "f",
+              [
+                [
+                  "a",
+                  "c"
+                ],
+                "e"
+              ]
+            ]
+          ],
+          "original_regions": [
+            {
+              "root": "1001",
+              "vertices": [
+                "1001"
+              ],
+              "labels": [
+                "b"
+              ]
+            },
+            {
+              "root": "1011",
+              "vertices": [
+                "1011"
+              ],
+              "labels": [
+                "d"
+              ]
+            },
+            {
+              "root": "",
+              "vertices": [
+                "",
+                "0",
+                "1",
+                "10",
+                "100",
+                "1000",
+                "101",
+                "1010",
+                "11"
+              ],
+              "labels": [
+                "a",
+                "c",
+                "e",
+                "f"
+              ]
+            }
+          ]
+        }
+      ],
+      "F": [
+        [
+          "a",
+          "d",
+          "f"
+        ],
+        [
+          "b"
+        ],
+        [
+          "c"
+        ],
+        [
+          "e"
+        ]
+      ],
+      "F_refines": [
+        false,
+        false,
+        false
+      ],
+      "G": [
+        [
+          "a",
+          "b",
+          "f"
+        ],
+        [
+          "c"
+        ],
+        [
+          "d"
+        ],
+        [
+          "e"
+        ]
+      ],
+      "mode": "split-X2-and-reattach-b",
+      "mass": "43300/54289",
+      "bound": "43300/54289",
+      "final_source_cuts": [
+        "1001",
+        "1010",
+        "1011"
+      ],
+      "oracle_clean": true,
+      "mirror_and_endpoint_swap": true,
+      "child_callback_tests": [
+        {
+          "q": 0,
+          "calls": [],
+          "answer": null
+        },
+        {
+          "q": 1,
+          "calls": [
+            {
+              "branch": "isolate-a",
+              "cost": 1,
+              "child_budget": 0,
+              "swapped": false
+            }
+          ],
+          "answer": null
+        },
+        {
+          "q": 2,
+          "calls": [
+            {
+              "branch": "pendants",
+              "cost": 2,
+              "child_budget": 0,
+              "swapped": false
+            },
+            {
+              "branch": "isolate-a",
+              "cost": 1,
+              "child_budget": 1,
+              "swapped": false
+            },
+            {
+              "branch": "swap-ac-pendants",
+              "cost": 2,
+              "child_budget": 0,
+              "swapped": true
+            }
+          ],
+          "answer": {
+            "forest": [
+              [
+                "a"
+              ],
+              [
+                "b",
+                "c",
+                "d",
+                "f"
+              ],
+              [
+                "e"
+              ]
+            ],
+            "k": 3,
+            "q": 2,
+            "original_source_cuts": [
+              "1000",
+              "1011"
+            ]
+          }
+        },
+        {
+          "q": 3,
+          "calls": [
+            {
+              "branch": "pendants",
+              "cost": 2,
+              "child_budget": 1,
+              "swapped": false
+            },
+            {
+              "branch": "isolate-a",
+              "cost": 1,
+              "child_budget": 2,
+              "swapped": false
+            },
+            {
+              "branch": "swap-ac-pendants",
+              "cost": 2,
+              "child_budget": 1,
+              "swapped": true
+            }
+          ],
+          "answer": {
+            "forest": [
+              [
+                "a"
+              ],
+              [
+                "b",
+                "c",
+                "d",
+                "f"
+              ],
+              [
+                "e"
+              ]
+            ],
+            "k": 3,
+            "q": 2,
+            "original_source_cuts": [
+              "1000",
+              "1011"
+            ]
+          }
+        },
+        {
+          "q": 4,
+          "calls": [
+            {
+              "branch": "pendants",
+              "cost": 2,
+              "child_budget": 2,
+              "swapped": false
+            },
+            {
+              "branch": "isolate-a",
+              "cost": 1,
+              "child_budget": 3,
+              "swapped": false
+            },
+            {
+              "branch": "swap-ac-pendants",
+              "cost": 2,
+              "child_budget": 2,
+              "swapped": true
+            }
+          ],
+          "answer": {
+            "forest": [
+              [
+                "a"
+              ],
+              [
+                "b",
+                "c",
+                "d",
+                "f"
+              ],
+              [
+                "e"
+              ]
+            ],
+            "k": 3,
+            "q": 2,
+            "original_source_cuts": [
+              "1000",
+              "1011"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "false_plants": [
+    {
+      "claim": "The accepted-root F itself refines one of the three literal branch partitions.",
+      "value": false,
+      "rejected": true
+    },
+    {
+      "claim": "The third accepted-root branch cuts both original outgoing arcs but costs one.",
+      "value": false,
+      "rejected": true
+    },
+    {
+      "claim": "A role-swapped child keeps former source S as the cut source.",
+      "value": false,
+      "rejected": true
+    },
+    {
+      "claim": "Source embedding disjointness may be omitted: outside block c,f is clear of block a,d in accepted-outside S.",
+      "value": false,
+      "rejected": true
+    },
+    {
+      "claim": "The excluded-t1 input satisfies the global no-t1 guard.",
+      "value": false,
+      "rejected": true
+    }
+  ],
+  "corruptions": [
+    {
+      "name": "duplicate-label",
+      "rejected": true,
+      "reason": "duplicate-label"
+    },
+    {
+      "name": "missing-source-label",
+      "rejected": true,
+      "reason": "label-mismatch"
+    },
+    {
+      "name": "root-cut",
+      "rejected": true,
+      "reason": "root-cut"
+    },
+    {
+      "name": "duplicate-cut",
+      "rejected": true,
+      "reason": "duplicate-cut"
+    },
+    {
+      "name": "wrong-role-source",
+      "rejected": true,
+      "reason": "wrong-literal-partition"
+    },
+    {
+      "name": "corrupted-pinned-exchange",
+      "rejected": true,
+      "reason": "exchange-drift"
+    }
+  ],
+  "excluded_t1": {
+    "source_ab_pendants": [
+      "001",
+      "01"
+    ],
+    "swapped_ac_pendants": [
+      "001"
+    ],
+    "admitted": false
+  },
+  "source_clearance_collision_vertices": [
+    "10",
+    "100"
+  ],
+  "elapsed_seconds": 0.01633,
+  "positive_actual_fixtures": 2,
+  "conditional_callback_budget_tests": 10,
+  "false_claims_rejected": 5,
+  "corruptions_rejected": 6,
+  "warning": "No universal theorem or independent certification follows from these finite controls."
+}

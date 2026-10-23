@@ -1,0 +1,130 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredRelabel.lean:12:62: error: unsolved goals
+a b x : Bits
+⊢ decode (if decode x = decode a then b else if decode x = decode b then a else x) =
+    if decode x = decode a then decode b else if decode x = decode b then decode a else decode x
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredRelabel.lean:87:71: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  restrict (decode y :: List.map labelValue X) (treeValue T)
+in the target expression
+  none =
+    Option.map (OrdinaryCommonSplit.relabel (OrdinaryCommonSplit.swap (decode y) (decode rho)))
+      (restrict (decode y :: blockValue X) (treeValue T))
+
+case none
+T : GenericForest.BinaryProvider.Tree
+X : Block
+y rho : Bits
+h : (restrictLabels (y :: X) T).value = none
+restricted : none = restrict (decode y :: List.map labelValue X) (treeValue T)
+⊢ none =
+    Option.map (OrdinaryCommonSplit.relabel (OrdinaryCommonSplit.swap (decode y) (decode rho)))
+      (restrict (decode y :: blockValue X) (treeValue T))
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredRelabel.lean:90:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  restrict (decode y :: List.map labelValue X) (treeValue T)
+in the target expression
+  some (treeValue (relabelSwap y rho U).value) =
+    Option.map (OrdinaryCommonSplit.relabel (OrdinaryCommonSplit.swap (decode y) (decode rho)))
+      (restrict (decode y :: blockValue X) (treeValue T))
+
+case some
+T : GenericForest.BinaryProvider.Tree
+X : Block
+y rho : Bits
+U : GenericForest.BinaryProvider.Tree
+h : (restrictLabels (y :: X) T).value = some U
+restricted : some (treeValue U) = restrict (decode y :: List.map labelValue X) (treeValue T)
+⊢ some (treeValue (relabelSwap y rho U).value) =
+    Option.map (OrdinaryCommonSplit.relabel (OrdinaryCommonSplit.swap (decode y) (decode rho)))
+      (restrict (decode y :: blockValue X) (treeValue T))
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredRelabel.lean:120:40: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  p ≥ 0
+  o ≥ 0
+  n ≥ 0
+  n - o ≥ 0
+  m ≥ 0
+  l ≥ 0
+  k ≥ 0
+  k - l ≥ 0
+  k - m ≤ 0
+  j ≥ 0
+  j - n - p ≥ 1
+  i ≥ 0
+  i - j ≥ 0
+  g ≥ 0
+  f ≥ 0
+  e ≥ 0
+  e - f ≥ 0
+  e - g ≥ 0
+  d ≥ 0
+  c ≥ 0
+  c - d ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+where
+ a := ↑N
+ b := ↑(treeNodes (treeValue T))
+ c := ↑P
+ d := ↑(List.length X)
+ e := ↑B
+ f := ↑(List.length y)
+ g := ↑(List.length rho)
+ i := ↑(beta B) * ↑(meterRestrict (blockValue (y :: X)) (treeValue T)).work
+ j := ↑(restrictLabels (y :: X) T).work
+ k := ↑(4 * ((blockValue (y :: X)).length + 2)) * ↑(treeNodes (treeValue T))
+ l := ↑(meterRestrict (blockValue (y :: X)) (treeValue T)).work
+ m := ↑(4 * (P + 3)) * ↑N
+ n := ↑(beta B) * ↑(4 * (P + 3) * N)
+ o := ↑(beta B) * ↑(4 * ((blockValue (y :: X)).length + 2) * treeNodes (treeValue T))
+ p := ↑(128 * (B + 1) + 4) * ↑N
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredRelabel.lean:128:33: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  s ≥ 0
+  r ≥ 0
+  q ≥ 0
+  q - r ≥ 0
+  q - s ≤ 0
+  p ≥ 0
+  o ≥ 0
+  n ≥ 0
+  n - o ≥ 0
+  m ≥ 0
+  l ≥ 0
+  k ≥ 0
+  k - l ≥ 0
+  k - m ≤ 0
+  j ≥ 0
+  j - n + r - s ≥ 1
+  i ≥ 0
+  i - j ≥ 0
+  g ≥ 0
+  f ≥ 0
+  e ≥ 0
+  e - f ≥ 0
+  e - g ≥ 0
+  d ≥ 0
+  c ≥ 0
+  c - d ≥ 0
+  b ≥ 0
+  b - p ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+where
+ a := ↑N
+ b := ↑(treeNodes (treeValue T))
+ c := ↑P
+ d := ↑(List.length X)
+ e := ↑B
+ f := ↑(List.length y)
+ g := ↑(List.length rho)
+ i := ↑(beta B) * ↑(meterRestrict (blockValue (y :: X)) (treeValue T)).work
+ j := ↑(restrictLabels (y :: X) T).work
+ k := ↑(4 * ((blockValue (y :: X)).length + 2)) * ↑(treeNodes (treeValue T))
+ l := ↑(meterRestrict (blockValue (y :: X)) (treeValue T)).work
+ m := ↑(4 * (P + 3)) * ↑N
+ n := ↑(beta B) * ↑(4 * (P + 3) * N)
+ o := ↑(beta B) * ↑(4 * ((blockValue (y :: X)).length + 2) * treeNodes (treeValue T))
+ p := ↑(treeNodes (treeValue U))
+ q := ↑(128 * (B + 1) + 4) * ↑(treeNodes (treeValue U))
+ r := ↑(relabelSwap y rho U).work
+ s := ↑(128 * (B + 1) + 4) * ↑N

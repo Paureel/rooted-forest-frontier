@@ -1,0 +1,104 @@
+Mathematical raw-input decoder lemma, version1, TARGET-v3
+
+This is a written author argument for the exact DECODE/READ_DIGIT procedures in
+math_pseudocode_v1/REPRESENTATION-AND-OPERATIONS-v1.md (SHA808e4487...), not
+instruction-level certification, an independent verdict, or a changed input
+model. The full global theorem still needs the separately named local-credit,
+field projection, occurrence coupling and elementary realization lemmas.
+
+Statement and input. Let T,S be actual canonical binary Trees; let N>=1 bound
+the number of leaves in EACH tree and L>=1 bound every original label width,
+with w(0)=1. The supplied data are ONLY their published packed word U(T,S) and
+an actual budget word q. Set D=10N+4NL+1. In optimization the supplied budget is
+0 and budgets are computed internally. Q is an analysis bound q<=Q, never an
+input optimum. DECODE returns the actual immutable representations of T,S,q.
+It does not compute or assume their properness; the subsequent computed
+properness test handles duplicated/different labels. No extra root label is
+inserted. Invalid raw-word behavior is the explicit parser fault, separate
+from the well-formed canonical-code theorem here.
+
+Correctness invariant. Consider the low-to-high digit sequence of the unread
+word. The current natural U contains exactly those remaining digits followed
+by the original high sentinel1. READ_DIGIT first tests U>1, returns its low bit
+and replaces it by floor(U/2); hence it consumes exactly one original digit.
+A parser stack consists of completed postorder subtrees, in reverse completion
+order, each pointer referencing its actual fresh record start. Every unfinished
+ancestor is represented only by the still unread suffix; no source Tree or
+parse tree is runtime data supplied to the procedure.
+
+For a Leaf(x), tag00 enters the natural field. Its unary prefix has w(x) ones
+and a zero; the header loop therefore computes exactly w(x)>0. The payload
+loop reads its w(x) digits in most-significant-first order and maintains
+xacc equal to the binary prefix already read. Doubling and adding the next
+bit extends this prefix. When w(x)>1 the first payload bit is1 by canonical
+encoding; when w(x)=1 either0 or1 is allowed, including x=0. A fresh Leaf(x)
+and a fresh stack cons are appended. For a node, the source postorder sequence
+has already pushed its left then right subtree, so two actual pops recover
+right then left; their Node record and new stack cons represent that original
+node. Untouched stack roots are shared immutably, not copied or decoded twice.
+Induction on the source subtree proves this stack effect and that its records
+have the stated actual contents. There is no forward or non-start pointer.
+
+The first END01 finds exactly one completed T on the stack, stores its root,
+and empties the stack; the second does the same for S. All source subtree
+records remain allocated. The final sentinel is exactly1, so the explicit
+trailing-data test passes. The saved budget word is unmodified. This gives the
+returned value and all-prefix record-start/ownership safety: every stack read
+uses nil-tested existing cons, each record field exists in its immutable
+constructor, and allocation is at the append frontier. A null stack is tested
+before every pop, and an END tests singletonness before extracting its root.
+The invariant and fresh allocation rule establish these facts, not an assumed
+successful run, supplied EntryRep or arbitrary-heap promise.
+
+Termination. Every call of READ_DIGIT consumes one of the finite B source
+digits, where B=5(nT+nS)+2*sum(label widths over both input trees). The two tag
+reads, unary header reads and payload reads partition these digits exactly.
+The token loop either consumes another tag/payload or returns after the second
+END. Inner payload counters decrease by1; the header loop consumes a digit
+at every iteration and reaches its canonical0 terminator. Thus all loops and
+calls terminate. w(Uinitial)=B+1<=D. No bitLength, shift-by-width, multiplication,
+exponentiation or source recursion oracle is used by this decoder.
+
+Abstract data/control count, before the finite realization factor gamma:
+- At most16 abstract operations per READ_DIGIT, including its tests, call,
+  return, shift and low-bit operation, charged once per consumed digit.
+- The header/payload loops use at most16 further operations per consumed digit:
+  counter/test/branch and accumulator updates, including loop backedges.
+- A token/END uses at most64 further fixed operations for tag preparation,
+  branches, null/singleton tests, stack field reads, constructor/cons allocation,
+  root/register copies and loop/return control. There are at most B tokens;
+  nil/tag literals and initial/final control add at most64.
+Consequently Udecode<=96B+64<=512(D+1). This deliberately loose bound uses the
+finite displayed body, not an assigned source fee. A fixed-record access and
+constructor is ONE abstract operation at this stage; the separately proved
+finite field/frame realization expands it and charges all words/dispatch.
+There is no constant-time list/tree traversal hidden in these rows. Captured
+READ_DIGIT/parser locals are included in the fixed activation realization.
+
+Raw data allocation without activation records. Write n=nT+nS. Both trees have
+n leaves and n-2 internal nodes. Their leaf/node records occupy2n+3(n-2)=5n-6
+words. The nil word adds1. Exactly2n-2 completed tree constructors each push a
+3-word stack cell, including popped cells retained forever. Thus the actual
+raw tree+stack words total11n-11<=22N. All are word-by-word append writes.
+There is no free reclamation and no allocation per absent parse subtree.
+
+Instantiation interface for the global proof. Let f,c be the fixed local-slot
+and continuation-tag bounds of the published finite algorithm, and let F>=1
+and gamma>=1 be its independently supplied finite realization constants:
+<=F freshly appended words per abstract operation, no extra heap-per-bit
+arithmetic, and <=gamma*(V+1) elementary instructions with word footprint
+width<=2V+3 for operands bounded by V. These are the implementation lemma's
+named conclusions, not assumed final runtime bounds. Put
+  Uinit=512(D+1), H0=1+F*Uinit,
+  Vinit=D+Q+H0+f+c+8,
+  I=16*gamma*Uinit*(Vinit+1)^2.
+Before any main solver operation the heap frontier is <=H0. Unread input and
+partial label accumulators have width<=D; counters/tags/phase have values<=D+3;
+saved q has width<=Q+1; all pointers/frontiers have values<=H0 and hence
+width<=H0+1. Fixed literals/continuation tags are bounded by f+c+8. Vinit
+therefore bounds every boundary word. The realization lemma covers its own
+temporaries; each footprint has at most5 occurrences and charge<=1+5*(2Vinit+3),
+so bill<=I. This gives explicit polynomial I,H0 once F,gamma,f,c are fixed,
+without using the unknown optimum as runtime input or the main solver's time.
+The older numeric encoder theorem is optional corroborating support, not used
+to infer unchanged fetched instructions for this distinct mathematical decoder.

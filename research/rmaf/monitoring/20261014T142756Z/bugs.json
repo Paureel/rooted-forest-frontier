@@ -1,0 +1,332 @@
+{
+  "new_counterexamples": 0,
+  "reproduced_in_regime_refutations": [
+    {
+      "id": "RAW-UNIVERSAL-COVER",
+      "previously_frozen_reproduced": true,
+      "failing_step": "Replace existential branch coverage by membership in A/BB/C for every minimum original cutset.",
+      "regime": "Atomic endpoint pair c,d, whole rooted binary trees with unary labelled rho, globally minimum original-edge AF cutset.",
+      "instance": {
+        "id": "raw-cover-failure",
+        "T1": [
+          "a",
+          [
+            "b",
+            [
+              "c",
+              "d"
+            ]
+          ]
+        ],
+        "T2": [
+          [
+            [
+              "a",
+              "c"
+            ],
+            "b"
+          ],
+          "d"
+        ],
+        "pair": [
+          "c",
+          "d"
+        ],
+        "cut_clusters": [
+          [
+            "a",
+            "c"
+          ],
+          [
+            "a"
+          ]
+        ],
+        "expected_optimum_cuts": 2,
+        "expected_blocks": [
+          [
+            "a"
+          ],
+          [
+            "c"
+          ],
+          [
+            "rho",
+            "b",
+            "d"
+          ]
+        ],
+        "expected_universal_raw_cover": false,
+        "expected_existential_covered_optimum": true
+      },
+      "expected_if_claim_true": {
+        "universal_raw_cover": true
+      },
+      "actual": {
+        "id": "raw-cover-failure",
+        "original_AF": true,
+        "blocks": [
+          [
+            "a"
+          ],
+          [
+            "b",
+            "d",
+            "rho"
+          ],
+          [
+            "c"
+          ]
+        ],
+        "active_containment": true,
+        "optimum_cuts": 2,
+        "universal_raw_cover": false,
+        "existential_covered_optimum": true,
+        "fixture_covered": false,
+        "minimum_count": 8,
+        "BB_clusters": [
+          [
+            "a"
+          ],
+          [
+            "b"
+          ]
+        ]
+      },
+      "script": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/review/fresh_exact.py",
+      "receipt": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-repair-review-controls.json",
+      "scope": "Refutes universal raw Cover; existential coverage in this fixture survives."
+    },
+    {
+      "id": "EMPTY-COMPOUND-ANCHOR",
+      "previously_frozen_reproduced": true,
+      "failing_step": "Lemma6.5 p102 asserts an endpoint leaf still connected to u after E in the one-path-cut case.",
+      "regime": "Whole forests, active containment true, common endpoint subtrees A={a}, C={c1,c2}, E2 empty and original AF true; E is arbitrary, not minimum.",
+      "instance": {
+        "status": "frozen-adversary-candidate-before-execution",
+        "T1": [
+          [
+            [
+              "a",
+              [
+                "c1",
+                "c2"
+              ]
+            ],
+            "x"
+          ],
+          "y"
+        ],
+        "T2": [
+          [
+            "a",
+            [
+              "c1",
+              "c2"
+            ]
+          ],
+          [
+            "x",
+            "y"
+          ]
+        ],
+        "F1_equals_T1": true,
+        "F2_equals_T2": true,
+        "a_subtree": [
+          "a"
+        ],
+        "c_subtree": [
+          "c1",
+          "c2"
+        ],
+        "E_clusters": [
+          [
+            "a"
+          ],
+          [
+            "c1"
+          ],
+          [
+            "c2"
+          ]
+        ],
+        "E2_clusters": [],
+        "path_removed_clusters": [
+          [
+            "a"
+          ]
+        ],
+        "E0_clusters": [
+          [
+            "c1"
+          ],
+          [
+            "c2"
+          ]
+        ],
+        "proposed_original_AF": true,
+        "proposed_normalized_AF": false,
+        "mechanism_to_test": "The root component of the common compound endpoint c has no labels after E; rejoining a can then add a new incompatible rooted triple. Active containment is automatic because F1 is connected. E need not be minimum in standalone Lemma6.5."
+      },
+      "expected_if_claim_true": {
+        "normalized_AF": true,
+        "u_component_endpoint_label_exists": true
+      },
+      "actual": {
+        "id": "compound-empty",
+        "original_AF": true,
+        "normalized_AF": false,
+        "active_containment": true,
+        "original_cut_count": 3,
+        "optimum_cuts": 1,
+        "before_blocks": [
+          [
+            "a"
+          ],
+          [
+            "c1"
+          ],
+          [
+            "c2"
+          ],
+          [
+            "rho",
+            "x",
+            "y"
+          ]
+        ],
+        "after_blocks": [
+          [
+            "a",
+            "rho",
+            "x",
+            "y"
+          ],
+          [
+            "c1"
+          ],
+          [
+            "c2"
+          ]
+        ],
+        "u_component_endpoint_label_exists": false,
+        "u_component_labels": [
+          "rho",
+          "x",
+          "y"
+        ],
+        "restriction_mismatches": [
+          {
+            "labels": [
+              "a",
+              "rho",
+              "x",
+              "y"
+            ],
+            "T1_restriction": "('rho', ((None, (('y', ()), (None, (('a', ()), ('x', ()))))),))",
+            "T2_restriction": "('rho', ((None, (('a', ()), (None, (('x', ()), ('y', ()))))),))"
+          }
+        ],
+        "embedding_overlaps": []
+      },
+      "script": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/review/fresh_exact.py",
+      "receipt": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-repair-review-controls.json",
+      "scope": "Refutes arbitrary-E compound normalization without an anchor. E has 3 cuts and optimum 1; does not refute minimum-cutset consumers or the restricted theorem."
+    },
+    {
+      "id": "PARTIAL-NOT-FULL",
+      "previously_frozen_reproduced": true,
+      "failing_step": "Identify partial restoration of ea alone with full path normalization or assume full result lies in partial result without checking the added parent.",
+      "regime": "Whole forests, actual AF true, containment true, common atomic endpoints intact; arbitrary nonminimum E.",
+      "instance": {
+        "T1": [
+          [
+            [
+              "a",
+              "c"
+            ],
+            "x"
+          ],
+          "y"
+        ],
+        "T2": [
+          [
+            "a",
+            "c"
+          ],
+          [
+            "x",
+            "y"
+          ]
+        ],
+        "pair": [
+          "a",
+          "c"
+        ],
+        "E_clusters": [
+          [
+            "a"
+          ],
+          [
+            "c"
+          ]
+        ],
+        "E2_clusters": [],
+        "restore_only": [
+          [
+            "a"
+          ]
+        ],
+        "expected_original_AF": true,
+        "expected_partial_AF": false,
+        "expected_full_AF": true,
+        "expected_active_containment": true,
+        "expected_endpoints_intact": true,
+        "scope": "arbitrary-E partial-restoration control; no claim E is optimal or this is a source consumer counterexample"
+      },
+      "expected_if_claim_true": {
+        "partial_AF": true
+      },
+      "actual": {
+        "original_AF": true,
+        "partial_AF": false,
+        "full_AF": true,
+        "active_containment": true,
+        "endpoints_intact": true,
+        "optimum_cuts": 1,
+        "E_count": 2,
+        "partial_cuts": [
+          [
+            "c"
+          ]
+        ],
+        "full_cuts": [
+          [
+            "a",
+            "c"
+          ]
+        ],
+        "restriction_mismatches": [
+          {
+            "labels": [
+              "a",
+              "rho",
+              "x",
+              "y"
+            ],
+            "T1_restriction": "('rho', ((None, (('y', ()), (None, (('a', ()), ('x', ()))))),))",
+            "T2_restriction": "('rho', ((None, (('a', ()), (None, (('x', ()), ('y', ()))))),))"
+          }
+        ],
+        "embedding_overlaps": []
+      },
+      "script": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/review/hunt.py",
+      "receipt": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-repair-review-hunt-n4.json",
+      "scope": "Refutes unconditional partial/full substitution. E has 2 cuts and optimum 1; does not refute source minimum-E consumers."
+    }
+  ],
+  "out_of_regime_warning": {
+    "fixture": "standalone-normalization-failure",
+    "active_containment": false,
+    "meaning": "This fixture alone does not refute a theorem assuming valid active containment."
+  }
+}

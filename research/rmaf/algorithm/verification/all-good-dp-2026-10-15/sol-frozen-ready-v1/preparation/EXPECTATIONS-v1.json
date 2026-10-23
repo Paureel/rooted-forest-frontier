@@ -1,0 +1,55 @@
+{
+ "version":"all-good-literal-v1-before-execution",
+ "q":[0,1,2,1000000000],
+ "fixtures":[
+  {"id":"none-empty","T":null,"ss":[],"proper":true,"allGood":true,"oracleMinimum":0,"minima":[[]],"changes":0,"regions":0,"visits":0,"rows":0,"evaluations":0},
+  {"id":"none-nonempty","T":null,"ss":[9],"proper":false,"allGood":false,"oracleMinimum":null,"minima":[]},
+  {"id":"leaf9","T":9,"ss":[9],"proper":true,"allGood":true,"oracleMinimum":0,"minima":[[[9]]],"changes":0,"regions":1,"visits":1,"rows":1,"evaluations":0},
+  {"id":"duplicate-source9","T":9,"ss":[9,9],"proper":false,"allGood":false,"oracleMinimum":null,"minima":[]},
+  {"id":"absent-source9","T":9,"ss":[10],"proper":false,"allGood":false,"oracleMinimum":null,"minima":[]},
+  {"id":"balanced-clades","T":[[0,1],[2,3]],"ss":[[0,1],[2,3]],"proper":true,"allGood":true,"oracleMinimum":0,"minima":[[[0,1],[2,3]]],"changes":1,"regions":2,"visits":7,"rows":10,"evaluations":16},
+  {"id":"balanced-cross","T":[[0,1],[2,3]],"ss":[[0,2],[1,3]],"proper":true,"allGood":true,"oracleMinimum":1,"minima":[[[0,2],[1],[3]],[[0],[2],[1,3]]],"changes":2,"regions":3,"visits":7,"rows":10,"evaluations":16},
+  {"id":"balanced-mixed","T":[[0,1],[2,3]],"ss":[0,2,[1,3]],"proper":true,"allGood":true,"oracleMinimum":0,"minima":[[[0],[2],[1,3]]],"changes":2,"regions":3,"visits":7,"rows":13,"evaluations":30},
+  {"id":"bad-whole-topology","T":[[0,1],2],"ss":[[0,[1,2]]],"proper":true,"allGood":false,"oracleMinimum":1,"minima":[[[0,1],[2]],[[0,2],[1]],[[0],[1,2]]]},
+  {"id":"one-source-swapped-arbitrary","T":[[17,31],[47,59]],"ss":[[[59,47],[31,17]]],"proper":true,"allGood":true,"oracleMinimum":0,"minima":[[[17,31,47,59]]],"changes":0,"regions":1,"visits":7,"rows":7,"evaluations":6},
+  {"id":"cross-sources-reordered","T":[[0,1],[2,3]],"ss":[[3,1],[2,0]],"proper":true,"allGood":true,"oracleMinimum":1,"minima":[[[0,2],[1],[3]],[[0],[2],[1,3]]],"changes":2,"regions":3,"visits":7,"rows":10,"evaluations":16},
+  {"id":"many-singletons","T":[[0,1],[2,3]],"ss":[3,1,0,2],"proper":true,"allGood":true,"oracleMinimum":0,"minima":[[[0],[1],[2],[3]]],"changes":3,"regions":4,"visits":7,"rows":16,"evaluations":48},
+  {"id":"caterpillar-cross","T":[[[0,1],2],3],"ss":[[0,2],[1,3]],"proper":true,"allGood":true,"oracleMinimum":1,"minima":[[[0,2],[1],[3]],[[0],[2],[1,3]]],"changes":2,"regions":3,"visits":7,"rows":10,"evaluations":16},
+  {"id":"hand-rotated-clades","T":[[0,2],[1,3]],"ss":[[0,2],[1,3]],"proper":true,"allGood":true,"oracleMinimum":0,"minima":[[[0,2],[1,3]]],"changes":1,"regions":2,"visits":7,"rows":10,"evaluations":16,"handVariant":1},
+  {"id":"hand-caterpillar-03-12","T":[[[0,1],2],3],"ss":[[0,3],[1,2]],"proper":true,"allGood":true,"oracleMinimum":1,"minima":[[[0,3],[1],[2]],[[0],[3],[1,2]]],"changes":2,"regions":3,"visits":7,"rows":10,"evaluations":16,"handVariant":2},
+  {"id":"mixed-reordered","T":[[0,1],[2,3]],"ss":[[3,1],2,0],"proper":true,"allGood":true,"oracleMinimum":0,"minima":[[[0],[2],[1,3]]],"changes":2,"regions":3,"visits":7,"rows":13,"evaluations":30},
+  {"id":"duplicate-target9","T":[9,9],"ss":[9,9],"proper":false,"allGood":false,"oracleMinimum":null,"minima":[]}
+ ],
+ "internalRows":{
+  "balanced-clades":{"":{"0":1,"1":1},"0":{"0":0,"1":2},"1":{"0":2,"1":0}},
+  "balanced-cross":{"":{"0":2,"1":2},"0":{"0":1,"1":1},"1":{"0":1,"1":1}},
+  "balanced-mixed":{"":{"0":3,"1":3,"2":2},"0":{"0":1,"1":2,"2":1},"1":{"0":2,"1":1,"2":1}},
+  "many-singletons":{"":{"0":3,"1":3,"2":3,"3":3},"0":{"0":2,"1":1,"2":1,"3":2},"1":{"0":1,"1":2,"2":2,"3":1}},
+  "caterpillar-cross":{"":{"0":2,"1":2},"0":{"0":1,"1":2},"00":{"0":1,"1":1}},
+  "hand-caterpillar-03-12":{"":{"0":2,"1":2},"0":{"0":2,"1":1},"00":{"0":1,"1":1}}
+ },
+ "explicitForests":[
+  {"fixture":"balanced-cross","F":[[0,2],[1,3]],"valid":false,"rawCost":0,"componentTopologyChecks":true,"targetHullsDisjoint":false},
+  {"fixture":"balanced-cross","F":[[0],[1],[2],[3]],"valid":true,"rawCost":2,"minimum":false},
+  {"fixture":"balanced-cross","F":[[0,2],[1],[3]],"valid":true,"rawCost":1,"minimum":true},
+  {"fixture":"balanced-clades","F":[[0,1],[2,3]],"valid":true,"rawCost":0,"minimum":true},
+  {"fixture":"balanced-mixed","F":[[3,1],[2],[0]],"valid":true,"rawCost":0,"minimum":true},
+  {"fixture":"bad-whole-topology","F":[[0,1,2]],"valid":false,"rawCost":0,"componentTopologyChecks":false,"targetHullsDisjoint":true},
+  {"fixture":"balanced-cross","F":[[0,1,2,3]],"valid":false,"rawCost":-1,"refines":false,"rejectTruncatedOffset":true}
+ ],
+ "geometry":[
+  {"fixture":"balanced-cross","B":[0,2],"hull":["","0","00","1","10"],"restriction":[0,2]},
+  {"fixture":"balanced-cross","B":[1,3],"hull":["","0","01","1","11"],"restriction":[1,3]},
+  {"fixture":"caterpillar-cross","B":[0,2],"hull":["0","00","000","01"],"restriction":[0,2]}
+ ],
+ "leaflessRawControl":{
+  "fixture":"balanced-clades","assignment":{"":0,"0":1,"1":1,"00":0,"01":0,"10":1,"11":1},
+  "vertexCount":7,"changes":4,"regionCount":5,"leaflessRegions":2,
+  "regions":[{"color":0,"vertices":[""],"leaves":[]},{"color":1,"vertices":["0"],"leaves":[]},{"color":0,"vertices":["00"],"leaves":[0]},{"color":0,"vertices":["01"],"leaves":[1]},{"color":1,"vertices":["1","10","11"],"leaves":[2,3]}],
+  "droppedForest":[[0],[1],[2,3]],"droppedForestValid":true,"droppedForestCost":1,"rawRegionOffset":3,"mustRejectExactReconstructionIdentity":true
+ },
+ "mutationClasses":["exclude-overlapping-current-hulls","ignore-full-source-topology","wrong-source-count-subtraction","wrong-owner-map","missing-row-color","drop-minimizing-root-color","drop-leafless-raw-region","ignore-global-target-hull-overlap","accept-valid-nonminimum-forest","truncate-invalid-negative-offset","unknown-minimum-access","partition-oracle-access","false-budget-zero","source-byte-drift","missing-origin","duplicate-origin","wrong-origin-module","wrong-resolved-path","unused-private-custom-axiom","generated-lazy-origin"],
+ "runtimeContracts":{"visits":"DP visits only, excluding guard/graph setup","rows":"one feasible row at a leaf; one candidate per actual source-owner color at every internal vertex","evaluations":"child-row alternatives evaluated, including edge-change comparison","tieOrder":"not prescribed for candidate; accept any exact minimum forest in oracle minima","sourceOffset":"raw integer |F|-|ss| on valid agreements; never justify invalid forest by Nat truncation","poison":"runtime toy must not call unknown_minimum or partition_oracle; corrupt wrappers must trigger the same poison entrypoints","empty":"none/[] returns no invented Tree and no raw root region"},
+ "plan":{"pilotFixtureIds":["none-empty","leaf9","balanced-clades","balanced-cross"],"fixedFixtureCount":17,"maximumLabels":4,"maximumPartitionCountPerProperState":15,"perProcessTimeoutSeconds":60,"noBroadCensus":true,"noEightLabelBellEnumeration":true},
+ "lineage":"Own earlier graph/path/partition implementation may be reused under its original hashes. Reuse contributes zero additional replications. Candidate proofs/controls/receipts/auditors remain unread."
+}

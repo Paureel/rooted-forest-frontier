@@ -1,0 +1,78 @@
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:59:5: error: unknown tactic
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:58:40: error: unsolved goals
+P Q : RMAF.Vertex → Prop
+u z : RMAF.Vertex
+hu : P u
+hq : ∀ (v : RMAF.Vertex), Q v → P v ∨ v = z
+v : VertexGeometry.Vertex
+hv : Hull Q v
+hp : ¬Hull P v
+hn : ¬PathAt v u z
+hPv : ¬P v
+mono : ∀ (a b : VertexGeometry.Vertex), P a → P b → SameRegion v a b
+⊢ region v u = region v z
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:49:47: error: unsolved goals
+case neg
+P Q : RMAF.Vertex → Prop
+u z : RMAF.Vertex
+hu : P u
+hq : ∀ (v : RMAF.Vertex), Q v → P v ∨ v = z
+v : VertexGeometry.Vertex
+hv : Hull Q v
+hp : ¬Hull P v
+hn : ¬PathAt v u z
+hPv : ¬P v
+mono : ∀ (a b : VertexGeometry.Vertex), P a → P b → SameRegion v a b
+huz : region v u = region v z
+⊢ False
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:84:19: error(lean.unknownIdentifier): Unknown identifier `leaf_exists`
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:84:9: error: Tactic `rcases` failed: `x✝ : ?m.39` is not an inductive datatype
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:113:20: error(lean.unknownIdentifier): Unknown identifier `leaf_unique`
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:139:9: error(lean.unknownIdentifier): Unknown identifier `BinaryExchange.executable_disjointVertices`
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:140:8: error: No goals to be solved
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:166:17: error: Type mismatch: After simplification, term
+  congrArg (Option.map leaves) hh
+ has type
+  ∃ a_1, subtree T [false] = some a_1 ∧ leaves a_1 = leaves (Tree.leaf a)
+but is expected to have type
+  subtreeLabels T [false] = [a]
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:170:45: error: Application type mismatch: The argument
+  hh
+has type
+  LeafAt (l.node r) (false :: p ++ [false]) a
+but is expected to have type
+  CherryAt ?m.203 p a b
+in the application
+  ih hh
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:170:45: error: Application type mismatch: The argument
+  hh
+has type
+  LeafAt (l.node r) (true :: p ++ [false]) a
+but is expected to have type
+  CherryAt ?m.203 p a b
+in the application
+  ih hh
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:182:17: error: Type mismatch: After simplification, term
+  congrArg (Option.map leaves) hh
+ has type
+  ∃ a, subtree T [true] = some a ∧ leaves a = leaves (Tree.leaf b)
+but is expected to have type
+  subtreeLabels T [true] = [b]
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:186:45: error: Application type mismatch: The argument
+  hh
+has type
+  LeafAt (l.node r) (false :: p ++ [true]) b
+but is expected to have type
+  CherryAt ?m.374 p a b
+in the application
+  ih hh
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:186:45: error: Application type mismatch: The argument
+  hh
+has type
+  LeafAt (l.node r) (true :: p ++ [true]) b
+but is expected to have type
+  CherryAt ?m.374 p a b
+in the application
+  ih hh
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:197:44: error: `simp` made no progress
+research/rmaf/algorithm/universal233/rule4/OriginalExchange.lean:198:44: error: `simp` made no progress

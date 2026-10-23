@@ -1,0 +1,3 @@
+import ProducerGeneratorColor
+#check GenericForest.BinaryProducer.Generator.colorBits_value
+#print axioms GenericForest.BinaryProducer.Generator.colorBits_value

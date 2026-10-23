@@ -1,0 +1,64 @@
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Surgery.lean:51:44: error: invalid occurrence of `·` notation, it must be surrounded by parentheses (e.g. `(· + 1)`)
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Surgery.lean:60:48: error: Application type mismatch: The argument
+  hh.right.left
+has type
+  disjointVertices (minimalVertices (yes C fun x => (leaves u).contains x) s)
+      (minimalVertices (no C fun x => (leaves u).contains x) s) =
+    true
+but is expected to have type
+  disjointVertices (minimalVertices (yes C q) s) (minimalVertices (no C q) s) = true
+in the application
+  (executable_disjointVertices s (yes C q) (no C q)).mp hh.right.left
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Surgery.lean:64:48: error: Application type mismatch: The argument
+  hh.right.right
+has type
+  disjointVertices (minimalVertices (yes C fun x => (leaves u).contains x) t)
+      (minimalVertices (no C fun x => (leaves u).contains x) t) =
+    true
+but is expected to have type
+  disjointVertices (minimalVertices (yes C q) t) (minimalVertices (no C q) t) = true
+in the application
+  (executable_disjointVertices t (yes C q) (no C q)).mp hh.right.right
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Surgery.lean:84:144: error: Application type mismatch: The argument
+  hq
+has type
+  q x = true
+but is expected to have type
+  (leaves u).contains x = true
+in the application
+  ⟨hVB E hE x hxe, hq⟩
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Surgery.lean:85:144: error: Application type mismatch: The argument
+  hq
+has type
+  (!q x) = true
+but is expected to have type
+  (!(fun x => (leaves u).contains x) x) = true
+in the application
+  ⟨hVB E hE x hxe, hq⟩
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Surgery.lean:107:12: error: Application type mismatch: The argument
+  exchange_partition (leaves s) A U V W q hnA hneA hU hps
+has type
+  partitionCheck (leaves s) (output A V W q) = true
+but is expected to have type
+  partitionCheck (leaves s) (output A V W fun x => (leaves u).contains x) = true
+in the application
+  And.intro (exchange_partition (leaves s) A U V W q hnA hneA hU hps)
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Surgery.lean:128:77: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [he] at hm
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Surgery.lean:129:86: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [he] at hm
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Surgery.lean:142:44: warning: This simp argument is unused:
+  List.filter_cons
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [splitAll, hm] at ih ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

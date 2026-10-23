@@ -1,0 +1,70 @@
+import ForestNatSplit
+namespace OrdinaryDispatch.WorkRecursion
+open RMAF ForestState Universal233 Universal233.CherryBranching
+open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.Hard2Dispatcher
+
+/-- The frozen literal affordable child jobs, with an ordinary frontier for
+EVERY actual forest callback, including failed and repeated occurrences. -/
+def childrenTrace (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree) (q : Nat) (cs : List Child) : Hard2Receipt :=
+ let jobs := Rule5OrdinaryDispatch.forestJobs T q cs
+ ⟨Rule5ActualTrace.runForestJobs actual T S q jobs,Rule5ActualTrace.queries actual (.forestJobs jobs)⟩
+
+theorem childrenTrace_value (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree) (q : Nat) (cs : List Child) :
+ (childrenTrace actual T S q cs).value=OrdinaryDispatch.runChildren actual T S q cs := by
+ simpa only [childrenTrace] using Rule5ActualTrace.runForestJobs_value actual T S q cs
+
+theorem childrenTrace_bounds (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree) (q : Nat) (cs : List Child)
+ (proper0 : ∀x,x∈cs→proper (some T) x.sourceForest=true)
+ (paid : ∀x,x∈cs→1≤x.paid) (p : Tree×Tree) (r : Nat)
+ (mem : (p,r)∈(childrenTrace actual T S q cs).queries) :
+ r<q ∧ DepthOne.proper p.1 p.2=true ∧ (leaves p.1).length≤(leaves T).length ∧ (leaves p.2).length≤(leaves T).length := by
+ obtain ⟨job,jmem,query⟩ := List.mem_flatMap.1 mem
+ have jobfacts := Rule5OrdinaryDispatch.literal_job_binding jmem
+ have proper : ForestState.proper job.target job.sources=true := by rw [jobfacts.2.1,jobfacts.2.2.1];exact proper0 job.child jobfacts.1
+ have forest := frontier_queries_proper actual job.target job.sources job.residual proper p r query
+ have sizes := GenericForest.FrontierSize.frontier_query_size actual job.target job.sources job.residual proper p r query
+ have strict := OrdinaryDispatch.remaining_decreases (paid job.child jobfacts.1) jobfacts.2.2.2
+ rw [jobfacts.2.1] at sizes
+ exact ⟨Nat.lt_of_le_of_lt forest.1 strict,forest.2,sizes.1,sizes.2⟩
+
+theorem selected_children_proper {T S : Tree} {c : Candidate} {pr : Priority}
+ (hp : DepthOne.proper T S=true) (sel : CherryBranching.select T S=some (pr,c))
+ (child : Child) (mem : child∈branches S c.a c.b) : proper (some T) child.sourceForest=true := by
+ have data := OrdinaryPriorityBridge.proper_parts hp
+ have same : ∀x,x∈leaves T ↔x∈leaves S := fun x=>data.2.2.mem_iff
+ obtain ⟨part,emb,paid,mat⟩ := three_children_literal data.1 data.2.1 same (selected_actual sel).1 child mem
+ rw [mat]
+ exact OutputState.sourceForest_proper T S child.partition data.1 data.2.1 same part
+
+theorem oneTrace_bounds (actual : GenericForest.FrontierWork.Ordinary) {T S : Tree} {c : Candidate} (q : Nat)
+ (hp : DepthOne.proper T S=true) (sel : CherryBranching.select T S=some (.one,c))
+ (p : Tree×Tree) (r : Nat) (mem : (p,r)∈(childrenTrace actual T S q [pendantChild S c.a c.b]).queries) :
+ r<q ∧ DepthOne.proper p.1 p.2=true ∧ (leaves p.1).length≤(leaves T).length ∧ (leaves p.2).length≤(leaves T).length := by
+ have cost : (pendantChild S c.a c.b).paid=1 := by
+  rw [(pendant_paid S c.a c.b).1,←(selected_actual sel).2]
+  exact (selected_spec sel).2.1
+ apply childrenTrace_bounds actual T S q _ _ _ p r mem
+ · intro x hx
+   have eq:x=pendantChild S c.a c.b := by simpa using hx
+   subst x
+   exact selected_children_proper hp sel _ (by simp [branches])
+ · intro x hx
+   have eq:x=pendantChild S c.a c.b := by simpa using hx
+   simpa [eq,cost]
+
+theorem oneTrace_mass (actual : GenericForest.FrontierWork.Ordinary) {T S : Tree} {c : Candidate} (q : Nat)
+ (hp : DepthOne.proper T S=true) (sel : CherryBranching.select T S=some (.one,c)) :
+ Rule5ActualTrace.mass Rule5ActualTrace.base q (childrenTrace actual T S q [pendantChild S c.a c.b]).queries≤Rule5ActualTrace.gamma Rule5ActualTrace.base := by
+ have cost : (pendantChild S c.a c.b).paid=1 := by
+  rw [(pendant_paid S c.a c.b).1,←(selected_actual sel).2]
+  exact (selected_spec sel).2.1
+ have bound := Rule5ActualTrace.forest_jobs_mass actual T q [pendantChild S c.a c.b]
+  (by
+   intro x hx
+   have eq:x=pendantChild S c.a c.b := by simpa using hx
+   subst x
+   exact selected_children_proper hp sel _ (by simp [branches]))
+  Rule5ActualTrace.base (by cbv)
+ simp only [List.map_cons,List.map_nil,cost] at bound
+ exact Rat.le_trans bound (by cbv : Rule5ActualTrace.costsMass Rule5ActualTrace.base [1]≤Rule5ActualTrace.gamma Rule5ActualTrace.base)
+end OrdinaryDispatch.WorkRecursion

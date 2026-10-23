@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3624947500002236,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3407162500002414,
+      "resource_stop": null,
+      "log_sha256": "c17212795e030c0bf7402d1303870c140eefde3ab0da559562f4af1f25def7c4"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016277079998872068,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "ChildrenSourceBound",
+      "source_sha256": "ec9ab7b2215371ebe45fc03e017b5a902eba9dec686e1b970951c19f3819aadc",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 1.7535905419999835,
+      "resource_stop": null,
+      "log_sha256": "fd51e14632a09e8f190dcfa4178ee3d842e80b0da5c6cccba8c5d88ed2831c03"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('ChildrenSourceBound', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:62:54: error: Invalid argument name `q` for function `Rat.pow_pos`\\n\\nHint: Perhaps you meant one of the following parameter names:\\n  \u2022 `a`: q\u0335a\u0332\\n  \u2022 `h`: q\u0335h\u0332\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:62:92: error: Expected type must not contain metavariables\\n  0 < ?m.245\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:37:92: error: unsolved goals\\nactual : GenericForest.FrontierWork.Ordinary\\nT : Tree\\nq : Nat\\ncs : List Child\\nN Q m : Nat\\nsize : (leaves T).length \u2264 N\\nbudget : q \u2264 Q\\ncount : cs.length \u2264 m\\nproper0 : \u2200 (c : Child), c \u2208 cs \u2192 proper (some T) c.sourceForest = true\\njs : List Rule5OrdinaryDispatch.ForestJob := Rule5OrdinaryDispatch.forestJobs T q cs\\npositive : 0 \u2264 geometric Rule5ActualTrace.base * forestCoefficient N Q\\npoint :\\n  \u2200 (j : Rule5OrdinaryDispatch.ForestJob),\\n    j \u2208 js \u2192\\n      \u2191(forestWork actual (fun x x_1 x_2 => 0) j.target j.sources j.residual) \u2264\\n        geometric Rule5ActualTrace.base * forestCoefficient N Q * Rule5ActualTrace.base ^ q\\nsum :\\n  (List.map (fun j => \u2191(forestWork actual (fun x x_1 x_2 => 0) j.target j.sources j.residual)) js).sum \u2264\\n    \u2191js.length * (geometric Rule5ActualTrace.base * forestCoefficient N Q * Rule5ActualTrace.base ^ q)\\nlen : js.length \u2264 m\\n\u22a2 \u2191(childForestDebit actual (fun x x_1 x_2 => 0) T q cs) \u2264\\n    \u2191m * (geometric Rule5ActualTrace.base * forestCoefficient N Q) * Rule5ActualTrace.base ^ q\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:78:2: warning: Variable name `sel` is not explicitly referenced.\\n\\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\\n  [apply] _sel\\n\\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:78:64: warning: Variable name `budget` is not explicitly referenced.\\n\\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\\n  [apply] _budget\\n\\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:92:2: warning: Variable name `sel` is not explicitly referenced.\\n\\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\\n  [apply] _sel\\n\\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:92:65: warning: Variable name `budget` is not explicitly referenced.\\n\\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\\n  [apply] _budget\\n\\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:118:28: error: Type mismatch: After simplification, term\\n  sum\\n has type\\n  @LE.le Rat Rat.instLE (\u2191(simpleLocalPolynomial N) + \u2191(childForestDebit actual (fun x x_1 x_2 => 0) T q cs))\\n    (\u2191(simpleLocalPolynomial N) * Rule5ActualTrace.base ^ q +\\n      \u21913 * (geometric Rule5ActualTrace.base * forestCoefficient N Q) * Rule5ActualTrace.base ^ q)\\nbut is expected to have type\\n  @LE.le Rat Rat.instLE (\u2191(simpleLocalPolynomial N) + \u2191(childForestDebit actual (fun x x_1 x_2 => 0) T q cs))\\n    (\u2191(simpleLocalPolynomial N) * Rule5ActualTrace.base ^ q +\\n      3 * (geometric Rule5ActualTrace.base * forestCoefficient N Q) * Rule5ActualTrace.base ^ q)\\n'))"
+}

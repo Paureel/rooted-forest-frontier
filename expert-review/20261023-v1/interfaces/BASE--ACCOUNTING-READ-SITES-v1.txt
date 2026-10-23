@@ -1,0 +1,770 @@
+13:CommonBranchWork.lean:9: def commonBranchMeter (rec : Nat→Tree→Tree→Option (List (List Nat))) (W : OrdinaryWork)
+20:CommonBranchWork.lean:16:   | none=>⟨none,p.work+a.work+b.work+W p.value.1 p.value.2 q+8⟩
+22:CommonBranchWork.lean:18:             ⟨some e.value,p.work+a.work+b.work+W p.value.1 p.value.2 q+e.work+8⟩
+23:CommonBranchWork.lean:19:  else ⟨none,p.work+a.work+b.work+4⟩
+29:CompleteNamedSources.lean:12: def concreteResiduals (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree)
+31:CompleteNamedSources.lean:14:  ⟨(disjointRunSource actual (fun _ _ _=>0) T S c.a c.b q).work,
+33:CompleteNamedSources.lean:16:    | .bad X Y Z edge=>(badPairSource actual (fun _ _ _=>0) T S X Y Z edge q).work
+36:CompleteNamedSources.lean:88: def completeRouteSource (W : GenericForest.FrontierWork.OrdinaryWork) (T S : Tree) (c : CherryBranching.Candidate)
+40:CompleteNamedSources.lean:92:  | .admittedRule5=>admittedRouteSource W T S c q
+41:CompleteNamedSources.lean:93:  | .disjointPaid=>disjointRunSource (cutoff FastOrdinary.solve q) W T S c.a c.b q
+43:CompleteNamedSources.lean:95:   let p:=paidCaseCompleteSource (cutoff FastOrdinary.solve q) W T S c q out
+44:CompleteNamedSources.lean:96:   let r:=combineSource (cutoff FastOrdinary.solve q) W T S c.a c.b q p.value
+45:CompleteNamedSources.lean:97:   ⟨r.value.answer,p.work+r.work+2⟩
+47:CompleteNamedSources.lean:122: def hard2CompleteSource (W : GenericForest.FrontierWork.OrdinaryWork) (T S : Tree) (c : CherryBranching.Candidate) (q : Nat) :
+50:CompleteNamedSources.lean:125:  let r:=completeRouteSource W T S c q f.value
+51:CompleteNamedSources.lean:126:  ⟨r.value,f.work+r.work⟩
+57:CompleteOrdinaryStep.lean:8: def completeBranchSource (W : GenericForest.FrontierWork.OrdinaryWork) (q : Nat) (T S : Tree) :
+59:CompleteOrdinaryStep.lean:10:  | .common reverse c=>commonBranchMeter FastOrdinary.solve W q T S reverse c
+60:CompleteOrdinaryStep.lean:11:  | .one reverse c=>let p:=Oriented reverse T S;oneSource (cutoff FastOrdinary.solve q) W p.1 p.2 q c.a c.b
+61:CompleteOrdinaryStep.lean:12:  | .high reverse c=>let p:=Oriented reverse T S;highSource (cutoff FastOrdinary.solve q) W p.1 p.2 q c.a c.b
+62:CompleteOrdinaryStep.lean:13:  | .rule4Forward s=>rule4Source (cutoff FastOrdinary.solve q) W s q
+63:CompleteOrdinaryStep.lean:14:  | .rule4Reverse s=>rule4Source (cutoff FastOrdinary.solve q) W s q
+64:CompleteOrdinaryStep.lean:15:  | .hard2 c _=>hard2CompleteSource W T S c q
+67:CompleteOrdinaryStep.lean:19: def ordinaryCompleteStepSource (W : GenericForest.FrontierWork.OrdinaryWork) (q : Nat) (T S : Tree) :
+71:CompleteOrdinaryStep.lean:23:  | .stop a=>⟨a,f.work⟩
+72:CompleteOrdinaryStep.lean:24:  | .selected e=>let r:=completeBranchSource W q T S e;⟨r.value,f.work+r.work⟩
+152:OWScan.lean:18:  ⟨(p.value,n.value),p.work+l.work+n.work+8⟩
+158:OWScan.lean:45:    | some F=>⟨⟨some (start,F),[(start,a.value)]⟩,a.work+12,12⟩
+160:OWScan.lean:47:      ⟨⟨r.value.selected,(start,a.value)::r.value.trials⟩,a.work+r.work+12,r.administration+12⟩
+171:OptimizerSourceBodies.lean:15:   ⟨⟨r,a.value,[(F,a.value)]⟩,a.work+12⟩
+173:OptimizerSourceBodies.lean:37: def sourceOptimizeMeter (w : Nat→Nat) (T S : Tree) : Charged Execution :=
+176:OptimizerSourceBodies.lean:40:   let s:=meterScan (fun b=>⟨FastOrdinary.solve b T S,w b⟩) 0 p.value.2
+178:OptimizerSourceBodies.lean:42:   ⟨f.value,p.work+s.work+f.work+8⟩
+179:OptimizerSourceBodies.lean:43:  else ⟨⟨⟨none,[]⟩,none,[]⟩,p.work+8⟩
+187:OrdinaryChildrenSource.lean:20:  ⟨[x.value,y.value,p.value],x.work+y.work+p.work+4⟩
+189:OrdinaryChildrenSource.lean:62: def runChildrenSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree) (q : Nat)
+191:OrdinaryChildrenSource.lean:64:  let r:=runChildrenMeter actual (fun _=>0) (fun F=>(agreementMeter T S F).work) T S q cs
+192:OrdinaryChildrenSource.lean:65:  ⟨r.value,r.localWork+childForestDebit actual W T q cs⟩
+194:OrdinaryChildrenSource.lean:114: def oneSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree) (q a b : Nat) :
+197:OrdinaryChildrenSource.lean:117:  let r:=runChildrenSource actual W T S q [c.value]
+198:OrdinaryChildrenSource.lean:118:  ⟨r.value,c.work+r.work+2⟩
+200:OrdinaryChildrenSource.lean:120: def highSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree) (q a b : Nat) :
+203:OrdinaryChildrenSource.lean:123:  let r:=runChildrenSource actual W T S q c.value
+204:OrdinaryChildrenSource.lean:124:  ⟨r.value,c.work+r.work+2⟩
+210:Rule4CallerSource.lean:66: def rule4AnswersSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+213:Rule4CallerSource.lean:69:  | b::bs=>let r:=rule4AnswersSource actual W q bs
+217:Rule4CallerSource.lean:73:    ⟨a.toList++r.value,state.work+2*b.cuts.length+8+
+218:Rule4CallerSource.lean:74:      forestWork actual W (some b.target) state.value (q-b.cost)+r.work⟩
+219:Rule4CallerSource.lean:75:   else ⟨r.value,2*b.cuts.length+4+r.work⟩
+221:Rule4CallerSource.lean:89: def rule4Source (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+224:Rule4CallerSource.lean:92:  let a:=rule4AnswersSource actual W q bs.value
+226:Rule4CallerSource.lean:94:  ⟨b.value,bs.work+a.work+b.work+2⟩
+237:ELOuter.lean:24:   | .refused=>⟨.stop none,p.work+d.work+4⟩
+240:ELOuter.lean:27:     ⟨.stop (if DepthOne.cutCost c≤q then some f.value else none),p.work+d.work+f.work+8⟩
+241:ELOuter.lean:28:   | .rejected=>let e:=meterEarly T S;⟨.selected e.value,p.work+d.work+e.work+4⟩
+242:ELOuter.lean:29:  else ⟨.stop none,p.work+2⟩
+254:ELPretest.lean:11:   t.work+pt.work+s.work+ps.work+shapes.work+et.work+es.work+8⟩
+259:ELPretest.lean:33:   ⟨!b.value,a.work+b.work+2⟩) leaves.value
+260:ELPretest.lean:34:  ⟨f.value,leaves.work+f.work+2⟩
+263:ELPretest.lean:39:  | none=>let a:=meterLeaves S;⟨[a.value],a.work+2⟩
+264:ELPretest.lean:40:  | some v=>let a:=meterSubtreeLabels S v;let b:=meterComplement S v;⟨[a.value,b.value],a.work+b.work+4⟩
+272:ELPretest.lean:101:    | none=>⟨some x,a.work+r.work+6,(x,true)::r.checks,xs.length::r.tailSizes,r.comparisons⟩
+273:ELPretest.lean:102:    | some y=>⟨if cost x≤cost y then some x else some y,a.work+r.work+10,
+275:ELPretest.lean:104:   else ⟨r.value,a.work+r.work+4,(x,false)::r.checks,xs.length::r.tailSizes,r.comparisons⟩
+279:ELPretest.lean:144:  ⟨none::e.value.map some,e.work+4*(e.value.length+1)⟩
+283:ELPretest.lean:153:  ⟨a.value,f.work+a.work+2⟩
+289:ELPretest.lean:161:   ⟨match b.value with | none=>.rejected | some c=>.found c,p.work+c.work+b.work+4⟩
+290:ELPretest.lean:162:  else ⟨.refused,p.work+2⟩
+304:ActualCaller.lean:10: def rule5AnswerSource (cb : Ordinary) (W : OrdinaryWork) (T S : Tree) (a b q : Nat) : Charged (Option Forest) :=
+305:ActualCaller.lean:11:  let r:=source cb W T S a b q
+306:ActualCaller.lean:12:  ⟨match r.value with | .answered answer=>answer | _=>none,r.work+2⟩
+314:ActualCaller.lean:26: def actualRule5Source (W : OrdinaryWork) (T S : Tree) (a b q : Nat) :=rule5AnswerSource (actualCallback q) W T S a b q
+353:AdmittedCheckCalls.lean:29:             ⟨b.value,a.work+b.work+a.calls.length+1,a.calls++b.calls⟩
+354:AdmittedCheckCalls.lean:30:            else ⟨false,a.work+1,a.calls⟩
+360:AdmittedCheckCalls.lean:22: def liftMeter {α : Type} (m : Measured α) : CheckReceipt α := ⟨m.value,m.work,[]⟩
+362:AdmittedCheckCalls.lean:23: def checkMeter (fee : CheckRequest→Nat) (r : CheckRequest) : CheckReceipt Bool := ⟨checkValue r,fee r,[r]⟩
+372:AdmittedCheckCalls.lean:61: def restrictionFilterMeter (fee : CheckRequest→Nat) (T S : Tree) : List (List Nat)→CheckReceipt (List (List Nat))
+374:AdmittedCheckCalls.lean:63:  | B::P=>let c:=checkMeter fee (.restriction T S B);let r:=restrictionFilterMeter fee T S P
+375:AdmittedCheckCalls.lean:64:            ⟨if c.value then B::r.value else r.value,c.work+r.work+3,.restriction T S B::r.calls⟩
+391:AdmittedRouteBinding.lean:39: def admittedRouteSource (W : OrdinaryWork) (T S : Tree) (c : Candidate) (q : Nat) :=actualRule5Source W T S c.a c.b q
+399:AdmittedRule4Guard.lean:118:  ⟨r.value,c.work+r.work+1⟩
+408:AdmittedRule4Guard.lean:95:            if a.value then ⟨true,a.work+1⟩ else let r:=rule4AnyMeter S cs;⟨r.value,a.work+r.work+1⟩
+418:AdmittedRule4Guard.lean:11:          if c.value then ⟨true,l.work+c.work+3⟩ else
+419:AdmittedRule4Guard.lean:12:           let d:=hasCherryMeter S b x;⟨d.value,l.work+c.work+d.work+3⟩
+420:AdmittedRule4Guard.lean:13:  | _=>⟨false,l.work+2⟩
+429:AdmittedRule4Guard.lean:48:            if c.value then ⟨true,c.work+1⟩ else let r:=rule4ArcsMeter S a b qs;⟨r.value,c.work+r.work+1⟩
+438:AdmittedRule4Guard.lean:70:   ⟨r.value,c.originalCuts.length+r.work+2⟩
+445:AdmittedWork.lean:12: def admittedGuards (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) (P : List (List Nat)) : List (Unit→CheckReceipt Bool) :=
+452:AdmittedWork.lean:19:   fun _=>checkMeter fee (.embedding T P),fun _=>checkMeter fee (.embedding S P),
+453:AdmittedWork.lean:20:   fun _=>filteredLengthMeter fee T S P]
+459:AdmittedWork.lean:22: def admittedMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt Bool :=
+461:AdmittedWork.lean:24:  let r:=andSequence (admittedGuards fee T S a b p.value)
+462:AdmittedWork.lean:25:  ⟨r.value,p.work+r.work+1,r.calls⟩
+469:AdmittedWork.lean:7:  let e:=cutsMeter S a b;⟨e.value.length==2,e.work+e.value.length+2⟩
+471:AdmittedWork.lean:8: def filteredLengthMeter (fee : CheckRequest→Nat) (T S : Tree) (P : List (List Nat)) : CheckReceipt Bool :=
+472:AdmittedWork.lean:9:  let r:=restrictionFilterMeter fee T S P
+473:AdmittedWork.lean:10:  ⟨r.value.length==2,r.work+r.value.length+2,r.calls⟩
+507:BadClassifierWork.lean:14: def badAtMeter (fee : CheckRequest→Nat) (T S : Tree) (e f : RMAF.Vertex) : CheckReceipt (Option BadSelection) :=
+509:BadClassifierWork.lean:16:  if ne.value then ⟨none,ne.work+2,[]⟩ else
+510:BadClassifierWork.lean:17:   let l:=subtreeLabelsMeter S e;let c:=checkMeter fee (.restriction T S l.value)
+511:BadClassifierWork.lean:18:   if c.value then ⟨none,ne.work+l.work+c.work+3,c.calls⟩ else
+514:BadClassifierWork.lean:21:     ne.work+l.work+c.work+s.work+6,c.calls⟩
+520:BadClassifierWork.lean:145: def badCandidatesMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt (List BadSelection) :=
+521:BadClassifierWork.lean:146:  let c:=cutsMeter S a b;let r:=concatMeter (badRowMeter fee T S a b) c.value
+522:BadClassifierWork.lean:147:  ⟨r.value,c.work+r.work+1,r.calls⟩
+528:BadClassifierWork.lean:63: def badRowMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) (e : RMAF.Vertex) : CheckReceipt (List BadSelection) :=
+529:BadClassifierWork.lean:64:  let c:=cutsMeter S a b;let r:=optionsMeter (badAtMeter fee T S e) c.value
+530:BadClassifierWork.lean:65:  ⟨r.value,c.work+r.work+1,r.calls⟩
+535:BadClassifierWork.lean:105:            ⟨a.value++r.value,a.work+r.work+a.value.length+a.calls.length+2,a.calls++r.calls⟩
+541:BadClassifierWork.lean:190: def selectBadMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt (Option BadSelection) :=
+542:BadClassifierWork.lean:191:  let c:=badCandidatesMeter fee T S a b;⟨c.value.head?,c.work+1,c.calls⟩
+569:BadPairSource.lean:14:   ⟨r.value,good.work+r.work+8⟩
+572:BadPairSource.lean:17:   ⟨⟨r.value.answer,groupCalls r.value.queries⟩,good.work+r.work+12*r.value.queries.length+12⟩
+578:BadPairSource.lean:25: def badPairSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T S : Tree)
+581:BadPairSource.lean:28:  ⟨r.value,r.work+callsForestDebit actual W r.value.calls⟩
+590:BlockCost.lean:84:  ⟨n.value,m.work+n.work+8⟩
+605:BlockCost.lean:43:   ⟨(la++lb,fa++fb),a.work+b.work+4*(la.length+fa.length+2)+16⟩
+611:BlockCost.lean:70:   ⟨if B.isEmpty then m.value else B::m.value,m.work+8⟩
+621:BothBadLocalExecutionSource.lean:24:           ⟨⟨GenericForest.solve actual (some T) ss.value e.budget,[⟨some T,ss.value,e.budget⟩]⟩,ss.work+16⟩
+628:BothBadLocalExecutionSource.lean:31:    ⟨⟨f.value,[⟨t.value,bs.value,e.budget⟩]⟩,t.work+sf.work+bs.work+f.work+20⟩
+642:BothBadLocalExecutionSource.lean:46:     r.work+tail.work+checked.work+best.work+2*r.value.calls.length+20⟩
+653:BothBadLocalExecutionSource.lean:60:  ⟨e.value,d.work+p.work+e.work+12⟩
+679:BothBadPlanSource.lean:53:     ⟨entries.value,a.work+b.work+outputs.work+entries.work+16⟩
+683:BothBadPlanSource.lean:57:     ⟨cp.value,a.work+b.work+opposite.work+cp.work+16⟩
+687:BothBadPlanSource.lean:61:    ⟨cp.value,a.work+b.work+opposite.work+cp.work+16⟩
+697:BothBadPlanSource.lean:11:  let front:=y.work+n.work+gy.work+gn.work+12
+701:BothBadPlanSource.lean:15:   | none=>⟨[],front+known.work+8⟩
+705:BothBadPlanSource.lean:19:             ⟨both.value,front+known.work+both.work+12⟩
+709:BothBadPlanSource.lean:23:   ⟨both.value,front+both.work+8⟩
+712:BothBadPlanSource.lean:34:  if probe.isEmpty then let r:=generatedOutputsMeter S color q;⟨r.value,r.work+4⟩ else ⟨probe,4⟩
+721:BothBadPlannerAtoms.lean:14:  meterFilter (fun x=>let r:=meterContains x D;⟨!r.value,r.work+2⟩) A
+728:BothBadPlannerAtoms.lean:25:    | .found (some v)=>let f:=meterForest s' (some v);⟨some f.value,t.work+s.work+p.work+f.work+16⟩
+729:BothBadPlannerAtoms.lean:26:    | _=>⟨none,t.work+s.work+p.work+12⟩
+730:BothBadPlannerAtoms.lean:27:  | _,_=>⟨none,t.work+s.work+8⟩
+733:BothBadPlannerAtoms.lean:53:  ⟨a.value++b.value,a.work+b.work+2*a.value.length+4⟩
+746:BothBadPlannerAtoms.lean:43:      2*o.sourceCuts.length+r.work+20⟩
+755:BoundaryClassifierWork.lean:10:  | [q]=>⟨some (.one q),i.work+3⟩
+762:BoundaryClassifierWork.lean:17:   if p.value then ⟨some (.third u v),i.work+ou.work+ov.work+p.work+7⟩ else
+764:BoundaryClassifierWork.lean:19:    ⟨if s.value then some (.first u v) else some (.second u v),i.work+ou.work+ov.work+p.work+s.work+8⟩
+765:BoundaryClassifierWork.lean:20:  | _=>⟨none,i.work+2⟩
+841:CandidateCost.lean:11:   ⟨b.value,p.work+b.work+4*(ss.length+1)+8⟩
+869:CheckAssembly.lean:43:  ⟨p.value&&f.value&&c.value&&e.value&&s.value,p.work+a.work+f.work+c.work+e.work+s.work+8⟩
+885:CheckAssembly.lean:12:  ⟨b.value&&d.value,a.work+b.work+c.work+d.work+4⟩
+902:CheckAssembly.lean:30:  ⟨p.value&&r.value&&e.value,a.work+G.work+b.work+p.work+r.work+e.work+8⟩
+905:CheckAssembly.lean:35:  meterAny (fun s=>let a:=meterLeaves s;let c:=meterContained B a.value;⟨c.value,a.work+c.work+2⟩) ss
+920:CheckFamilies.lean:52:          ⟨if c.value then B::r.value else r.value,c.work+r.work+6⟩
+929:CheckFamilies.lean:11:               ⟨a.value++b.value,a.work+b.work+6*(a.value.length+1)⟩
+933:CheckFamilies.lean:27:  | x::xs=>let c:=meterContains x xs;let r:=meterNodup xs;⟨!c.value&&r.value,c.work+r.work+4⟩
+942:CheckFamilies.lean:78:           ⟨a.value::r.value,a.work+r.work+4⟩
+950:CheckPrimitives.lean:8:  | x::xs => let a:=f x;let r:=meterAll f xs;⟨a.value && r.value,a.work+r.work+4⟩
+954:CheckPrimitives.lean:44:  | y::ys => let r:=meterCount x ys;⟨(if x==y then 1 else 0)+r.value,r.work+4⟩
+958:CheckPrimitives.lean:60:  | x::xs => let r:=meterFlatten xs;⟨x++r.value,6*(x.length+1)+r.work⟩
+966:CheckPrimitives.lean:12:  | x::xs => let a:=f x;let r:=meterAny f xs;⟨a.value || r.value,a.work+r.work+4⟩
+975:CheckPrimitives.lean:73:   ⟨count.value==1,cells.work+count.work+4⟩) L
+978:CheckPrimitives.lean:76:  ⟨nonempty.value && counts.value && labels.value,nonempty.work+counts.work+cells.work+labels.work+4⟩
+994:CheckedMerge.lean:15:             ⟨v,c.work+r.work+G.length+(r.value.map List.length).getD 0+4⟩
+1004:CheckedMerge.lean:104:  ⟨b.value,r.work+b.work⟩
+1015:CherryGuardWork.lean:58:            let r:=cherryAnyMeter a b cs;⟨r.value,r.work+8⟩
+1027:CherryGuardWork.lean:12:                 a.work+b.work+6*a.value.length+5*b.value.length+3⟩
+1031:CherryGuardWork.lean:74:  ⟨r.value,c.work+r.work+1⟩
+1068:ChildrenExecutionWork.lean:21: def childExecutionMeter (actual : Ordinary) (fee : ForestQuery→Nat) (T : Tree) (q : Nat) (c : Child) : ForestReceipt (Option Forest) :=
+1071:ChildrenExecutionWork.lean:24:   ⟨GenericForest.solve actual (some T) c.sourceForest r,4,fee call,[call]⟩
+1078:ChildrenExecutionWork.lean:32: def childrenAnswersMeter (actual : Ordinary) (fee : ForestQuery→Nat) (T : Tree) (q : Nat) : List Child→ForestReceipt (List Forest)
+1080:ChildrenExecutionWork.lean:34:  | c::cs=>let a:=childExecutionMeter actual fee T q c;let r:=childrenAnswersMeter actual fee T q cs
+1082:ChildrenExecutionWork.lean:36:    a.localWork+r.localWork+a.calls.length+3,a.recursiveWork+r.recursiveWork,a.calls++r.calls⟩
+1084:ChildrenExecutionWork.lean:117: def acceptedMeter (agreementFee : Forest→Nat) (T S : Tree) (q : Nat) (F : Forest) : Measured Bool :=
+1085:ChildrenExecutionWork.lean:118:  ⟨agreement T S F && decide (F.length-1≤q),agreementFee F+F.length+3⟩
+1091:ChildrenExecutionWork.lean:126:    c.work+r.work+F.length+(r.value.map List.length).getD 0+4⟩
+1101:ClassifierAtoms.lean:31:             a.work+r.work+a.calls.length+3,a.calls++r.calls⟩
+1109:ClassifierAtoms.lean:79:  ⟨c.value,m.work+c.work+1⟩
+1113:ClassifierAtoms.lean:101:  ⟨c.value != p.value,l.work+c.work+p.work+2⟩
+1122:ClassifierAtoms.lean:9:  | .node l r,s::p=>let m:=subtreeMeter (if s then r else l) p;⟨m.value,m.work+2⟩
+1125:## source-ClassifierRequestMeter-checkFee.txt
+1128:ClassifierRequestMeter.lean:20: def checkFee (r : CheckRequest) : Nat := (requestMeter r).work
+1135:ClassifierRequestMeter.lean:10:  | r@(.embedding T P)=>let m:=meterPairwise T P;⟨m.value,m.work+2,[r]⟩
+1136:ClassifierRequestMeter.lean:11:  | r@(.restriction T S B)=>let m:=meterRestrictionAgrees T S B;⟨m.value,m.work+2,[r]⟩
+1168:CommonConstructionWork.lean:16:  let a:=meterLeaves T;let b:=labelMaxMeter a.value;⟨b.value+1,a.work+b.work+4⟩
+1177:CommonConstructionWork.lean:45:        ⟨.node x.value y.value,x.work+y.work+24⟩
+1183:CommonConstructionWork.lean:80:   ⟨(if x==z then [a,b] else [x])++r.value,r.work+12⟩
+1192:CommonConstructionWork.lean:60:  ⟨(t.value,s.value),z.work+t.work+s.work+8⟩
+1197:CommonConstructionWork.lean:91:  ⟨r.value,z.work+r.work+4⟩
+1205:CommonConstructionWork.lean:8:  | x::xs=>let r:=labelMaxMeter xs;⟨Nat.max x r.value,r.work+4⟩
+1214:CommonExecutionBinding.lean:38: def commonMeter (cb : Ordinary) (W : OrdinaryWork) (T S : Tree) (a b : Nat) (d : BadSelection) (q : Nat) : CommonReceipt (Option Forest) :=
+1217:CommonExecutionBinding.lean:41:  | none=>⟨none,setup.work+2,0,[]⟩
+1219:CommonExecutionBinding.lean:43:    let r:=guardedMeter cb W built q
+1220:CommonExecutionBinding.lean:44:    ⟨r.value.join,setup.work+r.localWork+3,r.recursiveWork,r.calls⟩
+1226:CommonGuardedSource.lean:43: def guardedMeter (cb : Ordinary) (W : OrdinaryWork) (d : Setup) (q : Nat) : CommonReceipt (Option (Option Forest)) :=
+1231:CommonGuardedSource.lean:48:    let r:=withOutsideMeter cb W d q fy.value
+1232:CommonGuardedSource.lean:49:    ⟨some r.value,pre.work+fy.work+r.localWork+3,r.recursiveWork,r.calls⟩
+1233:CommonGuardedSource.lean:50:  | _=>⟨none,pre.work+2,0,[]⟩
+1239:CommonGuardedSource.lean:17: def withOutsideMeter (cb : Ordinary) (W : OrdinaryWork) (d : Setup) (q : Nat) (FY : Forest) : CommonReceipt (Option Forest) :=
+1242:CommonGuardedSource.lean:20:  | none=>⟨none,out.work+2,0,[]⟩
+1243:CommonGuardedSource.lean:21:  | some FN=>let r:=runPaidMeter cb W d q FY FN
+1244:CommonGuardedSource.lean:22:             ⟨r.value,out.work+r.localWork+2,r.recursiveWork,r.calls⟩
+1254:CommonLocalBinding.lean:61:   ⟨m.value,guards+m.work⟩
+1262:CommonOutsideSource.lean:45:  let r:=relabelForestMeter d.x d.gamma ([d.x]::FY);⟨r.value,r.work+2⟩
+1271:CommonOutsideSource.lean:60:  | .found c=>let r:=meterForest d.myS c;⟨some r.value,pre.work+r.work+3⟩
+1272:CommonOutsideSource.lean:61:  | .rejected=>let r:=outsideExtensionMeter d FY;⟨some r.value,pre.work+r.work+3⟩
+1273:CommonOutsideSource.lean:62:  | .refused=>⟨none,pre.work+2⟩
+1281:CommonOutsideSource.lean:23:  | x::xs=>let r:=relabelBlockMeter a b xs;⟨swap a b x::r.value,r.work+5⟩
+1290:CommonOutsideSource.lean:34:            ⟨x.value::r.value,x.work+r.work+2⟩
+1309:CommonPaidSource.lean:27: def jobsAnswersMeter (cb : Ordinary) (W : OrdinaryWork) : List Job→CommonReceipt (List (Option Forest))
+1311:CommonPaidSource.lean:29:  | j::js=>let a:=cb j.T j.S j.budget;let r:=jobsAnswersMeter cb W js
+1312:CommonPaidSource.lean:30:            ⟨a::r.value,r.localWork+3,W j.T j.S j.budget+r.recursiveWork,j::r.calls⟩
+1318:CommonPaidSource.lean:49: def runPaidMeter (cb : Ordinary) (W : OrdinaryWork) (d : Setup) (q : Nat) (FY FN : Forest) : CommonReceipt (Option Forest) :=
+1319:CommonPaidSource.lean:50:  let js:=paidJobsMeter d q;let asw:=jobsAnswersMeter cb W js.value
+1325:CommonPaidSource.lean:56:     | none=>⟨none,r.work+2⟩
+1326:CommonPaidSource.lean:57:     | some G=>⟨if G.length-1≤q then some G else none,r.work+G.length+4⟩
+1328:CommonPaidSource.lean:59:  ⟨finish.value,js.work+asw.localWork+finish.work+2,asw.recursiveWork,asw.calls⟩
+1337:CommonSetupBinding.lean:11:  ⟨r.value,x.work+c.work+c.value.length+r.work+3⟩
+1343:CommonSourceDebit.lean:28: def commonSource (cb : Ordinary) (W : OrdinaryWork) (T S : Tree) (a b : Nat) (d : BadSelection) (q : Nat) : Charged (Option Forest) :=
+1344:CommonSourceDebit.lean:29:  let r:=commonMeter cb W T S a b d q;⟨r.value,r.localWork+r.recursiveWork⟩
+1350:CompleteNamedSources.lean:46: def paidCaseCompleteSource (actual : GenericForest.FrontierWork.Ordinary) (W : GenericForest.FrontierWork.OrdinaryWork)
+1353:CompleteNamedSources.lean:49:  let r:=selectedPaidSource actual W T S c q out p.value
+1354:CompleteNamedSources.lean:50:  ⟨r.value,p.work+r.work⟩
+1360:CompleteNamedSources.lean:20: def selectedPaidSource (actual : GenericForest.FrontierWork.Ordinary) (W : GenericForest.FrontierWork.OrdinaryWork)
+1363:CompleteNamedSources.lean:23:  | .good X Y Z=>goodPairSource actual W T S X Y Z q
+1364:CompleteNamedSources.lean:24:  | .hard=>hardPaidSource actual W T S q c out
+1365:CompleteNamedSources.lean:25:  | .bad X Y Z edge=>badPairSource actual W T S X Y Z edge q
+1371:ConcreteFees.lean:10: def source (cb : Ordinary) (W : OrdinaryWork) (T S : Tree) (a b q : Nat) : Charged Rule5OrdinaryDispatch.Result :=
+1372:ConcreteFees.lean:11:  dispatchSource cb W checkFee (literalFee T S a b) T S a b q
+1540:DisjointParentSource.lean:16:   ⟨⟨check.value,r.value.calls⟩,parts.length+r.work+check.work+16⟩
+1547:DisjointParentSource.lean:26: def disjointQuerySource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+1550:DisjointParentSource.lean:29:  ⟨r.value,r.work+callsForestDebit actual W r.value.calls⟩
+1556:DisjointParentSource.lean:46: def disjointRunSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+1559:DisjointParentSource.lean:49:  let cs:=runChildrenSource actual W T S q [x.value,y.value]
+1561:DisjointParentSource.lean:51:  let qr:=disjointQuerySource actual W T S p.value q
+1563:DisjointParentSource.lean:53:  ⟨best.value,x.work+y.work+cs.work+p.work+qr.work+best.work+12⟩
+1588:ELCherry.lean:11:    a.work+b.work+8*(a.value.length+b.value.length+1)+4⟩
+1596:ELCherry.lean:33:  let m:=meterMap (fun (p,a,b)=>let cuts:=meterPendant S a b;⟨(⟨p,a,b,cuts.value⟩:Candidate),cuts.work+4⟩) c.value
+1597:ELCherry.lean:34:  ⟨m.value,c.work+m.work+2⟩
+1615:ELCherry.lean:81:   c.work+common.work+one.work+high.work+8⟩
+1632:ELGeometry.lean:103:  | x::y::xs=>let r:=meterDropLast (y::xs);⟨x::r.value,r.work+4⟩
+1639:ELGeometry.lean:36:  let v:=meterVertices T;⟨v.value.tail,v.work+4⟩
+1644:ELGeometry.lean:73:  | none=>⟨[],a.work+2⟩
+1645:ELGeometry.lean:74:  | some U=>let b:=meterLeaves U;⟨b.value,a.work+b.work+2⟩
+1655:ELGeometry.lean:126:  ⟨!v.isEmpty&&c.value&&(!e.value),d.work+m.work+c.work+n.work+e.work+4⟩
+1664:ELGeometry.lean:8:    ⟨[]::(a.value.map (false::·)++b.value.map (true::·)),a.work+b.work+8*(a.value.length+b.value.length+1)⟩
+1669:ELGeometry.lean:46:  | .node l r,s::v=>let a:=meterSubtree (if s then r else l) v;⟨a.value,a.work+4⟩
+1673:ELGeometry.lean:148:  ⟨f.value,v.work+f.work+2⟩
+1701:ELPrimitives.lean:9:  | x::xs=>let a:=f x;let r:=meterMap f xs;⟨a.value::r.value,a.work+r.work+4⟩
+1705:ELPrimitives.lean:22:  | x::xs=>let a:=f x;let r:=meterFilter f xs;⟨if a.value then x::r.value else r.value,a.work+r.work+4⟩
+1713:ELPrimitives.lean:35:  | x::xs=>let a:=f x;if a.value then ⟨some x,a.work+4⟩
+1714:ELPrimitives.lean:36:    else let r:=meterFind f xs;⟨r.value,a.work+r.work+4⟩
+1723:ELRule4Guards.lean:33:  ⟨p.value&&c.value&&a.value&&b.value,p.work+c.work+a.work+b.work+8⟩
+1731:ELRule4Guards.lean:88:   t.work+ta.work+s.work+sa.work+p.work+perm.work+lab.work+equal.work+16⟩
+1740:ELRule4Guards.lean:17:    ⟨!m.value,s.work+m.work+2⟩) t.value
+1741:ELRule4Guards.lean:18:  ⟨a.value,t.work+a.work+2⟩
+1746:ELRule4Guards.lean:25:    ⟨p.value.length !=1,p.work+4*(p.value.length+1)+2⟩) t.value
+1747:ELRule4Guards.lean:26:  ⟨a.value,t.work+a.work+2⟩
+1755:ELRule4Primitives.lean:7:  | y::ys=>if x.1==y.1 && x.2==y.2 then ⟨true,8⟩ else let r:=meterPairContains x ys;⟨r.value,r.work+8⟩
+1761:ELRule4Primitives.lean:26:    a.work+b.work+8*(a.value.length+b.value.length+3)⟩
+1766:ELRule4Primitives.lean:72:    ⟨c.value&&r.value,c.work+e.work+r.work+4⟩
+1770:ELRule4Primitives.lean:106:  | x::xs,y::ys=>if x==y then let r:=meterNatListEq xs ys;⟨r.value,r.work+4⟩ else ⟨false,4⟩
+1779:ELRule4Primitives.lean:50:    if eq.value then ⟨ys,eq.work+4⟩ else let r:=meterVertexErase x ys;⟨y::r.value,eq.work+r.work+4⟩
+1787:ELRule4Raw.lean:12:  | x::xs=>let a:=f x;let r:=meterFlatMap f xs;⟨a.value++r.value,a.work+r.work+6*(a.value.length+1)⟩
+1795:ELRule4Raw.lean:90:  ⟨m.value,c.work+m.work+2⟩
+1806:ELRule4Raw.lean:45:   ⟨f.value,test.work+4*(test.value.length+1)+p.work+f.work+8⟩
+1807:ELRule4Raw.lean:46:  else ⟨[],test.work+4*(test.value.length+1)+4⟩
+1815:ELRule4Raw.lean:115:  ⟨m.value,c.work+m.work+2⟩
+1824:ELRule4Raw.lean:36:  ⟨m.value,p.work+m.work+2⟩
+1865:FinalClassifierWork.lean:103: def finalMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt (Option FinalSelection) :=
+1866:FinalClassifierWork.lean:104:  let l:=localMeter fee T S a b
+1868:FinalClassifierWork.lean:106:  | none=>⟨none,l.work+1,l.calls⟩
+1869:FinalClassifierWork.lean:107:  | some .remaining=>let d:=selectBadMeter fee T S a b
+1871:FinalClassifierWork.lean:109:   | none=>⟨none,l.work+d.work+l.calls.length+2,l.calls++d.calls⟩
+1873:FinalClassifierWork.lean:111:    ⟨z.value.map (.remaining bad),l.work+d.work+x.work+z.work+l.calls.length+4,l.calls++d.calls⟩
+1874:FinalClassifierWork.lean:112:  | some s=>⟨some (.prefix s),l.work+2,l.calls⟩
+1880:FinalClassifierWork.lean:16: def localMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt (Option LocalSelection) :=
+1881:FinalClassifierWork.lean:17:  let ad:=admittedMeter fee T S a b
+1882:FinalClassifierWork.lean:18:  if ad.value then let r:=localTailMeter fee T S a b
+1883:FinalClassifierWork.lean:19:   ⟨r.value,ad.work+r.work+ad.calls.length+2,ad.calls++r.calls⟩
+1884:FinalClassifierWork.lean:20:  else ⟨none,ad.work+1,ad.calls⟩
+1890:FinalClassifierWork.lean:5: def localTailMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt (Option LocalSelection) :=
+1891:FinalClassifierWork.lean:6:  let l:=selectLargeMeter fee T S a b
+1893:FinalClassifierWork.lean:8:  | some e=>⟨some (.large e),l.work+2,l.calls⟩
+1894:FinalClassifierWork.lean:9:  | none=>let t:=selectSizeTwoMeter fee T S a b
+1896:FinalClassifierWork.lean:11:   | some c=>⟨some (.two c),l.work+t.work+l.calls.length+3,l.calls++t.calls⟩
+1897:FinalClassifierWork.lean:12:   | none=>let o:=selectOutsideMeter fee T S a b
+1899:FinalClassifierWork.lean:14:     l.work+t.work+o.work+l.calls.length+t.calls.length+5,l.calls++(t.calls++o.calls)⟩
+1950:ForestColorWork.lean:208:     ⟨3*l.value,a.work+l.work+4⟩
+1955:ForestColorWork.lean:213:       ⟨3*l.value+1,a.work+b.work+l.work+6⟩
+1958:ForestColorWork.lean:216:       ⟨3*l.value+2,a.work+b.work+l.work+6⟩
+1967:ForestColorWork.lean:149:   | joint (v w : RMAF.Vertex)
+1974:ForestColorWork.lean:161:   | .joint v w =>
+1976:ForestColorWork.lean:163:     let b := meterColorLabel T w x
+1977:ForestColorWork.lean:164:     ⟨4*a.value+b.value,a.work+b.work+3⟩
+1986:ForestColorWork.lean:127:   ⟨b.value,a.work+b.work+3⟩
+1996:ForestColorWork.lean:18:       ⟨r.value,4+r.work⟩
+2005:ForestColorWork.lean:38:     ⟨if m.value then [[]] else [],m.work+8⟩
+2010:ForestColorWork.lean:43:       a.work+b.work+8*(a.value.length+b.value.length+1)⟩
+2023:ForestColorWork.lean:99:       ⟨r.value,4+r.work⟩ else ⟨2,4⟩
+2085:ForestGeometryWork.lean:338:       ⟨r.value,4+r.work⟩ else ⟨false,4⟩
+2089:ForestGeometryWork.lean:363:   | w::ws =>
+2090:ForestGeometryWork.lean:364:     let h := meterAddressEq v w
+2091:ForestGeometryWork.lean:365:     if h.value then ⟨true,h.work+4⟩ else
+2093:ForestGeometryWork.lean:367:       ⟨r.value,h.work+r.work+4⟩
+2103:ForestGeometryWork.lean:158:       ⟨r.value,4+r.work⟩
+2112:ForestGeometryWork.lean:10:     ⟨if m.value then [[]] else [],m.work+8⟩
+2118:ForestGeometryWork.lean:16:       a.work+b.work+8*(a.value.length+b.value.length+2)⟩
+2125:ForestGeometryWork.lean:442:   ⟨r.value,a.work+b.work+c.work+r.work+4⟩
+2131:ForestGeometryWork.lean:244: def meterJointColors (D : List Nat) (T : Tree) (v w : RMAF.Vertex) : Charged (List (Nat×Nat)) :=
+2133:ForestGeometryWork.lean:246:   let b := meterJointMap v w a.value
+2135:ForestGeometryWork.lean:248:   ⟨c.value,a.work+b.work+c.work+4⟩
+2143:ForestGeometryWork.lean:396:     if b.value && c.value then ⟨some v,b.work+c.work+6⟩ else
+2145:ForestGeometryWork.lean:398:       ⟨r.value,b.work+c.work+r.work+6⟩
+2156:ForestGeometryWork.lean:179:     ⟨r.value,h.work+r.work+4⟩
+2164:ForestGeometryWork.lean:217: def meterJointMap (v w : RMAF.Vertex) : List RMAF.Vertex → Charged (List (Nat×Nat))
+2168:ForestGeometryWork.lean:221:     let q := meterRegion w a
+2169:ForestGeometryWork.lean:222:     let r := meterJointMap v w as
+2170:ForestGeometryWork.lean:223:     ⟨(p.value,q.value)::r.value,p.work+q.work+r.work+6⟩
+2179:ForestGeometryWork.lean:66:     ⟨if m.value then [[]] else [],m.work+8⟩
+2185:ForestGeometryWork.lean:72:       ⟨prependSide true m.value,a.work+b.work+m.work+8*(m.value.length+2)⟩
+2188:ForestGeometryWork.lean:75:       ⟨prependSide false m.value,a.work+b.work+m.work+8*(m.value.length+2)⟩
+2191:ForestGeometryWork.lean:78:         a.work+b.work+8*(a.value.length+b.value.length+2)⟩
+2218:ForestPretestSource.lean:40:   ⟨match b.value with | none=>.rejected | some F=>.found F,p.work+c.work+b.work+16⟩
+2219:ForestPretestSource.lean:41:  else ⟨.refused,p.work+8⟩
+2232:ForestPretestSource.lean:17:       ⟨f.value++u.value,f.work+u.work+2*f.value.length+8⟩) edges.value
+2234:ForestPretestSource.lean:19:    let lift:=meterMap (fun F=>let l:=meterLeaves s;⟨l.value::F,l.work+8⟩) tail.value
+2235:ForestPretestSource.lean:20:    ⟨head.value++lift.value,edges.work+head.work+tail.work+lift.work+2*head.value.length+12⟩
+2243:ForestPretestSource.lean:30:  ⟨u.value::c.value,u.work+c.work+4⟩
+2272:GeneralAgreementWork.lean:16:   t.work+s.work+pt.work+ps.work+r.work+a.work+b.work+8⟩
+2279:GeneralAgreementWork.lean:53:  let c:=agreementMeter T S F;⟨c.value,c.work⟩
+2303:GoodPairSource.lean:17:   let frontWork:=ss.work+u1.work+t.work+u2.work+ds.work+dp.work+12
+2309:GoodPairSource.lean:23:    let firstWork:=frontWork+u3.work+scoreSources.work+score.work+8
+2316:GoodPairSource.lean:30:      firstWork+target.work+sources.work+2*H.length+checked.work+16⟩
+2324:GoodPairSource.lean:51: def goodPairSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+2327:GoodPairSource.lean:54:  ⟨r.value,r.work+callsForestDebit actual W r.value.calls⟩
+2389:GroupedExecutionSource.lean:10:  | .scheduled s=>let f:=optionFlattenMeter s.value.answers;⟨f.value,f.work+4⟩
+2407:GroupedExecutionSource.lean:27:     r.work+a.work+tail.work+2*r.value.trace.length+20⟩
+2415:GroupedExecutionSource.lean:48:  ⟨a.value&&decide (F.length-1≤q),a.work+F.length+8⟩
+2433:GroupedExecutionSource.lean:66:  ⟨⟨best.value,e.value.queries⟩,d.work+o.work+e.work+best.work+20⟩
+2447:GroupedJobsSource.lean:52:            ⟨some (c.value,F),c.work+12⟩
+2455:GroupedJobsSource.lean:64:  ⟨jobs.value,ss.work+ab.work+groups.work+jobs.work+16⟩
+2467:GroupedJobsSource.lean:37:            ⟨a.value.bind (fun j=>r.value.map (j::·)),a.work+r.work+8⟩
+2475:GroupedJobsSource.lean:11:  ⟨⟨U,t.value,s.value⟩,t.work+s.work+12⟩
+2480:GroupedJobsSource.lean:25:  | .refused=>⟨none,pre.work+8⟩
+2481:GroupedJobsSource.lean:26:  | .rejected=>⟨some (.hard p),pre.work+12⟩
+2483:GroupedJobsSource.lean:28:              ⟨some (.resolved p c.value F),pre.work+c.work+16⟩
+2494:GroupedJobsSource.lean:76:   | none=>⟨.refused,2*o.sourceCuts.length+j.work+12⟩
+2496:GroupedJobsSource.lean:78:              ⟨.scheduled r.value,2*o.sourceCuts.length+j.work+r.localWork+r.callbackWork+20⟩
+2506:GuardCost.lean:16:  ⟨p.value&&s.value,p.work+s.work+4⟩
+2516:GuardCost.lean:46:   ⟨some c.value,g.work+c.work+8⟩
+2517:GuardCost.lean:47:  else ⟨none,g.work+4⟩
+2526:GuardCost.lean:9:  ⟨g.value,l.work+g.work+4⟩
+2548:Hard2FullOutputSource.lean:11:            ⟨if a.value && decide (F.length-1≤q) then some F else none,a.work+F.length+6⟩
+2554:Hard2FullOutputSource.lean:29: def fullOutputsSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+2558:Hard2FullOutputSource.lean:33:   let r:=fullOutputsSource actual W T S q os
+2564:Hard2FullOutputSource.lean:39:     2*o.sourceCuts.length+ss.work+forestWork actual W (some T) ss.value (q-o.sourceCuts.length)+
+2565:Hard2FullOutputSource.lean:40:     c.work+b.work+r.work+14⟩
+2566:Hard2FullOutputSource.lean:41:   else ⟨r.value,2*o.sourceCuts.length+r.work+6⟩
+2574:Hard2GeneratorSource.lean:11:  ⟨r.value.outputs,r.work+4⟩
+2577:Hard2GeneratorSource.lean:37:  ⟨a.value++b.value,a.work+b.work+2*a.value.length+4⟩
+2590:Hard2GraphSource.lean:13:   ⟨!ca.value&&!cb.value,a.work+b.work+ca.work+cb.work+4⟩) l.value
+2591:Hard2GraphSource.lean:14:  ⟨c.value,l.work+c.work+2⟩
+2596:Hard2GraphSource.lean:29:  ⟨c.value,a.work+b.work+b2.work+c.work+4⟩
+2598:Hard2GraphSource.lean:33: def hard2ChainMeter (T : Tree) (A B C : List Nat) (o : Order) (v w : RMAF.Vertex) : Charged Result :=
+2599:Hard2GraphSource.lean:34:  let j:=meterJointColors (second o A B C) T v w
+2600:Hard2GraphSource.lean:35:  ⟨if j.value.length=2 then .diagonal o v w else .four o v w,j.work+j.value.length+8⟩
+2604:Hard2GraphSource.lean:41:  ⟨p.value.map (Result.pair o),p.work+6⟩
+2612:Hard2GraphSource.lean:21:  ⟨(a.value,b.value,c.value),a.work+b.work+c.work+4⟩
+2616:Hard2GraphSource.lean:47:  let frontWork:=ab.work+bc.work+ac.work+8
+2619:Hard2GraphSource.lean:50:  | some v,some w,none=>let r:=hard2ChainMeter T A B C .abc v w;⟨some r.value,frontWork+r.work⟩
+2620:Hard2GraphSource.lean:51:  | some v,none,some w=>let r:=hard2ChainMeter T A B C .bac v w;⟨some r.value,frontWork+r.work⟩
+2621:Hard2GraphSource.lean:52:  | none,some w,some v=>let r:=hard2ChainMeter T A B C .acb v w;⟨some r.value,frontWork+r.work⟩
+2622:Hard2GraphSource.lean:53:  | some _,none,none=>let r:=hard2IsolatedMeter T A B C .abc;⟨r.value,frontWork+r.work⟩
+2623:Hard2GraphSource.lean:54:  | none,none,some _=>let r:=hard2IsolatedMeter T A B C .acb;⟨r.value,frontWork+r.work⟩
+2624:Hard2GraphSource.lean:55:  | none,some _,none=>let r:=hard2IsolatedMeter T A B C .bca;⟨r.value,frontWork+r.work⟩
+2625:Hard2GraphSource.lean:56:  | some _,some _,some _=>let r:=meterCliqueSelection T A B C;⟨r.value.map Result.clique,frontWork+r.work+2⟩
+2635:Hard2GraphSource.lean:66:           ⟨s.value,parents.work+s.work+8⟩
+2647:Hard2GroupingSource.lean:17:  | some t=>let r:=meterRestrict U t;⟨r.value,r.work+4⟩
+2651:Hard2GroupingSource.lean:24:   ⟨c.value,l.work+c.work+4⟩) ss
+2657:## source-Hard2GroupingSource-callsForestDebit.txt
+2660:Hard2GroupingSource.lean:34: def callsForestDebit (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (calls : List Call) : Nat:=
+2661:Hard2GroupingSource.lean:35:  (calls.map fun call=>forestWork actual W call.target call.sources call.budget).sum
+2671:Hard2OutputGenerationSource.lean:75:           ⟨os.value,parents.work+os.work+8⟩
+2681:Hard2OutputGenerationSource.lean:61:  | .four o v w=>kindOutputsMeter (.four v w) S T (first o A B C) (second o A B C) q
+2682:Hard2OutputGenerationSource.lean:62:  | .diagonal o v w=>kindOutputsMeter (.diagonal v w) S T (first o A B C) (second o A B C) q
+2697:Hard2OutputGenerationSource.lean:26:  | .four v w=>
+2700:Hard2OutputGenerationSource.lean:29:     (appendOutputsMeter (wholeOutputsMeter S T A B ⟨.keep,.single v,.single w⟩ q)
+2701:Hard2OutputGenerationSource.lean:30:      (wholeOutputsMeter S T A B ⟨.keep,.joint v w,.keep⟩ q))
+2702:Hard2OutputGenerationSource.lean:31:     (wholeOutputsMeter S T A B ⟨.single v,.keep,.single w⟩ q))
+2703:Hard2OutputGenerationSource.lean:32:    (wholeOutputsMeter S T A B ⟨.single v,.single w,.keep⟩ q)
+2704:Hard2OutputGenerationSource.lean:33:  | .diagonal v w=>appendOutputsMeter
+2705:Hard2OutputGenerationSource.lean:34:    (wholeOutputsMeter S T A B ⟨.keep,.joint v w,.keep⟩ q)
+2706:Hard2OutputGenerationSource.lean:35:    (wholeOutputsMeter S T A B ⟨.single v,.keep,.single w⟩ q)
+2717:Hard2OutputGenerationSource.lean:52:  ⟨r.value,good.work+d.work+r.work+8⟩
+2723:Hard2OutputGenerationSource.lean:84: def hardPaidSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+2726:Hard2OutputGenerationSource.lean:87:  let r:=fullOutputsSource actual W T S q os.value
+2727:Hard2OutputGenerationSource.lean:88:  ⟨r.value,os.work+r.work+4⟩
+2735:Hard2OutputGenerationSource.lean:10:  if a.value then ⟨0,a.work+5⟩ else
+2737:Hard2OutputGenerationSource.lean:12:   if b.value then let d:=meterContains x D;⟨3*(if d.value then 0 else 1)+1,a.work+b.work+d.work+8⟩
+2738:Hard2OutputGenerationSource.lean:13:   else ⟨2,a.work+b.work+7⟩
+2749:Hard2PairGeometrySource.lean:102:   | some x=>⟨some (.vertex x),p.work+v.work+f.work+4⟩
+2751:Hard2PairGeometrySource.lean:104:    ⟨g.value.map PairGeometry.Choice.edge,p.work+v.work+f.work+e.work+g.work+4⟩
+2752:Hard2PairGeometrySource.lean:105:  else ⟨none,p.work+2⟩
+2765:Hard2PairGeometrySource.lean:18:    a.work+b.work+12*a.value.length+8*b.value.length+12⟩
+2769:Hard2PairGeometrySource.lean:25:  let ca:=meterAll (fun x=>let l:=meterLeaves T;let c:=meterContains x l.value;⟨c.value,l.work+c.work+2⟩) A
+2770:Hard2PairGeometrySource.lean:26:  let cb:=meterAll (fun x=>let l:=meterLeaves T;let c:=meterContains x l.value;⟨c.value,l.work+c.work+2⟩) B
+2771:Hard2PairGeometrySource.lean:27:  let ab:=meterAll (fun x=>let c:=meterContains x B;⟨!c.value,c.work+2⟩) A
+2773:Hard2PairGeometrySource.lean:29:   l.work+nt.work+na.work+nb.work+ca.work+cb.work+ab.work+16⟩
+2780:Hard2PairGeometrySource.lean:46:   a.work+b.work+ca.work+cb.work+ra.work+rb.work+ra.value.length+rb.value.length+12⟩
+2785:Hard2PairGeometrySource.lean:60:   ⟨p.value,a.work+p.work+4⟩) l.value
+2786:Hard2PairGeometrySource.lean:61:  ⟨d.value,l.work+d.work+2⟩
+2794:Hard2PairGeometrySource.lean:93:   a1.work+b1.work+a2.work+b2.work+ca1.work+cb1.work+ca2.work+cb2.work+sides.work+8⟩
+2802:Hard2PairGeometrySource.lean:36:   let r:=meterAny (fun a=>let r:=meterRegion v a;⟨r.value==c,r.work+2⟩) l.value
+2803:Hard2PairGeometrySource.lean:37:   ⟨r.value,l.work+r.work+2⟩) [0,1,2]
+2808:Hard2PairGeometrySource.lean:53:  | s::p,t::a=>let r:=pairPrefixMeter p a;⟨(s==t)&&r.value,r.work+4⟩
+2817:Hard2PairGeometrySource.lean:79:   sa.work+sb.work+sac.work+sma.work+b.work+ac.work+sbc.work+smb.work+a.work+bc.work+10⟩
+2825:Hard2PairGeometrySource.lean:68:   ⟨if inside then c.value else !c.value,d.work+c.work+4⟩) A
+2842:Hard2RouteSource.lean:21:  | none=>⟨.refused,graph.work+2⟩
+2847:Hard2RouteSource.lean:26:    ⟨.direct (DisjointParents.direct p.value q),graph.work+p.work+all.work+p.value.length+8⟩
+2851:Hard2RouteSource.lean:30:      graph.work+p.work+all.work+good.work+good.value.length+8⟩
+2852:Hard2RouteSource.lean:31:  | some out=>⟨.paid out,graph.work+4⟩
+2867:HullCheckMeters.lean:6:  meterAll (fun v => let c:=meterVertexContains v B;⟨!c.value,c.work+1⟩) A
+2875:HullCheckMeters.lean:12:  ⟨d.value,a.work+b.work+d.work+2⟩
+2884:HullCheckMeters.lean:20:          ⟨a.value&&r.value,a.work+r.work+4⟩
+2894:IncidentWork.lean:11:   ⟨c.value != d.value,m.work+c.work+n.work+p.work+d.work+4⟩
+2903:IncidentWork.lean:47:            ⟨if c.value then q::r.value else r.value,c.work+r.work+2⟩
+2911:IncidentWork.lean:69:  ⟨r.value,v.work+r.work+1⟩
+2921:LiteralAtoms.lean:12:    if l.value then let r:=treeEqMeter b d;⟨r.value,l.work+r.work+2⟩
+2922:LiteralAtoms.lean:13:    else ⟨false,l.work+2⟩
+2932:LiteralAtoms.lean:89:            if a.value then ⟨true,a.work+1⟩
+2933:LiteralAtoms.lean:90:            else let r:=anyMeter f xs;⟨r.value,a.work+r.work+1⟩
+2938:LiteralAtoms.lean:95:            if a.value then let r:=allMeter f xs;⟨r.value,a.work+r.work+1⟩
+2939:LiteralAtoms.lean:96:            else ⟨false,a.work+1⟩
+2948:LiteralAtoms.lean:132:            if a.value then let r:=checksMeter fs;⟨r.value,a.work+r.work+1⟩
+2949:LiteralAtoms.lean:133:            else ⟨false,a.work+1⟩
+2960:LiteralAtoms.lean:42:                  if h.value then let r:=listEqMeter f xs ys;⟨r.value,h.work+r.work+2⟩
+2961:LiteralAtoms.lean:43:                  else ⟨false,h.work+2⟩
+2969:LiteralDecision.lean:6: def notMeter (m : Measured Bool) : Measured Bool := ⟨!m.value,m.work+1⟩
+2972:LiteralDecision.lean:8:  if m.value then ⟨true,m.work+1⟩ else let n:=f ();⟨n.value,m.work+n.work+1⟩
+2975:LiteralDecision.lean:19:  let c:=cutsMeter S a b;⟨decide (c.value.length=2),c.work+c.value.length+3⟩
+2978:## source-LiteralDecision-literalFee.txt
+2981:LiteralDecision.lean:63: def literalFee (T S : Tree) (a b : Nat) (j : LiteralCall) : Nat :=
+2982:LiteralDecision.lean:64:  (literalMeter T S a b j.selection j.u j.v j.row j.core j.qa j.ub).work
+3006:LiteralScheduleReceiptSource.lean:14:      r.value.queries,r.value.callerWork+5,r.value.recursiveWork⟩,r.localWork+32,r.callbackWork⟩
+3009:LiteralScheduleReceiptSource.lean:17:    | none=>⟨⟨⟨none,[b],1⟩,[(p,b)],8,0⟩,32,a.work⟩
+3012:LiteralScheduleReceiptSource.lean:20:        (p,b)::r.value.queries,r.value.callerWork+8,r.value.recursiveWork⟩,
+3013:LiteralScheduleReceiptSource.lean:21:        r.localWork+32,a.work+r.callbackWork⟩
+3023:LiteralScheduleReceiptSource.lean:48:   ⟨⟨⟨none,[],0⟩,[],8*js.length+8,0⟩,k.work+p.work+js.length+24,0⟩ else
+3026:LiteralScheduleReceiptSource.lean:51:  let pc:=postChargeMeter r.value.value
+3028:LiteralScheduleReceiptSource.lean:53:      16*js.length+20+r.value.callerWork+pc.value,r.value.recursiveWork⟩,
+3029:LiteralScheduleReceiptSource.lean:54:    k.work+p.work+b.work+r.localWork+a.work+pc.work+js.length+40,r.callbackWork⟩
+3038:LiteralStructural.lean:10:  | none=>⟨false,s.work+2⟩
+3039:LiteralStructural.lean:11:  | some V=>let e:=treeEqMeter U V;⟨e.value,s.work+e.work+2⟩
+3043:LiteralStructural.lean:46:  ⟨z.value,v.work+z.work+1⟩
+3047:LiteralStructural.lean:86:  ⟨z.value,l.work+z.work+1⟩
+3052:LiteralStructural.lean:107:  ⟨e.value,x.work+i.work+e.work+3⟩
+3056:LiteralStructural.lean:116:  ⟨c.value,x.work+m.work+c.work+2⟩
+3060:LiteralStructural.lean:125:  ⟨m.value,d.work+m.work+1⟩
+3064:LiteralStructural.lean:133:  ⟨e.value,s.work+x.work+e.work+2⟩
+3072:LiteralStructural.lean:29:  if x.value then ⟨true,x.work+1⟩
+3073:LiteralStructural.lean:30:  else let y:=atTreeMeter T q (.node (.leaf b) (.leaf a));⟨y.value,x.work+y.work+1⟩
+3078:LiteralStructural.lean:68:  ⟨decide (mc.value=(!mx.value && decide (z≠c))),lc.work+lx.work+mc.work+mx.work+4⟩
+3106:MergeEnumeration.lean:65:  ⟨r.value,2*cells FM+2*cells FN+r.work⟩
+3115:MergeEnumeration.lean:13:             ⟨p.value++r.value,p.work+r.work+p.value.length+1⟩
+3124:MergeEnumeration.lean:8:             ⟨p.value::r.value,p.work+r.work+1⟩
+3142:MergeOperations.lean:15:             ⟨if X.contains x then x::r.value else r.value,X.length+2+r.work⟩
+3148:MergeOperations.lean:33:                 ⟨B::r.value,H.length+B.length+2+r.work⟩
+3158:MergeOperations.lean:59:  K.work+L.work+FX.work+FY.work+K.value.length+FX.value.length+1⟩
+3174:OWRecovery.lean:11:  ⟨n.value&&p.value&&e.value,a.work+n.work+b.work+p.work+e.work+8⟩
+3191:OWScan.lean:10:  | _::xs=>let r:=meterLength xs;⟨r.value+1,r.work+4⟩
+3206:OrdinaryPrepareSource.lean:44:            ⟨s.value.bind (fun j=>r.value.map (j::·)),s.work+r.work+8⟩
+3214:OrdinaryPrepareSource.lean:18:  if !p.value then ⟨none,p.work+6⟩ else
+3220:OrdinaryPrepareSource.lean:24:    | .refused=>⟨none,p.work+t.work+s.work+pre.work+12⟩
+3221:OrdinaryPrepareSource.lean:25:    | .rejected=>⟨some (.hard U),p.work+t.work+s.work+pre.work+12⟩
+3223:OrdinaryPrepareSource.lean:27:                ⟨some (.resolved U (DepthOne.cutCost c) f.value),p.work+t.work+s.work+pre.work+f.work+16⟩
+3224:OrdinaryPrepareSource.lean:28:   | _,_=>⟨none,p.work+t.work+s.work+10⟩
+3234:OrdinaryPrepareSource.lean:11:   ⟨a.value&&b.value,t.work+s.work+a.work+b.work+4⟩) U
+3235:OrdinaryPrepareSource.lean:12:  ⟨n.value && !U.isEmpty && all.value,n.work+all.work+8⟩
+3244:OrdinarySchedulerSource.lean:42:    ⟨x.2++r.value,2*x.2.length+r.work+12⟩
+3255:OrdinarySchedulerSource.lean:14:    ⟨a.map (fun F=>(F.length-1,F)),t.work+s.work+(a.map List.length).getD 0+12⟩
+3256:OrdinarySchedulerSource.lean:15:  | _,_=>⟨none,t.work+s.work+8⟩
+3264:OrdinarySchedulerSource.lean:30:       | _,_=>none).toList++r.value,t.work+s.work+r.work+12⟩
+3269:OrdinarySchedulerSource.lean:49:  | some xs=>let f:=answerFlattenMeter xs;⟨some f.value,f.work+4⟩
+3279:OrdinarySchedulerSource.lean:58:  | none=>⟨⟨none,[]⟩,prep.work+4⟩
+3283:OrdinarySchedulerSource.lean:62:    ⟨⟨f.value,qs.value⟩,prep.work+r.callerWork+r.recursiveWork+f.work+qs.work+16⟩
+3320:OutsideClassifierWork.lean:5: def coreCheckMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt Bool :=
+3321:OutsideClassifierWork.lean:6:  let c:=coreMeter S a b;let r:=checkMeter fee (.restriction T S c.value)
+3322:OutsideClassifierWork.lean:7:  ⟨r.value,c.work+r.work+1,r.calls⟩
+3326:OutsideClassifierWork.lean:11:  ⟨r.value,c.work+r.work+1⟩
+3332:OutsideClassifierWork.lean:19: def outsideAtMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) (c : CherryRow) : CheckReceipt (Option OutsideSelection) :=
+3333:OutsideClassifierWork.lean:20:  let (j,p,q):=c;let r:=andSequence (outsideGuards fee T S a b p q)
+3334:OutsideClassifierWork.lean:21:  ⟨if r.value then some ⟨j,p,q⟩ else none,r.work+4,r.calls⟩
+3340:OutsideClassifierWork.lean:13: def outsideGuards (fee : CheckRequest→Nat) (T S : Tree) (a b p q : Nat) : List (Unit→CheckReceipt Bool) :=
+3341:OutsideClassifierWork.lean:14:  [fun _=>coreCheckMeter fee T S a b,
+3350:OutsideClassifierWork.lean:83: def selectOutsideMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt (Option OutsideSelection) :=
+3351:OutsideClassifierWork.lean:84:  optionsHeadMeter (cherriesMeter S) (outsideAtMeter fee T S a b)
+3401:OwnerCost.lean:10:   ⟨a.value++b.value,a.work+b.work+4*(a.value.length+1)+4⟩
+3412:OwnerCost.lean:41:   if m.value then ⟨0,ls.work+m.work+8⟩ else
+3414:OwnerCost.lean:43:    ⟨r.value+1,ls.work+m.work+r.work+8⟩
+3423:PaidAddresses.lean:25:            if h.value then ⟨some q,h.work+2⟩ else
+3424:PaidAddresses.lean:26:             let r:=findLeafMeter T a qs;⟨r.value,h.work+r.work+2⟩
+3432:PaidAddresses.lean:46:  ⟨r.value,vs.work+r.work+1⟩
+3441:PaidAddresses.lean:8:  | none=>⟨false,s.work+2⟩
+3442:PaidAddresses.lean:9:  | some U=>let e:=leafEqMeter U a;⟨e.value,s.work+e.work+2⟩
+3452:PaidArcPartition.lean:90:              ⟨r.value,x.work+s.work+r.work+3⟩
+3459:PaidArcPartition.lean:97:  let l:=meterLeaves T;let r:=arcFromMeter T qs [l.value];⟨r.value,l.work+r.work+3⟩
+3467:PaidArcPartition.lean:11:  let n:=meterFilter (fun x=>let a:=meterContains x X;⟨!a.value,a.work+1⟩) B
+3469:PaidArcPartition.lean:13:  ⟨f.value,y.work+n.work+f.work+5⟩
+3478:PaidArcPartition.lean:22:           ⟨a.value++r.value,a.work+r.work+a.value.length+3⟩
+3484:PaidBestSource.lean:14: def bestForMeter (cb : Ordinary) (W : OrdinaryWork) {T S : Tree} (R : SelectedPaid T S) (q : Nat) : PaidExecutionReceipt (Option Forest) :=
+3485:PaidBestSource.lean:15:  let a:=answersMeter cb W R q
+3487:PaidBestSource.lean:17:  ⟨b.value,a.prefixWork+b.work+a.value.length+2,a.forestDebit,a.ordinaryCalls⟩
+3494:PaidBestSource.lean:9:  let a:=measuredAgreement T S F;⟨a.value&&decide (F.length-1≤q),a.work+F.length+3⟩
+3500:PaidBestSource.lean:59: def paidSelectedSource (cb : Ordinary) (W : OrdinaryWork) (classFee : CheckRequest→Nat)
+3501:PaidBestSource.lean:60:  (literalFee : LiteralCall→Nat) (T S : Tree) (a b q : Nat) : Charged Rule5PaidOrdinary.SelectedResult :=
+3502:PaidBestSource.lean:61:  let r:=solveSelectedMeter cb W classFee literalFee T S a b q;⟨r.value,r.prefixWork+r.forestDebit⟩
+3508:PaidBestSource.lean:30: def solveSelectedMeter (cb : Ordinary) (W : OrdinaryWork) (classFee : CheckRequest→Nat)
+3509:PaidBestSource.lean:31:  (literalFee : LiteralCall→Nat) (T S : Tree) (a b q : Nat) : PaidExecutionReceipt Rule5PaidOrdinary.SelectedResult :=
+3510:PaidBestSource.lean:32:  let p:=paidSelectedMeter classFee literalFee T S a b
+3512:PaidBestSource.lean:34:  | none=>⟨.builderRefused,p.work+2,0,[]⟩
+3514:PaidBestSource.lean:36:   let r:=bestForMeter cb W R q
+3515:PaidBestSource.lean:37:   ⟨.answered r.value,p.work+r.prefixWork+2,r.forestDebit,r.ordinaryCalls⟩
+3535:PaidBuilderOuter.lean:22: def buildOneMeter (fee : LiteralCall→Nat) (T S : Tree) (a b : Nat) (d : BadSelection)
+3537:PaidBuilderOuter.lean:24:  bump ((subtreeMeter T v).work+(leafAddressMeter T R.a).work+(leafAddressMeter T R.b).work+5) <|
+3540:PaidBuilderOuter.lean:27:    bump (fee ⟨R,C,qa,ub,d,u,v⟩+1) <|
+3548:PaidBuilderOuter.lean:96:            | some y=>⟨some y,a.work+2⟩
+3549:PaidBuilderOuter.lean:97:            | none=>let r:=findBuilderMeter f xs;⟨r.value,a.work+r.work+2⟩
+3555:PaidBuilderOuter.lean:115: def secondBuilderMeter (fee : LiteralCall→Nat) (T S : Tree) (a b : Nat) (d : BadSelection)
+3558:PaidBuilderOuter.lean:118:  let out:=findBuilderMeter (buildOneMeter fee T S a b d u v) rs.value
+3559:PaidBuilderOuter.lean:119:  ⟨out.value,rs.work+out.work+1⟩
+3568:PaidCaller.lean:13:  w : RMAF.Vertex
+3582:PaidCaller.lean:27:  source : subtree S w = some (bottom sa sc sb a b c X)
+3592:PaidCaller.lean:37:  frontier : incident T (leaves X) = [r,uc] ∨ incident T (leaves X) = [uc,r]
+3613:PaidCurrentSource.lean:17: def currentQueryMeter (cb : Ordinary) (W : OrdinaryWork) (T : Option Tree) (ss : List Tree) (r : Nat) : CurrentReceipt :=
+3616:PaidCurrentSource.lean:20:  | .refused=>⟨.malformed,p.work+2,0,[]⟩
+3617:PaidCurrentSource.lean:21:  | .found F=>⟨.answered (if additionalCost ss F≤r then some F else none),p.work+F.length+ss.length+4,0,[]⟩
+3618:PaidCurrentSource.lean:22:  | .rejected=>if r≤1 then ⟨.answered none,p.work+3,0,[]⟩ else
+3619:PaidCurrentSource.lean:23:     ⟨.answered (GenericForest.solve cb T ss r),p.work+3,forestWork cb W T ss r,frontier cb T ss r⟩
+3637:PaidForestCandidates.lean:66:  ⟨unchanged.value::one.value,unchanged.work+one.work+2⟩
+3648:PaidForestCandidates.lean:16:     ⟨f.value++u.value,f.work+u.work+f.value.length+2⟩) es.value
+3650:PaidForestCandidates.lean:18:    let right:=meterMap (fun F=>let l:=meterLeaves s;⟨l.value::F,l.work+2⟩) tail.value
+3651:PaidForestCandidates.lean:19:    ⟨left.value++right.value,es.work+left.work+tail.work+right.work+left.value.length+3⟩
+3662:PaidForestPretest.lean:15:             | none=>⟨some F,a.work+r.work+6⟩
+3664:PaidForestPretest.lean:17:                a.work+r.work+F.length+G.length+2*ss.length+8⟩
+3665:PaidForestPretest.lean:18:            else ⟨r.value,a.work+r.work+4⟩
+3675:PaidForestPretest.lean:55:   ⟨match b.value with | none=>.rejected | some F=>.found F,p.work+c.work+b.work+4⟩
+3676:PaidForestPretest.lean:56:  else ⟨.refused,p.work+2⟩
+3684:PaidGuardSource.lean:47:  let a:=meterAll (fun q=>let s:=meterSubtree (current T S c) q;⟨!q.isEmpty&&s.value.isSome,s.work+3⟩) c.originalCuts
+3691:PaidGuardSource.lean:54:   n.work+a.work+l.work+p.work+e.work+r.work+eq.work+c.partition.length+2*c.originalCuts.length+18⟩
+3700:PaidGuardSource.lean:10:            ⟨!c.value&&r.value,c.work+r.work+3⟩
+3704:PaidGuardSource.lean:30:  | B::P,C::Q=>let a:=natListEqMeter B C;let r:=forestEqMeter P Q;⟨a.value&&r.value,a.work+r.work+3⟩
+3712:PaidGuardSource.lean:63:  let f:=meterFilter (currentGuardMeter T S) plan.value;⟨f.value,plan.work+f.work+2⟩
+3720:PaidGuardSource.lean:18:  | x::xs,y::ys=>let r:=natListEqMeter xs ys;⟨(x==y)&&r.value,r.work+3⟩
+3747:PaidOuterSource.lean:30:     ⟨.good X Y Z,parents.work+x.work+y.work+20⟩
+3751:PaidOuterSource.lean:34:      parents.work+x.work+y.work+x2.work+y2.work+28⟩
+3752:PaidOuterSource.lean:35:   | _=>⟨.hard,parents.work+12⟩
+3773:PaidParsing.lean:59:  | x::xs=>let a:=f x;let r:=fmMeter f xs;⟨a.value++r.value,a.work+r.work+a.value.length+3⟩
+3775:PaidParsing.lean:87: def rowAtMeter (S : Tree) (w : RMAF.Vertex) (a b c : Nat) : Measured (List BottomData) :=
+3776:PaidParsing.lean:88:  fmMeter (fun sa=>fmMeter (fun sc=>fmMeter (fun sb=>pairRowsMeter S w sa sc sb a b c)
+3789:PaidParsing.lean:83: def pairRowsMeter (S : Tree) (w : RMAF.Vertex) (sa sc sb : Bool) (a b c : Nat) : Measured (List BottomData) :=
+3790:PaidParsing.lean:84:  fmMeter (fun xy=>let p:=parseBottomMeter S w sa sc sb xy.1 xy.2 c
+3791:PaidParsing.lean:85:   ⟨match p.value with | none=>[] | some X=>[(⟨w,sa,sc,sb,xy.1,xy.2,X⟩:BottomData)],p.work+2⟩) [(a,b),(b,a)]
+3797:PaidParsing.lean:9: def parseBottomMeter (S : Tree) (w : RMAF.Vertex) (sa sc sb : Bool) (a b c : Nat) : Measured (Option Tree) :=
+3798:PaidParsing.lean:10:  let z:=subtreeMeter S w
+3813:PaidParsing.lean:25:           ⟨if eb.value && ec.value && ea.value then some X else none,eb.work+ec.work+ea.work+9⟩
+3814:PaidParsing.lean:26:  ⟨finish.value,z.work+finish.work+1⟩
+3821:PaidParsing.lean:92:  let v:=verticesMeter S;let r:=fmMeter (fun w=>rowAtMeter S w a b c) v.value
+3822:PaidParsing.lean:93:  ⟨r.value,v.work+r.work+1⟩
+3831:PaidPlanSource.lean:12:  ⟨bx.value && !cy.value,d.work+x.work+bx.work+e.work+y.work+cy.work+3⟩
+3835:PaidPlanSource.lean:19:  ⟨f.value,k.work+f.work+2⟩
+3839:PaidPlanSource.lean:51:  ⟨⟨.source,k.value,p.value⟩,k.work+p.work+4⟩
+3842:PaidPlanSource.lean:53:  let p:=singletonPartitionMeter S b;⟨⟨.source,[qb],p.value⟩,p.work+4⟩
+3845:PaidPlanSource.lean:55:  let p:=arcPartitionMeter T qs;⟨⟨.target,qs,p.value⟩,p.work+3⟩
+3853:PaidPlanSource.lean:25:  ⟨f.value,k.work+f.work+2⟩
+3857:PaidPlanSource.lean:31:  let f:=meterFilter (fun q=>let x:=meterSubtreeLabels T q;let z:=meterContains a x.value;⟨!z.value,x.work+z.work+1⟩) s.value
+3858:PaidPlanSource.lean:32:  ⟨f.value,s.work+f.work+2⟩
+3862:PaidPlanSource.lean:38:  | x::xs,y::ys=>if x=y then let r:=lcaMeter xs ys;⟨x::r.value,r.work+3⟩ else ⟨[],2⟩
+3867:PaidPlanSource.lean:63:  ⟨[h.value,s.value,l.value,u.value],h.work+s.work+l.work+u.work+5⟩
+3871:PaidPlanSource.lean:66:  ⟨[h.value,s.value,l.value],h.work+s.work+l.work+4⟩
+3878:PaidPlanSource.lean:90:  let p:=rawPlanMeter T S D.a D.b D.c D.qa (bArc D.w D.sb) D.ub D.uc
+3879:PaidPlanSource.lean:91:  ⟨p.value,p.work+D.w.length+2⟩
+3888:PaidPlanSource.lean:75:  | q::r::_=>let p:=typeIMeter T S a b qa qb q r;⟨p.value,es.work+p.work+3⟩
+3891:PaidPlanSource.lean:78:       | []=>let l:=lcaMeter ub uc;let p:=typeIIMeter T S a b qa qb [l.value];⟨p.value,es.work+bs.work+l.work+p.work+5⟩
+3892:PaidPlanSource.lean:79:       | qs=>let p:=typeIIMeter T S a b qa qb qs;⟨p.value,es.work+bs.work+p.work+3⟩
+3928:PaidRequestsSource.lean:35:  ⟨r.value,g.work+r.work+2⟩
+3930:PaidRequestsSource.lean:55: def answerListMeter (cb : Ordinary) (W : OrdinaryWork) : List PaidRequest→PaidExecutionReceipt (List Forest)
+3932:PaidRequestsSource.lean:57:  | j::js=>let a:=requestAnswerMeter cb W j;let r:=answerListMeter cb W js
+3934:PaidRequestsSource.lean:59:              a.prefixWork+r.prefixWork+3,a.forestDebit+r.forestDebit,a.ordinaryCalls++r.ordinaryCalls⟩
+3940:PaidRequestsSource.lean:68: def answersMeter (cb : Ordinary) (W : OrdinaryWork) {T S : Tree} (R : SelectedPaid T S) (q : Nat) : PaidExecutionReceipt (List Forest) :=
+3941:PaidRequestsSource.lean:69:  let js:=requestsMeter R.geometry q;let a:=answerListMeter cb W js.value
+3942:PaidRequestsSource.lean:70:  ⟨a.value,js.work+a.prefixWork+2,a.forestDebit,a.ordinaryCalls⟩
+3951:PaidRequestsSource.lean:22:            ⟨match a.value with | none=>r.value | some j=>j::r.value,a.work+r.work+3⟩
+3953:PaidRequestsSource.lean:48: def requestAnswerMeter (cb : Ordinary) (W : OrdinaryWork) (j : PaidRequest) : PaidExecutionReceipt (Option Forest) :=
+3954:PaidRequestsSource.lean:49:  let a:=currentQueryMeter cb W (some j.target) j.sources j.residual
+3955:PaidRequestsSource.lean:50:  ⟨a.value.answer?,a.prefixWork+1,a.forestDebit,a.ordinaryCalls⟩
+3964:PaidRequestsSource.lean:10:   ⟨some ⟨c,opposite T S c,s.value,q-c.originalCuts.length⟩,s.work+2*c.originalCuts.length+7⟩
+3971:PaidSelectedBinding.lean:7: def paidSelectedMeter (classFee : CheckRequest→Nat) (literalFee : LiteralCall→Nat)
+3973:PaidSelectedBinding.lean:9:  let cls:=finalMeter classFee T S a b
+3976:PaidSelectedBinding.lean:12:    let r:=secondBuilderMeter literalFee T S a b d u v
+3977:PaidSelectedBinding.lean:13:    ⟨r.value.map (SelectedPaid.mk d u v),cls.work+r.work+2⟩
+3978:PaidSelectedBinding.lean:14:  | _=>⟨none,cls.work+1⟩
+3989:PaintCost.lean:47:   | none => ⟨some a,r.work+8⟩
+3993:PaintCost.lean:51:    ⟨if ca.value≤cb.value then some a else some b,r.work+ca.work+cb.work+12⟩
+4004:PaintCost.lean:20:   ⟨a.value+delta c (root l)+b.value+delta c (root r),a.work+b.work+16⟩
+4008:PaintCost.lean:76:  ⟨m.value.getD (.leaf 0 0),m.work+4⟩
+4016:PaintCost.lean:32:  ⟨m.value+delta c (root p),m.work+8⟩
+4025:PendantAddressScans.lean:28:            if c.value then ⟨true,c.work+1⟩ else let r:=containsAddressMeter p qs;⟨r.value,c.work+r.work+1⟩
+4030:PendantAddressScans.lean:51:  | x::y::xs=>let r:=dropLastMeter (y::xs);⟨x::r.value,r.work+2⟩
+4040:PendantAddressScans.lean:9:  | x::xs,y::ys=>if x==y then let r:=eqAddressMeter xs ys;⟨r.value,r.work+2⟩ else ⟨false,2⟩
+4049:PendantCandidates.lean:8:                 ⟨⟨p,a,b,e.value⟩::r.value,e.work+r.work+6⟩
+4057:PendantCandidates.lean:28:  ⟨r.value,c.work+r.work+1⟩
+4062:PendantCandidates.lean:63:              let r:=earlierAllMeter cs;⟨r.value,c.originalCuts.length+r.work+2⟩
+4071:PendantCandidates.lean:85:  ⟨a.value,c.work+a.work+1⟩
+4080:PendantCutWork.lean:44:            ⟨if c.value then v::r.value else r.value,c.work+r.work+2⟩
+4091:PendantCutWork.lean:10:   ⟨!d.value,p.work+m.work+c.work+m2.work+d.work+3⟩
+4092:PendantCutWork.lean:11:  else ⟨false,p.work+m.work+c.work+2⟩
+4100:PendantCutWork.lean:66:  ⟨f.value,v.work+f.work+1⟩
+4107:PendantMinimal.lean:6:  | .leaf x=>let c:=containsMeter x D;⟨if c.value then [[]] else [],c.work+2⟩
+4111:PendantMinimal.lean:10:                 ⟨prependSide true m.value,a.work+b.work+m.work+4*m.value.length+3⟩
+4114:PendantMinimal.lean:13:                 ⟨prependSide false m.value,a.work+b.work+m.work+4*m.value.length+3⟩
+4116:PendantMinimal.lean:15:                  a.work+b.work+6*a.value.length+5*b.value.length+3⟩
+4126:PendantPartitionWork.lean:59:            ⟨if !c.value then x::r.value else r.value,p.work+c.work+r.work+2⟩
+4134:PendantPartitionWork.lean:80:  ⟨f.value,l.work+f.work+1⟩
+4142:PendantPartitionWork.lean:100:  ⟨bs.value++[c.value],e.work+bs.work+c.work+bs.value.length+3⟩
+4150:PendantPartitionWork.lean:10:  ⟨f.value,e.work+bs.work+f.work+2⟩
+4158:PendantSpan.lean:7:             ⟨if c.value then [[]] else [],c.work+2⟩
+4160:PendantSpan.lean:9:                if a.value.isEmpty && b.value.isEmpty then ⟨[],a.work+b.work+2⟩
+4162:PendantSpan.lean:11:                  a.work+b.work+6*a.value.length+5*b.value.length+3⟩
+4171:PendantSubtrees.lean:45:            ⟨b.value::r.value,b.work+r.work+1⟩
+4179:PendantSubtrees.lean:84:  | B::bs=>let r:=flattenMeter bs;⟨B++r.value,r.work+B.length+1⟩
+4186:PendantSubtrees.lean:6:  | T,[]=>let l:=leavesMeter T;⟨l.value,l.work+1⟩
+4188:PendantSubtrees.lean:8:  | .node l r,s::p=>let m:=subtreeLabelsMeter (if s then r else l) p;⟨m.value,m.work+2⟩
+4198:PendantVertices.lean:9:                a.work+b.work+5*a.value.length+4*b.value.length+3⟩
+4256:PrefixChildrenWork.lean:9:  | z::zs=>let r:=excludeOneMeter x zs;⟨if z != x then z::r.value else r.value,r.work+3⟩
+4264:PrefixChildrenWork.lean:12:  | z::zs=>let r:=excludeTwoMeter x y zs;⟨if z != x && z != y then z::r.value else r.value,r.work+4⟩
+4273:PrefixChildrenWork.lean:138:  ⟨[c.value,pa.value,pb.value,qa.value,qb.value],c.work+pa.work+pb.work+qa.work+qb.work+6⟩
+4280:PrefixChildrenWork.lean:157:  | .large _=>let c:=pendantChildMeter S a b;⟨[c.value],c.work+2⟩
+4291:PrefixChildrenWork.lean:99:  ⟨c.value,p.work+c.work+1⟩
+4299:PrefixChildrenWork.lean:38:  ⟨[[x],[y],f.value],l.work+f.work+7⟩
+4307:PrefixChildrenWork.lean:96:  ⟨c.value,p.work+c.work+1⟩
+4315:PrefixChildrenWork.lean:35:  ⟨[[x],f.value],l.work+f.work+5⟩
+4321:PrefixClassifierWork.lean:5: def largeAtMeter (fee : CheckRequest→Nat) (T S : Tree) (e : RMAF.Vertex) : CheckReceipt (Option RMAF.Vertex) :=
+4322:PrefixClassifierWork.lean:6:  let l:=subtreeLabelsMeter S e;let c:=checkMeter fee (.restriction T S l.value)
+4324:PrefixClassifierWork.lean:8:   ⟨if 3≤m.value.length then some e else none,l.work+c.work+m.work+m.value.length+4,c.calls⟩
+4325:PrefixClassifierWork.lean:9:  else ⟨none,l.work+c.work+2,c.calls⟩
+4328:PrefixClassifierWork.lean:42:  let r:=optionsMeter f cs.value;⟨r.value.head?,cs.work+r.work+2,r.calls⟩
+4330:PrefixClassifierWork.lean:81: def sizeTwoAtMeter (fee : CheckRequest→Nat) (T S : Tree) (e : RMAF.Vertex) : CheckReceipt (Option SizeTwoSelection) :=
+4331:PrefixClassifierWork.lean:82:  let l:=subtreeLabelsMeter S e;let c:=checkMeter fee (.restriction T S l.value)
+4333:PrefixClassifierWork.lean:84:   ⟨match t.value with | some (.node (.leaf p) (.leaf q))=>some ⟨e,p,q⟩ | _=>none,l.work+c.work+t.work+5,c.calls⟩
+4334:PrefixClassifierWork.lean:85:  else ⟨none,l.work+c.work+2,c.calls⟩
+4340:PrefixClassifierWork.lean:55: def selectLargeMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt (Option RMAF.Vertex) :=
+4341:PrefixClassifierWork.lean:56:  optionsHeadMeter (cutsMeter S a b) (largeAtMeter fee T S)
+4343:PrefixClassifierWork.lean:108: def selectSizeTwoMeter (fee : CheckRequest→Nat) (T S : Tree) (a b : Nat) : CheckReceipt (Option SizeTwoSelection) :=
+4344:PrefixClassifierWork.lean:109:  optionsHeadMeter (cutsMeter S a b) (sizeTwoAtMeter fee T S)
+4353:PrefixLeaves.lean:8:                ⟨a.value++b.value,a.work+b.work+a.value.length+2⟩
+4371:PrefixScans.lean:14:           let r:=containsMeter x ys;⟨r.value,r.work+2⟩
+4380:PrefixScans.lean:43:           if r.value then let c:=containsMeter x xs;⟨!c.value,r.work+c.work+1⟩
+4381:PrefixScans.lean:44:           else ⟨false,r.work+1⟩
+4420:ProperPairWork.lean:7:  ⟨d.value,l.work+d.work+1⟩
+4424:ProperPairWork.lean:23:  ⟨a.value,l.work+a.work+1⟩
+4433:ProperPairWork.lean:18:           if c.value then let r:=allTreeMeter S xs;⟨r.value,c.work+r.work+1⟩
+4434:ProperPairWork.lean:19:           else ⟨false,c.work+1⟩
+4442:ProperPairWork.lean:11:  ⟨d.value,l.work+d.work+1⟩
+4452:ProperPairWork.lean:81:     ⟨d.value,a.work+b.work+c.work+d.work+4⟩
+4453:ProperPairWork.lean:82:    else ⟨false,a.work+b.work+c.work+3⟩
+4454:ProperPairWork.lean:83:   else ⟨false,a.work+b.work+2⟩
+4455:ProperPairWork.lean:84:  else ⟨false,a.work+1⟩
+4584:RWChoose.lean:24:  | []=>⟨.refuse "empty current source",g.work+m.work+8⟩
+4593:RWChoose.lean:33:     g.work+m.work+a.work+f.work+16⟩
+4602:RWChoose.lean:9:  ⟨n.value==1,f.work+n.work+4⟩
+4611:RWFinal.lean:12:    if contains.value then ⟨b.headD 0,contains.work+8⟩
+4612:RWFinal.lean:13:    else let r:=meterColor P x;⟨r.value,contains.work+r.work+8⟩
+4619:RWFinal.lean:43:   ⟨g.value.outputs.head?,check.work+len.work+g.work+8⟩
+4620:RWFinal.lean:44:  else ⟨none,check.work+8⟩
+4641:RWInitial.lean:12:  | .leaf x=>let a:=color x;⟨.leaf ⟨p,[x],a.value⟩,a.work+8,a.work⟩
+4643:RWInitial.lean:14:    ⟨.node p a.value b.value,a.work+b.work+8*(p.length+1)+8,a.coloring+b.coloring⟩
+4650:RWInitial.lean:44:   ⟨some (min budget (len.value-1),built.value),leaves1.work+proper.work+leaves2.work+len.work+built.work+16,built.coloring⟩
+4651:RWInitial.lean:45:  else ⟨none,leaves1.work+proper.work+8,0⟩
+4660:RWInitial.lean:85:  | none=>⟨⟨[],["duplicate original label"],0,0,0⟩,init.work+8⟩
+4661:RWInitial.lean:86:  | some (q,built)=>let r:=meterRun q built [] [];⟨r.value,init.work+r.work+8⟩
+4670:RWLocal.lean:9:  let fee:=contains.work+erased.work+16
+4671:RWLocal.lean:10:  if g.origin=[] then ⟨⟨[],["attempt to cut original root"],0,1,0⟩,fee⟩
+4672:RWLocal.lean:11:  else if contains.value then ⟨⟨[],["duplicate original source cut"],0,1,0⟩,fee⟩
+4674:RWLocal.lean:13:  | none=>⟨⟨[],["attempt removed entire current source"],0,1,0⟩,fee⟩
+4676:RWLocal.lean:15:    ⟨{r.value with childAttempts:=r.value.childAttempts+1},fee+r.work+8⟩
+4683:RWLocal.lean:92:    ⟨⟨[o.value],[],1,0,0⟩,n.work+ch.work+o.work+32⟩
+4685:RWLocal.lean:94:    ⟨prefixRoot a.value,n.work+ch.work+a.work+32⟩
+4687:RWLocal.lean:96:    ⟨prefixRoot (combine x.value y.value),n.work+ch.work+x.work+y.work+4*(appendCells x.value+1)+32⟩
+4688:RWLocal.lean:97:  | .refuse why=>⟨⟨[],[why],1,0,0⟩,n.work+ch.work+32⟩
+4698:RWLocal.lean:62:  ⟨⟨ds.value++[flat.value],c⟩,ds.work+gs.work+flat.work+4*(ds.value.length+1)+12⟩
+4715:RWTree.lean:11:    ⟨a.value++b.value,a.work+b.work+4*(a.value.length+1)+4⟩
+4723:RWTree.lean:34:     a.work+b.work+normalizeFee a.value b.value⟩
+4727:RWTree.lean:56:    ⟨if e.value then none else some (.leaf g),e.work+8⟩
+4731:RWTree.lean:60:     e.work+a.work+b.work+12⟩
+4737:RWTree.lean:24: def normalizeFee : GTree→GTree→Nat
+4744:RWTree.lean:82:    ⟨match l,r with | .leaf x,.leaf y=>some (x,y) | _,_=>a.value.or b.value,a.work+b.work+8⟩
+4765:Rule4CallerSource.lean:22:  ⟨b.value++[c.value],b.work+l.work+c.work+b.value.length+4⟩
+4771:Rule4CallerSource.lean:33:   | some v=>⟨some (false::v),p.work+4⟩
+4772:Rule4CallerSource.lean:34:   | none=>let q:=leafAddressMeter a r;⟨q.value.map (true::·),p.work+q.work+4⟩
+4782:Rule4CallerSource.lean:49:    ⟨S,T,p.value,true⟩],a.work+p.work+18⟩
+4787:Rule4CallerSource.lean:60:  ⟨f.value,p.work+f.work+4⟩
+4795:Rule4CallerSource.lean:13:   ⟨!c.value,s.work+c.work+2⟩) cuts
+4861:Rule5SelectedSource.lean:60: def dispatchSource (cb : Ordinary) (W : OrdinaryWork) (classFee : CheckRequest→Nat)
+4862:Rule5SelectedSource.lean:61:  (literalFee : LiteralCall→Nat) (T S : Tree) (a b q : Nat) : Charged Result :=
+4863:Rule5SelectedSource.lean:62:  let c:=finalMeter classFee T S a b
+4865:Rule5SelectedSource.lean:64:  | none=>⟨.selectorRefused,c.work+2⟩
+4866:Rule5SelectedSource.lean:65:  | some z=>let r:=runSelectedSource cb W classFee literalFee T S a b q z;⟨r.value,c.work+r.work+2⟩
+4872:Rule5SelectedSource.lean:10: def runSelectedSource (cb : Ordinary) (W : OrdinaryWork) (classFee : CheckRequest→Nat)
+4873:Rule5SelectedSource.lean:11:  (literalFee : LiteralCall→Nat) (T S : Tree) (a b q : Nat) : FinalSelection→Charged Result
+4874:Rule5SelectedSource.lean:12:  | .prefix s=>let r:=selectedArmSource cb W T S a b q (.prefix s);⟨.answered r.value,r.work+2⟩
+4875:Rule5SelectedSource.lean:13:  | .remaining d (.first u v)=>let r:=selectedArmSource cb W T S a b q (.remaining d (.first u v));⟨.answered r.value,r.work+2⟩
+4876:Rule5SelectedSource.lean:14:  | .remaining d (.third u v)=>let r:=selectedArmSource cb W T S a b q (.remaining d (.third u v));⟨.answered r.value,r.work+2⟩
+4877:Rule5SelectedSource.lean:15:  | .remaining d (.one _)=>let r:=commonSource cb W T S a b d q;⟨.answered r.value,r.work+2⟩
+4879:Rule5SelectedSource.lean:17:   let r:=paidSelectedSource cb W classFee literalFee T S a b q
+4880:Rule5SelectedSource.lean:18:   ⟨match r.value with | .builderRefused=>.paidBuilderRefused | .answered F=>.answered F,r.work+2⟩
+4895:SchedulerAtoms.lean:7:  | .resolved _ c _::js=>let r:=knownCostMeter js;⟨c+r.value,r.work+8⟩
+4896:SchedulerAtoms.lean:8:  | .hard _::js=>let r:=knownCostMeter js;⟨r.value,r.work+8⟩
+4900:SchedulerAtoms.lean:20:  | .resolved _ _ _::js=>let r:=pendingMeter js;⟨r.value,r.work+8⟩
+4901:SchedulerAtoms.lean:21:  | .hard _::js=>let r:=pendingMeter js;⟨1+r.value,r.work+8⟩
+4905:SchedulerAtoms.lean:41:  ⟨q-k.value-2*(p.value-1),k.work+p.work+8⟩
+4907:SchedulerAtoms.lean:49: def postChargeMeter {A : Type} (r : Receipt A) : Charged Nat:=
+4916:SchedulerAtoms.lean:33:  | x::xs=>let r:=answerCostMeter xs;⟨x.1+r.value,r.work+8⟩
+4927:SchedulerRun.lean:13:      r.queries,r.callerWork+32,r.recursiveWork⟩
+4930:SchedulerRun.lean:16:    | none=>⟨⟨none,[b],1⟩,[(p,b)],32,x.work⟩
+4933:SchedulerRun.lean:19:        (p,b)::r.queries,r.callerWork+32,x.work+r.recursiveWork⟩
+4942:SchedulerSchedule.lean:8:    ⟨if a.value≤q then some xs else none,a.work+8⟩
+4951:SchedulerSchedule.lean:19:  if q<k.value+2*p.value then ⟨⟨none,[],0⟩,[],k.work+p.work+js.length+24,0⟩ else
+4955:SchedulerSchedule.lean:23:  let pc:=postChargeMeter r.value
+4957:SchedulerSchedule.lean:25:    k.work+p.work+b.work+r.callerWork+a.work+pc.work+js.length+40,r.recursiveWork⟩
+4963:SelectedAgreementBinding.lean:25: def selectedArmSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+4966:SelectedAgreementBinding.lean:28:  let r:=runChildrenSource actual W T S q cs.value
+4967:SelectedAgreementBinding.lean:29:  ⟨r.value,cs.work+r.work+2⟩
+4995:SelectedRestriction.lean:14:            ⟨match t.value with | none=>r.value | some U=>U::r.value,t.work+r.work+3⟩
+4998:SelectedRestriction.lean:52:  let fs:=sourceForestMeter S P;⟨⟨P,fs.value,paid⟩,fs.work+4⟩
+5007:SelectedRestriction.lean:70:  ⟨child.value,p.work+c.work+c.value.length+child.work+2⟩
+5031:SelectorBuilder.lean:8:  w : RMAF.Vertex
+5047:SelectorBuilder.lean:46:  subtree S R.w=some (bottom R.sa R.sc R.sb R.a R.b d.c R.X) ∧
+5093:SetupAtoms.lean:8: def bump {α : Type} (k : Nat) (r : Measured α) : Measured α := ⟨r.value,k+r.work⟩
+5101:SetupAtoms.lean:15:  | y::ys=>if x==y then ⟨ys,2⟩ else let r:=eraseMeter x ys;⟨y::r.value,r.work+3⟩
+5106:SetupAtoms.lean:91:                ⟨.node a.value b.value,a.work+b.work+2⟩
+5116:SetupAtoms.lean:36:                               ⟨r.value,c.work+e.work+r.work+2⟩
+5117:SetupAtoms.lean:37:               else ⟨false,c.work+1⟩
+5121:SetupAtoms.lean:62:  ⟨p.value,l.work+p.work+3⟩
+5125:SetupAtoms.lean:79:  | x::xs=>let r:=maxMeter xs;⟨max x r.value,r.work+3⟩
+5130:SetupAtoms.lean:103:  | none=>⟨none,r.work+2⟩
+5131:SetupAtoms.lean:104:  | some U=>let a:=relabelMeter y rho U;⟨some a.value,r.work+a.work+3⟩
+5140:SiblingChildrenWork.lean:77:  | none=>⟨[],e.work+1⟩
+5142:SiblingChildrenWork.lean:79:   ⟨[s.value,p.value],e.work+s.work+p.work+3⟩
+5147:SiblingChildrenWork.lean:84:  | none=>⟨[],e.work+1⟩
+5149:SiblingChildrenWork.lean:86:   ⟨[s.value,p.value],e.work+s.work+p.work+4⟩
+5157:SiblingChildrenWork.lean:8:  | x::xs,acc=>let r:=reverseAuxMeter xs (x::acc);⟨r.value,r.work+2⟩
+5172:SiblingChildrenWork.lean:30:  | []=>⟨none,rev.work+1⟩
+5174:SiblingChildrenWork.lean:32:   ⟨match t.value with | some (.leaf x)=>some x | _=>none,rev.work+p.work+p.value.length+t.work+5⟩
+5183:SolveCost.lean:8:  ⟨pick.value,tab.work+pick.work+8⟩
+5194:SourceBestMeter.lean:12:     | none=>⟨some x,a.work+r.work+8⟩
+5196:SourceBestMeter.lean:14:               ⟨if cx.value≤cy.value then some x else some y,a.work+r.work+cx.work+cy.work+12⟩
+5197:SourceBestMeter.lean:15:    else ⟨r.value,a.work+r.work+8⟩
+5217:SourceOrientation.lean:27: def bArc (w : RMAF.Vertex) (sb : Bool) := w ++ [!sb]
+5232:TableCost.lean:26:  ⟨.node c a.value b.value,a.work+b.work+8⟩
+5239:TableCost.lean:32:  | .leaf x => let o := owner x;⟨[.leaf x o.value],o.work+8⟩
+5244:TableCost.lean:37:   ⟨rows.map Charged.value,a.work+b.work+(rows.map Charged.work).sum+8⟩
+5254:TreeCheckMeters.lean:10:   ⟨(ac.value && bd.value)||(ad.value && bc.value),ac.work+bd.work+ad.work+bc.work+4⟩
+5258:TreeCheckMeters.lean:35:  | .leaf x => let m:=meterContains x B;⟨if m.value then some (.leaf x) else none,m.work+4⟩
+5262:TreeCheckMeters.lean:39:    | none,none=>none | some x,none=>some x | none,some y=>some y | some x,some y=>some (.node x y),a.work+b.work+4⟩
+5271:TreeCheckMeters.lean:71:  | some u,some v=>let c:=meterSameShape u v;⟨c.value,a.work+b.work+c.work+4⟩
+5272:TreeCheckMeters.lean:72:  | _,_=>⟨false,a.work+b.work+4⟩
+5278:UnitCombineSource.lean:32: def combineSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+5281:UnitCombineSource.lean:35:  let units:=runChildrenSource actual W T S q cs.value
+5285:UnitCombineSource.lean:39:   cs.work+units.work+calls.work+best.work+calls.value.length+8⟩
+5293:UnitCombineSource.lean:10:  ⟨[x.value,y.value],x.work+y.work+3⟩
+5298:UnitCombineSource.lean:21:   cs.work+8*cs.value.length+2⟩
+5312:## source-Work-appendCells.txt
+5315:Work.lean:119: def appendCells (a : Receipt) : Nat := a.outputs.length + a.refusals.length
+5321:ChildrenExecutionWork.lean:170: def runChildrenMeter (actual : Ordinary) (forestFee : ForestQuery→Nat) (agreementFee : Forest→Nat) (T S : Tree) (q : Nat) (cs : List Child) : ChildrenReceipt :=
+5322:ChildrenExecutionWork.lean:171:  let r:=childrenAnswersMeter actual forestFee T q cs
+5323:ChildrenExecutionWork.lean:172:  let b:=bestLengthMeter (acceptedMeter agreementFee T S q) r.value
+5324:ChildrenExecutionWork.lean:173:  ⟨b.value,r.localWork+b.work+r.value.length+2,r.recursiveWork,r.calls,r.value⟩

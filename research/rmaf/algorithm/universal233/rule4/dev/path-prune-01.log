@@ -1,0 +1,198 @@
+research/rmaf/algorithm/universal233/rule4/PathPrune.lean:106:95: error: unsolved goals
+a b : Nat
+hab : a ≠ b
+L : List Nat
+haL : a ∈ L
+hbL : b ∈ L
+l r : Tree
+ihl :
+  (leaves l).Nodup →
+    a ∈ leaves l → b ∈ leaves l → PairPathExcluded l a b L → ∃ U, restrict L l = some U ∧ HasCherry a b U
+ihr :
+  (leaves r).Nodup →
+    a ∈ leaves r → b ∈ leaves r → PairPathExcluded r a b L → ∃ U, restrict L r = some U ∧ HasCherry a b U
+hn : (leaves (l.node r)).Nodup
+ha : a ∈ leaves (l.node r)
+hb : b ∈ leaves (l.node r)
+he : PairPathExcluded (l.node r) a b L
+hnl : (leaves l).Nodup
+hnr : (leaves r).Nodup
+hdis : ∀ (a : Nat), a ∈ leaves l → ∀ (b : Nat), b ∈ leaves r → a ≠ b
+liftLeft :
+  (∀ (v : List Bool), false :: v ∈ minimalVertices [a, b] (l.node r) ↔ v ∈ minimalVertices [a, b] l) →
+    PairPathExcluded l a b L
+liftRight :
+  (∀ (v : List Bool), true :: v ∈ minimalVertices [a, b] (l.node r) ↔ v ∈ minimalVertices [a, b] r) →
+    PairPathExcluded r a b L
+hal : a ∈ leaves l
+hbr : b ∈ leaves r
+har : ¬a ∈ leaves r
+hbl : ¬b ∈ leaves l
+hlne : (rootedSpan [a, b] l).isEmpty = false
+hrne : (rootedSpan [a, b] r).isEmpty = false
+hmaskl : rootedSpan [a, b] l = rootedSpan [a] l
+hmaskr : rootedSpan [a, b] r = rootedSpan [b] r
+v : List Bool
+⊢ (false :: v ∈
+      if rootedSpan [a] l = [] then List.map (fun x => true :: x) (minimalVertices [a, b] r)
+      else
+        [] ::
+          (List.map (fun x => false :: x) (rootedSpan [a] l) ++ List.map (fun x => true :: x) (rootedSpan [a, b] r))) ↔
+    v ∈ rootedSpan [a] l
+research/rmaf/algorithm/universal233/rule4/PathPrune.lean:109:94: error: unsolved goals
+a b : Nat
+hab : a ≠ b
+L : List Nat
+haL : a ∈ L
+hbL : b ∈ L
+l r : Tree
+ihl :
+  (leaves l).Nodup →
+    a ∈ leaves l → b ∈ leaves l → PairPathExcluded l a b L → ∃ U, restrict L l = some U ∧ HasCherry a b U
+ihr :
+  (leaves r).Nodup →
+    a ∈ leaves r → b ∈ leaves r → PairPathExcluded r a b L → ∃ U, restrict L r = some U ∧ HasCherry a b U
+hn : (leaves (l.node r)).Nodup
+ha : a ∈ leaves (l.node r)
+hb : b ∈ leaves (l.node r)
+he : PairPathExcluded (l.node r) a b L
+hnl : (leaves l).Nodup
+hnr : (leaves r).Nodup
+hdis : ∀ (a : Nat), a ∈ leaves l → ∀ (b : Nat), b ∈ leaves r → a ≠ b
+liftLeft :
+  (∀ (v : List Bool), false :: v ∈ minimalVertices [a, b] (l.node r) ↔ v ∈ minimalVertices [a, b] l) →
+    PairPathExcluded l a b L
+liftRight :
+  (∀ (v : List Bool), true :: v ∈ minimalVertices [a, b] (l.node r) ↔ v ∈ minimalVertices [a, b] r) →
+    PairPathExcluded r a b L
+hal : a ∈ leaves l
+hbr : b ∈ leaves r
+har : ¬a ∈ leaves r
+hbl : ¬b ∈ leaves l
+hlne : (rootedSpan [a, b] l).isEmpty = false
+hrne : (rootedSpan [a, b] r).isEmpty = false
+hmaskl : rootedSpan [a, b] l = rootedSpan [a] l
+hmaskr : rootedSpan [a, b] r = rootedSpan [b] r
+hml : ∀ (v : List Bool), false :: v ∈ minimalVertices [a, b] (l.node r) ↔ v ∈ rootedSpan [a] l
+v : List Bool
+⊢ (true :: v ∈
+      if rootedSpan [b] r = [] then List.map (fun x => false :: x) (minimalVertices [a, b] l)
+      else
+        [] ::
+          (List.map (fun x => false :: x) (rootedSpan [a, b] l) ++ List.map (fun x => true :: x) (rootedSpan [b] r))) ↔
+    v ∈ rootedSpan [b] r
+research/rmaf/algorithm/universal233/rule4/PathPrune.lean:148:97: error: unsolved goals
+a b : Nat
+hab : a ≠ b
+L : List Nat
+haL : a ∈ L
+hbL : b ∈ L
+l r : Tree
+ihl :
+  (leaves l).Nodup →
+    a ∈ leaves l → b ∈ leaves l → PairPathExcluded l a b L → ∃ U, restrict L l = some U ∧ HasCherry a b U
+ihr :
+  (leaves r).Nodup →
+    a ∈ leaves r → b ∈ leaves r → PairPathExcluded r a b L → ∃ U, restrict L r = some U ∧ HasCherry a b U
+hn : (leaves (l.node r)).Nodup
+ha : a ∈ leaves (l.node r)
+hb : b ∈ leaves (l.node r)
+he : PairPathExcluded (l.node r) a b L
+hnl : (leaves l).Nodup
+hnr : (leaves r).Nodup
+hdis : ∀ (a : Nat), a ∈ leaves l → ∀ (b : Nat), b ∈ leaves r → a ≠ b
+liftLeft :
+  (∀ (v : List Bool), false :: v ∈ minimalVertices [a, b] (l.node r) ↔ v ∈ minimalVertices [a, b] l) →
+    PairPathExcluded l a b L
+liftRight :
+  (∀ (v : List Bool), true :: v ∈ minimalVertices [a, b] (l.node r) ↔ v ∈ minimalVertices [a, b] r) →
+    PairPathExcluded r a b L
+split :
+  a ∈ leaves l → b ∈ leaves r → ¬a ∈ leaves r → ¬b ∈ leaves l → ∃ U, restrict L (l.node r) = some U ∧ HasCherry a b U
+har : a ∈ leaves r
+haln : ¬a ∈ leaves l
+hbl : b ∈ leaves l
+hlne : (rootedSpan [a, b] l).isEmpty = false
+hrne : (rootedSpan [a, b] r).isEmpty = false
+hbrn : ¬b ∈ leaves r
+hmaskl : rootedSpan [a, b] l = rootedSpan [b] l
+hmaskr : rootedSpan [a, b] r = rootedSpan [a] r
+v : List Bool
+⊢ (false :: v ∈
+      if rootedSpan [b] l = [] then List.map (fun x => true :: x) (minimalVertices [a, b] r)
+      else
+        [] ::
+          (List.map (fun x => false :: x) (rootedSpan [b] l) ++ List.map (fun x => true :: x) (rootedSpan [a, b] r))) ↔
+    v ∈ rootedSpan [b] l
+research/rmaf/algorithm/universal233/rule4/PathPrune.lean:150:96: error: unsolved goals
+a b : Nat
+hab : a ≠ b
+L : List Nat
+haL : a ∈ L
+hbL : b ∈ L
+l r : Tree
+ihl :
+  (leaves l).Nodup →
+    a ∈ leaves l → b ∈ leaves l → PairPathExcluded l a b L → ∃ U, restrict L l = some U ∧ HasCherry a b U
+ihr :
+  (leaves r).Nodup →
+    a ∈ leaves r → b ∈ leaves r → PairPathExcluded r a b L → ∃ U, restrict L r = some U ∧ HasCherry a b U
+hn : (leaves (l.node r)).Nodup
+ha : a ∈ leaves (l.node r)
+hb : b ∈ leaves (l.node r)
+he : PairPathExcluded (l.node r) a b L
+hnl : (leaves l).Nodup
+hnr : (leaves r).Nodup
+hdis : ∀ (a : Nat), a ∈ leaves l → ∀ (b : Nat), b ∈ leaves r → a ≠ b
+liftLeft :
+  (∀ (v : List Bool), false :: v ∈ minimalVertices [a, b] (l.node r) ↔ v ∈ minimalVertices [a, b] l) →
+    PairPathExcluded l a b L
+liftRight :
+  (∀ (v : List Bool), true :: v ∈ minimalVertices [a, b] (l.node r) ↔ v ∈ minimalVertices [a, b] r) →
+    PairPathExcluded r a b L
+split :
+  a ∈ leaves l → b ∈ leaves r → ¬a ∈ leaves r → ¬b ∈ leaves l → ∃ U, restrict L (l.node r) = some U ∧ HasCherry a b U
+har : a ∈ leaves r
+haln : ¬a ∈ leaves l
+hbl : b ∈ leaves l
+hlne : (rootedSpan [a, b] l).isEmpty = false
+hrne : (rootedSpan [a, b] r).isEmpty = false
+hbrn : ¬b ∈ leaves r
+hmaskl : rootedSpan [a, b] l = rootedSpan [b] l
+hmaskr : rootedSpan [a, b] r = rootedSpan [a] r
+hml : ∀ (v : List Bool), false :: v ∈ minimalVertices [a, b] (l.node r) ↔ v ∈ rootedSpan [b] l
+v : List Bool
+⊢ (true :: v ∈
+      if rootedSpan [a] r = [] then List.map (fun x => false :: x) (minimalVertices [a, b] l)
+      else
+        [] ::
+          (List.map (fun x => false :: x) (rootedSpan [a, b] l) ++ List.map (fun x => true :: x) (rootedSpan [a] r))) ↔
+    v ∈ rootedSpan [a] r
+research/rmaf/algorithm/universal233/rule4/PathPrune.lean:108:30: warning: This simp argument is unused:
+  hlne
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices, hrne, prependSide, hmaskl]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/rule4/PathPrune.lean:111:35: warning: This simp argument is unused:
+  hrne
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices, hlne, prependSide, hmaskr]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/rule4/PathPrune.lean:149:41: warning: This simp argument is unused:
+  hlne
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices, hrne, prependSide, hmaskl]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/rule4/PathPrune.lean:151:46: warning: This simp argument is unused:
+  hrne
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices, hlne, prependSide, hmaskr]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

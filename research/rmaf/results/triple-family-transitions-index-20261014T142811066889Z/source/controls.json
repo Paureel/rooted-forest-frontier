@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "frozen_before": "index enumeration construction and any control execution",
+  "scope": "finite duplicate-free complete child indices, one distinguished member on each side; geometry excluded",
+  "positive": [
+    {"id":"singleton","left":["o"],"left_boundary":"o","right":["o"],"right_boundary":"o","expected":["M"],"blocks":1,"closed":0},
+    {"id":"left-extra","left":["o","c"],"left_boundary":"o","right":["o"],"right_boundary":"o","expected":["M","L:c"],"blocks":2,"closed":1},
+    {"id":"same-name-collision","left":["o","c"],"left_boundary":"o","right":["o","c"],"right_boundary":"o","expected":["M","L:c","R:c"],"blocks":3,"closed":2},
+    {"id":"asymmetric","left":["o","a","c"],"left_boundary":"o","right":["o","e"],"right_boundary":"o","expected":["M","L:a","L:c","R:e"],"blocks":4,"closed":3},
+    {"id":"boundary-middle","left":["a","o","b"],"left_boundary":"o","right":["e","o"],"right_boundary":"o","expected":["M","L:a","L:b","R:e"],"blocks":4,"closed":3}
+  ],
+  "malformed": [
+    {"id":"duplicate-left","left":["o","c","c"],"left_boundary":"o","right":["o"],"right_boundary":"o","clean_twin":"left-extra","reason":"duplicate source index"},
+    {"id":"absent-left-boundary","left":["c"],"left_boundary":"o","right":["o"],"right_boundary":"o","clean_twin":"left-extra","reason":"designated index absent"},
+    {"id":"absent-right-boundary","left":["o"],"left_boundary":"o","right":["c"],"right_boundary":"o","clean_twin":"singleton","reason":"designated index absent"}
+  ],
+  "wrong_results": [
+    {"id":"charge-open","fixture":"singleton","field":"closed","wrong":1,"clean":0},
+    {"id":"retain-two-open","fixture":"singleton","field":"blocks","wrong":2,"clean":1},
+    {"id":"coalesce-same-name","fixture":"same-name-collision","field":"blocks","wrong":2,"clean":3},
+    {"id":"double-charge","fixture":"asymmetric","field":"closed","wrong":6,"clean":3}
+  ],
+  "lean_controls": [
+    {"id":"false-singleton-count","statement":"singleton merge enumeration length = 2","expect":"compiler rejection by decide false","clean":"length = 1"},
+    {"id":"false-singleton-charge","statement":"singleton merge closed count = 1","expect":"compiler rejection by decide false","clean":"closed count = 0"},
+    {"id":"false-index-collision","statement":"left retained c = right retained c","expect":"compiler rejection by decide false","clean":"left retained c != right retained c"}
+  ],
+  "pass_rules": "Exact list equality, exact natural counts, all registered denominators, all malformed cases rejected, all wrong results rejected and correct twins accepted; actual false Lean failures must identify false proposition, not imports/syntax."
+}

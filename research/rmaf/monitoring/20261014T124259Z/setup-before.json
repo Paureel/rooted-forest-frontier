@@ -1,0 +1,67 @@
+{
+  "id": "setup",
+  "title": "Lean 4.35",
+  "status": "checked",
+  "summary": "Workspace-local pinned Lean installed. Auxiliary proofs built and axioms audited; full MAF algorithm remains open.",
+  "metrics": {
+    "lean_version": "4.35.0",
+    "checked_theorems": 13
+  },
+  "claims": [
+    {
+      "id": "lean-install",
+      "label": "Pinned runtime",
+      "status": "checked",
+      "detail": "Official arm64 Lean 4.35.0, local elan; shell profiles unchanged."
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "audit-audit",
+      "label": "Baseline arithmetic",
+      "status": "checked",
+      "verification": "lean",
+      "detail": "3 kernel-checked declarations; only arithmetic or generic composition/counting. No structural MAF reduction or faster algorithm is certified.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/audit/baseline.log",
+        "research/rmaf/audit/certificate.json"
+      ]
+    },
+    {
+      "id": "audit-branching",
+      "label": "Branch arithmetic",
+      "status": "checked",
+      "verification": "lean",
+      "detail": "7 kernel-checked declarations; only arithmetic or generic composition/counting. No structural MAF reduction or faster algorithm is certified.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/audit/branching.log",
+        "research/rmaf/audit/certificate.json"
+      ]
+    },
+    {
+      "id": "audit-decomposition",
+      "label": "Generic composition",
+      "status": "checked",
+      "verification": "lean",
+      "detail": "2 kernel-checked declarations; only arithmetic or generic composition/counting. No structural MAF reduction or faster algorithm is certified.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/audit/decomposition.log",
+        "research/rmaf/audit/certificate.json"
+      ]
+    }
+  ],
+  "artifacts": [
+    "research/rmaf/audit/certificate.json",
+    "research/rmaf/audit_routes.py"
+  ],
+  "sources": [
+    {
+      "title": "Official Lean release",
+      "url": "https://github.com/leanprover/lean4/releases/tag/v4.35.0",
+      "locator": "Pinned stable release"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericReach.lean:32:3: error: unknown tactic
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericReach.lean:25:33: error: unsolved goals
+case next
+rec : Nat → Tree → Tree → Option CommonForest
+Q N M : Nat
+T0 S0 : Tree
+hp0 : DepthOne.proper T0 S0 = true
+size0 : (leaves T0).length ≤ N
+cap0 : PairCap M T0 S0
+d✝ : Nat
+T✝ S✝ : Tree
+q✝ d : Nat
+T S : Tree
+q : Nat
+p : Tree × Tree
+r : Nat
+path : Reach rec Q T0 S0 d T S q
+mem : (p, r) ∈ (ordinaryStepTrace rec q T S).queries
+ih :
+  DepthOne.proper T S = true ∧
+    q ≤ Q ∧ (leaves T).length ≤ N ∧ (leaves S).length ≤ N ∧ d + q + (leaves T).length ≤ Q + N ∧ PairCap (M + 2 * d) T S
+bounds :
+  r ≤ q ∧
+    DepthOne.proper p.fst p.snd = true ∧
+      (leaves p.fst).length ≤ (leaves T).length ∧
+        (leaves p.snd).length ≤ (leaves T).length ∧ (r = q → (leaves p.fst).length < (leaves T).length)
+numeric : PairCap (M + 2 * d + 2) p.fst p.snd
+decrease : r + (leaves p.fst).length < q + (leaves T).length
+⊢ PairCap (M + 2 * (d + 1)) p.fst p.snd
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericReach.lean:76:1: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  g ≥ 0
+  g - h ≥ 0
+  f ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+  a + f ≥ 0
+  2*a - 2*c + e + 2*f ≤ -3
+  2*a + e + 2*f - g ≥ 0
+where
+ a := ↑N
+ b := ↑(leaves T0).length
+ c := ↑2 ^ (L + (2 * (Q + N) + 2))
+ e := ↑2 ^ L
+ f := ↑Q
+ g := ↑x
+ h := ↑2 ^ (L + 2 * (Q + N) + 3)

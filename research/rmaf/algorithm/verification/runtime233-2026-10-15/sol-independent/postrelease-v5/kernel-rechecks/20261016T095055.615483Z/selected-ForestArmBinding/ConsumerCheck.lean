@@ -1,0 +1,11 @@
+import ForestArmBinding
+#check Universal233.Rule5SelectedLocalWork.forest_arm_value
+#print axioms Universal233.Rule5SelectedLocalWork.forest_arm_value
+#check Universal233.Rule5SelectedLocalWork.forest_arm_local
+#print axioms Universal233.Rule5SelectedLocalWork.forest_arm_local
+#check Universal233.Rule5SelectedLocalWork.forest_arm_recursive
+#print axioms Universal233.Rule5SelectedLocalWork.forest_arm_recursive
+#check Universal233.Rule5SelectedLocalWork.forest_arm_call_domain
+#print axioms Universal233.Rule5SelectedLocalWork.forest_arm_call_domain
+#check Universal233.Rule5SelectedLocalWork.forest_arm_check_domain
+#print axioms Universal233.Rule5SelectedLocalWork.forest_arm_check_domain

@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "born": "2026-10-14",
+  "provenance": "Hand literals transcribed from DEGREE-TWO-TARGET.md; joint mark fixture from pure_bridge/VERIFY_SPEC.json line 5. Exact integer/Boolean reference data, frozen before checker implementation and before any candidate proof read.",
+  "interface": {
+    "tree": "Natural leaf label or two-child JSON list",
+    "vertex": "Boolean address, false=left, true=right; retain unsuppressed vertices",
+    "local": "unique labels each tree; B nonempty duplicate-free common labels; restriction agrees; v in support of B in t; undirected induced-support degree(v)=2",
+    "conclusion": "exists exhaustive unordered bipartition with nonempty disjoint blocks, union B; each restriction agrees; supports disjoint and nested in original in each tree; both t supports avoid v",
+    "consumer": "actual RMAF.agreement before and after replacement, length increases by exactly one",
+    "failure": "Any mismatched positive literal, surviving named mutation, or in-regime case without full conclusion halts the run. Out-of-regime degree-three/duplicate/empty failures are controls, not counterexamples."
+  },
+  "root": {"t":[0,1],"u":[1,0],"B":[0,1],"v":[],"degree":2,"t_support":[[],[false],[true]],"blocks":[[0],[1]],"t_block_supports":[[[false]],[[true]]],"u_block_supports":[[[true]],[[false]]],"cost":1},
+  "suppressed": {"t":[[0,1],2],"u":[2,[1,0]],"B":[0,2],"v":[false],"degree":2,"t_support":[[],[false],[false,false],[true]],"u_support":[[],[false],[true],[true,true]],"blocks":[[0],[2]],"t_block_supports":[[[false,false]],[[true]]],"u_block_supports":[[[true,true]],[[false]]],"cost":1},
+  "consumer": {"t":[[0,1],[2,3]],"u":[[0,1],[2,3]],"blocks":[[0,2],[1],[3]],"v":[],"before":3,"after_blocks":[[0],[2],[1],[3]],"after":4,"agreement_before":true,"agreement_after":true},
+  "degree_three": {"t":[[0,1],2],"u":[[0,1],2],"B":[0,1,2],"v":[false],"degree":3,"two_block_refinements":0,"min_avoiding_blocks":3,"cost":2},
+  "wrong_root": {"t":[[0,1],2],"B":[0,1],"v":[],"v_in_support":false,"t_support":[[false],[false,false],[false,true]]},
+  "joint_marks": {"t":[[0,3],[1,[2,4]]],"u":[[0,2],1],"B":[0,1,2],"marks":[[false],[true,true]],"costs_empty_first_second_both":[1,1,1,2]},
+  "invalid_premises": [
+    {"id":"empty","t":[0,1],"u":[1,0],"B":[],"v":[],"degree":0,"local":false},
+    {"id":"absent","t":[0,1],"u":[1,0],"B":[9],"v":[],"degree":0,"local":false},
+    {"id":"singleton","t":[0,1],"u":[1,0],"B":[0],"v":[false],"degree":0,"local":false},
+    {"id":"duplicate_leaf","t":[0,0],"u":[0,0],"B":[0],"v":[],"degree":2,"local":false},
+    {"id":"duplicate_selection","t":[0,1],"u":[1,0],"B":[0,0,1],"v":[],"degree":2,"local":false}
+  ],
+  "mutations": [
+    {"id":"wrong_degree","case":"degree_three","false_claim":"degree = 2"},
+    {"id":"missing_path","case":"suppressed","false_support":[[],[false,false],[true]]},
+    {"id":"wrong_root","case":"wrong_root","false_support":[[],[false],[false,false],[false,true]]},
+    {"id":"cross_tree_address","case":"suppressed","false_claim":"support_t({0}) = support_u({0})"},
+    {"id":"overlapping_blocks","case":"root","false_blocks":[[0],[0,1]]},
+    {"id":"wrong_cost","case":"consumer","false_after":3}
+  ],
+  "pilot": {"full_binary_ordered_trees":"all 1,2,3 unique leaves labelled 0..n-1, plus every 4-leaf shape with increasing left-right labels and their full mirror", "local_pairs":"every ordered pair within each n plus explicit unequal-outside-B fixture", "selections":"all subsets including invalid empty, then all support vertices; full bipartition existence", "consumers":"all set partitions for same-label pairs; every degree-two block and every full refinement", "deadline_seconds":25,"no_expansion_without_new_decision":true}
+}

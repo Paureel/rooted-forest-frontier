@@ -1,0 +1,7 @@
+import Hard2OutputGenerationSource
+#check OrdinaryDispatch.Hard2SourceWork.actualOutputsMeter_value
+#print axioms OrdinaryDispatch.Hard2SourceWork.actualOutputsMeter_value
+#check OrdinaryDispatch.Hard2SourceWork.hardPaidSource_value
+#print axioms OrdinaryDispatch.Hard2SourceWork.hardPaidSource_value
+#check OrdinaryDispatch.Hard2SourceWork.hardPaidSource_split
+#print axioms OrdinaryDispatch.Hard2SourceWork.hardPaidSource_split

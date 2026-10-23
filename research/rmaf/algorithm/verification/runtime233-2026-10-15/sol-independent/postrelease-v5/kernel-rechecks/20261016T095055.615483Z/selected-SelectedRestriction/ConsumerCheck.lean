@@ -1,0 +1,9 @@
+import SelectedRestriction
+#check Universal233.Rule5SelectedLocalWork.source_forest_value
+#print axioms Universal233.Rule5SelectedLocalWork.source_forest_value
+#check Universal233.Rule5SelectedLocalWork.source_forest_work
+#print axioms Universal233.Rule5SelectedLocalWork.source_forest_work
+#check Universal233.Rule5SelectedLocalWork.pendant_child_value
+#print axioms Universal233.Rule5SelectedLocalWork.pendant_child_value
+#check Universal233.Rule5SelectedLocalWork.pendant_child_work
+#print axioms Universal233.Rule5SelectedLocalWork.pendant_child_work

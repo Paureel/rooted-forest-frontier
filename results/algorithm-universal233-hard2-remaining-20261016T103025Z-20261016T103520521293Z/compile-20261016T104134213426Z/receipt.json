@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.35934787499991216,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3279930829994555,
+      "resource_stop": null,
+      "log_sha256": "e1029ec396b8b1fbdf5a8d92eed72ef24dbabfaa496f0289edb97ca901ee2622"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016839580002852017,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Hard2SelectedGenerationBound",
+      "source_sha256": "2cacde34d3b093fc526e6798feb38a44214619bd5848d3f57a96388103083291",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 2.358785958000226,
+      "resource_stop": null,
+      "log_sha256": "ceaf73adb3ba588d8d06e20323392624a6e2154a99ed560f23b952bf5cbb7a8a"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Hard2SelectedGenerationBound', \"/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2SelectedGenerationBound.lean:102:1: error: 'change' tactic failed, pattern\\n  ?m.238 \u2264 4 * generationPolynomial N * f + 4 * (N * taggedPolynomial N) * f + 52 * f\\nis not definitionally equal to target\\n  4 * (generationEnvelope S q + (leaves S).length * uniformTaggedCap T N) + 12 * outputCountCap S q + 16 \u2264\\n    4 *\\n        (generationPolynomial N * (q * 2 ^ (q + 1) + 1 * 2 ^ (q + 1)) +\\n          N * (taggedPolynomial N * (q * 2 ^ (q + 1) + 1 * 2 ^ (q + 1)))) +\\n      52 * (q * 2 ^ (q + 1) + 1 * 2 ^ (q + 1))\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2SelectedGenerationBound.lean:111:13: error(lean.unknownIdentifier): Unknown identifier `PaidAssembly.runHard2`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2SelectedGenerationBound.lean:113:31: error(lean.unknownIdentifier): Unknown identifier `OrdinaryPriorityBridge.actual_source_inputs`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2SelectedGenerationBound.lean:113:8: error: Tactic `rcases` failed: `x\u271d : ?m.48` is not an inductive datatype\\n\"))"
+}

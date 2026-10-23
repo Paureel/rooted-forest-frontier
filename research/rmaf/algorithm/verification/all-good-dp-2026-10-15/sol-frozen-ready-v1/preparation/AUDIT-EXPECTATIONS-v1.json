@@ -1,0 +1,15 @@
+{
+  "version":"audit-literal-v1-pre-compilation",
+  "cleanOrigins":["ToyClean.answer","ToyClean.publicTrue","_private.ToyClean.0.ToyClean.privateTrue"],
+  "cleanOriginModule":"ToyClean",
+  "cleanVerdict":"PASS",
+  "corruptions":{"ToyPublic":"reject direct unused public False axiom", "ToyPrivate":"reject direct unused private False axiom", "ToyImported":"reject unused False axiom in transitive ToyHidden import", "ToyUsed":"reject axiom dependency on theorem publicFalse"},
+  "sourceAndInventoryTwins":["missing-origin","duplicate-origin","wrong-module-origin"],
+  "trueTwin":"theorem explicitTrue : 1 + 1 = 2 := by decide",
+  "falseTwin":"theorem explicitFalse : 1 + 1 = 3 := by decide",
+  "generated":{"module":"ToyGenerated","requiredMain":"ToyGenerated.bump","forcedEquation":"ToyGenerated.bump.eq_1","expectForcedOrigin":"ToyGenerated","detection":"compare full inventory after forcing equations; catch dropping any generated row, regardless of initial lazy realization"},
+  "allowAxioms":["propext","Classical.choice","Quot.sound"],
+  "strictDenominators":{"compiledModules":8,"directFalseToys":1,"cleanTrueToys":1,"axiomCorruptions":4,"originCorruptions":3,"generatedCorruptions":1},
+  "timeoutSeconds":60,
+  "definition":"Std-only means toy scientific modules import Std or one another; reviewer Auditor imports Lean to inspect environment. Runtime/Lean validation APIs are disclosed shared infrastructure."
+}

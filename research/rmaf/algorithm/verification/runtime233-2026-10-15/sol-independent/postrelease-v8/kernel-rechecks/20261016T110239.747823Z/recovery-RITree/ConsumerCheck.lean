@@ -1,0 +1,5 @@
+import RITree
+#check OrdinaryDispatch.RecoveryInitialBits.copyInput_work
+#print axioms OrdinaryDispatch.RecoveryInitialBits.copyInput_work
+#check OrdinaryDispatch.RecoveryInitialBits.leafArrays_work
+#print axioms OrdinaryDispatch.RecoveryInitialBits.leafArrays_work

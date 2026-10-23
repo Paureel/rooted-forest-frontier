@@ -1,0 +1,9 @@
+import ClassifierRequestMeter
+#check Universal233.ClassifierCheckFee.request_value
+#print axioms Universal233.ClassifierCheckFee.request_value
+#check Universal233.ClassifierCheckFee.request_calls
+#print axioms Universal233.ClassifierCheckFee.request_calls
+#check Universal233.ClassifierCheckFee.check_receipt_eq
+#print axioms Universal233.ClassifierCheckFee.check_receipt_eq
+#check Universal233.ClassifierCheckFee.check_fee_bound
+#print axioms Universal233.ClassifierCheckFee.check_fee_bound

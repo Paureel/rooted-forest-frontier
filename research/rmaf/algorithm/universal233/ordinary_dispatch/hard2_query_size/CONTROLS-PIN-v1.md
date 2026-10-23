@@ -1,0 +1,5 @@
+# Query size controls
+
+Before first source-control execution: current topology restriction of a four-leaf binary target to[0,3] has precisely two leaves; restriction to absent label9 returns none and size0; actual whole-current target stays at its old size. The frozen actual non-admitted nine-label hard2 candidate must instantiate the new combined target bound and potential without an IH premise.
+
+Four corruptions must fail mathematically: adding a new leaf still fits old singleton size, the two-leaf restriction has size3, absent-label restriction returns some tree, and omitting strict budget decrease preserves the plus2 potential gap. Compiler/import/unknown-name/reduction/resource failures do not count. Fresh trivial compiler positive/false/resource controls precede every run; preserve all failed proof attempts and snapshots. Source-producer audit must run fresh missing/duplicate/sourcepin/opaque-body controls before the new actual producer extraction. No source adaptations are performed by this extension.

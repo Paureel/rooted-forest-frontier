@@ -1,0 +1,3 @@
+import ProducerCostAgreement
+#check GenericForest.BinaryProducer.agreementPair_cost
+#print axioms GenericForest.BinaryProducer.agreementPair_cost

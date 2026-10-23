@@ -1,0 +1,19 @@
+{
+  "campaign": "common-cherry internal author note",
+  "register": "exact counts and statuses from retained author replay receipts",
+  "quote_source": "RESULT.md",
+  "receipts": {
+    "r": {"path": "../../../../../results/algorithm-universal233-state-cherry-20261015T101755Z/certificate.json"},
+    "p": {"path": "preproof/receipt.json"}
+  },
+  "defaults": {"mode": "exact"},
+  "claims": [
+    {"section": "replay", "label": "local modules", "quoted": "23", "expr": "len(vals('r','/module_origin_counts/*'))"},
+    {"section": "replay", "label": "declarations", "quoted": "702", "expr": "f('r','/module_origin_total')"},
+    {"section": "replay", "label": "frozen input files", "quoted": "77", "expr": "f('r','/frozen_state_files_checked')"},
+    {"section": "preproof", "label": "positive examples", "quoted": "19", "expr": "f('p','/positive_examples')"},
+    {"section": "preproof", "label": "false claims caught", "quoted": "4", "expr": "f('p','/negative_caught')"},
+    {"section": "scope", "label": "common-cherry author grade", "quoted": "CLOSED_UNVERIFIED", "expr": "f('r','/common_cherry')"},
+    {"section": "scope", "label": "main milestones", "quoted": "OPEN", "expr": "f('r','/all_three_main_milestones')"}
+  ]
+}

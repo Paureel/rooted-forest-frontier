@@ -1,0 +1,126 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:57:75: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?a + 0
+in the target expression
+  ↑(nonrecursiveBill ordinary W (some t) (s :: u :: tail) q) +
+      ↑(if
+            (proper (some t) (s :: u :: tail) && !agrees (some t) (s :: u :: tail) (List.map leaves (s :: u :: tail))) =
+              true then
+          match some t, s :: u :: tail with
+          | none, x => 0
+          | some val, [head] => 0
+          | some t_1, x =>
+            match overlap t_1 (s :: u :: tail) with
+            | none => 0
+            | some h =>
+              (List.map
+                  (fun io =>
+                    have d := io.snd.sourceCuts.length;
+                    if _hd : 1 ≤ d ∧ d ≤ q then
+                      forestWork ordinary W (some t) (replace (s :: u :: tail) io.fst io.snd.partition) (q - d)
+                    else 0)
+                  (branches t_1 (s :: u :: tail) h q)).sum
+        else 0) =
+    ↑(nonrecursiveBill ordinary W (some t) (s :: u :: tail) q) +
+      if
+          (proper (some t) (s :: u :: tail) && !agrees (some t) (s :: u :: tail) (List.map leaves (s :: u :: tail))) =
+            true then
+        match some t, s :: u :: tail with
+        | none, x => 0
+        | some val, [head] => 0
+        | some t_1, x =>
+          match overlap t_1 (s :: u :: tail) with
+          | none => 0
+          | some h =>
+            (List.map
+                (fun io =>
+                  have d := io.snd.sourceCuts.length;
+                  if _hd : 1 ≤ d ∧ d ≤ q then
+                    sourceWork ordinary W (some t) (replace (s :: u :: tail) io.fst io.snd.partition) (q - d)
+                  else 0)
+                (branches t_1 (s :: u :: tail) h q)).sum
+      else 0
+
+case ind.some.cons.cons
+ordinary : Ordinary
+W : OrdinaryWork
+q : Nat
+t : Tree
+ih :
+  ∀ (m : Nat), m < q → ∀ (ss : List Tree), ↑(forestWork ordinary W (some t) ss m) = sourceWork ordinary W (some t) ss m
+s u : Tree
+tail : List Tree
+child :
+  ∀ (t_1 : Tree) (h : Overlap),
+    ↑(List.map
+            (fun io =>
+              if _hd : 1 ≤ io.snd.sourceCuts.length ∧ io.snd.sourceCuts.length ≤ q then
+                forestWork ordinary W (some t) (replace (s :: u :: tail) io.fst io.snd.partition)
+                  (q - io.snd.sourceCuts.length)
+              else 0)
+            (branches t_1 (s :: u :: tail) h q)).sum =
+      (List.map
+          (fun io =>
+            if _hd : 1 ≤ io.snd.sourceCuts.length ∧ io.snd.sourceCuts.length ≤ q then
+              sourceWork ordinary W (some t) (replace (s :: u :: tail) io.fst io.snd.partition)
+                (q - io.snd.sourceCuts.length)
+            else 0)
+          (branches t_1 (s :: u :: tail) h q)).sum
+⊢ ↑(nonrecursiveBill ordinary W (some t) (s :: u :: tail) q) +
+      ↑(if
+            (proper (some t) (s :: u :: tail) && !agrees (some t) (s :: u :: tail) (List.map leaves (s :: u :: tail))) =
+              true then
+          match some t, s :: u :: tail with
+          | none, x => 0
+          | some val, [head] => 0
+          | some t_1, x =>
+            match overlap t_1 (s :: u :: tail) with
+            | none => 0
+            | some h =>
+              (List.map
+                  (fun io =>
+                    have d := io.snd.sourceCuts.length;
+                    if _hd : 1 ≤ d ∧ d ≤ q then
+                      forestWork ordinary W (some t) (replace (s :: u :: tail) io.fst io.snd.partition) (q - d)
+                    else 0)
+                  (branches t_1 (s :: u :: tail) h q)).sum
+        else 0) =
+    ↑(nonrecursiveBill ordinary W (some t) (s :: u :: tail) q) +
+      if
+          (proper (some t) (s :: u :: tail) && !agrees (some t) (s :: u :: tail) (List.map leaves (s :: u :: tail))) =
+            true then
+        match some t, s :: u :: tail with
+        | none, x => 0
+        | some val, [head] => 0
+        | some t_1, x =>
+          match overlap t_1 (s :: u :: tail) with
+          | none => 0
+          | some h =>
+            (List.map
+                (fun io =>
+                  have d := io.snd.sourceCuts.length;
+                  if _hd : 1 ≤ d ∧ d ≤ q then
+                    sourceWork ordinary W (some t) (replace (s :: u :: tail) io.fst io.snd.partition) (q - d)
+                  else 0)
+                (branches t_1 (s :: u :: tail) h q)).sum
+      else 0
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:49:68: warning: This simp argument is unused:
+  Rat.natCast_add
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [forestWork.eq_def, GenericForest.sourceWork.eq_def, Rat.add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:52:76: warning: This simp argument is unused:
+  Rat.natCast_add
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [forestWork.eq_def, GenericForest.sourceWork.eq_def, overlap, Rat.add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:55:69: warning: This simp argument is unused:
+  Rat.natCast_add
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [forestWork.eq_def, GenericForest.sourceWork.eq_def, Rat.add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

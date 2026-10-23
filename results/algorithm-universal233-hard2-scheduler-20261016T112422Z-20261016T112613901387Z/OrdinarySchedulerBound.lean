@@ -1,0 +1,101 @@
+import OrdinarySchedulerCaps
+namespace OrdinaryDispatch.Hard2SourceWork
+open RMAF Universal233 WholeSourceWork CoreWork
+open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork
+open Universal233.BothBad Universal233.PaidQueries
+open OrdinaryDispatch.WorkIntegration
+
+theorem scheduleSourceMeter_answer_payload {P A : Type} (f : P→Nat→Charged (Option (Nat×A)))
+ (q : Nat) (js : List (Job P A)) (ok : A→Prop)
+ (resolved:∀p c a,Job.resolved p c a∈js→ok a)
+ (callback:∀p,Job.hard p∈js→∀x,(f p (allocated q js)).value=some x→ok x.2)
+ (xs : List (Nat×A)) (h:(scheduleSourceMeter f q js).value.answers=some xs) :
+ xs.length=js.length ∧ ∀x,x∈xs→ok x.2:=by
+ simp only [scheduleSourceMeter,knownCostMeter_value,pendingMeter_value,allocatedMeter_value] at h
+ split at h
+ · cases h
+ · change (acceptAnswersMeter q (runSourceMeter f (allocated q js) js).value.answers).value=some xs at h
+   cases hr:(runSourceMeter f (allocated q js) js).value.answers with
+   | none=>simp only [acceptAnswersMeter,hr] at h;cases h
+   | some ys=>
+     simp only [acceptAnswersMeter,hr] at h
+     split at h
+     · have eq:ys=xs:=Option.some.inj h
+       subst ys
+       exact ⟨run_answer_length _ _ _ _ (by simpa only [runSourceMeter_value] using hr),
+        runSourceMeter_answer_payload f _ js ok resolved callback xs hr⟩
+     · cases h
+
+theorem ordinaryQueriesMeter_bound (T S : Tree) (qs : List (List Nat×Nat)) (N : Nat)
+ (tn:treeNodes T≤N) (sn:treeNodes S≤N) (keys:∀ub,ub∈qs→ub.1.length≤N) :
+ (ordinaryQueriesMeter T S qs).work≤(32*(N+1)^2+12)*qs.length+2:=by
+ induction qs with
+ | nil=>simp [ordinaryQueriesMeter]
+ | cons ub qs ih=>
+   have ul:=keys ub (by simp)
+   have t:=localTargetMeter_bound T ub.1 N tn (by omega)
+   have s:=localTargetMeter_bound S ub.1 N sn (by omega)
+   change (meterRestrict ub.1 T).work+4≤16*(N+1)^2 at t
+   change (meterRestrict ub.1 S).work+4≤16*(N+1)^2 at s
+   have r:=ih (by intro x hm;exact keys x (by simp [hm]))
+   simp only [ordinaryQueriesMeter,List.length_cons,Nat.mul_add,Nat.mul_one]
+   omega
+
+theorem answerFlattenMeter_bound (xs : List (Nat×List (List Nat))) (N : Nat)
+ (caps:∀x,x∈xs→x.2.length≤N) :
+ (answerFlattenMeter xs).work≤(2*N+12)*xs.length+2:=by
+ induction xs with
+ | nil=>simp [answerFlattenMeter]
+ | cons x xs ih=>
+   have h:=caps x (by simp)
+   have t:=ih (by intro a hm;exact caps a (by simp [hm]))
+   simp only [answerFlattenMeter,List.length_cons,Nat.mul_add,Nat.mul_one]
+   omega
+
+def ordinaryLocalPolynomial (N L : Nat):=
+ (ordinarySlotPolynomial N+8)*L+2+128*(L+1)+
+ (64*(N+1)^2)*L+(2*N+12)*L+6+(32*(N+1)^2+12)*L+2+16
+
+theorem ordinaryLocalSource_bound (actual : GenericForest.FrontierWork.Ordinary)
+ (T S : Tree) (Q : List (List Nat)) (b N : Nat) (three:3≤N)
+ (tn:treeNodes T≤N) (sn:treeNodes S≤N) (blocks:∀U,U∈Q→U.length≤N) :
+ (ordinaryLocalSource actual T S Q b).work≤ordinaryLocalPolynomial N Q.length:=by
+ have prepBound:=ordinaryPrepareMeter_bound T S Q N tn sn blocks
+ simp only [ordinaryLocalSource,ordinaryPrepareMeter_value]
+ cases prep:MafScheduler.prepare T S Q with
+ | none=>simp only [ordinaryLocalPolynomial];omega
+ | some js=>
+   have jl:=prepare_length T S Q js prep
+   have caller:=scheduleSourceMeter_caller_bound (mafRecursiveMeter actual T S) b js
+   have queryCount:=scheduleSourceMeter_queries_bound (mafRecursiveMeter actual T S) b js
+   have keys:∀ub,ub∈(scheduleSourceMeter (mafRecursiveMeter actual T S) b js).queries→ub.1.length≤N:=by
+     intro ub hm
+     have origin:=scheduleSourceMeter_query_origin (mafRecursiveMeter actual T S) b js ub hm
+     exact prepared_job_problem_cap T S Q N blocks js prep (.hard ub.1) origin.1
+   have callback:∀ub,ub∈(scheduleSourceMeter (mafRecursiveMeter actual T S) b js).queries→
+    (mafRecursiveMeter actual T S ub.1 ub.2).work≤64*(N+1)^2:=by
+     intro ub hm;exact mafRecursiveMeter_bound actual T S ub.1 ub.2 N tn sn (keys ub hm)
+   have recursive:=GenericForest.LocalPolynomial.nat_sum_le_constant
+    (scheduleSourceMeter (mafRecursiveMeter actual T S) b js).queries
+    (fun ub=>(mafRecursiveMeter actual T S ub.1 ub.2).work) (64*(N+1)^2) callback
+   rw [←scheduleSourceMeter_callback_split] at recursive
+   have recursiveCap:=Nat.le_trans recursive (Nat.mul_le_mul_right (64*(N+1)^2) queryCount)
+   have query:=ordinaryQueriesMeter_bound T S
+    (scheduleSourceMeter (mafRecursiveMeter actual T S) b js).queries N tn sn keys
+   have queryCap:=Nat.le_trans query (Nat.add_le_add_right (Nat.mul_le_mul_left (32*(N+1)^2+12) queryCount) 2)
+   have flat:(optionFlattenMeter (scheduleSourceMeter (mafRecursiveMeter actual T S) b js).value.answers).work≤
+    (2*N+12)*js.length+6:=by
+     cases ans:(scheduleSourceMeter (mafRecursiveMeter actual T S) b js).value.answers with
+     | none=>simp only [optionFlattenMeter];omega
+     | some xs=>
+       have caps:=scheduleSourceMeter_answer_payload (mafRecursiveMeter actual T S) b js
+        (fun F=>F.length≤N)
+        (by intro U c F hm;exact Nat.le_trans (prepared_resolved_payload T S Q N sn js prep U c F hm).1 (by omega))
+        (by intro U hm x ha;exact (mafRecursiveMeter_payload actual T S U _ N tn x ha).1) xs ans
+       have flatten:=answerFlattenMeter_bound xs N caps.2
+       simp only [optionFlattenMeter]
+       rw [caps.1] at flatten
+       omega
+   simp only [ordinaryLocalPolynomial,jl,Nat.mul_comm] at caller recursiveCap queryCap flat prepBound ⊢
+   omega
+end OrdinaryDispatch.Hard2SourceWork

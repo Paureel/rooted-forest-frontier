@@ -1,0 +1,354 @@
+{
+  "version": 1,
+  "status": "SOURCE_LOCAL_COST_ASSEMBLY_AND_ACTUAL_GENERATION_VALUE_WITH_OPEN_GENERATION_COST_BOUND",
+  "root": "results/algorithm-universal233-binary-producer-costs-final-20261016T103025Z-20261016T105607Z",
+  "replay_root": "results/algorithm-universal233-binary-producer-costs-replay-20261016T103025Z-20261016T105714Z",
+  "modules": [
+    "ProducerCostPrimitives",
+    "ProducerCostAgreement",
+    "ProducerCostPretest",
+    "ProducerCostJobsSource",
+    "ProducerCostRawLedger",
+    "ProducerCostSchedulerLedger",
+    "ProducerOverlap",
+    "ProducerGeneratorColor",
+    "ProducerGeneratorTrees",
+    "ProducerGeneratorChoose",
+    "ProducerGeneratorStep",
+    "ProducerGeneratorRun",
+    "ProducerRawBinding",
+    "ProducerCostAssembly",
+    "ProducerCostsControls"
+  ],
+  "dependency_pairs": 508,
+  "dependency_rebuilds": 0,
+  "positive_groups": 12,
+  "positive_assertions": 25,
+  "false_controls": [
+    {
+      "module": "CostsFalseFuel",
+      "claim": "(Generator.fuelBits q8 [(),(),()]).value.length=8",
+      "result": "CAUGHT_AGAINST_KERNEL_CHECKED_TWIN"
+    },
+    {
+      "module": "CostsFalseOverlap",
+      "claim": "(overlapProducer crossed [.leaf z,.leaf z,.leaf a]).value.map overlapValue=some \u27e81,0,[false,false]\u27e9",
+      "result": "CAUGHT_AGAINST_KERNEL_CHECKED_TWIN"
+    },
+    {
+      "module": "CostsFalseAddressPadding",
+      "claim": "(firstShared [[false,false]] [[false]]).value=some [false]",
+      "result": "CAUGHT_AGAINST_KERNEL_CHECKED_TWIN"
+    },
+    {
+      "module": "CostsFalsePruning",
+      "claim": "(Generator.receiptValue (Generator.generateBits crossed parity []).value).pruned=0",
+      "result": "CAUGHT_AGAINST_KERNEL_CHECKED_TWIN"
+    },
+    {
+      "module": "CostsFalseDedup",
+      "claim": "(branchesProducer crossed [crossed] repeated q8).value.length=1",
+      "result": "CAUGHT_AGAINST_KERNEL_CHECKED_TWIN"
+    },
+    {
+      "module": "CostsFalseCallbackLedger",
+      "claim": "rawCallbackWork GenericForest.BinaryProducer.Controls.budgetAnswer (some GenericForest.BinaryProducer.Controls.pair) [GenericForest.BinaryProducer.Controls.pair] GenericForest.BinaryProducer.Controls.q8 GenericForest.BinaryProducer.Controls.rawInput=37",
+      "result": "CAUGHT_AGAINST_KERNEL_CHECKED_TWIN"
+    },
+    {
+      "module": "CostsFalsePretestFree",
+      "claim": "(pretestBits pair pair).work=0",
+      "result": "CAUGHT_AGAINST_KERNEL_CHECKED_TWIN"
+    },
+    {
+      "module": "CostsFalseMultiplicityFree",
+      "claim": "(branchesProducer crossed [crossed] repeated q8).work=2*(rawProducer crossed [crossed] [] [] q8).work",
+      "result": "CAUGHT_AGAINST_KERNEL_CHECKED_TWIN"
+    }
+  ],
+  "parser_controls": {
+    "clean": "PASS",
+    "missing-occurrence": "CAUGHT",
+    "duplicate-index": "CAUGHT",
+    "missing-body": "CAUGHT",
+    "forbidden-axiom": "CAUGHT",
+    "foreign-path": "CAUGHT"
+  },
+  "hostile_axiom": "CAUGHT",
+  "conversion_control": "CAUGHT_BY_SAME_RUNTIME_SCAN",
+  "own_stored_occurrences": 702,
+  "audited_dependency_occurrences": 0,
+  "audit_producers": 15,
+  "own_audit_producers": 15,
+  "previous_stored_occurrences_reused": 2319,
+  "prior_audit_sources": [
+    {
+      "path": "results/algorithm-universal233-binary-caller-final-20261016T092054Z-20261016T093820Z/audit-1792143746263087000/CallerPrecontrols.json.gz",
+      "sha256": "b90e248a1eb64392cc69c05ba8b99e4444b280d9180357cab847146b6d53bd38"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-caller-final-20261016T092054Z-20261016T093820Z/audit-1792143746263087000/CallerCaps.json.gz",
+      "sha256": "e9f4e66fe358d62403ec45ba898a69f394cecfc2d72792245b8e933e2f52c3b6"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-caller-final-20261016T092054Z-20261016T093820Z/audit-1792143746263087000/BinaryCallerSetup.json.gz",
+      "sha256": "80a5852aa82e0e2a9b5724de673634ad4f0ff5e873680bdb95a9ffca004f3e06"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-caller-final-20261016T092054Z-20261016T093820Z/audit-1792143747072478000/BinaryCallerSites.json.gz",
+      "sha256": "3c1e4aa0828e2aa8f40702548c6732b1779064ded068481c70d81a75b3f87622"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-caller-final-20261016T092054Z-20261016T093820Z/audit-1792143747072478000/BinaryCallerPayload.json.gz",
+      "sha256": "2c1bbdfda443efe68a6616b50c6e3727badc9bc78a73bce54a54d6d15d0d82e4"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-caller-final-20261016T092054Z-20261016T093820Z/audit-1792143747072478000/BinaryCallerActual.json.gz",
+      "sha256": "ffe2b5b558756b2ba80be9183929dd0d4c75412df7368299468143c15d51d7b7"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-caller-final-20261016T092054Z-20261016T093820Z/audit-1792143748043088000/BinaryCallerControls.json.gz",
+      "sha256": "9f41506de6722de98d7e77baf69a6fe21c4dad7a2a45a6d879647a06902d6c27"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-caller-final-20261016T092054Z-20261016T093820Z/audit-1792143748043088000/BinaryCallerOrdinaryBounds.json.gz",
+      "sha256": "deede377d1c427753d5a8c694fc334162d485a594e4ea6524b6481401b182295"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-0-1792141137643896000/PersistentScalar.json.gz",
+      "sha256": "93e6ebf48de0c33c5cf9712512c46888ee904ddd140cf6d92fb4ce2c94b75a54"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-0-1792141137643896000/Representation.json.gz",
+      "sha256": "c1ff0651cc77f50ba58631628a46b0424fac04bd54bac8f6bdf1cba8eae3830b"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-0-1792141137643896000/PersistentLists.json.gz",
+      "sha256": "afad34bde1402da8547408511c290d58b853cbf436438e43bde0239b5eb0bc4d"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-3-1792141138604996000/PersistentMembership.json.gz",
+      "sha256": "bd5437e873e3ab28734d5d72702ae29de247b57990bfa6b8a5b9b14deb1e7e58"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-3-1792141138604996000/PersistentCount.json.gz",
+      "sha256": "f1ec3f348c8af89a3db7d64b582f16f3dd1c566d2ab3c8362c8e71f3d35ff964"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-3-1792141138604996000/PersistentPartition.json.gz",
+      "sha256": "1b42a8e94e70d7e4847883966fd37d3eba6a6fd441d83759ed2df809c08ddb4e"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-6-1792141139485016000/PersistentTrees.json.gz",
+      "sha256": "bd183d28d66765a2c4ca8007d7a5bdaa03e2da15864b398b185e8c6e20a50cfc"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-6-1792141139485016000/PersistentFamilies.json.gz",
+      "sha256": "6a68a52ae2cf331f3a7a57d703638ab364c41c747f2a7c865fdea1478f1d9bef"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-6-1792141139485016000/PersistentCapacity.json.gz",
+      "sha256": "fd5fcb7be5e8f85c483f6b7df8786814954cd9b254bdf8c72161f0c1000bda50"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-9-1792141140479195000/PersistentHull.json.gz",
+      "sha256": "284689057fe8dbfd615ad9f2f3a93c4ccc216c39ed54ee7f40ec38d91ae09126"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-9-1792141140479195000/PersistentEmbeddings.json.gz",
+      "sha256": "0517a19e932ead7f3a5989989508920480eaba3b9a9d4a4f160855293d921ce9"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-9-1792141140479195000/PersistentProper.json.gz",
+      "sha256": "9d6706e8d824662589e30f3b0a925deaf71ed534417fb266f32c211e78888148"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-12-1792141141435015000/PersistentChecks.json.gz",
+      "sha256": "02deccc0e788c01705a4552de0a6134f328fec101e002aa5ff1604f378c4363b"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-12-1792141141435015000/PersistentAccepted.json.gz",
+      "sha256": "3786a02bf084da3646e28f79bd7f0b37a3854ab89dc648976a73a8bcfe0248fc"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-12-1792141141435015000/PersistentEntry.json.gz",
+      "sha256": "884cd683fbb4f39ddf5d7e4a773d18399dd135bc8d5b3a62a8b2ea186e25634f"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-15-1792141142309597000/ProviderPrecontrols.json.gz",
+      "sha256": "4f006d0d69ecb1639a0a3c6485ff1da105bcb33a0cbba2c8b5843b588f071355"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-15-1792141142309597000/ProviderResumeControls.json.gz",
+      "sha256": "130b6c288253cb25bb3a2e5e6fd2e4e6e806e7cadbf41971c739601268843186"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-15-1792141142309597000/BinaryCompare.json.gz",
+      "sha256": "35a764bedca6d1fc6abdf45a0ce3aa575d4f32a58d1c42517500a8cfffe8bab8"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-18-1792141143133851000/BinaryAdd.json.gz",
+      "sha256": "a11eb770c5bac0d09fae889a0283c29bfff917504accade9032afd726e571999"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-18-1792141143133851000/BinarySubtract.json.gz",
+      "sha256": "b0fa8430c3afecc594aeeffda5d08ac6a301346b47b991e0323ead1810861675"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-18-1792141143133851000/BinaryEncoding.json.gz",
+      "sha256": "a5defe698f3da7ee0257877a1fe78fa01e445a7edad35ce7321ec2406015bf03"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-21-1792141144119469000/BinaryCounters.json.gz",
+      "sha256": "3533644e538e8b34bcb5768c70d81ec88f338159cb4164b28b40c44ae76ed463"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-21-1792141144119469000/BinaryCopy.json.gz",
+      "sha256": "54d87c592c6012c7b475092cd28668f13a1aedd26aa9e0e84eb086f19655c957"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-21-1792141144119469000/ForestGeometryWork.json.gz",
+      "sha256": "14221387fc1ff3d582aef229ef5527fa427da0641b2cc58148d619d345798b9d"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-24-1792141145163536000/HullCheckMeters.json.gz",
+      "sha256": "b695befa8d7d903640abba369c172a8a64464a229abb906d8569bd47f5589857"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/audit-24-1792141145163536000/CheckPrimitives.json.gz",
+      "sha256": "846ecadd029bcb21628426764e0a61850d5037dc05a36134fb5b1cf674cb04b1"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/datatype-audit-1792141230214679000/RMAF.json.gz",
+      "sha256": "50c94468fa72f95ee33e122f6a9bcabe45f40b41d3be956e79cb9dd6fe88dfd1"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-resume-20261016T083330Z-final-20261016T085734Z/datatype-audit-1792141230214679000/ForestColorWork.json.gz",
+      "sha256": "8533c815e75132efa4a1b9e50e5a52bd2caf235844a86a036900876258a8e547"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z/audit-1792145750518794000/BinaryProducerScheduler.json.gz",
+      "sha256": "2464900ca2673e9bfa061d0fb244ca927cc36ed272cf6e5063be2d6b48efdad2"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z/audit-1792145750518794000/BinaryProducerSchedulerCaps.json.gz",
+      "sha256": "4c2cdc34e26157b0bbc97e6f6a033d2dfcbbebe2aa1ddd09a6a9214988a6ba8d"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z/audit-1792145750518794000/BinaryProducerScheduleWork.json.gz",
+      "sha256": "eba2a02a2606102252b2dbd368a519ae17c877bc5b799be3702d730cc1053b47"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z/audit-1792145751584351000/BinaryProducerAgreement.json.gz",
+      "sha256": "13f08f3ca97f857d67069371f025bca7c94751ef0453432ac1dcfd3a57eba5e4"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z/audit-1792145751584351000/BinaryProducerPretest.json.gz",
+      "sha256": "56de744520ebba9e1b39e1328d1e5b1ff81acdfdd6080869444713721798a68f"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z/audit-1792145751584351000/BinaryProducerDisjoint.json.gz",
+      "sha256": "6df7edefc06fd20e003f2bd8b0ba1b852bbbb5f487964ebdc5e4e831468d7514"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z/audit-1792145752533621000/BinaryProducerLocalCaps.json.gz",
+      "sha256": "44598481aaa88f438556951779a14e78a622bbd05ece3376128e026fb72b4cd1"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z/audit-1792145752533621000/BinaryProducerSource.json.gz",
+      "sha256": "793b8aa2f4e5ac6f8dc03f5ee617e69d9b61157eef47fd92f7a2b0394e305078"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z/audit-1792145752533621000/BinaryProducerRaw.json.gz",
+      "sha256": "a84d743ed9f6f63424f675f9e8a883b42820e7554345d81340813fa1f0be73b0"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z/audit-1792145753607825000/BinaryProducerControls.json.gz",
+      "sha256": "4833410876f66e5f58a81145e06718abcbacd9540b72b06209e9041f24cb4832"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z/audit-1792145753607825000/BinaryProducerAccounting.json.gz",
+      "sha256": "353bf35f82e98e980418920589c00a26bf9086d91aa4f12c9217f5a01c78618c"
+    },
+    {
+      "path": "results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z/audit-1792145753607825000/Pretest.json.gz",
+      "sha256": "d8f22cb2d91872d023d28436741b2da29a777acd013618ca13fc2c12ab8c7cbf"
+    }
+  ],
+  "audits": [
+    {
+      "module": "ProducerStored1792148227343527000",
+      "directory": "results/algorithm-universal233-binary-producer-costs-final-20261016T103025Z-20261016T105607Z/audit-1792148227343527000",
+      "producers": [
+        "ProducerCostPrimitives",
+        "ProducerCostAgreement",
+        "ProducerCostPretest"
+      ],
+      "occurrences": 82
+    },
+    {
+      "module": "ProducerStored1792148228379928000",
+      "directory": "results/algorithm-universal233-binary-producer-costs-final-20261016T103025Z-20261016T105607Z/audit-1792148228379928000",
+      "producers": [
+        "ProducerCostJobsSource",
+        "ProducerCostRawLedger",
+        "ProducerCostSchedulerLedger"
+      ],
+      "occurrences": 82
+    },
+    {
+      "module": "ProducerStored1792148229579756000",
+      "directory": "results/algorithm-universal233-binary-producer-costs-final-20261016T103025Z-20261016T105607Z/audit-1792148229579756000",
+      "producers": [
+        "ProducerOverlap",
+        "ProducerGeneratorColor",
+        "ProducerGeneratorTrees"
+      ],
+      "occurrences": 263
+    },
+    {
+      "module": "ProducerStored1792148230706556000",
+      "directory": "results/algorithm-universal233-binary-producer-costs-final-20261016T103025Z-20261016T105607Z/audit-1792148230706556000",
+      "producers": [
+        "ProducerGeneratorChoose",
+        "ProducerGeneratorStep",
+        "ProducerGeneratorRun"
+      ],
+      "occurrences": 196
+    },
+    {
+      "module": "ProducerStored1792148231853826000",
+      "directory": "results/algorithm-universal233-binary-producer-costs-final-20261016T103025Z-20261016T105607Z/audit-1792148231853826000",
+      "producers": [
+        "ProducerRawBinding",
+        "ProducerCostAssembly",
+        "ProducerCostsControls"
+      ],
+      "occurrences": 79
+    }
+  ],
+  "runtime_definitions": 39,
+  "runtime_references": 393,
+  "standard_boundary_names": 71,
+  "source_replay": "MATCHED_ALL_OWN_TYPES_BODIES_ACTUAL_AXIOM_RECORDS",
+  "independent_credit": 0,
+  "whole_solver_runtime": "OPEN",
+  "nativeIR": "OPEN",
+  "first_remaining": "Close actual overlap/generator traversal, receipt-counter/copy and live-storage bounds in an explicit polynomial times2^q; derive all generated branch/callback stored caps from inputs; implement/refine production ordinary/forest recursion; bind semantic numeric interfaces and whole weighted runtime separately.",
+  "audit_kinds": {
+    "theorem": 397,
+    "definition": 286,
+    "inductive": 5,
+    "recursor": 5,
+    "constructor": 9
+  },
+  "axiom_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "generation_upper_bound": "OPEN: actual generator source work retained explicitly; output counts and materialization multiplicity proved exponential in decoded q",
+  "overlap_cost_upper_bound": "OPEN",
+  "numeric_import_pool_merge": false,
+  "scope": "SCOPE-v1.md"
+}

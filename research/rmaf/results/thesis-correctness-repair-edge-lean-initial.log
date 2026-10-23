@@ -1,0 +1,117 @@
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:37:12: warning: Possibly looping simp theorem: `normalize.eq_2`
+
+Note: Possibly caused by: `kept`, `List.mem_filter`, `eq_comm`, and `Bool.true_eq`
+
+Hint: You can disable a simp theorem from the default simp set by passing `- theoremName` to `simp`.
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:37:36: warning: Possibly looping simp theorem: `List.mem_filter`
+
+Note: Possibly caused by: `eq_comm` and `Bool.true_eq`
+
+Hint: You can disable a simp theorem from the default simp set by passing `- theoremName` to `simp`.
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:37:6: error: Tactic `simp` failed with a nested error:
+maximum recursion depth has been reached
+use `set_option maxRecDepth <num>` to increase limit
+use `set_option diagnostics true` to get diagnostic information
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:72:0: warning: automatically included section variable(s) unused in theorem `RootSafeOriginalEdges.kept_removed_length`:
+  [DecidableEq Edge]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Edge] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:78:30: warning: This simp argument is unused:
+  List.filter_cons
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [kept, removed, h] at *
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:87:14: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  c ≥ 0
+  b ≥ 0
+  b - c ≤ -1
+  a ≥ 2
+  a - b ≤ 0
+where
+ a := ↑(removed cuts onPath).length
+ b := ↑cuts.length
+ c := ↑(match none with
+    | none => kept cuts onPath
+    | some e => List.insert e (kept cuts onPath)).length
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:93:6: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  b - d ≤ -1
+  a ≥ 2
+  a - b ≤ 0
+  a - b + c ≤ 1
+where
+ a := ↑(removed cuts onPath).length
+ b := ↑cuts.length
+ c := ↑(List.insert p (kept cuts onPath)).length
+ d := ↑(match some p with
+    | none => kept cuts onPath
+    | some e => List.insert e (kept cuts onPath)).length
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:114:6: error: unsolved goals
+case h_2
+Edge : Type
+inst✝ : DecidableEq Edge
+cuts : List Edge
+onPath : Edge → Bool
+h : cuts.Nodup
+hk : (kept cuts onPath).Nodup
+h✝ : 2 ≤ (removed cuts onPath).length
+p : Edge
+parent✝ : Option Edge
+e✝ : Edge
+heq✝ : p = e✝
+⊢ (if e✝ ∈ kept cuts onPath then kept cuts onPath else e✝ :: kept cuts onPath).Nodup
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:114:18: warning: This simp argument is unused:
+  List.nodup_cons
+
+Hint: Omit it from the simp argument list.
+  [apply] simp_all
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:126:0: warning: automatically included section variable(s) unused in theorem `RootSafeOriginalEdges.Walk.mono`:
+  [DecidableEq Edge]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Edge] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:133:0: warning: automatically included section variable(s) unused in theorem `RootSafeOriginalEdges.Walk.trans`:
+  [DecidableEq Edge]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Edge] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:149:0: warning: automatically included section variable(s) unused in theorem `RootSafeOriginalEdges.Walk.confined`:
+  [DecidableEq Edge]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Edge] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+'RootSafeOriginalEdges.normalize_mem' depends on axioms: [propext, sorryAx]
+'RootSafeOriginalEdges.original_edge_provenance' depends on axioms: [propext, sorryAx]
+'RootSafeOriginalEdges.restored_path_is_uncut' depends on axioms: [propext, sorryAx]
+'RootSafeOriginalEdges.protected_cuts_retained' depends on axioms: [propext, sorryAx]
+'RootSafeOriginalEdges.root_normalization_exact' depends on axioms: [propext]
+'RootSafeOriginalEdges.kept_removed_length' depends on axioms: [propext, Quot.sound]
+'RootSafeOriginalEdges.normalized_cost_le' depends on axioms: [propext, sorryAx, Quot.sound]
+'RootSafeOriginalEdges.root_cost_exact' depends on axioms: [propext, Quot.sound]
+'RootSafeOriginalEdges.normalized_nodup' depends on axioms: [propext, sorryAx]
+'RootSafeOriginalEdges.Walk.mono' does not depend on any axioms
+'RootSafeOriginalEdges.Walk.trans' does not depend on any axioms
+'RootSafeOriginalEdges.Walk.symm' does not depend on any axioms
+'RootSafeOriginalEdges.Walk.confined' does not depend on any axioms
+'RootSafeOriginalEdges.endpoint_path_restored' depends on axioms: [propext, sorryAx]
+'RootSafeOriginalEdges.old_walk_avoiding_added_survives' depends on axioms: [propext, sorryAx]
+'RootSafeOriginalEdges.root_old_walk_survives' depends on axioms: [propext, sorryAx]
+'RootSafeOriginalEdges.normalized_component_isolated' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'RootSafeOriginalEdges.anchored_labels_join' depends on axioms: [propext, sorryAx]
+'RootSafeOriginalEdges.full_to_partial_inclusion' depends on axioms: [propext, sorryAx]

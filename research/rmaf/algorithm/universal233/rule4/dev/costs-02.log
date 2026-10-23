@@ -1,0 +1,85 @@
+research/rmaf/algorithm/universal233/rule4/Costs.lean:115:2: error: `grind` failed
+case grind.1.1
+T S : Tree
+s : Choice T S
+c : Rat
+hc : 2 ≤ c
+q : Nat
+hm : c ^ (-↑(pendantOriginal T s.raw.a s.raw.c).length) ≤ c ^ (-2)
+hp :
+  callbackMass c q [2, 1, (pendantOriginal T s.raw.a s.raw.c).length] ≤
+    c ^ (-↑2) + (c ^ (-↑1) + c ^ (-↑(pendantOriginal T s.raw.a s.raw.c).length))
+h : ¬callbackMass c q (costs T S s) ≤ (c ^ 1)⁻¹ + 2 * (c ^ 2)⁻¹
+h_1 : c ^ 1 = 0
+h_2 : c ^ 2 = 0
+⊢ False
+[grind] Goal diagnostics
+  [facts] Asserted facts
+    [prop] 2 ≤ c
+    [prop] c ^ (-1 * ↑(pendantOriginal T s.raw.a s.raw.c).length) ≤ (c ^ 2)⁻¹
+    [prop] if c ^ 2 = 0 then (c ^ 2)⁻¹ = 0 else c ^ 2 * (c ^ 2)⁻¹ = 1
+    [prop] callbackMass c q [2, 1, (pendantOriginal T s.raw.a s.raw.c).length] ≤
+          (c ^ 2)⁻¹ + ((c ^ 1)⁻¹ + c ^ (-1 * ↑(pendantOriginal T s.raw.a s.raw.c).length))
+    [prop] if c ^ 1 = 0 then (c ^ 1)⁻¹ = 0 else c ^ 1 * (c ^ 1)⁻¹ = 1
+    [prop] ¬callbackMass c q (costs T S s) ≤ (c ^ 1)⁻¹ + 2 * (c ^ 2)⁻¹
+    [prop] c ^ 1 = 0
+    [prop] c ^ 2 = 0
+  [eqc] True propositions
+    [prop] (c ^ 1)⁻¹ = 0
+    [prop] (c ^ 2)⁻¹ = 0
+    [prop] c ^ 1 = 0
+    [prop] c ^ 2 = 0
+    [prop] 2 ≤ c
+    [prop] callbackMass c q [2, 1, (pendantOriginal T s.raw.a s.raw.c).length] ≤
+          (c ^ 2)⁻¹ + ((c ^ 1)⁻¹ + c ^ (-1 * ↑(pendantOriginal T s.raw.a s.raw.c).length))
+    [prop] c ^ (-1 * ↑(pendantOriginal T s.raw.a s.raw.c).length) ≤ (c ^ 2)⁻¹
+    [prop] if c ^ 1 = 0 then (c ^ 1)⁻¹ = 0 else c ^ 1 * (c ^ 1)⁻¹ = 1
+    [prop] if c ^ 2 = 0 then (c ^ 2)⁻¹ = 0 else c ^ 2 * (c ^ 2)⁻¹ = 1
+  [eqc] False propositions
+    [prop] callbackMass c q (costs T S s) ≤ (c ^ 1)⁻¹ + 2 * (c ^ 2)⁻¹
+  [eqc] Equivalence classes
+    [eqc] {(c ^ 1)⁻¹, (c ^ 2)⁻¹, 0, c ^ 1, c ^ 2}
+    [eqc] {-1 • (c ^ 1)⁻¹ + 0 • One.one, -1 • (c ^ 2)⁻¹ + 0 • One.one}
+    [eqc] {1 • (c ^ 1)⁻¹ + 0 • One.one, 1 • (c ^ 2)⁻¹ + 0 • One.one}
+    [eqc] {-1 • (c ^ 1)⁻¹, -1 • (c ^ 2)⁻¹}
+    [eqc] {1 • (c ^ 1)⁻¹, 1 • (c ^ 2)⁻¹}
+  [cases] Case analyses
+    [cases] [1/2]: if c ^ 1 = 0 then (c ^ 1)⁻¹ = 0 else c ^ 1 * (c ^ 1)⁻¹ = 1
+      [cases] source: Initial goal
+    [cases] [1/2]: if c ^ 2 = 0 then (c ^ 2)⁻¹ = 0 else c ^ 2 * (c ^ 2)⁻¹ = 1
+      [cases] source: Initial goal
+  [ematch] E-matching patterns
+    [thm] Nat.pow_pos: [@HPow.hPow `[Nat] `[Nat] `[Nat] `[instHPow] #2 #1]
+    [thm] Nat.div_pow_of_pos: [@HPow.hPow `[Nat] `[Nat] `[Nat] `[instHPow] #2 #1]
+    [thm] List.eq_nil_of_length_eq_zero: [@List.length #2 #1]
+    [thm] List.length_cons: [@List.length #2 (@List.cons _ #1 #0)]
+    [thm] List.length_nil: [@List.length #0 (@List.nil _)]
+  [cutsat] Assignment satisfying linear constraints
+    [assign] q := 3
+    [assign] s.raw.a := 4
+    [assign] s.raw.c := 5
+    [assign] (pendantOriginal T s.raw.a s.raw.c).length := 0
+  [linarith] Linarith assignment for `Rat`
+    [assign] c := 3
+    [assign] callbackMass c q [2, 1, (pendantOriginal T s.raw.a s.raw.c).length] := 0
+    [assign] callbackMass c q (costs T S s) := 1
+    [assign] 「c ^ 1」 := 0
+    [assign] 「c ^ 2」 := 0
+    [assign] 「c ^ (-1 * ↑(pendantOriginal T s.raw.a s.raw.c).length)」 := 0
+  [ring] Ring `Rat`
+    [basis] Basis
+      [_] (c ^ 2)⁻¹ = 0
+      [_] (c ^ 1)⁻¹ = 0
+[grind] Issues
+  [issue] failed to canonicalize instance
+        Classical.propDecidable (c ^ 2 = 0)
+      synthesized instance is not definitionally equal
+        instDecidableEqRat (c ^ 2) 0
+  [issue] ring term with unexpected instance
+        c ^ (-1 * ↑(pendantOriginal T s.raw.a s.raw.c).length)
+  [issue] ring term with unexpected instance
+        c ^ (-1 * ↑(pendantOriginal T s.raw.a s.raw.c).length)
+  [issue] failed to canonicalize instance
+        Classical.propDecidable (c ^ 1 = 0)
+      synthesized instance is not definitionally equal
+        instDecidableEqRat (c ^ 1) 0

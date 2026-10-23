@@ -1,0 +1,65 @@
+{
+  "reused_source": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_work_integration/audit_work_v1.py",
+  "reused_source_sha256": "d0d3d432765d5698a091cbaf43b25f159ad6f3bfe69c57cd8fa10f2b23ad2baf",
+  "adapter_output_sha256": "61954a463af7dbaaaa20954c37de842eee583f88badb65af91211b1b719e339a",
+  "exact_replacements": [
+    {
+      "before": "M=D.parent/'hard2_query_size/HARD2-SIZE-MANIFEST-v1.json'",
+      "after": "M=D.parent/'ordinary_work_integration/HARD2-WORK-MANIFEST-v1.json'"
+    },
+    {
+      "before": "'algorithm-universal233-ordinary-work-audit-'",
+      "after": "'algorithm-universal233-allgood-local-work-audit-'"
+    },
+    {
+      "before": "D/'build_components_v1.py',D/'extend_rule5_v1.py',B/'certificate-v1.json',B/'rule5-extension-v1/certificate.json'",
+      "after": "D/'setup_source_v1.py',D/'extend_checker_v1.py',B/'SEED-RECEIPT.json',B/'checker-extension-v1/certificate.json'"
+    },
+    {
+      "before": "'dbb5959912e70269374cb980a4e0501674bbf65829fb69e1a03b1ec87edf3e3b'",
+      "after": "'337498c1f697edff18d0403616e62465e36a86192aeaba92916ef5643bd41932'"
+    },
+    {
+      "before": "old['status']=='PASS_AUTHOR_ACTUAL_HARD2_QUERY_SIZE_SOURCE_PRODUCER'",
+      "after": "old['status']=='PASS_AUTHOR_ACTUAL_HARD2_WORK_CONSUMER_SOURCE_PRODUCER'"
+    },
+    {
+      "before": "base=json.loads((B/'certificate-v1.json').read_text());extension=json.loads((B/'rule5-extension-v1/certificate.json').read_text())",
+      "after": "base=json.loads((B/'SEED-RECEIPT.json').read_text());extension=json.loads((B/'checker-extension-v1/certificate.json').read_text())"
+    },
+    {
+      "before": "base['status']=='PASS_AUTHOR_WORK_COMPONENT_BUILD_PENDING_ACTUAL_CONSUMERS_AUDIT' and extension['status']=='PASS_AUTHOR_WORK_RULE5_EXTENSION_PENDING_ACTUAL_CONSUMER_AUDIT'",
+      "after": "base['status']=='PASS_EXACT_READONLY_SOURCE_SEED' and extension['status']=='PASS_AUTHOR_DP_CHECKER_UNION_PENDING_CONSUMER_AUDIT'"
+    },
+    {
+      "before": "for p,h in c['inputs'].items():assert sha(R/p)==h,('BUILD_INPUT_CHANGED',p)",
+      "after": "for p,h in c.get('inputs',{}).items():assert sha(R/p)==h,('BUILD_INPUT_CHANGED',p)"
+    },
+    {
+      "before": "own=['QueryProperBase','PairQueryProper','ModeQueryProper','Hard2QueryProper','Hard2Frontier','Hard2StepTrace','Hard2SourceBill','WorkControls']",
+      "after": "own=['PaintCost','TableCost','OwnerCost','SolveCost','BlockCost','CandidateCost','GuardCost','Polynomial','DPControls']"
+    },
+    {
+      "before": "r['module']=='WorkFalseControls'",
+      "after": "r['module']=='DPFalseControls'"
+    },
+    {
+      "before": "sha(D/'WorkFalseControls.lean')",
+      "after": "sha(D/'DPFalseControls.lean')"
+    },
+    {
+      "before": "(fp.parent/'WorkFalseControls.log')",
+      "after": "(fp.parent/'DPFalseControls.log')"
+    },
+    {
+      "before": "for r in c['runs']),('NO_UNION_SOURCE_RECEIPT',n)",
+      "after": "for r in c.get('runs',[])),('NO_UNION_SOURCE_RECEIPT',n)"
+    },
+    {
+      "before": "status='PASS_AUTHOR_ACTUAL_HARD2_WORK_CONSUMER_SOURCE_PRODUCER'",
+      "after": "status='PASS_AUTHOR_ACTUAL_ALLGOOD_DP_SOURCE_WORK_PRODUCER'"
+    }
+  ],
+  "final_scope_block_replaced": true,
+  "added_native_sanity_log_gate": true
+}

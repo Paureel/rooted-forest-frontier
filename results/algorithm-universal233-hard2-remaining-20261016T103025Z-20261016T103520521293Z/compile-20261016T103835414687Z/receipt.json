@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3569486250007685,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3901619589996699,
+      "resource_stop": null,
+      "log_sha256": "767fc07c773225fa7c9fba23a1f7d238a2d8add089c17741cf2a43b8460d7409"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016845410000314587,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Hard2GenerationBound",
+      "source_sha256": "4087aa2c318a3ba7c8e78d5b7a4a9db250051f58e9c8c89205611a9476ca4348",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 1.4853622499995254,
+      "resource_stop": null,
+      "log_sha256": "4ff0d713bbb9fd98f2ac31d67e33f665f1702a4c4813be4944c22b4222c19e87"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Hard2GenerationBound', 's/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2GenerationBound.lean:44:5: error: unknown tactic\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2GenerationBound.lean:43:3: error: Type mismatch\\n  Nat.le_trans (wholeOutputsMeter_bound S T A B c q)\\nhas type\\n  generationEnvelope S q + (leaves S).length * taggedCap T A B c \u2264 ?m.56 \u2192 (wholeOutputsMeter S T A B c q).work \u2264 ?m.56\\nbut is expected to have type\\n  (wholeOutputsMeter S T A B c q).work \u2264 outputCallCap S T N q\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2GenerationBound.lean:41:68: error: unsolved goals\\ncase right\\nS T : Tree\\nA B : List Nat\\nc : Colors\\nN q : Nat\\nal : A.length \u2264 N\\nbl : B.length \u2264 N\\naddress :\\n  \u2200 (l : Local),\\n    l \u2208 [c.a, c.b, c.c] \u2192\\n      match l with\\n      | Local.keep => True\\n      | Local.single v => List.length v \u2264 N\\n      | Local.joint v w => List.length v \u2264 N \u2227 List.length w \u2264 N\\n\u22a2 (wholeOutputsMeter S T A B c q).value.length \u2264 outputCountCap S q\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2GenerationBound.lean:67:86: error: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)\\n  l = Local.keep \u2228 l = Local.single v\\n\\ncase inr\\nS T : Tree\\nA B : List Nat\\nN q : Nat\\nal : A.length \u2264 N\\nbl : B.length \u2264 N\\npoint :\\n  \u2200 (c : Colors),\\n    (\u2200 (l : Local),\\n        l \u2208 [c.a, c.b, c.c] \u2192\\n          match l with\\n          | Local.keep => True\\n          | Local.single v => List.length v \u2264 N\\n          | Local.joint v w => List.length v \u2264 N \u2227 List.length w \u2264 N) \u2192\\n      (wholeOutputsMeter S T A B c q).work \u2264 outputCallCap S T N q \u2227\\n        (wholeOutputsMeter S T A B c q).value.length \u2264 outputCountCap S q\\nv : RMAF.Vertex\\nks : KindSize N (Kind.clique v)\\na :\\n  (wholeOutputsMeter S T A B { a := Local.keep, b := Local.single v, c := Local.single v } q).work \u2264\\n      outputCallCap S T N q \u2227\\n    (wholeOutputsMeter S T A B { a := Local.keep, b := Local.single v, c := Local.single v } q).value.length \u2264\\n      outputCountCap S q\\nl : Local\\nh\u271d : l = Local.keep \u2228 l = Local.single v\\n\u22a2 match l with\\n  | Local.keep => True\\n  | Local.single v => List.length v \u2264 N\\n  | Local.joint v w => List.length v \u2264 N \u2227 List.length w \u2264 N\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2GenerationBound.lean:73:83: error: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)\\n  l = Local.joint v w \u2228 l = Local.keep\\n\\ncase inr\\nS T : Tree\\nA B : List Nat\\nN q : Nat\\nal : A.length \u2264 N\\nbl : B.length \u2264 N\\npoint :\\n  \u2200 (c : Colors),\\n    (\u2200 (l : Local),\\n        l \u2208 [c.a, c.b, c.c] \u2192\\n          match l with\\n          | Local.keep => True\\n          | Local.single v => List.length v \u2264 N\\n          | Local.joint v w => List.length v \u2264 N \u2227 List.length w \u2264 N) \u2192\\n      (wholeOutputsMeter S T A B c q).work \u2264 outputCallCap S T N q \u2227\\n        (wholeOutputsMeter S T A B c q).value.length \u2264 outputCountCap S q\\nv w : RMAF.Vertex\\nks : KindSize N (Kind.four v w)\\na :\\n  (wholeOutputsMeter S T A B { a := Local.keep, b := Local.single v, c := Local.single w } q).work \u2264\\n      outputCallCap S T N q \u2227\\n    (wholeOutputsMeter S T A B { a := Local.keep, b := Local.single v, c := Local.single w } q).value.length \u2264\\n      outputCountCap S q\\nl : Local\\nh\u271d : l = Local.joint v w \u2228 l = Local.keep\\n\u22a2 match l with\\n  | Local.keep => True\\n  | Local.single v => List.length v \u2264 N\\n  | Local.joint v w => List.length v \u2264 N \u2227 List.length w \u2264 N\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2GenerationBound.lean:79:83: error: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)\\n  l = Local.joint v w \u2228 l = Local.keep\\n\\ncase inr\\nS T : Tree\\nA B : List Nat\\nN q : Nat\\nal : A.length \u2264 N\\nbl : B.length \u2264 N\\npoint :\\n  \u2200 (c : Colors),\\n    (\u2200 (l : Local),\\n        l \u2208 [c.a, c.b, c.c] \u2192\\n          match l with\\n          | Local.keep => True\\n          | Local.single v => List.length v \u2264 N\\n          | Local.joint v w => List.length v \u2264 N \u2227 List.length w \u2264 N) \u2192\\n      (wholeOutputsMeter S T A B c q).work \u2264 outputCallCap S T N q \u2227\\n        (wholeOutputsMeter S T A B c q).value.length \u2264 outputCountCap S q\\nv w : RMAF.Vertex\\nks : KindSize N (Kind.diagonal v w)\\nl : Local\\nh\u271d : l = Local.joint v w \u2228 l = Local.keep\\n\u22a2 match l with\\n  | Local.keep => True\\n  | Local.single v => List.length v \u2264 N\\n  | Local.joint v w => List.length v \u2264 N \u2227 List.length w \u2264 N\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2GenerationBound.lean:85:82: error: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)\\n  l = Local.single v \u2228 l = Local.keep\\n\\ncase inr\\nS T : Tree\\nA B : List Nat\\nN q : Nat\\nal : A.length \u2264 N\\nbl : B.length \u2264 N\\npoint :\\n  \u2200 (c : Colors),\\n    (\u2200 (l : Local),\\n        l \u2208 [c.a, c.b, c.c] \u2192\\n          match l with\\n          | Local.keep => True\\n          | Local.single v => List.length v \u2264 N\\n          | Local.joint v w => List.length v \u2264 N \u2227 List.length w \u2264 N) \u2192\\n      (wholeOutputsMeter S T A B c q).work \u2264 outputCallCap S T N q \u2227\\n        (wholeOutputsMeter S T A B c q).value.length \u2264 outputCountCap S q\\nv : RMAF.Vertex\\nks : KindSize N (Kind.vertex v)\\na :\\n  (wholeOutputsMeter S T A B { a := Local.single v, b := Local.keep, c := Local.keep } q).work \u2264 outputCallCap S T N q \u2227\\n    (wholeOutputsMeter S T A B { a := Local.single v, b := Local.keep, c := Local.keep } q).value.length \u2264\\n      outputCountCap S q\\nl : Local\\nh\u271d : l = Local.single v \u2228 l = Local.keep\\n\u22a2 match l with\\n  | Local.keep => True\\n  | Local.single v => List.length v \u2264 N\\n  | Local.joint v w => List.length v \u2264 N \u2227 List.length w \u2264 N\\n'))"
+}

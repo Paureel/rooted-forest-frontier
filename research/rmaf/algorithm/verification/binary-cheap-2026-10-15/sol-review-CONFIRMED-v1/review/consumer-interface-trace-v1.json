@@ -1,0 +1,186 @@
+{
+  "sites": [
+    {
+      "module": "BinaryEdge",
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/binary-cheap-2026-10-15/sol-review-released-v1/src/BinaryEdge.lean",
+      "source_sha256": "99c3910afaa69282ef0fac9b2c71db10d3fbc2a2cfc518ff9c7752c42388cbd1",
+      "line": 22,
+      "declaration": "edge_facts",
+      "inputs": "actual choose T A B = some(edge e)",
+      "delivered": "Original subtree u, four nonempty descendant sectors, four mutual-clear premises, both within-parent sector separations",
+      "scope": "No new selected edge, sector goodness or source-P validity assumed.",
+      "verdict": "SCOPED-CONFIRMED"
+    },
+    {
+      "module": "BinaryEdge",
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/binary-cheap-2026-10-15/sol-review-released-v1/src/BinaryEdge.lean",
+      "source_sha256": "99c3910afaa69282ef0fac9b2c71db10d3fbc2a2cfc518ff9c7752c42388cbd1",
+      "line": 50,
+      "declaration": "cheap_rank",
+      "inputs": "proper P, ht, S labels contained in T, both cleared sectors nonempty",
+      "delivered": "Actual cheapColor inputRank=4",
+      "scope": "No runtime inputRank calculation or query bound follows.",
+      "verdict": "SCOPED-CONFIRMED"
+    },
+    {
+      "module": "BinaryEdge",
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/binary-cheap-2026-10-15/sol-review-released-v1/src/BinaryEdge.lean",
+      "source_sha256": "99c3910afaa69282ef0fac9b2c71db10d3fbc2a2cfc518ff9c7752c42388cbd1",
+      "line": 58,
+      "declaration": "accepted_cheap",
+      "inputs": "proper original inputs, derived rank4, literal fourAccepted=true",
+      "delivered": "Same generated q3 singleton, cost3, source partition/embedding, full color classes and all-q>=3 stability",
+      "scope": "Source validity is derived; target topology/agreement is not asserted.",
+      "verdict": "SCOPED-CONFIRMED"
+    },
+    {
+      "module": "CheapPartition",
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/binary-cheap-2026-10-15/sol-review-released-v1/src/CheapPartition.lean",
+      "source_sha256": "0431337a78398de909a94819d5d418bddada2586f4799420417d73b350bd27d1",
+      "line": 68,
+      "declaration": "cheap_exact_classes",
+      "inputs": "proper P and actual full-color-class output",
+      "delivered": "Both directions of exact membership in [Ay,An,B,C]",
+      "scope": "Class order/label order may differ; raw compiled controls retain literal order.",
+      "verdict": "SCOPED-CONFIRMED"
+    },
+    {
+      "module": "TargetGeometry",
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/binary-cheap-2026-10-15/sol-review-released-v1/src/TargetGeometry.lean",
+      "source_sha256": "19d214a562315af747b06145fdcc64b0330ece3a55783f5a01de77f520d1125d",
+      "line": 31,
+      "declaration": "selected_accepted_partition",
+      "inputs": "original label premises, proper P, actual G edge, A/C and B/C clearance, literal q3 acceptance",
+      "delivered": "Exact classes and both source and target embeddings on the actual singleton output",
+      "scope": "Rooted-bad B remains bad, so this is not target agreement.",
+      "verdict": "SCOPED-CONFIRMED"
+    },
+    {
+      "module": "LocalOne",
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/binary-cheap-2026-10-15/sol-review-released-v1/src/LocalOne.lean",
+      "source_sha256": "6e91c791c26c9ca7bd40a3479e351f05d4895ac408490b25817f45d3e639b1e1",
+      "line": 70,
+      "declaration": "local_cost_one",
+      "inputs": "proper P/original restrictions, actual cheap source embeddings and exact classes, separated target sectors, both sectors good",
+      "delivered": "Actual two-piece agreement on exact local restrictions and local properness",
+      "scope": "No whole-source cut address or cut union is constructed.",
+      "verdict": "SCOPED-CONFIRMED"
+    },
+    {
+      "module": "Reconstruction01",
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/binary-cheap-2026-10-15/sol-review-released-v1/src/Reconstruction01.lean",
+      "source_sha256": "d043faa78cb29a31e728db52255c27393d6d0b6899b91369ecb403648f2d2d0b",
+      "line": 167,
+      "declaration": "two_block_complete",
+      "inputs": "any original two-block agreement and distinct source labels",
+      "delivered": "An actual original edge of that local source realizes an agreement forest",
+      "scope": "The production core appears only in proof-only source reconstruction, not the executable pretest.",
+      "verdict": "SCOPED-CONFIRMED"
+    },
+    {
+      "module": "Optimality01",
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/binary-cheap-2026-10-15/sol-review-released-v1/src/Optimality01.lean",
+      "source_sha256": "a0ebbb97f5584c3663f7ada4921e3d833f4754c106c0a682b4d75e12ded8a715",
+      "line": 75,
+      "declaration": "found_globally_minimum",
+      "inputs": "actual pretest01 returns found c",
+      "delivered": "Minimum against every original agreement partition, including ones outside the candidate edge list",
+      "scope": "Not merely candidate-list optimality; no capped query discount.",
+      "verdict": "SCOPED-CONFIRMED"
+    },
+    {
+      "module": "Witness01",
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/binary-cheap-2026-10-15/sol-review-released-v1/src/Witness01.lean",
+      "source_sha256": "3bc4478cd58439cc4282ddc05a7ee62e5e61211f24aeccc0a1b0d9c281b22f4d",
+      "line": 121,
+      "declaration": "found_original_minimum",
+      "inputs": "actual pretest01 returns found c",
+      "delivered": "Actual local RealizedOutput, cut length/cost<=1 and global lower bound",
+      "scope": "Original source here is the restricted local source s.",
+      "verdict": "SCOPED-CONFIRMED"
+    },
+    {
+      "module": "PretestConsumer",
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/binary-cheap-2026-10-15/sol-review-released-v1/src/PretestConsumer.lean",
+      "source_sha256": "4dddbcd96266eecb39fd00b86915b00d6683718e19a48886106758aab7718dbb",
+      "line": 5,
+      "declaration": "local_pretest_one",
+      "inputs": "bad original A, exact restrictions, local properness and an actual two-block local agreement",
+      "delivered": "Badness excludes zero cut; actual found some p, OriginalLocalOneCut and minimum1",
+      "scope": "No unknown optimum F is an executable input.",
+      "verdict": "SCOPED-CONFIRMED"
+    },
+    {
+      "module": "KeptConsumers",
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/binary-cheap-2026-10-15/sol-review-released-v1/src/KeptConsumers.lean",
+      "source_sha256": "708b7d3272e9f218481182ff756a674faecfe96a7c6d39308cdab466152deefc",
+      "line": 97,
+      "declaration": "OriginalLocalOneCut",
+      "inputs": "exact original restrictions",
+      "delivered": "RealizedOutput on local s, agreement, one literal local cut",
+      "scope": "The definition contains no map from local s addresses into whole S.",
+      "verdict": "SCOPED-CONFIRMED"
+    },
+    {
+      "module": "Continuation",
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/binary-cheap-2026-10-15/sol-review-released-v1/src/Continuation.lean",
+      "source_sha256": "49b2b8da8c18234deb3abc7280a399507f6063790a0ab5906ed21327dd529869",
+      "line": 8,
+      "declaration": "every_opposite_output",
+      "inputs": "proper P, actual source-P embeddings, both B-sector/A clearances, full A/C and B/C clearance, local certificate, literal opposite output membership",
+      "delivered": "Every output retains whole A/C, same restrictions/certificate and cross-clearance",
+      "scope": "Within-B target overlaps remain permitted.",
+      "verdict": "SCOPED-CONFIRMED"
+    },
+    {
+      "module": "SelectedContinuation",
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/binary-cheap-2026-10-15/sol-review-released-v1/src/SelectedContinuation.lean",
+      "source_sha256": "87d90805fc432b469e162886f64bc4f6809531f7a25f44ae95df6d5b98b31657",
+      "line": 20,
+      "declaration": "selected_cheap_continuation",
+      "inputs": "all original hsource, bad A/B, good C, actual G edge, both C clearances and accepted q3 probe",
+      "delivered": "Exact singleton geometry plus either derived local minimum/certificate for every opposite output, or TwoBad",
+      "scope": "Parent refinement uses the very same actual generated output; no target-Q agreement or actual solver consumer.",
+      "verdict": "SCOPED-CONFIRMED"
+    },
+    {
+      "module": "Continuation",
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/binary-cheap-2026-10-15/sol-review-released-v1/src/Continuation.lean",
+      "source_sha256": "49b2b8da8c18234deb3abc7280a399507f6063790a0ab5906ed21327dd529869",
+      "line": 33,
+      "declaration": "cheap_two_bad",
+      "inputs": "bad B and an actual bad cleared sector, nonempty sectors, sector/B clearance, exact output classes",
+      "delivered": "Two distinct emitted rooted-bad target-disjoint blocks",
+      "scope": "No query exponent decrease is inferred from their positive minima.",
+      "verdict": "SCOPED-CONFIRMED"
+    },
+    {
+      "module": "Symmetry",
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/binary-cheap-2026-10-15/sol-review-released-v1/src/Symmetry.lean",
+      "source_sha256": "8a2b865075d824d80b6261f9d21c471b24ae1cfe173c0a4ebe4bb38f4976cc21",
+      "line": 42,
+      "declaration": "selected_symmetry",
+      "inputs": "proper P, source-P embeddings, original target labels, same actual G edge",
+      "delivered": "Swapped P/source embeddings and chooser selecting that identical edge",
+      "scope": "No separate B-side edge assumption.",
+      "verdict": "SCOPED-CONFIRMED"
+    },
+    {
+      "module": "SelectedHigh",
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/binary-cheap-2026-10-15/sol-review-released-v1/src/SelectedHigh.lean",
+      "source_sha256": "5531ce6c7dfaa82584a3da72ec06e88541baeea488de95dbd085599e8aadefc5",
+      "line": 5,
+      "declaration": "selected_two_high",
+      "inputs": "proper P/original labels, actual G edge and both literal fourAccepted=false guards",
+      "delivered": "Every member of the same clear-A ++ clear-B list has cost>=4; actual rawQMass<=4/c^4 for rational c>=2",
+      "scope": "Multiplicity/order retained; coverage/query reconstruction and source runtime are separate obligations.",
+      "verdict": "SCOPED-CONFIRMED"
+    }
+  ],
+  "site_count": 16,
+  "all_pass": true,
+  "interpretation": "Manual exact-source interface review backed by rebuilt kernel proofs, complete producer audit and unchanged frozen finite controls; no universal statement is inferred from a finite NO-FIRE.",
+  "remaining_consumer": "Actual grouped/ordinary solver/query contract and reconstructed whole-source cuts/union/nonredundancy/combined charge, ForestState binding, dispatch, termination and full recurrence/runtime.",
+  "all_three_main_milestones": "OPEN",
+  "replication_increment": 0
+}

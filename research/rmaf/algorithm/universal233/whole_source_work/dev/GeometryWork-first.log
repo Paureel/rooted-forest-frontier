@@ -1,0 +1,139 @@
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:147:8: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  u ≥ 0
+  t ≥ 0
+  t - u ≤ -1
+  s ≥ 0
+  q ≥ 0
+  p ≥ 0
+  o ≥ 0
+  n ≥ 0
+  m ≥ 0
+  k ≥ 0
+  j ≥ 0
+  j - k ≥ 0
+  i ≥ 0
+  i + k - q ≤ 0
+  h ≥ 0
+  h - i ≥ 0
+  g ≥ 0
+  f ≥ 0
+  f - g ≥ 0
+  f + s - t ≤ 0
+  e ≥ 0
+  e + f + s - t ≤ 0
+  d ≥ 0
+  d - n ≥ 0
+  d - p ≥ 0
+  c ≥ 0
+  c - m ≥ 0
+  c - o ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+  a - c ≥ 0
+  a - d ≥ 0
+  8*a + q - s ≤ -16
+where
+ a := ↑M
+ b := ↑(treeNodes (l.node r))
+ c := ↑(treeNodes l)
+ d := ↑(treeNodes r)
+ e := ↑(meterMinimal D l).work
+ f := ↑(spanCap D M) * ↑(treeNodes r)
+ g := ↑(meterMinimal D r).work
+ h := ↑(16 * (D.length + M + 2)) * ↑(treeNodes l)
+ i := ↑(meterRooted D l).work
+ j := ↑(16 * (D.length + M + 2)) * ↑(treeNodes r)
+ k := ↑(meterRooted D r).work
+ m := ↑(rootedSpan D l).length
+ n := ↑(rootedSpan D r).length
+ o := ↑(minimalVertices D l).length
+ p := ↑(minimalVertices D r).length
+ q := ↑K * ↑M
+ s := ↑(spanCap D M)
+ t := ↑(spanCap D M) * ↑(1 + treeNodes l + treeNodes r)
+ u := ↑{ value := [] :: (prependSide false (rootedSpan D l) ++ prependSide true (rootedSpan D r)),
+      work :=
+        (meterRooted D l).work + (meterRooted D r).work +
+          8 * ((rootedSpan D l).length + (rootedSpan D r).length + 2) }.work
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:156:15: error(lean.unknownIdentifier): Unknown identifier `L.length`
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:165:11: error: Tactic `rfl` failed: The left-hand side
+  (meterDups []).value
+is not definitionally equal to the right-hand side
+  [].eraseDups
+
+case nil
+α : Type
+inst✝ : BEq α
+⊢ (meterDups []).value = [].eraseDups
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:171:2: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  b - c ≥ 0
+  b - d ≤ -1
+where
+ b := ↑as.length
+ c := ↑(List.filter (fun b => !b == a) as).length
+ d := ↑L.length
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:166:28: warning: This simp argument is unused:
+  meterDups
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [List.eraseDups_cons, meterDups_value]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:176:50: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+  8*a - c ≤ -9
+where
+ a := ↑M
+ b := ↑[].length
+ c := ↑(meterDups []).work
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:185:46: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  i ≥ 0
+  h ≥ 0
+  g ≥ 0
+  f ≥ 0
+  f - g ≥ 0
+  f - h ≤ 0
+  e ≥ 0
+  d ≥ 0
+  d - e ≥ 0
+  c ≥ 0
+  b ≥ 0
+  b - c ≥ 0
+  b - d ≥ 0
+  b - e ≥ 0
+  8*b + h - i ≤ -9
+where
+ b := ↑M
+ c := ↑(a :: as).length
+ d := ↑as.length
+ e := ↑(List.filter (fun b => !b == a) as).length
+ f := ↑(8 * (M + 1)) * ↑((List.filter (fun b => !b == a) as).length + 1)
+ g := ↑(meterDups (List.filter (fun b => !b == a) as)).work
+ h := ↑(8 * (M + 1)) * ↑(as.length + 1)
+ i := ↑(meterDups (a :: as)).work
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:189:2: error: `simp` made no progress
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:176:22: warning: This simp argument is unused:
+  meterDups
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [List.length_nil]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:183:15: warning: This simp argument is unused:
+  meterDups
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [List.length_cons]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

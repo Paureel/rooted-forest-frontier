@@ -1,0 +1,162 @@
+{
+  "completed_author_contact": {
+    "path": "research/rmaf/algorithm/universal233/rule5_common_split/audit_graph.py",
+    "sha256": "213eb8d89e06a579ad5ceb6dc58251f2a4858cc7669b55fa7554a93cbc4732e4"
+  },
+  "checks": [
+    {
+      "control": "actual-clean-values",
+      "expected_reject": false,
+      "result": {
+        "duplicates": [
+          {
+            "name": "ProducerPlant.value",
+            "occurrences": 2,
+            "producers": [
+              "LeftValue",
+              "TwinValue"
+            ],
+            "kinds": [
+              "definition"
+            ],
+            "bodies": 1,
+            "decision": "COMPATIBLE"
+          }
+        ],
+        "rejects": []
+      }
+    },
+    {
+      "control": "actual-different-values-LR",
+      "expected_reject": true,
+      "result": {
+        "duplicates": [
+          {
+            "name": "ProducerPlant.value",
+            "occurrences": 2,
+            "producers": [
+              "LeftValue",
+              "RightValue"
+            ],
+            "kinds": [
+              "definition"
+            ],
+            "bodies": 2,
+            "decision": "NONPROOF_VALUE_MISMATCH"
+          }
+        ],
+        "rejects": [
+          {
+            "name": "ProducerPlant.value",
+            "occurrences": 2,
+            "producers": [
+              "LeftValue",
+              "RightValue"
+            ],
+            "kinds": [
+              "definition"
+            ],
+            "bodies": 2,
+            "decision": "NONPROOF_VALUE_MISMATCH"
+          }
+        ]
+      }
+    },
+    {
+      "control": "actual-different-values-RL",
+      "expected_reject": true,
+      "result": {
+        "duplicates": [
+          {
+            "name": "ProducerPlant.value",
+            "occurrences": 2,
+            "producers": [
+              "RightValue",
+              "LeftValue"
+            ],
+            "kinds": [
+              "definition"
+            ],
+            "bodies": 2,
+            "decision": "NONPROOF_VALUE_MISMATCH"
+          }
+        ],
+        "rejects": [
+          {
+            "name": "ProducerPlant.value",
+            "occurrences": 2,
+            "producers": [
+              "RightValue",
+              "LeftValue"
+            ],
+            "kinds": [
+              "definition"
+            ],
+            "bodies": 2,
+            "decision": "NONPROOF_VALUE_MISMATCH"
+          }
+        ]
+      }
+    }
+  ],
+  "actual_rows": {
+    "LeftValue": [
+      {
+        "type": "Lean.Expr.const `Nat []",
+        "stored_name": "ProducerPlant.value",
+        "resolved_origin": "LeftValue",
+        "producer": "LeftValue",
+        "kind": "definition",
+        "index": 1,
+        "has_body": true,
+        "direct_references": [
+          "Nat",
+          "OfNat.ofNat",
+          "instOfNatNat"
+        ],
+        "body": "Lean.Expr.app\n  (Lean.Expr.app\n    (Lean.Expr.app (Lean.Expr.const `OfNat.ofNat [Lean.Level.zero]) (Lean.Expr.const `Nat []))\n    (Lean.Expr.lit (Lean.Literal.natVal 0)))\n  (Lean.Expr.app (Lean.Expr.const `instOfNatNat []) (Lean.Expr.lit (Lean.Literal.natVal 0)))",
+        "axiom_references": [],
+        "actual_name": "ProducerPlant.value"
+      }
+    ],
+    "RightValue": [
+      {
+        "type": "Lean.Expr.const `Nat []",
+        "stored_name": "ProducerPlant.value",
+        "resolved_origin": "RightValue",
+        "producer": "RightValue",
+        "kind": "definition",
+        "index": 1,
+        "has_body": true,
+        "direct_references": [
+          "Nat",
+          "OfNat.ofNat",
+          "instOfNatNat"
+        ],
+        "body": "Lean.Expr.app\n  (Lean.Expr.app\n    (Lean.Expr.app (Lean.Expr.const `OfNat.ofNat [Lean.Level.zero]) (Lean.Expr.const `Nat []))\n    (Lean.Expr.lit (Lean.Literal.natVal 1)))\n  (Lean.Expr.app (Lean.Expr.const `instOfNatNat []) (Lean.Expr.lit (Lean.Literal.natVal 1)))",
+        "axiom_references": [],
+        "actual_name": "ProducerPlant.value"
+      }
+    ],
+    "TwinValue": [
+      {
+        "type": "Lean.Expr.const `Nat []",
+        "stored_name": "ProducerPlant.value",
+        "resolved_origin": "TwinValue",
+        "producer": "TwinValue",
+        "kind": "definition",
+        "index": 1,
+        "has_body": true,
+        "direct_references": [
+          "Nat",
+          "OfNat.ofNat",
+          "instOfNatNat"
+        ],
+        "body": "Lean.Expr.app\n  (Lean.Expr.app\n    (Lean.Expr.app (Lean.Expr.const `OfNat.ofNat [Lean.Level.zero]) (Lean.Expr.const `Nat []))\n    (Lean.Expr.lit (Lean.Literal.natVal 0)))\n  (Lean.Expr.app (Lean.Expr.const `instOfNatNat []) (Lean.Expr.lit (Lean.Literal.natVal 0)))",
+        "axiom_references": [],
+        "actual_name": "ProducerPlant.value"
+      }
+    ]
+  },
+  "scope": "author instrument controls, not independent scientific verification"
+}

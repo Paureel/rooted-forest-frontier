@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "interfaces": [
+    {
+      "module": "StoredMax",
+      "theorem": "OrdinaryDispatch.StoredNumeric.freshOne_value",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredMax.lean",
+      "line": 80,
+      "contract": "Actual commonFresh value; finite scan/copy/carry implementation"
+    },
+    {
+      "module": "StoredMax",
+      "theorem": "OrdinaryDispatch.StoredNumeric.freshOne_width",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredMax.lean",
+      "line": 84,
+      "contract": "Stored B to B+1; no semantic L assumption"
+    },
+    {
+      "module": "StoredMax",
+      "theorem": "OrdinaryDispatch.StoredNumeric.freshOne_work",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredMax.lean",
+      "line": 95,
+      "contract": "freshOneFee N B"
+    },
+    {
+      "module": "StoredFreshPair",
+      "theorem": "OrdinaryDispatch.StoredNumeric.freshPair_source_site",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredFreshPair.lean",
+      "line": 89,
+      "contract": "Actual checked Setup rho/gamma equal decoded finite marker pair"
+    },
+    {
+      "module": "StoredFreshPair",
+      "theorem": "OrdinaryDispatch.StoredNumeric.freshPair_width",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredFreshPair.lean",
+      "line": 20,
+      "contract": "Input stored B to rho<=B+1 gamma<=B+2"
+    },
+    {
+      "module": "StoredFreshPair",
+      "theorem": "OrdinaryDispatch.StoredNumeric.freshPair_work",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredFreshPair.lean",
+      "line": 37,
+      "contract": "freshPairFee N B"
+    },
+    {
+      "module": "StoredContract",
+      "theorem": "OrdinaryDispatch.StoredNumeric.contractPairBits_value",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredContract.lean",
+      "line": 97,
+      "contract": "Exact CommonDispatch common recursive operand projections"
+    },
+    {
+      "module": "StoredContract",
+      "theorem": "OrdinaryDispatch.StoredNumeric.contractPairBits_width",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredContract.lean",
+      "line": 104,
+      "contract": "Contraction pair stored width<=B+1"
+    },
+    {
+      "module": "StoredContract",
+      "theorem": "OrdinaryDispatch.StoredNumeric.contractPairBits_work",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredContract.lean",
+      "line": 113,
+      "contract": "contractPairFee N B, includes endpoint copying/comparisons"
+    },
+    {
+      "module": "StoredCommonPayload",
+      "theorem": "OrdinaryDispatch.StoredNumeric.commonPayloadBits_width",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredCommonPayload.lean",
+      "line": 47,
+      "contract": "All8 materialized payload tree widths<=B+2"
+    },
+    {
+      "module": "StoredCommonPayload",
+      "theorem": "OrdinaryDispatch.StoredNumeric.commonPayloadBits_work",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredCommonPayload.lean",
+      "line": 80,
+      "contract": "commonPayloadFee N P B; all8 constructors and marker scan/copies paid"
+    },
+    {
+      "module": "StoredSourceSite",
+      "theorem": "OrdinaryDispatch.StoredNumeric.commonPayload_source_site",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredSourceSite.lean",
+      "line": 10,
+      "contract": "All8 payload projections and both markers equal actual Setup fields; explicit representative projection premises"
+    },
+    {
+      "module": "StoredTransport",
+      "theorem": "OrdinaryDispatch.StoredNumeric.retained_width",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredTransport.lean",
+      "line": 80,
+      "contract": "Restriction/subtree/sourceForest/replacement preserve stored width"
+    },
+    {
+      "module": "StoredOrientations",
+      "theorem": "OrdinaryDispatch.StoredNumeric.all_orientations_global_caps",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredOrientations.lean",
+      "line": 33,
+      "contract": "OrientedPath at d<=Q+N gives B+2(Q+N) state width and +2 local marker width"
+    },
+    {
+      "module": "StoredBudget",
+      "theorem": "OrdinaryDispatch.StoredNumeric.disjoint_budget_width",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredBudget.lean",
+      "line": 7,
+      "contract": "Actual completed allocator stored width<=input Bq+4N+3 when source count<=2N"
+    },
+    {
+      "module": "StoredBudget",
+      "theorem": "OrdinaryDispatch.StoredNumeric.global_budget_width",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_stored_width_20261016T103025Z/StoredBudget.lean",
+      "line": 51,
+      "contract": "BudgetPath of at most D events gives Bq+(4N+3)D; D not silently identified with ordinary depth"
+    }
+  ],
+  "variables": {
+    "B": "Initial stored label-array length bound; independent of semantic L",
+    "Bq": "Initial stored budget-array length bound; independent of decoded budget Q",
+    "N": "Original target leaf cap; node and source counts used at2N",
+    "Q": "Original ordinary budget k-1, unrelated to reduced n",
+    "D": "Budget-operation count bound requiring separate complete-producer proof",
+    "local_fee_N": "Local fee N bounds tree nodes; use2*original leaf capN. P bounds selector-list length."
+  },
+  "object_pool": "Only exact completed binary producer pool. Semantic numeric package licensed as external completed interface; no object-pool union.",
+  "remaining": [
+    "Construct the full recursive producer, including overlap/raw source output generation, and embed its represented ordinary states in OrientedPath and the exact earlier semantic Reach at matching ordinary depth.",
+    "Bind actual budget operations to BudgetPath and prove an explicit polynomial original-input event bound D. BudgetPath events are not assumed equal to ordinary depth.",
+    "Construct source-derived X/Y stored selector arrays and representatives x/y, discharging commonPayload_source_site projection/storage premises; guard/classifier/full Setup assembly remains separately owned.",
+    "Integrate displayed finite-bit local fees with complete producer/source recursion and weighted global theorem.",
+    "Native/compiler semantics and independent verification remain open."
+  ]
+}

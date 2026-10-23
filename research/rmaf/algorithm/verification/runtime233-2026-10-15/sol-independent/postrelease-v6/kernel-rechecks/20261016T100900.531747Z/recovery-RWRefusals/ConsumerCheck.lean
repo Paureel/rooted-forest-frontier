@@ -1,0 +1,5 @@
+import RWRefusals
+#check OrdinaryDispatch.RecoveryLocalWork.final_source_refused
+#print axioms OrdinaryDispatch.RecoveryLocalWork.final_source_refused
+#check OrdinaryDispatch.RecoveryLocalWork.generate_source_refused
+#print axioms OrdinaryDispatch.RecoveryLocalWork.generate_source_refused

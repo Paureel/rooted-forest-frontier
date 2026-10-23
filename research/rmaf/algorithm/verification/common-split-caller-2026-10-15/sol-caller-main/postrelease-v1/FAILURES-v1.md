@@ -1,0 +1,13 @@
+# Postrelease failures and limitations
+
+The initial read-only release/manifest SHA and shape inventory used system python3. This was metadata only, no scientific calculation; all subsequent Python uses bootloops-python. Frozen originals untouched.
+
+The extra postrelease nonproof-value coalescence control initially expected two distinct modules with the same identical Nat definition to import cleanly. Lean rejects duplicate definitions even with identical values. The failed control/report/log are preserved. v2 treats exact import rejection as the expected result, additionally checks both hostile import orders and a simulated raw/resolved incompatible-value receipt. No proof-body difference is used to waive a nonproof value mismatch. This is postrelease coverage, not blind credit.
+
+An exploratory read for own old rebuild_v1.py found no such file. The rebuild driver is new. An initial manifest source-list display was truncated; it is not a complete content read. Every member is integrity-checked separately and the scoped semantic sources are read in bounded calls.
+
+Readouts_v1 pilot succeeded but Lean Option JSON encoding collapses both outer REFUSAL and inner bounded-negative to null. This is an instrument serialization defect, not a candidate failure. v1 raw source/output retained; v2 adds an explicit status by pattern matching the actual nested Option. REFUSAL-vs-negative comparisons require that status and no null-only result is accepted.
+
+The all173 producer audit command hit the declared120s timeout before emitting its one-shot JSON. Failed report and full TimeoutExpired command retained. No scientific gate pass is inferred. v3 keeps the same occurrence/walk functions byte-identical and separates the full173 import context from a bounded producer output subset. All batches import the same ordered full context, then their disjoint stored rows are combined before gating. It changes batching only; scope and resolved context remain identical. New Std qualification precedes candidate batches,120s per command and20-minute aggregate bound retained.
+
+Readout v2 and v3 full runs returned successfully from Lean but their merged stdout/stderr streams interleaved dbgTrace inside long JSON lines, causing parser failures. Both raw combined logs and failed runners remain. v4 captures streams separately, preserving complete JSON and separate actual callback observations. This is an instrument transport correction; earlier partial parses receive no gate pass. v3 source only adds the five already-frozen transformations, literal original hull witnesses and explicit actual pure callback replies; diagnostic cand generation by the reviewer is not attributed to production runGuarded work.

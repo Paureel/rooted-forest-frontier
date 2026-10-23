@@ -1,0 +1,36 @@
+research/rmaf/triple_dp/family/path_route/Controls.lean:14:30: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Decidable (OnPath a b v → v ∈ r)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+research/rmaf/triple_dp/family/path_route/Controls.lean:33:63: error: Tactic `decide` failed to reduce
+  @decide (convex T R0 = true ∧ convex T R1 = true ∧ trim T R0 = R0 ∧ trim T R1 = R0 ∧ ¬[true] ∈ trim T R1)
+    instDecidableAnd
+to `true` or `false`.
+
+After unfolding the instances `instDecidableAnd`, `instDecidableEqBool`, and `Bool.decEq`, reduction got stuck at
+  sorry
+research/rmaf/triple_dp/family/path_route/Controls.lean:35:66: error: Tactic `decide` failed to reduce
+  @decide (lcaClosed G = true ∧ convex T G = false) instDecidableAnd
+to `true` or `false`.
+
+After unfolding the instances `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `Bool.decEq`, and `List.instDecidableMemOfLawfulBEq`, reduction got stuck at
+  sorry
+research/rmaf/triple_dp/family/path_route/Controls.lean:41:72: error: Tactic `decide` failed to reduce
+  @decide
+    (leaves T2 = [[false], [true, false, false], [true, false, true], [true, true]] ∧
+      convex T2 R2 = true ∧
+        convex T2 R3 = true ∧
+          trim T2 R2 = [[], [false], [true], [true, false], [true, false, false], [true, true]] ∧
+            trim T2 R3 = R3 ∧ [false] ∈ trim T2 R2 ∧ ¬[false] ∈ trim T2 R3)
+    instDecidableAnd
+to `true` or `false`.
+
+After unfolding the instances `decEq`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqList`, `Bool.decEq`, `isTrue`, and `List.hasDecEq`, reduction got stuck at
+  sorry
+'TripleDP.PathRoute.Controls.t_vertices' does not depend on any axioms
+'TripleDP.PathRoute.Controls.known_incursion_pair' depends on axioms: [propext, sorryAx, Quot.sound]
+'TripleDP.PathRoute.Controls.known_gap' depends on axioms: [propext, sorryAx]
+'TripleDP.PathRoute.Controls.independent_asymmetric_pair' depends on axioms: [propext, sorryAx, Quot.sound]
+'TripleDP.PathRoute.Controls.root_singleton_boundary' depends on axioms: [propext, Quot.sound]
+'TripleDP.PathRoute.Controls.empty_label_boundary' depends on axioms: [propext, Quot.sound]
+'TripleDP.PathRoute.Controls.adjacent_same_color_and_unused' depends on axioms: [propext]

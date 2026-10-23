@@ -1,0 +1,699 @@
+{
+  "stage": "controls",
+  "started_utc": "2026-10-14T21:31:33.945121+00:00",
+  "runtime": {
+    "python": "3.12.14",
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "code_sha256": {
+      "fresh_oracle.py": "16b2a036b1f0ad537789a9e42a69eb9bccce5869b26c90ff6f4f8fc624db500c",
+      "run_x0.py": "cb1f63f8597aeb1f69d3ede94bcfac15546fa7b0af3f053909a63b452b01a073"
+    },
+    "freeze_sha256": "ac00b7847ffc6a437acadf741f2456e4f5a33e644011188d8b5e168f5ed6e6b1",
+    "spec_sha256": "e7107ea1a698e22c84c1c2c3304e74c9b9d0446bb5368ac08079b7d0645e1f93"
+  },
+  "scope": "Finite X0 adversarial checks; no complete algorithm, universal coverage, exponent, or novelty claim.",
+  "controls": [
+    {
+      "control": "wrong topology",
+      "expected_valid": false,
+      "observed": {
+        "valid": false,
+        "reason": "wrong rooted topology",
+        "block": [
+          0,
+          1,
+          2
+        ],
+        "a_clusters": [
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ],
+        "b_clusters": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      "pass": true
+    },
+    {
+      "control": "wrong topology clean twin",
+      "expected_valid": true,
+      "observed": {
+        "valid": true,
+        "components": 1,
+        "witnesses": [
+          {
+            "block": [
+              0,
+              1,
+              2
+            ],
+            "restricted_tree": [
+              0,
+              [
+                1,
+                2
+              ]
+            ],
+            "span_T": [
+              "",
+              "0",
+              "1",
+              "10",
+              "11"
+            ],
+            "span_Tprime": [
+              "",
+              "0",
+              "1",
+              "10",
+              "11"
+            ]
+          }
+        ]
+      },
+      "pass": true
+    },
+    {
+      "control": "vertex overlap",
+      "expected_valid": false,
+      "observed": {
+        "valid": false,
+        "reason": "vertex overlap",
+        "block": [
+          1,
+          3
+        ],
+        "a_overlap": [
+          "",
+          "0",
+          "1"
+        ],
+        "b_overlap": [
+          "",
+          "0",
+          "1"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "control": "vertex overlap clean twin",
+      "expected_valid": true,
+      "observed": {
+        "valid": true,
+        "components": 2,
+        "witnesses": [
+          {
+            "block": [
+              0,
+              1
+            ],
+            "restricted_tree": [
+              0,
+              1
+            ],
+            "span_T": [
+              "0",
+              "00",
+              "01"
+            ],
+            "span_Tprime": [
+              "0",
+              "00",
+              "01"
+            ]
+          },
+          {
+            "block": [
+              2,
+              3
+            ],
+            "restricted_tree": [
+              2,
+              3
+            ],
+            "span_T": [
+              "1",
+              "10",
+              "11"
+            ],
+            "span_Tprime": [
+              "1",
+              "10",
+              "11"
+            ]
+          }
+        ]
+      },
+      "pass": true
+    },
+    {
+      "control": "duplicate labels",
+      "expected_valid": false,
+      "observed": {
+        "valid": false,
+        "reason": "duplicate forest label"
+      },
+      "pass": true
+    },
+    {
+      "control": "duplicate clean twin",
+      "expected_valid": true,
+      "observed": {
+        "valid": true,
+        "components": 2,
+        "witnesses": [
+          {
+            "block": [
+              0
+            ],
+            "restricted_tree": 0,
+            "span_T": [
+              "0"
+            ],
+            "span_Tprime": [
+              "0"
+            ]
+          },
+          {
+            "block": [
+              1,
+              2
+            ],
+            "restricted_tree": [
+              1,
+              2
+            ],
+            "span_T": [
+              "1",
+              "10",
+              "11"
+            ],
+            "span_Tprime": [
+              "1",
+              "10",
+              "11"
+            ]
+          }
+        ]
+      },
+      "pass": true
+    },
+    {
+      "control": "missing labels",
+      "expected_valid": false,
+      "observed": {
+        "valid": false,
+        "reason": "missing/foreign forest label"
+      },
+      "pass": true
+    },
+    {
+      "control": "missing clean twin",
+      "expected_valid": true,
+      "observed": {
+        "valid": true,
+        "components": 3,
+        "witnesses": [
+          {
+            "block": [
+              0
+            ],
+            "restricted_tree": 0,
+            "span_T": [
+              "0"
+            ],
+            "span_Tprime": [
+              "0"
+            ]
+          },
+          {
+            "block": [
+              1
+            ],
+            "restricted_tree": 1,
+            "span_T": [
+              "10"
+            ],
+            "span_Tprime": [
+              "10"
+            ]
+          },
+          {
+            "block": [
+              2
+            ],
+            "restricted_tree": 2,
+            "span_T": [
+              "11"
+            ],
+            "span_Tprime": [
+              "11"
+            ]
+          }
+        ]
+      },
+      "pass": true
+    },
+    {
+      "control": "tree universe mismatch",
+      "expected_valid": false,
+      "observed": {
+        "valid": false,
+        "reason": "tree label mismatch"
+      },
+      "pass": true
+    },
+    {
+      "control": "tree universe clean twin",
+      "expected_valid": true,
+      "observed": {
+        "valid": true,
+        "components": 3,
+        "witnesses": [
+          {
+            "block": [
+              0
+            ],
+            "restricted_tree": 0,
+            "span_T": [
+              "0"
+            ],
+            "span_Tprime": [
+              "0"
+            ]
+          },
+          {
+            "block": [
+              1
+            ],
+            "restricted_tree": 1,
+            "span_T": [
+              "10"
+            ],
+            "span_Tprime": [
+              "10"
+            ]
+          },
+          {
+            "block": [
+              2
+            ],
+            "restricted_tree": 2,
+            "span_T": [
+              "11"
+            ],
+            "span_Tprime": [
+              "11"
+            ]
+          }
+        ]
+      },
+      "pass": true
+    },
+    {
+      "control": "duplicate tree labels",
+      "pass": true,
+      "observed": "duplicate tree label"
+    },
+    {
+      "control": "duplicate tree labels clean twin",
+      "pass": true
+    },
+    {
+      "control": "empty",
+      "expected_components": 0,
+      "observed": {
+        "components": 0,
+        "partitions_tested": 1,
+        "optimal_partitions": [
+          []
+        ],
+        "span_witnesses": [
+          {
+            "valid": true,
+            "components": 0,
+            "witnesses": []
+          }
+        ]
+      },
+      "pass": true
+    },
+    {
+      "control": "singleton",
+      "expected_components": 1,
+      "observed": {
+        "components": 1,
+        "partitions_tested": 1,
+        "optimal_partitions": [
+          [
+            [
+              0
+            ]
+          ]
+        ],
+        "span_witnesses": [
+          {
+            "valid": true,
+            "components": 1,
+            "witnesses": [
+              {
+                "block": [
+                  0
+                ],
+                "restricted_tree": 0,
+                "span_T": [
+                  ""
+                ],
+                "span_Tprime": [
+                  ""
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "pass": true
+    },
+    {
+      "control": "identical",
+      "expected_components": 1,
+      "observed": {
+        "components": 1,
+        "partitions_tested": 15,
+        "optimal_partitions": [
+          [
+            [
+              0,
+              1,
+              2,
+              3
+            ]
+          ]
+        ],
+        "span_witnesses": [
+          {
+            "valid": true,
+            "components": 1,
+            "witnesses": [
+              {
+                "block": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "restricted_tree": [
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    2,
+                    3
+                  ]
+                ],
+                "span_T": [
+                  "",
+                  "0",
+                  "00",
+                  "01",
+                  "1",
+                  "10",
+                  "11"
+                ],
+                "span_Tprime": [
+                  "",
+                  "0",
+                  "00",
+                  "01",
+                  "1",
+                  "10",
+                  "11"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "pass": true
+    },
+    {
+      "control": "conflicting_rooted_triple",
+      "expected_components": 2,
+      "observed": {
+        "components": 2,
+        "partitions_tested": 5,
+        "optimal_partitions": [
+          [
+            [
+              0
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              2
+            ],
+            [
+              1
+            ]
+          ]
+        ],
+        "span_witnesses": [
+          {
+            "valid": true,
+            "components": 2,
+            "witnesses": [
+              {
+                "block": [
+                  0
+                ],
+                "restricted_tree": 0,
+                "span_T": [
+                  "0"
+                ],
+                "span_Tprime": [
+                  "00"
+                ]
+              },
+              {
+                "block": [
+                  1,
+                  2
+                ],
+                "restricted_tree": [
+                  1,
+                  2
+                ],
+                "span_T": [
+                  "1",
+                  "10",
+                  "11"
+                ],
+                "span_Tprime": [
+                  "",
+                  "0",
+                  "01",
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "valid": true,
+            "components": 2,
+            "witnesses": [
+              {
+                "block": [
+                  0,
+                  1
+                ],
+                "restricted_tree": [
+                  0,
+                  1
+                ],
+                "span_T": [
+                  "",
+                  "0",
+                  "1",
+                  "10"
+                ],
+                "span_Tprime": [
+                  "0",
+                  "00",
+                  "01"
+                ]
+              },
+              {
+                "block": [
+                  2
+                ],
+                "restricted_tree": 2,
+                "span_T": [
+                  "11"
+                ],
+                "span_Tprime": [
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "valid": true,
+            "components": 2,
+            "witnesses": [
+              {
+                "block": [
+                  0,
+                  2
+                ],
+                "restricted_tree": [
+                  0,
+                  2
+                ],
+                "span_T": [
+                  "",
+                  "0",
+                  "1",
+                  "11"
+                ],
+                "span_Tprime": [
+                  "",
+                  "0",
+                  "00",
+                  "1"
+                ]
+              },
+              {
+                "block": [
+                  1
+                ],
+                "restricted_tree": 1,
+                "span_T": [
+                  "10"
+                ],
+                "span_Tprime": [
+                  "01"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "pass": true
+    },
+    {
+      "control": "suppression",
+      "expected": [
+        0,
+        2
+      ],
+      "observed": [
+        0,
+        2
+      ],
+      "pass": true
+    },
+    {
+      "control": "component count vs paid cuts",
+      "observed_blocks": [
+        [
+          0
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "paid_cuts": 1,
+      "initial_components": 1,
+      "final_components": 2,
+      "pass": true
+    },
+    {
+      "control": "published_bottleneck",
+      "vector": [
+        1,
+        1,
+        3,
+        4,
+        4
+      ],
+      "exact_mass": "2896278200/2847396321",
+      "observed_certificate": false,
+      "pass": true
+    },
+    {
+      "control": "conditional_macro_a",
+      "vector": [
+        1,
+        1,
+        4,
+        4,
+        4
+      ],
+      "exact_mass": "921759400/949132107",
+      "observed_certificate": true,
+      "pass": true
+    },
+    {
+      "control": "false recurrence caught",
+      "claimed_certificate": true,
+      "exact_mass": "2896278200/2847396321",
+      "observed_certificate": false,
+      "pass": true
+    },
+    {
+      "control": "false recurrence clean twin",
+      "exact_mass": "921759400/949132107",
+      "pass": true
+    },
+    {
+      "control": "false optimum comparator caught",
+      "claimed": 1,
+      "observed": 2,
+      "pass": true
+    },
+    {
+      "control": "false optimum comparator clean twin",
+      "claimed": 2,
+      "observed": 2,
+      "pass": true
+    }
+  ],
+  "passed": 24,
+  "total": 24,
+  "elapsed_seconds": 0.0007464999999911015,
+  "completed_utc": "2026-10-14T21:31:33.959605+00:00",
+  "verdict": "PASS"
+}

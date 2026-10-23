@@ -1,0 +1,24 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2RouteSource.lean:106:23: error: unsolved goals
+T S : Tree
+c : CherryBranching.Candidate
+q N : Nat
+three : 3 ≤ N
+tn : treeNodes T ≤ N
+sn : treeNodes S ≤ N
+sl : (leaves S).length ≤ N
+graph : (runHard2Meter T S c).work ≤ 2100 * (N + 1) ^ 6
+partition0 : (partitionMeter S c.a c.b).work ≤ partitionBudget N
+plen : (partitionMeter S c.a c.b).value.length ≤ 2 * N + 1
+blocks : ∀ (B : List Nat), B ∈ (partitionMeter S c.a c.b).value → B.length ≤ N
+point : ∀ (B : List Nat), B ∈ (partitionMeter S c.a c.b).value → (meterRestrictionAgrees T S B).work ≤ 128 * (N + 1) ^ 2
+pos2 : 1 ≤ (N + 1) ^ 2
+coef : 128 * (N + 1) ^ 2 + 4 ≤ 132 * (N + 1) ^ 2
+h : 132 * (N + 1) ^ 2 * ((partitionMeter S c.a c.b).value.length + 1) ≤ 132 * (N + 1) ^ 2 * (2 * (N + 1))
+⊢ 2 * (132 * ((N + 1) ^ 1 * (N + 1) * (N + 1))) = 2 * (132 * (N + 1) ^ 3)
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2RouteSource.lean:123:49: warning: This simp argument is unused:
+  Charged.work
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

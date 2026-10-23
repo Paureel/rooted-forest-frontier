@@ -1,0 +1,97 @@
+{
+  "id": "thesis-runtime-repair",
+  "title": "Joint G4 runtime repair",
+  "status": "open",
+  "summary": "Reviewed repair pass complete. Conditional arithmetic is checked; a reachable twelve-leaf history refutes universal outside-sibling application. Its C subtree has two calls. The joint and full runtime bounds remain open.",
+  "metrics": {
+    "parent_control_rows": 4,
+    "inherited_lean_module_recompiled": true,
+    "active_child_agents": 0,
+    "fresh_control_families_passed": 5,
+    "adversary_sampled_trees": 20000,
+    "adversary_eligible_orientations": 2491,
+    "adversary_live_c_outcomes": 267,
+    "adversary_dead_c_outcomes": 3124,
+    "adversary_in_regime_fires": 0,
+    "geometry_generated_inputs": 40000,
+    "geometry_qualifying_states": 1221,
+    "geometry_final_lean_statements": 13,
+    "recurrence_named_controls": 31,
+    "recurrence_negative_budget_checks": 40,
+    "recurrence_credit_states": 10,
+    "recurrence_schema_passes": 35,
+    "recurrence_schema_exceptions": 2,
+    "fresh_review_local_trees": 11340,
+    "fresh_review_qualified_orientations": 708,
+    "fresh_review_budget_inequalities": 5664,
+    "fresh_review_axiom_audits": 50,
+    "new_history_leaf_labels": 12,
+    "new_history_finite_lean_statements": 11,
+    "new_history_independent_checks": 60,
+    "new_history_independent_lean_checks": 13,
+    "new_history_application_counterexamples": 1,
+    "new_history_actual_C_calls": 2
+  },
+  "claims": [
+    {
+      "id": "joint-g4-bound",
+      "label": "Joint G4 descendant bound",
+      "status": "open",
+      "detail": "Inside-sibling continuation, credited A allowance, annotation closure and global induction remain unproved."
+    },
+    {
+      "id": "conditional-composition",
+      "label": "Conditional A/B/C count composition",
+      "status": "checked",
+      "detail": "Writing X=alpha*2^K: A<=X/4-2, B<=X/8-3, C<=X/8+2 imply 1+A+B+C<=X/2-2. This does not supply structural premises."
+    },
+    {
+      "id": "outside-sibling-application",
+      "label": "Universal outside-sibling application premise",
+      "status": "refuted",
+      "detail": "Independent 60-check replay of an unprotected twelve-leaf C,A,C,A history reaches J with retained x inside protected sibling b. Conditional geometry and runtime inequality are not refuted."
+    },
+    {
+      "id": "history-finite-certificate",
+      "label": "Concrete reachable history certificate",
+      "status": "checked",
+      "detail": "11 finite Lean facts plus two independent supplemental checks pass using only propext or no axioms; false outside-b certificate rejected. Source correspondence remains an explicitly reviewed interpretation, not a universal Lean source model."
+    }
+  ],
+  "artifacts": [
+    "research/rmaf/thesis_complexity/repair/WORKFILE.md",
+    "research/rmaf/thesis_complexity/repair/controls-frozen.json",
+    "research/rmaf/results/thesis-runtime-repair-controls.json",
+    "research/rmaf/results/thesis-runtime-repair-inherited-trace-lean.log",
+    "research/rmaf/thesis_complexity/repair/adversary/PROOF-ATTEMPT.md",
+    "research/rmaf/results/thesis-runtime-repair-adversary-final.json",
+    "research/rmaf/thesis_complexity/repair/FRESH-REVIEW-TARGET.md",
+    "research/rmaf/thesis_complexity/repair/import-ledger.md",
+    "research/rmaf/thesis_complexity/repair/geometry/PROOF.md",
+    "research/rmaf/thesis_complexity/repair/recurrence/report.md",
+    "research/rmaf/thesis_complexity/repair/history-counterexample.md",
+    "research/rmaf/thesis_complexity/repair/HistoryTrace.lean",
+    "research/rmaf/results/thesis-runtime-repair-history-reachable-probe.json",
+    "research/rmaf/thesis_complexity/repair/fresh_review/RULING.md",
+    "research/rmaf/thesis_complexity/repair/report.md",
+    "research/rmaf/thesis_complexity/repair/open-lemmas.md",
+    "research/rmaf/thesis_complexity/repair/fresh_review/new_history/ADDENDUM.md",
+    "research/rmaf/results/thesis-runtime-repair-fresh-review-history-final.json",
+    "research/rmaf/results/thesis-runtime-repair-fresh-review-history-lean.json",
+    "research/rmaf/results/thesis-runtime-repair-summary.json"
+  ],
+  "lemmas": [
+    {
+      "id": "inside-sibling-prefix",
+      "label": "Inside-sibling C-prefix certificate",
+      "status": "open",
+      "detail": "For every reachable exceptional J with x inside b, cover every legal C continuation and prove its exact affine frontier allowance; retain physical protections through empty-credit resets."
+    },
+    {
+      "id": "credited-A",
+      "label": "Credited A continuation allowance",
+      "status": "open",
+      "detail": "Prove I(A)<=alpha*2^(K-2)-2 or supply a compatible prefix certificate. Empty-credit outer induction alone is insufficient."
+    }
+  ]
+}

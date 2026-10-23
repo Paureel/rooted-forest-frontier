@@ -1,0 +1,2850 @@
+{
+  "scope": "Development finite evidence only; all three universal milestones OPEN",
+  "controls": {
+    "x0": {
+      "controls": [
+        {
+          "control": "wrong topology",
+          "expected_valid": false,
+          "observed": {
+            "valid": false,
+            "reason": "wrong rooted topology",
+            "block": [
+              0,
+              1,
+              2
+            ],
+            "a_clusters": [
+              [
+                1,
+                2
+              ],
+              [
+                0,
+                1,
+                2
+              ]
+            ],
+            "b_clusters": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ]
+            ]
+          },
+          "pass": true
+        },
+        {
+          "control": "wrong topology clean twin",
+          "expected_valid": true,
+          "observed": {
+            "valid": true,
+            "components": 1,
+            "witnesses": [
+              {
+                "block": [
+                  0,
+                  1,
+                  2
+                ],
+                "restricted_tree": [
+                  0,
+                  [
+                    1,
+                    2
+                  ]
+                ],
+                "span_T": [
+                  "",
+                  "0",
+                  "1",
+                  "10",
+                  "11"
+                ],
+                "span_Tprime": [
+                  "",
+                  "0",
+                  "1",
+                  "10",
+                  "11"
+                ]
+              }
+            ]
+          },
+          "pass": true
+        },
+        {
+          "control": "vertex overlap",
+          "expected_valid": false,
+          "observed": {
+            "valid": false,
+            "reason": "vertex overlap",
+            "block": [
+              1,
+              3
+            ],
+            "a_overlap": [
+              "",
+              "0",
+              "1"
+            ],
+            "b_overlap": [
+              "",
+              "0",
+              "1"
+            ]
+          },
+          "pass": true
+        },
+        {
+          "control": "vertex overlap clean twin",
+          "expected_valid": true,
+          "observed": {
+            "valid": true,
+            "components": 2,
+            "witnesses": [
+              {
+                "block": [
+                  0,
+                  1
+                ],
+                "restricted_tree": [
+                  0,
+                  1
+                ],
+                "span_T": [
+                  "0",
+                  "00",
+                  "01"
+                ],
+                "span_Tprime": [
+                  "0",
+                  "00",
+                  "01"
+                ]
+              },
+              {
+                "block": [
+                  2,
+                  3
+                ],
+                "restricted_tree": [
+                  2,
+                  3
+                ],
+                "span_T": [
+                  "1",
+                  "10",
+                  "11"
+                ],
+                "span_Tprime": [
+                  "1",
+                  "10",
+                  "11"
+                ]
+              }
+            ]
+          },
+          "pass": true
+        },
+        {
+          "control": "duplicate labels",
+          "expected_valid": false,
+          "observed": {
+            "valid": false,
+            "reason": "duplicate forest label"
+          },
+          "pass": true
+        },
+        {
+          "control": "duplicate clean twin",
+          "expected_valid": true,
+          "observed": {
+            "valid": true,
+            "components": 2,
+            "witnesses": [
+              {
+                "block": [
+                  0
+                ],
+                "restricted_tree": 0,
+                "span_T": [
+                  "0"
+                ],
+                "span_Tprime": [
+                  "0"
+                ]
+              },
+              {
+                "block": [
+                  1,
+                  2
+                ],
+                "restricted_tree": [
+                  1,
+                  2
+                ],
+                "span_T": [
+                  "1",
+                  "10",
+                  "11"
+                ],
+                "span_Tprime": [
+                  "1",
+                  "10",
+                  "11"
+                ]
+              }
+            ]
+          },
+          "pass": true
+        },
+        {
+          "control": "missing labels",
+          "expected_valid": false,
+          "observed": {
+            "valid": false,
+            "reason": "missing/foreign forest label"
+          },
+          "pass": true
+        },
+        {
+          "control": "missing clean twin",
+          "expected_valid": true,
+          "observed": {
+            "valid": true,
+            "components": 3,
+            "witnesses": [
+              {
+                "block": [
+                  0
+                ],
+                "restricted_tree": 0,
+                "span_T": [
+                  "0"
+                ],
+                "span_Tprime": [
+                  "0"
+                ]
+              },
+              {
+                "block": [
+                  1
+                ],
+                "restricted_tree": 1,
+                "span_T": [
+                  "10"
+                ],
+                "span_Tprime": [
+                  "10"
+                ]
+              },
+              {
+                "block": [
+                  2
+                ],
+                "restricted_tree": 2,
+                "span_T": [
+                  "11"
+                ],
+                "span_Tprime": [
+                  "11"
+                ]
+              }
+            ]
+          },
+          "pass": true
+        },
+        {
+          "control": "tree universe mismatch",
+          "expected_valid": false,
+          "observed": {
+            "valid": false,
+            "reason": "tree label mismatch"
+          },
+          "pass": true
+        },
+        {
+          "control": "tree universe clean twin",
+          "expected_valid": true,
+          "observed": {
+            "valid": true,
+            "components": 3,
+            "witnesses": [
+              {
+                "block": [
+                  0
+                ],
+                "restricted_tree": 0,
+                "span_T": [
+                  "0"
+                ],
+                "span_Tprime": [
+                  "0"
+                ]
+              },
+              {
+                "block": [
+                  1
+                ],
+                "restricted_tree": 1,
+                "span_T": [
+                  "10"
+                ],
+                "span_Tprime": [
+                  "10"
+                ]
+              },
+              {
+                "block": [
+                  2
+                ],
+                "restricted_tree": 2,
+                "span_T": [
+                  "11"
+                ],
+                "span_Tprime": [
+                  "11"
+                ]
+              }
+            ]
+          },
+          "pass": true
+        },
+        {
+          "control": "duplicate tree labels",
+          "pass": true,
+          "observed": "duplicate tree label"
+        },
+        {
+          "control": "duplicate tree labels clean twin",
+          "pass": true
+        },
+        {
+          "control": "empty",
+          "expected_components": 0,
+          "observed": {
+            "components": 0,
+            "partitions_tested": 1,
+            "optimal_partitions": [
+              []
+            ],
+            "span_witnesses": [
+              {
+                "valid": true,
+                "components": 0,
+                "witnesses": []
+              }
+            ]
+          },
+          "pass": true
+        },
+        {
+          "control": "singleton",
+          "expected_components": 1,
+          "observed": {
+            "components": 1,
+            "partitions_tested": 1,
+            "optimal_partitions": [
+              [
+                [
+                  0
+                ]
+              ]
+            ],
+            "span_witnesses": [
+              {
+                "valid": true,
+                "components": 1,
+                "witnesses": [
+                  {
+                    "block": [
+                      0
+                    ],
+                    "restricted_tree": 0,
+                    "span_T": [
+                      ""
+                    ],
+                    "span_Tprime": [
+                      ""
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "pass": true
+        },
+        {
+          "control": "identical",
+          "expected_components": 1,
+          "observed": {
+            "components": 1,
+            "partitions_tested": 15,
+            "optimal_partitions": [
+              [
+                [
+                  0,
+                  1,
+                  2,
+                  3
+                ]
+              ]
+            ],
+            "span_witnesses": [
+              {
+                "valid": true,
+                "components": 1,
+                "witnesses": [
+                  {
+                    "block": [
+                      0,
+                      1,
+                      2,
+                      3
+                    ],
+                    "restricted_tree": [
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        2,
+                        3
+                      ]
+                    ],
+                    "span_T": [
+                      "",
+                      "0",
+                      "00",
+                      "01",
+                      "1",
+                      "10",
+                      "11"
+                    ],
+                    "span_Tprime": [
+                      "",
+                      "0",
+                      "00",
+                      "01",
+                      "1",
+                      "10",
+                      "11"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "pass": true
+        },
+        {
+          "control": "conflicting_rooted_triple",
+          "expected_components": 2,
+          "observed": {
+            "components": 2,
+            "partitions_tested": 5,
+            "optimal_partitions": [
+              [
+                [
+                  0
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2
+                ]
+              ],
+              [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1
+                ]
+              ]
+            ],
+            "span_witnesses": [
+              {
+                "valid": true,
+                "components": 2,
+                "witnesses": [
+                  {
+                    "block": [
+                      0
+                    ],
+                    "restricted_tree": 0,
+                    "span_T": [
+                      "0"
+                    ],
+                    "span_Tprime": [
+                      "00"
+                    ]
+                  },
+                  {
+                    "block": [
+                      1,
+                      2
+                    ],
+                    "restricted_tree": [
+                      1,
+                      2
+                    ],
+                    "span_T": [
+                      "1",
+                      "10",
+                      "11"
+                    ],
+                    "span_Tprime": [
+                      "",
+                      "0",
+                      "01",
+                      "1"
+                    ]
+                  }
+                ]
+              },
+              {
+                "valid": true,
+                "components": 2,
+                "witnesses": [
+                  {
+                    "block": [
+                      0,
+                      1
+                    ],
+                    "restricted_tree": [
+                      0,
+                      1
+                    ],
+                    "span_T": [
+                      "",
+                      "0",
+                      "1",
+                      "10"
+                    ],
+                    "span_Tprime": [
+                      "0",
+                      "00",
+                      "01"
+                    ]
+                  },
+                  {
+                    "block": [
+                      2
+                    ],
+                    "restricted_tree": 2,
+                    "span_T": [
+                      "11"
+                    ],
+                    "span_Tprime": [
+                      "1"
+                    ]
+                  }
+                ]
+              },
+              {
+                "valid": true,
+                "components": 2,
+                "witnesses": [
+                  {
+                    "block": [
+                      0,
+                      2
+                    ],
+                    "restricted_tree": [
+                      0,
+                      2
+                    ],
+                    "span_T": [
+                      "",
+                      "0",
+                      "1",
+                      "11"
+                    ],
+                    "span_Tprime": [
+                      "",
+                      "0",
+                      "00",
+                      "1"
+                    ]
+                  },
+                  {
+                    "block": [
+                      1
+                    ],
+                    "restricted_tree": 1,
+                    "span_T": [
+                      "10"
+                    ],
+                    "span_Tprime": [
+                      "01"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "pass": true
+        },
+        {
+          "control": "suppression",
+          "expected": [
+            0,
+            2
+          ],
+          "observed": [
+            0,
+            2
+          ],
+          "pass": true
+        },
+        {
+          "control": "component count vs paid cuts",
+          "observed_blocks": [
+            [
+              0
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "paid_cuts": 1,
+          "initial_components": 1,
+          "final_components": 2,
+          "pass": true
+        },
+        {
+          "control": "published_bottleneck",
+          "vector": [
+            1,
+            1,
+            3,
+            4,
+            4
+          ],
+          "exact_mass": "2896278200/2847396321",
+          "observed_certificate": false,
+          "pass": true
+        },
+        {
+          "control": "conditional_macro_a",
+          "vector": [
+            1,
+            1,
+            4,
+            4,
+            4
+          ],
+          "exact_mass": "921759400/949132107",
+          "observed_certificate": true,
+          "pass": true
+        },
+        {
+          "control": "false recurrence caught",
+          "claimed_certificate": true,
+          "exact_mass": "2896278200/2847396321",
+          "observed_certificate": false,
+          "pass": true
+        },
+        {
+          "control": "false recurrence clean twin",
+          "exact_mass": "921759400/949132107",
+          "pass": true
+        },
+        {
+          "control": "false optimum comparator caught",
+          "claimed": 1,
+          "observed": 2,
+          "pass": true
+        },
+        {
+          "control": "false optimum comparator clean twin",
+          "claimed": 2,
+          "observed": 2,
+          "pass": true
+        }
+      ],
+      "passed": 24,
+      "total": 24
+    },
+    "source_predicates": [
+      {
+        "name": "Whidden t1 predicate",
+        "expected": {
+          "t": 1,
+          "step2a": true
+        },
+        "observed": {
+          "cherry": [
+            1,
+            2
+          ],
+          "t": 1,
+          "pendants": [
+            {
+              "edge": [
+                "0",
+                "00"
+              ],
+              "labels": [
+                0
+              ]
+            }
+          ],
+          "step2a": true,
+          "step2b": false,
+          "step2c": false,
+          "step2d": false,
+          "two_cut_blocks": [
+            [
+              0
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "blocks_disjoint_T": true,
+          "blocks_homeomorphic": [
+            true,
+            true
+          ]
+        },
+        "pass": true
+      },
+      {
+        "name": "Whidden t3 predicate",
+        "expected": {
+          "t": 3,
+          "step2b": true
+        },
+        "observed": {
+          "cherry": [
+            3,
+            4
+          ],
+          "t": 3,
+          "pendants": [
+            {
+              "edge": [
+                "000",
+                "0000"
+              ],
+              "labels": [
+                0
+              ]
+            },
+            {
+              "edge": [
+                "00",
+                "001"
+              ],
+              "labels": [
+                1
+              ]
+            },
+            {
+              "edge": [
+                "0",
+                "01"
+              ],
+              "labels": [
+                2
+              ]
+            }
+          ],
+          "step2a": false,
+          "step2b": true,
+          "step2c": false,
+          "step2d": false,
+          "two_cut_blocks": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "blocks_disjoint_T": true,
+          "blocks_homeomorphic": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "pass": true
+      },
+      {
+        "name": "rule4 predicate",
+        "expected": {
+          "t": 2,
+          "step2c": true
+        },
+        "observed": {
+          "cherry": [
+            4,
+            5
+          ],
+          "t": 2,
+          "pendants": [
+            {
+              "edge": [
+                "000",
+                "0000"
+              ],
+              "labels": [
+                2
+              ]
+            },
+            {
+              "edge": [
+                "001",
+                "0010"
+              ],
+              "labels": [
+                3
+              ]
+            }
+          ],
+          "step2a": false,
+          "step2b": false,
+          "step2c": true,
+          "step2d": true,
+          "two_cut_blocks": [
+            [
+              2
+            ],
+            [
+              3
+            ],
+            [
+              0,
+              1,
+              4,
+              5
+            ]
+          ],
+          "blocks_disjoint_T": true,
+          "blocks_homeomorphic": [
+            true,
+            true,
+            true
+          ]
+        },
+        "pass": true
+      },
+      {
+        "name": "rule5 disjoint/homeomorphic predicate",
+        "expected": {
+          "t": 2,
+          "step2d": true
+        },
+        "observed": {
+          "cherry": [
+            4,
+            5
+          ],
+          "t": 2,
+          "pendants": [
+            {
+              "edge": [
+                "0",
+                "00"
+              ],
+              "labels": [
+                0,
+                1
+              ]
+            },
+            {
+              "edge": [
+                "1",
+                "10"
+              ],
+              "labels": [
+                2,
+                3
+              ]
+            }
+          ],
+          "step2a": false,
+          "step2b": false,
+          "step2c": false,
+          "step2d": true,
+          "two_cut_blocks": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          "blocks_disjoint_T": true,
+          "blocks_homeomorphic": [
+            true,
+            true,
+            true
+          ]
+        },
+        "pass": true
+      },
+      {
+        "name": "eligible hard clean twin",
+        "expected": {
+          "t": 2,
+          "step2a": false,
+          "step2b": false,
+          "step2c": false,
+          "step2d": false
+        },
+        "observed": {
+          "cherry": [
+            4,
+            5
+          ],
+          "t": 2,
+          "pendants": [
+            {
+              "edge": [
+                "000",
+                "0000"
+              ],
+              "labels": [
+                1,
+                3
+              ]
+            },
+            {
+              "edge": [
+                "00",
+                "001"
+              ],
+              "labels": [
+                2
+              ]
+            }
+          ],
+          "step2a": false,
+          "step2b": false,
+          "step2c": false,
+          "step2d": false,
+          "two_cut_blocks": [
+            [
+              1,
+              3
+            ],
+            [
+              2
+            ],
+            [
+              0,
+              4,
+              5
+            ]
+          ],
+          "blocks_disjoint_T": false,
+          "blocks_homeomorphic": [
+            true,
+            true,
+            true
+          ]
+        },
+        "pass": true
+      }
+    ],
+    "product_controls": [
+      {
+        "name": "single two-leaf split",
+        "cuts": [
+          [
+            [
+              "",
+              "0"
+            ]
+          ]
+        ],
+        "pass": true
+      },
+      {
+        "name": "mixed quartet core coverage",
+        "cuts": [
+          [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "1",
+              "10"
+            ]
+          ],
+          [
+            [
+              "0",
+              "01"
+            ],
+            [
+              "1",
+              "11"
+            ]
+          ]
+        ],
+        "mass2": "1/2",
+        "all_split_edge_subsets_covered": 34,
+        "pass": true
+      },
+      {
+        "name": "missing survivor caught",
+        "target_partition": [
+          [
+            0
+          ],
+          [
+            3
+          ],
+          [
+            1
+          ],
+          [
+            4
+          ],
+          [
+            2,
+            5
+          ]
+        ],
+        "surviving_alternatives": [
+          2
+        ],
+        "bad_nonempty_cover": [
+          0,
+          1
+        ],
+        "pass": true
+      },
+      {
+        "name": "false residual recurrence caught",
+        "bad_mass": "43100/53361",
+        "good_mass": "10000/17787",
+        "bad_full_mass": "2896278200/2847396321",
+        "good_full_mass": "921759400/949132107",
+        "pass": true
+      }
+    ],
+    "passed": 33,
+    "total": 33
+  },
+  "fixture": {
+    "T": [
+      [
+        [
+          [
+            [
+              [
+                5,
+                6
+              ],
+              4
+            ],
+            3
+          ],
+          2
+        ],
+        1
+      ],
+      0
+    ],
+    "Tprime": [
+      [
+        [
+          [
+            1,
+            3
+          ],
+          5
+        ],
+        [
+          [
+            2,
+            4
+          ],
+          6
+        ]
+      ],
+      0
+    ],
+    "cherry": [
+      5,
+      6
+    ],
+    "source_checks": {
+      "forward": {
+        "common_cherries": [],
+        "rows": [
+          {
+            "cherry": [
+              5,
+              6
+            ],
+            "t": 2,
+            "pendants": [
+              {
+                "edge": [
+                  "00",
+                  "000"
+                ],
+                "labels": [
+                  1,
+                  3
+                ]
+              },
+              {
+                "edge": [
+                  "01",
+                  "010"
+                ],
+                "labels": [
+                  2,
+                  4
+                ]
+              }
+            ],
+            "step2a": false,
+            "step2b": false,
+            "step2c": false,
+            "step2d": false,
+            "two_cut_blocks": [
+              [
+                1,
+                3
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                0,
+                5,
+                6
+              ]
+            ],
+            "blocks_disjoint_T": false,
+            "blocks_homeomorphic": [
+              true,
+              true,
+              true
+            ]
+          }
+        ],
+        "excluded_2a_to_2d": true
+      },
+      "reverse": {
+        "common_cherries": [],
+        "rows": [
+          {
+            "cherry": [
+              1,
+              3
+            ],
+            "t": 2,
+            "pendants": [
+              {
+                "edge": [
+                  "000",
+                  "0000"
+                ],
+                "labels": [
+                  4,
+                  5,
+                  6
+                ]
+              },
+              {
+                "edge": [
+                  "00",
+                  "001"
+                ],
+                "labels": [
+                  2
+                ]
+              }
+            ],
+            "step2a": false,
+            "step2b": false,
+            "step2c": false,
+            "step2d": false,
+            "two_cut_blocks": [
+              [
+                4,
+                5,
+                6
+              ],
+              [
+                2
+              ],
+              [
+                0,
+                1,
+                3
+              ]
+            ],
+            "blocks_disjoint_T": false,
+            "blocks_homeomorphic": [
+              false,
+              true,
+              true
+            ]
+          },
+          {
+            "cherry": [
+              2,
+              4
+            ],
+            "t": 2,
+            "pendants": [
+              {
+                "edge": [
+                  "0000",
+                  "00000"
+                ],
+                "labels": [
+                  5,
+                  6
+                ]
+              },
+              {
+                "edge": [
+                  "000",
+                  "0001"
+                ],
+                "labels": [
+                  3
+                ]
+              }
+            ],
+            "step2a": false,
+            "step2b": false,
+            "step2c": false,
+            "step2d": false,
+            "two_cut_blocks": [
+              [
+                5,
+                6
+              ],
+              [
+                3
+              ],
+              [
+                0,
+                1,
+                2,
+                4
+              ]
+            ],
+            "blocks_disjoint_T": false,
+            "blocks_homeomorphic": [
+              true,
+              true,
+              true
+            ]
+          }
+        ],
+        "excluded_2a_to_2d": true
+      }
+    },
+    "parent_admitted": true,
+    "pendants": [
+      {
+        "edge": [
+          "00",
+          "000"
+        ],
+        "labels": [
+          1,
+          3
+        ]
+      },
+      {
+        "edge": [
+          "01",
+          "010"
+        ],
+        "labels": [
+          2,
+          4
+        ]
+      }
+    ],
+    "paid_before_macro": 2,
+    "raw_blocks": [
+      [
+        0,
+        5,
+        6
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    "raw_optimum": {
+      "components": 5,
+      "partitions_tested": 877,
+      "optimal_partitions": [
+        [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2
+          ],
+          [
+            4
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        [
+          [
+            0,
+            5,
+            6
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ]
+        ]
+      ],
+      "span_witnesses": [
+        {
+          "valid": true,
+          "components": 5,
+          "witnesses": [
+            {
+              "block": [
+                0
+              ],
+              "restricted_tree": 0,
+              "span_T": [
+                "1"
+              ],
+              "span_Tprime": [
+                "1"
+              ]
+            },
+            {
+              "block": [
+                1
+              ],
+              "restricted_tree": 1,
+              "span_T": [
+                "01"
+              ],
+              "span_Tprime": [
+                "0000"
+              ]
+            },
+            {
+              "block": [
+                2,
+                4
+              ],
+              "restricted_tree": [
+                2,
+                4
+              ],
+              "span_T": [
+                "00",
+                "000",
+                "0000",
+                "00001",
+                "001"
+              ],
+              "span_Tprime": [
+                "010",
+                "0100",
+                "0101"
+              ]
+            },
+            {
+              "block": [
+                3
+              ],
+              "restricted_tree": 3,
+              "span_T": [
+                "0001"
+              ],
+              "span_Tprime": [
+                "0001"
+              ]
+            },
+            {
+              "block": [
+                5,
+                6
+              ],
+              "restricted_tree": [
+                5,
+                6
+              ],
+              "span_T": [
+                "00000",
+                "000000",
+                "000001"
+              ],
+              "span_Tprime": [
+                "0",
+                "00",
+                "001",
+                "01",
+                "011"
+              ]
+            }
+          ]
+        },
+        {
+          "valid": true,
+          "components": 5,
+          "witnesses": [
+            {
+              "block": [
+                0
+              ],
+              "restricted_tree": 0,
+              "span_T": [
+                "1"
+              ],
+              "span_Tprime": [
+                "1"
+              ]
+            },
+            {
+              "block": [
+                1,
+                3
+              ],
+              "restricted_tree": [
+                1,
+                3
+              ],
+              "span_T": [
+                "0",
+                "00",
+                "000",
+                "0001",
+                "01"
+              ],
+              "span_Tprime": [
+                "000",
+                "0000",
+                "0001"
+              ]
+            },
+            {
+              "block": [
+                2
+              ],
+              "restricted_tree": 2,
+              "span_T": [
+                "001"
+              ],
+              "span_Tprime": [
+                "0100"
+              ]
+            },
+            {
+              "block": [
+                4
+              ],
+              "restricted_tree": 4,
+              "span_T": [
+                "00001"
+              ],
+              "span_Tprime": [
+                "0101"
+              ]
+            },
+            {
+              "block": [
+                5,
+                6
+              ],
+              "restricted_tree": [
+                5,
+                6
+              ],
+              "span_T": [
+                "00000",
+                "000000",
+                "000001"
+              ],
+              "span_Tprime": [
+                "0",
+                "00",
+                "001",
+                "01",
+                "011"
+              ]
+            }
+          ]
+        },
+        {
+          "valid": true,
+          "components": 5,
+          "witnesses": [
+            {
+              "block": [
+                0,
+                5,
+                6
+              ],
+              "restricted_tree": [
+                0,
+                [
+                  5,
+                  6
+                ]
+              ],
+              "span_T": [
+                "",
+                "0",
+                "00",
+                "000",
+                "0000",
+                "00000",
+                "000000",
+                "000001",
+                "1"
+              ],
+              "span_Tprime": [
+                "",
+                "0",
+                "00",
+                "001",
+                "01",
+                "011",
+                "1"
+              ]
+            },
+            {
+              "block": [
+                1
+              ],
+              "restricted_tree": 1,
+              "span_T": [
+                "01"
+              ],
+              "span_Tprime": [
+                "0000"
+              ]
+            },
+            {
+              "block": [
+                2
+              ],
+              "restricted_tree": 2,
+              "span_T": [
+                "001"
+              ],
+              "span_Tprime": [
+                "0100"
+              ]
+            },
+            {
+              "block": [
+                3
+              ],
+              "restricted_tree": 3,
+              "span_T": [
+                "0001"
+              ],
+              "span_Tprime": [
+                "0001"
+              ]
+            },
+            {
+              "block": [
+                4
+              ],
+              "restricted_tree": 4,
+              "span_T": [
+                "00001"
+              ],
+              "span_Tprime": [
+                "0101"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "reduced": {
+      "T": [
+        0,
+        [
+          1,
+          [
+            2,
+            [
+              3,
+              [
+                4,
+                5
+              ]
+            ]
+          ]
+        ]
+      ],
+      "forest_trees": [
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "forest_blocks": [
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "expansion": {
+        "0": [
+          0
+        ],
+        "1": [
+          1
+        ],
+        "2": [
+          2
+        ],
+        "3": [
+          3
+        ],
+        "4": [
+          4
+        ],
+        "5": [
+          5,
+          6
+        ]
+      },
+      "closed_components": [],
+      "actions": [
+        {
+          "kind": "contract_common_cherry",
+          "pair": [
+            5,
+            6
+          ],
+          "retained": 5,
+          "expanded_labels": [
+            5,
+            6
+          ]
+        }
+      ]
+    },
+    "reduced_optimum": {
+      "components": 5,
+      "partitions_tested": 203,
+      "optimal_partitions": [
+        [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3
+          ],
+          [
+            5
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ]
+        ],
+        [
+          [
+            0,
+            5
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ]
+        ]
+      ],
+      "span_witnesses": [
+        {
+          "valid": true,
+          "components": 5,
+          "witnesses": [
+            {
+              "block": [
+                0
+              ],
+              "restricted_tree": 0,
+              "span_T": [
+                "0"
+              ],
+              "span_Tprime": [
+                "000"
+              ]
+            },
+            {
+              "block": [
+                1
+              ],
+              "restricted_tree": 1,
+              "span_T": [
+                "10"
+              ],
+              "span_Tprime": [
+                "010"
+              ]
+            },
+            {
+              "block": [
+                2,
+                4
+              ],
+              "restricted_tree": [
+                2,
+                4
+              ],
+              "span_T": [
+                "11",
+                "110",
+                "111",
+                "1111",
+                "11110"
+              ],
+              "span_Tprime": [
+                "1",
+                "10",
+                "11"
+              ]
+            },
+            {
+              "block": [
+                3
+              ],
+              "restricted_tree": 3,
+              "span_T": [
+                "1110"
+              ],
+              "span_Tprime": [
+                "011"
+              ]
+            },
+            {
+              "block": [
+                5
+              ],
+              "restricted_tree": 5,
+              "span_T": [
+                "11111"
+              ],
+              "span_Tprime": [
+                "001"
+              ]
+            }
+          ]
+        },
+        {
+          "valid": true,
+          "components": 5,
+          "witnesses": [
+            {
+              "block": [
+                0
+              ],
+              "restricted_tree": 0,
+              "span_T": [
+                "0"
+              ],
+              "span_Tprime": [
+                "000"
+              ]
+            },
+            {
+              "block": [
+                1,
+                3
+              ],
+              "restricted_tree": [
+                1,
+                3
+              ],
+              "span_T": [
+                "1",
+                "10",
+                "11",
+                "111",
+                "1110"
+              ],
+              "span_Tprime": [
+                "01",
+                "010",
+                "011"
+              ]
+            },
+            {
+              "block": [
+                2
+              ],
+              "restricted_tree": 2,
+              "span_T": [
+                "110"
+              ],
+              "span_Tprime": [
+                "10"
+              ]
+            },
+            {
+              "block": [
+                4
+              ],
+              "restricted_tree": 4,
+              "span_T": [
+                "11110"
+              ],
+              "span_Tprime": [
+                "11"
+              ]
+            },
+            {
+              "block": [
+                5
+              ],
+              "restricted_tree": 5,
+              "span_T": [
+                "11111"
+              ],
+              "span_Tprime": [
+                "001"
+              ]
+            }
+          ]
+        },
+        {
+          "valid": true,
+          "components": 5,
+          "witnesses": [
+            {
+              "block": [
+                0,
+                5
+              ],
+              "restricted_tree": [
+                0,
+                5
+              ],
+              "span_T": [
+                "",
+                "0",
+                "1",
+                "11",
+                "111",
+                "1111",
+                "11111"
+              ],
+              "span_Tprime": [
+                "00",
+                "000",
+                "001"
+              ]
+            },
+            {
+              "block": [
+                1
+              ],
+              "restricted_tree": 1,
+              "span_T": [
+                "10"
+              ],
+              "span_Tprime": [
+                "010"
+              ]
+            },
+            {
+              "block": [
+                2
+              ],
+              "restricted_tree": 2,
+              "span_T": [
+                "110"
+              ],
+              "span_Tprime": [
+                "10"
+              ]
+            },
+            {
+              "block": [
+                3
+              ],
+              "restricted_tree": 3,
+              "span_T": [
+                "1110"
+              ],
+              "span_Tprime": [
+                "011"
+              ]
+            },
+            {
+              "block": [
+                4
+              ],
+              "restricted_tree": 4,
+              "span_T": [
+                "11110"
+              ],
+              "span_Tprime": [
+                "11"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "residual_optimum": 2,
+    "reconstruction": [
+      {
+        "partition": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "validation": {
+          "valid": true,
+          "components": 5,
+          "witnesses": [
+            {
+              "block": [
+                0
+              ],
+              "restricted_tree": 0,
+              "span_T": [
+                "1"
+              ],
+              "span_Tprime": [
+                "1"
+              ]
+            },
+            {
+              "block": [
+                1
+              ],
+              "restricted_tree": 1,
+              "span_T": [
+                "01"
+              ],
+              "span_Tprime": [
+                "0000"
+              ]
+            },
+            {
+              "block": [
+                2,
+                4
+              ],
+              "restricted_tree": [
+                2,
+                4
+              ],
+              "span_T": [
+                "00",
+                "000",
+                "0000",
+                "00001",
+                "001"
+              ],
+              "span_Tprime": [
+                "010",
+                "0100",
+                "0101"
+              ]
+            },
+            {
+              "block": [
+                3
+              ],
+              "restricted_tree": 3,
+              "span_T": [
+                "0001"
+              ],
+              "span_Tprime": [
+                "0001"
+              ]
+            },
+            {
+              "block": [
+                5,
+                6
+              ],
+              "restricted_tree": [
+                5,
+                6
+              ],
+              "span_T": [
+                "00000",
+                "000000",
+                "000001"
+              ],
+              "span_Tprime": [
+                "0",
+                "00",
+                "001",
+                "01",
+                "011"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "partition": [
+          [
+            0
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2
+          ],
+          [
+            4
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "validation": {
+          "valid": true,
+          "components": 5,
+          "witnesses": [
+            {
+              "block": [
+                0
+              ],
+              "restricted_tree": 0,
+              "span_T": [
+                "1"
+              ],
+              "span_Tprime": [
+                "1"
+              ]
+            },
+            {
+              "block": [
+                1,
+                3
+              ],
+              "restricted_tree": [
+                1,
+                3
+              ],
+              "span_T": [
+                "0",
+                "00",
+                "000",
+                "0001",
+                "01"
+              ],
+              "span_Tprime": [
+                "000",
+                "0000",
+                "0001"
+              ]
+            },
+            {
+              "block": [
+                2
+              ],
+              "restricted_tree": 2,
+              "span_T": [
+                "001"
+              ],
+              "span_Tprime": [
+                "0100"
+              ]
+            },
+            {
+              "block": [
+                4
+              ],
+              "restricted_tree": 4,
+              "span_T": [
+                "00001"
+              ],
+              "span_Tprime": [
+                "0101"
+              ]
+            },
+            {
+              "block": [
+                5,
+                6
+              ],
+              "restricted_tree": [
+                5,
+                6
+              ],
+              "span_T": [
+                "00000",
+                "000000",
+                "000001"
+              ],
+              "span_Tprime": [
+                "0",
+                "00",
+                "001",
+                "01",
+                "011"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "partition": [
+          [
+            0,
+            5,
+            6
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ]
+        ],
+        "validation": {
+          "valid": true,
+          "components": 5,
+          "witnesses": [
+            {
+              "block": [
+                0,
+                5,
+                6
+              ],
+              "restricted_tree": [
+                0,
+                [
+                  5,
+                  6
+                ]
+              ],
+              "span_T": [
+                "",
+                "0",
+                "00",
+                "000",
+                "0000",
+                "00000",
+                "000000",
+                "000001",
+                "1"
+              ],
+              "span_Tprime": [
+                "",
+                "0",
+                "00",
+                "001",
+                "01",
+                "011",
+                "1"
+              ]
+            },
+            {
+              "block": [
+                1
+              ],
+              "restricted_tree": 1,
+              "span_T": [
+                "01"
+              ],
+              "span_Tprime": [
+                "0000"
+              ]
+            },
+            {
+              "block": [
+                2
+              ],
+              "restricted_tree": 2,
+              "span_T": [
+                "001"
+              ],
+              "span_Tprime": [
+                "0100"
+              ]
+            },
+            {
+              "block": [
+                3
+              ],
+              "restricted_tree": 3,
+              "span_T": [
+                "0001"
+              ],
+              "span_Tprime": [
+                "0001"
+              ]
+            },
+            {
+              "block": [
+                4
+              ],
+              "restricted_tree": 4,
+              "span_T": [
+                "00001"
+              ],
+              "span_Tprime": [
+                "0101"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "overlap": [
+      {
+        "sources": [
+          1,
+          0
+        ],
+        "edges": [
+          [
+            "1",
+            "11"
+          ],
+          [
+            "11",
+            "111"
+          ]
+        ]
+      },
+      {
+        "sources": [
+          2,
+          0
+        ],
+        "edges": [
+          [
+            "11",
+            "111"
+          ],
+          [
+            "111",
+            "1111"
+          ]
+        ]
+      },
+      {
+        "sources": [
+          2,
+          1
+        ],
+        "edges": [
+          [
+            "11",
+            "111"
+          ]
+        ]
+      }
+    ],
+    "three_live": true,
+    "common_edges": [
+      [
+        "11",
+        "111"
+      ]
+    ],
+    "joint_macro": {
+      "children": [
+        {
+          "survivor": 0,
+          "cuts_by_source": {
+            "1": [
+              [
+                "",
+                "0"
+              ]
+            ],
+            "2": [
+              [
+                "",
+                "0"
+              ]
+            ]
+          },
+          "paid": 2,
+          "blocks": [
+            [
+              0,
+              5
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "test_only_child_optimum": {
+            "components": 5,
+            "partitions_tested": 203,
+            "optimal_partitions": [
+              [
+                [
+                  0,
+                  5
+                ],
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ],
+                [
+                  4
+                ]
+              ]
+            ],
+            "span_witnesses": [
+              {
+                "valid": true,
+                "components": 5,
+                "witnesses": [
+                  {
+                    "block": [
+                      0,
+                      5
+                    ],
+                    "restricted_tree": [
+                      0,
+                      5
+                    ],
+                    "span_T": [
+                      "",
+                      "0",
+                      "1",
+                      "11",
+                      "111",
+                      "1111",
+                      "11111"
+                    ],
+                    "span_Tprime": [
+                      "00",
+                      "000",
+                      "001"
+                    ]
+                  },
+                  {
+                    "block": [
+                      1
+                    ],
+                    "restricted_tree": 1,
+                    "span_T": [
+                      "10"
+                    ],
+                    "span_Tprime": [
+                      "010"
+                    ]
+                  },
+                  {
+                    "block": [
+                      2
+                    ],
+                    "restricted_tree": 2,
+                    "span_T": [
+                      "110"
+                    ],
+                    "span_Tprime": [
+                      "10"
+                    ]
+                  },
+                  {
+                    "block": [
+                      3
+                    ],
+                    "restricted_tree": 3,
+                    "span_T": [
+                      "1110"
+                    ],
+                    "span_Tprime": [
+                      "011"
+                    ]
+                  },
+                  {
+                    "block": [
+                      4
+                    ],
+                    "restricted_tree": 4,
+                    "span_T": [
+                      "11110"
+                    ],
+                    "span_Tprime": [
+                      "11"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "further_residual": 0,
+          "total_residual": 2
+        },
+        {
+          "survivor": 1,
+          "cuts_by_source": {
+            "0": [
+              [
+                "",
+                "0"
+              ]
+            ],
+            "2": [
+              [
+                "",
+                "0"
+              ]
+            ]
+          },
+          "paid": 2,
+          "blocks": [
+            [
+              0
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2
+            ],
+            [
+              4
+            ],
+            [
+              5
+            ]
+          ],
+          "test_only_child_optimum": {
+            "components": 5,
+            "partitions_tested": 203,
+            "optimal_partitions": [
+              [
+                [
+                  0
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2
+                ],
+                [
+                  4
+                ],
+                [
+                  5
+                ]
+              ]
+            ],
+            "span_witnesses": [
+              {
+                "valid": true,
+                "components": 5,
+                "witnesses": [
+                  {
+                    "block": [
+                      0
+                    ],
+                    "restricted_tree": 0,
+                    "span_T": [
+                      "0"
+                    ],
+                    "span_Tprime": [
+                      "000"
+                    ]
+                  },
+                  {
+                    "block": [
+                      1,
+                      3
+                    ],
+                    "restricted_tree": [
+                      1,
+                      3
+                    ],
+                    "span_T": [
+                      "1",
+                      "10",
+                      "11",
+                      "111",
+                      "1110"
+                    ],
+                    "span_Tprime": [
+                      "01",
+                      "010",
+                      "011"
+                    ]
+                  },
+                  {
+                    "block": [
+                      2
+                    ],
+                    "restricted_tree": 2,
+                    "span_T": [
+                      "110"
+                    ],
+                    "span_Tprime": [
+                      "10"
+                    ]
+                  },
+                  {
+                    "block": [
+                      4
+                    ],
+                    "restricted_tree": 4,
+                    "span_T": [
+                      "11110"
+                    ],
+                    "span_Tprime": [
+                      "11"
+                    ]
+                  },
+                  {
+                    "block": [
+                      5
+                    ],
+                    "restricted_tree": 5,
+                    "span_T": [
+                      "11111"
+                    ],
+                    "span_Tprime": [
+                      "001"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "further_residual": 0,
+          "total_residual": 2
+        },
+        {
+          "survivor": 2,
+          "cuts_by_source": {
+            "0": [
+              [
+                "",
+                "0"
+              ]
+            ],
+            "1": [
+              [
+                "",
+                "0"
+              ]
+            ]
+          },
+          "paid": 2,
+          "blocks": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3
+            ],
+            [
+              5
+            ]
+          ],
+          "test_only_child_optimum": {
+            "components": 5,
+            "partitions_tested": 203,
+            "optimal_partitions": [
+              [
+                [
+                  0
+                ],
+                [
+                  1
+                ],
+                [
+                  2,
+                  4
+                ],
+                [
+                  3
+                ],
+                [
+                  5
+                ]
+              ]
+            ],
+            "span_witnesses": [
+              {
+                "valid": true,
+                "components": 5,
+                "witnesses": [
+                  {
+                    "block": [
+                      0
+                    ],
+                    "restricted_tree": 0,
+                    "span_T": [
+                      "0"
+                    ],
+                    "span_Tprime": [
+                      "000"
+                    ]
+                  },
+                  {
+                    "block": [
+                      1
+                    ],
+                    "restricted_tree": 1,
+                    "span_T": [
+                      "10"
+                    ],
+                    "span_Tprime": [
+                      "010"
+                    ]
+                  },
+                  {
+                    "block": [
+                      2,
+                      4
+                    ],
+                    "restricted_tree": [
+                      2,
+                      4
+                    ],
+                    "span_T": [
+                      "11",
+                      "110",
+                      "111",
+                      "1111",
+                      "11110"
+                    ],
+                    "span_Tprime": [
+                      "1",
+                      "10",
+                      "11"
+                    ]
+                  },
+                  {
+                    "block": [
+                      3
+                    ],
+                    "restricted_tree": 3,
+                    "span_T": [
+                      "1110"
+                    ],
+                    "span_Tprime": [
+                      "011"
+                    ]
+                  },
+                  {
+                    "block": [
+                      5
+                    ],
+                    "restricted_tree": 5,
+                    "span_T": [
+                      "11111"
+                    ],
+                    "span_Tprime": [
+                      "001"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "further_residual": 0,
+          "total_residual": 2
+        }
+      ],
+      "paid_vector": [
+        2,
+        2,
+        2
+      ],
+      "residual_mass_at_target": "10000/17787",
+      "full_vector": [
+        1,
+        1,
+        4,
+        4,
+        4
+      ],
+      "full_mass_at_target": "921759400/949132107",
+      "finite_optimum_cover_survives": true
+    },
+    "elapsed_seconds": 0.005471250000027794
+  },
+  "code_sha256": "facfb8a40ce61940b68de9355292b255ee1444db865601a9139c58322502df4d",
+  "pin_sha256": "0fb219db87fa8a3497e03143181d17bec8ddf69492deffc5316ba64d07bf5c17",
+  "contact": "X0 code, fixtures, and measured values used in development; never independent certification",
+  "elapsed_seconds": 0.007439834000024348
+}

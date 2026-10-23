@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.31751258300027985,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.31163208300040424,
+      "resource_stop": null,
+      "log_sha256": "8d39d413c19b391e7d98794fa7957bfa1746a517f896cbb10bcfe42a79c437ca"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0015329580000980059,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Hard2FullOutputSource",
+      "source_sha256": "612a09573427b027bfd37539546d642cbb8d431c9ee34027f8a76d70f92d348d",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.861956542000371,
+      "resource_stop": null,
+      "log_sha256": "1be33d8f4a5ce6f5cb5a679f4c2fc483333e607042cd496b83c48bbeefa1fa12"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Hard2FullOutputSource', \"/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2FullOutputSource.lean:11:30: error: unexpected token '('; expected 'then'\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2FullOutputSource.lean:13:49: error: unsolved goals\\ncase some\\nT S : Tree\\nq : Nat\\nval\u271d : List (List Nat)\\n\u22a2 sorry () = if agreement T S val\u271d = true \u2227 val\u271d.length \u2264 q + 1 then some val\u271d else none\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2FullOutputSource.lean:13:70: warning: declaration uses `sorry`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2FullOutputSource.lean:54:4: error: Tactic `rfl` failed: The left-hand side\\n  {\\n    answer :=\\n      choose\\n        (checked T S q\\n          (GenericForest.solve actual (some T) (List.filterMap (fun B => restrict B S) o.partition)\\n            (q - o.sourceCuts.length)))\\n        (execute (GenericForest.solve actual) T S q (entries q Mode.full os)).answer,\\n    calls :=\\n      { target := some T, sources := List.filterMap (fun B => restrict B S) o.partition,\\n          budget := q - o.sourceCuts.length } ::\\n        (execute (GenericForest.solve actual) T S q (entries q Mode.full os)).calls }\\nis not definitionally equal to the right-hand side\\n  execute (GenericForest.solve actual) T S q\\n    (match\\n      if o.sourceCuts.length + Mode.full.extra \u2264 q then\\n        some { output := o, mode := Mode.full, budget := q - o.sourceCuts.length - Mode.full.extra }\\n      else none with\\n    | none =>\\n      List.filterMap\\n        (fun o =>\\n          if o.sourceCuts.length + Mode.full.extra \u2264 q then\\n            some { output := o, mode := Mode.full, budget := q - o.sourceCuts.length - Mode.full.extra }\\n          else none)\\n        os\\n    | some b =>\\n      b ::\\n        List.filterMap\\n          (fun o =>\\n            if o.sourceCuts.length + Mode.full.extra \u2264 q then\\n              some { output := o, mode := Mode.full, budget := q - o.sourceCuts.length - Mode.full.extra }\\n            else none)\\n          os)\\n\\ncase pos\\nactual : GenericForest.FrontierWork.Ordinary\\nW : OrdinaryWork\\nT S : Tree\\nq : Nat\\no : CoreProgram.Output\\nos : List CoreProgram.Output\\nih : (fullOutputsSource actual W T S q os).value = Hard2PaidLocal.runOutputs actual T S q os\\nh : o.sourceCuts.length \u2264 q\\ntail : (fullOutputsSource actual W T S q os).value = execute (GenericForest.solve actual) T S q (entries q Mode.full os)\\n\u22a2 {\\n      answer :=\\n        choose\\n          (checked T S q\\n            (GenericForest.solve actual (some T) (List.filterMap (fun B => restrict B S) o.partition)\\n              (q - o.sourceCuts.length)))\\n          (execute (GenericForest.solve actual) T S q (entries q Mode.full os)).answer,\\n      calls :=\\n        { target := some T, sources := List.filterMap (fun B => restrict B S) o.partition,\\n            budget := q - o.sourceCuts.length } ::\\n          (execute (GenericForest.solve actual) T S q (entries q Mode.full os)).calls } =\\n    execute (GenericForest.solve actual) T S q\\n      (match\\n        if o.sourceCuts.length + Mode.full.extra \u2264 q then\\n          some { output := o, mode := Mode.full, budget := q - o.sourceCuts.length - Mode.full.extra }\\n        else none with\\n      | none =>\\n        List.filterMap\\n          (fun o =>\\n            if o.sourceCuts.length + Mode.full.extra \u2264 q then\\n              some { output := o, mode := Mode.full, budget := q - o.sourceCuts.length - Mode.full.extra }\\n            else none)\\n          os\\n      | some b =>\\n        b ::\\n          List.filterMap\\n            (fun o =>\\n              if o.sourceCuts.length + Mode.full.extra \u2264 q then\\n                some { output := o, mode := Mode.full, budget := q - o.sourceCuts.length - Mode.full.extra }\\n              else none)\\n            os)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2FullOutputSource.lean:56:4: error: Type mismatch\\n  ih\\nhas type\\n  (fullOutputsSource actual W T S q os).value = Hard2PaidLocal.runOutputs actual T S q os\\nbut is expected to have type\\n  (fullOutputsSource actual W T S q os).value =\\n    execute (GenericForest.solve actual) T S q\\n      (match\\n        if o.sourceCuts.length + Mode.full.extra \u2264 q then\\n          some { output := o, mode := Mode.full, budget := q - o.sourceCuts.length - Mode.full.extra }\\n        else none with\\n      | none =>\\n        List.filterMap\\n          (fun o =>\\n            if o.sourceCuts.length + Mode.full.extra \u2264 q then\\n              some { output := o, mode := Mode.full, budget := q - o.sourceCuts.length - Mode.full.extra }\\n            else none)\\n          os\\n      | some b =>\\n        b ::\\n          List.filterMap\\n            (fun o =>\\n              if o.sourceCuts.length + Mode.full.extra \u2264 q then\\n                some { output := o, mode := Mode.full, budget := q - o.sourceCuts.length - Mode.full.extra }\\n              else none)\\n            os)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2FullOutputSource.lean:51:26: warning: This simp argument is unused:\\n  execute\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp only [h, ite_true, dispatch, checkedMeter_value, chooseMeter_value, source_forest_value]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2FullOutputSource.lean:51:34: warning: This simp argument is unused:\\n  dispatch\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp only [h, ite_true, execute, checkedMeter_value, chooseMeter_value, source_forest_value]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n\"))"
+}

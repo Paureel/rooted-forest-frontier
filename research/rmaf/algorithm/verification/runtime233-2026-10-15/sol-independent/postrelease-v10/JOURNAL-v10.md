@@ -1,0 +1,1 @@
+Exact v10 continuing NONAUTHOR scope. Preserve2115 prior files including excluded original v9 shadow runs, corrections and failures. Calibrated gated reader/Lean/control/hash runners reused, not cold rebuilt. Establish exact compatible-context thin import roots before science. Source/abstract-bit/native separate; no new blind/replication credit.

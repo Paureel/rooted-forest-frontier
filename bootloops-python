@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+BOOTSCIENCE_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+export BOOTSCIENCE_ROOT
+. "$BOOTSCIENCE_ROOT/activate.sh"
+if [ -n "${BOOTLOOPS_PYTHON:-}" ]; then
+    exec "$BOOTLOOPS_PYTHON" "$@"
+elif [ -x "$BOOTSCIENCE_ROOT/.venv/bin/python3" ]; then
+    exec "$BOOTSCIENCE_ROOT/.venv/bin/python3" "$@"
+else
+    exec python3 "$@"
+fi

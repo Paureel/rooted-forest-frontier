@@ -1,0 +1,6901 @@
+{
+  "arm": "groups",
+  "utc": "2026-10-15T11:00:55.852024+00:00",
+  "status": "PASS_SOURCE_ONLY_FULL_ORIGINS_WITH_CHECKED_LAZY_ADOPTION",
+  "author_manifest_sha256": "23ddfc690c8701a12ca18a17faa75133d6c04759211e07f63cfeb171eabcdfc9",
+  "canonical_receipt_sha256": "2b3bc01e66c9e3cc594c9f87575f5c2b7393734312c0e9218d37e26151572784",
+  "modules": [
+    "RMAF",
+    "GroupRestriction",
+    "GroupEmbedding",
+    "GroupPartition",
+    "GroupCost",
+    "GroupForward",
+    "Geometry",
+    "Bridge",
+    "Composition",
+    "GroupReconstruction",
+    "GroupState",
+    "GroupStateFacts",
+    "GroupControls",
+    "GroupDefs",
+    "GroupForwardProof",
+    "GroupReverseProof",
+    "GroupCostProof",
+    "GroupPriority",
+    "GroupConsumerControls"
+  ],
+  "sources": [
+    {
+      "module": "RMAF",
+      "source": "research/rmaf/lean/RMAF.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/lean/RMAF.lean",
+      "source_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/RMAF.lean",
+      "copy_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/RMAF.lean",
+      "import_only_mapping": {},
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "GroupRestriction",
+      "source": "research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean",
+      "source_sha256": "06755e63fbb1e6585eb9344cd0ffcfe2cf976b6ce97405fd15008b95227171e1",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/GroupRestriction.lean",
+      "copy_sha256": "06755e63fbb1e6585eb9344cd0ffcfe2cf976b6ce97405fd15008b95227171e1",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupRestriction.lean",
+      "import_only_mapping": {},
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "GroupEmbedding",
+      "source": "research/rmaf/algorithm/universal233/restriction_bridge/Embedding.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/restriction_bridge/Embedding.lean",
+      "source_sha256": "ff8a4fde22548be8350429e86152fdc520344e4272b7e23a5bd6aca42d166856",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/GroupEmbedding.lean",
+      "copy_sha256": "3856a1f30ebf79d6231a889f37e063045e3b549e6cc3cb22f7e47d0e49c2d13d",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupEmbedding.lean",
+      "import_only_mapping": {
+        "Restriction": "GroupRestriction"
+      },
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "GroupPartition",
+      "source": "research/rmaf/algorithm/universal233/restriction_bridge/Partition.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/restriction_bridge/Partition.lean",
+      "source_sha256": "922bc716bcbb428feb2011f2c372f0557e6d6342083e60c4a53ce3a72576726d",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/GroupPartition.lean",
+      "copy_sha256": "2c682887ec490a875f9df0bf174ce76bcb5424586899287148df9d2828bc7735",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupPartition.lean",
+      "import_only_mapping": {
+        "Embedding": "GroupEmbedding"
+      },
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "GroupCost",
+      "source": "research/rmaf/algorithm/universal233/restriction_bridge/Cost.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/restriction_bridge/Cost.lean",
+      "source_sha256": "f3cee58b286702549ce63194b5df5f787d273aa6a47849252e8977c8e94423b2",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/GroupCost.lean",
+      "copy_sha256": "60b0b83abdc1957e79cd5efecd08b087899eb3cd51d8ce2f6a1722f8041f0774",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupCost.lean",
+      "import_only_mapping": {
+        "Partition": "GroupPartition"
+      },
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "GroupForward",
+      "source": "research/rmaf/algorithm/universal233/restriction_bridge/Forward.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/restriction_bridge/Forward.lean",
+      "source_sha256": "0ef7be14147e83a03879278d47689df22e793b7f04bac249a67c9ed7d6f31ab8",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/GroupForward.lean",
+      "copy_sha256": "868403514424a3162d10ce8586804a405ccdea3d8977ee2058b1a00f9afb641f",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupForward.lean",
+      "import_only_mapping": {
+        "Cost": "GroupCost"
+      },
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "Geometry",
+      "source": "research/rmaf/algorithm/universal233/geometry/Geometry.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/geometry/Geometry.lean",
+      "source_sha256": "b98de754ee29fdeae54aebc6e03ffb7e8262dcb299f61b7ac5ca9bcee4887a9d",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/Geometry.lean",
+      "copy_sha256": "b98de754ee29fdeae54aebc6e03ffb7e8262dcb299f61b7ac5ca9bcee4887a9d",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/Geometry.lean",
+      "import_only_mapping": {},
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "Bridge",
+      "source": "research/rmaf/algorithm/universal233/geometry/Bridge.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/geometry/Bridge.lean",
+      "source_sha256": "ba12f3b99d87efecce407dab54d95df003fc5e735cb12e314734c346317c9583",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/Bridge.lean",
+      "copy_sha256": "ba12f3b99d87efecce407dab54d95df003fc5e735cb12e314734c346317c9583",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/Bridge.lean",
+      "import_only_mapping": {},
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "Composition",
+      "source": "research/rmaf/algorithm/universal233/geometry/Composition.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/geometry/Composition.lean",
+      "source_sha256": "097b9184ebacd913524fc3f0a130057004f95e30ba15f485adb9e0b7934578df",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/Composition.lean",
+      "copy_sha256": "097b9184ebacd913524fc3f0a130057004f95e30ba15f485adb9e0b7934578df",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/Composition.lean",
+      "import_only_mapping": {},
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "GroupReconstruction",
+      "source": "research/rmaf/algorithm/universal233/restriction_bridge/Reconstruction.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/restriction_bridge/Reconstruction.lean",
+      "source_sha256": "84ec7c640a9d49f38f7b6b3b5c347fc09e9c66a614667d1c8e929549e2d71896",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/GroupReconstruction.lean",
+      "copy_sha256": "c8b7c9a04398a6b736c64c00d4e065116f5e18ed05ba6c3eec990c8f49603c90",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupReconstruction.lean",
+      "import_only_mapping": {
+        "Forward": "GroupForward"
+      },
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "GroupState",
+      "source": "research/rmaf/algorithm/universal233/state_reductions/State.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/state_reductions/State.lean",
+      "source_sha256": "b285d2bdf317720540074b7e09042bc76cc89f024d683d6ed311efd3df04fee9",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/GroupState.lean",
+      "copy_sha256": "def667f28d5a9658f817fa259f2293b6d82a05c1f7916a9c4c8a9b566d4952a3",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupState.lean",
+      "import_only_mapping": {
+        "StatePartition": "GroupPartition"
+      },
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "GroupStateFacts",
+      "source": "research/rmaf/algorithm/universal233/state_reductions/Singleton.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/state_reductions/Singleton.lean",
+      "source_sha256": "8ce6617dd2bcb6305f103faaf905295ebeb6f048933a10cc96b9c21c9356821c",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/GroupStateFacts.lean",
+      "copy_sha256": "6c24423b800ba8d77616f9bf825b34001c3004fc7c76e5a6d8912a715b55ffef",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupStateFacts.lean",
+      "import_only_mapping": {
+        "State": "GroupState"
+      },
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "GroupControls",
+      "source": "research/rmaf/algorithm/universal233/forest_groups/GroupControls.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/GroupControls.lean",
+      "source_sha256": "9ee3b91b30ab58d4d9dee1f3f7e6e36436405e0eaadc1929cc25917eee0ab7ea",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/GroupControls.lean",
+      "copy_sha256": "9ee3b91b30ab58d4d9dee1f3f7e6e36436405e0eaadc1929cc25917eee0ab7ea",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupControls.lean",
+      "import_only_mapping": {},
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "GroupDefs",
+      "source": "research/rmaf/algorithm/universal233/forest_groups/GroupDefs.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/GroupDefs.lean",
+      "source_sha256": "c8890cb6fb7dc5e5e6c149246a1890bf8b744927f89d35be2cd953716bc2c0f6",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/GroupDefs.lean",
+      "copy_sha256": "c8890cb6fb7dc5e5e6c149246a1890bf8b744927f89d35be2cd953716bc2c0f6",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupDefs.lean",
+      "import_only_mapping": {},
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "GroupForwardProof",
+      "source": "research/rmaf/algorithm/universal233/forest_groups/GroupForwardProof.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/GroupForwardProof.lean",
+      "source_sha256": "86c07eb062e6a8adfa05153f75fcadc78c60ba92283ccfe52a4d097c8545251b",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/GroupForwardProof.lean",
+      "copy_sha256": "86c07eb062e6a8adfa05153f75fcadc78c60ba92283ccfe52a4d097c8545251b",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupForwardProof.lean",
+      "import_only_mapping": {},
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "GroupReverseProof",
+      "source": "research/rmaf/algorithm/universal233/forest_groups/GroupReverseProof.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/GroupReverseProof.lean",
+      "source_sha256": "2770ae8cd222759622bba9c023efa137b781b2761411f398606fc414e0545928",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/GroupReverseProof.lean",
+      "copy_sha256": "2770ae8cd222759622bba9c023efa137b781b2761411f398606fc414e0545928",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupReverseProof.lean",
+      "import_only_mapping": {},
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "GroupCostProof",
+      "source": "research/rmaf/algorithm/universal233/forest_groups/GroupCostProof.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/GroupCostProof.lean",
+      "source_sha256": "8223718995d871ec589d682a5ae3fe09ba6ea2bc221aa6370e5ff5320859e449",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/GroupCostProof.lean",
+      "copy_sha256": "8223718995d871ec589d682a5ae3fe09ba6ea2bc221aa6370e5ff5320859e449",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupCostProof.lean",
+      "import_only_mapping": {},
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "GroupPriority",
+      "source": "research/rmaf/algorithm/universal233/forest_groups/GroupPriority.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/GroupPriority.lean",
+      "source_sha256": "419c2fcb38cc1874a8cf663396945f3ee99db6c5d6b86a46c5625a867af177e8",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/GroupPriority.lean",
+      "copy_sha256": "419c2fcb38cc1874a8cf663396945f3ee99db6c5d6b86a46c5625a867af177e8",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupPriority.lean",
+      "import_only_mapping": {},
+      "all_other_source_bytes_unchanged": true
+    },
+    {
+      "module": "GroupConsumerControls",
+      "source": "research/rmaf/algorithm/universal233/forest_groups/GroupConsumerControls.lean",
+      "source_realpath": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/GroupConsumerControls.lean",
+      "source_sha256": "1aea65fe19203a0eadb4233c84524e60349b63dcf55c5db64dda92d433d9a034",
+      "frozen_copy": "results/algorithm-universal233-forest-groups-20261015T103546623214Z/GroupConsumerControls.lean",
+      "copy_sha256": "1aea65fe19203a0eadb4233c84524e60349b63dcf55c5db64dda92d433d9a034",
+      "local_copy": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupConsumerControls.lean",
+      "import_only_mapping": {},
+      "all_other_source_bytes_unchanged": true
+    }
+  ],
+  "imports": [
+    {
+      "module": "RMAF",
+      "import": "Std"
+    },
+    {
+      "module": "GroupRestriction",
+      "import": "RMAF"
+    },
+    {
+      "module": "GroupEmbedding",
+      "import": "GroupRestriction"
+    },
+    {
+      "module": "GroupPartition",
+      "import": "GroupEmbedding"
+    },
+    {
+      "module": "GroupCost",
+      "import": "GroupPartition"
+    },
+    {
+      "module": "GroupForward",
+      "import": "GroupCost"
+    },
+    {
+      "module": "Geometry",
+      "import": "Std"
+    },
+    {
+      "module": "Bridge",
+      "import": "Geometry"
+    },
+    {
+      "module": "Bridge",
+      "import": "RMAF"
+    },
+    {
+      "module": "Composition",
+      "import": "Bridge"
+    },
+    {
+      "module": "GroupReconstruction",
+      "import": "GroupForward"
+    },
+    {
+      "module": "GroupReconstruction",
+      "import": "Composition"
+    },
+    {
+      "module": "GroupState",
+      "import": "GroupPartition"
+    },
+    {
+      "module": "GroupStateFacts",
+      "import": "GroupState"
+    },
+    {
+      "module": "GroupControls",
+      "import": "GroupState"
+    },
+    {
+      "module": "GroupDefs",
+      "import": "GroupStateFacts"
+    },
+    {
+      "module": "GroupDefs",
+      "import": "GroupReconstruction"
+    },
+    {
+      "module": "GroupForwardProof",
+      "import": "GroupDefs"
+    },
+    {
+      "module": "GroupReverseProof",
+      "import": "GroupForwardProof"
+    },
+    {
+      "module": "GroupCostProof",
+      "import": "GroupReverseProof"
+    },
+    {
+      "module": "GroupPriority",
+      "import": "GroupCostProof"
+    },
+    {
+      "module": "GroupConsumerControls",
+      "import": "GroupPriority"
+    },
+    {
+      "module": "GroupConsumerControls",
+      "import": "GroupControls"
+    }
+  ],
+  "copied_scientific_oleans": false,
+  "builds": [
+    {
+      "module": "RMAF",
+      "exit": 0,
+      "seconds": 5.793204542002059,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/RMAF.log",
+      "log_sha256": "55ae6c9a93d86d7b0eb4d83b4b9c6c3facbe813aa42ff22265168c1275b9ac87"
+    },
+    {
+      "module": "GroupRestriction",
+      "exit": 0,
+      "seconds": 0.3282007500019972,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupRestriction.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GroupEmbedding",
+      "exit": 0,
+      "seconds": 0.6622983329980343,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupEmbedding.log",
+      "log_sha256": "f1c75e45662c60effb651250e2bffeb243364c734994262cd995fd00ad5e6b29"
+    },
+    {
+      "module": "GroupPartition",
+      "exit": 0,
+      "seconds": 0.37848549999762326,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupPartition.log",
+      "log_sha256": "f5a232838cf91243295ed647a8e4ce5c172ae1622c155d3a1665ae9f6c815a72"
+    },
+    {
+      "module": "GroupCost",
+      "exit": 0,
+      "seconds": 0.37119574999815086,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupCost.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GroupForward",
+      "exit": 0,
+      "seconds": 0.36726966700007324,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupForward.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Geometry",
+      "exit": 0,
+      "seconds": 0.4941183750015625,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/Geometry.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Bridge",
+      "exit": 0,
+      "seconds": 0.5410383749986067,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/Bridge.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Composition",
+      "exit": 0,
+      "seconds": 0.4063541659998009,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/Composition.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GroupReconstruction",
+      "exit": 0,
+      "seconds": 0.39111129099910613,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupReconstruction.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GroupState",
+      "exit": 0,
+      "seconds": 0.31854925000152434,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupState.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GroupStateFacts",
+      "exit": 0,
+      "seconds": 0.3450446249989909,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupStateFacts.log",
+      "log_sha256": "62c51756db01d2c51a15fcd3da587842cd4d668d59048d0c407cf10bca93e187"
+    },
+    {
+      "module": "GroupControls",
+      "exit": 0,
+      "seconds": 0.45625229199868045,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupControls.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GroupDefs",
+      "exit": 0,
+      "seconds": 0.3991991250004503,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupDefs.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GroupForwardProof",
+      "exit": 0,
+      "seconds": 0.38306274999922607,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupForwardProof.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GroupReverseProof",
+      "exit": 0,
+      "seconds": 0.33710245799738914,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupReverseProof.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GroupCostProof",
+      "exit": 0,
+      "seconds": 0.33814179099863395,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupCostProof.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GroupPriority",
+      "exit": 0,
+      "seconds": 0.4062331249988347,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupPriority.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GroupConsumerControls",
+      "exit": 0,
+      "seconds": 0.44860858299944084,
+      "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/GroupConsumerControls.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "all_main_milestones": "OPEN",
+  "replication_count_added": 0,
+  "pilot_projection": {
+    "modules": 3,
+    "seconds": 6.785345084001165,
+    "fixed_modules": 19,
+    "linear_seconds": 42.973859849328925,
+    "assumption": "fixed released stack; first RMAF compile dominates; no census"
+  },
+  "audit_build": {
+    "module": "FreshAudit",
+    "exit": 0,
+    "seconds": 4.648533208997833,
+    "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/FreshAudit.log",
+    "log_sha256": "287b7add650062062b2465ae6b88bc3b63ba7d44c09a4c785d876d9ca5de77d6"
+  },
+  "audit": {
+    "rows": [
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.leafList.eq_def",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.hull_join_right",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.brecOn",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.pairwiseEmbeddings.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.assignments._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.sameShape._sparseCasesOn_1.else_eq",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RMAF.disjointVertices.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.instReprTree.repr.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.findCommon_complete._simp_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.best",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.leaves.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.lca._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance.noConfusion",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.pairwise_iff._simp_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_prepend_same",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.residual_query_lift._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupCost",
+        "name": "RestrictionBridge.sum_map_add_nat._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.minimalVertices_correct._simp_1_10",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RMAF.minimalVertices.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.RootedIso.leaf",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.unary_left_clear",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupControls",
+        "name": "ForestGroups.Controls.b2",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupCost",
+        "name": "RestrictionBridge.one_parent_count._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_region_count_two_or_three._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.commonPredicateCalls",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_disjointVertices",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.rootedSpan_correct._simp_1_10",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.commonPredicateCalls_bound._proof_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.assignments.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.leaves_nonempty",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.best.match_3.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region_ne_path._simp_1_7",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.expandBlock",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.sameShape.eq_def",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.assignments._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.selectedLeaves.eq_def",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.node_clear_congr._simp_1_7",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RMAF.restrictionAgrees._sparseCasesOn_1.else_eq",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.findCommon",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.regionList_mem._simp_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupForward",
+        "name": "RMAF.agreement.eq_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "_private.GroupRestriction.0.RestrictionBridge.optionLeaves.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.targetAgrees",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.rightTree",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupCostProof",
+        "name": "ForestGroups.source_group_lengths",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.overlap_rejected",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "_private.Geometry.0.VertexGeometry.lca.match_1.eq_3",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.expand._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instDecidableEqTree.decEq._proof_5",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.Clear.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.RootedIso",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.join_bind",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_joint_region_dichotomy",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.median.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.nonlabel_region_lt_three",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.findCommon.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.lca.eq_3",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instDecidableEqTree.decEq.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupDefs",
+        "name": "ForestGroups.state_refines",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.pieceHulls_clear.match_1_2",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.hull_join_left",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.distinct_parents_no_joint_owner",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.hull_join_root",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.path_same_side",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.restricted_nodup",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.pieceHulls_occupies._simp_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.below.fork'",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.RootedIso.below.rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance.mk.injEq",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.sameShape._sparseCasesOn_1",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.regionList_mem",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.restrict.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.partitionCheck",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.findCommon._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupReverseProof",
+        "name": "ForestGroups.reverse_reconstruction._simp_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.two_component_witness",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.sameRegion_iff_path_avoids",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.leaf",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupCostProof",
+        "name": "ForestGroups.source_blocks_balance._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupDefs",
+        "name": "_private.GroupDefs.0.ForestState.labels.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.two_joint_same_separator._proof_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.executable_clique_survivor_cover",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.checked_block_nodup._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupCostProof",
+        "name": "ForestGroups.reverse_exact_cost",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.pairwise_transport",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance.mk",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupCost",
+        "name": "RestrictionBridge.total_family_length._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupDefs",
+        "name": "ForestGroups.group_unique",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupCostProof",
+        "name": "ForestGroups.sources_le_blocks",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_prepend_other'._simp_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RMAF.minimalVertices.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupConsumerControls",
+        "name": "ForestGroups.ConsumerControls.actual_bad_A_one",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.executable_span_monotone",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.chain_four_ownership_cover",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.below.crossLeft",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.family",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupDefs",
+        "name": "ForestGroups.owned",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.leaf.sizeOf_spec",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instDecidableEqTree",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.retained_A_one_Bforest_no_C._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.lca_on_path",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.ProperPrefix",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "_private.GroupEmbedding.0.RMAF.instReprTree.repr.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.minimalVertices._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupControls",
+        "name": "ForestGroups.Controls.sources",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.checked_labels_iff",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.singleton_selected_exists",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance._sizeOf_inst",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupControls",
+        "name": "ForestGroups.Controls.cross2",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.mem_family",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.concat_pairwise",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "_private.GroupRestriction.0.RMAF.restrictionAgrees.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.Join",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.best.eq_def",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.leafList.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.pairwise_rel_of_distinct_mem._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.isolatedEndpoint",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.RootedIso.brecOn",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region_ne_path",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.minimal_nil_of_span_nil._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.lca._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.targetAgrees.eq_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.assignments",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.minimalVertices_correct._simp_1_12",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.restrictionAgrees",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "_private.GroupEmbedding.0.RMAF.pairwiseEmbeddings.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.priority_cross._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region.eq_5",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.singleton_selected_address_unique",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.span_root",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupForward",
+        "name": "RestrictionBridge.checked_block_nodup._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.best.match_3.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupCost",
+        "name": "RestrictionBridge.family_nonempty",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.paid_one_budget._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupReverseProof",
+        "name": "_private.GroupReverseProof.0.ForestState.targetEmbeddings.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.leaves._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.initial_state_agreement_iff._simp_1_5",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.executable_chain_paid_cover",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.cherry",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.restrict.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.lca.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.jointColors_at_least_two",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instDecidableEqTree.decEq._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.sameShape._sparseCasesOn_2.else_eq",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.rootedSpan",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.selected_leaves_disjoint.match_1_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.sameShape.match_1",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.executable_chain_paid_cover._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region.eq_4",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupDefs",
+        "name": "ForestGroups.family_nested",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_prepend_same._simp_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.empty_selection",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.noConfusionType",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.median._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.minimalVertices._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "_private.GroupStateFacts.0.ForestState.targetAgrees.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.join.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.Refines",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "_private.GroupRestriction.0.RestrictionBridge.join.match_1.eq_3",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.tree_of_singleton_leaves",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.retained_A_one_plus_Bforest._simp_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.assignments.eq_def",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.best.match_3",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.checked_flatten_perm",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.agrees_parts._simp_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.rootedSpan_root",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.leaf.noConfusion",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.below.rightLeg",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.lca",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.best.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.commonPredicateCalls_bound",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.local_checked_labels",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.restrict._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "_private.GroupRestriction.0.RestrictionBridge.join.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.findCommon._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_cons_right",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.leafList",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupDefs",
+        "name": "ForestGroups.mem_owned",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupForwardProof",
+        "name": "ForestGroups.forward_decomposition",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance.mk.inj",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.targetEmbeddings.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.Vertex",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instReprTree.repr",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_vertex_helly._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.restrict.match_1.eq_4",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "_private.GroupEmbedding.0.RMAF.instReprTree.repr.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.leaves.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.retained_A_one_Bforest_no_C._simp_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.findCommon.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "_private.Geometry.0.VertexGeometry.region.match_1.eq_3",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "_private.GroupRestriction.0.RMAF.restrictionAgrees.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instDecidableEqTree.decEq._proof_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupForward",
+        "name": "RestrictionBridge.forward_local",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.selected_leaves_disjoint",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.fork",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.leaf_hull_helly_three",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.cherry._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupDefs",
+        "name": "ForestGroups.owned_leaves",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance.mk._flat_ctor",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.disjointVertices",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupReverseProof",
+        "name": "ForestGroups.family_concat_owned",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.restrict_compose_mask",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.sameShape._sparseCasesOn_2",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.Join.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "_private.GroupRestriction.0.RestrictionBridge.optionLeaves.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.restrict_nested",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.assignments.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupControls",
+        "name": "ForestGroups.Controls.ordinary",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "_private.GroupRestriction.0.RMAF.restrictionAgrees.match_1.splitter",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_pairwiseEmbeddings",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupCost",
+        "name": "RestrictionBridge.total_family_length",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.checked_family_nodup",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_disjointVertices._simp_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.targetEmbeddings",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupDefs",
+        "name": "ForestGroups.local_proper",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "_private.Geometry.0.VertexGeometry.region.match_1.eq_4",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.priority_cross",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.path_identical",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.sameShape._f",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.leafList._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "_private.GroupRestriction.0.RestrictionBridge.join.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instDecidableEqTree.decEq._proof_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "_private.Geometry.0.VertexGeometry.lca.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.checked_concat._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.median.eq_4",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "_private.Bridge.0.VertexGeometry.findCommon.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.two_joint_coordinate_separation._proof_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.findCommon_complete",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.best.match_3.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.two_region_coincident_occupancy",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.median",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.assignments_complete._simp_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupForwardProof",
+        "name": "_private.GroupForwardProof.0.RMAF.restrictionAgrees.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.root_not_prepend._simp_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.family.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.agrees_parts",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupControls",
+        "name": "ForestGroups.Controls.aS",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance.labels_right",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region_path_closed._proof_1_7",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.singleton_additional_cost",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.rootedSpan._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.LabelMonochromatic",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.minimalVertices_correct._simp_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.lca_right_root",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupCost",
+        "name": "RestrictionBridge.sum_sub_one",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupConsumerControls",
+        "name": "ForestGroups.ConsumerControls.ordinary_local_checks._simp_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.median_on_three_paths",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.regions.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.ownership_from_original_agreement",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_region_count_two_or_three._proof_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.contract._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.mem_family._simp_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.Reach",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_disjointVertices._simp_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.restrict.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RMAF.rootedSpan.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.reverse_reconstruction",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.restriction_exists",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "_private.GroupRestriction.0.RestrictionBridge.join.match_1.eq_4",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.rootedSpan_correct._simp_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.nonlabel_region_lt_three._proof_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.jointColors.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance.mk.sizeOf_spec",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.best.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.brecOn",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instReprTree",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.two_joint_coordinate_separation._proof_1_5",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.pairwise_distinct",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_pairwiseEmbeddings._simp_1_6",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.cherry._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.hull_subset_reach",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.contract",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupDefs",
+        "name": "_private.GroupDefs.0.ForestState.labels.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupControls",
+        "name": "ForestGroups.Controls.b1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.checked_flatten_nodup._proof_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.distinct_parent_cut_separation",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.Prefix",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "_private.Geometry.0.VertexGeometry.median.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.join.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.assignments.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.restrictionAgrees.match_1",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupReverseProof",
+        "name": "ForestGroups.concat_pairwise_cross",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.unique_label_owner",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.path_to_root_not_up",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.local_partition",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.unique_label_owner._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RMAF.rootedSpan.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.every_agreement_at_least_two",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.owned_append",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.path_cross_left",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_disjointVertices._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_region_count_two_or_three._proof_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.commonPredicateCalls._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.leftTree",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupCost",
+        "name": "RestrictionBridge.sum_sub_one._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RMAF.pairwiseEmbeddings.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.executable_chain_paid_cover._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.regions",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.pieceHulls_clear",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.residual_query_complete._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instReprTree.repr._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupControls",
+        "name": "ForestGroups.Controls.cF",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.jointColors_mem",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupReverseProof",
+        "name": "_private.GroupReverseProof.0.ForestState.targetEmbeddings.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.leafList._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.Nonempty.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupForward",
+        "name": "RestrictionBridge.partition_labels_congr._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupForwardProof",
+        "name": "_private.GroupForwardProof.0.RMAF.restrictionAgrees.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.restrictionAgrees._sparseCasesOn_1",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.leafList_correct",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.selectedLeaves._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "_private.Bridge.0.RMAF.instReprTree.repr.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.reach_join_right",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.sameShape_refl",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.selectedLeaves._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance.mk.noConfusion",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instDecidableEqTree.decEq._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.instReprTree.repr.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupCost",
+        "name": "RestrictionBridge.family_cons_length",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.Hull",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.cleanupSources",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.Clear",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "_private.Geometry.0.VertexGeometry.lca.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.checked_label",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.Join.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.restrict_node",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.residual_query_lift._proof_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.median._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "_private.Bridge.0.RMAF.instReprTree.repr.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.leafList.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupCost",
+        "name": "RestrictionBridge.exact_cost",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.minimum_is_two",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_nil_right",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.lca._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.cleanupForest.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.Clear.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.pairwiseEmbeddings",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.sameShape.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupCostProof",
+        "name": "ForestGroups.forward_exact_cost",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.agrees_parts._simp_1_5",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.assignments.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.retained_A_one_Bforest_no_C",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.owned_within",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.labels.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_prepend_other",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.hull_convex",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.TwoJointRegions",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "_private.Bridge.0.VertexGeometry.findCommon.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupDefs",
+        "name": "ForestGroups.CrossClear",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.occupied_nonlabel_two_directions",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.agreement",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.endpointR",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.executable_clique_survivor_cover._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.priority_cross._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "_private.Bridge.0.RMAF.pairwiseEmbeddings.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.selectedLeaves",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupDefs",
+        "name": "ForestGroups.owned.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.rootedSpan._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupControls",
+        "name": "ForestGroups.Controls.aT",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.checked_family_nonempty",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.singleton_control",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.Clear",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.restrict.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.pairwise_iff._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.hull_singleton",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_root_region_count_two",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.below.crossRight",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.blocks",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupCostProof",
+        "name": "ForestGroups.sum_sub_balance",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.retained_A_one_plus_Bforest._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region_self",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupReverseProof",
+        "name": "ForestGroups.flatmap_one",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.conditional_core_child_preserves_target",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.best_spec",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupReverseProof",
+        "name": "ForestGroups.reverse_reconstruction._simp_1_5",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupForwardProof",
+        "name": "ForestGroups.local_forward._simp_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.executable_chain_four_cover._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance.right",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupForward",
+        "name": "RestrictionBridge.partition_labels_congr",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.minimalVertices_correct._simp_1_8",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.node.noConfusion",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupConsumerControls",
+        "name": "ForestGroups.ConsumerControls.actual_A_any_residual._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.additionalCost.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.agrees_parts._simp_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.findCommon._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupForward",
+        "name": "RestrictionBridge.forward_decomposition",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.path_region_ne._simp_1_7",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.selectedLeaves.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.twoJointRegions_of_count_two",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.leaves",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.every_isolated_endpoint_at_least_three",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupConsumerControls",
+        "name": "ForestGroups.ConsumerControls.ordinary_local_checks._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.sameShape_correct",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.cleanupForest",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.PieceHulls.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.every_agreement_at_least_two._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupCostProof",
+        "name": "ForestGroups.reverse_exact_cost._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.different_full_trees",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupDefs",
+        "name": "ForestState.labels.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.two_members_length",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupCost",
+        "name": "RestrictionBridge.sum_map_add_nat",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.restricted_labels_exact",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.casesOn",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.targetAgrees.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.below",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instReprTree.repr.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.RootedIso.casesOn",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.contained.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.refinement_preserves_avoidance",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.minimalVertices._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.rootedSpan_correct._simp_1_8",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupDefs",
+        "name": "ForestGroups.block_group_owner",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.recOn",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_joint_region_dichotomy._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.brecOn.go",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance.recOn",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.proper_labels_left",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.avoids_iff_monochromatic",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.path_root_same_impossible",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.minimalVertices",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.ctorIdx",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_vertex_helly",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.reverse_reconstruction._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_append_left._simp_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.best.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.casesOn",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree._sizeOf_inst",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.agreement_graph_factors",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupControls",
+        "name": "ForestGroups.Controls.ordinarySources",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.expand._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.hull_or_reach",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.PieceHulls",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.paid_one_budget",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.SameRegion",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.commonPredicateCalls.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.tree_of_singleton_leaves._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.Clears",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.lca.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instDecidableEqTree.decEq._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupReverseProof",
+        "name": "ForestGroups.reverse_reconstruction._simp_1_6",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.reach_singleton",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.rootedSpan_correct._simp_1_12",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "_private.Bridge.0.VertexGeometry.selectedLeaves.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.leaf.elim",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RMAF.prependSide.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_append_right._simp_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.median.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.checked_covers",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.selectedLeaves.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.cherry.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.initial_state_agreement_iff._simp_1_6",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupDefs",
+        "name": "ForestGroups.checked_empty",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.pairwise_rel_of_distinct_mem",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.selected_decompose_label",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.two_joint_coordinate_separation._proof_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "_private.Bridge.0.RMAF.pairwiseEmbeddings.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "_private.Bridge.0.VertexGeometry.findCommon.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.proper_parts",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.restrict._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.pairwiseEmbeddings._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RMAF.restrictionAgrees.eq_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.two_joint_same_separator._proof_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.path_region_ne",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.jointColors_mem._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.agrees",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.brecOn.eq",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.two_joint_coordinate_separation._proof_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_pairwiseEmbeddings._simp_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "_private.Geometry.0.VertexGeometry.lca.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.rootspan_empty_from_correct",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.unique_label_owner._proof_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupCost",
+        "name": "RestrictionBridge.sum_indicator._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.restrict._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.singleton_additional_cost._proof_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.join",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.singleton_source_owner",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.down",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.unique_label_owner._proof_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.node.sizeOf_spec",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.solve",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.singleton_selected_exists._simp_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_nil_left",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "_private.Bridge.0.RMAF.instReprTree.repr.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupDefs",
+        "name": "ForestGroups.localTarget",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.lca.eq_def",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "_private.Bridge.0.VertexGeometry.Join.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.assignments.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.contained_iff._simp_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.leftLeg",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.Convex",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.avoids_iff_monochromatic.match_1_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.commonPredicateCalls.eq_def",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.minimalVertices_correct._simp_1_11",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_clique_selector",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupCost",
+        "name": "RestrictionBridge.one_parent_count",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.best._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.checked_count",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.leaves._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.node.elim",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.retained_A_one_plus_Bforest._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.regionList_mem._simp_1_7",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupCost",
+        "name": "RestrictionBridge.distribute_family_lengths",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.sourceCheck",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupControls",
+        "name": "ForestGroups.Controls.groups",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.jointRegion",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instReprTree.repr._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.residual_query_complete",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.cherryReady",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.leafList._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.singleton_forced",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.executable_chain_four_cover",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_avoids_regions._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.findCommon.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "_private.Bridge.0.VertexGeometry.Join.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.proper",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.Join.eq_3",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.restrict.eq_def",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.leaves._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.best.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.leaf.inj",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.recOn",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.lca_left_root",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.cleanupTarget",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.jointColors",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instDecidableEqTree.decEq",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupDefs",
+        "name": "_private.GroupDefs.0.ForestState.labels.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.optionLeaves",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instDecidableEqTree.decEq._proof_6",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.empty_selection._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.owned_outside",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.assignments_sound",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.sameShape",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.selected_leaves_mono",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.RootedIso.below.swapped",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.sameShape.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "_private.GroupEmbedding.0.RMAF.instReprTree.repr.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.span_empty",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "_private.Geometry.0.VertexGeometry.region.match_1.eq_5",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.chain_two_paid_cover",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.contract._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.minimal_empty",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.retained_A_one_plus_Bforest._simp_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.pairwise_iff._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.exampleInstance._proof_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.commonPredicateCalls._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.singleton_selected_exists._simp_1_6",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.below.endpointL",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.colorLabel_at_address",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.count_family_flatten",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.best.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Vertex",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.priority_cross._simp_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.rightLeg",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupConsumerControls",
+        "name": "ForestGroups.ConsumerControls.ordinary_local_checks",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.rootedSpan._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.SourceEdge",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.exampleInstance",
+        "kind": "other",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "_private.GroupRestriction.0.RMAF.restrictionAgrees.match_1.splitter._sparseCasesOn_2",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.Nonempty",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_nil_right._simp_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.commonPredicateCalls.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupForward",
+        "name": "RestrictionBridge.checked_block_nodup",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.original_label_avoids_iff",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.initial_state_agreement_iff._simp_1_7",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.pairwise_iff",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.selectedLeaves.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupDefs",
+        "name": "ForestGroups.mem_owned._simp_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region_le_three",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.subset_singleton_eq",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.below.casesOn",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.literal_clear_transport",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.restrict_labels",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region_root_when_up",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.below",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_append_right",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.sameShape.match_1.eq_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.sameShape._sunfold",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.sameShape._unsafe_rec",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.additionalCost",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_symm",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupConsumerControls",
+        "name": "ForestGroups.ConsumerControls.actual_A_any_residual",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.restrict.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance.left",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_iff._simp_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.best_spec._proof_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RMAF.partitionCheck.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.sameShape.eq_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupForward",
+        "name": "RestrictionBridge.partition_labels_congr._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.DisjointParents",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.two_joint_coordinate_separation",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "_private.Geometry.0.VertexGeometry.region.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupControls",
+        "name": "ForestGroups.Controls.bF",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.rootedSpan_correct",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.assignments.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "_private.Bridge.0.VertexGeometry.selectedLeaves.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.contractBlock",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.pairwiseEmbeddings._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupDefs",
+        "name": "ForestGroups.Owns",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "_private.Bridge.0.VertexGeometry.selectedLeaves.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.cherry._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupForwardProof",
+        "name": "ForestGroups.local_forward._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.assignments._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupCostProof",
+        "name": "ForestGroups.reverse_every_budget",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.cleanupSources.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupConsumerControls",
+        "name": "ForestGroups.Controls.bF.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance.n",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.crossRight",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.crossLeft",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.node_clear_congr",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.distinct_parent_cut_cost",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.checked_block_nodup._proof_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.regionList_mem._simp_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupCostProof",
+        "name": "ForestGroups.source_blocks_balance",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_disjointVertices.match_1_6",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.two_joint_same_separator._proof_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupForwardProof",
+        "name": "ForestGroups.source_check_transport",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.sameShape.eq_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.median.eq_3",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.rootedSpan_correct._simp_1_9",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.RootedIso.swapped",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "_private.GroupStateFacts.0.ForestState.targetAgrees.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupForward",
+        "name": "RestrictionBridge.pairwise_filter",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.labels",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_chain_targets_distinct",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.unary_right_clear",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupControls",
+        "name": "ForestGroups.Controls.aF",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.restrict_leaves",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.colorLabel",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.jointColors_mem._simp_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_region_count_two_or_three",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RMAF.rootedSpan.eq_def",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_prepend_other._simp_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.retained_A_one_Bforest_no_C._proof_1_5",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.node",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.refines_trans",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "_private.Geometry.0.VertexGeometry.median.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.disjoint_transport",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.endpoint_only_rule_refuted",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupForwardProof",
+        "name": "ForestGroups.local_forward._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "_private.Bridge.0.VertexGeometry.Join.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.pieceHulls_occupies._simp_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.below.leftLeg",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance.casesOn",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.contained_iff._simp_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region.eq_3",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.minimal_nil_of_span_nil",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.checked_block_nodup._proof_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance.labels_left",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "_private.Geometry.0.VertexGeometry.median.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupControls",
+        "name": "ForestGroups.Controls.bT",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.findCommon_sound",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.expand._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.three_owned",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupForwardProof",
+        "name": "_private.GroupForwardProof.0.RMAF.restrictionAgrees.match_1.splitter._sparseCasesOn_2",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.checked_nonempty",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.pairwise_transport._simp_1_4",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.path_sym",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_cons_left._simp_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.assignments_complete",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupConsumerControls",
+        "name": "ForestGroups.Controls.ordinarySources.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.selectedLeaves._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "_private.Bridge.0.RMAF.pairwiseEmbeddings.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region.eq_def",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.lca.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.isEmpty_true",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.regionList_mem._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.regionList_mem._simp_1_5",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.restrict_compose_mask._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instDecidableEqTree.decEq._proof_4",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.retained_A_one_plus_Bforest",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.sameShape_restrict_inside",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.proper.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.initial_state_agreement_iff",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "_private.Geometry.0.VertexGeometry.median.match_1.eq_4",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.leaves.eq_def",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.findCommon.eq_def",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.path_from_root_not_up",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.fork'",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.reach_join_side",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region_eq_three_iff",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupCostProof",
+        "name": "ForestGroups.sources_le_blocks._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instDecidableEqTree.decEq._proof_3",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.join.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "_private.GroupEmbedding.0.RMAF.pairwiseEmbeddings.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.RootedIso.rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.reach_root",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.join_leaves",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.pieceHulls_occupies",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.agrees_parts._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupForward",
+        "name": "RestrictionBridge.component_labels",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.checked_concat",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.regionList_mem._proof_1_9",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.nonlabel_region_lt_three._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.pairwise_distinct._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.checked_block_nodup",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_avoids_regions",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.RootedIso.recOn",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.join.eq_4",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.path_same_side_to_root",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_iff",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.retained_A_one_Bforest_no_C._simp_1_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.Occupies",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.retained_A_one_plus_Bforest._proof_1_5",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.contract._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.below.endpointR",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.initial_state_agreement_iff._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.Join.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RMAF.minimalVertices.eq_def",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupReverseProof",
+        "name": "ForestGroups.local_partition_groups",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "_private.Geometry.0.VertexGeometry.region.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "_private.Geometry.0.VertexGeometry.region.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.endpointL",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupReverseProof",
+        "name": "_private.GroupReverseProof.0.ForestState.targetEmbeddings.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.RootedIso.below.leaf",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.RootedIso.below.straight",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_prepend_other'",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.node.inj",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.InSourceParent",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.assignment_solver_winner_valid",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instDecidableEqTree.decEq._proof_7",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_disjointVertices._simp_1_5",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupForwardProof",
+        "name": "ForestGroups.local_forward",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.restrict",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.ctorElim",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupControls",
+        "name": "ForestGroups.Controls.cross1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.sourceCheck.eq_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_two_region_coincidence._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.below.rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RMAF.pairwiseEmbeddings.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.optionLeaves.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.nonempty_join",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupReverseProof",
+        "name": "ForestGroups.reverse_reconstruction",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.proper_labels_right",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.singleton_occupies",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region_path_closed",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "_private.GroupRestriction.0.RestrictionBridge.optionLeaves.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "_private.Bridge.0.VertexGeometry.Join.match_1.eq_3",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.disjoint_parent_overlap_nonlabel",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.below.down",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.instReprTree.repr._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupControls",
+        "name": "ForestGroups.Controls.ordinaryGroups",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.residual_query_lift._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupCost",
+        "name": "RestrictionBridge.one_parent_count._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.best_exists",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupState",
+        "name": "ForestState.expand",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupCostProof",
+        "name": "ForestGroups.sum_sub_balance._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.jointRegion.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "_private.GroupStateFacts.0.ForestState.targetAgrees.match_1.splitter",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.optionLeaves.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.contained",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupDefs",
+        "name": "ForestGroups.group_target",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupCost",
+        "name": "RestrictionBridge.exact_cost._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.pairwise_distinct._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.checked_flatten_nodup",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupDefs",
+        "name": "ForestState.labels.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.median.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.contained_iff",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.prependSide",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.median._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.endpoint_branch_costs_three",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.best.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.root_not_prepend",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.restrict.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.best._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupControls",
+        "name": "ForestGroups.Controls.target",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupConsumerControls",
+        "name": "ForestGroups.ConsumerControls.actual_A_any_residual._simp_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.join.eq_3",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region._unsafe_rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_prepend_same._simp_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.path_other_to_root_impossible",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.best_none_iff",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupForwardProof",
+        "name": "_private.GroupForwardProof.0.RMAF.restrictionAgrees.match_1.splitter",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.not_up_path_to_root",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.targetAgrees.eq_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.agrees.eq_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_nil_left._simp_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_append_left",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.node.injEq",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.commonPredicateCalls._f",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_pairwiseEmbeddings._simp_1_5",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.instReprTree.repr.match_1.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Controls.exampleInstance._proof_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance.rec",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupReverseProof",
+        "name": "ForestState.targetEmbeddings.eq_2",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance.noConfusionType",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.residual_query_lift",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.two_parent_ownership_cover",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.restrict_of_contains",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.restrict.match_1.eq_3",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.concat_flatten_perm",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.ctorElimType",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_cons_right._simp_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupReconstruction",
+        "name": "RestrictionBridge.cross_subblocks",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.minimalVertices_correct",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupReverseProof",
+        "name": "ForestState.targetEmbeddings.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.PriorityClear",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.PathAt.below.fork",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.clique_three_survivor_cover",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupCostProof",
+        "name": "ForestGroups.forward_exact_cost._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "_private.GroupEmbedding.0.RMAF.pairwiseEmbeddings.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.optionLeaves.match_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.median.eq_def",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.jointRegion_iff_path_avoids",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.best._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "_private.RMAF.0.RMAF.sameShape.match_1.splitter",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.path_other_same_impossible",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupCostProof",
+        "name": "ForestGroups.forward_every_budget",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.region_root_not_up",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.regionList_mem._proof_1_8",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.noConfusion",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.assignment_solver_optimal",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree._sizeOf_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.vertex_helly_three",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Geometry",
+        "name": "_private.Geometry.0.VertexGeometry.median.match_1.eq_3",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "RestrictionBridge.restrict_inside",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupStateFacts",
+        "name": "ForestState.checked_flatten_nodup._proof_1_1",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Composition",
+        "name": "VertexGeometry.Occupies.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupRestriction",
+        "name": "_private.GroupRestriction.0.RestrictionBridge.join.match_1.eq_1",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "Geometry",
+        "name": "VertexGeometry.two_joint_same_separator",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RestrictionBridge.clear_cons_left",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.RootedIso.below",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.RootedIso.below.casesOn",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance.ctorIdx",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.retained_A_one_Bforest_no_C._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.regionList_mem._simp_1_6",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.pairwiseEmbeddings._sunfold",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupEmbedding",
+        "name": "RMAF.pairwiseEmbeddings.eq_def",
+        "kind": "theorem",
+        "axioms": []
+      },
+      {
+        "module": "GroupConsumerControls",
+        "name": "ForestGroups.ConsumerControls.literal_overlap_and_paid_cost",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.sameShape.eq_3",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupPriority",
+        "name": "ForestGroups.ResidualSolverContract",
+        "kind": "other",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.executable_two_region_coincidence",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.RootedIso.straight",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Instance._sizeOf_1",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "GroupCost",
+        "name": "RestrictionBridge.sum_indicator",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      },
+      {
+        "module": "Bridge",
+        "name": "VertexGeometry.selected_leaf_reach_implies_self",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.Refines",
+        "kind": "other",
+        "axioms": []
+      },
+      {
+        "module": "RMAF",
+        "name": "RMAF.Tree.leaf.injEq",
+        "kind": "theorem",
+        "axioms": [
+          "propext"
+        ]
+      },
+      {
+        "module": "GroupPartition",
+        "name": "RestrictionBridge.contained_iff._simp_1_2",
+        "kind": "theorem",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ]
+      }
+    ],
+    "counts": {
+      "RMAF": 199,
+      "GroupRestriction": 38,
+      "GroupEmbedding": 58,
+      "GroupPartition": 23,
+      "GroupCost": 16,
+      "GroupForward": 10,
+      "Geometry": 128,
+      "Bridge": 151,
+      "Composition": 31,
+      "GroupReconstruction": 18,
+      "GroupState": 29,
+      "GroupStateFacts": 36,
+      "GroupControls": 16,
+      "GroupDefs": 20,
+      "GroupForwardProof": 10,
+      "GroupReverseProof": 13,
+      "GroupCostProof": 13,
+      "GroupPriority": 30,
+      "GroupConsumerControls": 10
+    },
+    "total": 849,
+    "forbidden": [],
+    "axiom_union": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "origin_names_exact_author_match": true,
+  "checked_lazy_adoption": {
+    "name": "RMAF.agreement.eq_1",
+    "author_origin": "GroupStateFacts",
+    "fresh_origin": "GroupForward",
+    "source_only_import_contexts": {
+      "AllImports": [
+        "RMAF",
+        "GroupRestriction",
+        "GroupEmbedding",
+        "GroupPartition",
+        "GroupCost",
+        "GroupForward",
+        "Geometry",
+        "Bridge",
+        "Composition",
+        "GroupReconstruction",
+        "GroupState",
+        "GroupStateFacts",
+        "GroupControls",
+        "GroupDefs",
+        "GroupForwardProof",
+        "GroupReverseProof",
+        "GroupCostProof",
+        "GroupPriority",
+        "GroupConsumerControls"
+      ],
+      "AuthorImports": [
+        "GroupConsumerControls",
+        "Lean"
+      ]
+    },
+    "exact_raw_type_and_proof_sha256": "1efbeb0659af6fd47ce24fcfbbbffb9755bb1f999819d11dd5e3e89173e7df25",
+    "builds": [
+      {
+        "module": "FreshEqAllImports",
+        "exit": 0,
+        "seconds": 0.8402313749975292,
+        "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/FreshEqAllImports.log",
+        "log_sha256": "6a8ac3c4324d294aedc031722ec7b91fd0810568526cd8d8cc2a3cb80b796c37"
+      },
+      {
+        "module": "FreshEqAuthorImports",
+        "exit": 0,
+        "seconds": 0.7921482080018905,
+        "log": "research/rmaf/algorithm/verification/maf-grouped-callers-2026-10-15/phase2-release/isolated-groups/FreshEqAuthorImports.log",
+        "log_sha256": "0a00f82c0aa1704154eca4a14375c0ba3a8c49ed0a6f66fb6e9a88c74cfdaece"
+      }
+    ]
+  },
+  "olean_hashes": {
+    "RMAF": "1e507601b9ac70ce8c8995633f887c2d7e7160989682264670a4d93c7f145b8d",
+    "GroupRestriction": "e58134527aa6c73328360e1e620937c74872591ffe571f2ee04a63071a0a6b48",
+    "GroupEmbedding": "a86aa41a28aa9531f3cdd9afac7853d1e0463c88a8b9ccca539b984938f23d9b",
+    "GroupPartition": "b8b5565c83e65379226b767d64cde399ed8900a5b98abe887b00e0d2c66ad3fc",
+    "GroupCost": "6834172a891f3d3a7446a5b095329df28c3d76ea41df98c4c5f17253f60e9d8b",
+    "GroupForward": "e856eeea0dd22641d5556b4584c418bdfa7b04e95d67c997b032de1a4f374da6",
+    "Geometry": "a33f8263f455b3f6df692fe50a57e3e657d6a5ba662fcf23b41f3ef732deb018",
+    "Bridge": "0c20533997818017e1291386f43f52a49d0746ada79564c3c95894d5bee66714",
+    "Composition": "f10c58c05c92b962f0cb89a9dff989acaa4c5a2e466c79125f38b292d9ff6391",
+    "GroupReconstruction": "3894a0d3c0a71354e2a727968e493bdc7e64fd811fafb3d45dafdcd6f6cf968a",
+    "GroupState": "33f0722b2d4b328a566db69898f398c0b2cb8e36c1ba58be2d9a179706919b0c",
+    "GroupStateFacts": "3f8fc58c9cc77d8ff9d5c805524dc21de3ee6d20660f8d06c27dabe87901d8aa",
+    "GroupControls": "ceddb3d46a18f2f9ae996750fda39f40c3aed01cf286868927238f53bd6100b8",
+    "GroupDefs": "6ace8c0faca0e5aa39a5302d3e211130407a8dcc6e57583dbe8bdd2b13619282",
+    "GroupForwardProof": "4d91646b7b42a1629c548f8b14de4395f1b0b54921c46be28bef37bf9c1b3118",
+    "GroupReverseProof": "7b70dbb8df3670117304ff4c52aa3b7c777ca3b738ee3dd549ce42989cb46fcb",
+    "GroupCostProof": "9fc236da5c629d6b8e7b5f9d2788d935b2dda141482be54082c19ecd2ac3d0b9",
+    "GroupPriority": "9c7923bea6e335c3716f33fc6ce2a36bb9ad7147e34c12dd96bc40f7ebb8c8d7",
+    "GroupConsumerControls": "29d18b3c4211ec4f0b74b2e9d6491687e44b39cb5a61efcc9d7b90c22affc202"
+  }
+}

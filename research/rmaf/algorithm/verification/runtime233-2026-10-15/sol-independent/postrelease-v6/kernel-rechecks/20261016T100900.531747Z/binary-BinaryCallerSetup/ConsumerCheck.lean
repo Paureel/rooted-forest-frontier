@@ -1,0 +1,7 @@
+import BinaryCallerSetup
+#check GenericForest.BinaryCaller.checkerCapacity_global_width
+#print axioms GenericForest.BinaryCaller.checkerCapacity_global_width
+#check GenericForest.BinaryCaller.checkerCapacity_global_setup
+#print axioms GenericForest.BinaryCaller.checkerCapacity_global_setup
+#check GenericForest.BinaryCaller.checker_work_global
+#print axioms GenericForest.BinaryCaller.checker_work_global

@@ -1,0 +1,13 @@
+import Rule5GraphControls
+#check Universal233.Rule5Local.actual_one_incident_split
+#check Universal233.Rule5Local.commonSplit_emits
+#check Universal233.Rule5Local.original_crossing_clusters_exclude_block
+#check Universal233.Rule5Local.figure153_block_exclusion
+#check Universal233.Rule5Local.splitTwo_original
+#check Universal233.Rule5Local.splitTwo_refines
+#check Universal233.Rule5Local.actual_hard2_exchange_from_split_saving
+#check Universal233.Rule5Local.actual_hard2_exchange_from_split_saving_b
+#check Universal233.Rule5Local.case321_split_saving
+#check Universal233.Rule5Local.actual_case321_exchange
+#check Universal233.Rule5Local.case323_split_saving
+#check Universal233.Rule5Local.actual_case323_exchange

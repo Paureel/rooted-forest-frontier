@@ -1,0 +1,58 @@
+research/rmaf/algorithm/universal233/rule4/Exchange.lean:53:4: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  c ≥ 1
+  c + d + e ≤ 1
+  a ≥ 0
+  a + c + d + e ≤ 1
+where
+ a := ↑(List.count x (no B q))
+ c := ↑(List.count x [])
+ d := ↑(if (b == x) = true then 1 else 0)
+ e := ↑(List.count x R.flatten)
+research/rmaf/algorithm/universal233/rule4/Exchange.lean:55:69: error: Type mismatch: After simplification, term
+  hx
+ has type
+  x ∈ yes B q ∨ x = b ∨ x ∈ no B q ∨ ∃ l, l ∈ R ∧ x ∈ l
+but is expected to have type
+  x ∈ yes B q ∨ (x = b ∨ x ∈ no B q) ∨ ∃ l, l ∈ R ∧ x ∈ l
+research/rmaf/algorithm/universal233/rule4/Exchange.lean:52:67: warning: This simp argument is unused:
+  List.flatten_nil
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [List.flatten_cons, List.count_append, List.count_cons, List.append_nil] at hh ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/rule4/Exchange.lean:52:84: warning: This simp argument is unused:
+  List.append_nil
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [List.flatten_cons, List.count_append, List.count_cons, List.flatten_nil] at hh ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/rule4/Exchange.lean:101:37: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [he] at haK
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+research/rmaf/algorithm/universal233/rule4/Exchange.lean:105:14: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [he] at hm
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+research/rmaf/algorithm/universal233/rule4/Exchange.lean:159:8: error: Type mismatch: After simplification, term
+  hh
+ has type
+  (leaves V).contains x = false
+but is expected to have type
+  ¬x ∈ leaves V
+research/rmaf/algorithm/universal233/rule4/Exchange.lean:222:36: error: Type mismatch: After simplification, term
+  hcuts'
+ has type
+  q = q' ∧ r = r'
+but is expected to have type
+  q' = q ∧ r' = r

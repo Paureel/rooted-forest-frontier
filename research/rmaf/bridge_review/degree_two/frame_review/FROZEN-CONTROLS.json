@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "frozen_before": "all degree-two implementation and prior checker reads",
+  "method": "fresh Python standard-library tree traversal; support is union of undirected paths between selected leaf occurrences; shape via canonical unordered recursive restriction; exact integer equality",
+  "fixtures": [
+    {"id":"root","t":[0,1],"u":[1,0],"B":[0,1],"v":[],"support_t":[[],[false],[true]],"degree":2,"split":[[0],[1]],"cost":1},
+    {"id":"path","t":[[0,1],2],"u":[2,[1,0]],"B":[0,2],"v":[false],"support_t":[[],[false],[false,false],[true]],"degree":2,"split":[[0],[2]],"cost":1,"leaf0_t":[false,false],"leaf0_u":[true,true]},
+    {"id":"unequal_outside","t":[[0,1],2],"u":[2,[99,0]],"B":[0,2],"v":[false],"support_t":[[],[false],[false,false],[true]],"degree":2,"split":[[0],[2]],"cost":1},
+    {"id":"quartet","t":[[0,1],[2,3]],"u":[[0,1],[2,3]],"partition":[[0,2],[1],[3]],"v":[],"refined":[[0],[2],[1],[3]],"before":3,"after":4,"cost":1},
+    {"id":"degree_three","t":[[0,1],2],"u":[[0,1],2],"B":[0,1,2],"v":[false],"degree":3,"min_avoiding_pieces":3},
+    {"id":"joint_marks","t":[[0,3],[1,[2,4]]],"u":[[0,2],1],"B":[0,1,2],"marks":[[false],[true,true]],"costs":[1,1,1,2]}
+  ],
+  "mutations": ["root degree 1 instead of 2", "omit path vertex false from support", "leaf0 source address substituted for target address", "wrong root chosen as false at root fixture", "overlapping blocks 0|01", "quartet count unchanged 3", "degree-three called degree-two", "degree-three avoiding partition of two pieces exists"],
+  "premise_controls": ["empty selection degree zero", "singleton selection degree zero", "absent selection rejected", "duplicate leaf labels rejected"],
+  "pass_criteria": "Every exact positive literal equals independent output; all listed mutations disagree or are rejected alongside clean twins; no sampling and no tolerance. Additional searches are bounded diagnostics only."
+}

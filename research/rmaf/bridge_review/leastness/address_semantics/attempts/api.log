@@ -1,0 +1,20 @@
+List.nodup_append.{u_1} {α : Type u_1} {l₁ l₂ : List α} :
+  (l₁ ++ l₂).Nodup ↔ l₁.Nodup ∧ l₂.Nodup ∧ ∀ (a : α), a ∈ l₁ → ∀ (b : α), b ∈ l₂ → a ≠ b
+research/rmaf/bridge_review/leastness/address_semantics/CheckAPI.lean:3:7: error(lean.unknownIdentifier): Unknown constant `List.Nodup.of_append_left`
+research/rmaf/bridge_review/leastness/address_semantics/CheckAPI.lean:4:7: error(lean.unknownIdentifier): Unknown constant `List.Nodup.of_append_right`
+research/rmaf/bridge_review/leastness/address_semantics/CheckAPI.lean:5:7: error(lean.unknownIdentifier): Unknown constant `List.Nodup.append`
+research/rmaf/bridge_review/leastness/address_semantics/CheckAPI.lean:6:7: error(lean.unknownIdentifier): Unknown constant `List.nodup_map_iff`
+research/rmaf/bridge_review/leastness/address_semantics/CheckAPI.lean:7:7: error(lean.unknownIdentifier): Unknown constant `List.Nodup.map`
+List.Perm.nodup_iff.{u_1} {α : Type u_1} {l₁ l₂ : List α} : l₁.Perm l₂ → (l₁.Nodup ↔ l₂.Nodup)
+List.Perm.nodup.{u_1} {α : Type u_1} {l l' : List α} (hl : l.Perm l') (hR : l.Nodup) : l'.Nodup
+List.nodup_range {n : Nat} : (List.range n).Nodup
+List.Perm.mem_iff.{u_1} {α : Type u_1} {a : α} {l₁ l₂ : List α} (p : l₁.Perm l₂) : a ∈ l₁ ↔ a ∈ l₂
+List.mem_range {m n : Nat} : m ∈ List.range n ↔ m < n
+List.Nodup.sublist.{u_1} {α✝ : Type u_1} {l₁ l₂ : List α✝} : l₁.Sublist l₂ → l₂.Nodup → l₁.Nodup
+List.pairwise_append.{u_1} {α : Type u_1} {R : α → α → Prop} {l₁ l₂ : List α} :
+  List.Pairwise R (l₁ ++ l₂) ↔ List.Pairwise R l₁ ∧ List.Pairwise R l₂ ∧ ∀ (a : α), a ∈ l₁ → ∀ (b : α), b ∈ l₂ → R a b
+List.Pairwise.imp.{u_1} {α : Type u_1} {R S : α → α → Prop} (H : ∀ {a b : α}, R a b → S a b) {l : List α} :
+  List.Pairwise R l → List.Pairwise S l
+List.nodup_cons.{u_1} {α : Type u_1} {a : α} {l : List α} : (a :: l).Nodup ↔ ¬a ∈ l ∧ l.Nodup
+List.Pairwise.imp_of_mem.{u_1} {α : Type u_1} {l : List α} {R S : α → α → Prop}
+  (H : ∀ {a b : α}, a ∈ l → b ∈ l → R a b → S a b) (p : List.Pairwise R l) : List.Pairwise S l

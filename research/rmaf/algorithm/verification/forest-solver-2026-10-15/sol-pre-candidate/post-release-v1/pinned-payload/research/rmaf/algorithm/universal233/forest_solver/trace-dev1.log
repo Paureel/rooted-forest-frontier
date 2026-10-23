@@ -1,0 +1,25 @@
+research/rmaf/algorithm/universal233/forest_solver/build/ForestTrace.lean:25:25: error(lean.unknownIdentifier): Unknown identifier `r`
+research/rmaf/algorithm/universal233/forest_solver/build/ForestTrace.lean:25:27: error: unsolved goals
+P A : Type
+rec : P → Nat → Option (Nat × A)
+charge : P → Nat → Nat
+b : Nat
+js : List (Job P A)
+ih : ∀ (p : P) (k : Nat), (p, k) ∈ (meterRun rec charge b js).queries → k = b ∧ ∃ j, j ∈ js ∧ j.problem = p
+p : P
+he : rec p b = none
+hk : (p, b) ∈ (meterRun rec charge b (Job.hard p :: js)).queries
+⊢ sorry () = p ∨ Job.hard (sorry ()) ∈ js
+research/rmaf/algorithm/universal233/forest_solver/build/ForestTrace.lean:32:27: error(lean.unknownIdentifier): Unknown identifier `r`
+research/rmaf/algorithm/universal233/forest_solver/build/ForestTrace.lean:32:29: error: unsolved goals
+P A : Type
+rec : P → Nat → Option (Nat × A)
+charge : P → Nat → Nat
+b : Nat
+js : List (Job P A)
+ih : ∀ (p : P) (k : Nat), (p, k) ∈ (meterRun rec charge b js).queries → k = b ∧ ∃ j, j ∈ js ∧ j.problem = p
+p : P
+x : Nat × A
+he : rec p b = some x
+hk : (p, b) ∈ (meterRun rec charge b (Job.hard p :: js)).queries
+⊢ sorry () = p ∨ Job.hard (sorry ()) ∈ js

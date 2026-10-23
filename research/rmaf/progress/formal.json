@@ -1,0 +1,22 @@
+{
+  "id": "formal",
+  "title": "Lean proofs",
+  "status": "open",
+  "summary": "21 kernel-checked theorems; standard axioms only. Full graph semantics and faster algorithm theorem remain open.",
+  "metrics": {"checked_theorems": 21, "assignments_checked": 256, "negative_controls_caught": 1, "custom_axioms": 0},
+  "claims": [
+    {"id": "improvement", "label": "Faster exact algorithm", "status": "open", "detail": "No improved algorithm or bound has been proved."},
+    {"id": "endpoint-rule", "label": "Isolate either cherry endpoint", "status": "refuted", "detail": "Four-leaf assignment-model optimum is two; every feasible forest isolating endpoint 0 or 1 requires at least three components."},
+    {"id": "formal-checkpoint", "label": "Lean checkpoint", "status": "checked", "detail": "Executed Lake build, all 21 theorem axiom audits, and deliberately false forest rejection retained in the certificate."}
+  ],
+  "lemmas": [
+    {"id": "formal-rooted-iso", "label": "Rooted isomorphism", "status": "checked", "detail": "Boolean checker is equivalent to an independent inductive label-preserving rooted-isomorphism relation.", "depends_on": [], "artifacts": ["research/rmaf/lean/RMAF.lean"]},
+    {"id": "formal-enumeration", "label": "Complete assignments", "status": "checked", "detail": "Enumeration contains every bounded length-n assignment and no other assignment.", "depends_on": [], "artifacts": ["research/rmaf/lean/RMAF.lean"]},
+    {"id": "formal-selector", "label": "Exact minimum selector", "status": "checked", "detail": "Returns a feasible minimum-cost list member; none exactly when no feasible list member exists.", "depends_on": [], "artifacts": ["research/rmaf/lean/RMAF.lean"]},
+    {"id": "formal-solver", "label": "Assignment optimum", "status": "checked", "detail": "Returned forest minimizes components over every bounded assignment in the executable embedding model.", "depends_on": ["formal-enumeration", "formal-selector"], "artifacts": ["research/rmaf/lean/RMAF.lean"]},
+    {"id": "formal-endpoint", "label": "Endpoint counterexample", "status": "checked", "detail": "256-assignment kernel check plus universal bounded-assignment consequences: optimum two, endpoint isolation at least three.", "depends_on": ["formal-solver"], "artifacts": ["research/rmaf/lean/RMAF.lean", "research/rmaf/lean/audit/certificate.json"]},
+    {"id": "formal-semantics", "label": "Graph correspondence", "status": "open", "detail": "Prove minimal embedding graph semantics and that all set partitions admit bounded assignments; then prove guaranteed success on every well-formed instance.", "depends_on": ["formal-rooted-iso", "formal-solver"], "artifacts": ["research/rmaf/lean/FORMAL.md"]},
+    {"id": "formal-complexity", "label": "Faster algorithm proof", "status": "open", "detail": "New reduction/branch completeness, full cost model, worst-case recurrence, original-k bound, and fresh verification are still required.", "depends_on": ["formal-semantics"], "artifacts": ["research/rmaf/lean/FORMAL.md"]}
+  ],
+  "artifacts": ["research/rmaf/lean/FORMAL.md", "research/rmaf/lean/RMAF.lean", "research/rmaf/lean/audit.py", "research/rmaf/lean/audit/certificate.json", "research/rmaf/lean/audit/build.log", "research/rmaf/lean/audit/axioms.log", "research/rmaf/lean/audit/negative-control.log"]
+}

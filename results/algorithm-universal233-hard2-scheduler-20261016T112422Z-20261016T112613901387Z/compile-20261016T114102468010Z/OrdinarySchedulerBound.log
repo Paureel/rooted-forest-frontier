@@ -1,0 +1,52 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerBound.lean:101:3: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  t ≥ 0
+  s ≥ 0
+  r ≥ 0
+  q ≥ 0
+  p ≥ 0
+  p - q ≥ -6
+  o ≥ 0
+  n ≥ 0
+  m ≥ 0
+  l ≥ 0
+  l - o ≤ 2
+  k ≥ 0
+  k - l ≥ -2
+  j ≥ 0
+  j - n ≤ 0
+  i ≥ 0
+  i - j ≥ 0
+  h ≥ 0
+  g ≥ 0
+  g - h ≥ 0
+  128*g - m ≥ -128
+  f ≥ 0
+  e ≥ 0
+  e - f ≥ -2
+  e - f + 128*g - j - l - m - q + r + s + t ≤ -139
+  d ≥ 0
+  c ≥ 0
+  a ≥ 3
+  a - c ≥ 0
+  a - d ≥ 0
+where
+ a := ↑N
+ c := ↑(treeNodes T)
+ d := ↑(treeNodes S)
+ e := ↑(ordinarySlotPolynomial N + 8) * ↑Q.length
+ f := ↑(ordinaryPrepareMeter T S Q).work
+ g := ↑Q.length
+ h := ↑(scheduleSourceMeter (mafRecursiveMeter actual T S) b js).queries.length
+ i := ↑(scheduleSourceMeter (mafRecursiveMeter actual T S) b js).queries.length * ↑(64 * (N + 1) ^ 2)
+ j := ↑(scheduleSourceMeter (mafRecursiveMeter actual T S) b js).recursiveWork
+ k := ↑(32 * (N + 1) ^ 2 + 12) * ↑(scheduleSourceMeter (mafRecursiveMeter actual T S) b js).queries.length
+ l := ↑(ordinaryQueriesMeter T S (scheduleSourceMeter (mafRecursiveMeter actual T S) b js).queries).work
+ m := ↑(scheduleSourceMeter (mafRecursiveMeter actual T S) b js).callerWork
+ n := ↑Q.length * ↑((N + 1) ^ 2 * 64)
+ o := ↑Q.length * ↑((N + 1) ^ 2 * 32 + 12)
+ p := ↑Q.length * ↑(N * 2 + 12)
+ q := ↑(optionFlattenMeter (scheduleSourceMeter (mafRecursiveMeter actual T S) b js).value.answers).work
+ r := ↑(64 * (N + 1) ^ 2) * ↑Q.length
+ s := ↑(2 * N + 12) * ↑Q.length
+ t := ↑(32 * (N + 1) ^ 2 + 12) * ↑Q.length

@@ -1,0 +1,81 @@
+import Hard2GenerationBound
+namespace OrdinaryDispatch.Hard2SourceWork
+open RMAF Universal233 WholeSourceWork CoreWork CoreProgram VertexGeometry
+open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork
+open Universal233.Hard2PaidLocal Universal233.Hard2Overlap Universal233.PaidAssembly
+
+def ResultSize (N : Nat) : Result→Prop
+ | .disjoint=>True
+ | .clique v=>v.length≤N
+ | .four _ v w=>v.length≤N ∧ w.length≤N
+ | .diagonal _ v w=>v.length≤N ∧ w.length≤N
+ | .pair _ (.vertex v)=>v.length≤N
+ | .pair _ (.edge e)=>e.2.length≤N
+
+theorem selected_result_size {T : Tree} {A B C : List Nat} {out : Result}
+ (ht : (leaves T).Nodup) (hl : ∀x,x∈leaves S→x∈leaves T)
+ (hp : partitionCheck (leaves S) [A,B,C]=true) (sel : Hard2Overlap.select T A B C=some out) :
+ ResultSize (treeNodes T) out := by
+ have h:=Hard2Overlap.select_sound ht hl hp sel
+ have addr (D : List Nat) (v : RMAF.Vertex) (mem : v∈minimalVertices D T) : v.length≤treeNodes T:=by
+  have h:=minimal_address D T v mem;have l:=leaves_nodes T;omega
+ cases out with
+ | disjoint=>trivial
+ | clique v=>exact addr A v h.2.1
+ | four o v w=>exact ⟨addr _ v h.1.2.2.1,addr _ w h.1.2.2.2.2.1⟩
+ | diagonal o v w=>exact ⟨addr _ v h.1.2.2.1,addr _ w h.1.2.2.2.2.1⟩
+ | pair o k=>cases k with
+  | vertex v=>exact addr _ v h.2.2.2.1
+  | edge e=>exact (pairEdges_address T e h.2.2.2.1).2
+
+theorem caseOutputsMeter_bound (S T : Tree) (A B C : List Nat) (N q : Nat) (three : 3≤N)
+ (tn : treeNodes T≤N) (sn : treeNodes S≤N) (al : A.length≤N) (bl : B.length≤N) (cl : C.length≤N)
+ (rs : ResultSize N out) :
+ (caseOutputsMeter S T A B C q out).work≤outputKindCap S T N q+200*(N+1)^3 ∧
+ (caseOutputsMeter S T A B C q out).value.length≤4*outputCountCap S q := by
+ have firstCap (o : Order) : (first o A B C).length≤N:=by cases o <;> assumption
+ have secondCap (o : Order) : (second o A B C).length≤N:=by cases o <;> assumption
+ have kind (o : Order) (k : Kind) (size : KindSize N k):=
+  kindOutputsMeter_bound k S T (first o A B C) (second o A B C) N q (firstCap o) (secondCap o) size
+ cases out with
+ | disjoint=>simp [caseOutputsMeter,outputKindCap];omega
+ | clique v=>have h:=kindOutputsMeter_bound (.clique v) S T A B N q al bl rs
+             simp only [caseOutputsMeter];constructor <;> omega
+ | four o v w=>have h:=kind o (.four v w) rs;simp only [caseOutputsMeter];constructor <;> omega
+ | diagonal o v w=>have h:=kind o (.diagonal v w) rs;simp only [caseOutputsMeter];constructor <;> omega
+ | pair o k=>cases k with
+  | vertex v=>have h:=kind o (.vertex v) rs;simp only [caseOutputsMeter];constructor <;> omega
+  | edge e=>
+   have dl : (pairDescendantsMeter T e.2).value.length≤N:=by
+    rw [pairDescendantsMeter_value]
+    exact Nat.le_trans (List.length_filter_le _ _) (Nat.le_trans (leaves_nodes T) tn)
+   have a:=kind o (.side (pairDescendantsMeter T e.2).value) dl
+   have b:=kindOutputsMeter_bound (.side (pairDescendantsMeter T e.2).value) S T
+    (second o A B C) (first o A B C) N q (secondCap o) (firstCap o) dl
+   have d:=pairDescendantsMeter_bound T e.2 N tn rs
+   have check:=meterRestrictionAgrees_bound S T (first o A B C) N (by omega) (by omega) (firstCap o)
+   have lift:=cap_lift N 128 2 3 _ check (by decide)
+   have pos:1≤(N+1)^3:=Nat.one_le_pow _ _ (by omega)
+   by_cases good:(meterRestrictionAgrees S T (first o A B C)).value=true
+   · simp only [caseOutputsMeter,edgeOutputsMeter,good,Bool.true_eq_true,ite_true];constructor <;> omega
+   · simp only [caseOutputsMeter,edgeOutputsMeter,good,Bool.false_eq_true,ite_false];constructor <;> omega
+
+def generationPolynomial (N : Nat) :=128*(N+1)^3+16*(1024*(N*(N+2)+N+2)^3+6)+12
+
+theorem generationEnvelope_uniform (S : Tree) (N q : Nat) (sn : treeNodes S≤N) :
+ generationEnvelope S q≤generationPolynomial N*(q+1)*2^(q+1) := by
+ have init:initialCharge S≤128*(N+1)^3:=by
+  unfold initialCharge;exact Nat.mul_le_mul_left 128 (Nat.pow_le_pow_left (by omega) 3)
+ have rc:inputResource S+1≤N*(N+2)+N+2:=by
+  have h:=Nat.mul_le_mul sn (show treeNodes S+2≤N+2 by omega)
+  unfold inputResource;omega
+ have lc:RecoveryLocalWork.localCap (inputResource S)≤1024*(N*(N+2)+N+2)^3:=
+  Nat.mul_le_mul_left 1024 (Nat.pow_le_pow_left rc 3)
+ have mq:min q ((leaves S).length-1)+1≤q+1:=by omega
+ have power:=Nat.pow_le_pow_right (show 1≤2 by decide) mq
+ have poly:=Nat.mul_le_mul (Nat.mul_le_mul (Nat.add_le_add_right lc 6) mq) power
+ have pos:1≤(q+1)*2^(q+1):=Nat.mul_pos (by omega) (Nat.two_pow_pos _)
+ have rest:=Nat.mul_le_mul_left (128*(N+1)^3+12) pos
+ simp only [generationEnvelope,generationPolynomial,Nat.add_mul,Nat.mul_add,Nat.one_mul,Nat.mul_one,Nat.mul_assoc] at *
+ omega
+end OrdinaryDispatch.Hard2SourceWork

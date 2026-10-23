@@ -1,0 +1,714 @@
+research/rmaf/thesis_transfer/Transfer.lean:23:47: error: unsolved goals
+case false
+a b rho : Nat
+s : List Nat
+t u rt ru : Tree
+hab : a ≠ b
+ha : s.contains a = true
+hb : s.contains b = true
+ht : restrict s t = some rt
+hu : restrict s u = some ru
+hba : (b == a) = false
+habb : (a == b) = false
+hr : s.contains rho = false
+⊢ (match
+      match if rho ∈ s then some (Tree.leaf rho) else none,
+        match if b ∈ s then some (Tree.leaf b) else none,
+          match if a ∈ s then some (Tree.leaf a) else none, some rt with
+          | none, none => none
+          | some a, none => some a
+          | none, some a => some a
+          | some a, some b => some (a.node b) with
+        | none, none => none
+        | some a, none => some a
+        | none, some a => some a
+        | some a, some b => some (a.node b) with
+      | none, none => none
+      | some a, none => some a
+      | none, some a => some a
+      | some a, some b => some (a.node b),
+      match if rho ∈ s then some (Tree.leaf rho) else none,
+        match if a ∈ s then some (Tree.leaf a) else none,
+          match if b ∈ s then some (Tree.leaf b) else none, some ru with
+          | none, none => none
+          | some a, none => some a
+          | none, some a => some a
+          | some a, some b => some (a.node b) with
+        | none, none => none
+        | some a, none => some a
+        | none, some a => some a
+        | some a, some b => some (a.node b) with
+      | none, none => none
+      | some a, none => some a
+      | none, some a => some a
+      | some a, some b => some (a.node b) with
+    | some s, some v => sameShape s v
+    | x, x_1 => false) =
+    false
+
+case true
+a b rho : Nat
+s : List Nat
+t u rt ru : Tree
+hab : a ≠ b
+ha : s.contains a = true
+hb : s.contains b = true
+ht : restrict s t = some rt
+hu : restrict s u = some ru
+hba : (b == a) = false
+habb : (a == b) = false
+hr : s.contains rho = true
+⊢ (match
+      match if rho ∈ s then some (Tree.leaf rho) else none,
+        match if b ∈ s then some (Tree.leaf b) else none,
+          match if a ∈ s then some (Tree.leaf a) else none, some rt with
+          | none, none => none
+          | some a, none => some a
+          | none, some a => some a
+          | some a, some b => some (a.node b) with
+        | none, none => none
+        | some a, none => some a
+        | none, some a => some a
+        | some a, some b => some (a.node b) with
+      | none, none => none
+      | some a, none => some a
+      | none, some a => some a
+      | some a, some b => some (a.node b),
+      match if rho ∈ s then some (Tree.leaf rho) else none,
+        match if a ∈ s then some (Tree.leaf a) else none,
+          match if b ∈ s then some (Tree.leaf b) else none, some ru with
+          | none, none => none
+          | some a, none => some a
+          | none, some a => some a
+          | some a, some b => some (a.node b) with
+        | none, none => none
+        | some a, none => some a
+        | none, some a => some a
+        | some a, some b => some (a.node b) with
+      | none, none => none
+      | some a, none => some a
+      | none, some a => some a
+      | some a, some b => some (a.node b) with
+    | some s, some v => sameShape s v
+    | x, x_1 => false) =
+    false
+research/rmaf/thesis_transfer/Transfer.lean:24:42: warning: This simp argument is unused:
+  Nat.beq_eq
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Ne.symm hab]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:25:43: warning: This simp argument is unused:
+  Nat.beq_eq
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hab]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:27:55: warning: This simp argument is unused:
+  ha
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [restrictionAgrees, augment, graft, restrict, hb, ht, hu, hr, sameShape, hba, habb]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:27:59: warning: This simp argument is unused:
+  hb
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [restrictionAgrees, augment, graft, restrict, ha, ht, hu, hr, sameShape, hba, habb]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:28:6: warning: This simp argument is unused:
+  hr
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [restrictionAgrees, augment, graft, restrict, ha, hb, ht, hu, sameShape, hba, habb]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:28:10: warning: This simp argument is unused:
+  sameShape
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [restrictionAgrees, augment, graft, restrict, ha, hb, ht, hu, hr, hba, habb]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:28:21: warning: This simp argument is unused:
+  hba
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [restrictionAgrees, augment, graft, restrict, ha, hb, ht, hu, hr, sameShape, habb]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:28:26: warning: This simp argument is unused:
+  habb
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [restrictionAgrees, augment, graft, restrict, ha, hb, ht, hu, hr, sameShape, hba]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:35:11: error: unsolved goals
+case leaf.false
+s : List Nat
+x : Nat
+hx : s.contains x = false
+h : x ∈ s
+⊢ x ∈ s
+
+case leaf.true
+s : List Nat
+x : Nat
+hx : s.contains x = true
+h : x ∈ s
+⊢ x ∈ s
+research/rmaf/thesis_transfer/Transfer.lean:36:52: warning: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [rootedSpan] at h ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:46:11: error: unsolved goals
+case leaf
+s : List Nat
+x : Nat
+hs : s.contains x = true
+hx : x ∈ leaves (Tree.leaf x)
+⊢ x ∈ s
+research/rmaf/thesis_transfer/Transfer.lean:49:24: warning: This simp argument is unused:
+  hs
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [rootedSpan]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:62:80: error: unsolved goals
+case false.false
+outer inner rho : Nat
+s : List Nat
+t : Tree
+hin : s.contains inner = true
+ht : (rootedSpan s t).isEmpty = false
+hm : [] ∈ rootedSpan s t
+ho : s.contains outer = false
+hr : s.contains rho = false
+⊢ [true, true, true] ∈
+    if rho ∈ s then
+      [] ::
+        (List.map (fun x => false :: x) (if rho ∈ s then [[]] else []) ++
+          [true] ::
+            (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true, true] ::
+                (List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => false :: x)
+                    (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t))))
+    else
+      List.map (fun x => true :: x)
+        (if outer ∈ s then
+          [] ::
+            (List.map (fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true] ::
+                (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t)))
+        else
+          List.map (fun x => true :: x)
+            (if inner ∈ s then
+              [] ::
+                (List.map (fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map (fun x => true :: x) (rootedSpan s t))
+            else List.map (fun x => true :: x) (minimalVertices s t)))
+
+case false.true
+outer inner rho : Nat
+s : List Nat
+t : Tree
+hin : s.contains inner = true
+ht : (rootedSpan s t).isEmpty = false
+hm : [] ∈ rootedSpan s t
+ho : s.contains outer = false
+hr : s.contains rho = true
+⊢ [true, true, true] ∈
+    if rho ∈ s then
+      [] ::
+        (List.map (fun x => false :: x) (if rho ∈ s then [[]] else []) ++
+          [true] ::
+            (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true, true] ::
+                (List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => false :: x)
+                    (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t))))
+    else
+      List.map (fun x => true :: x)
+        (if outer ∈ s then
+          [] ::
+            (List.map (fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true] ::
+                (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t)))
+        else
+          List.map (fun x => true :: x)
+            (if inner ∈ s then
+              [] ::
+                (List.map (fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map (fun x => true :: x) (rootedSpan s t))
+            else List.map (fun x => true :: x) (minimalVertices s t)))
+
+case true.false
+outer inner rho : Nat
+s : List Nat
+t : Tree
+hin : s.contains inner = true
+ht : (rootedSpan s t).isEmpty = false
+hm : [] ∈ rootedSpan s t
+ho : s.contains outer = true
+hr : s.contains rho = false
+⊢ [true, true, true] ∈
+    if rho ∈ s then
+      [] ::
+        (List.map (fun x => false :: x) (if rho ∈ s then [[]] else []) ++
+          [true] ::
+            (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true, true] ::
+                (List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => false :: x)
+                    (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t))))
+    else
+      List.map (fun x => true :: x)
+        (if outer ∈ s then
+          [] ::
+            (List.map (fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true] ::
+                (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t)))
+        else
+          List.map (fun x => true :: x)
+            (if inner ∈ s then
+              [] ::
+                (List.map (fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map (fun x => true :: x) (rootedSpan s t))
+            else List.map (fun x => true :: x) (minimalVertices s t)))
+
+case true.true
+outer inner rho : Nat
+s : List Nat
+t : Tree
+hin : s.contains inner = true
+ht : (rootedSpan s t).isEmpty = false
+hm : [] ∈ rootedSpan s t
+ho : s.contains outer = true
+hr : s.contains rho = true
+⊢ [true, true, true] ∈
+    if rho ∈ s then
+      [] ::
+        (List.map (fun x => false :: x) (if rho ∈ s then [[]] else []) ++
+          [true] ::
+            (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true, true] ::
+                (List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => false :: x)
+                    (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t))))
+    else
+      List.map (fun x => true :: x)
+        (if outer ∈ s then
+          [] ::
+            (List.map (fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true] ::
+                (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t)))
+        else
+          List.map (fun x => true :: x)
+            (if inner ∈ s then
+              [] ::
+                (List.map (fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map (fun x => true :: x) (rootedSpan s t))
+            else List.map (fun x => true :: x) (minimalVertices s t)))
+research/rmaf/thesis_transfer/Transfer.lean:65:55: warning: This simp argument is unused:
+  hin
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices, rootedSpan, augment, graft, ho, hr, ht, prependSide, hm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:65:60: warning: This simp argument is unused:
+  ho
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices, rootedSpan, augment, graft, hin, hr, ht, prependSide, hm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:65:64: warning: This simp argument is unused:
+  hr
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices, rootedSpan, augment, graft, hin, ho, ht, prependSide, hm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:66:19: warning: This simp argument is unused:
+  hm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices, rootedSpan, augment, graft, hin, ho, hr, ht, prependSide]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:72:80: error: unsolved goals
+case false.false
+outer inner rho : Nat
+s : List Nat
+t : Tree
+hout : s.contains outer = true
+ht : (rootedSpan s t).isEmpty = false
+hm : [] ∈ rootedSpan s t
+hi : s.contains inner = false
+hr : s.contains rho = false
+⊢ [true, true, true] ∈
+    if rho ∈ s then
+      [] ::
+        (List.map (fun x => false :: x) (if rho ∈ s then [[]] else []) ++
+          [true] ::
+            (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true, true] ::
+                (List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => false :: x)
+                    (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t))))
+    else
+      List.map (fun x => true :: x)
+        (if outer ∈ s then
+          [] ::
+            (List.map (fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true] ::
+                (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t)))
+        else
+          List.map (fun x => true :: x)
+            (if inner ∈ s then
+              [] ::
+                (List.map (fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map (fun x => true :: x) (rootedSpan s t))
+            else List.map (fun x => true :: x) (minimalVertices s t)))
+
+case false.true
+outer inner rho : Nat
+s : List Nat
+t : Tree
+hout : s.contains outer = true
+ht : (rootedSpan s t).isEmpty = false
+hm : [] ∈ rootedSpan s t
+hi : s.contains inner = false
+hr : s.contains rho = true
+⊢ [true, true, true] ∈
+    if rho ∈ s then
+      [] ::
+        (List.map (fun x => false :: x) (if rho ∈ s then [[]] else []) ++
+          [true] ::
+            (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true, true] ::
+                (List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => false :: x)
+                    (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t))))
+    else
+      List.map (fun x => true :: x)
+        (if outer ∈ s then
+          [] ::
+            (List.map (fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true] ::
+                (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t)))
+        else
+          List.map (fun x => true :: x)
+            (if inner ∈ s then
+              [] ::
+                (List.map (fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map (fun x => true :: x) (rootedSpan s t))
+            else List.map (fun x => true :: x) (minimalVertices s t)))
+
+case true.false
+outer inner rho : Nat
+s : List Nat
+t : Tree
+hout : s.contains outer = true
+ht : (rootedSpan s t).isEmpty = false
+hm : [] ∈ rootedSpan s t
+hi : s.contains inner = true
+hr : s.contains rho = false
+⊢ [true, true, true] ∈
+    if rho ∈ s then
+      [] ::
+        (List.map (fun x => false :: x) (if rho ∈ s then [[]] else []) ++
+          [true] ::
+            (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true, true] ::
+                (List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => false :: x)
+                    (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t))))
+    else
+      List.map (fun x => true :: x)
+        (if outer ∈ s then
+          [] ::
+            (List.map (fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true] ::
+                (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t)))
+        else
+          List.map (fun x => true :: x)
+            (if inner ∈ s then
+              [] ::
+                (List.map (fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map (fun x => true :: x) (rootedSpan s t))
+            else List.map (fun x => true :: x) (minimalVertices s t)))
+
+case true.true
+outer inner rho : Nat
+s : List Nat
+t : Tree
+hout : s.contains outer = true
+ht : (rootedSpan s t).isEmpty = false
+hm : [] ∈ rootedSpan s t
+hi : s.contains inner = true
+hr : s.contains rho = true
+⊢ [true, true, true] ∈
+    if rho ∈ s then
+      [] ::
+        (List.map (fun x => false :: x) (if rho ∈ s then [[]] else []) ++
+          [true] ::
+            (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true, true] ::
+                (List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => false :: x)
+                    (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t))))
+    else
+      List.map (fun x => true :: x)
+        (if outer ∈ s then
+          [] ::
+            (List.map (fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true] ::
+                (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t)))
+        else
+          List.map (fun x => true :: x)
+            (if inner ∈ s then
+              [] ::
+                (List.map (fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map (fun x => true :: x) (rootedSpan s t))
+            else List.map (fun x => true :: x) (minimalVertices s t)))
+research/rmaf/thesis_transfer/Transfer.lean:75:55: warning: This simp argument is unused:
+  hout
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices, rootedSpan, augment, graft, hi, hr, ht, prependSide, hm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:75:61: warning: This simp argument is unused:
+  hi
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices, rootedSpan, augment, graft, hout, hr, ht, prependSide, hm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:75:65: warning: This simp argument is unused:
+  hr
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices, rootedSpan, augment, graft, hout, hi, ht, prependSide, hm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:76:19: warning: This simp argument is unused:
+  hm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices, rootedSpan, augment, graft, hout, hi, hr, ht, prependSide]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:82:80: error: unsolved goals
+case false.false
+outer inner rho : Nat
+s : List Nat
+t : Tree
+hrho : s.contains rho = true
+ht : (rootedSpan s t).isEmpty = false
+hm : [] ∈ rootedSpan s t
+hi : s.contains inner = false
+ho : s.contains outer = false
+⊢ [true, true, true] ∈
+    if rho ∈ s then
+      [] ::
+        (List.map (fun x => false :: x) (if rho ∈ s then [[]] else []) ++
+          [true] ::
+            (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true, true] ::
+                (List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => false :: x)
+                    (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t))))
+    else
+      List.map (fun x => true :: x)
+        (if outer ∈ s then
+          [] ::
+            (List.map (fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true] ::
+                (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t)))
+        else
+          List.map (fun x => true :: x)
+            (if inner ∈ s then
+              [] ::
+                (List.map (fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map (fun x => true :: x) (rootedSpan s t))
+            else List.map (fun x => true :: x) (minimalVertices s t)))
+
+case false.true
+outer inner rho : Nat
+s : List Nat
+t : Tree
+hrho : s.contains rho = true
+ht : (rootedSpan s t).isEmpty = false
+hm : [] ∈ rootedSpan s t
+hi : s.contains inner = false
+ho : s.contains outer = true
+⊢ [true, true, true] ∈
+    if rho ∈ s then
+      [] ::
+        (List.map (fun x => false :: x) (if rho ∈ s then [[]] else []) ++
+          [true] ::
+            (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true, true] ::
+                (List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => false :: x)
+                    (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t))))
+    else
+      List.map (fun x => true :: x)
+        (if outer ∈ s then
+          [] ::
+            (List.map (fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true] ::
+                (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t)))
+        else
+          List.map (fun x => true :: x)
+            (if inner ∈ s then
+              [] ::
+                (List.map (fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map (fun x => true :: x) (rootedSpan s t))
+            else List.map (fun x => true :: x) (minimalVertices s t)))
+
+case true.false
+outer inner rho : Nat
+s : List Nat
+t : Tree
+hrho : s.contains rho = true
+ht : (rootedSpan s t).isEmpty = false
+hm : [] ∈ rootedSpan s t
+hi : s.contains inner = true
+ho : s.contains outer = false
+⊢ [true, true, true] ∈
+    if rho ∈ s then
+      [] ::
+        (List.map (fun x => false :: x) (if rho ∈ s then [[]] else []) ++
+          [true] ::
+            (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true, true] ::
+                (List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => false :: x)
+                    (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t))))
+    else
+      List.map (fun x => true :: x)
+        (if outer ∈ s then
+          [] ::
+            (List.map (fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true] ::
+                (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t)))
+        else
+          List.map (fun x => true :: x)
+            (if inner ∈ s then
+              [] ::
+                (List.map (fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map (fun x => true :: x) (rootedSpan s t))
+            else List.map (fun x => true :: x) (minimalVertices s t)))
+
+case true.true
+outer inner rho : Nat
+s : List Nat
+t : Tree
+hrho : s.contains rho = true
+ht : (rootedSpan s t).isEmpty = false
+hm : [] ∈ rootedSpan s t
+hi : s.contains inner = true
+ho : s.contains outer = true
+⊢ [true, true, true] ∈
+    if rho ∈ s then
+      [] ::
+        (List.map (fun x => false :: x) (if rho ∈ s then [[]] else []) ++
+          [true] ::
+            (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true, true] ::
+                (List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => false :: x)
+                    (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ (fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t))))
+    else
+      List.map (fun x => true :: x)
+        (if outer ∈ s then
+          [] ::
+            (List.map (fun x => false :: x) (if outer ∈ s then [[]] else []) ++
+              [true] ::
+                (List.map ((fun x => true :: x) ∘ fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map ((fun x => true :: x) ∘ fun x => true :: x) (rootedSpan s t)))
+        else
+          List.map (fun x => true :: x)
+            (if inner ∈ s then
+              [] ::
+                (List.map (fun x => false :: x) (if inner ∈ s then [[]] else []) ++
+                  List.map (fun x => true :: x) (rootedSpan s t))
+            else List.map (fun x => true :: x) (minimalVertices s t)))
+research/rmaf/thesis_transfer/Transfer.lean:85:55: warning: This simp argument is unused:
+  hrho
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices, rootedSpan, augment, graft, hi, ho, ht, prependSide, hm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:85:61: warning: This simp argument is unused:
+  hi
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices, rootedSpan, augment, graft, hrho, ho, ht, prependSide, hm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:85:65: warning: This simp argument is unused:
+  ho
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices, rootedSpan, augment, graft, hrho, hi, ht, prependSide, hm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:86:19: warning: This simp argument is unused:
+  hm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [minimalVertices, rootedSpan, augment, graft, hrho, hi, ho, ht, prependSide]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_transfer/Transfer.lean:90:68: error: unsolved goals
+xs ys : List Vertex
+v : Vertex
+hx : v ∈ xs
+hy : v ∈ ys
+h : (xs.all fun v => !ys.contains v) = true
+hc : ys.contains v = true
+hh : ¬v ∈ ys
+⊢ False
+research/rmaf/thesis_transfer/Transfer.lean:96:8: warning: This simp argument is unused:
+  hc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp at hh
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'ThesisTransfer.two_markers_disagree' depends on axioms: [propext, sorryAx, Quot.sound]
+'ThesisTransfer.rootedSpan_head' depends on axioms: [propext, sorryAx]
+'ThesisTransfer.rootedSpan_nonempty_of_leaf' depends on axioms: [propext, sorryAx]
+'ThesisTransfer.old_root_mem_inner' depends on axioms: [propext, sorryAx, Quot.sound]
+'ThesisTransfer.old_root_mem_outer' depends on axioms: [propext, sorryAx, Quot.sound]
+'ThesisTransfer.old_root_mem_rho' depends on axioms: [propext, sorryAx, Quot.sound]
+'ThesisTransfer.shared_vertex_not_disjoint' depends on axioms: [propext, sorryAx, Quot.sound]
+'ThesisTransfer.optimum_shift_from_maps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThesisTransfer.cuts_equal_components' depends on axioms: [propext, Quot.sound]

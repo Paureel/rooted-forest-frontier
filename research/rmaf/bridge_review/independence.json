@@ -1,0 +1,28 @@
+{
+  "before_candidate_read": [
+    "spec.json",
+    "hand controls and erratum",
+    "BFS path + label partition representation"
+  ],
+  "candidate_first_reads": [
+    "pure_bridge/FORMAL.md",
+    "pure_bridge/lean/PureBridge.lean",
+    "pure_bridge/lean/MarkInteraction.lean",
+    "pure_bridge/lean/audit/certificate.json"
+  ],
+  "code_lineage": {
+    "independent_graph.py": "new author; Python stdlib BFS paths, recursive restrictions, set partitions; no imports from original oracle or candidate",
+    "local_interfaces.py": "imports this review independent_graph.py; not independent of its geometry",
+    "completion_interfaces.py": "imports this review independent_graph.py; algorithm reconstructed from task statement, no original implementation read",
+    "GraphRegion.lean": "new graph-walk proof; deliberately imports original PureBridge for exact consumer composition"
+  },
+  "shared_mathematics": [
+    "ordinary rooted leaf partition/restriction/vertex-disjointness definition",
+    "supplied pure-bridge candidate statement",
+    "binary-address tree representation"
+  ],
+  "reproductions_not_blind": [
+    "finite mark-interaction values 1,1,1,2 read before new-code reproduction"
+  ],
+  "contact_rule": "All current scan cases are discovery evidence and are burned for claims later designed using them. No full independence from the shared mathematical definition or Python runtime is claimed."
+}

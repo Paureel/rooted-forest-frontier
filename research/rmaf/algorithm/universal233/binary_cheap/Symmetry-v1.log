@@ -1,0 +1,22 @@
+research/rmaf/algorithm/universal233/binary_cheap/Symmetry.lean:11:51: warning: This simp argument is unused:
+  Bool.and_left_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [PairGeometry.vertexOK, Bool.and_comm, Bool.and_assoc, Bool.or_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/binary_cheap/Symmetry.lean:32:64: error: No goals to be solved
+research/rmaf/algorithm/universal233/binary_cheap/Symmetry.lean:32:11: error: unsolved goals
+S : Tree
+A B C : List Nat
+hp : pairwiseEmbeddings S [A, B, C] = true
+hs :
+  List.Pairwise (fun D E => ∀ (v : VertexGeometry.Vertex), ¬(Hull (selectedLeaves D S) v ∧ Hull (selectedLeaves E S) v))
+    [A, B, C]
+hab : Disj S A B
+hac : Disj S A C
+hbc : Disj S B C
+L : List Nat
+hL : L ∈ [C]
+he : L = C
+⊢ ∀ (v : VertexGeometry.Vertex), ¬(Hull (selectedLeaves A S) v ∧ Hull (selectedLeaves L S) v)

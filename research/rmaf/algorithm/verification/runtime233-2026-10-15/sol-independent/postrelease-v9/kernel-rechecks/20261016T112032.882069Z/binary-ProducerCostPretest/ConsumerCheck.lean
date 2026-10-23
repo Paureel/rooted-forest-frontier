@@ -1,0 +1,5 @@
+import ProducerCostPretest
+#check GenericForest.BinaryProducer.candidatesBits_cost
+#print axioms GenericForest.BinaryProducer.candidatesBits_cost
+#check GenericForest.BinaryProducer.pretestBits_cost
+#print axioms GenericForest.BinaryProducer.pretestBits_cost

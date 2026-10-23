@@ -1,0 +1,72 @@
+def Universal233.DepthOne.proper : RMAF.Tree → RMAF.Tree → Bool :=
+fun T S => decide (RMAF.leaves T).Nodup && decide (RMAF.leaves S).Nodup && decide ((RMAF.leaves T).Perm (RMAF.leaves S))
+@[reducible] def RMAF.leaves._f : (x : RMAF.Tree) → RMAF.Tree.below x → List Nat :=
+fun x f =>
+  (match (motive := (x : RMAF.Tree) → RMAF.Tree.below x → List Nat) x with
+    | RMAF.Tree.leaf x => fun x_1 => [x]
+    | l.node r => fun x => x.1.1 ++ x.2.1)
+    f
+@[reducible] def RMAF.restrict._f : List Nat → (x : RMAF.Tree) → RMAF.Tree.below x → Option RMAF.Tree :=
+fun selected x f =>
+  (match (motive := (x : RMAF.Tree) → RMAF.Tree.below x → Option RMAF.Tree) x with
+    | RMAF.Tree.leaf x => fun x_1 => if selected.contains x = true then some (RMAF.Tree.leaf x) else none
+    | l.node r => fun x =>
+      match x.1.1, x.2.1 with
+      | none, none => none
+      | some a, none => some a
+      | none, some b => some b
+      | some a, some b => some (a.node b))
+    f
+@[reducible] def RMAF.sameShape._f : (x : RMAF.Tree) →
+  RMAF.Tree.below (motive := fun x => RMAF.Tree → Bool) x → RMAF.Tree → Bool :=
+fun x f x_1 =>
+  (match (motive := (x : RMAF.Tree) → RMAF.Tree → RMAF.Tree.below (motive := fun x => RMAF.Tree → Bool) x → Bool) x,
+      x_1 with
+    | RMAF.Tree.leaf a, RMAF.Tree.leaf b => fun x => a == b
+    | a.node b, c.node d => fun x => x.1.1 c && x.2.1 d || x.1.1 d && x.2.1 c
+    | x, x_2 => fun x => false)
+    f
+@[reducible] def RMAF.minimalVertices._f : List Nat → (x : RMAF.Tree) → RMAF.Tree.below x → List RMAF.Vertex :=
+fun selected x f =>
+  (match (motive := (x : RMAF.Tree) → RMAF.Tree.below x → List RMAF.Vertex) x with
+    | RMAF.Tree.leaf x => fun x_1 => if selected.contains x = true then [[]] else []
+    | l.node r => fun x =>
+      let ls := RMAF.rootedSpan selected l;
+      let rs := RMAF.rootedSpan selected r;
+      if ls.isEmpty = true then RMAF.prependSide true x.2.1
+      else
+        if rs.isEmpty = true then RMAF.prependSide false x.1.1
+        else [] :: (RMAF.prependSide false ls ++ RMAF.prependSide true rs))
+    f
+@[reducible] def RMAF.pairwiseEmbeddings._f : RMAF.Tree → (x : List (List Nat)) → List.below x → Bool :=
+fun t x f =>
+  (match (motive := (x : List (List Nat)) → List.below x → Bool) x with
+    | [] => fun x => true
+    | b :: bs => fun x =>
+      (bs.all fun c => RMAF.disjointVertices (RMAF.minimalVertices b t) (RMAF.minimalVertices c t)) && x.1)
+    f
+@[reducible] def Universal233.HardParent.vertices._f : (x : RMAF.Tree) → RMAF.Tree.below x → List RMAF.Vertex :=
+fun x f =>
+  (match (motive := (x : RMAF.Tree) → RMAF.Tree.below x → List RMAF.Vertex) x with
+    | RMAF.Tree.leaf a => fun x => [[]]
+    | l.node r => fun x => [] :: (RMAF.prependSide false x.1.1 ++ RMAF.prependSide true x.2.1))
+    f
+@[reducible] def Universal233.CoreGraph.subtree._f : (x : RMAF.Vertex) →
+  List.below (motive := fun x => RMAF.Tree → Option RMAF.Tree) x → RMAF.Tree → Option RMAF.Tree :=
+fun x f x_1 =>
+  (match (motive :=
+      RMAF.Tree → (x : RMAF.Vertex) → List.below (motive := fun x => RMAF.Tree → Option RMAF.Tree) x → Option RMAF.Tree)
+      x_1, x with
+    | t, [] => fun x => some t
+    | RMAF.Tree.leaf a, head :: tail => fun x => none
+    | l.node r, b :: v => fun x => x.1 (if b = true then r else l))
+    f
+@[reducible] def Universal233.HardParent.subtreeLabels._f : (x : RMAF.Vertex) →
+  List.below (motive := fun x => RMAF.Tree → List Nat) x → RMAF.Tree → List Nat :=
+fun x f x_1 =>
+  (match (motive := RMAF.Tree → (x : RMAF.Vertex) → List.below (motive := fun x => RMAF.Tree → List Nat) x → List Nat)
+      x_1, x with
+    | S, [] => fun x => RMAF.leaves S
+    | RMAF.Tree.leaf a, head :: tail => fun x => []
+    | l.node r, s :: v => fun x => x.1 (if s = true then r else l))
+    f

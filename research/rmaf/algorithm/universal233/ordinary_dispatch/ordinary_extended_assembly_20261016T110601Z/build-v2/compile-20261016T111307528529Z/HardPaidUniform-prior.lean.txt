@@ -1,0 +1,40 @@
+import HardPaidSourceBound
+import OptimizerSourceUniform
+namespace OrdinaryDispatch.ExtendedSourceAssembly
+open RMAF Universal233 WholeSourceWork CoreWork
+open Universal233.Hard2Overlap Universal233.Hard2PaidLocal
+open GenericForest.FrontierWork OrdinaryDispatch.FullSourceWork OrdinaryDispatch.Hard2SourceWork
+open OrdinaryDispatch.WorkRecursion OrdinaryDispatch.GlobalSourceAssembly
+
+/-- A local overhead cap only. This does not replace recursive branch mass. -/
+theorem selectedCaseMass_cap (out : Hard2Overlap.Result) :
+ 0≤caseMass Rule5ActualTrace.base out ∧ caseMass Rule5ActualTrace.base out≤1 := by
+ cases out with
+ | disjoint=>decide +kernel
+ | clique v=>decide +kernel
+ | four o v w=>decide +kernel
+ | diagonal o v w=>decide +kernel
+ | pair o k=>cases k <;> decide +kernel
+
+def hardPaidUniformPolynomial (N Q : Nat) : Nat :=hardPaidPolynomial N Q+16*(2^50*(N+Q+2)^8)
+
+theorem hardPaidSource_uniform (actual : Ordinary) (T S : Tree) (c : CherryBranching.Candidate)
+ (out : Hard2Overlap.Result) (q N Q : Nat) (three : 3≤N) (tn : treeNodes T≤N) (sn : treeNodes S≤N)
+ (budget : q≤Q) (hp : DepthOne.proper T S=true) (hard : CherryBranching.select T S=some (.hard2,c))
+ (selected : runHard2 T S c=some out) :
+ ((hardPaidSource actual (fun _ _ _=>0) T S q c out).work:Rat)≤
+ (hardPaidUniformPolynomial N Q:Rat)*Rule5ActualTrace.base^q := by
+ have old:=hardPaidSource_bound actual T S c out q N Q three tn sn budget hp hard selected
+ have cm:=selectedCaseMass_cap out
+ have gn:= (geometric_properties Rule5ActualTrace.base (by decide +kernel)).2.2.1
+ have fn:0≤forestCoefficient N Q:=Rat.natCast_nonneg
+ have first:=Rat.mul_le_mul_of_nonneg_left cm.2 (Rat.mul_nonneg gn fn)
+ have second:=Rat.mul_le_mul_of_nonneg_right (show geometric Rule5ActualTrace.base≤16 by decide +kernel) fn
+ have coeff:geometric Rule5ActualTrace.base*forestCoefficient N Q*caseMass Rule5ActualTrace.base out≤
+  16*forestCoefficient N Q:=Rat.le_trans first (by simpa only [Rat.mul_one] using second)
+ have added:=Rat.add_le_add_left.mpr (a:=(hardPaidPolynomial N Q:Rat)) coeff
+ have scaled:=Rat.mul_le_mul_of_nonneg_right added
+  (Rat.le_trans (by decide +kernel : (0:Rat)≤1) (call_base_pow_ge_one q))
+ apply Rat.le_trans old
+ simpa only [hardPaidUniformPolynomial,forestCoefficient,Rat.natCast_add,Rat.natCast_mul,Rat.natCast_ofNat] using scaled
+end OrdinaryDispatch.ExtendedSourceAssembly

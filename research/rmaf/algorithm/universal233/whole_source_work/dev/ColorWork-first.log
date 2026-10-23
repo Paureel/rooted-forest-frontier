@@ -1,0 +1,165 @@
+research/rmaf/algorithm/universal233/whole_source_work/ColorWork.lean:24:62: error(lean.unknownIdentifier): Unknown identifier `beq_comm`
+research/rmaf/algorithm/universal233/whole_source_work/ColorWork.lean:24:17: error: unsolved goals
+case cons
+x y : Nat
+ys : List Nat
+ih : (meterContains x ys).value = ys.contains x
+⊢ (if x = y then { value := true, work := 4 }
+      else { value := decide (x ∈ ys), work := 4 + (meterContains x ys).work }).value =
+    (decide (x = y) || decide (x ∈ ys))
+research/rmaf/algorithm/universal233/whole_source_work/ColorWork.lean:24:40: warning: This simp argument is unused:
+  List.contains_cons
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [meterContains, ih, beq_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/whole_source_work/ColorWork.lean:29:11: error: Expected type must not contain free variables
+  (meterContains x []).work ≤ 4 * ([].length + 1)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+research/rmaf/algorithm/universal233/whole_source_work/ColorWork.lean:30:74: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  4*a - b ≥ -4
+  4*a - c ≤ -9
+where
+ a := ↑ys.length
+ b := ↑(meterContains x ys).work
+ c := ↑{ value := true, work := 4 }.work
+research/rmaf/algorithm/universal233/whole_source_work/ColorWork.lean:30:74: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  4*a - b ≥ -4
+  4*a - c ≤ -9
+where
+ a := ↑ys.length
+ b := ↑(meterContains x ys).work
+ c := ↑{ value := (meterContains x ys).value, work := 4 + (meterContains x ys).work }.work
+research/rmaf/algorithm/universal233/whole_source_work/ColorWork.lean:76:4: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  j ≥ 0
+  i ≥ 0
+  h ≥ 0
+  g ≥ 0
+  f ≥ 0
+  f - g ≥ 0
+  e ≥ 0
+  e + g + 8*h + 8*i - j ≥ -7
+  d ≥ 0
+  d - e ≥ 0
+  c ≥ 0
+  c - i ≥ 0
+  b ≥ 0
+  b - h ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+  a - b - c ≥ 1
+  a - c ≥ 0
+where
+ a := ↑M
+ b := ↑(treeNodes l)
+ c := ↑(treeNodes r)
+ d := ↑(16 * (D.length + M + 2)) * ↑(treeNodes l)
+ e := ↑(meterLeafList D l).work
+ f := ↑(16 * (D.length + M + 2)) * ↑(treeNodes r)
+ g := ↑(meterLeafList D r).work
+ h := ↑(leafList D l).length
+ i := ↑(leafList D r).length
+ j := ↑(16 * (D.length + M + 2)) * ↑(1 + treeNodes l + treeNodes r)
+research/rmaf/algorithm/universal233/whole_source_work/ColorWork.lean:96:15: error: unsolved goals
+case cons.cons
+s : Bool
+v : List Bool
+ih : ∀ (a : RMAF.Vertex), (meterRegion v a).value = region v a
+t : Bool
+a : List Bool
+⊢ (if s = t then { value := region v a, work := 4 + (meterRegion v a).work } else { value := 2, work := 4 }).value =
+    if s = t then region v a else 2
+research/rmaf/algorithm/universal233/whole_source_work/ColorWork.lean:103:30: error: Expected type must not contain free variables
+  (meterRegion [] (false :: a)).work ≤ 4 * ([].length + 1)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+research/rmaf/algorithm/universal233/whole_source_work/ColorWork.lean:103:30: error: Expected type must not contain free variables
+  (meterRegion [] (true :: a)).work ≤ 4 * ([].length + 1)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+research/rmaf/algorithm/universal233/whole_source_work/ColorWork.lean:105:10: error: unsolved goals
+case cons.nil
+s : Bool
+v : List Bool
+ih : ∀ (a : RMAF.Vertex), (meterRegion v a).work ≤ 4 * (v.length + 1)
+⊢ 2 ≤ 4 * (v.length + 1 + 1)
+research/rmaf/algorithm/universal233/whole_source_work/ColorWork.lean:109:16: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  4*b - c ≥ -4
+  4*b - d ≤ -9
+where
+ b := ↑v.length
+ c := ↑(meterRegion v a).work
+ d := ↑{ value := (meterRegion v a).value, work := 4 + (meterRegion v a).work }.work
+research/rmaf/algorithm/universal233/whole_source_work/ColorWork.lean:109:16: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  4*b - c ≥ -4
+  4*b - d ≤ -9
+where
+ b := ↑v.length
+ c := ↑(meterRegion v a).work
+ d := ↑{ value := 2, work := 4 }.work
+research/rmaf/algorithm/universal233/whole_source_work/ColorWork.lean:129:2: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  4*c - d ≥ -4
+  b ≥ 0
+  b - 4*c + d - e ≥ 5
+  a ≥ 0
+  a - b ≥ 0
+where
+ a := ↑(16 * (1 + treeNodes T + 2)) * ↑(treeNodes T)
+ b := ↑(meterLeafList [x] T).work
+ c := ↑(List.length v)
+ d := ↑(meterRegion v ((meterLeafList [x] T).value.headD [])).work
+ e := ↑(16 * (treeNodes T + 3)) * ↑(treeNodes T)
+research/rmaf/algorithm/universal233/whole_source_work/ColorWork.lean:173:12: error: Expected type must not contain free variables
+  localColor T Local.keep x ≤ 15
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+research/rmaf/algorithm/universal233/whole_source_work/ColorWork.lean:207:12: error: simp_all made no progress
+research/rmaf/algorithm/universal233/whole_source_work/ColorWork.lean:221:2: error: Tactic `split` failed: Could not split an `if` or `match` expression in the goal
+
+Hint: Use `set_option trace.split.failure true` to display additional diagnostic information
+
+T : Tree
+A B : List Nat
+c : Colors
+x : Nat
+ha : (meterContains x A).work ≤ 4 * (A.length + 1)
+hb : (meterContains x B).work ≤ 4 * (B.length + 1)
+hla : (meterLocal T c.a x).work ≤ localCap T c.a
+hlb : (meterLocal T c.b x).work ≤ localCap T c.b
+hlc : (meterLocal T c.c x).work ≤ localCap T c.c
+⊢ (have a := meterContains x A;
+      if a.value = true then
+        have l := meterLocal T c.a x;
+        { value := 3 * l.value, work := a.work + l.work + 4 }
+      else
+        have b := meterContains x B;
+        if b.value = true then
+          have l := meterLocal T c.b x;
+          { value := 3 * l.value + 1, work := a.work + b.work + l.work + 6 }
+        else
+          have l := meterLocal T c.c x;
+          { value := 3 * l.value + 2, work := a.work + b.work + l.work + 6 }).work ≤
+    4 * (A.length + 1) + 4 * (B.length + 1) + localCap T c.a + localCap T c.b + localCap T c.c + 6

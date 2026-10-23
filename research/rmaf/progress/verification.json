@@ -1,0 +1,61 @@
+{
+  "id": "verification",
+  "title": "Independent verification",
+  "status": "complete",
+  "summary": "Independent routes agree on all 11,259 ordered n=3..5 cases. Four comparator controls pass; a concrete endpoint-only rule is independently refuted. Formal semantic obligations remain open.",
+  "metrics": {
+    "controls_executed": 9,
+    "pairs_checked": 5691,
+    "max_n": 5,
+    "ordered_pairs_compared": 11259,
+    "discrepancies": 0,
+    "comparator_controls": 4,
+    "formal_controls": 5
+  },
+  "claims": [
+    {
+      "id": "edge-cut-checker",
+      "label": "Exact edge-cut evaluator",
+      "status": "measured",
+      "detail": "Finite exact checks only; no universal correctness or smaller-base proof."
+    },
+    {
+      "id": "finite-oracle-agreement",
+      "label": "Separate-route finite comparison",
+      "status": "measured",
+      "detail": "Exact optima and complete optimum partitions on 11259 ordered n=3..5 cases; no universal theorem."
+    },
+    {
+      "id": "finite-oracle-agreement",
+      "label": "Separate-route finite comparison",
+      "status": "measured",
+      "detail": "Exact optima and complete optimum partitions on 11259 ordered n=3..5 cases; no universal theorem."
+    },
+    {
+      "id": "endpoint-counterexample",
+      "label": "Endpoint-only rule refuted",
+      "status": "refuted",
+      "detail": "Exact four-leaf witness has k=2; isolating either endpoint requires k>=3. Confirmed using frozen edge-cut code."
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "semantic-model-equivalence",
+      "label": "Model equivalence and input interface",
+      "status": "open",
+      "detail": "Require unique labels, bounded relabeling, partition encoding, existence, and graph-semantic equivalence before universal rooted-MAF correctness.",
+      "depends_on": []
+    }
+  ],
+  "artifacts": [
+    "research/rmaf/verification/JOURNAL.md",
+    "research/rmaf/verification/edge_cut.py",
+    "research/rmaf/results/verification-controls.json",
+    "research/rmaf/results/verification-corpus.json",
+    "research/rmaf/results/verification-comparison.json",
+    "research/rmaf/results/verification-comparison.json",
+    "research/rmaf/results/verification-plants.json",
+    "research/rmaf/results/verification-formal-controls.json",
+    "research/rmaf/verification/FORMAL-AUDIT.md"
+  ]
+}

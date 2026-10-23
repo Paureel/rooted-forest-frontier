@@ -1,0 +1,107 @@
+{
+  "version": 2,
+  "date": "2026-10-15",
+  "purpose": "Adversarially test the pure two-region overlap case and explicit disjoint p=1 versus p>=2 scheduler by embedding earlier-rule-eligible unresolved rooted tree pairs into homogeneous color groups.",
+  "local_receipt": "results/algorithm-universal233-hard-plant-local-v1.json",
+  "local_expected": {
+    "leaf_count": 6,
+    "minimum_cuts": 2,
+    "partitions_tested": 203,
+    "earlier_rules_absent_both_orientations": true
+  },
+  "skeleton": {
+    "A_source": [
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "B_source": [
+      4,
+      5
+    ],
+    "target_H": [
+      [
+        [
+          0,
+          2
+        ],
+        4
+      ],
+      [
+        [
+          1,
+          3
+        ],
+        5
+      ]
+    ],
+    "original_T": [
+      [
+        6,
+        [
+          [
+            [
+              0,
+              2
+            ],
+            4
+          ],
+          [
+            [
+              1,
+              3
+            ],
+            5
+          ]
+        ]
+      ],
+      [
+        7,
+        8
+      ]
+    ],
+    "original_Tprime": [
+      6,
+      [
+        [
+          7,
+          [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        ],
+        [
+          8,
+          [
+            4,
+            5
+          ]
+        ]
+      ]
+    ],
+    "selected_cherry": [
+      7,
+      8
+    ]
+  },
+  "plants": "Replace skeleton leaves0 and2 by the literal local source/target pair on disjoint renamed6-label sets. This hides both source mixed-color original cherries. Verify actual selected cherry and ALL earlier priorities in both orientations before treating the state as in regime. Compute all shared-vertex core colors, actual emitted costs, depth1 pretests, and one fully charged continuation (actual one further SPLIT or disjoint local query budgets).",
+  "controls": "Existing four clean/corrupt controls and literal local2-cut receipt. Identical planted target/source clean twin must have no local mismatch. A p=1 local query must exclude its OWN lower bound from its budget; deliberately charged own-bound loss must be rejected.",
+  "kill_scope": "A post-depth1 mass fire can only refute that pretest-only repair. It cannot refute a further paid SPLIT/disjoint schedule or a different boundary selector. Report exact branch budgets before any whole-candidate claim.",
+  "timing": "One19-leaf planted pair, no census or exhaustive19-label partitions. Local exact203-partition receipt already measured.",
+  "erratum": {
+    "original_receipt": "results/algorithm-universal233-scaffold-hard-plant-v1.json",
+    "reason": "The v1 field plant_local_clean_twin=True was assigned without an explicit clean-twin validator call. Main in-regime admission/core/pretest/budget measurements were executed; that extra control label was unsupported. v2 executes and records the clean twin and local depth1 refusals. This supplemental control is post-development and not claimed independent.",
+    "preserved_script": "history/scaffold_hard_plant-v1.py"
+  }
+}

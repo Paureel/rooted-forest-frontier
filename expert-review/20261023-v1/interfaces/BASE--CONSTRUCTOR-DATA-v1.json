@@ -1,0 +1,371 @@
+{
+  "schema": "exact-constructor-data-and-guard-projection-v1",
+  "scope": "Mathematical computation/type view only. No omitted proof value is an axiom or runtime input. Guards, repeated work/value calls, order and arithmetic remain mandatory. No RAM/cost verdict.",
+  "setupMeter": {
+    "qualified_name": "Universal233.Rule5RemainingLocalWork.setupMeter",
+    "resolved_type": "RMAF.Tree → RMAF.Tree → List Nat → List Nat → RMAF.Vertex → Universal233.Rule5PrefixLocalWork.Measured (Option OrdinaryCommonSplit.Caller.Setup)",
+    "origin": {
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/outer_paidcase_combine_source_20261016T120127Z/build/SetupBuilder.lean",
+      "source_sha256": "b6341110fdb1a7690c52652629026b125f3ca13f9049e14e359641a9655dde0c",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SetupBuilder.olean",
+      "object_sha256": "4d784291c3f32cd6bb8e0e867eb8aaabbd508ecf871ebc42672c4bf5d8658598",
+      "lines": [
+        11,
+        66
+      ]
+    },
+    "prefix_with_all_guards_and_work": "def setupMeter (T S : Tree) (X Y : List Nat) (p : RMAF.Vertex) : Measured (Option Setup) :=\n  bump ((nodupTreeMeter T).work+1) <|\n  if nt : (leaves T).Nodup then\n  bump ((nodupTreeMeter S).work+1) <|\n  if ns : (leaves S).Nodup then\n  bump ((partitionTreeMeter T X Y).work+1) <|\n  if hpT : partitionCheck (leaves T) [X,Y]=true then\n  bump ((partitionTreeMeter S X Y).work+1) <|\n  if hpS : partitionCheck (leaves S) [X,Y]=true then\n  bump 2 <|\n  if nonroot : p≠[] then\n  bump ((subtreeMeter S p).work+1) <|\n  match (generalizing := false) source : subtree S p with\n  | none => ⟨none,1⟩\n  | some u =>\n    bump ((leavesMeter u).work+(permMeter (leaves u) X).work+1) <|\n    if labels : (leaves u).Perm X then\n    bump ((incidentMeter T X).work+1) <|\n    match (generalizing := false) boundary : incident T X with\n    | [q] =>\n      let x := X.headD 0\n      let y := Y.headD 0\n      let L := leaves T++leaves S\n      let rho := labelMax L+1\n      let gamma := labelMax L+2\n      bump ((leavesMeter T).work+(leavesMeter S).work+(leaves T).length+\n        2*(maxMeter L).work+8+\n        (meterRestrict X T).work+(meterRestrict X S).work+\n        (meterRestrict Y T).work+(meterRestrict Y S).work+\n        (markedMeter T X y rho).work+(markedMeter S X y rho).work+\n        (markedMeter T Y x gamma).work+(markedMeter S Y x gamma).work+8) <|\n      match (generalizing := false) htx : restrict X T, hsx : restrict X S,\n            hty : restrict Y T, hsy : restrict Y S,\n            hMXT : marked T X y rho, hMXS : marked S X y rho,\n            hMYT : marked T Y x gamma, hMYS : marked S Y x gamma with\n      | some tx,some sx,some ty,some sy,some mxT,some mxS,some myT,some myS =>",
+    "successful_data_constructor": {
+      "T": "T",
+      "S": "S",
+      "tx": "tx",
+      "sx": "sx",
+      "ty": "ty",
+      "sy": "sy",
+      "mxT": "mxT",
+      "mxS": "mxS",
+      "myT": "myT",
+      "myS": "myS",
+      "X": "X",
+      "Y": "Y",
+      "x": "x",
+      "y": "y",
+      "rho": "rho",
+      "gamma": "gamma"
+    },
+    "successful_pair_work": 1,
+    "omitted_proof_slots": [
+      {
+        "name": "nt",
+        "full_type": "(leaves T).Nodup",
+        "source_line": 25,
+        "value_omitted": true
+      },
+      {
+        "name": "ns",
+        "full_type": "(leaves S).Nodup",
+        "source_line": 26,
+        "value_omitted": true
+      },
+      {
+        "name": "hpT",
+        "full_type": "partitionCheck (leaves T) [X,Y]=true",
+        "source_line": 27,
+        "value_omitted": true
+      },
+      {
+        "name": "hpS",
+        "full_type": "partitionCheck (leaves S) [X,Y]=true",
+        "source_line": 28,
+        "value_omitted": true
+      },
+      {
+        "name": "edgeT",
+        "full_type": "OriginalSplit T X Y",
+        "source_line": 29,
+        "value_omitted": true
+      },
+      {
+        "name": "edgeS",
+        "full_type": "OriginalSplit S X Y",
+        "source_line": 30,
+        "value_omitted": true
+      },
+      {
+        "name": "htx",
+        "full_type": "restrict X T=some tx",
+        "source_line": 31,
+        "value_omitted": true
+      },
+      {
+        "name": "hsx",
+        "full_type": "restrict X S=some sx",
+        "source_line": 32,
+        "value_omitted": true
+      },
+      {
+        "name": "hty",
+        "full_type": "restrict Y T=some ty",
+        "source_line": 33,
+        "value_omitted": true
+      },
+      {
+        "name": "hsy",
+        "full_type": "restrict Y S=some sy",
+        "source_line": 34,
+        "value_omitted": true
+      },
+      {
+        "name": "hMXT",
+        "full_type": "marked T X y rho=some mxT",
+        "source_line": 35,
+        "value_omitted": true
+      },
+      {
+        "name": "hMXS",
+        "full_type": "marked S X y rho=some mxS",
+        "source_line": 36,
+        "value_omitted": true
+      },
+      {
+        "name": "hMYT",
+        "full_type": "marked T Y x gamma=some myT",
+        "source_line": 37,
+        "value_omitted": true
+      },
+      {
+        "name": "hMYS",
+        "full_type": "marked S Y x gamma=some myS",
+        "source_line": 38,
+        "value_omitted": true
+      },
+      {
+        "name": "hx",
+        "full_type": "x∈X",
+        "source_line": 39,
+        "value_omitted": true
+      },
+      {
+        "name": "hy",
+        "full_type": "y∈Y",
+        "source_line": 40,
+        "value_omitted": true
+      },
+      {
+        "name": "frT",
+        "full_type": "rho∉leaves T",
+        "source_line": 41,
+        "value_omitted": true
+      },
+      {
+        "name": "frS",
+        "full_type": "rho∉leaves S",
+        "source_line": 42,
+        "value_omitted": true
+      },
+      {
+        "name": "fgT",
+        "full_type": "gamma∉leaves T",
+        "source_line": 43,
+        "value_omitted": true
+      },
+      {
+        "name": "fgS",
+        "full_type": "gamma∉leaves S",
+        "source_line": 44,
+        "value_omitted": true
+      }
+    ],
+    "proof_value_source_lines": [
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58
+    ],
+    "all_refusals_suffix": "      | _,_,_,_,_,_,_,_ => ⟨none,1⟩\n    | _ => ⟨none,1⟩\n    else ⟨none,1⟩\n  else ⟨none,1⟩\n  else ⟨none,1⟩\n  else ⟨none,1⟩\n  else ⟨none,1⟩\n  else ⟨none,1⟩",
+    "full_output_fields": "structure Setup where\n  T : Tree\n  S : Tree\n  tx : Tree\n  sx : Tree\n  ty : Tree\n  sy : Tree\n  mxT : Tree\n  mxS : Tree\n  myT : Tree\n  myS : Tree\n  X : List Nat\n  Y : List Nat\n  x : Nat\n  y : Nat\n  rho : Nat\n  gamma : Nat\n  nt : (leaves T).Nodup\n  ns : (leaves S).Nodup\n  hpT : partitionCheck (leaves T) [X,Y]=true\n  hpS : partitionCheck (leaves S) [X,Y]=true\n  edgeT : OriginalSplit T X Y\n  edgeS : OriginalSplit S X Y\n  htx : restrict X T=some tx\n  hsx : restrict X S=some sx\n  hty : restrict Y T=some ty\n  hsy : restrict Y S=some sy\n  hMXT : marked T X y rho=some mxT\n  hMXS : marked S X y rho=some mxS\n  hMYT : marked T Y x gamma=some myT\n  hMYS : marked S Y x gamma=some myS\n  hx : x∈X\n  hy : y∈Y\n  frT : rho∉leaves T\n  frS : rho∉leaves S\n  fgT : gamma∉leaves T\n  fgS : gamma∉leaves S",
+    "fields_origin": {
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/outer_paidcase_combine_source_20261016T120127Z/build/CallerSetup.lean",
+      "source_sha256": "01bbb31deaebc07b98ab625795940eb0966943971fa2614421652890af1be383",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/CallerSetup.olean",
+      "object_sha256": "304e4225d9e25704a03d58a532ca8fa4fb0c6fa28d12f121c406b3750e223438",
+      "lines": [
+        8,
+        44
+      ]
+    },
+    "bump_computation": "def bump {α : Type} (k : Nat) (r : Measured α) : Measured α := ⟨r.value,k+r.work⟩",
+    "bump_origin": {
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/outer_paidcase_combine_source_20261016T120127Z/build/SetupAtoms.lean",
+      "source_sha256": "3e003b37b2c0b88a57ea77c04439223a4f13f43e2a2e964d4441d8da06e8f166",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SetupAtoms.olean",
+      "object_sha256": "6df7622165abd97a0fd2f53c767a901ec4c228403458cf1f284df02348a32b7f",
+      "lines": [
+        8,
+        8
+      ]
+    }
+  },
+  "ofProps": {
+    "qualified_name": "Universal233.Rule5PaidSelector.ofProps",
+    "header": "def ofProps {T S : Tree} {a b : Nat} {d : BadSelection} {u v : RMAF.Vertex}\n {R : BottomData} {C : Tree} {qa ub : RMAF.Vertex}\n (core : subtree T v=some C) (h : LiteralProps T S a b d u v R C qa ub) : LiteralGeometry T S :=",
+    "origin": {
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/outer_paidcase_combine_source_20261016T120127Z/build/SelectorBuilder.lean",
+      "source_sha256": "f9c85788a5bf18ead41e30593f0271d769b4aa94e4169338bd2b4ed6134d8774",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/SelectorBuilder.olean",
+      "object_sha256": "d71def0aec8e802c9e7f4577e40bd1f9680f67f6e5ee2df50a545e417f7e3d8a",
+      "lines": [
+        62,
+        72
+      ]
+    },
+    "successful_data_constructor": {
+      "X": "R.X",
+      "C": "C",
+      "w": "R.w",
+      "r": "v",
+      "qa": "qa",
+      "ub": "ub",
+      "uc": "u",
+      "sa": "R.sa",
+      "sc": "R.sc",
+      "sb": "R.sb",
+      "a": "R.a",
+      "b": "R.b",
+      "c": "d.c"
+    },
+    "omitted_proof_slots": [
+      {
+        "name": "properT",
+        "full_type": "(leaves T).Nodup",
+        "source_line": 24,
+        "value_omitted": true
+      },
+      {
+        "name": "properS",
+        "full_type": "(leaves S).Nodup",
+        "source_line": 25,
+        "value_omitted": true
+      },
+      {
+        "name": "same",
+        "full_type": "∀ x, x ∈ leaves T ↔ x ∈ leaves S",
+        "source_line": 26,
+        "value_omitted": true
+      },
+      {
+        "name": "source",
+        "full_type": "subtree S w = some (bottom sa sc sb a b c X)",
+        "source_line": 27,
+        "value_omitted": true
+      },
+      {
+        "name": "cherry",
+        "full_type": "ActualCherry T a b",
+        "source_line": 28,
+        "value_omitted": true
+      },
+      {
+        "name": "two",
+        "full_type": "(cuts S a b).length = 2",
+        "source_line": 29,
+        "value_omitted": true
+      },
+      {
+        "name": "core",
+        "full_type": "subtree T r = some C",
+        "source_line": 30,
+        "value_omitted": true
+      },
+      {
+        "name": "coreLabels",
+        "full_type": "∀ x, x ∈ leaves T → (x ∈ leaves C ↔ x ∉ leaves X ∧ x ≠ c)",
+        "source_line": 31,
+        "value_omitted": true
+      },
+      {
+        "name": "bC",
+        "full_type": "b ∈ leaves C",
+        "source_line": 32,
+        "value_omitted": true
+      },
+      {
+        "name": "cC",
+        "full_type": "c ∉ leaves C",
+        "source_line": 33,
+        "value_omitted": true
+      },
+      {
+        "name": "leafA",
+        "full_type": "LeafAt T qa a",
+        "source_line": 34,
+        "value_omitted": true
+      },
+      {
+        "name": "leafB",
+        "full_type": "LeafAt T ub b",
+        "source_line": 35,
+        "value_omitted": true
+      },
+      {
+        "name": "leafC",
+        "full_type": "LeafAt T uc c",
+        "source_line": 36,
+        "value_omitted": true
+      },
+      {
+        "name": "frontier",
+        "full_type": "incident T (leaves X) = [r,uc] ∨ incident T (leaves X) = [uc,r]",
+        "source_line": 37,
+        "value_omitted": true
+      },
+      {
+        "name": "tailR",
+        "full_type": "r.dropLast ∈ minimalVertices (leaves X) T",
+        "source_line": 38,
+        "value_omitted": true
+      },
+      {
+        "name": "tailC",
+        "full_type": "uc.dropLast ∈ minimalVertices (leaves X) T",
+        "source_line": 39,
+        "value_omitted": true
+      },
+      {
+        "name": "offR",
+        "full_type": "r ∉ minimalVertices (leaves X) T",
+        "source_line": 40,
+        "value_omitted": true
+      },
+      {
+        "name": "offC",
+        "full_type": "uc ∉ minimalVertices (leaves X) T",
+        "source_line": 41,
+        "value_omitted": true
+      }
+    ],
+    "proof_value_source_lines": [
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72
+    ],
+    "full_output_fields": " X : Tree\n C : Tree\n w : RMAF.Vertex\n r : RMAF.Vertex\n qa : RMAF.Vertex\n ub : RMAF.Vertex\n uc : RMAF.Vertex\n sa : Bool\n sc : Bool\n sb : Bool\n a : Nat\n b : Nat\n c : Nat\n properT : (leaves T).Nodup\n properS : (leaves S).Nodup\n same : ∀ x, x ∈ leaves T ↔ x ∈ leaves S\n source : subtree S w = some (bottom sa sc sb a b c X)\n cherry : ActualCherry T a b\n two : (cuts S a b).length = 2\n core : subtree T r = some C\n coreLabels : ∀ x, x ∈ leaves T → (x ∈ leaves C ↔ x ∉ leaves X ∧ x ≠ c)\n bC : b ∈ leaves C\n cC : c ∉ leaves C\n leafA : LeafAt T qa a\n leafB : LeafAt T ub b\n leafC : LeafAt T uc c\n frontier : incident T (leaves X) = [r,uc] ∨ incident T (leaves X) = [uc,r]\n tailR : r.dropLast ∈ minimalVertices (leaves X) T\n tailC : uc.dropLast ∈ minimalVertices (leaves X) T\n offR : r ∉ minimalVertices (leaves X) T\n offC : uc ∉ minimalVertices (leaves X) T",
+    "fields_origin": {
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/outer_paidcase_combine_source_20261016T120127Z/build/PaidCaller.lean",
+      "source_sha256": "de00eb2b4bde04ef626d32b7167d9818375e0bbe74b50c6be7223397af15bac2",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/PaidCaller.olean",
+      "object_sha256": "9408fb22bda0e8a87d154d68f9d663acaa7229a93fe1240e1972df5fd4ed8fbf",
+      "lines": [
+        11,
+        41
+      ]
+    },
+    "literalProps_definition": "def LiteralProps (T S : Tree) (a b : Nat) (d : BadSelection) (u v : RMAF.Vertex)\n (R : BottomData) (C : Tree) (qa ub : RMAF.Vertex) : Prop :=\n properPair T S=true ∧\n subtree S R.w=some (bottom R.sa R.sc R.sb R.a R.b d.c R.X) ∧\n (∃ i∈HardParent.vertices T, CherryAt T i R.a R.b ∨ CherryAt T i R.b R.a) ∧\n (cuts S R.a R.b).length=2 ∧\n (∀ z∈leaves T, z∈leaves C ↔ z∉leaves R.X ∧ z≠d.c) ∧\n R.b∈leaves C ∧ d.c∉leaves C ∧\n LeafAt T qa R.a ∧ LeafAt T ub R.b ∧ LeafAt T u d.c ∧\n (incident T (leaves R.X)=[v,u] ∨ incident T (leaves R.X)=[u,v]) ∧\n v.dropLast∈minimalVertices (leaves R.X) T ∧ u.dropLast∈minimalVertices (leaves R.X) T ∧\n v∉minimalVertices (leaves R.X) T ∧ u∉minimalVertices (leaves R.X) T ∧\n subtreeLabels S d.badArc=leaves R.X ∧ EndpointOrder a b R.a R.b",
+    "consumer_premises": "core : subtree T v=some C and full LiteralProps T S a b d u v R C qa ub. The actual caller must test them."
+  },
+  "buildOneMeter": {
+    "qualified_name": "Universal233.Rule5RemainingLocalWork.buildOneMeter",
+    "origin": {
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/outer_paidcase_combine_source_20261016T120127Z/build/PaidBuilderOuter.lean",
+      "source_sha256": "29c3433dc7b811da53dd84fcdd836c206c756069f92df2aefd8bbc0178ea46b1",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/PaidBuilderOuter.olean",
+      "object_sha256": "770b913c5a44029bbe33b9fabb628597cf89ccb7724f55cbc642a0f82a02b921",
+      "lines": [
+        22,
+        29
+      ]
+    },
+    "literal_body": "def buildOneMeter (fee : LiteralCall→Nat) (T S : Tree) (a b : Nat) (d : BadSelection)\n (u v : RMAF.Vertex) (R : BottomData) : Measured (Option (LiteralGeometry T S)) :=\n bump ((subtreeMeter T v).work+(leafAddressMeter T R.a).work+(leafAddressMeter T R.b).work+5) <|\n match hc:subtree T v,leafAddress? T R.a,leafAddress? T R.b with\n | some C,some qa,some ub=>\n   bump (fee ⟨R,C,qa,ub,d,u,v⟩+1) <|\n   if h:LiteralProps T S a b d u v R C qa ub then ⟨some (ofProps hc h),1⟩ else ⟨none,1⟩\n | _,_,_=>⟨none,1⟩",
+    "ofProps_data_semantics": "Only13 displayed data fields are selected. All preceding full guard, repeated metered/plain subtree and leaf-address calls and work additions remain actual lowering obligations."
+  }
+}

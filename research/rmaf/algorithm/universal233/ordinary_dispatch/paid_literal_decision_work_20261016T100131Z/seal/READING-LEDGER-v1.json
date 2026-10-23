@@ -1,0 +1,155 @@
+[
+  {
+    "path": "results/algorithm-universal233-forest-check-root-20261015T211023Z/SelectorBuilder.lean",
+    "sha256": "f9c85788a5bf18ead41e30593f0271d769b4aa94e4169338bd2b4ed6134d8774",
+    "status": "read",
+    "excerpts": [
+      {
+        "needle": "def LiteralProps",
+        "line": 43,
+        "verbatim": "def LiteralProps (T S : Tree) (a b : Nat) (d : BadSelection) (u v : RMAF.Vertex)\n (R : BottomData) (C : Tree) (qa ub : RMAF.Vertex) : Prop :=\n properPair T S=true \u2227\n subtree S R.w=some (bottom R.sa R.sc R.sb R.a R.b d.c R.X) \u2227\n (\u2203 i\u2208HardParent.vertices T, CherryAt T i R.a R.b \u2228 CherryAt T i R.b R.a) \u2227\n (cuts S R.a R.b).length=2 \u2227\n (\u2200 z\u2208leaves T, z\u2208leaves C \u2194 z\u2209leaves R.X \u2227 z\u2260d.c) \u2227"
+      },
+      {
+        "needle": "instance (T S : Tree)",
+        "line": 57,
+        "verbatim": "instance (T S : Tree) (a b : Nat) (d : BadSelection) (u v : RMAF.Vertex)\n (R : BottomData) (C : Tree) (qa ub : RMAF.Vertex) : Decidable (LiteralProps T S a b d u v R C qa ub) := by\n unfold LiteralProps EndpointOrder\n infer_instance\n\ndef ofProps {T S : Tree} {a b : Nat} {d : BadSelection} {u v : RMAF.Vertex}\n {R : BottomData} {C : Tree} {qa ub : RMAF.Vertex}"
+      },
+      {
+        "needle": "def buildOne",
+        "line": 74,
+        "verbatim": "def buildOne (T S : Tree) (a b : Nat) (d : BadSelection) (u v : RMAF.Vertex)\n (R : BottomData) : Option (LiteralGeometry T S) :=\n match hc : subtree T v, leafAddress? T R.a, leafAddress? T R.b with\n | some C,some qa,some ub =>\n   if h : LiteralProps T S a b d u v R C qa ub then some (ofProps hc h) else none\n | _,_,_ => none\n"
+      }
+    ]
+  },
+  {
+    "path": "results/algorithm-universal233-rule5-remaining-20261016T092622Z-freeze-20261016T095618897390Z/PaidBuilderOuter.lean",
+    "sha256": "29c3433dc7b811da53dd84fcdd836c206c756069f92df2aefd8bbc0178ea46b1",
+    "status": "read",
+    "excerpts": [
+      {
+        "needle": "structure LiteralCall",
+        "line": 5,
+        "verbatim": "structure LiteralCall where\n row : BottomData\n core : Tree\n qa : RMAF.Vertex\n ub : RMAF.Vertex\n selection : BadSelection\n u : RMAF.Vertex"
+      },
+      {
+        "needle": "def LiteralCallDomain",
+        "line": 76,
+        "verbatim": "def LiteralCallDomain (T S : Tree) (a b : Nat) (d : BadSelection) (u v : RMAF.Vertex) (j : LiteralCall) : Prop :=\n j.row\u2208rows S a b d.c \u2227 subtree T v=some j.core \u2227\n leafAddress? T j.row.a=some j.qa \u2227 leafAddress? T j.row.b=some j.ub \u2227 j.selection=d \u2227 j.u=u \u2227 j.v=v\n\ntheorem one_calls_domain (T S : Tree) (a b : Nat) (d : BadSelection) (u v : RMAF.Vertex)\n (R : BottomData) (row : R\u2208rows S a b d.c) {j : LiteralCall} (mem : j\u2208oneCalls T d u v R) :\n LiteralCallDomain T S a b d u v j := by"
+      }
+    ]
+  },
+  {
+    "path": "results/algorithm-universal233-rule5-remaining-20261016T092622Z-freeze-20261016T095618897390Z/PaidDomains.lean",
+    "sha256": "1c7d2793e9e4baffa4b8ffde0c7b1d5fb11a48f7e97eb7b5a4f136986c09e1e2",
+    "status": "read",
+    "excerpts": [
+      {
+        "needle": "theorem literal_call_payload",
+        "line": 68,
+        "verbatim": "theorem literal_call_payload (T S : Tree) (a b : Nat) (d : BadSelection) (u v : RMAF.Vertex)\n {j : LiteralCall} (domain : LiteralCallDomain T S a b d u v j) :\n j.row.w.length+1\u2264(leaves S).length \u2227 (leaves j.row.X).length\u2264(leaves S).length \u2227 leaves j.row.X\u2286leaves S \u2227\n (leaves j.core).length\u2264(leaves T).length \u2227 leaves j.core\u2286leaves T \u2227\n j.qa.length+1\u2264(leaves T).length \u2227 j.ub.length+1\u2264(leaves T).length \u2227\n LeafAt T j.qa j.row.a \u2227 LeafAt T j.ub j.row.b := by\n have row:=row_payload S a b d.c domain.1"
+      },
+      {
+        "needle": "theorem literal_call_bits",
+        "line": 79,
+        "verbatim": "theorem literal_call_bits (T S : Tree) (a b : Nat) (d : BadSelection) (u v : RMAF.Vertex)\n {j : LiteralCall} (domain : LiteralCallDomain T S a b d u v j) (L : Nat)\n (tlabs : \u2200x,x\u2208leaves T\u2192x<2^L) (slabs : \u2200x,x\u2208leaves S\u2192x<2^L) :\n (\u2200x,x\u2208leaves j.row.X\u2192x<2^L) \u2227 (\u2200x,x\u2208leaves j.core\u2192x<2^L) \u2227\n j.row.a<2^L \u2227 j.row.b<2^L := by\n have p:=literal_call_payload T S a b d u v domain\n have amem : j.row.a\u2208leaves T := by"
+      }
+    ]
+  },
+  {
+    "path": "results/algorithm-universal233-rule5-remaining-20261016T092622Z-freeze-20261016T095618897390Z/PaidSelectedBinding.lean",
+    "sha256": "b1d46686a11a84202a00c17d8924960cf9acfc6b998ab137c76da47065f2dcfd",
+    "status": "read",
+    "excerpts": [
+      {
+        "needle": "theorem paid_selected_work",
+        "line": 34,
+        "verbatim": "theorem paid_selected_work (classFee : CheckRequest\u2192Nat) (literalFee : LiteralCall\u2192Nat)\n (T S : Tree) (a b L Kc Kl : Nat)\n (tlabs : \u2200x,x\u2208leaves T\u2192x<2^L) (slabs : \u2200x,x\u2208leaves S\u2192x<2^L)\n (classifier : \u2200r,CheckDomain ((leaves T).length+(leaves S).length) L r\u2192classFee r\u2264Kc)\n (literal : \u2200d u v,(finalMeter classFee T S a b).value=some (.remaining d (.second u v))\u2192\n  \u2200j,LiteralCallDomain T S a b d u v j\u2192literalFee j\u2264Kl) :\n (paidSelectedMeter classFee literalFee T S a b).work\u2264paidSelectedBudget (leaves T).length (leaves S).length Kc Kl := by"
+      },
+      {
+        "needle": "theorem paid_selected_calls_domain",
+        "line": 67,
+        "verbatim": "theorem paid_selected_calls_domain (classFee : CheckRequest\u2192Nat) (literalFee : LiteralCall\u2192Nat)\n (T S : Tree) (a b : Nat) {j : LiteralCall} (mem : j\u2208paidSelectedCalls classFee literalFee T S a b) :\n \u2203d u v,(finalMeter classFee T S a b).value=some (.remaining d (.second u v)) \u2227\n LiteralCallDomain T S a b d u v j \u2227 u.length\u2264(leaves T).length \u2227 v.length\u2264(leaves T).length \u2227\n d.badArc.length+1\u2264(leaves S).length \u2227 d.c\u2208leaves S := by\n unfold paidSelectedCalls at mem\n split at mem"
+      },
+      {
+        "needle": "theorem paid_selected_ledger",
+        "line": 80,
+        "verbatim": "theorem paid_selected_ledger (classFee : CheckRequest\u2192Nat) (literalFee : LiteralCall\u2192Nat)\n (T S : Tree) (a b : Nat) :\n (paidSelectedMeter classFee literalFee T S a b).work\u2264(finalMeter classFee T S a b).work+\n secondBuilderBudget (leaves T).length (leaves S).length (leaves T).length 0+3+\n ((paidSelectedCalls classFee literalFee T S a b).map literalFee).sum := by\n simp only [paidSelectedMeter]\n split"
+      }
+    ]
+  },
+  {
+    "path": "results/algorithm-universal233-forest-check-root-20261015T211023Z/PaidCaller.lean",
+    "sha256": "de00eb2b4bde04ef626d32b7167d9818375e0bbe74b50c6be7223397af15bac2",
+    "status": "read",
+    "excerpts": [
+      {
+        "needle": "def guardedPlan",
+        "line": 47,
+        "verbatim": "def guardedPlan {T S : Tree} (D : LiteralGeometry T S) : List Branch :=\n (literalPlan D).filter (currentGuard T S)\n\ntheorem literalPlan_guards {T S : Tree} (D : LiteralGeometry T S) :\n \u2200 child, child \u2208 literalPlan D \u2192 currentGuard T S child = true :=\n literal_rawPlan_currentGuards D.properT D.properS D.same D.source D.cherry D.two\n   D.core D.coreLabels D.bC D.cC D.leafA D.leafB D.leafC D.frontier D.tailR D.tailC D.offR D.offC"
+      }
+    ]
+  },
+  {
+    "path": "results/algorithm-universal233-forest-check-root-20261015T211023Z/Case322Caller.lean",
+    "sha256": "6e2bdba48ab0113d1096440fb75c194ca9a30214e18a0c5451f39dcf34e35839",
+    "status": "read",
+    "excerpts": [
+      {
+        "needle": "def currentGuard",
+        "line": 49,
+        "verbatim": "def currentGuard (T S : Tree) (c : Branch) : Bool :=\n decide c.originalCuts.Nodup &&\n c.originalCuts.all (fun q => !q.isEmpty && (subtree (current T S c) q).isSome) &&\n partitionCheck (leaves (current T S c)) c.partition &&\n pairwiseEmbeddings (current T S c) c.partition &&\n (c.partition.length == paid c + 1) &&\n (c.partition == arcPartition (current T S c) c.originalCuts)"
+      }
+    ]
+  },
+  {
+    "path": ".runtime/elan/toolchains/leanprover--lean4---v4.35.0/src/lean/Init/Prelude.lean",
+    "sha256": "390e6b57ead28cb821a65533b21357f2f02d0a1525602f5a1ce9ee3eeb81fd12",
+    "status": "read",
+    "excerpts": [
+      {
+        "needle": "Decidable (And p q) where",
+        "line": 1239,
+        "verbatim": "@[macro_inline] instance {p q} [dp : Decidable p] [dq : Decidable q] : Decidable (And p q) where\n  decide := and (decide p) (decide q)\n  reflects_decide :=\n    match dp, dq with\n    | isTrue  hp, isTrue  hq => \u27e8hp, hq\u27e9\n    | isTrue   _, isFalse hq => fun h => hq h.2\n    | isFalse hp, _          => fun h => hp (And.left h)"
+      },
+      {
+        "needle": "Decidable (Or p q) where",
+        "line": 1247,
+        "verbatim": "@[macro_inline] instance [dp : Decidable p] [dq : Decidable q] : Decidable (Or p q) where\n  decide := or (decide p) (decide q)\n  reflects_decide :=\n    match dp, dq with\n    | isTrue  hp, _          => .inl hp\n    | isFalse  _, isTrue  hq => .inr hq\n    | isFalse hp, isFalse hq => fun"
+      },
+      {
+        "needle": "protected def List.hasDecEq",
+        "line": 3133,
+        "verbatim": "protected def List.hasDecEq {\u03b1 : Type u} [d : DecidableEq \u03b1] (a b : List \u03b1) : Decidable (Eq a b) where\n  decide := a.beq b\n  reflects_decide := go a b\nwhere\n  go : (a b : List \u03b1) \u2192 (a.beq b).Reflects (Eq a b)\n  | nil, nil => rfl\n  | cons _ _, nil => fun h => List.noConfusion rfl (heq_of_eq h)"
+      }
+    ]
+  },
+  {
+    "path": ".runtime/elan/toolchains/leanprover--lean4---v4.35.0/src/lean/Init/Core.lean",
+    "sha256": "264a0b48fedc91fadf55fc5caac8d91003e3908a6e5e42736e2ac8bf1f7cdf99",
+    "status": "read",
+    "excerpts": [
+      {
+        "needle": "Decidable (p \u2194 q) where",
+        "line": 1167,
+        "verbatim": "instance {p q} [dp : Decidable p] [dq : Decidable q] : Decidable (p \u2194 q) where\n  decide := decide p == decide q\n  reflects_decide :=\n    match dp, dq with\n    | isTrue  hp, isTrue  hq => \u27e8fun _ => hq, fun _ => hp\u27e9\n    | isTrue  hp, isFalse hq => fun h => hq (h.1 hp)\n    | isFalse hp, isTrue  hq => fun h => hp (h.2 hq)"
+      }
+    ]
+  },
+  {
+    "path": ".runtime/elan/toolchains/leanprover--lean4---v4.35.0/src/lean/Init/Data/List/Basic.lean",
+    "sha256": "566e74dd5c3e72b2111af000b8bd1552f1aaffe29be317ba01bc91c9e5b55293",
+    "status": "read",
+    "excerpts": [
+      {
+        "needle": "instance decidableBEx",
+        "line": 866,
+        "verbatim": "instance decidableBEx (p : \u03b1 \u2192 Prop) [DecidablePred p] :\n    \u2200 l : List \u03b1, Decidable (Exists fun x => x \u2208 l \u2227 p x)\n  | [] => isFalse nofun\n  | x :: xs =>\n    if h\u2081 : p x then isTrue \u27e8x, .head .., h\u2081\u27e9 else\n      match decidableBEx p xs with\n      | isTrue h\u2082 => isTrue <| let \u27e8y, hm, hp\u27e9 := h\u2082; \u27e8y, .tail _ hm, hp\u27e9"
+      },
+      {
+        "needle": "instance decidableBAll",
+        "line": 877,
+        "verbatim": "instance decidableBAll (p : \u03b1 \u2192 Prop) [DecidablePred p] :\n    \u2200 l : List \u03b1, Decidable (\u2200 x, x \u2208 l \u2192 p x)\n  | [] => isTrue nofun\n  | x :: xs =>\n    if h\u2081 : p x then\n      match decidableBAll p xs with\n      | isTrue h\u2082 => isTrue fun"
+      }
+    ]
+  }
+]

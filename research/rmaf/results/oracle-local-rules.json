@@ -1,0 +1,155 @@
+{
+  "convention": "ordinary rooted binary non-plane leaf-labelled trees, no rho; k=components",
+  "rule_spec_sha256": "d77209f8c681a301691e2acd088b8d7c4ab1331d3456788cca746bc4d159e60b",
+  "endpoint_rule_tests": 13722,
+  "counterexamples": [
+    {
+      "rule": "endpoint-only-cherry",
+      "a": [
+        "a",
+        [
+          "b",
+          [
+            "c",
+            "d"
+          ]
+        ]
+      ],
+      "b": [
+        "b",
+        [
+          "c",
+          [
+            "a",
+            "d"
+          ]
+        ]
+      ],
+      "cherry": [
+        "c",
+        "d"
+      ],
+      "k": 2,
+      "all_optimal_forests": [
+        [
+          [
+            "a"
+          ],
+          [
+            "b",
+            "c",
+            "d"
+          ]
+        ]
+      ],
+      "witness": {
+        "valid": true,
+        "forest": [
+          [
+            "a"
+          ],
+          [
+            "b",
+            "c",
+            "d"
+          ]
+        ],
+        "k": 2,
+        "cuts_a": [
+          {
+            "parent": "root",
+            "child": "1",
+            "parent_block": 0,
+            "child_block": 1
+          }
+        ],
+        "cuts_b": [
+          {
+            "parent": "11",
+            "child": "110",
+            "parent_block": 1,
+            "child_block": 0
+          }
+        ]
+      }
+    },
+    {
+      "rule": "restriction-only-contraction",
+      "a": [
+        "c",
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "b": [
+        "b",
+        [
+          "a",
+          "c"
+        ]
+      ],
+      "equal_restricted_block": [
+        "a",
+        "b"
+      ],
+      "retained_label": "a",
+      "before": {
+        "k": 2,
+        "forests": [
+          [
+            [
+              "a"
+            ],
+            [
+              "b",
+              "c"
+            ]
+          ],
+          [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "c"
+            ]
+          ],
+          [
+            [
+              "a",
+              "c"
+            ],
+            [
+              "b"
+            ]
+          ]
+        ],
+        "partitions_tested": 4
+      },
+      "after_a": [
+        "a",
+        "c"
+      ],
+      "after_b": [
+        "a",
+        "c"
+      ],
+      "after": {
+        "k": 1,
+        "forests": [
+          [
+            [
+              "a",
+              "c"
+            ]
+          ]
+        ],
+        "partitions_tested": 1
+      },
+      "mechanism": "Equality of a restriction does not make its embedding pendant in both inputs."
+    }
+  ],
+  "endpoint_rule_status": "refuted-by-exact-enumeration",
+  "status": "executed-exact-not-Lean"
+}

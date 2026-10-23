@@ -1,0 +1,143 @@
+{
+  "status": "PUBLIC_DEFINITIONS_ONLY_NOT_CANDIDATE_RELEASE",
+  "utc": "2026-10-15T12:01:03.629218+00:00",
+  "purpose": "Explicit permitted excerpts for fresh prerelease mathematical controls; no proof, author controls, candidate planner/dispatcher or verifier code. Fresh instrument must not copy another checker. Verify correspondence to final source after separate release.",
+  "sources": [
+    {
+      "path": "research/rmaf/lean/RMAF.lean",
+      "source_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 42,
+          "text": "import Std\n\n/-! Executable ordinary rooted-MAF model and a finite-search correctness core.\nNo faster branching algorithm is asserted. See FORMAL.md for semantic scope. -/\n\nnamespace RMAF\n\ninductive Tree where\n  | leaf : Nat \u2192 Tree\n  | node : Tree \u2192 Tree \u2192 Tree\n  deriving DecidableEq, Repr\n\ndef leaves : Tree \u2192 List Nat\n  | .leaf x => [x]\n  | .node l r => leaves l ++ leaves r\n\n/-- Binary shape is built into Tree; these hypotheses make labelling bijective\nand ensure that the input trees have the identical canonical taxon set. -/\nstructure Instance where\n  n : Nat\n  left : Tree\n  right : Tree\n  labels_left : (leaves left).Perm (List.range n)\n  labels_right : (leaves right).Perm (List.range n)\n\n/-- Inductive rooted label-preserving isomorphism, independent of the Boolean\nchecker. No orientation of siblings is part of a phylogenetic tree. -/\ninductive RootedIso : Tree \u2192 Tree \u2192 Prop where\n  | leaf (x : Nat) : RootedIso (.leaf x) (.leaf x)\n  | straight {a b c d : Tree} : RootedIso a c \u2192 RootedIso b d \u2192\n      RootedIso (.node a b) (.node c d)\n  | swapped {a b c d : Tree} : RootedIso a d \u2192 RootedIso b c \u2192\n      RootedIso (.node a b) (.node c d)\n\n/-- A labelled rooted isomorphism may swap the children at any vertex. -/\ndef sameShape : Tree \u2192 Tree \u2192 Bool\n  | .leaf a, .leaf b => a == b\n  | .node a b, .node c d =>\n      (sameShape a c && sameShape b d) ||\n      (sameShape a d && sameShape b c)\n  | _, _ => false\n\n"
+        },
+        {
+          "start": 84,
+          "end": 91,
+          "text": "def restrict (selected : List Nat) : Tree \u2192 Option Tree\n  | .leaf x => if selected.contains x then some (.leaf x) else none\n  | .node l r =>\n      match restrict selected l, restrict selected r with\n      | none, none => none\n      | some a, none => some a\n      | none, some b => some b\n      | some a, some b => some (.node a b)\n"
+        },
+        {
+          "start": 109,
+          "end": 159,
+          "text": "abbrev Vertex := List Bool\n\ndef prependSide (side : Bool) (vs : List Vertex) : List Vertex :=\n  vs.map (side :: \u00b7)\n\n/-- The rooted span includes paths from this root to every selected leaf.\nUnary path vertices must be retained for embedding-disjointness checks. -/\ndef rootedSpan (selected : List Nat) : Tree \u2192 List Vertex\n  | .leaf x => if selected.contains x then [[]] else []\n  | .node l r =>\n      let ls := rootedSpan selected l\n      let rs := rootedSpan selected r\n      if ls.isEmpty && rs.isEmpty then []\n      else [] :: (prependSide false ls ++ prependSide true rs)\n\n/-- The minimal embedding starts at the selected leaves' LCA, not the input root.\nOnce both children contribute, keep all intervening unary path vertices. -/\ndef minimalVertices (selected : List Nat) : Tree \u2192 List Vertex\n  | .leaf x => if selected.contains x then [[]] else []\n  | .node l r =>\n      let ls := rootedSpan selected l\n      let rs := rootedSpan selected r\n      if ls.isEmpty then prependSide true (minimalVertices selected r)\n      else if rs.isEmpty then prependSide false (minimalVertices selected l)\n      else [] :: (prependSide false ls ++ prependSide true rs)\n\ndef disjointVertices (a b : List Vertex) : Bool :=\n  a.all (fun v => !(b.contains v))\n\ndef pairwiseEmbeddings (t : Tree) : List (List Nat) \u2192 Bool\n  | [] => true\n  | b :: bs =>\n      bs.all (fun c => disjointVertices (minimalVertices b t) (minimalVertices c t)) &&\n      pairwiseEmbeddings t bs\n\ndef restrictionAgrees (t u : Tree) (b : List Nat) : Bool :=\n  match restrict b t, restrict b u with\n  | some s, some v => sameShape s v\n  | _, _ => false\n\ndef partitionCheck (labels : List Nat) (bs : List (List Nat)) : Bool :=\n  bs.all (fun b => !b.isEmpty) &&\n  labels.all (fun x => bs.flatten.count x == 1) &&\n  bs.flatten.all (fun x => labels.contains x)\n\ndef agreement (t u : Tree) (bs : List (List Nat)) : Bool :=\n  partitionCheck (leaves t) bs && partitionCheck (leaves u) bs &&\n  bs.all (restrictionAgrees t u) &&\n  pairwiseEmbeddings t bs && pairwiseEmbeddings u bs\n\n/-- Every assignment has one entry per leaf; tag equality defines its block.\n"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/universal233/state_reductions/State.lean",
+      "source_sha256": "b285d2bdf317720540074b7e09042bc76cc89f024d683d6ed311efd3df04fee9",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 31,
+          "text": "import StatePartition\n\n/-! Problem-local literal finite forest states. No desired reduction fields. -/\nnamespace ForestState\nopen RMAF RestrictionBridge\n\ndef labels : Option Tree \u2192 List Nat\n  | none => []\n  | some t => leaves t\n\ndef targetEmbeddings : Option Tree \u2192 List (List Nat) \u2192 Bool\n  | none, F => F.isEmpty\n  | some t, F => pairwiseEmbeddings t F\n\ndef targetAgrees : Option Tree \u2192 Tree \u2192 List Nat \u2192 Bool\n  | none, _, _ => false\n  | some t, s, B => restrictionAgrees t s B\n\ndef proper (T : Option Tree) (ss : List Tree) : Bool :=\n  decide (labels T).Nodup && partitionCheck (labels T) (ss.map leaves)\n\ndef sourceCheck (T : Option Tree) (F : List (List Nat)) (s : Tree) : Bool :=\n  let G := family (leaves s) F\n  partitionCheck (leaves s) G && G.all (targetAgrees T s) && pairwiseEmbeddings s G\n\ndef agrees (T : Option Tree) (ss : List Tree) (F : List (List Nat)) : Bool :=\n  proper T ss && partitionCheck (labels T) F &&\n  F.all (fun B => ss.any (fun s => contained B (leaves s))) &&\n  targetEmbeddings T F && ss.all (sourceCheck T F)\n\ndef additionalCost (ss : List Tree) (F : List (List Nat)) := F.length - ss.length\n"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/universal233/core/CoreProgram.lean",
+      "source_sha256": "9aa92355dfecf6e0e3d7707c1c284cabcb2f3846b6682e3b55b719e35cb7311f",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 127,
+          "text": "import CoreGraph\n\n/-! One-shot candidate implementation of the pinned source generator.\nNo optimum/partition-enumeration oracle is called. This module is executable\nand budget-total; graph coverage and original-cut realization remain separate\nproof obligations. All original addresses survive suppression. -/\nnamespace Universal233.CoreProgram\nopen RMAF\n\nstructure Group where\n  origin : Vertex\n  labels : List Nat\n  color : Nat\n  deriving DecidableEq, Repr\n\ninductive GTree where\n  | leaf : Group \u2192 GTree\n  | node : Vertex \u2192 GTree \u2192 GTree \u2192 GTree\n  deriving DecidableEq, Repr\n\ndef fromTree (color : Nat \u2192 Nat) (p : Vertex) : Tree \u2192 GTree\n  | .leaf x => .leaf \u27e8p, [x], color x\u27e9\n  | .node l r => .node p (fromTree color (p ++ [false]) l) (fromTree color (p ++ [true]) r)\n\ndef groups : GTree \u2192 List Group\n  | .leaf g => [g]\n  | .node _ l r => groups l ++ groups r\n\ndef normalize : GTree \u2192 GTree\n  | .leaf g => .leaf g\n  | .node p l r =>\n      match normalize l, normalize r with\n      | .leaf a, .leaf b =>\n          if a.color = b.color then .leaf \u27e8p, a.labels ++ b.labels, a.color\u27e9\n          else .node p (.leaf a) (.leaf b)\n      | a, b => .node p a b\n\ndef erase (chosen : Vertex) : GTree \u2192 Option GTree\n  | .leaf g => if g.origin = chosen then none else some (.leaf g)\n  | .node p l r =>\n      if p = chosen then none else\n      match erase chosen l, erase chosen r with\n      | none, none => none\n      | some a, none => some a\n      | none, some b => some b\n      | some a, some b => some (.node p a b)\n\ndef mixedCherry : GTree \u2192 Option (Group \u00d7 Group)\n  | .leaf _ => none\n  | .node _ (.leaf a) (.leaf b) => some (a, b)\n  | .node _ l r => (mixedCherry l).or (mixedCherry r)\n\ninductive Choice where\n  | finish\n  | one : Group \u2192 Choice\n  | two : Group \u2192 Group \u2192 Choice\n  | refuse : String \u2192 Choice\n  deriving Repr\n\ndef choose (t : GTree) : Choice :=\n  let gs := groups t\n  match gs with\n  | [] => .refuse \"empty current source\"\n  | first :: _ =>\n      if gs.all (fun g => g.color == first.color) then .finish\n      else\n        match gs.find? (fun g => (gs.filter (fun h => h.color == g.color)).length == 1) with\n        | some g => .one g\n        | none =>\n            match mixedCherry t with\n            | some (a, b) =>\n                if a.color == b.color then .refuse \"unnormalized homogeneous cherry\"\n                else .two a b\n            | none => .refuse \"no mixed cherry in multicolor source\"\n\nstructure Output where\n  partition : List (List Nat)\n  /-- An address records the actual original edge (dropLast address,address).\n  The original root address [] is forbidden by the generator. -/\n  sourceCuts : List Vertex\n  deriving DecidableEq, Repr\n\nstructure Receipt where\n  outputs : List Output := []\n  refusals : List String := []\n  visited : Nat := 0\n  childAttempts : Nat := 0\n  pruned : Nat := 0\n  deriving Repr\n\ndef combine (a b : Receipt) : Receipt :=\n  \u27e8a.outputs ++ b.outputs, a.refusals ++ b.refusals,\n    a.visited + b.visited, a.childAttempts + b.childAttempts, a.pruned + b.pruned\u27e9\n\ndef prefixRoot (r : Receipt) : Receipt := { r with visited := r.visited + 1 }\n\ndef attempt (continuation : GTree \u2192 List Group \u2192 List Vertex \u2192 Receipt)\n    (t : GTree) (detached : List Group) (cuts : List Vertex) (g : Group) : Receipt :=\n  if g.origin = [] then \u27e8[], [\"attempt to cut original root\"], 0, 1, 0\u27e9\n  else if cuts.contains g.origin then \u27e8[], [\"duplicate original source cut\"], 0, 1, 0\u27e9\n  else\n    match erase g.origin t with\n    | none => \u27e8[], [\"attempt removed entire current source\"], 0, 1, 0\u27e9\n    | some next =>\n        let r := continuation next (g :: detached) (g.origin :: cuts)\n        { r with childAttempts := r.childAttempts + 1 }\n\ndef step (continuation : GTree \u2192 List Group \u2192 List Vertex \u2192 Receipt)\n    (current : GTree) (detached : List Group) (cuts : List Vertex) : Receipt :=\n  let t := normalize current\n  match choose t with\n  | .finish => \u27e8[\u27e8detached.map Group.labels ++ [(groups t).flatMap Group.labels], cuts\u27e9], [], 1, 0, 0\u27e9\n  | .one g => prefixRoot (attempt continuation t detached cuts g)\n  | .two a b => prefixRoot (combine (attempt continuation t detached cuts a)\n      (attempt continuation t detached cuts b))\n  | .refuse why => \u27e8[], [why], 1, 0, 0\u27e9\n\n/-- Budget counts original source cuts. Every over-budget attempted child is\nretained as a pruned prefix and included in childAttempts. -/\ndef run : Nat \u2192 GTree \u2192 List Group \u2192 List Vertex \u2192 Receipt\n  | 0 => step (fun _ _ _ => \u27e8[], [], 0, 0, 1\u27e9)\n  | q + 1 => step (run q)\n\ndef generate (t : Tree) (color : Nat \u2192 Nat) (budget : Nat) : Receipt :=\n  if (leaves t).Nodup then run (min budget ((leaves t).length - 1)) (fromTree color [] t) [] []\n  else \u27e8[], [\"duplicate original label\"], 0, 0, 0\u27e9\n\n"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/pair_case/geometry/lean/Geometry.lean",
+      "source_sha256": "b98de754ee29fdeae54aebc6e03ffb7e8262dcb299f61b7ac5ca9bcee4887a9d",
+      "ranges": [
+        {
+          "start": 7,
+          "end": 45,
+          "text": "namespace VertexGeometry\nabbrev Vertex := List Bool\n\n/-- The unique path in the infinite binary address tree, with endpoints kept.\nIts restriction to a prefix-closed finite binary tree is its actual graph path. -/\ninductive PathAt : Vertex \u2192 Vertex \u2192 Vertex \u2192 Prop where\n  | endpointL (a b : Vertex) : PathAt a a b\n  | endpointR (a b : Vertex) : PathAt b a b\n  | fork (a b : Vertex) : PathAt [] (false :: a) (true :: b)\n  | fork' (a b : Vertex) : PathAt [] (true :: a) (false :: b)\n  | down (s : Bool) {v a b : Vertex} : PathAt v a b \u2192 PathAt (s :: v) (s :: a) (s :: b)\n  | leftLeg (s : Bool) {v a : Vertex} : PathAt v a [] \u2192 PathAt (s :: v) (s :: a) []\n  | rightLeg (s : Bool) {v b : Vertex} : PathAt v [] b \u2192 PathAt (s :: v) [] (s :: b)\n  | crossLeft (s : Bool) {v a b : Vertex} : PathAt v a [] \u2192\n      PathAt (s :: v) (s :: a) ((!s) :: b)\n  | crossRight (s : Bool) {v a b : Vertex} : PathAt v [] b \u2192\n      PathAt (s :: v) ((!s) :: a) (s :: b)\n\n/-- Leaf-address hull, including singleton leaf hulls. -/\ndef Hull (S : Vertex \u2192 Prop) (v : Vertex) : Prop :=\n  \u2203 a b, S a \u2227 S b \u2227 PathAt v a b\n\ndef Prefix (p a : Vertex) : Prop := \u2203 q, a = p ++ q\n\ndef ProperPrefix (p a : Vertex) : Prop := \u2203 s q, a = p ++ s :: q\n\n/-- Removing a nonlabelled target gives the parent direction and two child\nregions. The value 3 is the removed vertex itself, never a label in our use. -/\ndef region : Vertex \u2192 Vertex \u2192 Nat\n  | [], [] => 3\n  | [], false :: _ => 0\n  | [], true :: _ => 1\n  | _ :: _, [] => 2\n  | s :: v, t :: a => if s = t then region v a else 2\n\n/-- At two surviving vertices, equality means membership in the same actual\ncomponent after deleting the target. -/\ndef SameRegion (v a b : Vertex) : Prop := region v a = region v b\n\n"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/pair_case/geometry/lean/Bridge.lean",
+      "source_sha256": "ba12f3b99d87efecce407dab54d95df003fc5e735cb12e314734c346317c9583",
+      "ranges": [
+        {
+          "start": 399,
+          "end": 402,
+          "text": "def leafList (D : List Nat) : RMAF.Tree \u2192 List Vertex\n  | .leaf x => if D.contains x then [[]] else []\n  | .node l r => RMAF.prependSide false (leafList D l) ++\n      RMAF.prependSide true (leafList D r)\n"
+        },
+        {
+          "start": 414,
+          "end": 416,
+          "text": "def regions (D : List Nat) (t : RMAF.Tree) (v : Vertex) : List Nat :=\n  [0,1,2].filter (fun c => (leafList D t).any (fun a => region v a == c))\n\n"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/pair_case/geometry/lean/Selector.lean",
+      "source_sha256": "bc685b0792bccc279abbf3870944814758fae9b4ba137c11df75d204d59828bf",
+      "ranges": [
+        {
+          "start": 287,
+          "end": 295,
+          "text": "def vertices : RMAF.Tree \u2192 List Vertex\n  | .leaf _ => [[]]\n  | .node l r => [] :: (RMAF.prependSide false (vertices l) ++ RMAF.prependSide true (vertices r))\n\ndef edges : RMAF.Tree \u2192 List (Vertex \u00d7 Vertex)\n  | .leaf _ => []\n  | .node l r => ([],[false]) :: ([],[true]) ::\n      ((edges l).map (fun e => (false::e.1,false::e.2)) ++\n       (edges r).map (fun e => (true::e.1,true::e.2)))\n"
+        },
+        {
+          "start": 376,
+          "end": 379,
+          "text": "def prefixB : Vertex \u2192 Vertex \u2192 Bool\n  | [], _ => true\n  | _::_, [] => false\n  | s::p,t::a => (s==t) && prefixB p a\n"
+        },
+        {
+          "start": 388,
+          "end": 394,
+          "text": "def leafAddress (t : RMAF.Tree) (x : Nat) : Vertex := (leafList [x] t).headD []\n\ndef descendants (t : RMAF.Tree) (v : Vertex) : List Nat :=\n  (RMAF.leaves t).filter (fun x => prefixB v (leafAddress t x))\n\ndef sideLabels (A : List Nat) (t : RMAF.Tree) (v : Vertex) (inside : Bool) : List Nat :=\n  A.filter (fun x => if inside then (descendants t v).contains x else !((descendants t v).contains x))\n"
+        },
+        {
+          "start": 531,
+          "end": 560,
+          "text": "inductive Choice where\n  | vertex : Vertex \u2192 Choice\n  | edge : (Vertex \u00d7 Vertex) \u2192 Choice\n  deriving DecidableEq, Repr\n\ndef properInput (t : RMAF.Tree) (A B : List Nat) : Bool :=\n  decide (RMAF.leaves t).Nodup && decide A.Nodup && decide B.Nodup &&\n  !A.isEmpty && !B.isEmpty &&\n  A.all (fun x => (RMAF.leaves t).contains x) &&\n  B.all (fun x => (RMAF.leaves t).contains x) && A.all (fun x => !(B.contains x))\n\ndef vertexOK (t : RMAF.Tree) (A B : List Nat) (v : Vertex) : Bool :=\n  (RMAF.minimalVertices A t).contains v && (RMAF.minimalVertices B t).contains v &&\n    ((regions A t v).length==3 || (regions B t v).length==3)\n\ndef edgeOK (t : RMAF.Tree) (A B : List Nat) (e : Vertex \u00d7 Vertex) : Bool :=\n  (RMAF.minimalVertices A t).contains e.1 && (RMAF.minimalVertices B t).contains e.1 &&\n  (RMAF.minimalVertices A t).contains e.2 && (RMAF.minimalVertices B t).contains e.2 &&\n  [false,true].all (fun inside =>\n    !(sideLabels A t e.2 inside).isEmpty && !(sideLabels B t e.2 inside).isEmpty &&\n    RMAF.disjointVertices (RMAF.minimalVertices (sideLabels A t e.2 inside) t) (RMAF.minimalVertices B t) &&\n    RMAF.disjointVertices (RMAF.minimalVertices (sideLabels B t e.2 inside) t) (RMAF.minimalVertices A t))\n\ndef choose (t : RMAF.Tree) (A B : List Nat) : Option Choice :=\n  if properInput t A B then\n    match (vertices t).find? (vertexOK t A B) with\n    | some v => some (.vertex v)\n    | none => ((edges t).find? (edgeOK t A B)).map Choice.edge\n  else none\n\n"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/universal233/whole_source_mass/WholeColors.lean",
+      "source_sha256": "919445df718ca92656b2f9df756689d713ac7f375f7801ab631daf0d424f8728",
+      "ranges": [
+        {
+          "start": 14,
+          "end": 18,
+          "text": "def taggedColor (A B : List Nat) (ca cb cc : Nat \u2192 Nat) (x : Nat) : Nat :=\n  if x \u2208 A then 3 * ca x else if x \u2208 B then 3 * cb x + 1 else 3 * cc x + 2\n\ndef localColors (D : List Nat) (f : Nat \u2192 Nat) : List Nat := dedupNat (D.map f)\n\n"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/universal233/whole_source_mass/WholeMass.lean",
+      "source_sha256": "e66d13748dbeb8c83e0ce22b02165ffa297c2a00b55a0230f9a8f44d188488d4",
+      "ranges": [
+        {
+          "start": 66,
+          "end": 68,
+          "text": "def wholeOutputs (S : Tree) (A B : List Nat) (ca cb cc : Nat \u2192 Nat) (q : Nat) : List Output :=\n  (generate S (taggedColor A B ca cb cc) q).outputs\n\n"
+        }
+      ]
+    },
+    {
+      "path": "research/rmaf/algorithm/universal233/pair_assembly/SideColors.lean",
+      "source_sha256": "9593551c741cfc559cb0ae06291b8ded21895721a174f47f181c00eac5758bd6",
+      "ranges": [
+        {
+          "start": 7,
+          "end": 10,
+          "text": "def sideColor (D : List Nat) (x : Nat) : Nat := if x \u2208 D then 0 else 1\n\ndef sideOutputs (S : Tree) (A B D : List Nat) (q : Nat) : List Output :=\n  WholeSourceMass.wholeOutputs S A B (fun _ => 0) (sideColor D) (fun _ => 0) q\n"
+        }
+      ]
+    }
+  ],
+  "public_statement_whitelist": [
+    "research/rmaf/algorithm/universal233/both_bad/TARGET-v1.md",
+    "research/rmaf/algorithm/universal233/both_bad/RESULT.md",
+    "research/rmaf/algorithm/universal233/both_bad/INTERFACE.md",
+    "research/rmaf/algorithm/universal233/both_bad/FIRST-GAP.md",
+    "research/rmaf/algorithm/universal233/both_bad/COST-MODEL.md"
+  ]
+}

@@ -1,0 +1,165 @@
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:54:10: error: unsolved goals
+case empty
+⊢ (fun x => 0) = add (fun x => 0) fun x => 0
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:55:33: error: unsolved goals
+case node.true
+id : Nat
+label : Option Nat
+left right : MarkedTree
+⊢ add
+      (if join id label (evaluate left).fst (evaluate right).fst = NormalTree.empty then fun x => 0
+      else fun x => if x = join id label (evaluate left).fst (evaluate right).fst then 1 else 0)
+      (add (evaluate left).snd (evaluate right).snd) =
+    add (fun x => 0)
+      (add
+        (if join id label (evaluate left).fst (evaluate right).fst = NormalTree.empty then fun x => 0
+        else fun x => if x = join id label (evaluate left).fst (evaluate right).fst then 1 else 0)
+        (add (evaluate left).snd (evaluate right).snd))
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:54:46: warning: This simp argument is unused:
+  add
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [rootMark, evaluate, total, single]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:56:65: warning: This simp argument is unused:
+  add
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [rootMark, evaluate, finish, emit, total, single]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:64:57: error: unsolved goals
+out : Output
+a b : Bag
+⊢ add (add out.snd a) b = add out.snd (add a b)
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:65:17: warning: This simp argument is unused:
+  add
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [augment, Nat.add_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:65:22: warning: This simp argument is unused:
+  Nat.add_assoc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [augment, add]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:70:56: error: unsolved goals
+case false
+id : Nat
+label : Option Nat
+left right : Output
+extra : Bag
+⊢ add (add left.snd extra) right.snd = add (add left.snd right.snd) extra
+
+case true
+id : Nat
+label : Option Nat
+left right : Output
+extra : Bag
+⊢ add (single (join id label left.fst right.fst)) (add (add left.snd extra) right.snd) =
+    add (add (single (join id label left.fst right.fst)) (add left.snd right.snd)) extra
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:72:33: warning: This simp argument is unused:
+  add
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [finish, augment, emit, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:72:38: warning: This simp argument is unused:
+  Nat.add_assoc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [finish, augment, emit, add, Nat.add_comm, Nat.add_left_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:72:53: warning: This simp argument is unused:
+  Nat.add_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [finish, augment, emit, add, Nat.add_assoc, Nat.add_left_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:72:67: warning: This simp argument is unused:
+  Nat.add_left_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [finish, augment, emit, add, Nat.add_assoc, Nat.add_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:77:56: error: unsolved goals
+case false
+id : Nat
+label : Option Nat
+left right : Output
+extra : Bag
+⊢ add left.snd (add right.snd extra) = add (add left.snd right.snd) extra
+
+case true
+id : Nat
+label : Option Nat
+left right : Output
+extra : Bag
+⊢ add (single (join id label left.fst right.fst)) (add left.snd (add right.snd extra)) =
+    add (add (single (join id label left.fst right.fst)) (add left.snd right.snd)) extra
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:78:45: warning: This simp argument is unused:
+  add
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [finish, augment, emit, Nat.add_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:78:50: warning: This simp argument is unused:
+  Nat.add_assoc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [finish, augment, emit, add]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:84:66: error: unsolved goals
+s : Nat
+continuing pendant : MarkedTree
+⊢ (match none, (evaluate continuing).fst, NormalTree.empty with
+    | none, NormalTree.empty, t => t
+    | none, t, NormalTree.empty => t
+    | x, l, r => NormalTree.node s none l r) =
+    (evaluate continuing).fst
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:90:66: error: unsolved goals
+s : Nat
+continuing pendant : MarkedTree
+⊢ add (total (evaluate pendant)) (evaluate continuing).snd = add (evaluate continuing).snd (total (evaluate pendant))
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:92:37: warning: This simp argument is unused:
+  add
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [finish, emit, join, augment, Nat.add_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:92:42: warning: This simp argument is unused:
+  Nat.add_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [finish, emit, join, augment, add]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean:144:13: warning: This simp argument is unused:
+  Nat.add_assoc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [add, Nat.add_comm, Nat.add_left_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'SecondExchange.YieldModel.root_cut_detaches' depends on axioms: [propext, sorryAx]
+'SecondExchange.YieldModel.augment_total' depends on axioms: [propext, Quot.sound]
+'SecondExchange.YieldModel.augment_twice' depends on axioms: [propext, sorryAx]
+'SecondExchange.YieldModel.finish_augment_left' depends on axioms: [propext, sorryAx]
+'SecondExchange.YieldModel.finish_augment_right' depends on axioms: [propext, sorryAx]
+'SecondExchange.YieldModel.pendant_right' depends on axioms: [propext, sorryAx]
+'SecondExchange.YieldModel.pendant_left' depends on axioms: [propext, sorryAx]
+'SecondExchange.YieldModel.context_augment' depends on axioms: [propext, sorryAx]
+'SecondExchange.YieldModel.splice_evaluate' depends on axioms: [propext, sorryAx]
+'SecondExchange.YieldModel.two_splice_yield' depends on axioms: [propext, sorryAx, Quot.sound]
+'SecondExchange.YieldModel.two_splice_root_component' depends on axioms: [propext, sorryAx]

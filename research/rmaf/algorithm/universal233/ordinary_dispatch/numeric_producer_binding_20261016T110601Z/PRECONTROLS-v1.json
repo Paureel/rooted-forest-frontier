@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "frozen_before_new_method": true,
+  "cases": [
+    "padded zero trims to empty with linear input fee",
+    "underflow remains natural saturated subtraction",
+    "carry 7+1 gives 8 after trim",
+    "padded positive budget retains value and removes high zeros",
+    "1024-bit zero input charged by input length",
+    "allocation callback receives canonical value-equivalent exact budget",
+    "invalid pretest/refusal preserved",
+    "common selector empty representative zero",
+    "actual common source X/Y and x/y equality",
+    "both common orientations"
+  ],
+  "hostile": [
+    "delete trim charge rejected by work oracle",
+    "assume semantic Q bounds untrimmed input width rejected",
+    "change callback budget by one rejected",
+    "swap common representative by unrelated array rejected"
+  ],
+  "caps": {
+    "pilot_seconds": 30,
+    "lean_memory_mib": 3072,
+    "disk_floor_bytes": 3221225472,
+    "raw_bytes": 268435456,
+    "line_bytes": 134217728,
+    "producer_compressed_bytes": 16777216,
+    "total_compressed_bytes": 134217728
+  },
+  "route": "undecided: measure explicit trim and source bindings before selecting"
+}

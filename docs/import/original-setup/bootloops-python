@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+BOOTSCIENCE_SCRIPT_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+. "$BOOTSCIENCE_SCRIPT_ROOT/activate.sh"
+if [ "${BOOTLOOPS_MONITOR_DISABLE:-0}" = "1" ]; then
+    exec "$BOOTSCIENCE_ROOT/.venv/bin/python3" "$@"
+fi
+exec "$BOOTSCIENCE_ROOT/.venv/bin/python3" "$BOOTSCIENCE_ROOT/dashboard/track.py" "$BOOTSCIENCE_ROOT/.venv/bin/python3" "$@"

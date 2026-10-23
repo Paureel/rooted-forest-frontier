@@ -1,0 +1,69 @@
+Universal233.CutRealization.History.continuation_realizes {T : RMAF.Tree} {color : Nat → Nat}
+  {t : Universal233.CoreProgram.GTree} {d : List Universal233.CoreProgram.Group} {c : List RMAF.Vertex}
+  {next : Universal233.CoreProgram.GTree} {v : RMAF.Vertex} {g : Universal233.CoreProgram.Group}
+  (h : Universal233.CutRealization.History T color t d c) (hn : (RMAF.leaves T).Nodup)
+  (hv : Universal233.Integration.GroupLeafAt t v g) (hvr : v ≠ []) (hgr : g.origin ≠ []) (hgc : ¬g.origin ∈ c)
+  (he : Universal233.CoreProgram.erase g.origin t = some next) :
+  Universal233.CutRealization.ResidualAdj T c (List.dropLast g.origin) g.origin ∧
+    Universal233.CutRealization.Live c (List.dropLast g.origin) ∧
+      Universal233.CutRealization.Live c g.origin ∧
+        (∀ (a : RMAF.Vertex) (x : Nat),
+            Universal233.CoreGraph.LeafAt T a x →
+              (x ∈ g.labels ↔ Universal233.CutRealization.Region (g.origin :: c) g.origin a)) ∧
+          Universal233.CutRealization.Exact T (g.origin :: c) [] (Universal233.CoreProgram.payload next) ∧
+            g.labels ≠ [] ∧
+              Universal233.CoreProgram.payload next ≠ [] ∧
+                (∀ (r : RMAF.Vertex),
+                    r ∈ c →
+                      ∀ (a : RMAF.Vertex),
+                        Universal233.CutRealization.Region (g.origin :: c) r a ↔
+                          Universal233.CutRealization.Region c r a) ∧
+                  ∀ (a : RMAF.Vertex),
+                    Universal233.CutRealization.Live c a ↔
+                      Universal233.CutRealization.Live (g.origin :: c) a ∨
+                        Universal233.CutRealization.Region (g.origin :: c) g.origin a
+Universal233.CutRealization.History.continuation_components {T : RMAF.Tree} {color : Nat → Nat}
+  {t : Universal233.CoreProgram.GTree} {d : List Universal233.CoreProgram.Group} {c : List RMAF.Vertex}
+  {next : Universal233.CoreProgram.GTree} {v : RMAF.Vertex} {g : Universal233.CoreProgram.Group}
+  (h : Universal233.CutRealization.History T color t d c) (hn : (RMAF.leaves T).Nodup)
+  (hv : Universal233.Integration.GroupLeafAt t v g) (hvr : v ≠ []) (hgr : g.origin ≠ []) (hgc : ¬g.origin ∈ c)
+  (he : Universal233.CoreProgram.erase g.origin t = some next) :
+  Universal233.CutRealization.ComponentLabels T (g.origin :: c) g.origin g.labels ∧
+    Universal233.CutRealization.ComponentLabels T (g.origin :: c) [] (Universal233.CoreProgram.payload next) ∧
+      (∀ (r : RMAF.Vertex),
+          r ∈ c →
+            ∀ (a : RMAF.Vertex),
+              Universal233.CutRealization.ResidualWalk T (g.origin :: c) r a ↔
+                Universal233.CutRealization.ResidualWalk T c r a) ∧
+        ¬Universal233.CutRealization.ResidualWalk T (g.origin :: c) [] g.origin
+Universal233.CutRealization.generate_original_realization (T : RMAF.Tree) (color : Nat → Nat) (q : Nat)
+  (o : Universal233.CoreProgram.Output) (ho : o ∈ (Universal233.CoreProgram.generate T color q).outputs) :
+  Universal233.CutRealization.RealizedOutput T o
+Universal233.CutRealization.generate_refinement_coverage (T : RMAF.Tree) (bs : List (List Nat)) (color : Nat → Nat)
+  (hn : (RMAF.leaves T).Nodup) (hp : RMAF.partitionCheck (RMAF.leaves T) bs = true)
+  (he : RMAF.pairwiseEmbeddings T bs = true) (hm : ∀ (b : List Nat), b ∈ bs → VertexGeometry.LabelMonochromatic color b)
+  (budget : Nat) (hb : bs.length - 1 ≤ budget) :
+  ∃ o,
+    o ∈ (Universal233.CoreProgram.generate T color budget).outputs ∧
+      VertexGeometry.Refines bs o.partition ∧ Universal233.CutRealization.RealizedOutput T o
+Universal233.CutRealization.generate_realized_color_cost (T : RMAF.Tree) (color : Nat → Nat) (q : Nat)
+  (o : Universal233.CoreProgram.Output) (ho : o ∈ (Universal233.CoreProgram.generate T color q).outputs) :
+  Universal233.CutRealization.colorCount T color - 1 ≤ o.sourceCuts.length
+Universal233.CutRealization.generate_cost_bound (T : RMAF.Tree) (color : Nat → Nat) (budget : Nat)
+  (o : Universal233.CoreProgram.Output) (ho : o ∈ (Universal233.CoreProgram.generate T color budget).outputs) :
+  o.sourceCuts.length ≤ budget
+Universal233.CutRealization.generate_partition_check (T : RMAF.Tree) (color : Nat → Nat) (budget : Nat)
+  (o : Universal233.CoreProgram.Output) (ho : o ∈ (Universal233.CoreProgram.generate T color budget).outputs) :
+  RMAF.partitionCheck (RMAF.leaves T) o.partition = true
+Universal233.CutRealization.checked_source_core (T : RMAF.Tree) (bs : List (List Nat)) (color : Nat → Nat)
+  (hn : (RMAF.leaves T).Nodup) (hp : RMAF.partitionCheck (RMAF.leaves T) bs = true)
+  (he : RMAF.pairwiseEmbeddings T bs = true)
+  (hm : ∀ (b : List Nat), b ∈ bs → VertexGeometry.LabelMonochromatic color b) :
+  ∃ o,
+    o ∈ (Universal233.CoreProgram.generate T color (bs.length - 1)).outputs ∧
+      RMAF.partitionCheck (RMAF.leaves T) o.partition = true ∧
+        VertexGeometry.Refines bs o.partition ∧
+          Universal233.CutRealization.RealizedOutput T o ∧
+            (∀ (b : List Nat), b ∈ o.partition → VertexGeometry.LabelMonochromatic color b) ∧
+              Universal233.CutRealization.colorCount T color - 1 ≤ o.sourceCuts.length ∧
+                o.sourceCuts.length ≤ bs.length - 1

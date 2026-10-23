@@ -1,0 +1,3 @@
+import LiteralPolynomial
+#check Universal233.PaidLiteralDecisionWork.literal_budget_expanded
+#print axioms Universal233.PaidLiteralDecisionWork.literal_budget_expanded

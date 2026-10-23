@@ -1,0 +1,5 @@
+import WeightedSourceSubtotal
+#check OrdinaryDispatch.FullSourceWork.sourceSubtotal_eq
+#print axioms OrdinaryDispatch.FullSourceWork.sourceSubtotal_eq
+#check OrdinaryDispatch.FullSourceWork.sourceSubtotal_bound
+#print axioms OrdinaryDispatch.FullSourceWork.sourceSubtotal_bound

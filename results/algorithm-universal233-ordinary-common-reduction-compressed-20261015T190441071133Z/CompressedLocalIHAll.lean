@@ -1,0 +1,287 @@
+import RMAF
+import GroupRestriction
+import GroupEmbedding
+import GroupPartition
+import GroupState
+import GroupStateFacts
+import CherryRemoval
+import CherryForward
+import CherryLeafClear
+import CherryReverse
+import CherryGraph
+import CherryTopology
+import CherryEndpoint
+import CherryReplacement
+import CommonCherryContraction
+import BlockPartition
+import QuotientGeometry
+import QuotientTopology
+import StateContract
+import Expansion
+import StateExpand
+import CoreGraph
+import Geometry
+import Bridge
+import Composition
+import SourceBridge
+import Executable
+import Endpoint
+import Restriction
+import PendantExclusion
+import Refinement
+import CherryCoarsening
+import CoreProgram
+import CoreInvariants
+import Contraction
+import Normalization
+import InitialLift
+import Suppression
+import EraseLift
+import Origins
+import Branches
+import CutRecords
+import OriginalGraph
+import Components
+import Safety
+import Ordinary
+import Partition
+import PoolClassificationSelector
+import Endpoints
+import Consumer
+import Priority
+import SourceBranches
+import CoreCherry
+import ExchangeRestriction
+import Cluster
+import Descendant
+import Forest
+import Surgery
+import Count
+import GroupCost
+import GroupForward
+import GroupReconstruction
+import GroupDefs
+import GroupForwardProof
+import GroupReverseProof
+import GroupCostProof
+import GroupPriority
+import OutputDefs
+import Materialize
+import Equivalence
+import T1Split
+import T1Exchange
+import T1Boundary
+import Budget
+import Unordered
+import Rule5Defs
+import Rule5PreControls
+import Rule5Graph
+import Rule5Triples
+import Rule5Exchange
+import Rule5Case323
+import Rule5Case321
+import Attachment
+import AdmittedGeometry
+import UniqueCherry
+import FiveBranches
+import AdmittedCases
+import OutsideCore
+import FullTransport
+import Coverage
+import Entrypoint
+import OutputBudget
+import ColorBudget
+import ColorSteps
+import RawMass
+import RationalMass
+import WholeColors
+import OriginalColors
+import WholeMass
+import QueryCaller
+import QuerySpecification
+import QueryBudgets
+import QueryMass
+import QueryWork
+import Pretest
+import Display
+import Regions
+import History
+import Realization
+import OwnerCover
+import CutCoverage
+import InitialCoverage
+import Cost
+import ValidPartition
+import Lemmas
+import Reconstruction01
+import Optimality01
+import Witness01
+import ForestDefs
+import ForestPrecontrols
+import ParentColors
+import WholeSource
+import Requests
+import OwnershipBase
+import ChainAssembly
+import SourceValidity
+import ForestReplace
+import ForestOverlap
+import ForestReverse
+import ForestProgram
+import ForestSelection
+import ForestConditional
+import ForestOutputs
+import PaidAssembly
+import HardConsumer
+import HardPaid
+import HardForest
+import Selector
+import Parents
+import Exchange
+import SourceEdge
+import Interface
+import SideColors
+import PairConsumer
+import VertexPair
+import GoodPair
+import RankCost
+import MinimumUnique
+import TailMass
+import ColorClasses
+import Probe
+import Work
+import ProbeWork
+import FourProbe
+import KeptGraph
+import KeptRun
+import KeptParent
+import KeptConsumers
+import LiteralControls
+import BinaryEdge
+import CheapPartition
+import TargetGeometry
+import Continuation
+import LocalOne
+import PretestConsumer
+import SelectedContinuation
+import Symmetry
+import SelectedHigh
+import BothProgram
+import Crossing
+import Controls
+import Rename
+import CrossingCount
+import Marked
+import Clip
+import Deletion
+import MarkerSingleton
+import MarkerBounds
+import Port
+import OriginalPort
+import PortSingleton
+import MixedPort
+import CutHull
+import ForestMerge
+import MarkedLift
+import StableMarker
+import ClipCount
+import Contract
+import PortContract
+import Projection
+import OriginalSides
+import OriginalProjection
+import EdgeSides
+import ProjectedPartition
+import ProjectedForest
+import MarkedProjection
+import OriginalGlue
+import HeadPermutation
+import MarkerBlock
+import MarkerNormal
+import MergeStable
+import CountOriginal
+import MinimumIdentity
+import DerivedMinimum
+import GraphControls
+import CallerDefs
+import ChosenOwner
+import LiteralNormal
+import LiteralMerge
+import PickMerge
+import CallerSetup
+import PaidDefs
+import InsideBudget
+import PaidExact
+import ProperJobs
+import LiteralExtension
+import OutsideDefs
+import OutsideExact
+import CallerResources
+import GuardedDefs
+import GuardedExact
+import CallerControls
+import PaidControls
+import OutsideControls
+import GuardedControls
+import GuardRefusalControls
+import CallerFinal
+import SourceDefs
+import SourceControls
+import SourceBoundary
+import ActualCuts
+import BuildSetup
+import CommonDispatch
+import CommonControls
+import Lean
+open Lean Elab Command
+run_cmd do
+  let env ← getEnv
+  let wanted : List Name := [`RMAF, `GroupRestriction, `GroupEmbedding, `GroupPartition, `GroupState, `GroupStateFacts, `CherryRemoval, `CherryForward, `CherryLeafClear, `CherryReverse, `CherryGraph, `CherryTopology, `CherryEndpoint, `CherryReplacement, `CommonCherryContraction, `BlockPartition, `QuotientGeometry, `QuotientTopology, `StateContract, `Expansion, `StateExpand, `CoreGraph, `Geometry, `Bridge, `Composition, `SourceBridge, `Executable, `Endpoint, `Restriction, `PendantExclusion, `Refinement, `CherryCoarsening, `CoreProgram, `CoreInvariants, `Contraction, `Normalization, `InitialLift, `Suppression, `EraseLift, `Origins, `Branches, `CutRecords, `OriginalGraph, `Components, `Safety, `Ordinary, `Partition, `PoolClassificationSelector, `Endpoints, `Consumer, `Priority, `SourceBranches, `CoreCherry, `ExchangeRestriction, `Cluster, `Descendant, `Forest, `Surgery, `Count, `GroupCost, `GroupForward, `GroupReconstruction, `GroupDefs, `GroupForwardProof, `GroupReverseProof, `GroupCostProof, `GroupPriority, `OutputDefs, `Materialize, `Equivalence, `T1Split, `T1Exchange, `T1Boundary, `Budget, `Unordered, `Rule5Defs, `Rule5PreControls, `Rule5Graph, `Rule5Triples, `Rule5Exchange, `Rule5Case323, `Rule5Case321, `Attachment, `AdmittedGeometry, `UniqueCherry, `FiveBranches, `AdmittedCases, `OutsideCore, `FullTransport, `Coverage, `Entrypoint, `OutputBudget, `ColorBudget, `ColorSteps, `RawMass, `RationalMass, `WholeColors, `OriginalColors, `WholeMass, `QueryCaller, `QuerySpecification, `QueryBudgets, `QueryMass, `QueryWork, `Pretest, `Display, `Regions, `History, `Realization, `OwnerCover, `CutCoverage, `InitialCoverage, `Cost, `ValidPartition, `Lemmas, `Reconstruction01, `Optimality01, `Witness01, `ForestDefs, `ForestPrecontrols, `ParentColors, `WholeSource, `Requests, `OwnershipBase, `ChainAssembly, `SourceValidity, `ForestReplace, `ForestOverlap, `ForestReverse, `ForestProgram, `ForestSelection, `ForestConditional, `ForestOutputs, `PaidAssembly, `HardConsumer, `HardPaid, `HardForest, `Selector, `Parents, `Exchange, `SourceEdge, `Interface, `SideColors, `PairConsumer, `VertexPair, `GoodPair, `RankCost, `MinimumUnique, `TailMass, `ColorClasses, `Probe, `Work, `ProbeWork, `FourProbe, `KeptGraph, `KeptRun, `KeptParent, `KeptConsumers, `LiteralControls, `BinaryEdge, `CheapPartition, `TargetGeometry, `Continuation, `LocalOne, `PretestConsumer, `SelectedContinuation, `Symmetry, `SelectedHigh, `BothProgram, `Crossing, `Controls, `Rename, `CrossingCount, `Marked, `Clip, `Deletion, `MarkerSingleton, `MarkerBounds, `Port, `OriginalPort, `PortSingleton, `MixedPort, `CutHull, `ForestMerge, `MarkedLift, `StableMarker, `ClipCount, `Contract, `PortContract, `Projection, `OriginalSides, `OriginalProjection, `EdgeSides, `ProjectedPartition, `ProjectedForest, `MarkedProjection, `OriginalGlue, `HeadPermutation, `MarkerBlock, `MarkerNormal, `MergeStable, `CountOriginal, `MinimumIdentity, `DerivedMinimum, `GraphControls, `CallerDefs, `ChosenOwner, `LiteralNormal, `LiteralMerge, `PickMerge, `CallerSetup, `PaidDefs, `InsideBudget, `PaidExact, `ProperJobs, `LiteralExtension, `OutsideDefs, `OutsideExact, `CallerResources, `GuardedDefs, `GuardedExact, `CallerControls, `PaidControls, `OutsideControls, `GuardedControls, `GuardRefusalControls, `CallerFinal, `SourceDefs, `SourceControls, `SourceBoundary, `ActualCuts, `BuildSetup, `CommonDispatch, `CommonControls]
+  let allowed : List Name := [`Classical.choice,`Quot.sound,`propext]
+  let mut counts : Array Json := #[]
+  let mut bad : Array Json := #[]
+  for i in [:env.header.moduleNames.size] do
+    let producer := env.header.moduleNames[i]!
+    if wanted.contains producer then
+      let data := env.header.moduleData[i]!
+      unless data.constants.size == data.constNames.size do throwError "PRODUCER_ARRAY_LENGTH_MISMATCH"
+      let mut rows : Array Json := #[]
+      let filename := producer.toString ++ ".json.gz"
+      counts := counts.push (Json.mkObj [("producer",toJson producer.toString),("count",toJson data.constants.size),("file",toJson filename)])
+      for j in [:data.constants.size] do
+        let ci := data.constants[j]!
+        let stored := data.constNames[j]!
+        unless stored == ci.name do throwError "PRODUCER_NAME_MISMATCH"
+        let kind := match ci with
+          | .axiomInfo _ => "axiom"
+          | .defnInfo _ => "definition"
+          | .thmInfo _ => "theorem"
+          | .opaqueInfo _ => "opaque"
+          | .quotInfo _ => "quotient"
+          | .ctorInfo _ => "constructor"
+          | .recInfo _ => "recursor"
+          | .inductInfo _ => "inductive"
+        let body := match ci with | .thmInfo _ => none | _ => ci.value? true
+        let bodyText := match body with | some e => reprStr e | none => "<none>"
+        let mut refs := ci.getUsedConstantsAsSet.toList
+        if let some e := body then refs := refs ++ e.getUsedConstants.toList
+        refs := refs.eraseDups
+        let mut ax : List Name := []
+        if ci.isAxiom then ax := [ci.name]
+        for n in refs do ax := ax ++ (← collectAxioms n).toList
+        ax := ax.eraseDups
+        let resolved := match env.getModuleIdxFor? ci.name with
+          | some k => env.header.moduleNames[k.toNat]!.toString
+          | none => "<unresolved>"
+        rows := rows.push (Json.mkObj [("producer",toJson producer.toString),("index",toJson j),
+          ("stored_name",toJson stored.toString),("actual_name",toJson ci.name.toString),
+          ("resolved_origin",toJson resolved),("kind",toJson kind),
+          ("type",toJson (reprStr ci.type)),("body",toJson bodyText),("has_body",toJson (ci.value? true).isSome),("body_text_scope",toJson (match ci with | .thmInfo _ => "OMITTED_THEOREM_PROOF_TEXT" | _ => "FULL_NONPROOF_BODY")),
+          ("direct_references",toJson (refs.map Name.toString)),("axiom_references",toJson (ax.map Name.toString))])
+        if (ci.isAxiom && !allowed.contains ci.name) || ax.any (fun n => !allowed.contains n) then
+          bad := bad.push (Json.mkObj [("producer",toJson producer.toString),("name",toJson ci.name.toString),("kind",toJson kind),("axioms",toJson (ax.map Name.toString))])
+      let compressed ← liftIO <| IO.Process.output {cmd := "/bin/sh", args := #["-c", "exec /usr/bin/gzip -1 -c > /Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-common-reduction-compressed-20261015T190441071133Z/records-LocalIHAll/" ++ filename]} (some (Json.arr rows).pretty)
+      unless compressed.exitCode == 0 do throwError "COMPRESSED_SINK_FAILED"
+  liftIO <| IO.FS.writeFile ("/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-common-reduction-compressed-20261015T190441071133Z/records-LocalIHAll" ++ "/index.json") (Json.mkObj [("producer_counts",Json.arr counts),("rejects",Json.arr bad)]).pretty
+  if !bad.isEmpty then throwError m!"REJECT_PRODUCER_OCCURRENCE|{bad.size}"
+  logInfo m!"PRODUCER_OCCURRENCE_PASS|{counts.size}"

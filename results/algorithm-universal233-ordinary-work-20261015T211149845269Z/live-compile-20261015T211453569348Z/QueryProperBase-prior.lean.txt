@@ -1,0 +1,83 @@
+import WorkComponentsV1
+namespace OrdinaryDispatch.WorkIntegration
+open RMAF ForestState ForestGroups RestrictionBridge Universal233 Universal233.BothBad Universal233.PaidQueries
+
+theorem pretest_active_proper (t s : Tree) (active : DepthOne.pretest01 t s≠.refused) : DepthOne.proper t s=true := by
+ cases hp : DepthOne.proper t s with
+ | true => rfl
+ | false => exact False.elim (active ((DepthOne.refused_iff t s).2 hp))
+
+theorem slot_proper (T S : Tree) (U : List Nat) (j : Job (List Nat) Forest)
+ (slot : MafScheduler.slot T S U=some j) :
+ j.problem=U ∧ ∃t s,restrict U T=some t ∧ restrict U S=some s ∧ DepthOne.proper t s=true := by
+ unfold MafScheduler.slot at slot
+ split at slot
+ · simp at slot
+ · cases ht : restrict U T with
+   | none => simp [ht] at slot
+   | some t =>
+    cases hs : restrict U S with
+    | none => simp [ht,hs] at slot
+    | some s =>
+     simp only [ht,hs] at slot
+     cases pre : DepthOne.pretest01 t s with
+     | refused => simp [pre] at slot
+     | rejected =>
+      have eq : j=Job.hard U := by simpa [pre] using slot.symm
+      subst j
+      exact ⟨rfl,t,s,ht,hs,pretest_active_proper t s (by simp [pre])⟩
+     | found c =>
+      have eq : j=Job.resolved U (DepthOne.cutCost c) (DepthOne.forest s c) := by simpa [pre] using slot.symm
+      subst j
+      exact ⟨rfl,t,s,ht,hs,pretest_active_proper t s (by simp [pre])⟩
+
+theorem prepare_slots (T S : Tree) (Q : List (List Nat)) (js : List (Job (List Nat) Forest))
+ (prep : MafScheduler.prepare T S Q=some js) :
+ ∀j,j∈js→∃U,U∈Q ∧ MafScheduler.slot T S U=some j := by
+ induction Q generalizing js with
+ | nil => have eq : js=[] := by simpa [MafScheduler.prepare] using prep.symm;subst js;simp
+ | cons U Q ih =>
+  cases slot : MafScheduler.slot T S U with
+  | none => simp [MafScheduler.prepare,slot] at prep
+  | some j =>
+   cases tail : MafScheduler.prepare T S Q with
+   | none => simp [MafScheduler.prepare,slot,tail] at prep
+   | some rest =>
+    have eq : js=j::rest := by simpa [MafScheduler.prepare,slot,tail] using prep.symm
+    subst js
+    intro k hk
+    rcases List.mem_cons.1 hk with eq|mem
+    · subst k;exact ⟨U,by simp,slot⟩
+    · obtain ⟨V,hV,hs⟩ := ih rest tail k mem
+      exact ⟨V,by simp [hV],hs⟩
+
+theorem ordinary_execution_queries_proper (solve : ForestSolver) (T S : Tree) (Q : List (List Nat))
+ (b : Nat) (call : Call) (mem : call∈(ordinaryExecution solve T S Q b).calls) :
+ proper call.target call.sources=true := by
+ cases prep : MafScheduler.prepare T S Q with
+ | none => simp [ordinaryExecution,prep] at mem
+ | some js =>
+  simp only [ordinaryExecution,prep] at mem
+  obtain ⟨ub,hub,hmap⟩ := List.mem_filterMap.1 mem
+  have key : ∃j,j∈js ∧ j.problem=ub.1 := by
+   unfold meterSchedule at hub
+   split at hub
+   · simp at hub
+   · exact (GenericForest.meter_run_query_keys _ _ _ js ub.1 ub.2 hub).2
+  obtain ⟨j,hj,jkey⟩ := key
+  obtain ⟨U,hU,slot⟩ := prepare_slots T S Q js prep j hj
+  obtain ⟨Ukey,t,s,ht,hs,hp⟩ := slot_proper T S U j slot
+  have eqU : U=ub.1 := Ukey.symm.trans jkey
+  subst U
+  simp only [ht,hs] at hmap
+  have eq := Option.some.inj hmap
+  subst call
+  exact single_state_proper t s hp
+
+theorem full_group_query_proper (actual : Ordinary) (T : Option Tree) (ss : List Tree)
+ (Q : List (List Nat)) (q : Nat) (js : List (Job GroupedFullQuery.Problem Forest))
+ (prep : GroupedFullQuery.prepare (GroupedFullQuery.groupProblems T ss Q)=some js)
+ (p : GroupedFullQuery.Problem) (r : Nat) (mem : (p,r)∈GroupedFullQuery.fullTrace actual q js) : proper p.target p.sources=true := by
+ have hard := GroupedFullQuery.fullTrace_jobs actual q js p r mem
+ exact ((GroupedFullQuery.prepare_spec _ _ prep).2 (Job.hard p) hard).1
+end OrdinaryDispatch.WorkIntegration

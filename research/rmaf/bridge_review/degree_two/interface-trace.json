@@ -1,0 +1,79 @@
+{
+  "status": "kernel-checked-nonauthor-review-pending",
+  "original_sources": {
+    "research/rmaf/lean/RMAF.lean": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+    "research/rmaf/pure_bridge/lean/PureBridge.lean": "acf08329466b6449c39c5edb0914c7af15f30690b25b8f0389cb65b2b24943f4"
+  },
+  "uses": [
+    {
+      "consumer": "RMAF.partitionCheck / both trees",
+      "lemma": "partitionCheck_replace",
+      "hypotheses_and_scope": "Nonempty blocks and append permutation preserve counts and label membership",
+      "status": "proved-local"
+    },
+    {
+      "consumer": "RMAF.restrictionAgrees / each new block",
+      "lemma": "restrictionAgrees_subset",
+      "hypotheses_and_scope": "Actual restriction associativity and RootedIso restriction; common B agreement and block nonemptiness/containment",
+      "status": "proved-local"
+    },
+    {
+      "consumer": "RMAF.pairwiseEmbeddings / t",
+      "lemma": "actual_one_tree_split and pairwiseEmbeddings_replace",
+      "hypotheses_and_scope": "Exact unsuppressed supports, original actual degree exactly two, cut-tree uniqueness, support nesting",
+      "status": "proved-local"
+    },
+    {
+      "consumer": "RMAF.pairwiseEmbeddings / u",
+      "lemma": "actual_disjoint_transport and actual_support_mono",
+      "hypotheses_and_scope": "Only block subset relations and original restriction agreement for transport; no address identity",
+      "status": "proved-local"
+    },
+    {
+      "consumer": "G3 component to piece degree",
+      "lemma": "actualDegree_propagation",
+      "hypotheses_and_scope": "Explicit B subset S, occupied v, v not a selected B leaf, actualDegree(t,S,v)=2",
+      "status": "proved-local"
+    },
+    {
+      "consumer": "G4 other pieces",
+      "lemma": "pairwise_other_avoids and replacement_clears_vertex",
+      "hypotheses_and_scope": "Same original actual agreement list, occupied displayed block at any list position",
+      "status": "proved-local"
+    },
+    {
+      "consumer": "Old marks",
+      "lemma": "avoidsPartition_replace",
+      "hypotheses_and_scope": "Arbitrary per-tree mark predicates plus exact support containment; no additive mark penalties",
+      "status": "proved-local"
+    },
+    {
+      "consumer": "Component count / tree-cut cost",
+      "lemma": "actual_partition_split",
+      "hypotheses_and_scope": "Exactly+1 components and pieces-minus-one, no search/optimization assertion",
+      "status": "proved-local"
+    },
+    {
+      "consumer": "Fixed forest cost arithmetic",
+      "lemma": "replacement_forest_cost_bound",
+      "hypotheses_and_scope": "For fixed r, new pieces-r is at most old pieces-r+1; no region realization proved",
+      "status": "proved-arithmetic"
+    },
+    {
+      "consumer": "ExchangeSystem.clearRest",
+      "lemma": "actual_component_partition_split supplies a geometric operation",
+      "hypotheses_and_scope": "Need concrete remainder-state type, its full restValid invariants, degree applicability and cost interpretation. Other fields and fixed-witness compatibility not instantiated.",
+      "status": "open-global-realization"
+    }
+  ],
+  "remaining": [
+    "Full ExchangeSystem realization",
+    "G2",
+    "G5",
+    "G6",
+    "G7",
+    "safe cover",
+    "runtime improvement",
+    "novelty"
+  ]
+}

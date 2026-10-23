@@ -1,0 +1,5 @@
+import CompleteNamedSources
+#check Universal233.Rule5PaidOrdinary.CurrentResult
+#check Universal233.Rule5PaidOrdinary.CurrentResult.answer?
+#check Universal233.Rule5PaidOrdinary.CurrentResult.malformed
+#check Universal233.Rule5PaidOrdinary.CurrentResult.answered

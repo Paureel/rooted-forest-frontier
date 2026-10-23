@@ -1,0 +1,15 @@
+research/rmaf/algorithm/universal233/rank_consumer/OptimizedWork.lean:26:79: error: unsolved goals
+T : Tree
+color : Nat → Nat
+q : Nat
+⊢ (if q < 3 then { outputs := [], work := 64, colorCalls := 0 }
+      else
+        if (generate T color 3).outputs = [] then
+          { outputs := (generate T color q).outputs,
+            work := 64 + (meterGenerate T color 3).measured.work + (meterGenerate T color q).measured.work,
+            colorCalls := (meterGenerate T color 3).oracleCalls + (meterGenerate T color q).oracleCalls }
+        else
+          { outputs := (generate T color 3).outputs, work := 64 + (meterGenerate T color 3).measured.work,
+            colorCalls := (meterGenerate T color 3).oracleCalls }).outputs =
+    if q < 3 then []
+    else if (generate T color 3).outputs = [] then (generate T color q).outputs else (generate T color 3).outputs

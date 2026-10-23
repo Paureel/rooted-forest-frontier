@@ -1,0 +1,9 @@
+import BinaryProducerRaw
+#check GenericForest.BinaryProducer.rawCandidates_value
+#print axioms GenericForest.BinaryProducer.rawCandidates_value
+#check GenericForest.BinaryProducer.rawParentProducer_value
+#print axioms GenericForest.BinaryProducer.rawParentProducer_value
+#check GenericForest.BinaryProducer.rawCandidates_count
+#print axioms GenericForest.BinaryProducer.rawCandidates_count
+#check GenericForest.BinaryProducer.rawParentProducer_paid
+#print axioms GenericForest.BinaryProducer.rawParentProducer_paid

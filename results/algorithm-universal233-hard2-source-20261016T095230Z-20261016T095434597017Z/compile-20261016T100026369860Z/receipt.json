@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3546689589993548,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3247590000000855,
+      "resource_stop": null,
+      "log_sha256": "472b6492697b1436c14db7e08532c0ca6ca4411e22c13062dc30830b05459e0f"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016332080003849114,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PairGeometrySourceBounds",
+      "source_sha256": "a285f069d7a2279f302fe52994f8de2a8f05fd452a513bf10fe9a06a82eeeb4b",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8270816249996642,
+      "resource_stop": null,
+      "log_sha256": "973a95e393bdcad9b4df0640df2c13bc8a30c12c45c5cc702155c4910974ef44"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('PairGeometrySourceBounds', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/PairGeometrySourceBounds.lean:32:7: error: unsolved goals\\ncase cons.nil\\ns : Bool\\nv : List Bool\\nih : \u2200 (a : RMAF.Vertex), (pairPrefixMeter v a).work \u2264 4 * (v.length + 1)\\n\u22a2 2 \u2264 4 * (v.length + 1 + 1)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/PairGeometrySourceBounds.lean:54:1: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  j \u2265 0\\n  i \u2265 1\\n  8*i - j \u2265 0\\n  h \u2265 0\\n  h - 54*i + j \u2265 -1\\n  g \u2265 0\\n  46*g - h \u2265 0\\n  e \u2265 1\\n  d \u2265 0\\n  c \u2265 0\\n  b \u2265 0\\n  a \u2265 1\\n  a - b \u2265 0\\n  a - c \u2265 0\\n  a - d \u2265 0\\nwhere\\n a := \u2191N\\n b := \u2191(treeNodes T)\\n c := \u2191(List.length v)\\n d := \u2191(leaves T).length\\n e := \u2191((N + 1) ^ 2)\\n g := \u2191((N + 1) ^ (2 + 1))\\n h := \u2191(meterFilter\\n      (fun x =>\\n        { value := (pairPrefixMeter v ((meterLeafList [x] T).value.headD [])).value,\\n          work := (meterLeafList [x] T).work + (pairPrefixMeter v ((meterLeafList [x] T).value.headD [])).work + 4 })\\n      (leaves T)).work\\n i := \u2191((N + 1) ^ 3)\\n j := \u2191(meterLeaves T).work\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/PairGeometrySourceBounds.lean:101:2: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  m \u2265 0\\n  k \u2265 0\\n  j \u2265 0\\n  10*j - k \u2265 0\\n  i \u2265 0\\n  h \u2265 1\\n  32*h - i \u2265 0\\n  44*h - i - m \u2264 1\\n  g \u2265 0\\n  f \u2265 0\\n  e \u2265 0\\n  d \u2265 0\\n  b \u2265 3\\n  b - d \u2265 0\\n  b - e \u2265 0\\n  b - f \u2265 0\\n  b - g \u2265 0\\nwhere\\n b := \u2191N\\n d := \u2191(treeNodes T)\\n e := \u2191D.length\\n f := \u2191(List.length v)\\n g := \u2191(leafList D T).length\\n h := \u2191((N + 1) ^ 2)\\n i := \u2191(meterLeafList D T).work\\n j := \u2191((N + 1) ^ (1 + 1))\\n k := \u2191(meterAny\\n      (fun a =>\\n        let r := meterRegion v a;\\n        { value := r.value == c, work := r.work + 2 })\\n      (leafList D T)).work\\n m := \u2191(meterAny (fun a => { value := (meterRegion v a).value == c, work := (meterRegion v a).work + 2 })\\n      (leafList D T)).work\\n'))"
+}

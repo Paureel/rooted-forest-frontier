@@ -1,0 +1,21 @@
+import JoinedOptimizer
+namespace OrdinaryDispatch.GoodPairGlobalAssembly
+open RMAF Universal233 GenericForest.FrontierWork
+open OrdinaryDispatch.WorkRecursion OrdinaryDispatch.WorkIntegration OrdinaryDispatch.Hard2SourceWork OrdinaryDispatch.FastOrdinary
+
+/-- The newly completed Rule5 caller has the full actual ordinary step value
+at the admitted route; the source counter remains partial on other handlers. -/
+theorem rule5_actual_step_value (W : OrdinaryWork) (q : Nat) {T S : Tree}
+ (hp : DepthOne.proper T S=true) (pre : DepthOne.pretest01 T S=.rejected)
+ {c d : CherryBranching.Candidate} (he : early T S=.hard2 c d)
+ (route : (hard2FrontMeter T S c q).value=.admittedRule5) :
+ (Rule5ClosedSource.admittedRouteSource W T S c q).value=
+ (ordinaryStepTrace FastOrdinary.solve q T S).value := by
+ rw [Rule5ClosedSource.admitted_route_value]
+ have value:=hard2FrontMeter_value (cutoff FastOrdinary.solve q) T S c d q
+ rw [route] at value
+ have trace:=hard2Trace_value (cutoff FastOrdinary.solve q) T S c d q
+ simp only [ordinaryStepTrace,hp,ite_true,pre,he]
+ rw [trace]
+ simpa only [Rule5ClosedSource.actualCallback] using value
+end OrdinaryDispatch.GoodPairGlobalAssembly

@@ -1,0 +1,15 @@
+{
+  "command": [
+    ".runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+    "research/rmaf/algorithm/verification/forest-pretest01-2026-10-15/sol-independent/postrelease-v1-MetadataAPI.lean"
+  ],
+  "cwd": "/Users/paurel/Documents/ChatGPT/bootscience",
+  "timeout_seconds": 60.0,
+  "disk_free_before": 3444957184,
+  "exit_code": 0,
+  "stdout": "inductive Lean.SourceInfo : Type\nnumber of parameters: 0\nconstructors:\nLean.SourceInfo.original : Substring.Raw \u2192 String.Pos.Raw \u2192 Substring.Raw \u2192 String.Pos.Raw \u2192 SourceInfo\nLean.SourceInfo.synthetic : String.Pos.Raw \u2192 String.Pos.Raw \u2192 optParam Bool false \u2192 SourceInfo\nLean.SourceInfo.none : SourceInfo\ninductive Lean.Syntax.Preresolved : Type\nnumber of parameters: 0\nconstructors:\nLean.Syntax.Preresolved.namespace : Name \u2192 Syntax.Preresolved\nLean.Syntax.Preresolved.decl : Name \u2192 List String \u2192 Syntax.Preresolved\nstructure Substring.Raw : Type\nnumber of parameters: 0\nfields:\n  Substring.Raw.str : String\n  Substring.Raw.startPos : String.Pos.Raw\n  Substring.Raw.stopPos : String.Pos.Raw\nconstructor:\n  Substring.Raw.mk (str : String) (startPos stopPos : String.Pos.Raw) : Substring.Raw\nstructure String.Pos.Raw : Type\nnumber of parameters: 0\nfields:\n  String.Pos.Raw.byteIdx : Nat :=\n    0\nconstructor:\n  String.Pos.Raw.mk (byteIdx : Nat) : String.Pos.Raw\nstructure String.Pos (s : String) : Type\nnumber of parameters: 1\nfields:\n  String.Pos.offset : String.Pos.Raw\n  String.Pos.isValid : String.Pos.Raw.IsValid s self.offset\nconstructor:\n  String.Pos.mk {s : String} (offset : String.Pos.Raw) (isValid : String.Pos.Raw.IsValid s offset) : s.Pos\ndef Lean.SourceInfo.getPos? : SourceInfo \u2192 optParam Bool false \u2192 Option String.Pos.Raw :=\nfun info canonicalOnly =>\n  match info, canonicalOnly with\n  | SourceInfo.original leading pos trailing endPos, x => some pos\n  | SourceInfo.synthetic pos endPos true, x => some pos\n  | SourceInfo.synthetic pos endPos canonical, false => some pos\n  | x, x_1 => none\n@[reducible] def Lean.SyntaxNodeKind : Type :=\nName\n",
+  "stderr": "",
+  "status": "PASS",
+  "seconds": 1.0303781249999702,
+  "disk_free_after": 3441782784
+}

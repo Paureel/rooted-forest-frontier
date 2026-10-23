@@ -1,0 +1,2015 @@
+{
+  "kind": "GLOBAL-CB1-compressed-branch-profiles",
+  "verdict": "FINITE-DIAGNOSTIC; NO-UNIVERSAL-RECURRENCE",
+  "date": "2026-10-15T06:32:31.823710+00:00",
+  "controls": [
+    {
+      "rows": [],
+      "expected_deltas": [],
+      "profile": {
+        "forced_before_branch": [],
+        "initial_forcing_steps": [],
+        "branch_rows": [],
+        "branch_row": null,
+        "transitions": []
+      }
+    },
+    {
+      "rows": [
+        3,
+        6,
+        5
+      ],
+      "expected_deltas": [
+        2,
+        2
+      ],
+      "profile": {
+        "forced_before_branch": [],
+        "initial_forcing_steps": [],
+        "branch_rows": [
+          3,
+          5,
+          6
+        ],
+        "branch_row": 3,
+        "transitions": [
+          {
+            "branch_edge": 0,
+            "forced_steps": [
+              {
+                "edge": 1,
+                "before": [
+                  2
+                ]
+              }
+            ],
+            "cut_edges": [
+              0,
+              1
+            ],
+            "delta": 2,
+            "after": []
+          },
+          {
+            "branch_edge": 1,
+            "forced_steps": [
+              {
+                "edge": 0,
+                "before": [
+                  1
+                ]
+              }
+            ],
+            "cut_edges": [
+              0,
+              1
+            ],
+            "delta": 2,
+            "after": []
+          }
+        ]
+      }
+    },
+    {
+      "rows": [
+        15,
+        23,
+        27,
+        29,
+        30
+      ],
+      "expected_deltas": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "profile": {
+        "forced_before_branch": [],
+        "initial_forcing_steps": [],
+        "branch_rows": [
+          15,
+          23,
+          27,
+          29,
+          30
+        ],
+        "branch_row": 15,
+        "transitions": [
+          {
+            "branch_edge": 0,
+            "forced_steps": [
+              {
+                "edge": 1,
+                "before": [
+                  2
+                ]
+              }
+            ],
+            "cut_edges": [
+              0,
+              1
+            ],
+            "delta": 2,
+            "after": []
+          },
+          {
+            "branch_edge": 1,
+            "forced_steps": [
+              {
+                "edge": 0,
+                "before": [
+                  1
+                ]
+              }
+            ],
+            "cut_edges": [
+              0,
+              1
+            ],
+            "delta": 2,
+            "after": []
+          },
+          {
+            "branch_edge": 2,
+            "forced_steps": [
+              {
+                "edge": 0,
+                "before": [
+                  1
+                ]
+              }
+            ],
+            "cut_edges": [
+              0,
+              2
+            ],
+            "delta": 2,
+            "after": []
+          },
+          {
+            "branch_edge": 3,
+            "forced_steps": [
+              {
+                "edge": 0,
+                "before": [
+                  1
+                ]
+              }
+            ],
+            "cut_edges": [
+              0,
+              3
+            ],
+            "delta": 2,
+            "after": []
+          }
+        ]
+      }
+    }
+  ],
+  "corruptions_caught": 2,
+  "ordinary_expected": 9,
+  "ordinary_executed": 9,
+  "cases": [
+    {
+      "id": "empty",
+      "source": null,
+      "target": null,
+      "budget": 0,
+      "original_edges": [],
+      "profile_count": 0,
+      "benchmark_mass_failures": 0,
+      "profiles": []
+    },
+    {
+      "id": "singleton",
+      "source": "a",
+      "target": "a",
+      "budget": 0,
+      "original_edges": [],
+      "profile_count": 0,
+      "benchmark_mass_failures": 0,
+      "profiles": []
+    },
+    {
+      "id": "identical-cherry",
+      "source": [
+        "a",
+        "b"
+      ],
+      "target": [
+        "a",
+        "b"
+      ],
+      "budget": 0,
+      "original_edges": [
+        {
+          "edge": 0,
+          "parent": 0,
+          "child": 1,
+          "child_labels": [
+            "a"
+          ]
+        },
+        {
+          "edge": 1,
+          "parent": 0,
+          "child": 2,
+          "child_labels": [
+            "b"
+          ]
+        }
+      ],
+      "profile_count": 0,
+      "benchmark_mass_failures": 0,
+      "profiles": []
+    },
+    {
+      "id": "crossed-quartet",
+      "source": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "target": [
+        [
+          "a",
+          "c"
+        ],
+        [
+          "b",
+          "d"
+        ]
+      ],
+      "budget": 2,
+      "original_edges": [
+        {
+          "edge": 0,
+          "parent": 0,
+          "child": 1,
+          "child_labels": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "edge": 1,
+          "parent": 1,
+          "child": 2,
+          "child_labels": [
+            "a"
+          ]
+        },
+        {
+          "edge": 2,
+          "parent": 1,
+          "child": 3,
+          "child_labels": [
+            "b"
+          ]
+        },
+        {
+          "edge": 3,
+          "parent": 0,
+          "child": 4,
+          "child_labels": [
+            "c",
+            "d"
+          ]
+        },
+        {
+          "edge": 4,
+          "parent": 4,
+          "child": 5,
+          "child_labels": [
+            "c"
+          ]
+        },
+        {
+          "edge": 5,
+          "parent": 4,
+          "child": 6,
+          "child_labels": [
+            "d"
+          ]
+        }
+      ],
+      "profile_count": 2,
+      "benchmark_mass_failures": 0,
+      "profiles": [
+        {
+          "forced_before_branch": [],
+          "initial_forcing_steps": [],
+          "branch_rows": [
+            23,
+            39,
+            51,
+            53,
+            54
+          ],
+          "branch_row": 23,
+          "transitions": [
+            {
+              "branch_edge": 0,
+              "forced_steps": [
+                {
+                  "edge": 1,
+                  "before": [
+                    2
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                1
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 1,
+              "forced_steps": [
+                {
+                  "edge": 0,
+                  "before": [
+                    1
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                1
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 2,
+              "forced_steps": [
+                {
+                  "edge": 0,
+                  "before": [
+                    1
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                2
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 4,
+              "forced_steps": [
+                {
+                  "edge": 0,
+                  "before": [
+                    1
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                4
+              ],
+              "delta": 2,
+              "after": []
+            }
+          ],
+          "remaining_budget": 2,
+          "benchmark_mass": {
+            "numerator": 400000000,
+            "denominator": 547138881,
+            "greater_than_one": false
+          },
+          "base_two_mass": {
+            "numerator": 1,
+            "denominator": 1,
+            "greater_than_one": false
+          }
+        },
+        {
+          "forced_before_branch": [],
+          "initial_forcing_steps": [],
+          "branch_rows": [],
+          "branch_row": null,
+          "transitions": [],
+          "remaining_budget": 0,
+          "benchmark_mass": {
+            "numerator": 0,
+            "denominator": 1,
+            "greater_than_one": false
+          },
+          "base_two_mass": {
+            "numerator": 0,
+            "denominator": 1,
+            "greater_than_one": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "equal-halves-kill",
+      "source": [
+        "a",
+        [
+          "b",
+          [
+            "c",
+            "d"
+          ]
+        ]
+      ],
+      "target": [
+        "a",
+        [
+          [
+            "b",
+            "c"
+          ],
+          "d"
+        ]
+      ],
+      "budget": 1,
+      "original_edges": [
+        {
+          "edge": 0,
+          "parent": 0,
+          "child": 1,
+          "child_labels": [
+            "a"
+          ]
+        },
+        {
+          "edge": 1,
+          "parent": 0,
+          "child": 2,
+          "child_labels": [
+            "b",
+            "c",
+            "d"
+          ]
+        },
+        {
+          "edge": 2,
+          "parent": 2,
+          "child": 3,
+          "child_labels": [
+            "b"
+          ]
+        },
+        {
+          "edge": 3,
+          "parent": 2,
+          "child": 4,
+          "child_labels": [
+            "c",
+            "d"
+          ]
+        },
+        {
+          "edge": 4,
+          "parent": 4,
+          "child": 5,
+          "child_labels": [
+            "c"
+          ]
+        },
+        {
+          "edge": 5,
+          "parent": 4,
+          "child": 6,
+          "child_labels": [
+            "d"
+          ]
+        }
+      ],
+      "profile_count": 1,
+      "benchmark_mass_failures": 0,
+      "profiles": [
+        {
+          "forced_before_branch": [
+            2
+          ],
+          "initial_forcing_steps": [
+            {
+              "edge": 2,
+              "before": [
+                4
+              ]
+            }
+          ],
+          "branch_rows": [],
+          "branch_row": null,
+          "transitions": [],
+          "remaining_budget": 1,
+          "benchmark_mass": {
+            "numerator": 0,
+            "denominator": 1,
+            "greater_than_one": false
+          },
+          "base_two_mass": {
+            "numerator": 0,
+            "denominator": 1,
+            "greater_than_one": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "quotient-star",
+      "source": [
+        [
+          [
+            [
+              [
+                "a",
+                "b"
+              ],
+              "c"
+            ],
+            "d"
+          ],
+          "e"
+        ],
+        "f"
+      ],
+      "target": [
+        [
+          "a",
+          "c"
+        ],
+        [
+          [
+            "b",
+            "e"
+          ],
+          [
+            "d",
+            "f"
+          ]
+        ]
+      ],
+      "budget": 3,
+      "original_edges": [
+        {
+          "edge": 0,
+          "parent": 0,
+          "child": 1,
+          "child_labels": [
+            "f"
+          ]
+        },
+        {
+          "edge": 1,
+          "parent": 0,
+          "child": 2,
+          "child_labels": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e"
+          ]
+        },
+        {
+          "edge": 2,
+          "parent": 2,
+          "child": 3,
+          "child_labels": [
+            "e"
+          ]
+        },
+        {
+          "edge": 3,
+          "parent": 2,
+          "child": 4,
+          "child_labels": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ]
+        },
+        {
+          "edge": 4,
+          "parent": 4,
+          "child": 5,
+          "child_labels": [
+            "d"
+          ]
+        },
+        {
+          "edge": 5,
+          "parent": 4,
+          "child": 6,
+          "child_labels": [
+            "a",
+            "b",
+            "c"
+          ]
+        },
+        {
+          "edge": 6,
+          "parent": 6,
+          "child": 7,
+          "child_labels": [
+            "c"
+          ]
+        },
+        {
+          "edge": 7,
+          "parent": 6,
+          "child": 8,
+          "child_labels": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "edge": 8,
+          "parent": 8,
+          "child": 9,
+          "child_labels": [
+            "a"
+          ]
+        },
+        {
+          "edge": 9,
+          "parent": 8,
+          "child": 10,
+          "child_labels": [
+            "b"
+          ]
+        }
+      ],
+      "profile_count": 8,
+      "benchmark_mass_failures": 1,
+      "profiles": [
+        {
+          "forced_before_branch": [],
+          "initial_forcing_steps": [],
+          "branch_rows": [
+            29,
+            109,
+            117,
+            121,
+            124,
+            429,
+            437,
+            441,
+            444,
+            693,
+            697,
+            700,
+            709,
+            732,
+            745,
+            748,
+            752,
+            773,
+            796,
+            873,
+            876,
+            880,
+            937,
+            940,
+            944,
+            960
+          ],
+          "branch_row": 29,
+          "transitions": [
+            {
+              "branch_edge": 0,
+              "forced_steps": [],
+              "cut_edges": [
+                0
+              ],
+              "delta": 1,
+              "after": [
+                116,
+                436,
+                692,
+                724,
+                740,
+                752,
+                788,
+                868,
+                880,
+                932,
+                944,
+                960
+              ]
+            },
+            {
+              "branch_edge": 2,
+              "forced_steps": [],
+              "cut_edges": [
+                2
+              ],
+              "delta": 1,
+              "after": [
+                96,
+                416,
+                672,
+                960
+              ]
+            },
+            {
+              "branch_edge": 3,
+              "forced_steps": [],
+              "cut_edges": [
+                3
+              ],
+              "delta": 1,
+              "after": [
+                81,
+                401,
+                657,
+                705,
+                720,
+                769,
+                848,
+                912,
+                960
+              ]
+            },
+            {
+              "branch_edge": 4,
+              "forced_steps": [],
+              "cut_edges": [
+                4
+              ],
+              "delta": 1,
+              "after": [
+                77,
+                397,
+                709,
+                713,
+                716,
+                773,
+                841,
+                844,
+                905,
+                908,
+                960
+              ]
+            }
+          ],
+          "remaining_budget": 3,
+          "benchmark_mass": {
+            "numerator": 40000,
+            "denominator": 23391,
+            "greater_than_one": true
+          },
+          "base_two_mass": {
+            "numerator": 2,
+            "denominator": 1,
+            "greater_than_one": true
+          }
+        },
+        {
+          "forced_before_branch": [],
+          "initial_forcing_steps": [],
+          "branch_rows": [
+            116,
+            436,
+            692,
+            724,
+            740,
+            752,
+            788,
+            868,
+            880,
+            932,
+            944,
+            960
+          ],
+          "branch_row": 116,
+          "transitions": [
+            {
+              "branch_edge": 2,
+              "forced_steps": [
+                {
+                  "edge": 9,
+                  "before": [
+                    512
+                  ]
+                }
+              ],
+              "cut_edges": [
+                2,
+                9
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 4,
+              "forced_steps": [
+                {
+                  "edge": 9,
+                  "before": [
+                    512
+                  ]
+                }
+              ],
+              "cut_edges": [
+                4,
+                9
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 5,
+              "forced_steps": [
+                {
+                  "edge": 9,
+                  "before": [
+                    512
+                  ]
+                }
+              ],
+              "cut_edges": [
+                5,
+                9
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 6,
+              "forced_steps": [],
+              "cut_edges": [
+                6
+              ],
+              "delta": 1,
+              "after": [
+                308,
+                564,
+                788,
+                804,
+                816
+              ]
+            }
+          ],
+          "remaining_budget": 2,
+          "benchmark_mass": {
+            "numerator": 177970000,
+            "denominator": 182379627,
+            "greater_than_one": false
+          },
+          "base_two_mass": {
+            "numerator": 5,
+            "denominator": 4,
+            "greater_than_one": true
+          }
+        },
+        {
+          "forced_before_branch": [],
+          "initial_forcing_steps": [],
+          "branch_rows": [],
+          "branch_row": null,
+          "transitions": [],
+          "remaining_budget": 0,
+          "benchmark_mass": {
+            "numerator": 0,
+            "denominator": 1,
+            "greater_than_one": false
+          },
+          "base_two_mass": {
+            "numerator": 0,
+            "denominator": 1,
+            "greater_than_one": false
+          }
+        },
+        {
+          "forced_before_branch": [],
+          "initial_forcing_steps": [],
+          "branch_rows": [
+            308,
+            564,
+            788,
+            804,
+            816
+          ],
+          "branch_row": 308,
+          "transitions": [
+            {
+              "branch_edge": 2,
+              "forced_steps": [
+                {
+                  "edge": 4,
+                  "before": [
+                    16
+                  ]
+                }
+              ],
+              "cut_edges": [
+                2,
+                4
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 4,
+              "forced_steps": [
+                {
+                  "edge": 2,
+                  "before": [
+                    4
+                  ]
+                }
+              ],
+              "cut_edges": [
+                2,
+                4
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 5,
+              "forced_steps": [
+                {
+                  "edge": 2,
+                  "before": [
+                    4
+                  ]
+                }
+              ],
+              "cut_edges": [
+                2,
+                5
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 8,
+              "forced_steps": [
+                {
+                  "edge": 2,
+                  "before": [
+                    4
+                  ]
+                }
+              ],
+              "cut_edges": [
+                2,
+                8
+              ],
+              "delta": 2,
+              "after": []
+            }
+          ],
+          "remaining_budget": 1,
+          "benchmark_mass": {
+            "numerator": 400000000,
+            "denominator": 547138881,
+            "greater_than_one": false
+          },
+          "base_two_mass": {
+            "numerator": 1,
+            "denominator": 1,
+            "greater_than_one": false
+          }
+        },
+        {
+          "forced_before_branch": [],
+          "initial_forcing_steps": [],
+          "branch_rows": [
+            96,
+            160,
+            192
+          ],
+          "branch_row": 96,
+          "transitions": [
+            {
+              "branch_edge": 5,
+              "forced_steps": [
+                {
+                  "edge": 6,
+                  "before": [
+                    64
+                  ]
+                }
+              ],
+              "cut_edges": [
+                5,
+                6
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 6,
+              "forced_steps": [
+                {
+                  "edge": 5,
+                  "before": [
+                    32
+                  ]
+                }
+              ],
+              "cut_edges": [
+                5,
+                6
+              ],
+              "delta": 2,
+              "after": []
+            }
+          ],
+          "remaining_budget": 2,
+          "benchmark_mass": {
+            "numerator": 200000000,
+            "denominator": 547138881,
+            "greater_than_one": false
+          },
+          "base_two_mass": {
+            "numerator": 1,
+            "denominator": 2,
+            "greater_than_one": false
+          }
+        },
+        {
+          "forced_before_branch": [],
+          "initial_forcing_steps": [],
+          "branch_rows": [
+            81,
+            401,
+            657,
+            705,
+            720,
+            769,
+            848,
+            912,
+            960
+          ],
+          "branch_row": 81,
+          "transitions": [
+            {
+              "branch_edge": 0,
+              "forced_steps": [
+                {
+                  "edge": 9,
+                  "before": [
+                    512
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                9
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 4,
+              "forced_steps": [
+                {
+                  "edge": 9,
+                  "before": [
+                    512
+                  ]
+                }
+              ],
+              "cut_edges": [
+                4,
+                9
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 6,
+              "forced_steps": [],
+              "cut_edges": [
+                6
+              ],
+              "delta": 1,
+              "after": [
+                273,
+                529,
+                769,
+                784
+              ]
+            }
+          ],
+          "remaining_budget": 2,
+          "benchmark_mass": {
+            "numerator": 433910000,
+            "denominator": 547138881,
+            "greater_than_one": false
+          },
+          "base_two_mass": {
+            "numerator": 1,
+            "denominator": 1,
+            "greater_than_one": false
+          }
+        },
+        {
+          "forced_before_branch": [],
+          "initial_forcing_steps": [],
+          "branch_rows": [
+            273,
+            529,
+            769,
+            784
+          ],
+          "branch_row": 273,
+          "transitions": [
+            {
+              "branch_edge": 0,
+              "forced_steps": [
+                {
+                  "edge": 4,
+                  "before": [
+                    16
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                4
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 4,
+              "forced_steps": [
+                {
+                  "edge": 0,
+                  "before": [
+                    1
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                4
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 8,
+              "forced_steps": [
+                {
+                  "edge": 0,
+                  "before": [
+                    1
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                8
+              ],
+              "delta": 2,
+              "after": []
+            }
+          ],
+          "remaining_budget": 1,
+          "benchmark_mass": {
+            "numerator": 100000000,
+            "denominator": 182379627,
+            "greater_than_one": false
+          },
+          "base_two_mass": {
+            "numerator": 3,
+            "denominator": 4,
+            "greater_than_one": false
+          }
+        },
+        {
+          "forced_before_branch": [],
+          "initial_forcing_steps": [],
+          "branch_rows": [
+            77,
+            397,
+            709,
+            713,
+            716,
+            773,
+            841,
+            844,
+            905,
+            908,
+            960
+          ],
+          "branch_row": 77,
+          "transitions": [
+            {
+              "branch_edge": 0,
+              "forced_steps": [
+                {
+                  "edge": 9,
+                  "before": [
+                    512
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                9
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 2,
+              "forced_steps": [
+                {
+                  "edge": 9,
+                  "before": [
+                    512
+                  ]
+                }
+              ],
+              "cut_edges": [
+                2,
+                9
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 3,
+              "forced_steps": [
+                {
+                  "edge": 9,
+                  "before": [
+                    512
+                  ]
+                }
+              ],
+              "cut_edges": [
+                3,
+                9
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 6,
+              "forced_steps": [
+                {
+                  "edge": 8,
+                  "before": [
+                    256
+                  ]
+                }
+              ],
+              "cut_edges": [
+                6,
+                8
+              ],
+              "delta": 2,
+              "after": []
+            }
+          ],
+          "remaining_budget": 2,
+          "benchmark_mass": {
+            "numerator": 400000000,
+            "denominator": 547138881,
+            "greater_than_one": false
+          },
+          "base_two_mass": {
+            "numerator": 1,
+            "denominator": 1,
+            "greater_than_one": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "matched-m1",
+      "source": [
+        "a1",
+        "b1"
+      ],
+      "target": [
+        "a1",
+        "b1"
+      ],
+      "budget": 0,
+      "original_edges": [
+        {
+          "edge": 0,
+          "parent": 0,
+          "child": 1,
+          "child_labels": [
+            "a1"
+          ]
+        },
+        {
+          "edge": 1,
+          "parent": 0,
+          "child": 2,
+          "child_labels": [
+            "b1"
+          ]
+        }
+      ],
+      "profile_count": 0,
+      "benchmark_mass_failures": 0,
+      "profiles": []
+    },
+    {
+      "id": "matched-m2",
+      "source": [
+        [
+          "a1",
+          "a2"
+        ],
+        [
+          "b1",
+          "b2"
+        ]
+      ],
+      "target": [
+        [
+          "a1",
+          "b1"
+        ],
+        [
+          "a2",
+          "b2"
+        ]
+      ],
+      "budget": 2,
+      "original_edges": [
+        {
+          "edge": 0,
+          "parent": 0,
+          "child": 1,
+          "child_labels": [
+            "a1",
+            "a2"
+          ]
+        },
+        {
+          "edge": 1,
+          "parent": 1,
+          "child": 2,
+          "child_labels": [
+            "a1"
+          ]
+        },
+        {
+          "edge": 2,
+          "parent": 1,
+          "child": 3,
+          "child_labels": [
+            "a2"
+          ]
+        },
+        {
+          "edge": 3,
+          "parent": 0,
+          "child": 4,
+          "child_labels": [
+            "b1",
+            "b2"
+          ]
+        },
+        {
+          "edge": 4,
+          "parent": 4,
+          "child": 5,
+          "child_labels": [
+            "b1"
+          ]
+        },
+        {
+          "edge": 5,
+          "parent": 4,
+          "child": 6,
+          "child_labels": [
+            "b2"
+          ]
+        }
+      ],
+      "profile_count": 2,
+      "benchmark_mass_failures": 0,
+      "profiles": [
+        {
+          "forced_before_branch": [],
+          "initial_forcing_steps": [],
+          "branch_rows": [
+            23,
+            39,
+            51,
+            53,
+            54
+          ],
+          "branch_row": 23,
+          "transitions": [
+            {
+              "branch_edge": 0,
+              "forced_steps": [
+                {
+                  "edge": 1,
+                  "before": [
+                    2
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                1
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 1,
+              "forced_steps": [
+                {
+                  "edge": 0,
+                  "before": [
+                    1
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                1
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 2,
+              "forced_steps": [
+                {
+                  "edge": 0,
+                  "before": [
+                    1
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                2
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 4,
+              "forced_steps": [
+                {
+                  "edge": 0,
+                  "before": [
+                    1
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                4
+              ],
+              "delta": 2,
+              "after": []
+            }
+          ],
+          "remaining_budget": 2,
+          "benchmark_mass": {
+            "numerator": 400000000,
+            "denominator": 547138881,
+            "greater_than_one": false
+          },
+          "base_two_mass": {
+            "numerator": 1,
+            "denominator": 1,
+            "greater_than_one": false
+          }
+        },
+        {
+          "forced_before_branch": [],
+          "initial_forcing_steps": [],
+          "branch_rows": [],
+          "branch_row": null,
+          "transitions": [],
+          "remaining_budget": 0,
+          "benchmark_mass": {
+            "numerator": 0,
+            "denominator": 1,
+            "greater_than_one": false
+          },
+          "base_two_mass": {
+            "numerator": 0,
+            "denominator": 1,
+            "greater_than_one": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "matched-m3",
+      "source": [
+        [
+          "a1",
+          [
+            "a2",
+            "a3"
+          ]
+        ],
+        [
+          "b1",
+          [
+            "b2",
+            "b3"
+          ]
+        ]
+      ],
+      "target": [
+        [
+          "a1",
+          "b1"
+        ],
+        [
+          [
+            "a2",
+            "b2"
+          ],
+          [
+            "a3",
+            "b3"
+          ]
+        ]
+      ],
+      "budget": 3,
+      "original_edges": [
+        {
+          "edge": 0,
+          "parent": 0,
+          "child": 1,
+          "child_labels": [
+            "a1",
+            "a2",
+            "a3"
+          ]
+        },
+        {
+          "edge": 1,
+          "parent": 1,
+          "child": 2,
+          "child_labels": [
+            "a1"
+          ]
+        },
+        {
+          "edge": 2,
+          "parent": 1,
+          "child": 3,
+          "child_labels": [
+            "a2",
+            "a3"
+          ]
+        },
+        {
+          "edge": 3,
+          "parent": 3,
+          "child": 4,
+          "child_labels": [
+            "a2"
+          ]
+        },
+        {
+          "edge": 4,
+          "parent": 3,
+          "child": 5,
+          "child_labels": [
+            "a3"
+          ]
+        },
+        {
+          "edge": 5,
+          "parent": 0,
+          "child": 6,
+          "child_labels": [
+            "b1",
+            "b2",
+            "b3"
+          ]
+        },
+        {
+          "edge": 6,
+          "parent": 6,
+          "child": 7,
+          "child_labels": [
+            "b1"
+          ]
+        },
+        {
+          "edge": 7,
+          "parent": 6,
+          "child": 8,
+          "child_labels": [
+            "b2",
+            "b3"
+          ]
+        },
+        {
+          "edge": 8,
+          "parent": 8,
+          "child": 9,
+          "child_labels": [
+            "b2"
+          ]
+        },
+        {
+          "edge": 9,
+          "parent": 8,
+          "child": 10,
+          "child_labels": [
+            "b3"
+          ]
+        }
+      ],
+      "profile_count": 4,
+      "benchmark_mass_failures": 1,
+      "profiles": [
+        {
+          "forced_before_branch": [],
+          "initial_forcing_steps": [],
+          "branch_rows": [
+            79,
+            87,
+            399,
+            407,
+            411,
+            413,
+            451,
+            461,
+            462,
+            469,
+            470,
+            472,
+            655,
+            663,
+            667,
+            669,
+            707,
+            717,
+            718,
+            725,
+            726,
+            728,
+            782,
+            790,
+            792,
+            845,
+            853,
+            909,
+            917
+          ],
+          "branch_row": 792,
+          "transitions": [
+            {
+              "branch_edge": 3,
+              "forced_steps": [],
+              "cut_edges": [
+                3
+              ],
+              "delta": 1,
+              "after": [
+                71,
+                391,
+                451,
+                453,
+                454,
+                647,
+                707,
+                709,
+                710,
+                774,
+                837,
+                901
+              ]
+            },
+            {
+              "branch_edge": 4,
+              "forced_steps": [],
+              "cut_edges": [
+                4
+              ],
+              "delta": 1,
+              "after": [
+                71,
+                391,
+                451,
+                453,
+                454,
+                647,
+                707,
+                709,
+                710,
+                774,
+                837,
+                901
+              ]
+            },
+            {
+              "branch_edge": 8,
+              "forced_steps": [],
+              "cut_edges": [
+                8
+              ],
+              "delta": 1,
+              "after": [
+                79,
+                87,
+                143,
+                151,
+                155,
+                157,
+                195,
+                205,
+                206,
+                213,
+                214,
+                216
+              ]
+            },
+            {
+              "branch_edge": 9,
+              "forced_steps": [],
+              "cut_edges": [
+                9
+              ],
+              "delta": 1,
+              "after": [
+                79,
+                87,
+                143,
+                151,
+                155,
+                157,
+                195,
+                205,
+                206,
+                213,
+                214,
+                216
+              ]
+            }
+          ],
+          "remaining_budget": 3,
+          "benchmark_mass": {
+            "numerator": 40000,
+            "denominator": 23391,
+            "greater_than_one": true
+          },
+          "base_two_mass": {
+            "numerator": 2,
+            "denominator": 1,
+            "greater_than_one": true
+          }
+        },
+        {
+          "forced_before_branch": [],
+          "initial_forcing_steps": [],
+          "branch_rows": [
+            71,
+            391,
+            451,
+            453,
+            454,
+            647,
+            707,
+            709,
+            710,
+            774,
+            837,
+            901
+          ],
+          "branch_row": 71,
+          "transitions": [
+            {
+              "branch_edge": 0,
+              "forced_steps": [
+                {
+                  "edge": 1,
+                  "before": [
+                    2
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                1
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 1,
+              "forced_steps": [
+                {
+                  "edge": 0,
+                  "before": [
+                    1
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                1
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 2,
+              "forced_steps": [
+                {
+                  "edge": 0,
+                  "before": [
+                    1
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                2
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 6,
+              "forced_steps": [
+                {
+                  "edge": 2,
+                  "before": [
+                    4
+                  ]
+                }
+              ],
+              "cut_edges": [
+                2,
+                6
+              ],
+              "delta": 2,
+              "after": []
+            }
+          ],
+          "remaining_budget": 2,
+          "benchmark_mass": {
+            "numerator": 400000000,
+            "denominator": 547138881,
+            "greater_than_one": false
+          },
+          "base_two_mass": {
+            "numerator": 1,
+            "denominator": 1,
+            "greater_than_one": false
+          }
+        },
+        {
+          "forced_before_branch": [],
+          "initial_forcing_steps": [],
+          "branch_rows": [],
+          "branch_row": null,
+          "transitions": [],
+          "remaining_budget": 0,
+          "benchmark_mass": {
+            "numerator": 0,
+            "denominator": 1,
+            "greater_than_one": false
+          },
+          "base_two_mass": {
+            "numerator": 0,
+            "denominator": 1,
+            "greater_than_one": false
+          }
+        },
+        {
+          "forced_before_branch": [],
+          "initial_forcing_steps": [],
+          "branch_rows": [
+            79,
+            87,
+            143,
+            151,
+            155,
+            157,
+            195,
+            205,
+            206,
+            213,
+            214,
+            216
+          ],
+          "branch_row": 195,
+          "transitions": [
+            {
+              "branch_edge": 0,
+              "forced_steps": [
+                {
+                  "edge": 6,
+                  "before": [
+                    64
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                6
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 1,
+              "forced_steps": [
+                {
+                  "edge": 7,
+                  "before": [
+                    128
+                  ]
+                }
+              ],
+              "cut_edges": [
+                1,
+                7
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 6,
+              "forced_steps": [
+                {
+                  "edge": 0,
+                  "before": [
+                    1
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                6
+              ],
+              "delta": 2,
+              "after": []
+            },
+            {
+              "branch_edge": 7,
+              "forced_steps": [
+                {
+                  "edge": 0,
+                  "before": [
+                    1
+                  ]
+                }
+              ],
+              "cut_edges": [
+                0,
+                7
+              ],
+              "delta": 2,
+              "after": []
+            }
+          ],
+          "remaining_budget": 2,
+          "benchmark_mass": {
+            "numerator": 400000000,
+            "denominator": 547138881,
+            "greater_than_one": false
+          },
+          "base_two_mass": {
+            "numerator": 1,
+            "denominator": 1,
+            "greater_than_one": false
+          }
+        }
+      ]
+    }
+  ],
+  "seconds": 0.00268837499993424,
+  "lineage": "same author and original GLOBAL-C tree/conflict primitives; development evidence only",
+  "hashes": {
+    "research/rmaf/algorithm/balanced_safe_cover/continue20261015/PROFILE-PIN.md": "cd1d7e598e89c23ba7a4f5d854764c68d1929e89fbd14762ba6945038b38b7f0",
+    "research/rmaf/algorithm/balanced_safe_cover/continue20261015/CONTROLS-CB1.json": "42b69549fb30c1e57f4e6ddbc9d999a225d66cfd8bb6ddb23adc2ec96ee58bda",
+    "research/rmaf/algorithm/balanced_safe_cover/continue20261015/conflict_solver.py": "04bc929815a02f533c72da92a7aabfa72d66062bd742546ee6183f14b4f511d7",
+    "research/rmaf/algorithm/balanced_safe_cover/continue20261015/branch_profile.py": "4e7b9f1a6ceb918131d881d0d2fc12dd801dc2ce22fc21fdabb2f5692093156a"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "56f8e80de3ecdc6bf65634db62a21843625486beb7f9434a6171c919057eba98",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.37078187500083004,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.4025303750004241,
+      "resource_stop": null,
+      "log_sha256": "1d6c5e8f18adbc6557371b397bbf84cdfb309f33c96ae81bcbfc29c918489381"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016966670009423979,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "ModeQueryProper",
+      "source_sha256": "d3a664287e7a628929bf54cd4b14dac77f0415611331e4bf57dcc1bd63342ce8",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.9749950000004901,
+      "resource_stop": null,
+      "log_sha256": "c25534f163db66ff26641131712daf1e27ad9ad1d07298bc9421dd4a87ef0236"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('ModeQueryProper', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-20261015T211149845269Z/ModeQueryProper.lean:20:3: error: Tactic `split` failed: Could not split an `if` or `match` expression in the type\\n  e \u2208\\n    have good := restrictionAgrees S T (BinaryCheap.ay A D) && restrictionAgrees S T (BinaryCheap.an A D);\\n    if good = true then [] else entries q Mode.ordinary cheap ++ entries q Mode.full opposite\\nof `mem`\\n\\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\\n\\ncase h_1\\nP : List (List Nat)\\nS T : Tree\\nA B C D : List Nat\\nq : Nat\\ncheap opposite : List CoreProgram.Output\\nmember : B \u2208 P\\ne : Entry\\nx\u271d : Option BothBad.Forest\\nheq\u271d : knownOne T S A = none\\nmem :\\n  e \u2208\\n    have good := restrictionAgrees S T (BinaryCheap.ay A D) && restrictionAgrees S T (BinaryCheap.an A D);\\n    if good = true then [] else entries q Mode.ordinary cheap ++ entries q Mode.full opposite\\n\u22a2 ModeSafe P e.mode\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-20261015T211149845269Z/ModeQueryProper.lean:25:28: error: Application type mismatch: The argument\\n  mem\\nhas type\\n  e \u2208\\n    have good := restrictionAgrees S T (BinaryCheap.ay A D) && restrictionAgrees S T (BinaryCheap.an A D);\\n    if good = true then entries q Mode.ordinary cheap ++ entries q (Mode.retained A B C F\u271d) opposite\\n    else entries q Mode.ordinary cheap ++ entries q Mode.full opposite\\nbut is expected to have type\\n  ?m.52 \u2208 ?m.53 ++ ?m.54\\nin the application\\n  List.mem_append.mp mem\\n'))"
+}

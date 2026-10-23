@@ -1,0 +1,29 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/charge_route/isolated/ConsumerSentinel.lean:60:15: error: Tactic `rfl` failed: The left-hand side
+  childLeft.support ⟨Sum.inl u, hi⟩ a
+is not definitionally equal to the right-hand side
+  parent.support ⟨Sum.inl u, hi⟩.val (false :: a)
+
+case inl
+a : Address
+u : Unit
+hi : left (Sum.inl u) = true
+⊢ childLeft.support ⟨Sum.inl u, hi⟩ a ↔ parent.support ⟨Sum.inl u, hi⟩.val (false :: a)
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/charge_route/isolated/ConsumerSentinel.lean:66:15: error: Tactic `rfl` failed: The left-hand side
+  childRight.support ⟨Sum.inr u, hi⟩ a
+is not definitionally equal to the right-hand side
+  parent.support ⟨Sum.inr u, hi⟩.val (true :: a)
+
+case inr
+a : Address
+u : Unit
+hi : right (Sum.inr u) = true
+⊢ childRight.support ⟨Sum.inr u, hi⟩ a ↔ parent.support ⟨Sum.inr u, hi⟩.val (true :: a)
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/restriction/charge_route/isolated/ConsumerSentinel.lean:74:32: error: Application type mismatch: The argument
+  hs.left
+has type
+  false = true
+but is expected to have type
+  False
+in the application
+  False.elim hs.left
+'TripleDP.RestrictionCharge.Sentinel.consumerT1' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "8483bfeb83e0c9b38e2d82fba5628b08e7e409a383df7e2c6bd4687611d350d0",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.37675916599982884,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3510029579992988,
+      "resource_stop": null,
+      "log_sha256": "06b455d61367a7f8fd8d8949bc8c1c02721774f211894cc4f46799b42aba410c"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016859579991432838,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "TableCost",
+      "source_sha256": "f82952ccbe3bf4130c059e378b528edfa85dcc62499044fe1caa1d084df5349e",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.9405795000002399,
+      "resource_stop": null,
+      "log_sha256": "4ae4076ce6fcc2038dc0cd5700f1062205a03d3d739f1e8a4050b94367012f65"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('TableCost', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/TableCost.lean:11:81: error: No goals to be solved\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/TableCost.lean:11:10: error: unsolved goals\\ncase leaf\\ncs : List Nat\\nowner : Nat \u2192 Nat\\nhc : cs \u2260 []\\nx : Nat\\np : Paint\\nhp : p \u2208 table cs owner (Tree.leaf x)\\neq : p = Paint.leaf x (owner x)\\n\u22a2 erase p = Tree.leaf x\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/TableCost.lean:54:1: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  j \u2265 0\\n  i \u2265 0\\n  h \u2265 0\\n  g \u2265 0\\n  g - h \u2265 -1\\n  f \u2265 0\\n  f - j \u2265 9\\n  e \u2265 0\\n  e - f \u2265 -8\\n  e - i \u2264 0\\n  d \u2265 0\\n  a \u2265 0\\n  a - d \u2265 0\\nwhere\\n a := \u2191N\\n d := \u2191(treeNodes t)\\n e := \u2191(2 * (24 * N) + 12) * \u2191(table cs owner t).length\\n f := \u2191(meterChoose (meterEdgeCost c) (table cs owner t)).work\\n g := \u2191cs.length\\n h := \u2191(table cs owner t).length\\n i := \u2191(2 * (24 * N) + 12) * \u2191(cs.length + 1)\\n j := \u2191(48 * N + 12) * \u2191(cs.length + 1)\\n'))"
+}

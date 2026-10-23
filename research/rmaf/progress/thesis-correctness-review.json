@@ -1,0 +1,36 @@
+{
+  "id": "thesis-correctness-review",
+  "title": "Fresh thesis correctness review",
+  "status": "open",
+  "summary": "534 pairs and 2,507 budgets passed a fresh reference; seven original Lean lemmas replayed. Raw-optimum Cover is false, and normalization needs active compatibility. Universal correctness remains open.",
+  "metrics": {
+    "independent_controls": 14,
+    "independent_cut_partition_pairs": 468,
+    "independent_exchange_premises": 288,
+    "candidate_pairs": 534,
+    "candidate_budget_decisions": 2507,
+    "candidate_mismatches": 0,
+    "original_lean_lemmas_replayed": 7,
+    "review_lean_repair_lemmas": 3,
+    "actual_states_audited": 120,
+    "normalization_checks": 50
+  },
+  "claims": [
+    {"id":"thesis-review-universal","label":"Universal graph correctness","status":"open","detail":"Requires graph normalization, original-edge transport, source coverage, contraction, termination and marked-state composition."},
+    {"id":"thesis-review-cover","label":"Raw optimal-cutset coverage","status":"checked","detail":"Exact initial-state A2BC counterexample to universal Cover; source existence coverage remains possible. This is a proof-interface finding, not a failed decision."},
+    {"id":"thesis-review-normalization","label":"Normalization domain","status":"checked","detail":"Literal Lemma6.5 fails without active compatibility even when its LCA parent exists. Counterexample violates the intended active invariant; no algorithm counterexample follows."},
+    {"id":"thesis-review-replay","label":"Fresh exact decisions","status":"tested","detail":"All 225 n4 pairs, 150 fresh n5 pairs, 150 fresh n6 pairs, and nine author examples; all nine branch variants reached."}
+  ],
+  "lemmas": [
+    {"id":"thesis-review-seven","label":"Seven original local lemmas","status":"checked","detail":"Clean Std-only Lean replay; axiom union propext and Quot.sound. True twin passes and false arithmetic twin is rejected for falsity."},
+    {"id":"thesis-review-existential","label":"Existential branch interface","status":"conditional","detail":"Three new local logical lemmas avoid universal raw-Cover; no axioms. AF coverage, exchange and transport remain hypotheses."}
+  ],
+  "artifacts": [
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness_review/REVIEW.md",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-review-summary.json",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness_review/cover-adversary.json",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness_review/normalization-domain.json",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness_review/lean-isolated/ExistentialRepair.lean",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness_review/WORKFILE.md"
+  ]
+}

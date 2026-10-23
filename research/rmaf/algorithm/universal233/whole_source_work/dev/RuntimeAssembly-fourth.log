@@ -1,0 +1,21 @@
+research/rmaf/algorithm/universal233/whole_source_work/RuntimeAssembly.lean:59:2: error: Tactic `decide` failed to reduce
+  @decide
+    (2 < mkRat 233 100 ∧
+      mkRat 233 100 < mkRat 23391 10000 ∧
+        2 * Rat.divInt (↑(mkRat 233 100).den) (mkRat 233 100).num + 3 * mkRat 233 100 ^ (-4) < 1 ∧
+          2 * Rat.divInt (↑(mkRat 233 100).den) (mkRat 233 100).num + 4 * mkRat 233 100 ^ (-4) < 1 ∧
+            2 * Rat.divInt (↑(mkRat 233 100).den) (mkRat 233 100).num + mkRat 233 100 ^ (-3) + mkRat 233 100 ^ (-4) < 1)
+    instDecidableAnd
+to `true` or `false`.
+
+After unfolding the instances `decEq`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `isFalse`, `isTrue`, `Int.decEq`, `Int.decLe`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `Nat.decEq`, and `Rat.instDecidableLt`, reduction got stuck at
+  match 0 - ((2 * Rat.divInt (↑(mkRat 233 100).den) (mkRat 233 100).num + 3 * mkRat 233 100 ^ (-4)).num + 1) with
+  | Int.ofNat m => isTrue ⋯
+  | Int.negSucc i => isFalse ⋯
+research/rmaf/algorithm/universal233/whole_source_work/RuntimeAssembly.lean:58:65: warning: This simp argument is unused:
+  Rat.zpow
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [cliqueFactor, chainFactor, diagonalFactor, runtimeBase, Rat.div_def, Rat.inv_def]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

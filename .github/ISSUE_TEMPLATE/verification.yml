@@ -1,0 +1,32 @@
+name: Verification request
+description: Request a scoped reproduction or independent review.
+labels: ["verification"]
+body:
+  - type: textarea
+    id: claim
+    attributes:
+      label: Claim and exact source boundary
+      description: List exact commits/hashes and the finite or universal scope.
+    validations:
+      required: true
+  - type: textarea
+    id: lineage
+    attributes:
+      label: Lineage and contacts
+      description: Record shared dependencies and any author/oracle contact.
+    validations:
+      required: true
+  - type: textarea
+    id: replay
+    attributes:
+      label: Replay command and prerequisites
+      description: List inputs, tools, expected negative controls and omitted large data.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Failure criterion and remaining hypotheses
+      description: State the result that would refute the claim and what success would actually establish.
+    validations:
+      required: true

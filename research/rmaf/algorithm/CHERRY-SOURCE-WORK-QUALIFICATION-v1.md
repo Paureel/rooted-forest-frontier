@@ -1,0 +1,9 @@
+# Ordinary cherry local review and work qualification
+
+Root adoption, 2026-10-15. The [sealed local review](verification/cherry-branch-2026-10-15/sol-main-necessity/postrelease-v1/FINAL-REVIEW-v1.md) confirms ordinary original-tree t1 no-larger exchange and t>=3 same-original-forest safety. The executable child/budget/minimum consumers remain conditional on the explicit exact bounded solver IH for each actual child. Complete special priorities, recursion, mutual termination, global recurrence, smaller base and novelty remain OPEN.
+
+The [source-work review](verification/cherry-branch-2026-10-15/sol-main-necessity/postrelease-v1/SOURCE-WORK-REVIEW-v1.md) qualifies the frozen pendantPartition O(N^4) row. Actual coreLabels places cuts, subtree mapping and flatten inside the per-leaf filter. Using the document's coarse O(N^6) cuts bound gives a conservative O(N^7) row bound with all recomputation included. The aggregate O(N^7), and permitted O(N^8), source envelope survives. This does not establish a tight lower bound or refute a sharper O(N^4) analysis with a different argument.
+
+Source-operation inspection includes all rejected candidates, original address/path/list copies, literal child materialization and polynomial label/budget-bit costs. Kernel semantics and paid-budget identities are separate from that source-cost interpretation. No compiled-machine runtime is certified. Supplied recursive child work and one final recovery after global selection remain external.
+
+The independent review rebuilt 71 exact local sources, including the zero-declaration Interfaces aggregator, and audited 2659 stored occurrences in 70 nonempty producers versus 2638 resolved names. Only the three permitted standard axioms were observed. The zero-producer schema correction and postcontact controls remain disclosed. Frozen sources, READY, expectations and reports remain unchanged; fresh-context framing review is separate.

@@ -1,0 +1,172 @@
+Universal233.Rule5FinalClassification.remaining_source_status {T S : RMAF.Tree} {i : RMAF.Vertex} {a b : Nat}
+  (ch : Universal233.CoreGraph.CherryAt T i a b)
+  (sel :
+    Universal233.Rule5Classification.selectLocal T S a b =
+      some Universal233.Rule5Classification.LocalSelection.remaining) :
+  ∃ e f c,
+    (Universal233.CherryBranching.cuts S a b = [e, f] ∨ Universal233.CherryBranching.cuts S a b = [f, e]) ∧
+      RMAF.restrictionAgrees T S (Universal233.HardParent.subtreeLabels S e) = false ∧
+        Universal233.CoreGraph.subtree S f = some (RMAF.Tree.leaf c) ∧
+          Universal233.HardParent.subtreeLabels S f = [c] ∧
+            RMAF.restrictionAgrees T S (Universal233.CherryBranching.coreLabels S a b) = true
+Universal233.Rule5FinalClassification.remaining_source_core {T S : RMAF.Tree} {i : RMAF.Vertex} {a b : Nat}
+  (ch : Universal233.CoreGraph.CherryAt T i a b)
+  (sel :
+    Universal233.Rule5Classification.selectLocal T S a b =
+      some Universal233.Rule5Classification.LocalSelection.remaining) :
+  ∃ U,
+    RMAF.restrict (Universal233.CherryBranching.coreLabels S a b) S = some U ∧
+      Universal233.Rule5Classification.Caterpillar U ∧
+        (Universal233.CherryBranching.cherries U).length = 1 ∧ Universal233.HardParent.HasCherry a b U
+Universal233.Rule5FinalClassification.source_two_pendant_spine {S U : RMAF.Tree} {p f : RMAF.Vertex} {s : Bool}
+  {a b c : Nat} (hn : (RMAF.leaves S).Nodup) (ha : a ∈ RMAF.leaves S) (hb : b ∈ RMAF.leaves S) (nab : a ≠ b)
+  (hp : Universal233.CoreGraph.subtree S p = some (Universal233.Rule5FinalClassification.fork s (RMAF.Tree.leaf a) U))
+  (nU : ¬b ∈ RMAF.leaves U)
+  (cut :
+    Universal233.CherryBranching.cuts S a b = [p ++ [!s], f] ∨ Universal233.CherryBranching.cuts S a b = [f, p ++ [!s]])
+  (hf : Universal233.CoreGraph.subtree S f = some (RMAF.Tree.leaf c))
+  (forbid : ¬Universal233.HardParent.HasCherry b c S) :
+  ∃ h t r,
+    Universal233.CoreGraph.subtree S h =
+      some
+        (Universal233.Rule5FinalClassification.fork r
+          (Universal233.Rule5FinalClassification.fork t
+            (Universal233.Rule5FinalClassification.fork s (RMAF.Tree.leaf a) U) (RMAF.Tree.leaf c))
+          (RMAF.Tree.leaf b))
+Universal233.Rule5FinalClassification.remaining_full_source_geometry {T S : RMAF.Tree} {i : RMAF.Vertex} {a b : Nat}
+  (ch : Universal233.CoreGraph.CherryAt T i a b)
+  (sel :
+    Universal233.Rule5Classification.selectLocal T S a b =
+      some Universal233.Rule5Classification.LocalSelection.remaining) :
+  ∃ h p s t r U x y f c,
+    (x = a ∧ y = b ∨ x = b ∧ y = a) ∧
+      Universal233.CoreGraph.subtree S p = some (Universal233.Rule5FinalClassification.fork s (RMAF.Tree.leaf x) U) ∧
+        (Universal233.CherryBranching.cuts S a b = [p ++ [!s], f] ∨
+            Universal233.CherryBranching.cuts S a b = [f, p ++ [!s]]) ∧
+          Universal233.CoreGraph.subtree S f = some (RMAF.Tree.leaf c) ∧
+            RMAF.restrictionAgrees T S (Universal233.HardParent.subtreeLabels S (p ++ [!s])) = false ∧
+              RMAF.restrictionAgrees T S (Universal233.CherryBranching.coreLabels S a b) = true ∧
+                Universal233.CoreGraph.subtree S h =
+                    some
+                      (Universal233.Rule5FinalClassification.fork r
+                        (Universal233.Rule5FinalClassification.fork t
+                          (Universal233.Rule5FinalClassification.fork s (RMAF.Tree.leaf x) U) (RMAF.Tree.leaf c))
+                        (RMAF.Tree.leaf y)) ∧
+                  Universal233.Rule5FinalClassification.LeafContext S
+                    (Universal233.Rule5FinalClassification.fork r
+                      (Universal233.Rule5FinalClassification.fork t
+                        (Universal233.Rule5FinalClassification.fork s (RMAF.Tree.leaf x) U) (RMAF.Tree.leaf c))
+                      (RMAF.Tree.leaf y))
+Universal233.Rule5FinalClassification.incident_at_most_two {T : RMAF.Tree} {X C : List Nat} {c : Nat}
+  (hn : (RMAF.leaves T).Nodup) (hp : RMAF.partitionCheck (RMAF.leaves T) [X, [c], C] = true)
+  (he : RMAF.pairwiseEmbeddings T [X, [c], C] = true) : (Universal233.Rule5Local.incident T X).length ≤ 2
+Universal233.Rule5FinalClassification.incident_one_or_two {T : RMAF.Tree} {X C : List Nat} {c : Nat}
+  (hn : (RMAF.leaves T).Nodup) (hp : RMAF.partitionCheck (RMAF.leaves T) [X, [c], C] = true)
+  (he : RMAF.pairwiseEmbeddings T [X, [c], C] = true) :
+  (∃ q, Universal233.Rule5Local.incident T X = [q]) ∨ ∃ q r, Universal233.Rule5Local.incident T X = [q, r]
+Universal233.Rule5FinalClassification.actual_two_boundary_trichotomy {T : RMAF.Tree} {X C : List Nat} {c : Nat}
+  {q r : RMAF.Vertex} (hn : (RMAF.leaves T).Nodup) (hp : RMAF.partitionCheck (RMAF.leaves T) [X, [c], C] = true)
+  (he : RMAF.pairwiseEmbeddings T [X, [c], C] = true) (hi : Universal233.Rule5Local.incident T X = [q, r]) :
+  ∃ u v,
+    (u = q ∧ v = r ∨ u = r ∧ v = q) ∧
+      (Universal233.Rule5FinalClassification.OutRegion T X u [c] ∧
+          Universal233.Rule5FinalClassification.InRegion T X v C ∨
+        Universal233.Rule5FinalClassification.OutRegion T X u [c] ∧
+            Universal233.Rule5FinalClassification.OutRegion T X v C ∨
+          Universal233.Rule5FinalClassification.InRegion T X u [c] ∧
+            Universal233.Rule5FinalClassification.OutRegion T X v C)
+Universal233.Rule5FinalClassification.third_attachment_actual_root {T : RMAF.Tree} {X : List Nat} {u : RMAF.Vertex}
+  {c : Nat} (hn : (RMAF.leaves T).Nodup) (um : u ∈ Universal233.Rule5Local.incident T X)
+  (h : Universal233.Rule5FinalClassification.InRegion T X u [c]) :
+  ∃ s U, u = [s] ∧ T = Universal233.Rule5FinalClassification.fork s U (RMAF.Tree.leaf c)
+Universal233.Rule5FinalClassification.selectBad_complete {T S : RMAF.Tree} {i : RMAF.Vertex} {a b : Nat}
+  (ch : Universal233.CoreGraph.CherryAt T i a b)
+  (sel :
+    Universal233.Rule5Classification.selectLocal T S a b =
+      some Universal233.Rule5Classification.LocalSelection.remaining) :
+  ∃ d, Universal233.Rule5FinalClassification.selectBad T S a b = some d
+Universal233.Rule5FinalClassification.boundary_selector_complete {T : RMAF.Tree} {X C : List Nat} {c : Nat}
+  (hn : (RMAF.leaves T).Nodup) (hp : RMAF.partitionCheck (RMAF.leaves T) [X, [c], C] = true)
+  (he : RMAF.pairwiseEmbeddings T [X, [c], C] = true) :
+  ∃ z,
+    Universal233.Rule5FinalClassification.selectBoundary T X c = some z ∧
+      Universal233.Rule5FinalClassification.BoundarySound T X C c z
+Universal233.Rule5FinalClassification.remaining_classifier_complete {T S : RMAF.Tree} {i : RMAF.Vertex} {a b : Nat}
+  (ch : Universal233.CoreGraph.CherryAt T i a b)
+  (sel :
+    Universal233.Rule5Classification.selectLocal T S a b =
+      some Universal233.Rule5Classification.LocalSelection.remaining) :
+  ∃ d z,
+    Universal233.Rule5FinalClassification.selectFinal T S a b =
+        some (Universal233.Rule5FinalClassification.FinalSelection.remaining d z) ∧
+      Universal233.Rule5FinalClassification.selectBad T S a b = some d ∧
+        Universal233.Rule5FinalClassification.BoundarySound T (Universal233.HardParent.subtreeLabels S d.badArc)
+          (Universal233.CherryBranching.coreLabels S a b) d.c z
+Universal233.Rule5FinalClassification.selected_source_geometry {T S : RMAF.Tree} {i : RMAF.Vertex} {a b : Nat}
+  {d : Universal233.Rule5FinalClassification.BadSelection} (ch : Universal233.CoreGraph.CherryAt T i a b)
+  (sel :
+    Universal233.Rule5Classification.selectLocal T S a b =
+      some Universal233.Rule5Classification.LocalSelection.remaining)
+  (hd : Universal233.Rule5FinalClassification.selectBad T S a b = some d) :
+  Universal233.Rule5FinalClassification.SourceGeometry S a b d
+Universal233.Rule5FinalClassification.final_classification_complete {T S : RMAF.Tree} {i : RMAF.Vertex} {a b : Nat}
+  (ch : Universal233.CoreGraph.CherryAt T i a b) (ha : Universal233.Rule5Local.admitted T S a b = true) :
+  ∃ z,
+    Universal233.Rule5FinalClassification.selectFinal T S a b = some z ∧
+      Universal233.Rule5FinalClassification.FinalSound T S a b z
+Universal233.Rule5FinalClassification.final_selected_sound {T S : RMAF.Tree} {i : RMAF.Vertex} {a b : Nat}
+  {z : Universal233.Rule5FinalClassification.FinalSelection} (ch : Universal233.CoreGraph.CherryAt T i a b)
+  (ha : Universal233.Rule5Local.admitted T S a b = true)
+  (hz : Universal233.Rule5FinalClassification.selectFinal T S a b = some z) :
+  Universal233.Rule5FinalClassification.FinalSound T S a b z
+Universal233.Rule5FinalClassification.final_prefix_child_solver {T S : RMAF.Tree} {i : RMAF.Vertex} {a b : Nat}
+  {s : Universal233.Rule5Classification.LocalSelection} (ch : Universal233.CoreGraph.CherryAt T i a b)
+  (ha : Universal233.Rule5Local.admitted T S a b = true)
+  (hz :
+    Universal233.Rule5FinalClassification.selectFinal T S a b =
+      some (Universal233.Rule5FinalClassification.FinalSelection.prefix s))
+  (solver : Universal233.CherryBranching.Child → Nat → Option (List (List Nat)))
+  (ih :
+    ∀ (c : Universal233.CherryBranching.Child),
+      c ∈ Universal233.Rule5Classification.localChildren S a b s →
+        Universal233.CherryBranching.ExactBoundedChild T S solver c)
+  (k : Nat) :
+  Universal233.CherryBranching.OriginalWithin T S k ↔
+    ∃ c,
+      c ∈ Universal233.Rule5Classification.localChildren S a b s ∧
+        ∃ G, Universal233.CherryBranching.childCall solver k c = some G
+Universal233.Rule5FinalClassification.final_one_emits {T S : RMAF.Tree} {i q : RMAF.Vertex} {a b : Nat}
+  {d : Universal233.Rule5FinalClassification.BadSelection} (ch : Universal233.CoreGraph.CherryAt T i a b)
+  (ha : Universal233.Rule5Local.admitted T S a b = true)
+  (hz :
+    Universal233.Rule5FinalClassification.selectFinal T S a b =
+      some
+        (Universal233.Rule5FinalClassification.FinalSelection.remaining d
+          (Universal233.Rule5FinalClassification.BoundarySelection.one q))) :
+  ∃ w,
+    Universal233.Rule5Local.commonSplit? T S a b (Universal233.HardParent.subtreeLabels S d.badArc) = some w ∧
+      w.targetArc = q ∧
+        Universal233.CoreGraph.Valid T w.targetArc ∧
+          w.targetArc ≠ [] ∧
+            Universal233.CoreGraph.Valid S w.sourceArc ∧
+              w.sourceArc ≠ [] ∧
+                (∀ (x : Nat),
+                    x ∈ Universal233.HardParent.subtreeLabels S w.sourceArc ↔
+                      x ∈ Universal233.HardParent.subtreeLabels S d.badArc) ∧
+                  ((∀ (x : Nat),
+                      x ∈ RMAF.leaves T →
+                        (x ∈ Universal233.HardParent.subtreeLabels S d.badArc ↔
+                          x ∈ Universal233.HardParent.subtreeLabels T w.targetArc)) ∨
+                    ∀ (x : Nat),
+                      x ∈ RMAF.leaves T →
+                        (x ∈ Universal233.HardParent.subtreeLabels S d.badArc ↔
+                          ¬x ∈ Universal233.HardParent.subtreeLabels T w.targetArc))
+Universal233.Rule5FinalClassification.final_third_root {T S : RMAF.Tree} {i u v : RMAF.Vertex} {a b : Nat}
+  {d : Universal233.Rule5FinalClassification.BadSelection} (ch : Universal233.CoreGraph.CherryAt T i a b)
+  (ha : Universal233.Rule5Local.admitted T S a b = true)
+  (hz :
+    Universal233.Rule5FinalClassification.selectFinal T S a b =
+      some
+        (Universal233.Rule5FinalClassification.FinalSelection.remaining d
+          (Universal233.Rule5FinalClassification.BoundarySelection.third u v))) :
+  ∃ s U, u = [s] ∧ T = Universal233.Rule5FinalClassification.fork s U (RMAF.Tree.leaf d.c)

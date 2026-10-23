@@ -1,0 +1,159 @@
+{
+  "id": "decomposition",
+  "title": "Decomposition",
+  "status": "open",
+  "summary": "Two exact counterexamples. A constrained chain replacement survives finite tests; structural proof remains open.",
+  "metrics": {
+    "controls": 10,
+    "pairs_checked": 456501,
+    "cluster_cases": 155340,
+    "chain_cases": 61011,
+    "synthesis_rows": 25416,
+    "candidate_tables": 64,
+    "surviving_tables": 12,
+    "counterexamples": 2,
+    "lean_support_theorems": 2
+  },
+  "claims": [
+    {
+      "id": "cluster-naive",
+      "label": "Cluster additivity",
+      "status": "refuted",
+      "detail": "Five-label witness: global3, inside2, collapsed outside1; naive sum\u22121 gives2."
+    },
+    {
+      "id": "chain-unweighted",
+      "label": "Shorten chain to2",
+      "status": "refuted",
+      "detail": "Seven-label witness: deletingc reduces optimum4\u21923 by removing a shattered singleton."
+    },
+    {
+      "id": "chain-marked",
+      "label": "Keep pair together",
+      "status": "open",
+      "detail": "K(original)=minimum reduced forest with a,b together survived25416 finite rows. No universal proof or improved base."
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "independent-minima",
+      "label": "Independent minima",
+      "status": "checked",
+      "detail": "Lean4.35.0 generic optimization lemma; axioms propext. Rooted forest correspondence not supplied.",
+      "depends_on": []
+    },
+    {
+      "id": "kernel-count",
+      "label": "Side count",
+      "status": "checked",
+      "detail": "Lean4.35.0 hypothetical7 d\u22122 arithmetic; axioms propext,Quot.sound. Reduction safety still open.",
+      "depends_on": []
+    },
+    {
+      "id": "chain-lift",
+      "label": "Chain lifting",
+      "status": "open",
+      "detail": "Every reduced forest with a,b together lifts to original by adding c, preserving all rooted spans and component count.",
+      "depends_on": []
+    },
+    {
+      "id": "chain-normalize",
+      "label": "Chain normalization",
+      "status": "open",
+      "detail": "An optimum can keep all common3-chain leaves together despite both exterior attachment patterns.",
+      "depends_on": []
+    },
+    {
+      "id": "mark-propagate",
+      "label": "Preserve constraints",
+      "status": "open",
+      "detail": "Marked pair constraints must survive all reductions and branch rules before any kernel or algorithm claim.",
+      "depends_on": [
+        "chain-lift",
+        "chain-normalize"
+      ]
+    }
+  ],
+  "artifacts": [
+    "research/rmaf/decomposition/journal.md",
+    "research/rmaf/decomposition/missing-lemma.md",
+    "research/rmaf/decomposition/IndependentMinima.lean",
+    "research/rmaf/decomposition/README.md",
+    "research/rmaf/results/decomposition-n5-full.json",
+    "research/rmaf/results/decomposition-n6-full.json",
+    "research/rmaf/results/decomposition-chain-n7-full.json",
+    "research/rmaf/results/decomposition-boundary.json",
+    "research/rmaf/results/decomposition-penalty-synthesis-family1-eight2000.json"
+  ],
+  "sources": [
+    {
+      "title": "Split-or-decompose v2",
+      "url": "https://arxiv.org/abs/2409.18634",
+      "locator": "Section2; Section4; Section6 Case3.1"
+    },
+    {
+      "title": "Cyclic generators kernel",
+      "url": "https://arxiv.org/abs/2202.09904",
+      "locator": "Accepted manuscript Section5\u20136"
+    }
+  ],
+  "example": {
+    "tree_a": [
+      "d",
+      [
+        "e",
+        [
+          "f",
+          [
+            "c",
+            [
+              "b",
+              [
+                "a",
+                "g"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    "tree_b": [
+      [
+        "c",
+        [
+          "b",
+          [
+            "a",
+            "d"
+          ]
+        ]
+      ],
+      [
+        "e",
+        [
+          "f",
+          "g"
+        ]
+      ]
+    ],
+    "forest": [
+      [
+        "a"
+      ],
+      [
+        "b"
+      ],
+      [
+        "c"
+      ],
+      [
+        "d",
+        "e",
+        "f",
+        "g"
+      ]
+    ],
+    "k": 4,
+    "caption": "Removing common-chain leaf c changes the exact optimum4\u21923."
+  }
+}

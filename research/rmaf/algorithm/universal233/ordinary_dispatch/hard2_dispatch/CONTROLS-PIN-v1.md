@@ -1,0 +1,9 @@
+# Literal hard2 driver controls fixed before first driver execution
+
+A cross-quartet with a clear fifth leaf has initial exact0/1 rejection and three good target-disjoint source parents. Its literal source-parent answer has cost2; q2 must return that checked three-block AF and q1 must refuse. The callback deliberately refuses, so any success here must come from the actual direct original-parent path.
+
+The completed seven-label whole-pair control has good overlapping A/B and bad clear C. A constructed raw Candidate stores its literal A/B source edges; this field request is intentionally not claimed to be the actual selected ordinary cherry. Its actual graph selector returns an isolated edge pair; `paidCase` must invoke the whole AB DP and record the outside query at residual1 after originalprecuts2+computedDPcost1 fromq4. This is a raw paidCase routing/payment control, not an invocation of the actual-context global-minimum theorem. The returned original AF is checked withinq4.
+
+The published nine-label first-hard2 countercase is proper/bothhard2/noRule4/rejected0/1, yet its actual forward selected cherry is not admitted. Its actual graph is the isolated vertex pair in orderacb, so the driver must route by the graph. Atq0 every paid and unit query is unaffordable; even a hostile callback cannot run or fabricate success. The literal case/priority facts are checked again in this actual root.
+
+Wrong plants: q1 succeeds on the cost2 direct path; q2 direct answer has only2blocks; the good-pair outside query receives2 instead of1; the actual first countercase is Rule5-admitted. Every wrong proposition must reduce to a mathematical false goal under cbv. Reduction refusal/unknown symbol/dependency errors do not count. All instrumentation runs the same fresh true/false/resource guard controls, and all failures remain preserved.

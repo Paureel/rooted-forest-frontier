@@ -1,0 +1,9 @@
+import BinaryCallerActual
+#check GenericForest.BinaryCaller.singleton_actual_call
+#print axioms GenericForest.BinaryCaller.singleton_actual_call
+#check GenericForest.BinaryCaller.disjoint_actual_call
+#print axioms GenericForest.BinaryCaller.disjoint_actual_call
+#check GenericForest.BinaryCaller.raw_parent_actual_call
+#print axioms GenericForest.BinaryCaller.raw_parent_actual_call
+#check GenericForest.BinaryCaller.raw_parent_candidate_sizes
+#print axioms GenericForest.BinaryCaller.raw_parent_candidate_sizes

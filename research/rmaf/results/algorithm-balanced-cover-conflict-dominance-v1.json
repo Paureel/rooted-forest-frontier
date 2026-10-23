@@ -1,0 +1,293 @@
+{
+  "kind": "GLOBAL-C-column-domination-regression",
+  "date": "2026-10-14T22:10:16.501759+00:00",
+  "script_sha256": "79f6edcf8fe78f9bbcc3818b3163398d2cb154016da67f5e82392983267ddaf0",
+  "shared_oracle_sha256": "126411fb80063bc4985c4ac35c299c606b20accf288c637f870a318808b61216",
+  "lineage": "shared GLOBAL-C Tree/partition oracle; not independent verification",
+  "frozen_controls": [
+    {
+      "id": "nested",
+      "H": [
+        3,
+        1
+      ],
+      "m": 2,
+      "reps": [
+        0
+      ],
+      "opt": 1,
+      "actual_reps": [
+        0
+      ],
+      "actual_optimum": 1,
+      "passed": true
+    },
+    {
+      "id": "triangle",
+      "H": [
+        3,
+        6,
+        5
+      ],
+      "m": 3,
+      "reps": [
+        0,
+        1,
+        2
+      ],
+      "opt": 2,
+      "actual_reps": [
+        0,
+        1,
+        2
+      ],
+      "actual_optimum": 2,
+      "passed": true
+    },
+    {
+      "id": "equal-incidence",
+      "H": [
+        15
+      ],
+      "m": 4,
+      "reps": [
+        0
+      ],
+      "opt": 1,
+      "actual_reps": [
+        0
+      ],
+      "actual_optimum": 1,
+      "passed": true
+    },
+    {
+      "id": "empty",
+      "H": [],
+      "m": 4,
+      "reps": [],
+      "opt": 0,
+      "actual_reps": [],
+      "actual_optimum": 0,
+      "passed": true
+    }
+  ],
+  "mutations": [
+    {
+      "id": "nested",
+      "field": "opt",
+      "corrupt": 2,
+      "caught": true
+    },
+    {
+      "id": "nested",
+      "field": "reps",
+      "corrupt": [
+        0,
+        999
+      ],
+      "caught": true
+    },
+    {
+      "id": "triangle",
+      "field": "opt",
+      "corrupt": 3,
+      "caught": true
+    },
+    {
+      "id": "triangle",
+      "field": "reps",
+      "corrupt": [
+        2,
+        1,
+        0,
+        999
+      ],
+      "caught": true
+    },
+    {
+      "id": "equal-incidence",
+      "field": "opt",
+      "corrupt": 2,
+      "caught": true
+    },
+    {
+      "id": "equal-incidence",
+      "field": "reps",
+      "corrupt": [
+        0,
+        999
+      ],
+      "caught": true
+    },
+    {
+      "id": "empty",
+      "field": "opt",
+      "corrupt": 1,
+      "caught": true
+    },
+    {
+      "id": "empty",
+      "field": "reps",
+      "corrupt": [
+        999
+      ],
+      "caught": true
+    },
+    {
+      "id": "invalid-domination",
+      "caught": true,
+      "clean_twin": true
+    }
+  ],
+  "sizes": [
+    {
+      "n": 1,
+      "tree_count": 1,
+      "ordered_pairs": 1,
+      "mismatches": 0,
+      "optimum_representative_count_histogram": {
+        "(0, 0)": 1
+      },
+      "seconds": 1.8374999854131602e-05
+    },
+    {
+      "n": 2,
+      "tree_count": 1,
+      "ordered_pairs": 1,
+      "mismatches": 0,
+      "optimum_representative_count_histogram": {
+        "(0, 0)": 1
+      },
+      "seconds": 7.5916999776382e-05
+    },
+    {
+      "n": 3,
+      "tree_count": 3,
+      "ordered_pairs": 9,
+      "mismatches": 0,
+      "optimum_representative_count_histogram": {
+        "(0, 0)": 3,
+        "(1, 1)": 6
+      },
+      "seconds": 0.00040725000008023926
+    },
+    {
+      "n": 4,
+      "tree_count": 15,
+      "ordered_pairs": 225,
+      "mismatches": 0,
+      "optimum_representative_count_histogram": {
+        "(0, 0)": 15,
+        "(1, 1)": 180,
+        "(2, 5)": 30
+      },
+      "seconds": 0.03377112500038493
+    }
+  ],
+  "first_more_than_twice_optimum_columns": {
+    "source": [
+      "a",
+      [
+        "b",
+        [
+          "c",
+          "d"
+        ]
+      ]
+    ],
+    "target": [
+      "c",
+      [
+        "b",
+        [
+          "a",
+          "d"
+        ]
+      ]
+    ],
+    "optimum": 2,
+    "representative_count": 5,
+    "representatives": [
+      {
+        "edge": 0,
+        "parent": 0,
+        "child": 1,
+        "child_labels": [
+          "a"
+        ]
+      },
+      {
+        "edge": 2,
+        "parent": 2,
+        "child": 3,
+        "child_labels": [
+          "b"
+        ]
+      },
+      {
+        "edge": 3,
+        "parent": 2,
+        "child": 4,
+        "child_labels": [
+          "c",
+          "d"
+        ]
+      },
+      {
+        "edge": 4,
+        "parent": 4,
+        "child": 5,
+        "child_labels": [
+          "c"
+        ]
+      },
+      {
+        "edge": 5,
+        "parent": 4,
+        "child": 6,
+        "child_labels": [
+          "d"
+        ]
+      }
+    ],
+    "incidence_columns": [
+      [
+        0,
+        1,
+        2,
+        4
+      ],
+      [
+        0,
+        1,
+        2,
+        4
+      ],
+      [
+        0,
+        1,
+        3,
+        4
+      ],
+      [
+        0,
+        1,
+        2,
+        3
+      ],
+      [
+        0,
+        2,
+        3,
+        4
+      ],
+      [
+        1,
+        2,
+        3,
+        4
+      ]
+    ]
+  },
+  "verdict": "FINITE-REGRESSION-CLEAN; NO-COVER-BOUND"
+}

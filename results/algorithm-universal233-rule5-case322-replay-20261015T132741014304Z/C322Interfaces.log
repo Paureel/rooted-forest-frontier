@@ -1,0 +1,93 @@
+Universal233.Rule5Case322.split_saving_without_bcx {T S X : RMAF.Tree} {w : RMAF.Vertex} {F : List (List Nat)}
+  {a b c : Nat} (hnS : (RMAF.leaves S).Nodup)
+  (he :
+    Universal233.CoreGraph.subtree S w =
+      some ((((RMAF.Tree.leaf a).node X).node (RMAF.Tree.leaf c)).node (RMAF.Tree.leaf b)))
+  (ha : RMAF.agreement T S F = true) (single : [a] ∈ F) (nonsingle : ¬[b] ∈ F)
+  (noBCX : ∀ (D : List Nat), D ∈ F → b ∈ D → c ∈ D → ∀ (x : Nat), x ∈ D → x ∈ RMAF.leaves X → False) :
+  (Universal233.CherryBranching.splitForest (Universal233.CherryBranching.splitForest F (RMAF.leaves X)) [c]).length ≤
+    F.length + 1
+Universal233.Rule5Case322.actual_easy_exchange_unordered {T S X : RMAF.Tree} {w : RMAF.Vertex} {F : List (List Nat)}
+  {a b c : Nat} (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S)
+  (he :
+    Universal233.CoreGraph.subtree S w =
+      some ((((RMAF.Tree.leaf a).node X).node (RMAF.Tree.leaf c)).node (RMAF.Tree.leaf b)))
+  (ch : Universal233.HardParent.ActualCherry T a b)
+  (hc : Universal233.CherryBranching.cuts S a b = [w ++ [false, false, true], w ++ [false, true]])
+  (ha : RMAF.agreement T S F = true) (single : [a] ∈ F) (nonsingle : ¬[b] ∈ F)
+  (noBCX : ∀ (D : List Nat), D ∈ F → b ∈ D → c ∈ D → ∀ (x : Nat), x ∈ D → x ∈ RMAF.leaves X → False) :
+  ∃ G,
+    RMAF.agreement T S G = true ∧
+      G.length ≤ F.length ∧ VertexGeometry.Refines G (Universal233.CherryBranching.pendantPartition S a b)
+Universal233.Rule5Case322.actual_typeI_cover {T S X U V W : RMAF.Tree} {w qa q r z : RMAF.Vertex} {F : List (List Nat)}
+  {a b c : Nat} (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S)
+  (he :
+    Universal233.CoreGraph.subtree S w =
+      some ((((RMAF.Tree.leaf a).node X).node (RMAF.Tree.leaf c)).node (RMAF.Tree.leaf b)))
+  (ch : Universal233.HardParent.ActualCherry T a b)
+  (hc : Universal233.CherryBranching.cuts S a b = [w ++ [false, false, true], w ++ [false, true]])
+  (leafA : Universal233.CoreGraph.LeafAt T qa a) (qcut : q ∈ Universal233.CherryBranching.cuts T b c)
+  (rcut : r ∈ Universal233.CherryBranching.cuts T b c) (lookupU : Universal233.CoreGraph.subtree T q = some U)
+  (lookupV : Universal233.CoreGraph.subtree T r = some V) (lower : Universal233.CoreGraph.subtree T z = some W)
+  (cW : c ∈ RMAF.leaves W) (uW : ∀ (x : Nat), x ∈ RMAF.leaves U → x ∈ RMAF.leaves W)
+  (vW : ∀ (y : Nat), y ∈ RMAF.leaves V → ¬y ∈ RMAF.leaves W) (uX : ∀ (x : Nat), x ∈ RMAF.leaves U → x ∈ RMAF.leaves X)
+  (vX : ∀ (y : Nat), y ∈ RMAF.leaves V → y ∈ RMAF.leaves X) (ha : RMAF.agreement T S F = true) :
+  ∃ P, P ∈ Universal233.Rule5Case322.typeIChildren T S a b qa q r ∧ Universal233.Rule5Case322.OriginalCover T S F P
+Universal233.Rule5Case322.actual_typeII_cover {T S X : RMAF.Tree} {w qa : RMAF.Vertex} {qs : List RMAF.Vertex}
+  {F : List (List Nat)} {a b c : Nat} (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S)
+  (he :
+    Universal233.CoreGraph.subtree S w =
+      some ((((RMAF.Tree.leaf a).node X).node (RMAF.Tree.leaf c)).node (RMAF.Tree.leaf b)))
+  (ch : Universal233.HardParent.ActualCherry T a b)
+  (hc : Universal233.CherryBranching.cuts S a b = [w ++ [false, false, true], w ++ [false, true]])
+  (leafA : Universal233.CoreGraph.LeafAt T qa a)
+  (bside :
+    ∀ (q : RMAF.Vertex),
+      q ∈ qs →
+        ∃ U W r,
+          q ∈ Universal233.CherryBranching.cuts T b c ∧
+            Universal233.CoreGraph.subtree T q = some U ∧
+              Universal233.CoreGraph.subtree T r = some W ∧
+                (∀ (x : Nat), x ∈ RMAF.leaves U → x ∈ RMAF.leaves X) ∧
+                  (∀ (x : Nat), x ∈ RMAF.leaves U → x ∈ RMAF.leaves W) ∧ b ∈ RMAF.leaves W ∧ ¬c ∈ RMAF.leaves W)
+  (ha : RMAF.agreement T S F = true) :
+  ∃ P, P ∈ Universal233.Rule5Case322.typeIIChildren T S a b qa qs ∧ Universal233.Rule5Case322.OriginalCover T S F P
+Universal233.Rule5Case322.actual_typeIII_cover {T S X W C : RMAF.Tree} {w qa q r : RMAF.Vertex} {F : List (List Nat)}
+  {a b c : Nat} (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S)
+  (he :
+    Universal233.CoreGraph.subtree S w =
+      some ((((RMAF.Tree.leaf a).node X).node (RMAF.Tree.leaf c)).node (RMAF.Tree.leaf b)))
+  (ch : Universal233.HardParent.ActualCherry T a b)
+  (hc : Universal233.CherryBranching.cuts S a b = [w ++ [false, false, true], w ++ [false, true]])
+  (leafA : Universal233.CoreGraph.LeafAt T qa a) (lookup : Universal233.CoreGraph.subtree T q = some W)
+  (core : Universal233.CoreGraph.subtree T r = some C)
+  (coreLabels : ∀ (x : Nat), x ∈ RMAF.leaves T → (x ∈ RMAF.leaves C ↔ ¬x ∈ RMAF.leaves X ∧ x ≠ c))
+  (bW : b ∈ RMAF.leaves W) (cW : c ∈ RMAF.leaves W) (bC : b ∈ RMAF.leaves C) (cC : ¬c ∈ RMAF.leaves C)
+  (onPath : q ∈ RMAF.minimalVertices [b, c] T) (ha : RMAF.agreement T S F = true) :
+  ∃ P, P ∈ Universal233.Rule5Case322.typeIIChildren T S a b qa [q] ∧ Universal233.Rule5Case322.OriginalCover T S F P
+Universal233.Rule5Case322.originalCover_roles_swap {T S : RMAF.Tree} {F P : List (List Nat)}
+  (h : Universal233.Rule5Case322.OriginalCover T S F P) : Universal233.Rule5Case322.OriginalCover S T F P
+Universal233.Rule5Case322.guarded_paid_budget_identity {T S : RMAF.Tree} {c : Universal233.Rule5Case322.Branch}
+  {F : List (List Nat)} (guard : Universal233.Rule5Case322.currentGuard T S c = true) (ha : RMAF.agreement T S F = true)
+  (ref : VertexGeometry.Refines F c.partition) :
+  Universal233.Rule5Case322.paid c + (F.length - c.partition.length) = F.length - 1
+Universal233.Rule5Case322.child_IH_minimum {T S : RMAF.Tree} {cs : List Universal233.Rule5Case322.Branch}
+  (cover :
+    ∀ (F : List (List Nat)),
+      RMAF.agreement T S F = true → ∃ c, c ∈ cs ∧ Universal233.Rule5Case322.OriginalCover T S F c.partition)
+  (solve : Universal233.Rule5Case322.Branch → List (List Nat))
+  (ih : ∀ (c : Universal233.Rule5Case322.Branch), c ∈ cs → Universal233.Rule5Case322.ExactChild T S c (solve c))
+  (best : List (List Nat)) (chosen : ∃ c, c ∈ cs ∧ best = solve c)
+  (least : ∀ (c : Universal233.Rule5Case322.Branch), c ∈ cs → best.length ≤ (solve c).length) :
+  RMAF.agreement T S best = true ∧ ∀ (F : List (List Nat)), RMAF.agreement T S F = true → best.length ≤ F.length
+Universal233.Rule5Case322.callback_strict_decrease {q r : Nat} {cs : List Universal233.Rule5Case322.Branch}
+  (positive : ∀ (c : Universal233.Rule5Case322.Branch), c ∈ cs → 0 < Universal233.Rule5Case322.paid c)
+  (hr : r ∈ Universal233.Rule5Case322.callbackRequests q cs) : r < q
+Universal233.Rule5Case322.guarded_callback_LIST_mass (weight : Nat → Nat) (q : Nat)
+  (cs : List Universal233.Rule5Case322.Branch) :
+  (List.map weight (Universal233.Rule5Case322.callbackRequests q cs)).sum ≤
+    (List.map (fun c => weight (q - Universal233.Rule5Case322.paid c)) cs).sum

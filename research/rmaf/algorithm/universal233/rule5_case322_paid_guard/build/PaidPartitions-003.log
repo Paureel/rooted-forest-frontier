@@ -1,0 +1,160 @@
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:80:7: error: unsolved goals
+case nil
+T : Tree
+z : Nat
+L : List Nat
+hn : L.Nodup
+sub : ∀ (q : RMAF.Vertex), q ∈ [] → (subtreeLabels T q).Sublist L
+ne : ∀ (q : RMAF.Vertex), q ∈ [] → subtreeLabels T q ≠ []
+nd : [].Nodup
+disj :
+  ∀ (q : RMAF.Vertex),
+    q ∈ [] → ∀ (r : RMAF.Vertex), r ∈ [] → q ≠ r → ∀ (x : Nat), x ∈ subtreeLabels T q → ¬x ∈ subtreeLabels T r
+anchor : z ∈ L
+outside : ∀ (q : RMAF.Vertex), q ∈ [] → ¬z ∈ subtreeLabels T q
+⊢ L = List.filter (fun x => true) L
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:85:22: error: unsolved goals
+T : Tree
+z : Nat
+q : RMAF.Vertex
+qs : List RMAF.Vertex
+ih :
+  ∀ (L : List Nat),
+    L.Nodup →
+      (∀ (q : RMAF.Vertex), q ∈ qs → (subtreeLabels T q).Sublist L) →
+        (∀ (q : RMAF.Vertex), q ∈ qs → subtreeLabels T q ≠ []) →
+          qs.Nodup →
+            (∀ (q : RMAF.Vertex),
+                q ∈ qs →
+                  ∀ (r : RMAF.Vertex), r ∈ qs → q ≠ r → ∀ (x : Nat), x ∈ subtreeLabels T q → ¬x ∈ subtreeLabels T r) →
+              z ∈ L →
+                (∀ (q : RMAF.Vertex), q ∈ qs → ¬z ∈ subtreeLabels T q) →
+                  arcPartitionFrom T qs [L] =
+                    List.map (subtreeLabels T) qs ++
+                      [List.filter (fun x => !(List.map (subtreeLabels T) qs).flatten.contains x) L]
+L : List Nat
+hn : L.Nodup
+sub : ∀ (q_1 : RMAF.Vertex), q_1 ∈ q :: qs → (subtreeLabels T q_1).Sublist L
+ne : ∀ (q_1 : RMAF.Vertex), q_1 ∈ q :: qs → subtreeLabels T q_1 ≠ []
+nd : (q :: qs).Nodup
+disj :
+  ∀ (q_1 : RMAF.Vertex),
+    q_1 ∈ q :: qs →
+      ∀ (r : RMAF.Vertex), r ∈ q :: qs → q_1 ≠ r → ∀ (x : Nat), x ∈ subtreeLabels T q_1 → ¬x ∈ subtreeLabels T r
+anchor : z ∈ L
+outside : ∀ (q_1 : RMAF.Vertex), q_1 ∈ q :: qs → ¬z ∈ subtreeLabels T q_1
+A : List Nat := subtreeLabels T q
+R : List Nat := List.filter (fun x => !A.contains x) L
+nq : A ≠ []
+⊢ ¬z ∈ A
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:105:82: error: unsolved goals
+T : Tree
+z : Nat
+q : RMAF.Vertex
+qs : List RMAF.Vertex
+ih :
+  ∀ (L : List Nat),
+    L.Nodup →
+      (∀ (q : RMAF.Vertex), q ∈ qs → (subtreeLabels T q).Sublist L) →
+        (∀ (q : RMAF.Vertex), q ∈ qs → subtreeLabels T q ≠ []) →
+          qs.Nodup →
+            (∀ (q : RMAF.Vertex),
+                q ∈ qs →
+                  ∀ (r : RMAF.Vertex), r ∈ qs → q ≠ r → ∀ (x : Nat), x ∈ subtreeLabels T q → ¬x ∈ subtreeLabels T r) →
+              z ∈ L →
+                (∀ (q : RMAF.Vertex), q ∈ qs → ¬z ∈ subtreeLabels T q) →
+                  arcPartitionFrom T qs [L] =
+                    List.map (subtreeLabels T) qs ++
+                      [List.filter (fun x => !(List.map (subtreeLabels T) qs).flatten.contains x) L]
+L : List Nat
+hn : L.Nodup
+sub : ∀ (q_1 : RMAF.Vertex), q_1 ∈ q :: qs → (subtreeLabels T q_1).Sublist L
+ne : ∀ (q_1 : RMAF.Vertex), q_1 ∈ q :: qs → subtreeLabels T q_1 ≠ []
+nd : (q :: qs).Nodup
+disj :
+  ∀ (q_1 : RMAF.Vertex),
+    q_1 ∈ q :: qs →
+      ∀ (r : RMAF.Vertex), r ∈ q :: qs → q_1 ≠ r → ∀ (x : Nat), x ∈ subtreeLabels T q_1 → ¬x ∈ subtreeLabels T r
+anchor : z ∈ L
+outside : ∀ (q_1 : RMAF.Vertex), q_1 ∈ q :: qs → ¬z ∈ subtreeLabels T q_1
+A : List Nat := subtreeLabels T q
+R : List Nat := List.filter (fun x => !A.contains x) L
+nq : A ≠ []
+zR : z ∈ R
+nr : R ≠ []
+nd' : ¬q ∈ qs ∧ qs.Nodup
+sub' : ∀ (r : RMAF.Vertex), r ∈ qs → (subtreeLabels T r).Sublist R
+aq : arcPartitionFrom T qs [A] = [A]
+tail :
+  arcPartitionFrom T qs [R] =
+    List.map (subtreeLabels T) qs ++ [List.filter (fun x => !(List.map (subtreeLabels T) qs).flatten.contains x) R]
+⊢ List.filter (fun a => !decide (a ∈ (List.map (subtreeLabels T) qs).flatten) && !decide (a ∈ subtreeLabels T q)) L =
+    List.filter (fun x => !decide (x ∈ subtreeLabels T q ++ (List.map (subtreeLabels T) qs).flatten)) L
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:85:40: warning: This simp argument is unused:
+  outside q (by simp)
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [R, anchor]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:106:32: warning: This simp argument is unused:
+  List.contains_append
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [R, List.filter_filter, Bool.not_or, Bool.and_comm, A]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:106:53: warning: This simp argument is unused:
+  Bool.not_or
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [R, List.filter_filter, List.contains_append, Bool.and_comm, A]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:106:65: warning: This simp argument is unused:
+  Bool.and_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [R, List.filter_filter, List.contains_append, Bool.not_or, A]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:117:86: error: unsolved goals
+T : Tree
+a b z : Nat
+hn : (leaves T).Nodup
+qs : List RMAF.Vertex
+nd : qs.Nodup
+selected : ∀ (q : RMAF.Vertex), q ∈ qs → q ∈ cuts T a b
+hz : z = a ∨ z = b
+zT : z ∈ leaves T
+⊢ arcPartition T qs =
+    List.map (subtreeLabels T) qs ++
+      [List.filter (fun x => !(List.map (subtreeLabels T) qs).flatten.contains x) (leaves T)]
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:118:1: error: unexpected identifier; expected command
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:129:57: error: unsolved goals
+S : Tree
+a b : Nat
+hn : (leaves S).Nodup
+ha : a ∈ leaves S
+⊢ arcPartition S (cuts S a b) = pendantPartition S a b
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:130:1: error: unexpected identifier; expected command
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:135:45: error: unsolved goals
+T : Tree
+a b : Nat
+hn : (leaves T).Nodup
+ha : a ∈ leaves T
+qs : List RMAF.Vertex
+nd : qs.Nodup
+selected : ∀ (q : RMAF.Vertex), q ∈ qs → q ∈ cuts T a b
+⊢ (arcPartition T qs).length = qs.length + 1
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:136:1: error: unexpected identifier; expected command
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:142:48: error: unsolved goals
+T S : Tree
+a b : Nat
+hn : (leaves T).Nodup
+ha : a ∈ leaves T
+qs : List RMAF.Vertex
+nd : qs.Nodup
+selected : ∀ (q : RMAF.Vertex), q ∈ qs → q ∈ cuts T a b
+⊢ currentGuard T S (targetBranch T qs) = true
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:143:1: error: unexpected identifier; expected command

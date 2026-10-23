@@ -1,0 +1,11 @@
+# One-shot nonauthor forest-reductions controls
+
+This directory is a task-local, independently authored review instrument. It reconstructs original rooted-tree graphs, LCA-to-leaf path hulls, induced rooted topologies, actual source refinements, finite agreement partitions, and singleton/cherry transports. It is intentionally not registered as a general toolkit engine: scope, independence barriers, and source-manifest gates belong to this one review.
+
+Use these scripts only for the root pin in the parent directory. `graph_controls_v1.py` runs the 4-case pilot or fixed21 fixture battery. `transport_mutations_v1.py` checks8 tree roundtrips, literal cleanup/contraction/expansion composition and10 bad-twin detectors. `audit_controls_v5.py` is the corrected Std-only toy driver using AuditorV3. Earlier versions are retained failed or weaker controls; they are not alternative live entrypoints. `standard_axiom_controls_v1.py` accepts each of the three permitted standard dependencies and rejects its forbidden twin.
+
+Outputs are exact control comparisons and explicit counts in JSON. CONTROLS-PASS means all declared controls in that run passed and all declared corruptions were caught; it says nothing about candidate Lean sources. Missing fixtures, origin mismatch/duplicates, custom axioms, unexpectedly compiled false propositions and unexpected Lean exits fail. Full failure logs are retained. Generated-origin records keep both Lean's raw probe origin and an explicit parent-prefix attribution adapter.
+
+Believe only the scoped control result after checking the immutable literal expectation files, actual logs and denominators. The scientific candidate remains unopened until root releases the exact77+103 completed freezes. Candidate closure needs exact source rebuild, every-source/every-origin inventory, axiom scan, frozen independent readout comparisons, semantic/interface review and all required proving-protocol passes. A preparation pass cannot confer VERIFIED-CLOSED.
+
+Run from workspace root with `./bootloops-python` and absolute/explicit output paths; the audit driver resolves the local Lean4.35 runtime. All computation and artifacts stay local. Graph expected values were hand-frozen before execution. Scientific modules in `toys/` use only Std or each other. Audit instrumentation uses the disclosed Lean environment/axiom/equation APIs.

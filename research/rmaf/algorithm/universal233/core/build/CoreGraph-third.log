@@ -1,0 +1,48 @@
+research/rmaf/algorithm/universal233/core/CoreGraph.lean:95:16: error: Invalid projection: Projections cannot be used on functions, and
+  ih
+has function type
+  y ≠ bad →
+    (z ≠ bad → Walk t (fun z => P z ∧ z ≠ bad) z y) ∧
+      (z = bad → ∀ (u : Vertex), Adj t bad u → P u → Walk t (fun z => P z ∧ z ≠ bad) u y)
+research/rmaf/algorithm/universal233/core/CoreGraph.lean:96:34: error: Invalid projection: Projections cannot be used on functions, and
+  ih
+has function type
+  y ≠ bad →
+    (z ≠ bad → Walk t (fun z => P z ∧ z ≠ bad) z y) ∧
+      (z = bad → ∀ (u : Vertex), Adj t bad u → P u → Walk t (fun z => P z ∧ z ≠ bad) u y)
+research/rmaf/algorithm/universal233/core/CoreGraph.lean:101:25: error: Invalid projection: Projections cannot be used on functions, and
+  ih
+has function type
+  y ≠ bad →
+    (z ≠ bad → Walk t (fun z => P z ∧ z ≠ bad) z y) ∧
+      (z = bad → ∀ (u : Vertex), Adj t bad u → P u → Walk t (fun z => P z ∧ z ≠ bad) u y)
+research/rmaf/algorithm/universal233/core/CoreGraph.lean:131:2: error: Tactic `contradiction` failed
+
+t : Tree
+p : Vertex
+x y z : Nat
+h : CherryAt t p x y
+hv : some ((Tree.leaf x).node (Tree.leaf y)) = some (Tree.leaf z)
+⊢ False
+research/rmaf/algorithm/universal233/core/CoreGraph.lean:136:43: warning: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+research/rmaf/algorithm/universal233/core/CoreGraph.lean:149:42: error(lean.invalidField): Invalid field `valid`: The environment does not contain `Eq.valid`, so it is not possible to project the field `valid` from an expression
+  cherry_left h
+of type
+  subtree t (p ++ [false]) = some (Tree.leaf x)
+research/rmaf/algorithm/universal233/core/CoreGraph.lean:153:43: error(lean.invalidField): Invalid field `valid`: The environment does not contain `Eq.valid`, so it is not possible to project the field `valid` from an expression
+  cherry_right h
+of type
+  subtree t (p ++ [true]) = some (Tree.leaf y)
+'Universal233.CoreGraph.subtree_append' depends on axioms: [propext]
+'Universal233.CoreGraph.leaf_no_child' depends on axioms: [propext]
+'Universal233.CoreGraph.leaf_neighbor_parent' depends on axioms: [propext]
+'Universal233.CoreGraph.walk_from_leaf_visits_parent' depends on axioms: [propext]
+'Universal233.CoreGraph.nonsingleton_parent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Universal233.CoreGraph.mixed_cherry_singleton' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Universal233.CoreGraph.unique_color_singleton' does not depend on any axioms
+'Universal233.CoreGraph.mixed_root_cherry_singleton' depends on axioms: [propext, Classical.choice, Quot.sound]

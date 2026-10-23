@@ -1,0 +1,137 @@
+{
+  "actual_solver_link": {
+    "independent_credit_for_those_components": false,
+    "reused_embedded_author_theorem_dependencies": 170,
+    "theorem": "IndependentReconstruction.actual_solve_successful_pretest"
+  },
+  "candidate_release_sha256": "7b76b8313f55c1425dd900461bf836699ef91f0903582a1e4a7752b6fd7be48a",
+  "conditional_control_flow": {
+    "method": "double natural strong induction on q then leaf-count upper bound",
+    "open_parameters": [
+      "CommonReady",
+      "CommonLift",
+      "OneRule",
+      "HighRule",
+      "ForwardRule4",
+      "ReverseRule4",
+      "Hard2Rule",
+      "RejectImpossible"
+    ],
+    "parameters_instantiated": false,
+    "theorem": "IndependentReconstruction.solve_exact_from_local_rules"
+  },
+  "controls": "positive generic contract and zero-head choice accepted; false negative and empty answer rejected, with explicit refutation proofs in checked closure",
+  "created_utc": "2026-10-16T09:13:06.437382+00:00",
+  "files": [
+    {
+      "bytes": 8956,
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/fast-ordinary-solver-2026-10-15/sol-independent/universal_reconstruction_20261016T085144Z/ReconstructionV2.lean",
+      "sha256": "b715b8f7f1b15562d7380aa28cf59fb6e64455412ba88b5a2757d195685f3793"
+    },
+    {
+      "bytes": 353248,
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/fast-ordinary-solver-2026-10-15/sol-independent/universal_reconstruction_20261016T085144Z/ReconstructionV2.olean",
+      "sha256": "963dd7410af2f8b979625bf43c3cdb814ec0cd2890499c59384dcf3cf7e01220"
+    },
+    {
+      "bytes": 4861,
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/fast-ordinary-solver-2026-10-15/sol-independent/universal_reconstruction_20261016T085144Z/ControlFlowV4.lean",
+      "sha256": "52c9a39492a5198f1721cac7f427547018c607fe140de26e0ce101404d60a847"
+    },
+    {
+      "bytes": 188536,
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/fast-ordinary-solver-2026-10-15/sol-independent/universal_reconstruction_20261016T085144Z/ControlFlowV4.olean",
+      "sha256": "ed9b59ab41d4ca2175a0d3e3769f96cfc9a2a5e3db6c4e0e63b2b1615a760291"
+    },
+    {
+      "bytes": 38527,
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/fast-ordinary-solver-2026-10-15/sol-independent/universal_reconstruction_20261016T085144Z/PROOF-DEPENDENCY-CERTIFICATE-v1.json",
+      "sha256": "5ab9210e38e68935555a783fc73c076ca225caeb0610ec3758c19172717d94a7"
+    },
+    {
+      "bytes": 27672,
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/fast-ordinary-solver-2026-10-15/sol-independent/universal_reconstruction_20261016T085144Z/CONTROL-FLOW-DEPENDENCY-CERTIFICATE-v1.json",
+      "sha256": "03d7bfbdce8beaf0a5281e80ecdfcd4f14e7501b5b802fc25864081075aa78c8"
+    },
+    {
+      "bytes": 10143,
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/fast-ordinary-solver-2026-10-15/sol-independent/universal_reconstruction_20261016T085144Z/MAY-ASSUME-AMENDMENT-v2.json",
+      "sha256": "afcef323af912bf9ebf451723945a78bead613c8d062e6a8171aab6be6aabcdd"
+    },
+    {
+      "bytes": 4938,
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/fast-ordinary-solver-2026-10-15/sol-independent/universal_reconstruction_20261016T085144Z/CONTROL-RESULTS-v1.json",
+      "sha256": "2cdcdacc49f09dfe8c658a0cb916b8de4d11a5c432d05416610a482805119b4f"
+    },
+    {
+      "bytes": 8259,
+      "path": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/fast-ordinary-solver-2026-10-15/sol-independent/universal_reconstruction_20261016T085144Z/RECONSTRUCTION-REPORT-v1.md",
+      "sha256": "6348c1359f359e2579b4db66e72e0ccd9287aa6c0fb2a0b454977d5ca9456d90"
+    }
+  ],
+  "first_open_step": {
+    "name": "IndependentReconstruction.CommonReady",
+    "next": "CommonLift; then the six remaining printed branch obligations",
+    "source": "ControlFlowV4.lean:15",
+    "statement": "\u2200 T S reverse c,\n DepthOne.proper T S=true \u2192 DepthOne.pretest01 T S=.rejected \u2192 early T S=.common reverse c \u2192\n DepthOne.proper (commonPair T S reverse c).1 (commonPair T S reverse c).2=true \u2227\n (leaves (commonPair T S reverse c).1).length<(leaves T).length"
+  },
+  "new_blind_credit": false,
+  "new_cold_builds": 0,
+  "new_finite_censuses": 0,
+  "new_old_raw_audits": 0,
+  "new_replication_credit": false,
+  "new_solver_oracle_evaluator_runs": 0,
+  "not_claimed": [
+    "full independent proper-input exactness",
+    "VERIFIED-CLOSED",
+    "native/runtime equivalence",
+    "improved exponent",
+    "novelty"
+  ],
+  "prior_105_partial_raw_refusal": "preserved unchanged",
+  "prior_review_manifest_sha256": "2cbf35824f2116133ab5f24fb289132cbb2c297fd24ce90de4ed4cc487b34d74",
+  "proof_evidence": {
+    "axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "cached_axiom_extension_used": false,
+    "conditional_module": {
+      "actual_proofs": 11,
+      "complete_nonproof_bodies": 12,
+      "full_type_nonproof_expression_nodes": 2623,
+      "rows": 23
+    },
+    "conditional_single_root_closure_declarations": 3380,
+    "custom_axioms": [],
+    "forbidden_author_global_targets_reached": [],
+    "partial": [],
+    "pretest_module": {
+      "actual_proofs": 31,
+      "complete_nonproof_bodies": 3,
+      "full_type_nonproof_expression_nodes": 2094,
+      "rows": 34
+    },
+    "pretest_seven_root_closure_declarations": 3369,
+    "sorryAx": false,
+    "unsafe": []
+  },
+  "proved_independent_necessary_part": {
+    "author_generated_definition_injectivity_facts": [
+      "RMAF.best.eq_2",
+      "Universal233.DepthOne.Result.found.inj",
+      "Universal233.DepthOne.Result.found.injEq"
+    ],
+    "scope": "every proper T,S and found pretest candidate; arbitrary q, original-model agreement forests and Nat labels",
+    "substantive_author_correctness_or_completeness_lemmas_used": [],
+    "theorems": [
+      "successful_pretest_minimum",
+      "successful_pretest_query"
+    ]
+  },
+  "role": "NONAUTHOR_NEW_UNIVERSAL_RECONSTRUCTION_PHASE",
+  "status": "SUBSTANTIVE_PARTIAL_RECONSTRUCTION_WHOLE_TARGET_OPEN",
+  "target_sha256": "5c82a0912b2522ff8eb7ccc389dac1682c43191618ec963ef2466863253dbba3",
+  "version": 1
+}

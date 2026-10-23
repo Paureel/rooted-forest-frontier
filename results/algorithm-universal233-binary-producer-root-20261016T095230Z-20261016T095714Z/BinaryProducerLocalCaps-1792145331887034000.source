@@ -1,0 +1,123 @@
+import BinaryProducerDisjoint
+namespace GenericForest.BinaryProducer
+open BinaryProvider GenericForest.ScalarBits Universal233.WholeSourceWork Universal233.CoreWork
+
+theorem subtreeBits_width (L : Nat) (S U : BinaryProvider.Tree) (p : RMAF.Vertex)
+ (cap : TreeWidth L S) (h : (subtreeBits S p).value=some U) : TreeWidth L U := by
+ induction p generalizing S with
+ | nil=>simp only [subtreeBits,Option.some.injEq] at h;subst U;exact cap
+ | cons b bs ih=>
+  cases S with
+  | leaf x=>simp [subtreeBits] at h
+  | node l r=>
+   cases b
+   · exact ih l (treeWidth_left L l r cap) h
+   · exact ih r (treeWidth_right L l r cap) h
+
+theorem subtreeBits_work (S : BinaryProvider.Tree) (p : RMAF.Vertex) :
+ (subtreeBits S p).work≤4*(p.length+1) := by
+ induction p generalizing S with
+ | nil=>simp [subtreeBits]
+ | cons b bs ih=>
+  cases S with
+  | leaf x=>simp [subtreeBits];omega
+  | node l r=>
+   cases b <;> simp only [subtreeBits,Bool.false_eq_true,ite_false,ite_true,List.length_cons]
+   all_goals have h:=ih _;omega
+
+theorem excludeLabels_mem (U L : Block) (x : Bits) (h : x∈(excludeLabels U L).value) : x∈L := by
+ induction L with
+ | nil=>simp [excludeLabels] at h
+ | cons y ys ih=>
+  simp only [excludeLabels] at h
+  split at h
+  · exact List.mem_cons_of_mem y (ih h)
+  · rcases List.mem_cons.mp h with rfl|hh
+    · simp
+    · exact List.mem_cons_of_mem y (ih hh)
+theorem excludeLabels_count (U L : Block) : (excludeLabels U L).value.length≤L.length := by
+ induction L with
+ | nil=>simp [excludeLabels]
+ | cons y ys ih=>simp only [excludeLabels];split <;> simp only [List.length_cons] <;> omega
+
+theorem subtreeBits_leaves (S U : BinaryProvider.Tree) (p : RMAF.Vertex)
+ (h : (subtreeBits S p).value=some U) : (leavesBits U).length≤(leavesBits S).length := by
+ induction p generalizing S with
+ | nil=>simp only [subtreeBits,Option.some.injEq] at h;subst U;omega
+ | cons b bs ih=>
+  cases S with
+  | leaf x=>simp [subtreeBits] at h
+  | node l r=>
+   cases b
+   · have hh:=ih l h;simp only [leavesBits,List.length_append];omega
+   · have hh:=ih r h;simp only [leavesBits,List.length_append];omega
+
+theorem subtreeLeavesBits_caps (L : Nat) (S : BinaryProvider.Tree) (p : RMAF.Vertex) (cap : TreeWidth L S) :
+ BlockWidth L (subtreeLeavesBits S p).value ∧ (subtreeLeavesBits S p).value.length≤(leavesBits S).length := by
+ cases h : (subtreeBits S p).value with
+ | none=>simp [subtreeLeavesBits,h,BlockWidth]
+ | some U=>
+  have w:=subtreeBits_width L S U p cap h;have n:=subtreeBits_leaves S U p h
+  change BlockWidth L (leavesBits U) at w
+  simpa only [subtreeLeavesBits,h,leavesCopy_value] using And.intro w n
+
+theorem forestBits_caps (L : Nat) (S : BinaryProvider.Tree) (cut : Option RMAF.Vertex) (cap : TreeWidth L S) :
+ ForestWidth L (forestBits S cut).value ∧ (forestBits S cut).value.length≤2 ∧
+ (forestBits S cut).value.flatten.length≤2*(leavesBits S).length := by
+ cases cut with
+ | none=>
+  simp only [forestBits,leavesCopy_value,List.length_singleton,List.flatten_cons,List.flatten_nil,List.append_nil]
+  refine ⟨?_,by omega,by omega⟩
+  intro B hB;have e:=List.mem_singleton.mp hB;subst B;exact cap
+ | some p=>
+  have a:=subtreeLeavesBits_caps L S p cap
+  have b:=excludeLabels_count (subtreeLeavesBits S p).value (leavesBits S)
+  simp only [forestBits,leavesCopy_value,List.length_cons,List.length_nil,List.flatten_cons,List.flatten_nil,List.append_nil,List.length_append]
+  refine ⟨?_,by omega,by omega⟩
+  intro B hB x hx
+  simp only [List.mem_cons,List.not_mem_nil,or_false] at hB
+  rcases hB with rfl|rfl
+  · exact a.1 x hx
+  · exact cap x (excludeLabels_mem _ _ x hx)
+
+theorem componentBits_caps (L N : Nat) (t s u v : BinaryProvider.Tree)
+ (tc : TreeWidth L t) (sc : TreeWidth L s) (tn : treeNodes (treeValue t)≤N) (sn : treeNodes (treeValue s)≤N)
+ (h : (componentBits t s).value=some (u,v)) :
+ TreeWidth L u ∧ TreeWidth L v ∧ treeNodes (treeValue u)≤N ∧ treeNodes (treeValue v)≤N := by
+ simp only [componentBits,leavesCopy_value] at h
+ cases hr : (restrictLabels (leavesBits s) t).value with
+ | none=>simp [hr] at h
+ | some w=>
+  simp only [hr,Option.map_some,Option.some.injEq,Prod.mk.injEq] at h
+  rcases h with ⟨hu,hv⟩;subst u;subst v
+  have r:=BinaryCaller.restriction_global_caps L N (leavesBits s) t w sc tc tn hr
+  exact ⟨r.1,sc,r.2,sn⟩
+
+theorem jobsBits_count (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree) :
+ ∀js,(jobsBits t ss).value=some js→js.length=ss.length := by
+ induction ss with
+ | nil=>intro js h;simp only [jobsBits,Option.some.injEq] at h;subst js;rfl
+ | cons s ss ih=>
+  intro js h
+  cases c : (componentBits t s).value with
+  | none=>simp [jobsBits,c] at h
+  | some p=>
+   cases b : (pretestBits p.1 p.2).value <;> simp only [jobsBits,c,b] at h
+   · contradiction
+   all_goals cases r : (jobsBits t ss).value with
+   | none=>simp [r] at h
+   | some ys=>simp only [r,Option.map_some,Option.some.injEq] at h;subst js;have n:=ih ys r;simp;omega
+
+theorem ordinaryAnswer_work (ordinary : BinaryProvider.Tree→BinaryProvider.Tree→Bits→Charged (Option BinaryProvider.Forest))
+ (p : BinaryProvider.Tree×BinaryProvider.Tree) (b : Bits) (N C : Nat)
+ (cost : (ordinary p.1 p.2 b).work≤C)
+ (size : ∀F,(ordinary p.1 p.2 b).value=some F→F.length≤N) :
+ (ordinaryAnswer ordinary p b).work≤C+16*(N+1)^2+24*(N+2)+8 := by
+ cases h : (ordinary p.1 p.2 b).value with
+ | none=>simp only [ordinaryAnswer,h];omega
+ | some F=>
+  have n:=size F h;have c:=spineCounter_work F;have w:=spineCounter_length F
+  have p:=Nat.mul_le_mul_left 16 (Nat.pow_le_pow_left (Nat.add_le_add_right n 1) 2)
+  have s:=subtractBits_work (spineCounter F).value [true]
+  simp only [ordinaryAnswer,h,List.length_cons,List.length_nil] at *;omega
+end GenericForest.BinaryProducer

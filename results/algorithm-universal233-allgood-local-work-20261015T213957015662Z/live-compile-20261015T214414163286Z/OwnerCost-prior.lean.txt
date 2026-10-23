@@ -1,0 +1,66 @@
+import TableCost
+namespace AllGoodDP.LocalWork
+open RMAF Universal233.WholeSourceWork Universal233.CoreWork
+
+def meterLabels : Tree→Charged (List Nat)
+ | .leaf x => ⟨[x],4⟩
+ | .node l r =>
+  let a := meterLabels l
+  let b := meterLabels r
+  ⟨a.value++b.value,a.work+b.work+4*(a.value.length+1)+4⟩
+@[simp] theorem meterLabels_value (t : Tree) : (meterLabels t).value=leaves t := by
+ induction t with
+ | leaf => rfl
+ | node l r il ir => simp [meterLabels,leaves,il,ir]
+
+theorem leaves_le_nodes (t : Tree) : (leaves t).length≤treeNodes t := by
+ have h := treeNodes_le_twice_leaves t
+ have p := treeNodes_pos t
+ omega
+
+theorem meterLabels_work (t : Tree) (N : Nat) (ht : treeNodes t≤N) :
+ (meterLabels t).work≤8*(N+1)*treeNodes t := by
+ induction t with
+ | leaf => simp [meterLabels,treeNodes];omega
+ | node l r il ir =>
+  have hl : treeNodes l≤N := by simp only [treeNodes] at ht;omega
+  have hr : treeNodes r≤N := by simp only [treeNodes] at ht;omega
+  have a := il hl
+  have b := ir hr
+  have ll := leaves_le_nodes l
+  have loc : 4*((leaves l).length+1)+4≤8*(N+1) := by omega
+  simp only [meterLabels,meterLabels_value,treeNodes,Nat.mul_add,Nat.mul_one]
+  omega
+
+def meterOwner (x : Nat) : List Tree→Charged Nat
+ | [] => ⟨0,4⟩
+ | s::ss =>
+  let ls := meterLabels s
+  let m := meterContains x ls.value
+  if m.value then ⟨0,ls.work+m.work+8⟩ else
+   let r := meterOwner x ss
+   ⟨r.value+1,ls.work+m.work+r.work+8⟩
+@[simp] theorem meterOwner_value (x : Nat) (ss : List Tree) :
+ (meterOwner x ss).value=owner ss x := by
+ induction ss with
+ | nil => simp [meterOwner,owner]
+ | cons s ss ih => simp [meterOwner,owner,meterLabels_value,ih,List.findIdx_cons]
+
+def ownerRowCap (N : Nat) := 8*(N+1)*N+4*(N+1)+8
+
+theorem meterOwner_work (x : Nat) (ss : List Tree) (N : Nat)
+ (hs : ∀s,s∈ss→treeNodes s≤N) :
+ (meterOwner x ss).work≤ss.length*ownerRowCap N+4 := by
+ induction ss with
+ | nil => simp [meterOwner]
+ | cons s ss ih =>
+  have hn := hs s (by simp)
+  have ls := meterLabels_work s N hn
+  have ll := leaves_le_nodes s
+  have mm := meterContains_bound x (leaves s)
+  have lm := Nat.mul_le_mul_left (8*(N+1)) hn
+  have tail := ih (fun s hm=>hs s (by simp [hm]))
+  have localcap : (meterLabels s).work+(meterContains x (leaves s)).work+8≤ownerRowCap N := by dsimp only [ownerRowCap];omega
+  simp only [meterOwner,meterLabels_value,List.length_cons,Nat.add_mul,Nat.one_mul]
+  split <;> omega
+end AllGoodDP.LocalWork

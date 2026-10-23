@@ -1,0 +1,112 @@
+TripleDP.RestrictionCharge.covered_balance {I : Type} (xs : List I) (left right : I → Bool)
+  (cover : ∀ (i : I), i ∈ xs → left i = true ∨ right i = true) :
+  weight xs left + weight xs right = xs.length + weight xs fun i => left i && right i
+TripleDP.RestrictionCharge.weight_unique {I : Type} (xs : List I) (p : I → Bool) (o : I) (nodup : xs.Nodup)
+  (mem : o ∈ xs) (only : ∀ (i : I), i ∈ xs → p i = true → i = o) : weight xs p = bit (p o)
+TripleDP.RestrictionCharge.count_balance {I : Type} (enum : TripleDP.CostRoute.FiniteIndex I) (left right : I → Bool)
+  (root : Option I) (cover : ∀ (i : I), left i = true ∨ right i = true)
+  (overlap : ∀ (i : I), left i = true → right i = true → root = some i) :
+  weight enum.elems left + weight enum.elems right = enum.elems.length + duplicate left right root
+TripleDP.RestrictionCharge.close_balance {I : Type} [DecidableEq I] (enum : TripleDP.CostRoute.FiniteIndex I)
+  (live : I → Bool) (root : Option I) (rootLive : ∀ (o : I), root = some o → live o = true) :
+  closedCharge enum.elems live root + TripleDP.CostRoute.boundaryCharge root = weight enum.elems live
+TripleDP.RestrictionCharge.charge_budget {I : Type} [DecidableEq I] (enum : TripleDP.CostRoute.FiniteIndex I)
+  (left right : I → Bool) (parent leftRoot rightRoot : Option I) (cover : ∀ (i : I), left i = true ∨ right i = true)
+  (overlap : ∀ (i : I), left i = true → right i = true → parent = some i)
+  (leftRootLive : ∀ (o : I), leftRoot = some o → left o = true)
+  (rightRootLive : ∀ (o : I), rightRoot = some o → right o = true) :
+  closedCharge enum.elems left leftRoot + closedCharge enum.elems right rightRoot +
+        TripleDP.CostRoute.boundaryCharge leftRoot +
+      TripleDP.CostRoute.boundaryCharge rightRoot =
+    closedCharge enum.elems (fun x => true) parent + TripleDP.CostRoute.boundaryCharge parent +
+      duplicate left right parent
+TripleDP.RestrictionCharge.four_charges {I : Type} [DecidableEq I] (enum : TripleDP.CostRoute.FiniteIndex I)
+  (left right : I → Bool) (parent leftRoot rightRoot : Option I) (cover : ∀ (i : I), left i = true ∨ right i = true)
+  (overlap : ∀ (i : I), left i = true → right i = true → parent = some i)
+  (leftRootLive : ∀ (o : I), leftRoot = some o → left o = true)
+  (rightRootLive : ∀ (o : I), rightRoot = some o → right o = true) :
+  (parent = none →
+      closedCharge enum.elems (fun x => true) parent =
+        closedCharge enum.elems left leftRoot + closedCharge enum.elems right rightRoot +
+            TripleDP.CostRoute.boundaryCharge leftRoot +
+          TripleDP.CostRoute.boundaryCharge rightRoot) ∧
+    (∀ (o : I),
+        parent = some o →
+          left o = true →
+            right o = false →
+              leftRoot = some o →
+                closedCharge enum.elems (fun x => true) parent =
+                  closedCharge enum.elems left leftRoot + closedCharge enum.elems right rightRoot +
+                    TripleDP.CostRoute.boundaryCharge rightRoot) ∧
+      (∀ (o : I),
+          parent = some o →
+            left o = false →
+              right o = true →
+                rightRoot = some o →
+                  closedCharge enum.elems (fun x => true) parent =
+                    closedCharge enum.elems left leftRoot + closedCharge enum.elems right rightRoot +
+                      TripleDP.CostRoute.boundaryCharge leftRoot) ∧
+        ∀ (o : I),
+          parent = some o →
+            left o = true →
+              right o = true →
+                leftRoot = some o →
+                  rightRoot = some o →
+                    closedCharge enum.elems (fun x => true) parent =
+                      closedCharge enum.elems left leftRoot + closedCharge enum.elems right rightRoot
+TripleDP.RestrictionCharge.selected_family_cost {α I : Type} [DecidableEq I] (enum : TripleDP.CostRoute.FiniteIndex I)
+  (live : I → Bool) {t : TripleDP.BTree α} (B : TripleDP.CostRoute.Family t { i // live i = true })
+  (enumeration : List.map Subtype.val B.finite.elems = List.filter live enum.elems) :
+  B.cost = closedCharge enum.elems live (projectedRoot B)
+TripleDP.RestrictionCharge.projected_root_spec {α I : Type} {l r t : TripleDP.BTree α}
+  (A : TripleDP.CostRoute.Family (l.node r) I) (side : Bool) (live : I → Bool)
+  (B : TripleDP.CostRoute.Family t { i // live i = true })
+  (support : ∀ (j : { i // live i = true }) (a : TripleDP.Address), B.support j a ↔ A.support j.val (side :: a))
+  (rootLive : ∀ (i : I), A.support i [side] → live i = true) (i : I) : projectedRoot B = some i ↔ A.support i [side]
+TripleDP.RestrictionCharge.conditional_family_costs {α I : Type} [DecidableEq I] {l r : TripleDP.BTree α}
+  (A : TripleDP.CostRoute.Family (l.node r) I) (left right : I → Bool)
+  (B : TripleDP.CostRoute.Family l { i // left i = true }) (C : TripleDP.CostRoute.Family r { i // right i = true })
+  (leftEnumeration : List.map Subtype.val B.finite.elems = List.filter left A.finite.elems)
+  (rightEnumeration : List.map Subtype.val C.finite.elems = List.filter right A.finite.elems)
+  (leftSupport : ∀ (j : { i // left i = true }) (a : TripleDP.Address), B.support j a ↔ A.support j.val (false :: a))
+  (rightSupport : ∀ (j : { i // right i = true }) (a : TripleDP.Address), C.support j a ↔ A.support j.val (true :: a))
+  (cover : ∀ (i : I), left i = true ∨ right i = true)
+  (overlap : ∀ (i : I), left i = true → right i = true → A.boundary = some i)
+  (leftRootLive : ∀ (i : I), A.support i [false] → left i = true)
+  (rightRootLive : ∀ (i : I), A.support i [true] → right i = true) :
+  (A.boundary = none →
+      A.cost =
+        B.cost + C.cost + TripleDP.CostRoute.boundaryCharge B.boundary + TripleDP.CostRoute.boundaryCharge C.boundary) ∧
+    (∀ (o : I),
+        A.boundary = some o →
+          left o = true →
+            right o = false →
+              A.support o [false] → A.cost = B.cost + C.cost + TripleDP.CostRoute.boundaryCharge C.boundary) ∧
+      (∀ (o : I),
+          A.boundary = some o →
+            left o = false →
+              right o = true →
+                A.support o [true] → A.cost = B.cost + C.cost + TripleDP.CostRoute.boundaryCharge B.boundary) ∧
+        ∀ (o : I),
+          A.boundary = some o →
+            left o = true → right o = true → A.support o [false] → A.support o [true] → A.cost = B.cost + C.cost
+TripleDP.RestrictionCharge.conditional_family_count {α I : Type} {l r : TripleDP.BTree α}
+  (A : TripleDP.CostRoute.Family (l.node r) I) (left right : I → Bool)
+  (B : TripleDP.CostRoute.Family l { i // left i = true }) (C : TripleDP.CostRoute.Family r { i // right i = true })
+  (leftEnumeration : List.map Subtype.val B.finite.elems = List.filter left A.finite.elems)
+  (rightEnumeration : List.map Subtype.val C.finite.elems = List.filter right A.finite.elems)
+  (cover : ∀ (i : I), left i = true ∨ right i = true)
+  (overlap : ∀ (i : I), left i = true → right i = true → A.boundary = some i) :
+  B.blockCount + C.blockCount = A.blockCount + duplicate left right A.boundary
+'TripleDP.RestrictionCharge.covered_balance' depends on axioms: [propext, Quot.sound]
+'TripleDP.RestrictionCharge.weight_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.RestrictionCharge.count_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.RestrictionCharge.close_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.RestrictionCharge.charge_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.RestrictionCharge.four_charges' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.RestrictionCharge.weight_eq_filter_length' depends on axioms: [propext]
+'TripleDP.RestrictionCharge.selected_family_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.RestrictionCharge.parent_family_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.RestrictionCharge.projected_root_spec' depends on axioms: [propext]
+'TripleDP.RestrictionCharge.conditional_family_costs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TripleDP.RestrictionCharge.conditional_family_count' depends on axioms: [propext, Classical.choice, Quot.sound]

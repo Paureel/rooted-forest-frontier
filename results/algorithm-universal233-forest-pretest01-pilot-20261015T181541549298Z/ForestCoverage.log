@@ -1,0 +1,83 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestCoverage.lean:31:53: error: Application type mismatch: The argument
+  List.Perm.swap A B []
+has type
+  [B, A].Perm [A, B]
+but is expected to have type
+  [A, B].Perm [B, A]
+in the application
+  ForestPerm.outer (List.Perm.swap A B [])
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestCoverage.lean:92:6: error: unsolved goals
+case pos
+L : List Nat
+F Q : Forest
+hF : partitionCheck L F = true
+hQ : partitionCheck L Q = true
+href : Refines F Q
+B : List Nat
+hB : B ∈ F
+hone : List.countP (fun x => contained B x) Q = 1
+U : List Nat
+hU : U ∈ Q
+hb : contained B U = true
+⊢ List.count B (List.filter (fun x => contained x U) F) = List.count B F
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestCoverage.lean:102:20: error: unsolved goals
+case cons.false
+L : List Nat
+F Q✝ : Forest
+hF : partitionCheck L F = true
+hQ : partitionCheck L Q✝ = true
+href : Refines F Q✝
+B : List Nat
+hB : B ∈ F
+hone : List.countP (fun x => contained B x) Q✝ = 1
+hmap :
+  List.map (List.count B ∘ fun x => family x F) Q✝ =
+    List.map (fun U => if contained B U = true then List.count B F else 0) Q✝
+U : List Nat
+Q : List (List Nat)
+ih :
+  (List.map (fun U => if contained B U = true then List.count B F else 0) Q).sum =
+    List.count B F * List.countP (fun x => contained B x) Q
+hb : contained B U = false
+⊢ (if B ⊆ U then List.count B F else 0) + (List.map (fun U => if B ⊆ U then List.count B F else 0) Q).sum =
+    List.count B F * List.countP (fun x => contained B x) Q
+
+case cons.true
+L : List Nat
+F Q✝ : Forest
+hF : partitionCheck L F = true
+hQ : partitionCheck L Q✝ = true
+href : Refines F Q✝
+B : List Nat
+hB : B ∈ F
+hone : List.countP (fun x => contained B x) Q✝ = 1
+hmap :
+  List.map (List.count B ∘ fun x => family x F) Q✝ =
+    List.map (fun U => if contained B U = true then List.count B F else 0) Q✝
+U : List Nat
+Q : List (List Nat)
+ih :
+  (List.map (fun U => if contained B U = true then List.count B F else 0) Q).sum =
+    List.count B F * List.countP (fun x => contained B x) Q
+hb : contained B U = true
+⊢ (if B ⊆ U then List.count B F else 0) + (List.map (fun U => if B ⊆ U then List.count B F else 0) Q).sum =
+    List.count B F + List.count B F * List.countP (fun x => contained B x) Q
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestCoverage.lean:92:33: warning: This simp argument is unused:
+  List.count_filter hb
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [hb, ↓reduceIte]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestCoverage.lean:102:61: warning: This simp argument is unused:
+  ih
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hb, Nat.mul_add, Nat.add_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestCoverage.lean:141:33: error(lean.invalidDottedIdent): Invalid dotted identifier notation: The expected type of `.outer` could not be determined
+
+Hint: Using one of these would be unambiguous:
+  [apply] `ForestPerm.outer`
+  [apply] `ForestPerm.below.outer`

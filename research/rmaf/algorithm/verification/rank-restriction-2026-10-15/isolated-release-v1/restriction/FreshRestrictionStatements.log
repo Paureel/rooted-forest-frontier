@@ -1,0 +1,44 @@
+def RMAF.restrict : List Nat → Tree → Option Tree :=
+fun selected x => Tree.brecOn x (restrict._f selected)
+def RestrictionBridge.Refines : List (List Nat) → List (List Nat) → Prop :=
+fun F Q => ∀ (B : List Nat), B ∈ F → ∃ U, U ∈ Q ∧ B ⊆ U
+def RestrictionBridge.family : List Nat → List (List Nat) → List (List Nat) :=
+fun U F => List.filter (fun x => contained x U) F
+def RMAF.agreement : Tree → Tree → List (List Nat) → Bool :=
+fun t u bs =>
+  partitionCheck (leaves t) bs && partitionCheck (leaves u) bs && bs.all (restrictionAgrees t u) &&
+      pairwiseEmbeddings t bs &&
+    pairwiseEmbeddings u bs
+RestrictionBridge.restrict_inside (t u : Tree) (U B : List Nat) (hr : restrict U t = some u) (sub : B ⊆ U) :
+  restrict B u = restrict B t
+RestrictionBridge.literal_clear_transport (t u : Tree) (U B C : List Nat) (hu : restrict U t = some u) (hB : B ⊆ U)
+  (hC : C ⊆ U) :
+  (Clear (rootedSpan B t) (minimalVertices C t) ↔ Clear (rootedSpan B u) (minimalVertices C u)) ∧
+    (Clear (minimalVertices B t) (minimalVertices C t) ↔ Clear (minimalVertices B u) (minimalVertices C u))
+RestrictionBridge.pairwise_transport (t u : Tree) (U : List Nat) (F : List (List Nat)) (hu : restrict U t = some u)
+  (sub : ∀ (B : List Nat), B ∈ F → B ⊆ U) : pairwiseEmbeddings t F = true ↔ pairwiseEmbeddings u F = true
+RestrictionBridge.family_nonempty (labels : List Nat) (F Q : List (List Nat)) (hF : partitionCheck labels F = true)
+  (hQ : partitionCheck labels Q = true) (href : Refines F Q) (U : List Nat) (hU : U ∈ Q) : family U F ≠ []
+RestrictionBridge.exact_cost (labels : List Nat) (F Q : List (List Nat)) (hF : partitionCheck labels F = true)
+  (hQ : partitionCheck labels Q = true) (href : Refines F Q) :
+  (List.map (fun U => (family U F).length - 1) Q).sum = F.length - Q.length
+RestrictionBridge.forward_decomposition (T S : Tree) (F Q : List (List Nat)) (properT : (leaves T).Nodup)
+  (properS : (leaves S).Nodup) (ha : agreement T S F = true) (hQ : partitionCheck (leaves S) Q = true)
+  (href : Refines F Q) :
+  (∀ (U : List Nat),
+      U ∈ Q →
+        ∃ t s,
+          restrict U T = some t ∧
+            restrict U S = some s ∧ (leaves t).Perm U ∧ (leaves s).Perm U ∧ agreement t s (family U F) = true) ∧
+    (List.map (fun U => (family U F).length - 1) Q).sum = F.length - Q.length
+RestrictionBridge.reverse_reconstruction (T S : Tree) (Q : List (List Nat)) (G : List Nat → List (List Nat))
+  (t s : List Nat → Tree) (properT : (leaves T).Nodup) (properS : (leaves S).Nodup)
+  (hQT : partitionCheck (leaves T) Q = true) (hQS : partitionCheck (leaves S) Q = true)
+  (eT : pairwiseEmbeddings T Q = true) (eS : pairwiseEmbeddings S Q = true)
+  (ht : ∀ (U : List Nat), U ∈ Q → restrict U T = some (t U)) (hs : ∀ (U : List Nat), U ∈ Q → restrict U S = some (s U))
+  (ha : ∀ (U : List Nat), U ∈ Q → agreement (t U) (s U) (G U) = true) :
+  agreement T S (List.flatMap G Q) = true ∧
+    (List.map (fun U => (G U).length - 1) Q).sum = (List.flatMap G Q).length - Q.length ∧
+      (List.flatMap G Q).flatten.Perm (leaves T) ∧ (List.flatMap G Q).flatten.Perm (leaves S)
+'RestrictionBridge.forward_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictionBridge.reverse_reconstruction' depends on axioms: [propext, Classical.choice, Quot.sound]

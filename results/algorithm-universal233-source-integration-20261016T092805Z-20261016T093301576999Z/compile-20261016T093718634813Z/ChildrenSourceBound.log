@@ -1,0 +1,122 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:62:58: error: Expected type must not contain metavariables
+  0 < ?m.245
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:37:92: error: unsolved goals
+actual : GenericForest.FrontierWork.Ordinary
+T : Tree
+q : Nat
+cs : List Child
+N Q m : Nat
+size : (leaves T).length ≤ N
+budget : q ≤ Q
+count : cs.length ≤ m
+proper0 : ∀ (c : Child), c ∈ cs → proper (some T) c.sourceForest = true
+js : List Rule5OrdinaryDispatch.ForestJob := Rule5OrdinaryDispatch.forestJobs T q cs
+positive : 0 ≤ geometric Rule5ActualTrace.base * forestCoefficient N Q
+point :
+  ∀ (j : Rule5OrdinaryDispatch.ForestJob),
+    j ∈ js →
+      ↑(forestWork actual (fun x x_1 x_2 => 0) j.target j.sources j.residual) ≤
+        geometric Rule5ActualTrace.base * forestCoefficient N Q * Rule5ActualTrace.base ^ q
+sum :
+  (List.map (fun j => ↑(forestWork actual (fun x x_1 x_2 => 0) j.target j.sources j.residual)) js).sum ≤
+    ↑js.length * (geometric Rule5ActualTrace.base * forestCoefficient N Q * Rule5ActualTrace.base ^ q)
+len : js.length ≤ m
+⊢ ↑(childForestDebit actual (fun x x_1 x_2 => 0) T q cs) ≤
+    ↑m * (geometric Rule5ActualTrace.base * forestCoefficient N Q) * Rule5ActualTrace.base ^ q
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:78:2: warning: Variable name `sel` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _sel
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:78:64: warning: Variable name `budget` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _budget
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:102:1: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  p ≥ 0
+  o ≥ 0
+  n ≥ 0
+  m ≥ 0
+  l ≥ 0
+  k ≥ 0
+  k - l ≥ 0
+  k - m ≥ 0
+  j ≥ 0
+  i ≥ 0
+  h ≥ 0
+  h - i ≥ 0
+  g ≥ 0
+  f ≥ 0
+  f - g ≥ 0
+  f - j ≤ 0
+  e ≥ 0
+  3*e + m ≥ -16
+  9*e + 3*m - n ≥ -52
+  d ≥ 0
+  b ≥ 0
+  b - d ≥ 0
+  a ≥ 0
+  a - e ≥ 0
+  3*a + k ≥ -16
+  9*a - g + h + j + 3*k - o ≤ -55
+where
+ a := ↑N
+ b := ↑Q
+ d := ↑q
+ e := ↑(leaves S).length
+ f := ↑(branchesBudget (leaves S).length)
+ g := ↑(branchesMeter S c.a c.b).work
+ h := ↑(pendantChildBudget N)
+ i := ↑(pendantChildBudget (leaves S).length)
+ j := ↑(branchesBudget N)
+ k := ↑(agreementK N)
+ l := ↑(agreementK (leaves S).length)
+ m := ↑(agreementK (leaves T).length)
+ n := ↑(runChildrenMeter actual (fun x => 0) (fun F => (agreementMeter T S F).work) T S q
+      [singletonChild S c.a, singletonChild S c.b, pendantChild S c.a c.b]).localWork
+ o := ↑(runChildrenMeter actual (fun x => 0) (fun F => (agreementMeter T S F).work) T S q
+      (branches S c.a c.b)).localWork
+ p := ↑(childForestDebit actual (fun x x_1 x_2 => 0) T q (branches S c.a c.b))
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:114:6: error: unexpected token 'local'; expected '(', ':=', '|' or term
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:114:6: error: Missing cases:
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:109:67: error: unsolved goals
+actual : GenericForest.FrontierWork.Ordinary
+T S : Tree
+c : Candidate
+pr : Priority
+q N Q : Nat
+hp : DepthOne.proper T S = true
+sel : select T S = some (pr, c)
+size : (leaves T).length ≤ N
+budget : q ≤ Q
+cs : List Child
+count : cs.length ≤ 3
+members : ∀ (x : Child), x ∈ cs → x ∈ branches S c.a c.b
+work : Nat
+bound : work ≤ simpleLocalPolynomial N + childForestDebit actual (fun x x_1 x_2 => 0) T q cs
+forest :
+  ↑(childForestDebit actual (fun x x_1 x_2 => 0) T q cs) ≤
+    ↑3 * (geometric Rule5ActualTrace.base * forestCoefficient N Q) * Rule5ActualTrace.base ^ q
+cap : ↑work ≤ ↑(simpleLocalPolynomial N) + ↑(childForestDebit actual (fun x x_1 x_2 => 0) T q cs)
+⊢ ↑work ≤ simpleSourceCoefficient N Q * Rule5ActualTrace.base ^ q
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:114:11: error: unexpected token ':='; expected 'binder_predicate', 'builtin_cbv_simproc', 'builtin_dsimproc', 'builtin_simproc', 'cbv_simproc', 'def_eval_config_item', 'dsimproc', 'elab', 'elab_rules', 'grind_pattern', 'infix', 'infixl', 'infixr', 'instance', 'macro', 'macro_rules', 'notation', 'postfix', 'prefix', 'simproc', 'syntax' or 'unif_hint'
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:116:26: error: unexpected token 'have'; expected 'binder_predicate', 'builtin_cbv_simproc', 'builtin_dsimproc', 'builtin_simproc', 'cbv_simproc', 'def_eval_config_item', 'dsimproc', 'elab', 'elab_rules', 'grind_pattern', 'infix', 'infixl', 'infixr', 'instance', 'macro', 'macro_rules', 'notation', 'postfix', 'prefix', 'simproc', 'syntax' or 'unif_hint'
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:117:55: error: unexpected token ')'; expected 'binder_predicate', 'builtin_cbv_simproc', 'builtin_dsimproc', 'builtin_simproc', 'cbv_simproc', 'def_eval_config_item', 'dsimproc', 'elab', 'elab_rules', 'grind_pattern', 'infix', 'infixl', 'infixr', 'instance', 'macro', 'macro_rules', 'notation', 'postfix', 'prefix', 'simproc', 'syntax' or 'unif_hint'
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:125:72: error: No goals to be solved
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:125:13: error: unsolved goals
+actual : GenericForest.FrontierWork.Ordinary
+T S : Tree
+c : Candidate
+q N Q : Nat
+hp : DepthOne.proper T S = true
+sel : select T S = some (Priority.one, c)
+size : (leaves T).length ≤ N
+budget : q ≤ Q
+x : Child
+hx : x ∈ [pendantChild S c.a c.b]
+eq : x = pendantChild S c.a c.b
+⊢ x ∈ branches S c.a c.b

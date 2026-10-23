@@ -1,0 +1,17 @@
+OrdinaryDispatch.FullSourceWork.rule4Source_bound : ∀ (actual : GenericForest.FrontierWork.Ordinary) {T S : RMAF.Tree}
+  (s : Universal233.Rule4.Choice T S) (q N Q : Nat),
+  (RMAF.leaves T).length ≤ N →
+    q ≤ Q →
+      ↑(OrdinaryDispatch.FullSourceWork.rule4Source actual (fun x x_1 x_2 => 0) s q).work ≤
+        ↑(OrdinaryDispatch.FullSourceWork.rule4SourcePolynomial N Q) * Universal233.Rule5ActualTrace.base ^ q
+@OrdinaryDispatch.FullSourceWork.rule4Source_cutoff_bound : ∀ {T S : RMAF.Tree} (s : Universal233.Rule4.Choice T S)
+  (q N Q : Nat),
+  (RMAF.leaves T).length ≤ N →
+    q ≤ Q →
+      ↑(OrdinaryDispatch.FullSourceWork.rule4Source
+              (OrdinaryDispatch.FastOrdinary.cutoff OrdinaryDispatch.FastOrdinary.solve q) (fun x x_1 x_2 => 0) s
+              q).work ≤
+        ↑(1560 * N ^ 4 + 312 * N ^ 3 + 614 * N ^ 2 + 586 * N + 300 + 48 * (2 ^ 50 * (N + Q + 2) ^ 8)) * (233 / 100) ^ q
+OrdinaryDispatch.FullSourceWork.rule4SourcePolynomial_explicit : ∀ (N Q : Nat),
+  OrdinaryDispatch.FullSourceWork.rule4SourcePolynomial N Q =
+    1560 * N ^ 4 + 312 * N ^ 3 + 614 * N ^ 2 + 586 * N + 300 + 48 * (2 ^ 50 * (N + Q + 2) ^ 8)

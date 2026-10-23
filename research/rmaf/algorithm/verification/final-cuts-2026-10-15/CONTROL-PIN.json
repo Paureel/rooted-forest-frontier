@@ -1,0 +1,3131 @@
+{
+  "phase": "PRE-CANDIDATE literal expectations before execution",
+  "controls": [
+    {
+      "id": "singleton-leaf",
+      "op": "recover",
+      "input": {
+        "tree": 0,
+        "partition": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": true,
+        "guards.embeddings": true,
+        "success": true,
+        "budget": 0,
+        "raw_count": 1,
+        "output_costs": [
+          0
+        ],
+        "output_equivalent": true,
+        "realized": true,
+        "certificate.cut_count": 0,
+        "certificate.component_count": 1,
+        "certificate.leafless_count": 0,
+        "color_count": 1,
+        "first_head_accesses": 1,
+        "source_vertex_count": 1
+      },
+      "counts": {
+        "recovery.generate_calls": 1,
+        "color.calls": 1,
+        "color.block_inspections": 1,
+        "color.label_comparisons": 1,
+        "color.first_head": 1,
+        "core.initial.nodup_calls": 1,
+        "core.step.calls": 1,
+        "core.attempt.calls": 0,
+        "core.append.finish_partition.left_cells": 0
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "core.step.calls",
+        "core.generate.calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "output_costs",
+          "replacement": [
+            1
+          ]
+        },
+        {
+          "kind": "value",
+          "path": "raw_count",
+          "replacement": 2
+        },
+        {
+          "kind": "value",
+          "path": "color_count",
+          "replacement": 2
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.calls"
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.first_head"
+        },
+        {
+          "kind": "zero_event",
+          "path": "recovery.generate_calls"
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "metadata_fine"
+        },
+        {
+          "kind": "zero_event",
+          "path": "guard.nodup_calls"
+        }
+      ]
+    },
+    {
+      "id": "full-block-quartet",
+      "op": "recover",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            3,
+            1,
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": true,
+        "guards.embeddings": true,
+        "success": true,
+        "budget": 0,
+        "raw_count": 1,
+        "output_costs": [
+          0
+        ],
+        "output_equivalent": true,
+        "realized": true,
+        "certificate.cut_count": 0,
+        "certificate.component_count": 1,
+        "certificate.leafless_count": 0,
+        "color_count": 1,
+        "first_head_accesses": 4,
+        "source_vertex_count": 7
+      },
+      "counts": {
+        "recovery.generate_calls": 1,
+        "color.calls": 4,
+        "color.block_inspections": 4,
+        "color.label_comparisons": 10,
+        "color.first_head": 4,
+        "core.initial.nodup_calls": 1,
+        "core.step.calls": 1,
+        "core.attempt.calls": 0,
+        "core.append.finish_partition.left_cells": 0
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "core.step.calls",
+        "core.generate.calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "output_costs",
+          "replacement": [
+            1
+          ]
+        },
+        {
+          "kind": "value",
+          "path": "raw_count",
+          "replacement": 2
+        },
+        {
+          "kind": "value",
+          "path": "color_count",
+          "replacement": 2
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.calls"
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.first_head"
+        },
+        {
+          "kind": "zero_event",
+          "path": "recovery.generate_calls"
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "metadata_fine"
+        }
+      ]
+    },
+    {
+      "id": "two-leaf-singletons",
+      "op": "recover",
+      "input": {
+        "tree": [
+          0,
+          1
+        ],
+        "partition": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": true,
+        "guards.embeddings": true,
+        "success": true,
+        "budget": 1,
+        "raw_count": 1,
+        "output_costs": [
+          1
+        ],
+        "output_equivalent": true,
+        "realized": true,
+        "certificate.cut_count": 1,
+        "certificate.component_count": 2,
+        "certificate.leafless_count": 0,
+        "color_count": 2,
+        "first_head_accesses": 2,
+        "source_vertex_count": 3
+      },
+      "counts": {
+        "recovery.generate_calls": 1,
+        "color.calls": 2,
+        "color.block_inspections": 3,
+        "color.label_comparisons": 3,
+        "color.first_head": 2,
+        "core.initial.nodup_calls": 1,
+        "core.step.calls": 2,
+        "core.attempt.calls": 1,
+        "core.append.finish_partition.left_cells": 1
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "core.step.calls",
+        "core.generate.calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "output_costs",
+          "replacement": [
+            2
+          ]
+        },
+        {
+          "kind": "value",
+          "path": "raw_count",
+          "replacement": 2
+        },
+        {
+          "kind": "value",
+          "path": "color_count",
+          "replacement": 3
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.calls"
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.first_head"
+        },
+        {
+          "kind": "zero_event",
+          "path": "recovery.generate_calls"
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "metadata_fine"
+        },
+        {
+          "kind": "zero_event",
+          "path": "core.append.finish_partition.left_cells"
+        },
+        {
+          "kind": "value",
+          "path": "budget",
+          "replacement": 0
+        }
+      ]
+    },
+    {
+      "id": "quartet-three-blocks",
+      "op": "recover",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": true,
+        "guards.embeddings": true,
+        "success": true,
+        "budget": 2,
+        "raw_count": 1,
+        "output_costs": [
+          2
+        ],
+        "output_equivalent": true,
+        "realized": true,
+        "certificate.cut_count": 2,
+        "certificate.component_count": 3,
+        "certificate.leafless_count": 0,
+        "color_count": 3,
+        "first_head_accesses": 4,
+        "source_vertex_count": 7
+      },
+      "counts": {
+        "recovery.generate_calls": 1,
+        "color.calls": 4,
+        "color.block_inspections": 7,
+        "color.label_comparisons": 10,
+        "color.first_head": 4,
+        "core.initial.nodup_calls": 1,
+        "core.step.calls": 3,
+        "core.attempt.calls": 2,
+        "core.append.finish_partition.left_cells": 2
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "core.step.calls",
+        "core.generate.calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "output_costs",
+          "replacement": [
+            3
+          ]
+        },
+        {
+          "kind": "value",
+          "path": "raw_count",
+          "replacement": 2
+        },
+        {
+          "kind": "value",
+          "path": "color_count",
+          "replacement": 4
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.calls"
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.first_head"
+        },
+        {
+          "kind": "zero_event",
+          "path": "recovery.generate_calls"
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "metadata_fine"
+        },
+        {
+          "kind": "zero_event",
+          "path": "core.append.finish_partition.left_cells"
+        },
+        {
+          "kind": "value",
+          "path": "budget",
+          "replacement": 1
+        }
+      ]
+    },
+    {
+      "id": "all-singletons-quartet",
+      "op": "recover",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": true,
+        "guards.embeddings": true,
+        "success": true,
+        "budget": 3,
+        "raw_count": 1,
+        "output_costs": [
+          3
+        ],
+        "output_equivalent": true,
+        "realized": true,
+        "certificate.cut_count": 3,
+        "certificate.component_count": 4,
+        "certificate.leafless_count": 0,
+        "color_count": 4,
+        "first_head_accesses": 4,
+        "source_vertex_count": 7
+      },
+      "counts": {
+        "recovery.generate_calls": 1,
+        "color.calls": 4,
+        "color.block_inspections": 10,
+        "color.label_comparisons": 10,
+        "color.first_head": 4,
+        "core.initial.nodup_calls": 1,
+        "core.step.calls": 4,
+        "core.attempt.calls": 3,
+        "core.append.finish_partition.left_cells": 3
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "core.step.calls",
+        "core.generate.calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "output_costs",
+          "replacement": [
+            4
+          ]
+        },
+        {
+          "kind": "value",
+          "path": "raw_count",
+          "replacement": 2
+        },
+        {
+          "kind": "value",
+          "path": "color_count",
+          "replacement": 5
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.calls"
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.first_head"
+        },
+        {
+          "kind": "zero_event",
+          "path": "recovery.generate_calls"
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "metadata_fine"
+        },
+        {
+          "kind": "zero_event",
+          "path": "core.append.finish_partition.left_cells"
+        },
+        {
+          "kind": "value",
+          "path": "budget",
+          "replacement": 2
+        }
+      ]
+    },
+    {
+      "id": "quartet-reordered-blocks-and-labels",
+      "op": "recover",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            3
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": true,
+        "guards.embeddings": true,
+        "success": true,
+        "budget": 2,
+        "raw_count": 1,
+        "output_costs": [
+          2
+        ],
+        "output_equivalent": true,
+        "realized": true,
+        "certificate.cut_count": 2,
+        "certificate.component_count": 3,
+        "certificate.leafless_count": 0,
+        "color_count": 3,
+        "first_head_accesses": 4,
+        "source_vertex_count": 7
+      },
+      "counts": {
+        "recovery.generate_calls": 1,
+        "color.calls": 4,
+        "color.block_inspections": 8,
+        "color.label_comparisons": 10,
+        "color.first_head": 4,
+        "core.initial.nodup_calls": 1,
+        "core.step.calls": 3,
+        "core.attempt.calls": 2,
+        "core.append.finish_partition.left_cells": 2
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "core.step.calls",
+        "core.generate.calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "output_costs",
+          "replacement": [
+            3
+          ]
+        },
+        {
+          "kind": "value",
+          "path": "raw_count",
+          "replacement": 2
+        },
+        {
+          "kind": "value",
+          "path": "color_count",
+          "replacement": 4
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.calls"
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.first_head"
+        },
+        {
+          "kind": "zero_event",
+          "path": "recovery.generate_calls"
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "metadata_fine"
+        },
+        {
+          "kind": "zero_event",
+          "path": "core.append.finish_partition.left_cells"
+        },
+        {
+          "kind": "value",
+          "path": "budget",
+          "replacement": 1
+        }
+      ]
+    },
+    {
+      "id": "nonclade-original-paths",
+      "op": "recover",
+      "input": {
+        "tree": [
+          [
+            0,
+            [
+              1,
+              2
+            ]
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": true,
+        "guards.embeddings": true,
+        "success": true,
+        "budget": 2,
+        "raw_count": 1,
+        "output_costs": [
+          2
+        ],
+        "output_equivalent": true,
+        "realized": true,
+        "certificate.cut_count": 2,
+        "certificate.component_count": 3,
+        "certificate.leafless_count": 0,
+        "color_count": 3,
+        "first_head_accesses": 5,
+        "source_vertex_count": 9,
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 3,
+          "4": 3
+        }
+      },
+      "counts": {
+        "recovery.generate_calls": 1,
+        "color.calls": 5,
+        "color.block_inspections": 10,
+        "color.label_comparisons": 15,
+        "color.first_head": 5,
+        "core.initial.nodup_calls": 1,
+        "core.step.calls": 3,
+        "core.attempt.calls": 2,
+        "core.append.finish_partition.left_cells": 2
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "core.step.calls",
+        "core.generate.calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "output_costs",
+          "replacement": [
+            3
+          ]
+        },
+        {
+          "kind": "value",
+          "path": "raw_count",
+          "replacement": 2
+        },
+        {
+          "kind": "value",
+          "path": "color_count",
+          "replacement": 4
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.calls"
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.first_head"
+        },
+        {
+          "kind": "zero_event",
+          "path": "recovery.generate_calls"
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "metadata_fine"
+        },
+        {
+          "kind": "zero_event",
+          "path": "core.append.finish_partition.left_cells"
+        },
+        {
+          "kind": "value",
+          "path": "budget",
+          "replacement": 1
+        },
+        {
+          "kind": "color_collision",
+          "from": "1",
+          "to": 0
+        }
+      ]
+    },
+    {
+      "id": "nonclade-reordered",
+      "op": "recover",
+      "input": {
+        "tree": [
+          [
+            0,
+            [
+              1,
+              2
+            ]
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "partition": [
+          [
+            4,
+            3
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": true,
+        "guards.embeddings": true,
+        "success": true,
+        "budget": 2,
+        "raw_count": 1,
+        "output_costs": [
+          2
+        ],
+        "output_equivalent": true,
+        "realized": true,
+        "certificate.cut_count": 2,
+        "certificate.component_count": 3,
+        "certificate.leafless_count": 0,
+        "color_count": 3,
+        "first_head_accesses": 5,
+        "source_vertex_count": 9,
+        "colors": {
+          "0": 2,
+          "1": 1,
+          "2": 2,
+          "3": 4,
+          "4": 4
+        }
+      },
+      "counts": {
+        "recovery.generate_calls": 1,
+        "color.calls": 5,
+        "color.block_inspections": 9,
+        "color.label_comparisons": 15,
+        "color.first_head": 5,
+        "core.initial.nodup_calls": 1,
+        "core.step.calls": 3,
+        "core.attempt.calls": 2,
+        "core.append.finish_partition.left_cells": 2
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "core.step.calls",
+        "core.generate.calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "output_costs",
+          "replacement": [
+            3
+          ]
+        },
+        {
+          "kind": "value",
+          "path": "raw_count",
+          "replacement": 2
+        },
+        {
+          "kind": "value",
+          "path": "color_count",
+          "replacement": 4
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.calls"
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.first_head"
+        },
+        {
+          "kind": "zero_event",
+          "path": "recovery.generate_calls"
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "metadata_fine"
+        },
+        {
+          "kind": "zero_event",
+          "path": "core.append.finish_partition.left_cells"
+        },
+        {
+          "kind": "value",
+          "path": "budget",
+          "replacement": 1
+        }
+      ]
+    },
+    {
+      "id": "swapped-siblings-quartet",
+      "op": "recover",
+      "input": {
+        "tree": [
+          [
+            2,
+            3
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "partition": [
+          [
+            1,
+            0
+          ],
+          [
+            3
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": true,
+        "guards.embeddings": true,
+        "success": true,
+        "budget": 2,
+        "raw_count": 1,
+        "output_costs": [
+          2
+        ],
+        "output_equivalent": true,
+        "realized": true,
+        "certificate.cut_count": 2,
+        "certificate.component_count": 3,
+        "certificate.leafless_count": 0,
+        "color_count": 3,
+        "first_head_accesses": 4,
+        "source_vertex_count": 7
+      },
+      "counts": {
+        "recovery.generate_calls": 1,
+        "color.calls": 4,
+        "color.block_inspections": 7,
+        "color.label_comparisons": 10,
+        "color.first_head": 4,
+        "core.initial.nodup_calls": 1,
+        "core.step.calls": 3,
+        "core.attempt.calls": 2,
+        "core.append.finish_partition.left_cells": 2
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "core.step.calls",
+        "core.generate.calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "output_costs",
+          "replacement": [
+            3
+          ]
+        },
+        {
+          "kind": "value",
+          "path": "raw_count",
+          "replacement": 2
+        },
+        {
+          "kind": "value",
+          "path": "color_count",
+          "replacement": 4
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.calls"
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.first_head"
+        },
+        {
+          "kind": "zero_event",
+          "path": "recovery.generate_calls"
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "metadata_fine"
+        },
+        {
+          "kind": "zero_event",
+          "path": "core.append.finish_partition.left_cells"
+        },
+        {
+          "kind": "value",
+          "path": "budget",
+          "replacement": 1
+        }
+      ]
+    },
+    {
+      "id": "huge-original-labels",
+      "op": "recover",
+      "input": {
+        "tree": [
+          [
+            340282366920938463463374607431768211456,
+            340282366920938463463374607431768211457
+          ],
+          [
+            340282366920938463463374607431768211458,
+            340282366920938463463374607431768211459
+          ]
+        ],
+        "partition": [
+          [
+            340282366920938463463374607431768211456,
+            340282366920938463463374607431768211457
+          ],
+          [
+            340282366920938463463374607431768211458
+          ],
+          [
+            340282366920938463463374607431768211459
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": true,
+        "guards.embeddings": true,
+        "success": true,
+        "budget": 2,
+        "raw_count": 1,
+        "output_costs": [
+          2
+        ],
+        "output_equivalent": true,
+        "realized": true,
+        "certificate.cut_count": 2,
+        "certificate.component_count": 3,
+        "certificate.leafless_count": 0,
+        "color_count": 3,
+        "first_head_accesses": 4,
+        "source_vertex_count": 7,
+        "label_bits": 129,
+        "color_bits": 129
+      },
+      "counts": {
+        "recovery.generate_calls": 1,
+        "color.calls": 4,
+        "color.block_inspections": 7,
+        "color.label_comparisons": 10,
+        "color.first_head": 4,
+        "core.initial.nodup_calls": 1,
+        "core.step.calls": 3,
+        "core.attempt.calls": 2,
+        "core.append.finish_partition.left_cells": 2
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "core.step.calls",
+        "core.generate.calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "output_costs",
+          "replacement": [
+            3
+          ]
+        },
+        {
+          "kind": "value",
+          "path": "raw_count",
+          "replacement": 2
+        },
+        {
+          "kind": "value",
+          "path": "color_count",
+          "replacement": 4
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.calls"
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.first_head"
+        },
+        {
+          "kind": "zero_event",
+          "path": "recovery.generate_calls"
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "metadata_fine"
+        },
+        {
+          "kind": "zero_event",
+          "path": "core.append.finish_partition.left_cells"
+        },
+        {
+          "kind": "value",
+          "path": "budget",
+          "replacement": 1
+        },
+        {
+          "kind": "value",
+          "path": "label_bits",
+          "replacement": 3
+        }
+      ]
+    },
+    {
+      "id": "source-valid-target-crossed",
+      "op": "recover",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "target": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": true,
+        "guards.embeddings": true,
+        "success": true,
+        "budget": 1,
+        "raw_count": 1,
+        "output_costs": [
+          1
+        ],
+        "output_equivalent": true,
+        "realized": true,
+        "certificate.cut_count": 1,
+        "certificate.component_count": 2,
+        "certificate.leafless_count": 0,
+        "color_count": 2,
+        "first_head_accesses": 4,
+        "source_vertex_count": 7,
+        "target_agreement": false,
+        "target_transport_licensed": false
+      },
+      "counts": {
+        "recovery.generate_calls": 1,
+        "color.calls": 4,
+        "color.block_inspections": 6,
+        "color.label_comparisons": 10,
+        "color.first_head": 4,
+        "core.initial.nodup_calls": 1,
+        "core.step.calls": 2,
+        "core.attempt.calls": 1,
+        "core.append.finish_partition.left_cells": 1
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "core.step.calls",
+        "core.generate.calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "output_costs",
+          "replacement": [
+            2
+          ]
+        },
+        {
+          "kind": "value",
+          "path": "raw_count",
+          "replacement": 2
+        },
+        {
+          "kind": "value",
+          "path": "color_count",
+          "replacement": 3
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.calls"
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.first_head"
+        },
+        {
+          "kind": "zero_event",
+          "path": "recovery.generate_calls"
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "metadata_fine"
+        },
+        {
+          "kind": "zero_event",
+          "path": "core.append.finish_partition.left_cells"
+        },
+        {
+          "kind": "value",
+          "path": "budget",
+          "replacement": 0
+        },
+        {
+          "kind": "value",
+          "path": "target_transport_licensed",
+          "replacement": true
+        }
+      ]
+    },
+    {
+      "id": "full-block-wrong-target",
+      "op": "recover",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            1,
+            2,
+            3
+          ]
+        ],
+        "target": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": true,
+        "guards.embeddings": true,
+        "success": true,
+        "budget": 0,
+        "raw_count": 1,
+        "output_costs": [
+          0
+        ],
+        "output_equivalent": true,
+        "realized": true,
+        "certificate.cut_count": 0,
+        "certificate.component_count": 1,
+        "certificate.leafless_count": 0,
+        "color_count": 1,
+        "first_head_accesses": 4,
+        "source_vertex_count": 7,
+        "target_agreement": false,
+        "target_transport_licensed": false
+      },
+      "counts": {
+        "recovery.generate_calls": 1,
+        "color.calls": 4,
+        "color.block_inspections": 4,
+        "color.label_comparisons": 10,
+        "color.first_head": 4,
+        "core.initial.nodup_calls": 1,
+        "core.step.calls": 1,
+        "core.attempt.calls": 0,
+        "core.append.finish_partition.left_cells": 0
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "core.step.calls",
+        "core.generate.calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "output_costs",
+          "replacement": [
+            1
+          ]
+        },
+        {
+          "kind": "value",
+          "path": "raw_count",
+          "replacement": 2
+        },
+        {
+          "kind": "value",
+          "path": "color_count",
+          "replacement": 2
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.calls"
+        },
+        {
+          "kind": "zero_event",
+          "path": "color.first_head"
+        },
+        {
+          "kind": "zero_event",
+          "path": "recovery.generate_calls"
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "metadata_fine"
+        },
+        {
+          "kind": "value",
+          "path": "target_transport_licensed",
+          "replacement": true
+        }
+      ]
+    },
+    {
+      "id": "empty-partition",
+      "op": "recover",
+      "input": {
+        "tree": 0,
+        "partition": []
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": false,
+        "guards.embeddings": true,
+        "success": false,
+        "budget": null,
+        "raw_count": 0,
+        "first_head_accesses": 0,
+        "target_transport_licensed": false
+      },
+      "counts": {
+        "recovery.generate_calls": 0,
+        "color.calls": 0,
+        "color.first_head": 0
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "guard.partition_calls",
+        "guard.embedding_calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "success",
+          "replacement": true
+        },
+        {
+          "kind": "value",
+          "path": "first_head_accesses",
+          "replacement": 1
+        },
+        {
+          "kind": "zero_event",
+          "path": "guard.nodup_calls"
+        },
+        {
+          "kind": "metadata_fine"
+        }
+      ]
+    },
+    {
+      "id": "empty-only-block",
+      "op": "recover",
+      "input": {
+        "tree": 0,
+        "partition": [
+          []
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": false,
+        "guards.embeddings": true,
+        "success": false,
+        "budget": null,
+        "raw_count": 0,
+        "first_head_accesses": 0,
+        "target_transport_licensed": false
+      },
+      "counts": {
+        "recovery.generate_calls": 0,
+        "color.calls": 0,
+        "color.first_head": 0
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "guard.partition_calls",
+        "guard.embedding_calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "success",
+          "replacement": true
+        },
+        {
+          "kind": "value",
+          "path": "first_head_accesses",
+          "replacement": 1
+        },
+        {
+          "kind": "zero_event",
+          "path": "guard.nodup_calls"
+        },
+        {
+          "kind": "metadata_fine"
+        }
+      ]
+    },
+    {
+      "id": "empty-extra-block",
+      "op": "recover",
+      "input": {
+        "tree": 0,
+        "partition": [
+          [
+            0
+          ],
+          []
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": false,
+        "guards.embeddings": true,
+        "success": false,
+        "budget": null,
+        "raw_count": 0,
+        "first_head_accesses": 0,
+        "target_transport_licensed": false
+      },
+      "counts": {
+        "recovery.generate_calls": 0,
+        "color.calls": 0,
+        "color.first_head": 0
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "guard.partition_calls",
+        "guard.embedding_calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "success",
+          "replacement": true
+        },
+        {
+          "kind": "value",
+          "path": "first_head_accesses",
+          "replacement": 1
+        },
+        {
+          "kind": "zero_event",
+          "path": "guard.nodup_calls"
+        },
+        {
+          "kind": "metadata_fine"
+        }
+      ]
+    },
+    {
+      "id": "repeated-label-in-block",
+      "op": "recover",
+      "input": {
+        "tree": 0,
+        "partition": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": false,
+        "guards.embeddings": true,
+        "success": false,
+        "budget": null,
+        "raw_count": 0,
+        "first_head_accesses": 0,
+        "target_transport_licensed": false
+      },
+      "counts": {
+        "recovery.generate_calls": 0,
+        "color.calls": 0,
+        "color.first_head": 0
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "guard.partition_calls",
+        "guard.embedding_calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "success",
+          "replacement": true
+        },
+        {
+          "kind": "value",
+          "path": "first_head_accesses",
+          "replacement": 1
+        },
+        {
+          "kind": "zero_event",
+          "path": "guard.nodup_calls"
+        },
+        {
+          "kind": "metadata_fine"
+        }
+      ]
+    },
+    {
+      "id": "repeated-block",
+      "op": "recover",
+      "input": {
+        "tree": 0,
+        "partition": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": false,
+        "guards.embeddings": false,
+        "success": false,
+        "budget": null,
+        "raw_count": 0,
+        "first_head_accesses": 0,
+        "target_transport_licensed": false
+      },
+      "counts": {
+        "recovery.generate_calls": 0,
+        "color.calls": 0,
+        "color.first_head": 0
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "guard.partition_calls",
+        "guard.embedding_calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "success",
+          "replacement": true
+        },
+        {
+          "kind": "value",
+          "path": "first_head_accesses",
+          "replacement": 1
+        },
+        {
+          "kind": "zero_event",
+          "path": "guard.nodup_calls"
+        },
+        {
+          "kind": "metadata_fine"
+        }
+      ]
+    },
+    {
+      "id": "absent-extra-label",
+      "op": "recover",
+      "input": {
+        "tree": 0,
+        "partition": [
+          [
+            0,
+            9
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": false,
+        "guards.embeddings": true,
+        "success": false,
+        "budget": null,
+        "raw_count": 0,
+        "first_head_accesses": 0,
+        "target_transport_licensed": false
+      },
+      "counts": {
+        "recovery.generate_calls": 0,
+        "color.calls": 0,
+        "color.first_head": 0
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "guard.partition_calls",
+        "guard.embedding_calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "success",
+          "replacement": true
+        },
+        {
+          "kind": "value",
+          "path": "first_head_accesses",
+          "replacement": 1
+        },
+        {
+          "kind": "zero_event",
+          "path": "guard.nodup_calls"
+        },
+        {
+          "kind": "metadata_fine"
+        }
+      ]
+    },
+    {
+      "id": "missing-source-label",
+      "op": "recover",
+      "input": {
+        "tree": [
+          0,
+          1
+        ],
+        "partition": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": false,
+        "guards.embeddings": true,
+        "success": false,
+        "budget": null,
+        "raw_count": 0,
+        "first_head_accesses": 0,
+        "target_transport_licensed": false
+      },
+      "counts": {
+        "recovery.generate_calls": 0,
+        "color.calls": 0,
+        "color.first_head": 0
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "guard.partition_calls",
+        "guard.embedding_calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "success",
+          "replacement": true
+        },
+        {
+          "kind": "value",
+          "path": "first_head_accesses",
+          "replacement": 1
+        },
+        {
+          "kind": "zero_event",
+          "path": "guard.nodup_calls"
+        },
+        {
+          "kind": "metadata_fine"
+        }
+      ]
+    },
+    {
+      "id": "duplicate-source-leaves",
+      "op": "recover",
+      "input": {
+        "tree": [
+          0,
+          0
+        ],
+        "partition": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": false,
+        "guards.partition": true,
+        "guards.embeddings": true,
+        "success": false,
+        "budget": null,
+        "raw_count": 0,
+        "first_head_accesses": 0,
+        "target_transport_licensed": false
+      },
+      "counts": {
+        "recovery.generate_calls": 0,
+        "color.calls": 0,
+        "color.first_head": 0
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "guard.partition_calls",
+        "guard.embedding_calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "success",
+          "replacement": true
+        },
+        {
+          "kind": "value",
+          "path": "first_head_accesses",
+          "replacement": 1
+        },
+        {
+          "kind": "zero_event",
+          "path": "guard.nodup_calls"
+        },
+        {
+          "kind": "metadata_fine"
+        }
+      ]
+    },
+    {
+      "id": "overlapping-blocks",
+      "op": "recover",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": false,
+        "guards.embeddings": false,
+        "success": false,
+        "budget": null,
+        "raw_count": 0,
+        "first_head_accesses": 0,
+        "target_transport_licensed": false
+      },
+      "counts": {
+        "recovery.generate_calls": 0,
+        "color.calls": 0,
+        "color.first_head": 0
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "guard.partition_calls",
+        "guard.embedding_calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "success",
+          "replacement": true
+        },
+        {
+          "kind": "value",
+          "path": "first_head_accesses",
+          "replacement": 1
+        },
+        {
+          "kind": "zero_event",
+          "path": "guard.nodup_calls"
+        },
+        {
+          "kind": "metadata_fine"
+        }
+      ]
+    },
+    {
+      "id": "crossed-source-embeddings",
+      "op": "recover",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": {
+        "guards.distinct": true,
+        "guards.partition": true,
+        "guards.embeddings": false,
+        "success": false,
+        "budget": null,
+        "raw_count": 0,
+        "first_head_accesses": 0,
+        "target_transport_licensed": false
+      },
+      "counts": {
+        "recovery.generate_calls": 0,
+        "color.calls": 0,
+        "color.first_head": 0
+      },
+      "positive_counts": [
+        "guard.nodup_calls",
+        "guard.partition_calls",
+        "guard.embedding_calls"
+      ],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "success",
+          "replacement": true
+        },
+        {
+          "kind": "value",
+          "path": "first_head_accesses",
+          "replacement": 1
+        },
+        {
+          "kind": "zero_event",
+          "path": "guard.nodup_calls"
+        },
+        {
+          "kind": "metadata_fine"
+        }
+      ]
+    },
+    {
+      "id": "pair-allowed-history-0",
+      "op": "certificate",
+      "input": {
+        "tree": [
+          0,
+          1
+        ],
+        "partition": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "cuts": [
+          "0"
+        ]
+      },
+      "expected": {
+        "actual_edges": true,
+        "distinct_cuts": true,
+        "cut_count": 1,
+        "component_count": 2,
+        "leafless_count": 0,
+        "exact": true,
+        "all_original_vertices": 3
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "cut_count",
+          "replacement": 2
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "omit_reverse_edge"
+        }
+      ]
+    },
+    {
+      "id": "pair-allowed-history-1",
+      "op": "certificate",
+      "input": {
+        "tree": [
+          0,
+          1
+        ],
+        "partition": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "cuts": [
+          "1"
+        ]
+      },
+      "expected": {
+        "actual_edges": true,
+        "distinct_cuts": true,
+        "cut_count": 1,
+        "component_count": 2,
+        "leafless_count": 0,
+        "exact": true,
+        "all_original_vertices": 3
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "cut_count",
+          "replacement": 2
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "omit_reverse_edge"
+        }
+      ]
+    },
+    {
+      "id": "quartet-allowed-history-0",
+      "op": "certificate",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "cuts": [
+          "10",
+          "11"
+        ]
+      },
+      "expected": {
+        "actual_edges": true,
+        "distinct_cuts": true,
+        "cut_count": 2,
+        "component_count": 3,
+        "leafless_count": 0,
+        "exact": true,
+        "all_original_vertices": 7
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "cut_count",
+          "replacement": 3
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "omit_reverse_edge"
+        }
+      ]
+    },
+    {
+      "id": "quartet-allowed-history-1",
+      "op": "certificate",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "cuts": [
+          "1",
+          "10"
+        ]
+      },
+      "expected": {
+        "actual_edges": true,
+        "distinct_cuts": true,
+        "cut_count": 2,
+        "component_count": 3,
+        "leafless_count": 0,
+        "exact": true,
+        "all_original_vertices": 7
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "cut_count",
+          "replacement": 3
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "omit_reverse_edge"
+        }
+      ]
+    },
+    {
+      "id": "quartet-allowed-history-2",
+      "op": "certificate",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "cuts": [
+          "1",
+          "11"
+        ]
+      },
+      "expected": {
+        "actual_edges": true,
+        "distinct_cuts": true,
+        "cut_count": 2,
+        "component_count": 3,
+        "leafless_count": 0,
+        "exact": true,
+        "all_original_vertices": 7
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "cut_count",
+          "replacement": 3
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "omit_reverse_edge"
+        }
+      ]
+    },
+    {
+      "id": "quartet-allowed-history-3",
+      "op": "certificate",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "cuts": [
+          "0",
+          "10"
+        ]
+      },
+      "expected": {
+        "actual_edges": true,
+        "distinct_cuts": true,
+        "cut_count": 2,
+        "component_count": 3,
+        "leafless_count": 0,
+        "exact": true,
+        "all_original_vertices": 7
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "cut_count",
+          "replacement": 3
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "omit_reverse_edge"
+        }
+      ]
+    },
+    {
+      "id": "quartet-allowed-history-4",
+      "op": "certificate",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "cuts": [
+          "0",
+          "11"
+        ]
+      },
+      "expected": {
+        "actual_edges": true,
+        "distinct_cuts": true,
+        "cut_count": 2,
+        "component_count": 3,
+        "leafless_count": 0,
+        "exact": true,
+        "all_original_vertices": 7
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "cut_count",
+          "replacement": 3
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "omit_reverse_edge"
+        }
+      ]
+    },
+    {
+      "id": "nonclade-allowed-history-0",
+      "op": "certificate",
+      "input": {
+        "tree": [
+          [
+            0,
+            [
+              1,
+              2
+            ]
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "cuts": [
+          "010",
+          "0"
+        ]
+      },
+      "expected": {
+        "actual_edges": true,
+        "distinct_cuts": true,
+        "cut_count": 2,
+        "component_count": 3,
+        "leafless_count": 0,
+        "exact": true,
+        "all_original_vertices": 9
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "cut_count",
+          "replacement": 3
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "omit_reverse_edge"
+        }
+      ]
+    },
+    {
+      "id": "nonclade-allowed-history-1",
+      "op": "certificate",
+      "input": {
+        "tree": [
+          [
+            0,
+            [
+              1,
+              2
+            ]
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "cuts": [
+          "010",
+          "1"
+        ]
+      },
+      "expected": {
+        "actual_edges": true,
+        "distinct_cuts": true,
+        "cut_count": 2,
+        "component_count": 3,
+        "leafless_count": 0,
+        "exact": true,
+        "all_original_vertices": 9,
+        "components": [
+          {
+            "root": "",
+            "vertices": [
+              "",
+              "0",
+              "00",
+              "01",
+              "011"
+            ],
+            "labels": [
+              0,
+              2
+            ]
+          },
+          {
+            "root": "010",
+            "vertices": [
+              "010"
+            ],
+            "labels": [
+              1
+            ]
+          },
+          {
+            "root": "1",
+            "vertices": [
+              "1",
+              "10",
+              "11"
+            ],
+            "labels": [
+              3,
+              4
+            ]
+          }
+        ]
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "cut_count",
+          "replacement": 3
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "omit_reverse_edge"
+        }
+      ]
+    },
+    {
+      "id": "missing-cut",
+      "op": "certificate",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "cuts": [
+          "10"
+        ]
+      },
+      "expected": {
+        "actual_edges": true,
+        "distinct_cuts": true,
+        "cut_count": 1,
+        "component_count": 2,
+        "leafless_count": 0,
+        "exact": false
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "exact",
+          "replacement": true
+        },
+        {
+          "kind": "drop_original_vertex"
+        }
+      ]
+    },
+    {
+      "id": "duplicate-cut",
+      "op": "certificate",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "cuts": [
+          "10",
+          "10",
+          "11"
+        ]
+      },
+      "expected": {
+        "actual_edges": true,
+        "distinct_cuts": false,
+        "cut_count": 3,
+        "component_count": 3,
+        "leafless_count": 0,
+        "exact": false
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "exact",
+          "replacement": true
+        },
+        {
+          "kind": "drop_original_vertex"
+        }
+      ]
+    },
+    {
+      "id": "root-cut",
+      "op": "certificate",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "cuts": [
+          "",
+          "10",
+          "11"
+        ]
+      },
+      "expected": {
+        "actual_edges": false,
+        "distinct_cuts": true,
+        "cut_count": 3,
+        "component_count": 3,
+        "leafless_count": 0,
+        "exact": false
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "exact",
+          "replacement": true
+        },
+        {
+          "kind": "drop_original_vertex"
+        }
+      ]
+    },
+    {
+      "id": "nonedge-cut",
+      "op": "certificate",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "cuts": [
+          "101",
+          "11"
+        ]
+      },
+      "expected": {
+        "actual_edges": false,
+        "distinct_cuts": true,
+        "cut_count": 2,
+        "component_count": 2,
+        "leafless_count": 0,
+        "exact": false
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "exact",
+          "replacement": true
+        },
+        {
+          "kind": "drop_original_vertex"
+        }
+      ]
+    },
+    {
+      "id": "leafless-root-pair",
+      "op": "certificate",
+      "input": {
+        "tree": [
+          0,
+          1
+        ],
+        "partition": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "cuts": [
+          "0",
+          "1"
+        ]
+      },
+      "expected": {
+        "actual_edges": true,
+        "distinct_cuts": true,
+        "cut_count": 2,
+        "component_count": 3,
+        "leafless_count": 1,
+        "exact": false
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "exact",
+          "replacement": true
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "drop_leafless"
+        }
+      ]
+    },
+    {
+      "id": "leafless-root-quartet",
+      "op": "certificate",
+      "input": {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "cuts": [
+          "0",
+          "1"
+        ]
+      },
+      "expected": {
+        "actual_edges": true,
+        "distinct_cuts": true,
+        "cut_count": 2,
+        "component_count": 3,
+        "leafless_count": 1,
+        "exact": false
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "exact",
+          "replacement": true
+        },
+        {
+          "kind": "drop_original_vertex"
+        },
+        {
+          "kind": "drop_leafless"
+        }
+      ]
+    },
+    {
+      "id": "local-edge-not-whole-certificate",
+      "op": "certificate",
+      "input": {
+        "tree": [
+          [
+            0,
+            [
+              1,
+              2
+            ]
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "partition": [
+          [
+            0,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "cuts": [
+          "0"
+        ]
+      },
+      "expected": {
+        "actual_edges": true,
+        "distinct_cuts": true,
+        "cut_count": 1,
+        "component_count": 2,
+        "leafless_count": 0,
+        "exact": false
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "exact",
+          "replacement": true
+        },
+        {
+          "kind": "drop_original_vertex"
+        }
+      ]
+    },
+    {
+      "id": "multiplicity-is-not-set-equality",
+      "op": "permutation",
+      "input": {
+        "left": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "right": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": {
+        "equivalent": false
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "equivalent",
+          "replacement": true
+        }
+      ]
+    },
+    {
+      "id": "outer-and-inner-permutations",
+      "op": "permutation",
+      "input": {
+        "left": [
+          [
+            0,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "right": [
+          [
+            4,
+            3
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": {
+        "equivalent": true
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "equivalent",
+          "replacement": false
+        }
+      ]
+    },
+    {
+      "id": "suppressed-versus-original-edge",
+      "op": "edges",
+      "input": {
+        "tree": [
+          [
+            0,
+            [
+              1,
+              2
+            ]
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "pairs": [
+          [
+            "",
+            "011"
+          ],
+          [
+            "01",
+            "011"
+          ],
+          [
+            "",
+            "0"
+          ]
+        ],
+        "cut": [
+          "0"
+        ]
+      },
+      "expected": {
+        "actual": [
+          false,
+          true,
+          true
+        ],
+        "local_zero_original_leafset": [
+          0,
+          1,
+          2
+        ],
+        "selected_zero_leafset": [
+          0
+        ]
+      },
+      "counts": {},
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "actual",
+          "replacement": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "kind": "value",
+          "path": "local_zero_original_leafset",
+          "replacement": [
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "once-after-selection",
+      "op": "absorption",
+      "input": {
+        "k": 3,
+        "q": 3,
+        "c": "2",
+        "calls": 1
+      },
+      "expected": {
+        "premises": true,
+        "single_recovery": true,
+        "factor": 8,
+        "charged": 8,
+        "absorbed": true
+      },
+      "counts": {
+        "recovery.materialized_calls": 1
+      },
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "charged",
+          "replacement": 0
+        },
+        {
+          "kind": "value",
+          "path": "absorbed",
+          "replacement": false
+        },
+        {
+          "kind": "zero_event",
+          "path": "recovery.materialized_calls"
+        }
+      ]
+    },
+    {
+      "id": "repeated-per-branch-not-free",
+      "op": "absorption",
+      "input": {
+        "k": 3,
+        "q": 3,
+        "c": "2",
+        "calls": 8
+      },
+      "expected": {
+        "premises": true,
+        "single_recovery": false,
+        "factor": 8,
+        "charged": 64,
+        "absorbed": false
+      },
+      "counts": {
+        "recovery.materialized_calls": 8
+      },
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "charged",
+          "replacement": 0
+        },
+        {
+          "kind": "value",
+          "path": "absorbed",
+          "replacement": true
+        },
+        {
+          "kind": "zero_event",
+          "path": "recovery.materialized_calls"
+        }
+      ]
+    },
+    {
+      "id": "too-small-base",
+      "op": "absorption",
+      "input": {
+        "k": 3,
+        "q": 3,
+        "c": "3/2",
+        "calls": 1
+      },
+      "expected": {
+        "premises": false,
+        "single_recovery": true,
+        "factor": 8,
+        "charged": 8,
+        "absorbed": false
+      },
+      "counts": {
+        "recovery.materialized_calls": 1
+      },
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "charged",
+          "replacement": 0
+        },
+        {
+          "kind": "value",
+          "path": "absorbed",
+          "replacement": true
+        },
+        {
+          "kind": "zero_event",
+          "path": "recovery.materialized_calls"
+        }
+      ]
+    },
+    {
+      "id": "over-budget-forest",
+      "op": "absorption",
+      "input": {
+        "k": 3,
+        "q": 2,
+        "c": "2",
+        "calls": 1
+      },
+      "expected": {
+        "premises": false,
+        "single_recovery": true,
+        "factor": 8,
+        "charged": 8,
+        "absorbed": false
+      },
+      "counts": {
+        "recovery.materialized_calls": 1
+      },
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "charged",
+          "replacement": 0
+        },
+        {
+          "kind": "value",
+          "path": "absorbed",
+          "replacement": true
+        },
+        {
+          "kind": "zero_event",
+          "path": "recovery.materialized_calls"
+        }
+      ]
+    },
+    {
+      "id": "rational233-absorption",
+      "op": "absorption",
+      "input": {
+        "k": 2,
+        "q": 3,
+        "c": "233/100",
+        "calls": 1
+      },
+      "expected": {
+        "premises": true,
+        "single_recovery": true,
+        "factor": 4,
+        "charged": 4,
+        "absorbed": true
+      },
+      "counts": {
+        "recovery.materialized_calls": 1
+      },
+      "positive_counts": [],
+      "plants": [
+        {
+          "kind": "value",
+          "path": "charged",
+          "replacement": 0
+        },
+        {
+          "kind": "value",
+          "path": "absorbed",
+          "replacement": false
+        },
+        {
+          "kind": "zero_event",
+          "path": "recovery.materialized_calls"
+        }
+      ]
+    }
+  ],
+  "declared_controls": 46,
+  "declared_plants": 221,
+  "pilot_ids": [
+    "singleton-leaf",
+    "nonclade-original-paths",
+    "leafless-root-pair"
+  ],
+  "size_pilot_ids": [
+    "quartet-three-blocks",
+    "all-singletons-quartet",
+    "nonclade-reordered",
+    "huge-original-labels"
+  ],
+  "mass_expectations": {
+    "0": {
+      "2": "1",
+      "233/100": "1",
+      "3": "1"
+    },
+    "1": {
+      "2": "1/2",
+      "233/100": "100/233",
+      "3": "1/3"
+    },
+    "2": {
+      "2": "1/4",
+      "233/100": "10000/54289",
+      "3": "1/9"
+    },
+    "3": {
+      "2": "1/8",
+      "233/100": "1000000/12649337",
+      "3": "1/27"
+    }
+  },
+  "allowed_history_policy": "Literal graph-certificate validity, never assumed unique cut history;9 explicit alternate-history cases. No partition/cut census."
+}

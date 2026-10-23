@@ -1,0 +1,13 @@
+# Review reproduction
+
+The included scientific `src` files are exact canonical positive sources. Their order, imports and hashes are in source-adoption-v1.json. Rebuild them with native Lean 4.35.0 in that order, using a new empty build directory as the only scientific LEAN_PATH. No compiled scientific file is needed from this handoff; omitted binary identities are recorded in packaging provenance.
+
+`rebuild.py pilot` and `rebuild.py remaining` reproduce the source-pin-aware build in the recorded local workspace. Every scientific source is compared with the released canonical source before copying. On another checkout, use the included src files and source-adoption order with the corresponding native Lean distribution; original absolute paths in provenance identify the reviewed inputs rather than a claim of cross-platform equivalence.
+
+`make_origin_audit.py` records the grouped module-origin auditor. ReleasedAuditBase and AuditScientific are the actual compiled review sources. AuditFrozenToys uses the preserved prerelease toy build only in a separate control process; the scientific audit imports only fresh rebuilt scientific modules and the audit helper. No toy custom axiom enters the scientific process. The auditor's grouped rows were compared with four exact frozen clean/false toy inventories before scientific use.
+
+`make_compiled_controls.py` creates the value bridge from the separately sealed READY fixtures. Its source is frozen in compiled-control-source-freeze-v1.json before execution. Execute src/CompiledControls.lean with `lean --run` and compare its JSONL using check_compiled_controls.py. CompiledControls explicitly computes Fprime from known control F values only for correctness checks; the candidate runtime function is goodPairOutputs, whose exact binders and dependencies are recorded separately.
+
+`make_mass_controls.py` creates the direct compiled rawQMass bridge over the same actual outputs. Its source-freeze receipt and JSONL are retained. The 63 rational/budget rows and duplicate twin have exact comparison receipts. RuntimeDependency.lean inspects data-value dependencies; theorem bodies are proof terminals, and the inspection makes no running-time claim.
+
+The immutable READY archive/manifest and old cheap/high archive/manifest remain separate preserved dependencies, identified in the release authorization and final preservation receipts. The same checker lineage is reused; repeated executions are not additional replications. No actual SolveForest, source-runtime correspondence, both-bad continuation, general-state/history/termination, complete algorithm or exponent claim is accepted.

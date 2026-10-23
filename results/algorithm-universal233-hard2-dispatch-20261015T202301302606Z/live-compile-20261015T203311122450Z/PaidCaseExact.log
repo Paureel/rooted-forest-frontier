@@ -1,0 +1,54 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-dispatch-20261015T202301302606Z/PaidCaseExact.lean:17:63: error(lean.unknownIdentifier): Unknown identifier `out`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-dispatch-20261015T202301302606Z/PaidCaseExact.lean:79:18: error: Invalid projection: Projections cannot be used on functions, and
+  Bool.and_eq_true
+has function type
+  ∀ (a b : Bool), ((a && b) = true) = (a = true ∧ b = true)
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-dispatch-20261015T202301302606Z/PaidCaseExact.lean:86:85: error: Invalid projection: Projections cannot be used on functions, and
+  Bool.or_eq_true
+has function type
+  ∀ (a b : Bool), ((a || b) = true) = (a = true ∨ b = true)
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-dispatch-20261015T202301302606Z/PaidCaseExact.lean:88:19: error: Type mismatch: After simplification, term
+  hG
+ has type
+  (Hard2PaidLocal.runHardPaid actual T S q c (Result.pair o (PairGeometry.Choice.edge edge))).answer = some G
+but is expected to have type
+  (if
+          restrictionAgrees S T (first o (leftParent S p) (rightParent S r) (rootParent S p r)) = true ∧
+            restrictionAgrees S T (second o (leftParent S p) (rightParent S r) (rootParent S p r)) = true then
+        GoodPairDP.runPair actual T S (first o (leftParent S p) (rightParent S r) (rootParent S p r))
+          (second o (leftParent S p) (rightParent S r) (rootParent S p r))
+          (third o (leftParent S p) (rightParent S r) (rootParent S p r)) q
+      else
+        if
+            restrictionAgrees S T (first o (leftParent S p) (rightParent S r) (rootParent S p r)) = true ∨
+              restrictionAgrees S T (second o (leftParent S p) (rightParent S r) (rootParent S p r)) = true then
+          Hard2PaidLocal.runHardPaid actual T S q c (Result.pair o (PairGeometry.Choice.edge edge))
+        else
+          badPair actual T S (first o (leftParent S p) (rightParent S r) (rootParent S p r))
+            (second o (leftParent S p) (rightParent S r) (rootParent S p r))
+            (third o (leftParent S p) (rightParent S r) (rootParent S p r)) edge q).answer =
+    some G
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-dispatch-20261015T202301302606Z/PaidCaseExact.lean:92:19: error: Type mismatch: After simplification, term
+  hG
+ has type
+  (badPair actual T S (first o (leftParent S p) (rightParent S r) (rootParent S p r))
+        (second o (leftParent S p) (rightParent S r) (rootParent S p r))
+        (third o (leftParent S p) (rightParent S r) (rootParent S p r)) edge q).answer =
+    some G
+but is expected to have type
+  (if
+          restrictionAgrees S T (first o (leftParent S p) (rightParent S r) (rootParent S p r)) = true ∧
+            restrictionAgrees S T (second o (leftParent S p) (rightParent S r) (rootParent S p r)) = true then
+        GoodPairDP.runPair actual T S (first o (leftParent S p) (rightParent S r) (rootParent S p r))
+          (second o (leftParent S p) (rightParent S r) (rootParent S p r))
+          (third o (leftParent S p) (rightParent S r) (rootParent S p r)) q
+      else
+        if
+            restrictionAgrees S T (first o (leftParent S p) (rightParent S r) (rootParent S p r)) = true ∨
+              restrictionAgrees S T (second o (leftParent S p) (rightParent S r) (rootParent S p r)) = true then
+          Hard2PaidLocal.runHardPaid actual T S q c (Result.pair o (PairGeometry.Choice.edge edge))
+        else
+          badPair actual T S (first o (leftParent S p) (rightParent S r) (rootParent S p r))
+            (second o (leftParent S p) (rightParent S r) (rootParent S p r))
+            (third o (leftParent S p) (rightParent S r) (rootParent S p r)) edge q).answer =
+    some G

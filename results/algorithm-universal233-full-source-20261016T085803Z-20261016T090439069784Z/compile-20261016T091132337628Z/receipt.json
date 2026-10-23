@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3543966669999463,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.33159654199971555,
+      "resource_stop": null,
+      "log_sha256": "38adde5b0bc2d99508c2d09ae6dddd8666fb3b987929d656232ecdc05c3ef836"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016655839999657474,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "CommonConstructionWork",
+      "source_sha256": "5db0eed76987a448f034c03632cce697cfe931195bfdc6f66d0f5bd606910c05",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8475604999998723,
+      "resource_stop": null,
+      "log_sha256": "e8fe674b5c7917e654b0983f63a765c6c1ac6992d537dd55ab98b9063fc05406"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('CommonConstructionWork', \"/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-full-source-20261016T085803Z-20261016T090439069784Z/CommonConstructionWork.lean:35:59: error: Tactic `rfl` failed: The left-hand side\\n  (leafEqualMeter (Tree.leaf a\u271d) a).value\\nis not definitionally equal to the right-hand side\\n  Tree.leaf a\u271d == Tree.leaf a\\n\\ncase leaf\\na a\u271d : Nat\\n\u22a2 (leafEqualMeter (Tree.leaf a\u271d) a).value = (Tree.leaf a\u271d == Tree.leaf a)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-full-source-20261016T085803Z-20261016T090439069784Z/CommonConstructionWork.lean:54:91: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  g \u2265 0\\n  f \u2265 0\\n  e \u2265 0\\n  32*e - f \u2265 0\\n  d \u2265 0\\n  c \u2265 0\\n  32*c - d \u2265 0\\n  32*c + 32*e - g \u2264 -33\\nwhere\\n c := \u2191(treeNodes l)\\n d := \u2191(contractMeter a b z l).work\\n e := \u2191(treeNodes r)\\n f := \u2191(contractMeter a b z r).work\\n g := \u2191{ value := Tree.leaf z, work := 24 }.work\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-full-source-20261016T085803Z-20261016T090439069784Z/CommonConstructionWork.lean:54:91: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  g \u2265 0\\n  f \u2265 0\\n  e \u2265 0\\n  32*e - f \u2265 0\\n  d \u2265 0\\n  c \u2265 0\\n  32*c - d \u2265 0\\n  32*c + 32*e - g \u2264 -33\\nwhere\\n c := \u2191(treeNodes l)\\n d := \u2191(contractMeter a b z l).work\\n e := \u2191(treeNodes r)\\n f := \u2191(contractMeter a b z r).work\\n g := \u2191{ value := (contractMeter a b z l).value.node (contractMeter a b z r).value,\\n      work := (contractMeter a b z l).work + (contractMeter a b z r).work + 24 }.work\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-full-source-20261016T085803Z-20261016T090439069784Z/CommonConstructionWork.lean:78:61: error: unexpected token '@['; expected term\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-full-source-20261016T085803Z-20261016T090439069784Z/CommonConstructionWork.lean:80:57: error: unsolved goals\\ncase nil\\na b z : Nat\\n\u22a2 (sorry a b z []).value = []\\n\\ncase cons\\na b z head\u271d : Nat\\ntail\u271d : List Nat\\ntail_ih\u271d : (sorry a b z tail\u271d).value = List.flatMap (fun x => if x = z then [a, b] else [x]) tail\u271d\\n\u22a2 (sorry a b z (head\u271d :: tail\u271d)).value =\\n    (if head\u271d = z then [a, b] else [head\u271d]) ++ List.flatMap (fun x => if x = z then [a, b] else [x]) tail\u271d\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-full-source-20261016T085803Z-20261016T090439069784Z/CommonConstructionWork.lean:81:27: warning: declaration uses `sorry`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-full-source-20261016T085803Z-20261016T090439069784Z/CommonConstructionWork.lean:84:32: warning: declaration uses `sorry`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-full-source-20261016T085803Z-20261016T090439069784Z/CommonConstructionWork.lean:82:8: warning: declaration uses `sorry`\\n\"))"
+}

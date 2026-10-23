@@ -1,0 +1,45 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryStepTrace.lean:38:39: error: Ambiguous term
+  solve
+Possible interpretations:
+  FastOrdinary.solve q T S : Option CommonForest
+  
+  RMAF.solve q T S : Option (List Nat)
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryStepTrace.lean:39:5: error: Ambiguous term
+  solve.eq_def
+Possible interpretations:
+  FastOrdinary.solve.eq_def : ∀ (q : Nat) (T S : Tree),
+    FastOrdinary.solve q T S =
+      if DepthOne.proper T S = true then
+        match DepthOne.pretest01 T S with
+        | DepthOne.Result.refused => none
+        | DepthOne.Result.found c => if DepthOne.cutCost c ≤ q then some (DepthOne.forest S c) else none
+        | DepthOne.Result.rejected =>
+          have paid := fun u v r => if hr : r < q then FastOrdinary.solve r u v else none;
+          match early T S with
+          | Early.common reverse c =>
+            have p := commonPair T S reverse c;
+            if hn : (leaves p.fst).length < (leaves T).length then
+              Option.map (expandCommon T S reverse c) (FastOrdinary.solve q p.fst p.snd)
+            else none
+          | Early.one reverse c =>
+            have p := Oriented reverse T S;
+            runChildren paid p.fst p.snd q [pendantChild p.snd c.a c.b]
+          | Early.high reverse c =>
+            have p := Oriented reverse T S;
+            runChildren paid p.fst p.snd q (branches p.snd c.a c.b)
+          | Early.rule4Forward s => runRule4 paid s q
+          | Early.rule4Reverse s => runRule4 paid s q
+          | Early.hard2 c d => Hard2Dispatcher.run paid T S c d q
+          | Early.refused => none
+      else none
+  
+  RMAF.solve.eq_def : ∀ (n : Nat) (t u : Tree),
+    RMAF.solve n t u = best (fun a => (blocks a).length) (fun a => agreement t u (blocks a)) (assignments n n)
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryStepTrace.lean:38:54: error: unsolved goals
+q : Nat
+T S : Tree
+⊢ (ordinaryStepTrace FastOrdinary.solve q T S).value = sorry
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryStepTrace.lean:73:33: warning: `if_true` has been deprecated: Use `ite_true` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵t̵r̵u̵e̵i̲t̲e̲_̲t̲r̲u̲e̲

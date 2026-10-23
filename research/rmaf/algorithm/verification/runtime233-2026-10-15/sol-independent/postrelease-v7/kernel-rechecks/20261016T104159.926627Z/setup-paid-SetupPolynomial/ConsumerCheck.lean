@@ -1,0 +1,3 @@
+import SetupPolynomial
+#check Universal233.Rule5RemainingLocalWork.setup_work
+#print axioms Universal233.Rule5RemainingLocalWork.setup_work

@@ -1,0 +1,9 @@
+import Hard2GeneratorSource
+#check OrdinaryDispatch.Hard2SourceWork.generatedOutputsMeter_value
+#print axioms OrdinaryDispatch.Hard2SourceWork.generatedOutputsMeter_value
+#check OrdinaryDispatch.Hard2SourceWork.generatedOutputsMeter_bound
+#print axioms OrdinaryDispatch.Hard2SourceWork.generatedOutputsMeter_bound
+#check OrdinaryDispatch.Hard2SourceWork.generate_output_count
+#print axioms OrdinaryDispatch.Hard2SourceWork.generate_output_count
+#check OrdinaryDispatch.Hard2SourceWork.wholeOutputsMeter_bound
+#print axioms OrdinaryDispatch.Hard2SourceWork.wholeOutputsMeter_bound

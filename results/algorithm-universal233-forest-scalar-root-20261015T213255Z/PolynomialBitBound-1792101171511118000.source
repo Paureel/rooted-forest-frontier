@@ -1,0 +1,31 @@
+import InitialBitChecks
+namespace GenericForest.ScalarBits
+open RMAF ForestState RestrictionBridge Universal233 Universal233.WholeSourceWork GenericForest.CheckCorrespondence
+
+theorem proper_volume_bound (T : Option Tree) (ss : List Tree) (q : Nat)
+ (proper : ForestState.proper T ss=true) :
+ stateVolume T ss q+1≤4*(labels T).length+q+1 := by
+ have source:=proper_source_size T ss proper
+ have target : targetNodes T≤2*(labels T).length:=by
+  cases T with
+  | none=>simp [targetNodes,labels]
+  | some t=>exact treeNodes_le_twice_leaves t
+ unfold stateVolume;omega
+
+def binaryInspectionPolynomial (L n q : Nat) :=
+ (256*(L+14+8*labelBits (4*n+q+1)))*(4096*(4*n+q+1)^8)
+
+theorem binary_checked_polynomial (L : Nat) (T : Option Tree) (ss : List Tree) (q : Nat) (F : Forest)
+ (proper : ForestState.proper T ss=true) (bits : ∀x∈labels T,labelBits x≤L)
+ (payloadLabels : PayloadLabelBits L F) (payload : StatePayloadSize T F) :
+ (bitChecked (checkerWidth L T ss q) T ss q F).value=checked T ss q F ∧
+ (bitChecked (checkerWidth L T ss q) T ss q F).work≤binaryInspectionPolynomial L (labels T).length q := by
+ have h:=binary_checked_inspection_bound L T ss q F (proper_input_bits L T ss proper bits) payloadLabels payload
+ have volume:=proper_volume_bound T ss q proper
+ have log:=labelBits_mono _ _ volume
+ have factor : 256*(L+14+8*labelBits (stateVolume T ss q+1))≤
+  256*(L+14+8*labelBits (4*(labels T).length+q+1)):=by omega
+ have bill : inspectionBill T ss q≤4096*(4*(labels T).length+q+1)^8:=
+  Nat.mul_le_mul_left 4096 (Nat.pow_le_pow_left volume 8)
+ exact ⟨h.1,Nat.le_trans h.2 (Nat.mul_le_mul factor bill)⟩
+end GenericForest.ScalarBits

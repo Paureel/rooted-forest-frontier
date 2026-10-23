@@ -1,0 +1,23 @@
+List.Perm.pairwise_iff.{u_1} {α : Type u_1} {R : α → α → Prop} (S : ∀ {x y : α}, R x y → R y x) {l₁ l₂ : List α}
+  (_p : l₁.Perm l₂) : List.Pairwise R l₁ ↔ List.Pairwise R l₂
+List.Perm.pairwise.{u_1} {α : Type u_1} {R : α → α → Prop} {l l' : List α} (hl : l.Perm l') (hR : List.Pairwise R l)
+  (hsymm : ∀ {x y : α}, R x y → R y x) : List.Pairwise R l'
+List.Pairwise.imp.{u_1} {α : Type u_1} {R S : α → α → Prop} (H : ∀ {a b : α}, R a b → S a b) {l : List α} :
+  List.Pairwise R l → List.Pairwise S l
+research/rmaf/algorithm/universal233/final_cut_recovery/dev/Probe2.lean:5:7: error(lean.unknownIdentifier): Unknown constant `List.forall₂_map_left_iff`
+research/rmaf/algorithm/universal233/final_cut_recovery/dev/Probe2.lean:6:7: error(lean.unknownIdentifier): Unknown constant `List.forall₂_cons`
+research/rmaf/algorithm/universal233/final_cut_recovery/dev/Probe2.lean:7:7: error(lean.unknownIdentifier): Unknown constant `List.forall₂_nil_left_iff`
+List.Perm.count_eq.{u_1} {α : Type u_1} [BEq α] {l₁ l₂ : List α} (p : l₁.Perm l₂) (a : α) :
+  List.count a l₁ = List.count a l₂
+List.Perm.isEmpty_eq.{u_1} {α : Type u_1} {l l' : List α} (h : l.Perm l') : l.isEmpty = l'.isEmpty
+research/rmaf/algorithm/universal233/final_cut_recovery/dev/Probe2.lean:10:7: error(lean.unknownIdentifier): Unknown constant `List.Perm.map_eq`
+List.map_eq_map_iff.{u_1, u_2} {α✝ : Type u_1} {α✝¹ : Type u_2} {f : α✝ → α✝¹} {l : List α✝} {g : α✝ → α✝¹} :
+  List.map f l = List.map g l ↔ ∀ (a : α✝), a ∈ l → f a = g a
+List.map_id.{u_1} {α : Type u_1} (l : List α) : List.map id l = l
+List.map_congr_left.{u_1, u_2} {α✝ : Type u_1} {l : List α✝} {α✝¹ : Type u_2} {f g : α✝ → α✝¹}
+  (h : ∀ (a : α✝), a ∈ l → f a = g a) : List.map f l = List.map g l
+research/rmaf/algorithm/universal233/final_cut_recovery/dev/Probe2.lean:14:7: error(lean.unknownIdentifier): Unknown constant `List.Forall₂`
+List.Pairwise.{u} {α : Type u} (R : α → α → Prop) : List α → Prop
+List.pairwise_cons.{u} {α : Type u} {R : α → α → Prop} {a : α} {l : List α} :
+  List.Pairwise R (a :: l) ↔ (∀ (a' : α), a' ∈ l → R a a') ∧ List.Pairwise R l
+List.all_eq_true.{u_1} {α : Type u_1} {p : α → Bool} {l : List α} : l.all p = true ↔ ∀ (x : α), x ∈ l → p x = true

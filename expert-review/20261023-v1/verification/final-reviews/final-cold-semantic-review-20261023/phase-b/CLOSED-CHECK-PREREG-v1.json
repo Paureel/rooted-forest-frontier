@@ -1,0 +1,29 @@
+{
+  "scope": "Independent value/semantic translation of exactly released primitive/pretest/scan/recovery bodies, plus closed pure ledger helpers. No Lean/kernel or full rejected-pretest branch evaluator, no cost measurement theorem. Freeze before either run. Calibration mode runs before candidate mode.",
+  "calibration": {
+    "positive": {"leaves": [0,1,2], "vertices": [[],[false],[false,false],[false,true],[true]], "restricted": [0,2], "minimal0": [[false,false]], "rooted0": [[],[false],[false,false]], "duplicate_partition": false},
+    "corruptions": {"reverse_vertices": "EXACT_MISMATCH", "unit_integer": "EXACT_MISMATCH"},
+    "denominator": 8
+  },
+  "cases": [
+    {"name": "leaf_zero", "T": 0, "S": 0, "selected": 0, "forest": [[0]], "trials": [[0,true]], "recovery_partition": [[0]], "cuts": [], "color_calls": [0], "visited": 1, "attempts": 0, "proper_calls": 3, "forest_builds": 2},
+    {"name": "identical_three", "T": [[0,1],2], "S": [[0,1],2], "selected": 0, "forest": [[0,1,2]], "trials": [[0,true]], "recovery_partition": [[0,1,2]], "cuts": [], "color_calls": [0,1,2], "visited": 1, "attempts": 0, "proper_calls": 3, "forest_builds": 6},
+    {"name": "different_three", "T": [[0,1],2], "S": [[0,2],1], "selected": 1, "forest": [[0,2],[1]], "trials": [[0,false],[1,true]], "recovery_partition": [[0,2],[1]], "cuts": [[false]], "color_calls": [0,2,1], "visited": 2, "attempts": 1, "proper_calls": 5, "forest_builds": 12},
+    {"name": "duplicate_labels", "T": [0,0], "S": [0,0], "selected": null, "forest": null, "trials": [], "recovery_partition": null, "cuts": null, "color_calls": [], "visited": 0, "attempts": 0, "proper_calls": 1, "forest_builds": 0},
+    {"name": "different_labels", "T": 0, "S": 1, "selected": null, "forest": null, "trials": [], "recovery_partition": null, "cuts": null, "color_calls": [], "visited": 0, "attempts": 0, "proper_calls": 1, "forest_builds": 0}
+  ],
+  "ledger": {
+    "recorded": [[0,0],[0,1],[2,0]],
+    "chronological": [[2,0],[0,0],[0,1]],
+    "positions": [2,0,1],
+    "live_occurrences": [[0,1]],
+    "paid_recorded": [[false,[0,0]],[true,[0,0]],[true,[0,1]]],
+    "paid_chronological": [[true,[0,0]],[true,[0,1]],[false,[0,0]]],
+    "paid_positions": [1,2,0],
+    "query_based_collapsed_positions": [0,0,0],
+    "collapsed_position_diagnostic": "NOT_INJECTIVE"
+  },
+  "candidate_denominator": 6,
+  "failure_rule": "Any unexpected diagnostic/value is retained and stops scientific use. Any correction is prospectively v2; no v1 overwrite/rescore and no unchanged passed rerun.",
+  "runtime": "Existing BootLoops Python/run_capped.py, default30/shared lock, no new infrastructure or cap change. These are exact small finite discrete checks; unmeasured runtime pilot is each complete bounded run."
+}

@@ -1,0 +1,17 @@
+import OWOptimize
+#check OrdinaryDispatch.OptimizerLocalWork.meterScan_accounting
+#print axioms OrdinaryDispatch.OptimizerLocalWork.meterScan_accounting
+#check OrdinaryDispatch.OptimizerLocalWork.meterPreflight_bound
+#print axioms OrdinaryDispatch.OptimizerLocalWork.meterPreflight_bound
+#check OrdinaryDispatch.OptimizerLocalWork.meterInputCheck_bound
+#print axioms OrdinaryDispatch.OptimizerLocalWork.meterInputCheck_bound
+#check OrdinaryDispatch.OptimizerLocalWork.recovery_counter_bound
+#print axioms OrdinaryDispatch.OptimizerLocalWork.recovery_counter_bound
+#check OrdinaryDispatch.OptimizerLocalWork.meterOptimize_value
+#print axioms OrdinaryDispatch.OptimizerLocalWork.meterOptimize_value
+#check OrdinaryDispatch.OptimizerLocalWork.actual_wrapper_fees
+#print axioms OrdinaryDispatch.OptimizerLocalWork.actual_wrapper_fees
+#check OrdinaryDispatch.OptimizerLocalWork.wrapper_polynomial
+#print axioms OrdinaryDispatch.OptimizerLocalWork.wrapper_polynomial
+#check OrdinaryDispatch.OptimizerLocalWork.conditional_233_derived_wrapper
+#print axioms OrdinaryDispatch.OptimizerLocalWork.conditional_233_derived_wrapper

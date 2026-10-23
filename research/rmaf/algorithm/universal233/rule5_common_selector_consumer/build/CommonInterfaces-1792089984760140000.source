@@ -1,0 +1,102 @@
+import FinalInterface
+import SourceNonrefusal
+import Permutations
+namespace Universal233.Rule5CommonSelector
+open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent CherryBranching Rule5Local Rule5Classification Rule5FinalClassification
+
+/-- Equality includes the actual list order, not only the vertex set. -/
+theorem vertices_exact (T : Tree) : DepthOne.vertices T=HardParent.vertices T := by
+ induction T with
+ | leaf x => rfl
+ | node l r il ir => simp only [DepthOne.vertices,HardParent.vertices,prependSide,il,ir]
+
+theorem incident_exact (T : Tree) (X : List Nat) :
+ OrdinaryCommonSplit.Source.incident T X=Rule5Local.incident T X := by
+ unfold OrdinaryCommonSplit.Source.incident Rule5Local.incident
+ rw [vertices_exact]
+
+theorem partition_tail_swap (L X C D : List Nat) :
+ partitionCheck L [X,C,D]=partitionCheck L [X,D,C] :=
+ FinalCutRecovery.partitionCheck_outer_perm L (List.Perm.cons X (List.Perm.swap C D []))
+
+theorem embedding_tail_swap (T : Tree) (X C D : List Nat) :
+ pairwiseEmbeddings T [X,C,D]=pairwiseEmbeddings T [X,D,C] :=
+ FinalCutRecovery.embeddings_outer_perm T (List.Perm.cons X (List.Perm.swap C D []))
+
+theorem partition_group_tail {L X C D : List Nat}
+ (hp : partitionCheck L [X,C,D]=true) : partitionCheck L [X,C++D]=true := by
+ obtain ⟨ne,count,labs⟩ := BinaryExchange.partition_parts L [X,C,D] hp
+ apply BinaryExchange.partition_intro
+ · intro B hB
+   have h : B=X ∨ B=C++D := by simpa using hB
+   rcases h with rfl|rfl
+   · exact ne _ (by simp)
+   · intro e
+     have cNil : C=[] := (List.append_eq_nil_iff.1 e).1
+     exact ne C (by simp) cNil
+ · intro x hx
+   have h := count x hx
+   simpa only [List.flatten_cons,List.flatten_nil,List.append_nil,List.count_append,Nat.add_assoc] using h
+ · intro x hx
+   apply labs x
+   simpa only [List.flatten_cons,List.flatten_nil,List.append_nil,List.mem_append,or_assoc] using hx
+
+def outsideLabels (S : Tree) (a b : Nat) (d : BadSelection) : List Nat := coreLabels S a b++[d.c]
+
+theorem endpoint_core {S : Tree} {a b : Nat} (aS : a∈leaves S) (bS : b∈leaves S) :
+ a∈coreLabels S a b ∧ b∈coreLabels S a b := by
+ constructor
+ · exact (mem_core S a b a).2 ⟨aS,fun q hq => source_label_outside_pendant hq (Or.inl rfl) aS⟩
+ · exact (mem_core S a b b).2 ⟨bS,fun q hq => source_label_outside_pendant hq (Or.inr rfl) bS⟩
+
+/-- Source three-part checks come from the actual pendant partition, with
+its two selected original arcs; no target geometry is assumed. -/
+theorem selected_source_three {T S : Tree} {i : RMAF.Vertex} {a b : Nat} {d : BadSelection}
+ (ch : CherryAt T i a b) (sel : selectLocal T S a b=some .remaining) (hd : selectBad T S a b=some d) :
+ partitionCheck (leaves S) [subtreeLabels S d.badArc,[d.c],coreLabels S a b]=true ∧
+ pairwiseEmbeddings S [subtreeLabels S d.badArc,[d.c],coreLabels S a b]=true := by
+ have ad := (selectLocal_cases sel).1
+ have parts := admitted_parts ad
+ have prop := properPair_parts parts.1
+ have aS := (prop.2.2 a).1 (leafAt_label T _ a (cherry_left ch))
+ have hp := pendant_partition_check prop.2.1 aS (b:=b)
+ have he := source_embeddings (a:=a) (b:=b) prop.2.1
+ have ds := selectBad_sound hd
+ have cl : subtreeLabels S d.singletonArc=[d.c] := source_subtree_labels ds.2.2.2.2
+ have order := two_members_order parts.2.2.2.2 ds.1 ds.2.1 ds.2.2.1
+ rcases order with h|h
+ · simpa [pendantPartition,h,cl] using And.intro hp he
+ · have hp0 : partitionCheck (leaves S) [[d.c],subtreeLabels S d.badArc,coreLabels S a b]=true := by simpa [pendantPartition,h,cl] using hp
+   have he0 : pairwiseEmbeddings S [[d.c],subtreeLabels S d.badArc,coreLabels S a b]=true := by simpa [pendantPartition,h,cl] using he
+   exact ⟨(partition_swap_first _ _ _ _).symm ▸ hp0,embeddings_swap_first S _ _ _ he0⟩
+
+theorem selected_common_checks {T S : Tree} {i q : RMAF.Vertex} {a b : Nat} {d : BadSelection}
+ (ch : CherryAt T i a b) (ad : admitted T S a b=true)
+ (hz : selectFinal T S a b=some (.remaining d (.one q))) :
+ partitionCheck (leaves T) [subtreeLabels S d.badArc,coreLabels S a b,[d.c]]=true ∧
+ partitionCheck (leaves S) [subtreeLabels S d.badArc,coreLabels S a b,[d.c]]=true ∧
+ pairwiseEmbeddings T [subtreeLabels S d.badArc,coreLabels S a b,[d.c]]=true ∧
+ pairwiseEmbeddings S [subtreeLabels S d.badArc,coreLabels S a b,[d.c]]=true ∧
+ partitionCheck (leaves T) [subtreeLabels S d.badArc,outsideLabels S a b d]=true ∧
+ partitionCheck (leaves S) [subtreeLabels S d.badArc,outsideLabels S a b d]=true ∧
+ restrictionAgrees T S (coreLabels S a b)=true ∧
+ a∈outsideLabels S a b d ∧ b∈outsideLabels S a b d ∧ d.c∈outsideLabels S a b d ∧
+ OrdinaryCommonSplit.Source.incident T (subtreeLabels S d.badArc)=[q] := by
+ have sound := final_selected_sound ch ad hz
+ have ht := selected_bad_context ch sound.1 sound.2.1
+ have hs := selected_source_three ch sound.1 sound.2.1
+ have pt : partitionCheck (leaves T) [subtreeLabels S d.badArc,coreLabels S a b,[d.c]]=true := (partition_tail_swap _ _ _ _).symm ▸ ht.1
+ have ps : partitionCheck (leaves S) [subtreeLabels S d.badArc,coreLabels S a b,[d.c]]=true := (partition_tail_swap _ _ _ _).symm ▸ hs.1
+ have et : pairwiseEmbeddings T [subtreeLabels S d.badArc,coreLabels S a b,[d.c]]=true := (embedding_tail_swap _ _ _ _).symm ▸ ht.2
+ have es : pairwiseEmbeddings S [subtreeLabels S d.badArc,coreLabels S a b,[d.c]]=true := (embedding_tail_swap _ _ _ _).symm ▸ hs.2
+ have prop := properPair_parts (admitted_parts ad).1
+ have aS := (prop.2.2 a).1 (leafAt_label T _ a (cherry_left ch))
+ have bS := (prop.2.2 b).1 (leafAt_label T _ b (cherry_right ch))
+ have ends := endpoint_core aS bS
+ obtain ⟨_,_,_,_,_,_,_,good⟩ := remaining_source_status ch sound.1
+ refine ⟨pt,ps,et,es,partition_group_tail pt,partition_group_tail ps,good,?_,?_,?_,?_⟩
+ · simp only [outsideLabels,List.mem_append,List.mem_singleton]; exact Or.inl ends.1
+ · simp only [outsideLabels,List.mem_append,List.mem_singleton]; exact Or.inl ends.2
+ · simp [outsideLabels]
+ · rw [incident_exact]; exact sound.2.2.2
+end Universal233.Rule5CommonSelector

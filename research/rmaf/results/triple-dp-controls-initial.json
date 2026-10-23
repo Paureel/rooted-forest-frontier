@@ -1,0 +1,192 @@
+{
+  "status": "passed",
+  "rows": [
+    {
+      "id": "singleton-null",
+      "status": "passed",
+      "result": {
+        "components": 1,
+        "additional_cuts": 0,
+        "partition": [
+          [
+            "a"
+          ]
+        ],
+        "bad_components": 0,
+        "metrics": {
+          "state_width": 2,
+          "states_stored": 2,
+          "close_scans": 0,
+          "candidate_transitions": 0,
+          "join_candidates_per_internal": 1,
+          "internal_vertices": 0,
+          "reconstruction_visits": 1
+        }
+      }
+    },
+    {
+      "id": "good-null",
+      "status": "passed",
+      "result": {
+        "components": 1,
+        "additional_cuts": 0,
+        "partition": [
+          [
+            "a",
+            "b",
+            "c"
+          ]
+        ],
+        "bad_components": 0,
+        "metrics": {
+          "state_width": 2,
+          "states_stored": 10,
+          "close_scans": 8,
+          "candidate_transitions": 8,
+          "join_candidates_per_internal": 1,
+          "internal_vertices": 2,
+          "reconstruction_visits": 5
+        }
+      }
+    },
+    {
+      "id": "bad-triple",
+      "status": "passed",
+      "result": {
+        "components": 2,
+        "additional_cuts": 1,
+        "partition": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "c"
+          ]
+        ],
+        "bad_components": 1,
+        "metrics": {
+          "state_width": 7,
+          "states_stored": 35,
+          "close_scans": 28,
+          "candidate_transitions": 38,
+          "join_candidates_per_internal": 6,
+          "internal_vertices": 2,
+          "reconstruction_visits": 5
+        }
+      }
+    },
+    {
+      "id": "good-overlap",
+      "status": "passed",
+      "result": {
+        "components": 3,
+        "additional_cuts": 1,
+        "partition": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "c"
+          ],
+          [
+            "d"
+          ]
+        ],
+        "bad_components": 0,
+        "metrics": {
+          "state_width": 3,
+          "states_stored": 21,
+          "close_scans": 18,
+          "candidate_transitions": 21,
+          "join_candidates_per_internal": 2,
+          "internal_vertices": 3,
+          "reconstruction_visits": 7
+        }
+      }
+    },
+    {
+      "id": "two-bad-pendant",
+      "status": "passed",
+      "result": {
+        "components": 4,
+        "additional_cuts": 2,
+        "partition": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "c"
+          ],
+          [
+            "d",
+            "e"
+          ],
+          [
+            "f"
+          ]
+        ],
+        "bad_components": 2,
+        "metrics": {
+          "state_width": 13,
+          "states_stored": 143,
+          "close_scans": 130,
+          "candidate_transitions": 185,
+          "join_candidates_per_internal": 12,
+          "internal_vertices": 5,
+          "reconstruction_visits": 11
+        }
+      }
+    },
+    {
+      "id": "duplicate-target",
+      "status": "caught",
+      "reason": "duplicate target/source label"
+    },
+    {
+      "id": "duplicate-source",
+      "status": "caught",
+      "reason": "duplicate source label"
+    },
+    {
+      "id": "missing-source",
+      "status": "caught",
+      "reason": "source and target labels differ"
+    },
+    {
+      "id": "nonbinary",
+      "status": "caught",
+      "reason": "binary tree required"
+    },
+    {
+      "id": "incompatible-large",
+      "status": "caught",
+      "reason": "outside terminal class: incompatible component is not a triple"
+    },
+    {
+      "id": "wrong-result",
+      "status": "caught",
+      "reason": "comparison mismatch: 2 != 1"
+    },
+    {
+      "id": "wrong-witness-overlap",
+      "status": "caught"
+    },
+    {
+      "id": "same-color-merge-claim",
+      "status": "refuted",
+      "reason": "One bad color has optimum two; merging gives invalid full triple."
+    }
+  ],
+  "checks": 13,
+  "seconds": 0.008127832999889506,
+  "hashes": {
+    "controls.json": "f72757ab6d4f84feb36f0f1de848e5ba8c42252d03bf54b3d960bb34f45aebfc",
+    "check.py": "fd6980e50f4522a733e768065d00a7e7aba6cff24b1caf9452d4d241dde77731",
+    "solver.py": "4b0fed6b9a1e76454820a911f21a29d263c110e58bb4575b52a086e751c2174d",
+    "cut_oracle.py": "ebfd3301a9bd62d1c4f60cdc2cd6d44c0634b5d57f75f1771bd487bc3a419f73"
+  },
+  "scope": "Frozen controls only; not universal correctness."
+}

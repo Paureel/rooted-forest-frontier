@@ -1,0 +1,41 @@
+import ChildrenTrace
+namespace OrdinaryDispatch.WorkRecursion
+open RMAF ForestState Universal233 Universal233.CherryBranching
+open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration
+
+theorem debit_three (c : Rat) (hc : 2≤c) (d : Nat) (hd : 3≤d) : c^(-(d:Int))≤c^(-3:Int) := by
+ have cp : 0<c := by grind
+ have nz := Rat.ne_of_gt cp
+ have bound := Rule4.negpow_mono c hc (d-1) (by omega)
+ have mul := Rat.mul_le_mul_of_nonneg_right bound (Rat.le_of_lt (Rat.inv_pos.2 cp))
+ rw [←Rule4.negpow_step c nz (d-1),←Rule4.negpow_step c nz 2] at mul
+ simpa only [show d-1+1=d by omega] using mul
+
+theorem highTrace_bounds (actual : GenericForest.FrontierWork.Ordinary) {T S : Tree} {c : Candidate} (q : Nat)
+ (hp : DepthOne.proper T S=true) (sel : CherryBranching.select T S=some (.high,c))
+ (p : Tree×Tree) (r : Nat) (mem : (p,r)∈(childrenTrace actual T S q (branches S c.a c.b)).queries) :
+ r<q ∧ DepthOne.proper p.1 p.2=true ∧ (leaves p.1).length≤(leaves T).length ∧ (leaves p.2).length≤(leaves T).length := by
+ have cost : 3≤(cuts S c.a c.b).length := by
+  rw [←(selected_actual sel).2]
+  exact (selected_spec sel).2.1
+ exact childrenTrace_bounds actual T S q _ (fun x hx=>selected_children_proper hp sel x hx)
+  (fun x hx=>three_children_paid (by omega) x hx) p r mem
+
+theorem highTrace_mass (actual : GenericForest.FrontierWork.Ordinary) {T S : Tree} {c : Candidate} (q : Nat)
+ (hp : DepthOne.proper T S=true) (sel : CherryBranching.select T S=some (.high,c)) :
+ Rule5ActualTrace.mass Rule5ActualTrace.base q (childrenTrace actual T S q (branches S c.a c.b)).queries≤Rule5ActualTrace.gamma Rule5ActualTrace.base := by
+ have bound := Rule5ActualTrace.forest_jobs_mass actual T q (branches S c.a c.b)
+  (fun x hx=>selected_children_proper hp sel x hx) Rule5ActualTrace.base (by cbv)
+ have cost : 3≤(cuts S c.a c.b).length := by
+  rw [←(selected_actual sel).2]
+  exact (selected_spec sel).2.1
+ have vec : ((branches S c.a c.b).map Child.paid)=[1,1,(cuts S c.a c.b).length] := by
+  simp only [branches,List.map_cons,List.map_nil,endpoint_paid,(pendant_paid S c.a c.b).1]
+ rw [vec] at bound
+ have power := debit_three Rule5ActualTrace.base (by cbv) _ cost
+ have strict : 2*Rule5ActualTrace.base^(-1:Int)+Rule5ActualTrace.base^(-3:Int)≤Rule5ActualTrace.gamma Rule5ActualTrace.base := by cbv
+ have envelope : Rule5ActualTrace.costsMass Rule5ActualTrace.base [1,1,(cuts S c.a c.b).length]≤Rule5ActualTrace.gamma Rule5ActualTrace.base := by
+  simp only [Rule5ActualTrace.costsMass,Rule5ActualTrace.debit,List.map_cons,List.map_nil,List.sum_cons,List.sum_nil,Rat.add_zero]
+  grind
+ exact Rat.le_trans bound envelope
+end OrdinaryDispatch.WorkRecursion

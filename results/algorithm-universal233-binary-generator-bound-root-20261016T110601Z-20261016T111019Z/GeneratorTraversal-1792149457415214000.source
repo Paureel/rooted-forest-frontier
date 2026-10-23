@@ -1,0 +1,91 @@
+import GeneratorLocalCosts
+namespace GenericForest.BinaryProducer.Generator
+open BinaryProvider GenericForest.ScalarBits Universal233.WholeSourceWork Universal233.CoreWork
+
+def runCoefficient (W M : Nat) := localCost W M (3*M+8)+24
+
+theorem counterCap_mono (A B : Nat) (r : Receipt) (h : CounterCap A r) (ab : A≤B) : CounterCap B r := by
+ rcases h with ⟨_,_,_⟩;exact ⟨by omega,by omega,by omega⟩
+
+/-- The recurrence charges all visited and pruned prefixes, counter updates,
+and the actual left receipt append at each binary join. -/
+theorem runBits_envelope (W M : Nat) (fuel : Capacity) (T d c)
+ (h : StateGood W M (fuel.length+1) T d c) :
+ (runBits fuel T d c).work≤32*envelope fuel.length (runCoefficient W M) := by
+ induction fuel generalizing T d c with
+ | nil=>
+  have z:=stepBits_cost W M 0 (3*M+8) 8 1 (by omega) (by decide)
+   (fun _ _ _=>⟨⟨[],[],[],[],[true]⟩,8⟩)
+   (by intros;simp [CounterCap]) (by intros;simp [recordCount]) (by intros;exact Nat.le_refl _) T d c h
+  simp only [runBits,envelope,List.length_nil]
+  unfold runCoefficient at z ⊢;omega
+ | cons u fuel ih=>
+  have st:=h.1;unfold Within at st;simp only [List.length_cons] at st
+  have fm : fuel.length≤M:=by omega
+  have caps : ∀t d c,CounterCap (3*M+8) (runBits fuel t d c).value := by
+   intro t d c;exact counterCap_mono _ _ _ (runBits_cap fuel t d c) (by omega)
+  have rp : 1≤3*2^(fuel.length+1):=by have z:=Nat.one_le_pow (fuel.length+1) 2 (by decide);omega
+  have z:=stepBits_cost W M (fuel.length+1) (3*M+8) (32*envelope fuel.length (runCoefficient W M))
+   (3*2^(fuel.length+1)) (by omega) rp (runBits fuel) caps
+   (fun t d c=>runBits_records fuel t d c) ih T d c h
+  simp only [runBits,List.length_cons,envelope,Nat.mul_add,Nat.mul_assoc] at z ⊢
+  unfold runCoefficient at z ⊢;omega
+
+theorem runBits_polynomial_exponential (W M : Nat) (fuel : Capacity) (T d c)
+ (h : StateGood W M (fuel.length+1) T d c) :
+ (runBits fuel T d c).work≤32*(runCoefficient W M+6)*(fuel.length+1)*2^(fuel.length+1) := by
+ exact Nat.le_trans (runBits_envelope W M fuel T d c h)
+  (by simpa only [Nat.mul_assoc] using Nat.mul_le_mul_left 32 (envelope_closed fuel.length (runCoefficient W M)))
+
+theorem fromTreeBits_wide (W : Nat) (color : Bits→Charged Color) (p : RMAF.Vertex) (T : BinaryProvider.Tree)
+ (h : TreeWidth W T) : Wide W (fromTreeBits color p T).value := by
+ induction T generalizing p with
+ | leaf x=>simpa [fromTreeBits,Wide,BlockWidth] using h x (by simp [leavesBits])
+ | node l r ihl ihr=>
+  exact ⟨ihl _ (fun x hx=>h x (by simp [leavesBits,hx])),ihr _ (fun x hx=>h x (by simp [leavesBits,hx]))⟩
+
+theorem fromTreeBits_size (color : Bits→Charged Color) (p : RMAF.Vertex) (T : BinaryProvider.Tree) :
+ size (fromTreeBits color p T).value≤treeNodes (treeValue T)*(p.length+treeNodes (treeValue T)+2) := by
+ induction T generalizing p with
+ | leaf x=>simp only [fromTreeBits,size,treeValue,treeNodes,copyBits_value,List.length_cons,List.length_nil,Nat.one_mul];omega
+ | node l r ihl ihr=>
+  have a:=ihl (p++[false]);have b:=ihr (p++[true])
+  have lp:=treeNodes_pos (treeValue l);have rp:=treeNodes_pos (treeValue r)
+  simp only [List.length_append,List.length_singleton] at a b
+  have la:=Nat.mul_le_mul_left (treeNodes (treeValue l))
+   (show p.length+1+treeNodes (treeValue l)+2≤p.length+treeNodes (treeValue (.node l r))+2 by simp only [treeValue,treeNodes];omega)
+  have lb:=Nat.mul_le_mul_left (treeNodes (treeValue r))
+   (show p.length+1+treeNodes (treeValue r)+2≤p.length+treeNodes (treeValue (.node l r))+2 by simp only [treeValue,treeNodes];omega)
+  have z:=Nat.add_le_add (Nat.add_le_add (show 1+p.length≤p.length+treeNodes (treeValue (.node l r))+2 by simp only [treeValue,treeNodes];omega) (Nat.le_trans a la)) (Nat.le_trans b lb)
+  simpa only [fromTreeBits,size,appendSpine_value,treeValue,treeNodes,Nat.add_mul,Nat.one_mul] using z
+
+theorem fromTreeBits_cost (W P C : Nat) (color : Bits→Charged Color)
+ (cc : ∀x,x.length≤W→(color x).work≤C) (p : RMAF.Vertex) (T : BinaryProvider.Tree)
+ (w : TreeWidth W T) (h : p.length+treeNodes (treeValue T)≤P) :
+ (fromTreeBits color p T).work≤(C+4*W+8*(P+1)+32)*treeNodes (treeValue T) := by
+ induction T generalizing p with
+ | leaf x=>
+  have a:=cc x (w x (by simp [leavesBits]));have b:=w x (by simp [leavesBits])
+  change x.length≤W at b
+  simp only [fromTreeBits,copyBits_work,treeValue,treeNodes,Nat.mul_one];omega
+ | node l r ihl ihr=>
+  have a:=ihl (p++[false]) (fun x hx=>w x (by simp [leavesBits,hx]))
+   (by simp only [List.length_append,List.length_singleton,treeValue,treeNodes] at h ⊢;omega)
+  have b:=ihr (p++[true]) (fun x hx=>w x (by simp [leavesBits,hx]))
+   (by simp only [List.length_append,List.length_singleton,treeValue,treeNodes] at h ⊢;omega)
+  have pn : p.length≤P:=by omega
+  simp only [fromTreeBits,appendSpine_work,appendSpine_value,treeValue,treeNodes,Nat.mul_add,Nat.mul_one] at a b ⊢;omega
+
+def inputResource (N : Nat) := N*(N+2)+2*N+2
+
+theorem initial_state (W N : Nat) (color : Bits→Charged Color) (S : BinaryProvider.Tree) (fuel : Capacity)
+ (sw : TreeWidth W S) (sn : treeNodes (treeValue S)≤N) (fn : fuel.length≤N) :
+ StateGood W (inputResource N) (fuel.length+1) (fromTreeBits color [] S).value [] [] := by
+ have a:=fromTreeBits_size color [] S
+ have b:=Nat.mul_le_mul sn (Nat.add_le_add_right sn 2)
+ simp only [List.length_nil,Nat.zero_add] at a
+ refine ⟨?_,fromTreeBits_wide W color [] S sw,?_,?_⟩
+ · unfold Within inputResource;simp only [List.length_nil];omega
+ · intro g hg;contradiction
+ · intro v hv;contradiction
+end GenericForest.BinaryProducer.Generator

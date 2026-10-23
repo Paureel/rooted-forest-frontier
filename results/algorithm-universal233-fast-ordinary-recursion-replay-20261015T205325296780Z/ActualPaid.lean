@@ -1,0 +1,83 @@
+import CasePaid
+namespace Universal233.Hard2PaidLocal
+open RMAF CoreProgram SourceCoverage VertexGeometry BothBad BothBadLocal PaidAssembly Hard2Overlap Integration CherryBranching OrdinaryPriorityBridge
+
+def actualOutputs (S T : Tree) (c : Candidate) (q : Nat) (out : Result) : List Output :=
+ match c.originalCuts with
+ | [p,r] => caseOutputs S T (leftParent S p) (rightParent S r) (rootParent S p r) q out
+ | _ => []
+
+def actualPaidCase (S T : Tree) (c : Candidate) (out : Result) : Prop :=
+ match c.originalCuts with
+ | [p,r] => PaidCase S T (leftParent S p) (rightParent S r) (rootParent S p r) out
+ | _ => False
+
+/-- Runtime contains only frozen source generators and the literal forest caller. -/
+def runHardPaid (actual : Ordinary) (T S : Tree) (q : Nat) (c : Candidate) (out : Result) : Execution :=
+ runOutputs actual T S q (actualOutputs S T c q out)
+
+theorem actual_paid_sound (actual : Ordinary) (T S : Tree) (q : Nat) (c : Candidate) (out : Result) (H : Forest)
+ (answer : (runHardPaid actual T S q c out).answer=some H) : agreement T S H=true ∧ H.length-1≤q :=
+ runOutputs_sound actual T S q _ H answer
+
+/-- Only the actual below-q local IH is supplied. Every original parent-refining AF is covered. -/
+theorem actual_paid_conditional_cover {T S : Tree} {c : Candidate} {out : Result} {F : Forest} {q : Nat}
+ (actual : Ordinary) (proper : DepthOne.proper T S=true)
+ (hard : CherryBranching.select T S=some (.hard2,c)) (selected : runHard2 T S c=some out)
+ (enabled : actualPaidCase S T c out) (IH : BelowIH q actual)
+ (hf : agreement T S F=true) (hq : F.length-1≤q) (href : RefinesBlocks F (CherryBranching.pendantPartition S c.a c.b)) :
+ ∃H,(runHardPaid actual T S q c out).answer=some H ∧ agreement T S H=true ∧ H.length-1≤q ∧ H.length≤F.length := by
+ obtain ⟨p,r,cuts,_,_,hp,he,eq⟩:=actual_source_inputs proper hard
+ obtain ⟨ht,hs,perm⟩:=proper_parts proper
+ have same : ∀x,x∈leaves S ↔ x∈leaves T:=fun x=>perm.mem_iff.symm
+ have sel : Hard2Overlap.select T (leftParent S p) (rightParent S r) (rootParent S p r)=some out := by
+  simpa only [runHard2,cuts] using selected
+ have en : PaidCase S T (leftParent S p) (rightParent S r) (rootParent S p r) out := by
+  simpa only [actualPaidCase,cuts] using enabled
+ rw [eq] at href
+ simpa only [runHardPaid,actualOutputs,cuts,Covers] using
+  selected_case_cover actual ht hs same hp he sel en hf href hq IH
+
+theorem actual_paid_minimum {T S : Tree} {c : Candidate} {out : Result} {H : Forest} {q : Nat}
+ (actual : Ordinary) (proper : DepthOne.proper T S=true)
+ (hard : CherryBranching.select T S=some (.hard2,c)) (selected : runHard2 T S c=some out)
+ (enabled : actualPaidCase S T c out) (IH : BelowIH q actual)
+ (answer : (runHardPaid actual T S q c out).answer=some H) :
+ agreement T S H=true ∧ H.length-1≤q ∧
+ ∀F,agreement T S F=true → F.length-1≤q → RefinesBlocks F (CherryBranching.pendantPartition S c.a c.b) → H.length≤F.length := by
+ refine ⟨(actual_paid_sound actual T S q c out H answer).1,(actual_paid_sound actual T S q c out H answer).2,?_⟩
+ intro F hf hq href
+ obtain ⟨G,hG,_,_,len⟩:=actual_paid_conditional_cover actual proper hard selected enabled IH hf hq href
+ have eq : G=H:=Option.some.inj (hG.symm.trans answer)
+ simpa [eq] using len
+
+theorem actual_paid_calls_strict {T S : Tree} {c : Candidate} (out : Result) (q : Nat)
+ (actual : Ordinary) (proper : DepthOne.proper T S=true) (hard : CherryBranching.select T S=some (.hard2,c))
+ (call : Call) (mem : call∈(runHardPaid actual T S q c out).calls) : call.budget+2≤q ∧ call.budget<q := by
+ obtain ⟨p,r,cuts,_,_,hp,_,_⟩:=actual_source_inputs proper hard
+ obtain ⟨_,hs,_⟩:=proper_parts proper
+ simp only [runHardPaid,actualOutputs,cuts] at mem
+ exact selected_case_calls_strict out actual q hs hp call mem
+
+theorem actual_paid_full_payment (actual : Ordinary) (T S : Tree) (q : Nat) (c : Candidate) (out : Result)
+ (call : Call) (mem : call∈(runHardPaid actual T S q c out).calls) :
+ ∃o,o∈actualOutputs S T c q out ∧ call.target=some T ∧
+ call.sources=OutputState.sourceForest S o.partition ∧ call.budget+o.sourceCuts.length=q :=
+ runOutputs_call_payment actual T S q _ call mem
+
+theorem actual_paid_raw_mass {T S : Tree} {c : Candidate} {out : Result}
+ (proper : DepthOne.proper T S=true) (hard : CherryBranching.select T S=some (.hard2,c))
+ (selected : runHard2 T S c=some out) (q : Nat) (b : Rat) (base : 2≤b) :
+ rawQMass b (actualOutputs S T c q out)≤caseMass b out := by
+ obtain ⟨p,r,cuts,_,_,hp,_,_⟩:=actual_source_inputs proper hard
+ obtain ⟨ht,_,perm⟩:=proper_parts proper
+ have sel : Hard2Overlap.select T (leftParent S p) (rightParent S r) (rootParent S p r)=some out := by
+  simpa only [runHard2,cuts] using selected
+ simpa only [actualOutputs,cuts] using selected_case_raw_mass ht (fun x hx=>perm.mem_iff.2 hx) hp sel q b base
+
+theorem actual_paid_trace_mass {T S : Tree} {c : Candidate} {out : Result}
+ (actual : Ordinary) (proper : DepthOne.proper T S=true) (hard : CherryBranching.select T S=some (.hard2,c))
+ (selected : runHard2 T S c=some out) (q : Nat) (b : Rat) (base : 2≤b) :
+ traceMass b q (runHardPaid actual T S q c out).calls≤caseMass b out :=
+ Rat.le_trans (runOutputs_trace_mass actual T S q _ b base) (actual_paid_raw_mass proper hard selected q b base)
+end Universal233.Hard2PaidLocal

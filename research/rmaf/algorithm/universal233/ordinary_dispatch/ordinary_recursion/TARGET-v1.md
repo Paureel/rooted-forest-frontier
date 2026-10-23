@@ -1,0 +1,9 @@
+# Actual well-founded ordinary recursion
+
+The current paid forest consumers still require actual ordinary correctness below the current budget, while common cherry contraction uses the same budget on fewer labels. The named missing consumer is a literal well-founded ordinary callback with measure (cut budget, target label count), including malformed inputs, terminal pretests, selected common contraction, and actual affordable cherry child queries.
+
+First close the explicitly attributed ordinary cherry scaffold with its actual three-child hard2 fallback. This is an executable semantic foundation and a development reference for replacing each selected hard call by the proved faster source consumers. Its (1,1,2) fallback does not support the desired 2.33 bound. It must never be presented as the completed faster algorithm or as a runtime oracle. All intended faster algorithm/correctness/base and novelty milestones stay OPEN until the replacements and full source/bit/payload recurrence are integrated.
+
+The runtime definition must contain only the actual tests, contraction/expansion, literal forest solver, bounded child calls, and the recursive callback. Proof-only LocalOrdinaryIH and minimum completion may occur only in proofs. Every expensive paid callback is guarded by a strict actual budget decrease. Every same-budget recursive query is guarded by literal target label decrease.
+
+Use only already immutable completed dependencies, hard linked into one local import root without rebuilding or modifying their links. Pin exact sources, binaries, paths, and consumed manifests. Fresh planted true/false controls precede any new replay instrument. Preserve all failures, run bounded compilation, and retain the 3 GiB free-space floor. No raw producer dumps or unrelated support inventories.

@@ -1,0 +1,7 @@
+import OrdinarySimpleTreeSource
+#check OrdinaryDispatch.FullSourceWork.simpleLocalDebit_bound
+#print axioms OrdinaryDispatch.FullSourceWork.simpleLocalDebit_bound
+#check OrdinaryDispatch.FullSourceWork.simpleTreeSource_bound
+#print axioms OrdinaryDispatch.FullSourceWork.simpleTreeSource_bound
+#check OrdinaryDispatch.FullSourceWork.prefixAndSimpleTreeSource_bound
+#print axioms OrdinaryDispatch.FullSourceWork.prefixAndSimpleTreeSource_bound

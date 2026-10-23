@@ -1,0 +1,1149 @@
+{
+  "scope": "Development finite exact source/profile controls; no universal source/target or runtime certification",
+  "verdict": "FINITE-NO-FIRE",
+  "max_leaves": 10,
+  "controls": {
+    "source_controls": [
+      {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        "colors": {
+          "0": 0,
+          "1": 0,
+          "2": 1
+        },
+        "raw_profile": [
+          1
+        ],
+        "raw_emissions": 1,
+        "deduplicated_emissions": 1,
+        "cut_witnesses": [
+          {
+            "partition": [
+              [
+                0,
+                1
+              ],
+              [
+                2
+              ]
+            ],
+            "cuts": [
+              [
+                "",
+                "0"
+              ]
+            ],
+            "cost": 1,
+            "events": [
+              {
+                "operation": "homogeneous_cherry_contract",
+                "original_node": "0",
+                "children": [
+                  "00",
+                  "01"
+                ],
+                "groups": [
+                  [
+                    0
+                  ],
+                  [
+                    1
+                  ]
+                ],
+                "lifted_group": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "operation": "unique_color_detach",
+                "original_edge": [
+                  "",
+                  "0"
+                ],
+                "detached_labels": [
+                  0,
+                  1
+                ],
+                "color": 0,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "",
+                "replacement_original_node": "1",
+                "was_root": true
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "nodes_visited": 2,
+          "normalized_contractions": 1,
+          "cut_children_attempted": 1,
+          "budget_pruned_prefixes": 0,
+          "mixed_branch_pairs": 0,
+          "omitted_branches": 0,
+          "raw_emissions": 1,
+          "duplicate_emissions_removed": 0
+        }
+      },
+      {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1
+        },
+        "raw_profile": [
+          2,
+          2
+        ],
+        "raw_emissions": 2,
+        "deduplicated_emissions": 2,
+        "cut_witnesses": [
+          {
+            "partition": [
+              [
+                0
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                2
+              ]
+            ],
+            "cuts": [
+              [
+                "0",
+                "00"
+              ],
+              [
+                "1",
+                "10"
+              ]
+            ],
+            "cost": 2,
+            "events": [
+              {
+                "operation": "mixed_cherry_detach",
+                "original_edge": [
+                  "0",
+                  "00"
+                ],
+                "detached_labels": [
+                  0
+                ],
+                "color": 0,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "0",
+                "replacement_original_node": "01",
+                "was_root": false
+              },
+              {
+                "operation": "unique_color_detach",
+                "original_edge": [
+                  "1",
+                  "10"
+                ],
+                "detached_labels": [
+                  2
+                ],
+                "color": 0,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "1",
+                "replacement_original_node": "11",
+                "was_root": false
+              },
+              {
+                "operation": "homogeneous_cherry_contract",
+                "original_node": "",
+                "children": [
+                  "01",
+                  "11"
+                ],
+                "groups": [
+                  [
+                    1
+                  ],
+                  [
+                    3
+                  ]
+                ],
+                "lifted_group": [
+                  1,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "partition": [
+              [
+                0,
+                2
+              ],
+              [
+                1
+              ],
+              [
+                3
+              ]
+            ],
+            "cuts": [
+              [
+                "0",
+                "01"
+              ],
+              [
+                "1",
+                "11"
+              ]
+            ],
+            "cost": 2,
+            "events": [
+              {
+                "operation": "mixed_cherry_detach",
+                "original_edge": [
+                  "0",
+                  "01"
+                ],
+                "detached_labels": [
+                  1
+                ],
+                "color": 1,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "0",
+                "replacement_original_node": "00",
+                "was_root": false
+              },
+              {
+                "operation": "unique_color_detach",
+                "original_edge": [
+                  "1",
+                  "11"
+                ],
+                "detached_labels": [
+                  3
+                ],
+                "color": 1,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "1",
+                "replacement_original_node": "10",
+                "was_root": false
+              },
+              {
+                "operation": "homogeneous_cherry_contract",
+                "original_node": "",
+                "children": [
+                  "00",
+                  "10"
+                ],
+                "groups": [
+                  [
+                    0
+                  ],
+                  [
+                    2
+                  ]
+                ],
+                "lifted_group": [
+                  0,
+                  2
+                ]
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "nodes_visited": 5,
+          "normalized_contractions": 2,
+          "cut_children_attempted": 4,
+          "budget_pruned_prefixes": 0,
+          "mixed_branch_pairs": 1,
+          "omitted_branches": 0,
+          "raw_emissions": 2,
+          "duplicate_emissions_removed": 0
+        }
+      },
+      {
+        "tree": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            [
+              3,
+              4
+            ]
+          ]
+        ],
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 0,
+          "4": 1
+        },
+        "raw_profile": [
+          2,
+          3,
+          3
+        ],
+        "raw_emissions": 3,
+        "deduplicated_emissions": 3,
+        "cut_witnesses": [
+          {
+            "partition": [
+              [
+                0
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                2
+              ],
+              [
+                3
+              ]
+            ],
+            "cuts": [
+              [
+                "0",
+                "00"
+              ],
+              [
+                "11",
+                "110"
+              ],
+              [
+                "1",
+                "10"
+              ]
+            ],
+            "cost": 3,
+            "events": [
+              {
+                "operation": "mixed_cherry_detach",
+                "original_edge": [
+                  "0",
+                  "00"
+                ],
+                "detached_labels": [
+                  0
+                ],
+                "color": 0,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "0",
+                "replacement_original_node": "01",
+                "was_root": false
+              },
+              {
+                "operation": "mixed_cherry_detach",
+                "original_edge": [
+                  "11",
+                  "110"
+                ],
+                "detached_labels": [
+                  3
+                ],
+                "color": 0,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "11",
+                "replacement_original_node": "111",
+                "was_root": false
+              },
+              {
+                "operation": "unique_color_detach",
+                "original_edge": [
+                  "1",
+                  "10"
+                ],
+                "detached_labels": [
+                  2
+                ],
+                "color": 0,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "1",
+                "replacement_original_node": "111",
+                "was_root": false
+              },
+              {
+                "operation": "homogeneous_cherry_contract",
+                "original_node": "",
+                "children": [
+                  "01",
+                  "111"
+                ],
+                "groups": [
+                  [
+                    1
+                  ],
+                  [
+                    4
+                  ]
+                ],
+                "lifted_group": [
+                  1,
+                  4
+                ]
+              }
+            ]
+          },
+          {
+            "partition": [
+              [
+                0
+              ],
+              [
+                1
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                4
+              ]
+            ],
+            "cuts": [
+              [
+                "0",
+                "00"
+              ],
+              [
+                "11",
+                "111"
+              ],
+              [
+                "",
+                "1"
+              ]
+            ],
+            "cost": 3,
+            "events": [
+              {
+                "operation": "mixed_cherry_detach",
+                "original_edge": [
+                  "0",
+                  "00"
+                ],
+                "detached_labels": [
+                  0
+                ],
+                "color": 0,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "0",
+                "replacement_original_node": "01",
+                "was_root": false
+              },
+              {
+                "operation": "mixed_cherry_detach",
+                "original_edge": [
+                  "11",
+                  "111"
+                ],
+                "detached_labels": [
+                  4
+                ],
+                "color": 1,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "11",
+                "replacement_original_node": "110",
+                "was_root": false
+              },
+              {
+                "operation": "homogeneous_cherry_contract",
+                "original_node": "1",
+                "children": [
+                  "10",
+                  "110"
+                ],
+                "groups": [
+                  [
+                    2
+                  ],
+                  [
+                    3
+                  ]
+                ],
+                "lifted_group": [
+                  2,
+                  3
+                ]
+              },
+              {
+                "operation": "unique_color_detach",
+                "original_edge": [
+                  "",
+                  "1"
+                ],
+                "detached_labels": [
+                  2,
+                  3
+                ],
+                "color": 0,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "",
+                "replacement_original_node": "01",
+                "was_root": true
+              }
+            ]
+          },
+          {
+            "partition": [
+              [
+                0,
+                2,
+                3
+              ],
+              [
+                1
+              ],
+              [
+                4
+              ]
+            ],
+            "cuts": [
+              [
+                "0",
+                "01"
+              ],
+              [
+                "11",
+                "111"
+              ]
+            ],
+            "cost": 2,
+            "events": [
+              {
+                "operation": "mixed_cherry_detach",
+                "original_edge": [
+                  "0",
+                  "01"
+                ],
+                "detached_labels": [
+                  1
+                ],
+                "color": 1,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "0",
+                "replacement_original_node": "00",
+                "was_root": false
+              },
+              {
+                "operation": "unique_color_detach",
+                "original_edge": [
+                  "11",
+                  "111"
+                ],
+                "detached_labels": [
+                  4
+                ],
+                "color": 1,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "11",
+                "replacement_original_node": "110",
+                "was_root": false
+              },
+              {
+                "operation": "homogeneous_cherry_contract",
+                "original_node": "1",
+                "children": [
+                  "10",
+                  "110"
+                ],
+                "groups": [
+                  [
+                    2
+                  ],
+                  [
+                    3
+                  ]
+                ],
+                "lifted_group": [
+                  2,
+                  3
+                ]
+              },
+              {
+                "operation": "homogeneous_cherry_contract",
+                "original_node": "",
+                "children": [
+                  "00",
+                  "1"
+                ],
+                "groups": [
+                  [
+                    0
+                  ],
+                  [
+                    2,
+                    3
+                  ]
+                ],
+                "lifted_group": [
+                  0,
+                  2,
+                  3
+                ]
+              }
+            ]
+          }
+        ],
+        "stats": {
+          "nodes_visited": 8,
+          "normalized_contractions": 4,
+          "cut_children_attempted": 7,
+          "budget_pruned_prefixes": 0,
+          "mixed_branch_pairs": 2,
+          "omitted_branches": 0,
+          "raw_emissions": 3,
+          "duplicate_emissions_removed": 0
+        }
+      },
+      {
+        "tree": 7,
+        "colors": {
+          "7": 0
+        },
+        "raw_profile": [
+          0
+        ],
+        "raw_emissions": 1,
+        "deduplicated_emissions": 1,
+        "cut_witnesses": [
+          {
+            "partition": [
+              [
+                7
+              ]
+            ],
+            "cuts": [],
+            "cost": 0,
+            "events": []
+          }
+        ],
+        "stats": {
+          "nodes_visited": 1,
+          "normalized_contractions": 0,
+          "cut_children_attempted": 0,
+          "budget_pruned_prefixes": 0,
+          "mixed_branch_pairs": 0,
+          "omitted_branches": 0,
+          "raw_emissions": 1,
+          "duplicate_emissions_removed": 0
+        }
+      }
+    ],
+    "missing_branch_caught": {
+      "tree": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "colors": {
+        "0": 0,
+        "1": 1,
+        "2": 0,
+        "3": 1
+      },
+      "raw_profile": [
+        2
+      ],
+      "raw_emissions": 1,
+      "deduplicated_emissions": 1,
+      "cut_witnesses": [
+        {
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2
+            ]
+          ],
+          "cuts": [
+            [
+              "0",
+              "00"
+            ],
+            [
+              "1",
+              "10"
+            ]
+          ],
+          "cost": 2,
+          "events": [
+            {
+              "operation": "mixed_cherry_detach",
+              "original_edge": [
+                "0",
+                "00"
+              ],
+              "detached_labels": [
+                0
+              ],
+              "color": 0,
+              "paid_cost": 1
+            },
+            {
+              "operation": "unary_suppress",
+              "original_node": "0",
+              "replacement_original_node": "01",
+              "was_root": false
+            },
+            {
+              "operation": "unique_color_detach",
+              "original_edge": [
+                "1",
+                "10"
+              ],
+              "detached_labels": [
+                2
+              ],
+              "color": 0,
+              "paid_cost": 1
+            },
+            {
+              "operation": "unary_suppress",
+              "original_node": "1",
+              "replacement_original_node": "11",
+              "was_root": false
+            },
+            {
+              "operation": "homogeneous_cherry_contract",
+              "original_node": "",
+              "children": [
+                "01",
+                "11"
+              ],
+              "groups": [
+                [
+                  1
+                ],
+                [
+                  3
+                ]
+              ],
+              "lifted_group": [
+                1,
+                3
+              ]
+            }
+          ]
+        }
+      ],
+      "stats": {
+        "nodes_visited": 3,
+        "normalized_contractions": 1,
+        "cut_children_attempted": 2,
+        "budget_pruned_prefixes": 0,
+        "mixed_branch_pairs": 1,
+        "omitted_branches": 1,
+        "raw_emissions": 1,
+        "duplicate_emissions_removed": 0
+      }
+    },
+    "budget_pruned": {
+      "tree": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "colors": {
+        "0": 0,
+        "1": 1,
+        "2": 0,
+        "3": 1
+      },
+      "raw_profile": [],
+      "raw_emissions": 0,
+      "deduplicated_emissions": 0,
+      "cut_witnesses": [],
+      "stats": {
+        "nodes_visited": 3,
+        "normalized_contractions": 0,
+        "cut_children_attempted": 4,
+        "budget_pruned_prefixes": 2,
+        "mixed_branch_pairs": 1,
+        "omitted_branches": 0,
+        "raw_emissions": 0,
+        "duplicate_emissions_removed": 0
+      }
+    },
+    "arithmetic_negative_caught": true,
+    "balanced_false_bound_caught": true,
+    "small_pairs": [
+      {
+        "left": [
+          1
+        ],
+        "right": [
+          1
+        ],
+        "full_mass": "12857800/12649337",
+        "unsafe": true
+      },
+      {
+        "left": [
+          1
+        ],
+        "right": [
+          2,
+          2
+        ],
+        "full_mass": "2962867400/2947295521",
+        "unsafe": true
+      },
+      {
+        "left": [
+          1
+        ],
+        "right": [
+          2,
+          3,
+          3
+        ],
+        "full_mass": "687048104200/686719856393",
+        "unsafe": true
+      },
+      {
+        "left": [
+          2,
+          2
+        ],
+        "right": [
+          2,
+          2
+        ],
+        "full_mass": "2929867400/2947295521",
+        "unsafe": false
+      },
+      {
+        "left": [
+          2,
+          2
+        ],
+        "right": [
+          2,
+          3,
+          3
+        ],
+        "full_mass": "679359104200/686719856393",
+        "unsafe": false
+      },
+      {
+        "left": [
+          2,
+          3,
+          3
+        ],
+        "right": [
+          2,
+          3,
+          3
+        ],
+        "full_mass": "676059104200/686719856393",
+        "unsafe": false
+      }
+    ],
+    "unbounded_attachment_ladder_controls": [
+      {
+        "B_count": 1,
+        "normalized_group_count": 2,
+        "raw_profile": [
+          1
+        ],
+        "source_cut": [
+          [
+            "",
+            "0"
+          ]
+        ]
+      },
+      {
+        "B_count": 2,
+        "normalized_group_count": 3,
+        "raw_profile": [
+          1
+        ],
+        "source_cut": [
+          [
+            "1",
+            "10"
+          ]
+        ]
+      },
+      {
+        "B_count": 3,
+        "normalized_group_count": 4,
+        "raw_profile": [
+          1
+        ],
+        "source_cut": [
+          [
+            "11",
+            "110"
+          ]
+        ]
+      },
+      {
+        "B_count": 4,
+        "normalized_group_count": 5,
+        "raw_profile": [
+          1
+        ],
+        "source_cut": [
+          [
+            "111",
+            "1110"
+          ]
+        ]
+      },
+      {
+        "B_count": 8,
+        "normalized_group_count": 9,
+        "raw_profile": [
+          1
+        ],
+        "source_cut": [
+          [
+            "1111111",
+            "11111110"
+          ]
+        ]
+      },
+      {
+        "B_count": 16,
+        "normalized_group_count": 17,
+        "raw_profile": [
+          1
+        ],
+        "source_cut": [
+          [
+            "111111111111111",
+            "1111111111111110"
+          ]
+        ]
+      }
+    ],
+    "false_group_bound_caught": true
+  },
+  "rows": [
+    {
+      "leaves": 1,
+      "distinct_profiles": 1,
+      "maximum_profile": [
+        1
+      ],
+      "maximum_mass": "100/233",
+      "seconds": 1.0666999969544122e-05
+    },
+    {
+      "leaves": 2,
+      "distinct_profiles": 1,
+      "maximum_profile": [
+        2,
+        2
+      ],
+      "maximum_mass": "20000/54289",
+      "seconds": 1.1625000297499355e-05
+    },
+    {
+      "leaves": 3,
+      "distinct_profiles": 1,
+      "maximum_profile": [
+        2,
+        3,
+        3
+      ],
+      "maximum_mass": "4330000/12649337",
+      "seconds": 1.1917000392713817e-05
+    },
+    {
+      "leaves": 4,
+      "distinct_profiles": 2,
+      "maximum_profile": [
+        2,
+        3,
+        4,
+        4
+      ],
+      "maximum_mass": "975890000/2947295521",
+      "seconds": 3.6209000427334104e-05
+    },
+    {
+      "leaves": 5,
+      "distinct_profiles": 3,
+      "maximum_profile": [
+        2,
+        3,
+        4,
+        5,
+        5
+      ],
+      "maximum_mass": "224082370000/686719856393",
+      "seconds": 5.837500020788866e-05
+    },
+    {
+      "leaves": 6,
+      "distinct_profiles": 5,
+      "maximum_profile": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        6
+      ],
+      "maximum_mass": "51881192210000/160005726539569",
+      "seconds": 0.0001066249997165869
+    },
+    {
+      "leaves": 7,
+      "distinct_profiles": 9,
+      "maximum_profile": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        7
+      ],
+      "maximum_mass": "12055317784930000/37281334283719577",
+      "seconds": 0.00020833400003539282
+    },
+    {
+      "leaves": 8,
+      "distinct_profiles": 16,
+      "maximum_profile": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        8
+      ],
+      "maximum_mass": "2805589043888690000/8686550888106661441",
+      "seconds": 0.0004110419999960868
+    },
+    {
+      "leaves": 9,
+      "distinct_profiles": 28,
+      "maximum_profile": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        9
+      ],
+      "maximum_mass": "653372247226064770000/2023966356928852115753",
+      "seconds": 0.0007937079999464913
+    },
+    {
+      "leaves": 10,
+      "distinct_profiles": 50,
+      "maximum_profile": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        10
+      ],
+      "maximum_mass": "152202733603673091410000/471584161164422542970449",
+      "seconds": 0.0015437910001310229
+    }
+  ],
+  "seconds": 0.004235790999700839,
+  "source_sha256": {
+    "research/rmaf/algorithm/scaffold_profiles/profile_probe.py": "7209737717b8acb564d751302e875e3ee7785902b10170ce2b4adf05f7ee9c2e",
+    "research/rmaf/algorithm/x0/multicolor/prototype.py": "713c064355f1341feb0fd25286a24ad794169e1f2a8351c0bcf6203bbbc34bb0",
+    "research/rmaf/algorithm/x0/fresh_oracle.py": "16b2a036b1f0ad537789a9e42a69eb9bccce5869b26c90ff6f4f8fc624db500c",
+    "research/rmaf/algorithm/scaffold_profiles/CONTROLS-PIN-v1.md": "3841ed5b2d1d6f178db9c712a387b0e0afc43520f2150b77d66d4a44a82c9c50"
+  }
+}

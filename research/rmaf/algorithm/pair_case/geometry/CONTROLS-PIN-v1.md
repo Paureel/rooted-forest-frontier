@@ -1,0 +1,9 @@
+# Geometry controls, before new formal construction
+
+Use the pin's seven-label T1 and six-label root-promoted target. The literal T1 selected hull intersection is {0,00,01}; edges 0->00 and0->01 are shared and mutually clear. At the promoted original root, both parents have exactly2regions and there is no upward neighbor.
+
+Positive graph controls: T=((0,2),(1,3)), A=[0,1],B=[2,3], binary mutually-clear edge; T=((0,3),(1,(2,4))), A=[0,1,2],B=[3,4], shared3-region vertex. Empty/disjoint/singleton selections are outside overlapping pair entry and must not produce an accepted shared edge; absent labels must be explicitly rejected by the proper-input checker; repeated input labels likewise. Actual original addresses on an unbalanced path must remain distinct from suppressed restriction addresses.
+
+False formal controls must assert and be rejected as false: every shared vertex has3regions (T1 refutes); root has an upward occupied direction; arbitrary monochromatic side groups imply mutual clearance (use the positive3-region tree and its nonclear boundary if confirmed rather than tuning an expectation); a suppressed restriction edge is necessarily one original edge. A compilable custom-axiom module must compile and then be rejected by the complete module-origin axiom audit. Clean accepted modules may use only propext/Classical.choice/Quot.sound. No sorry/admit/native_decide.
+
+Dedicated independent X0 has already executed its frozen full controls and cases per parent's hash review. Reusing its checker is permitted as declared development contact; no profile-author or referee X0 code may be imported in this phase. No new census is planned. Formal source builds are the pilot computation; measured frozen builds are subsecond per geometry module except original RMAF (~5.5s). No broad toolkit suite.

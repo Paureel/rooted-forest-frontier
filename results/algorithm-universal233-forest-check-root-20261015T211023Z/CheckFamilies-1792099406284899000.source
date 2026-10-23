@@ -1,0 +1,105 @@
+import HullCheckMeters
+namespace GenericForest.CheckCorrespondence
+open RMAF ForestState RestrictionBridge Universal233 WholeSourceWork CoreWork
+
+theorem leaves_nodes (T : Tree) : (leaves T).length≤treeNodes T := by
+ induction T <;> simp_all [leaves,treeNodes];omega
+
+def meterLeaves : Tree → Charged (List Nat)
+ | .leaf x=>⟨[x],4⟩
+ | .node l r=>let a:=meterLeaves l;let b:=meterLeaves r
+              ⟨a.value++b.value,a.work+b.work+6*(a.value.length+1)⟩
+@[simp] theorem meterLeaves_value (T) : (meterLeaves T).value=leaves T := by
+ induction T <;> simp_all [meterLeaves,leaves]
+theorem meterLeaves_bound (T : Tree) (N : Nat) (tn : treeNodes T≤N) :
+ (meterLeaves T).work≤8*(N+1)*treeNodes T := by
+ induction T with
+ | leaf x=>simp only [meterLeaves,treeNodes,Nat.mul_one];omega
+ | node l r ihl ihr=>
+  have ln : treeNodes l≤N:=by simp only [treeNodes] at tn;omega
+  have rn : treeNodes r≤N:=by simp only [treeNodes] at tn;omega
+  have a:=ihl ln;have b:=ihr rn;have labels:=leaves_nodes l
+  simp only [meterLeaves,meterLeaves_value,treeNodes,Nat.mul_add,Nat.mul_one] at a b ⊢
+  omega
+
+def meterNodup : List Nat → Charged Bool
+ | []=>⟨true,1⟩
+ | x::xs=>let c:=meterContains x xs;let r:=meterNodup xs;⟨!c.value&&r.value,c.work+r.work+4⟩
+@[simp] theorem meterNodup_value (L : List Nat) : (meterNodup L).value=decide L.Nodup := by
+ induction L with
+ | nil=>rfl
+ | cons x xs ih=>simp [meterNodup,ih,List.nodup_cons,Bool.decide_and]
+theorem meterNodup_bound (L : List Nat) : (meterNodup L).work≤8*(L.length+1)^2 := by
+ induction L with
+ | nil=>simp [meterNodup]
+ | cons x xs ih=>
+  have h:=meterContains_bound x xs
+  simp only [meterNodup,List.length_cons,Nat.pow_succ,Nat.pow_zero,Nat.mul_one,Nat.one_mul,Nat.mul_add,Nat.add_mul,Nat.mul_assoc] at ih ⊢
+  omega
+
+def meterContained (B U : List Nat) := meterAll (fun x=>meterContains x U) B
+@[simp] theorem meterContained_value (B U) : (meterContained B U).value=contained B U := by
+ simp [meterContained,contained]
+theorem meterContained_bound (B U : List Nat) (N : Nat) (bl : B.length≤N) (ul : U.length≤N) :
+ (meterContained B U).work≤8*(N+1)^2 := by
+ have h:=meterAll_bound (fun x=>meterContains x U) B (4*(U.length+1)) (fun x _=>meterContains_bound x U)
+ have k:=Nat.mul_le_mul (show 4*(U.length+1)+4≤8*(N+1) by omega) (Nat.add_le_add_right bl 1)
+ exact Nat.le_trans h (by simpa only [Nat.pow_two,Nat.mul_assoc] using k)
+
+def meterFamily (U : List Nat) : Forest → Charged Forest
+ | []=>⟨[],1⟩
+ | B::F=>let c:=meterContained B U;let r:=meterFamily U F
+         ⟨if c.value then B::r.value else r.value,c.work+r.work+6⟩
+@[simp] theorem meterFamily_value (U F) : (meterFamily U F).value=family U F := by
+ induction F <;> simp_all [meterFamily,family,List.filter_cons]
+theorem meterFamily_bound (U : List Nat) (F : Forest) (N : Nat)
+ (ul : U.length≤N) (blocks : ∀B∈F,B.length≤N) :
+ (meterFamily U F).work≤(8*(N+1)^2+6)*(F.length+1) := by
+ induction F with
+ | nil=>simp [meterFamily]
+ | cons B F ih=>
+  have a:=meterContained_bound B U N (blocks B (by simp)) ul
+  have b:=ih (fun C hc=>blocks C (by simp [hc]))
+  simp only [meterFamily,List.length_cons]
+  simp only [Nat.mul_add,Nat.mul_one];omega
+
+theorem family_length (U F) : (family U F).length≤F.length := List.length_filter_le _ _
+theorem family_cells (U F) : (family U F).flatten.length≤F.flatten.length := by
+ induction F with
+ | nil=>simp [family]
+ | cons B F ih=>
+  simp only [family] at ih
+  simp only [family,List.filter_cons]
+  split <;> simp_all only [List.flatten_cons,List.length_append,List.flatten_nil,List.length_nil] <;> omega
+
+def meterSourceLeaves : List Tree → Charged Forest
+ | []=>⟨[],1⟩
+ | s::ss=>let a:=meterLeaves s;let r:=meterSourceLeaves ss
+          ⟨a.value::r.value,a.work+r.work+4⟩
+@[simp] theorem meterSourceLeaves_value (ss) : (meterSourceLeaves ss).value=ss.map leaves := by
+ induction ss <;> simp_all [meterSourceLeaves]
+theorem source_leaves_cells (ss : List Tree) : (ss.map leaves).flatten.length≤sourceNodes ss := by
+ induction ss with
+ | nil=>simp [sourceNodes]
+ | cons s ss ih=>have h:=leaves_nodes s;simp only [List.map_cons,List.flatten_cons,List.length_append,sourceNodes,List.sum_cons] at *;omega
+
+theorem source_node_member (ss : List Tree) (s : Tree) (hs : s∈ss) : treeNodes s≤sourceNodes ss := by
+ induction ss with
+ | nil=>simp at hs
+ | cons a ss ih=>
+  simp only [List.mem_cons] at hs
+  rcases hs with rfl|hs
+  · simp [sourceNodes]
+  · have h:=ih hs;simp only [sourceNodes,List.map_cons,List.sum_cons];omega
+theorem meterSourceLeaves_bound (ss : List Tree) (N : Nat) (sn : sourceNodes ss≤N) :
+ (meterSourceLeaves ss).work≤8*(N+1)*sourceNodes ss+4*ss.length+1 := by
+ induction ss with
+ | nil=>simp [meterSourceLeaves,sourceNodes]
+ | cons s ss ih=>
+  have tn : treeNodes s≤N:=Nat.le_trans (source_node_member (s::ss) s (by simp)) sn
+  have tailn : sourceNodes ss≤N:=by simp only [sourceNodes,List.map_cons,List.sum_cons] at sn ⊢;omega
+  have a:=meterLeaves_bound s N tn
+  have b:=ih tailn
+  simp only [meterSourceLeaves,List.length_cons,sourceNodes,List.map_cons,List.sum_cons,Nat.mul_add,Nat.mul_one] at a b ⊢
+  omega
+end GenericForest.CheckCorrespondence

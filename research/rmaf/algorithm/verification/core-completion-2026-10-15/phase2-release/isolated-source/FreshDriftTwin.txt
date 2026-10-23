@@ -1,0 +1,319 @@
+import CoreGraph
+
+/-! One-shot candidate implementation of the pinned source generator.
+No optimum/partition-enumeration oracle is called. This module is executable
+and budget-total; graph coverage and original-cut realization remain separate
+proof obligations. All original addresses survive suppression. -/
+namespace Universal233.CoreProgram
+open RMAF
+
+structure Group where
+  origin : Vertex
+  labels : List Nat
+  color : Nat
+  deriving DecidableEq, Repr
+
+inductive GTree where
+  | leaf : Group → GTree
+  | node : Vertex → GTree → GTree → GTree
+  deriving DecidableEq, Repr
+
+def fromTree (color : Nat → Nat) (p : Vertex) : Tree → GTree
+  | .leaf x => .leaf ⟨p, [x], color x⟩
+  | .node l r => .node p (fromTree color (p ++ [false]) l) (fromTree color (p ++ [true]) r)
+
+def groups : GTree → List Group
+  | .leaf g => [g]
+  | .node _ l r => groups l ++ groups r
+
+def normalize : GTree → GTree
+  | .leaf g => .leaf g
+  | .node p l r =>
+      match normalize l, normalize r with
+      | .leaf a, .leaf b =>
+          if a.color = b.color then .leaf ⟨p, a.labels ++ b.labels, a.color⟩
+          else .node p (.leaf a) (.leaf b)
+      | a, b => .node p a b
+
+def erase (chosen : Vertex) : GTree → Option GTree
+  | .leaf g => if g.origin = chosen then none else some (.leaf g)
+  | .node p l r =>
+      if p = chosen then none else
+      match erase chosen l, erase chosen r with
+      | none, none => none
+      | some a, none => some a
+      | none, some b => some b
+      | some a, some b => some (.node p a b)
+
+def mixedCherry : GTree → Option (Group × Group)
+  | .leaf _ => none
+  | .node _ (.leaf a) (.leaf b) => some (a, b)
+  | .node _ l r => (mixedCherry l).or (mixedCherry r)
+
+inductive Choice where
+  | finish
+  | one : Group → Choice
+  | two : Group → Group → Choice
+  | refuse : String → Choice
+  deriving Repr
+
+def choose (t : GTree) : Choice :=
+  let gs := groups t
+  match gs with
+  | [] => .refuse "empty current source"
+  | first :: _ =>
+      if gs.all (fun g => g.color == first.color) then .finish
+      else
+        match gs.find? (fun g => (gs.filter (fun h => h.color == g.color)).length == 1) with
+        | some g => .one g
+        | none =>
+            match mixedCherry t with
+            | some (a, b) =>
+                if a.color == b.color then .refuse "unnormalized homogeneous cherry"
+                else .two a b
+            | none => .refuse "no mixed cherry in multicolor source"
+
+structure Output where
+  partition : List (List Nat)
+  /-- An address records the actual original edge (dropLast address,address).
+  The original root address [] is forbidden by the generator. -/
+  sourceCuts : List Vertex
+  deriving DecidableEq, Repr
+
+structure Receipt where
+  outputs : List Output := []
+  refusals : List String := []
+  visited : Nat := 0
+  childAttempts : Nat := 0
+  pruned : Nat := 0
+  deriving Repr
+
+def combine (a b : Receipt) : Receipt :=
+  ⟨a.outputs ++ b.outputs, a.refusals ++ b.refusals,
+    a.visited + b.visited, a.childAttempts + b.childAttempts, a.pruned + b.pruned⟩
+
+def prefixRoot (r : Receipt) : Receipt := { r with visited := r.visited + 1 }
+
+def attempt (continuation : GTree → List Group → List Vertex → Receipt)
+    (t : GTree) (detached : List Group) (cuts : List Vertex) (g : Group) : Receipt :=
+  if g.origin = [] then ⟨[], ["attempt to cut original root"], 0, 1, 0⟩
+  else if cuts.contains g.origin then ⟨[], ["duplicate original source cut"], 0, 1, 0⟩
+  else
+    match erase g.origin t with
+    | none => ⟨[], ["attempt removed entire current source"], 0, 1, 0⟩
+    | some next =>
+        let r := continuation next (g :: detached) (g.origin :: cuts)
+        { r with childAttempts := r.childAttempts + 1 }
+
+def step (continuation : GTree → List Group → List Vertex → Receipt)
+    (current : GTree) (detached : List Group) (cuts : List Vertex) : Receipt :=
+  let t := normalize current
+  match choose t with
+  | .finish => ⟨[⟨detached.map Group.labels ++ [(groups t).flatMap Group.labels], cuts⟩], [], 1, 0, 0⟩
+  | .one g => prefixRoot (attempt continuation t detached cuts g)
+  | .two a b => prefixRoot (combine (attempt continuation t detached cuts a)
+      (attempt continuation t detached cuts b))
+  | .refuse why => ⟨[], [why], 1, 0, 0⟩
+
+/-- Budget counts original source cuts. Every over-budget attempted child is
+retained as a pruned prefix and included in childAttempts. -/
+def run : Nat → GTree → List Group → List Vertex → Receipt
+  | 0 => step (fun _ _ _ => ⟨[], [], 0, 0, 1⟩)
+  | q + 1 => step (run q)
+
+def generate (t : Tree) (color : Nat → Nat) (budget : Nat) : Receipt :=
+  if (leaves t).Nodup then run (min budget ((leaves t).length - 1)) (fromTree color [] t) [] []
+  else ⟨[], ["duplicate original label"], 0, 0, 0⟩
+
+/-- Explicit upper envelope counts all visited prefixes, including q=0 nodes. -/
+def maxVisits : Nat → Nat
+  | 0 => 1
+  | q + 1 => 1 + 2 * maxVisits q
+
+theorem attempt_visited_bound (f : GTree → List Group → List Vertex → Receipt)
+    (n : Nat) (h : ∀ t d c, (f t d c).visited ≤ n) (t d c g) :
+    (attempt f t d c g).visited ≤ n := by
+  unfold attempt
+  split
+  · simp
+  · split
+    · simp
+    · split
+      · simp
+      · exact h _ _ _
+
+theorem step_visited_bound (f : GTree → List Group → List Vertex → Receipt)
+    (n : Nat) (h : ∀ t d c, (f t d c).visited ≤ n) (t d c) :
+    (step f t d c).visited ≤ 1 + 2 * n := by
+  cases hc : choose (normalize t) with
+  | finish => simp [step, hc]
+  | one g =>
+    have ha := attempt_visited_bound f n h (normalize t) d c g
+    simp only [step, hc, prefixRoot]
+    change (attempt f (normalize t) d c g).visited + 1 ≤ _
+    omega
+  | two a b =>
+    have ha := attempt_visited_bound f n h (normalize t) d c a
+    have hb := attempt_visited_bound f n h (normalize t) d c b
+    simp only [step, hc, prefixRoot, combine]
+    change (attempt f (normalize t) d c a).visited + (attempt f (normalize t) d c b).visited + 1 ≤ _
+    omega
+  | refuse why => simp [step, hc]
+
+theorem run_visited_bound (q : Nat) (t d c) :
+    (run q t d c).visited ≤ maxVisits q := by
+  induction q generalizing t d c with
+  | zero =>
+      have h := step_visited_bound (fun _ _ _ => (⟨[], [], 0, 0, 1⟩ : Receipt))
+        0 (by intros; exact Nat.le_refl 0) t d c
+      simpa [run, maxVisits] using h
+  | succ q ih =>
+      exact step_visited_bound (run q) (maxVisits q) ih t d c
+
+theorem maxVisits_pow (q : Nat) : maxVisits q + 1 = 2 ^ (q + 1) := by
+  induction q with
+  | zero => decide
+  | succ q ih =>
+      simp only [maxVisits, Nat.pow_succ]
+      omega
+
+theorem run_visited_exponential (q : Nat) (t d c) :
+    (run q t d c).visited + 1 ≤ 2 ^ (q + 1) := by
+  rw [← maxVisits_pow]
+  exact Nat.add_le_add_right (run_visited_bound q t d c) 1
+
+theorem attempt_attempts_bound (f : GTree → List Group → List Vertex → Receipt)
+    (h : ∀ t d c, (f t d c).childAttempts ≤ 2 * (f t d c).visited) (t d c g) :
+    (attempt f t d c g).childAttempts ≤ 2 * (attempt f t d c g).visited + 1 := by
+  unfold attempt
+  split
+  · simp
+  · split
+    · simp
+    · split
+      · simp
+      · rename_i next he
+        have hh := h next (g :: d) (g.origin :: c)
+        change (f next (g :: d) (g.origin :: c)).childAttempts + 1 ≤
+          2 * (f next (g :: d) (g.origin :: c)).visited + 1
+        omega
+
+theorem step_attempts_bound (f : GTree → List Group → List Vertex → Receipt)
+    (h : ∀ t d c, (f t d c).childAttempts ≤ 2 * (f t d c).visited) (t d c) :
+    (step f t d c).childAttempts ≤ 2 * (step f t d c).visited := by
+  cases hc : choose (normalize t) with
+  | finish => simp [step, hc]
+  | one g =>
+      have ha := attempt_attempts_bound f h (normalize t) d c g
+      simp only [step, hc, prefixRoot]
+      change (attempt f (normalize t) d c g).childAttempts ≤
+        2 * ((attempt f (normalize t) d c g).visited + 1)
+      omega
+  | two a b =>
+      have ha := attempt_attempts_bound f h (normalize t) d c a
+      have hb := attempt_attempts_bound f h (normalize t) d c b
+      simp only [step, hc, prefixRoot, combine]
+      change (attempt f (normalize t) d c a).childAttempts +
+        (attempt f (normalize t) d c b).childAttempts ≤
+        2 * ((attempt f (normalize t) d c a).visited +
+          (attempt f (normalize t) d c b).visited + 1)
+      omega
+  | refuse why => simp [step, hc]
+
+/-- Includes failed, duplicate, root and over-budget child attempts. -/
+theorem run_attempts_bound (q : Nat) (t d c) :
+    (run q t d c).childAttempts ≤ 2 * (run q t d c).visited := by
+  induction q generalizing t d c with
+  | zero => exact step_attempts_bound _ (by intros; exact Nat.le_refl 0) t d c
+  | succ q ih => exact step_attempts_bound (run q) ih t d c
+
+/-- Complete recursive-prefix and attempted-child count for the actual program.
+This is the combinatorial part of O*(2^q); per-node tree/list work still needs
+its polynomial size invariant and source reconstruction theorem. -/
+theorem run_prefix_work_bound (q : Nat) (t d c) :
+    (run q t d c).visited + (run q t d c).childAttempts + 3 ≤ 3 * 2 ^ (q + 1) := by
+  have hv := run_visited_exponential q t d c
+  have ha := run_attempts_bound q t d c
+  omega
+
+namespace Controls
+
+def crossed : Tree := .node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))
+def parity (x : Nat) : Nat := x % 2
+
+/-- Labels and partitions are unordered mathematically; normalize only their
+display order for literal control equality, never their membership. -/
+def insertBy (le : α → α → Bool) (a : α) : List α → List α
+  | [] => [a]
+  | b :: bs => if le a b then a :: b :: bs else b :: insertBy le a bs
+
+def sortBy (le : α → α → Bool) : List α → List α
+  | [] => []
+  | a :: as => insertBy le a (sortBy le as)
+
+def lexBy [BEq α] (le : α → α → Bool) : List α → List α → Bool
+  | [], _ => true
+  | _ :: _, [] => false
+  | a :: as, b :: bs => if a == b then lexBy le as bs else le a b
+
+def natLE (a b : Nat) : Bool := decide (a ≤ b)
+
+def canonicalPartition (p : List (List Nat)) : List (List Nat) :=
+  sortBy (lexBy natLE) (p.map (sortBy natLE))
+
+def parts (r : Receipt) : List (List (List Nat)) :=
+  sortBy (lexBy (lexBy natLE)) (r.outputs.map (fun o => canonicalPartition o.partition))
+
+def costs (r : Receipt) : List Nat := r.outputs.map (fun o => o.sourceCuts.length)
+
+theorem crossed_both : parts (generate crossed parity 3) =
+    [[[0], [1, 3], [2]], [[0, 2], [1], [3]]] := by decide
+
+theorem crossed_paid : costs (generate crossed parity 3) = [2, 2] := by decide
+
+theorem crossed_budget_refusal : (generate crossed parity 1).outputs = [] := by decide
+
+def cherry3 : Tree := .node (.node (.leaf 0) (.leaf 1)) (.leaf 2)
+def homColor (x : Nat) : Nat := if x < 2 then 0 else 1
+
+theorem homogeneous : parts (generate cherry3 homColor 2) = [[[0, 1], [2]]] := by decide
+
+theorem distinct_colors : costs (generate cherry3 id 2) = [2] := by decide
+
+theorem three_color_quartet : parts (generate crossed (fun x => if x = 3 then 0 else x) 3) =
+    [[[0, 3], [1], [2]]] := by decide
+
+theorem same_color_root : parts (generate crossed (fun _ => 0) 0) = [[[0, 1, 2, 3]]] := by decide
+
+theorem singleton : parts (generate (.leaf 7) id 0) = [[[7]]] := by decide
+
+theorem duplicate_refused : (generate (.node (.leaf 1) (.leaf 1)) id 3).refusals =
+    ["duplicate original label"] := by decide
+
+end Controls
+
+#print axioms fromTree
+#print axioms normalize
+#print axioms erase
+#print axioms choose
+#print axioms run
+#print axioms generate
+#print axioms run_visited_bound
+#print axioms maxVisits_pow
+#print axioms run_visited_exponential
+#print axioms attempt_attempts_bound
+#print axioms step_attempts_bound
+#print axioms run_attempts_bound
+#print axioms run_prefix_work_bound
+#print axioms Controls.crossed_both
+#print axioms Controls.crossed_paid
+#print axioms Controls.crossed_budget_refusal
+#print axioms Controls.homogeneous
+#print axioms Controls.distinct_colors
+#print axioms Controls.three_color_quartet
+#print axioms Controls.same_color_root
+#print axioms Controls.singleton
+#print axioms Controls.duplicate_refused
+end Universal233.CoreProgram
+
+-- deliberate drift

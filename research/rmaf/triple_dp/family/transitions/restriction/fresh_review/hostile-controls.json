@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "status": "authored-before-evaluator-execution",
+  "cases": [
+    {
+      "id": "H1-equal-label-distinct-index-swap",
+      "tree": [["x", "x"], ["x", "x"]],
+      "indices": ["X", "right-b", "x", "right-a"],
+      "regions": {"x": ["00"], "X": ["01"], "right-a": ["10"], "right-b": ["11"]},
+      "boundary": null,
+      "expected": {
+        "kind": "closeBoth", "left_regions": {"x": ["0"], "X": ["1"]},
+        "right_regions": {"right-a": ["0"], "right-b": ["1"]},
+        "left_boundary": null, "right_boundary": null,
+        "parent_count": 4, "parent_cost": 4,
+        "left_count": 2, "right_count": 2, "left_cost": 2, "right_cost": 2, "toll": 0
+      },
+      "corrupt_patch": {"left_regions": {"x": ["1"], "X": ["0"]}},
+      "require_corrupt_child_valid": true,
+      "require_numbers_unchanged": true
+    },
+    {
+      "id": "H2-fill-unused-nonroot-internal",
+      "tree": [[["a", "b"], "c"], "d"],
+      "indices": ["a", "b", "c", "d"],
+      "regions": {"a": ["000"], "b": ["001"], "c": ["01"], "d": ["1"]},
+      "boundary": null,
+      "expected": {
+        "kind": "closeBoth", "left_regions": {"a": ["00"], "b": ["01"], "c": ["1"]},
+        "right_regions": {"d": [""]}, "left_boundary": null, "right_boundary": "d",
+        "parent_count": 4, "parent_cost": 4,
+        "left_count": 3, "right_count": 1, "left_cost": 3, "right_cost": 0, "toll": 1
+      },
+      "corrupt_patch": {"left_regions": {"a": ["0", "00"], "b": ["01"], "c": ["1"]}},
+      "require_corrupt_child_valid": true,
+      "require_numbers_unchanged": true
+    }
+  ]
+}

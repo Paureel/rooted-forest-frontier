@@ -1,0 +1,16 @@
+# Source-review objections
+
+This is a self-context scope check, not the fresh-context referee simulation required before outward circulation. TARGET/root reserve that independent framing pass separately and prohibit children in this arm. The source report's opening paragraph keeps that pending item visible.
+
+| Audience | Standard objection | Axis | Answer where a reader encounters it | Severity / action |
+|---|---|---|---|---|
+| Rooted-MAF theorist | An admitted finite census does not prove every original agreement has the needed replacement, especially with outside-LCA blocks. | Correctness | FINAL-REVIEW opening/table; CONSUMER-TRACE universal exchange and source-clearance rows; original proof reconstruction in REVIEW. | High; universal proof and finite readouts are explicitly separated. |
+| Rooted-MAF theorist | A local branching lemma does not establish a new full algorithm/base or priority over known methods. | Novelty | FINAL-REVIEW opening leaves main milestones/global solver/base/novelty OPEN. | High; no novelty acceptance asserted. |
+| Formal proof reviewer | Merged resolved names can hide an unused or coalesced custom axiom; kernel compilation alone does not audit every producer. | Correctness | FINAL-REVIEW provenance row; all stored producer arrays/types/bodies and hostile-coalescence controls retained. | High; occurrence scope and standard axiom list stated explicitly. |
+| Formal proof reviewer | Recompilation is not a new theorem or proof-assistant method. | Novelty | FINAL-REVIEW reports an independent source review, with global novelty OPEN. | Low; no new formal-method claim. |
+| Algorithm/complexity reviewer | Callback mass omits local work; final recovery could be exponential or source helper counts could be confused with machine time. | Correctness | FINAL-REVIEW lead and source-work row; SOURCE-WORK separates local N^6 bound, final c^q recovery and imported helper/bit-cost qualification. | High; qualification placed in lead. |
+| Algorithm/complexity reviewer | No global recurrence or improved exponential base follows from this local list bound. | Novelty | FINAL-REVIEW first paragraph and CONSUMER-TRACE final rows. | High; global statements remain OPEN. |
+| Implementer | Is a recursive exact child solver actually implemented? Does a foreign raw Branch get every checked-state guarantee? | Correctness | FINAL-REVIEW first paragraph, conditional interface row and domain qualification paragraphs. | High; supplied ExactChild and selected-branch domain explicit; materializer countercontrol retained. |
+| Implementer | Finite Python/Lean agreement does not establish universal implementation equivalence or an implementation speed advance. | Novelty | FINAL-REVIEW final paragraph and SOURCE-WORK Python section. | Medium; universal equivalence/runtime advance withheld. |
+| General scientific reader | Do the completed source counts mean the main research milestones are complete? | Correctness | FINAL-REVIEW first paragraph leaves all three OPEN; counts named as declarations/modules/control checks. | High; counts have units and local scope. |
+| General scientific reader | Does the report establish a new discovery? | Novelty | FINAL-REVIEW first paragraph leaves novelty OPEN. | Low; report scope is verification. |

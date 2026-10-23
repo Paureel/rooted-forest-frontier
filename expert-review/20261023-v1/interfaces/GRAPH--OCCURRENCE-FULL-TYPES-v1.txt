@@ -1,0 +1,103 @@
+Exact complete current compiled TYPES only; no theorem proof values. Every explicit and implicit relational/permutation/source/domain premise is retained, and must be established before applying the interface. A compiled TYPE alone supplies no actual operation or whole execution proof.
+
+@SourceForestV3.forest_slots_realize : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} (q k : Nat) (T : Option.{0} RMAF.Tree) (ss : List.{0} RMAF.Tree)
+  (out : SourceForestV3.Result),
+  SourceForestV3.ForestExec OrdExec mode k T ss q out →
+    ∀ (s : SourceForestV3.S), Membership.mem.{0, 0} out.slots s → SourceForestV3.SlotRealizes OrdExec mode s
+@SourceForestV3.children_slots_realize : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {T : RMAF.Tree} {q k : Nat} {cs : List.{0} Universal233.CherryBranching.Child}
+  {r : Universal233.Rule5SelectedLocalWork.ForestReceipt (List.{0} SourceForestV3.F)} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S},
+  SourceForestV3.ChildrenExec OrdExec mode T q k cs r debits slots →
+    ∀ (s : SourceForestV3.S), Membership.mem.{0, 0} slots s → SourceForestV3.SlotRealizes OrdExec mode s
+@SourceRule4V3.rule4_actual_trace : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {base : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F} {T S : RMAF.Tree}
+  {s : Universal233.Rule4.Choice T S} {q : Nat}
+  {out : Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F)} {cells : List.{0} SourceRule4V3.Cell},
+  (∀ (T S : RMAF.Tree) (b : Nat) (a : Option.{0} SourceForestV3.F), OrdExec T S b a → Eq.{1} a (base T S b)) →
+    SourceRule4V3.Rule4Exec OrdExec mode s q out cells →
+      Eq.{1} out.value (OrdinaryDispatch.WorkRecursion.rule4Trace (SourceDisjointV2.ordinarySpec mode base) s q).value ∧
+        Eq.{1} (List.map.{0, 0} (fun ls => (Prod.snd.{0, 0} ls).query) (SourceRule4V3.recorded cells))
+          (OrdinaryDispatch.WorkRecursion.rule4Trace (SourceDisjointV2.ordinarySpec mode base) s q).queries
+@SourceRule4V3.rule4_bijection_fields : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {base : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F} {T S : RMAF.Tree}
+  {s : Universal233.Rule4.Choice T S} {q : Nat}
+  {out : Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F)} {cells : List.{0} SourceRule4V3.Cell},
+  (∀ (T S : RMAF.Tree) (b : Nat) (a : Option.{0} SourceForestV3.F), OrdExec T S b a → Eq.{1} a (base T S b)) →
+    SourceRule4V3.Rule4Exec OrdExec mode s q out cells →
+      List.Pairwise.{0} (fun a b => Ne.{1} (Prod.fst.{0, 0} a) (Prod.fst.{0, 0} b)) (SourceRule4V3.recorded cells) ∧
+        List.Pairwise.{0} (fun a b => Ne.{1} (Prod.fst.{0, 0} a) (Prod.fst.{0, 0} b))
+            (SourceRule4V3.chronological cells) ∧
+          ∀ (ls : Prod.{0, 0} (Prod.{0, 0} Nat Nat) SourceForestV3.S),
+            Membership.mem.{0, 0} (SourceRule4V3.chronological cells) ls →
+              SourceForestV3.SlotRealizes OrdExec mode (Prod.snd.{0, 0} ls)
+SourceRule4V3.occurrence_left_inverse : ∀ (cells : List.{0} SourceRule4V3.Cell)
+  (x : Subtype.{1} fun ls => Membership.mem.{0, 0} (SourceRule4V3.chronological cells) ls),
+  Eq.{1} (SourceRule4V3.toChronological cells (SourceRule4V3.toRecorded cells x)) x
+SourceRule4V3.occurrence_right_inverse : ∀ (cells : List.{0} SourceRule4V3.Cell)
+  (x : Subtype.{1} fun ls => Membership.mem.{0, 0} (SourceRule4V3.recorded cells) ls),
+  Eq.{1} (SourceRule4V3.toRecorded cells (SourceRule4V3.toChronological cells x)) x
+SourceRule4V3.occurrence_preserves_every_slot_field : ∀ (cells : List.{0} SourceRule4V3.Cell)
+  (x : Subtype.{1} fun ls => Membership.mem.{0, 0} (SourceRule4V3.chronological cells) ls),
+  Eq.{1} (Prod.fst.{0, 0} (Subtype.val.{1} (SourceRule4V3.toRecorded cells x))) (Prod.fst.{0, 0} (Subtype.val.{1} x)) ∧
+    Eq.{1} (Prod.snd.{0, 0} (Subtype.val.{1} (SourceRule4V3.toRecorded cells x))) (Prod.snd.{0, 0} (Subtype.val.{1} x))
+@SourceRule4V3.recorded_slots_realize : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {mode : SourceCouplingV2.Mode} {q i : Nat} {bs : List.{0} Universal233.Rule4.Branch}
+  {r : Universal233.WholeSourceWork.Charged (List.{0} SourceForestV3.F)} {cells : List.{0} SourceRule4V3.Cell},
+  SourceRule4V3.AnswersExec OrdExec mode q i bs r cells →
+    ∀ (ls : Prod.{0, 0} (Prod.{0, 0} Nat Nat) SourceForestV3.S),
+      Membership.mem.{0, 0} (SourceRule4V3.recorded cells) ls →
+        SourceForestV3.SlotRealizes OrdExec mode (Prod.snd.{0, 0} ls)
+@SourceRule4V3.recorded_query_projection : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {base : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F} {q i : Nat}
+  {bs : List.{0} Universal233.Rule4.Branch} {r : Universal233.WholeSourceWork.Charged (List.{0} SourceForestV3.F)}
+  {cells : List.{0} SourceRule4V3.Cell},
+  (∀ (T S : RMAF.Tree) (b : Nat) (a : Option.{0} SourceForestV3.F), OrdExec T S b a → Eq.{1} a (base T S b)) →
+    SourceRule4V3.AnswersExec OrdExec mode q i bs r cells →
+      Eq.{1} (List.map.{0, 0} (fun ls => (Prod.snd.{0, 0} ls).query) (SourceRule4V3.recorded cells))
+        (SourceRule4V3.meteredQueries (SourceDisjointV2.ordinarySpec mode base) q bs)
+SourceFullOutputsV3.occurrence_left_inverse : ∀ (cells : List.{0} SourceFullOutputsV3.Cell)
+  (x : Subtype.{1} fun ls => Membership.mem.{0, 0} (SourceFullOutputsV3.chronological cells) ls),
+  Eq.{1} (SourceFullOutputsV3.toChronological cells (SourceFullOutputsV3.toRecorded cells x)) x
+SourceFullOutputsV3.occurrence_right_inverse : ∀ (cells : List.{0} SourceFullOutputsV3.Cell)
+  (x : Subtype.{1} fun ls => Membership.mem.{0, 0} (SourceFullOutputsV3.recorded cells) ls),
+  Eq.{1} (SourceFullOutputsV3.toRecorded cells (SourceFullOutputsV3.toChronological cells x)) x
+SourceFullOutputsV3.two_ledger_perm : ∀ (cells : List.{0} SourceFullOutputsV3.Cell),
+  List.Perm.{0} (SourceFullOutputsV3.chronological cells) (SourceFullOutputsV3.recorded cells)
+@SourceFullOutputsV3.recorded_query_projection : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {base : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F} {T S : RMAF.Tree} {q i : Nat}
+  {os : List.{0} Universal233.CoreProgram.Output} {r : OrdinaryDispatch.Hard2SourceWork.SourceExecution}
+  {cells : List.{0} SourceFullOutputsV3.Cell},
+  (∀ (T S : RMAF.Tree) (b : Nat) (a : Option.{0} SourceForestV3.F), OrdExec T S b a → Eq.{1} a (base T S b)) →
+    SourceFullOutputsV3.OutputsExec OrdExec mode T S q i os r cells →
+      Eq.{1} (List.map.{0, 0} (fun ls => (Prod.snd.{0, 0} ls).query) (SourceFullOutputsV3.recorded cells))
+        (OrdinaryDispatch.WorkIntegration.forestQueries (SourceDisjointV2.ordinarySpec mode base) r.value.calls)
+@SourceFullOutputsV3.recorded_slots_realize : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop} {mode : SourceCouplingV2.Mode}
+  {T S : RMAF.Tree} {q i : Nat} {os : List.{0} Universal233.CoreProgram.Output}
+  {r : OrdinaryDispatch.Hard2SourceWork.SourceExecution} {cells : List.{0} SourceFullOutputsV3.Cell},
+  SourceFullOutputsV3.OutputsExec OrdExec mode T S q i os r cells →
+    ∀ (ls : Prod.{0, 0} (Prod.{0, 0} Nat Nat) SourceForestV3.S),
+      Membership.mem.{0, 0} (SourceFullOutputsV3.recorded cells) ls →
+        SourceForestV3.SlotRealizes OrdExec mode (Prod.snd.{0, 0} ls)
+OrdinaryDispatch.CompleteSource.completeLocalDebit_reachable_bound : ∀ (q0 N Q L : Nat) (T0 S0 : RMAF.Tree),
+  Eq.{1} (Universal233.DepthOne.proper T0 S0) Bool.true →
+    LE.le.{0} (List.length.{0} (RMAF.leaves T0)) N →
+      LE.le.{0} q0 Q →
+        (∀ (x : Nat),
+            Membership.mem.{0, 0} (HAppend.hAppend.{0, 0, 0} (RMAF.leaves T0) (RMAF.leaves S0)) x →
+              LT.lt.{0} x (HPow.hPow.{0, 0, 0} 2 L)) →
+          ∀ (d : Nat) (T S : RMAF.Tree) (q : Nat),
+            OrdinaryDispatch.GlobalNumeric.Reach OrdinaryDispatch.FastOrdinary.solve q0 T0 S0 d T S q →
+              LE.le.{0} (↑(OrdinaryDispatch.CompleteSource.completeLocalDebit T S q))
+                (HMul.hMul.{0, 0, 0} (↑(OrdinaryDispatch.CompleteSource.completeSourcePolynomial N Q L))
+                  (HPow.hPow.{0, 0, 0} Universal233.Rule5ActualTrace.base q))
+OrdinaryDispatch.CompleteSource.ordinaryCompleteStepSource_exact_bill : ∀ (W : GenericForest.FrontierWork.OrdinaryWork)
+  (q : Nat) (T S : RMAF.Tree),
+  Eq.{1} (OrdinaryDispatch.CompleteSource.ordinaryCompleteStepSource W q T S).work
+    (HAdd.hAdd.{0, 0, 0} (OrdinaryDispatch.CompleteSource.completeLocalDebit T S q)
+      (GenericForest.FrontierWork.queryWork W
+        (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace OrdinaryDispatch.FastOrdinary.solve q T S).queries))

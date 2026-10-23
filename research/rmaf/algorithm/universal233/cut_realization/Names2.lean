@@ -1,0 +1,12 @@
+import Coverage
+#check List.nodup_iff_count_le_one
+#check List.nodup_iff_count_eq_one
+#check List.Nodup.length_le
+#check List.length_le_of_subset
+#check List.Sublist.length_le
+#check List.count_pos_iff
+#check List.count_le_one_iff
+#check List.count_eq_one_iff
+#check Nat.min_le_left
+#check Nat.le_min
+#check List.length_pos_iff

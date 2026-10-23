@@ -1,0 +1,11 @@
+# Both-bad local review status
+
+Independent source review confirms the local original-agreement cover and the actual paid callback trace under the printed geometry and child-specific exactness hypotheses. It confirms the normalized actual trace bound 4/c^4 for rational 2<=c<=3 and a cut-budget decrease of at least three. The recursive exactness hypothesis remains supplied by a future complete solver.
+
+Root read the sealed verdict, consumer trace, incremental record, summary and contact scope, and retained errata, then checked all 557 final members against [FINAL-v1.json](verification/both-bad-2026-10-15/sol-independent-review/released560-v1/FINAL-v1.json), SHA256 `279bb65d6ce96c9d40f85f9cb61af314f42fd89b1950e6ba1ada631611975fb3`. The review cold-built 160 scientific modules without copied scientific oleans and audited 4675 stored declarations, including private and coalesced occurrences, versus 4647 resolved names. Only the three allowed standard dependency axioms were found. The 1418 compiler-only auxiliary names have no claimed kernel-body or machine-semantics audit.
+
+The formal billing identities match the actual callback tuples, including failed calls, duplicates and early stops. A complete proof that callerUnit dominates every executed helper, check and copy remains OPEN. Payload-size closure and encoded bit costs also need explicit solver contracts. This is no global runtime or smaller-base pass.
+
+The S11 q4 frozen reference error remains preserved: the expected entry budget [1] was mistaken for a callback, while the paid scheduler actually calls nothing. All four oracle variants reproduce that distinction. The unchanged q5/q6 expectations match; there is no all-frozen-controls-pass claim. The reviewer's axiom-summary v2 erratum also remains attached: the author manifest, certificate and fresh audit all list the same three standard axioms; an earlier abbreviated-display inference was incorrect.
+
+The finite graph, callback and rational comparisons supplement the universal conditional statements. Root performed no additional Lean replay and adds no mathematical replication or theorem-count increment. Fresh-context framing is separately active. A complete ordinary solver, mutual correctness and termination, global cost recurrence, smaller base and novelty remain OPEN.

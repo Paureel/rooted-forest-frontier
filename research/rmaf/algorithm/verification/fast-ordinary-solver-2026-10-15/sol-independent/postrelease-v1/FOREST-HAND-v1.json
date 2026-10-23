@@ -1,0 +1,21 @@
+{
+ "phase":"postcontact additional forest-interface controls, hand answers before execution; no new blind credit",
+ "cases":[
+  {"id":"empty-forest","a":null,"b":[],"q":0,"proper":true,"optimum":0},
+  {"id":"empty-target-with-source","a":null,"b":[0],"q":0,"proper":false},
+  {"id":"nonempty-without-sources","a":0,"b":[],"q":0,"proper":false},
+  {"id":"singleton-forest","a":0,"b":[0],"q":0,"proper":true,"optimum":1},
+  {"id":"two-singletons","a":[0,1],"b":[0,1],"q":0,"proper":true,"optimum":2},
+  {"id":"wrong-labels","a":[0,1],"b":[0,2],"q":1,"proper":false},
+  {"id":"duplicate-components","a":[0,1],"b":[0,0,1],"q":2,"proper":false},
+  {"id":"crossing-q0","a":[[0,1],[2,3]],"b":[[0,2],[1,3]],"q":0,"proper":true,"optimum":3},
+  {"id":"crossing-q1","a":[[0,1],[2,3]],"b":[[0,2],[1,3]],"q":1,"proper":true,"optimum":3},
+  {"id":"crossing-q2-still-minimum","a":[[0,1],[2,3]],"b":[[0,2],[1,3]],"q":2,"proper":true,"optimum":3},
+  {"id":"aligned-source-blocks","a":[[0,1],[2,3]],"b":[[0,1],[2,3]],"q":0,"proper":true,"optimum":2},
+  {"id":"source-already-cut","a":[[0,1],2],"b":[[0,2],1],"q":0,"proper":true,"optimum":2},
+  {"id":"huge-Nat-forest","a":[0,18446744073709551625],"b":[0,18446744073709551625],"q":0,"proper":true,"optimum":2},
+  {"id":"missing-source-label","a":[[0,1],2],"b":[[0,1]],"q":0,"proper":false},
+  {"id":"repeated-source-leaf","a":[0,1],"b":[[0,0],1],"q":3,"proper":false}
+ ],
+ "conventions":"Generic forest budget q counts additional components beyond current source count. Empty Option target and empty source forest have optimum zero; ordinary Tree inputs are nonempty and external k=0 still refuses. No implicit rho."
+}

@@ -1,0 +1,5 @@
+import Rule4CallerSource
+#check OrdinaryDispatch.FullSourceWork.rule4Source_value
+#print axioms OrdinaryDispatch.FullSourceWork.rule4Source_value
+#check OrdinaryDispatch.FullSourceWork.rule4Source_split
+#print axioms OrdinaryDispatch.FullSourceWork.rule4Source_split

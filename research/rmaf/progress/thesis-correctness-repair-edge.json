@@ -1,0 +1,95 @@
+{
+  "artifacts": [
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-repair-edge-summary.json",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/edge_route/first-reached-root-witness.json",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/edge_route/adversary.py",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/edge_route/REPORT.md",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/edge_route/CONSTRUCTION.md",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/edge_route/RootedPaths.lean",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-repair-edge-formal-audit.json",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-repair-edge-second-summary.json",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/REPORT.md",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-repair-edge-second-formal-audit.json",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/ParentTransport.lean",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/YieldTransport.lean",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/edge_route/second_exchange_v2/SecondCut.lean"
+  ],
+  "claims": [
+    {
+      "detail": "5584 root >=2 cutset premises checked in 542 valid reached snapshots; no failure. All tested E are nonoptimal.",
+      "id": "edge-root-adversary",
+      "label": "Reached root-boundary hunt",
+      "status": "tested"
+    },
+    {
+      "detail": "2307 normalization premises checked; three-leaf source-mask enumeration exhaustive, four-leaf sample bounded. No reachability inference.",
+      "id": "edge-structural-adversary",
+      "label": "Separate structural census",
+      "status": "tested"
+    },
+    {
+      "id": "edge-local-formal",
+      "label": "Original-edge and rooted-path facts",
+      "status": "proved",
+      "detail": "26 scoped named lemmas compile in isolated imports with only standard axioms. Proves exact original IDs, single-exchange cost, actual path restoration, and conditional component isolation; does not prove AF preservation."
+    },
+    {
+      "id": "edge-second-adversary",
+      "label": "Specific 2B transport adversary",
+      "status": "tested",
+      "detail": "4,448 residual K transports and 4,448 second-normalized lifts passed in 328 reached source/state contexts. Zero reached root-v contexts; four detached-rho structural controls checked separately."
+    },
+    {
+      "id": "edge-second-formal",
+      "label": "Explicit two-splice transport and root-safe support",
+      "status": "proved",
+      "detail": "26 local production lemmas compiled with only propext/Quot.sound. Exact parent maps and ID-retaining recursive yielded forests for two explicitly witnessed splices; second-rule support/root guard and literal lift counts. General graph encoding is not proved."
+    }
+  ],
+  "id": "thesis-correctness-repair-edge",
+  "lemmas": [
+    {
+      "id": "edge-labelled-restriction-exchange",
+      "label": "Rooted restrictions and disjoint embeddings",
+      "status": "open",
+      "detail": "For normalized components, prove matching rooted restrictions and disjoint minimal F1 embeddings under containment, AF compatibility, and surviving endpoint fragments. See CONSTRUCTION.md for exact hypotheses."
+    },
+    {
+      "id": "edge-consumer-transport",
+      "label": "Source partial restoration and yielded-edge transport",
+      "status": "open",
+      "detail": "Full normalization may differ from the source partial restoration. Compound endpoint fragment and suppressed-edge hypotheses remain explicit."
+    },
+    {
+      "id": "edge-second-geometry-certificate",
+      "label": "Binary 2B graph to two-splice certificate",
+      "status": "open",
+      "detail": "For the finite reduced binary 2B parent-graph geometry, construct an original-ID marked-tree encoding with the two pendant-splice witnesses; prove all affected incidences lie in P, x/u/v and their applicable incoming edges survive unchanged, and arbitrary C disjoint from B union P induces the same witnesses. Verify the encoding represents graph yield and root-connected label fragments."
+    }
+  ],
+  "metrics": {
+    "controls_passed": 4,
+    "counterexamples": 0,
+    "reached_inputs": 2000,
+    "reached_root_premises_ge2": 5584,
+    "structural_premises": 2307,
+    "structural_states_checked": 499,
+    "valid_reached_root_snapshots": 542,
+    "scoped_local_lean_theorems": 26,
+    "formal_negative_controls_rejected": 1,
+    "second_reached_inputs": 5000,
+    "second_reached_2B_contexts": 328,
+    "second_K_premises": 4448,
+    "second_normalized_lift_premises": 4448,
+    "second_reached_root_v_contexts": 0,
+    "second_reached_root_v_K_premises": 0,
+    "second_detached_rho_control_premises": 4,
+    "second_scoped_local_lean_theorems": 26,
+    "second_formal_negative_controls_rejected": 1,
+    "second_counterexamples": 0
+  },
+  "status": "open",
+  "summary": "V2 exact two-splice transport and second-rule support checked in Lean. Binary graph-to-certificate/fragment encoding remains open; AF preservation is separate. Reached v2 root-v denominator is zero.",
+  "title": "Original-edge normalization and second-exchange transport"
+}

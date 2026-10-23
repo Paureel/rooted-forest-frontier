@@ -1,0 +1,83 @@
+ADDITIVE PAYLOAD CORRECTION
+
+This corrects FINITE-CALLER-TABLE-v1 sectionA and every later substitution of its D=64*(N+1)^3. The original files and seal b82180b36943b63d6b3a63dea33018a87a9a1688e946d02280d559251648e239 remain unchanged. The root's objection is correct: the printed64*(N+1)^2 candidates times the printed8*(N+1) label/block bounds do not imply the old D, even before constructor/container overhead.
+
+The runtime and recipes are unchanged. Use the frozen math_pseudocode_v1 ae6b35f2 plus the narrow projection amendment61da6aca. No work-only value is restored and no decision/diagnostic is erased. Let a=N+1>=2.
+
+Measure used in this correction.
+Count unfolded finite tag/field/list occurrences, including constructor tags, scalar words, list head/tail slots and every terminating nil. Repeated immutable references in a collection are unfolded separately for this upper bound, even when physically shared. A Nat or Bool is one word occurrence here; operand bit widths and activation-frame realization remain outside this lemma. The implementation is not asked to evaluate this measure.
+
+A path/list of l scalar entries has <=4*(l+1) occurrences:3 per cons and its finalnil. A Forest with B blocks and f flattened scalar entries has <=4*(B+f+1):3B+1 for the outer spine and3f+B for its inner spines. A typed tree/Paint node is bounded by32 local tag/field occurrences, including the finite constructor record layout. A fixed record with<=20 computational fields has<=128 local tag/field/terminal occurrences, excluding the contents of its referenced fields, which are counted below. These bounds conservatively dominate the frozen layouts.
+
+Cut the generator-derived output/entry/query/calls/refusal/candidate spines at their explicit occurrence/copy boundary. Their individual elements have the finite bounds below, but the complete unbounded spines and the receipts pointing to them have no D' claim. Their traversals remain paid by the generator/forest/outer-list source channels. Thus this correction does not turn an exponential list into a cubic one. The bounded merge-candidate collection is a different, finite Cartesian product.
+
+Elementary payload bounds.
+
+1 Tree/Paint and paths. Every ordinary input tree has nodes+1<=2N. The previously catalogued restricted/contracted/marked/relabelled/bottom temporary has <=2N+6=2a+4<=4a nodes;32 per node gives128a. A path or bArc has <=2a entries and therefore<=4*(2a+1)<=12a occurrences. A finite scalar-label concatenation with<=4a entries has<=4*(4a+1)<=20a. No label width is counted as list length.
+
+2 Forests and source forests. A finite unchecked reconstruction Forest has B<=8a,f<=8a, so its complete inner/outer representation is <=4*(16a+1)<=72a. A pre-guard branch partition has B<=2a,f<=4a^2, so its size is<=4*(2a+4a^2+1)<=24a^2. A sourceForest has<=2a individual restrictions, each bounded by128a; including its outer spine gives<=256a^2+6a+1<=272a^2. These are separate bounds on actual contents, not reference counts. The quadratic sourceForest bound includes malformed/refused state construction.
+
+3 Outputs, modes, entries and children. A generated Output partition has <=a blocks and<=a total labels, at most12a occurrences. Its <=2a cut paths, each<=12a, have complete outer/inner size<=24a^2+6a+1<=28a^2. Add the two-field Output record and get<=128+12a+28a^2<=96a^2. A retained Mode contains its three finite label lists and known forest;20a*3+72a+128<=196a. An Entry containing such a Mode and one Output plus its fixed fields is<=128+96a^2+196a+1<=256a^2. A Child containing partition,sourceForest,paid has size<=128+24a^2+272a^2+1<=384a^2. A list of at most five such children, including its outer spine, is<=5*384a^2+16<=2048a^2. Literal role/cut/partition branches are smaller. This also bounds the fixed3/4-plan constructors; no generator-derived Entry list is bounded here.
+
+4 RawChoices and selector checks. A RawChoice record has two bounded paths and three scalar fields:128+24a+3<=96a. There are at most4N^2<=4a^2 actual RawChoices. Its complete collection therefore has size<=4a^2*96a+12a^2+1<=512a^3. An executed first-choice check adds the fixed pair/Boolean layer: per checked record <=192a. At most4a^2 such records occur, and the ChoiceMeasured wrapper is fixed. Thus the COMPLETE retained check collection is <=2048a^3. Duplicates remain separate entries.
+
+5 DP tables. There are <=2N+3=2a+1<=3a Paint references per table. Each Paint has<=4a nodes and<=128a occurrences. The complete table, with repeated referenced Paints counted separately, is <=3a*128a+9a+1<=512a^2. The literal rows.map(value) does not require a smaller table assumption.
+
+6 MERGE CANDIDATES: the originally unclosed product. Keep the printed coarse bounds: <=64a^2 forest references and each Forest <=72a INCLUDING both spines, label words and nils. The complete outer list plus all these candidates is therefore
+
+  <=64a^2*72a+3*64a^2+1
+   =4608a^3+192a^2+1
+   <=5120a^3.
+
+The last inequality uses a>=2. This is a product of simultaneous bounds and includes every constructor/container term. It does not claim that64a^3 suffices. ownersMeter/rowMeter emits one candidate per actual owner pair, and does not recursively enumerate merges of candidates.
+
+7 Parsed bottom rows. A BottomData has its one Tree (<=128a), path (<=12a), fixed record and scalar fields, so<=256a. rowsMeter has at most16*(2N+1)<32a entries. Hence the complete list is<=32a*256a+96a+1<=16384a^2. This corrects the reference-only reading of the old rows catalogue as well.
+
+8 Problems/jobs/requests/calls. A Problem includes one label-list, target and owned source forest: <=20a+128a+272a^2+128<=384a^2. Including its Job wrapper, stored answer/cost when resolved and fixed constructor fields gives<=512a^2 per job. There are <=2a such jobs in one actual bounded scheduler invocation, so the entire job list is<=1024a^3+6a+1<=2048a^3. A PaidRequest,ForestQuery or Call includes a bounded branch/target/source record and fixed fields;<=512a^2 suffices per element. A finite plan's<=5 request/call records therefore require<=3072a^2. A call/query list accumulated across unbounded output occurrences is EXCLUDED from this finite-list claim; its elements still satisfy the same bound. The larger cubic job bound includes source forests inside each job.
+
+9 Setup/geometry and environments. Setup's ten Trees contribute<=1280a, its two label lists<=40a and fixed scalar/record fields fit the remaining216a, giving<=1536a. LiteralGeometry/SelectedPaid has its declared finite trees/paths/selection fields and is<=1024a. The actual closure classes are finite: literal/admitted/outside guards capture their printed tested trees/paths/rows/labels; common reconstruction captures one Setup and finite forests; owner/group callbacks capture one bounded source forest with target/label data; color callbacks capture a Tree/path or a finite Forest. No such environment captures an unbounded output/query/refusal spine for traversal. Even simultaneously overcounting a Setup1536a, a geometry512a, BottomData256a, three Trees384a, six paths72a, two finite Forests144a, a pre-guard partition24a^2, one sourceForest272a^2 and128+32 local fields gives
+
+  <=296a^2+2904a+160<=2048a^2.
+
+This bounds EACH one of those actual environments; the overcount deliberately includes combinations that no one closure requires. The longest constructed fixed predicate list is17; additionally allow the nested OR's second-arm environment, whether or not invoked. All eighteen environments, list spine and enclosing fixed records therefore cost<=18*2048a^2+256<=20480a^3. This includes the later-uninvoked predicate environments, rather than counting just thunk references. Their total live allocation over the run is not bounded here.
+
+10 Finite CheckReceipt.calls and pretest diagnostics. These are NOT omitted by the projection. A restriction CheckRequest carries two bounded Trees, one label-list and the fixed record, size<=512a. An embedding request can be reached in admittedGuards only after its ACTUAL preceding cutLength=2 succeeds. Its P then has at most three subtree/outside blocks and<=3N labels, hence size<=4*(3+3N+1)<=14a; Tree/record overhead still fits512a. badAt produces at most one restriction request per pair of cuts, <=4a^2; local large/size-two/outside filters and admitted fixed guards add<=4a^2. The outer final selection and its finite call-list concatenations do not multiply these by an output-list length. Allow32a^2 requests for one finite combined classification receipt, more than twice this sum. Its complete calls list is therefore<=32a^2*512a+96a^2+1<=32768a^3. Repeated classifier INVOCATIONS produce separate receipts and are counted by their actual calls; this is not a total-allocation bound.
+
+ELPretest has <=2a cut candidates. Each retained check pair includes at most one bounded path/option and a fixed record;<=192a per check suffices. Its checks,tailSizes,comparisons and fixed wrapper then have total size<=1024a^2. The actual tailSizes length computations remain the separately proved quadratic traversal bound. They are not erased by increasing D'.
+
+11 Colored-state and optimizer fields. The separate generator invariant bounds the current GTree by its original source-node count, paths by2a, total current/detached labels by a, and detached/cut counts by<=4a (a conservative enlargement). Count<=4a tree/group records at128 each, at most12a per stored path, all actual group-label list/nil cells, and their outer detached/cut spines. Even separately counting current,detached,cuts in these larger bounds gives<=144a^2+1600a+2, plus at most128 outer fields, hence<=2048a^2. Generator RESULT collections remain excluded when their outer extent is unbounded. The optimizer itself has<=N trials with at most ONE Some forest, plus one selected pair and at most one recovery/recoveries pair. Using the finite Forest and Output bounds above, its complete retained finite scan/execution field collection is<=4096a^2. These bounds are for data shape only and do not erase counters,failed trials or outputs.
+
+Combined finite bound, including other constructor layers.
+The preceding inequalities already count the actual outer/inner contents. To make the allowance inspectable, the following coefficients, each multiplying a^3, dominate the indicated finite objects/argument collections; using a^2<=a^3 and a<=a^3 here only enlarges them:
+
+  elementary Tree/path/word/fixed tuple vectors                         4096
+  geometric vertex/cherry/cut/edge collections                           512
+  RawChoice collection                                                  512
+  Output/Mode/Entry finite element                                      512
+  branch partition                                                       24
+  sourceForest                                                          272
+  Child/fixed child or plan list                                       2048
+  finite answer/reconstruction Forest                                    72
+  Paint table                                                           512
+  full merge-candidate collection                                      5120
+  full parsed-bottom row collection                                  16384
+  bounded scheduler job collection                                    2048
+  finite request/call-plan collection                                  3072
+  Setup                                                               1536
+  geometry/SelectedPaid                                                1024
+  full fixed predicate/environment collection                         20480
+  full finite CheckReceipt.calls                                     32768
+  ChoiceMeasured checks                                                2048
+  full pretest diagnostics                                             1024
+  current colored tree/detached/cut state                               2048
+  finite optimizer scan/execution fields                               4096
+  remaining fixed option/pair/tag layers                                8192
+  SUM                                                                108400
+
+The last row exceeds20*128 plus the local scalar/tag fields of the fixed nesting layers in the printed finite types. Recursive Tree/list/forest nesting is already in its relevant row; activation frames and live heap totals are not being bounded here. The other vectors allowance4096 also exceeds the simultaneous bounded Tree/path/scalar arguments of each printed recipe. The sum deliberately permits all listed finite kinds together although the recipes usually use a subset. No collection whose extent follows a generator occurrence tree belongs in this sum.
+
+Thus108400*a^3<2^17*a^3, and the safely larger explicit uniform replacement is
+
+  D' = 2^18*(N+1)^3.
+
+This is a derived payload bound with constructor/list/path overhead. It corrects the old64 coefficient; it is not a new runtime field, global heap bound, width bound or allocation assumption. All seven existing recipe bounds are monotone in D, so they may be instantiated with this larger D' without changing a recipe or rerunning anything.

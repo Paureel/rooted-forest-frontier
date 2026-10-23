@@ -1,0 +1,1050 @@
+{
+  "command": [
+    "research/rmaf/triple_dp/family/transitions/adversary/run_adversary.py",
+    "--mode",
+    "pilot",
+    "--output",
+    "results/triple-family-transitions-adversary-pilot.json"
+  ],
+  "controls": {
+    "counts": {
+      "malformed": {
+        "passed": 4,
+        "total": 4
+      },
+      "positive": {
+        "passed": 5,
+        "total": 5
+      },
+      "supplemental_malformed": {
+        "passed": 4,
+        "total": 4
+      },
+      "supplemental_positive": {
+        "passed": 1,
+        "total": 1
+      },
+      "supplemental_retention": {
+        "passed": 2,
+        "total": 2
+      },
+      "support_corruption": {
+        "passed": 3,
+        "total": 3
+      },
+      "wrong_result": {
+        "passed": 4,
+        "total": 4
+      }
+    },
+    "items": [
+      {
+        "actual": {
+          "blocks": 1,
+          "boundary": "M",
+          "cost": 0,
+          "merged_labels": [
+            "a",
+            "b"
+          ],
+          "regions": {
+            "M": [
+              "",
+              "0",
+              "1"
+            ]
+          },
+          "unused_vertices": []
+        },
+        "frozen_prefix_mismatches": {},
+        "graph_errors": [],
+        "group": "positive",
+        "id": "T1-singletons",
+        "passed": true,
+        "prefix_errors": []
+      },
+      {
+        "actual": {
+          "blocks": 2,
+          "boundary": "M",
+          "cost": 1,
+          "merged_labels": [
+            "a",
+            "c"
+          ],
+          "regions": {
+            "L:c": [
+              "01"
+            ],
+            "M": [
+              "",
+              "0",
+              "00",
+              "1"
+            ]
+          },
+          "unused_vertices": []
+        },
+        "frozen_prefix_mismatches": {},
+        "graph_errors": [],
+        "group": "positive",
+        "id": "left-extra-block",
+        "passed": true,
+        "prefix_errors": []
+      },
+      {
+        "actual": {
+          "blocks": 3,
+          "boundary": "M",
+          "cost": 2,
+          "merged_labels": [
+            "a",
+            "d"
+          ],
+          "regions": {
+            "L:c": [
+              "01"
+            ],
+            "M": [
+              "",
+              "0",
+              "00",
+              "1",
+              "11"
+            ],
+            "R:c": [
+              "10"
+            ]
+          },
+          "unused_vertices": []
+        },
+        "frozen_prefix_mismatches": {},
+        "graph_errors": [],
+        "group": "positive",
+        "id": "both-extra-same-color",
+        "passed": true,
+        "prefix_errors": []
+      },
+      {
+        "actual": {
+          "blocks": 4,
+          "boundary": "M",
+          "cost": 3,
+          "merged_labels": [
+            "b",
+            "d"
+          ],
+          "regions": {
+            "L:a": [
+              "000"
+            ],
+            "L:c": [
+              "01"
+            ],
+            "M": [
+              "",
+              "0",
+              "00",
+              "001",
+              "1",
+              "10"
+            ],
+            "R:e": [
+              "11"
+            ]
+          },
+          "unused_vertices": []
+        },
+        "frozen_prefix_mismatches": {},
+        "graph_errors": [],
+        "group": "positive",
+        "id": "asymmetric-stems",
+        "passed": true,
+        "prefix_errors": []
+      },
+      {
+        "actual": {
+          "blocks": 3,
+          "boundary": "M",
+          "cost": 2,
+          "merged_labels": [
+            "a",
+            "d"
+          ],
+          "regions": {
+            "L:b": [
+              "010"
+            ],
+            "L:c": [
+              "011"
+            ],
+            "M": [
+              "",
+              "0",
+              "00",
+              "1"
+            ]
+          },
+          "unused_vertices": [
+            "01"
+          ]
+        },
+        "frozen_prefix_mismatches": {},
+        "graph_errors": [],
+        "group": "positive",
+        "id": "unused-internal-vertex",
+        "passed": true,
+        "prefix_errors": []
+      },
+      {
+        "graph_errors": [
+          {
+            "rule": "merge-boundary-absent",
+            "side": "left"
+          }
+        ],
+        "group": "malformed",
+        "id": "missing-boundary",
+        "passed": true,
+        "prefix_errors": [
+          "merge-boundary-absent"
+        ]
+      },
+      {
+        "graph_errors": [
+          {
+            "index": "o",
+            "rule": "leafless",
+            "side": "left"
+          }
+        ],
+        "group": "malformed",
+        "id": "raw-leafless-open",
+        "passed": true,
+        "prefix_errors": [
+          "no-leaf"
+        ]
+      },
+      {
+        "graph_errors": [
+          {
+            "endpoints": [
+              "0",
+              "1"
+            ],
+            "index": "c",
+            "missing_path": [
+              ""
+            ],
+            "rule": "nonconvex",
+            "side": "left"
+          },
+          {
+            "indices": [
+              "o",
+              "c"
+            ],
+            "rule": "overlap",
+            "side": "left",
+            "vertex": "0"
+          },
+          {
+            "owners": [
+              "o",
+              "c"
+            ],
+            "rule": "leaf-coverage",
+            "side": "left",
+            "vertex": "0"
+          }
+        ],
+        "group": "malformed",
+        "id": "overlapping-input",
+        "passed": true,
+        "prefix_errors": [
+          "leaf-unowned-or-overlap",
+          "multiple-owners",
+          "prefix-gap"
+        ]
+      },
+      {
+        "graph_errors": [
+          {
+            "boundary": "o",
+            "index": "o",
+            "owns_root": false,
+            "rule": "root-boundary",
+            "side": "left"
+          }
+        ],
+        "group": "malformed",
+        "id": "boundary-missing-root",
+        "passed": true,
+        "prefix_errors": [
+          "root-owner"
+        ]
+      },
+      {
+        "clean_diagnostics": [],
+        "clean_twin_passed": true,
+        "group": "wrong_result",
+        "id": "charge-merged-open",
+        "passed": true,
+        "prefix_actual": 0,
+        "wrong_diagnostics": [
+          {
+            "actual": 0,
+            "claimed": 1,
+            "field": "cost",
+            "residual_claim_minus_actual": 1,
+            "rule": "wrong-claim"
+          }
+        ]
+      },
+      {
+        "clean_diagnostics": [],
+        "clean_twin_passed": true,
+        "group": "wrong_result",
+        "id": "retain-two-open-indices",
+        "passed": true,
+        "prefix_actual": 1,
+        "wrong_diagnostics": [
+          {
+            "actual": 1,
+            "claimed": 2,
+            "field": "blocks",
+            "residual_claim_minus_actual": 1,
+            "rule": "wrong-claim"
+          }
+        ]
+      },
+      {
+        "clean_diagnostics": [],
+        "clean_twin_passed": true,
+        "group": "wrong_result",
+        "id": "coalesce-same-color-others",
+        "passed": true,
+        "prefix_actual": 3,
+        "wrong_diagnostics": [
+          {
+            "actual": 3,
+            "claimed": 1,
+            "field": "blocks",
+            "residual_claim_minus_actual": -2,
+            "rule": "wrong-claim"
+          }
+        ]
+      },
+      {
+        "clean_diagnostics": [],
+        "clean_twin_passed": true,
+        "group": "wrong_result",
+        "id": "charge-closed-blocks-twice",
+        "passed": true,
+        "prefix_actual": 3,
+        "wrong_diagnostics": [
+          {
+            "actual": 3,
+            "claimed": 6,
+            "field": "cost",
+            "residual_claim_minus_actual": 3,
+            "rule": "wrong-claim"
+          }
+        ]
+      },
+      {
+        "clean_twin_passed": true,
+        "exact_corrupt_output": {
+          "boundary": "M",
+          "indices": [
+            "M"
+          ],
+          "regions": {
+            "M": [
+              "0",
+              "1"
+            ]
+          },
+          "tree": [
+            "a",
+            "b"
+          ]
+        },
+        "graph_errors": [
+          {
+            "boundary": "M",
+            "index": "M",
+            "owns_root": false,
+            "rule": "root-boundary"
+          },
+          {
+            "endpoints": [
+              "0",
+              "1"
+            ],
+            "index": "M",
+            "missing_path": [
+              ""
+            ],
+            "rule": "nonconvex"
+          },
+          {
+            "actual": [
+              "0",
+              "1"
+            ],
+            "expected": [
+              "",
+              "0",
+              "1"
+            ],
+            "rule": "merged-support"
+          }
+        ],
+        "group": "support_corruption",
+        "id": "drop-connecting-root",
+        "passed": true,
+        "prefix_errors": [
+          "prefix-gap",
+          "root-owner"
+        ]
+      },
+      {
+        "clean_twin_passed": true,
+        "exact_corrupt_output": {
+          "boundary": "M",
+          "indices": [
+            "M",
+            "L:a",
+            "L:c",
+            "R:e"
+          ],
+          "regions": {
+            "L:a": [
+              "000"
+            ],
+            "L:c": [
+              "01"
+            ],
+            "M": [
+              "",
+              "0",
+              "001",
+              "1",
+              "10"
+            ],
+            "R:e": [
+              "11"
+            ]
+          },
+          "tree": [
+            [
+              [
+                "a",
+                "b"
+              ],
+              "c"
+            ],
+            [
+              "d",
+              "e"
+            ]
+          ]
+        },
+        "graph_errors": [
+          {
+            "endpoints": [
+              "",
+              "001"
+            ],
+            "index": "M",
+            "missing_path": [
+              "00"
+            ],
+            "rule": "nonconvex"
+          },
+          {
+            "actual": [
+              "",
+              "0",
+              "001",
+              "1",
+              "10"
+            ],
+            "expected": [
+              "",
+              "0",
+              "00",
+              "001",
+              "1",
+              "10"
+            ],
+            "rule": "merged-support"
+          }
+        ],
+        "group": "support_corruption",
+        "id": "drop-required-stem",
+        "passed": true,
+        "prefix_errors": [
+          "prefix-gap"
+        ]
+      },
+      {
+        "clean_twin_passed": true,
+        "exact_corrupt_output": {
+          "boundary": "M",
+          "indices": [
+            "M"
+          ],
+          "regions": {
+            "M": [
+              "",
+              "0"
+            ]
+          },
+          "tree": [
+            "a",
+            "b"
+          ]
+        },
+        "graph_errors": [
+          {
+            "owners": [],
+            "rule": "leaf-coverage",
+            "vertex": "1"
+          },
+          {
+            "actual": [
+              "",
+              "0"
+            ],
+            "expected": [
+              "",
+              "0",
+              "1"
+            ],
+            "rule": "merged-support"
+          },
+          {
+            "rule": "merged-leaves"
+          }
+        ],
+        "group": "support_corruption",
+        "id": "drop-right-leaf",
+        "passed": true,
+        "prefix_errors": [
+          "leaf-unowned-or-overlap"
+        ]
+      },
+      {
+        "graph_errors": [
+          {
+            "indices": [
+              "o",
+              "o"
+            ],
+            "rule": "duplicate-index"
+          }
+        ],
+        "group": "supplemental_malformed",
+        "id": "duplicate-index",
+        "passed": true,
+        "prefix_errors": [
+          "index-list"
+        ]
+      },
+      {
+        "graph_errors": [
+          {
+            "indices": [],
+            "rule": "incomplete-indexing",
+            "supports": [
+              "o"
+            ]
+          }
+        ],
+        "group": "supplemental_malformed",
+        "id": "incomplete-index",
+        "passed": true,
+        "prefix_errors": [
+          "boundary-index",
+          "index-list"
+        ]
+      },
+      {
+        "graph_errors": [
+          {
+            "index": "o",
+            "outside": [
+              "0"
+            ],
+            "rule": "unbounded"
+          }
+        ],
+        "group": "supplemental_malformed",
+        "id": "out-of-tree",
+        "passed": true,
+        "prefix_errors": [
+          "outside"
+        ]
+      },
+      {
+        "graph_errors": [
+          {
+            "boundary": null,
+            "index": "o",
+            "owns_root": true,
+            "rule": "root-boundary"
+          }
+        ],
+        "group": "supplemental_malformed",
+        "id": "root-owner-unmarked",
+        "passed": true,
+        "prefix_errors": [
+          "root-owner"
+        ]
+      },
+      {
+        "actual": {
+          "blocks": 2,
+          "boundary": "M",
+          "cost": 1,
+          "merged_labels": [
+            "x"
+          ],
+          "regions": {
+            "L:L:o": [
+              "01"
+            ],
+            "M": [
+              "",
+              "0",
+              "00",
+              "1"
+            ]
+          },
+          "unused_vertices": []
+        },
+        "frozen_prefix_mismatches": {},
+        "graph_errors": [],
+        "group": "supplemental_positive",
+        "id": "repeat-labels-and-index-names",
+        "passed": true,
+        "prefix_errors": []
+      },
+      {
+        "clean_twin_passed": true,
+        "exact_corrupt_output": {
+          "boundary": "M",
+          "indices": [
+            "M",
+            "L:b",
+            "L:c"
+          ],
+          "regions": {
+            "L:b": [
+              "010"
+            ],
+            "L:c": [
+              "011"
+            ],
+            "M": [
+              "",
+              "0",
+              "00",
+              "1",
+              "01"
+            ]
+          },
+          "tree": [
+            [
+              "a",
+              [
+                "b",
+                "c"
+              ]
+            ],
+            "d"
+          ]
+        },
+        "graph_errors": [
+          {
+            "actual": [
+              "",
+              "0",
+              "00",
+              "01",
+              "1"
+            ],
+            "expected": [
+              "",
+              "0",
+              "00",
+              "1"
+            ],
+            "rule": "merged-support"
+          }
+        ],
+        "group": "supplemental_retention",
+        "id": "fill-unused-vertex",
+        "passed": true,
+        "structural_errors": []
+      },
+      {
+        "clean_twin_passed": true,
+        "exact_corrupt_output": {
+          "boundary": "M",
+          "indices": [
+            "M",
+            "R:c"
+          ],
+          "regions": {
+            "M": [
+              "",
+              "0",
+              "00",
+              "1"
+            ],
+            "R:c": [
+              "01"
+            ]
+          },
+          "tree": [
+            [
+              "a",
+              "b"
+            ],
+            "c"
+          ]
+        },
+        "graph_errors": [
+          {
+            "actual": [],
+            "expected": [
+              "01"
+            ],
+            "index": "L:c",
+            "rule": "survivor-support"
+          },
+          {
+            "index": "L:c",
+            "rule": "survivor-leaves"
+          },
+          {
+            "actual": [
+              "M",
+              "R:c"
+            ],
+            "expected": [
+              "L:c",
+              "M"
+            ],
+            "rule": "index-retention"
+          }
+        ],
+        "group": "supplemental_retention",
+        "id": "rename-survivor",
+        "passed": true,
+        "structural_errors": []
+      }
+    ],
+    "passed": true
+  },
+  "elapsed_seconds": 0.026561374999801046,
+  "mode": "pilot",
+  "platform": "macOS-26.5.1-arm64-arm-64bit",
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "search": {
+    "available_pairs": 192,
+    "checked_pairs": 124,
+    "coverage_scope": "Canonical vertex partitions; root live; child leaves <=3; total <=5; no color admissibility; no universal conclusion",
+    "enumeration": [
+      {
+        "candidate_partitions": 1,
+        "leaves": 1,
+        "seconds": 1.2499998774728738e-05,
+        "shape": "leaf",
+        "valid_live_families": 1,
+        "vertices": 1
+      },
+      {
+        "candidate_partitions": 5,
+        "leaves": 2,
+        "seconds": 5.591699846263509e-05,
+        "shape": "cherry",
+        "valid_live_families": 3,
+        "vertices": 3
+      },
+      {
+        "candidate_partitions": 67,
+        "leaves": 3,
+        "seconds": 0.0013436250010272488,
+        "shape": "left-comb3",
+        "valid_live_families": 11,
+        "vertices": 5
+      },
+      {
+        "candidate_partitions": 67,
+        "leaves": 3,
+        "seconds": 0.0009428749999642605,
+        "shape": "right-comb3",
+        "valid_live_families": 11,
+        "vertices": 5
+      }
+    ],
+    "label_convention": "Every enumerated leaf has label x; address identity retained",
+    "pair_rows": [
+      {
+        "available_pairs": 1,
+        "case_seconds": [
+          4.104100116819609e-05
+        ],
+        "checked_pairs": 1,
+        "left_shape": "leaf",
+        "right_shape": "leaf",
+        "seconds": 4.162500044913031e-05
+      },
+      {
+        "available_pairs": 3,
+        "case_seconds": [
+          6.212500011315569e-05,
+          5.770800089521799e-05,
+          5.541700011235662e-05
+        ],
+        "checked_pairs": 3,
+        "left_shape": "leaf",
+        "right_shape": "cherry",
+        "seconds": 0.00017579199993633665
+      },
+      {
+        "available_pairs": 11,
+        "case_seconds": [
+          0.00011154099956911523,
+          0.00011029199959011748,
+          9.504199988441542e-05,
+          9.1416999566718e-05,
+          8.245800017903093e-05,
+          9.495899939793162e-05,
+          0.00011875000018335413,
+          7.79999991209479e-05,
+          7.974999971338548e-05,
+          7.354099943768233e-05,
+          7.170800017775036e-05
+        ],
+        "checked_pairs": 11,
+        "left_shape": "leaf",
+        "right_shape": "left-comb3",
+        "seconds": 0.0010084169989568181
+      },
+      {
+        "available_pairs": 11,
+        "case_seconds": [
+          6.887499876029324e-05,
+          0.00014716700025019236,
+          8.845899901643861e-05,
+          8.745800005272031e-05,
+          7.612499939568806e-05,
+          7.633399945916608e-05,
+          7.229199945868459e-05,
+          0.00010958299935737159,
+          9.120799950323999e-05,
+          8.045799950195942e-05,
+          7.85409993113717e-05
+        ],
+        "checked_pairs": 11,
+        "left_shape": "leaf",
+        "right_shape": "right-comb3",
+        "seconds": 0.000977249999777996
+      },
+      {
+        "available_pairs": 3,
+        "case_seconds": [
+          6.312500045169145e-05,
+          5.737499850511085e-05,
+          5.7792000006884336e-05
+        ],
+        "checked_pairs": 3,
+        "left_shape": "cherry",
+        "right_shape": "leaf",
+        "seconds": 0.0001785830008884659
+      },
+      {
+        "available_pairs": 9,
+        "case_seconds": [
+          0.0001392499998473795,
+          8.391699884668924e-05,
+          8.229200102505274e-05,
+          8.612499914306682e-05,
+          7.704099880356807e-05,
+          7.858299977669958e-05,
+          0.000121749999379972,
+          7.683299918426201e-05,
+          7.537500096077565e-05
+        ],
+        "checked_pairs": 9,
+        "left_shape": "cherry",
+        "right_shape": "cherry",
+        "seconds": 0.0008217920003517065
+      },
+      {
+        "available_pairs": 33,
+        "case_seconds": [
+          0.00010208300045633223,
+          0.0001340829985565506,
+          0.00015891600014583673,
+          0.00012420900020515546,
+          0.00010883300092245918,
+          0.00010775000009743962,
+          0.00014020900016475935,
+          0.00012262500058568548,
+          0.00015079199874890037,
+          9.88749998214189e-05,
+          9.787499948288314e-05,
+          0.00014133399963611737,
+          0.00013408400081971195,
+          0.00016279199917335063,
+          0.00010562500028754584,
+          9.83339996309951e-05
+        ],
+        "checked_pairs": 16,
+        "left_shape": "cherry",
+        "right_shape": "left-comb3",
+        "seconds": 0.0019893329990736675
+      },
+      {
+        "available_pairs": 33,
+        "case_seconds": [
+          0.00010266699973726645,
+          0.00013979200048197526,
+          0.00016191699978662655,
+          0.00010400000064691994,
+          0.00013475000014295802,
+          0.00011845799963339232,
+          0.00013824999950884376,
+          0.00011820799954875838,
+          0.00015750000056868885,
+          0.00012562499978230335,
+          0.00010887499956879765,
+          0.00013891700109525118,
+          0.00012270899969735183,
+          0.00014016700151842088,
+          9.854200106929056e-05,
+          0.00010866699994949158
+        ],
+        "checked_pairs": 16,
+        "left_shape": "cherry",
+        "right_shape": "right-comb3",
+        "seconds": 0.002020292000452173
+      },
+      {
+        "available_pairs": 11,
+        "case_seconds": [
+          7.658400136278942e-05,
+          0.00011370799984433688,
+          9.683300049800891e-05,
+          0.00013512500117940363,
+          8.562499897379894e-05,
+          9.55420000536833e-05,
+          8.35840000945609e-05,
+          8.37499992485391e-05,
+          7.891600034781732e-05,
+          0.00011558400001376867,
+          7.558400102425367e-05
+        ],
+        "checked_pairs": 11,
+        "left_shape": "left-comb3",
+        "right_shape": "leaf",
+        "seconds": 0.0010415830001875293
+      },
+      {
+        "available_pairs": 33,
+        "case_seconds": [
+          0.000106707999293576,
+          9.799999861570541e-05,
+          0.00014354199993249495,
+          0.00017941700025403406,
+          0.0001212089991895482,
+          0.00011837500096589793,
+          0.00012062499990861397,
+          0.00010991700037266128,
+          0.00012308399891480803,
+          0.00015095799972186796,
+          0.00011999999878753442,
+          0.00010633400052029174,
+          0.00010037500032922253,
+          0.00010541700066823978,
+          0.00013520900029106997,
+          9.549999958835542e-05
+        ],
+        "checked_pairs": 16,
+        "left_shape": "left-comb3",
+        "right_shape": "cherry",
+        "seconds": 0.0019358339995960705
+      },
+      {
+        "available_pairs": 11,
+        "case_seconds": [
+          7.116599954315461e-05,
+          0.00011637500028882641,
+          9.316599971498363e-05,
+          9.183300062431954e-05,
+          0.00011712500054272823,
+          7.791699863446411e-05,
+          7.062500117172021e-05,
+          7.262500002980232e-05,
+          9.308300104748923e-05,
+          8.10410001577111e-05,
+          0.00011812500088126399
+        ],
+        "checked_pairs": 11,
+        "left_shape": "right-comb3",
+        "right_shape": "leaf",
+        "seconds": 0.0010035420000349404
+      },
+      {
+        "available_pairs": 33,
+        "case_seconds": [
+          0.00010199999996984843,
+          9.279199912270997e-05,
+          0.00013954200039734133,
+          0.00012866600081906654,
+          0.00016133300050569233,
+          0.00011737499880837277,
+          0.00011241699940001126,
+          0.00010233300054096617,
+          9.94160000118427e-05,
+          9.44580006034812e-05,
+          0.00014525000005960464,
+          9.441700058232527e-05,
+          0.00012604199946508743,
+          0.00011945900041610003,
+          0.00010495899914531037,
+          0.00014666700008092448
+        ],
+        "checked_pairs": 16,
+        "left_shape": "right-comb3",
+        "right_shape": "cherry",
+        "seconds": 0.0018881249998230487
+      }
+    ],
+    "pilot": true,
+    "timing": {
+      "first_case_warmup_seconds": 4.104100116819609e-05,
+      "post_first_max_seconds": 0.00017941700025403406,
+      "post_first_mean_seconds": 0.0001059499267639916
+    },
+    "verdict": "NO-FIRE-BOUNDED"
+  },
+  "source_sha256": {
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/NEXT.md": "6f907232a0b999e1c76fc9db39f937d648ffe02d1abaae3c38b4fdb8c42ecdd8",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/TARGET.md": "4a4557eefa6f0e1329c46c6fcd4015f750cf4537c2011dbd694e4de92634fbea",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/adversary/SPEC.md": "6a97152968c4783695ac619131787d467f4be1207737d43e97008a87fe445872",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/adversary/graph_checker.py": "fbf91d2b92c09d2a20972f84090105530a65b1e1482c9160f154a233c18c2583",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/adversary/prefix_oracle.py": "e80da95b12cb2771d37f9a21c50c0e5a933a2138c900f46be9632fca98ecbef5",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/adversary/run_adversary.py": "e8f3723d80c5036d71904898e01a6fe20c108e4750e7eef61bf6009079841b4e",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/adversary/supplemental-controls.json": "266f6eb857777da3f9741a3f3ce580880af1ecf2072cbd89e83d0398a1f499f2",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/triple_dp/family/transitions/controls.json": "4bb9a4893e3a879fa8a132b82e184eb81976f3bc244678457e92d122f6dde00b"
+  },
+  "started_utc": "2026-10-14T14:03:49.269792+00:00",
+  "verdict": "NO-FIRE-BOUNDED"
+}

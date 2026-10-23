@@ -1,0 +1,187 @@
+Universal233.CherryBranching.actual_t1_pendant_exchange {T S : RMAF.Tree} {F : List (List Nat)}
+  (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S) (ha : RMAF.agreement T S F = true) {p : RMAF.Vertex}
+  {a b : Nat} (hc : Universal233.CoreGraph.CherryAt T p a b)
+  (one : (Universal233.CherryBranching.cuts S a b).length = 1) :
+  ∃ G,
+    RMAF.agreement T S G = true ∧
+      G.length ≤ F.length ∧ VertexGeometry.Refines G (Universal233.CherryBranching.pendantPartition S a b)
+Universal233.CherryBranching.actual_t1_unordered_exchange {T S : RMAF.Tree} {F : List (List Nat)}
+  (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S) (ha : RMAF.agreement T S F = true) {a b : Nat}
+  (hc : Universal233.HardParent.ActualCherry T a b) (one : (Universal233.CherryBranching.cuts S a b).length = 1) :
+  ∃ G,
+    RMAF.agreement T S G = true ∧
+      G.length ≤ F.length ∧ VertexGeometry.Refines G (Universal233.CherryBranching.pendantPartition S a b)
+Universal233.CherryBranching.actual_t1_target : Universal233.CherryBranching.T1Target
+Universal233.CherryBranching.actual_t1_two_minimum {T S : RMAF.Tree} {p : RMAF.Vertex} {a b : Nat}
+  (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S) (hc : Universal233.CoreGraph.CherryAt T p a b)
+  (one : (Universal233.CherryBranching.cuts S a b).length = 1)
+  (solve : Universal233.CherryBranching.Child → List (List Nat))
+  (ih :
+    ∀ (c : Universal233.CherryBranching.Child),
+      c ∈ Universal233.CherryBranching.twoBranches S a b → Universal233.CherryBranching.ExactChild T S c (solve c))
+  (best : List (List Nat)) (chosen : ∃ c, c ∈ Universal233.CherryBranching.twoBranches S a b ∧ best = solve c)
+  (least :
+    ∀ (c : Universal233.CherryBranching.Child),
+      c ∈ Universal233.CherryBranching.twoBranches S a b → best.length ≤ (solve c).length) :
+  RMAF.agreement T S best = true ∧ ∀ (F : List (List Nat)), RMAF.agreement T S F = true → best.length ≤ F.length
+Universal233.CherryBranching.actual_t1_deterministic_minimum {T S : RMAF.Tree} {p : RMAF.Vertex} {a b : Nat}
+  (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S) (hc : Universal233.CoreGraph.CherryAt T p a b)
+  (one : (Universal233.CherryBranching.cuts S a b).length = 1) {G : List (List Nat)}
+  (ih : Universal233.CherryBranching.ExactChild T S (Universal233.CherryBranching.pendantChild S a b) G) :
+  RMAF.agreement T S G = true ∧ ∀ (F : List (List Nat)), RMAF.agreement T S F = true → G.length ≤ F.length
+Universal233.CherryBranching.actual_t1_two_budget {T S : RMAF.Tree} {p : RMAF.Vertex} {a b : Nat}
+  (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S) (hc : Universal233.CoreGraph.CherryAt T p a b)
+  (one : (Universal233.CherryBranching.cuts S a b).length = 1) (k : Nat) :
+  Universal233.CherryBranching.OriginalWithin T S k ↔
+    ∃ c,
+      c ∈ Universal233.CherryBranching.twoBranches S a b ∧
+        ∃ r, Universal233.CherryBranching.remaining k c = some r ∧ Universal233.CherryBranching.ChildWithin T S c r
+Universal233.CherryBranching.actual_t1_decision {T S : RMAF.Tree} {p : RMAF.Vertex} {a b : Nat}
+  (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S) (hc : Universal233.CoreGraph.CherryAt T p a b)
+  (one : (Universal233.CherryBranching.cuts S a b).length = 1) (k : Nat) :
+  Universal233.CherryBranching.OriginalWithin T S k ↔
+    ∃ r,
+      Universal233.CherryBranching.remaining k (Universal233.CherryBranching.pendantChild S a b) = some r ∧
+        Universal233.CherryBranching.ChildWithin T S (Universal233.CherryBranching.pendantChild S a b) r
+Universal233.CherryBranching.actual_high_safety {T S : RMAF.Tree} {F : List (List Nat)} (hn : (RMAF.leaves S).Nodup)
+  (ha : RMAF.agreement T S F = true) {p : RMAF.Vertex} {a b : Nat} (hc : Universal233.CoreGraph.CherryAt T p a b)
+  (_high : 3 ≤ (Universal233.CherryBranching.cuts S a b).length) :
+  [a] ∈ F ∨ [b] ∈ F ∨ VertexGeometry.Refines F (Universal233.CherryBranching.pendantPartition S a b)
+Universal233.CherryBranching.actual_high_unordered_safety {T S : RMAF.Tree} {F : List (List Nat)}
+  (hnS : (RMAF.leaves S).Nodup) (ha : RMAF.agreement T S F = true) {a b : Nat}
+  (hc : Universal233.HardParent.ActualCherry T a b) (_high : 3 ≤ (Universal233.CherryBranching.cuts S a b).length) :
+  [a] ∈ F ∨ [b] ∈ F ∨ VertexGeometry.Refines F (Universal233.CherryBranching.pendantPartition S a b)
+Universal233.CherryBranching.actual_high_budget {T S : RMAF.Tree} {p : RMAF.Vertex} {a b : Nat}
+  (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S) (hc : Universal233.CoreGraph.CherryAt T p a b)
+  (high : 3 ≤ (Universal233.CherryBranching.cuts S a b).length) (k : Nat) :
+  Universal233.CherryBranching.OriginalWithin T S k ↔
+    ∃ c,
+      c ∈ Universal233.CherryBranching.branches S a b ∧
+        ∃ r, Universal233.CherryBranching.remaining k c = some r ∧ Universal233.CherryBranching.ChildWithin T S c r
+Universal233.CherryBranching.ordinary_minimum {T S : RMAF.Tree} {p : RMAF.Vertex} {a b : Nat}
+  (hn : (RMAF.leaves S).Nodup) (hc : Universal233.CoreGraph.CherryAt T p a b)
+  (solve : Universal233.CherryBranching.Child → List (List Nat))
+  (ih :
+    ∀ (c : Universal233.CherryBranching.Child),
+      c ∈ Universal233.CherryBranching.branches S a b → Universal233.CherryBranching.ExactChild T S c (solve c))
+  (best : List (List Nat)) (chosen : ∃ c, c ∈ Universal233.CherryBranching.branches S a b ∧ best = solve c)
+  (least :
+    ∀ (c : Universal233.CherryBranching.Child),
+      c ∈ Universal233.CherryBranching.branches S a b → best.length ≤ (solve c).length) :
+  RMAF.agreement T S best = true ∧ ∀ (F : List (List Nat)), RMAF.agreement T S F = true → best.length ≤ F.length
+Universal233.CherryBranching.high_child_solver_iff {T S : RMAF.Tree} {p : RMAF.Vertex} {a b : Nat}
+  (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S) (hc : Universal233.CoreGraph.CherryAt T p a b)
+  (high : 3 ≤ (Universal233.CherryBranching.cuts S a b).length)
+  (solver : Universal233.CherryBranching.Child → Nat → Option (List (List Nat)))
+  (ih :
+    ∀ (c : Universal233.CherryBranching.Child),
+      c ∈ Universal233.CherryBranching.branches S a b → Universal233.CherryBranching.ExactBoundedChild T S solver c)
+  (k : Nat) :
+  Universal233.CherryBranching.OriginalWithin T S k ↔
+    ∃ c,
+      c ∈ Universal233.CherryBranching.branches S a b ∧ ∃ G, Universal233.CherryBranching.childCall solver k c = some G
+Universal233.CherryBranching.t1_child_solver_iff {T S : RMAF.Tree} {p : RMAF.Vertex} {a b : Nat}
+  (hnT : (RMAF.leaves T).Nodup) (hnS : (RMAF.leaves S).Nodup)
+  (same : ∀ (x : Nat), x ∈ RMAF.leaves T ↔ x ∈ RMAF.leaves S) (hc : Universal233.CoreGraph.CherryAt T p a b)
+  (one : (Universal233.CherryBranching.cuts S a b).length = 1)
+  (solver : Universal233.CherryBranching.Child → Nat → Option (List (List Nat)))
+  (ih :
+    ∀ (c : Universal233.CherryBranching.Child),
+      c ∈ Universal233.CherryBranching.twoBranches S a b → Universal233.CherryBranching.ExactBoundedChild T S solver c)
+  (k : Nat) :
+  Universal233.CherryBranching.OriginalWithin T S k ↔
+    ∃ c,
+      c ∈ Universal233.CherryBranching.twoBranches S a b ∧
+        ∃ G, Universal233.CherryBranching.childCall solver k c = some G
+Universal233.CherryBranching.core_has_cherry {S : RMAF.Tree} {a b : Nat} (hn : (RMAF.leaves S).Nodup)
+  (ha : a ∈ RMAF.leaves S) (hb : b ∈ RMAF.leaves S) (hab : a ≠ b) :
+  ∃ U,
+    RMAF.restrict (Universal233.CherryBranching.coreLabels S a b) S = some U ∧ Universal233.HardParent.HasCherry a b U
+Universal233.CherryBranching.split_original_agreement {T S U : RMAF.Tree} {q : RMAF.Vertex} {F : List (List Nat)}
+  (hn : (RMAF.leaves S).Nodup) (hq : Universal233.CoreGraph.subtree S q = some U) (ha : RMAF.agreement T S F = true) :
+  RMAF.agreement T S (Universal233.CherryBranching.splitForest F (RMAF.leaves U)) = true ∧
+    (Universal233.CherryBranching.splitForest F (RMAF.leaves U)).length ≤ F.length + 1
+Universal233.CherryBranching.state_save_singleton {T U : RMAF.Tree} {ss : List RMAF.Tree} {H : List (List Nat)}
+  {a b : Nat} (hag : ForestState.agrees (some T) ss H = true) (cht : ForestState.cherry a b T = true) (hu : U ∈ ss)
+  (chu : ForestState.cherry a b U = true) (hs : [a] ∈ H) (hab : a ≠ b) :
+  ∃ G, ForestState.agrees (some T) ss G = true ∧ G.length + 1 = H.length
+Universal233.CherryBranching.cut_component {S : RMAF.Tree} {a b : Nat} {q : RMAF.Vertex}
+  (hq : q ∈ Universal233.CherryBranching.cuts S a b) (v : RMAF.Vertex) :
+  Universal233.CutRealization.ResidualWalk S (Universal233.CherryBranching.cuts S a b) q v ↔
+    Universal233.CoreGraph.Valid S v ∧ q <+: v
+Universal233.CherryBranching.root_component (S : RMAF.Tree) (a b : Nat) (v : RMAF.Vertex) :
+  Universal233.CutRealization.ResidualWalk S (Universal233.CherryBranching.cuts S a b) [] v ↔
+    Universal233.CoreGraph.Valid S v ∧ Universal233.CutRealization.Live (Universal233.CherryBranching.cuts S a b) v
+Universal233.CherryBranching.original_cover (S : RMAF.Tree) (a b : Nat) (v : RMAF.Vertex)
+  (hv : Universal233.CoreGraph.Valid S v) :
+  ∃ r,
+    r ∈ Universal233.CherryBranching.componentRoots S a b ∧
+      Universal233.CutRealization.ResidualWalk S (Universal233.CherryBranching.cuts S a b) r v
+Universal233.CherryBranching.roots_separated {S : RMAF.Tree} {a b : Nat} {r s : RMAF.Vertex}
+  (hr : r ∈ Universal233.CherryBranching.componentRoots S a b)
+  (hs : s ∈ Universal233.CherryBranching.componentRoots S a b)
+  (hw : Universal233.CutRealization.ResidualWalk S (Universal233.CherryBranching.cuts S a b) r s) : r = s
+Universal233.CherryBranching.cut_leafset {S : RMAF.Tree} {a b : Nat} {q : RMAF.Vertex}
+  (hq : q ∈ Universal233.CherryBranching.cuts S a b) (x : Nat) :
+  x ∈ Universal233.HardParent.subtreeLabels S q ↔
+    ∃ v,
+      Universal233.CoreGraph.LeafAt S v x ∧
+        Universal233.CutRealization.ResidualWalk S (Universal233.CherryBranching.cuts S a b) q v
+Universal233.CherryBranching.root_leafset {S : RMAF.Tree} {a b : Nat} (hn : (RMAF.leaves S).Nodup) (x : Nat) :
+  x ∈ Universal233.CherryBranching.coreLabels S a b ↔
+    ∃ v,
+      Universal233.CoreGraph.LeafAt S v x ∧
+        Universal233.CutRealization.ResidualWalk S (Universal233.CherryBranching.cuts S a b) [] v
+Universal233.CherryBranching.no_leafless {S : RMAF.Tree} {a b : Nat} (hn : (RMAF.leaves S).Nodup)
+  (ha : a ∈ RMAF.leaves S) (v : RMAF.Vertex) (hv : Universal233.CoreGraph.Valid S v) :
+  ∃ w x,
+    Universal233.CoreGraph.LeafAt S w x ∧
+      Universal233.CutRealization.ResidualWalk S (Universal233.CherryBranching.cuts S a b) v w
+Universal233.CherryBranching.pendant_partition_check {S : RMAF.Tree} {a b : Nat} (hn : (RMAF.leaves S).Nodup)
+  (ha : a ∈ RMAF.leaves S) :
+  RMAF.partitionCheck (RMAF.leaves S) (Universal233.CherryBranching.pendantPartition S a b) = true
+Universal233.CherryBranching.source_embeddings {S : RMAF.Tree} {a b : Nat} (hn : (RMAF.leaves S).Nodup) :
+  RMAF.pairwiseEmbeddings S (Universal233.CherryBranching.pendantPartition S a b) = true
+Universal233.CherryBranching.partition_length (S : RMAF.Tree) (a b : Nat) :
+  (Universal233.CherryBranching.pendantPartition S a b).length = (Universal233.CherryBranching.cuts S a b).length + 1
+Universal233.CherryBranching.selected_spec {T S : RMAF.Tree} {pr : Universal233.CherryBranching.Priority}
+  {c : Universal233.CherryBranching.Candidate} (h : Universal233.CherryBranching.select T S = some (pr, c)) :
+  Universal233.CherryBranching.PrioritySpec pr c (Universal233.CherryBranching.candidates T S)
+Universal233.CherryBranching.selected_actual {T S : RMAF.Tree} {pr : Universal233.CherryBranching.Priority}
+  {c : Universal233.CherryBranching.Candidate} (h : Universal233.CherryBranching.select T S = some (pr, c)) :
+  Universal233.CoreGraph.CherryAt T c.parent c.a c.b ∧ c.originalCuts = Universal233.CherryBranching.cuts S c.a c.b
+Universal233.CherryBranching.endpoint_literal {S : RMAF.Tree} {a b : Nat} (ha : a ∈ RMAF.leaves S)
+  (hb : b ∈ RMAF.leaves S) (hab : a ≠ b) :
+  ∃ q br,
+    Universal233.CherryBranching.endpointBranch S a = some br ∧
+      br.originalCuts = [q] ∧
+        br.child = Universal233.CherryBranching.singletonChild S a ∧
+          br.child.paid = br.originalCuts.length ∧ Universal233.CoreGraph.LeafAt S q a ∧ q ≠ []
+Universal233.CherryBranching.endpoint_components {S : RMAF.Tree} {q : RMAF.Vertex} {a b : Nat}
+  (hq : Universal233.CoreGraph.LeafAt S q a) (hb : b ∈ RMAF.leaves S) (hab : a ≠ b) :
+  (∀ (v : RMAF.Vertex), Universal233.CutRealization.ResidualWalk S [q] q v ↔ v = q) ∧
+    (∀ (v : RMAF.Vertex),
+        Universal233.CutRealization.ResidualWalk S [q] [] v ↔ Universal233.CoreGraph.Valid S v ∧ v ≠ q) ∧
+      ∀ (v : RMAF.Vertex),
+        Universal233.CoreGraph.Valid S v →
+          ∃ w x, Universal233.CoreGraph.LeafAt S w x ∧ Universal233.CutRealization.ResidualWalk S [q] v w
+Universal233.CherryBranching.forest_length {S : RMAF.Tree} {Q : List (List Nat)}
+  (hp : RMAF.partitionCheck (RMAF.leaves S) Q = true) :
+  (Universal233.CherryBranching.makeChild S Q (Q.length - 1)).sourceForest.length = Q.length
+Universal233.CherryBranching.paid_budget_identity {T S : RMAF.Tree} {c : Universal233.CherryBranching.Child}
+  {F : List (List Nat)} (hp : RMAF.partitionCheck (RMAF.leaves S) c.partition = true)
+  (he : RMAF.pairwiseEmbeddings S c.partition = true) (paid : c.paid + 1 = c.partition.length)
+  (hf : Universal233.CherryBranching.feasible T S c F) : c.paid + (F.length - c.partition.length) = F.length - 1
+Universal233.CherryBranching.remaining_correct {T S : RMAF.Tree} {c : Universal233.CherryBranching.Child} (k : Nat)
+  (hp : RMAF.partitionCheck (RMAF.leaves S) c.partition = true) (he : RMAF.pairwiseEmbeddings S c.partition = true)
+  (paid : c.paid + 1 = c.partition.length) :
+  (∃ F, Universal233.CherryBranching.feasible T S c F ∧ F.length - 1 ≤ k) ↔
+    ∃ r, Universal233.CherryBranching.remaining k c = some r ∧ Universal233.CherryBranching.ChildWithin T S c r

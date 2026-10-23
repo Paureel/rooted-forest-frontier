@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "phase": "PRE-CANDIDATE",
+  "mathematical_sources": ["research/rmaf/algorithm/pair_case/TARGET-v1.md", "research/rmaf/lean/RMAF.lean"],
+  "source_policy": "Only pinned target and original RMAF definitions; independently authored Python; no existing problem-specific checker imports. Expected values are literal constructed controls or retrieved target values; the target values are replication targets, not independent truth.",
+  "tool_stewardship": "The bootloops/tools/README.md capability index has no original rooted phylogenetic path/partition checker; its numerical/algebraic packages do not implement this exact finite combinatorial task. A one-shot independent instrument is required by the target's nonauthor verification protocol, so existing author/verifier implementations cannot be wrapped or patched.",
+  "controls": {
+    "identical_minimum": {"tree": [[1,2],[3,4]], "expected": 1},
+    "wrong_rooted_topology": {"left": [[1,2],3], "right": [1,[2,3]], "expected_full_agreement": false, "expected_minimum": 2},
+    "crossed_forest": {"tree": [[1,2],[3,4]], "partition": [[1,3],[2,4]], "expected": false},
+    "refinement_direction": {"fine": [[1],[2]], "coarse": [[1,2]], "fine_refines_coarse": true, "coarse_refines_fine": false},
+    "suppression": {"tree": [[[1,9],2],[3,4]], "selection": [1,2], "expected_hull": ["0","00","000","01"], "displayed_endpoints": ["0","000"], "expected_original_edge": false, "expected_original_path_length": 2},
+    "absent": {"tree": [1,2], "selection": [99], "expected_raw_hull": [], "expected_raw_restriction": null, "guard_accepts": false},
+    "repeated_input_labels": {"tree": [[1,1],2], "proper_tree_guard": false, "raw_agreement_partition": [[1],[2]], "raw_agreement_expected": true},
+    "repeated_selection": {"tree": [1,2], "selection": [1,1], "expected_raw_hull": ["0"], "selected_set_guard": false},
+    "partition_corruptions": {"labels": [1,2], "empty_block": [[],[1,2]], "repeat_label": [[1],[1,2]], "missing_label": [[1]], "absent_label": [[1],[2],[99]], "expected_each": false},
+    "empty_singleton_disjoint_overlapping": {"tree": [[1,2],[3,4]], "empty_hull": [], "singleton_hull": ["00"], "empty_G_guard": false, "disjoint_singleton_G_guard": false, "overlapping_labels_G_guard": false},
+    "boundary_orientation": {"tree": [[1,2],[3,4]], "edge": ["","0"], "descendants": [1,2], "reversed_edge_valid": false},
+    "comparator_mutation": "Every literal equality detector is tested once against an intentionally different expected value; the mutated comparison must reject. Clean twins must accept."
+  },
+  "fixtures": {
+    "T1": {"S": [[[1,2],[[3,5],[4,6]]],7], "T": [[[1,[3,4]],[2,[5,6]]],7], "P": [[1,2],[3,4,5,6],[7]], "A": [1,2], "B": [3,4,5,6], "partition_denominator": 877, "refining_minimum": 5, "refining_A_retained_minimum": 5, "overlap_vertices": ["0","00","01"], "mutually_clear_edges": [["0","00"],["0","01"]], "given_F": [[1],[2],[3,5],[4],[6],[7]], "given_Fprime": [[1,2],[3],[5],[4],[6],[7]], "whole_B_one_source_cut_to_34_56": false},
+    "root_promoted": {"S": [[1,2],[[3,5],[4,6]]], "T": [[1,[3,4]],[2,[5,6]]], "P": [[1,2],[3,4,5,6]], "A": [1,2], "B": [3,4,5,6], "partition_denominator": 203, "overlap_vertices": ["","0","1"], "required_root_in_overlap": true},
+    "binary_tiny": {"S": [[1,2],[3,4]], "T": [[1,3],[2,4]], "P": [[1,2],[3,4]], "A": [1,2], "B": [3,4], "partition_denominator": 15},
+    "three_region_probe": {"S": [[[1,2],3],[[4,5],6]], "T": [[[1,4],[2,5]],[3,6]], "P": [[1,2,3],[4,5,6]], "A": [1,2,3], "B": [4,5,6], "partition_denominator": 203, "claim": "Unqualified exchange retaining A and making B monochromatic at each edge with four sectors", "expected_classification": "OUTSIDE-E when mutual-clear fails; actual finite truth measured without calling a true plant false"}
+  },
+  "run_order": ["controls", "tiny_pilot", "T1_and_root_and_three_region"],
+  "limits": {"per_fixture_seconds": 25, "maximum_labels": 7, "maximum_partitions": 877, "no_large_Bell_enumeration": true, "timeout_verdict": "OPEN"},
+  "checks": ["BFS original leaf paths versus RMAF rootedSpan/minimalVertices translation", "occupied components after deleting original vertex versus actual hull degree", "G every disjoint nonempty selection pair in fixed tiny targets", "E every eligible refining agreement F in each fixed fixture, actual full agreement of direct Fprime and all four conclusion interfaces", "one-cut source witnesses for each crossed final agreed B block, never whole-B color separation"],
+  "acceptance": "Controls pass first. All exact fixture assertions and declared denominators must reproduce. Finite no-fire is bounded evidence only. Universal G/E and all three main algorithm milestones remain OPEN before released proof review. No tolerance or expected-value tuning."
+}

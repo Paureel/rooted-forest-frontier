@@ -1,0 +1,123 @@
+import Hard2Frontier
+namespace OrdinaryDispatch.WorkIntegration
+open RMAF ForestState Universal233 Universal233.BothBad Universal233.PaidQueries
+open Universal233.CherryBranching Universal233.Hard2Overlap
+open OrdinaryDispatch.Hard2Dispatcher GenericForest.FrontierWork
+
+structure Hard2Receipt where
+ value : Option (List (List Nat))
+ queries : List Query
+
+/-- Literal hard2 source-value companion with every actual ordinary callback
+occurrence; admitted Rule5 keeps its distinct direct/forest trace types. -/
+def hard2Trace (actual : Ordinary) (T S : Tree) (c _d : Candidate) (q : Nat) : Hard2Receipt :=
+ match runHard2 T S c with
+ | none => ⟨none,[]⟩
+ | some .disjoint =>
+  let P := pendantPartition S c.a c.b
+  if P.all (restrictionAgrees T S) then ⟨DisjointParents.direct P q,[]⟩
+  else if (P.filter (restrictionAgrees T S)).length=2 then
+   let r := Rule5ActualTrace.dispatchTrace actual T S c.a c.b q
+   ⟨Rule5ActualTrace.answer r,Rule5ActualTrace.queries actual r.calls⟩
+  else
+   let r := Hard2Trace.disjointExecution actual T S c.a c.b q
+   ⟨r.answer,forestQueries actual r.calls⟩
+ | some out =>
+  let r := Hard2Combine.combine actual T S c.a c.b q (paidCase actual T S c q out)
+  ⟨r.answer,forestQueries actual r.calls⟩
+
+theorem hard2Trace_value (actual : Ordinary) (T S : Tree) (c d : Candidate) (q : Nat) :
+ (hard2Trace actual T S c d q).value=Hard2Dispatcher.run actual T S c d q := by
+ cases sel : runHard2 T S c with
+ | none => simp [hard2Trace,Hard2Dispatcher.run,sel]
+ | some out =>
+  cases out with
+  | disjoint =>
+   by_cases good : (pendantPartition S c.a c.b).all (restrictionAgrees T S)=true
+   · simp [hard2Trace,Hard2Dispatcher.run,sel,good]
+   · by_cases two : ((pendantPartition S c.a c.b).filter (restrictionAgrees T S)).length=2
+     · simpa [hard2Trace,Hard2Dispatcher.run,sel,good,two] using Rule5ActualTrace.rule5_value actual T S c.a c.b q
+     · simp [hard2Trace,Hard2Dispatcher.run,sel,good,two,Hard2Trace.disjointExecution_answer]
+  | clique v => rfl
+  | four o v w => rfl
+  | diagonal o v w => rfl
+  | pair o choice => rfl
+
+theorem hard2Trace_mass (actual : Ordinary) {T S : Tree} {c d : Candidate} (q : Nat)
+ (proper0 : DepthOne.proper T S=true)
+ (forward : CherryBranching.select T S=some (.hard2,c))
+ (reverse : CherryBranching.select S T=some (.hard2,d))
+ (noT : Rule4.select T S=none) (noS : Rule4.select S T=none) :
+ Rule5ActualTrace.mass Rule5ActualTrace.base q (hard2Trace actual T S c d q).queries
+ ≤Rule5ActualTrace.gamma Rule5ActualTrace.base := by
+ obtain ⟨p,r,out,cuts,hcuts,graph,hp,es,selected,valid⟩ := actual_hard2_exhaustive proper0 forward
+ have ch := (selected_actual forward).1
+ have base : 2≤Rule5ActualTrace.base := by cbv
+ have upper : Rule5ActualTrace.base≤3 := by cbv
+ have nonDisjoint (o : Result) (sel : runHard2 T S c=some o) :
+  Rule5ActualTrace.mass Rule5ActualTrace.base q
+   (forestQueries actual (Hard2Combine.combine actual T S c.a c.b q (paidCase actual T S c q o)).calls)
+  ≤Rule5ActualTrace.gamma Rule5ActualTrace.base :=
+  by simpa [Rule5ActualTrace.gamma] using combined_frontier_mass actual proper0 forward sel Rule5ActualTrace.base base upper
+ cases out with
+ | disjoint =>
+  by_cases good : (pendantPartition S c.a c.b).all (restrictionAgrees T S)=true
+  · simpa [hard2Trace,selected,good,Rule5ActualTrace.mass,actualQueryMass] using Rule5ActualTrace.gamma_positive
+  · have notAll : (pendantPartition S c.a c.b).all (restrictionAgrees T S)=false := by
+     cases h:(pendantPartition S c.a c.b).all (restrictionAgrees T S) <;> simp_all
+    by_cases two : ((pendantPartition S c.a c.b).filter (restrictionAgrees T S)).length=2
+    · have admitted := (actual_disjoint_admission_iff proper0 forward reverse noT noS selected).2 two
+      simpa [hard2Trace,selected,good,two] using Rule5ActualTrace.dispatch_mass actual ch admitted q
+    · have bound := disjoint_frontier_mass actual q proper0 forward notAll two Rule5ActualTrace.base base upper
+      simpa [hard2Trace,selected,good,two,Rule5ActualTrace.gamma] using bound
+ | clique v => simpa [hard2Trace,selected] using nonDisjoint (.clique v) selected
+ | four o v w => simpa [hard2Trace,selected] using nonDisjoint (.four o v w) selected
+ | diagonal o v w => simpa [hard2Trace,selected] using nonDisjoint (.diagonal o v w) selected
+ | pair o choice => simpa [hard2Trace,selected] using nonDisjoint (.pair o choice) selected
+
+theorem hard2Trace_mass_strict (actual : Ordinary) {T S : Tree} {c d : Candidate} (q : Nat)
+ (proper0 : DepthOne.proper T S=true)
+ (forward : CherryBranching.select T S=some (.hard2,c))
+ (reverse : CherryBranching.select S T=some (.hard2,d))
+ (noT : Rule4.select T S=none) (noS : Rule4.select S T=none) :
+ Rule5ActualTrace.mass Rule5ActualTrace.base q (hard2Trace actual T S c d q).queries<1 := by
+ have bound := hard2Trace_mass actual q proper0 forward reverse noT noS
+ have strict := Rule5ActualTrace.gamma_strict
+ grind
+
+theorem hard2Trace_query_bounds (actual : Ordinary) {T S : Tree} {c d : Candidate} (q : Nat)
+ (proper0 : DepthOne.proper T S=true)
+ (forward : CherryBranching.select T S=some (.hard2,c))
+ (reverse : CherryBranching.select S T=some (.hard2,d))
+ (noT : Rule4.select T S=none) (noS : Rule4.select S T=none) (p : Tree×Tree) (r : Nat)
+ (mem : (p,r)∈(hard2Trace actual T S c d q).queries) :
+ r<q ∧ DepthOne.proper p.1 p.2=true ∧
+ (leaves p.1).length≤(leaves T).length ∧ (leaves p.2).length≤(leaves T).length := by
+ obtain ⟨a,b,out,cuts,hcuts,graph,hp,es,selected,valid⟩ := actual_hard2_exhaustive proper0 forward
+ have ch := (selected_actual forward).1
+ cases out with
+ | disjoint =>
+  by_cases good : (pendantPartition S c.a c.b).all (restrictionAgrees T S)=true
+  · simp [hard2Trace,selected,good] at mem
+  · by_cases two : ((pendantPartition S c.a c.b).filter (restrictionAgrees T S)).length=2
+    · have admitted := (actual_disjoint_admission_iff proper0 forward reverse noT noS selected).2 two
+      apply Rule5ActualTrace.dispatch_query_bounds actual ch admitted q
+      simpa [hard2Trace,selected,good,two] using mem
+    · apply disjoint_frontier_bounds actual q proper0 forward p r
+      simpa [hard2Trace,selected,good,two] using mem
+ | clique v => apply combined_frontier_bounds actual proper0 forward selected p r;simpa [hard2Trace,selected] using mem
+ | four o v w => apply combined_frontier_bounds actual proper0 forward selected p r;simpa [hard2Trace,selected] using mem
+ | diagonal o v w => apply combined_frontier_bounds actual proper0 forward selected p r;simpa [hard2Trace,selected] using mem
+ | pair o choice => apply combined_frontier_bounds actual proper0 forward selected p r;simpa [hard2Trace,selected] using mem
+
+theorem hard2Trace_potential (actual : Ordinary) {T S : Tree} {c d : Candidate} (q : Nat)
+ (proper0 : DepthOne.proper T S=true)
+ (forward : CherryBranching.select T S=some (.hard2,c))
+ (reverse : CherryBranching.select S T=some (.hard2,d))
+ (noT : Rule4.select T S=none) (noS : Rule4.select S T=none) (p : Tree×Tree) (r : Nat)
+ (mem : (p,r)∈(hard2Trace actual T S c d q).queries) :
+ (leaves p.1).length+2*r+2≤(leaves T).length+2*q ∧
+ (leaves p.2).length+2*r+2≤(leaves T).length+2*q := by
+ have bound := hard2Trace_query_bounds actual q proper0 forward reverse noT noS p r mem
+ omega
+end OrdinaryDispatch.WorkIntegration

@@ -1,0 +1,121 @@
+{
+  "abacus": {
+    "class": "selftest",
+    "tried": [
+      {
+        "kind": "manifest",
+        "cmd": "python3 tools/abacus/selftest.py",
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+        "rc": 0,
+        "wall_s": 19.4,
+        "tail": "[eichler] readying the julia project (first run may download and precompile packages \u2014 this can take minutes) ...\n[run_s0.py] [OK] sign-convention-single-site-Q6\n[run_s0.py] VERDICT: S0-PASS 7/7 wall: {'elapsed_s': 0.043, 'rss_gb': 0.0421}\n[run_s3.py] [OK] N5-conjugated-complex-structure\n[run_s3.py] VERDICT: S3-PASS | BATTERY-PASS(11/11, B5 RUNS+PASS) | 22/22 | wall: {'elapsed_s': 17.761, 'rss_gb': 0.1213}\nabacus selftest PASS (S0 7/7 + S3 full battery)\n"
+      }
+    ],
+    "secs": 19.4,
+    "wall_s": 19.4,
+    "status": "PASS",
+    "via": "python3 tools/abacus/selftest.py"
+  },
+  "counterweight": {
+    "class": "selftest",
+    "tried": [
+      {
+        "kind": "manifest",
+        "cmd": "julia --project=. test/runtests.jl",
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/counterweight",
+        "rc": 0,
+        "wall_s": 14.6,
+        "tail": "existing global variable.\n\u2514 @ ~/Documents/ChatGPT/bootscience/bootloops/tools/counterweight/test/test_sec53_qorbit.jl:65\n\u250c Warning: Assignment to `dt` in soft scope is ambiguous because a global variable by the same name exists: `dt` will be treated as a new local. Disambiguate by using `local dt` to suppress this warning or `global dt` to assign to the existing global variable.\n\u2514 @ ~/Documents/ChatGPT/bootscience/bootloops/tools/counterweight/test/test_sec53_qorbit.jl:65\nPASS engine b53_raw_s STOP by name (t = 0.2 s): no eps^0-reducing balance found and constant eps-decoupling \nPASS engine b53_landau_x STOP by name (t = 0.5 s): no eps^0-reducing balance found and constant eps-decoupling \nPASS verifier PASS on the engine's fresh output\nPASS verifier row-major CONTROL rc 3 on the fresh output\nPASS verifier PASS on the pinned Lee form\nPASS verifier PASS on the pinned engine form\nPASS verifier row-major CONTROL rc 3 on the pinned Lee form\nPASS verifier row-major CONTROL rc 3 on the pinned engine form\nPASS verifier FAIL rc 3 on planted_drop_last_balance\nPASS verifier FAIL rc 3 on planted_mutated_Atilde\nPASS verifier FAIL rc 3 on planted_eps_in_Atilde\nSEC53_QORBIT: ALL LEGS AS EXPECTED\n"
+      }
+    ],
+    "secs": 14.6,
+    "wall_s": 14.6,
+    "status": "PASS",
+    "via": "julia --project=. test/runtests.jl"
+  },
+  "dipstick": {
+    "class": "selftest",
+    "tried": [
+      {
+        "kind": "manifest",
+        "cmd": "D=\"$(mktemp -d)\" && python3 tools/dipstick/battery.py --receipts \"$D\" --summary-out \"$D/battery_SUMMARY.json\"",
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+        "rc": 0,
+        "wall_s": 31.0,
+        "tail": "order_member: SKIP (Oscar not in the active Julia project (set DIPSTICK_JULIA_PROJECT))\norder_shim: SKIP (Oscar not in the active Julia project (set DIPSTICK_JULIA_PROJECT))\ncount: SKIP (msolve not on PATH (see toolkit/external/TOOLS.md; MSOLVE_BIN overrides))\ncycletype: SKIP (msolve not on PATH (see toolkit/external/TOOLS.md; MSOLVE_BIN overrides))\nnonres: PASS (6.1s)\naudit: PASS (0.5s)\nflatchi: PASS (0.9s)\nregions: PASS (21.6s)\nsummary -> /var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/tmp.iBk3hoNRuc/battery_SUMMARY.json\n"
+      }
+    ],
+    "secs": 31.0,
+    "wall_s": 31.0,
+    "status": "PASS",
+    "via": "D=\"$(mktemp -d)\" && python3 tools/dipstick/battery.py --receipts \"$D\" --summary-out \"$D/battery_SUMMARY.json\""
+  },
+  "eichler": {
+    "class": "partial",
+    "tried": [
+      {
+        "kind": "manifest",
+        "cmd": "python3 selftest.py --outdir \"$(mktemp -d)\"",
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/eichler",
+        "rc": 0,
+        "wall_s": 1.6,
+        "tail": "256433/416929542491664225000 + -390419873976133/16677181699666569000*s409)\ndiagonal:\n d0 = (-2356196117/435848050125 + -29952293/87169610025*s409)\n d1 = (-256672885697483710472/5413117521075536041909245 + 23243234729676253304/5413117521075536041909245*s409)\n d2 = (668709038656763567141907156277/8707626291133179098146436136686323200 + -32845218076953416989225642831/8707626291133179098146436136686323200*s409)\nembedding +: signs [-1, 1, 1] (indefinite needed for real points)\nembedding -: signs [1, -1, 1] (indefinite needed for real points)\nNO K-POINT in box 60 -> Mestre obstruction candidate; recording diagonal + delta\nS2 PASS  conic_fast: diagonalization exact (no K-point in box -> obstruction candidate recorded, as documented)\nR1 PASS  invariant_harness refuses loudly without G2KIT_TRUE_JSON\nR2 PASS  pslq_law_template refuses loudly without invariants_pipeline\nG  PASS  genus2 selftest 4/4 legs\nT  SKIP  theta9: no battery ships (reference receipts not distributed; 10 fixture files present, engine = Eichler.jl via EICHLER_PROJECT)\neichler selftest: ALL PASS (M + G; L6 refused by name; T skipped by name) wall 1.6s  outdir=/var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/tmp.SbAth0tOPM\n"
+      }
+    ],
+    "secs": 1.6,
+    "wall_s": 1.6,
+    "status": "PASS",
+    "via": "python3 selftest.py --outdir \"$(mktemp -d)\""
+  },
+  "gpl-eval": {
+    "class": "partial",
+    "tried": [
+      {
+        "kind": "manifest",
+        "cmd": "python3 selftest.py",
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/gpl-eval",
+        "rc": 0,
+        "wall_s": 7.7,
+        "tail": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/gpl-eval/GPLEval.jl/src/ginac_gpl.cpp:16:10: fatal error: 'ginac/ginac.h' file not found\n   16 | #include <ginac/ginac.h>\n      |          ^~~~~~~~~~~~~~~\n1 error generated.\n\u250c Warning: GiNaC oracle unavailable \u2014 skipping the GiNaC cross-check legs. To enable them install the GiNaC C++ library (e.g. `apt install libginac-dev pkg-config` plus g++), then delete src/ginac_gpl if a stale binary exists and rerun.\n\u2502   e =\n\u2502    failed process: Process(`bash -c 'g++ -O2 -std=c++17 -o /Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/gpl-eval/GPLEval.jl/src/ginac_gpl /Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/gpl-eval/GPLEval.jl/src/ginac_gpl.cpp -lginac -lcln'`, ProcessExited(1)) [1]\n\u2502    \n\u2514 @ Main ~/Documents/ChatGPT/bootscience/bootloops/tools/gpl-eval/GPLEval.jl/test/runtests.jl:14\n[ Info: depth-4 GPL at prec=512: 0.4 ms\nTest Summary: | Pass  Total  Time\nGPLEval       |   31     31  2.6s\n"
+      }
+    ],
+    "secs": 7.7,
+    "wall_s": 7.7,
+    "status": "PASS",
+    "via": "python3 selftest.py"
+  },
+  "landau-alphabet": {
+    "class": "selftest",
+    "tried": [
+      {
+        "kind": "manifest",
+        "cmd": "python3 selftest.py",
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/landau-alphabet",
+        "rc": 0,
+        "wall_s": 1.3,
+        "tail": "[box engine] box1l alphabet=['s', 't'] complete=True resolved=9/9 first_entry=['s', 't']\n  PASS\n[sunrise engine] sunrise2l alphabet=['m2', 's', '-m2 + s', '-4*m2 + s', '-9*m2 + s'] (need s-m2 and s-9*m2, no timeouts)\n  PASS\n[flush] on-disk output == in-memory result (/var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/lb_selftest_tzmhs28i/box1l.json)\n  PASS\n[auditor] clean rc=0 (need 0); tally-lie rc=2 (need 2+SILENT DROP); legacy-vs-54-face-census rc=2 (need 2+SILENT DROP)\n  PASS\n[groebner] SKIP (neither msolve nor Singular installed -- install either to enable; escalation backend not exercised)\n[mixed engine] 2PM box U/F exact=True alphabet exact=True spurious-y refuted + y-+1 confirmed=True letter-loss guard=True (status resolved)\n  PASS\n[letter-loss (main engine)] box1l leading face without escalation: ['s', 't'] (resolved, need s AND t); self-annihilation face: ['y + 1', 'y - 1'] (resolved, need y-1 and y+1)\n  PASS\n[topbox topology] nonplanar(graph+apex)=True massive-4-ring=True massless-chain+externals=True loops=2\n  PASS\nfast battery PASS  (1.2s wall; K4 engine runs, the full pytest suites and the Julia engine suite are behind --full)\n"
+      }
+    ],
+    "secs": 1.3,
+    "wall_s": 1.3,
+    "status": "PASS",
+    "via": "python3 selftest.py"
+  },
+  "subtropica": {
+    "class": "partial",
+    "tried": [
+      {
+        "kind": "manifest",
+        "cmd": "python3 tools/subtropica/selftest.py",
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+        "rc": 0,
+        "wall_s": 4.9,
+        "tail": "R PASS  reference pins: 6/6 files sha256-verified\nF PASS  fibrate control battery: {'pslq_positive_control': 'pass', 'pslq_negative_control': 'pass', 'adaptive_series_vs_log_truth_digits': 130, 'geval_crosscheck_digits': 60, 'selfcheck': 'PASS'}\nE SKIP  driver suite: SUBTROPICA_HF_BIN is not set (or not a file) \u2014 the Julia suite needs a built HyperFLINT engine (deps/BUILD.md) plus SUBTROPICA_MZV_DATA and the instantiated Julia project; see GUIDE.md. Skipping is the designed engine-absent behavior, not breakage.\nsubtropica selftest: PASS (R, F; E per engine availability above)\n"
+      }
+    ],
+    "secs": 4.9,
+    "wall_s": 4.9,
+    "status": "PASS",
+    "via": "python3 tools/subtropica/selftest.py"
+  }
+}

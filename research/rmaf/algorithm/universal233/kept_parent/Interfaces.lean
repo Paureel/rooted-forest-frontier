@@ -1,0 +1,10 @@
+import KeptControls
+#check Universal233.KeptParent.generated_keeps_A_C
+#check Universal233.KeptParent.generated_unique_kept
+#check Universal233.KeptParent.restriction_agrees_same_members
+#check Universal233.KeptParent.every_output_retains_paid_A
+#check Universal233.KeptParent.every_output_retains_original_local_cut
+#print axioms Universal233.KeptParent.generated_keeps_A_C
+#print axioms Universal233.KeptParent.generated_unique_kept
+#print axioms Universal233.KeptParent.every_output_retains_paid_A
+#print axioms Universal233.KeptParent.every_output_retains_original_local_cut

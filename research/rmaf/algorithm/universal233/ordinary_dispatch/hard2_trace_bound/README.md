@@ -1,0 +1,11 @@
+# Actual hard2 query trace bound
+
+Import `DisjointTrace` for the disjoint interface and `TraceProgress` for the other cases. Namespace: `OrdinaryDispatch.Hard2Trace`.
+
+Under proper inputs and the actual hard2 selector result, `paidCase_mass` bounds every occurrence in the literal sealed dispatcher's paid trace by a total of `4*c^-4`, for `2<=c<=3`. This derives the actual edge good/bad guards and all source geometry from the selector; no callback correctness or supplied mass premise is required. `combined_mass` adds the literal two singleton forest queries. The resulting envelope at `c=233/100` is `2929867400/2947295521<1`. `paidCase_calls_drop` proves a debit of at least two for each recorded paid query, including failed ones. `combined_calls_strict` gives strict budget decrease for every combined query.
+
+`disjointExecution_answer` identifies the analysis record's answer with the unchanged production disjoint handler by definitional equality. When the literal original three-parent good count is neither three nor two, `disjointExecution_mass` derives the complementary bad count and the same uniform envelope; `disjointExecution_strict` proves strict query budgets. The admitted two-good Rule5 route is an explicit separate unfinished trace consumer. No empty trace is substituted for it.
+
+The producer audit checks the actual424-module closure:420 frozen source/binary matches reused, four fresh modules/139 stored occurrences,10191 selected occurrences and the standard three-axiom union. Nonproof values retain full bodies; actual theorem proofs are walked for references although proof text is omitted. Four new false finite claims are rejected. Repeated failed-query and residual-debit controls, plus application to the actual frozen nine-label non-admitted candidate, pass. All failed attempts and source snapshots are retained. The same author lineage produced the code and these checks; no independent credit is claimed.
+
+This release proves source-level query coefficients and budgets. It does not prove the actual forest-query label cap, local work for selectors/DP/materialization, the full recursive source/bit/payload bound, a smaller exponential base, novelty, or independently accepted main correctness. The runtime correspondence qualifications of imported generated partials/IR remain unchanged.

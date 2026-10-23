@@ -1,0 +1,7 @@
+import ProducerGeneratorRun
+#check GenericForest.BinaryProducer.Generator.fuelBits_cost
+#print axioms GenericForest.BinaryProducer.Generator.fuelBits_cost
+#check GenericForest.BinaryProducer.Generator.runBits_value
+#print axioms GenericForest.BinaryProducer.Generator.runBits_value
+#check GenericForest.BinaryProducer.Generator.generateBits_value
+#print axioms GenericForest.BinaryProducer.Generator.generateBits_value

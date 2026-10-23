@@ -1,0 +1,73 @@
+research/rmaf/algorithm/universal233/rule4/Program.lean:63:6: error: Tactic `rewrite` failed: motive is not type correct:
+  fun _a => HasCherry s.raw.a s.raw.c _a
+Error: Application type mismatch: The argument
+  s
+has type
+  Choice T S
+but is expected to have type
+  Choice T _a
+in the application
+  s.raw
+
+Explanation: The rewrite tactic rewrites an expression 'e' using an equality 'a = b' by the following process. First, it looks for all 'a' in 'e'. Second, it tries to abstract these occurrences of 'a' to create a function 'm := fun _a => ...', called the *motive*, with the property that 'm a' is definitionally equal to 'e'. Third, we observe that 'congrArg' implies that 'm a = m b', which can be used with lemmas such as 'Eq.mpr' to change the goal. However, if 'e' depends on specific properties of 'a', then the motive 'm' might not typecheck.
+
+Possible solutions: use rewrite's 'occs' configuration option to limit which occurrences are rewritten, or use 'simp' or 'conv' mode, which have strategies for certain kinds of dependencies (these tactics can handle proofs and 'Decidable' instances whose types depend on the rewritten term, and 'simp' can apply user-defined '@[congr]' theorems as well).
+
+T S : Tree
+s : Choice T S
+he : aHead s = []
+hl : LeafAt S [] s.raw.a
+hs : S = Tree.leaf s.raw.a
+hc : HasCherry s.raw.a s.raw.c S
+⊢ False
+research/rmaf/algorithm/universal233/rule4/Program.lean:87:53: error: unsolved goals
+S : Tree
+p : RMAF.Vertex
+a : Nat
+hp : LeafAt S p a
+hl : subtreeLabels S p = [a]
+⊢ List.filter (fun x => !decide (x = a)) (leaves S) = List.filter (fun x => x != a) (leaves S)
+research/rmaf/algorithm/universal233/rule4/Program.lean:121:33: error: Expected type must not contain free variables
+  0 < { target := T, source := S, cuts := [s.raw.cHead, s.raw.xHead], swapped := false }.cost
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+research/rmaf/algorithm/universal233/rule4/Program.lean:127:33: error: Expected type must not contain free variables
+  0 < { target := T, source := S, cuts := [aHead s], swapped := false }.cost
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+research/rmaf/algorithm/universal233/rule4/Program.lean:129:67: error: No goals to be solved
+research/rmaf/algorithm/universal233/rule4/Program.lean:129:6: error: unsolved goals
+case inr.inl.refine_1.refine_1
+T S : Tree
+s : Choice T S
+hnT : (leaves T).Nodup
+hnS : (leaves S).Nodup
+heq : ∀ (x : Nat), x ∈ leaves T ↔ x ∈ leaves S
+halT : s.raw.a ∈ leaves T
+halS : s.raw.a ∈ leaves S
+hblS : s.raw.b ∈ leaves S
+hq : s.raw.cHead ∈ pendantOriginal S s.raw.a s.raw.b
+hr : s.raw.xHead ∈ pendantOriginal S s.raw.a s.raw.b
+hp : (pendantOriginal S s.raw.a s.raw.b).Perm [s.raw.cHead, s.raw.xHead]
+q : RMAF.Vertex
+hq' : q ∈ { target := T, source := S, cuts := [aHead s], swapped := false }.cuts
+hqe : q = aHead s
+⊢ Valid { target := T, source := S, cuts := [aHead s], swapped := false }.source q
+research/rmaf/algorithm/universal233/rule4/Program.lean:130:67: error: No goals to be solved
+research/rmaf/algorithm/universal233/rule4/Program.lean:130:6: error: unsolved goals
+case inr.inl.refine_1.refine_2
+T S : Tree
+s : Choice T S
+hnT : (leaves T).Nodup
+hnS : (leaves S).Nodup
+heq : ∀ (x : Nat), x ∈ leaves T ↔ x ∈ leaves S
+halT : s.raw.a ∈ leaves T
+halS : s.raw.a ∈ leaves S
+hblS : s.raw.b ∈ leaves S
+hq : s.raw.cHead ∈ pendantOriginal S s.raw.a s.raw.b
+hr : s.raw.xHead ∈ pendantOriginal S s.raw.a s.raw.b
+hp : (pendantOriginal S s.raw.a s.raw.b).Perm [s.raw.cHead, s.raw.xHead]
+q : RMAF.Vertex
+hq' : q ∈ { target := T, source := S, cuts := [aHead s], swapped := false }.cuts
+hqe : q = aHead s
+⊢ q ≠ []

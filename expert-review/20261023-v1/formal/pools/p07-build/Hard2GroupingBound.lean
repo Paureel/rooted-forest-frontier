@@ -1,0 +1,84 @@
+import GoodPairSource
+import Polynomial
+namespace OrdinaryDispatch.Hard2SourceWork
+open RMAF ForestState ForestGroups Universal233 WholeSourceWork CoreWork
+open GenericForest.CheckCorrespondence GenericForest.FrontierWork
+open OrdinaryDispatch.EarlyLocalWork Universal233.Rule5SelectedLocalWork
+
+theorem localTargetMeter_bound (T : Tree) (U : List Nat) (N : Nat)
+ (tn : treeNodes T≤N) (ul : U.length≤2*N) :
+ (localTargetMeter (some T) U).work≤16*(N+1)^2:=by
+ have r:=meterRestrict_bound U T
+ have scale:=Nat.mul_le_mul (show 4*(U.length+2)≤8*(N+1) by omega) tn
+ have grow:=Nat.mul_le_mul_left (8*(N+1)) (Nat.le_succ N)
+ have pos:1≤(N+1)^2:=Nat.one_le_pow _ _ (by omega)
+ simp only [localTargetMeter,Nat.pow_two,Nat.mul_assoc,Nat.succ_eq_add_one] at *
+ omega
+
+theorem ownedMeter_bound (ss : List Tree) (U : List Nat) (N : Nat)
+ (nodes : ∀s,s∈ss→treeNodes s≤N) (len : ss.length≤N) (ul : U.length≤2*N) :
+ (ownedMeter ss U).work≤64*(N+1)^3:=by
+ have point (s : Tree) (mem:s∈ss) :
+ (let l:=meterLeaves s;let c:=meterContained l.value U
+  (⟨c.value,l.work+c.work+4⟩:Charged Bool)).work≤44*(N+1)^2:=by
+  have l:=meterLeaves_cap s N (nodes s mem)
+  have c:=meterContained_bound (leaves s) U (2*N) (by have h:=leaves_nodes s;have n:=nodes s mem;omega) ul
+  have raise:8*(2*N+1)^2≤32*(N+1)^2:=by
+   have h:=Nat.mul_le_mul_left 8 (Nat.pow_le_pow_left (show 2*N+1≤2*(N+1) by omega) 2)
+   simpa only [Nat.mul_pow,show (2:Nat)^2=4 by decide,←Nat.mul_assoc] using h
+  have pos:1≤(N+1)^2:=Nat.one_le_pow _ _ (by omega)
+  simp only [meterLeaves_value];omega
+ have filter:=hard2_cap_filter _ ss N 44 2 len point
+ change (ownedMeter ss U).work≤48*(N+1)^3 at filter
+ omega
+
+theorem localTarget_labels_cap (T : Tree) (U : List Nat) (N : Nat) (tn : treeNodes T≤N) :
+ (labels (localTarget (some T) U)).length≤N:=by
+ unfold localTarget
+ cases h:restrict U T with
+ | none=>simp [labels,h]
+ | some t=>have n:=restricted_nodes U T t h;have l:=leaves_nodes t;simp only [Option.bind_some,h,labels];omega
+
+theorem localTarget_nodes_cap (T : Tree) (U : List Nat) (N : Nat) (tn : treeNodes T≤N) :
+ GenericForest.targetNodes (localTarget (some T) U)≤N:=by
+ unfold localTarget
+ cases h:restrict U T with
+ | none=>simp [GenericForest.targetNodes,h]
+ | some t=>simpa only [Option.bind_some,h,GenericForest.targetNodes] using Nat.le_trans (restricted_nodes U T t h) tn
+
+theorem sourceNodes_list_cap (ss : List Tree) (N : Nat) (nodes : ∀s,s∈ss→treeNodes s≤N) :
+ GenericForest.sourceNodes ss≤ss.length*N:=by
+ induction ss with
+ | nil=>simp [GenericForest.sourceNodes]
+ | cons s ss ih=>
+  have a:=nodes s (by simp)
+  have b:=ih (by intro t h;exact nodes t (by simp [h]))
+  simp only [GenericForest.sourceNodes,List.map_cons,List.sum_cons,List.length_cons,Nat.add_mul,Nat.one_mul] at *
+  omega
+
+def goodPairDPPolynomial (N : Nat) :=AllGoodDP.LocalWork.guardPolynomial (3*N+3)+1048576*(N+1)^4+16
+
+/-- Handles malformed/refused local states too: the actual allGood guard
+supplies properness whenever the DP candidate is evaluated. -/
+theorem allGoodMeter_uniform (T : Option Tree) (ss : List Tree) (N : Nat)
+ (tn : GenericForest.targetNodes T≤N) (sn : GenericForest.sourceNodes ss≤3*N) (len : ss.length≤3) :
+ (AllGoodDP.LocalWork.meterRun T ss).work≤goodPairDPPolynomial N:=by
+ have guard:=AllGoodDP.LocalWork.meterGuard_work T ss (3*N+3) (by omega) (by omega) (by omega)
+ cases T with
+ | none=>
+  simp only [AllGoodDP.LocalWork.meterRun,AllGoodDP.LocalWork.meterCandidate]
+  split <;> dsimp only <;> unfold goodPairDPPolynomial <;> omega
+ | some t=>
+  by_cases good:AllGoodDP.allGood (some t) ss=true
+  · have proper:=(AllGoodDP.allGood_parts (some t) ss good).1
+    have dp:=AllGoodDP.LocalWork.actual_run_polynomial t ss proper
+    have leaf:=Nat.le_trans (leaves_nodes t) tn
+    have raise:=Nat.mul_le_mul_left 1048576 (Nat.pow_le_pow_left (Nat.add_le_add_right leaf 1) 4)
+    unfold goodPairDPPolynomial
+    omega
+  · have eq:(AllGoodDP.LocalWork.meterGuard (some t) ss).value=false:=by
+     rw [AllGoodDP.LocalWork.meterGuard_value];cases h:AllGoodDP.allGood (some t) ss <;> simp_all
+    simp only [AllGoodDP.LocalWork.meterRun,eq,Bool.false_eq_true,ite_false]
+    unfold goodPairDPPolynomial
+    omega
+end OrdinaryDispatch.Hard2SourceWork

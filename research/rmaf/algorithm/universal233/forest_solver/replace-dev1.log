@@ -1,0 +1,116 @@
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:4:30: error: unknown namespace `Assembly`
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:24:63: error: Application type mismatch: The argument
+  hQ
+has type
+  partitionCheck (leaves s) Q = true
+but is expected to have type
+  (leaves s).Nodup
+in the application
+  checked_flatten_perm (leaves s) Q hQ
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:20:54: error: unsolved goals
+Q : List (List Nat)
+t : Tree
+pre : List Tree
+s : Tree
+post : List Tree
+hp : proper (some t) (pre ++ [s] ++ post) = true
+hQ : partitionCheck (leaves s) Q = true
+hs : s ∈ pre ++ [s] ++ post
+hsn : (leaves s).Nodup
+mat :
+  (sourceForest s Q).length = Q.length ∧
+    (List.map leaves (sourceForest s Q)).flatten.Perm Q.flatten ∧
+      ∀ (s_1 : Tree),
+        s_1 ∈ sourceForest s Q →
+          ∃ U, U ∈ Q ∧ restrict U s = some s_1 ∧ (leaves s_1).Perm U ∧ (leaves s_1).Nodup ∧ leaves s_1 ≠ []
+⊢ proper (some t) (replaced pre s post Q) = true
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:83:47: error(lean.unknownIdentifier): Unknown identifier `s`
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:84:51: error(lean.unknownIdentifier): Unknown identifier `s`
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:84:15: error: unsolved goals
+t : Tree
+pre post : List Tree
+Q F : Forest
+hF : partitionCheck (labels (some t)) F = true
+hE : targetEmbeddings (some t) F = true
+B : List Nat
+hB : B ∈ F
+r : Tree
+hBr : B ⊆ leaves r
+ha : agrees (some t) (pre ++ [r] ++ post) F = true
+hQ : partitionCheck (leaves r) Q = true
+href : RestrictionBridge.Refines (family (leaves r) F) Q
+hp : proper (some t) (pre ++ [r] ++ post) = true
+hown : ∀ (B : List Nat), B ∈ F → ∃ s, s ∈ pre ++ [r] ++ post ∧ B ⊆ leaves s
+hS : ∀ (s : Tree), s ∈ pre ++ [r] ++ post → sourceCheck (some t) F s = true
+hs : r ∈ pre ++ [r] ++ post
+hsn : (leaves r).Nodup
+U : List Nat
+hU : U ∈ Q
+hBU : B ⊆ U
+u : Tree
+hu : restrict U sorry = some u
+hl : (leaves u).Perm U
+⊢ u ∈ pre ∨ u ∈ sourceForest r Q ∨ u ∈ post
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:96:25: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  o
+has type `Output` which does not have the necessary form.
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:96:77: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  o
+has type `Output` which does not have the necessary form.
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:95:58: error: Function expected at
+  generate
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  s
+
+Hint: The identifier `generate` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:97:14: error(lean.unknownIdentifier): Unknown identifier `generated_source_valid`
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:96:100: error: unsolved goals
+Output : Type u_1
+x✝ : Sort u_2
+generate : x✝
+pre : List Tree
+s : Tree
+post : List Tree
+color : Nat → Nat
+q : Nat
+o : Output
+ho : o ∈ sorry
+⊢ (replaced pre s post sorry).length = (pre ++ [s] ++ post).length + sorry
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:110:60: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  o
+has type `Output` which does not have the necessary form.
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:112:6: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  o
+has type `Output` which does not have the necessary form.
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:112:64: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  o
+has type `Output` which does not have the necessary form.
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:109:58: error: Function expected at
+  generate
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  s
+
+Hint: The identifier `generate` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:114:13: error(lean.unknownIdentifier): Unknown identifier `emitted_replacement_length`
+research/rmaf/algorithm/universal233/forest_solver/build/ForestReplace.lean:112:82: error: unsolved goals
+Output : Type u_1
+x✝ : Sort u_2
+generate : x✝
+t : Tree
+pre : List Tree
+s : Tree
+post : List Tree
+color : Nat → Nat
+q : Nat
+o : Output
+ho : o ∈ sorry
+F : Forest
+ha : agrees (some t) (replaced pre s post sorry) F = true
+hn : (replaced pre s post sorry).length ≤ List.length F
+⊢ additionalCost (pre ++ [s] ++ post) F = sorry + additionalCost (replaced pre s post sorry) F

@@ -1,0 +1,74 @@
+research/rmaf/algorithm/universal233/output_state/Permutation.lean:8:15: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  List.count ?a F.flatten
+in the target expression
+  (((G.all fun b => !b.isEmpty) && L.all fun x => List.count x F.flatten == 1) && F.flatten.all fun x => L.contains x) =
+    (((G.all fun b => !b.isEmpty) && L.all fun x => List.count x G.flatten == 1) && G.flatten.all fun x => L.contains x)
+
+L : List Nat
+F G : List (List Nat)
+p : F.Perm G
+⊢ (((G.all fun b => !b.isEmpty) && L.all fun x => List.count x F.flatten == 1) && F.flatten.all fun x => L.contains x) =
+    (((G.all fun b => !b.isEmpty) && L.all fun x => List.count x G.flatten == 1) && G.flatten.all fun x => L.contains x)
+research/rmaf/algorithm/universal233/output_state/Permutation.lean:53:6: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  f ≥ 0
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  b + c - e - f ≤ -1
+  a ≥ 0
+  a + b + c ≥ 0
+where
+ a := ↑(List.count s (List.filter (fun s => contained (leaves s) U) ss))
+ b := ↑(List.count s (List.filter (fun s => contained (leaves s) B) ss))
+ c := ↑(List.count s (List.filter (fun s => contained (leaves s) C) ss))
+ d := ↑(if (r == s) = true then 1 else 0)
+ e := ↑(List.count s
+    (if false = true then r :: List.filter (fun s => contained (leaves s) B) ss
+    else List.filter (fun s => contained (leaves s) B) ss))
+ f := ↑(List.count s
+    (if false = true then r :: List.filter (fun s => contained (leaves s) C) ss
+    else List.filter (fun s => contained (leaves s) C) ss))
+research/rmaf/algorithm/universal233/output_state/Permutation.lean:59:6: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  f ≥ 0
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a + c - d - f ≤ -1
+  a + b + c ≥ 0
+where
+ a := ↑(List.count s (List.filter (fun s => contained (leaves s) A) ss))
+ b := ↑(List.count s (List.filter (fun s => contained (leaves s) U) ss))
+ c := ↑(List.count s (List.filter (fun s => contained (leaves s) C) ss))
+ d := ↑(List.count s
+    (if false = true then r :: List.filter (fun s => contained (leaves s) A) ss
+    else List.filter (fun s => contained (leaves s) A) ss))
+ e := ↑(if (r == s) = true then 1 else 0)
+ f := ↑(List.count s
+    (if false = true then r :: List.filter (fun s => contained (leaves s) C) ss
+    else List.filter (fun s => contained (leaves s) C) ss))
+research/rmaf/algorithm/universal233/output_state/Permutation.lean:65:6: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  f ≥ 0
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a + b - d - e ≤ -1
+  a + b + c ≥ 0
+where
+ a := ↑(List.count s (List.filter (fun s => contained (leaves s) A) ss))
+ b := ↑(List.count s (List.filter (fun s => contained (leaves s) B) ss))
+ c := ↑(List.count s (List.filter (fun s => contained (leaves s) U) ss))
+ d := ↑(List.count s
+    (if false = true then r :: List.filter (fun s => contained (leaves s) A) ss
+    else List.filter (fun s => contained (leaves s) A) ss))
+ e := ↑(List.count s
+    (if false = true then r :: List.filter (fun s => contained (leaves s) B) ss
+    else List.filter (fun s => contained (leaves s) B) ss))
+ f := ↑(if (r == s) = true then 1 else 0)

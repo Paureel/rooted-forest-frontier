@@ -1,0 +1,133 @@
+{
+  "records": [
+    {
+      "id": "opening",
+      "source": "research/rmaf/bridge_review/leastness/REPORT.md",
+      "sha256": "9ef1c407cb5f32588dfd34814a44dc855ff1e6323f3f08998bbe9c0860b0aa5f",
+      "line_start": 3,
+      "line_end": 16,
+      "status": "read",
+      "verbatim": "`LeastEmbedding.embedding` constructs `BridgeReview.MinimalEmbedding` from an\nactual tree `t : RMAF.Tree`, a selection `S`, and witnesses `x \u2208 leaves t` and `x \u2208 S`.\nIts support list is exactly `RMAF.minimalVertices S t`. Its ambient and terminal\nlists have proved interpretations as actual vertex addresses and selected leaf\noccurrences. Ambient inclusion, terminal preservation and leastness are proved;\nnone is a constructor argument. The author audit kernel-checks this interface.\nThe independent semantic verdict is recorded separately in `acceptance.json`\nand the fresh review receipts.\n\nThe unchanged source is `research/rmaf/lean/RMAF.lean`, SHA256\n`4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9`.\nThe result is about this ordered binary tree and address model. It does not\nsupply cross-tree restriction/suppression transport, G2\u2013G7, the full exchange\nconstruction, a safe-cover theorem, an unrestricted runtime bound or novelty."
+    },
+    {
+      "id": "occurrence-functionality",
+      "source": "research/rmaf/bridge_review/leastness/REPORT.md",
+      "sha256": "9ef1c407cb5f32588dfd34814a44dc855ff1e6323f3f08998bbe9c0860b0aa5f",
+      "line_start": 25,
+      "line_end": 40,
+      "status": "read",
+      "verbatim": "- membership in `vertices t` is equivalent to `ValidVertex t v`;\n- membership in `terminals S t` is equivalent to an actual leaf occurrence at\n  that address with a label in S;\n- a label belongs to `leaves t` exactly when it has a leaf occurrence;\n- two leaf occurrences at the same address have the same label; each label\n  occurring in `leaves t` has exactly one address when `leaves t` has no\n  repeated labels;\n- each permutation field of `RMAF.Instance` supplies this uniqueness for\n  every label below `Instance.n`, and excludes other labels.\n\nArbitrary repeated-label trees are included in the constructor theorem. Selecting\nsuch a label selects every occurrence. Repeated entries in the selection do not\nrepeat terminal addresses. `vertices_nodup` and `terminals_nodup` are proved for\nall trees and selections. Empty or entirely absent selections have empty output\nand do not satisfy the constructor's explicit occurring-selected-label premise.\nA selected singleton-root leaf is included."
+    },
+    {
+      "id": "count-claim",
+      "source": "research/rmaf/bridge_review/leastness/REPORT.md",
+      "sha256": "9ef1c407cb5f32588dfd34814a44dc855ff1e6323f3f08998bbe9c0860b0aa5f",
+      "line_start": 70,
+      "line_end": 79,
+      "status": "read",
+      "verbatim": "The isolated author build in `audit/certificate.json` rebuilt RMAF, PureBridge,\nGraphRegion, ExecutableConnectivity, TreeAddresses, ExtractorLeastness,\nActualEmbedding and LeastnessControls into a new import directory. It checked\n66 named new theorems: 22 semantic, 13 extractor, 7 constructor/interface and\n24 control theorems. The generated inventory prints axioms for those theorems\nand 9 definitions: all 75 reports use only the standard permitted axioms\n`propext`, `Classical.choice` and `Quot.sound`, or none. Production sources\ncontain no custom axiom, `sorry`, `admit`, `native_decide` or unsafe declaration.\nImported old declarations and independent finite-panel equalities are outside\nthis scoped count. The parent maintains the project aggregate."
+    },
+    {
+      "id": "diagnostic-distinction",
+      "source": "research/rmaf/bridge_review/leastness/REPORT.md",
+      "sha256": "9ef1c407cb5f32588dfd34814a44dc855ff1e6323f3f08998bbe9c0860b0aa5f",
+      "line_start": 81,
+      "line_end": 90,
+      "status": "read",
+      "verbatim": "The nine frozen fixtures cover crossing quartet leaves, a singleton, siblings,\nempty and absent selection, a singleton-root tree, repeated labels, repeated\nselection and a deep omitted initial root path. Their 18 exact terminal/support\nvalues compile. Six additional theorems include the critical distinction: an\nadded input root leaves the sibling support connected but violates leastness.\nThey also prove failure of path deletion, invalid ambient address and missing\nselected terminal. Five separate false assertions are rejected by Lean's\nexplicit `decide` falsity diagnostic. A true proposition with an ill-typed proof\nis rejected as a malformed control, and is not counted as a false proposition;\nits correctly typed twin compiles. Six planted diagnostic-parser cases pass."
+    },
+    {
+      "id": "finite-evidence",
+      "source": "research/rmaf/bridge_review/leastness/REPORT.md",
+      "sha256": "9ef1c407cb5f32588dfd34814a44dc855ff1e6323f3f08998bbe9c0860b0aa5f",
+      "line_start": 92,
+      "line_end": 99,
+      "status": "read",
+      "verbatim": "The pre-construction adversary used edge deletion and exhaustive connected\nambient subsets, with fresh code and no candidate leastness proof access. Its\nbounded corpus has 816 cases and 85,488 ambient subsets; 826 finite source\nequalities (including ten hand fixtures) compile. Five corruptions and clean\ntwins pass, two false assertions fail semantically, and a malformed proof is\nseparately rejected. Its ordinary edge-separation derivation is not advertised\nas an additional universal Lean proof. These finite checks cannot prove the\nunbounded claim. Full records are in `adversary/`."
+    },
+    {
+      "id": "independence-disclosure",
+      "source": "research/rmaf/bridge_review/leastness/REPORT.md",
+      "sha256": "9ef1c407cb5f32588dfd34814a44dc855ff1e6323f3f08998bbe9c0860b0aa5f",
+      "line_start": 101,
+      "line_end": 109,
+      "status": "read",
+      "verbatim": "The main author had prior source knowledge from the completed connectivity\ncheckpoint. Its controls were frozen before new leastness proof construction,\nnot before all source contact. The semantic module author is a coauthor, not an\nindependent verifier. The fresh reviewer starts from the target, freezes a\nprefix/LCA derivation and exact controls, and writes a new graph-support\nintersection enumerator before inspecting the candidate. All arms share the\nformal statement, Lean kernel and original RMAF source. The author audit driver\nand parser derive from the preceding executable audit and are not an independent\nmathematical reference. These dependencies are explicit in `INDEPENDENCE.json`."
+    },
+    {
+      "id": "broader-debts",
+      "source": "research/rmaf/bridge_review/leastness/REPORT.md",
+      "sha256": "9ef1c407cb5f32588dfd34814a44dc855ff1e6323f3f08998bbe9c0860b0aa5f",
+      "line_start": 118,
+      "line_end": 130,
+      "status": "read",
+      "verbatim": "The new result fills the ambient interpretation, selected-occurrence and\nleastness fields missing from the earlier exact executable connectivity\ncheckpoint. Its original consumer call is kernel-checked. The broader bridge\nroute still needs transport between restricted or suppressed source and target\ntrees, degree-two split realization, marked-interaction and exchange interfaces,\nand the safe-cover/Whidden `2^q` audit. No running-time or novelty conclusion\nfollows from these local support theorems.\n\nThe exact audit command is\n`./bootloops-python research/rmaf/bridge_review/leastness/audit.py`.\nThe project-wide `bootloops-check` suite was not run: this checkpoint changes\nonly new Lean proof and audit files and uses a complete isolated rebuild of its\nactual dependency chain. No unavailable engine is needed for this checkpoint."
+    },
+    {
+      "id": "exact-constructor",
+      "source": "research/rmaf/bridge_review/leastness/lean/ActualEmbedding.lean",
+      "sha256": "8c10ef67cec9ef067e3bf2a104c342e1d536a07546d05ffc759e6b3ded3d69a4",
+      "line_start": 9,
+      "line_end": 23,
+      "status": "read",
+      "verbatim": "def embedding (selected : List Nat) (t : Tree) (x : Nat)\n    (hx : x \u2208 leaves t) (hs : x \u2208 selected) : MinimalEmbedding where\n  ambient := vertices t\n  terminals := terminals selected t\n  terminal_nonempty := terminal_nonempty hx hs\n  support := extractedSupport selected t (minimalVertices_nonempty_of_leaf selected t x hx hs)\n  inAmbient := by\n    intro v hv\n    exact minimal_in_vertices selected t v (by simpa only [extractedSupport_exact] using hv)\n  containsTerminals := by\n    intro v hv\n    simpa only [extractedSupport_exact] using terminals_in_minimal selected t v hv\n  minimal := by\n    intro other _ hterm v hv\n    exact minimal_least selected t other hterm v (by simpa only [extractedSupport_exact] using hv)"
+    },
+    {
+      "id": "consumer",
+      "source": "research/rmaf/bridge_review/leastness/lean/ActualEmbedding.lean",
+      "sha256": "8c10ef67cec9ef067e3bf2a104c342e1d536a07546d05ffc759e6b3ded3d69a4",
+      "line_start": 56,
+      "line_end": 65,
+      "status": "read",
+      "verbatim": "theorem embedding_consumer (sa sb : List Nat) (ta tb : Tree) (xa xb : Nat)\n    (hxa : xa \u2208 leaves ta) (hsa : xa \u2208 sa) (hxb : xb \u2208 leaves tb) (hsb : xb \u2208 sb)\n    (hdepth : (embedding sb tb xb hxb hsb).support.root.length \u2264\n      (embedding sa ta xa hxa hsa).support.root.length)\n    (hoverlap : \u2203 v, v \u2208 minimalVertices sa ta \u2227 v \u2208 minimalVertices sb tb) :\n    (embedding sa ta xa hxa hsa).support.root \u2208 minimalVertices sb tb := by\n  have h := MinimalEmbedding.deepest_root_in_neighbor\n    (embedding sa ta xa hxa hsa) (embedding sb tb xb hxb hsb) hdepth\n    (by simpa only [embedding_support_exact] using hoverlap)\n  simpa only [embedding_support_exact] using h"
+    },
+    {
+      "id": "leastness-signature",
+      "source": "research/rmaf/bridge_review/leastness/lean/ExtractorLeastness.lean",
+      "sha256": "8626d726a1635b06c9f58178dbb8a84cecdb55630eb138a5afc8353618b4f1b8",
+      "line_start": 213,
+      "line_end": 220,
+      "status": "read",
+      "verbatim": "theorem minimal_least (selected : List Nat) (t : Tree) (other : ConnectedSupport)\n    (hterm : \u2200 p, p \u2208 terminals selected t \u2192 p \u2208 other.first :: other.rest)\n    (v : Vertex) (hv : v \u2208 minimalVertices selected t) :\n    v \u2208 other.first :: other.rest := by\n  obtain \u27e8p, hp, hvp\u27e9 := minimal_terminal_descendant selected t v hv\n  have hav : other.root.IsPrefix v := minimal_below_common_ancestor selected t other.root\n    (fun q hq => other.toRootedRegion.below q (hterm q hq)) v hv\n  exact other.toRootedRegion.convex v p hav hvp (hterm p hp)"
+    },
+    {
+      "id": "label-functionality",
+      "source": "research/rmaf/bridge_review/leastness/address_semantics/TreeAddresses.lean",
+      "sha256": "f2bbd08201b98893a0e824f041e9af72761933d7f29b4e9a89088d9d9e46fdb0",
+      "line_start": 133,
+      "line_end": 138,
+      "status": "read",
+      "verbatim": "theorem LeafOccurrence.label_unique {t : Tree} {v : Vertex} {x y : Nat}\n    (hx : LeafOccurrence t v x) (hy : LeafOccurrence t v y) : x = y := by\n  induction hx generalizing y with\n  | leaf x => cases hy; rfl\n  | left hx ih => cases hy with | left hy => exact ih hy\n  | right hx ih => cases hy with | right hy => exact ih hy"
+    },
+    {
+      "id": "occurrence-uniqueness",
+      "source": "research/rmaf/bridge_review/leastness/address_semantics/TreeAddresses.lean",
+      "sha256": "f2bbd08201b98893a0e824f041e9af72761933d7f29b4e9a89088d9d9e46fdb0",
+      "line_start": 170,
+      "line_end": 206,
+      "status": "read",
+      "verbatim": "theorem unique_occurrence_of_nodup {t : Tree} {x : Nat}\n    (hn : (leaves t).Nodup) (hx : x \u2208 leaves t) :\n    \u2203 v, LeafOccurrence t v x \u2227 \u2200 w, LeafOccurrence t w x \u2192 w = v := by\n  rcases mem_leaves_iff_occurrence.mp hx with \u27e8v, hv\u27e9\n  exact \u27e8v, hv, fun _ hw => hw.address_unique hn hv\u27e9\n\ntheorem instance_left_nodup (i : Instance) : (leaves i.left).Nodup :=\n  i.labels_left.nodup_iff.mpr List.nodup_range\n\ntheorem instance_right_nodup (i : Instance) : (leaves i.right).Nodup :=\n  i.labels_right.nodup_iff.mpr List.nodup_range\n\ntheorem instance_left_mem_leaves_iff (i : Instance) (x : Nat) :\n    x \u2208 leaves i.left \u2194 x < i.n :=\n  i.labels_left.mem_iff.trans List.mem_range\n\ntheorem instance_right_mem_leaves_iff (i : Instance) (x : Nat) :\n    x \u2208 leaves i.right \u2194 x < i.n :=\n  i.labels_right.mem_iff.trans List.mem_range\n\ntheorem instance_left_unique_occurrence (i : Instance) {x : Nat} (hx : x < i.n) :\n    \u2203 v, LeafOccurrence i.left v x \u2227 \u2200 w, LeafOccurrence i.left w x \u2192 w = v :=\n  unique_occurrence_of_nodup (instance_left_nodup i)\n    ((instance_left_mem_leaves_iff i x).mpr hx)\n\ntheorem instance_right_unique_occurrence (i : Instance) {x : Nat} (hx : x < i.n) :\n    \u2203 v, LeafOccurrence i.right v x \u2227 \u2200 w, LeafOccurrence i.right w x \u2192 w = v :=\n  unique_occurrence_of_nodup (instance_right_nodup i)\n    ((instance_right_mem_leaves_iff i x).mpr hx)\n\ntheorem instance_left_occurrence_iff (i : Instance) (x : Nat) :\n    (\u2203 v, LeafOccurrence i.left v x) \u2194 x < i.n :=\n  mem_leaves_iff_occurrence.symm.trans (instance_left_mem_leaves_iff i x)\n\ntheorem instance_right_occurrence_iff (i : Instance) (x : Nat) :\n    (\u2203 v, LeafOccurrence i.right v x) \u2194 x < i.n :=\n  mem_leaves_iff_occurrence.symm.trans (instance_right_mem_leaves_iff i x)"
+    },
+    {
+      "id": "trace-correction",
+      "source": "research/rmaf/bridge_review/leastness/USE-SITE-TRACE.md",
+      "sha256": "ac3c9013f25fd4d1d03121b8b3b74137e3bd968a86d9ae5d606cd09ab4b01b6c",
+      "line_start": 21,
+      "line_end": 27,
+      "status": "read",
+      "verbatim": "`LeastEmbedding.minimal_least` itself uses `ConnectedSupport.toRootedRegion`\nat its final proof lines: `below` makes the competitor root a common ancestor\nof all selected terminals, and `convex` forces the given emitted vertex between\nthat root and its terminal descendant. Both hypotheses are explicit in the\nproof. This use requires no leastness of the competitor and no assumed hull\nidentity. Therefore it is not circular through the MinimalEmbedding field that\nis being constructed."
+    },
+    {
+      "id": "independence-ledger",
+      "source": "research/rmaf/bridge_review/leastness/INDEPENDENCE.json",
+      "sha256": "d85540a0e39b29e32375b255874574b6ce5ac1f1989fe9893b4c3940008cf3e0",
+      "line_start": 3,
+      "line_end": 12,
+      "status": "read",
+      "verbatim": "  \"shared\": [\"pinned statement and address conventions\", \"original RMAF Tree/leaves/extractor source\", \"Lean kernel and standard library\", \"mathematics of finite rooted address trees\"],\n  \"arms\": [\n    {\"id\":\"author\",\"route\":\"structural recursion: terminal descendant + universal common-prefix bound + graph-region convexity\",\"authored\":[\"ExtractorLeastness.lean\",\"ActualEmbedding.lean\",\"LeastnessControls.lean\"],\"prior_contact\":\"Authored earlier exact connectivity proof and knew source before this task; new controls predate new leastness proof only.\",\"can_certify_independently\":false},\n    {\"id\":\"address-semantics\",\"route\":\"inductive actual occurrence semantics and permutation-derived label uniqueness\",\"authored\":[\"address_semantics/TreeAddresses.lean\"],\"code_independence\":\"No import of new extractor leastness proof; only RMAF imported.\",\"can_certify_independently\":false,\"reason\":\"Coauthor of accepted semantic module; own controls are author checks.\"},\n    {\"id\":\"edge-cut-adversary\",\"route\":\"edge deletion and exhaustive connected ambient subsets; ordinary universal edge-separation derivation\",\"code_independence\":\"Fresh code; did not read candidate leastness proof or old Python checker.\",\"source_contact\":\"Frozen controls preceded source read; narrow GraphRegion read accidentally exposed three Walk.start proof lines, excluded from reasoning.\",\"grade\":\"Finite exact no-counterexample evidence; prose edge-separation derivation is not a universal Lean theorem.\",\"receipt\":\"adversary/results/final-report.json\"},\n    {\"id\":\"fresh-review\",\"route\":\"independent LCA-prefix derivation; independent intersection of connected graph supports; then fresh kernel and use-site review\",\"code_independence\":\"Fresh no-history agent; controls and derivation frozen before candidate proof/source/checker contact.\",\"scope\":\"Same prefix-tree mathematical representation as main proof, so no claim of fully disjoint mathematical foundations.\",\"receipt\":\"fresh_review/\"},\n    {\"id\":\"audit-driver\",\"route\":\"isolated dependency rebuild, full declaration axiom inventory and explicit-false diagnostic validation\",\"lineage\":\"Adapted completed executable/audit.py parser and driver; not an independent mathematical verifier.\",\"receipt\":\"audit/certificate.json\"}\n  ],\n  \"excluded_from_universal_proof_evidence\":[\"finite counts alone\", \"author agreement\", \"compiler failures caused by malformed syntax\", \"CPU activity or successful process exit without statement/source checks\"],\n  \"open\":[\"cross-tree transport\",\"G2\u2013G7\",\"exchange realization\",\"safe cover\",\"unrestricted runtime\",\"novelty\"]"
+    }
+  ],
+  "inferred": "Audience implications and severity judgments appear in referee_sim_REPORT.md and are reviewer inferences from these records.",
+  "background": "No memory-based literature or priority claims used.",
+  "contact": "Initial target and frozen bookkeeping controls preceded receipt reading. Author audit source was subsequently read for schema/diagnostic interpretation. No fresh mathematical reviewer files were read beyond filenames in a directory listing."
+}

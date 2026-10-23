@@ -1,0 +1,35 @@
+{
+  "before_v2_execution": true,
+  "basis": "Lean.Environment.subsumesInfo permits repeated same-typed theorems and theorem/axiom projections, not ordinary definitions. V1 import rejection preserved; use exactly that permitted class.",
+  "expected_counts": {
+    "ProducerToyA": 2,
+    "ProducerToyB": 2,
+    "ProducerToyBad": 3
+  },
+  "expected_producer_verdicts": {
+    "ProducerToyA": true,
+    "ProducerToyB": true,
+    "ProducerToyBad": false
+  },
+  "expected_merged_only_bad_verdict": true,
+  "coalesced_custom_axiom": "ProducerToy.ordinary : True in ProducerToyBad; combined environment resolves to earlier theorem in ProducerToyA. Module Bad has its own clean definition, so nonempty-origin tests alone do not catch it.",
+  "sources": [
+    {
+      "module": "ProducerToyA",
+      "sha256": "bef7407a4792a46fb9e979531424664b8a1e60ecb1f4e0fd8724bb10e64d54a1"
+    },
+    {
+      "module": "ProducerToyB",
+      "sha256": "bef7407a4792a46fb9e979531424664b8a1e60ecb1f4e0fd8724bb10e64d54a1"
+    },
+    {
+      "module": "ProducerToyBad",
+      "sha256": "694069181d55a1aecbbe37bf6d349b7c06aa17b20fdd474b3dc3eecf7cea5d29"
+    },
+    {
+      "module": "AuditProducerDataControls",
+      "sha256": "ec63b4a8b60c0cafa1e8f2fd934469cbc9adc958feb1ffd84eb480ba58fe1085"
+    }
+  ],
+  "mathematical_fixtures_unchanged": true
+}

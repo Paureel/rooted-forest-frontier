@@ -1,0 +1,9 @@
+import KeptRun
+#check List.idxOf_cons
+#check List.idxOf_cons_self
+#check List.idxOf_cons_ne
+#check List.idxOf_eq_length
+#check List.nodup_iff_count_le_one
+#check Universal233.VertexGeometry.partitionCheck_subset
+#check Universal233.SourceCoverage.partitionCheck_count
+#print List.idxOf

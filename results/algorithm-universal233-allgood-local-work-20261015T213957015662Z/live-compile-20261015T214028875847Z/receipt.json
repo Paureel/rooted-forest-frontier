@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "8483bfeb83e0c9b38e2d82fba5628b08e7e409a383df7e2c6bd4687611d350d0",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.37845095900047454,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.35668383299889683,
+      "resource_stop": null,
+      "log_sha256": "ef0e9922ebda0e0f8a8042583e47841e2954a594ae4fd151d9c8026a1f970d44"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.001666500000283122,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PaintCost",
+      "source_sha256": "1720bd072d99aaa9a9585fe3faaf1bd266c87aeda2502a161a146ea20f3adeb1",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 1.0524587919990154,
+      "resource_stop": null,
+      "log_sha256": "65b0cd4c74372f49ebbb02df5dd8905c991038d3cc795b1f0ae72209e5126d66"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('PaintCost', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/PaintCost.lean:9:55: error: unsolved goals\\ncase node\\na\u271d\u00b2 : Nat\\na\u271d\u00b9 a\u271d : Paint\\n\u22a2 1 \u2264 1 + paintNodes a\u271d\u00b9 + paintNodes a\u271d\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/PaintCost.lean:10:60: error(lean.unknownIdentifier): Unknown identifier `Universal233.VertexGeometry.treeNodes`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/PaintCost.lean:13:46: error(lean.unknownIdentifier): Unknown identifier `Universal233.VertexGeometry.treeNodes`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/PaintCost.lean:13:20: error: unsolved goals\\ncase node\\nc : Nat\\nl r : Paint\\nil : paintNodes l = sorry\\nir : paintNodes r = sorry\\n\u22a2 False\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/PaintCost.lean:13:40: warning: This simp argument is unused:\\n  erase\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp [paintNodes, Universal233.VertexGeometry.treeNodes, il, ir]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/PaintCost.lean:27:11: error: Expected type must not contain free variables\\n  (meterChanges (Paint.leaf a\u271d\u00b9 a\u271d)).work \u2264 16 * paintNodes (Paint.leaf a\u271d\u00b9 a\u271d)\\n\\nHint: Use the `+revert` option to automatically clean up and revert free variables\\n'))"
+}

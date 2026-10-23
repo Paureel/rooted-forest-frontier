@@ -1,0 +1,151 @@
+{
+  "schema": "exact-rule4-selector-computation-and-proof-slot-types-v1",
+  "scope": "DATA/control/arithmetic/TYPES view only, not compilable replacement source. No proof values/axioms/erasure or RAM theorem. Every omitted Prop evidence must be derived at its actual consuming type from executed tests.",
+  "ChoiceMeasured": {
+    "full_type": "structure ChoiceMeasured (T S : Tree) where value : Option (Rule4.Choice T S); work : Nat; checks : List (Rule4.RawChoice\u00d7Bool)",
+    "origin": {
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ELEarly.lean",
+      "source_sha256": "8c32eaaa748d8bc9cc6c7151e44efdceec126975afab37b4f0496a51dabd2119",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ELEarly.olean",
+      "object_sha256": "b94e1bcefd4b2c175742c2f7b30cab3360631f5ca43461209622fe30485d08b3",
+      "lines": [
+        10,
+        13
+      ]
+    }
+  },
+  "Choice": {
+    "full_fields": "raw : Rule4.RawChoice; priority : Rule4.Priority T S; admission : Rule4.LocalGuard T S raw",
+    "origin": {
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Rule4Selector.lean",
+      "source_sha256": "63c330684473155e61fa7ffce3c40a5d2204223637aeb4423d2125fddd6547e5",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Rule4Selector.olean",
+      "object_sha256": "0d6ae890cda46b66a64d784ca57e7161386d2c71045505b39bf17e0cc4a40fc5",
+      "lines": [
+        64,
+        67
+      ]
+    }
+  },
+  "Priority": {
+    "full_definition": "def Priority (T S : Tree) : Prop :=\n  (leaves T).Nodup \u2227 (leaves S).Nodup \u2227 (leaves T).Perm (leaves S) \u2227\n  (orderedCherries T).all (fun p => !(orderedCherries S).contains p) = true \u2227\n  (orderedCherries T).all (fun p => (pendantOriginal S p.1 p.2).length != 1) = true \u2227\n  (orderedCherries S).all (fun p => (pendantOriginal T p.1 p.2).length != 1) = true",
+    "origin": {
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Rule4Selector.lean",
+      "source_sha256": "63c330684473155e61fa7ffce3c40a5d2204223637aeb4423d2125fddd6547e5",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Rule4Selector.olean",
+      "object_sha256": "0d6ae890cda46b66a64d784ca57e7161386d2c71045505b39bf17e0cc4a40fc5",
+      "lines": [
+        40,
+        44
+      ]
+    }
+  },
+  "LocalGuard": {
+    "full_definition": "def LocalGuard (T S : Tree) (s : RawChoice) : Prop :=\n  (s.a,s.b) \u2208 orderedCherries T \u2227 (s.a,s.c) \u2208 orderedCherries S \u2227 s.a \u2260 s.b \u2227\n  (pendantOriginal S s.a s.b).Perm [s.cHead,s.xHead] \u2227 subtreeLabels S s.cHead = [s.c]",
+    "origin": {
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Rule4Selector.lean",
+      "source_sha256": "63c330684473155e61fa7ffce3c40a5d2204223637aeb4423d2125fddd6547e5",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Rule4Selector.olean",
+      "object_sha256": "0d6ae890cda46b66a64d784ca57e7161386d2c71045505b39bf17e0cc4a40fc5",
+      "lines": [
+        56,
+        58
+      ]
+    }
+  },
+  "meterFirstChoice": {
+    "qualified_name": "OrdinaryDispatch.EarlyLocalWork.meterFirstChoice",
+    "full_type": "\u2200 (T S : RMAF.Tree), Universal233.Rule4.Priority T S \u2192 List Universal233.Rule4.RawChoice \u2192 OrdinaryDispatch.EarlyLocalWork.ChoiceMeasured T S",
+    "origin": {
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ELEarly.lean",
+      "source_sha256": "8c32eaaa748d8bc9cc6c7151e44efdceec126975afab37b4f0496a51dabd2119",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ELEarly.olean",
+      "object_sha256": "b94e1bcefd4b2c175742c2f7b30cab3360631f5ca43461209622fe30485d08b3",
+      "lines": [
+        15,
+        22
+      ]
+    },
+    "nil": {
+      "value": "none",
+      "work": "1",
+      "checks": "[]"
+    },
+    "cons": {
+      "head": "x",
+      "tail": "xs",
+      "first_call": "g := meterLocalGuard T S x",
+      "branch_condition": "g.value=true",
+      "true_branch": {
+        "value": {
+          "some": {
+            "Choice_raw": "x"
+          }
+        },
+        "work": "g.work+4",
+        "checks": "[(x,true)]",
+        "omitted_proof_slots": [
+          {
+            "name": "priority",
+            "full_type": "Rule4.Priority T S",
+            "source_value_input_name": "hp",
+            "source_line": 20,
+            "value_omitted": true
+          },
+          {
+            "name": "admission",
+            "full_type": "Rule4.LocalGuard T S x",
+            "source_local_name": "proof",
+            "source_line": 19,
+            "value_omitted": true
+          }
+        ]
+      },
+      "false_branch": {
+        "next_call": "r := meterFirstChoice T S hp xs",
+        "value": "r.value",
+        "work": "g.work+r.work+4",
+        "checks": "(x,false)::r.checks"
+      }
+    },
+    "required_bridge": "Derive actual Rule4.LocalGuard T S x from the executed meterLocalGuard true guard at the typed constructor; no supplied desired admission proof."
+  },
+  "meterRule4Select": {
+    "qualified_name": "OrdinaryDispatch.EarlyLocalWork.meterRule4Select",
+    "full_type": "\u2200 (T S : RMAF.Tree), Universal233.WholeSourceWork.Charged (Option (Universal233.Rule4.Choice T S))",
+    "origin": {
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ELEarly.lean",
+      "source_sha256": "8c32eaaa748d8bc9cc6c7151e44efdceec126975afab37b4f0496a51dabd2119",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ELEarly.olean",
+      "object_sha256": "b94e1bcefd4b2c175742c2f7b30cab3360631f5ca43461209622fe30485d08b3",
+      "lines": [
+        42,
+        48
+      ]
+    },
+    "first_call": "p := meterRule4Priority T S",
+    "branch_condition": "p.value=true",
+    "true_branch": {
+      "omitted_proof_slots": [
+        {
+          "name": "hp",
+          "full_type": "Rule4.Priority T S",
+          "source_line": 45,
+          "value_omitted": true
+        }
+      ],
+      "calls_in_order": [
+        "raw := meterRawChoices T S",
+        "first := meterFirstChoice T S hp raw.value"
+      ],
+      "value": "first.value",
+      "work": "p.work+raw.work+first.work+4"
+    },
+    "false_branch": {
+      "value": "none",
+      "work": "p.work+2"
+    },
+    "required_bridge": "Derive actual Rule4.Priority T S from the executed meterRule4Priority true guard; no supplied priority oracle or erased guard."
+  },
+  "outer_order": "meterEarly still evaluates both orientations of meterSelect and both meterRule4Select before deciding the output. Existing exact released meterEarly body remains unchanged."
+}

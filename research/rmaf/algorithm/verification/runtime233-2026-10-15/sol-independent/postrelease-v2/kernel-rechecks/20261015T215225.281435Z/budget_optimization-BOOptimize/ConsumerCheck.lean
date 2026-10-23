@@ -1,0 +1,5 @@
+import BOOptimize
+#check OrdinaryDispatch.BudgetOptimization.optimization_exact
+#print axioms OrdinaryDispatch.BudgetOptimization.optimization_exact
+#check OrdinaryDispatch.BudgetOptimization.actual_query_count
+#print axioms OrdinaryDispatch.BudgetOptimization.actual_query_count

@@ -1,0 +1,5 @@
+import WorkBinding
+#check Universal233.Rule5ActualTrace.dispatch_ordinary_work_bound
+#print axioms Universal233.Rule5ActualTrace.dispatch_ordinary_work_bound
+#check Universal233.Rule5ActualTrace.dispatch_query_bounds
+#print axioms Universal233.Rule5ActualTrace.dispatch_query_bounds

@@ -1,0 +1,60 @@
+import FrontierBasics
+namespace GenericForest.FrontierWork
+open RMAF ForestState Universal233 Universal233.PaidQueries Universal233.SourceCoverage Universal233.CoreProgram
+
+theorem frontierPower_flatMap {α : Type} (c : Rat) (L : List α) (f : α → List Query) :
+ frontierPower c (L.flatMap f)=(L.map fun x=>frontierPower c (f x)).sum := by
+ induction L with
+ | nil => rfl
+ | cons x xs ih => simp only [List.flatMap_cons,frontierPower,List.map_append,List.sum_append,List.map_cons,List.sum_cons] at *; rw [ih]
+
+theorem frontier_power_bound (ordinary : Ordinary) (T : Option Tree) (ss : List Tree) (q : Nat)
+ (hp : proper T ss=true) (c : Rat) (hc : 2≤c) : frontierPower c (frontier ordinary T ss q)≤c^q := by
+ induction q using Nat.strongRecOn generalizing ss with
+ | ind q ih =>
+  have cp : 0<c:=by grind
+  have powpos : 0≤c^q:=Rat.le_of_lt (Rat.pow_pos cp)
+  have childBound (t : Tree) (ht : T=some t) (h : Overlap) (hh : overlap t ss=some h) :
+   frontierPower c ((branches t ss h q).flatMap fun io=>
+    if _hd : 1≤io.2.sourceCuts.length ∧ io.2.sourceCuts.length≤q then
+     frontier ordinary T (replace ss io.1 io.2.partition) (q-io.2.sourceCuts.length) else [])≤c^q := by
+   rw [frontierPower_flatMap]
+   let f : Nat × Output → Rat:=fun io=>frontierPower c
+    (if _hd : 1≤io.2.sourceCuts.length ∧ io.2.sourceCuts.length≤q then
+     frontier ordinary T (replace ss io.1 io.2.partition) (q-io.2.sourceCuts.length) else [])
+   have each (io : Nat × Output) (mem : io∈branches t ss h q) : f io≤c^q*c^(-(io.2.sourceCuts.length:Int)) := by
+    have paid:=branch_paid_proper t ss (by simpa [ht] using hp) h hh q io.1 io.2 mem
+    have hd : 1≤io.2.sourceCuts.length ∧ io.2.sourceCuts.length≤q:=⟨paid.1,paid.2.1⟩
+    have child:=ih (q-io.2.sourceCuts.length) (by omega) (replace ss io.1 io.2.partition) (by simpa [ht] using paid.2.2)
+    simp only [f,dif_pos hd]
+    exact Rat.le_trans child (Rat.le_of_eq (qpow_clear c (Rat.ne_of_gt cp) q _ paid.2.1))
+   have sum:=rat_sum_map_le (branches t ss h q) f (fun io=>c^q*c^(-(io.2.sourceCuts.length:Int))) each
+   rw [rat_sum_mul] at sum
+   have mass:=Rat.mul_le_mul_of_nonneg_left (branch_mass_le_one t ss (by simpa [ht] using hp) h hh q c hc) powpos
+   exact Rat.le_trans sum (by simpa only [Rat.mul_one] using mass)
+  rw [frontier.eq_def]
+  split
+  · rename_i active
+    split
+    · simpa [frontierPower] using powpos
+    · simp [frontierPower]
+    · rename_i _ _ t notsingle
+      split
+      · split
+        · simpa [frontierPower] using powpos
+        · rename_i js jobsEq
+          exact scheduled_frontier_power ordinary t ss q hp js jobsEq c hc
+      · rename_i h hh
+        exact childBound t rfl h hh
+  · simpa [frontierPower] using powpos
+
+theorem frontier_mass_bound (ordinary : Ordinary) (T : Option Tree) (ss : List Tree) (q : Nat)
+ (hp : proper T ss=true) (c : Rat) (hc : 2≤c) :
+ actualQueryMass c q ((frontier ordinary T ss q).map Prod.snd)≤1 := by
+ have cp : 0<c:=by grind
+ have bound:=frontier_power_bound ordinary T ss q hp c hc
+ rw [frontierPower_as_mass c cp q _ (fun p r mem=>(frontier_queries_proper ordinary T ss q hp p r mem).1)] at bound
+ have pos : 0<c^q:=Rat.pow_pos cp
+ apply Rat.le_of_mul_le_mul_left (c:=c^q) _ pos
+ simpa only [Rat.mul_one] using bound
+end GenericForest.FrontierWork

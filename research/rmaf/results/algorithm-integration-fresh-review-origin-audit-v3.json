@@ -1,0 +1,159 @@
+{
+  "created_utc": "2026-10-15T07:53:50.241701+00:00",
+  "all_passed": true,
+  "kernel_plant_rows": [
+    {
+      "module": "KernelCleanV3",
+      "source": "research/rmaf/algorithm/verification/integration-2026-10-15/isolated/KernelCleanV3.lean",
+      "source_sha256": "1adc6b9e1d9c4e1c2ff7cb46a6a740290a24f5d89e460323efe7341c0005524a",
+      "log": "research/rmaf/algorithm/verification/integration-2026-10-15/isolated/KernelCleanV3.fresh.log",
+      "log_sha256": "c675bb31e19c4f6accb382c5f43afeeb04267a0d6071c0e55d0ed505705af09a",
+      "exit": 0,
+      "elapsed_seconds": 0.2406369159998576,
+      "expected_exit": 0,
+      "passed": true,
+      "plant_id": "clean-axiom-twin",
+      "explicit_false_diagnostics": 0
+    },
+    {
+      "module": "KernelCustomPlantV3",
+      "source": "research/rmaf/algorithm/verification/integration-2026-10-15/isolated/KernelCustomPlantV3.lean",
+      "source_sha256": "195114ece7203e2ba10adcb95e15ceb4cf8bf6cb53b14d47167d18f9337c5c25",
+      "log": "research/rmaf/algorithm/verification/integration-2026-10-15/isolated/KernelCustomPlantV3.fresh.log",
+      "log_sha256": "47c241c077d186696ae922cd3a538c0fbfe4bd4af70ccd19ca949227bcbc0596",
+      "exit": 0,
+      "elapsed_seconds": 0.21299616699980106,
+      "expected_exit": 0,
+      "passed": true,
+      "plant_id": "custom-axiom-must-be-caught",
+      "explicit_false_diagnostics": 0
+    },
+    {
+      "module": "KernelExplicitFalseV3",
+      "source": "research/rmaf/algorithm/verification/integration-2026-10-15/isolated/KernelExplicitFalseV3.lean",
+      "source_sha256": "8b0404a79ed569633913f231289be538a7b57d6aa90d9080c831cbded7b4fc61",
+      "log": "research/rmaf/algorithm/verification/integration-2026-10-15/isolated/KernelExplicitFalseV3.fresh.log",
+      "log_sha256": "3babdb577135a1a021c8afad860626e62b964646a6e9370a46c7e5075702edf1",
+      "exit": 1,
+      "elapsed_seconds": 0.1910737500002142,
+      "expected_exit": "nonzero",
+      "passed": true,
+      "plant_id": "explicit-false-proposition",
+      "explicit_false_diagnostics": 1
+    },
+    {
+      "module": "KernelBrokenImportV3",
+      "source": "research/rmaf/algorithm/verification/integration-2026-10-15/isolated/KernelBrokenImportV3.lean",
+      "source_sha256": "14551b282d491dbaf44aee3ec01a303362d2e84b615d4c5d36412917a16924db",
+      "log": "research/rmaf/algorithm/verification/integration-2026-10-15/isolated/KernelBrokenImportV3.fresh.log",
+      "log_sha256": "e33dce344098bcfb7cc15aafe5c964b137cb2f00a681c5f53e307f8333dcb19f",
+      "exit": 1,
+      "elapsed_seconds": 0.12940162500035512,
+      "expected_exit": "nonzero",
+      "passed": true,
+      "plant_id": "broken-import-does-not-count-as-falsity",
+      "explicit_false_diagnostics": 0
+    }
+  ],
+  "clean_audit": {
+    "module": "KernelCleanAuditV3",
+    "source": "research/rmaf/algorithm/verification/integration-2026-10-15/isolated/KernelCleanAuditV3.lean",
+    "source_sha256": "78881f954f73549b93b65dc944584d27c31bcaae29125722ff8164f48ee40fdc",
+    "log": "research/rmaf/algorithm/verification/integration-2026-10-15/isolated/KernelCleanAuditV3.fresh.log",
+    "log_sha256": "f1e7fe5fadee1ad52f4d379773758f64a8507e28d698c466e96c53a877d202ef",
+    "exit": 0,
+    "elapsed_seconds": 6.864679416000399,
+    "expected_exit": 0,
+    "passed": true,
+    "audit_origins": [
+      "KernelCleanV3"
+    ]
+  },
+  "custom_audit": {
+    "module": "KernelCustomAuditV3",
+    "source": "research/rmaf/algorithm/verification/integration-2026-10-15/isolated/KernelCustomAuditV3.lean",
+    "source_sha256": "e6f7b9002c241dc9c11a3674f5a18acac134108e7eb81524a3d14341fd77f3b7",
+    "log": "research/rmaf/algorithm/verification/integration-2026-10-15/isolated/KernelCustomAuditV3.fresh.log",
+    "log_sha256": "86692c7b249f8131f4794ae6eb15e3f88fc30236616aa37ae31813b82d33828e",
+    "exit": 0,
+    "elapsed_seconds": 4.198767165999925,
+    "expected_exit": 0,
+    "passed": true,
+    "audit_origins": [
+      "KernelCustomPlantV3"
+    ]
+  },
+  "clean_entries": [
+    {
+      "axioms": [],
+      "kind": "theorem",
+      "name": "AuditClean.good",
+      "origin": "KernelCleanV3"
+    }
+  ],
+  "rejected_custom_entries": [
+    {
+      "axioms": [
+        "AuditPlant.hiddenBad"
+      ],
+      "kind": "axiom",
+      "name": "AuditPlant.hiddenBad",
+      "origin": "KernelCustomPlantV3"
+    },
+    {
+      "axioms": [
+        "AuditPlant.hiddenBad"
+      ],
+      "kind": "theorem",
+      "name": "AuditPlant.leak",
+      "origin": "KernelCustomPlantV3"
+    },
+    {
+      "axioms": [
+        "AuditPlant.hiddenBad"
+      ],
+      "kind": "theorem",
+      "name": "_private.KernelCustomPlantV3.0.AuditPlant.privateLeak",
+      "origin": "KernelCustomPlantV3"
+    }
+  ],
+  "candidate_origin_declarations": 1415,
+  "candidate_origin_modules": 18,
+  "candidate_audit": {
+    "module": "CandidateOriginAuditV3",
+    "source": "research/rmaf/algorithm/verification/integration-2026-10-15/isolated/CandidateOriginAuditV3.lean",
+    "source_sha256": "dcd4d5d8adda9f4818bad78c51051680aef510204070cde05361c9f6a298bae7",
+    "log": "research/rmaf/algorithm/verification/integration-2026-10-15/isolated/CandidateOriginAuditV3.fresh.log",
+    "log_sha256": "569a455af842a015a9a19e9bfcf097b1c0eb9006c6acd851bfec9fa73659b56b",
+    "exit": 0,
+    "elapsed_seconds": 4.289354665999781,
+    "expected_exit": 0,
+    "passed": true,
+    "audit_origins": [
+      "Branches",
+      "Bridge",
+      "CherryCoarsening",
+      "Composition",
+      "Contraction",
+      "Controls",
+      "CoreGraph",
+      "CoreInvariants",
+      "CoreProgram",
+      "CutRecords",
+      "EraseLift",
+      "Geometry",
+      "InitialLift",
+      "Normalization",
+      "Origins",
+      "RMAF",
+      "SourceBridge",
+      "Suppression"
+    ]
+  },
+  "custom_axiom_private_control_caught": true,
+  "generic_import_refusal_not_counted_as_falsity": true,
+  "author449_all_matched": true,
+  "inventory_sha256": "7357c1baeacdd1dbebe46094c19d89a9736883e40af7088a16fb7270dfcfaa97",
+  "source_sha256": "ddc73306e5fcd1b3300cbec225b51f7d24136d630f8acd1da4ed881c243f5a34",
+  "kernel_control_pin_sha256": "71596db4e80c47ce1f521175ed0a5a925800e1406903079fc1e74fe22d449437"
+}

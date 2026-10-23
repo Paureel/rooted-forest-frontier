@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "phase": "frozen-before-first-control-execution-and-candidate-contact",
+  "basis": "Hand derivation from PRECONTACT conventions; no executable oracle used",
+  "oracle_conventions": {"tree": "Nat leaf or array of exactly two child trees", "labels": "unique exact nonnegative integers, same set in both trees", "sibling_order": "ignored", "unary_suppression": "always in restriction", "rho": "absent", "singleton_hull": "the leaf only", "partition": "nonempty disjoint blocks covering labels", "graph_bits": "edge i is preorder parent-child edge i, left subtree before right", "k": "component count", "q": "k-1 only after k>=1; k=0 bounded negative on nonempty valid trees", "empty": "own test oracle refuses empty; eventual candidate API convention pending release"},
+  "truth_cases": [
+    {"id":"singleton", "a":0, "b":0, "optimum":1, "valid_partition_count":1, "optimal_partition_count":1},
+    {"id":"two_sibling_swap", "a":[0,1], "b":[1,0], "optimum":1, "valid_partition_count":2, "optimal_partition_count":1},
+    {"id":"three_identical", "a":[[0,1],2], "b":[[0,1],2], "optimum":1, "valid_partition_count":5, "optimal_partition_count":1},
+    {"id":"three_disagree", "a":[[0,1],2], "b":[[0,2],1], "optimum":2, "valid_partition_count":4, "optimal_partition_count":3},
+    {"id":"root_suppression", "a":[[0,1],2], "b":[0,[1,2]], "optimum":2, "valid_partition_count":4, "optimal_partition_count":3},
+    {"id":"balanced_identical", "a":[[0,1],[2,3]], "b":[[0,1],[2,3]], "optimum":1, "valid_partition_count":13, "optimal_partition_count":1},
+    {"id":"arbitrary_nat", "a":[[0,7],18446744073709551625], "b":[[0,18446744073709551625],7], "optimum":2, "valid_partition_count":4, "optimal_partition_count":3}
+  ],
+  "validity_cases": [
+    {"id":"hull_overlap_even_with_equal_restrictions", "a":[[0,1],[2,3]], "b":[[0,1],[2,3]], "blocks":[[0,2],[1,3]], "valid":false},
+    {"id":"sibling_blocks", "a":[[0,1],[2,3]], "b":[[0,1],[2,3]], "blocks":[[0,1],[2,3]], "valid":true},
+    {"id":"singleton_hull_is_leaf", "a":[[0,1],2], "b":[[0,2],1], "blocks":[[0],[1,2]], "valid":true},
+    {"id":"restriction_mismatch", "a":[[0,1],2], "b":[[0,2],1], "blocks":[[0,1,2]], "valid":false},
+    {"id":"missing_label", "a":[0,1], "b":[0,1], "blocks":[[0]], "valid":false},
+    {"id":"duplicate_label_blocks", "a":[0,1], "b":[0,1], "blocks":[[0],[0,1]], "valid":false},
+    {"id":"empty_block", "a":[0,1], "b":[0,1], "blocks":[[],[0,1]], "valid":false}
+  ],
+  "malformed_cases": [
+    {"id":"duplicate_leaf", "a":[0,0], "b":[0,1]},
+    {"id":"different_labels", "a":[0,1], "b":[0,2]},
+    {"id":"empty", "a":[], "b":[]},
+    {"id":"unary", "a":[0], "b":0},
+    {"id":"negative", "a":-1, "b":-1},
+    {"id":"bool_not_nat", "a":true, "b":true}
+  ],
+  "corruptions": [
+    {"id":"incomplete_cover_keeps_optimum", "fixture":"three_disagree", "removed_blocks":[[0],[1,2]], "expected_optimum_still":2, "expected_witness_count_after":3, "expected_cover_complete":false},
+    {"id":"wrong_optimum", "fixture":"three_disagree", "claimed_optimum":1, "must_reject":true},
+    {"id":"bounded_budget_zero", "fixture":"three_identical", "k":0, "must_refuse_positive":true},
+    {"id":"bounded_budget_one_infeasible", "fixture":"three_disagree", "k":1, "expected":"bounded-negative"},
+    {"id":"bounded_budget_two", "fixture":"three_disagree", "k":2, "expected":"optimal-forest"},
+    {"id":"missing_row", "must_reject":true},
+    {"id":"duplicate_row", "must_reject":true}
+  ],
+  "lean_controls": {
+    "clean": "Kernel checked theorem on own computable Nat datum, no custom axioms; complete nonproof body retained",
+    "private_unused_axiom": "must detect a private axiom even absent from the public theorem dependency closure",
+    "opaque_hidden_axiom": "must traverse the actual stored opaque body and detect its axiom reference",
+    "proof_dependency": "omit proof text only after traversing its real full value expression; a dependency hidden only in theorem proof must be present",
+    "duplicate_nonproof": "same declaration name with values 1 and 2 in separate modules; audit producer data from both import orders, rejecting ambiguity or compiler refusal, never treating one silently selected value as globally unique",
+    "manifest": "clean rows pass; missing/duplicate row, wrong source path/hash, wrong binary path/hash, wrong producer path/hash, truncated body and unknown declaration references all reject",
+    "axiom_trust": "Lean/Init/compiler explicitly trusted; custom axiom/sorryAx forbidden regardless of theorem reachability"
+  },
+  "finite_expansion": {"pilot_n": [3,4], "maximum_n":6, "initial_exhaustive": "all unordered sibling rooted labeled binary trees on 0..n-1 and all ordered pairs for n=3 then n=4", "expected_tree_counts":{"3":3,"4":15}, "expected_pair_counts":{"3":9,"4":225}, "expected_partition_counts":{"3":5,"4":15}}
+}

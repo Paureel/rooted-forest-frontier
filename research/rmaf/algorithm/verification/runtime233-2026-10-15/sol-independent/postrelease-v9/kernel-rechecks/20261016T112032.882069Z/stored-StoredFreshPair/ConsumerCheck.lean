@@ -1,0 +1,9 @@
+import StoredFreshPair
+#check OrdinaryDispatch.StoredNumeric.freshPair_value
+#print axioms OrdinaryDispatch.StoredNumeric.freshPair_value
+#check OrdinaryDispatch.StoredNumeric.freshPair_width
+#print axioms OrdinaryDispatch.StoredNumeric.freshPair_width
+#check OrdinaryDispatch.StoredNumeric.freshPair_work
+#print axioms OrdinaryDispatch.StoredNumeric.freshPair_work
+#check OrdinaryDispatch.StoredNumeric.freshPair_source_site
+#print axioms OrdinaryDispatch.StoredNumeric.freshPair_source_site

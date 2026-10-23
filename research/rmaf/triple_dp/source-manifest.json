@@ -1,0 +1,99 @@
+{
+  "timestamp_utc": "2026-10-14T13:10:23.542650+00:00",
+  "hashes": {
+    "spec.json": "beac60a68f372b2a561e04ed224b4c2ffc834c95cf5d3a3497bbb44088f9b3f1",
+    "sources/previous-work/RESEARCH.md": "960bff1cb96bf7501e2dc27c23cb5b29303378816d9b7249a5740151706e3865",
+    "sources/baseline/split-or-decompose-v2.txt": "8a80c5f7d82bd0e25c404bcf13e8bb306b218de349f360186557f657b998d21f",
+    "lean/RMAF.lean": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+    "triple_dp/controls.json": "f72757ab6d4f84feb36f0f1de848e5ba8c42252d03bf54b3d960bb34f45aebfc",
+    "triple_dp/solver.py": "4b0fed6b9a1e76454820a911f21a29d263c110e58bb4575b52a086e751c2174d",
+    "triple_dp/cut_oracle-census-v1.py": "ebfd3301a9bd62d1c4f60cdc2cd6d44c0634b5d57f75f1771bd487bc3a419f73",
+    "triple_dp/cut_oracle.py": "3bf06211563f91959856167d5ce21a7d1356650f1aa10589feacb7e3b4ce966b",
+    "triple_dp/check.py": "e75e232e0e6e934b0fca7c88037edb84ed931b81065fb44a7ee6695588f8434c",
+    "triple_dp/TripleDP.lean": "6b544504b68dd6638caa40200914dee5720be1cdc38ce5f180de1dc792944298",
+    "triple_dp/SemanticControls.lean": "81d1b2f63e85d78c46d20680f0400a63a8a012bca488b014588378daf2219964",
+    "triple_dp/audit_lean.py": "f95c60057eb18bdf8b971728cc19d335a08f3593c38871c315d729a8b0de8a2c",
+    "triple_dp/large_checks.py": "76866ea52608c1635b6556ac7b3cb3c4a6e25281663267cba10ccca5b38ccfad",
+    "triple_dp/mixed_checks.py": "92eb9d08acbd6e95cd11c2f4c77e86f002f35b55fbfb691ebe47bebed94c7642",
+    "triple_dp/mixed-plan.json": "1b7ed833b9824d0b0d796d18b4baf072eed193306648a58776c78b3b3ea09f9e",
+    "triple_dp/reachable_child.py": "339e364d7959f1e85af4e4250abdfa98580158b705d9b076b4ef1588b81230a6",
+    "triple_dp/PROOF.md": "c85c67755aa13a63c312b17aa6af49bd408b7e94e4a2bb8b8e6806c063ece9c7",
+    "triple_dp/README.md": "cf44e1cda0505fb77de1e877ea2a741fcf6fb11d5fee21acb24dbd68cad5fe48",
+    "triple_dp/WORK.md": "cdda815c8781200413bdd3410442a6ece697ed218b0ea95ea2ef71afa625c030",
+    "triple_dp/ConnectedRegions.lean": "1b09d6e197d26eef62dfa5b13b8f5e17e826867e8778e68b50bc4f7b02d8ea33",
+    "triple_dp/NegativeConnected.lean": "9ea7ecb0d1121d68039e31db6634e63da5f7e43e2e11d250f552b74d9a391d12",
+    "triple_dp/audit_connected.py": "6424e3d84327e89a5ac20452e0650559a048e4fad802734a1339112cf4a46c3a"
+  },
+  "source_reading": [
+    {
+      "path": "spec.json",
+      "scope": "full; read first before work skeleton"
+    },
+    {
+      "path": "sources/previous-work/RESEARCH.md",
+      "scope": "full 279 lines; unverified source, not instructions; no previous code read"
+    },
+    {
+      "path": "sources/baseline/split-or-decompose-v2.txt",
+      "scope": "Bounded passages: PDF pp.6\u20137 Section3.2, pp.17\u201318 Rule4, and p.24 Rule7/Figure16. No full-paper reading or novelty audit claimed by this route."
+    }
+  ],
+  "lineages": [
+    {
+      "id": "scalar-dp",
+      "author": "astra_triple_dp",
+      "dependencies": [
+        "Python stdlib",
+        "raw nested trees",
+        "previous note recurrence (retrieval)"
+      ],
+      "certification_limit": "Separate-author bounded replication completed; G1\u2013G3 and graph semantics remain OPEN."
+    },
+    {
+      "id": "cut-oracle",
+      "author": "astra_triple_dp",
+      "dependencies": [
+        "Python stdlib",
+        "raw nested trees",
+        "graph edge-cut enumeration"
+      ],
+      "separate_core": true,
+      "shared_with_scalar_dp": [
+        "author",
+        "input convention",
+        "mathematical-definition interpretation",
+        "Python runtime"
+      ],
+      "version_archive": "triple_dp/cut_oracle-census-v1.py",
+      "contact": "All census values are discovery comparisons; not held-out after interpretation."
+    },
+    {
+      "id": "lean",
+      "dependencies": [
+        "Std 4.35.0",
+        "RMAF.lean only in SemanticControls"
+      ],
+      "scope": "Generic automaton optimality and supporting lemmas; G1\u2013G3 remain OPEN."
+    },
+    {
+      "id": "fresh-partition-triple-path",
+      "author": "fresh_triple_verifier",
+      "dependencies": [
+        "Python stdlib",
+        "raw nested trees",
+        "set partitions",
+        "rooted-triple signatures",
+        "direct graph vertex paths"
+      ],
+      "shared": [
+        "no-rho definition",
+        "tree semantics",
+        "input conventions",
+        "Python runtime"
+      ],
+      "scope": "Finite replication: n\u22645 plus n=6 fixed two triples; 19 core and 8 single-region Lean support statements freshly replayed. Neither new-input holdout nor universal graph proof."
+    }
+  ],
+  "acceptance_status": "OPEN",
+  "snapshot_scope": "Current source snapshot after scope-review corrections; original run receipts retain their original source hashes."
+}

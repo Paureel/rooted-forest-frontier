@@ -1,0 +1,83 @@
+import FinalInterface
+import Rule4Selector
+import Pretest
+namespace Universal233.OrdinaryPriorityBridge
+open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent CherryBranching Rule5Local Rule5Classification Rule5FinalClassification
+
+theorem hard2_earlierClear {T S : Tree} {c : Candidate}
+ (selected : CherryBranching.select T S=some (.hard2,c)) : earlierClear T S=true := by
+ apply List.all_eq_true.2
+ intro d hd
+ exact beq_iff_eq.2 ((selected_spec selected).2.2 d hd)
+
+theorem hard2_actual {T S : Tree} {c : Candidate}
+ (selected : CherryBranching.select T S=some (.hard2,c)) :
+ CherryAt T c.parent c.a c.b ∧ (cuts S c.a c.b).length=2 ∧ hasCherry T c.a c.b=true := by
+ have actual := selected_actual selected
+ refine ⟨actual.1,?_,hasCherry_bool actual.1⟩
+ rw [←actual.2]
+ exact (selected_spec selected).2.1
+
+theorem hard2_every_cherry {T S : Tree} {c : Candidate} {a b : Nat}
+ (selected : CherryBranching.select T S=some (.hard2,c)) (ch : HasCherry a b T) :
+ (cuts S a b).length=2 := by
+ obtain ⟨p,h|h⟩ := Rule5Classification.hasCherry_actual ch
+ · have mem : (⟨p,a,b,cuts S a b⟩ : Candidate)∈candidates T S :=
+     List.mem_map.2 ⟨(p,a,b),cherries_complete T p a b h,rfl⟩
+   exact (selected_spec selected).2.2 _ mem
+ · have mem : (⟨p,b,a,cuts S b a⟩ : Candidate)∈candidates T S :=
+     List.mem_map.2 ⟨(p,b,a),cherries_complete T p b a h,rfl⟩
+   rw [cuts_swap S a b]
+   exact (selected_spec selected).2.2 _ mem
+
+theorem proper_parts {T S : Tree} (proper : DepthOne.proper T S=true) :
+ (leaves T).Nodup ∧ (leaves S).Nodup ∧ (leaves T).Perm (leaves S) := by
+ simpa only [DepthOne.proper,Bool.and_eq_true,decide_eq_true_eq,and_assoc] using proper
+
+theorem proper_rule5 {T S : Tree} (proper : DepthOne.proper T S=true) :
+ properPair T S=true := by
+ obtain ⟨nt,ns,perm⟩ := proper_parts proper
+ simp only [properPair,Bool.and_eq_true,decide_eq_true_eq,List.all_eq_true,List.contains_iff_mem]
+ exact ⟨⟨⟨nt,ns⟩,fun x hx => perm.mem_iff.1 hx⟩,fun x hx => perm.mem_iff.2 hx⟩
+
+theorem proper_reverse {T S : Tree} (proper : DepthOne.proper T S=true) : DepthOne.proper S T=true := by
+ obtain ⟨nt,ns,perm⟩ := proper_parts proper
+ simp only [DepthOne.proper,Bool.and_eq_true,decide_eq_true_eq]
+ exact ⟨⟨ns,nt⟩,perm.symm⟩
+
+theorem actual_rule4_priority {T S : Tree} {c d : Candidate}
+ (proper : DepthOne.proper T S=true)
+ (forward : CherryBranching.select T S=some (.hard2,c))
+ (reverse : CherryBranching.select S T=some (.hard2,d)) : Rule4.Priority T S := by
+ obtain ⟨nt,ns,perm⟩ := proper_parts proper
+ refine ⟨nt,ns,perm,?_,?_,?_⟩
+ · apply List.all_eq_true.2
+   intro ab hab
+   have ch := Rule4.orderedCherries_sound hab
+   have two := hard2_every_cherry forward ch
+   have no : (ab∈Rule4.orderedCherries S) → False := by
+     intro hm
+     have nil := cherry_cuts_nil ns (Rule4.orderedCherries_sound hm)
+     simp [nil] at two
+   cases h : (Rule4.orderedCherries S).contains ab
+   · rfl
+   · exact False.elim (no (List.contains_iff_mem.1 h))
+ · apply List.all_eq_true.2
+   intro ab hab
+   have two := hard2_every_cherry forward (Rule4.orderedCherries_sound hab)
+   change ((cuts S ab.1 ab.2).length != 1) = true
+   simp [two]
+ · apply List.all_eq_true.2
+   intro ab hab
+   have two := hard2_every_cherry reverse (Rule4.orderedCherries_sound hab)
+   change ((cuts T ab.1 ab.2).length != 1) = true
+   simp [two]
+
+theorem hasCherry_scan_sound {T : Tree} {a b : Nat} (scan : hasCherry T a b=true) : HasCherry a b T := by
+ obtain ⟨⟨p,x,y⟩,mem,hit⟩ := List.any_eq_true.1 scan
+ have ch := cherries_sound T p x y mem
+ have xy : (x=a ∧ y=b) ∨ (x=b ∧ y=a) := by simpa only [Bool.or_eq_true,Bool.and_eq_true,beq_iff_eq] using hit
+ rcases xy with ⟨rfl,rfl⟩|⟨rfl,rfl⟩
+ · exact actual_hasCherry ch
+ · exact cherry_symm (actual_hasCherry ch)
+end Universal233.OrdinaryPriorityBridge

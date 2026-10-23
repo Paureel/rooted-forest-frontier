@@ -1,0 +1,129 @@
+{
+  "utc_started": "2026-10-14T13:52:00.176760+00:00",
+  "source_hashes": {
+    "research/rmaf/lean/RMAF.lean": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+    "research/rmaf/bridge_review/leastness/address_semantics/TreeAddresses.lean": "f2bbd08201b98893a0e824f041e9af72761933d7f29b4e9a89088d9d9e46fdb0",
+    "research/rmaf/bridge_review/leastness/address_semantics/controls.json": "e1b39615ee42ca45465a65fca3d0f7af788ca5dc9b4cfdfc79bd01e238997d2d",
+    "research/rmaf/bridge_review/leastness/address_semantics/semantic_controls.py": "7f34cffafeb10d913341d92680158e7264b30240d7aff024209bfaac4fe5ba89",
+    "research/rmaf/bridge_review/leastness/address_semantics/audit_semantics.py": "4bb8da7768e8441c74a24fd1634e217479b45548bc043e44ed90f40d6b506ca8"
+  },
+  "runs": [
+    {
+      "id": "semantic-controls",
+      "label": "semantic-controls",
+      "returncode": 0,
+      "elapsed_seconds": 0.06040229199970781,
+      "log": "research/rmaf/bridge_review/leastness/address_semantics/replay-logs/semantic-controls.log",
+      "status": "pass",
+      "detail": "expected success"
+    },
+    {
+      "id": "fresh-rmaf",
+      "label": "fresh-rmaf",
+      "returncode": 0,
+      "elapsed_seconds": 5.645500791999439,
+      "log": "research/rmaf/bridge_review/leastness/address_semantics/replay-logs/fresh-rmaf.log",
+      "status": "pass",
+      "detail": "expected success"
+    },
+    {
+      "id": "tree-addresses",
+      "label": "tree-addresses",
+      "returncode": 0,
+      "elapsed_seconds": 0.40770987500036426,
+      "log": "research/rmaf/bridge_review/leastness/address_semantics/replay-logs/tree-addresses.log",
+      "status": "pass",
+      "detail": "expected success"
+    },
+    {
+      "id": "axioms",
+      "label": "axioms",
+      "returncode": 0,
+      "elapsed_seconds": 0.3041072920004808,
+      "log": "research/rmaf/bridge_review/leastness/address_semantics/replay-logs/axioms.log",
+      "status": "pass",
+      "detail": "expected success"
+    },
+    {
+      "id": "kernel-controls",
+      "label": "kernel-controls",
+      "returncode": 0,
+      "elapsed_seconds": 0.3493570840000757,
+      "log": "research/rmaf/bridge_review/leastness/address_semantics/replay-logs/kernel-controls.log",
+      "status": "pass",
+      "detail": "expected success"
+    },
+    {
+      "id": "MissingOccurrence",
+      "label": "MissingOccurrence",
+      "returncode": 1,
+      "elapsed_seconds": 0.31807012500030396,
+      "log": "research/rmaf/bridge_review/leastness/address_semantics/replay-logs/MissingOccurrence.log",
+      "status": "pass",
+      "detail": "expected rejection"
+    },
+    {
+      "id": "InvalidAmbient",
+      "label": "InvalidAmbient",
+      "returncode": 1,
+      "elapsed_seconds": 0.30228974999954517,
+      "log": "research/rmaf/bridge_review/leastness/address_semantics/replay-logs/InvalidAmbient.log",
+      "status": "pass",
+      "detail": "expected rejection"
+    },
+    {
+      "id": "DuplicateSelection",
+      "label": "DuplicateSelection",
+      "returncode": 1,
+      "elapsed_seconds": 0.3329985410000518,
+      "log": "research/rmaf/bridge_review/leastness/address_semantics/replay-logs/DuplicateSelection.log",
+      "status": "pass",
+      "detail": "expected rejection"
+    },
+    {
+      "id": "MalformedProof",
+      "label": "MalformedProof",
+      "returncode": 1,
+      "elapsed_seconds": 0.3001424579997547,
+      "log": "research/rmaf/bridge_review/leastness/address_semantics/replay-logs/MalformedProof.log",
+      "status": "pass",
+      "detail": "expected rejection"
+    }
+  ],
+  "status": "pass",
+  "provenance": "Author replay. RMAF source, Lean kernel, and address mathematics shared with construction. Python stack traversal shares no candidate Lean code, but its same-author controls are not a fresh nonauthor certification.",
+  "axiom_audit": {
+    "status": "pass",
+    "declarations": [
+      "mem_vertices_iff",
+      "mem_terminals_iff",
+      "LeafOccurrence.valid",
+      "LeafOccurrence.mem_leaves",
+      "mem_leaves_iff_occurrence",
+      "LeafOccurrence.label_unique",
+      "terminals_subset_vertices",
+      "terminal_nonempty",
+      "LeafOccurrence.address_unique",
+      "unique_occurrence_of_nodup",
+      "instance_left_nodup",
+      "instance_right_nodup",
+      "instance_left_mem_leaves_iff",
+      "instance_right_mem_leaves_iff",
+      "instance_left_unique_occurrence",
+      "instance_right_unique_occurrence",
+      "instance_left_occurrence_iff",
+      "instance_right_occurrence_iff",
+      "prependSide_nodup",
+      "side_append_nodup",
+      "vertices_nodup",
+      "terminals_nodup"
+    ],
+    "allowed": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "log_sha256": "79a67e6be9b18a96ebecbb266056a7e58df9713861034158dcf42e982b86bf53"
+  },
+  "scope": "Kernel-checked semantic vocabulary only; protocol grade CLOSED-UNVERIFIED pending parent nonauthor review and consumer trace."
+}

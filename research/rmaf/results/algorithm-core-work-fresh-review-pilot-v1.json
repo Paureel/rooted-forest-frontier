@@ -1,0 +1,301 @@
+{
+  "created_utc": "2026-10-15T08:40:53.599338+00:00",
+  "phase": "pilot",
+  "declared_controls": 3,
+  "completed": 3,
+  "clean_passed": 3,
+  "plants_declared": 8,
+  "plants_caught": 8,
+  "all_passed": true,
+  "elapsed_seconds": 0.0002635000000736909,
+  "source_sha256": "1cdd44a66ee70b62c9291cc6c41102a3951ac952959a973c46674a9f54da54b3",
+  "controls_sha256": "57728c6d799524d633a2c7fb80f140e805a8e36f58777fbf96834ade4da45144",
+  "freeze_sha256": "1ca0c3e79c159f3b5e8beebb0de9e5f04ee4ac8149d81639d910302c5dc287ec",
+  "scope": "finite structural ledger readiness only; no candidate inspected or machine-work acceptance",
+  "rows": [
+    {
+      "id": "empty-left-append-call-still-present",
+      "passed": true,
+      "diagnostics": [],
+      "report": {
+        "value": [
+          1,
+          2
+        ],
+        "events": [
+          {
+            "id": 0,
+            "kind": "append.literal.calls",
+            "amount": 1,
+            "argument_sizes": [
+              0,
+              2
+            ]
+          },
+          {
+            "id": 1,
+            "kind": "append.literal.left_cells",
+            "amount": 0,
+            "argument_sizes": [
+              0,
+              2
+            ]
+          }
+        ],
+        "counts": {
+          "append.literal.calls": 1,
+          "append.literal.left_cells": 0
+        },
+        "metadata": {
+          "input_label_max_bits": 1,
+          "input_budget_bits": 1,
+          "max_nat_operand_bits": 1,
+          "oracle_tariff": 1,
+          "unit": "declared structural source-envelope operations, not machine cycles"
+        }
+      },
+      "plants": [
+        {
+          "plant": {
+            "kind": "omit_kind",
+            "target": "append.literal.calls"
+          },
+          "caught": true,
+          "diagnostics": [
+            "work:append.literal.calls"
+          ],
+          "value_unchanged": true
+        },
+        {
+          "plant": {
+            "kind": "duplicate_record"
+          },
+          "caught": true,
+          "diagnostics": [
+            "duplicate/missing/noncontiguous event ID",
+            "exported counters differ from event records"
+          ],
+          "value_unchanged": true
+        }
+      ],
+      "elapsed_seconds": 4.854100006923545e-05
+    },
+    {
+      "id": "nonempty-left-append-work",
+      "passed": true,
+      "diagnostics": [],
+      "report": {
+        "value": [
+          10,
+          11,
+          12,
+          20
+        ],
+        "events": [
+          {
+            "id": 0,
+            "kind": "append.literal.calls",
+            "amount": 1,
+            "argument_sizes": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": 1,
+            "kind": "append.literal.left_cells",
+            "amount": 3,
+            "argument_sizes": [
+              3,
+              1
+            ]
+          }
+        ],
+        "counts": {
+          "append.literal.calls": 1,
+          "append.literal.left_cells": 3
+        },
+        "metadata": {
+          "input_label_max_bits": 1,
+          "input_budget_bits": 1,
+          "max_nat_operand_bits": 1,
+          "oracle_tariff": 1,
+          "unit": "declared structural source-envelope operations, not machine cycles"
+        }
+      },
+      "plants": [
+        {
+          "plant": {
+            "kind": "zero_kind",
+            "target": "append.literal.left_cells"
+          },
+          "caught": true,
+          "diagnostics": [
+            "work:append.literal.left_cells"
+          ],
+          "value_unchanged": true
+        },
+        {
+          "plant": {
+            "kind": "missing_record"
+          },
+          "caught": true,
+          "diagnostics": [
+            "duplicate/missing/noncontiguous event ID",
+            "exported counters differ from event records"
+          ],
+          "value_unchanged": true
+        }
+      ],
+      "elapsed_seconds": 2.9999999242136255e-05
+    },
+    {
+      "id": "combine-materializes-both-left-lists",
+      "passed": true,
+      "diagnostics": [],
+      "report": {
+        "value": {
+          "outputs": [
+            "L0",
+            "L1",
+            "L2",
+            "R0",
+            "R1"
+          ],
+          "refusals": [
+            "a",
+            "b",
+            "c"
+          ],
+          "visited": 5,
+          "childAttempts": 9,
+          "pruned": 13
+        },
+        "events": [
+          {
+            "id": 0,
+            "kind": "append.receipt_outputs.calls",
+            "amount": 1,
+            "argument_sizes": [
+              3,
+              2
+            ]
+          },
+          {
+            "id": 1,
+            "kind": "append.receipt_outputs.left_cells",
+            "amount": 3,
+            "argument_sizes": [
+              3,
+              2
+            ]
+          },
+          {
+            "id": 2,
+            "kind": "append.receipt_refusals.calls",
+            "amount": 1,
+            "argument_sizes": [
+              2,
+              1
+            ]
+          },
+          {
+            "id": 3,
+            "kind": "append.receipt_refusals.left_cells",
+            "amount": 2,
+            "argument_sizes": [
+              2,
+              1
+            ]
+          },
+          {
+            "id": 4,
+            "kind": "counter.add",
+            "amount": 1,
+            "argument_sizes": [
+              2,
+              2
+            ]
+          },
+          {
+            "id": 5,
+            "kind": "counter.add",
+            "amount": 1,
+            "argument_sizes": [
+              3,
+              3
+            ]
+          },
+          {
+            "id": 6,
+            "kind": "counter.add",
+            "amount": 1,
+            "argument_sizes": [
+              3,
+              3
+            ]
+          }
+        ],
+        "counts": {
+          "append.receipt_outputs.calls": 1,
+          "append.receipt_outputs.left_cells": 3,
+          "append.receipt_refusals.calls": 1,
+          "append.receipt_refusals.left_cells": 2,
+          "counter.add": 3
+        },
+        "metadata": {
+          "input_label_max_bits": 1,
+          "input_budget_bits": 1,
+          "max_nat_operand_bits": 3,
+          "oracle_tariff": 1,
+          "unit": "declared structural source-envelope operations, not machine cycles"
+        }
+      },
+      "plants": [
+        {
+          "plant": {
+            "kind": "zero_kind",
+            "target": "append.receipt_outputs.left_cells"
+          },
+          "caught": true,
+          "diagnostics": [
+            "work:append.receipt_outputs.left_cells"
+          ],
+          "value_unchanged": true
+        },
+        {
+          "plant": {
+            "kind": "zero_kind",
+            "target": "append.receipt_refusals.left_cells"
+          },
+          "caught": true,
+          "diagnostics": [
+            "work:append.receipt_refusals.left_cells"
+          ],
+          "value_unchanged": true
+        },
+        {
+          "plant": {
+            "kind": "duplicate_output"
+          },
+          "caught": true,
+          "diagnostics": [
+            "value:outputs"
+          ],
+          "value_unchanged": false
+        },
+        {
+          "plant": {
+            "kind": "missing_output"
+          },
+          "caught": true,
+          "diagnostics": [
+            "value:outputs"
+          ],
+          "value_unchanged": false
+        }
+      ],
+      "elapsed_seconds": 0.00011304200052109081
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3715103750000708,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.32243758299955516,
+      "resource_stop": null,
+      "log_sha256": "33220b901390314c86dc95fcd10ca39037221a4f9affb9aedf68dc724a290212"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.001630374999876949,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Hard2OutputGenerationSource",
+      "source_sha256": "2e09508f570cee038b1792dd847262c8395b60f8b0a3eec3dda43e50132549a3",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.9263563340000474,
+      "resource_stop": null,
+      "log_sha256": "db6bc44ede3a4a9da2c9f856aa5f346824686a8106557715cc643192e7132c0b"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Hard2OutputGenerationSource', 'al.value`\\n  \u2022 `Lean.LeanOption.value`\\n  \u2022 `Lean.LocalDecl.value`\\n  \u2022 `Lean.OpaqueVal.value`\\n  \u2022 `Lean.Ptr.value`\\n  \u2022 `Lean.TheoremVal.value`\\n  \u2022 `Lean.Elab.BodyProcessedSnapshot.value`\\n  \u2022 `Lean.Elab.CustomInfo.value`\\n  \u2022 `Lean.Elab.DefView.value`\\n  \u2022 `Lean.Elab.InlayHintLabelPart.value`\\n  \u2022 `Lean.Elab.PreDefinition.value`\\n  \u2022 `Lean.KeyedDeclsAttribute.AttributeEntry.value`\\n  \u2022 `Lean.Lsp.CompletionItemKind.value`\\n  \u2022 `Lean.Lsp.InlayHintLabelPart.value`\\n  \u2022 `Lean.Lsp.MarkupContent.value`\\n  \u2022 `Lean.Lsp.ProgressParams.value`\\n  \u2022 `Lean.Lsp.SnippetString.value`\\n  \u2022 `Lean.Meta.Hypothesis.value`\\n  \u2022 `EarlyLocalWork.BestMeasured.value`\\n  \u2022 `EarlyLocalWork.ChoiceMeasured.value`\\n  \u2022 `FullSourceWork.PrefixReceipt.value`\\n  \u2022 `SourceExecution.value`\\n  \u2022 `OptimizerLocalWork.ScanMeasured.value`\\n  \u2022 `RecoveryLocalWork.Built.value`\\n  \u2022 `RecoveryLocalWork.InitialMeasured.value`\\n  \u2022 `WorkIntegration.Hard2Receipt.value`\\n  \u2022 `BothBad.WorkProfile.value`\\n  \u2022 `FinalCutRecovery.ColorMeasured.value`\\n  \u2022 `FinalCutRecovery.RecoveryMeasured.value`\\n  \u2022 `PaidQueries.MeterReceipt.value`\\n  \u2022 `Rule5ActualTrace.CommonReceipt.value`\\n  \u2022 `Rule5ActualTrace.Receipt.value`\\n  \u2022 `Rule5LocalWork.Measured.value`\\n  \u2022 `CheckReceipt.value`\\n  \u2022 `Rule5PrefixLocalWork.Measured.value`\\n  \u2022 `Rule5SelectedLocalWork.ChildrenReceipt.value`\\n  \u2022 `Rule5SelectedLocalWork.ForestReceipt.value`\\n  \u2022 `Charged.value`\\n  \u2022 `Lean.Compiler.LCNF.Decl.value`\\n  \u2022 `Lean.Compiler.LCNF.FunDecl.value`\\n  \u2022 `Lean.Compiler.LCNF.LetDecl.value`\\n  \u2022 `Lean.Data.AC.Variable.value`\\n  \u2022 `Lean.Elab.ConfigEval.ConfigItem.value`\\n  \u2022 `Lean.Elab.PartialFixpoint.EqnInfo.value`\\n  \u2022 `Lean.Elab.Structural.EqnInfo.value`\\n  \u2022 `Lean.Elab.Tactic.ConfigItemView.value`\\n  \u2022 `Lean.Elab.Term.LetIdDeclView.value`\\n  \u2022 `Lean.Elab.WF.EqnInfo.value`\\n  \u2022 `Lean.Linter.CodeQuality.Entry.value`\\n  \u2022 `Lean.Meta.Closure.MkValueTypeClosureResult.value`\\n  \u2022 `Std.Http.Chunk.ExtensionName.value`\\n  \u2022 `Std.Http.Chunk.ExtensionValue.value`\\n  \u2022 `Std.Http.Header.Name.value`\\n  \u2022 `Std.Http.Header.Value.value`\\n  \u2022 `Std.Http.URI.Port.value`\\n  \u2022 `Lean.Compiler.LCNF.Simp.InlineCandidateInfo.value`\\n  \u2022 `Lean.Meta.Tactic.TryThis.SuggestionStyle.value`\\n  \u2022 `Lean.Meta.Tactic.BVDecide.Normalize.Hyp.value`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2OutputGenerationSource.lean:51:10: error(lean.invalidField): Invalid field notation: Type of\\n  good\\nis not known; cannot resolve field `work`\\n\\nHint: Consider replacing the field projection with a call to one of the following:\\n  \u2022 `EarlyLocalWork.BestMeasured.work`\\n  \u2022 `EarlyLocalWork.ChoiceMeasured.work`\\n  \u2022 `SourceExecution.work`\\n  \u2022 `OptimizerLocalWork.ScanMeasured.work`\\n  \u2022 `RecoveryLocalWork.Built.work`\\n  \u2022 `RecoveryLocalWork.InitialMeasured.work`\\n  \u2022 `Measured.work`\\n  \u2022 `FinalCutRecovery.ColorMeasured.work`\\n  \u2022 `FinalCutRecovery.RecoveryMeasured.work`\\n  \u2022 `Rule5LocalWork.Measured.work`\\n  \u2022 `CheckReceipt.work`\\n  \u2022 `Rule5PrefixLocalWork.Measured.work`\\n  \u2022 `Charged.work`\\n  \u2022 `Lean.Elab.Tactic.VCGen.work`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2OutputGenerationSource.lean:54:29: error(lean.unknownIdentifier): Unknown identifier `restrictionMeter_value`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2OutputGenerationSource.lean:54:12: warning: declaration uses `sorry`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2OutputGenerationSource.lean:54:52: warning: This simp argument is unused:\\n  pairDescendantsMeter_value\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp only [edgeOutputsMeter, restrictionMeter_value, Hard2PaidLocal.edgeOutputs]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2OutputGenerationSource.lean:77:84: error: unsolved goals\\ncase h_1\\nS T : Tree\\nc : CherryBranching.Candidate\\nq : Nat\\nout : Result\\nx\u271d : List RMAF.Vertex\\np\u271d r\u271d : RMAF.Vertex\\nheq\u271d : c.originalCuts = [p\u271d, r\u271d]\\n\u22a2 caseOutputs S T (leftParent S p\u271d) (rightParent S r\u271d) (rootParent S p\u271d r\u271d) q out =\\n    match c.originalCuts with\\n    | [p, r] => caseOutputs S T (leftParent S p) (rightParent S r) (rootParent S p r) q out\\n    | x => []\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2OutputGenerationSource.lean:83:71: error(lean.unknownIdentifier): Unknown identifier `OrdinaryDispatch.WorkRecursion.OrdinaryWork`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2OutputGenerationSource.lean:88:81: error(lean.unknownIdentifier): Unknown identifier `OrdinaryDispatch.WorkRecursion.OrdinaryWork`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2OutputGenerationSource.lean:91:7: warning: declaration uses `sorry`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2OutputGenerationSource.lean:92:81: error(lean.unknownIdentifier): Unknown identifier `OrdinaryDispatch.WorkRecursion.OrdinaryWork`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2OutputGenerationSource.lean:95:1: error(lean.unknownIdentifier): Unknown identifier `OrdinaryDispatch.WorkRecursion.queryWork`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2OutputGenerationSource.lean:98:12: warning: declaration uses `sorry`\\n'))"
+}

@@ -1,0 +1,115 @@
+{
+  "id": "triple-family",
+  "title": "Labelled region-family G2 continuation",
+  "status": "conditional",
+  "summary": "Fresh reviews accept universal normalization, rooted open geometry, three sound assembly operations and a support-preserving forward representation map with exact index count and cost. Universal merge, child restriction and full G2 remain open.",
+  "metrics": {
+    "author_control_rows": 17,
+    "adversary_positive_controls": 11,
+    "adversary_corruptions_caught": 6,
+    "adversary_family_records": 119,
+    "author_audited_declarations": 50,
+    "author_audited_theorems": 47,
+    "author_audited_definitions": 3,
+    "fresh_normalization_rows": 17,
+    "fresh_composition_graph_cases": 16,
+    "fresh_composition_wrong_results_caught": 16,
+    "fresh_transport_stages": 12,
+    "fresh_transport_queries": 11,
+    "fresh_transport_clean_fixtures": 2,
+    "fresh_transport_wrong_costs_caught": 2,
+    "final_prose_required_repairs": 0
+  },
+  "claims": [
+    {
+      "id": "family-correspondence",
+      "label": "Cost-preserving family correspondence",
+      "status": "open",
+      "detail": "Universal normalization and forward representation into finite indexed families are freshly reviewed; three sound assembly operations are reviewed. Universal merge, live child restriction/reindexing and full four-transition/executable correspondence remain open."
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "normalization",
+      "label": "Labelled-family normalization",
+      "status": "checked",
+      "detail": "Fresh review accepts the constructed retained family, exact block preservation, disjointness/coverage, closed cost and labelled-block count.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/triple_dp/family/FamilyTrim.lean",
+        "research/rmaf/results/triple-family-lean-v1.json"
+      ]
+    },
+    {
+      "id": "open-hull-geometry",
+      "label": "Least hull equals explicit rooted paths",
+      "status": "checked",
+      "detail": "Fresh composition review accepts least-hull/root-path equality and exact child occupancy. Family restriction/charging is not concluded by vertex exclusion.",
+      "depends_on": [
+        "normalization"
+      ],
+      "artifacts": [
+        "research/rmaf/triple_dp/family/FamilyGeometry.lean",
+        "research/rmaf/results/triple-family-lean-geometry-v1.json"
+      ]
+    },
+    {
+      "id": "forward-representation",
+      "label": "Retained family to finite indexed assembly family",
+      "status": "checked",
+      "detail": "Fresh review accepts actual functions retaining their input supports, with exact finite counts and costs. Normalized existence exports cost/count equality. Inverse and full transition correspondence remain open.",
+      "depends_on": [
+        "normalization",
+        "open-hull-geometry"
+      ],
+      "artifacts": [
+        "research/rmaf/triple_dp/family/FamilyTransport.lean",
+        "research/rmaf/results/triple-family-lean-transport-v2.json",
+        "research/rmaf/results/triple-family-transport-review-replay.json"
+      ]
+    },
+    {
+      "id": "three-assembly-operations",
+      "label": "Close both and one-sided extensions",
+      "status": "checked",
+      "detail": "Fresh review accepts actual finite indexed families and exact tolls for closeBoth, extendLeft and extendRight; universal merge and reverse restriction remain open.",
+      "depends_on": [],
+      "artifacts": [
+        "research/rmaf/triple_dp/family/cost_route/FamilyAssembly.lean",
+        "research/rmaf/triple_dp/family/composition_review/REPORT.md"
+      ]
+    }
+  ],
+  "artifacts": [
+    "research/rmaf/triple_dp/FAMILY-TARGET.md",
+    "research/rmaf/triple_dp/family/WORK.md",
+    "research/rmaf/triple_dp/family/INTERFACE.md",
+    "research/rmaf/triple_dp/family/controls.json",
+    "research/rmaf/triple_dp/family/controls-amendment-v2.json",
+    "research/rmaf/triple_dp/family/FamilyModel.lean",
+    "research/rmaf/triple_dp/family/FamilyTrim.lean",
+    "research/rmaf/triple_dp/family/FamilyGeometry.lean",
+    "research/rmaf/triple_dp/family/REPORT.md",
+    "research/rmaf/triple_dp/family/README.md",
+    "research/rmaf/triple_dp/family/audit_family.py",
+    "research/rmaf/results/triple-family-controls.json",
+    "research/rmaf/results/triple-family-controls-amendment-v2.json",
+    "research/rmaf/results/triple-family-adversary-v1.json",
+    "research/rmaf/results/triple-family-lean-v1.json",
+    "research/rmaf/results/triple-family-lean-geometry-v1.json",
+    "research/rmaf/triple_dp/family/FamilyTransport.lean",
+    "research/rmaf/triple_dp/family/TransportControls.lean",
+    "research/rmaf/results/triple-family-lean-transport-v2.json",
+    "research/rmaf/triple_dp/family/fresh_review/REPORT.md",
+    "research/rmaf/triple_dp/family/composition_review/REPORT.md",
+    "research/rmaf/results/triple-family-integration-integrity-v1.json",
+    "research/rmaf/triple_dp/family/NEXT.md",
+    "research/rmaf/triple_dp/family/composition_review/transport_review/REPORT.md",
+    "research/rmaf/results/triple-family-transport-review-replay.json",
+    "research/rmaf/results/triple-family-fresh-lean.json",
+    "research/rmaf/results/triple-family-composition-review-replay.json",
+    "research/rmaf/triple_dp/family/source-manifest.json",
+    "research/rmaf/triple_dp/family/composition_review/final_prose/REPORT.md",
+    "research/rmaf/results/triple-family-final-prose-review.json"
+  ]
+}

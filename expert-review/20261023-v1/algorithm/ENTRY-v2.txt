@@ -1,0 +1,9 @@
+Exact canonical entry convention for the mathematical algorithm, version2
+
+OPTIMIZE_WORD takes exactly ONE independent natural input U(T,S). Its canonical initial state has the raw word in register8, empty heap/frontier, and every other register zero, in particular register4=0. It then executes the published DECODE with q=0 and invokes OPTIMIZE(T,S). There is no independent optimizer budget word. A constant-zero setup write, if explicitly emitted, is charged inside the fixed initialization operations. No arbitrary ignored budget word is copied/read by this entry.
+
+QUERY_WORD is a distinct entry taking U(T,S) and q in register4 and executing the published saved-budget COPY and DECODE. Its separate cost statement retains actual q<=Q. The optimizer theorem quantifies ONLY over canonical OPTIMIZE_WORD inputs U(T,S), with its internally determined trial history and Q=k-1 an analysis variable, not an input or promise.
+
+The sentence in base ALGORITHM-v1.md that any supplied q word is not a search bound was ambiguous when read with the common DECODE signature. This exact entry convention clarifies that OPTIMIZE has no such independent q datum; it does not assume a bound q<=k-1 on an arbitrary supplied input. The original algorithm text remains frozen. The prior standalone mathematical decoder argument already specified supplied optimization budget0 before this review; its proof is not released by this computation-only convention. No fee/opcode/layout or numeric executable change is licensed. Challenge this canonical entry convention before any later author-argument review.
+
+Register locator erratum: the v1 clarification transcribed register0. The frozen representation places U in r8; this v2 uses r8 directly, with no additional input move or changed decoder. Budget register4=0 and the one-input OPTIMIZE signature are unchanged. Original v1 remains preserved.

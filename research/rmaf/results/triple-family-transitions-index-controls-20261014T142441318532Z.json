@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "scope": "finite index fixtures only, author controls",
+  "source_sha256": "5da13f5339d6540fa9986d971c863f97854748be1ad563582c73016c7d9f2f92",
+  "controls_sha256": "79b3d2d0109044b94547cab61be15b34e954596710a3fb840a519e68cc2bb209",
+  "counts": {
+    "positive": 5,
+    "malformed": 3,
+    "wrong_result": 4
+  },
+  "expected_counts": {
+    "positive": 5,
+    "malformed": 3,
+    "wrong_result": 4
+  },
+  "rows": [
+    {
+      "kind": "positive",
+      "id": "singleton",
+      "pass_": true,
+      "actual": {
+        "indices": [
+          "M"
+        ],
+        "blocks": 1,
+        "closed": 0
+      }
+    },
+    {
+      "kind": "positive",
+      "id": "left-extra",
+      "pass_": true,
+      "actual": {
+        "indices": [
+          "M",
+          "L:c"
+        ],
+        "blocks": 2,
+        "closed": 1
+      }
+    },
+    {
+      "kind": "positive",
+      "id": "same-name-collision",
+      "pass_": true,
+      "actual": {
+        "indices": [
+          "M",
+          "L:c",
+          "R:c"
+        ],
+        "blocks": 3,
+        "closed": 2
+      }
+    },
+    {
+      "kind": "positive",
+      "id": "asymmetric",
+      "pass_": true,
+      "actual": {
+        "indices": [
+          "M",
+          "L:a",
+          "L:c",
+          "R:e"
+        ],
+        "blocks": 4,
+        "closed": 3
+      }
+    },
+    {
+      "kind": "positive",
+      "id": "boundary-middle",
+      "pass_": true,
+      "actual": {
+        "indices": [
+          "M",
+          "L:a",
+          "L:b",
+          "R:e"
+        ],
+        "blocks": 4,
+        "closed": 3
+      }
+    },
+    {
+      "kind": "malformed",
+      "id": "duplicate-left",
+      "pass_": true,
+      "diagnostic": "duplicate source index",
+      "clean_twin_pass": true
+    },
+    {
+      "kind": "malformed",
+      "id": "absent-left-boundary",
+      "pass_": true,
+      "diagnostic": "designated index absent",
+      "clean_twin_pass": true
+    },
+    {
+      "kind": "malformed",
+      "id": "absent-right-boundary",
+      "pass_": true,
+      "diagnostic": "designated index absent",
+      "clean_twin_pass": true
+    },
+    {
+      "kind": "wrong_result",
+      "id": "charge-open",
+      "actual": 0,
+      "wrong": 1,
+      "clean": 0,
+      "pass_": true
+    },
+    {
+      "kind": "wrong_result",
+      "id": "retain-two-open",
+      "actual": 1,
+      "wrong": 2,
+      "clean": 1,
+      "pass_": true
+    },
+    {
+      "kind": "wrong_result",
+      "id": "coalesce-same-name",
+      "actual": 3,
+      "wrong": 2,
+      "clean": 3,
+      "pass_": true
+    },
+    {
+      "kind": "wrong_result",
+      "id": "double-charge",
+      "actual": 3,
+      "wrong": 6,
+      "clean": 3,
+      "pass_": true
+    }
+  ],
+  "planted_broken_comparator_caught": true,
+  "seconds": 0.00012637500003620517,
+  "passed": true
+}

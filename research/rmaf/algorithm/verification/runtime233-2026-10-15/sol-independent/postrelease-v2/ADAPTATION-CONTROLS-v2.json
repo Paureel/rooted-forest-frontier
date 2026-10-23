@@ -1,0 +1,26 @@
+{
+ "version":2,"credit":"POSTCONTACT_CONTINUATION_ZERO_NEW_BLIND_CREDIT",
+ "optimizer":{"n":4,"success":2,"works":[2,3,5,7],"preflight":7,"per_trial":11,"finish":13,"recovery":17,"trials":[0,1,2],"failures":2,"queries":3,"recoveries":1,"components":3,"query_work":10,"wrapper_work":53,"total":80,"drop_failures_claim":75,"recover_each_trial_claim":114},
+ "offset_scan":{"start":3,"fuel":4,"success":5,"works":{"3":7,"4":11,"5":13},"preflight":2,"per_trial":3,"finish":5,"recovery":17,"trials":[3,4,5],"total":64},
+ "all_fail":{"start":0,"fuel":3,"trials":[0,1,2],"query_work":10,"total":63},
+ "zero_success":{"n":1,"success":0,"trials":[0],"components":1,"total":50},
+ "last_success":{"n":4,"success":3,"trials":[0,1,2,3]},
+ "decision_sum":{"c":[233,100],"q":3,"constant_P":5,"work":[5,11,27,63],"expected_sum":106,"bound":[12649337,50000]},
+ "checker":{"labels":[0,1,2],"invalid_bounded_forest":[[0,0],[2]],"N":3,"flatten_work":31,"count_work":13,"all_counts_work":157,"cached_flatten_claim":95,"first_reject_only_claim":53,"hostile_leaf_count":1,"hostile_payload_labels":5},
+ "common":{"FM":[[1],[1]],"FN":[[2],[2]],"X":[1],"Y":[2],"owner_occurrences":4,"distinct_materialized_values":1,"retained_tail_candidates":[1,5],"checker_work":2,"best_work":24,"omit_retained_tail_claim":19,"input_L":3,"input_max":7,"fresh_max":9,"safe_power":5},
+ "prefix":{"duplicate_list":[0,1,1],"duplicate_work":7,"duplicate_head_contains_ran":false,"clean_list":[0,1,2],"clean_work":13,"missing_contains_work":7,"proper_false_work":7,"guard_false_work":8,"earlier_strict_let_work":5,"strict_let_plus_guard":13,"scalar_fee":5,"scaled_guard_work":40,"proper_polynomial_N3":606,"prefix_polynomial_N3":777},
+ "source_sentinels":[
+  {"file":"budget_optimization/BOScan.lean","literal":"let answer := query start"},
+  {"file":"budget_optimization/BOScan.lean","literal":"⟨tail.selected,(start,answer)::tail.trials⟩"},
+  {"file":"budget_optimization/BOOptimize.lean","literal":"scan (fun q => FastOrdinary.solve q T S) 0 (leaves T).length"},
+  {"file":"budget_optimization/BOCost.lean","literal":"preflight+perTrial*r.search.trials.length+finishCharge"},
+  {"file":"budget_optimization/BOOptimize.lean","literal":"⟨r,answer,[(F,answer)]⟩"},
+  {"file":"forest_check_correspondence/CheckPrimitives.lean","literal":"let counts:=meterAll (fun x=>let cells:=meterFlatten F;let count:=meterCount x cells.value;"},
+  {"file":"rule5_local_work/CheckedMerge.lean","literal":"(r.value.map List.length).getD 0"},
+  {"file":"ordinary_work_integration/Hard2SourceBill.lean","literal":"(fun call hc=>combined_queries_proper actual proper0 hard selected call hc)"},
+  {"file":"ordinary_work_integration/Hard2Frontier.lean","literal":"calls.flatMap fun call=>frontier actual call.target call.sources call.budget"},
+  {"file":"rule5_prefix_local_work/PrefixScans.lean","literal":"| x::xs=>let r:=nodupMeter xs"}
+ ],
+ "expected_positives":20,"expected_corruptions":25,
+ "scope":"Literal finite source-accounting models, synthetic payload/fee controls and omission detectors. No author auditor/oracle execution, actual tree census, new blind credit, machine cost proof, or refutation of qualified source statements. Strict-let example is an omitted-premise control, not an asserted fee for the unfinished pendant body."
+}

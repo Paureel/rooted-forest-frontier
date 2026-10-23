@@ -1,0 +1,116 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:36:120: warning: This simp argument is unused:
+  List.map_map
+
+Hint: Omit it from the simp argument list.
+  [apply] simp_all [cherriesBits, Universal233.CherryBranching.cherries, treeValue, cherryValue, labelValue,
+    Function.comp_def]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:36:133: warning: This simp argument is unused:
+  Function.comp_def
+
+Hint: Omit it from the simp argument list.
+  [apply] simp_all [cherriesBits, Universal233.CherryBranching.cherries, treeValue, cherryValue, labelValue,
+    List.map_map]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:66:119: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  e ≥ 0
+  c ≥ 0
+  b ≥ 0
+  b - c - e ≥ 3
+  a ≥ 0
+  a - b ≥ 0
+where
+ a := ↑(treeNodes (treeValue (u.node v)))
+ b := ↑(List.length d.parent)
+ c := ↑(treeNodes (treeValue u))
+ e := ↑(treeNodes (treeValue v))
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:72:116: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  f ≥ 0
+  e ≥ 0
+  c ≥ 0
+  b ≥ 0
+  b - c - e - f ≥ 2
+  a ≥ 0
+  a - b ≥ 0
+where
+ a := ↑(treeNodes (treeValue (u.node v)))
+ b := ↑(List.length d.parent)
+ c := ↑(treeNodes (treeValue u))
+ e := ↑(treeNodes (treeValue v))
+ f := ↑(treeNodes (treeValue r))
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:63:70: warning: This simp argument is unused:
+  cherriesBits
+
+Hint: Omit it from the simp argument list.
+  [apply] simp at hd
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:119:4: error: Tactic `rfl` failed: The left-hand side
+  Option.map candidateValue { value := some c, work := 16 }.value
+is not definitionally equal to the right-hand side
+  match cutClass p c.originalCuts with
+  | true => some { parent := c.parent, a := decode c.a, b := decode c.b, originalCuts := c.originalCuts }
+  | false => List.find? (fun c => cutClass p c.originalCuts) (List.map candidateValue cs)
+
+case cons.isTrue
+p : Universal233.CherryBranching.Priority
+c : CandidateBits
+cs : List CandidateBits
+ih :
+  Option.map candidateValue (findClass p cs).value =
+    List.find? (fun c => cutClass p c.originalCuts) (List.map candidateValue cs)
+h✝ : cutClass p c.originalCuts = true
+⊢ Option.map candidateValue { value := some c, work := 16 }.value =
+    match cutClass p c.originalCuts with
+    | true => some { parent := c.parent, a := decode c.a, b := decode c.b, originalCuts := c.originalCuts }
+    | false => List.find? (fun c => cutClass p c.originalCuts) (List.map candidateValue cs)
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:120:4: error: Type mismatch
+  ih
+has type
+  Option.map candidateValue (findClass p cs).value =
+    List.find? (fun c => cutClass p c.originalCuts) (List.map candidateValue cs)
+but is expected to have type
+  Option.map candidateValue { value := (findClass p cs).value, work := (findClass p cs).work + 16 }.value =
+    match cutClass p c.originalCuts with
+    | true => some { parent := c.parent, a := decode c.a, b := decode c.b, originalCuts := c.originalCuts }
+    | false => List.find? (fun c => cutClass p c.originalCuts) (List.map candidateValue cs)
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredCherryClassifier.lean:156:117: error: unsolved goals
+T S : Tree
+⊢ (match
+      List.find? (fun c => c.originalCuts.isEmpty)
+        (Universal233.CherryBranching.candidates (treeValue T) (treeValue S)) with
+    | some c => some (Universal233.CherryBranching.Priority.common, c)
+    | none =>
+      match
+        List.find? (fun c => c.originalCuts.length == 1)
+          (Universal233.CherryBranching.candidates (treeValue T) (treeValue S)) with
+      | some c => some (Universal233.CherryBranching.Priority.one, c)
+      | none =>
+        match
+          List.find? (fun c => decide (3 ≤ c.originalCuts.length))
+            (Universal233.CherryBranching.candidates (treeValue T) (treeValue S)) with
+        | some c => some (Universal233.CherryBranching.Priority.high, c)
+        | none =>
+          Option.map (fun c => (Universal233.CherryBranching.Priority.hard2, c))
+            (Universal233.CherryBranching.candidates (treeValue T) (treeValue S)).head?) =
+    match
+      List.find? (fun c => c.originalCuts.isEmpty)
+        (Universal233.CherryBranching.candidates (treeValue T) (treeValue S)) with
+    | some c => some (Universal233.CherryBranching.Priority.common, c)
+    | none =>
+      match
+        List.find? (fun c => c.originalCuts.length == 1)
+          (Universal233.CherryBranching.candidates (treeValue T) (treeValue S)) with
+      | some c => some (Universal233.CherryBranching.Priority.one, c)
+      | none =>
+        match
+          List.find? (fun c => decide (3 ≤ c.originalCuts.length))
+            (Universal233.CherryBranching.candidates (treeValue T) (treeValue S)) with
+        | some c => some (Universal233.CherryBranching.Priority.high, c)
+        | none =>
+          Option.map (fun c => (Universal233.CherryBranching.Priority.hard2, c))
+            (Universal233.CherryBranching.candidates (treeValue T) (treeValue S)).head?

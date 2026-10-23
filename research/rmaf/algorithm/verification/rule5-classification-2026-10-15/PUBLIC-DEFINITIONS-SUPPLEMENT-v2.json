@@ -1,0 +1,58 @@
+{
+  "role": "Definition-only whitelist supplement requested by prerelease reviewer; no author theorem, proof, fixtures, receipt or auditor supplied.",
+  "supplements": "PUBLIC-DEFINITIONS-v1.json",
+  "authorization": "Only literal excerpts in this capsule are whitelisted before READY and exact root RELEASE; original modules themselves remain barred.",
+  "definitions": [
+    {
+      "original_source": "research/rmaf/algorithm/universal233/cherry_branching/Selector.lean",
+      "original_sha256": "a4063e0ffe94a6d387aee8a0440f80ea160642fb1bb22d00135c4ab89e1ff664",
+      "lines_1_based": [
+        1,
+        12
+      ],
+      "excerpt_sha256": "097085e2cffbd22e8c4bb9b9ef09b788dcf559f34ed7a17082434a61db06d975",
+      "excerpt": "import Partition\nnamespace Universal233.CherryBranching\nopen RMAF CoreGraph Integration VertexGeometry CutRealization HardParent\n\n/-- Enumerate each original cherry once, including its original parent address.\nThe leaf order is the actual child order; no sorting/root sentinel is inserted. -/\ndef cherries : Tree \u2192 List (RMAF.Vertex \u00d7 Nat \u00d7 Nat)\n | .leaf _ => []\n | .node (.leaf a) (.leaf b) => [([],a,b)]\n | .node l r =>\n   (cherries l).map (fun (p,a,b) => (false::p,a,b)) ++\n   (cherries r).map (fun (p,a,b) => (true::p,a,b))\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/cherry_branching/Selector.lean",
+      "original_sha256": "a4063e0ffe94a6d387aee8a0440f80ea160642fb1bb22d00135c4ab89e1ff664",
+      "lines_1_based": [
+        63,
+        71
+      ],
+      "excerpt_sha256": "bb22b035739667d449abb4e4cc7f93708b151cd7c5c16f204560e3b94e6e5b8f",
+      "excerpt": "structure Candidate where\n parent : RMAF.Vertex\n a : Nat\n b : Nat\n originalCuts : List RMAF.Vertex\n deriving Repr, DecidableEq\n\ndef candidates (T S : Tree) : List Candidate :=\n (cherries T).map fun (p,a,b) => \u27e8p,a,b,cuts S a b\u27e9\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/cherry_branching/Ordinary.lean",
+      "original_sha256": "408915d71a924e74773e6ac00d8c411f190b91e80363240c95be41f9269bec75",
+      "lines_1_based": [
+        1,
+        14
+      ],
+      "excerpt_sha256": "bd38cc9563520a0e1d2b0de518d9335acc8d5cc694029dac52c28c5a4f7176df",
+      "excerpt": "import Safety\nnamespace Universal233.CherryBranching\nopen RMAF CoreGraph Integration VertexGeometry CutRealization HardParent\n\n/-- Original child edges, in original vertex traversal order. No upward edge. -/\ndef cuts (S : Tree) (a b : Nat) := pendantOriginal S a b\n\ndef coreLabels (S : Tree) (a b : Nat) : List Nat :=\n (leaves S).filter fun x => !((cuts S a b).map (subtreeLabels S)).flatten.contains x\n\ndef pendantPartition (S : Tree) (a b : Nat) : List (List Nat) :=\n (cuts S a b).map (subtreeLabels S) ++ [coreLabels S a b]\n\ndef componentRoots (S : Tree) (a b : Nat) : List RMAF.Vertex := cuts S a b ++ [[]]\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/hard_parent_refinement/Executable.lean",
+      "original_sha256": "2032dcbe024fa0c892a426314f548c4c3da6d04e5ebc2161ed23c7fbc5dc6deb",
+      "lines_1_based": [
+        1,
+        20
+      ],
+      "excerpt_sha256": "115654702220f7f63b54dfcec07f660c5530838fa13de03bd8605666b413f6ee",
+      "excerpt": "import RMAF\n\n/-! One-shot executable original-source controls. The vertices are unsuppressed\naddresses; a cut records the child of its ORIGINAL directed edge. -/\nnamespace Universal233.HardParent\nopen RMAF\n\ndef vertices : Tree \u2192 List Vertex\n  | .leaf _ => [[]]\n  | .node l r => [] :: (prependSide false (vertices l) ++ prependSide true (vertices r))\n\ndef pendantOriginal (S : Tree) (a b : Nat) : List Vertex :=\n  (vertices S).filter fun v => !v.isEmpty &&\n    (minimalVertices [a,b] S).contains v.dropLast &&\n    !(minimalVertices [a,b] S).contains v\n\ndef subtreeLabels : Tree \u2192 Vertex \u2192 List Nat\n  | S, [] => leaves S\n  | .leaf _, _ :: _ => []\n  | .node l r, s :: v => subtreeLabels (if s then r else l) v\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/output_state/OutputDefs.lean",
+      "original_sha256": "322709d668f368d041c1d3fdbe09296d23c0a61d6c995e2a72e72ad4e59a82f6",
+      "lines_1_based": [
+        1,
+        10
+      ],
+      "excerpt_sha256": "dde889a0fbe7fca110aa8c6697c72dcc292f494be9cdfd211581308997e82d74",
+      "excerpt": "import GroupPriority\n\n/-! One-shot literal ordinary-restriction materializer for current source output.\nMissing restrictions are filtered operationally; checked nonempty Q proves that\nnone is missing. No default tree or assumed graph/cost field is used. -/\nnamespace OutputState\nopen RMAF RestrictionBridge ForestState\n\ndef sourceForest (S : Tree) (Q : List (List Nat)) : List Tree :=\n  Q.filterMap (fun U => restrict U S)\n"
+    }
+  ],
+  "meaning": "False/true addresses select original left/right child edges. vertices is original preorder; pendantOriginal filters nonroot child addresses whose parent lies in the literal a,b minimal vertex hull and whose child does not. pendantPartition enumerates those entire original subtrees followed by the leaf complement. sourceForest filterMaps ordinary unary-suppressed restrict for each literal partition block. These are definitions, not acceptance of validity/coverage/cost/algorithm claims."
+}

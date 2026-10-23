@@ -1,0 +1,49 @@
+import PolynomialBitBound
+namespace GenericForest.BinaryProvider
+open Universal233.WholeSourceWork GenericForest.ScalarBits
+abbrev Bits:=List Bool
+abbrev Capacity:=List Unit
+
+/-- Runtime allocation follows the actual supplied capacity spine. -/
+def zeroRegister : Capacity→Charged Bits
+ | []=>⟨[],1⟩
+ | _::cs=>let r:=zeroRegister cs;⟨false::r.value,r.work+4⟩
+def takeRegister : Capacity→Bits→Charged Bits
+ | [],_=>⟨[],1⟩
+ | _::_,[]=>⟨[],1⟩
+ | _::cs,b::bs=>let r:=takeRegister cs bs;⟨b::r.value,r.work+4⟩
+
+@[simp] theorem zeroRegister_value (C : Capacity) : (zeroRegister C).value=List.replicate C.length false := by
+ induction C <;> simp_all [zeroRegister,List.replicate_succ]
+@[simp] theorem zeroRegister_work (C : Capacity) : (zeroRegister C).work=4*C.length+1 := by
+ induction C <;> simp only [zeroRegister,List.length_nil,List.length_cons] at * <;> omega
+@[simp] theorem takeRegister_value (C : Capacity) (xs : Bits) : (takeRegister C xs).value=xs.take C.length := by
+ induction C generalizing xs with
+ | nil=>simp [takeRegister]
+ | cons c cs ih=>cases xs <;> simp [takeRegister,ih]
+theorem takeRegister_work (C : Capacity) (xs : Bits) : (takeRegister C xs).work≤4*(C.length+1) := by
+ induction C generalizing xs with
+ | nil=>simp [takeRegister]
+ | cons c cs ih=>
+  cases xs with
+  | nil=>simp only [takeRegister,List.length_cons];omega
+  | cons b bs=>have h:=ih bs;simp only [takeRegister,List.length_cons];omega
+
+def addRegister (C : Capacity) (xs ys : Bits) : Charged Bits :=
+ let a:=addBits xs ys;let r:=takeRegister C a.value
+ ⟨r.value,a.work+r.work+4⟩
+
+theorem addRegister_length (C : Capacity) (xs ys : Bits) : (addRegister C xs ys).value.length≤C.length := by
+ simp only [addRegister,takeRegister_value,List.length_take];exact Nat.min_le_left _ _
+
+theorem addRegister_value (C : Capacity) (xs ys : Bits) (fits : decode xs+decode ys<2^C.length) :
+ decode (addRegister C xs ys).value=decode xs+decode ys := by
+ simp only [addRegister,takeRegister_value]
+ rw [decode_take _ C.length (by simpa only [addBits_value] using fits),addBits_value]
+
+theorem addRegister_work (C : Capacity) (xs ys : Bits) (xl : xs.length≤C.length) (yl : ys.length≤C.length) :
+ (addRegister C xs ys).work≤32*(C.length+1) := by
+ have a:=addCarry_work xs ys false
+ have r:=takeRegister_work C (addBits xs ys).value
+ simp only [addRegister,addBits] at r ⊢;omega
+end GenericForest.BinaryProvider

@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.32006504099990707,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.2813762499999939,
+      "resource_stop": null,
+      "log_sha256": "31d0d2c44a33dfc1d788b6809acee0d105d50376540d58150c690ecef68e5b42"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0015547090001746255,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "FullSourceFalseControls",
+      "source_sha256": "a26095598be3ed1b3a92b0399dff1c78bb0c250ca89628a78b6e378ea2a15469",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.7069930829998157,
+      "resource_stop": null,
+      "log_sha256": "b52a51413b78ee8e075979e6968887149562b7202762cbc765b8bc07e9ffecde"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('NONMATHEMATICAL_CONTROL_FAILURE', ['Tactic `decide` proved that the proposition', 'Tactic `decide` failed to reduce'], '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-full-source-20261016T085803Z-20261016T090439069784Z/FullSourceFalseControls.lean:4:78: error: Tactic `decide` proved that the proposition\\n  False\\nis false\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-full-source-20261016T085803Z-20261016T090439069784Z/FullSourceFalseControls.lean:7:1: error: Tactic `decide` failed to reduce\\n  @decide (233 / 50 = 2) (instDecidableEqRat (233 / 50) 2)\\nto `true` or `false`.\\n\\nReduction got stuck at\\n  match (Rat.mul 233 (Rat.inv 50)).num, \u21912 with\\n  | Int.ofNat a, Int.ofNat b =>\\n    match decEq a b with\\n    | { decide := true, reflects_decide := h } => isTrue \u22ef\\n    | { decide := false, reflects_decide := h } => isFalse \u22ef\\n  | Int.ofNat a, Int.negSucc a_1 => isFalse \u22ef\\n  | Int.negSucc a, Int.ofNat a_1 => isFalse \u22ef\\n  | Int.negSucc a, Int.negSucc b =>\\n    match decEq a b with\\n    | { decide := true, reflects_decide := h } => isTrue \u22ef\\n    | { decide := false, reflects_decide := h } => isFalse \u22ef\\n'))"
+}

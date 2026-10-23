@@ -1,0 +1,9 @@
+import RSCopy
+#check OrdinaryDispatch.RecoveryBits.counterAdd_value
+#print axioms OrdinaryDispatch.RecoveryBits.counterAdd_value
+#check OrdinaryDispatch.RecoveryBits.counterAdd_work
+#print axioms OrdinaryDispatch.RecoveryBits.counterAdd_work
+#check OrdinaryDispatch.RecoveryBits.copyTree_value
+#print axioms OrdinaryDispatch.RecoveryBits.copyTree_value
+#check OrdinaryDispatch.RecoveryBits.copyOutput_work
+#print axioms OrdinaryDispatch.RecoveryBits.copyOutput_work

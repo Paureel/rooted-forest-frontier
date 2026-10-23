@@ -1,0 +1,517 @@
+{
+  "status": "OWN_HAND_CONTROLS_COMPLETE_WITH_RETAINED_SETUP_FAILURES",
+  "sources": [
+    {
+      "path": "control-runs/20261016T104013.740393Z/receipt.json",
+      "sha256": "0beb5541493e4f855d22c57d673bd7ed423ccb0dd3e837c9203900747fc3f59e",
+      "counted_records": 2
+    },
+    {
+      "path": "control-runs/20261016T104017.255666Z/failure.json",
+      "sha256": "cc6aaf396da398f920db83d53207a068e77aa46e59ed09242aaee4f55b10459d",
+      "counted_records": 10
+    },
+    {
+      "path": "control-runs/20261016T104141.785505Z/receipt.json",
+      "sha256": "45bec476175c89f4d2cb8cc5c66cc01838e7221b42eca8e095a11f87674c15e8",
+      "counted_records": 4
+    }
+  ],
+  "records": [
+    {
+      "case": {
+        "name": "BaselineTrue",
+        "source": "own-controls/BaselineTrue.lean",
+        "source_sha256": "76d26df88731d745ad22a7147f8bf20bd6cd5ca9d8cc2568643ebe6c712ea5c5",
+        "root": "",
+        "additional_import_roots": [],
+        "expected": "pass",
+        "statements": 1
+      },
+      "process": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "-M3072",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104013.740393Z/BaselineTrue.lean"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104013.740393Z",
+        "LEAN_PATH": "",
+        "seconds": 0.1895454579998841,
+        "exit_code": 0,
+        "timeout": false,
+        "overflow": false,
+        "raw_bytes": 0,
+        "log": "BaselineTrue.log.gz",
+        "log_sha256": "4803351a9fbe5a40cdd6d5282a5f9c28a22d884fdd251758043cbfaaf0240bb8"
+      },
+      "observed": "known answer passed"
+    },
+    {
+      "case": {
+        "name": "BaselineFalse",
+        "source": "own-controls/BaselineFalse.lean",
+        "source_sha256": "93bfa05a15eb437061219b08e415361da343b6446bde7bef5d665ed8a26aeca1",
+        "root": "",
+        "additional_import_roots": [],
+        "expected": "false",
+        "statements": 1
+      },
+      "process": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "-M3072",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104013.740393Z/BaselineFalse.lean"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104013.740393Z",
+        "LEAN_PATH": "",
+        "seconds": 0.17814420800004882,
+        "exit_code": 1,
+        "timeout": false,
+        "overflow": false,
+        "raw_bytes": 268,
+        "log": "BaselineFalse.log.gz",
+        "log_sha256": "1f7bc55b61e36c73437e5bc3107b29fd6926093cbb3c3172c5fb7b2482c4bb27"
+      },
+      "observed": "false proposition rejected"
+    },
+    {
+      "case": {
+        "name": "Rule4Truth",
+        "source": "own-controls/Rule4Truth.lean",
+        "source_sha256": "3a7af70b8da180b1be193ef4d2100fc47706e470f4bae48ddeff546fd1de74c5",
+        "root": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule4_source_bound_20261016T095230Z/build",
+        "additional_import_roots": [
+          "results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z"
+        ],
+        "expected": "pass",
+        "statements": 2
+      },
+      "process": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "-M3072",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z/Rule4Truth.lean"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z",
+        "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/rule4_source_bound_20261016T095230Z/build:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z",
+        "seconds": 0.8100160840003809,
+        "exit_code": 0,
+        "timeout": false,
+        "overflow": false,
+        "raw_bytes": 0,
+        "log": "Rule4Truth.log.gz",
+        "log_sha256": "5ff515878254169133581c4f243043ce2a33d4b620d8a47b386e10b1498eda8b"
+      },
+      "observed": "known answer passed"
+    },
+    {
+      "case": {
+        "name": "Rule4ForestOmission",
+        "source": "own-controls/Rule4ForestOmission.lean",
+        "source_sha256": "8a607d74be9073c52ead6734847d04979b3699945e781cef552c4bba3ce3f8eb",
+        "root": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule4_source_bound_20261016T095230Z/build",
+        "additional_import_roots": [
+          "results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z"
+        ],
+        "expected": "false",
+        "statements": 1
+      },
+      "process": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "-M3072",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z/Rule4ForestOmission.lean"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z",
+        "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/rule4_source_bound_20261016T095230Z/build:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z",
+        "seconds": 0.8193485000001601,
+        "exit_code": 1,
+        "timeout": false,
+        "overflow": false,
+        "raw_bytes": 296,
+        "log": "Rule4ForestOmission.log.gz",
+        "log_sha256": "5a3ae0e5aa67b200b8107d39e367ddecbaf068e0c9b7170add36125c91d4b7ed"
+      },
+      "observed": "false proposition rejected"
+    },
+    {
+      "case": {
+        "name": "Hard2Truth",
+        "source": "own-controls/Hard2Truth.lean",
+        "source_sha256": "4feaac105f418bc052f509fe664ac60b8ba2e27d286789562c7239f4fb73695d",
+        "root": "results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z",
+        "additional_import_roots": [],
+        "expected": "pass",
+        "statements": 7
+      },
+      "process": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "-M3072",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z/Hard2Truth.lean"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z",
+        "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z",
+        "seconds": 0.6887422919999153,
+        "exit_code": 0,
+        "timeout": false,
+        "overflow": false,
+        "raw_bytes": 0,
+        "log": "Hard2Truth.log.gz",
+        "log_sha256": "6f06ddb54f2c94f7331fcdd89e169b7d5f344e61e5f6abf55c356b5d24c4bf4b"
+      },
+      "observed": "known answer passed"
+    },
+    {
+      "case": {
+        "name": "Hard2DuplicateOmission",
+        "source": "own-controls/Hard2DuplicateOmission.lean",
+        "source_sha256": "fe098111fe4b638c61fa3fa7b939a07429c72a0bd7d161ab4d0be55c205f7dcd",
+        "root": "results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z",
+        "additional_import_roots": [],
+        "expected": "false",
+        "statements": 1
+      },
+      "process": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "-M3072",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z/Hard2DuplicateOmission.lean"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z",
+        "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z",
+        "seconds": 0.6811238750005941,
+        "exit_code": 1,
+        "timeout": false,
+        "overflow": false,
+        "raw_bytes": 468,
+        "log": "Hard2DuplicateOmission.log.gz",
+        "log_sha256": "31ccd0060e7a7ea38a1ed57b0f89ebb0fb65182a364c88c1878452f2b0702c74"
+      },
+      "observed": "false proposition rejected"
+    },
+    {
+      "case": {
+        "name": "NumericTruth",
+        "source": "own-controls/NumericTruth.lean",
+        "source_sha256": "b157bf8682dbb8e6003a8c5126b4a43e6ef3090806e215bce5062c387927f5c9",
+        "root": "research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z",
+        "additional_import_roots": [
+          "results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z"
+        ],
+        "expected": "pass",
+        "statements": 3
+      },
+      "process": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "-M3072",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z/NumericTruth.lean"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z",
+        "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z",
+        "seconds": 0.7963738329999615,
+        "exit_code": 0,
+        "timeout": false,
+        "overflow": false,
+        "raw_bytes": 0,
+        "log": "NumericTruth.log.gz",
+        "log_sha256": "b002689fb7cb5a3f2773b5566fcc4a5661fc10e93a587df97c8b0bfc825dfb62"
+      },
+      "observed": "known answer passed"
+    },
+    {
+      "case": {
+        "name": "NumericReducedWidthFalse",
+        "source": "own-controls/NumericReducedWidthFalse.lean",
+        "source_sha256": "a5bb0610116d47164b0e29450b10789d6c8382abe72cd49ebcbc90f838115a73",
+        "root": "research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z",
+        "additional_import_roots": [
+          "results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z"
+        ],
+        "expected": "false",
+        "statements": 1
+      },
+      "process": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "-M3072",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z/NumericReducedWidthFalse.lean"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z",
+        "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z",
+        "seconds": 0.7760010829997555,
+        "exit_code": 1,
+        "timeout": false,
+        "overflow": false,
+        "raw_bytes": 312,
+        "log": "NumericReducedWidthFalse.log.gz",
+        "log_sha256": "ac780ec1ae09eff84a30160f30c2cdbbfddc49379dc0c60414324be43ba8d751"
+      },
+      "observed": "false proposition rejected"
+    },
+    {
+      "case": {
+        "name": "SetupPaidTruth",
+        "source": "own-controls/SetupPaidTruth.lean",
+        "source_sha256": "35a2b8801b87c21f86203eeac013d3851e1835031d4a58cf289faf74cd11c815",
+        "root": "results/algorithm-universal233-rule5-remaining-20261016T092622Z-freeze-20261016T095618897390Z",
+        "additional_import_roots": [
+          "results/algorithm-universal233-rule5-selected-20261016T090023Z-freeze-20261016T092100151815Z",
+          "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_selected_local_work_20261016T090023Z/imports"
+        ],
+        "expected": "pass",
+        "statements": 5
+      },
+      "process": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "-M3072",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z/SetupPaidTruth.lean"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z",
+        "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-rule5-remaining-20261016T092622Z-freeze-20261016T095618897390Z:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-rule5-selected-20261016T090023Z-freeze-20261016T092100151815Z:/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_selected_local_work_20261016T090023Z/imports",
+        "seconds": 0.8164737920005791,
+        "exit_code": 0,
+        "timeout": false,
+        "overflow": false,
+        "raw_bytes": 0,
+        "log": "SetupPaidTruth.log.gz",
+        "log_sha256": "3c03c0ac33ddf59e99022bcabb6ee7d5d9e99e1efa88784504563e94d8a4f74b"
+      },
+      "observed": "known answer passed"
+    },
+    {
+      "case": {
+        "name": "SetupRepeatedMaximumFalse",
+        "source": "own-controls/SetupRepeatedMaximumFalse.lean",
+        "source_sha256": "5bb83a921ca41952c777f5aaa39999951be5fa2fed25a067480f89dbe3693fca",
+        "root": "results/algorithm-universal233-rule5-remaining-20261016T092622Z-freeze-20261016T095618897390Z",
+        "additional_import_roots": [
+          "results/algorithm-universal233-rule5-selected-20261016T090023Z-freeze-20261016T092100151815Z",
+          "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_selected_local_work_20261016T090023Z/imports"
+        ],
+        "expected": "false",
+        "statements": 1
+      },
+      "process": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "-M3072",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z/SetupRepeatedMaximumFalse.lean"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z",
+        "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-rule5-remaining-20261016T092622Z-freeze-20261016T095618897390Z:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-rule5-selected-20261016T090023Z-freeze-20261016T092100151815Z:/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_selected_local_work_20261016T090023Z/imports",
+        "seconds": 0.8265033749994473,
+        "exit_code": 1,
+        "timeout": false,
+        "overflow": false,
+        "raw_bytes": 305,
+        "log": "SetupRepeatedMaximumFalse.log.gz",
+        "log_sha256": "8dc69949da18478bf2b84d37c4cfce8700b2d096c136a9a4d011f0656f219c6d"
+      },
+      "observed": "false proposition rejected"
+    },
+    {
+      "case": {
+        "name": "LiteralTruth",
+        "source": "own-controls/LiteralTruth.lean",
+        "source_sha256": "a1b8bfc36a543182897fa014278928989183d516b7d7e6b63e3b7f75e4fe3b62",
+        "root": "results/algorithm-universal233-paid-literal-20261016T100131Z-freeze-20261016T101642140379Z",
+        "additional_import_roots": [
+          "results/algorithm-universal233-rule5-remaining-20261016T092622Z-freeze-20261016T095618897390Z",
+          "results/algorithm-universal233-rule5-selected-20261016T090023Z-freeze-20261016T092100151815Z",
+          "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_selected_local_work_20261016T090023Z/imports"
+        ],
+        "expected": "pass",
+        "statements": 7
+      },
+      "process": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "-M3072",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z/LiteralTruth.lean"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z",
+        "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-paid-literal-20261016T100131Z-freeze-20261016T101642140379Z:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-rule5-remaining-20261016T092622Z-freeze-20261016T095618897390Z:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-rule5-selected-20261016T090023Z-freeze-20261016T092100151815Z:/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_selected_local_work_20261016T090023Z/imports",
+        "seconds": 0.8678859999999986,
+        "exit_code": 0,
+        "timeout": false,
+        "overflow": false,
+        "raw_bytes": 0,
+        "log": "LiteralTruth.log.gz",
+        "log_sha256": "50bfb4dd29ae82ca9c017c1f809598a98a9017ef7d2e51d1e614c8546a678701"
+      },
+      "observed": "known answer passed"
+    },
+    {
+      "case": {
+        "name": "LiteralZeroFeeFalse",
+        "source": "own-controls/LiteralZeroFeeFalse.lean",
+        "source_sha256": "244a0cf8eb285d044677cb397919cc94ae8e047c27eeb3bb7cb39591f81f8ebb",
+        "root": "results/algorithm-universal233-paid-literal-20261016T100131Z-freeze-20261016T101642140379Z",
+        "additional_import_roots": [
+          "results/algorithm-universal233-rule5-remaining-20261016T092622Z-freeze-20261016T095618897390Z",
+          "results/algorithm-universal233-rule5-selected-20261016T090023Z-freeze-20261016T092100151815Z",
+          "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_selected_local_work_20261016T090023Z/imports"
+        ],
+        "expected": "false",
+        "statements": 1
+      },
+      "process": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "-M3072",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z/LiteralZeroFeeFalse.lean"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104017.255666Z",
+        "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-paid-literal-20261016T100131Z-freeze-20261016T101642140379Z:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-rule5-remaining-20261016T092622Z-freeze-20261016T095618897390Z:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-rule5-selected-20261016T090023Z-freeze-20261016T092100151815Z:/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_selected_local_work_20261016T090023Z/imports",
+        "seconds": 0.9714871249998396,
+        "exit_code": 1,
+        "timeout": false,
+        "overflow": false,
+        "raw_bytes": 284,
+        "log": "LiteralZeroFeeFalse.log.gz",
+        "log_sha256": "c8500658f758480cf2f7659e280452eea5559c98aabeef716736c6e635a09c90"
+      },
+      "observed": "false proposition rejected"
+    },
+    {
+      "case": {
+        "name": "BinaryProducerTruthV3",
+        "source": "own-controls/BinaryProducerTruthV3.lean",
+        "source_sha256": "a09a444a1c3520c7d26485faa939986a7d4b4a646ae2db190c573f657e5e5a7f",
+        "root": "results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z",
+        "additional_import_roots": [],
+        "expected": "pass",
+        "statements": 9
+      },
+      "process": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "-M3072",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104141.785505Z/BinaryProducerTruthV3.lean"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104141.785505Z",
+        "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z",
+        "seconds": 0.7840129999995042,
+        "exit_code": 0,
+        "timeout": false,
+        "overflow": false,
+        "raw_bytes": 0,
+        "log": "BinaryProducerTruthV3.log.gz",
+        "log_sha256": "d8d8e4dc2f06e4d503b062a86e74e79bbe02cb48ef6194ae7db3e68515aa9763"
+      },
+      "observed": "known answer passed"
+    },
+    {
+      "case": {
+        "name": "BinaryProducerDuplicateFalseV2",
+        "source": "own-controls/BinaryProducerDuplicateFalseV2.lean",
+        "source_sha256": "bc1940a7367ae69780f60dbe3819e1cef0e572b7c564177b2b415978e2500c60",
+        "root": "results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z",
+        "additional_import_roots": [],
+        "expected": "false",
+        "statements": 1
+      },
+      "process": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "-M3072",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104141.785505Z/BinaryProducerDuplicateFalseV2.lean"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104141.785505Z",
+        "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z",
+        "seconds": 0.7393670410001505,
+        "exit_code": 1,
+        "timeout": false,
+        "overflow": false,
+        "raw_bytes": 401,
+        "log": "BinaryProducerDuplicateFalseV2.log.gz",
+        "log_sha256": "e753e766f6b8a280a8d0cb50df823f297066fd38995a027357eba76a0a22754c"
+      },
+      "observed": "false proposition rejected"
+    },
+    {
+      "case": {
+        "name": "RecoveryBitsTruth",
+        "source": "own-controls/RecoveryBitsTruth.lean",
+        "source_sha256": "90c07f67890b74b97e0ab78486d933dd93dcf623852ece053caf475867c1f2af",
+        "root": "results/algorithm-universal233-recovery-scalar-20261016T095748Z-20261016T100125837782Z",
+        "additional_import_roots": [
+          "results/algorithm-universal233-recovery-source-20261016T092054Z-20261016T092457019053Z",
+          "research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v6/clean-import",
+          "results/algorithm-universal233-optimizer-local-20261016T085144Z-20261016T085502958188Z",
+          "results/algorithm-universal233-budget-optimization-replay-20261015T213529360638Z",
+          "results/algorithm-universal233-early-resume-20261016T083330Z-20261016T083634190186Z",
+          "results/algorithm-universal233-forest-check-root-20261015T211023Z"
+        ],
+        "expected": "pass",
+        "statements": 8
+      },
+      "process": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "-M3072",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104141.785505Z/RecoveryBitsTruth.lean"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104141.785505Z",
+        "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-recovery-scalar-20261016T095748Z-20261016T100125837782Z:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-recovery-source-20261016T092054Z-20261016T092457019053Z:/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v6/clean-import:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-optimizer-local-20261016T085144Z-20261016T085502958188Z:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-budget-optimization-replay-20261015T213529360638Z:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-early-resume-20261016T083330Z-20261016T083634190186Z:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-forest-check-root-20261015T211023Z",
+        "seconds": 0.6937729589999435,
+        "exit_code": 0,
+        "timeout": false,
+        "overflow": false,
+        "raw_bytes": 0,
+        "log": "RecoveryBitsTruth.log.gz",
+        "log_sha256": "b9e06d74192086a7ff387158adbea1b4f98e6b2cfe97c7e0e1ccc74705663ce2"
+      },
+      "observed": "known answer passed"
+    },
+    {
+      "case": {
+        "name": "RecoveryOverflowFalse",
+        "source": "own-controls/RecoveryOverflowFalse.lean",
+        "source_sha256": "3e1383ce119cdcdf65a7ad1af51ed8a8402820ce756c783f9d07d2801d2e5ecd",
+        "root": "results/algorithm-universal233-recovery-scalar-20261016T095748Z-20261016T100125837782Z",
+        "additional_import_roots": [
+          "results/algorithm-universal233-recovery-source-20261016T092054Z-20261016T092457019053Z",
+          "research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v6/clean-import",
+          "results/algorithm-universal233-optimizer-local-20261016T085144Z-20261016T085502958188Z",
+          "results/algorithm-universal233-budget-optimization-replay-20261015T213529360638Z",
+          "results/algorithm-universal233-early-resume-20261016T083330Z-20261016T083634190186Z",
+          "results/algorithm-universal233-forest-check-root-20261015T211023Z"
+        ],
+        "expected": "false",
+        "statements": 1
+      },
+      "process": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "-M3072",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104141.785505Z/RecoveryOverflowFalse.lean"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v7/control-runs/20261016T104141.785505Z",
+        "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-recovery-scalar-20261016T095748Z-20261016T100125837782Z:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-recovery-source-20261016T092054Z-20261016T092457019053Z:/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v6/clean-import:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-optimizer-local-20261016T085144Z-20261016T085502958188Z:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-budget-optimization-replay-20261015T213529360638Z:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-early-resume-20261016T083330Z-20261016T083634190186Z:/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-forest-check-root-20261015T211023Z",
+        "seconds": 0.7842503750007381,
+        "exit_code": 1,
+        "timeout": false,
+        "overflow": false,
+        "raw_bytes": 507,
+        "log": "RecoveryOverflowFalse.log.gz",
+        "log_sha256": "80e8105adc4486f0977ccea463a7c5d4a5560ae437307f4b6ba877e8348a1f23"
+      },
+      "observed": "false proposition rejected"
+    }
+  ],
+  "baseline_true": 1,
+  "baseline_false": 1,
+  "new_true": 41,
+  "new_false_rejected": 7,
+  "retained_failed_files": [
+    "own-controls/BinaryProducerTruth.lean",
+    "own-controls/BinaryProducerTruthV2.lean"
+  ],
+  "expectations_changed": false,
+  "new_blind_replication_credit": 0,
+  "limitations": "Finite helper/occurrence/overflow checks, not whole-path census, native timings or separate positive LiteralProps geometry test."
+}

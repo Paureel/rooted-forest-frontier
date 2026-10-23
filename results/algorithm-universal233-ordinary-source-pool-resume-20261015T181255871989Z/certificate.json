@@ -1,0 +1,269 @@
+{
+  "status": "FAILED_NOT_ACCEPTED",
+  "independent_acceptance": false,
+  "full_algorithm": false,
+  "all_main_milestones": "OPEN",
+  "source_build_claim": "No new individual source rebuild; resume completed306 literal-source builds with pinned source/build/log/binary receipts.",
+  "old_build": "results/algorithm-universal233-ordinary-source-pool-20261015T144445575127Z",
+  "old_construction_sha256": "0f142ad92c5bc3e2bbccb67a9e1a29485b96fc7f0fe248d6beb943e83b0e84e7",
+  "runs": [
+    {
+      "module": "ResumeValue0",
+      "exit": 0,
+      "seconds": 0.28218204200004493
+    },
+    {
+      "module": "ResumeValue1",
+      "exit": 0,
+      "seconds": 0.31813387500005774
+    },
+    {
+      "module": "ResumeValueTwin",
+      "exit": 0,
+      "seconds": 0.3598696660000087
+    },
+    {
+      "module": "ExtractResumeValue0",
+      "exit": 0,
+      "seconds": 0.9057338750000099
+    },
+    {
+      "module": "ExtractResumeValue1",
+      "exit": 0,
+      "seconds": 0.8168147079999244
+    },
+    {
+      "module": "ExtractResumeValueTwin",
+      "exit": 0,
+      "seconds": 0.8784147920000578
+    },
+    {
+      "module": "ExtractShard0",
+      "exit": 0,
+      "seconds": 16.562806292000005
+    },
+    {
+      "module": "ExtractShard1",
+      "exit": 0,
+      "seconds": 24.778446874999986
+    },
+    {
+      "module": "ExtractShard2",
+      "exit": 0,
+      "seconds": 10.140967958000033
+    },
+    {
+      "module": "ExtractShard3",
+      "exit": 0,
+      "seconds": 28.159926707999944
+    },
+    {
+      "module": "ExtractShard4",
+      "exit": 0,
+      "seconds": 32.30769625000005
+    }
+  ],
+  "controls": {
+    "std_producer": {
+      "C322CleanAudit0": {
+        "imports": [
+          "C322CleanA",
+          "C322CleanB"
+        ],
+        "occurrences": 3,
+        "shared_occurrences": 2
+      },
+      "C322CleanAudit1": {
+        "imports": [
+          "C322CleanB",
+          "C322CleanA"
+        ],
+        "occurrences": 3,
+        "shared_occurrences": 2
+      },
+      "C322HostileAudit0": {
+        "imports": [
+          "C322CleanA",
+          "C322Hostile"
+        ],
+        "direct_custom_axiom": "CAUGHT"
+      },
+      "C322HostileAudit1": {
+        "imports": [
+          "C322Hostile",
+          "C322CleanA"
+        ],
+        "direct_custom_axiom": "CAUGHT"
+      },
+      "C322HostileAudit2": {
+        "imports": [
+          "C322Private"
+        ],
+        "direct_custom_axiom": "CAUGHT"
+      },
+      "C322HostileAudit3": {
+        "imports": [
+          "C322Unused"
+        ],
+        "direct_custom_axiom": "CAUGHT"
+      },
+      "missing": "CAUGHT",
+      "duplicate": "CAUGHT"
+    },
+    "clean": {
+      "expected_reject": false,
+      "result": {
+        "duplicates": [
+          {
+            "name": "ResumePlant.value",
+            "occurrences": 2,
+            "producers": [
+              "ResumeValue0",
+              "ResumeValueTwin"
+            ],
+            "kinds": [
+              "definition"
+            ],
+            "bodies": 1,
+            "decision": "COMPATIBLE"
+          }
+        ],
+        "rejects": []
+      }
+    },
+    "badLR": {
+      "expected_reject": true,
+      "result": {
+        "duplicates": [
+          {
+            "name": "ResumePlant.value",
+            "occurrences": 2,
+            "producers": [
+              "ResumeValue0",
+              "ResumeValue1"
+            ],
+            "kinds": [
+              "definition"
+            ],
+            "bodies": 2,
+            "decision": "NONPROOF_VALUE_MISMATCH"
+          }
+        ],
+        "rejects": [
+          {
+            "name": "ResumePlant.value",
+            "occurrences": 2,
+            "producers": [
+              "ResumeValue0",
+              "ResumeValue1"
+            ],
+            "kinds": [
+              "definition"
+            ],
+            "bodies": 2,
+            "decision": "NONPROOF_VALUE_MISMATCH"
+          }
+        ]
+      }
+    },
+    "badRL": {
+      "expected_reject": true,
+      "result": {
+        "duplicates": [
+          {
+            "name": "ResumePlant.value",
+            "occurrences": 2,
+            "producers": [
+              "ResumeValue1",
+              "ResumeValue0"
+            ],
+            "kinds": [
+              "definition"
+            ],
+            "bodies": 2,
+            "decision": "NONPROOF_VALUE_MISMATCH"
+          }
+        ],
+        "rejects": [
+          {
+            "name": "ResumePlant.value",
+            "occurrences": 2,
+            "producers": [
+              "ResumeValue1",
+              "ResumeValue0"
+            ],
+            "kinds": [
+              "definition"
+            ],
+            "bodies": 2,
+            "decision": "NONPROOF_VALUE_MISMATCH"
+          }
+        ]
+      }
+    },
+    "missing_row": "CAUGHT",
+    "duplicate_row": "CAUGHT",
+    "producer_attribution": "CAUGHT",
+    "unresolved_origin": "CAUGHT",
+    "custom_axiom_reference": "CAUGHT",
+    "foreign_module": "CAUGHT",
+    "missing_module_path": "CAUGHT",
+    "empty_assembly": "EXACT_ZERO",
+    "source_corruption": "CAUGHT",
+    "adapted_corruption": "CAUGHT"
+  },
+  "shards": [
+    {
+      "index": 0,
+      "producers": 40,
+      "occurrences": 1974,
+      "seconds": 18.26218045899998,
+      "index_sha256": "89eb87506bfdda351e83c725dd9affb1555089d0fd2e94f1125c032161c39573"
+    },
+    {
+      "index": 1,
+      "producers": 40,
+      "occurrences": 1165,
+      "seconds": 27.462279083,
+      "index_sha256": "c29600eef4848fdcd70d4fa38a2fedfb75cdc029c4ace0f07eda7d148847d53c"
+    },
+    {
+      "index": 2,
+      "producers": 40,
+      "occurrences": 762,
+      "seconds": 11.127662917000066,
+      "index_sha256": "0b563b51b924e3f6e3227e6d9464e4d5f1afaf863b9349aedde0791b7270c105"
+    },
+    {
+      "index": 3,
+      "producers": 40,
+      "occurrences": 476,
+      "seconds": 31.716371624999965,
+      "index_sha256": "4fc01684e9768a7db4c1b73de20a28ee613f66ef46c86fbe6e49fe167c1a7a5b"
+    },
+    {
+      "index": 4,
+      "producers": 40,
+      "occurrences": 930,
+      "seconds": 36.62449574999994,
+      "index_sha256": "d4068b0e79168839b8896d22ca109fa401c015ac8788e486690b9644b745a55c"
+    }
+  ],
+  "contacts": {
+    "research/rmaf/algorithm/universal233/ordinary_dispatch/resume_20261015T1810Z/resume_pool_audit.py": "7f776075d2fac48533444f0bba7242746cdc6fda88a80dd89e7c1314bfa6901e",
+    "research/rmaf/algorithm/universal233/ordinary_dispatch/resume_20261015T1810Z/AUDIT-PLAN-v1.md": "a1d96c1575190c623796ef11e8f3e7d5734879f981149aa737b6696e1178e006",
+    "research/rmaf/algorithm/universal233/rule5_common_split/audit_graph.py": "213eb8d89e06a579ad5ceb6dc58251f2a4858cc7669b55fa7554a93cbc4732e4",
+    "research/rmaf/algorithm/universal233/rule5_case322/audit.py": "b3feed2ff99492fe1f38d617707ef96e727dc3ada97b2673f405bd3d67aacc86",
+    "research/rmaf/algorithm/universal233/ordinary_dispatch/producer_compatibility/compatibility.py": "f2c6ad61ae4071fcad3538f0e19aafc9f38e6d62d7529f256e3150b7b7a9b34b"
+  },
+  "source_modules": 306,
+  "old_pins": 918,
+  "timing_projection": {
+    "pilot_producers": 40,
+    "pilot_seconds": 18.26218045899998,
+    "shards": 8,
+    "assumption": "Per-shard module import overhead and variable producer sizes; first-shard timing is a planning estimate, not a bound.",
+    "projected_seconds": 146.09744367199983
+  },
+  "error": "KeyboardInterrupt()"
+}

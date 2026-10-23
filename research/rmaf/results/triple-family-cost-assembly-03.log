@@ -1,0 +1,40 @@
+research/rmaf/triple_dp/family/cost_route/FamilyAssembly.lean:206:2: error: Tactic `apply` failed: could not unify the conclusion of `(rooted_pathConvex_iff_prefixClosed ?m.6 ?m.11).mpr`
+  ?m.6 ?v
+with the goal
+  PathConvex fun a => a = [] ∨ liftSupport side s a
+
+Note: The full type of `(rooted_pathConvex_iff_prefixClosed ?m.6 ?m.11).mpr` is
+  PrefixClosed ?m.6 → PathConvex ?m.6
+
+side : Bool
+s : Address → Prop
+hs : PathConvex s
+hr : s []
+⊢ PathConvex fun a => a = [] ∨ liftSupport side s a
+research/rmaf/triple_dp/family/cost_route/FamilyAssembly.lean:242:6: error: Type mismatch: After simplification, term
+  hc
+ has type
+  PathConvex fun a => a = [] ∨ f.support o a
+but is expected to have type
+  PathConvex (adjoinRootSupport f o o)
+research/rmaf/triple_dp/family/cost_route/FamilyAssembly.lean:243:6: error: Type mismatch: After simplification, term
+  f.convex i
+ has type
+  PathConvex (f.support i)
+but is expected to have type
+  PathConvex (adjoinRootSupport f o i)
+'TripleDP.CostRoute.withRoot_lift_convex' depends on axioms: [sorryAx]
+'TripleDP.CostRoute.adjoinRoot' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TripleDP.CostRoute.extendLeft' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TripleDP.CostRoute.extendRight' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TripleDP.CostRoute.extendLeft_count' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TripleDP.CostRoute.extendRight_count' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TripleDP.CostRoute.extendLeft_cost' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TripleDP.CostRoute.extendRight_cost' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TripleDP.CostRoute.liftSupport_convex' depends on axioms: [propext, Quot.sound]
+'TripleDP.CostRoute.closeBoth' depends on axioms: [propext, Quot.sound]
+'TripleDP.CostRoute.closeBoth_count' depends on axioms: [propext, Quot.sound]
+'TripleDP.CostRoute.closeBoth_cost' depends on axioms: [propext, Quot.sound]
+real 0.44
+user 0.34
+sys 0.17

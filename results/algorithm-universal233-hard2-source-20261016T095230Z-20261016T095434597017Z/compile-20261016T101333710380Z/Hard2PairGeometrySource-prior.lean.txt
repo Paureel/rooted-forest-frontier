@@ -1,0 +1,113 @@
+import SourceIntegrationControls
+namespace OrdinaryDispatch.Hard2SourceWork
+open RMAF ForestState Universal233 WholeSourceWork CoreWork
+open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork
+
+/-- Exact pair selector's original vertex and edge enumeration. -/
+def pairVerticesMeter (T : Tree) : Charged (List RMAF.Vertex) := meterVertices T
+@[simp] theorem pairVerticesMeter_value (T : Tree) :
+ (pairVerticesMeter T).value=PairGeometry.vertices T := by
+ rw [pairVerticesMeter,meterVertices_value]
+ induction T <;> simp_all [HardParent.vertices,PairGeometry.vertices]
+
+def pairEdgesMeter : Tree→Charged (List (RMAF.Vertex×RMAF.Vertex))
+ | .leaf _=>⟨[],1⟩
+ | .node l r=>let a:=pairEdgesMeter l;let b:=pairEdgesMeter r
+  ⟨([], [false])::([], [true])::
+    (a.value.map (fun e=>(false::e.1,false::e.2))++b.value.map (fun e=>(true::e.1,true::e.2))),
+   a.work+b.work+12*a.value.length+8*b.value.length+12⟩
+@[simp] theorem pairEdgesMeter_value (T : Tree) :
+ (pairEdgesMeter T).value=PairGeometry.edges T := by induction T <;> simp_all [pairEdgesMeter,PairGeometry.edges]
+
+/-- Every original leaves expression is evaluated at its own contains site. -/
+def pairProperMeter (T : Tree) (A B : List Nat) : Charged Bool :=
+ let l:=meterLeaves T;let nt:=meterNodup l.value;let na:=meterNodup A;let nb:=meterNodup B
+ let ca:=meterAll (fun x=>let l:=meterLeaves T;let c:=meterContains x l.value;⟨c.value,l.work+c.work+2⟩) A
+ let cb:=meterAll (fun x=>let l:=meterLeaves T;let c:=meterContains x l.value;⟨c.value,l.work+c.work+2⟩) B
+ let ab:=meterAll (fun x=>let c:=meterContains x B;⟨!c.value,c.work+2⟩) A
+ ⟨nt.value&&na.value&&nb.value&&!A.isEmpty&&!B.isEmpty&&ca.value&&cb.value&&ab.value,
+  l.work+nt.work+na.work+nb.work+ca.work+cb.work+ab.work+16⟩
+@[simp] theorem pairProperMeter_value (T : Tree) (A B : List Nat) :
+ (pairProperMeter T A B).value=PairGeometry.properInput T A B := by simp [pairProperMeter,PairGeometry.properInput]
+
+/-- Region existence repeats leafList for each of the three color tests. -/
+def pairRegionsMeter (D : List Nat) (T : Tree) (v : RMAF.Vertex) : Charged (List Nat) :=
+ meterFilter (fun c=>let l:=meterLeafList D T
+  let r:=meterAny (fun a=>let r:=meterRegion v a;⟨r.value==c,r.work+2⟩) l.value
+  ⟨r.value,l.work+r.work+2⟩) [0,1,2]
+@[simp] theorem pairRegionsMeter_value (D : List Nat) (T : Tree) (v : RMAF.Vertex) :
+ (pairRegionsMeter D T v).value=VertexGeometry.regions D T v := by simp [pairRegionsMeter,VertexGeometry.regions]
+
+def pairVertexMeter (T : Tree) (A B : List Nat) (v : RMAF.Vertex) : Charged Bool :=
+ let a:=meterMinimal A T;let b:=meterMinimal B T
+ let ca:=meterVertexContains v a.value;let cb:=meterVertexContains v b.value
+ let ra:=pairRegionsMeter A T v;let rb:=pairRegionsMeter B T v
+ ⟨ca.value&&cb.value&&(ra.value.length==3||rb.value.length==3),
+  a.work+b.work+ca.work+cb.work+ra.work+rb.work+ra.value.length+rb.value.length+12⟩
+@[simp] theorem pairVertexMeter_value (T : Tree) (A B : List Nat) (v : RMAF.Vertex) :
+ (pairVertexMeter T A B v).value=PairGeometry.vertexOK T A B v := by simp [pairVertexMeter,PairGeometry.vertexOK]
+
+def pairPrefixMeter : RMAF.Vertex→RMAF.Vertex→Charged Bool
+ | [],_=>⟨true,2⟩
+ | _::_,[]=>⟨false,2⟩
+ | s::p,t::a=>let r:=pairPrefixMeter p a;⟨(s==t)&&r.value,r.work+4⟩
+@[simp] theorem pairPrefixMeter_value (p a : RMAF.Vertex) :
+ (pairPrefixMeter p a).value=PairGeometry.prefixB p a := by induction p generalizing a <;> cases a <;> simp_all [pairPrefixMeter,PairGeometry.prefixB]
+
+def pairDescendantsMeter (T : Tree) (v : RMAF.Vertex) : Charged (List Nat) :=
+ let l:=meterLeaves T
+ let d:=meterFilter (fun x=>let a:=meterLeafList [x] T;let p:=pairPrefixMeter v (a.value.headD [])
+  ⟨p.value,a.work+p.work+4⟩) l.value
+ ⟨d.value,l.work+d.work+2⟩
+@[simp] theorem pairDescendantsMeter_value (T : Tree) (v : RMAF.Vertex) :
+ (pairDescendantsMeter T v).value=PairGeometry.descendants T v := by
+ simp [pairDescendantsMeter,PairGeometry.descendants,PairGeometry.leafAddress]
+
+def pairSideMeter (A : List Nat) (T : Tree) (v : RMAF.Vertex) (inside : Bool) : Charged (List Nat) :=
+ meterFilter (fun x=>let d:=pairDescendantsMeter T v;let c:=meterContains x d.value
+  ⟨if inside then c.value else !c.value,d.work+c.work+4⟩) A
+@[simp] theorem pairSideMeter_value (A : List Nat) (T : Tree) (v : RMAF.Vertex) (inside : Bool) :
+ (pairSideMeter A T v inside).value=PairGeometry.sideLabels A T v inside := by simp [pairSideMeter,PairGeometry.sideLabels]
+
+def pairSideClearMeter (T : Tree) (A B : List Nat) (v : RMAF.Vertex) (inside : Bool) : Charged Bool :=
+ let sa:=pairSideMeter A T v inside;let sb:=pairSideMeter B T v inside
+ let sac:=pairSideMeter A T v inside;let sma:=meterMinimal sac.value T;let b:=meterMinimal B T
+ let ac:=meterDisjoint sma.value b.value
+ let sbc:=pairSideMeter B T v inside;let smb:=meterMinimal sbc.value T;let a:=meterMinimal A T
+ let bc:=meterDisjoint smb.value a.value
+ ⟨!sa.value.isEmpty&&!sb.value.isEmpty&&ac.value&&bc.value,
+  sa.work+sb.work+sac.work+sma.work+b.work+ac.work+sbc.work+smb.work+a.work+bc.work+10⟩
+@[simp] theorem pairSideClearMeter_value (T : Tree) (A B : List Nat) (v : RMAF.Vertex) (inside : Bool) :
+ (pairSideClearMeter T A B v inside).value=
+  (!(PairGeometry.sideLabels A T v inside).isEmpty&&!(PairGeometry.sideLabels B T v inside).isEmpty&&
+   disjointVertices (minimalVertices (PairGeometry.sideLabels A T v inside) T) (minimalVertices B T)&&
+   disjointVertices (minimalVertices (PairGeometry.sideLabels B T v inside) T) (minimalVertices A T)) := by
+ simp [pairSideClearMeter]
+
+def pairEdgeMeter (T : Tree) (A B : List Nat) (e : RMAF.Vertex×RMAF.Vertex) : Charged Bool :=
+ let a1:=meterMinimal A T;let b1:=meterMinimal B T;let a2:=meterMinimal A T;let b2:=meterMinimal B T
+ let ca1:=meterVertexContains e.1 a1.value;let cb1:=meterVertexContains e.1 b1.value
+ let ca2:=meterVertexContains e.2 a2.value;let cb2:=meterVertexContains e.2 b2.value
+ let sides:=meterAll (pairSideClearMeter T A B e.2) [false,true]
+ ⟨ca1.value&&cb1.value&&ca2.value&&cb2.value&&sides.value,
+  a1.work+b1.work+a2.work+b2.work+ca1.work+cb1.work+ca2.work+cb2.work+sides.work+8⟩
+@[simp] theorem pairEdgeMeter_value (T : Tree) (A B : List Nat) (e : RMAF.Vertex×RMAF.Vertex) :
+ (pairEdgeMeter T A B e).value=PairGeometry.edgeOK T A B e := by simp [pairEdgeMeter,PairGeometry.edgeOK]
+
+def pairChooseMeter (T : Tree) (A B : List Nat) : Charged (Option PairGeometry.Choice) :=
+ let p:=pairProperMeter T A B
+ if p.value then
+  let v:=pairVerticesMeter T;let f:=meterFind (pairVertexMeter T A B) v.value
+  match f.value with
+  | some x=>⟨some (.vertex x),p.work+v.work+f.work+4⟩
+  | none=>let e:=pairEdgesMeter T;let g:=meterFind (pairEdgeMeter T A B) e.value
+   ⟨g.value.map PairGeometry.Choice.edge,p.work+v.work+f.work+e.work+g.work+4⟩
+ else ⟨none,p.work+2⟩
+@[simp] theorem pairChooseMeter_value (T : Tree) (A B : List Nat) :
+ (pairChooseMeter T A B).value=PairGeometry.choose T A B := by
+ by_cases hp:PairGeometry.properInput T A B=true
+ · cases hf:(PairGeometry.vertices T).find? (PairGeometry.vertexOK T A B) <;>
+   simp only [pairChooseMeter,pairProperMeter_value,pairVerticesMeter_value,meterFind_value,pairVertexMeter_value,
+    pairEdgesMeter_value,pairEdgeMeter_value,PairGeometry.choose,hp,ite_true,hf,Charged.value]
+ · simp [pairChooseMeter,PairGeometry.choose,hp]
+end OrdinaryDispatch.Hard2SourceWork

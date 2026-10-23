@@ -1,0 +1,5 @@
+import Monomial
+#check GenericForest.LocalPolynomial.monomial_local_overhead
+#print axioms GenericForest.LocalPolynomial.monomial_local_overhead
+#check GenericForest.LocalPolynomial.source_work_monomial_size_capped
+#print axioms GenericForest.LocalPolynomial.source_work_monomial_size_capped

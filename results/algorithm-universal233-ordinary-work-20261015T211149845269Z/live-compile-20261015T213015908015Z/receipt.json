@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "56f8e80de3ecdc6bf65634db62a21843625486beb7f9434a6171c919057eba98",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3307234170006268,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.29733487500016054,
+      "resource_stop": null,
+      "log_sha256": "511069c20e796542a27ee51ede0ae065ddce76a385fd8b1f4e8a8cccfb375782"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016837089988257503,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Hard2SourceBill",
+      "source_sha256": "321881d1d7f1f8b1953947d880bc70390302f835f3d5e41b572c46da7d0300b3",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8075210839997453,
+      "resource_stop": null,
+      "log_sha256": "af1321f299fcf9da1d332168b6ac372e1274c9f392f35005bae1840bc6e9b75a"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Hard2SourceBill', \"/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-20261015T211149845269Z/Hard2SourceBill.lean:64:14: error: don't know how to synthesize implicit argument `q`\\n  @Hard2Trace.combined_mass actual T S c ?m.121 out proper0 hard selected b (Rat.le_of_lt base) upper\\ncontext:\\nactual : Ordinary\\nW : OrdinaryWork\\nT S : Tree\\nc : Candidate\\nq : Nat\\nout : Result\\nproper0 : DepthOne.proper T S = true\\nhard : CherryBranching.select T S = some (Priority.hard2, c)\\nselected : runHard2 T S c = some out\\nb D : Rat\\nbase : 2 < b\\nupper : b \u2264 3\\npositive : 0 \u2264 D\\nbill : BelowWorkBill W (leaves T).length q b D\\nsum :\\n  (List.map (fun call => GenericForest.sourceWork actual W call.target call.sources call.budget)\\n        (Hard2Combine.combine actual T S c.a c.b q (paidCase actual T S c q out)).calls).sum \u2264\\n    (D + geometric b * forestCoefficient (leaves T).length q) * b ^ q *\\n      traceMass b q (Hard2Combine.combine actual T S c.a c.b q (paidCase actual T S c q out)).calls\\n\u22a2 Nat\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-20261015T211149845269Z/Hard2SourceBill.lean:64:6: error: failed to infer `have` declaration type\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-20261015T211149845269Z/Hard2SourceBill.lean:59:94: error: unsolved goals\\nactual : Ordinary\\nW : OrdinaryWork\\nT S : Tree\\nc : Candidate\\nq : Nat\\nout : Result\\nproper0 : DepthOne.proper T S = true\\nhard : CherryBranching.select T S = some (Priority.hard2, c)\\nselected : runHard2 T S c = some out\\nb D : Rat\\nbase : 2 < b\\nupper : b \u2264 3\\npositive : 0 \u2264 D\\nbill : BelowWorkBill W (leaves T).length q b D\\nsum :\\n  (List.map (fun call => GenericForest.sourceWork actual W call.target call.sources call.budget)\\n        (Hard2Combine.combine actual T S c.a c.b q (paidCase actual T S c q out)).calls).sum \u2264\\n    (D + geometric b * forestCoefficient (leaves T).length q) * b ^ q *\\n      traceMass b q (Hard2Combine.combine actual T S c.a c.b q (paidCase actual T S c q out)).calls\\n\u22a2 (List.map (fun call => GenericForest.sourceWork actual W call.target call.sources call.budget)\\n        (Hard2Combine.combine actual T S c.a c.b q (paidCase actual T S c q out)).calls).sum \u2264\\n    (D + geometric b * forestCoefficient (leaves T).length q) * b ^ q * (2 * b ^ (-1) + 4 * b ^ (-4))\\n\"))"
+}

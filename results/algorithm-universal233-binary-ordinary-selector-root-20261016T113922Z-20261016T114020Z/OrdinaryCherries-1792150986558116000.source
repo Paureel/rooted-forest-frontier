@@ -1,0 +1,74 @@
+import OrdinaryCuts
+namespace GenericForest.BinaryProducer.OrdinaryBits
+open BinaryProvider GenericForest.ScalarBits Universal233.WholeSourceWork Universal233.CoreWork
+abbrev Cherry:=RMAF.Vertex×Bits×Bits
+def cherryValue (c : Cherry) : RMAF.Vertex×Nat×Nat := (c.1,decode c.2.1,decode c.2.2)
+def prependCherries (side : Bool) : List Cherry→Charged (List Cherry)
+ | []=>⟨[],1⟩
+ | (p,a,b)::cs=>let r:=prependCherries side cs;⟨(side::p,a,b)::r.value,r.work+16⟩
+@[simp] theorem prependCherries_value (b : Bool) (cs : List Cherry) :
+ (prependCherries b cs).value=cs.map (fun (p,a,c)=>(b::p,a,c)) := by
+ induction cs with
+ | nil=>rfl
+ | cons c cs ih=>rcases c with ⟨p,a,c⟩;simp [prependCherries,ih]
+
+def cherriesBits : BinaryProvider.Tree→Charged (List Cherry)
+ | .leaf _=>⟨[],1⟩
+ | .node (.leaf a) (.leaf b)=>let x:=copyBits a;let y:=copyBits b;⟨[([],x.value,y.value)],x.work+y.work+12⟩
+ | .node l r=>let a:=cherriesBits l;let b:=cherriesBits r
+               let al:=prependCherries false a.value;let br:=prependCherries true b.value
+               let ap:=appendSpine al.value br.value
+               ⟨ap.value,a.work+b.work+al.work+br.work+ap.work+8⟩
+
+theorem cherriesBits_value (T : BinaryProvider.Tree) :
+ (cherriesBits T).value.map cherryValue=Universal233.CherryBranching.cherries (treeValue T) := by
+ induction T with
+ | leaf x=>rfl
+ | node p q ihl ihr=>
+  cases p <;> cases q <;>
+   simp_all [cherriesBits,treeValue,Universal233.CherryBranching.cherries,prependCherries_value,cherryValue,List.map_map,List.map_append]
+
+@[simp] theorem prependCherries_cost (b : Bool) (cs : List Cherry) : (prependCherries b cs).work=16*cs.length+1 := by
+ induction cs with
+ | nil=>rfl
+ | cons c cs ih=>rcases c with ⟨p,a,c⟩;simp only [prependCherries,List.length_cons] at *;omega
+
+theorem cherriesBits_count (T : BinaryProvider.Tree) : (cherriesBits T).value.length≤treeNodes (treeValue T) := by
+ induction T with
+ | leaf x=>simp [cherriesBits,treeValue,treeNodes]
+ | node p q ihl ihr=>cases p <;> cases q <;>
+   simp_all only [cherriesBits,prependCherries_value,appendSpine_value,List.length_map,List.length_append,List.length_cons,List.length_nil,treeValue,treeNodes] <;> omega
+
+theorem cherriesBits_caps (W : Nat) (T : BinaryProvider.Tree) (w : TreeWidth W T) :
+ ∀c∈(cherriesBits T).value,c.1.length≤treeNodes (treeValue T) ∧ c.2.1.length≤W ∧ c.2.2.length≤W := by
+ induction T with
+ | leaf x=>simp [cherriesBits]
+ | node p q ihl ihr=>
+  have wl : TreeWidth W p:=fun x hx=>w x (by simp [leavesBits,hx])
+  have wr : TreeWidth W q:=fun x hx=>w x (by simp [leavesBits,hx])
+  have lcap:=ihl wl;have rcap:=ihr wr
+  cases p with
+  | leaf a=>
+   cases q with
+   | leaf b=>
+    intro c hc;have eq : c=([],a,b):=by simpa only [cherriesBits,copyBits_value,List.mem_singleton] using hc
+    subst c;exact ⟨by simp,wl a (by simp [leavesBits]),wr b (by simp [leavesBits])⟩
+   | node q l r=>
+    simp only [cherriesBits,appendSpine_value,prependCherries_value,List.mem_append,List.mem_map]
+    intro c hc;rcases hc with ⟨x,hx,rfl⟩|⟨x,hx,rfl⟩
+    · simp only [cherriesBits,List.mem_nil_iff] at hx
+    · have a:=rcap x hx
+      simp only [treeValue,treeNodes,List.length_cons];exact ⟨by omega,a.2⟩
+  | node p l r=>
+   cases q with
+   | leaf b=>
+    simp only [cherriesBits,appendSpine_value,prependCherries_value,List.mem_append,List.mem_map]
+    intro c hc;rcases hc with ⟨x,hx,rfl⟩|⟨x,hx,rfl⟩
+    · have a:=lcap x hx;simp only [treeValue,treeNodes,List.length_cons];exact ⟨by omega,a.2⟩
+    · simp only [cherriesBits,List.mem_nil_iff] at hx
+   | node q l' r'=>
+    simp only [cherriesBits,appendSpine_value,prependCherries_value,List.mem_append,List.mem_map]
+    intro c hc;rcases hc with ⟨x,hx,rfl⟩|⟨x,hx,rfl⟩
+    · have a:=lcap x hx;simp only [treeValue,treeNodes,List.length_cons];exact ⟨by omega,a.2⟩
+    · have a:=rcap x hx;simp only [treeValue,treeNodes,List.length_cons];exact ⟨by omega,a.2⟩
+end GenericForest.BinaryProducer.OrdinaryBits

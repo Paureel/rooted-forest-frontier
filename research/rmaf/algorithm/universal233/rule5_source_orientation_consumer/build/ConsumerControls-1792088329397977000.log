@@ -1,0 +1,38 @@
+Universal233.Rule5SourceOrientation.first_child_solver {T S : Tree} {i u w : RMAF.Vertex} {a b : Nat} {d : BadSelection}
+  (ch : CherryAt T i a b) (ad : admitted T S a b = true)
+  (hz : selectFinal T S a b = some (FinalSelection.remaining d (BoundarySelection.first u w)))
+  (solver : Child → Nat → Option (List (List Nat)))
+  (ih : ∀ (c : Child), c ∈ firstChildren S a b d → ExactBoundedChild T S solver c) (k : Nat) :
+  OriginalWithin T S k ↔ ∃ c, c ∈ firstChildren S a b d ∧ ∃ G, childCall solver k c = some G
+Universal233.Rule5SourceOrientation.third_child_solver {T S : Tree} {i u w : RMAF.Vertex} {a b : Nat} {d : BadSelection}
+  (ch : CherryAt T i a b) (ad : admitted T S a b = true)
+  (hz : selectFinal T S a b = some (FinalSelection.remaining d (BoundarySelection.third u w)))
+  (solver : Child → Nat → Option (List (List Nat)))
+  (ih : ∀ (c : Child), c ∈ thirdChildren S a b d → ExactBoundedChild T S solver c) (k : Nat) :
+  OriginalWithin T S k ↔ ∃ c, c ∈ thirdChildren S a b d ∧ ∃ G, childCall solver k c = some G
+Universal233.Rule5SourceOrientation.selected_original_endpoint_cuts {T S : Tree} {i : RMAF.Vertex} {a b : Nat}
+  {d : BadSelection} (ch : CherryAt T i a b) (sel : selectLocal T S a b = some LocalSelection.remaining)
+  (hd : selectBad T S a b = some d) :
+  ∃ x y qx qy bx byy,
+    (x = a ∧ y = b ∨ x = b ∧ y = a) ∧
+      siblingEndpoint? S d.badArc = some x ∧
+        endpointBranch S x = some bx ∧
+          endpointBranch S y = some byy ∧
+            bx.originalCuts = [qx] ∧
+              byy.originalCuts = [qy] ∧
+                bx.child = singletonChild S x ∧
+                  byy.child = singletonChild S y ∧
+                    bx.child.paid = bx.originalCuts.length ∧
+                      byy.child.paid = byy.originalCuts.length ∧
+                        LeafAt S qx x ∧
+                          qx ≠ [] ∧
+                            LeafAt S qy y ∧
+                              qy ≠ [] ∧ (highBranch S a b).originalCuts = cuts S a b ∧ (highBranch S a b).child.paid = 2
+Universal233.Rule5SourceOrientation.selected_child_states {T S : Tree} {i : RMAF.Vertex} {a b : Nat} {d : BadSelection}
+  (ch : CherryAt T i a b) (sel : selectLocal T S a b = some LocalSelection.remaining)
+  (hd : selectBad T S a b = some d) :
+  List.map Child.paid (firstChildren S a b d) = [1, 2] ∧
+    List.map Child.paid (thirdChildren S a b d) = [1, 2] ∧
+      ∀ (c : Child),
+        c ∈ firstChildren S a b d ∨ c ∈ thirdChildren S a b d →
+          c.sourceForest = List.filterMap (fun B => restrict B S) c.partition

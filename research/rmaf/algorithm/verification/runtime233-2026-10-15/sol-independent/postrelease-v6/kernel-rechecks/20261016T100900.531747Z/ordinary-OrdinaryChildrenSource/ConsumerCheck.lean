@@ -1,0 +1,11 @@
+import OrdinaryChildrenSource
+#check OrdinaryDispatch.FullSourceWork.ordinary_run_children_value
+#print axioms OrdinaryDispatch.FullSourceWork.ordinary_run_children_value
+#check OrdinaryDispatch.FullSourceWork.ordinary_children_checker
+#print axioms OrdinaryDispatch.FullSourceWork.ordinary_children_checker
+#check OrdinaryDispatch.FullSourceWork.childForestDebit_split
+#print axioms OrdinaryDispatch.FullSourceWork.childForestDebit_split
+#check OrdinaryDispatch.FullSourceWork.oneSource_split
+#print axioms OrdinaryDispatch.FullSourceWork.oneSource_split
+#check OrdinaryDispatch.FullSourceWork.highSource_split
+#print axioms OrdinaryDispatch.FullSourceWork.highSource_split

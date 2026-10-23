@@ -1,0 +1,5 @@
+# Cold build timing pin
+
+Released scientific source bytes total995875 across151 logical modules. A fresh simple-header lexical audit found151 mapped modules, a150-module transitive closure of DerivedMinimum, no noncomment custom axiom/unsafe/partial/sorry/admit/native_decide/metaprogramming/kernel-bypass token, and zero copied scientific binary files. Those are source-scan observations, not semantic acceptance. Known commands are max recursion/heartbeat settings and #print/#check diagnostics; retained in SOURCE-HEADER-AUDIT-v1.json.
+
+Runtime for these proof sources is unknown. First pilot compiles the first five independently derived topological modules, with50-second per-module cap, logs and one completed-module result row as progress. No broad build is launched until actual times and numerical projection are retained. The source registry fixes bytes before compilation. Installed Lean/Std binaries are trusted inputs; scientific binaries are built from scratch in cold/ only. Any error or timeout stops the driver and remains evidence. Later slices will yield progress and remeasure if per-module cost grows substantially.

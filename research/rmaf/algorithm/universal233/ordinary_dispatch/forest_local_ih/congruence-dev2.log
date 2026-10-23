@@ -1,0 +1,64 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_local_ih/build/LocalCongruence.lean:54:16: error: Application type mismatch: The argument
+  t
+has type
+  proper (some t✝) [s✝] = true
+of sort `Prop` but is expected to have type
+  Tree
+of sort `Type` in the application
+  h t
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_local_ih/build/LocalCongruence.lean:59:12: error: Tactic `apply` failed: could not unify the conclusion of `congrArg fun x =>
+  List.filterMap x (branches t ss (?m.163 x) q)`
+  List.filterMap ?m.155 (branches t ss (?m.163 ?m.155) q) = List.filterMap ?m.156 (branches t ss (?m.163 ?m.156) q)
+with the goal
+  (have answers :=
+      List.filterMap
+        (fun io =>
+          have d := io.snd.sourceCuts.length;
+          if _hd : 1 ≤ d ∧ d ≤ q then solve f (some t) (replace ss io.fst io.snd.partition) (q - d) else none)
+        (branches t ss h✝ q);
+    best List.length (accepted (some t) ss q) answers) =
+    have answers :=
+      List.filterMap
+        (fun io =>
+          have d := io.snd.sourceCuts.length;
+          if _hd : 1 ≤ d ∧ d ≤ q then solve g (some t) (replace ss io.fst io.snd.partition) (q - d) else none)
+        (branches t ss h✝ q);
+    best List.length (accepted (some t) ss q) answers
+
+Note: The full type of `congrArg fun x => List.filterMap x (branches t ss (?m.163 x) q)` is
+  ?m.155 = ?m.156 →
+    List.filterMap ?m.155 (branches t ss (?m.163 ?m.155) q) = List.filterMap ?m.156 (branches t ss (?m.163 ?m.156) q)
+
+case h_2
+f g : Tree → Tree → Nat → Option Forest
+q : Nat
+ih :
+  ∀ (m : Nat),
+    m < q →
+      (∀ (t s : Tree) (b : Nat), b ≤ m → f t s b = g t s b) →
+        ∀ (T : Option Tree) (ss : List Tree), solve f T ss m = solve g T ss m
+h : ∀ (t s : Tree) (b : Nat), b ≤ q → f t s b = g t s b
+ss : List Tree
+T✝ : Option Tree
+ss✝ : List Tree
+t : Tree
+a : proper (some t) ss = true
+b : ¬agrees (some t) ss (List.map leaves ss) = true
+rest : ∀ (s : Tree), ss = [s] → False
+x✝ : Option Overlap
+h✝ : Overlap
+heq✝ : overlap t ss = some h✝
+⊢ (have answers :=
+      List.filterMap
+        (fun io =>
+          have d := io.snd.sourceCuts.length;
+          if _hd : 1 ≤ d ∧ d ≤ q then solve f (some t) (replace ss io.fst io.snd.partition) (q - d) else none)
+        (branches t ss h✝ q);
+    best List.length (accepted (some t) ss q) answers) =
+    have answers :=
+      List.filterMap
+        (fun io =>
+          have d := io.snd.sourceCuts.length;
+          if _hd : 1 ≤ d ∧ d ≤ q then solve g (some t) (replace ss io.fst io.snd.partition) (q - d) else none)
+        (branches t ss h✝ q);
+    best List.length (accepted (some t) ss q) answers

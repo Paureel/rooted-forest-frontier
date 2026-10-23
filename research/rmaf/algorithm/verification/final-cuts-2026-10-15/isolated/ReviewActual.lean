@@ -1,0 +1,74 @@
+import Lean
+import FinalWork
+open Lean RMAF Universal233 Universal233.CoreGraph Universal233.CoreProgram Universal233.CoreWork Universal233.FinalCutRecovery Universal233.RankDichotomy Universal233.SourceCoverage
+def addr (v : RMAF.Vertex) : String := String.ofList (v.map (fun x => if x then '1' else '0'))
+def outJ (o : Output) : Json := Json.mkObj [("partition",toJson o.partition),("cuts",toJson (o.sourceCuts.map addr))]
+def optionJ : Option Output → Json | none => Json.null | some o => outJ o
+def tracedColor (tag : String) (p : List (List Nat)) (x : Nat) : Nat :=
+ let c := blockColor p x
+ dbg_trace ("COLOR_DIAGNOSTIC " ++ (Json.mkObj [("tag",toJson tag),("label",toJson x),("color",toJson c)]).compress);
+ c
+def checkRecovery (id : String) (t target : Tree) (p : List (List Nat)) : IO Unit := do
+ let actual := recover t p
+ let metered := meterRecover t p
+ let valid := inputCheck t p
+ let raw := if valid then generate t (blockColor p) (p.length-1) else ({} : Receipt)
+ let traced := if valid then generate t (tracedColor id p) (p.length-1) else ({} : Receipt)
+ let colorViews := if valid then (leaves t).map (fun x => Json.mkObj [("label",toJson x),("color",toJson (blockColor p x)),("meterColor",toJson (meterColor p x).value),("meterWork",toJson (meterColor p x).work)]) else []
+ let rank := if valid then some (inputRank t (blockColor p)) else none
+ let mcore := if valid then some (meterGenerate t (blockColor p) (p.length-1)) else none
+ IO.println ("ACTUAL_VALUE " ++ (Json.mkObj [("id",toJson id),("recover",optionJ actual),("meterRecover",optionJ metered.value),("inputCheck",toJson valid),("distinct",toJson (decide (leaves t).Nodup)),("partitionCheck",toJson (partitionCheck (leaves t) p)),("embeddings",toJson (pairwiseEmbeddings t p)),("minimalVertices",toJson (p.map (fun b => (minimalVertices b t).map addr))),("rawOutputs",toJson (raw.outputs.map outJ)),("tracedDiagnosticOutputs",toJson (traced.outputs.map outJ)),("colors",toJson colorViews),("rankDiagnostic",toJson rank),("coreColorCalls",toJson (mcore.map (fun x => x.oracleCalls))),("visited",toJson raw.visited),("attempts",toJson raw.childAttempts),("pruned",toJson raw.pruned),("refusals",toJson raw.refusals),("meterWork",toJson metered.work),("guardCharge",toJson (guardCharge t p)),("colorCharge",toJson (colorCharge t p)),("finalPolynomial",toJson (finalPolynomial t p)),("nodes",toJson (treeNodes t)),("targetAgreement",toJson (agreement target t p)),("returnedTargetAgreement",toJson (actual.map (fun o => agreement target t o.partition)))]).compress)
+def validAddress (t : Tree) (v : RMAF.Vertex) : Bool := (subtree t v).isSome
+def actualEdge (t : Tree) (u v : RMAF.Vertex) : Bool :=
+ validAddress t u && validAddress t v && ((v.dropLast==u && v.length==u.length+1) || (u.dropLast==v && u.length==v.length+1))
+def checkCertificate (id : String) (t : Tree) (vs cuts : List RMAF.Vertex) : IO Unit := do
+ IO.println ("ACTUAL_VALUE " ++ (Json.mkObj [("id",toJson id),("validOriginalVertices",toJson (vs.map (fun v => validAddress t v))),("nodes",toJson (treeNodes t)),("cutEdges",toJson (cuts.map (fun v => v != [] && actualEdge t v.dropLast v))),("reverseEdges",toJson (cuts.map (fun v => v != [] && actualEdge t v v.dropLast)))]).compress)
+def checkEdges (id : String) (t : Tree) (pairs : List (RMAF.Vertex × RMAF.Vertex)) : IO Unit := do
+ IO.println ("ACTUAL_VALUE " ++ (Json.mkObj [("id",toJson id),("actual",toJson (pairs.map (fun (u,v) => actualEdge t u v)))]).compress)
+def checkAbsorb (id : String) (k q calls : Nat) (c : Rat) : IO Unit := do
+ IO.println ("ACTUAL_VALUE " ++ (Json.mkObj [("id",toJson id),("factor",toJson (2^k)),("charged",toJson (calls*2^k)),("absorbed",toJson (decide ((calls : Rat)*(2 : Rat)^k<=c^q)))]).compress)
+def main : IO Unit := do
+ checkRecovery "singleton-leaf" (.leaf 0) (.leaf 0) [[0]]
+ checkRecovery "full-block-quartet" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) [[3,1,0,2]]
+ checkRecovery "two-leaf-singletons" (.node (.leaf 0) (.leaf 1)) (.node (.leaf 0) (.leaf 1)) [[0],[1]]
+ checkRecovery "quartet-three-blocks" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) [[0,1],[2],[3]]
+ checkRecovery "all-singletons-quartet" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) [[0],[1],[2],[3]]
+ checkRecovery "quartet-reordered-blocks-and-labels" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) [[3],[1,0],[2]]
+ checkRecovery "nonclade-original-paths" (.node (.node (.leaf 0) (.node (.leaf 1) (.leaf 2))) (.node (.leaf 3) (.leaf 4))) (.node (.node (.leaf 0) (.node (.leaf 1) (.leaf 2))) (.node (.leaf 3) (.leaf 4))) [[0,2],[1],[3,4]]
+ checkRecovery "nonclade-reordered" (.node (.node (.leaf 0) (.node (.leaf 1) (.leaf 2))) (.node (.leaf 3) (.leaf 4))) (.node (.node (.leaf 0) (.node (.leaf 1) (.leaf 2))) (.node (.leaf 3) (.leaf 4))) [[4,3],[2,0],[1]]
+ checkRecovery "swapped-siblings-quartet" (.node (.node (.leaf 2) (.leaf 3)) (.node (.leaf 0) (.leaf 1))) (.node (.node (.leaf 2) (.leaf 3)) (.node (.leaf 0) (.leaf 1))) [[1,0],[3],[2]]
+ checkRecovery "huge-original-labels" (.node (.node (.leaf 340282366920938463463374607431768211456) (.leaf 340282366920938463463374607431768211457)) (.node (.leaf 340282366920938463463374607431768211458) (.leaf 340282366920938463463374607431768211459))) (.node (.node (.leaf 340282366920938463463374607431768211456) (.leaf 340282366920938463463374607431768211457)) (.node (.leaf 340282366920938463463374607431768211458) (.leaf 340282366920938463463374607431768211459))) [[340282366920938463463374607431768211456,340282366920938463463374607431768211457],[340282366920938463463374607431768211458],[340282366920938463463374607431768211459]]
+ checkRecovery "source-valid-target-crossed" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) (.node (.node (.leaf 0) (.leaf 2)) (.node (.leaf 1) (.leaf 3))) [[0,1],[2,3]]
+ checkRecovery "full-block-wrong-target" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) (.node (.node (.leaf 0) (.leaf 2)) (.node (.leaf 1) (.leaf 3))) [[0,1,2,3]]
+ checkRecovery "empty-partition" (.leaf 0) (.leaf 0) []
+ checkRecovery "empty-only-block" (.leaf 0) (.leaf 0) [[]]
+ checkRecovery "empty-extra-block" (.leaf 0) (.leaf 0) [[0],[]]
+ checkRecovery "repeated-label-in-block" (.leaf 0) (.leaf 0) [[0,0]]
+ checkRecovery "repeated-block" (.leaf 0) (.leaf 0) [[0],[0]]
+ checkRecovery "absent-extra-label" (.leaf 0) (.leaf 0) [[0,9]]
+ checkRecovery "missing-source-label" (.node (.leaf 0) (.leaf 1)) (.node (.leaf 0) (.leaf 1)) [[0]]
+ checkRecovery "duplicate-source-leaves" (.node (.leaf 0) (.leaf 0)) (.node (.leaf 0) (.leaf 0)) [[0]]
+ checkRecovery "overlapping-blocks" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) [[0,1],[1,2,3]]
+ checkRecovery "crossed-source-embeddings" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) [[0,2],[1,3]]
+ checkCertificate "pair-allowed-history-0" (.node (.leaf 0) (.leaf 1)) [[],[false],[true]] [[false]]
+ checkCertificate "pair-allowed-history-1" (.node (.leaf 0) (.leaf 1)) [[],[false],[true]] [[true]]
+ checkCertificate "quartet-allowed-history-0" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) [[],[false],[false,false],[false,true],[true],[true,false],[true,true]] [[true,false],[true,true]]
+ checkCertificate "quartet-allowed-history-1" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) [[],[false],[false,false],[false,true],[true],[true,false],[true,true]] [[true],[true,false]]
+ checkCertificate "quartet-allowed-history-2" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) [[],[false],[false,false],[false,true],[true],[true,false],[true,true]] [[true],[true,true]]
+ checkCertificate "quartet-allowed-history-3" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) [[],[false],[false,false],[false,true],[true],[true,false],[true,true]] [[false],[true,false]]
+ checkCertificate "quartet-allowed-history-4" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) [[],[false],[false,false],[false,true],[true],[true,false],[true,true]] [[false],[true,true]]
+ checkCertificate "nonclade-allowed-history-0" (.node (.node (.leaf 0) (.node (.leaf 1) (.leaf 2))) (.node (.leaf 3) (.leaf 4))) [[],[false],[false,false],[false,true],[false,true,false],[false,true,true],[true],[true,false],[true,true]] [[false,true,false],[false]]
+ checkCertificate "nonclade-allowed-history-1" (.node (.node (.leaf 0) (.node (.leaf 1) (.leaf 2))) (.node (.leaf 3) (.leaf 4))) [[],[false],[false,false],[false,true],[false,true,false],[false,true,true],[true],[true,false],[true,true]] [[false,true,false],[true]]
+ checkCertificate "missing-cut" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) [[],[false],[false,false],[false,true],[true],[true,false],[true,true]] [[true,false]]
+ checkCertificate "duplicate-cut" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) [[],[false],[false,false],[false,true],[true],[true,false],[true,true]] [[true,false],[true,false],[true,true]]
+ checkCertificate "root-cut" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) [[],[false],[false,false],[false,true],[true],[true,false],[true,true]] [[],[true,false],[true,true]]
+ checkCertificate "nonedge-cut" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) [[],[false],[false,false],[false,true],[true],[true,false],[true,true]] [[true,false,true],[true,true]]
+ checkCertificate "leafless-root-pair" (.node (.leaf 0) (.leaf 1)) [[],[false],[true]] [[false],[true]]
+ checkCertificate "leafless-root-quartet" (.node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))) [[],[false],[false,false],[false,true],[true],[true,false],[true,true]] [[false],[true]]
+ checkCertificate "local-edge-not-whole-certificate" (.node (.node (.leaf 0) (.node (.leaf 1) (.leaf 2))) (.node (.leaf 3) (.leaf 4))) [[],[false],[false,false],[false,true],[false,true,false],[false,true,true],[true],[true,false],[true,true]] [[false]]
+ checkEdges "suppressed-versus-original-edge" (.node (.node (.leaf 0) (.node (.leaf 1) (.leaf 2))) (.node (.leaf 3) (.leaf 4))) [([],[false,true,true]),([false,true],[false,true,true]),([],[false])]
+ checkAbsorb "once-after-selection" 3 3 1 2
+ checkAbsorb "repeated-per-branch-not-free" 3 3 8 2
+ checkAbsorb "too-small-base" 3 3 1 (mkRat 3 2)
+ checkAbsorb "over-budget-forest" 3 2 1 2
+ checkAbsorb "rational233-absorption" 2 3 1 (mkRat 233 100)

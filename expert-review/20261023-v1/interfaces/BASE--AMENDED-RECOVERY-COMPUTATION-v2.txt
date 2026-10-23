@@ -1,0 +1,27 @@
+Apply to the exact base projection: omit ONLY RWInitial Built.coloring:Nat and InitialMeasured.coloring:Nat (and the already omitted work fields); single remaining value wrappers unbox. All other colors/fields remain. The following are the active three existing procedure bodies. Establish projection noninterference independently; no supporting argument is supplied here.
+
+meterBuild(color,p,Leaf(x)):
+    c := color(x)                              // once; actual returned Nat color
+    return GLeaf(Group(origin=p,labels=[x],color=c))
+meterBuild(color,p,Node(l,r)):
+    a := meterBuild(color,append(p,[false]),l)   // path construction then whole left
+    b := meterBuild(color,append(p,[true]),r)    // then path and whole right
+    return GNode(origin=p,left=a,right=b)
+
+meterInitial(color,budget,t):
+    leaves1 := meterLeaves(t)
+    proper := meterNodup(leaves1)
+    if not proper: return None
+    leaves2 := meterLeaves(t)
+    len := meterLength(leaves2)
+    built := meterBuild(color,[],t)
+    return Some(min(budget,sub(len,1)),built)
+
+meterGenerate(t,color,budget):
+    init := meterInitial(color,budget,t)
+    case init of
+      None:
+        return Receipt(outputs=[],refusals=["duplicate original label"],
+                       visited=0,childAttempts=0,pruned=0)
+      Some(q,built):
+        return meterRun(q,built,[],[])

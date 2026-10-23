@@ -1,0 +1,37 @@
+import Rule4Bridge
+namespace Universal233.OrdinaryPriorityBridge
+open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent CherryBranching Rule5Local Rule5Classification Rule5FinalClassification
+
+theorem hard2_priority_guards {T S : Tree} {c d : Candidate}
+ (proper : DepthOne.proper T S=true)
+ (forward : CherryBranching.select T S=some (.hard2,c))
+ (reverse : CherryBranching.select S T=some (.hard2,d)) :
+ earlierClear T S=true ∧ earlierClear S T=true ∧
+ CherryAt T c.parent c.a c.b ∧ c.originalCuts=cuts S c.a c.b ∧ (cuts S c.a c.b).length=2 ∧ hasCherry T c.a c.b=true ∧
+ CherryAt S d.parent d.a d.b ∧ d.originalCuts=cuts T d.a d.b ∧ (cuts T d.a d.b).length=2 ∧ hasCherry S d.a d.b=true ∧
+ Rule4.Priority T S ∧ Rule4.Priority S T := by
+ have fc := hard2_actual forward
+ have rc := hard2_actual reverse
+ exact ⟨hard2_earlierClear forward,hard2_earlierClear reverse,fc.1,(selected_actual forward).2,fc.2.1,fc.2.2,
+   rc.1,(selected_actual reverse).2,rc.2.1,rc.2.2,actual_rule4_priority proper forward reverse,
+   actual_rule4_priority (proper_reverse proper) reverse forward⟩
+
+/-- Exact actual-dispatch admission reduction. Source embeddings are proved;
+the target embedding and good-count predicates remain literal hypotheses. -/
+theorem actual_rule5_admitted_iff {T S : Tree} {c d : Candidate}
+ (proper : DepthOne.proper T S=true)
+ (forward : CherryBranching.select T S=some (.hard2,c))
+ (reverse : CherryBranching.select S T=some (.hard2,d))
+ (noT : Rule4.select T S=none) (noS : Rule4.select S T=none) :
+ admitted T S c.a c.b=true ↔
+ pairwiseEmbeddings T (pendantPartition S c.a c.b)=true ∧
+ ((pendantPartition S c.a c.b).filter (fun B => restrictionAgrees T S B)).length=2 := by
+ have pp := proper_rule5 proper
+ have earlierT := hard2_earlierClear forward
+ have earlierS := hard2_earlierClear reverse
+ have facts := hard2_actual forward
+ have no := actual_no_rule4 proper forward reverse noT noS
+ have source : pairwiseEmbeddings S (pendantPartition S c.a c.b)=true := source_embeddings (proper_parts proper).2.1
+ simp only [admitted,pp,facts.2.2,earlierT,earlierS,no.1,no.2,facts.2.1,source,
+   Bool.not_false,Bool.true_and,Bool.and_true,Bool.and_eq_true,beq_iff_eq]
+end Universal233.OrdinaryPriorityBridge

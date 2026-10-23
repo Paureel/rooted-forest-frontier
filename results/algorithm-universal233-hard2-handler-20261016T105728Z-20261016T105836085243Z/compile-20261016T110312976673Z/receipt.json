@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.48585616600030335,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.5579732500009413,
+      "resource_stop": null,
+      "log_sha256": "fac0cd24fc66d76a24903e59adb089db8a2feb6a84d07ea65ba732b28ce7bff6"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0036467499994614627,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GoodPairLocalBound",
+      "source_sha256": "c9c4c31fd839206299156ee34bc0d9a2bbc7e64159ede8fbbb90ca41815e0579",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 1.406322958000601,
+      "resource_stop": null,
+      "log_sha256": "0fe25187eedef9de20338c5daa827baa085fe830680f3f0f087362961e60c5b7"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('GoodPairLocalBound', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairLocalBound.lean:78:120: error: Application type mismatch: The argument\\n  h\\nhas type\\n  (N + 1) ^ 1 \u2264 (N + 1) ^ 3\\nbut is expected to have type\\n  N.succ \u2264 (N + 1) ^ 3\\nin the application\\n  Nat.le_trans (Nat.le_succ N) h\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairLocalBound.lean:99:6: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  y \u2265 0\\n  x \u2265 0\\n  x - y \u2265 0\\n  w \u2265 0\\n  v \u2265 0\\n  u \u2265 0\\n  t \u2265 0\\n  s \u2265 0\\n  r \u2265 0\\n  r - s \u2265 0\\n  p \u2265 0\\n  o \u2265 0\\n  n \u2265 0\\n  m \u2265 0\\n  l \u2265 0\\n  k \u2265 0\\n  j \u2265 0\\n  j - k \u2265 0\\n  j - l \u2265 0\\n  i \u2265 1\\n  16*i - o \u2265 0\\n  16*i - p \u2265 0\\n  64*i - m \u2265 0\\n  64*i - n \u2265 0\\n  h \u2265 0\\n  h - 40*i \u2264 0\\n  g \u2265 0\\n  g - h \u2265 -1\\n  f \u2265 0\\n  e \u2265 0\\n  d \u2265 0\\n  6*d + h - 512*i + k + 2*m + n + o + p - r + s + 3*t - v + w \u2265 -51\\n  c \u2265 0\\n  b \u2265 0\\n  a \u2265 3\\n  a - b \u2265 0\\n  a - c \u2265 0\\n  a - d \u2265 0\\n  a - e \u2265 0\\n  a - f \u2265 0\\n  a - i \u2264 0\\n  a - t \u2265 0\\n  a - u \u2265 0\\n  2*a + v - w \u2265 -6\\nwhere\\n a := \u2191N\\n b := \u2191(treeNodes T)\\n c := \u2191(treeNodes S)\\n d := \u2191A.length\\n e := \u2191B.length\\n f := \u2191C.length\\n g := \u2191(4 * (N + 2) * treeNodes S + 3) * \u2191[A, B, C].length\\n h := \u2191(sourceForestMeter S [A, B, C]).work\\n i := \u2191((N + 1) ^ 3)\\n j := \u2191[A, B, C].length\\n k := \u2191(owned (List.filterMap (fun U => restrict U S) [A, B, C]) (A ++ B)).length\\n l := \u2191(owned (OutputState.sourceForest S [A, B, C]) C).length\\n m := \u2191(ownedMeter (List.filterMap (fun U => restrict U S) [A, B, C]) (A ++ B)).work\\n n := \u2191(ownedMeter (List.filterMap (fun U => restrict U S) [A, B, C]) C).work\\n o := \u2191(localTargetMeter (some T) (A ++ B)).work\\n p := \u2191(localTargetMeter (some T) C).work\\n r := \u2191(goodPairDPPolynomial N)\\n s := \u2191(AllGoodDP.LocalWork.meterRun (localTarget (some T) (A ++ B))\\n      (owned (List.filterMap (fun U => restrict U S) [A, B, C]) (A ++ B))).work\\n t := \u2191H.length\\n u := \u2191H.flatten.length\\n v := \u2191(agreementK N)\\n w := \u2191(checkedMeter T S q\\n      (Option.map (fun K => H ++ K)\\n        (GenericForest.solve actual (localTarget (some T) C)\\n          (owned (List.filterMap (fun U => restrict U S) [A, B, C]) C)\\n          (q - 2 - additionalCost (owned (List.filterMap (fun U => restrict U S) [A, B, C]) (A ++ B)) H)))).work\\n x := \u2191(q - 2)\\n y := \u2191(additionalCost (owned (List.filterMap (fun D => restrict D S) [A, B, C]) (A ++ B)) H)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairLocalBound.lean:103:6: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  y \u2265 0\\n  x \u2265 0\\n  x - y \u2265 1\\n  w \u2265 0\\n  v \u2265 0\\n  u \u2265 0\\n  t \u2265 0\\n  s \u2265 0\\n  r \u2265 0\\n  r - s \u2265 0\\n  p \u2265 0\\n  o \u2265 0\\n  n \u2265 0\\n  m \u2265 0\\n  l \u2265 0\\n  k \u2265 0\\n  j \u2265 0\\n  j - k \u2265 0\\n  j - l \u2265 0\\n  i \u2265 1\\n  16*i - o \u2265 0\\n  16*i - p \u2265 0\\n  64*i - m \u2265 0\\n  64*i - n \u2265 0\\n  h \u2265 0\\n  h - 40*i \u2264 0\\n  g \u2265 0\\n  g - h \u2265 -1\\n  f \u2265 0\\n  e \u2265 0\\n  d \u2265 0\\n  6*d + h - 512*i + k + 2*m + o - r + s + t - v \u2265 -39\\n  c \u2265 0\\n  b \u2265 0\\n  a \u2265 3\\n  a - b \u2265 0\\n  a - c \u2265 0\\n  a - d \u2265 0\\n  a - e \u2265 0\\n  a - f \u2265 0\\n  a - i \u2264 0\\n  a - t \u2265 0\\n  a - u \u2265 0\\n  2*a + v - w \u2265 -6\\nwhere\\n a := \u2191N\\n b := \u2191(treeNodes T)\\n c := \u2191(treeNodes S)\\n d := \u2191A.length\\n e := \u2191B.length\\n f := \u2191C.length\\n g := \u2191(4 * (N + 2) * treeNodes S + 3) * \u2191[A, B, C].length\\n h := \u2191(sourceForestMeter S [A, B, C]).work\\n i := \u2191((N + 1) ^ 3)\\n j := \u2191[A, B, C].length\\n k := \u2191(owned (List.filterMap (fun U => restrict U S) [A, B, C]) (A ++ B)).length\\n l := \u2191(owned (OutputState.sourceForest S [A, B, C]) C).length\\n m := \u2191(ownedMeter (List.filterMap (fun U => restrict U S) [A, B, C]) (A ++ B)).work\\n n := \u2191(ownedMeter (OutputState.sourceForest S [A, B, C]) C).work\\n o := \u2191(localTargetMeter (some T) (A ++ B)).work\\n p := \u2191(localTargetMeter (some T) C).work\\n r := \u2191(goodPairDPPolynomial N)\\n s := \u2191(AllGoodDP.LocalWork.meterRun (localTarget (some T) (A ++ B))\\n      (owned (List.filterMap (fun U => restrict U S) [A, B, C]) (A ++ B))).work\\n t := \u2191H.length\\n u := \u2191H.flatten.length\\n v := \u2191(agreementK N)\\n w := \u2191(checkedMeter T S q\\n      (Option.map (fun K => H ++ K)\\n        (GenericForest.solve actual (localTarget (some T) C) (owned (OutputState.sourceForest S [A, B, C]) C)\\n          (q - 2 - additionalCost (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) H)))).work\\n x := \u2191(additionalCost (owned (List.filterMap (fun D => restrict D S) [A, B, C]) (A ++ B)) H)\\n y := \u2191(q - 2)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairLocalBound.lean:80:2: warning: This simp argument is unused:\\n  OutputState.sourceForest\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp only [goodPairLocalSource, appendLabelsMeter_value, localTargetMeter_value, ownedMeter_value,\\n    source_forest_value, AllGoodDP.LocalWork.meterRun_value, additionalCostMeter_value]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n'))"
+}

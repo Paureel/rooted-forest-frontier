@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.33329883300029906,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.31621358299980784,
+      "resource_stop": null,
+      "log_sha256": "e28bb8a52a6d382a886a6c51443d8d96729e8f1cff2d4555ae640187660456ce"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.001637416999983543,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Rule4CallerSource",
+      "source_sha256": "be2ed9e6534df5cf65de65658920232481adefe43d804fdb966c85221c81479e",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 1.0259294580000642,
+      "resource_stop": null,
+      "log_sha256": "28be0f3e053e7cff16490868245f970aab753f3606ef5216c80f708d2ed3897b"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Rule4CallerSource', 'ves S)]\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/Rule4CallerSource.lean:26:7: warning: declaration uses `sorry`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/Rule4CallerSource.lean:26:50: warning: This simp argument is unused:\\n  blocks_value\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp [rule4PartitionMeter, Rule4.literalPartition, rule4OutsideMeter_value]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/Rule4CallerSource.lean:26:63: warning: This simp argument is unused:\\n  rule4OutsideMeter_value\\n\\nHint: Omit it from the simp argument list.\\n  [apply] simp [rule4PartitionMeter, Rule4.literalPartition, blocks_value]\\n\\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/Rule4CallerSource.lean:40:17: error: unsolved goals\\ncase node\\na : Nat\\nl r : Tree\\nil : (leafAddressMeter a l).value = Rule4.leafAddress a l\\nir : (leafAddressMeter a r).value = Rule4.leafAddress a r\\n\u22a2 (match Rule4.leafAddress a l with\\n      | some v => { value := some (false :: v), work := (leafAddressMeter a l).work + 4 }\\n      | none =>\\n        { value := Option.map (fun x => true :: x) (Rule4.leafAddress a r),\\n          work := (leafAddressMeter a l).work + (leafAddressMeter a r).work + 4 }).value =\\n    match Rule4.leafAddress a l with\\n    | some p => some (false :: p)\\n    | none => Option.map (fun x => true :: x) (Rule4.leafAddress a r)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/Rule4CallerSource.lean:117:4: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  k \u2265 0\\n  j \u2265 0\\n  i \u2265 0\\n  g \u2265 0\\n  f \u2265 0\\n  e \u2265 0\\n  d \u2265 0\\n  d - e \u2265 0\\n  c \u2265 0\\n  c - k \u2264 -1\\n  a \u2265 0\\n  a + c \u2265 0\\nwhere\\n a := \u2191(rule4AnswersSource actual (fun x x_1 x_2 => 0) q bs).work\\n c := \u2191(queryWork W\\n    (List.flatMap (fun call => frontier actual call.target call.sources call.budget)\\n      (affordableCalls bs Rule4.Branch.target Rule4.Branch.sourceForest Rule4.Branch.cost q)))\\n d := \u2191q\\n e := \u2191b.cost\\n f := \u2191(rule4StateMeter b).work\\n g := \u2191b.cuts.length\\n i := \u2191(forestWork actual (fun x x_1 x_2 => 0) (some b.target) b.sourceForest (q - b.cost))\\n j := \u2191(queryWork W (frontier actual (some b.target) b.sourceForest (q - b.cost)))\\n k := \u2191(queryWork W\\n    (List.flatMap (fun call => frontier actual call.target call.sources call.budget)\\n      (List.filterMap\\n        (fun a =>\\n          if a.cost \u2264 q then some { target := some a.target, sources := a.sourceForest, budget := q - a.cost }\\n          else none)\\n        bs)))\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/Rule4CallerSource.lean:119:4: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  g \u2265 0\\n  f \u2265 0\\n  e \u2265 0\\n  d \u2265 0\\n  d - e \u2265 1\\n  c \u2265 0\\n  c - g \u2264 -1\\n  a \u2265 0\\n  a + c \u2265 0\\nwhere\\n a := \u2191(rule4AnswersSource actual (fun x x_1 x_2 => 0) q bs).work\\n c := \u2191(queryWork W\\n    (List.flatMap (fun call => frontier actual call.target call.sources call.budget)\\n      (affordableCalls bs Rule4.Branch.target Rule4.Branch.sourceForest Rule4.Branch.cost q)))\\n d := \u2191b.cost\\n e := \u2191q\\n f := \u2191b.cuts.length\\n g := \u2191(queryWork W\\n    (List.flatMap (fun call => frontier actual call.target call.sources call.budget)\\n      (List.filterMap\\n        (fun a =>\\n          if a.cost \u2264 q then some { target := some a.target, sources := a.sourceForest, budget := q - a.cost }\\n          else none)\\n        bs)))\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/Rule4CallerSource.lean:130:1: error: Type mismatch: After simplification, term\\n  congrArg\\n    (fun n =>\\n      (rule4BranchesMeter s).work + n +\\n          (bestLengthMeter (fun x => { value := true, work := 1 })\\n              (List.flatMap (fun b => Rule4.childOutputs b q (rule4Child actual)) (Rule4.branches s))).work +\\n        2)\\n    split\\n has type\\n  (rule4BranchesMeter s).work + (rule4AnswersSource actual W q (Rule4.branches s)).work +\\n        (bestLengthMeter (fun x => { value := true, work := 1 })\\n            (List.flatMap (fun b => Rule4.childOutputs b q (rule4Child actual)) (Rule4.branches s))).work +\\n      2 =\\n    (rule4BranchesMeter s).work +\\n          ((rule4AnswersSource actual (fun x x_1 x_2 => 0) q (Rule4.branches s)).work +\\n            queryWork W\\n              (forestQueries actual\\n                (affordableCalls (Rule4.branches s) Rule4.Branch.target Rule4.Branch.sourceForest Rule4.Branch.cost\\n                  q))) +\\n        (bestLengthMeter (fun x => { value := true, work := 1 })\\n            (List.flatMap (fun b => Rule4.childOutputs b q (rule4Child actual)) (Rule4.branches s))).work +\\n      2\\nbut is expected to have type\\n  (rule4BranchesMeter s).work + (rule4AnswersSource actual W q (Rule4.branches s)).work +\\n        (bestLengthMeter (fun x => { value := true, work := 1 })\\n            (List.flatMap (fun b => Rule4.childOutputs b q (rule4Child actual)) (Rule4.branches s))).work +\\n      2 =\\n    (rule4BranchesMeter s).work + (rule4AnswersSource actual (fun x x_1 x_2 => 0) q (Rule4.branches s)).work +\\n          (bestLengthMeter (fun x => { value := true, work := 1 })\\n              (List.flatMap (fun b => Rule4.childOutputs b q (rule4Child actual)) (Rule4.branches s))).work +\\n        2 +\\n      queryWork W\\n        (forestQueries actual\\n          (affordableCalls (Rule4.branches s) Rule4.Branch.target Rule4.Branch.sourceForest Rule4.Branch.cost q))\\n'))"
+}

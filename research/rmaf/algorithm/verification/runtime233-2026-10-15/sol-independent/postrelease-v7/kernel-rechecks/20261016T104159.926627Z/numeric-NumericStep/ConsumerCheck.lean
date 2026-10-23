@@ -1,0 +1,3 @@
+import NumericStep
+#check OrdinaryDispatch.GlobalNumeric.ordinaryStepTrace_cap
+#print axioms OrdinaryDispatch.GlobalNumeric.ordinaryStepTrace_cap

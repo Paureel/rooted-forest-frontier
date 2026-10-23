@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "frozen_before_theorem_construction": true,
+  "expectations_source": "literal hand-constructed rooted binary trees, distinct from frozen implementation outputs",
+  "tree_notation": "leaf n=n; node A B=(A,B)",
+  "controls": [
+    {"id":"balanced_clade","T":"((0,1),(2,3))","S":"((0,1),(2,3))","F":[[0,1,2,3]],"p":[false],"U":"(0,1)","proper":true,"agreement_before":true,"agreement_after":true,"split":[[0,1],[2,3]]},
+    {"id":"balanced_nonclade_false","T":"((0,1),(2,3))","S":"((0,1),(2,3))","F":[[0,1,2,3]],"X":[0,2],"partition_after":true,"shapes_after":true,"T_hulls_after":false,"S_hulls_after":false,"agreement_after":false,"omitted_hulls_mutant":true},
+    {"id":"asymmetric_clade","T":"(0,(1,(2,3)))","S":"(0,(1,(2,3)))","F":[[0,1,2,3]],"p":[true,true],"U":"(2,3)","agreement_after":true,"split":[[2,3],[0,1]]},
+    {"id":"root_null","T":"((0,1),(2,3))","S":"((0,1),(2,3))","F":[[0,1],[2],[3]],"p":[],"agreement_before":true,"agreement_after":true,"split":[[0,1],[2],[3]]},
+    {"id":"singleton","T":"0","S":"0","F":[[0]],"p":[],"U":"0","proper":true,"agreement_before":true,"agreement_after":true,"split":[[0]]},
+    {"id":"multiblock","T":"((0,1),(2,3))","S":"((0,1),(2,3))","F":[[0,2],[1],[3]],"p":[false],"U":"(0,1)","agreement_before":true,"agreement_after":true,"split":[[0],[2],[1],[3]]},
+    {"id":"repeated_label_gate","T":"(0,0)","S":"(0,0)","F":[[0]],"proper":false,"agreement_before":true,"mutant_accept_without_proper":true},
+    {"id":"source_address_identity","T":"((0,2),(1,3))","S":"((0,1),(2,3))","F":[[0,1],[2],[3]],"p":[false],"U":"(0,1)","proper":true,"agreement_before":true,"subtree_S_is_U":true,"subtree_T_is_U":false,"agreement_after":true,"note":"Swapping the two tree roles in the universal theorem is valid by symmetry; the actual planted failure is transporting an unchanged original address/object across distinct trees."}
+  ],
+  "pass_criteria":"Every displayed expected Bool/list receives an exact kernel proof using decide; the nonclade false extension is rejected. Finite controls are diagnostic and cannot certify the universal theorem.",
+  "acceptance":"Universal exact Lean proof plus stored closure audit or exact in-regime counterexample; fresh interface and nonauthor audit remain separate. No algorithm/base/native/novelty claim."
+}

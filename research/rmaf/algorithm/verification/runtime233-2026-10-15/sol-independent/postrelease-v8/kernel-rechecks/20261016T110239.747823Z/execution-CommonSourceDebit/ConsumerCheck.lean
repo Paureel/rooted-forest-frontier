@@ -1,0 +1,7 @@
+import CommonSourceDebit
+#check Universal233.Rule5ExecutionSource.common_source_value
+#print axioms Universal233.Rule5ExecutionSource.common_source_value
+#check Universal233.Rule5ExecutionSource.common_source_split
+#print axioms Universal233.Rule5ExecutionSource.common_source_split
+#check Universal233.Rule5ExecutionSource.common_source_local
+#print axioms Universal233.Rule5ExecutionSource.common_source_local

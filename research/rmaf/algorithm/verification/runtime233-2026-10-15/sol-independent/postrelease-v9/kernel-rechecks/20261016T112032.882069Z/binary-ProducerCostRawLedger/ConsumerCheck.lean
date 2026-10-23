@@ -1,0 +1,5 @@
+import ProducerCostRawLedger
+#check GenericForest.BinaryProducer.rawCandidates_ledger
+#print axioms GenericForest.BinaryProducer.rawCandidates_ledger
+#check GenericForest.BinaryProducer.rawCallbackWork_paid
+#print axioms GenericForest.BinaryProducer.rawCallbackWork_paid

@@ -1,0 +1,7 @@
+import ProducerCostAssembly
+#check GenericForest.BinaryProducer.rawParentProducer_ledger
+#print axioms GenericForest.BinaryProducer.rawParentProducer_ledger
+#check GenericForest.BinaryProducer.generatedRawParent_ledger
+#print axioms GenericForest.BinaryProducer.generatedRawParent_ledger
+#check GenericForest.BinaryProducer.generatedRawParent_generation_paid
+#print axioms GenericForest.BinaryProducer.generatedRawParent_generation_paid

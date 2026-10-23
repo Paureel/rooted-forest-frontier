@@ -1,0 +1,7 @@
+import LiteralBinding
+#check Universal233.PaidLiteralDecisionWork.literal_work
+#print axioms Universal233.PaidLiteralDecisionWork.literal_work
+#check Universal233.PaidLiteralDecisionWork.literal_call_work
+#print axioms Universal233.PaidLiteralDecisionWork.literal_call_work
+#check Universal233.PaidLiteralDecisionWork.paid_selected_work_concrete
+#print axioms Universal233.PaidLiteralDecisionWork.paid_selected_work_concrete

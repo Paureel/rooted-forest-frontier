@@ -1,0 +1,160 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2GenerationBound.lean:32:1: error: Tactic `split` failed: Could not split an `if` or `match` expression in the goal
+
+Hint: Use `set_option trace.split.failure true` to display additional diagnostic information
+
+case isTrue
+A B D : List Nat
+x N : Nat
+al : A.length ≤ N
+bl : B.length ≤ N
+dl : D.length ≤ N
+a : (meterContains x A).work ≤ 4 * (A.length + 1)
+b : (meterContains x B).work ≤ 4 * (B.length + 1)
+d : (meterContains x D).work ≤ 4 * (D.length + 1)
+h✝ : (meterContains x A).value = true
+⊢ { value := 0, work := (meterContains x A).work + 5 }.work ≤ 12 * (N + 1) + 8
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2GenerationBound.lean:44:5: error: unknown tactic
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2GenerationBound.lean:43:3: error: Type mismatch
+  Nat.le_trans (wholeOutputsMeter_bound S T A B c q)
+has type
+  generationEnvelope S q + (leaves S).length * taggedCap T A B c ≤ ?m.56 → (wholeOutputsMeter S T A B c q).work ≤ ?m.56
+but is expected to have type
+  (wholeOutputsMeter S T A B c q).work ≤ outputCallCap S T N q
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2GenerationBound.lean:41:68: error: unsolved goals
+case right
+S T : Tree
+A B : List Nat
+c : Colors
+N q : Nat
+al : A.length ≤ N
+bl : B.length ≤ N
+address :
+  ∀ (l : Local),
+    l ∈ [c.a, c.b, c.c] →
+      match l with
+      | Local.keep => True
+      | Local.single v => List.length v ≤ N
+      | Local.joint v w => List.length v ≤ N ∧ List.length w ≤ N
+⊢ (wholeOutputsMeter S T A B c q).value.length ≤ outputCountCap S q
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2GenerationBound.lean:67:86: error: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)
+  l = Local.keep ∨ l = Local.single v
+
+case inr
+S T : Tree
+A B : List Nat
+N q : Nat
+al : A.length ≤ N
+bl : B.length ≤ N
+point :
+  ∀ (c : Colors),
+    (∀ (l : Local),
+        l ∈ [c.a, c.b, c.c] →
+          match l with
+          | Local.keep => True
+          | Local.single v => List.length v ≤ N
+          | Local.joint v w => List.length v ≤ N ∧ List.length w ≤ N) →
+      (wholeOutputsMeter S T A B c q).work ≤ outputCallCap S T N q ∧
+        (wholeOutputsMeter S T A B c q).value.length ≤ outputCountCap S q
+v : RMAF.Vertex
+ks : KindSize N (Kind.clique v)
+a :
+  (wholeOutputsMeter S T A B { a := Local.keep, b := Local.single v, c := Local.single v } q).work ≤
+      outputCallCap S T N q ∧
+    (wholeOutputsMeter S T A B { a := Local.keep, b := Local.single v, c := Local.single v } q).value.length ≤
+      outputCountCap S q
+l : Local
+h✝ : l = Local.keep ∨ l = Local.single v
+⊢ match l with
+  | Local.keep => True
+  | Local.single v => List.length v ≤ N
+  | Local.joint v w => List.length v ≤ N ∧ List.length w ≤ N
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2GenerationBound.lean:73:83: error: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)
+  l = Local.joint v w ∨ l = Local.keep
+
+case inr
+S T : Tree
+A B : List Nat
+N q : Nat
+al : A.length ≤ N
+bl : B.length ≤ N
+point :
+  ∀ (c : Colors),
+    (∀ (l : Local),
+        l ∈ [c.a, c.b, c.c] →
+          match l with
+          | Local.keep => True
+          | Local.single v => List.length v ≤ N
+          | Local.joint v w => List.length v ≤ N ∧ List.length w ≤ N) →
+      (wholeOutputsMeter S T A B c q).work ≤ outputCallCap S T N q ∧
+        (wholeOutputsMeter S T A B c q).value.length ≤ outputCountCap S q
+v w : RMAF.Vertex
+ks : KindSize N (Kind.four v w)
+a :
+  (wholeOutputsMeter S T A B { a := Local.keep, b := Local.single v, c := Local.single w } q).work ≤
+      outputCallCap S T N q ∧
+    (wholeOutputsMeter S T A B { a := Local.keep, b := Local.single v, c := Local.single w } q).value.length ≤
+      outputCountCap S q
+l : Local
+h✝ : l = Local.joint v w ∨ l = Local.keep
+⊢ match l with
+  | Local.keep => True
+  | Local.single v => List.length v ≤ N
+  | Local.joint v w => List.length v ≤ N ∧ List.length w ≤ N
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2GenerationBound.lean:79:83: error: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)
+  l = Local.joint v w ∨ l = Local.keep
+
+case inr
+S T : Tree
+A B : List Nat
+N q : Nat
+al : A.length ≤ N
+bl : B.length ≤ N
+point :
+  ∀ (c : Colors),
+    (∀ (l : Local),
+        l ∈ [c.a, c.b, c.c] →
+          match l with
+          | Local.keep => True
+          | Local.single v => List.length v ≤ N
+          | Local.joint v w => List.length v ≤ N ∧ List.length w ≤ N) →
+      (wholeOutputsMeter S T A B c q).work ≤ outputCallCap S T N q ∧
+        (wholeOutputsMeter S T A B c q).value.length ≤ outputCountCap S q
+v w : RMAF.Vertex
+ks : KindSize N (Kind.diagonal v w)
+l : Local
+h✝ : l = Local.joint v w ∨ l = Local.keep
+⊢ match l with
+  | Local.keep => True
+  | Local.single v => List.length v ≤ N
+  | Local.joint v w => List.length v ≤ N ∧ List.length w ≤ N
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2GenerationBound.lean:85:82: error: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)
+  l = Local.single v ∨ l = Local.keep
+
+case inr
+S T : Tree
+A B : List Nat
+N q : Nat
+al : A.length ≤ N
+bl : B.length ≤ N
+point :
+  ∀ (c : Colors),
+    (∀ (l : Local),
+        l ∈ [c.a, c.b, c.c] →
+          match l with
+          | Local.keep => True
+          | Local.single v => List.length v ≤ N
+          | Local.joint v w => List.length v ≤ N ∧ List.length w ≤ N) →
+      (wholeOutputsMeter S T A B c q).work ≤ outputCallCap S T N q ∧
+        (wholeOutputsMeter S T A B c q).value.length ≤ outputCountCap S q
+v : RMAF.Vertex
+ks : KindSize N (Kind.vertex v)
+a :
+  (wholeOutputsMeter S T A B { a := Local.single v, b := Local.keep, c := Local.keep } q).work ≤ outputCallCap S T N q ∧
+    (wholeOutputsMeter S T A B { a := Local.single v, b := Local.keep, c := Local.keep } q).value.length ≤
+      outputCountCap S q
+l : Local
+h✝ : l = Local.single v ∨ l = Local.keep
+⊢ match l with
+  | Local.keep => True
+  | Local.single v => List.length v ≤ N
+  | Local.joint v w => List.length v ≤ N ∧ List.length w ≤ N

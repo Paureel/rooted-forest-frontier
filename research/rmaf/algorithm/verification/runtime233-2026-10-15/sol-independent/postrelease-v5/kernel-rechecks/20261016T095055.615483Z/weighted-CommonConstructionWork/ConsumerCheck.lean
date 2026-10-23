@@ -1,0 +1,9 @@
+import CommonConstructionWork
+#check OrdinaryDispatch.FullSourceWork.contractMeter_bound
+#print axioms OrdinaryDispatch.FullSourceWork.contractMeter_bound
+#check OrdinaryDispatch.FullSourceWork.commonPairMeter_value
+#print axioms OrdinaryDispatch.FullSourceWork.commonPairMeter_value
+#check OrdinaryDispatch.FullSourceWork.commonPairMeter_bound
+#print axioms OrdinaryDispatch.FullSourceWork.commonPairMeter_bound
+#check OrdinaryDispatch.FullSourceWork.expandCommonMeter_value
+#print axioms OrdinaryDispatch.FullSourceWork.expandCommonMeter_value

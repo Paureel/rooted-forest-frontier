@@ -1,0 +1,13 @@
+import ClassificationControls
+import SourceWork
+#check Universal233.Rule5Classification.admitted_good_pendant_caterpillar
+#check Universal233.Rule5Classification.admitted_large_exchange
+#check Universal233.Rule5Classification.admitted_large_child_solver
+#check Universal233.Rule5Classification.admitted_sizeTwo_cover
+#check Universal233.Rule5Classification.admitted_sizeTwo_child_solver
+#check Universal233.Rule5Classification.original_core_second_cherry
+#check Universal233.Rule5Classification.outside_selector_complete
+#check Universal233.Rule5Classification.admitted_outside_cover
+#check Universal233.Rule5Classification.admitted_outside_child_solver
+#check Universal233.Rule5Classification.no_outside_core_caterpillar
+#check Universal233.Rule5Classification.shapeWork_bound

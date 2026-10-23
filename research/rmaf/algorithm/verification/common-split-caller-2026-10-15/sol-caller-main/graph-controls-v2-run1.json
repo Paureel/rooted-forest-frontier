@@ -1,0 +1,370 @@
+{
+  "mode": "controls",
+  "cases": [
+    {
+      "id": "starting-paid",
+      "costs": {
+        "X": 0,
+        "Y": 1,
+        "MX": 0,
+        "MY": 1,
+        "global": 1
+      },
+      "minimum_families": {
+        "X": [
+          [
+            [
+              0
+            ]
+          ]
+        ],
+        "Y": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          [
+            [
+              1,
+              3
+            ],
+            [
+              2
+            ]
+          ],
+          [
+            [
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        ],
+        "MX": [
+          [
+            [
+              0,
+              10
+            ]
+          ]
+        ],
+        "MY": [
+          [
+            [
+              1,
+              2,
+              11
+            ],
+            [
+              3
+            ]
+          ],
+          [
+            [
+              1,
+              3,
+              11
+            ],
+            [
+              2
+            ]
+          ],
+          [
+            [
+              1
+            ],
+            [
+              2,
+              3,
+              11
+            ]
+          ]
+        ],
+        "global": [
+          [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              3
+            ],
+            [
+              2
+            ]
+          ],
+          [
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              1
+            ]
+          ]
+        ]
+      },
+      "trees": {
+        "TX": 0,
+        "SX": 0,
+        "TY": [
+          [
+            1,
+            2
+          ],
+          3
+        ],
+        "SY": [
+          [
+            1,
+            3
+          ],
+          2
+        ],
+        "TMX": [
+          0,
+          10
+        ],
+        "SMX": [
+          0,
+          10
+        ],
+        "TMY": [
+          11,
+          [
+            [
+              1,
+              2
+            ],
+            3
+          ]
+        ],
+        "SMY": [
+          11,
+          [
+            [
+              1,
+              3
+            ],
+            2
+          ]
+        ]
+      },
+      "outcomes": [
+        {
+          "q": 0,
+          "status": "BOUNDED_NEGATIVE",
+          "trace": [],
+          "candidate_count": 0,
+          "answer": null
+        },
+        {
+          "q": 1,
+          "status": "MINIMUM",
+          "trace": [
+            {
+              "kind": "ordinaryX",
+              "budget": 0
+            },
+            {
+              "kind": "markedX",
+              "budget": 0
+            }
+          ],
+          "candidate_count": 2,
+          "answer": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              3
+            ]
+          ]
+        },
+        {
+          "q": 2,
+          "status": "MINIMUM",
+          "trace": [
+            {
+              "kind": "ordinaryX",
+              "budget": 1
+            },
+            {
+              "kind": "markedX",
+              "budget": 1
+            }
+          ],
+          "candidate_count": 2,
+          "answer": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              3
+            ]
+          ]
+        }
+      ],
+      "global_complete_family_pin": "all declared families checked",
+      "seconds": 0.0016230830005952157
+    }
+  ],
+  "candidate_contact": false,
+  "replication_credit": 0,
+  "mutations": [
+    {
+      "mutation": "missing-common-edge",
+      "caught": true,
+      "reason": "nonroot actual common edge missing"
+    },
+    {
+      "mutation": "root-cut",
+      "caught": true,
+      "reason": "nonroot actual common edge missing"
+    },
+    {
+      "mutation": "wrong-split-side",
+      "caught": true,
+      "reason": "wrong split side"
+    },
+    {
+      "mutation": "missing-original-vertex",
+      "caught": true,
+      "reason": "forgot original path vertex"
+    },
+    {
+      "mutation": "wrong-original-target",
+      "caught": true,
+      "reason": "wrong original target"
+    },
+    {
+      "mutation": "wrong-original-source",
+      "caught": true,
+      "reason": "wrong original source"
+    },
+    {
+      "mutation": "nonfresh-marker",
+      "caught": true,
+      "reason": "nonfresh marker"
+    },
+    {
+      "mutation": "wrong-representative",
+      "caught": true,
+      "reason": "wrong representative"
+    },
+    {
+      "mutation": "wrong-marked-relabel",
+      "caught": true,
+      "reason": "wrong marked relabel"
+    },
+    {
+      "mutation": "wrong-marker-owner",
+      "caught": true,
+      "reason": "marker absent from guessed owner"
+    },
+    {
+      "mutation": "marker-not-removed",
+      "caught": true,
+      "reason": "marker survived original return"
+    },
+    {
+      "mutation": "wrong-original-color-filter",
+      "caught": true,
+      "reason": "wrong original color filter"
+    },
+    {
+      "mutation": "wrong-erase-remainder",
+      "caught": true,
+      "reason": "owner erase omitted"
+    },
+    {
+      "mutation": "dropped-cartesian-pair",
+      "caught": true,
+      "reason": "Cartesian pair dropped"
+    },
+    {
+      "mutation": "deduplicated-paid-candidates",
+      "caught": true,
+      "reason": "duplicate paid values removed"
+    },
+    {
+      "mutation": "strict-literal-order-confusion",
+      "caught": true,
+      "reason": "strict list order rejects same AF"
+    },
+    {
+      "mutation": "component-cut-offset",
+      "caught": true,
+      "reason": "components confused with cuts"
+    },
+    {
+      "mutation": "unpaid-callback",
+      "caught": true,
+      "reason": "unpaid parent callback"
+    },
+    {
+      "mutation": "dropped-callback-coverage",
+      "caught": true,
+      "reason": "dropped marked callback loses minimum"
+    },
+    {
+      "mutation": "wrong-child-budget",
+      "caught": true,
+      "reason": "wrong actual child budget"
+    },
+    {
+      "mutation": "unaffordable-success",
+      "caught": true,
+      "reason": "unaffordable original success"
+    },
+    {
+      "mutation": "failed-callback-as-known-minimum",
+      "caught": true,
+      "reason": "failure used as free known minimum"
+    },
+    {
+      "mutation": "nonminimum-reply",
+      "caught": true,
+      "reason": "nonminimum marked callback"
+    },
+    {
+      "mutation": "missing-failure-exclusion",
+      "caught": true,
+      "reason": "failed callback excludes known affordable original witness"
+    },
+    {
+      "mutation": "refusal-as-infeasibility",
+      "caught": true,
+      "reason": "refusal fixture has cost0 original AF"
+    },
+    {
+      "mutation": "setup-desired-minimum-field",
+      "caught": true,
+      "reason": "Setup contains non-input/guard fields"
+    }
+  ],
+  "caught": 26,
+  "seconds": 0.0021483749987964984,
+  "script_sha256": "3dcf1b6196e497eb3cf7b27763a705f7bf37fd446900355bce6af3509312a5d6",
+  "expectations_sha256": "66a7fbd22b13637dcee115fa99f04fb39d35f9f9a0b23f40817bff282160c28c"
+}

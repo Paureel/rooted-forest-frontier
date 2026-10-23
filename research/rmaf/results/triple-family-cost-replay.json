@@ -1,0 +1,111 @@
+{
+  "status": "CLOSED-UNVERIFIED for three assembly constructors; whole G2 OPEN",
+  "engine": "Lean (version 4.35.0, arm64-apple-darwin24.6.0, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "scope": [
+    "closeBoth",
+    "extendLeft",
+    "extendRight",
+    "actual finite family invariant",
+    "cardinality and closed-index cost",
+    "per-index leaf-label preservation"
+  ],
+  "remaining": [
+    "universal merge",
+    "restriction/completeness",
+    "trimming",
+    "leafless-fragment discard",
+    "mask/color legality and DP interface",
+    "graph agreement forest correspondence",
+    "fresh nonauthor semantic/axiom/control verification"
+  ],
+  "controls": {
+    "T1": "two child singleton families: count=2, cost=2, root unused",
+    "T2": "manual merged cherry fixture: count=1, open cost=0, finished cost=1; not universal merge evidence",
+    "T3": "left/right extension: count=2, cost=1",
+    "T4": "distinct leaf labels with same color metadata: adjacent supports remain two indices",
+    "T5": "singleton: count=1, open cost=0, finished cost=1",
+    "regressions": "gapped support and leafless incursion address predicates; not fresh holdout or full family incursion verification",
+    "M1_M2": "two explicit false count-one propositions rejected; both count-two twins accepted"
+  },
+  "runs": [
+    {
+      "name": "triple",
+      "exit_code": 0,
+      "elapsed_seconds": 0.7135354580004787,
+      "passed": true,
+      "expected_failure": false,
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "research/rmaf/results/triple-family-cost-replay-triple.log"
+    },
+    {
+      "name": "connected",
+      "exit_code": 0,
+      "elapsed_seconds": 0.3416398749996006,
+      "passed": true,
+      "expected_failure": false,
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "research/rmaf/results/triple-family-cost-replay-connected.log"
+    },
+    {
+      "name": "assembly",
+      "exit_code": 0,
+      "elapsed_seconds": 0.4639140420003969,
+      "passed": true,
+      "expected_failure": false,
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "research/rmaf/results/triple-family-cost-replay-assembly.log"
+    },
+    {
+      "name": "controls",
+      "exit_code": 0,
+      "elapsed_seconds": 0.33646050000061223,
+      "passed": true,
+      "expected_failure": false,
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "log": "research/rmaf/results/triple-family-cost-replay-controls.log"
+    },
+    {
+      "name": "clean-twin",
+      "exit_code": 0,
+      "elapsed_seconds": 0.29754720800156065,
+      "passed": true,
+      "expected_failure": false,
+      "axioms": [],
+      "log": "research/rmaf/results/triple-family-cost-replay-clean-twin.log"
+    },
+    {
+      "name": "false-mutant",
+      "exit_code": 1,
+      "elapsed_seconds": 0.2964029169997957,
+      "passed": true,
+      "expected_failure": true,
+      "axioms": [],
+      "log": "research/rmaf/results/triple-family-cost-replay-false-mutant.log"
+    }
+  ],
+  "hashes": {
+    "research/rmaf/triple_dp/TripleDP.lean": "6b544504b68dd6638caa40200914dee5720be1cdc38ce5f180de1dc792944298",
+    "research/rmaf/triple_dp/ConnectedRegions.lean": "1b09d6e197d26eef62dfa5b13b8f5e17e826867e8778e68b50bc4f7b02d8ea33",
+    "research/rmaf/triple_dp/family/cost_route/FamilyAssembly.lean": "2e70422fb713c0aa45a6d4cd1a8d11d05d17d7962ccfe7dd3eecb719e9023ef8",
+    "research/rmaf/triple_dp/family/cost_route/Controls.lean": "21967fc2654b23f7d76e211470a1e9773963e66b46c4e836e03e21692409307c",
+    "research/rmaf/triple_dp/family/cost_route/CleanTwin.lean": "7525374e8f06aebc6fcd845350f649db0eb8d6d70ef5f5dcee11ac48b6d999f4",
+    "research/rmaf/triple_dp/family/cost_route/FalseMutant.lean": "d4e78735108a3978f9f5cb85ef3f5f0d9840d8ae90c5716ea442262b7763d9f5",
+    "research/rmaf/triple_dp/family/cost_route/replay.py": "811d8b31726417ed5c596fd4e0a00b06c86209119fe176ad691948727557fee1",
+    "research/rmaf/triple_dp/FAMILY-TARGET.md": "9d770e485b6b5ae1295be7089d3859bed302ce7db662782ddfe93961cd2076e5"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "scope": "Concrete executable support -> existing graph region -> original deepest-root consumer",
+  "proof_chain": [
+    {
+      "source": "RMAF.minimalVertices",
+      "file": "research/rmaf/lean/RMAF.lean",
+      "role": "unchanged executable definition"
+    },
+    {
+      "source": "ExecutableBridge.minimalVertices_connected",
+      "file": "research/rmaf/bridge_review/executable/lean/ExecutableConnectivity.lean",
+      "role": "derives exact membership-restricted Walk for any pair of output vertices"
+    },
+    {
+      "source": "ExecutableBridge.extractedSupport",
+      "role": "constructs connected field from theorem; only remaining constructor premise is nonempty output"
+    },
+    {
+      "source": "ExecutableBridge.minimalVertices_nonempty_of_leaf",
+      "role": "derives nonempty premise from actual leaf occurrence and selected membership"
+    },
+    {
+      "source": "BridgeReview.ConnectedSupport.toRootedRegion",
+      "file": "research/rmaf/bridge_review/lean/GraphRegion.lean",
+      "role": "derives root membership, ancestry, convexity from graph connectivity and finite nonemptiness"
+    },
+    {
+      "source": "ExecutableBridge.extractedRegion_exact",
+      "role": "region membership iff unchanged executable output membership"
+    },
+    {
+      "source": "ExecutableBridge.deepest_extracted_root_in_neighbor",
+      "role": "composes original consumer at the actual outputs"
+    }
+  ],
+  "original_uses": [
+    {
+      "name": "PureBridge.deepest_root_in_neighbor",
+      "status": "composed-and-kernel-checked",
+      "caller_hypotheses": [
+        "nonempty outputs, derivable from selected leaf occurrence",
+        "second root depth <= first root depth",
+        "common Boolean address in both exact outputs"
+      ],
+      "does_not_assume": [
+        "extractor connectivity",
+        "convexity",
+        "ancestry",
+        "extractor correctness"
+      ]
+    },
+    {
+      "name": "PureBridge.deepest_neighbors_intersect",
+      "status": "same region constructor can instantiate original theorem; no separately counted new declaration",
+      "caller_hypotheses": [
+        "both neighbor depth comparisons",
+        "both overlaps"
+      ]
+    },
+    {
+      "name": "PureBridge.ExchangeSystem.freeLeft/freeRight/clearRest",
+      "status": "not-realized",
+      "reason": "No cut transport, compatibility, mark-preserving repair, or exchange structure constructed."
+    },
+    {
+      "name": "PureBridge.role_swap_parameter/role_swap_minimum/bounded_second_query",
+      "status": "no-new-premises-supplied",
+      "reason": "Family equivalence, nonempty-region accounting and required split bounds are separate obligations."
+    }
+  ],
+  "coordinate_warning": "Outputs of distinct input trees share only their Boolean address coordinate system in this theorem. Equal addresses are not a proved source/target correspondence.",
+  "open": [
+    "least connected hull",
+    "valid ambient tree/terminal interpretation",
+    "component/label semantics including uniqueness for rMAF",
+    "source/target restriction transport",
+    "G2\u2013G7",
+    "safe cover",
+    "general complexity",
+    "prior-bound audit",
+    "novelty"
+  ]
+}

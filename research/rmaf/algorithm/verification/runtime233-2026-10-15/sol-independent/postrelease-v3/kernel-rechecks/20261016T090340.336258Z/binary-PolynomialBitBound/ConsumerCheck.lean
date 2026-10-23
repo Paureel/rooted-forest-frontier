@@ -1,0 +1,11 @@
+import PolynomialBitBound
+#check GenericForest.ScalarBits.binary_checked_polynomial
+#print axioms GenericForest.ScalarBits.binary_checked_polynomial
+#check GenericForest.ScalarBits.binary_checked_inspection_bound
+#print axioms GenericForest.ScalarBits.binary_checked_inspection_bound
+#check GenericForest.ScalarBits.fast_binary_checked_bound
+#print axioms GenericForest.ScalarBits.fast_binary_checked_bound
+#check GenericForest.ScalarBits.fast_scheduled_binary_checked_bound
+#print axioms GenericForest.ScalarBits.fast_scheduled_binary_checked_bound
+#check GenericForest.ScalarBits.initial_binary_agrees_bound
+#print axioms GenericForest.ScalarBits.initial_binary_agrees_bound

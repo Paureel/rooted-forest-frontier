@@ -1,0 +1,88 @@
+research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean:18:26: error: Tactic `rfl` failed: The left-hand side
+  (join none (some val✝)).bind (restrict B)
+is not definitionally equal to the right-hand side
+  join (none.bind (restrict B)) ((some val✝).bind (restrict B))
+
+case none.some
+B : List Nat
+val✝ : Tree
+⊢ (join none (some val✝)).bind (restrict B) = join (none.bind (restrict B)) ((some val✝).bind (restrict B))
+research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean:18:26: error: Tactic `rfl` failed: The left-hand side
+  (join (some val✝) none).bind (restrict B)
+is not definitionally equal to the right-hand side
+  join ((some val✝).bind (restrict B)) (none.bind (restrict B))
+
+case some.none
+B : List Nat
+val✝ : Tree
+⊢ (join (some val✝) none).bind (restrict B) = join ((some val✝).bind (restrict B)) (none.bind (restrict B))
+research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean:26:50: error: Tactic `rfl` failed: The left-hand side
+  (if true = true then some (Tree.leaf x) else none).bind (restrict B)
+is not definitionally equal to the right-hand side
+  if (true && false) = true then some (Tree.leaf x) else none
+
+case leaf.true.false
+U B C : List Nat
+mask : ∀ (x : Nat), C.contains x = (U.contains x && B.contains x)
+x : Nat
+⊢ (if true = true then some (Tree.leaf x) else none).bind (restrict B) =
+    if (true && false) = true then some (Tree.leaf x) else none
+research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean:26:50: error: Tactic `rfl` failed: The left-hand side
+  (if true = true then some (Tree.leaf x) else none).bind (restrict B)
+is not definitionally equal to the right-hand side
+  if (true && true) = true then some (Tree.leaf x) else none
+
+case leaf.true.true
+U B C : List Nat
+mask : ∀ (x : Nat), C.contains x = (U.contains x && B.contains x)
+x : Nat
+⊢ (if true = true then some (Tree.leaf x) else none).bind (restrict B) =
+    if (true && true) = true then some (Tree.leaf x) else none
+research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean:38:2: error: unsolved goals
+case neg
+t : Tree
+U B : List Nat
+sub : B ⊆ U
+x : Nat
+h : ¬x ∈ B
+hb : B.contains x = false
+⊢ x ∈ B → x ∈ U
+research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean:38:47: warning: This simp argument is unused:
+  List.contains_iff_mem
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean:39:10: warning: This simp argument is unused:
+  hb
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean:56:11: error: unsolved goals
+case leaf.false
+U : List Nat
+x : Nat
+hx : U.contains x = false
+⊢ (match if x ∈ U then some (Tree.leaf x) else none with
+    | none => []
+    | some t => leaves t) =
+    List.filter (fun x => decide (x ∈ U)) [x]
+
+case leaf.true
+U : List Nat
+x : Nat
+hx : U.contains x = true
+⊢ (match if x ∈ U then some (Tree.leaf x) else none with
+    | none => []
+    | some t => leaves t) =
+    List.filter (fun x => decide (x ∈ U)) [x]
+research/rmaf/algorithm/universal233/restriction_bridge/Restriction.lean:56:58: warning: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [restrict, leaves, optionLeaves]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

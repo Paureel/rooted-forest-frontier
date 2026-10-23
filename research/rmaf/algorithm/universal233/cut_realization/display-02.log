@@ -1,0 +1,108 @@
+research/rmaf/algorithm/universal233/cut_realization/Display.lean:168:37: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+research/rmaf/algorithm/universal233/cut_realization/Display.lean:170:37: warning: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+research/rmaf/algorithm/universal233/cut_realization/Display.lean:261:69: error: Application type mismatch: The argument
+  e
+has type
+  GLeafErase t u v g
+but is expected to have type
+  GLeafErase t t ?m.531 g
+in the application
+  GLeafErase.left p r e
+research/rmaf/algorithm/universal233/cut_realization/Display.lean:261:8: error: Tactic `apply` failed: could not unify the conclusion of `facts_after_same f rfl hg
+  (gleaf_difference (GLeafErase.left p r sorry) hn)`
+  Facts T (g.origin :: cuts) base (GTree.node p t r)
+with the goal
+  Facts T (g.origin :: cuts) base (GTree.node p u r)
+
+Note: The full type of `facts_after_same f rfl hg (gleaf_difference (GLeafErase.left p r sorry) hn)` is
+  payload (GTree.node p t r) ≠ [] → Facts T (g.origin :: cuts) base (GTree.node p t r)
+
+case left.node.a
+T : Tree
+cuts : List Vertex
+t✝ u✝ : GTree
+v✝ : Vertex
+g✝ : Group
+t u : GTree
+v : Vertex
+g : Group
+p : Vertex
+r : GTree
+e : GLeafErase t u v g
+ih :
+  ∀ {base : Vertex},
+    Models T cuts base t → (payload t).Nodup → Exact T cuts g.origin g.labels → Models T (g.origin :: cuts) base u
+base : Vertex
+hn : (payload (GTree.node p t r)).Nodup
+hg : Exact T cuts g.origin g.labels
+hl : Models T cuts (p ++ [false]) t
+hr : Models T cuts (p ++ [true]) r
+f : Facts T cuts base (GTree.node p t r)
+hnd : (payload t).Nodup ∧ (payload r).Nodup ∧ ∀ (a : Nat), a ∈ payload t → ∀ (b : Nat), b ∈ payload r → a ≠ b
+hp : (payload t).Perm (g.labels ++ payload u)
+hd : ∀ (x : Nat), x ∈ payload r → ¬x ∈ g.labels
+hh : Exact T cuts g.origin g.labels → Models T (g.origin :: cuts) (p ++ [false]) u
+rr : Models T (g.origin :: cuts) (p ++ [true]) r
+⊢ Facts T (g.origin :: cuts) base (GTree.node p u r)
+research/rmaf/algorithm/universal233/cut_realization/Display.lean:263:8: error: Type mismatch
+  hh
+has type
+  Exact T cuts g.origin g.labels → Models T (g.origin :: cuts) (p ++ [false]) u
+but is expected to have type
+  Models T (g.origin :: cuts) (p ++ [false]) u
+research/rmaf/algorithm/universal233/cut_realization/Display.lean:276:70: error: Application type mismatch: The argument
+  e
+has type
+  GLeafErase t u v g
+but is expected to have type
+  GLeafErase t t ?m.711 g
+in the application
+  GLeafErase.right p l e
+research/rmaf/algorithm/universal233/cut_realization/Display.lean:276:8: error: Tactic `apply` failed: could not unify the conclusion of `facts_after_same f rfl hg
+  (gleaf_difference (GLeafErase.right p l sorry) hn)`
+  Facts T (g.origin :: cuts) base (GTree.node p l t)
+with the goal
+  Facts T (g.origin :: cuts) base (GTree.node p l u)
+
+Note: The full type of `facts_after_same f rfl hg (gleaf_difference (GLeafErase.right p l sorry) hn)` is
+  payload (GTree.node p l t) ≠ [] → Facts T (g.origin :: cuts) base (GTree.node p l t)
+
+case right.node.a
+T : Tree
+cuts : List Vertex
+t✝ u✝ : GTree
+v✝ : Vertex
+g✝ : Group
+t u : GTree
+v : Vertex
+g : Group
+p : Vertex
+l : GTree
+e : GLeafErase t u v g
+ih :
+  ∀ {base : Vertex},
+    Models T cuts base t → (payload t).Nodup → Exact T cuts g.origin g.labels → Models T (g.origin :: cuts) base u
+base : Vertex
+hn : (payload (GTree.node p l t)).Nodup
+hg : Exact T cuts g.origin g.labels
+hl : Models T cuts (p ++ [false]) l
+hr : Models T cuts (p ++ [true]) t
+f : Facts T cuts base (GTree.node p l t)
+hnd : (payload l).Nodup ∧ (payload t).Nodup ∧ ∀ (a : Nat), a ∈ payload l → ∀ (b : Nat), b ∈ payload t → a ≠ b
+hp : (payload t).Perm (g.labels ++ payload u)
+hd : ∀ (x : Nat), x ∈ payload l → ¬x ∈ g.labels
+hh : Exact T cuts g.origin g.labels → Models T (g.origin :: cuts) (p ++ [true]) u
+ll : Models T (g.origin :: cuts) (p ++ [false]) l
+⊢ Facts T (g.origin :: cuts) base (GTree.node p l u)
+research/rmaf/algorithm/universal233/cut_realization/Display.lean:279:8: error: Type mismatch
+  hh
+has type
+  Exact T cuts g.origin g.labels → Models T (g.origin :: cuts) (p ++ [true]) u
+but is expected to have type
+  Models T (g.origin :: cuts) (p ++ [true]) u

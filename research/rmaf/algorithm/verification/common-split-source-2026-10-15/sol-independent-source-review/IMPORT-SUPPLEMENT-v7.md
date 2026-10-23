@@ -1,0 +1,3 @@
+# Exact import metadata supplement v7
+
+Before candidate contact, add complete Import fields to the same occurrence representation: structural module name, human-readable name, importAll, isExported, isMeta. Preserve original order and multiplicity; module-system controls actually retain repeated Init imports. Existing name-only imports remain present for readability but cannot alone support an exact-import claim. Add a negative import-modifier mutation; unchanged clean twin passes. Scientific expected values and producer-view qualification are unchanged. v6 source/code/results stay retained. This is detector scope completion, not mathematical replication.

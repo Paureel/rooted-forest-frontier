@@ -1,0 +1,1083 @@
+{
+  "complete": true,
+  "producers": 95,
+  "stored_occurrences": 3513,
+  "unique_names": 3487,
+  "axiom_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "actual_extra_ConstantInfos_already_in_arrays": 89,
+  "uninspected_extra_ConstantInfos": [],
+  "summaries": [
+    {
+      "producer": "RMAF",
+      "occurrences": 199,
+      "imports": [
+        "Init",
+        "Init",
+        "Std"
+      ],
+      "uncompressed_bytes": 9803861,
+      "seconds": 0.03405537499929778
+    },
+    {
+      "producer": "CoreGraph",
+      "occurrences": 79,
+      "imports": [
+        "Init",
+        "Init",
+        "RMAF"
+      ],
+      "uncompressed_bytes": 3005694,
+      "seconds": 0.010446915999636985
+    },
+    {
+      "producer": "Geometry",
+      "occurrences": 128,
+      "imports": [
+        "Init",
+        "Init",
+        "Std"
+      ],
+      "uncompressed_bytes": 97281815,
+      "seconds": 0.2514848749997327
+    },
+    {
+      "producer": "Bridge",
+      "occurrences": 162,
+      "imports": [
+        "Init",
+        "Init",
+        "Geometry",
+        "RMAF"
+      ],
+      "uncompressed_bytes": 76423625,
+      "seconds": 0.19284445800076355
+    },
+    {
+      "producer": "Composition",
+      "occurrences": 33,
+      "imports": [
+        "Init",
+        "Init",
+        "Bridge"
+      ],
+      "uncompressed_bytes": 8730563,
+      "seconds": 0.029625125000166008
+    },
+    {
+      "producer": "SourceBridge",
+      "occurrences": 37,
+      "imports": [
+        "Init",
+        "Init",
+        "CoreGraph",
+        "Composition"
+      ],
+      "uncompressed_bytes": 11641814,
+      "seconds": 0.03512270799910766
+    },
+    {
+      "producer": "Executable",
+      "occurrences": 25,
+      "imports": [
+        "Init",
+        "Init",
+        "RMAF"
+      ],
+      "uncompressed_bytes": 301166,
+      "seconds": 0.007746165996650234
+    },
+    {
+      "producer": "Endpoint",
+      "occurrences": 7,
+      "imports": [
+        "Init",
+        "Init",
+        "SourceBridge",
+        "Executable"
+      ],
+      "uncompressed_bytes": 2298536,
+      "seconds": 0.010963707998598693
+    },
+    {
+      "producer": "Restriction",
+      "occurrences": 26,
+      "imports": [
+        "Init",
+        "Init",
+        "Endpoint"
+      ],
+      "uncompressed_bytes": 20565553,
+      "seconds": 0.04782579200036707
+    },
+    {
+      "producer": "PendantExclusion",
+      "occurrences": 42,
+      "imports": [
+        "Init",
+        "Init",
+        "Restriction"
+      ],
+      "uncompressed_bytes": 12850796,
+      "seconds": 0.03397749999930966
+    },
+    {
+      "producer": "Refinement",
+      "occurrences": 8,
+      "imports": [
+        "Init",
+        "Init",
+        "PendantExclusion"
+      ],
+      "uncompressed_bytes": 11937512,
+      "seconds": 0.04040674999851035
+    },
+    {
+      "producer": "CherryCoarsening",
+      "occurrences": 21,
+      "imports": [
+        "Init",
+        "Init",
+        "CoreGraph"
+      ],
+      "uncompressed_bytes": 4222544,
+      "seconds": 0.01925654200022109
+    },
+    {
+      "producer": "CoreProgram",
+      "occurrences": 267,
+      "imports": [
+        "Init",
+        "Init",
+        "CoreGraph"
+      ],
+      "uncompressed_bytes": 23499760,
+      "seconds": 0.08026695800072048
+    },
+    {
+      "producer": "CoreInvariants",
+      "occurrences": 55,
+      "imports": [
+        "Init",
+        "Init",
+        "CoreProgram"
+      ],
+      "uncompressed_bytes": 9226044,
+      "seconds": 0.030047333999391412
+    },
+    {
+      "producer": "Contraction",
+      "occurrences": 36,
+      "imports": [
+        "Init",
+        "Init",
+        "SourceBridge",
+        "CherryCoarsening",
+        "CoreInvariants"
+      ],
+      "uncompressed_bytes": 11484170,
+      "seconds": 0.03563241699885111
+    },
+    {
+      "producer": "Normalization",
+      "occurrences": 71,
+      "imports": [
+        "Init",
+        "Init",
+        "Contraction"
+      ],
+      "uncompressed_bytes": 8165527,
+      "seconds": 0.025656707999587525
+    },
+    {
+      "producer": "InitialLift",
+      "occurrences": 31,
+      "imports": [
+        "Init",
+        "Init",
+        "Normalization"
+      ],
+      "uncompressed_bytes": 3086100,
+      "seconds": 0.015036584001791198
+    },
+    {
+      "producer": "Suppression",
+      "occurrences": 57,
+      "imports": [
+        "Init",
+        "Init",
+        "InitialLift"
+      ],
+      "uncompressed_bytes": 9838837,
+      "seconds": 0.032418124999821885
+    },
+    {
+      "producer": "EraseLift",
+      "occurrences": 100,
+      "imports": [
+        "Init",
+        "Init",
+        "Suppression"
+      ],
+      "uncompressed_bytes": 36745136,
+      "seconds": 0.1309180419993936
+    },
+    {
+      "producer": "Origins",
+      "occurrences": 18,
+      "imports": [
+        "Init",
+        "Init",
+        "EraseLift"
+      ],
+      "uncompressed_bytes": 5998111,
+      "seconds": 0.028488708998338552
+    },
+    {
+      "producer": "Branches",
+      "occurrences": 71,
+      "imports": [
+        "Init",
+        "Init",
+        "Origins"
+      ],
+      "uncompressed_bytes": 84653937,
+      "seconds": 0.3297567090012308
+    },
+    {
+      "producer": "CutRecords",
+      "occurrences": 33,
+      "imports": [
+        "Init",
+        "Init",
+        "Branches"
+      ],
+      "uncompressed_bytes": 11000332,
+      "seconds": 0.04270445800284506
+    },
+    {
+      "producer": "OriginalGraph",
+      "occurrences": 45,
+      "imports": [
+        "Init",
+        "Init",
+        "CutRecords"
+      ],
+      "uncompressed_bytes": 6676147,
+      "seconds": 0.025282833001256222
+    },
+    {
+      "producer": "Components",
+      "occurrences": 58,
+      "imports": [
+        "Init",
+        "Init",
+        "Refinement",
+        "OriginalGraph"
+      ],
+      "uncompressed_bytes": 17356069,
+      "seconds": 0.06364291700083413
+    },
+    {
+      "producer": "Safety",
+      "occurrences": 10,
+      "imports": [
+        "Init",
+        "Init",
+        "Components"
+      ],
+      "uncompressed_bytes": 9594825,
+      "seconds": 0.029474999999365536
+    },
+    {
+      "producer": "ExchangeRestriction",
+      "occurrences": 55,
+      "imports": [
+        "Init",
+        "Init",
+        "RMAF"
+      ],
+      "uncompressed_bytes": 14782808,
+      "seconds": 0.05272258399782004
+    },
+    {
+      "producer": "Cluster",
+      "occurrences": 31,
+      "imports": [
+        "Init",
+        "Init",
+        "ExchangeRestriction",
+        "Bridge"
+      ],
+      "uncompressed_bytes": 6145181,
+      "seconds": 0.02440341600231477
+    },
+    {
+      "producer": "Descendant",
+      "occurrences": 24,
+      "imports": [
+        "Init",
+        "Init",
+        "Cluster"
+      ],
+      "uncompressed_bytes": 2661805,
+      "seconds": 0.012401457999658305
+    },
+    {
+      "producer": "Forest",
+      "occurrences": 47,
+      "imports": [
+        "Init",
+        "Init",
+        "Descendant"
+      ],
+      "uncompressed_bytes": 12918295,
+      "seconds": 0.045405165998090524
+    },
+    {
+      "producer": "Rule4OriginalExchange",
+      "occurrences": 24,
+      "imports": [
+        "Init",
+        "Init",
+        "Safety",
+        "Forest"
+      ],
+      "uncompressed_bytes": 9570569,
+      "seconds": 0.03554391700163251
+    },
+    {
+      "producer": "Rule4PathPrune",
+      "occurrences": 6,
+      "imports": [
+        "Init",
+        "Init",
+        "Rule4OriginalExchange"
+      ],
+      "uncompressed_bytes": 20233301,
+      "seconds": 0.05301087499901769
+    },
+    {
+      "producer": "GroupRestriction",
+      "occurrences": 38,
+      "imports": [
+        "Init",
+        "Init",
+        "RMAF"
+      ],
+      "uncompressed_bytes": 2542325,
+      "seconds": 0.01514579100330593
+    },
+    {
+      "producer": "GroupEmbedding",
+      "occurrences": 58,
+      "imports": [
+        "Init",
+        "Init",
+        "GroupRestriction"
+      ],
+      "uncompressed_bytes": 79334089,
+      "seconds": 0.2740012079993903
+    },
+    {
+      "producer": "Rule4Graft",
+      "occurrences": 30,
+      "imports": [
+        "Init",
+        "Init",
+        "Rule4PathPrune",
+        "GroupEmbedding"
+      ],
+      "uncompressed_bytes": 6008855,
+      "seconds": 0.026179208001849474
+    },
+    {
+      "producer": "Rule4SourceExchange",
+      "occurrences": 9,
+      "imports": [
+        "Init",
+        "Init",
+        "Rule4Graft"
+      ],
+      "uncompressed_bytes": 6683144,
+      "seconds": 0.029255290999572026
+    },
+    {
+      "producer": "Surgery",
+      "occurrences": 18,
+      "imports": [
+        "Init",
+        "Init",
+        "Forest"
+      ],
+      "uncompressed_bytes": 26159411,
+      "seconds": 0.1022112089995062
+    },
+    {
+      "producer": "Count",
+      "occurrences": 5,
+      "imports": [
+        "Init",
+        "Init",
+        "Surgery"
+      ],
+      "uncompressed_bytes": 14100744,
+      "seconds": 0.03804229099841905
+    },
+    {
+      "producer": "Parents",
+      "occurrences": 31,
+      "imports": [
+        "Init",
+        "Init",
+        "Count"
+      ],
+      "uncompressed_bytes": 2091631,
+      "seconds": 0.012233207999088336
+    },
+    {
+      "producer": "Rule4Exchange",
+      "occurrences": 15,
+      "imports": [
+        "Init",
+        "Init",
+        "Rule4SourceExchange",
+        "Parents"
+      ],
+      "uncompressed_bytes": 38442752,
+      "seconds": 0.12527512500309967
+    },
+    {
+      "producer": "Rule4LcaCoverage",
+      "occurrences": 7,
+      "imports": [
+        "Init",
+        "Init",
+        "Rule4Exchange"
+      ],
+      "uncompressed_bytes": 17621488,
+      "seconds": 0.06500691600012942
+    },
+    {
+      "producer": "Rule4Cover",
+      "occurrences": 11,
+      "imports": [
+        "Init",
+        "Init",
+        "Rule4LcaCoverage"
+      ],
+      "uncompressed_bytes": 4580073,
+      "seconds": 0.020415916998899775
+    },
+    {
+      "producer": "Rule4LiteralCuts",
+      "occurrences": 22,
+      "imports": [
+        "Init",
+        "Init",
+        "Rule4Cover"
+      ],
+      "uncompressed_bytes": 1803789,
+      "seconds": 0.009530750001431443
+    },
+    {
+      "producer": "Rule4LiteralChecks",
+      "occurrences": 4,
+      "imports": [
+        "Init",
+        "Init",
+        "Rule4LiteralCuts"
+      ],
+      "uncompressed_bytes": 6107100,
+      "seconds": 0.019679791999806184
+    },
+    {
+      "producer": "Rule4Selector",
+      "occurrences": 98,
+      "imports": [
+        "Init",
+        "Init",
+        "Rule4LiteralChecks"
+      ],
+      "uncompressed_bytes": 5876376,
+      "seconds": 0.025284374998591375
+    },
+    {
+      "producer": "Rule4Costs",
+      "occurrences": 27,
+      "imports": [
+        "Init",
+        "Init",
+        "Rule4Selector"
+      ],
+      "uncompressed_bytes": 8414868,
+      "seconds": 0.03662025000085123
+    },
+    {
+      "producer": "GroupPartition",
+      "occurrences": 23,
+      "imports": [
+        "Init",
+        "Init",
+        "GroupEmbedding"
+      ],
+      "uncompressed_bytes": 7787344,
+      "seconds": 0.03451379200123483
+    },
+    {
+      "producer": "GroupState",
+      "occurrences": 29,
+      "imports": [
+        "Init",
+        "Init",
+        "GroupPartition"
+      ],
+      "uncompressed_bytes": 168475,
+      "seconds": 0.006435708000935847
+    },
+    {
+      "producer": "GroupStateFacts",
+      "occurrences": 37,
+      "imports": [
+        "Init",
+        "Init",
+        "GroupState"
+      ],
+      "uncompressed_bytes": 50899646,
+      "seconds": 0.1712236249986745
+    },
+    {
+      "producer": "GroupCost",
+      "occurrences": 16,
+      "imports": [
+        "Init",
+        "Init",
+        "GroupPartition"
+      ],
+      "uncompressed_bytes": 32973446,
+      "seconds": 0.10686966700086487
+    },
+    {
+      "producer": "GroupForward",
+      "occurrences": 10,
+      "imports": [
+        "Init",
+        "Init",
+        "GroupCost"
+      ],
+      "uncompressed_bytes": 3326660,
+      "seconds": 0.0164370409984258
+    },
+    {
+      "producer": "GroupReconstruction",
+      "occurrences": 18,
+      "imports": [
+        "Init",
+        "Init",
+        "GroupForward",
+        "Composition"
+      ],
+      "uncompressed_bytes": 13528487,
+      "seconds": 0.04266020900104195
+    },
+    {
+      "producer": "GroupDefs",
+      "occurrences": 20,
+      "imports": [
+        "Init",
+        "Init",
+        "GroupStateFacts",
+        "GroupReconstruction"
+      ],
+      "uncompressed_bytes": 1115654,
+      "seconds": 0.0059723749982367735
+    },
+    {
+      "producer": "GroupForwardProof",
+      "occurrences": 10,
+      "imports": [
+        "Init",
+        "Init",
+        "GroupDefs"
+      ],
+      "uncompressed_bytes": 3364952,
+      "seconds": 0.013152083000022685
+    },
+    {
+      "producer": "GroupReverseProof",
+      "occurrences": 13,
+      "imports": [
+        "Init",
+        "Init",
+        "GroupForwardProof"
+      ],
+      "uncompressed_bytes": 6773406,
+      "seconds": 0.025016916002641665
+    },
+    {
+      "producer": "GroupCostProof",
+      "occurrences": 13,
+      "imports": [
+        "Init",
+        "Init",
+        "GroupReverseProof"
+      ],
+      "uncompressed_bytes": 54247052,
+      "seconds": 0.15750116600247566
+    },
+    {
+      "producer": "GroupPriority",
+      "occurrences": 30,
+      "imports": [
+        "Init",
+        "Init",
+        "GroupCostProof"
+      ],
+      "uncompressed_bytes": 54082984,
+      "seconds": 0.15751833300237195
+    },
+    {
+      "producer": "OutputDefs",
+      "occurrences": 1,
+      "imports": [
+        "Init",
+        "Init",
+        "GroupPriority"
+      ],
+      "uncompressed_bytes": 1847,
+      "seconds": 0.003737332997843623
+    },
+    {
+      "producer": "Materialize",
+      "occurrences": 14,
+      "imports": [
+        "Init",
+        "Init",
+        "OutputDefs"
+      ],
+      "uncompressed_bytes": 1812903,
+      "seconds": 0.008766625000134809
+    },
+    {
+      "producer": "Equivalence",
+      "occurrences": 15,
+      "imports": [
+        "Init",
+        "Init",
+        "Materialize"
+      ],
+      "uncompressed_bytes": 3797840,
+      "seconds": 0.014481417001661612
+    },
+    {
+      "producer": "Rule4Program",
+      "occurrences": 57,
+      "imports": [
+        "Init",
+        "Init",
+        "Rule4Costs",
+        "Equivalence"
+      ],
+      "uncompressed_bytes": 8306228,
+      "seconds": 0.030861208000715123
+    },
+    {
+      "producer": "FullTransport",
+      "occurrences": 7,
+      "imports": [
+        "Init",
+        "Init",
+        "CutRecords"
+      ],
+      "uncompressed_bytes": 3753490,
+      "seconds": 0.010239541999908397
+    },
+    {
+      "producer": "Coverage",
+      "occurrences": 21,
+      "imports": [
+        "Init",
+        "Init",
+        "FullTransport"
+      ],
+      "uncompressed_bytes": 12079102,
+      "seconds": 0.0396230829974229
+    },
+    {
+      "producer": "Entrypoint",
+      "occurrences": 13,
+      "imports": [
+        "Init",
+        "Init",
+        "Coverage",
+        "CoreInvariants"
+      ],
+      "uncompressed_bytes": 30798277,
+      "seconds": 0.07754754100096761
+    },
+    {
+      "producer": "OutputBudget",
+      "occurrences": 10,
+      "imports": [
+        "Init",
+        "Init",
+        "Entrypoint"
+      ],
+      "uncompressed_bytes": 12596103,
+      "seconds": 0.028784583002561703
+    },
+    {
+      "producer": "ColorBudget",
+      "occurrences": 55,
+      "imports": [
+        "Init",
+        "Init",
+        "OutputBudget"
+      ],
+      "uncompressed_bytes": 35814584,
+      "seconds": 0.09665870800017728
+    },
+    {
+      "producer": "ColorSteps",
+      "occurrences": 20,
+      "imports": [
+        "Init",
+        "Init",
+        "ColorBudget"
+      ],
+      "uncompressed_bytes": 8788281,
+      "seconds": 0.03088950000164914
+    },
+    {
+      "producer": "RawMass",
+      "occurrences": 19,
+      "imports": [
+        "Init",
+        "Init",
+        "ColorSteps"
+      ],
+      "uncompressed_bytes": 82216592,
+      "seconds": 0.23334579199945438
+    },
+    {
+      "producer": "RationalMass",
+      "occurrences": 38,
+      "imports": [
+        "Init",
+        "Init",
+        "RawMass"
+      ],
+      "uncompressed_bytes": 53648356,
+      "seconds": 0.16022379100104445
+    },
+    {
+      "producer": "ParentColors",
+      "occurrences": 17,
+      "imports": [
+        "Init",
+        "Init",
+        "RationalMass",
+        "Composition"
+      ],
+      "uncompressed_bytes": 11898829,
+      "seconds": 0.043606708000879735
+    },
+    {
+      "producer": "Display",
+      "occurrences": 49,
+      "imports": [
+        "Init",
+        "Init",
+        "OriginalGraph",
+        "CoreInvariants"
+      ],
+      "uncompressed_bytes": 7911063,
+      "seconds": 0.0223110840015579
+    },
+    {
+      "producer": "Regions",
+      "occurrences": 24,
+      "imports": [
+        "Init",
+        "Init",
+        "Display"
+      ],
+      "uncompressed_bytes": 1044612,
+      "seconds": 0.008400250000704546
+    },
+    {
+      "producer": "History",
+      "occurrences": 47,
+      "imports": [
+        "Init",
+        "Init",
+        "Regions"
+      ],
+      "uncompressed_bytes": 4714222,
+      "seconds": 0.015605082997353747
+    },
+    {
+      "producer": "Realization",
+      "occurrences": 23,
+      "imports": [
+        "Init",
+        "Init",
+        "History"
+      ],
+      "uncompressed_bytes": 4978377,
+      "seconds": 0.02153783299945644
+    },
+    {
+      "producer": "OwnerCover",
+      "occurrences": 19,
+      "imports": [
+        "Init",
+        "Init",
+        "Realization"
+      ],
+      "uncompressed_bytes": 5471138,
+      "seconds": 0.01640058300108649
+    },
+    {
+      "producer": "CutCoverage",
+      "occurrences": 10,
+      "imports": [
+        "Init",
+        "Init",
+        "OwnerCover"
+      ],
+      "uncompressed_bytes": 20243207,
+      "seconds": 0.051441667001199676
+    },
+    {
+      "producer": "InitialCoverage",
+      "occurrences": 26,
+      "imports": [
+        "Init",
+        "Init",
+        "CutCoverage"
+      ],
+      "uncompressed_bytes": 60502485,
+      "seconds": 0.18254979099947377
+    },
+    {
+      "producer": "Cost",
+      "occurrences": 34,
+      "imports": [
+        "Init",
+        "Init",
+        "InitialCoverage"
+      ],
+      "uncompressed_bytes": 33183303,
+      "seconds": 0.10570999999981723
+    },
+    {
+      "producer": "ValidPartition",
+      "occurrences": 7,
+      "imports": [
+        "Init",
+        "Init",
+        "Cost"
+      ],
+      "uncompressed_bytes": 1971428,
+      "seconds": 0.011361459000909235
+    },
+    {
+      "producer": "WholeSource",
+      "occurrences": 7,
+      "imports": [
+        "Init",
+        "Init",
+        "ParentColors",
+        "ValidPartition"
+      ],
+      "uncompressed_bytes": 3615735,
+      "seconds": 0.01388937500087195
+    },
+    {
+      "producer": "Requests",
+      "occurrences": 55,
+      "imports": [
+        "Init",
+        "Init",
+        "WholeSource"
+      ],
+      "uncompressed_bytes": 28830356,
+      "seconds": 0.09050758299781592
+    },
+    {
+      "producer": "OwnershipBase",
+      "occurrences": 27,
+      "imports": [
+        "Init",
+        "Init",
+        "Requests"
+      ],
+      "uncompressed_bytes": 2013775,
+      "seconds": 0.01349787499930244
+    },
+    {
+      "producer": "ChainAssembly",
+      "occurrences": 3,
+      "imports": [
+        "Init",
+        "Init",
+        "OwnershipBase"
+      ],
+      "uncompressed_bytes": 1857472,
+      "seconds": 0.008934875000704778
+    },
+    {
+      "producer": "SourceValidity",
+      "occurrences": 8,
+      "imports": [
+        "Init",
+        "Init",
+        "ChainAssembly"
+      ],
+      "uncompressed_bytes": 4653970,
+      "seconds": 0.023800208000466228
+    },
+    {
+      "producer": "RankCost",
+      "occurrences": 10,
+      "imports": [
+        "Init",
+        "Init",
+        "SourceValidity",
+        "RationalMass"
+      ],
+      "uncompressed_bytes": 7678947,
+      "seconds": 0.03375633299947367
+    },
+    {
+      "producer": "MinimumUnique",
+      "occurrences": 18,
+      "imports": [
+        "Init",
+        "Init",
+        "RankCost"
+      ],
+      "uncompressed_bytes": 73341703,
+      "seconds": 0.22098758400170482
+    },
+    {
+      "producer": "TailMass",
+      "occurrences": 13,
+      "imports": [
+        "Init",
+        "Init",
+        "MinimumUnique"
+      ],
+      "uncompressed_bytes": 19907618,
+      "seconds": 0.06755399999747169
+    },
+    {
+      "producer": "ColorClasses",
+      "occurrences": 10,
+      "imports": [
+        "Init",
+        "Init",
+        "TailMass"
+      ],
+      "uncompressed_bytes": 11432979,
+      "seconds": 0.04300020800292259
+    },
+    {
+      "producer": "RecoveryProgram",
+      "occurrences": 7,
+      "imports": [
+        "Init",
+        "Init",
+        "ColorClasses"
+      ],
+      "uncompressed_bytes": 48002,
+      "seconds": 0.004179292001936119
+    },
+    {
+      "producer": "BlockColors",
+      "occurrences": 14,
+      "imports": [
+        "Init",
+        "Init",
+        "RecoveryProgram"
+      ],
+      "uncompressed_bytes": 1508162,
+      "seconds": 0.009391125000547618
+    },
+    {
+      "producer": "Permutations",
+      "occurrences": 45,
+      "imports": [
+        "Init",
+        "Init",
+        "BlockColors"
+      ],
+      "uncompressed_bytes": 4161916,
+      "seconds": 0.0202621660027944
+    },
+    {
+      "producer": "Recovery",
+      "occurrences": 14,
+      "imports": [
+        "Init",
+        "Init",
+        "Permutations"
+      ],
+      "uncompressed_bytes": 42441764,
+      "seconds": 0.13861329100109288
+    },
+    {
+      "producer": "Work",
+      "occurrences": 208,
+      "imports": [
+        "Init",
+        "Init",
+        "CoreInvariants"
+      ],
+      "uncompressed_bytes": 270865294,
+      "seconds": 0.8670574999996461
+    },
+    {
+      "producer": "FinalWork",
+      "occurrences": 72,
+      "imports": [
+        "Init",
+        "Init",
+        "Recovery",
+        "Work"
+      ],
+      "uncompressed_bytes": 140608036,
+      "seconds": 0.3867379580005945
+    },
+    {
+      "producer": "Rule4Solve",
+      "occurrences": 31,
+      "imports": [
+        "Init",
+        "Init",
+        "Rule4Program",
+        "FinalWork"
+      ],
+      "uncompressed_bytes": 105289126,
+      "seconds": 0.2769747919992369
+    },
+    {
+      "producer": "Rule4Controls",
+      "occurrences": 47,
+      "imports": [
+        "Init",
+        "Init",
+        "Rule4Solve"
+      ],
+      "uncompressed_bytes": 487907,
+      "seconds": 0.005607625000266125
+    }
+  ],
+  "seconds": 6.819886249999399,
+  "copied_scientific_oleans": 0,
+  "qualification": "stored occurrence arrays inspected before considering resolved origin; full actual type/body/reference bytes retained in gzip; counts inventory only"
+}

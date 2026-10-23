@@ -1,0 +1,126 @@
+import FrontierMass
+namespace GenericForest.FrontierWork
+open RMAF ForestState Universal233 Universal233.PaidQueries Universal233.SourceCoverage Universal233.CoreProgram
+
+def queryWorkRat (W : OrdinaryWork) (xs : List Query) : Rat :=
+ (xs.map fun pb=>(W pb.1.1 pb.1.2 pb.2:Rat)).sum
+
+theorem queryWork_cast (W : OrdinaryWork) (xs : List Query) : (queryWork W xs:Rat)=queryWorkRat W xs := by
+ induction xs with
+ | nil => rfl
+ | cons a xs ih => simpa only [queryWork,queryWorkRat,List.map_cons,List.sum_cons,Rat.natCast_add] using congrArg (fun x=>(W a.1.1 a.1.2 a.2:Rat)+x) ih
+
+theorem queryWorkRat_flatMap {α : Type} (W : OrdinaryWork) (L : List α) (f : α → List Query) :
+ queryWorkRat W (L.flatMap f)=(L.map fun x=>queryWorkRat W (f x)).sum := by
+ induction L with
+ | nil => rfl
+ | cons a L ih => simp only [List.flatMap_cons,queryWorkRat,List.map_append,List.sum_append,List.map_cons,List.sum_cons] at *; rw [ih]
+
+theorem rat_sum_map_add {α : Type} (L : List α) (f g : α → Rat) :
+ (L.map fun x=>f x+g x).sum=(L.map f).sum+(L.map g).sum := by
+ induction L with
+ | nil => simp [Rat.add_zero]
+ | cons a L ih => simp only [List.map_cons,List.sum_cons,ih]; grind
+
+theorem schedule_bill_split (ordinary : Ordinary) (W : OrdinaryWork) (q : Nat)
+ (js : List (Job (Tree × Tree) Forest)) :
+ (meterSchedule (pairCallback ordinary) (fun p b=>W p.1 p.2 b) q js).callerWork+
+ (meterSchedule (pairCallback ordinary) (fun p b=>W p.1 p.2 b) q js).recursiveWork=
+ (meterSchedule (pairCallback ordinary) (fun _ _=>0) q js).callerWork+
+ queryWork W (meterSchedule (pairCallback ordinary) (fun _ _=>0) q js).queries := by
+ have same:=meterSchedule_charge_invariant (pairCallback ordinary) (fun p b=>W p.1 p.2 b) (fun _ _=>0) q js
+ rw [same.2,(meterSchedule_trace (pairCallback ordinary) (fun p b=>W p.1 p.2 b) q js).2,same.1]
+ rfl
+
+theorem nonrecursive_bill_split (ordinary : Ordinary) (W : OrdinaryWork) (T : Option Tree) (ss : List Tree) (q : Nat) :
+ nonrecursiveBill ordinary W T ss q=nonrecursiveBill ordinary (fun _ _ _=>0) T ss q+
+ queryWork W (immediateQueries ordinary T ss q) := by
+ unfold nonrecursiveBill immediateQueries
+ split
+ · rename_i active
+   split
+   · simp [queryWork]
+   · simp [queryWork]
+   · rename_i _ _ t notsingle
+     split
+     · rename_i hover
+       simp only [hover]
+       split
+       · rename_i hj
+         simp [queryWork,hj]
+       · rename_i js hj
+         simp only [hj]
+         have h:=schedule_bill_split ordinary W q js
+         have sumzero (L : List Query) : (L.map (fun _=>(0:Nat))).sum=0 := by
+          induction L <;> simp_all
+         have zero: (meterSchedule (pairCallback ordinary) (fun _ _=>0) q js).recursiveWork=0 := by
+          rw [(meterSchedule_trace (pairCallback ordinary) (fun _ _=>0) q js).2]
+          exact sumzero _
+         change inspectionBill (some t) ss q+
+          ((meterSchedule (pairCallback ordinary) (fun p b=>W p.1 p.2 b) q js).callerWork+
+           (meterSchedule (pairCallback ordinary) (fun p b=>W p.1 p.2 b) q js).recursiveWork)=
+          inspectionBill (some t) ss q+
+          ((meterSchedule (pairCallback ordinary) (fun _ _=>0) q js).callerWork+
+           (meterSchedule (pairCallback ordinary) (fun _ _=>0) q js).recursiveWork)+
+          queryWork W (meterSchedule (pairCallback ordinary) (fun _ _=>0) q js).queries
+         rw [zero]
+         omega
+     · rename_i h hover
+       simp [queryWork,hover]
+ · simp [queryWork]
+
+/-- Exact separation of the frozen source-operation bill. No ordinary charge occurs in the first summand. -/
+theorem source_work_split (ordinary : Ordinary) (W : OrdinaryWork) (T : Option Tree) (ss : List Tree) (q : Nat) :
+ sourceWork ordinary W T ss q=sourceWork ordinary (fun _ _ _=>0) T ss q+
+ queryWorkRat W (frontier ordinary T ss q) := by
+ induction q using Nat.strongRecOn generalizing ss with
+ | ind q ih =>
+  have splitBill:=congrArg (fun n : Nat=>(n:Rat)) (nonrecursive_bill_split ordinary W T ss q)
+  rw [Rat.natCast_add,queryWork_cast] at splitBill
+  have childEq (t : Tree) (h : Overlap) :
+   ((branches t ss h q).map fun io=>if _hd : 1≤io.2.sourceCuts.length ∧ io.2.sourceCuts.length≤q then
+    sourceWork ordinary W T (replace ss io.1 io.2.partition) (q-io.2.sourceCuts.length) else 0).sum=
+   ((branches t ss h q).map fun io=>if _hd : 1≤io.2.sourceCuts.length ∧ io.2.sourceCuts.length≤q then
+    sourceWork ordinary (fun _ _ _=>0) T (replace ss io.1 io.2.partition) (q-io.2.sourceCuts.length) else 0).sum+
+   queryWorkRat W ((branches t ss h q).flatMap fun io=>if _hd : 1≤io.2.sourceCuts.length ∧ io.2.sourceCuts.length≤q then
+    frontier ordinary T (replace ss io.1 io.2.partition) (q-io.2.sourceCuts.length) else []) := by
+   rw [queryWorkRat_flatMap,←rat_sum_map_add]
+   congr 1
+   apply List.map_congr_left
+   intro io mem
+   split
+   · rename_i hd
+     simpa only [dite_eq_left hd] using ih (q-io.2.sourceCuts.length) (by omega) (replace ss io.1 io.2.partition)
+   · rename_i hd
+     simp only [dite_eq_right hd,queryWorkRat,List.map_nil,List.sum_nil,Rat.add_zero]
+  cases T with
+  | none =>
+   simp [sourceWork.eq_def,frontier.eq_def,nonrecursiveBill,queryWorkRat,Rat.add_zero]
+  | some t =>
+   cases ss with
+   | nil =>
+    simp [sourceWork.eq_def,frontier.eq_def,nonrecursiveBill,overlap,jobs,meterSchedule,meterRun,
+     knownCost,pending,queryWorkRat,Rat.add_zero]
+   | cons s tail =>
+    cases tail with
+    | nil =>
+     simp [sourceWork.eq_def,frontier.eq_def,nonrecursiveBill,queryWorkRat,Rat.natCast_add,Rat.add_zero]
+     split <;> simp_all [Rat.add_zero]
+    | cons u tail =>
+     rw [sourceWork.eq_def ordinary W (some t) (s::u::tail) q,
+      sourceWork.eq_def ordinary (fun _ _ _=>0) (some t) (s::u::tail) q,
+      frontier.eq_def ordinary (some t) (s::u::tail) q,splitBill]
+     unfold immediateQueries
+     by_cases active : (proper (some t) (s::u::tail) && !agrees (some t) (s::u::tail) ((s::u::tail).map leaves))=true
+     · simp only [active,ite_true]
+       cases hover : overlap t (s::u::tail) with
+       | none =>
+        cases hj : jobs t (s::u::tail) <;> simp [hover,hj,queryWorkRat,Rat.add_zero]
+       | some h =>
+        simp only [hover]
+        rw [childEq t h]
+        simp [queryWorkRat,Rat.add_zero,Rat.add_assoc]
+     · have active' : ¬(proper (some t) (s::u::tail)=true ∧ agrees (some t) (s::u::tail) (leaves s::leaves u::tail.map leaves)=false) := by
+        simpa only [Bool.and_eq_true,Bool.not_eq_true',List.map_cons] using active
+       simp [active',queryWorkRat,Rat.add_zero]
+end GenericForest.FrontierWork

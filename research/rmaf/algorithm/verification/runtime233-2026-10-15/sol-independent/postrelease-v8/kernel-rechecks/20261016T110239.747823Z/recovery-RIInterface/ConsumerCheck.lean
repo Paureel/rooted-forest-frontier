@@ -1,0 +1,9 @@
+import RIInterface
+#check OrdinaryDispatch.RecoveryInitialBits.represented_initialization
+#print axioms OrdinaryDispatch.RecoveryInitialBits.represented_initialization
+#check OrdinaryDispatch.RecoveryInitialBits.initializeBits_refused
+#print axioms OrdinaryDispatch.RecoveryInitialBits.initializeBits_refused
+#check OrdinaryDispatch.RecoveryInitialBits.initializeBits_output_words
+#print axioms OrdinaryDispatch.RecoveryInitialBits.initializeBits_output_words
+#check OrdinaryDispatch.RecoveryInitialBits.initializeBits_retained_cells
+#print axioms OrdinaryDispatch.RecoveryInitialBits.initializeBits_retained_cells

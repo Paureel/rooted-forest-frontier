@@ -1,0 +1,46 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/build/GroupDefs.lean:88:4: error: unsolved goals
+case pos
+S U : List Nat
+hSU : S ⊆ U
+B : List Nat
+F : List (List Nat)
+ih : family S (family U F) = family S F
+hb : B ⊆ S
+hu : B ⊆ U
+⊢ List.filter (fun a => contained a S && contained a U) F = List.filter (fun x => contained x S) F
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/build/GroupDefs.lean:90:4: error: unsolved goals
+case neg.false
+S U : List Nat
+hSU : S ⊆ U
+B : List Nat
+F : List (List Nat)
+ih : family S (family U F) = family S F
+hb : ¬B ⊆ S
+hf : contained B S = false
+hu : contained B U = false
+⊢ List.filter (fun a => contained a S && contained a U) F = List.filter (fun x => contained x S) F
+
+case neg.true
+S U : List Nat
+hSU : S ⊆ U
+B : List Nat
+F : List (List Nat)
+ih : family S (family U F) = family S F
+hb : ¬B ⊆ S
+hf : contained B S = false
+hu : contained B U = true
+⊢ List.filter (fun a => contained a S && contained a U) F = List.filter (fun x => contained x S) F
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/build/GroupDefs.lean:89:69: warning: This simp argument is unused:
+  ih
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [family, (contained_iff B S).2 hb, (contained_iff B U).2 hu]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/forest_groups/build/GroupDefs.lean:91:54: warning: This simp argument is unused:
+  ih
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [family, hf, hu]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

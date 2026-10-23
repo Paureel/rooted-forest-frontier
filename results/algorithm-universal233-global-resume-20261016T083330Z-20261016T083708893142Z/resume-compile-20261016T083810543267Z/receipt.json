@@ -1,0 +1,67 @@
+{
+  "instrument_sha256": "550b066c54ad3530bcf2d7a0d51ecfa6a08b3286e40c914571f6d9aabc032c66",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "memory_megabytes": 3072,
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "source_origin": "results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/live-compile-20261015T220123767831Z/GuardPositive.lean",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "source_origin": "results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/live-compile-20261015T220123767831Z/GuardFalse.lean",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true,
+      "same_lineage": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.33715687500000513,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.33321783400003824,
+      "resource_stop": null,
+      "log_sha256": "ba528f9e7dfc923f4bdd289ec9929dcc8adfbe1bb8100aee1b3edc703de3b9f2"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0015505410000287156,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "OrdinaryStepTrace",
+      "source_sha256": "45ff646e7f76689c8327a36a046cc16cc6502d3b92be6e7def10ca93724c98e0",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.7942444589999695,
+      "resource_stop": null,
+      "log_sha256": "d57cc51e4152b9c5a3c561b32e6e0f84553494a572270754e26ef30a67a1ee9c"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('OrdinaryStepTrace', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryStepTrace.lean:47:26: error: Tactic `rfl` failed: The left-hand side\\n  (match DepthOne.Result.rejected with\\n    | DepthOne.Result.refused => { value := none, queries := [] }\\n    | DepthOne.Result.found c =>\\n      { value := if DepthOne.cutCost c \u2264 q then some (DepthOne.forest S c) else none, queries := [] }\\n    | DepthOne.Result.rejected =>\\n      have paid := cutoff FastOrdinary.solve q;\\n      match Early.common reverse c with\\n      | Early.common reverse c =>\\n        have p := commonPair T S reverse c;\\n        if (leaves p.fst).length < (leaves T).length then\\n          { value := Option.map (expandCommon T S reverse c) (FastOrdinary.solve q p.fst p.snd), queries := [(p, q)] }\\n        else { value := none, queries := [] }\\n      | Early.one reverse c =>\\n        have p := Oriented reverse T S;\\n        childrenTrace paid p.fst p.snd q [pendantChild p.snd c.a c.b]\\n      | Early.high reverse c =>\\n        have p := Oriented reverse T S;\\n        childrenTrace paid p.fst p.snd q (branches p.snd c.a c.b)\\n      | Early.rule4Forward s => rule4Trace paid s q\\n      | Early.rule4Reverse s => rule4Trace paid s q\\n      | Early.hard2 c d => hard2Trace paid T S c d q\\n      | Early.refused => { value := none, queries := [] }).value\\nis not definitionally equal to the right-hand side\\n  match DepthOne.Result.rejected with\\n  | DepthOne.Result.refused => none\\n  | DepthOne.Result.found c => if DepthOne.cutCost c \u2264 q then some (DepthOne.forest S c) else none\\n  | DepthOne.Result.rejected =>\\n    have paid := fun u v r => if hr : r < q then FastOrdinary.solve r u v else none;\\n    match Early.common reverse c with\\n    | Early.common reverse c =>\\n      have p := commonPair T S reverse c;\\n      if hn : (leaves p.fst).length < (leaves T).length then\\n        Option.map (expandCommon T S reverse c) (FastOrdinary.solve q p.fst p.snd)\\n      else none\\n    | Early.one reverse c =>\\n      have p := Oriented reverse T S;\\n      runChildren paid p.fst p.snd q [pendantChild p.snd c.a c.b]\\n    | Early.high reverse c =>\\n      have p := Oriented reverse T S;\\n      runChildren paid p.fst p.snd q (branches p.snd c.a c.b)\\n    | Early.rule4Forward s => runRule4 paid s q\\n    | Early.rule4Reverse s => runRule4 paid s q\\n    | Early.hard2 c d => Hard2Dispatcher.run paid T S c d q\\n    | Early.refused => none\\n\\ncase isTrue.rejected.common\\nq : Nat\\nT S : Tree\\nh\u271d : DepthOne.proper T S = true\\nhpre : DepthOne.pretest01 T S = DepthOne.Result.rejected\\nreverse : Bool\\nc : Candidate\\nhe : early T S = Early.common reverse c\\n\u22a2 (match DepthOne.Result.rejected with\\n      | DepthOne.Result.refused => { value := none, queries := [] }\\n      | DepthOne.Result.found c =>\\n        { value := if DepthOne.cutCost c \u2264 q then some (DepthOne.forest S c) else none, queries := [] }\\n      | DepthOne.Result.rejected =>\\n        have paid := cutoff FastOrdinary.solve q;\\n        match Early.common reverse c with\\n        | Early.common reverse c =>\\n          have p := commonPair T S reverse c;\\n          if (leaves p.fst).length < (leaves T).length then\\n            { value := Option.map (expandCommon T S reverse c) (FastOrdinary.solve q p.fst p.snd), queries := [(p, q)] }\\n          else { value := none, queries := [] }\\n        | Early.one reverse c =>\\n          have p := Oriented reverse T S;\\n          childrenTrace paid p.fst p.snd q [pendantChild p.snd c.a c.b]\\n        | Early.high reverse c =>\\n          have p := Oriented reverse T S;\\n          childrenTrace paid p.fst p.snd q (branches p.snd c.a c.b)\\n        | Early.rule4Forward s => rule4Trace paid s q\\n        | Early.rule4Reverse s => rule4Trace paid s q\\n        | Early.hard2 c d => hard2Trace paid T S c d q\\n        | Early.refused => { value := none, queries := [] }).value =\\n    match DepthOne.Result.rejected with\\n    | DepthOne.Result.refused => none\\n    | DepthOne.Result.found c => if DepthOne.cutCost c \u2264 q then some (DepthOne.forest S c) else none\\n    | DepthOne.Result.rejected =>\\n      have paid := fun u v r => if hr : r < q then FastOrdinary.solve r u v else none;\\n      match Early.common reverse c with\\n      | Early.common reverse c =>\\n        have p := commonPair T S reverse c;\\n        if hn : (leaves p.fst).length < (leaves T).length then\\n          Option.map (expandCommon T S reverse c) (FastOrdinary.solve q p.fst p.snd)\\n        else none\\n      | Early.one reverse c =>\\n        have p := Oriented reverse T S;\\n        runChildren paid p.fst p.snd q [pendantChild p.snd c.a c.b]\\n      | Early.high reverse c =>\\n        have p := Oriented reverse T S;\\n        runChildren paid p.fst p.snd q (branches p.snd c.a c.b)\\n      | Early.rule4Forward s => runRule4 paid s q\\n      | Early.rule4Reverse s => runRule4 paid s q\\n      | Early.hard2 c d => Hard2Dispatcher.run paid T S c d q\\n      | Early.refused => none\\n'))"
+}

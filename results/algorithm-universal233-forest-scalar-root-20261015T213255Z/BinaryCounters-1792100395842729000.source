@@ -1,0 +1,82 @@
+import BinaryEncoding
+namespace GenericForest.ScalarBits
+open Universal233.WholeSourceWork
+
+/-- Actual reference list-length loop with a fixed-width binary counter. -/
+def lengthBits {α : Type} (W : Nat) : List α → Charged (List Bool)
+ | []=>⟨List.replicate W false,4*(W+1)⟩
+ | _::xs=>let r:=lengthBits W xs
+           let a:=addAtWidth W r.value [true]
+           ⟨a.value,r.work+a.work+4⟩
+
+theorem decode_replicate_false (W : Nat) : decode (List.replicate W false)=0 := by
+ induction W <;> simp_all [List.replicate_succ,decode,bit]
+theorem lengthBits_length {α : Type} (W : Nat) (xs : List α) : (lengthBits W xs).value.length≤W := by
+ cases xs with
+ | nil=>simp [lengthBits]
+ | cons x xs=>simp [lengthBits,addAtWidth,List.length_take]
+
+@[simp] theorem lengthBits_value {α : Type} (W : Nat) (xs : List α) (fits : xs.length<2^W) :
+ decode (lengthBits W xs).value=xs.length := by
+ induction xs with
+ | nil=>simp [lengthBits,decode_replicate_false]
+ | cons x xs ih=>
+  have tail : xs.length<2^W:=by simp only [List.length_cons] at fits;omega
+  simp only [lengthBits]
+  rw [addAtWidth_value W _ [true] (by simp only [ih tail,decode,bit];simpa only [List.length_cons] using fits)]
+  simp [ih tail,decode,bit]
+
+theorem lengthBits_work {α : Type} (W : Nat) (xs : List α) (positive : 1≤W) :
+ (lengthBits W xs).work≤40*(W+1)*(xs.length+1) := by
+ induction xs with
+ | nil=>simp only [lengthBits,List.length_nil,Nat.zero_add,Nat.mul_one];omega
+ | cons x xs ih=>
+  have a:=addAtWidth_work W (lengthBits W xs).value [true] (lengthBits_length W xs) (by simpa)
+  simp only [lengthBits,List.length_cons,Nat.mul_add,Nat.mul_one] at ih ⊢
+  omega
+
+/-- A literal reference list-index loop uses binary zero-test and decrement. -/
+def indexBits {α : Type} (W : Nat) : List α → List Bool → Charged (Option α)
+ | [],_=>⟨none,4⟩
+ | x::xs,i=>
+  let z:=equalBits i (List.replicate W false)
+  if z.value then ⟨some x,z.work+4⟩ else
+   let d:=subtractBits i [true]
+   let r:=indexBits W xs d.value
+   ⟨r.value,z.work+d.work+r.work+4⟩
+
+@[simp] theorem indexBits_value {α : Type} (W : Nat) (xs : List α) (i : List Bool) :
+ (indexBits W xs i).value=xs[decode i]? := by
+ induction xs generalizing i with
+ | nil=>simp [indexBits]
+ | cons x xs ih=>
+  simp only [indexBits,equalBits_value,decode_replicate_false]
+  by_cases zero : decode i=0
+  · simp [zero]
+  · have nonzero : (decode i==0)=false:=by simp [zero]
+    simp only [nonzero,Bool.false_eq_true,ite_false]
+    rw [ih,subtractBits_value]
+    simp only [decode,bit,ite_true,Nat.mul_zero,Nat.add_zero]
+    have h : decode i=(decode i-1)+1:=by omega
+    rw [h,List.getElem?_cons_succ]
+
+theorem subtractBits_length (xs ys : List Bool) : (subtractBits xs ys).value.length≤max xs.length ys.length := by
+ have a:=subtractBorrow_length (alignBits xs ys).value.1 (alignBits xs ys).value.2 false
+ have b:=alignBits_length xs ys
+ simp only [subtractBits]
+ split <;> simp only [List.length_nil] <;> omega
+
+theorem indexBits_work {α : Type} (W : Nat) (xs : List α) (i : List Bool)
+ (positive : 1≤W) (width : i.length≤W) :
+ (indexBits W xs i).work≤104*(W+1)*(xs.length+1) := by
+ induction xs generalizing i with
+ | nil=>simp only [indexBits,List.length_nil,Nat.zero_add,Nat.mul_one];omega
+ | cons x xs ih=>
+  have z:=(scalar_width_bounds W i (List.replicate W false) width (by simp)).1
+  have d:=(scalar_width_bounds W i [true] width (by simpa)).2.2.2
+  have len:=subtractBits_length i [true]
+  have subWidth : (subtractBits i [true]).value.length≤W:=by simp only [List.length_cons,List.length_nil] at len;omega
+  have r:=ih (subtractBits i [true]).value subWidth
+  simp only [indexBits]
+  split <;> simp only [Nat.mul_add,Nat.mul_one,List.length_cons] at r ⊢ <;> omega
+end GenericForest.ScalarBits

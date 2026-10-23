@@ -1,0 +1,24 @@
+{
+  "frozen_before_source_read": true,
+  "encoding": "0=false=left; 1=true=right; empty string=root; supports are sets",
+  "failure_rule": "any exact support mismatch fails; disconnected corrupted support fails",
+  "cases": [
+    {"id":"quartet_cross","tree":[[0,1],[2,3]],"selected":[0,2],"support":["","0","00","1","10"]},
+    {"id":"quartet_single","tree":[[0,1],[2,3]],"selected":[1],"support":["01"]},
+    {"id":"quartet_left","tree":[[0,1],[2,3]],"selected":[0,1],"support":["0","00","01"]},
+    {"id":"quartet_empty","tree":[[0,1],[2,3]],"selected":[],"support":[]},
+    {"id":"quartet_absent","tree":[[0,1],[2,3]],"selected":[9],"support":[]},
+    {"id":"duplicate_siblings","tree":[0,0],"selected":[0],"support":["","0","1"]},
+    {"id":"duplicate_cross","tree":[[0,1],[0,2]],"selected":[0],"support":["","0","00","1","10"]},
+    {"id":"root_leaf","tree":0,"selected":[0],"support":[""]},
+    {"id":"root_absent","tree":0,"selected":[7],"support":[]},
+    {"id":"suppressed_initial_path","tree":[9,[8,[0,1]]],"selected":[0,1],"support":["11","110","111"]},
+    {"id":"suppressed_single_path","tree":[9,[8,0]],"selected":[0],"support":["11"]},
+    {"id":"repeated_selection","tree":[[0,1],[2,3]],"selected":[0,0],"support":["00"]}
+  ],
+  "corruptions": [
+    {"id":"deleted_path_vertex","source":"quartet_cross","delete":["0"],"expected_connected":false},
+    {"id":"inserted_initial_root","source":"quartet_left","add":[""],"expected_support_equal":false},
+    {"id":"deduplicated_occurrence","source":"duplicate_siblings","replace":["0"],"expected_support_equal":false}
+  ]
+}

@@ -1,0 +1,5 @@
+import NumericActualEntries
+#check OrdinaryDispatch.GlobalNumeric.reachable_forest_entry_caps
+#print axioms OrdinaryDispatch.GlobalNumeric.reachable_forest_entry_caps
+#check OrdinaryDispatch.GlobalNumeric.reachable_forest_desc_caps
+#print axioms OrdinaryDispatch.GlobalNumeric.reachable_forest_desc_caps

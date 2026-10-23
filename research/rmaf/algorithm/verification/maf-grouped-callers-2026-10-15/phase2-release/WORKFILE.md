@@ -1,0 +1,9 @@
+# Released original MAF / grouped caller review
+
+Status: ROOT EXACT RELEASE, 2026-10-15. New files only. Preserve54READY/241/57/593/377/45 and all failed/superseded controls.
+
+Released: maf_scheduler/MAF-SCHEDULER-MANIFEST-v1.json SHA616fc379859f92eea35b73fd3334c88c5754cc1ecf1a9f8698b082b14b071ebd,393 entries; forest_groups/FOREST-GROUPS-MANIFEST-v2.json SHA23ddfc690c8701a12ca18a17faa75133d6c04759211e07f63cfeb171eabcdfc9,230 entries; their exact source dependencies and root-named canonical certificates only.
+
+Completed: exact release and prior rehash; separate56/19 source-only builds; full originating/private/generated/unused-axiom inventories and strict false controls; actual restrictions/pretests/slots/callbacks/concatenation; graph/witness/cost/cross-clear/ownership inspection; exact conditional recursive interfaces;15-partition finite child readout; separate source-operation versus formal meter/machine/bit-cost audit; separate scoped verdicts. Final positive closures59/23 modules,2524/895 origins, standard axioms only. Original267 comparisons match; grouped98 match with ONE unchanged off-Owns reference failure. Every qualification/own harness correction is recorded in FAILURES-AND-AMENDMENTS.md, including lost first unfrozen audit timing JSON bytes with exact log reproduction. No all-frozen-pass or pristine-own-provenance claim. REVIEW-MANIFEST-v1 seals the completed new phase and result receipts.
+
+No live main/binarycheap/outputstate/finalcut or other fresh reviewer implementations; no author/child contact. Original recursive IH and grouped child-specific contract remain supplied until actually derived. No complete solver/runtime/base/novelty acceptance. All three main milestones remain OPEN; same lineage, zero added replications. Preserve author absent-label amendment and grouped redirected-log freeze correction provenance.

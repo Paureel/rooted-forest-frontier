@@ -1,0 +1,6 @@
+import Std
+namespace DepthToy
+inductive Bit where | zero | one
+private theorem hiddenClean : True := True.intro
+theorem publicClean : True := True.intro
+end DepthToy

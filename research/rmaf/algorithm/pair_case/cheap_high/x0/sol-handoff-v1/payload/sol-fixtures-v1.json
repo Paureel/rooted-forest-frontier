@@ -1,0 +1,51 @@
+{
+  "frozen_before_execution": "2026-10-15",
+  "arithmetic": {"c": [233,100], "clean": [[3],[4,4],[]], "corrupt": [[3,4],[3,3]], "expected_dyadic": ["1/8","1/8","0","3/16","1/4"]},
+  "controls": {
+    "identical": {"S": [[0,1],2], "T": [[0,1],2], "expected_additional": 0},
+    "wrong_rooted_topology": {"S": [[0,1],2], "T": [0,[1,2]], "expected_additional": 1},
+    "suppressed_path": {"tree": [[[0,1],2],3], "selection": [0,2], "expected_hull": ["0","00","000","01"]},
+    "core_crossed": {"S": [[0,1],[2,3]], "colors": {"0":0,"1":1,"2":0,"3":1}, "q":3, "expected_costs":[2,2], "expected_parts":[[[0],[1,3],[2]],[[0,2],[1],[3]]]},
+    "core_budget": {"S": [[0,1],[2,3]], "colors": {"0":0,"1":1,"2":0,"3":1}, "q":1, "expected_costs":[]},
+    "core_null": {"S": [[0,1],[2,3]], "colors": {"0":0,"1":0,"2":0,"3":0}, "q":0, "expected_costs":[0]},
+    "four_color": {"S":[[0,1],[2,3]], "colors":{"0":0,"1":1,"2":2,"3":3}, "q":3, "expected_costs":[3]},
+    "duplicate_label": {"S":[0,0], "colors":{"0":0}, "q":3, "expected_refusal":"duplicate original label"}
+  },
+  "fixtures": [
+    {
+      "id":"surrounding-A-good-sectors",
+      "S":[[[1,[2,[[4,6],[5,7]]]],3],8],
+      "T":[[[1,[4,5]],[[2,3],[6,7]]],8],
+      "P":[[1,2,3],[4,5,6,7],[8]], "edge":"00", "q":7,
+      "expected":{"in_regime":true,"A_good":false,"B_good":false,"A_sectors_good":[true,true],"LA_costs":[3],"LB_costs":[4,4],"A_local_additional":1,"A_post_B_additional_each":1}
+    },
+    {
+      "id":"surrounding-A-right-attachment",
+      "S":[[[1,[2,3]],[[4,6],[5,7]]],8],
+      "T":[[[[1,2],[4,5]],[3,[6,7]]],8],
+      "P":[[1,2,3],[4,5,6,7],[8]], "edge":"00", "q":7,
+      "expected":{"in_regime":true,"A_good":false,"B_good":false,"A_sectors_good":[true,true],"LA_costs":[3],"LB_costs":[4,4],"A_local_additional":1,"A_post_B_additional_each":1}
+    },
+    {
+      "id":"cheap-bad-A-sector",
+      "S":[[[[[1,2],3],4],[[5,7],[6,8]]],9],
+      "T":[[[[[1,3],2],[5,6]],[4,[7,8]]],9],
+      "P":[[1,2,3,4],[5,6,7,8],[9]], "edge":"00", "q":8,
+      "expected":{"in_regime":true,"A_good":false,"B_good":false,"A_sectors_good":[false,true],"LA_costs":[3],"LB_costs":[4,4],"first_A_sector_additional":1,"cheap_branch_additional_at_least":1}
+    },
+    {
+      "id":"both-high-crossed",
+      "S":[[[[1,3],[2,4]],[[5,7],[6,8]]],9],
+      "T":[[[[1,2],[5,6]],[[3,4],[7,8]]],9],
+      "P":[[1,2,3,4],[5,6,7,8],[9]], "edge":"00", "q":8,
+      "expected":{"in_regime":true,"A_good":false,"B_good":false,"LA_costs":[4,4],"LB_costs":[4,4]}
+    },
+    {
+      "id":"public-good-A-conditional-E",
+      "S":[[[1,2],[[3,5],[4,6]]],7],
+      "T":[[[1,[3,4]],[2,[5,6]]],7],
+      "P":[[1,2],[3,4,5,6],[7]], "edge":"00", "q":6,
+      "expected":{"in_regime":true,"A_good":true,"B_good":false,"LA_costs":[3],"LB_costs":[4,4],"global_refining_P_components":5,"retain_A_and_clear_B_components":5,"B_whole_sector_one_cut":false}
+    }
+  ]
+}

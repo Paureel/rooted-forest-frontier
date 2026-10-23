@@ -1,0 +1,51 @@
+research/rmaf/algorithm/universal233/core/CoreProgram.lean:138:10: error: No goals to be solved
+research/rmaf/algorithm/universal233/core/CoreProgram.lean:140:12: error: No goals to be solved
+research/rmaf/algorithm/universal233/core/CoreProgram.lean:142:14: error: No goals to be solved
+research/rmaf/algorithm/universal233/core/CoreProgram.lean:149:2: error: Tactic `split` failed: Could not split an `if` or `match` expression in the goal
+
+Hint: Use `set_option trace.split.failure true` to display additional diagnostic information
+
+f : GTree → List Group → List Vertex → Receipt
+n : Nat
+h : ∀ (t : GTree) (d : List Group) (c : List Vertex), (f t d c).visited ≤ n
+t : GTree
+d : List Group
+c : List Vertex
+⊢ (have t := normalize t;
+      match choose t with
+      | Choice.finish =>
+        {
+          outputs :=
+            [{ partition := List.map Group.labels d ++ [List.flatMap Group.labels (groups t)], sourceCuts := c }],
+          visited := 1 }
+      | Choice.one g => prefixRoot (attempt f t d c g)
+      | Choice.two a b => prefixRoot (combine (attempt f t d c a) (attempt f t d c b))
+      | Choice.refuse why => { refusals := [why], visited := 1 }).visited ≤
+    1 + 2 * n
+research/rmaf/algorithm/universal233/core/CoreProgram.lean:194:51: error: Tactic `decide` proved that the proposition
+  parts (generate crossed parity 3) = [[[1], [3], [0, 2]], [[0], [2], [1, 3]]]
+is false
+research/rmaf/algorithm/universal233/core/CoreProgram.lean:203:82: error: Tactic `decide` proved that the proposition
+  parts (generate cherry3 homColor 2) = [[[2], [0, 1]]]
+is false
+'Universal233.CoreProgram.fromTree' does not depend on any axioms
+'Universal233.CoreProgram.normalize' depends on axioms: [propext]
+'Universal233.CoreProgram.erase' does not depend on any axioms
+'Universal233.CoreProgram.choose' depends on axioms: [propext]
+'Universal233.CoreProgram.run' depends on axioms: [propext]
+'Universal233.CoreProgram.generate' depends on axioms: [propext]
+'Universal233.CoreProgram.run_visited_bound' depends on axioms: [propext, sorryAx]
+'Universal233.CoreProgram.maxVisits_pow' depends on axioms: [propext, Quot.sound]
+'Universal233.CoreProgram.run_visited_exponential' depends on axioms: [propext, sorryAx, Quot.sound]
+'Universal233.CoreProgram.Controls.crossed_both' depends on axioms: [propext, sorryAx]
+'Universal233.CoreProgram.Controls.crossed_paid' depends on axioms: [propext]
+'Universal233.CoreProgram.Controls.crossed_budget_refusal' depends on axioms: [propext]
+'Universal233.CoreProgram.Controls.homogeneous' depends on axioms: [propext, sorryAx]
+'Universal233.CoreProgram.Controls.distinct_colors' depends on axioms: [propext]
+'Universal233.CoreProgram.Controls.three_color_quartet' depends on axioms: [propext]
+'Universal233.CoreProgram.Controls.same_color_root' depends on axioms: [propext]
+'Universal233.CoreProgram.Controls.singleton' depends on axioms: [propext]
+'Universal233.CoreProgram.Controls.duplicate_refused' depends on axioms: [propext]
+real 0.50
+user 0.49
+sys 0.19

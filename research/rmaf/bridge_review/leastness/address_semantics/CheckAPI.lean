@@ -1,0 +1,17 @@
+import RMAF
+#check List.nodup_append
+#check List.Nodup.of_append_left
+#check List.Nodup.of_append_right
+#check List.Nodup.append
+#check List.nodup_map_iff
+#check List.Nodup.map
+#check List.Perm.nodup_iff
+#check List.Perm.nodup
+#check List.nodup_range
+#check List.Perm.mem_iff
+#check List.mem_range
+#check List.Nodup.sublist
+#check List.pairwise_append
+#check List.Pairwise.imp
+#check List.nodup_cons
+#check List.Pairwise.imp_of_mem

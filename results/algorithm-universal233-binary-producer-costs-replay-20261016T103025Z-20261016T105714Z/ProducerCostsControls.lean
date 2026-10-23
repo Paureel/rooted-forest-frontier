@@ -1,0 +1,68 @@
+import ProducerCostAssembly
+namespace GenericForest.BinaryProducer.CostControls
+open BinaryProvider GenericForest.ScalarBits Universal233.WholeSourceWork
+abbrev z : Bits:=[]
+abbrev a : Bits:=[true]
+abbrev b : Bits:=[false,true]
+abbrev c : Bits:=[true,true]
+abbrev q8 : Bits:=[false,false,false,true]
+abbrev pair : BinaryProvider.Tree:=.node (.leaf a) (.leaf b)
+abbrev crossed : BinaryProvider.Tree:=.node (.node (.leaf z) (.leaf a)) (.node (.leaf b) (.leaf c))
+def parity (x : Bits) : Charged Generator.Color:=⟨(x.headD false,false),4⟩
+
+theorem fuel_truth :
+ (Generator.fuelBits q8 [(),(),()]).value.length=3 ∧
+ (Generator.fuelBits [true] [(),(),()]).value.length=1 := by decide +kernel
+
+theorem overlap_truth :
+ (overlapProducer crossed [.leaf z,.leaf z,.leaf a]).value.map overlapValue=some ⟨0,1,[false,false]⟩ ∧
+ (overlapProducer crossed [.leaf z,.leaf a]).value=none := by decide +kernel
+
+theorem original_address_truth :
+ (firstShared [[false,false]] [[false]]).value=none ∧
+ (firstShared [[false,false]] [[false],[false,false]]).value=some [false,false] := by decide +kernel
+
+theorem generator_zero_truth :
+ (Generator.receiptValue (Generator.generateBits crossed parity []).value).outputs=[] ∧
+ (Generator.receiptValue (Generator.generateBits crossed parity []).value).visited=1 ∧
+ (Generator.receiptValue (Generator.generateBits crossed parity []).value).childAttempts=2 ∧
+ (Generator.receiptValue (Generator.generateBits crossed parity []).value).pruned=2 := by decide +kernel
+
+theorem generator_one_truth :
+ (Generator.receiptValue (Generator.generateBits crossed parity [true]).value).outputs=[] ∧
+ (Generator.receiptValue (Generator.generateBits crossed parity [true]).value).visited=3 ∧
+ (Generator.receiptValue (Generator.generateBits crossed parity [true]).value).childAttempts=4 ∧
+ (Generator.receiptValue (Generator.generateBits crossed parity [true]).value).pruned=2 := by decide +kernel
+
+theorem generator_order_truth :
+ ((Generator.generateBits crossed parity q8).value.outputs.map outputValue)=
+ [⟨[[2],[0],[1,3]],[[true,false],[false,false]]⟩,⟨[[3],[1],[0,2]],[[true,true],[false,true]]⟩] ∧
+ (Generator.receiptValue (Generator.generateBits crossed parity q8).value).visited=5 := by decide +kernel
+
+theorem duplicate_label_truth :
+ (Generator.generateBits (.node (.leaf []) (.leaf [false])) parity q8).value.refusals=["duplicate original label"] := by decide +kernel
+
+def repeated : OverlapBits:=⟨[],[],[]⟩
+theorem branch_truth :
+ ((branchesProducer crossed [crossed] repeated q8).value.map branchValue)=
+ [(0,⟨[[0,1],[2,3]],[[false]]⟩),(0,⟨[[0,1],[2,3]],[[false]]⟩)] ∧
+ (branchesProducer crossed [crossed] repeated q8).value.length=2 := by decide +kernel
+
+theorem ledger_truth :
+ rawCallbackWork Controls.budgetAnswer (some Controls.pair) [Controls.pair] Controls.q8 Controls.rawInput=74 ∧
+ scheduleCallbackWork Controls.ok Controls.q8 Controls.dup=23 ∧
+ runCallbackWork Controls.fail Controls.q8 [.hard (),.hard ()]=29 := by decide +kernel
+
+theorem pretest_cost_truth : (pretestBits pair pair).work≤pretestCost 3 2 := by
+ apply pretestBits_cost 3 2
+ all_goals simp [TreeWidth,BlockWidth,LabelWidth,pair,a,b,leavesBits,treeValue,Universal233.CoreWork.treeNodes]
+
+theorem pretest_nonzero_truth : 0<(pretestBits pair pair).work := by decide +kernel
+
+theorem multiplicity_cost_truth :
+ (branchesProducer crossed [crossed] repeated q8).work=
+ 2*(rawProducer crossed [crossed] [] [] q8).work+27 := by
+ have h:=branchesProducer_multiplicity_paid crossed [crossed] repeated q8
+ have n : (rawProducer crossed [crossed] [] [] q8).value.length=1:=by decide +kernel
+ simp only [repeated,n] at h ⊢;omega
+end GenericForest.BinaryProducer.CostControls

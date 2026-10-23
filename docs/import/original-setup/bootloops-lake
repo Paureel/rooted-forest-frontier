@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+BOOTSCIENCE_LAKE_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+export ELAN_HOME="$BOOTSCIENCE_LAKE_ROOT/.runtime/elan"
+exec "$BOOTSCIENCE_LAKE_ROOT/.venv/bin/python3" "$BOOTSCIENCE_LAKE_ROOT/dashboard/track.py" "$ELAN_HOME/bin/lake" "$@"

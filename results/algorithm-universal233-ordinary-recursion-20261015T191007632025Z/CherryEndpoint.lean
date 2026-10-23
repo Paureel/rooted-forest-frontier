@@ -1,0 +1,113 @@
+import CherryTopology
+
+/-! One-shot original-address geometry proof. No assumed transport field. -/
+namespace ForestState
+open RMAF RestrictionBridge
+
+theorem geometry_mask_equal (t : Tree) (B D : List Nat)
+    (mask : ∀ x ∈ leaves t, B.contains x = D.contains x) :
+    rootedSpan B t = rootedSpan D t ∧ minimalVertices B t = minimalVertices D t := by
+  induction t with
+  | leaf x =>
+    simp only [rootedSpan,minimalVertices,mask x (by simp [leaves])]
+    trivial
+  | node l r hl hr =>
+    have il := hl (fun x hx => mask x (by simp [leaves,hx]))
+    have ir := hr (fun x hx => mask x (by simp [leaves,hx]))
+    simp [rootedSpan,minimalVertices,il,ir]
+
+theorem geometry_add_absent (t : Tree) (B : List Nat) (b : Nat) (hb : b ∉ leaves t) :
+    rootedSpan (b :: B) t = rootedSpan B t ∧
+      minimalVertices (b :: B) t = minimalVertices B t := by
+  apply geometry_mask_equal
+  intro x hx
+  have hn : x ≠ b := by intro he; subst x; exact hb hx
+  simp [hn]
+
+theorem node_selection_clear_congr (l r : Tree) (B D C : List Nat)
+    (ebl : (rootedSpan B l).isEmpty = (rootedSpan D l).isEmpty)
+    (ebr : (rootedSpan B r).isEmpty = (rootedSpan D r).isEmpty)
+    (hlroot : Clear (rootedSpan B l) (minimalVertices C l) ↔ Clear (rootedSpan D l) (minimalVertices C l))
+    (hrroot : Clear (rootedSpan B r) (minimalVertices C r) ↔ Clear (rootedSpan D r) (minimalVertices C r))
+    (hlback : Clear (rootedSpan C l) (minimalVertices B l) ↔ Clear (rootedSpan C l) (minimalVertices D l))
+    (hrback : Clear (rootedSpan C r) (minimalVertices B r) ↔ Clear (rootedSpan C r) (minimalVertices D r))
+    (hlmin : Clear (minimalVertices B l) (minimalVertices C l) ↔ Clear (minimalVertices D l) (minimalVertices C l))
+    (hrmin : Clear (minimalVertices B r) (minimalVertices C r) ↔ Clear (minimalVertices D r) (minimalVertices C r)) :
+    (Clear (rootedSpan B (.node l r)) (minimalVertices C (.node l r)) ↔
+      Clear (rootedSpan D (.node l r)) (minimalVertices C (.node l r))) ∧
+    (Clear (rootedSpan C (.node l r)) (minimalVertices B (.node l r)) ↔
+      Clear (rootedSpan C (.node l r)) (minimalVertices D (.node l r))) ∧
+    (Clear (minimalVertices B (.node l r)) (minimalVertices C (.node l r)) ↔
+      Clear (minimalVertices D (.node l r)) (minimalVertices C (.node l r))) := by
+  cases bl : (rootedSpan D l).isEmpty <;> cases br : (rootedSpan D r).isEmpty <;>
+    cases cl : (rootedSpan C l).isEmpty <;> cases cr : (rootedSpan C r).isEmpty
+  all_goals
+    try have nb1 : rootedSpan B l = [] := List.isEmpty_iff.1 (ebl.trans bl)
+    try have nb2 : rootedSpan B r = [] := List.isEmpty_iff.1 (ebr.trans br)
+    try have nd1 : rootedSpan D l = [] := List.isEmpty_iff.1 bl
+    try have nd2 : rootedSpan D r = [] := List.isEmpty_iff.1 br
+    try have nc1 : rootedSpan C l = [] := List.isEmpty_iff.1 cl
+    try have nc2 : rootedSpan C r = [] := List.isEmpty_iff.1 cr
+    try have mb1 := minimal_nil_of_span_nil B l nb1
+    try have mb2 := minimal_nil_of_span_nil B r nb2
+    try have md1 := minimal_nil_of_span_nil D l nd1
+    try have md2 := minimal_nil_of_span_nil D r nd2
+    try have mc1 := minimal_nil_of_span_nil C l nc1
+    try have mc2 := minimal_nil_of_span_nil C r nc2
+    simp_all [rootedSpan,minimalVertices,span_root,clear_symm (minimalVertices B l),
+      clear_symm (minimalVertices B r),clear_symm (minimalVertices D l),
+      clear_symm (minimalVertices D r)]
+
+theorem CherryAt.endpoint_clear_congr {t : Tree} {a b : Nat} {w : Vertex}
+    (h : CherryAt a b t w) (A C : List Nat) (nd : (leaves t).Nodup)
+    (ha : a ∈ A) (hb : b ∉ A) (hca : a ∉ C) (hcb : b ∉ C) :
+    (Clear (rootedSpan A t) (minimalVertices C t) ↔
+      Clear (rootedSpan (b :: A) t) (minimalVertices C t)) ∧
+    (Clear (rootedSpan C t) (minimalVertices A t) ↔
+      Clear (rootedSpan C t) (minimalVertices (b :: A) t)) ∧
+    (Clear (minimalVertices A t) (minimalVertices C t) ↔
+      Clear (minimalVertices (b :: A) t) (minimalVertices C t)) := by
+  induction h with
+  | straight => simp [rootedSpan,minimalVertices,hca,hcb,prependSide]
+  | swapped => simp [rootedSpan,minimalVertices,hca,hcb,prependSide]
+  | @left l r w h ih =>
+    have ndl : (leaves l).Nodup := List.Sublist.nodup (by simp [leaves]) nd
+    have nbr := nodup_append_avoid_right l r b nd h.labels.2
+    have ir := geometry_add_absent r A b nbr
+    have il := ih ndl
+    apply node_selection_clear_congr l r A (b :: A) C
+    · rw [span_nonempty_of_selected l A a h.labels.1 ha,
+        span_nonempty_of_selected l (b :: A) a h.labels.1 (by simp [ha])]
+    · rw [ir.1]
+    · exact il.1
+    · rw [ir.1]
+    · exact il.2.1
+    · rw [ir.2]
+    · exact il.2.2
+    · rw [ir.2]
+  | @right l r w h ih =>
+    have ndr : (leaves r).Nodup := List.Sublist.nodup (by simp [leaves]) nd
+    have nbl := nodup_append_avoid_left l r b nd h.labels.2
+    have il := geometry_add_absent l A b nbl
+    have ir := ih ndr
+    apply node_selection_clear_congr l r A (b :: A) C
+    · rw [il.1]
+    · rw [span_nonempty_of_selected r A a h.labels.1 ha,
+        span_nonempty_of_selected r (b :: A) a h.labels.1 (by simp [ha])]
+    · rw [il.1]
+    · exact ir.1
+    · rw [il.2]
+    · exact ir.2.1
+    · rw [il.2]
+    · exact ir.2.2
+
+theorem endpoint_reassignment_embeddings (t : Tree) (A C : List Nat) (a b : Nat)
+    (nd : (leaves t).Nodup) (ch : cherry a b t = true)
+    (ha : a ∈ A) (hb : b ∉ A) (hca : a ∉ C) (hcb : b ∉ C)
+    (clear : disjointVertices (minimalVertices A t) (minimalVertices C t) = true) :
+    disjointVertices (minimalVertices (b :: A) t) (minimalVertices C t) = true := by
+  obtain ⟨w,hw⟩ := cherry_at_exists t a b ch
+  apply (clear_iff _ _).2
+  exact (hw.endpoint_clear_congr A C nd ha hb hca hcb).2.2.mp ((clear_iff _ _).1 clear)
+
+end ForestState

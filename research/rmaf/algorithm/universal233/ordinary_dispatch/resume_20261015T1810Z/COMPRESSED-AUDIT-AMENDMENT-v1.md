@@ -1,0 +1,11 @@
+# Compressed missing-only audit amendment
+
+The first resumed raw audit was interrupted by root's scoped SIGINT at18:16:04 UTC. Complete shards0–4 and partial shard5, all sources, indexes, logs and failure receipts remain byte-for-byte. No pool acceptance arose. The sourcebound local-IH replay separately stopped before its audit at an omitted dependency, LocalCongruence importing ForestDisjoint. This is an instrument closure failure, not a mathematical counterexample.
+
+Use the completed split-file extractor with ONLY its output sink replaced: send each producer's exact UTF-8 pretty JSON to `/usr/bin/gzip -1 -c`, whose output is a new .json.gz file. Every stored kind, type, body, direct reference and axiom reference remains available by lossless decompression. Fresh clean/hostile producer and source-pin/parser corruptions run through this exact sink before scientific missing-only work. Do not emit another raw proof dump.
+
+A fresh small header records every source module path, stored index/name/kind and count under the same all306 master import. Saved raw per-producer files are parsed one at a time, validated against that fresh header and the completed detector, hashed and retained. Only absent producers are extracted anew. Compatibility summaries use SHA256 of exact type/body representation strings to avoid retaining all proof bodies in RAM; full original representation bytes remain in the raw or gzip records. This is cryptographic byte-integrity evidence, not a new theorem about expression semantics.
+
+Hard resource limits: at least3GiB filesystem free before each new producer extraction; at most512MiB compressed per process and768MiB total newly compressed output,60s per selected-producer pilot/command. Every limit violation stops with a retained NOT_ACCEPTED receipt. At most1GiB uncompressed saved producer file is parsed at once; do not aggregate full bodies in memory. Sourcebound local-IH closure must be computed from actual completed forestv3 source_inputs and minimum-completion source entries before replay; the failed79-module attempt remains intact.
+
+All scientific evidence is AUTHOR development. Full ordinary dispatcher correctness, source/bit/payload recurrence, smaller-base and novelty claims remain OPEN.

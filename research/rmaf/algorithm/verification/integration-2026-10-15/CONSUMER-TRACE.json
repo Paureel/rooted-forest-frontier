@@ -1,0 +1,363 @@
+{
+  "scope": "same-lineage source-bound frozen integration review; zero additional replications",
+  "manifest": "research/rmaf/algorithm/universal233/INTEGRATION-MANIFEST-v1.json",
+  "all_main_milestones": {
+    "complete_algorithm": "OPEN",
+    "universal_correctness": "OPEN",
+    "smaller_base": "OPEN"
+  },
+  "claims": [
+    {
+      "id": "source-partition-from-checks",
+      "verdict": "CONFIRMED-SCOPED",
+      "source_locator": "SourceBridge.lean:243-311",
+      "consumer_locator": "InitialLift.lean:88-112,127-138;Controls.lean:13-20,51-58",
+      "exact_hypotheses": [
+        "partitionCheck (leaves t) bs=true",
+        "pairwiseEmbeddings t bs=true"
+      ],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "Constructed actual source supports, one-edge connected walks, terminal ownership and disjointness; no supplied connectedness/convexity field",
+      "cost_scope": "noncomputable proof witness, not production partition search",
+      "remaining_obligation": "two-tree restriction agreement and generate label guard remain separate",
+      "witness": ""
+    },
+    {
+      "id": "original-terminal-owner-iff",
+      "verdict": "CONFIRMED-SCOPED",
+      "source_locator": "SourceBridge.lean:271-302",
+      "consumer_locator": "InitialLift.lean:110-112,134-138",
+      "exact_hypotheses": [
+        "the two exact Boolean source checks",
+        "actual original leaf occurrences u/x and v/y"
+      ],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "owner equality iff original labels share a supplied block; block monochromaticity separately gives source monochromaticity",
+      "cost_scope": "logical correspondence only",
+      "remaining_obligation": "not owner equality at arbitrary nonterminal vertices",
+      "witness": ""
+    },
+    {
+      "id": "homogeneous-same-graph-coarsening",
+      "verdict": "CONFIRMED-SCOPED",
+      "source_locator": "CherryCoarsening.lean:13-16,99-204",
+      "consumer_locator": "Normalization.lean:133-145",
+      "exact_hypotheses": [
+        "actual source partition",
+        "actual homogeneous cherry",
+        "monochromatic partition"
+      ],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "Constructed monochromatic coarsening; parent in a third support handled by deleting its pendant excursion",
+      "cost_scope": "no implementation operation count or original cut asserted",
+      "remaining_obligation": "",
+      "witness": ""
+    },
+    {
+      "id": "actual-cherry-quotient",
+      "verdict": "CONFIRMED-SCOPED",
+      "source_locator": "Contraction.lean:110-177",
+      "consumer_locator": "Normalization.lean:133-145",
+      "exact_hypotheses": [
+        "actual CherryContraction",
+        "source partition with the two cherry leaves in one owner"
+      ],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "Delete the two old terminal vertices, retain valid supports, prove connected walks and original terminal owner lift",
+      "cost_scope": "graph quotient proof; original residual-cut realization separate",
+      "remaining_obligation": "",
+      "witness": ""
+    },
+    {
+      "id": "normalization-transport",
+      "verdict": "CONFIRMED-SCOPED",
+      "source_locator": "Normalization.lean:99-105,130-207",
+      "consumer_locator": "InitialLift.lean:128-138;CutRecords.lean:220-224",
+      "exact_hypotheses": [
+        "SourcePartition (skeleton t)",
+        "Monochromatic P id"
+      ],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "Exact normalize is composed actual homogeneous rewrites; every old payload is contained in its mapped new payload and old owner equality implies new owner equality",
+      "cost_scope": "syntactic payload/purity invariants exist; per-prefix work bound absent",
+      "remaining_obligation": "no converse owner equality or group bijection",
+      "witness": ""
+    },
+    {
+      "id": "initial-original-label-normalization",
+      "verdict": "CONFIRMED-SCOPED",
+      "source_locator": "InitialLift.lean:88-138",
+      "consumer_locator": "CutRecords.lean:240-257",
+      "exact_hypotheses": [
+        "the two exact Boolean source checks",
+        "each original block monochromatic under color"
+      ],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "Original taxa survive inside mapped normalized group payloads; common original block labels map to equal owners",
+      "cost_scope": "logical original-label lift, no original residual-component certificate",
+      "remaining_obligation": "",
+      "witness": ""
+    },
+    {
+      "id": "unique-color-selected-singleton",
+      "verdict": "CONFIRMED-SCOPED",
+      "source_locator": "Branches.lean:60-118",
+      "consumer_locator": "CutRecords.lean:227-230",
+      "exact_hypotheses": [
+        "origins t Nodup",
+        "actual monochromatic source partition",
+        "choose t=one g"
+      ],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "Actual selected group occurrence is current nonroot and a singleton owner",
+      "cost_scope": "actual color-filter/membership scans still require accounting",
+      "remaining_obligation": "",
+      "witness": ""
+    },
+    {
+      "id": "mixed-cherry-singleton-alternative",
+      "verdict": "CONFIRMED-SCOPED",
+      "source_locator": "Branches.lean:175-210",
+      "consumer_locator": "CutRecords.lean:231-234",
+      "exact_hypotheses": [
+        "actual monochromatic source partition",
+        "choose t=two a b"
+      ],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "One of the two actual nonroot grouped cherry leaves is a singleton for the supplied target partition",
+      "cost_scope": "two attempted children in exact step; no claim both preserve target",
+      "remaining_obligation": "",
+      "witness": ""
+    },
+    {
+      "id": "normalized-chooser-no-refusal",
+      "verdict": "CONFIRMED-SCOPED",
+      "source_locator": "Branches.lean:212-282",
+      "consumer_locator": "CutRecords.lean:235-236",
+      "exact_hypotheses": [
+        "FullyNormalized t, derived for normalize current"
+      ],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "Exact chooser has no refuse result",
+      "cost_scope": "no output existence or source-component assertion",
+      "remaining_obligation": "",
+      "witness": ""
+    },
+    {
+      "id": "erase-and-suppression-transport",
+      "verdict": "CONFIRMED-SCOPED",
+      "source_locator": "Suppression.lean:95-103,142-233;EraseLift.lean:40-87,163-180",
+      "consumer_locator": "CutRecords.lean:183-185",
+      "exact_hypotheses": [
+        "origins t Nodup",
+        "actual current nonroot selected group occurrence",
+        "monochromatic source partition",
+        "chosen owner is singleton"
+      ],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "Exact erase returns nonempty tree; new source supports are terminal hulls; unchanged groups survive with owner equality under new-to-old display embedding; chosen owner has no surviving terminal",
+      "cost_scope": "new displayed paths embed in old paths; not one-edge cost or original residual realization",
+      "remaining_obligation": "",
+      "witness": ""
+    },
+    {
+      "id": "origin-and-cut-guard-invariants",
+      "verdict": "CONFIRMED-SCOPED",
+      "source_locator": "Origins.lean:24-136;CutRecords.lean:22-161",
+      "consumer_locator": "CutRecords.lean:181-185,221-223,254-257",
+      "exact_hypotheses": [
+        "fromTree for initialization",
+        "Nodup/RootZeroOnly/CutsAvoid premises for their preservation",
+        "explicit original-origin sublist for reachable_origins_actual"
+      ],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "Nodup origins, root-zero restriction and old-cut absence are initialized/preserved; sublist membership gives actual original vertices",
+      "cost_scope": "identifier invariants only",
+      "remaining_obligation": "named-original reachability and full residual edge membership not consequences of the three local guards alone",
+      "witness": ""
+    },
+    {
+      "id": "exact-attempt-continuation",
+      "verdict": "CONFIRMED-SCOPED",
+      "source_locator": "CutRecords.lean:166-202",
+      "consumer_locator": "CutRecords.lean:229-234",
+      "exact_hypotheses": [
+        "arbitrary continuation f",
+        "Nodup origins",
+        "RootZeroOnly t",
+        "CutsAvoid t cuts",
+        "monochromatic source partition",
+        "actual nonroot selected singleton group"
+      ],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "All three actual refusal guards are discharged; literal continuation receives exact next/group/cut arguments and local source transport is constructed",
+      "cost_scope": "one childAttempt is added; nothing about correctness/output of f",
+      "remaining_obligation": "original edge residual component theorem remains OPEN",
+      "witness": ""
+    },
+    {
+      "id": "local-step-and-initial-composition",
+      "verdict": "CONFIRMED-SCOPED",
+      "source_locator": "CutRecords.lean:209-257",
+      "consumer_locator": "CoreProgram.lean:108-122;integration/FIRST-GAP.md:8-48",
+      "exact_hypotheses": [
+        "arbitrary f",
+        "the three local origin invariants and monochromatic source partition",
+        "initial variant constructs these from Boolean checks and original block monochromaticity"
+      ],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "Finish or an existential target-preserving chosen singleton with SourceAttempt; SourceAttempt is constructed, never assumed",
+      "cost_scope": "no theorem here consumes this local result into finite-budget run coverage",
+      "remaining_obligation": "OPEN-FINITE-BUDGET-COVERAGE",
+      "witness": ""
+    },
+    {
+      "id": "recorded-charge-and-prefix-counts",
+      "verdict": "CONFIRMED-SCOPED",
+      "source_locator": "CoreInvariants.lean:61-62,118-173;CoreProgram.lean:163-237",
+      "consumer_locator": "integration/FIRST-GAP.md:45-60",
+      "exact_hypotheses": [
+        "emitted output membership for syntactic output claims",
+        "exact run q for visited/attempt count bounds"
+      ],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "Recorded names nonroot/Nodup; pieces=recorded cuts+1; visited+attempts+3 <= 3*2^(q+1)",
+      "cost_scope": "combinatorial prefix/attempt counter only; failed and pruned attempts included",
+      "remaining_obligation": "graph nonredundancy, polynomial operation work, raw mass and full outer recurrence unproved",
+      "witness": ""
+    },
+    {
+      "id": "original-residual-components",
+      "verdict": "OPEN-AT-NAMED-OBLIGATION",
+      "source_locator": "integration/FIRST-GAP.md:24-48",
+      "consumer_locator": "CoreProgram.lean:105;finish emission:112",
+      "exact_hypotheses": [],
+      "unproved_consumer_requirements": [
+        "required: actual reachability from a proper original source"
+      ],
+      "delivered_form": "No residual-component bijection or exact split-label theorem delivered",
+      "cost_scope": "must establish selected original edge is live, split is leaf-bearing, detached components unchanged and finish matches output",
+      "remaining_obligation": "OPEN-ORIGINAL-RESIDUAL-COMPONENTS",
+      "witness": ""
+    },
+    {
+      "id": "finite-budget-coverage",
+      "verdict": "OPEN-AT-NAMED-OBLIGATION",
+      "source_locator": "integration/FIRST-GAP.md:50-56",
+      "consumer_locator": "CoreProgram.lean:120-126",
+      "exact_hypotheses": [],
+      "unproved_consumer_requirements": [
+        "required: finite terminal-owner measure and composed original-label lifts"
+      ],
+      "delivered_form": "No output existence/refinement coverage theorem for budget-pruned run",
+      "cost_scope": "budget clipping and pruning are executable, not correctness evidence",
+      "remaining_obligation": "OPEN-FINITE-BUDGET-COVERAGE",
+      "witness": ""
+    },
+    {
+      "id": "realized-cost-mass-work",
+      "verdict": "OPEN-AT-NAMED-OBLIGATION",
+      "source_locator": "integration/FIRST-GAP.md:58-60",
+      "consumer_locator": "whole source-core and outer macro consumer",
+      "exact_hypotheses": [],
+      "unproved_consumer_requirements": [
+        "required: realized original cuts, complete source cover, full generation/implementation work accounting"
+      ],
+      "delivered_form": "No universal realized cost>=r-1, raw mass bound or polynomial per-prefix work theorem",
+      "cost_scope": "list/tree scans, coarsening recognition, all pruned prefixes and original reconstruction require accounting",
+      "remaining_obligation": "OPEN-REALIZED-COST-MASS-WORK",
+      "witness": ""
+    },
+    {
+      "id": "whole-algorithm",
+      "verdict": "OPEN-AT-NAMED-OBLIGATION",
+      "source_locator": "TARGET.md:5-13;integration/RESULT.md:3-6",
+      "consumer_locator": "all three main milestones",
+      "exact_hypotheses": [],
+      "unproved_consumer_requirements": [
+        "complete rules/priority/terminal/reconstruction",
+        "universal optimum survival and termination",
+        "complete charged smaller-base recurrence"
+      ],
+      "delivered_form": "No complete solver, universal correctness or smaller base accepted",
+      "cost_scope": "local source progress is one interface",
+      "remaining_obligation": "all three main milestones OPEN",
+      "witness": ""
+    },
+    {
+      "id": "stronger-owner-converse",
+      "verdict": "REFUTED-AT-WITNESS",
+      "source_locator": "Normalization.lean:99-105",
+      "consumer_locator": "hypothetical strengthening, not a frozen theorem",
+      "exact_hypotheses": [],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "Homogeneous contraction can merge different fine owners",
+      "cost_scope": "no extra cut charged by this witness",
+      "remaining_obligation": "",
+      "witness": "CONTROL-PIN normalization-does-not-preserve-every-fine-owner; ScopeWitnessesV2 homogeneous_projection_is_not_injective"
+    },
+    {
+      "id": "both-mixed-candidates-singletons",
+      "verdict": "REFUTED-AT-WITNESS",
+      "source_locator": "Branches.lean:203-210",
+      "consumer_locator": "hypothetical strengthening, not a frozen theorem",
+      "exact_hypotheses": [],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "On the five-leaf parity chain only chosen group3 is a target singleton; group4 belongs to [0,2,4]",
+      "cost_scope": "",
+      "remaining_obligation": "",
+      "witness": "ScopeWitnessesV2 one_target_singleton_not_both; fresh semantic W4"
+    },
+    {
+      "id": "local-success-implies-budget-output",
+      "verdict": "REFUTED-AT-WITNESS",
+      "source_locator": "CutRecords.lean:209-219",
+      "consumer_locator": "hypothetical strengthening, not a frozen theorem",
+      "exact_hypotheses": [],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "Two differently colored leaves, budget0: erase succeeds but output/refusal lists empty, visited1/attempts1/pruned1",
+      "cost_scope": "",
+      "remaining_obligation": "",
+      "witness": "ScopeWitnessesV2 budget_zero_local_success_without_output; fresh semantic W3"
+    },
+    {
+      "id": "local-origin-guards-imply-original-reachability",
+      "verdict": "REFUTED-AT-WITNESS",
+      "source_locator": "CutRecords.lean:209-212",
+      "consumer_locator": "hypothetical omission of original reachability",
+      "exact_hypotheses": [],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "Forged origin000 passes local invariants and reaches continuation, while invalid in the separately named two-leaf original tree; state explicitly unreachable",
+      "cost_scope": "",
+      "remaining_obligation": "",
+      "witness": "ScopeWitnessesV2 local_origin_guards_do_not_imply_named_original_reachability; fresh semantic W5"
+    },
+    {
+      "id": "raw-checks-imply-generate-accepts-labels",
+      "verdict": "REFUTED-AT-WITNESS",
+      "source_locator": "SourceBridge.lean:306-311;CoreProgram.lean:124-126",
+      "consumer_locator": "hypothetical full-wrapper strengthening",
+      "exact_hypotheses": [],
+      "unproved_consumer_requirements": [],
+      "delivered_form": "Duplicate original labels pass raw source checks but generate rejects duplicate original label",
+      "cost_scope": "",
+      "remaining_obligation": "",
+      "witness": "ScopeWitnessesV2 proper_label_generate_guard_is_separate; frozen duplicate-tree-labels-raw-boolean-is-not-instance"
+    }
+  ],
+  "source_core_or_full_solver_accepted": false,
+  "source_locator_base": "research/rmaf/algorithm/universal233/integration/",
+  "source_roots": {
+    "integration": "research/rmaf/algorithm/universal233/integration/",
+    "core": "research/rmaf/algorithm/universal233/core/",
+    "geometry": "research/rmaf/algorithm/universal233/geometry/",
+    "original_RMAF": "research/rmaf/lean/RMAF.lean",
+    "main_TARGET": "research/rmaf/algorithm/TARGET.md"
+  },
+  "unread_exclusions": [
+    "live cut_realization",
+    "live source_coverage",
+    "profile/exchange/cherry-selection extensions",
+    "main WORKFILE"
+  ]
+}

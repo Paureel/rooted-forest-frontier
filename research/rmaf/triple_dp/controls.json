@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "frozen_before_execution": true,
+  "convention": "No rho; final component count k, additional cuts k - source component count",
+  "positive": [
+    {"id":"singleton-null","target":"a","source":["a"],"expected_components":1},
+    {"id":"good-null","target":[["a","b"],"c"],"source":[[["a","b"],"c"]],"expected_components":1},
+    {"id":"bad-triple","target":[["a","b"],"c"],"source":[[["a","c"],"b"]],"expected_components":2},
+    {"id":"good-overlap","target":[["a","c"],["b","d"]],"source":[["a","b"],["c","d"]],"expected_components":3},
+    {"id":"two-bad-pendant","target":[[["a","b"],"c"],[["d","e"],"f"]],"source":[[["a","c"],"b"],[["d","f"],"e"]],"expected_components":4}
+  ],
+  "malformed": [
+    {"id":"duplicate-target","target":["a","a"],"source":["a"],"expected_error":"duplicate"},
+    {"id":"duplicate-source","target":["a","b"],"source":[["a","b"],"a"],"expected_error":"duplicate"},
+    {"id":"missing-source","target":["a","b"],"source":["a"],"expected_error":"labels"},
+    {"id":"nonbinary","target":["a","b","c"],"source":[["a","b"]],"expected_error":"binary"},
+    {"id":"incompatible-large","target":[["a","b"],["c","d"]],"source":[[["a","c"],["b","d"]]],"expected_error":"outside terminal class"}
+  ],
+  "wrong_result": {"fixture":"bad-triple","deliberate_components":1,"must_reject":true},
+  "wrong_witness": {"fixture":"good-overlap","partition":[["a","b"],["c","d"]],"must_reject":true},
+  "false_merge_claim": {"fixture":"bad-triple","claim":"same-color adjacent regions can always merge","must_refute":true},
+  "search_fail_criteria": ["any optimum mismatch", "any candidate witness absent from cut oracle", "any characterization partition mismatch", "any denominator smaller than declared", "any control not caught"]
+}

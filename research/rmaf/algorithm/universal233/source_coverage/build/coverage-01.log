@@ -1,0 +1,52 @@
+research/rmaf/algorithm/universal233/source_coverage/Coverage.lean:181:20: error: Type mismatch
+  False.elim
+has type
+  False → ?m.583
+but is expected to have type
+  ∃ o, o ∈ (step f t d c).outputs ∧ SourceRefines (normalize t) Q o.partition ∧ DetachedKept d o.partition
+research/rmaf/algorithm/universal233/source_coverage/Coverage.lean:132:100: error: unsolved goals
+cap : Nat
+f : GTree → List Group → List Vertex → Receipt
+hcont :
+  ∀ (u : GTree) (d : List Group) (c : List Vertex) (P : SourcePartition (skeleton u)) (ids : List Nat),
+    (origins u).Nodup →
+      RootZeroOnly u →
+        CutsAvoid u c →
+          Monochromatic P id →
+            OwnerCover u P ids →
+              ids.length ≤ cap → ∃ o, o ∈ (f u d c).outputs ∧ SourceRefines u P o.partition ∧ DetachedKept d o.partition
+t : GTree
+d : List Group
+c : List Vertex
+hn : (origins t).Nodup
+hz : RootZeroOnly t
+ha : CutsAvoid t c
+P : SourcePartition (skeleton t)
+hm : Monochromatic P id
+ids : List Nat
+hcov : OwnerCover t P ids
+hlen : ids.length ≤ cap + 1
+Q : SourcePartition (skeleton (normalize t))
+hQ : Monochromatic Q id
+hPQ : FullTransport t (normalize t) P Q
+js : List Nat
+hjs : js.length = ids.length
+hcovQ : OwnerCover (normalize t) Q js
+hjlen : js.length ≤ cap + 1
+hnn : (origins (normalize t)).Nodup
+hzn : RootZeroOnly (normalize t)
+han : CutsAvoid (normalize t) c
+hbranch :
+  ∀ (v : Vertex) (g : Group),
+    GroupLeafAt (normalize t) v g →
+      v ≠ [] →
+        SingletonBlock Q v →
+          ∃ o,
+            o ∈ (attempt f (normalize t) d c g).outputs ∧
+              SourceRefines (normalize t) Q o.partition ∧ DetachedKept d o.partition
+hlocal : ∃ o, o ∈ (step f t d c).outputs ∧ SourceRefines (normalize t) Q o.partition ∧ DetachedKept d o.partition
+⊢ ∃ o, o ∈ (step f t d c).outputs ∧ SourceRefines t P o.partition ∧ DetachedKept d o.partition
+research/rmaf/algorithm/universal233/source_coverage/Coverage.lean:182:8: error: unexpected token '('; expected command
+real 0.67
+user 0.27
+sys 0.19

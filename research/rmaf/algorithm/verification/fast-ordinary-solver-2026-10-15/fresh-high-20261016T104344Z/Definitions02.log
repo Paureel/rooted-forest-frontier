@@ -1,0 +1,22 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/fast-ordinary-solver-2026-10-15/fresh-high-20261016T104344Z/Definitions02.lean:5:0: error: (kernel) excessive memory consumption detected
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/fast-ordinary-solver-2026-10-15/fresh-high-20261016T104344Z/Definitions02.lean:10:7: error(lean.unknownIdentifier): Unknown constant `Universal233.DepthOne.proper`
+def Universal233.CoreGraph.CherryAt : RMAF.Tree → RMAF.Vertex → Nat → Nat → Prop :=
+fun t p x y => Universal233.CoreGraph.subtree t p = some ((RMAF.Tree.leaf x).node (RMAF.Tree.leaf y))
+def Universal233.HardParent.pendantOriginal : RMAF.Tree → Nat → Nat → List RMAF.Vertex :=
+fun S a b =>
+  List.filter
+    (fun v =>
+      !List.isEmpty v && (RMAF.minimalVertices [a, b] S).contains (List.dropLast v) &&
+        !(RMAF.minimalVertices [a, b] S).contains v)
+    (Universal233.HardParent.vertices S)
+def RMAF.restrictionAgrees : RMAF.Tree → RMAF.Tree → List Nat → Bool :=
+fun t u b =>
+  match RMAF.restrict b t, RMAF.restrict b u with
+  | some s, some v => RMAF.sameShape s v
+  | x, x_1 => false
+def RMAF.pairwiseEmbeddings : RMAF.Tree → List (List Nat) → Bool :=
+fun t x => List.brecOn x (RMAF.pairwiseEmbeddings._f t)
+def RMAF.partitionCheck : List Nat → List (List Nat) → Bool :=
+fun labels bs =>
+  ((bs.all fun b => !b.isEmpty) && labels.all fun x => List.count x bs.flatten == 1) &&
+    bs.flatten.all fun x => labels.contains x

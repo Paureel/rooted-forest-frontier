@@ -1,0 +1,303 @@
+research/rmaf/algorithm/pair_case/geometry/lean/Selector.lean:595:27: warning: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [List.mem_cons]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/pair_case/geometry/lean/Selector.lean:682:46: error: unsolved goals
+p : Vertex
+s : Bool
+a q : Vertex
+hq : a = p ++ [s] ++ q
+⊢ List.length p + (List.length q + 1) = List.length p + 1 + List.length q
+research/rmaf/algorithm/pair_case/geometry/lean/Selector.lean:771:2: error: unsolved goals
+case pos.false.false
+t : RMAF.Tree
+A : List Nat
+h0 : (RMAF.minimalVertices A t).contains [false] = false
+h1 : (RMAF.minimalVertices A t).contains [true] = false
+⊢ (List.filter
+        (fun r =>
+          match
+            match r with
+            | 0 => some [false]
+            | 1 => some [true]
+            | 2 => none
+            | x => none with
+          | none => false
+          | some w => decide (w ∈ RMAF.minimalVertices A t))
+        [0, 1, 2]).length =
+    (List.filter (fun w => decide (w ∈ RMAF.minimalVertices A t)) [[false], [true]]).length
+
+case pos.false.true
+t : RMAF.Tree
+A : List Nat
+h0 : (RMAF.minimalVertices A t).contains [false] = false
+h1 : (RMAF.minimalVertices A t).contains [true] = true
+⊢ (List.filter
+        (fun r =>
+          match
+            match r with
+            | 0 => some [false]
+            | 1 => some [true]
+            | 2 => none
+            | x => none with
+          | none => false
+          | some w => decide (w ∈ RMAF.minimalVertices A t))
+        [0, 1, 2]).length =
+    (List.filter (fun w => decide (w ∈ RMAF.minimalVertices A t)) [[false], [true]]).length
+
+case pos.true.false
+t : RMAF.Tree
+A : List Nat
+h0 : (RMAF.minimalVertices A t).contains [false] = true
+h1 : (RMAF.minimalVertices A t).contains [true] = false
+⊢ (List.filter
+        (fun r =>
+          match
+            match r with
+            | 0 => some [false]
+            | 1 => some [true]
+            | 2 => none
+            | x => none with
+          | none => false
+          | some w => decide (w ∈ RMAF.minimalVertices A t))
+        [0, 1, 2]).length =
+    (List.filter (fun w => decide (w ∈ RMAF.minimalVertices A t)) [[false], [true]]).length
+
+case pos.true.true
+t : RMAF.Tree
+A : List Nat
+h0 : (RMAF.minimalVertices A t).contains [false] = true
+h1 : (RMAF.minimalVertices A t).contains [true] = true
+⊢ (List.filter
+        (fun r =>
+          match
+            match r with
+            | 0 => some [false]
+            | 1 => some [true]
+            | 2 => none
+            | x => none with
+          | none => false
+          | some w => decide (w ∈ RMAF.minimalVertices A t))
+        [0, 1, 2]).length =
+    (List.filter (fun w => decide (w ∈ RMAF.minimalVertices A t)) [[false], [true]]).length
+research/rmaf/algorithm/pair_case/geometry/lean/Selector.lean:774:2: error: unsolved goals
+case neg.false.false.false
+t : RMAF.Tree
+A : List Nat
+v : Vertex
+hv : ¬v = []
+h0 : (RMAF.minimalVertices A t).contains (v ++ [false]) = false
+h1 : (RMAF.minimalVertices A t).contains (v ++ [true]) = false
+h2 : (RMAF.minimalVertices A t).contains (List.dropLast v) = false
+⊢ (List.filter
+        (fun r =>
+          match
+            match r with
+            | 0 => some (v ++ [false])
+            | 1 => some (v ++ [true])
+            | 2 => some (List.dropLast v)
+            | x => none with
+          | none => false
+          | some w => decide (w ∈ RMAF.minimalVertices A t))
+        [0, 1, 2]).length =
+    (List.filter (fun w => decide (w ∈ RMAF.minimalVertices A t)) [v ++ [false], v ++ [true], List.dropLast v]).length
+
+case neg.false.false.true
+t : RMAF.Tree
+A : List Nat
+v : Vertex
+hv : ¬v = []
+h0 : (RMAF.minimalVertices A t).contains (v ++ [false]) = false
+h1 : (RMAF.minimalVertices A t).contains (v ++ [true]) = false
+h2 : (RMAF.minimalVertices A t).contains (List.dropLast v) = true
+⊢ (List.filter
+        (fun r =>
+          match
+            match r with
+            | 0 => some (v ++ [false])
+            | 1 => some (v ++ [true])
+            | 2 => some (List.dropLast v)
+            | x => none with
+          | none => false
+          | some w => decide (w ∈ RMAF.minimalVertices A t))
+        [0, 1, 2]).length =
+    (List.filter (fun w => decide (w ∈ RMAF.minimalVertices A t)) [v ++ [false], v ++ [true], List.dropLast v]).length
+
+case neg.false.true.false
+t : RMAF.Tree
+A : List Nat
+v : Vertex
+hv : ¬v = []
+h0 : (RMAF.minimalVertices A t).contains (v ++ [false]) = false
+h1 : (RMAF.minimalVertices A t).contains (v ++ [true]) = true
+h2 : (RMAF.minimalVertices A t).contains (List.dropLast v) = false
+⊢ (List.filter
+        (fun r =>
+          match
+            match r with
+            | 0 => some (v ++ [false])
+            | 1 => some (v ++ [true])
+            | 2 => some (List.dropLast v)
+            | x => none with
+          | none => false
+          | some w => decide (w ∈ RMAF.minimalVertices A t))
+        [0, 1, 2]).length =
+    (List.filter (fun w => decide (w ∈ RMAF.minimalVertices A t)) [v ++ [false], v ++ [true], List.dropLast v]).length
+
+case neg.false.true.true
+t : RMAF.Tree
+A : List Nat
+v : Vertex
+hv : ¬v = []
+h0 : (RMAF.minimalVertices A t).contains (v ++ [false]) = false
+h1 : (RMAF.minimalVertices A t).contains (v ++ [true]) = true
+h2 : (RMAF.minimalVertices A t).contains (List.dropLast v) = true
+⊢ (List.filter
+        (fun r =>
+          match
+            match r with
+            | 0 => some (v ++ [false])
+            | 1 => some (v ++ [true])
+            | 2 => some (List.dropLast v)
+            | x => none with
+          | none => false
+          | some w => decide (w ∈ RMAF.minimalVertices A t))
+        [0, 1, 2]).length =
+    (List.filter (fun w => decide (w ∈ RMAF.minimalVertices A t)) [v ++ [false], v ++ [true], List.dropLast v]).length
+
+case neg.true.false.false
+t : RMAF.Tree
+A : List Nat
+v : Vertex
+hv : ¬v = []
+h0 : (RMAF.minimalVertices A t).contains (v ++ [false]) = true
+h1 : (RMAF.minimalVertices A t).contains (v ++ [true]) = false
+h2 : (RMAF.minimalVertices A t).contains (List.dropLast v) = false
+⊢ (List.filter
+        (fun r =>
+          match
+            match r with
+            | 0 => some (v ++ [false])
+            | 1 => some (v ++ [true])
+            | 2 => some (List.dropLast v)
+            | x => none with
+          | none => false
+          | some w => decide (w ∈ RMAF.minimalVertices A t))
+        [0, 1, 2]).length =
+    (List.filter (fun w => decide (w ∈ RMAF.minimalVertices A t)) [v ++ [false], v ++ [true], List.dropLast v]).length
+
+case neg.true.false.true
+t : RMAF.Tree
+A : List Nat
+v : Vertex
+hv : ¬v = []
+h0 : (RMAF.minimalVertices A t).contains (v ++ [false]) = true
+h1 : (RMAF.minimalVertices A t).contains (v ++ [true]) = false
+h2 : (RMAF.minimalVertices A t).contains (List.dropLast v) = true
+⊢ (List.filter
+        (fun r =>
+          match
+            match r with
+            | 0 => some (v ++ [false])
+            | 1 => some (v ++ [true])
+            | 2 => some (List.dropLast v)
+            | x => none with
+          | none => false
+          | some w => decide (w ∈ RMAF.minimalVertices A t))
+        [0, 1, 2]).length =
+    (List.filter (fun w => decide (w ∈ RMAF.minimalVertices A t)) [v ++ [false], v ++ [true], List.dropLast v]).length
+
+case neg.true.true.false
+t : RMAF.Tree
+A : List Nat
+v : Vertex
+hv : ¬v = []
+h0 : (RMAF.minimalVertices A t).contains (v ++ [false]) = true
+h1 : (RMAF.minimalVertices A t).contains (v ++ [true]) = true
+h2 : (RMAF.minimalVertices A t).contains (List.dropLast v) = false
+⊢ (List.filter
+        (fun r =>
+          match
+            match r with
+            | 0 => some (v ++ [false])
+            | 1 => some (v ++ [true])
+            | 2 => some (List.dropLast v)
+            | x => none with
+          | none => false
+          | some w => decide (w ∈ RMAF.minimalVertices A t))
+        [0, 1, 2]).length =
+    (List.filter (fun w => decide (w ∈ RMAF.minimalVertices A t)) [v ++ [false], v ++ [true], List.dropLast v]).length
+
+case neg.true.true.true
+t : RMAF.Tree
+A : List Nat
+v : Vertex
+hv : ¬v = []
+h0 : (RMAF.minimalVertices A t).contains (v ++ [false]) = true
+h1 : (RMAF.minimalVertices A t).contains (v ++ [true]) = true
+h2 : (RMAF.minimalVertices A t).contains (List.dropLast v) = true
+⊢ (List.filter
+        (fun r =>
+          match
+            match r with
+            | 0 => some (v ++ [false])
+            | 1 => some (v ++ [true])
+            | 2 => some (List.dropLast v)
+            | x => none with
+          | none => false
+          | some w => decide (w ∈ RMAF.minimalVertices A t))
+        [0, 1, 2]).length =
+    (List.filter (fun w => decide (w ∈ RMAF.minimalVertices A t)) [v ++ [false], v ++ [true], List.dropLast v]).length
+research/rmaf/algorithm/pair_case/geometry/lean/Selector.lean:773:79: warning: This simp argument is unused:
+  h0
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [neighbor, h1]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/pair_case/geometry/lean/Selector.lean:773:82: warning: This simp argument is unused:
+  h1
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [neighbor, h0]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/pair_case/geometry/lean/Selector.lean:776:86: warning: This simp argument is unused:
+  h0
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [neighbor, hv, h1, h2]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/pair_case/geometry/lean/Selector.lean:776:89: warning: This simp argument is unused:
+  h1
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [neighbor, hv, h0, h2]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/pair_case/geometry/lean/Selector.lean:776:92: warning: This simp argument is unused:
+  h2
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [neighbor, hv, h0, h1]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/pair_case/geometry/lean/Selector.lean:803:25: error: Application type mismatch: The argument
+  h
+has type
+  w = v ++ [true] ∨ w ∈ []
+but is expected to have type
+  w = v ++ [true]
+in the application
+  Exists.intro true h
+research/rmaf/algorithm/pair_case/geometry/lean/Selector.lean:800:55: warning: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [neighbors, List.mem_append, List.mem_cons] at hw
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

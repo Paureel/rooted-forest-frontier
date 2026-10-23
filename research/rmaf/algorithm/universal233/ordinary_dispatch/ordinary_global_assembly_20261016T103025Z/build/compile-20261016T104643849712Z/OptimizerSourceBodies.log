@@ -1,0 +1,68 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_global_assembly_20261016T103025Z/build/OptimizerSourceBodies.lean:14:53: error: unexpected token 'theorem'; expected term
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_global_assembly_20261016T103025Z/build/OptimizerSourceBodies.lean:18:7: error: unsolved goals
+case none
+S : Tree
+r : Scan
+h : r.selected = none
+⊢ (sorry S r).value = { search := r, output := none, recoveries := [] }
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_global_assembly_20261016T103025Z/build/OptimizerSourceBodies.lean:19:9: error: unsolved goals
+case some
+S : Tree
+r : Scan
+q : Nat
+F : CommonForest
+h : r.selected = some (q, F)
+⊢ (sorry S r).value =
+    { search := r, output := FinalCutRecovery.recover S F, recoveries := [(F, FinalCutRecovery.recover S F)] }
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_global_assembly_20261016T103025Z/build/OptimizerSourceBodies.lean:18:15: warning: declaration uses `sorry`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_global_assembly_20261016T103025Z/build/OptimizerSourceBodies.lean:19:60: warning: This simp argument is unused:
+  RecoveryLocalWork.meterRecover_value
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [sourceFinishMeter, finish, h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_global_assembly_20261016T103025Z/build/OptimizerSourceBodies.lean:27:7: error: unsolved goals
+case none
+S : Tree
+r : Scan
+h : r.selected = none
+⊢ (sorry S r).work ≤ 12
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_global_assembly_20261016T103025Z/build/OptimizerSourceBodies.lean:27:15: warning: declaration uses `sorry`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_global_assembly_20261016T103025Z/build/OptimizerSourceBodies.lean:79:3: error: Type mismatch: After simplification, term
+  bound
+ has type
+  @LE.le Nat instLENat ((meterPreflight T S).work + 8) (0 + (preflightFee N + 12 * 0 + 32) + 0)
+but is expected to have type
+  @LE.le Nat instLENat
+    (if false = true then
+        {
+          value :=
+            (sourceFinishMeter S
+                (meterScan (fun b => { value := FastOrdinary.solve b T S, work := w b }) 0
+                    (leaves T).length).value).value,
+          work :=
+            (meterPreflight T S).work +
+                  (meterScan (fun b => { value := FastOrdinary.solve b T S, work := w b }) 0 (leaves T).length).work +
+                (sourceFinishMeter S
+                    (meterScan (fun b => { value := FastOrdinary.solve b T S, work := w b }) 0
+                        (leaves T).length).value).work +
+              8 }
+      else
+        { value := { search := { selected := none, trials := [] }, output := none, recoveries := [] },
+          work := (meterPreflight T S).work + 8 }).work
+    ((List.map (fun t => w t.fst)
+            (if false = true then finish S (scan (fun q => FastOrdinary.solve q T S) 0 (leaves T).length)
+                else
+                  { search := { selected := none, trials := [] }, output := none,
+                    recoveries := [] }).search.trials).sum +
+        (preflightFee N +
+            12 *
+              (if false = true then finish S (scan (fun q => FastOrdinary.solve q T S) 0 (leaves T).length)
+                    else
+                      { search := { selected := none, trials := [] }, output := none,
+                        recoveries := [] }).search.trials.length +
+          32) +
+      (List.map (fun call => (RecoveryLocalWork.meterRecover S call.fst).work)
+          (if false = true then finish S (scan (fun q => FastOrdinary.solve q T S) 0 (leaves T).length)
+            else { search := { selected := none, trials := [] }, output := none, recoveries := [] }).recoveries).sum)

@@ -1,0 +1,17 @@
+PLANTS: 9/9 exact controls; 9/9 wrong twins rejected; deleted path rejected; restored path accepted
+{"stage": "build-RMAF", "elapsed_seconds": 5.38166633399851, "returncode": 0, "timeout": false}
+{"stage": "build-PureBridge", "elapsed_seconds": 0.4420546250003099, "returncode": 0, "timeout": false}
+{"stage": "build-GraphRegion", "elapsed_seconds": 0.3708640420009033, "returncode": 0, "timeout": false}
+{"stage": "build-ExecutableConnectivity", "elapsed_seconds": 0.33439274999909685, "returncode": 0, "timeout": false}
+{"stage": "build-ExtractorControls", "elapsed_seconds": 0.3053596669997205, "returncode": 0, "timeout": false}
+{"stage": "fresh-controls", "elapsed_seconds": 1.9172621249999793, "returncode": 0, "timeout": false}
+{"stage": "positive-twin", "elapsed_seconds": 0.2997717920006835, "returncode": 0, "timeout": false}
+{"stage": "false-proof", "elapsed_seconds": 0.3045318339991354, "returncode": 1, "timeout": false}
+{"stage": "malformed-negative", "elapsed_seconds": 0.29894524999872374, "returncode": 1, "timeout": false}
+Traceback (most recent call last):
+  File "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/bridge_review/executable/fresh_review/run_review.py", line 223, in <module>
+    main()
+  File "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/bridge_review/executable/fresh_review/run_review.py", line 208, in main
+    assert false_proof_rejected(false), false
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'command': ['/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean', '/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/bridge_review/executable/fresh_review/build/FalseProof.lean'], 'elapsed_seconds': 0.3045318339991354, 'returncode': 1, 'stdout': '/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/bridge_review/executable/fresh_review/build/FalseProof.lean:3:143: error: Tactic `decide` proved that the proposition\n  minimalVertices [0, 2] (((Tree.leaf 0).node (Tree.leaf 1)).node ((Tree.leaf 2).node (Tree.leaf 3))) =\n    [[], [false, false], [true], [true, false]]\nis false\n', 'stderr': ''}

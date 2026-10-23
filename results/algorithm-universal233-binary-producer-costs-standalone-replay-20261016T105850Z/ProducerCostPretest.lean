@@ -1,0 +1,114 @@
+import ProducerCostAgreement
+namespace GenericForest.BinaryProducer
+open BinaryProvider GenericForest.ScalarBits GenericForest.CheckCorrespondence Universal233.WholeSourceWork Universal233.CoreWork
+
+theorem verticesBits_count (S : BinaryProvider.Tree) : (verticesBits S).value.length=treeNodes (treeValue S) := by
+ induction S <;> simp_all only [verticesBits,joinAddresses_value,RMAF.prependSide,List.length_cons,List.length_nil,List.length_append,List.length_map,treeValue,treeNodes] <;> omega
+theorem verticesBits_paths (S : BinaryProvider.Tree) : ∀p∈(verticesBits S).value,p.length≤treeNodes (treeValue S) := by
+ induction S with
+ | leaf x=>simp [verticesBits,treeValue,treeNodes]
+ | node l r ihl ihr=>
+  intro p hp
+  simp only [verticesBits,joinAddresses_value,RMAF.prependSide,List.mem_cons,List.mem_append,List.mem_map] at hp
+  rcases hp with rfl|hp
+  · simp
+  · rcases hp with ⟨a,ha,rfl⟩|⟨a,ha,rfl⟩
+    · have h:=ihl a ha;simp only [List.length_cons,treeValue,treeNodes];omega
+    · have h:=ihr a ha;simp only [List.length_cons,treeValue,treeNodes];omega
+
+theorem verticesBits_cost (N : Nat) (S : BinaryProvider.Tree) (sn : treeNodes (treeValue S)≤N) :
+ (verticesBits S).work≤32*(N+1)*treeNodes (treeValue S) := by
+ induction S with
+ | leaf x=>simp only [verticesBits,treeValue,treeNodes,Nat.mul_one];omega
+ | node l r ihl ihr=>
+  have ln : treeNodes (treeValue l)≤N:=by simp only [treeValue,treeNodes] at sn;omega
+  have rn : treeNodes (treeValue r)≤N:=by simp only [treeValue,treeNodes] at sn;omega
+  have a:=ihl ln;have b:=ihr rn
+  have j:=joinAddresses_work (verticesBits l).value (verticesBits r).value
+  rw [verticesBits_count,verticesBits_count] at j
+  simp only [verticesBits,treeValue,treeNodes,Nat.mul_add,Nat.mul_one] at *;omega
+
+def edgesCost (N : Nat):=96*(N+1)^2
+
+theorem edgesBits_count (S : BinaryProvider.Tree) : (edgesBits S).value.length+1=treeNodes (treeValue S) := by
+ cases S <;> simp only [edgesBits,appendSpine_value,prependAddresses_value,RMAF.prependSide,List.length_nil,List.length_append,List.length_map,verticesBits_count,treeValue,treeNodes] <;> omega
+theorem candidatesBits_count (S : BinaryProvider.Tree) : (candidatesBits S).value.length=treeNodes (treeValue S) := by
+ have h:=edgesBits_count S
+ simpa [candidatesBits] using h
+
+theorem edgesBits_cost (N : Nat) (S : BinaryProvider.Tree) (sn : treeNodes (treeValue S)≤N) :
+ (edgesBits S).work≤edgesCost N := by
+ cases S with
+ | leaf x=>have pos:=Nat.one_le_pow 2 (N+1) (by omega);simp only [edgesBits];unfold edgesCost;omega
+ | node l r=>
+  have ln : treeNodes (treeValue l)≤N:=by simp only [treeValue,treeNodes] at sn;omega
+  have rn : treeNodes (treeValue r)≤N:=by simp only [treeValue,treeNodes] at sn;omega
+  have a:=verticesBits_cost N l ln;have b:=verticesBits_cost N r rn
+  have sum:=Nat.mul_le_mul_left (32*(N+1)) (show treeNodes (treeValue l)+treeNodes (treeValue r)≤N by simp only [treeValue,treeNodes] at sn;omega)
+  simp only [edgesBits,prependAddresses_work,appendSpine_work,prependAddresses_value,RMAF.prependSide,List.length_map,verticesBits_count]
+  unfold edgesCost
+  simp only [Nat.pow_two,Nat.mul_add,Nat.add_mul,Nat.mul_assoc,Nat.mul_one] at *;omega
+
+theorem someCuts_cost (ps : Addresses) : (someCuts ps).work=4*ps.length+1 := by
+ induction ps <;> simp only [someCuts,List.length_nil,List.length_cons] at * <;> omega
+
+def candidatesCost (N : Nat):=edgesCost N+4*N+5
+
+theorem candidatesBits_cost (N : Nat) (S : BinaryProvider.Tree) (sn : treeNodes (treeValue S)≤N) :
+ (candidatesBits S).work≤candidatesCost N := by
+ have a:=edgesBits_cost N S sn;have c:=edgesBits_count S
+ simp only [candidatesBits,someCuts_cost];unfold candidatesCost;omega
+
+theorem candidateBits_paths (N : Nat) (S : BinaryProvider.Tree) (sn : treeNodes (treeValue S)≤N)
+ (c : Option RMAF.Vertex) (hc : c∈(candidatesBits S).value) : ∀p,c=some p→p.length≤N := by
+ intro p hp;subst c
+ simp only [candidatesBits_value,Universal233.DepthOne.candidates,List.mem_cons,Option.noConfusion,List.mem_map] at hc
+ rcases hc with bad|hc
+ · cases bad
+ ·
+  rcases hc with ⟨a,ha,he⟩
+  have ap : a=p:=Option.some.inj he
+  subst a
+  have v:= (Universal233.DepthOne.mem_edges (treeValue S) p).mp ha
+  have m:= (Universal233.DepthOne.mem_vertices (treeValue S) p).mpr v.1
+  have h:=verticesBits_paths S p (by simpa only [verticesBits_value] using m)
+  omega
+
+def cutCostBound (N L : Nat):=forestCost N L N+agreementCost (2*N+2) L+4
+
+theorem cutValid_cost (N L : Nat) (T S : BinaryProvider.Tree) (c : Option RMAF.Vertex)
+ (tc : TreeWidth L T) (sc : TreeWidth L S) (tn : treeNodes (treeValue T)≤N) (sn : treeNodes (treeValue S)≤N)
+ (path : ∀p,c=some p→p.length≤N) : (cutValid T S c).work≤cutCostBound N L := by
+ have f:=forestBits_caps L S c sc
+ have n:=Nat.le_trans (bitsLeaves_count S) sn
+ have a:=forestBits_cost N L N S c sc sn path
+ have b:=agreementPair_cost (2*N+2) L T S (forestBits S c).value tc sc f.1 (by omega) (by omega) (by omega) (by omega)
+ simp only [cutValid];unfold cutCostBound;omega
+
+theorem bestCuts_cost (N L : Nat) (T S : BinaryProvider.Tree) (cs : List (Option RMAF.Vertex))
+ (tc : TreeWidth L T) (sc : TreeWidth L S) (tn : treeNodes (treeValue T)≤N) (sn : treeNodes (treeValue S)≤N)
+ (path : ∀c∈cs,∀p,c=some p→p.length≤N) :
+ (bestCuts T S cs).work≤(cutCostBound N L+8)*(cs.length+1) := by
+ induction cs with
+ | nil=>simp [bestCuts] <;> omega
+ | cons c cs ih=>
+  have a:=cutValid_cost N L T S c tc sc tn sn (path c (by simp))
+  have b:=ih (fun d hd=>path d (by simp [hd]))
+  simp only [bestCuts,List.length_cons,Nat.mul_add,Nat.mul_one] at *;omega
+
+def pretestCost (N L : Nat):=48*leafCost N L+8+candidatesCost N+(cutCostBound N L+8)*(N+1)+8
+
+theorem pretestBits_cost (N L : Nat) (T S : BinaryProvider.Tree)
+ (tc : TreeWidth L T) (sc : TreeWidth L S) (tn : treeNodes (treeValue T)≤N) (sn : treeNodes (treeValue S)≤N) :
+ (pretestBits T S).work≤pretestCost N L := by
+ have p:=properPair_cost N L T S tc sc tn sn
+ have c:=candidatesBits_cost N S sn
+ have b:=bestCuts_cost N L T S (candidatesBits S).value tc sc tn sn (candidateBits_paths N S sn)
+ have n:=candidatesBits_count S
+ have m:=Nat.mul_le_mul_left (cutCostBound N L+8) (Nat.add_le_add_right sn 1)
+ rw [←n] at m
+ dsimp only [pretestBits]
+ split
+ · dsimp only [Charged.work];unfold pretestCost;omega
+ · dsimp only [Charged.work];unfold pretestCost;omega
+end GenericForest.BinaryProducer

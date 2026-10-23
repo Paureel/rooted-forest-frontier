@@ -1,0 +1,100 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSource.lean:47:4: error: unexpected token 'prefix'; expected '(', ':=', 'rec', '|' or term
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSource.lean:47:11: error: unexpected token ':='; expected ':'
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSource.lean:49:41: error: unexpected token '⟩'; expected ':'
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSource.lean:50:83: error: unexpected token '+'; expected ':'
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSource.lean:51:83: error: unexpected token '+'; expected ':'
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSource.lean:52:83: error: unexpected token '+'; expected ':'
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSource.lean:53:75: error: unexpected token '+'; expected ':'
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSource.lean:54:75: error: unexpected token '+'; expected ':'
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSource.lean:55:75: error: unexpected token '+'; expected ':'
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSource.lean:56:94: error: unexpected token '+'; expected ':'
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSource.lean:58:65: error: unsolved goals
+case none.none.none
+T : Tree
+A B C : List Nat
+hab : overlap T A B = none
+hbc : overlap T B C = none
+hac : overlap T A C = none
+⊢ (sorry ()).value = some Result.disjoint
+
+case none.none.some
+T : Tree
+A B C : List Nat
+hab : overlap T A B = none
+hbc : overlap T B C = none
+val✝ : Vertex
+hac : overlap T A C = some val✝
+⊢ (sorry ()).value = isolated T A B C Order.acb
+
+case none.some.none
+T : Tree
+A B C : List Nat
+hab : overlap T A B = none
+val✝ : Vertex
+hbc : overlap T B C = some val✝
+hac : overlap T A C = none
+⊢ (sorry ()).value = isolated T A B C Order.bca
+
+case none.some.some
+T : Tree
+A B C : List Nat
+hab : overlap T A B = none
+val✝¹ : Vertex
+hbc : overlap T B C = some val✝¹
+val✝ : Vertex
+hac : overlap T A C = some val✝
+⊢ (sorry ()).value = some (chain T A B C Order.acb val✝ val✝¹)
+
+case some.none.none
+T : Tree
+A B C : List Nat
+val✝ : Vertex
+hab : overlap T A B = some val✝
+hbc : overlap T B C = none
+hac : overlap T A C = none
+⊢ (sorry ()).value = isolated T A B C Order.abc
+
+case some.none.some
+T : Tree
+A B C : List Nat
+val✝¹ : Vertex
+hab : overlap T A B = some val✝¹
+hbc : overlap T B C = none
+val✝ : Vertex
+hac : overlap T A C = some val✝
+⊢ (sorry ()).value = some (chain T A B C Order.bac val✝¹ val✝)
+
+case some.some.none
+T : Tree
+A B C : List Nat
+val✝¹ : Vertex
+hab : overlap T A B = some val✝¹
+val✝ : Vertex
+hbc : overlap T B C = some val✝
+hac : overlap T A C = none
+⊢ (sorry ()).value = some (chain T A B C Order.abc val✝¹ val✝)
+
+case some.some.some
+T : Tree
+A B C : List Nat
+val✝² : Vertex
+hab : overlap T A B = some val✝²
+val✝¹ : Vertex
+hbc : overlap T B C = some val✝¹
+val✝ : Vertex
+hac : overlap T A C = some val✝
+⊢ (sorry ()).value =
+    Option.map Result.clique
+      (VertexGeometry.findCommon (minimalVertices A T) (minimalVertices B T) (minimalVertices C T))
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSource.lean:60:7: warning: declaration uses `sorry`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-source-20261016T095230Z-20261016T095434597017Z/Hard2GraphSource.lean:69:47: error: unsolved goals
+case h_1
+T S : Tree
+c : CherryBranching.Candidate
+x✝ : List Vertex
+p✝ r✝ : Vertex
+heq✝ : c.originalCuts = [p✝, r✝]
+⊢ select T (leftParent S p✝) (rightParent S r✝) (rootParent S p✝ r✝) =
+    match c.originalCuts with
+    | [p, r] => select T (leftParent S p) (rightParent S r) (rootParent S p r)
+    | x => none

@@ -1,0 +1,927 @@
+{
+  "date": "2026-10-14",
+  "status": "installed_with_platform_limits",
+  "scope": "50 supplied package batteries; final results combine the initial full run with dependency and permission rechecks, without changing upstream test commands or checks.",
+  "counts": {
+    "PASS": 45,
+    "FAIL": 2,
+    "REFUSED (by design)": 3
+  },
+  "run_records": [
+    "installation-initial-selftests.json",
+    "installation-native-rechecks.json",
+    "installation-julia-rechecks.json"
+  ],
+  "platform_limitations": {
+    "amflow-kit": "The canonical battery reports seven failing process/memory-fence tests that read Linux /proc paths unavailable on macOS. Its recorded pytest portion passed 42 tests and skipped four. The upstream tests and code were not modified.",
+    "seedling": "The canonical battery stops at a Linux cgroup process-lineage test. The runner reads /proc/<pid>/stat; on macOS the injected cgroup fixture is classified as gone and the expected abort assertion fails. The upstream test and code were not modified."
+  },
+  "data_refusals": {
+    "ffcapital": "DATA GATE: no ff_save/ state supplied \u2014 the harvest-member gates run against a user-supplied FireFly ff_save/ reconstruction state and no public fixtures ship (see GUIDE.md INVOKE). The recon_symbolic_d synthetic control battery above is the data-free part.",
+    "frobenius-boundary": "This acceptance test needs a per-point Kira reduction table (kira2math output), which is not distributed with the repo. Fill in a copy of config_example.json and set FROB_CONFIG to it.",
+    "galois": "REFUSED: selftest: no explicit svalign dir given and GALOIS_CAMPAIGN_BANK is not set. The SV formula/numeric banks are reference data that do not ship with this repo \u2014 pass --svalign / svalign_dir explicitly or point GALOIS_CAMPAIGN_BANK at your own bank (subdir svalign/)."
+  },
+  "python_dependency_check": "pip check: no broken requirements",
+  "installed_skills_verified": 12,
+  "verification_substrate": "Upstream tracked source, verification scripts, and integrity pins are unchanged. Julia generated an additional untracked Leviathan Manifest.toml during dependency setup.",
+  "packages": {
+    "abacus": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 tools/abacus/selftest.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 19.4,
+          "tail": "[eichler] readying the julia project (first run may download and precompile packages \u2014 this can take minutes) ...\n[run_s0.py] [OK] sign-convention-single-site-Q6\n[run_s0.py] VERDICT: S0-PASS 7/7 wall: {'elapsed_s': 0.043, 'rss_gb': 0.0421}\n[run_s3.py] [OK] N5-conjugated-complex-structure\n[run_s3.py] VERDICT: S3-PASS | BATTERY-PASS(11/11, B5 RUNS+PASS) | 22/22 | wall: {'elapsed_s': 17.761, 'rss_gb': 0.1213}\nabacus selftest PASS (S0 7/7 + S3 full battery)\n"
+        }
+      ],
+      "secs": 19.4,
+      "wall_s": 19.4,
+      "status": "PASS",
+      "via": "python3 tools/abacus/selftest.py",
+      "run_record": "installation-julia-rechecks.json"
+    },
+    "annihilator": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 tools/annihilator/annihilator.py --selftest && python3 tools/annihilator/eigenring/s4_eigenring_pilot.py --selftest && python3 tools/annihilator/ore/ore_ops.py && python3 tools/annihilator/ore/ore_rdiv_modp.py && python3 tools/annihilator/nullspace_fast/test_nullspace_fast.py && python3 tools/annihilator/ore/known_factors.py && python3 tools/annihilator/ore/lclm_modp.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 77.0,
+          "tail": "  lclm stage 3: ord=7 cap=160 \u2192 nul=0 (no valid nullvec)\n  lclm stage 3: ord=7 cap=320 \u2192 nul=0 (no valid nullvec)\n  lclm stage 3: ord=7 \u2192 nul=0 (no valid nullvec)\n  lclm stage 3: ord=8 cap=81 \u2192 nul=0 (no valid nullvec)\n  lclm stage 3: ord=8 cap=162 \u2192 nul=0 (no valid nullvec)\n  lclm stage 3: ord=8 cap=324 \u2192 nul=0 (no valid nullvec)\n  lclm stage 3: ord=8 \u2192 nul=0 (no valid nullvec)\n  lclm stage 3: ord=9 cap=82 \u2192 nul=0 (no valid nullvec)\n  lclm stage 3: ord=9 cap=164 \u2192 nul=0 (no valid nullvec)\n  lclm stage 3: ord=9 cap=328 \u2192 nul=0 (no valid nullvec)\n  lclm stage 3: ord=9 \u2192 nul=0 (no valid nullvec)\n  lclm stage 3: ord=10 cap=83 \u2192 nul=0 (no valid nullvec)\n  lclm stage 3: ord=10 cap=166 \u2192 nul=0 (no valid nullvec)\n  lclm stage 3: ord=10 cap=332 \u2192 nul=0 (no valid nullvec)\n  lclm stage 3: ord=10 \u2192 nul=0 (no valid nullvec)\n  lclm stage 3: ord=11 cap=84 \u2192 nul=0 (no valid nullvec)\n  lclm stage 3: ord=11 cap=168 \u2192 nul=0 (no valid nullvec)\n  lclm stage 3: ord=11 nul=35 deg=247  rdiv(prev)=True rdiv(new)=True\nL11 order=11, degs=[236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247], wall=53.3s\n  L11 = P\u00b7L3_1: True\n  L11 = P\u00b7L3_3: True\n  L11 = P\u00b7WU_2: True\n  L11 = P\u00b7LVU_6: True\nSELFTEST PASS\n"
+        }
+      ],
+      "secs": 77.0,
+      "wall_s": 77.0,
+      "status": "PASS",
+      "via": "python3 tools/annihilator/annihilator.py --selftest && python3 tools/annihilator/eigenring/s4_eigenring_pilot.py --selftest && python3 tools/annihilator/ore/ore_ops.py && python3 tools/annihilator/ore/ore_rdiv_modp.py && python3 tools/annihilator/nullspace_fast/test_nullspace_fast.py && python3 tools/annihilator/ore/known_factors.py && python3 tools/annihilator/ore/lclm_modp.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "ansatzer": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 tools/ansatzer/test_ansatzer.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 16.2,
+          "tail": "habet.py output adapter (box1l)\n  [SKIP] no alphabet.json supplied (set COLLAPSE_T5_ALPHABET)\n\n[T6] Steinmann adjacent-channel cut\n  [OK ] w2 integrable: got 3  want ==3\n  [OK ] w2 steinmann (kill xy,yx): got 2  want ==2\n  [OK ] w3 integrable: got 4  want ==4\n  [OK ] w3 steinmann (xxx,yyy only): got 2  want ==2\n  [OK ] honesty: applied: got True  want ==True\n  [OK ] bare-string tag parses whole: got {'CH1'}  want =={'CH1'}\n  [OK ] honesty: vacuous: got True  want ==True\n  [OK ] vacuous w2 RESIDUAL: got 3  want ==3\n  [OK ] disabled honesty: SKIPPED: got True  want ==True\n  [OK ] disabled w3 RESIDUAL: got 4  want ==4\n  [OK ] modp w2 steinmann words: got 9  want ==9\n  [OK ] modp w2 RESIDUAL: got 5  want ==5\n  [OK ] modp w3 steinmann words: got 25  want ==25\n  [OK ] modp w3 RESIDUAL: got 13  want ==13\n\n[T7] per-orbit input adapter (recursive_Kw via load_alphabet)\n  [OK ] fixture path Kw_LE: got {0: 1, 1: 2, 2: 3, 3: 4}  want =={0: 1, 1: 2, 2: 3, 3: 4}\n  [OK ] converged: got True  want ==True\n  [OK ] landau-style dict Kw_LE: got {0: 1, 1: 2, 2: 3, 3: 4}  want =={0: 1, 1: 2, 2: 3, 3: 4}\n  [OK ] entry-defaults Kw_LE: got {0: 1, 1: 2, 2: 3, 3: 4}  want =={0: 1, 1: 2, 2: 3, 3: 4}\n\nALL PASS\n"
+        }
+      ],
+      "secs": 16.2,
+      "wall_s": 16.2,
+      "status": "PASS",
+      "via": "python3 tools/ansatzer/test_ansatzer.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "coalescer": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 tools/coalescer/coalescer.py --test",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 63.6,
+          "tail": "ransport gate at s_dec: 30.0 d  [10.8s]\n  |       det(M)=(1.0 + 6.0157471051763893869e-30j)  eig-dist={'1/4': 6.207481126160276e-30, '3/4': 4.634721039918804e-30}\n  |       ||(M-I)^k||_F, k=1..1: ['5.58']\n  |       c_{1/4} = (0.83462684167407318628 + 0.83462684167407318628j)\n  |         row-consistency (2 components agree): 29.6 d   two-anchor: 29.9 d\n  |       c_{3/4} = (0.19068994087545329702 - 0.19068994087545329702j)\n  |         row-consistency (2 components agree): 28.8 d   two-anchor: 29.6 d\n  | \n  |   s_dec-independence: {'1/4:0.15_vs_0.3': 29.7, '3/4:0.15_vs_0.3': 28.5}  [17.3s total]\n  | \n  | c_{1/4} = (0.8346268416740731862814297 + 0.8346268416740731862814297j)\n  | WROTE gauss_out.json\n[selftest] gauss c_{1/4}: ref = (0.8346268416740731862814297 + 0.8346268416740731862814297j)   match = 25.41 d over s_dec in ['0.15', '0.3']\n[selftest] gauss c_{3/4}: ref = (0.1906899408754532970155815 - 0.1906899408754532970155815j)   match = 25.60 d over s_dec in ['0.15', '0.3']\n[selftest] --op door (Gauss 2F1, not a banana) match = 25.41 d vs Gauss's connection formula   wall = 50.1s\n[selftest] PASS (probe mode, both doors, K3 round trip + Gauss 2F1; full 195d Route-B gate in GATE.json)\n"
+        }
+      ],
+      "secs": 63.6,
+      "wall_s": 63.6,
+      "status": "PASS",
+      "via": "python3 tools/coalescer/coalescer.py --test",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "cosmoflow": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "COSMOFLOW_SELFTEST_OUT=\"$(mktemp)\" python3 tools/cosmoflow/selftest.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 19.2,
+          "tail": "oint\": \"X1=2, X2=3, Y=1\", \"certified_digits\": 50, \"floor\": 40, \"pass\": true, \"wall_s\": 0.026}\nPASS  C_twosite_eps1_certified  {\"point\": \"X1=2, X2=3, Y=1\", \"certified_digits\": 50, \"floor\": 40, \"pass\": true, \"wall_s\": 0.018}\nPASS  D_alphabet_censuses  {\"got\": [5, 10, 17], \"expected\": [5, 10, 17], \"pass\": true, \"wall_s\": 4.311}\nPASS  E_L2_varpi0_symbolic_proof  {\"pass\": true, \"wall_s\": 1.028}\nPASS  F_period_wronskian  {\"point\": \"a=2, lam=1/2\", \"agree_digits\": 40.9, \"floor\": 30, \"pass\": true, \"wall_s\": 0.001}\nPASS  G_maxcut_sampler_selfagree  {\"point\": \"a=2, lam=3/10, c=2\", \"agree_digits\": 31.3, \"floor\": 25, \"pass\": true, \"wall_s\": 0.032}\nPASS  H_pinch_locus  {\"point\": \"X=(7/5,7/10,1), y23=1; controls y23=5/2 and X=(9/10,3/10,1)\", \"roots\": 2, \"interior\": true, \"controls_empty\": true, \"root_residual_digits\": 40.8, \"floor\": 25, \"pass\": true, \"wall_s\": 0.0}\nPASS  I_graph_front_door_consistency  {\"ring_vs_loop_ngon3\": true, \"path_vs_tree_chain3\": true, \"cli_graph_kind\": true, \"n_letters\": [22, 11], \"pass\": true, \"wall_s\": 0.181}\nSKIP  deep-oracle-probe (heavy leg, not run by default; use --deep)\nfast battery: PASS in 5.61s -> /var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/tmp.OFduo5pUYF\n"
+        }
+      ],
+      "secs": 19.2,
+      "wall_s": 19.2,
+      "status": "PASS",
+      "via": "COSMOFLOW_SELFTEST_OUT=\"$(mktemp)\" python3 tools/cosmoflow/selftest.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "counterweight": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "julia --project=. test/runtests.jl",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/counterweight",
+          "rc": 0,
+          "wall_s": 14.6,
+          "tail": "existing global variable.\n\u2514 @ ~/Documents/ChatGPT/bootscience/bootloops/tools/counterweight/test/test_sec53_qorbit.jl:65\n\u250c Warning: Assignment to `dt` in soft scope is ambiguous because a global variable by the same name exists: `dt` will be treated as a new local. Disambiguate by using `local dt` to suppress this warning or `global dt` to assign to the existing global variable.\n\u2514 @ ~/Documents/ChatGPT/bootscience/bootloops/tools/counterweight/test/test_sec53_qorbit.jl:65\nPASS engine b53_raw_s STOP by name (t = 0.2 s): no eps^0-reducing balance found and constant eps-decoupling \nPASS engine b53_landau_x STOP by name (t = 0.5 s): no eps^0-reducing balance found and constant eps-decoupling \nPASS verifier PASS on the engine's fresh output\nPASS verifier row-major CONTROL rc 3 on the fresh output\nPASS verifier PASS on the pinned Lee form\nPASS verifier PASS on the pinned engine form\nPASS verifier row-major CONTROL rc 3 on the pinned Lee form\nPASS verifier row-major CONTROL rc 3 on the pinned engine form\nPASS verifier FAIL rc 3 on planted_drop_last_balance\nPASS verifier FAIL rc 3 on planted_mutated_Atilde\nPASS verifier FAIL rc 3 on planted_eps_in_Atilde\nSEC53_QORBIT: ALL LEGS AS EXPECTED\n"
+        }
+      ],
+      "secs": 14.6,
+      "wall_s": 14.6,
+      "status": "PASS",
+      "via": "julia --project=. test/runtests.jl",
+      "run_record": "installation-julia-rechecks.json"
+    },
+    "dipstick": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "D=\"$(mktemp -d)\" && python3 tools/dipstick/battery.py --receipts \"$D\" --summary-out \"$D/battery_SUMMARY.json\"",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 31.0,
+          "tail": "order_member: SKIP (Oscar not in the active Julia project (set DIPSTICK_JULIA_PROJECT))\norder_shim: SKIP (Oscar not in the active Julia project (set DIPSTICK_JULIA_PROJECT))\ncount: SKIP (msolve not on PATH (see toolkit/external/TOOLS.md; MSOLVE_BIN overrides))\ncycletype: SKIP (msolve not on PATH (see toolkit/external/TOOLS.md; MSOLVE_BIN overrides))\nnonres: PASS (6.1s)\naudit: PASS (0.5s)\nflatchi: PASS (0.9s)\nregions: PASS (21.6s)\nsummary -> /var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/tmp.iBk3hoNRuc/battery_SUMMARY.json\n"
+        }
+      ],
+      "secs": 31.0,
+      "wall_s": 31.0,
+      "status": "PASS",
+      "via": "D=\"$(mktemp -d)\" && python3 tools/dipstick/battery.py --receipts \"$D\" --summary-out \"$D/battery_SUMMARY.json\"",
+      "run_record": "installation-julia-rechecks.json"
+    },
+    "dogtag": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 topology_audit.py --selftest",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/dogtag",
+          "rc": 0,
+          "wall_s": 105.7,
+          "tail": "-graph planarity with numerator edges, the P-hat face sums), one hand-checkable graph per condition:\n   PASS K5+numerator: non-planar\n   PASS K5+numerator: numerator-edge list\n   PASS K5+numerator: internal weight 4=D\n   PASS K5+numerator: excluded\n   PASS star: unit powers weigh 4=D\n   PASS star: squared propagator weighs 5!=D\n   PASS 4-cycle: two faces\n   PASS 4-cycle: quadrilateral faces satisfy sum=(k-2)D/2\n   PASS 5-cycle: both pentagon faces violate\n   PASS 5-cycle: excluded\n   PASS K5+numerator: yangian_class == all three conditions, keys complete\n   PASS star: yangian_class == all three conditions, keys complete\n   PASS 4-cycle: yangian_class == all three conditions, keys complete\n   PASS 5-cycle: yangian_class == all three conditions, keys complete\n   [loomcheck] battery: 14 checks, 14 PASS, 0 FAIL  ->  PASS\n   [loomcheck] PASS  (14 sub-legs executed, 0 skipped)\n\n==========================================================================\nSELF-TEST: 17 executed / 0 skipped (17 PASS, 0 FAIL) of 17 legs\nSELF-TEST: registered sub-legs 203 executed / 0 skipped / 0 expected-fail\nSELF-TEST: ALL PASS (rc 0)\n==========================================================================\n"
+        }
+      ],
+      "secs": 105.7,
+      "wall_s": 105.7,
+      "status": "PASS",
+      "via": "python3 topology_audit.py --selftest",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "ellipticus": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "ELLIPTICUS_BATTERY_OUT=\"$(mktemp)\" python3 -m ellipticus.battery",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 29.5,
+          "tail": "L2 cycle layer: {'period_vs_closed_form': 69.9, 'period_route': 'legendre_K', 'I0': 47.2, 'I1': 47.1, 'I2': 47.1} (bar 40) [PASS]  (0s)\nL3 pair contour Om/X1/X2: {'Om': 47.2, 'X1': 47.0, 'X2': 47.2} sign=1 (bar 40) [PASS]  (0s)\nL4 sunrise q-engine: {'row09': 100.2, 'row10': 99.8, 'row11': 99.8, 'equal_mass_control': 100} [PASS]  (1s)\nL5 ellred:\n    quartic A: m 31.321116526860465/30d F 60 E 60 Pi 61 [PASS]\n    quartic B: m 30.965007629806223/30d F 59 E 60 Pi 59 [PASS]\n    cubic E_alg_A (e1e2): m 30.260089988241788/30d J0..4 worst 39 (bar 30) [PASS]\n    cubic E_alg_B (e1e2): m 30.712802985186855/30d J0..4 worst 41 (bar 30) [PASS]\n    cubic Kasin_img_A (e2e3): m 30.260089988241788/30d J0..4 worst 41 (bar 30) [PASS]\n    cubic Kasin_img_B (e2e3): m 30.712802985186855/30d J0..4 worst 41 (bar 30) [PASS]\n    1r2c E2: m 39.84655124030728/39d J0..2 worst 60 Carlson-agree 61 J1_cert 8.32e-62 [PASS]\nL5 PASS  (1s)\nL1 march words: kernels worst 69.7d (bar 45), words worst 47.1d (bar 40) vs independent quadrature oracles, polyform pins EXACT [PASS]  (14s)\nBATTERY PASS  total 16.0s -> /var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/tmp.0B7r8U3X6Z\n"
+        }
+      ],
+      "secs": 29.5,
+      "wall_s": 29.5,
+      "status": "PASS",
+      "via": "ELLIPTICUS_BATTERY_OUT=\"$(mktemp)\" python3 -m ellipticus.battery",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "emitall": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 -m pytest tools/emitall -x -q -p no:cacheprovider",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 0.8,
+          "tail": ".....................................................................    [100%]\n69 passed in 0.69s\n"
+        }
+      ],
+      "secs": 0.8,
+      "wall_s": 0.8,
+      "status": "PASS",
+      "via": "python3 -m pytest tools/emitall -x -q -p no:cacheprovider",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "eras": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 eras.py selftest",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/eras",
+          "rc": 0,
+          "wall_s": 12.4,
+          "tail": "log anchor| < [4.36e-51 +/- 8.29e-55]\nOK   T2 unc/collapsed: |dlog anchor| < [4.72e-51 +/- 4.43e-54], rad 2.48e-109\nOK   T2 corr/product : |dlog anchor| < [2.91e-51 +/- 3.68e-54], rad 4.69e-112\nOK   T2 unc/product  : |dlog anchor| < [4.72e-51 +/- 4.43e-54]\nOK   off-anchor collapsed vs product: |dlog| < [+/- 8.57e-112]\n\n-- forward-mode derivative vs central FD (h=2^-64), prec 512, gate 1e-20 --\nOK   G_unc (collapsed, full s3 closure): rel FD-dual diff [3.08e-36 +/- 3.33e-39] (gate 1e-20), dual-d relrad [3.69e-127 +/- 3.47e-130]; dlogF/dp = [-47.2616 +/- 1.30e-6] (true sensitivity)\nOK   L_corr (4-dim product): rel FD-dual diff [1.54e-34 +/- 2.83e-37] (gate 1e-20), dual-d relrad [3.28e-150 +/- 3.21e-153]; dlogF/dp = [-562.263 +/- 3.81e-4] (true sensitivity)\n\n-- (c) planted error 0001:+1, prec 384 --\nOK   T1 unc/collapsed moves [-2.00938 +/- 1.98e-6]\nOK   T1 corr/product  moves [-1.62641 +/- 6.20e-7]\nOK   T2 unc/collapsed moves [-2.38656 +/- 7.41e-7]\nOK   T2 corr/product  moves [-2.21945 +/- 1.65e-6]\nOK   fiber shift equality: collapsed [-2.0093780297553597250 +/- 2.89e-20] vs product [-2.0093780297553597250 +/- 2.89e-20], |diff| < [+/- 3.59e-105]\n\nSELFTEST PASS (0.1s, maxrss 34.3 MB)\n"
+        }
+      ],
+      "secs": 12.4,
+      "wall_s": 12.4,
+      "status": "PASS",
+      "via": "python3 eras.py selftest",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "famhar": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 tools/famhar/famhar.py --selftest",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 2.7,
+          "tail": "reference plugin's ell on the real lambda>0 sheet\n  lambda_exact: '129/400' (want '129/400')  PASS\n  chart a = w (30 digits vs record w_str): '-0.410545827099863194553831008004' (want '-0.410545827099863194553831008004')  PASS\n  chart b = wbar (30 digits vs record wbar_str): '-6.089454172900136805446168992' (want '-6.089454172900136805446168992')  PASS\n  record call ell_k=-1 vs own_value_str: 40.30 digits (need >= 38)  PASS\n  record call |Im|: err=1.53e-67  PASS\n  default cont=None vs own_value_str: 40.30 digits (need >= 38)  PASS\n  default |Im|: err=1.53e-67  PASS\n  default vs record call: 999.00 digits (need >= 48)  PASS\n  selected ell_k on the real lambda>0 sheet: -1 (want -1)  PASS\n  ell_sheet selected_by: 'default' (want 'default')  PASS\n  wrong-sheet control ell_k=0 vs record cont_none: 40.88 digits (need >= 38)  PASS\n  wrong-sheet control |Im| vs record: err=4.93e-15  PASS\n  default is NOT the wrong-sheet branch: -0.12 digits vs the old branch  PASS\n  Euclidean slice k: 0 (want 0)  PASS\n  Euclidean slice default == log(a)+log(b): True (want True)  PASS\n  anchor k: 0 (want 0)  PASS\n  wall 0.0s\n[famhar selftest] PASS_ALL  (legs 6 executed / 0 skipped; dps 25, total wall 2.4s)\n"
+        }
+      ],
+      "secs": 2.7,
+      "wall_s": 2.7,
+      "status": "PASS",
+      "via": "python3 tools/famhar/famhar.py --selftest",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "gatekeeper": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 tools/gatekeeper/ctrl_per_order.py --selftest && python3 tools/gatekeeper/test_gatekeeper.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 0.8,
+          "tail": "'-55', '43']  <-- RECOVERS\n            note: LLL exposed 4 integer dependence(s); fitting on rank=2\nT5 pslq_with_lll: PASS  (method=lll, rel=[1, -7, 2, -11, 5, -3])\nT5b amf_laurent absolute order: PASS  (orders=[-2, -1, 0])\nT6 ball-form nonzero NOT flagged: PASS  (11 verbatim AMFlow balls, midpoint kept to 110 digits, amf_arb == old idiom on 15 strings, verdict=CLEAN)\nT7 true zeros MUST flag: PASS  (6 forms ['0', '0.0', '0e0', '[0 +/- 1e-60]', '[0.000000 +/- 1e-60]', '[+/- 1e-60]'] all suspicious_zero; plain-float control kept)\nT8 consistent_with_zero: PASS  ([1e-40 +/- 1e-30] -> own field (mid=1.0e-40, rad=1.0e-30), not suspicious_zero; default verdict CLEAN, strict -> QUARANTINE_NEEDED)\nT9 CLI end-to-end: PASS  (ball fixture rc=0 CLEAN; 6 zero forms rc=2; cwz rc=0 default, rc=2 --strict-zero-balls)\nT10 out.json two-form fixture: PASS  (1 tagged + 1 out.json of 2 entries: n_files=2 n_records=3 suspicious_zero=0 verdict=CLEAN; CLI rc=0)\nT11 out.json zero entry + empty result: PASS  (flagged by entry tag: ['None', 'fam#0,1,1', 'g7#1,1,0'])\nT12 out.json duplicate across files: PASS  (1 group, tags=['fam#1,0,1', 'fam#1,1,0'], n=2; re-run control: 0 groups, ok_count=2)\n\nALL TESTS PASS\n"
+        }
+      ],
+      "secs": 0.8,
+      "wall_s": 0.8,
+      "status": "PASS",
+      "via": "python3 tools/gatekeeper/ctrl_per_order.py --selftest && python3 tools/gatekeeper/test_gatekeeper.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "geotriage": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "GEOTRIAGE_TEST_OUT=\"$(mktemp)\" python3 tools/geotriage/test_geotriage.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 1.1,
+          "tail": "port=9/15\n  [PASS] banana1112 verdict flagged NOT certified (probe)  \n  [PASS] banana1112 route=B with probe caveat  route=B\n  [PASS] banana1112 evidence: a_p=0 \u27fa \u03c7_{-3}(p)=\u22121 on every prime  n=15\n  [PASS] banana1112 split-prime a_p = 2(a\u00b2\u22123b\u00b2) with p=a\u00b2+3b\u00b2 (Hecke trace)  split=[(7, 2), (13, -22), (19, 26), (31, -46), (37, 26), (43, -22)]\n\n========================================================================\nSUMMARY: 65 passed, 0 failed\n========================================================================\n\nROUTE TABLE:\ngraph          type         genus  route  reason\n  box1l        polylog      0      A      genus 0 \u21d2 dlog leading singularity \u21d2 pure polylog; value-fit\n  sunrise_eq   elliptic     1      B      genus-1 congruence-modular family on Gamma_1(6) (level 6, X\u2081\n  icc          elliptic     1      C      genus-1, j NOT on any genus-0 X\u2081(N) \u21d2 non-congruence-modular\n  banana3l_eq  K3           None   B      K3, transcendental rank 2 \u21d2 CM by Livn\u00e9 (D=-15); boundary in\n  crossedbox3l polylog      0      A      genus 0 \u21d2 dlog leading singularity \u21d2 pure polylog; value-fit\n  banana3l_1112 K3           None   B      K3, transcendental rank 2 \u21d2 CM by Livn\u00e9 (D=-3); boundary in \n"
+        }
+      ],
+      "secs": 1.1,
+      "wall_s": 1.1,
+      "status": "PASS",
+      "via": "GEOTRIAGE_TEST_OUT=\"$(mktemp)\" python3 tools/geotriage/test_geotriage.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "landau-alphabet": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 selftest.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/landau-alphabet",
+          "rc": 0,
+          "wall_s": 1.3,
+          "tail": "[box engine] box1l alphabet=['s', 't'] complete=True resolved=9/9 first_entry=['s', 't']\n  PASS\n[sunrise engine] sunrise2l alphabet=['m2', 's', '-m2 + s', '-4*m2 + s', '-9*m2 + s'] (need s-m2 and s-9*m2, no timeouts)\n  PASS\n[flush] on-disk output == in-memory result (/var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/lb_selftest_tzmhs28i/box1l.json)\n  PASS\n[auditor] clean rc=0 (need 0); tally-lie rc=2 (need 2+SILENT DROP); legacy-vs-54-face-census rc=2 (need 2+SILENT DROP)\n  PASS\n[groebner] SKIP (neither msolve nor Singular installed -- install either to enable; escalation backend not exercised)\n[mixed engine] 2PM box U/F exact=True alphabet exact=True spurious-y refuted + y-+1 confirmed=True letter-loss guard=True (status resolved)\n  PASS\n[letter-loss (main engine)] box1l leading face without escalation: ['s', 't'] (resolved, need s AND t); self-annihilation face: ['y + 1', 'y - 1'] (resolved, need y-1 and y+1)\n  PASS\n[topbox topology] nonplanar(graph+apex)=True massive-4-ring=True massless-chain+externals=True loops=2\n  PASS\nfast battery PASS  (1.2s wall; K4 engine runs, the full pytest suites and the Julia engine suite are behind --full)\n"
+        }
+      ],
+      "secs": 1.3,
+      "wall_s": 1.3,
+      "status": "PASS",
+      "via": "python3 selftest.py",
+      "run_record": "installation-julia-rechecks.json"
+    },
+    "longhand": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 selftest.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/longhand",
+          "rc": 0,
+          "wall_s": 15.2,
+          "tail": "rue\n  PASS\n[U/F front end] SKIP (pySecDec not installed -- propagator front end not exercised; pip install pySecDec to enable)\nparametric fast battery PASS  (6.7s wall; single-process -- run --full for the multi-process farm)\n=== route B: pySecDec disteval driver (tests/test_disteval.py) ===\n[disteval] -m pytest -q -rs -p no:cacheprovider /Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/longhand/tests\n..s.................s..........s                                         [100%]\n=========================== short test summary info ============================\nSKIPPED [1] tests/test_disteval.py:156: no compiled package on this host (LONGHAND_DISTEVAL_PACKAGE_DIR, or the older name PYSECDEC_POINT_PACKAGE_DIR, unset): the package is not a fixture\nSKIPPED [1] tests/test_disteval.py:373: pySecDec 1.6.6 with pySecDecContrib is not importable on this host: the stand-in check imports it\nSKIPPED [1] tests/test_disteval.py:678: pySecDec 1.6.6 with pySecDecContrib is not importable on this host: the stand-in check imports it\n29 passed, 3 skipped in 7.95s\n[disteval] pytest rc=0\n  PASS\ndisteval battery PASS  (8.2s wall)\nlonghand battery PASS  (route A rc=0, route B rc=0; 14.9s wall)\n"
+        }
+      ],
+      "secs": 15.2,
+      "wall_s": 15.2,
+      "status": "PASS",
+      "via": "python3 selftest.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "mixalot": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "MIXALOT_BATTERY_OUT=\"$(mktemp -d)\" python3 battery/battery.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/mixalot",
+          "rc": 0,
+          "wall_s": 52.9,
+          "tail": "939015730\nPASS  M11b vendored MC nested seed=1: calibrated vs exact (|z|<4)  logZ_hat=-71.02035658503 z=0.60 recorded-bit-repro=True\nPASS  M12 input hardening (counts/priors/measure/size-guard/g1-shortcut/shape-guard)  failed=[]\nPASS  M14 etienne_evaluate --selftest rc=0 (vendored member)  SELFTEST PASS (worked example, exact + ball + cross)\nPASS  M15 telegraph_evaluate --selftest rc=0 (vendored member)  }\nPASS  M16 boxwalk selftest rc=0 (member, python -m mixalot.boxwalk)  [selftest] TOTAL: PASS (19.4s) -> SELFTEST.json\nPASS  M17 swap_route selftest verdict PASS (k=2 float vs exact)  SELFTEST PASS\nPASS  M18 dirichlet emitter gate rc=0 incl. polynomial branch (vendored member)  DIRICHLET EMITTER: PASS\nG1: product-tree exact == naive oracle on 12 datasets x 3 points\nG2 prec=128: worst rel ball width 1.983e-35 (bound 3.155e-30) OK\nG2 prec=256: worst rel ball width 5.823e-74 (bound 9.273e-69) OK\nGATES PASS\nPASS  M19 eco/pilot member gate (gate_engines G1/G2 at load)  0.28s\nPASS  M13 worked examples: clean-cwd run, print-only, live computations present  rc=0 wrote=[] missing=[]\nPASS  M10 comparator mutation controls all FAIL as required  vacuous=[]\nOVERALL PASS [FAST] (24 checks, 53s)\n"
+        }
+      ],
+      "secs": 52.9,
+      "wall_s": 52.9,
+      "status": "PASS",
+      "via": "MIXALOT_BATTERY_OUT=\"$(mktemp -d)\" python3 battery/battery.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "nestor": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 -m nestor.selftest",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 3.3,
+          "tail": " (spec verified)\n[nestor.md6] int_[0,1] dps=30 md=6 nodes=629 chunks=6 nproc=1\n  => 3.14159265358979323846264338328  selfcons(md5<->6)=45.7d  wall=0s\n[selftest] P3   PASS 1/sqrt(x(1-x)) vs pi: 40.3 d\n[selftest] P4   PASS nested 1/(1+xy) vs pi^2/12: 31.8 d (bar 20)\n[selftest] P5   PASS farm md6 vs closed form 40.3 d, vs serial 54.3 d, selfcons 46.8 d, 541 nodes, wall 0.1s\n[nestor.md6] int_[0,1] dps=30 md=6 nodes=539 chunks=6 nproc=1\n  => -1.0  selfcons(md5<->6)=44.2d  wall=0s\n[selftest] P6   PASS log(x) vs -1: inf d (log spec verified)\n[selftest] M1   PASS undeclared-singularity dent CAUGHT\n[selftest] M2   PASS exponent -1 refused at declaration\n[selftest] M3   PASS refusal receipt: SpecRefusal, value=None\nmoment_powerlog: all closed forms match adaptive quad >=30 d  OK\n[selftest] D1   PASS power-log moments closed form\naddback_endpoint (A (w-1)log(w-1) * 1/(w+c)^2): 33 d  OK\n[selftest] D2   PASS closed-form add-back vs quad\ndisp_subtracted level 5 vs reference: 46 d  OK\n[selftest] D3   PASS subtracted assembly level 5 vs reference\nadd-back sign mutation control: 46 d -> 0 d  OK\n[selftest] D4   PASS add-back sign mutation control\n[selftest] 13/13 controls passed, wall 3.2 s -> PASS\n"
+        }
+      ],
+      "secs": 3.3,
+      "wall_s": 3.3,
+      "status": "PASS",
+      "via": "python3 -m nestor.selftest",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "popcorn": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 tools/popcorn/selftest.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 47.9,
+          "tail": "ol rejected |z| 41\nLEG planted_vs_twolocus    PASS     1.1s  planted q_ij of TK1,TK2 (n=4,6) vs deterministic two-locus rho=0 max|z| 2.37, xi 2.70 <= 4; SFS-matched pair 2-SFS distance 1.77 SE (recorded block consistent)\nLEG planted_sim            PASS     2.4s  [VERSION-DRIFT {'msprime': ('1.4.4', '1.4.2'), 'numpy': ('2.5.4', '2.4.1')}] reduced selftest: zcheck max|z| 2.002594 (ref 2.002594); TK1@300 max|dq| 1.4e-16; GC arm 40 dip/300 kb kept_snv 1186 trees 7442 counts != payload != (1.0s)\nLEG twowindow_laws         PASS     0.1s  geometry/margin/seed/pooling/jackknife laws on literals; live popcorn.twosfs (two exact routes) == shipped n=8 reference via popcorn.twosfs\nLEG twowindow_linked       PASS     6.5s  n=8 rho=0, 16000 reps: max|z| 2.39, chi2/28 1.32 vs exact Kingman (40-block jackknife; unlinked limit 124 SE away); n_afs_distinct 0; two-window d=100: distinct 0 -> 861/1000 with gene conversion\nLEG twowindow_recomb       PASS     3.9s  n=6 rho=1, 8000 reps: distinct fraction 0.772; 21 SE from the exact linked spectrum; vs popcorn.twolocus E[T_i^A T_j^B]: max|z| 1.47, chi2/15 0.63 (40 blocks); rho/2 and 2 rho rejected at 9, 10 SE\n43 pass, 0 skip, 0 fail (47.6s)\nOVERALL PASS\n"
+        }
+      ],
+      "secs": 47.9,
+      "wall_s": 47.9,
+      "status": "PASS",
+      "via": "python3 tools/popcorn/selftest.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "qinvert": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 -m pytest tools/qinvert -x -q -p no:cacheprovider",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 0.6,
+          "tail": "..s................................................s       [100%]\n50 passed, 2 skipped, 14 subtests passed in 0.40s\n"
+        }
+      ],
+      "secs": 0.6,
+      "wall_s": 0.6,
+      "status": "PASS",
+      "via": "python3 -m pytest tools/qinvert -x -q -p no:cacheprovider",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "rankscreen": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 selftest.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/rankscreen",
+          "rc": 0,
+          "wall_s": 1.3,
+          "tail": "PASS  planted_control  [0.14s]  rank 48/48 recovered on both backends + exact (dense 0.052s, sparse 0.008s)\nPASS  zero_eq_one  [0.14s]  3 planted 0=1 rows flagged on both backends + exact; closure candidate refused\nPASS  prime_disagree  [0.14s]  rank 24 vs 25 across primes -> ESCALATE-TO-EXACT at k=2 and at k=3 (2-vs-1)\nPASS  bad_denominator  [0.19s]  p|denominator detected: 33554393 replaced + receipted, planted truth recovered; all-unusable panel refused\nMUTATION planted_control: CAUGHT [0.14s]\nMUTATION zero_eq_one: CAUGHT [0.16s]\nMUTATION prime_disagree: CAUGHT [0.15s]\nMUTATION bad_denominator: CAUGHT [0.14s]\nsummary -> /private/var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/rankscreen_battery_xhn2ns_h/RANKSCREEN_BATTERY_SUMMARY.json\nOVERALL PASS (4 legs + 4 mutation controls, 1.2s)\n"
+        }
+      ],
+      "secs": 1.3,
+      "wall_s": 1.3,
+      "status": "PASS",
+      "via": "python3 selftest.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "tropical-sampler": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 tools/tropical-sampler/tropical_sampler.py --selftest && CEGM_GJ_OUT=\"$(mktemp -d)\" python3 tools/tropical-sampler/cegm_gj/t3_prod.py sanity --procs 4",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 4.8,
+          "tail": "j_total=5s rate=1.15e+05pts/s\n[1791973636.126] SANITY engine=plain: 78/104 chunks 3.4s proj_total=5s rate=1.14e+05pts/s\n[1791973636.294] SANITY engine=plain: 81/104 chunks 3.6s proj_total=5s rate=1.13e+05pts/s\n[1791973636.353] SANITY engine=plain: 84/104 chunks 3.6s proj_total=5s rate=1.15e+05pts/s\n[1791973636.478] SANITY engine=plain: 87/104 chunks 3.8s proj_total=5s rate=1.15e+05pts/s\n[1791973636.651] SANITY engine=plain: 90/104 chunks 3.9s proj_total=5s rate=1.14e+05pts/s\n[1791973636.764] SANITY engine=plain: 93/104 chunks 4.1s proj_total=5s rate=1.15e+05pts/s\n[1791973636.871] SANITY engine=plain: 96/104 chunks 4.2s proj_total=5s rate=1.15e+05pts/s\n[1791973636.994] SANITY engine=plain: 99/104 chunks 4.3s proj_total=5s rate=1.15e+05pts/s\n[1791973637.143] SANITY engine=plain: 102/104 chunks 4.4s proj_total=5s rate=1.15e+05pts/s\n[1791973637.207] SANITY engine=plain: 104/104 chunks 4.5s proj_total=4s rate=1.16e+05pts/s\n[1791973637.210] SANITY engine=plain: value=0.127399414826922828643207977258924035788138193190338784176844748942737759706e3 wall=4.50s (1.16e+05 pts/s)\n[1791973637.221] SANITY: rel-vs-pilot-n10=1.49e-45 gate<1e-38: PASS\n{\"rel\": 1.4940318561006172e-45, \"gate\": \"PASS\"}\n"
+        }
+      ],
+      "secs": 4.8,
+      "wall_s": 4.8,
+      "status": "PASS",
+      "via": "python3 tools/tropical-sampler/tropical_sampler.py --selftest && CEGM_GJ_OUT=\"$(mktemp -d)\" python3 tools/tropical-sampler/cegm_gj/t3_prod.py sanity --procs 4",
+      "run_record": "installation-native-rechecks.json"
+    },
+    "vopclose": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 tools/vopclose/vopclose.py --test",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 1.4,
+          "tail": "  [PASS] T1 exact d/dt(int) - id zero-remainder\n  [PASS] T2 spectral endpoint log(3/2) >=45d\n  [PASS] T3 nested iterated integral >=40d\n  [PASS] T4 Hermite multi-factor DE + value >=40d\n  [PASS] T5 radical d/dt exact + sqrt values (linear 50d, quartic 50d)\n  [PASS] T6 algebraic kernel int >=40d\n  [PASS] T7 branch continuation through detour >=45d\n  [PASS] T8 det-basis apparent-pole detection\n  [PASS] T9 toy closure: 6 nonzero (row,layer) containers\n  [PASS] T10 radical block strategy = CONJ(sqrt letter) -> TRI\n  [PASS] T11 exact DE certification 6/6 zero-remainder\n  [PASS] T12 held-out endpoint gate 6/6 >=40d (worst 60.1d)\n  [PASS] T13 boundary PSLQ closed all 3 boundaries rational\n  [PASS] T14 ratfit delegation (blind + known-Q) exact\nvopclose selftest: 14/14 PASS (1.2s)\n"
+        }
+      ],
+      "secs": 1.4,
+      "wall_s": 1.4,
+      "status": "PASS",
+      "via": "python3 tools/vopclose/vopclose.py --test",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "amflow-kit": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 selftest.py && python3 -m pytest tests -q -rs -p no:cacheprovider",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/amflow-kit",
+          "rc": 1,
+          "wall_s": 48.5,
+          "tail": "il must carry a\n        per-launch unique element (an output path); a repeated launch of the same\n        command within the window is otherwise ambiguous. Returns the pid or\n        None.\"\"\"\n        tail = list(argv_tail)\n        excl = set(exclude or ())\n        hz = os.sysconf(\"SC_CLK_TCK\")\n        boot = _boot_epoch()\n        cwd = os.path.realpath(cwd) if cwd else None\n        for _ in range(max(1, int(retries))):\n>           for pid in os.listdir(PROC):\n                       ^^^^^^^^^^^^^^^^\nE           FileNotFoundError: [Errno 2] No such file or directory: '/proc'\n\namflow_kit/memfence.py:569: FileNotFoundError\n=========================== short test summary info ============================\nSKIPPED [1] tests/test_cgroup_procs_size.py:58: no cgroup v2 '0::' line in /proc/self/cgroup\nSKIPPED [1] tests/test_cgroup_procs_size.py:109: no cgroup v2 '0::' line in /proc/self/cgroup: no live leaf\nSKIPPED [1] tests/test_compare_amflow_json.py:380: COMPARE_AMFLOW_JSON_PREVIOUS unset: the previous tool's file is not named\nSKIPPED [1] tests/test_compare_amflow_json.py:687: COMPARE_AMFLOW_JSON_PREVIOUS unset: the previous tool's file is not named\n7 failed, 42 passed, 4 skipped in 48.01s\n"
+        }
+      ],
+      "secs": 48.5,
+      "wall_s": 48.5,
+      "status": "FAIL",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "baller": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "cd \"$(mktemp -d)\" && python3 \"$OLDPWD\"/tools/baller/battery/battery.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 10.6,
+          "tail": "  L16 certify.block_krawczyk (block-arrow Krawczyk + PD)  [0.0s]  planted zero certified+contained; displaced/fat refuse named; sign-flip mutants 2/2 caught; starved prec refuses; PD + saddle + scalar-cholesky cross-check; typed contract; anisotr\nPASS  L17 front door run/solve/render (Muller gates + deviation)  [0.0s]  x30 6.0056486887714 +/- ~1e-5 certified+contained; x100 [mid-stream->100 +/- inf] marked (the deviation); float control = bare 100.0; solve 30->240 dps certifies 6.0000000160995649\nPASS  L18 front door MUTATION CONTROLS (render/solve/deviation/escalation)  [0.6s]  pristine PASS + mutants caught 4/4\nPASS  L19 purity-scan member (planted 3-class smoke)  [0.0s]  3 planted classes classified ({'DEC-STRING': 1, 'PURE-CONV': 1, 'MPF-OF-FLOAT': 1})\nPASS  L20 vendored fold members: certlane pytest + ling/lgf import+probe  [5.0s]  certlane 26 passed in 1.30s; ling 9 modules import, N=318; valmono selftest PASS: null loop -> identity, 71 steps, 3.4s, prec 160, max entr\nPASS  L21 dps_lint member: selftest + `-m baller.hygiene lint` exit codes  [0.2s]  selftest 11 pass/0 fail; -m baller.hygiene lint planted->1 fixed->0; API 1/0; member identity holds\nOVERALL PASS (21 legs, 10s)\n"
+        }
+      ],
+      "secs": 10.6,
+      "wall_s": 10.6,
+      "status": "PASS",
+      "via": "cd \"$(mktemp -d)\" && python3 \"$OLDPWD\"/tools/baller/battery/battery.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "blade": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 -m blade.selftest --full",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 0.2,
+          "tail": "s are SKIPPED (the bank is not distributed with this repository); running the self-contained raw-system section only\nblade selftest --full: root=(none)\n  phase0=(none)\n  scratch=/var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/blade_selftest_qctdilru\n  [PASS] I.rawsys :: fflow_system without fflow_columns refused -- fflow_system needs the fflow_columns companion (system column id -> integral index map; {'\n  [PASS] I.rawsys :: no lane keys -> typed refusal names all lanes -- spec provides none of kira_table / kira_config_dir / database_dir / fflow_system -- provid\n  [SKIP] I.rawsys end-to-end: binaries ['redg1', 'fitrel', 'fflowcli'] not built under BLADE_BIN_DIR=/Users/paurel/Documents/ChatGPT/bootscience/blade/bin -- build the blade fork to arm this leg\n\n========================================================================\nsection       test                                        result\n------------------------------------------------------------------------\nI.rawsys      fflow_system without fflow_columns refused  PASS\nI.rawsys      no lane keys -> typed refusal names all lan PASS\n------------------------------------------------------------------------\n2/2 passed in 0.1s wall\n"
+        }
+      ],
+      "secs": 0.2,
+      "wall_s": 0.2,
+      "status": "PASS",
+      "via": "python3 -m blade.selftest --full",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "clinch": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 selftest.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/clinch",
+          "rc": 0,
+          "wall_s": 0.4,
+          "tail": " No such file or directory: 'clinch_fit13_null/CERT.json'\nPASS  L5 precision honesty: dps ladder agrees; starved prec refuses  [0.0s]  dps 30/50/80 certified (margins ['3.9e-08', '3.9e-08', '3.9e-08']); prec=8 refused\nFAIL  L6 flagship receipts: fit13_null + fit17_null  [0.0s]  AssertionError: clinch_fit13_null/CERT.json missing \u2014 run battery/flagship.py\nPASS  L7 engine exhaustion path: all rungs raise -> typed refusal (etienne F6)  [0.0s]  4 rungs all raised; typed refusal 'all-rungs-failed' with per-rung classes listed \u2014 no crash\nPASS  L8 centered space: reduced-Hessian PD (rank-4 congruence extension)  [0.0s]  centered KKT fixture CERTIFIED-INTERIOR with PD_REDUCED_CERTIFIED: inertia (9, 1, 0), reduced dim 8, min margin 1, exact KKT point contained; flipped-border control -> kkt-signature (2 negatives vs 1 allowed); flipped-la\nOVERALL FAIL: ['L3 flat-valley control (v3.6 unpinned vs v3.7 pinned)', 'L4 oracle-tamper / mutation controls', 'L6 flagship receipts: fit13_null + fit17_null'] (0s)\nclinch selftest PASS \u2014 self-contained legs green; receipt-gated legs (L3/L6 and L4's receipt sub-leg) skipped: CLINCH_REFERENCE_DIR unset (the reference results are not shipped; see GUIDE.md)\n"
+        }
+      ],
+      "secs": 0.4,
+      "wall_s": 0.4,
+      "status": "PASS",
+      "via": "python3 selftest.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "cutbasis": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 selftest.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/cutbasis",
+          "rc": 0,
+          "wall_s": 73.9,
+          "tail": " wall 1.8s  (2.3s)\nPASS doublebox_select  dimH=2 masters=[('omega_[0, 0, 1, 1][1]', [[1, 1, 1, 1, 1, 1, 1, 0, -1]]), ('omega_[0, 1, 0, 1][1]', [[1, 1, 1, 1, 1, 1, 1, 0, 0]])]  (1.7s)\nPASS tablecheck_defect  rotated basis certified; planted wrong coefficient refused (exit 1, rule fam[2,1,1,0] named)  (0.7s)\nPASS ratrec_defect  (3*eps**2*x - 2*y + 7)/(eps*x*y + 5*y**2 - 1) reconstructed at two primes, verified at a third; corrupted sample rejected  (0.0s)\nPASS coefficient_format  (-3*d^2*t+24*d*t-48*t-4)/(2*d)  (0.0s)\nPASS evaluate_refusal  exit 4, [evaluate] REFUSED: no Kira executable found (PATH has no 'kira'; pass --kira PATH or set KIRA=/path/to/kira)  (0.1s)\nPASS cli_errors  bad --sectors, --family, --candidates, a candidate name with a path separator and a missing candidate file: exit 2, one named line each, nothing written  (0.3s)\nPASS moeller_quick  sector 42: echelon, lc and integrals lists equal expected/quick byte for byte  (68.5s)\nSKIP reducer  no Kira executable found (PATH has no 'kira'; pass --kira PATH or set KIRA=/path/to/kira)\nOVERALL PASS: 8/9 checks pass; skipped: reducer (no Kira executable found (PATH has no 'kira'; pass --kira PATH or set KIRA=/path/to/kira))\n"
+        }
+      ],
+      "secs": 73.9,
+      "wall_s": 73.9,
+      "status": "PASS",
+      "via": "python3 selftest.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "eichler": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 selftest.py --outdir \"$(mktemp -d)\"",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/eichler",
+          "rc": 0,
+          "wall_s": 1.6,
+          "tail": "256433/416929542491664225000 + -390419873976133/16677181699666569000*s409)\ndiagonal:\n d0 = (-2356196117/435848050125 + -29952293/87169610025*s409)\n d1 = (-256672885697483710472/5413117521075536041909245 + 23243234729676253304/5413117521075536041909245*s409)\n d2 = (668709038656763567141907156277/8707626291133179098146436136686323200 + -32845218076953416989225642831/8707626291133179098146436136686323200*s409)\nembedding +: signs [-1, 1, 1] (indefinite needed for real points)\nembedding -: signs [1, -1, 1] (indefinite needed for real points)\nNO K-POINT in box 60 -> Mestre obstruction candidate; recording diagonal + delta\nS2 PASS  conic_fast: diagonalization exact (no K-point in box -> obstruction candidate recorded, as documented)\nR1 PASS  invariant_harness refuses loudly without G2KIT_TRUE_JSON\nR2 PASS  pslq_law_template refuses loudly without invariants_pipeline\nG  PASS  genus2 selftest 4/4 legs\nT  SKIP  theta9: no battery ships (reference receipts not distributed; 10 fixture files present, engine = Eichler.jl via EICHLER_PROJECT)\neichler selftest: ALL PASS (M + G; L6 refused by name; T skipped by name) wall 1.6s  outdir=/var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/tmp.SbAth0tOPM\n"
+        }
+      ],
+      "secs": 1.6,
+      "wall_s": 1.6,
+      "status": "PASS",
+      "via": "python3 selftest.py --outdir \"$(mktemp -d)\"",
+      "run_record": "installation-julia-rechecks.json"
+    },
+    "ffcapital": {
+      "class": "data-gated",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 selftest.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/ffcapital",
+          "rc": 4,
+          "wall_s": 1.0,
+          "tail": "smoke ok: harvest_ffsave_eta.py --help rc=0\nsmoke ok: harvest_ffsave_2var.py --help rc=0\nsmoke ok: control refuses fail-closed (CONFIG: COVERAGE unset \u2014 pass --coverage (or --config JSON / --base derivation); no silent defaults)\ncontrol ok: reference grid PASS (6 cases; P*,Q* share (eta+2) at d=118/29 (s10))\ncontrol ok: generic grid PASS (6 cases; P*,Q* share (eta+2) at d=4 (s10))\ncontrol ok: small grid refused by name (rc=1)\nDATA GATE: no ff_save/ state supplied \u2014 the harvest-member gates run against a user-supplied FireFly ff_save/ reconstruction state and no public fixtures ship (see GUIDE.md INVOKE). The recon_symbolic_d synthetic control battery above is the data-free part.\n"
+        }
+      ],
+      "secs": 1.0,
+      "wall_s": 1.0,
+      "status": "REFUSED (by design)",
+      "reason": "DATA GATE: no ff_save/ state supplied \u2014 the harvest-member gates run against a user-supplied FireFly ff_save/ reconstruction state and no public fixtures ship (see GUIDE.md INVOKE). The recon_symbolic_d synthetic control battery above is the data-free part.",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "formglue": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 -m pytest tools/formglue -x -q -p no:cacheprovider",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 0.8,
+          "tail": ".....sss..........                                                       [100%]\n============================= formglue named skips =============================\nSKIPPED tools/formglue/tests/test_form_oracle.py::test_knowns_two_precisions: no FORM binary found (form): install a float-capable FORM 5 or point FORM5_BIN at one (see GUIDE.md)\nSKIPPED tools/formglue/tests/test_form_oracle.py::test_tornheim_independent_cross_check: no FORM binary found (form): install a float-capable FORM 5 or point FORM5_BIN at one (see GUIDE.md)\nSKIPPED tools/formglue/tests/test_form_oracle.py::test_mutation_control: no FORM binary found (form): install a float-capable FORM 5 or point FORM5_BIN at one (see GUIDE.md)\n15 passed, 3 skipped in 0.59s\n"
+        }
+      ],
+      "secs": 0.8,
+      "wall_s": 0.8,
+      "status": "PASS",
+      "via": "python3 -m pytest tools/formglue -x -q -p no:cacheprovider",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "frobenius-boundary": {
+      "class": "data-gated",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 asdminer/run_control.py && python3 deform_transport/battery/run_battery_deform.py --stages S0,S1 && python3 -m frobenius_boundary.selftest",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/frobenius-boundary",
+          "rc": 4,
+          "wall_s": 8.7,
+          "tail": "ENT D= 4 weil= [1] | ellak a_5 = 1\nproducer_lint: SKIPPED (FROB_PRODUCER_LINT unset)\nVERDICT: ASDMINER-CONTROL-PASS: G1,G2,G3a,G3b,G3c,G4,G5,G6 all green; Honda 8/8+8/8 exact ellak match, Beukers-85 12/12, Hecke 5/5, fault+null caught\ncontrol_pass = True\ndeform_transport battery start 2026-10-14T10:27:16Z (pid 6583) stages=S0,S1\nproducer_lint: SKIPPED (FROB_PRODUCER_LINT unset)\nS0: S0-PASS: code census recorded; Sym^5 operator rebuilt from code/build_sym5.py and verified (full-MUM\n  [S1] rank-2 p=23 PASS=True\n  [S1] rank-2 p=29 PASS=True\nproducer_lint: SKIPPED (FROB_PRODUCER_LINT unset)\nS1: S1-PASS: rank-2 Dwork theorem case EXACT through the full matrix transport at p in {23,29}, supersin\nproducer_lint: SKIPPED (FROB_PRODUCER_LINT unset)\nBATTERY VERDICT: FAST-TIER-GREEN: stages S0,S1 only \u2014 all run gates true; the full battery is --stages S0,S1,S2,S3,S4\nSELFTEST DATA-GATED REFUSAL: the configured Kira reduction table does not exist:\n  kira_targets_m = (set me) /path/to/your/point/kira_targets_all.m\nThis acceptance test needs a per-point Kira reduction table (kira2math output), which is not distributed with the repo. Fill in a copy of config_example.json and set FROB_CONFIG to it.\n"
+        }
+      ],
+      "secs": 8.7,
+      "wall_s": 8.7,
+      "status": "REFUSED (by design)",
+      "reason": "This acceptance test needs a per-point Kira reduction table (kira2math output), which is not distributed with the repo. Fill in a copy of config_example.json and set FROB_CONFIG to it.",
+      "run_record": "installation-native-rechecks.json"
+    },
+    "galois": {
+      "class": "data-gated",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 svmap21.py selftest",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/galois",
+          "rc": 4,
+          "wall_s": 0.5,
+          "tail": "REFUSED: selftest: no explicit svalign dir given and GALOIS_CAMPAIGN_BANK is not set. The SV formula/numeric banks are reference data that do not ship with this repo \u2014 pass --svalign / svalign_dir explicitly or point GALOIS_CAMPAIGN_BANK at your own bank (subdir svalign/).\n"
+        }
+      ],
+      "secs": 0.5,
+      "wall_s": 0.5,
+      "status": "REFUSED (by design)",
+      "reason": "REFUSED: selftest: no explicit svalign dir given and GALOIS_CAMPAIGN_BANK is not set. The SV formula/numeric banks are reference data that do not ship with this repo \u2014 pass --svalign / svalign_dir explicitly or point GALOIS_CAMPAIGN_BANK at your own bank (subdir svalign/).",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "gpl-eval": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 selftest.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/gpl-eval",
+          "rc": 0,
+          "wall_s": 7.7,
+          "tail": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/gpl-eval/GPLEval.jl/src/ginac_gpl.cpp:16:10: fatal error: 'ginac/ginac.h' file not found\n   16 | #include <ginac/ginac.h>\n      |          ^~~~~~~~~~~~~~~\n1 error generated.\n\u250c Warning: GiNaC oracle unavailable \u2014 skipping the GiNaC cross-check legs. To enable them install the GiNaC C++ library (e.g. `apt install libginac-dev pkg-config` plus g++), then delete src/ginac_gpl if a stale binary exists and rerun.\n\u2502   e =\n\u2502    failed process: Process(`bash -c 'g++ -O2 -std=c++17 -o /Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/gpl-eval/GPLEval.jl/src/ginac_gpl /Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/gpl-eval/GPLEval.jl/src/ginac_gpl.cpp -lginac -lcln'`, ProcessExited(1)) [1]\n\u2502    \n\u2514 @ Main ~/Documents/ChatGPT/bootscience/bootloops/tools/gpl-eval/GPLEval.jl/test/runtests.jl:14\n[ Info: depth-4 GPL at prec=512: 0.4 ms\nTest Summary: | Pass  Total  Time\nGPLEval       |   31     31  2.6s\n"
+        }
+      ],
+      "secs": 7.7,
+      "wall_s": 7.7,
+      "status": "PASS",
+      "via": "python3 selftest.py",
+      "run_record": "installation-julia-rechecks.json"
+    },
+    "holonomic": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "cd \"$(mktemp -d)\" && python3 \"$OLDPWD\"/tools/holonomic/battery.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 0.1,
+          "tail": "reference: PASS (0.0s)\nsmoke: SKIP (SageMath not on PATH ('sage'; install from https://www.sagemath.org or conda-forge, then `sage -pip install ore_algebra`; HOLONOMIC_SAGE overrides the executable))\nsummary -> /private/var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/tmp.zGeYShfHlK/holonomic_SUMMARY.json\n"
+        }
+      ],
+      "secs": 0.1,
+      "wall_s": 0.1,
+      "status": "PASS",
+      "via": "cd \"$(mktemp -d)\" && python3 \"$OLDPWD\"/tools/holonomic/battery.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "kira-stack": {
+      "class": "smoke",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 selftest.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/kira-stack",
+          "rc": 0,
+          "wall_s": 0.2,
+          "tail": "S1 PASS  build_restage census + pinned rows + receipt vs hand computation\nM1 PASS  build_restage fail-closed on a positive ISP index\nS2 PASS  parallel_kira_gen helpers (cover_tops, parse_targets, synthetic own-sector targets)\nS3 SKIP  Kira-derived GPL tools (pyred_weight, ffsave_degree_census) not found in /Users/paurel/Documents/ChatGPT/bootscience/kira/bootloops-tools \u2014 check out ../kira or set BOOTLOOPS_KIRA_TOOLS\nM2 SKIP  Kira-derived GPL tools (pyred_weight, ffsave_degree_census) not found in /Users/paurel/Documents/ChatGPT/bootscience/kira/bootloops-tools \u2014 check out ../kira or set BOOTLOOPS_KIRA_TOOLS\nS4 SKIP  Kira-derived GPL tools (pyred_weight, ffsave_degree_census) not found in /Users/paurel/Documents/ChatGPT/bootscience/kira/bootloops-tools \u2014 check out ../kira or set BOOTLOOPS_KIRA_TOOLS\nM3 SKIP  Kira-derived GPL tools (pyred_weight, ffsave_degree_census) not found in /Users/paurel/Documents/ChatGPT/bootscience/kira/bootloops-tools \u2014 check out ../kira or set BOOTLOOPS_KIRA_TOOLS\nkira-stack selftest: ALL PASS (3/3 run; S3 M2 S4 M3 SKIPPED by name, named ImportError verified)\n"
+        }
+      ],
+      "secs": 0.2,
+      "wall_s": 0.2,
+      "status": "PASS",
+      "via": "python3 selftest.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "lockpick": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 tools/pslq_gate.py --selftest",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 0.2,
+          "tail": "ability ([9,-4,0] vs [-9,4,0])\nPASS capacity() rejects impossible scan (30d leg, height 1e8)\nPASS capacity() arithmetic (32 members @1e8 needs >30d)\nPASS digit-length guard raises on truncated (115d) target string\nPASS controls() pass in same pool/protocol (synthetic + known hit)\nPASS reverify both hits @210d < 1e-150 (5.393e-211, 3.92e-210)\nPASS graded_basket grading (wmax=2 excludes zeta3-pairs of weight>2)\nPASS members_audit finds the height-12 MT internal relation (pi^2-12log2^2+12log2log3-6log3^2-12Li2(1/3)-6Li2(1/4)=0)\nPASS members_audit clean basket -> [] ([1,pi^2,zeta3])\nPASS degenerate basket raises DegeneratePoolError (not silent NULL)\n[pslq_gate] WARN planted-at-cap: control height 20011 within 10x of maxcoeff 100000; plant controls >=10x below cap\nPASS controls() WARNS when control height sits within 10x of maxcoeff\n[mplll_lattice] nemo batch failed ([Errno 2] No such file or directory: 'julia'); pure fallback\nPASS graded peel: planted (5,-3,7,0) \u2014 w2 locks, peel strictly reduces, w1 locks the peeled residual (HIT, all_locked, w1 insample>40d)\nPASS graded peel direction matches heldout_digits semantics (|r + sum(rel*F)/c0| / |I| = 1.4e-90 < 1e-30)\nSELFTEST PASS (16/16)\n"
+        }
+      ],
+      "secs": 0.2,
+      "wall_s": 0.2,
+      "status": "PASS",
+      "via": "python3 tools/pslq_gate.py --selftest",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "maxcut": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 -m maxcut.decisive_validate && python3 -m maxcut.de_transport --selftest",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 56.1,
+          "tail": "[gfp-matmul  ] expect=exact-at-boundary      got=exact                              PASS    0.0s\n[topbox-cal  ] expect=elliptic               got=elliptic                           PASS    0.6s  j_distinct=4\n[g0-3loop    ] expect=polylog                got=polylog                            PASS   22.4s\n[ell-3loop   ] expect=elliptic               got=elliptic                           PASS   26.6s  j_distinct=4\nSKIP pent5: external data dir not present (set MAXCUT_R3C to a dir containing baikov_ls.py)\n[K3-ord3     ] expect=K3                     got=K3                                 PASS    0.1s\n[sunpair-red ] expect=2\u00d7elliptic             got=2\u00d7elliptic (reducible)             PASS    0.0s\n\nSUMMARY: 4/5 validation targets PASS (calibration topbox: PASS; gfp-matmul probe: PASS)\n[selftest:T1-boundary-a] PASS  |delta|=0.0\n[selftest:T2-integrability] PASS  rel_digits=[57.18, 57.18]\n[selftest:T3-steps3-6] PASS  min_digits=13.1 (need 10); per-order=[(0, 13.22), (1, 13.1), (2, 13.33), (3, 14.05)]; wall=5.2s\n[selftest:T4-negative-control] PASS  perturbed min_digits=6.0 (need 10) -> gate FAILS as required\nselftest: PASS (4 legs)\n"
+        }
+      ],
+      "secs": 56.1,
+      "wall_s": 56.1,
+      "status": "PASS",
+      "via": "python3 -m maxcut.decisive_validate && python3 -m maxcut.de_transport --selftest",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "membound": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 selftest.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/membound",
+          "rc": 0,
+          "wall_s": 27.1,
+          "tail": "dps=9\n  [PASS] laurent-algebra          9/9 identities  (0.0s)\n  [PASS] weight-engine-B1         +inf digits vs hand formula  (0.0s)\n  [PASS] prescription-phase       ret/adv null, fey = 2pi weight  (0.0s)\n  [PASS] domain-classes           6 sign-domains partitioned, multiplicities conserved  (0.0s)\n  [PASS] mellin-closed-form       orders 0/1/2 agree 10.4/10.1/10.8 digits  (0.4s)\n  [PASS] engine-order0-exact      j1(0) vs 1/30: 9.66d; j3(0) vs -8/105: 9.72d (regression)  (17.6s)\n  [PASS] pole-assembly            I1[eps^-1] vs 1/(15(8pi)^4): 9.78 digits; IBP smoke  (0.1s)\n  [PASS] boundary-vector-contract emit/load round-trip, contract fields, k=7 layer  (0.0s)\n  [PASS] octant-domains           14 octant-domains (2 same + 6 gt + 6 lt), classes conserved  (0.0s)\n  [PASS] octant-coords            13/13 geometry identities  (0.0s)\n  [PASS] weight-engine-coupler    6/6 coupler phase routings vs hand formula  (0.0s)\n  [PASS] engine3-order0-exact     same-class 4.3d vs closed form; J(0) vs 3/8: 2.49d (14-domain sum)  (4.1s)\n  [PASS] cli-user-spec            8/8 J(0) vs -1/15: 8.71d; farm vs library J(0)/J(1): 9.66/+infd  (4.7s)\n# default tier: 13/13 legs pass  wall=26.9s\n# BATTERY: PASS\n"
+        }
+      ],
+      "secs": 27.1,
+      "wall_s": 27.1,
+      "status": "PASS",
+      "via": "python3 selftest.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "numkin": {
+      "class": "smoke",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 tools/numkin/selftest.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 1.0,
+          "tail": "[PASS] basisland rank (multi-prime agreement) {'rank': 3, 'pivot_symbols': ['b1', 'b2', 'b3'], 'n_rows': 5}\n[PASS] basisland solve lands the planted vector exactly {'x': [['2', '-3/7', '5']], 'exact_verified': [5]}\n[PASS] solve refuses rank deficit (exit 2, names the column) \nOVERALL: PASS (smoke; sweep/harvest/shift_opt legs need a kira+FireFly stack)\n"
+        }
+      ],
+      "secs": 1.0,
+      "wall_s": 1.0,
+      "status": "PASS",
+      "via": "python3 tools/numkin/selftest.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "pmflow": {
+      "class": "smoke",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 selftest.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/pmflow",
+          "rc": 0,
+          "wall_s": 0.9,
+          "tail": "[PASS] pmflow CLI surface (--help, six subcommands) \n[PASS] solve subparser exposes --anchors/--n-eps \n[PASS] ratio salvage recovers the planted rationals exactly (m1/m0=-2/5, m2/m0=22/7)\n[PASS] --selftest fails closed without $GF_SELFTEST_LOG \n[PASS] --anchors closure solve reproduces the planted solution (J63, 2*J63; census all-consistent) \n[PASS] --anchors refuses loudly (bad form/sector/basis/spec + foreign default) \n[PASS] FIXEDPOINT_RE parses the guard line (family+depth), rejects CUTREGION \n[SKIP] engine emit literal pin: engine source not present (/Users/paurel/Documents/ChatGPT/bootscience/amflow-cpp/src/pipeline/amfsystem.cpp not found; set AMFLOW_CPP_SRC to a checkout of the sibling repository amflow-cpp)\n[SKIP] engine syntax gate: engine source tree absent (/Users/paurel/Documents/ChatGPT/bootscience/amflow-cpp; set AMFLOW_CPP_SRC to a checkout of the sibling repository amflow-cpp)\nOVERALL: PASS (smoke; engine legs need a built amflow_cli)\n"
+        }
+      ],
+      "secs": 0.9,
+      "wall_s": 0.9,
+      "status": "PASS",
+      "via": "python3 selftest.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "posq": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 posq.py --selftest",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/posq",
+          "rc": 0,
+          "wall_s": 2.4,
+          "tail": "[PASS] S1 exact surrogate sha256 pin (e6fc044cdd0dabfb..)\n[PASS] S1b ln Z = -25.97566273247789 vs pinned -25.97566273247789\n[SKIP] S2 kernel containment: POSQ-KERNEL-UNAVAILABLE: no runnable posq_kernel binary beside the source (not built yet, or FLINT shared-library / CPU architecture mismatch); build cache dir unwritable: [Errno 1] Operation not permitted: '/Users/paurel/.cache/posq' -- build it yourself (needs FLINT development headers): cc -O2 -o posq_kernel posq_kernel.c -lflint -lmpfr -lgmp -lm, then set POSQ_KERNEL to the result\nposq selftest: PASS\n"
+        }
+      ],
+      "secs": 2.4,
+      "wall_s": 2.4,
+      "status": "PASS",
+      "via": "python3 posq.py --selftest",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "ratfit": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 -m pytest tools/ratfit -x -q -p no:cacheprovider",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 1.1,
+          "tail": ".................s....................................s                  [100%]\n53 passed, 2 skipped in 0.88s\n"
+        }
+      ],
+      "secs": 1.1,
+      "wall_s": 1.1,
+      "status": "PASS",
+      "via": "python3 -m pytest tools/ratfit -x -q -p no:cacheprovider",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "seedling": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 -m pytest tools/seedling -x -q -rs -p no:cacheprovider",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 1,
+          "wall_s": 43.4,
+          "tail": "script):\n                p = subprocess.Popen([\"sleep\", \"30\"])\n                with open(procs, \"w\") as fh:\n                    fh.write(f\"{p.pid}\\n1\\n\")\n                return p\n    \n            def kill(proc):            # the mock records; it ends the plain `sleep`\n                killed.append(proc.pid)\n                proc.kill()\n    \n            def move(pid, dest):       # the mock records; no cgroup is touched\n                moved.append((pid, dest))\n                return True\n    \n            ledger = os.path.join(td, \"ledger.jsonl\")\n            rec, _ = runner.run_phase(\n                \"stage\", td, \"sleep 30\", dict(CFG, name=name), ledger,\n                launch_ops={\"cg_root\": td, \"launch\": launch, \"kill\": kill,\n                            \"move\": move, \"in_leaf\": lambda pid, n: True,\n                            \"poll_s\": 0.05, \"echo\": echoed.append})\n>           assert rec[\"exit_status\"] == runner.RC_CG_FOREIGN_PID != 0\nE           assert 0 == 99\nE            +  where 99 = runner.RC_CG_FOREIGN_PID\n\ntools/seedling/tests/test_cgroup_law.py:227: AssertionError\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 11 passed in 43.06s\n"
+        }
+      ],
+      "secs": 43.4,
+      "wall_s": 43.4,
+      "status": "FAIL",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "subtropica": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 tools/subtropica/selftest.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 4.9,
+          "tail": "R PASS  reference pins: 6/6 files sha256-verified\nF PASS  fibrate control battery: {'pslq_positive_control': 'pass', 'pslq_negative_control': 'pass', 'adaptive_series_vs_log_truth_digits': 130, 'geval_crosscheck_digits': 60, 'selfcheck': 'PASS'}\nE SKIP  driver suite: SUBTROPICA_HF_BIN is not set (or not a file) \u2014 the Julia suite needs a built HyperFLINT engine (deps/BUILD.md) plus SUBTROPICA_MZV_DATA and the instantiated Julia project; see GUIDE.md. Skipping is the designed engine-absent behavior, not breakage.\nsubtropica selftest: PASS (R, F; E per engine availability above)\n"
+        }
+      ],
+      "secs": 4.9,
+      "wall_s": 4.9,
+      "status": "PASS",
+      "via": "python3 tools/subtropica/selftest.py",
+      "run_record": "installation-julia-rechecks.json"
+    },
+    "surd": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 -B tools/surd/tests/run_tests.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 2.9,
+          "tail": "\": [{\"t\": \"9/13\", \"sigma\": \"1243\", \"charts_1_2_4_identical\": true, \"value_float\": 0.0011407988632033401}, {\"t\": \"19/9\", \"sigma\": \"1342\", \"charts_1_2_4_identical\": true, \"value_float\": 1.0439207419537808e-05}, {\"t\": \"5/2\", \"sigma\": \"1432\", \"charts_1_2_4_identical\": true, \"value_float\": 2.0679097487432867e-05}], \"wall_s\": 1.9}, {\"test\": \"n_N4_SLICE_data\", \"PASS\": true, \"sha16\": \"cc3bd6b61fec4a1d\", \"sha_expected\": \"cc3bd6b61fec4a1d\", \"n_letters_in_file\": 34, \"n_canonical_irreducible\": 34, \"wall_s\": 0.1}, {\"test\": \"a\", \"SKIP\": \"needs --data DIR or SURD_DATA (assembled files out/*.json.gz; not part of the package)\"}, {\"test\": \"b\", \"SKIP\": \"needs --data DIR or SURD_DATA (assembled files out/*.json.gz; not part of the package)\"}, {\"test\": \"c\", \"SKIP\": \"needs --data DIR or SURD_DATA (assembled files out/*.json.gz; not part of the package)\"}, {\"test\": \"d2\", \"SKIP\": \"needs --data DIR or SURD_DATA (assembled files out/*.json.gz; not part of the package)\"}, {\"test\": \"e\", \"SKIP\": \"needs --data DIR or SURD_DATA (assembled files out/*.json.gz; not part of the package)\"}], \"ALL_PASS\": true, \"n_ran\": 4, \"skipped\": [\"a\", \"b\", \"c\", \"d2\", \"e\"], \"wall_s\": 3}\nRESULT: PASS (4 ran, 5 skipped: a,b,c,d2,e)\n"
+        }
+      ],
+      "secs": 2.9,
+      "wall_s": 2.9,
+      "status": "PASS",
+      "via": "python3 -B tools/surd/tests/run_tests.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "terrier": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 selftest.py",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/terrier",
+          "rc": 0,
+          "wall_s": 35.4,
+          "tail": "onifold.py]           PASS\nB.periods   ffp [periods/selftest_ffp.py]                     PASS\nB.periods   sunit [periods/selftest_sunit.py]                 PASS\nB.common    dedup [common/selftest_dedup.py]                  PASS\nB.census    foldhnf [census/selftest_foldhnf.py]              SKIP (named)\nB.census    dedup_census [census/selftest_dedup_census.py]    PASS\nB.census    distcert [census/selftest_distcert.py]            SKIP (named)\nB.census    controlsampler [census/selftest_controlsampler.py SKIP (named)\nB.census    census_smoke [census/selftest_census_smoke.py]    PASS\nB.periods   summation [periods/selftest_summation_reduced_u1s SKIP (named)\nB.periods   slicecard [periods/selftest_slice_operator_card.p PASS\nB.lattice   lpkill [lattice/selftest_lpkill_a1n_mustfail.py]  SKIP (named)\nB.lattice   genusenum [lattice/selftest_genus_control_replay. SKIP (named)\nX.coverage  every on-disk selftest registered                 PASS\nX.coverage  every registered battery on disk                  PASS\nX.coverage  wing-regression map -> registered batteries       PASS\n--------------------------------------------------------------------------\n18/34 passed, 16 named skip(s) in 35.3s wall\n"
+        }
+      ],
+      "secs": 35.4,
+      "wall_s": 35.4,
+      "status": "PASS",
+      "via": "python3 selftest.py",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "trust": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "sh tools/trust/selftest.sh \"$(mktemp -d)\"",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 1.0,
+          "tail": "nts on scratch copies) ==\nnice: setpriority: Operation not permitted\n[PASS] genuine checker: control passes, 6/6 sabotages rejected\n[PASS] M1_verdict_shortcircuit: mutant accepts S1_perturb,S2_swap,S3_scale,S4_lambda_perturb,S5_lambda_truncation -> suite would catch it\n[PASS] M2_residual_ignored: mutant accepts S1_perturb,S2_swap,S3_scale,S4_lambda_perturb,S5_lambda_truncation -> suite would catch it\n[PASS] M3_c_ignored: mutant breaks control -> suite would catch it\n[PASS] M4_modulus_dropped: mutant breaks control -> suite would catch it\n[PASS] M5_table_shortcircuit: mutant accepts S6_wrong_table -> suite would catch it\n\nmutation_test: ALL MUTANTS CAUGHT\n== test_banked (30 archived pairs + 84/84 retrofit + wrong-table MUST-FAIL; skips without RECEIPT_BANKED_ROOT) ==\nnice: setpriority: Operation not permitted\nSKIP: RECEIPT_BANKED_ROOT unset \u2014 the archived-reference leg needs the reference artifact store (not shipped)\n\nRECEIPT TEST BATTERY: ALL PASS\nleg 2: PASS\n\n== leg 3: strata member certify gates ==\nnice: setpriority: Operation not permitted\n.....                                                                    [100%]\n5 passed in 0.11s\nleg 3: PASS\n\nTRUST SELFTEST: ALL LEGS PASS\n"
+        }
+      ],
+      "secs": 1.0,
+      "wall_s": 1.0,
+      "status": "PASS",
+      "via": "sh tools/trust/selftest.sh \"$(mktemp -d)\"",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "wayfinder": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 -m pytest tools/wayfinder -x -q -p no:cacheprovider",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 69.7,
+          "tail": "........s............................................................... [ 53%]\n....................................ss.........................          [100%]\n132 passed, 3 skipped in 68.69s (0:01:08)\n"
+        }
+      ],
+      "secs": 69.7,
+      "wall_s": 69.7,
+      "status": "PASS",
+      "via": "python3 -m pytest tools/wayfinder -x -q -p no:cacheprovider",
+      "run_record": "installation-initial-selftests.json"
+    },
+    "winnow": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "sh tools/winnow/tests/run_tests.sh",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 0,
+          "wall_s": 1.8,
+          "tail": "_p2097143 \n[PASS] N5_tampered_lambda_fails::B2FT_p2097143 \n\ntranscript fill, measured this run (policy, p, n_rows, n_targets, fill):\n  B2F p=1048573 rows=49 targets=48 registered=100 lam_ops=1993 lam_nnz_total=802 peak_lam_nnz=802\n  B2FT p=1048573 rows=49 targets=48 registered=100 lam_ops=328 lam_nnz_total=284 peak_lam_nnz=284\n  B2F p=2097143 rows=49 targets=48 registered=100 lam_ops=1993 lam_nnz_total=802 peak_lam_nnz=802\n  B2FT p=2097143 rows=49 targets=48 registered=100 lam_ops=328 lam_nnz_total=284 peak_lam_nnz=284\n[PASS] N6_native_B2_refused \n[PASS] N6_native_dense_refused \n[PASS] N6_unsolved_target_refused \n\ntest_native_witness: ALL PASS (0.7s)\n=== test_sabotage ===\n[PASS] legA_positive_control::201 \n[PASS] legA_positive_control::202 \n[PASS] legA_positive_control::203 \n[PASS] legA_S1_perturb_caught \n[PASS] legA_S2_labelswap_caught \n[PASS] legA_S3_scale_caught \n[PASS] legA_S4_lam_perturb_caught \n[PASS] legA_S5_lam_truncate_caught \n[PASS] legA_S6_wrong_target_caught \n[PASS] legA_table_mismatch_caught \n[PASS] legA_fingerprint_mismatch_caught \nSKIP leg B: the archived wrong-table exhibit needs WINNOW_BANKED_ROOT\n\ntest_sabotage: ALL PASS (0.1s)\n\nibplapper battery: ALL SUITES PASS\n"
+        }
+      ],
+      "secs": 1.8,
+      "wall_s": 1.8,
+      "status": "PASS",
+      "via": "sh tools/winnow/tests/run_tests.sh",
+      "run_record": "installation-initial-selftests.json"
+    }
+  }
+}

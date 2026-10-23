@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.35741233299995656,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3321305409999695,
+      "resource_stop": null,
+      "log_sha256": "9f513661596f6b3385c4a6725c24e5ea339f9845f43b9a47bde83c4b4d4dad71"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016496250000272994,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Hard2GenerationBound",
+      "source_sha256": "f1982c198a198e82d5a5dff7bb2775a5676003f478c10a2a83ca1a4ef1634788",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 1.8802031249997526,
+      "resource_stop": null,
+      "log_sha256": "c0a1bab6bc108e9e6a95dc3ccb8ebcde192b02ff3988799c03f9b3a2e992ca75"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Hard2GenerationBound', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-remaining-20261016T103025Z-20261016T103520521293Z/Hard2GenerationBound.lean:32:1: error: Tactic `split` failed: Could not split an `if` or `match` expression in the goal\\n\\nHint: Use `set_option trace.split.failure true` to display additional diagnostic information\\n\\ncase isTrue\\nA B D : List Nat\\nx N : Nat\\nal : A.length \u2264 N\\nbl : B.length \u2264 N\\ndl : D.length \u2264 N\\na : (meterContains x A).work \u2264 4 * (A.length + 1)\\nb : (meterContains x B).work \u2264 4 * (B.length + 1)\\nd : (meterContains x D).work \u2264 4 * (D.length + 1)\\nh\u271d : (meterContains x A).value = true\\n\u22a2 { value := 0, work := (meterContains x A).work + 5 }.work \u2264 12 * (N + 1) + 8\\n'))"
+}

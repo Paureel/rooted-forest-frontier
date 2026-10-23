@@ -1,0 +1,41 @@
+research/rmaf/algorithm/universal233/integration/SourceBridge.lean:189:3: error: unknown tactic
+research/rmaf/algorithm/universal233/integration/SourceBridge.lean:187:87: error: unsolved goals
+t : Tree
+bs : List (List Nat)
+he : pairwiseEmbeddings t bs = true
+b c : List Nat
+hb : b ∈ bs
+hc : c ∈ bs
+v : RMAF.Vertex
+hv : v ∈ minimalVertices b t
+hw : v ∈ minimalVertices c t
+⊢ b = c
+research/rmaf/algorithm/universal233/integration/SourceBridge.lean:202:6: error: Tactic `rewrite` failed: motive is not type correct:
+  fun _a => bs[_a] = b
+Error: Application type mismatch: The argument
+  hbi
+has type
+  List.idxOf b bs < bs.length
+but is expected to have type
+  _a < bs.length
+in the application
+  bs[_a]
+
+Explanation: The rewrite tactic rewrites an expression 'e' using an equality 'a = b' by the following process. First, it looks for all 'a' in 'e'. Second, it tries to abstract these occurrences of 'a' to create a function 'm := fun _a => ...', called the *motive*, with the property that 'm a' is definitionally equal to 'e'. Third, we observe that 'congrArg' implies that 'm a = m b', which can be used with lemmas such as 'Eq.mpr' to change the goal. However, if 'e' depends on specific properties of 'a', then the motive 'm' might not typecheck.
+
+Possible solutions: use rewrite's 'occs' configuration option to limit which occurrences are rewritten, or use 'simp' or 'conv' mode, which have strategies for certain kinds of dependencies (these tactics can handle proofs and 'Decidable' instances whose types depend on the rewritten term, and 'simp' can apply user-defined '@[congr]' theorems as well).
+
+bs : List (List Nat)
+b c : List Nat
+hb : b ∈ bs
+hc : c ∈ bs
+hi : List.idxOf b bs = List.idxOf c bs
+hbi : List.idxOf b bs < bs.length
+hci : List.idxOf c bs < bs.length
+hbe : bs[List.idxOf b bs] = b
+hce : bs[List.idxOf c bs] = c
+⊢ b = c
+research/rmaf/algorithm/universal233/integration/SourceBridge.lean:221:20: warning: `dif_pos` has been deprecated: Use `dite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  d̵i̵f̵_̵p̵o̵s̵d̲i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲

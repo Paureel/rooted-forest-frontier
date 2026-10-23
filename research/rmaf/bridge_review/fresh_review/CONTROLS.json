@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "freeze_date": "2026-10-14",
+  "freeze_stage": "Before reading GraphRegion.lean, GraphControls.lean, PureBridge.lean, audit/certificate.json, REPORT.md, or any existing review Python",
+  "representation": "Positive integer heap vertices. Root 1; child-parent pairs (2i,i) and (2i+1,i). Vertex depth is bit_length-1. This representation is independently authored from the one-bit adjacency description in TARGET.md.",
+  "connectivity_route": "Undirected raw edge list; adjacency closure inside each selected subset, using repeated reachability expansion. No prefix/path characterization used to choose connected sets.",
+  "region_route": "For a proposed root r and each selected integer v, repeatedly divide v by 2 until reaching r; fail if it goes above r or a required intermediate is absent. Require root membership. Separately collect all minimum-depth vertices and demand uniqueness for connected sets.",
+  "positive": [
+    {"name": "singleton_away_from_global_root", "support": [7], "root": 7, "connected": true, "region": true},
+    {"name": "retained_degree_two_chain", "support": [2,5,10], "root": 2, "connected": true, "region": true},
+    {"name": "fork_below_global_root", "support": [2,4,5], "root": 2, "connected": true, "region": true},
+    {"name": "full_height_two_tree", "support": [1,2,3,4,5,6,7], "root": 1, "connected": true, "region": true}
+  ],
+  "negative": [
+    {"name": "drop_connectivity_tied_minima", "support": [4,5], "root": 4, "connected": false, "region": false, "minimum_depth_root": true, "unique_minimum": false},
+    {"name": "suppress_intermediate_unique_minimum", "support": [2,8], "root": 2, "connected": false, "region": false, "minimum_depth_root": true, "unique_minimum": true},
+    {"name": "drop_minimum_depth", "support": [1,2], "root": 2, "connected": true, "region": false, "minimum_depth_root": false, "unique_minimum": true},
+    {"name": "empty_set", "support": [], "root": null, "connected": false, "region": false, "unique_minimum": false}
+  ],
+  "enumeration": {"pilot_height": 2, "target_height": 3, "selection": "Every subset of integers 1 through 2^(height+1)-1", "pass": "Every nonempty connected support has exactly one minimum-depth vertex and satisfies the region route at that root; every region-route success is connected. All named expectations match exactly.", "precision": "Exact integer and Boolean arithmetic; no statistical fit, tolerance or floating-point semantic comparisons."},
+  "failure": "Stop and retain the first support/root counterexample on any frozen expectation mismatch or connected support violating the semantic condition.",
+  "scope": "Finite independent model controls only. A pass is not a proof for arbitrary support and does not validate executable hull extraction, G2–G7, a faster rMAF bound, or novelty."
+}

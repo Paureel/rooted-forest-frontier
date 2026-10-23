@@ -1,0 +1,102 @@
+research/rmaf/bridge_review/degree_two/restriction_route/RestrictionTransport.lean:14:58: error: Tactic `rfl` failed: The left-hand side
+  restrict A (l.node r)
+is not definitionally equal to the right-hand side
+  joinRestricted none none
+
+case none.none
+A : List Nat
+l r : Tree
+hl : restrict A l = none
+hr : restrict A r = none
+⊢ restrict A (l.node r) = joinRestricted none none
+research/rmaf/bridge_review/degree_two/restriction_route/RestrictionTransport.lean:14:58: error: Tactic `rfl` failed: The left-hand side
+  restrict A (l.node r)
+is not definitionally equal to the right-hand side
+  joinRestricted none (some val✝)
+
+case none.some
+A : List Nat
+l r : Tree
+hl : restrict A l = none
+val✝ : Tree
+hr : restrict A r = some val✝
+⊢ restrict A (l.node r) = joinRestricted none (some val✝)
+research/rmaf/bridge_review/degree_two/restriction_route/RestrictionTransport.lean:14:58: error: Tactic `rfl` failed: The left-hand side
+  restrict A (l.node r)
+is not definitionally equal to the right-hand side
+  joinRestricted (some val✝) none
+
+case some.none
+A : List Nat
+l r val✝ : Tree
+hl : restrict A l = some val✝
+hr : restrict A r = none
+⊢ restrict A (l.node r) = joinRestricted (some val✝) none
+research/rmaf/bridge_review/degree_two/restriction_route/RestrictionTransport.lean:14:58: error: Tactic `rfl` failed: The left-hand side
+  restrict A (l.node r)
+is not definitionally equal to the right-hand side
+  joinRestricted (some val✝¹) (some val✝)
+
+case some.some
+A : List Nat
+l r val✝¹ : Tree
+hl : restrict A l = some val✝¹
+val✝ : Tree
+hr : restrict A r = some val✝
+⊢ restrict A (l.node r) = joinRestricted (some val✝¹) (some val✝)
+research/rmaf/bridge_review/degree_two/restriction_route/RestrictionTransport.lean:18:68: error: unsolved goals
+case some.none
+A : List Nat
+val✝ : Tree
+⊢ restrict A val✝ =
+    match restrict A val✝, none with
+    | none, x => x
+    | x, none => x
+    | some l, some r => some (l.node r)
+research/rmaf/bridge_review/degree_two/restriction_route/RestrictionTransport.lean:25:11: error: unsolved goals
+case pos
+A B : List Nat
+x : Nat
+ha : x ∈ A
+hb : x ∈ B
+⊢ restrict A (Tree.leaf x) = some (Tree.leaf x)
+
+case pos
+A B : List Nat
+x : Nat
+ha : ¬x ∈ A
+hb : x ∈ B
+⊢ restrict A (Tree.leaf x) = none
+research/rmaf/bridge_review/degree_two/restriction_route/RestrictionTransport.lean:28:14: warning: This simp argument is unused:
+  List.contains_iff_mem
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [ha, hb]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/bridge_review/degree_two/restriction_route/RestrictionTransport.lean:35:11: error: unsolved goals
+case leaf
+A B : List Nat
+h : ∀ (x : Nat), x ∈ A ↔ x ∈ B
+x : Nat
+hh : A.contains x = B.contains x
+⊢ (if x ∈ A then some (Tree.leaf x) else none) = if x ∈ B then some (Tree.leaf x) else none
+research/rmaf/bridge_review/degree_two/restriction_route/RestrictionTransport.lean:39:22: warning: This simp argument is unused:
+  hh
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [restrict]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/bridge_review/degree_two/restriction_route/RestrictionTransport.lean:80:6: error: No goals to be solved
+research/rmaf/bridge_review/degree_two/restriction_route/RestrictionTransport.lean:95:38: warning: This simp argument is unused:
+  List.contains_iff_mem
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [restrict, leaves]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'RestrictionRoute.restrict_associative' depends on axioms: [propext, sorryAx]
+'RestrictionRoute.restrict_associative_subset' depends on axioms: [propext, sorryAx, Quot.sound]
+'RestrictionRoute.rootedIso_restrict' depends on axioms: [propext, sorryAx]
+'RestrictionRoute.restrictionAgrees_subset' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

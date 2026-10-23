@@ -1,0 +1,5 @@
+# Explicit trust-syntax controls v8, pre-candidate
+
+Add two Std-only proof-syntax negatives before READY: AdmitBad proves False using admit; NativeBad proves the true closed equality7=7 using native_decide. AdmitBad is expected to compile with sorryAx and reject. NativeBad, if the installed Std exposes the tactic, is expected to compile and expose a compiler-trust axiom outside the allowed three, hence reject. If Std does not expose it, retain the compiler failure as a syntax diagnostic and do not claim a compiled native-decide dependency check. Add an unsafe-proof-use diagnostic: an unsafe True-valued definition consumed by a theorem must fail compilation; its matching clean true theorem is already registered. This separates a rejected unsafe proof dependency from the existing unused unsafe declaration control.
+
+These extend detector/trust controls only; mathematical X0 and candidate contacts remain unchanged. Compiler/source failures remain in the ledger. Each operation is capped30 seconds, projected from the measured~0.3-second source and~1.3-second dump controls. No source/body from any candidate is permitted.

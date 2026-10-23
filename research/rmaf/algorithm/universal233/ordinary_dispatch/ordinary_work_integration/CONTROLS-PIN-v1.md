@@ -1,0 +1,7 @@
+# Concrete hard2 work/frontier controls
+
+Before first control execution: two repeated failing proper singleton forest queries must retain two ordinary frontier occurrences. The actual frozen nine-label non-admitted hard2 candidate must instantiate the new value equality, complete ordinary-frontier mass and strict/proper/size bounds without a correctness IH. The exact polynomial forest coefficient is retained as2^50*(N+q+2)^8; it is the declared source sheet and not a native-bit timing assertion.
+
+Four false claims must be rejected mathematically: deduplicating the repeated frontier, fabricating a budget0 actual critical answer, claiming gamma(233/100)>=1, and accepting the old unsafe(1,1,2) ordinary fallback contraction at233/100. Import/unknown-name/tactic-reduction/resource errors are excluded from false-control counts. Positive/false/resource compiler controls run freshly for each source build. Actual importer controls reject incompatible NP twins both orders and identical same-name NP twins; theorem proof twins import successfully. Every attempted source, diagnostic and resource stop is retained.
+
+Source-bound producer inspection must cover every actual imported stored producer with exact source/binary paths, full nonproof bodies and actual proof reference walks. Fresh missing/duplicate/header/sourcepin/opaque-body controls precede new extraction. Adapted sources must match pinned originals using only recorded import changes. All scientific author evidence retains same-lineage status, main milestones OPEN.

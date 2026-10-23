@@ -1,0 +1,80 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_source_orientation_consumer/build/SelectedConsumers.lean:46:22: error(lean.unknownIdentifier): Unknown identifier `a`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_source_orientation_consumer/build/SelectedConsumers.lean:46:24: error(lean.unknownIdentifier): Unknown identifier `b`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_source_orientation_consumer/build/SelectedConsumers.lean:58:34: error(lean.unknownIdentifier): Unknown identifier `a`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_source_orientation_consumer/build/SelectedConsumers.lean:58:36: error(lean.unknownIdentifier): Unknown identifier `b`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_source_orientation_consumer/build/SelectedConsumers.lean:74:70: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  pendantPartition S a b
+in the target expression
+  VertexGeometry.Refines G (pendantChild S a b).partition
+
+T S : Tree
+i u w : RMAF.Vertex
+a b : Nat
+d : BadSelection
+ch : CherryAt T i a b
+ad : admitted T S a b = true
+hz : selectFinal T S a b = some (FinalSelection.remaining d (BoundarySelection.first u w))
+F : List (List Nat)
+ha : agreement T S F = true
+sound : FinalSound T S a b (FinalSelection.remaining d (BoundarySelection.first u w))
+v : RMAF.Vertex
+s t : Bool
+X : Tree
+x y : Nat
+xy : x = a ∧ y = b ∨ x = b ∧ y = a
+sib : siblingEndpoint? S d.badArc = some x
+base : subtree S v = some (fork t (fork s (Tree.leaf x) X) (Tree.leaf d.c))
+cut : cuts S x y = [d.badArc, d.singletonArc] ∨ cuts S x y = [d.singletonArc, d.badArc]
+ql : subtreeLabels S d.badArc = leaves X
+rl : subtreeLabels S d.singletonArc = [d.c]
+prop : (leaves T).Nodup ∧ (leaves S).Nodup ∧ ∀ (x : Nat), x ∈ leaves T ↔ x ∈ leaves S
+context :
+  partitionCheck (leaves T) [subtreeLabels S d.badArc, [d.c], coreLabels S a b] = true ∧
+    pairwiseEmbeddings T [subtreeLabels S d.badArc, [d.c], coreLabels S a b] = true
+inc : w ∈ incident T (subtreeLabels S d.badArc)
+W : Tree
+hW : subtree T w = some W
+labs : ∀ (x : Nat), x ∈ leaves W ↔ x ∈ subtreeLabels S d.badArc ∨ x = d.c
+labs' : ∀ (z : Nat), z ∈ leaves W ↔ z ∈ leaves X ∨ z = d.c
+G : List (List Nat)
+hG : agreement T S G = true
+len : G.length ≤ F.length
+ref : VertexGeometry.Refines G (pendantPartition S x y)
+⊢ VertexGeometry.Refines G (pendantChild S a b).partition
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/rule5_source_orientation_consumer/build/SelectedConsumers.lean:94:70: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  pendantPartition S a b
+in the target expression
+  VertexGeometry.Refines G (pendantChild S a b).partition
+
+T S : Tree
+i u w : RMAF.Vertex
+a b : Nat
+d : BadSelection
+ch : CherryAt T i a b
+ad : admitted T S a b = true
+hz : selectFinal T S a b = some (FinalSelection.remaining d (BoundarySelection.third u w))
+F : List (List Nat)
+ha : agreement T S F = true
+sound : FinalSound T S a b (FinalSelection.remaining d (BoundarySelection.third u w))
+v : RMAF.Vertex
+s t : Bool
+X : Tree
+x y : Nat
+xy : x = a ∧ y = b ∨ x = b ∧ y = a
+sib : siblingEndpoint? S d.badArc = some x
+base : subtree S v = some (fork t (fork s (Tree.leaf x) X) (Tree.leaf d.c))
+cut : cuts S x y = [d.badArc, d.singletonArc] ∨ cuts S x y = [d.singletonArc, d.badArc]
+ql : subtreeLabels S d.badArc = leaves X
+rl : subtreeLabels S d.singletonArc = [d.c]
+prop : (leaves T).Nodup ∧ (leaves S).Nodup ∧ ∀ (x : Nat), x ∈ leaves T ↔ x ∈ leaves S
+z : Bool
+U : Tree
+eq : u = [z]
+hT : T = fork z U (Tree.leaf d.c)
+chxy : ActualCherry T x y
+other : otherEndpoint a b x = y
+G : List (List Nat)
+hG : agreement T S G = true
+len : G.length ≤ F.length
+ref : VertexGeometry.Refines G (pendantPartition S x y)
+⊢ VertexGeometry.Refines G (pendantChild S a b).partition

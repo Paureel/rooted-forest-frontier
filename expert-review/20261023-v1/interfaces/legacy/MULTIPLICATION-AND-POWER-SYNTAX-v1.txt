@@ -1,0 +1,69 @@
+217:Rule4CallerSource.lean:73:    ⟨a.toList++r.value,state.work+2*b.cuts.length+8+
+219:Rule4CallerSource.lean:75:   else ⟨r.value,2*b.cuts.length+4+r.work⟩
+279:ELPretest.lean:144:  ⟨none::e.value.map some,e.work+4*(e.value.length+1)⟩
+572:BadPairSource.lean:17:   ⟨⟨r.value.answer,groupCalls r.value.queries⟩,good.work+r.work+12*r.value.queries.length+12⟩
+605:BlockCost.lean:43:   ⟨(la++lb,fa++fb),a.work+b.work+4*(la.length+fa.length+2)+16⟩
+642:BothBadLocalExecutionSource.lean:46:     r.work+tail.work+checked.work+best.work+2*r.value.calls.length+20⟩
+663:BothBadLocalExecutionSource.lean:14:  | some F=>⟨some (known++F++[completed]),4*known.length+2*F.length+16⟩
+733:BothBadPlannerAtoms.lean:53:  ⟨a.value++b.value,a.work+b.work+2*a.value.length+4⟩
+746:BothBadPlannerAtoms.lean:43:      2*o.sourceCuts.length+r.work+20⟩
+841:CandidateCost.lean:11:   ⟨b.value,p.work+b.work+4*(ss.length+1)+8⟩
+929:CheckFamilies.lean:11:               ⟨a.value++b.value,a.work+b.work+6*(a.value.length+1)⟩
+958:CheckPrimitives.lean:60:  | x::xs => let r:=meterFlatten xs;⟨x++r.value,6*(x.length+1)+r.work⟩
+1027:CherryGuardWork.lean:12:                 a.work+b.work+6*a.value.length+5*b.value.length+3⟩
+1588:ELCherry.lean:11:    a.work+b.work+8*(a.value.length+b.value.length+1)+4⟩
+1606:ELCherry.lean:72:  let one:=meterFind (fun x:Candidate=>⟨x.originalCuts.length==1,4*(x.originalCuts.length+1)⟩) c.value
+1607:ELCherry.lean:73:  let high:=meterFind (fun x:Candidate=>⟨decide (3≤x.originalCuts.length),4*(x.originalCuts.length+1)⟩) c.value
+1664:ELGeometry.lean:8:    ⟨[]::(a.value.map (false::·)++b.value.map (true::·)),a.work+b.work+8*(a.value.length+b.value.length+1)⟩
+1746:ELRule4Guards.lean:25:    ⟨p.value.length !=1,p.work+4*(p.value.length+1)+2⟩) t.value
+1761:ELRule4Primitives.lean:26:    a.work+b.work+8*(a.value.length+b.value.length+3)⟩
+1787:ELRule4Raw.lean:12:  | x::xs=>let a:=f x;let r:=meterFlatMap f xs;⟨a.value++r.value,a.work+r.work+6*(a.value.length+1)⟩
+1806:ELRule4Raw.lean:45:   ⟨f.value,test.work+4*(test.value.length+1)+p.work+f.work+8⟩
+1807:ELRule4Raw.lean:46:  else ⟨[],test.work+4*(test.value.length+1)+4⟩
+1950:ForestColorWork.lean:208:     ⟨3*l.value,a.work+l.work+4⟩
+1955:ForestColorWork.lean:213:       ⟨3*l.value+1,a.work+b.work+l.work+6⟩
+1958:ForestColorWork.lean:216:       ⟨3*l.value+2,a.work+b.work+l.work+6⟩
+1977:ForestColorWork.lean:164:     ⟨4*a.value+b.value,a.work+b.work+3⟩
+2010:ForestColorWork.lean:43:       a.work+b.work+8*(a.value.length+b.value.length+1)⟩
+2118:ForestGeometryWork.lean:16:       a.work+b.work+8*(a.value.length+b.value.length+2)⟩
+2152:ForestGeometryWork.lean:175:   | [], acc => ⟨acc.reverse,4*(acc.length+1)⟩
+2185:ForestGeometryWork.lean:72:       ⟨prependSide true m.value,a.work+b.work+m.work+8*(m.value.length+2)⟩
+2188:ForestGeometryWork.lean:75:       ⟨prependSide false m.value,a.work+b.work+m.work+8*(m.value.length+2)⟩
+2191:ForestGeometryWork.lean:78:         a.work+b.work+8*(a.value.length+b.value.length+2)⟩
+2232:ForestPretestSource.lean:17:       ⟨f.value++u.value,f.work+u.work+2*f.value.length+8⟩) edges.value
+2235:ForestPretestSource.lean:20:    ⟨head.value++lift.value,edges.work+head.work+tail.work+lift.work+2*head.value.length+12⟩
+2316:GoodPairSource.lean:30:      firstWork+target.work+sources.work+2*H.length+checked.work+16⟩
+2407:GroupedExecutionSource.lean:27:     r.work+a.work+tail.work+2*r.value.trace.length+20⟩
+2494:GroupedJobsSource.lean:76:   | none=>⟨.refused,2*o.sourceCuts.length+j.work+12⟩
+2496:GroupedJobsSource.lean:78:              ⟨.scheduled r.value,2*o.sourceCuts.length+j.work+r.localWork+r.callbackWork+20⟩
+2564:Hard2FullOutputSource.lean:39:     2*o.sourceCuts.length+ss.work+forestWork actual W (some T) ss.value (q-o.sourceCuts.length)+
+2566:Hard2FullOutputSource.lean:41:   else ⟨r.value,2*o.sourceCuts.length+r.work+6⟩
+2577:Hard2GeneratorSource.lean:37:  ⟨a.value++b.value,a.work+b.work+2*a.value.length+4⟩
+2642:Hard2GroupingSource.lean:11: def appendLabelsMeter (A B : List Nat) : Charged (List Nat):=⟨A++B,2*A.length+4⟩
+2737:Hard2OutputGenerationSource.lean:12:   if b.value then let d:=meterContains x D;⟨3*(if d.value then 0 else 1)+1,a.work+b.work+d.work+8⟩
+2765:Hard2PairGeometrySource.lean:18:    a.work+b.work+12*a.value.length+8*b.value.length+12⟩
+3022:LiteralScheduleReceiptSource.lean:47:  if q<k.value+2*p.value then
+3023:LiteralScheduleReceiptSource.lean:48:   ⟨⟨⟨none,[],0⟩,[],8*js.length+8,0⟩,k.work+p.work+js.length+24,0⟩ else
+3028:LiteralScheduleReceiptSource.lean:53:      16*js.length+20+r.value.callerWork+pc.value,r.value.recursiveWork⟩,
+3106:MergeEnumeration.lean:65:  ⟨r.value,2*cells FM+2*cells FN+r.work⟩
+3244:OrdinarySchedulerSource.lean:42:    ⟨x.2++r.value,2*x.2.length+r.work+12⟩
+3401:OwnerCost.lean:10:   ⟨a.value++b.value,a.work+b.work+4*(a.value.length+1)+4⟩
+3664:PaidForestPretest.lean:17:                a.work+r.work+F.length+G.length+2*ss.length+8⟩
+3691:PaidGuardSource.lean:54:   n.work+a.work+l.work+p.work+e.work+r.work+eq.work+c.partition.length+2*c.originalCuts.length+18⟩
+3964:PaidRequestsSource.lean:10:   ⟨some ⟨c,opposite T S c,s.value,q-c.originalCuts.length⟩,s.work+2*c.originalCuts.length+7⟩
+4111:PendantMinimal.lean:10:                 ⟨prependSide true m.value,a.work+b.work+m.work+4*m.value.length+3⟩
+4114:PendantMinimal.lean:13:                 ⟨prependSide false m.value,a.work+b.work+m.work+4*m.value.length+3⟩
+4116:PendantMinimal.lean:15:                  a.work+b.work+6*a.value.length+5*b.value.length+3⟩
+4162:PendantSpan.lean:11:                  a.work+b.work+6*a.value.length+5*b.value.length+3⟩
+4198:PendantVertices.lean:9:                a.work+b.work+5*a.value.length+4*b.value.length+3⟩
+4474:QueryCaller.lean:49:   if q < knownCost js + 2*pending js then ⟨none, [], 0⟩ else
+4508:QueryCaller.lean:45:   q - knownCost js - 2*(pending js-1)
+4643:RWInitial.lean:14:    ⟨.node p a.value b.value,a.work+b.work+8*(p.length+1)+8,a.coloring+b.coloring⟩
+4687:RWLocal.lean:96:    ⟨prefixRoot (combine x.value y.value),n.work+ch.work+x.work+y.work+4*(appendCells x.value+1)+32⟩
+4698:RWLocal.lean:62:  ⟨⟨ds.value++[flat.value],c⟩,ds.work+gs.work+flat.work+4*(ds.value.length+1)+12⟩
+4715:RWTree.lean:11:    ⟨a.value++b.value,a.work+b.work+4*(a.value.length+1)+4⟩
+4738:RWTree.lean:25:  | .leaf a,.leaf _=>4*(a.labels.length+1)+12
+4905:SchedulerAtoms.lean:41:  ⟨q-k.value-2*(p.value-1),k.work+p.work+8⟩
+4908:SchedulerAtoms.lean:50:  match r.answers with | none=>⟨4,4⟩ | some xs=>⟨4*xs.length+4,xs.length+8⟩
+4951:SchedulerSchedule.lean:19:  if q<k.value+2*p.value then ⟨⟨none,[],0⟩,[],k.work+p.work+js.length+24,0⟩ else
+5298:UnitCombineSource.lean:21:   cs.work+8*cs.value.length+2⟩

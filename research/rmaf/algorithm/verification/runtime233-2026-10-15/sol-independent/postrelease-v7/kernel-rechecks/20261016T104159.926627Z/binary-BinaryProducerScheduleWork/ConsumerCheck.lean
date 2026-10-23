@@ -1,0 +1,5 @@
+import BinaryProducerScheduleWork
+#check GenericForest.BinaryProducer.allocated_local_width
+#print axioms GenericForest.BinaryProducer.allocated_local_width
+#check GenericForest.BinaryProducer.scheduleBits_work
+#print axioms GenericForest.BinaryProducer.scheduleBits_work

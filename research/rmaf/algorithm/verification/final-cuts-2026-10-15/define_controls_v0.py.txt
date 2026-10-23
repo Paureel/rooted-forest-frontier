@@ -1,0 +1,74 @@
+"""One-shot literal prerelease fixtures; expectations are hand constructions.
+This script never imports or executes a checker/candidate to produce answers.
+"""
+from pathlib import Path
+import json
+b=Path(__file__).resolve().parent;cases=[]
+def add(i,op,d,v,counts=None,plants=None,positive=None):
+ cases.append({'id':i,'op':op,'input':d,'expected':v,'counts':counts or {},'positive_counts':positive or [],'plants':plants or []})
+def val(p,x):return {'kind':'value','path':p,'replacement':x}
+def zero(k):return {'kind':'zero_event','path':k}
+Q=[[0,1],[2,3]];P=[[0,1],[2],[3]];N=[[0,[1,2]],[3,4]];NP=[[0,2],[1],[3,4]];X=2**128
+valids=[
+ ('singleton-leaf',0,[[0]],0,1,1,1),
+ ('full-block-quartet',Q,[[3,1,0,2]],0,4,4,10),
+ ('two-leaf-singletons',[0,1],[[0],[1]],1,2,3,3),
+ ('quartet-three-blocks',Q,P,2,4,7,10),
+ ('all-singletons-quartet',Q,[[0],[1],[2],[3]],3,4,10,10),
+ ('quartet-reordered-blocks-and-labels',Q,[[3],[1,0],[2]],2,4,8,10),
+ ('nonclade-original-paths',N,NP,2,5,10,15),
+ ('nonclade-reordered',N,[[4,3],[2,0],[1]],2,5,9,15),
+ ('swapped-siblings-quartet',[[2,3],[0,1]],[[1,0],[3],[2]],2,4,9,10),
+ ('huge-original-labels',[[X,X+1],[X+2,X+3]],[[X,X+1],[X+2],[X+3]],2,4,7,10),
+ ('source-valid-target-crossed',Q,[[0,1],[2,3]],1,4,6,10),
+ ('full-block-wrong-target',Q,[[0,1,2,3]],0,4,4,10)]
+for i,t,p,k,n,bc,lc in valids:
+ d={'tree':t,'partition':p}
+ if 'target' in i:d['target']=[[0,2],[1,3]]
+ v={'guards.distinct':True,'guards.partition':True,'guards.embeddings':True,'success':True,'budget':k,'raw_count':1,'output_costs':[k],'output_equivalent':True,'realized':True,'certificate.cut_count':k,'certificate.component_count':k+1,'certificate.leafless_count':0,'color_count':len(p),'first_head_accesses':n,'source_vertex_count':2*n-1}
+ if 'target' in d:v.update({'target_agreement':False,'target_transport_licensed':False})
+ if i=='nonclade-original-paths':v['colors']={'0':0,'1':1,'2':0,'3':3,'4':3}
+ if i=='nonclade-reordered':v['colors']={'0':2,'1':1,'2':2,'3':4,'4':4}
+ if i=='huge-original-labels':v.update({'label_bits':129,'color_bits':129})
+ counts={'recovery.generate_calls':1,'color.calls':n,'color.block_inspections':bc,'color.label_comparisons':lc,'color.first_head':n,'core.initial.nodup_calls':1,'core.step.calls':k+1,'core.attempt.calls':k,'core.append.finish_partition.left_cells':k}
+ plants=[val('output_costs',[k+1]),val('raw_count',2),val('color_count',len(p)+1),zero('color.calls'),zero('color.first_head'),zero('recovery.generate_calls'),{'kind':'drop_original_vertex'}, {'kind':'metadata_fine'}]
+ if k:plants +=[zero('core.append.finish_partition.left_cells'),val('budget',k-1)]
+ if 'target' in d:plants.append(val('target_transport_licensed',True))
+ if i=='nonclade-original-paths':plants.append({'kind':'color_collision','from':'1','to':0})
+ if i=='huge-original-labels':plants.append(val('label_bits',3))
+ if i=='singleton-leaf':plants.append(zero('guard.nodup_calls'))
+ add(i,'recover',d,v,counts,plants,['guard.nodup_calls','core.step.calls','core.generate.calls'])
+invalids=[
+ ('empty-partition',0,[],True,False,True),
+ ('empty-only-block',0,[[]],True,False,True),
+ ('empty-extra-block',0,[[0],[]],True,False,True),
+ ('repeated-label-in-block',0,[[0,0]],True,False,True),
+ ('repeated-block',0,[[0],[0]],True,False,False),
+ ('absent-extra-label',0,[[0,9]],True,False,True),
+ ('missing-source-label',[0,1],[[0]],True,False,True),
+ ('duplicate-source-leaves',[0,0],[[0]],False,True,True),
+ ('overlapping-blocks',Q,[[0,1],[1,2,3]],True,False,False),
+ ('crossed-source-embeddings',Q,[[0,2],[1,3]],True,True,False)]
+for i,t,p,distinct,part,emb in invalids:
+ add(i,'recover',{'tree':t,'partition':p},{'guards.distinct':distinct,'guards.partition':part,'guards.embeddings':emb,'success':False,'budget':None,'raw_count':0,'first_head_accesses':0,'target_transport_licensed':False}, {'recovery.generate_calls':0,'color.calls':0,'color.first_head':0}, [val('success',True),val('first_head_accesses',1),zero('guard.nodup_calls'),{'kind':'metadata_fine'}],['guard.nodup_calls','guard.partition_calls','guard.embedding_calls'])
+# Every listed admissible set is literal, including valid alternatives to core tie order.
+for i,t,p,sets in [('pair', [0,1],[[0],[1]],[['0'],['1']]),('quartet',Q,P,[['10','11'],['1','10'],['1','11'],['0','10'],['0','11']]),('nonclade',N,NP,[['010','0'],['010','1']])]:
+ for j,cuts in enumerate(sets):
+  v={'actual_edges':True,'distinct_cuts':True,'cut_count':len(cuts),'component_count':len(p),'leafless_count':0,'exact':True,'all_original_vertices':2*(len([0,1]) if i=='pair' else 4 if i=='quartet' else 5)-1}
+  if i=='nonclade' and j==1:v['components']=[{'root':'','vertices':['','0','00','01','011'],'labels':[0,2]},{'root':'010','vertices':['010'],'labels':[1]},{'root':'1','vertices':['1','10','11'],'labels':[3,4]}]
+  add(i+'-allowed-history-'+str(j),'certificate',{'tree':t,'partition':p,'cuts':cuts},v,{},[val('cut_count',len(cuts)+1),{'kind':'drop_original_vertex'},{'kind':'omit_reverse_edge'}])
+badcuts=[('missing-cut',Q,P,['10'],True,True,2,0),('duplicate-cut',Q,P,['10','10','11'],True,False,3,0),('root-cut',Q,P,['','10','11'],False,True,3,0),('nonedge-cut',Q,P,['101','11'],False,True,2,0),('leafless-root-pair',[0,1],[[0],[1]],['0','1'],True,True,3,1),('leafless-root-quartet',Q,[[0,1],[2,3]],['0','1'],True,True,3,1),('local-edge-not-whole-certificate',N,NP,['0'],True,True,2,0)]
+for i,t,p,cuts,actual,distinct,components,leafless in badcuts:
+ add(i,'certificate',{'tree':t,'partition':p,'cuts':cuts},{'actual_edges':actual,'distinct_cuts':distinct,'cut_count':len(cuts),'component_count':components,'leafless_count':leafless,'exact':False},{},[val('exact',True),{'kind':'drop_original_vertex'}]+([{'kind':'drop_leafless'}] if leafless else[]))
+add('multiplicity-is-not-set-equality','permutation',{'left':[[0],[1]],'right':[[0],[1],[1]]},{'equivalent':False},plants=[val('equivalent',True)])
+add('outer-and-inner-permutations','permutation',{'left':[[0,2],[1],[3,4]],'right':[[4,3],[2,0],[1]]},{'equivalent':True},plants=[val('equivalent',False)])
+add('suppressed-versus-original-edge','edges',{'tree':N,'pairs':[['','011'],['01','011'],['','0']],'cut':['0']},{'actual':[False,True,True],'local_zero_original_leafset':[0,1,2],'selected_zero_leafset':[0]},plants=[val('actual',[True,True,True]),val('local_zero_original_leafset',[0])])
+for i,d,v in [
+ ('once-after-selection',{'k':3,'q':3,'c':'2','calls':1},{'premises':True,'single_recovery':True,'factor':8,'charged':8,'absorbed':True}),
+ ('repeated-per-branch-not-free',{'k':3,'q':3,'c':'2','calls':8},{'premises':True,'single_recovery':False,'factor':8,'charged':64,'absorbed':False}),
+ ('too-small-base',{'k':3,'q':3,'c':'3/2','calls':1},{'premises':False,'single_recovery':True,'factor':8,'charged':8,'absorbed':False}),
+ ('over-budget-forest',{'k':3,'q':2,'c':'2','calls':1},{'premises':False,'single_recovery':True,'factor':8,'charged':8,'absorbed':False}),
+ ('rational233-absorption',{'k':2,'q':3,'c':'233/100','calls':1},{'premises':True,'single_recovery':True,'factor':4,'charged':4,'absorbed':True})]:
+ add(i,'absorption',d,v,{'recovery.materialized_calls':d['calls']},[val('charged',0),val('absorbed',not v['absorbed']),zero('recovery.materialized_calls')])
+out={'phase':'PRE-CANDIDATE literal expectations before execution','controls':cases,'declared_controls':len(cases),'declared_plants':sum(len(c['plants']) for c in cases),'pilot_ids':['singleton-leaf','nonclade-original-paths','leafless-root-pair'],'size_pilot_ids':['quartet-three-blocks','all-singletons-quartet','nonclade-reordered','huge-original-labels'],'mass_expectations':{'0':{'2':'1','233/100':'1','3':'1'},'1':{'2':'1/2','233/100':'100/233','3':'1/3'},'2':{'2':'1/4','233/100':'10000/54289','3':'1/9'},'3':{'2':'1/8','233/100':'1000000/12649337','3':'1/27'}},'allowed_history_policy':'Literal graph-certificate validity, never assumed unique cut history;9 explicit alternate-history cases. No partition/cut census.'}
+(b/'CONTROL-PIN.json').write_text(json.dumps(out,indent=2)+'\n');print(json.dumps({k:v for k,v in out.items() if k not in ['controls','mass_expectations']}))

@@ -1,0 +1,27 @@
+research/rmaf/algorithm/universal233/core/CoreGraph.lean:144:29: error(lean.unknownIdentifier): Unknown identifier `not_forall`
+research/rmaf/algorithm/universal233/core/CoreGraph.lean:145:9: error: Tactic `rcases` failed: `hn : (∀ (v : Vertex) (x : Nat), LeafAt t v x → P.owner v = P.owner (p ++ [b]) → v = p ++ [b]) →
+  False` is not an inductive datatype
+research/rmaf/algorithm/universal233/core/CoreGraph.lean:160:5: error: unknown tactic
+research/rmaf/algorithm/universal233/core/CoreGraph.lean:159:2: error: unsolved goals
+case neg
+t : Tree
+p : Vertex
+x y : Nat
+P : SourcePartition t
+h : CherryAt t p x y
+color : Nat → Nat
+hm : Monochromatic P color
+hc : color x ≠ color y
+hl : ¬SingletonBlock P (p ++ [false])
+⊢ SingletonBlock P (p ++ [true])
+'Universal233.CoreGraph.subtree_append' depends on axioms: [propext]
+'Universal233.CoreGraph.leaf_no_child' depends on axioms: [propext]
+'Universal233.CoreGraph.leaf_neighbor_parent' depends on axioms: [propext]
+'Universal233.CoreGraph.walk_from_leaf_visits_parent' depends on axioms: [propext]
+'Universal233.CoreGraph.nonsingleton_parent' depends on axioms: [sorryAx]
+'Universal233.CoreGraph.mixed_cherry_singleton' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Universal233.CoreGraph.unique_color_singleton' does not depend on any axioms
+'Universal233.CoreGraph.mixed_root_cherry_singleton' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+real 0.38
+user 0.23
+sys 0.20

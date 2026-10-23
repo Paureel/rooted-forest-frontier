@@ -1,0 +1,87 @@
+{
+  "runs": [
+    {
+      "module": "FreshStatements",
+      "expected": "compile",
+      "returncode": 0,
+      "seconds": 0.3667269999987184,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "FreshStatements.olean",
+        "FreshStatements.lean"
+      ],
+      "log_sha256": "84a99ec830a4fa69ec59968ab553e35377628e749c1e9e6c03e7f0aaa6082ade"
+    },
+    {
+      "module": "FreshFalseControls",
+      "expected": "false",
+      "returncode": 1,
+      "seconds": 0.34070074999908684,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "FreshFalseControls.olean",
+        "FreshFalseControls.lean"
+      ],
+      "log_sha256": "2d0655b1b5828435a0b542bc21c14f50de9facded9cec65a4c587df4c6454147"
+    },
+    {
+      "module": "FreshFalseSourceColorV3",
+      "expected": "false",
+      "returncode": 1,
+      "seconds": 0.29929054099920904,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "FreshFalseSourceColorV3.olean",
+        "FreshFalseSourceColorV3.lean"
+      ],
+      "log_sha256": "2f2ab31e3e7dbd4b8d4d0faa32a142dd897b0b8b0bbc0f874cd96e7f0feba79f"
+    },
+    {
+      "module": "FreshFalseSourceColor",
+      "expected": "ambiguous",
+      "returncode": 1,
+      "seconds": 0.28466620900144335,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "FreshFalseSourceColor.olean",
+        "FreshFalseSourceColor.lean"
+      ],
+      "log_sha256": "b48c0b04070db6d71c6b212c0cb8186b2c1c117f3ed81f063fee1eac736406fc"
+    }
+  ],
+  "audits": {},
+  "false_controls": {
+    "FalseControls": {
+      "origin_sha256": "5a4ffc22927e59931f343004d6f1f79b91947a6c61c3270228610731ea6fcd7c",
+      "copied_source_sha256": "5a4ffc22927e59931f343004d6f1f79b91947a6c61c3270228610731ea6fcd7c",
+      "adapter": null,
+      "false_propositions_rejected": 4,
+      "diagnostic_kind": "false",
+      "error_lines": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "postproof": false
+    },
+    "FalseSourceColorV3": {
+      "origin_sha256": "77c56722c63ccd3afbff0bcd479bbff54caaaa10971b456fa6b72930ca81ce3a",
+      "copied_source_sha256": "77c56722c63ccd3afbff0bcd479bbff54caaaa10971b456fa6b72930ca81ce3a",
+      "adapter": null,
+      "false_propositions_rejected": 1,
+      "diagnostic_kind": "false",
+      "error_lines": [
+        "4"
+      ],
+      "postproof": true
+    }
+  },
+  "all_main_milestones": "OPEN",
+  "verdict": "OPEN-INTERFACE-GATE-FAILURE",
+  "error": "AssertionError(('FreshFalseSourceColor', 'FreshFalseSourceColor.lean:3:20: error: Ambiguous term\\n  Controls.crossed\\nPossible interpretations:\\n  Universal233.CoreProgram.Controls.crossed : Tree\\n  \\n  Universal233.DepthOne.Controls.crossed : Tree\\n'))"
+}

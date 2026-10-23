@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "8483bfeb83e0c9b38e2d82fba5628b08e7e409a383df7e2c6bd4687611d350d0",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3736826669992297,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.34586358399974415,
+      "resource_stop": null,
+      "log_sha256": "91fbd627b2c19c449275e69d20be4eff2f4c03737a0427243ef9f441760d10d2"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.001583208000738523,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "OwnerCost",
+      "source_sha256": "27e0b716a1629f903c75f823461bd8112f86e933847948c6d7e0b7e752ddbd9f",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8530172909995599,
+      "resource_stop": null,
+      "log_sha256": "60416c37e73b82f72632fe1669726808861967918ba9954510298ed8f5b64394"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('OwnerCost', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/OwnerCost.lean:33:2: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  n \u2265 0\\n  m \u2265 0\\n  k \u2265 0\\n  j \u2265 0\\n  i \u2265 0\\n  i - j \u2265 0\\n  h \u2265 0\\n  g \u2265 0\\n  g - h \u2265 0\\n  f \u2265 0\\n  e \u2265 0\\n  e - k \u2265 0\\n  d \u2265 0\\n  c \u2265 0\\n  c - d \u2265 0\\n  c - e \u2265 0\\n  c - f \u2265 0\\n  2*c - k \u2265 0\\n  8*c - h - j - 4*k + m + n \u2264 -1\\nwhere\\n c := \u2191N\\n d := \u2191(treeNodes (l.node r))\\n e := \u2191(treeNodes l)\\n f := \u2191(treeNodes r)\\n g := \u2191(8 * (N + 1)) * \u2191(treeNodes l)\\n h := \u2191(meterLabels l).work\\n i := \u2191(8 * (N + 1)) * \u2191(treeNodes r)\\n j := \u2191(meterLabels r).work\\n k := \u2191(leaves l).length\\n m := \u2191(8 * N + 8) * \u2191(treeNodes l)\\n n := \u2191(8 * N + 8) * \u2191(treeNodes r)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/OwnerCost.lean:47:16: error: unsolved goals\\ncase cons\\nx : Nat\\ns : Tree\\nss : List Tree\\nih : (meterOwner x ss).value = owner ss x\\n\u22a2 (if x \u2208 leaves s then { value := 0, work := (meterLabels s).work + (meterContains x (leaves s)).work + 8 }\\n      else\\n        { value := List.findIdx (fun s => decide (x \u2208 leaves s)) ss + 1,\\n          work := (meterLabels s).work + (meterContains x (leaves s)).work + (meterOwner x ss).work + 8 }).value =\\n    if x \u2208 leaves s then 0 else List.findIdx (fun s => decide (x \u2208 leaves s)) ss + 1\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/OwnerCost.lean:65:12: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  k \u2265 0\\n  j \u2265 0\\n  i \u2265 0\\n  h \u2265 0\\n  h - i \u2265 -4\\n  h + j - k \u2264 -5\\n  g \u2265 0\\n  f \u2265 0\\n  e \u2265 0\\n  4*e - f \u2265 -4\\n  d \u2265 0\\n  d + f - j \u2264 -8\\n  c \u2265 0\\n  c - d \u2265 0\\n  c - g \u2264 0\\n  b \u2265 0\\n  b - e \u2265 0\\n  a \u2265 0\\n  a - b \u2265 0\\nwhere\\n a := \u2191N\\n b := \u2191(treeNodes s)\\n c := \u2191(8 * (N + 1)) * \u2191(treeNodes s)\\n d := \u2191(meterLabels s).work\\n e := \u2191(leaves s).length\\n f := \u2191(meterContains x (leaves s)).work\\n g := \u2191(8 * (N + 1)) * \u2191N\\n h := \u2191ss.length * \u2191(ownerRowCap N)\\n i := \u2191(meterOwner x ss).work\\n j := \u2191(ownerRowCap N)\\n k := \u2191{ value := 0, work := (meterLabels s).work + (meterContains x (leaves s)).work + 8 }.work\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-local-work-20261015T213957015662Z/OwnerCost.lean:65:12: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  k \u2265 0\\n  j \u2265 0\\n  i \u2265 0\\n  h \u2265 0\\n  h - i \u2265 -4\\n  h + j - k \u2264 -5\\n  g \u2265 0\\n  f \u2265 0\\n  e \u2265 0\\n  4*e - f \u2265 -4\\n  d \u2265 0\\n  d + f - j \u2264 -8\\n  c \u2265 0\\n  c - d \u2265 0\\n  c - g \u2264 0\\n  b \u2265 0\\n  b - e \u2265 0\\n  a \u2265 0\\n  a - b \u2265 0\\nwhere\\n a := \u2191N\\n b := \u2191(treeNodes s)\\n c := \u2191(8 * (N + 1)) * \u2191(treeNodes s)\\n d := \u2191(meterLabels s).work\\n e := \u2191(leaves s).length\\n f := \u2191(meterContains x (leaves s)).work\\n g := \u2191(8 * (N + 1)) * \u2191N\\n h := \u2191ss.length * \u2191(ownerRowCap N)\\n i := \u2191(meterOwner x ss).work\\n j := \u2191(ownerRowCap N)\\n k := \u2191{ value := (meterOwner x ss).value + 1,\\n      work := (meterLabels s).work + (meterContains x (leaves s)).work + (meterOwner x ss).work + 8 }.work\\n'))"
+}

@@ -1,0 +1,943 @@
+rule4-Rule4BoundInterface
+OrdinaryDispatch.FullSourceWork.rule4SourcePolynomial_explicit (N Q : Nat) :
+  OrdinaryDispatch.FullSourceWork.rule4SourcePolynomial N Q =
+    1560 * N ^ 4 + 312 * N ^ 3 + 614 * N ^ 2 + 586 * N + 300 + 48 * (2 ^ 50 * (N + Q + 2) ^ 8)
+'OrdinaryDispatch.FullSourceWork.rule4SourcePolynomial_explicit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+OrdinaryDispatch.FullSourceWork.rule4Source_cutoff_bound {T S : RMAF.Tree} (s : Universal233.Rule4.Choice T S)
+  (q N Q : Nat) (size : (RMAF.leaves T).length ≤ N) (budget : q ≤ Q) :
+  ↑(OrdinaryDispatch.FullSourceWork.rule4Source
+          (OrdinaryDispatch.FastOrdinary.cutoff OrdinaryDispatch.FastOrdinary.solve q) (fun x x_1 x_2 => 0) s q).work ≤
+    ↑(1560 * N ^ 4 + 312 * N ^ 3 + 614 * N ^ 2 + 586 * N + 300 + 48 * (2 ^ 50 * (N + Q + 2) ^ 8)) * (233 / 100) ^ q
+'OrdinaryDispatch.FullSourceWork.rule4Source_cutoff_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+rule4-Rule4SourceBound
+OrdinaryDispatch.FullSourceWork.rule4Answers_payload (actual : GenericForest.FrontierWork.Ordinary)
+  (W : GenericForest.FrontierWork.OrdinaryWork) (q N : Nat) (bs : List Universal233.Rule4.Branch)
+  (sizes : ∀ (b : Universal233.Rule4.Branch), b ∈ bs → (RMAF.leaves b.target).length ≤ N) (F : List (List Nat))
+  (mem : F ∈ (OrdinaryDispatch.FullSourceWork.rule4AnswersSource actual W q bs).value) : F.length ≤ N
+'OrdinaryDispatch.FullSourceWork.rule4Answers_payload' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.FullSourceWork.rule4Source_local (actual : GenericForest.FrontierWork.Ordinary) {T S : RMAF.Tree}
+  (s : Universal233.Rule4.Choice T S) (q N : Nat) (size : (RMAF.leaves T).length ≤ N) :
+  (OrdinaryDispatch.FullSourceWork.rule4Source actual (fun x x_1 x_2 => 0) s q).work ≤
+    OrdinaryDispatch.FullSourceWork.rule4LocalPolynomial N +
+      OrdinaryDispatch.FullSourceWork.rule4ForestDebit actual q (Universal233.Rule4.branches s)
+'OrdinaryDispatch.FullSourceWork.rule4Source_local' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.FullSourceWork.rule4ForestDebit_bound (actual : GenericForest.FrontierWork.Ordinary) {T S : RMAF.Tree}
+  (s : Universal233.Rule4.Choice T S) (q N Q : Nat) (size : (RMAF.leaves T).length ≤ N) (budget : q ≤ Q) :
+  ↑(OrdinaryDispatch.FullSourceWork.rule4ForestDebit actual q (Universal233.Rule4.branches s)) ≤
+    3 *
+        (GenericForest.FrontierWork.geometric Universal233.Rule5ActualTrace.base *
+          OrdinaryDispatch.WorkIntegration.forestCoefficient N Q) *
+      Universal233.Rule5ActualTrace.base ^ q
+'OrdinaryDispatch.FullSourceWork.rule4ForestDebit_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.FullSourceWork.rule4Source_bound (actual : GenericForest.FrontierWork.Ordinary) {T S : RMAF.Tree}
+  (s : Universal233.Rule4.Choice T S) (q N Q : Nat) (size : (RMAF.leaves T).length ≤ N) (budget : q ≤ Q) :
+  ↑(OrdinaryDispatch.FullSourceWork.rule4Source actual (fun x x_1 x_2 => 0) s q).work ≤
+    ↑(OrdinaryDispatch.FullSourceWork.rule4SourcePolynomial N Q) * Universal233.Rule5ActualTrace.base ^ q
+'OrdinaryDispatch.FullSourceWork.rule4Source_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+hard2-PairSelectorSourceBound
+OrdinaryDispatch.Hard2SourceWork.pairChooseMeter_bound (T : RMAF.Tree) (A B : List Nat) (N : Nat) (three : 3 ≤ N)
+  (tn : Universal233.CoreWork.treeNodes T ≤ N) (al : A.length ≤ N) (bl : B.length ≤ N) :
+  (OrdinaryDispatch.Hard2SourceWork.pairChooseMeter T A B).work ≤ 1200 * (N + 1) ^ 6
+'OrdinaryDispatch.Hard2SourceWork.pairChooseMeter_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+hard2-Hard2GraphSourceBound
+OrdinaryDispatch.Hard2SourceWork.runHard2Meter_bound (T S : RMAF.Tree) (c : Universal233.CherryBranching.Candidate)
+  (N : Nat) (three : 3 ≤ N) (tn : Universal233.CoreWork.treeNodes T ≤ N) (sn : Universal233.CoreWork.treeNodes S ≤ N) :
+  (OrdinaryDispatch.Hard2SourceWork.runHard2Meter T S c).work ≤ 2100 * (N + 1) ^ 6
+'OrdinaryDispatch.Hard2SourceWork.runHard2Meter_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.Hard2SourceWork.hard2SelectMeter_bound (T : RMAF.Tree) (A B C : List Nat) (N : Nat) (three : 3 ≤ N)
+  (tn : Universal233.CoreWork.treeNodes T ≤ N) (al : A.length ≤ N) (bl : B.length ≤ N) (cl : C.length ≤ N) :
+  (OrdinaryDispatch.Hard2SourceWork.hard2SelectMeter T A B C).work ≤ 2000 * (N + 1) ^ 6
+'OrdinaryDispatch.Hard2SourceWork.hard2SelectMeter_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+hard2-Hard2RouteSource
+OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter_value (actual : GenericForest.FrontierWork.Ordinary) (T S : RMAF.Tree)
+  (c d : Universal233.CherryBranching.Candidate) (q : Nat) :
+  OrdinaryDispatch.Hard2SourceWork.executeHard2Route actual T S c q
+      (OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter T S c q).value =
+    OrdinaryDispatch.Hard2Dispatcher.run actual T S c d q
+'OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter_queries (actual : GenericForest.FrontierWork.Ordinary)
+  (T S : RMAF.Tree) (c d : Universal233.CherryBranching.Candidate) (q : Nat) :
+  OrdinaryDispatch.Hard2SourceWork.hard2RouteQueries actual T S c q
+      (OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter T S c q).value =
+    (OrdinaryDispatch.WorkIntegration.hard2Trace actual T S c d q).queries
+'OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter_queries' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter_bound (T S : RMAF.Tree) (c : Universal233.CherryBranching.Candidate)
+  (q N : Nat) (three : 3 ≤ N) (tn : Universal233.CoreWork.treeNodes T ≤ N)
+  (sn : Universal233.CoreWork.treeNodes S ≤ N) :
+  (OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter T S c q).work ≤
+    OrdinaryDispatch.Hard2SourceWork.hard2FrontCoefficient N
+'OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+hard2-Hard2FrontTreeSource
+OrdinaryDispatch.Hard2SourceWork.hard2FrontTreeSource_bound (q : Nat) (T S : RMAF.Tree)
+  (hp : Universal233.DepthOne.proper T S = true) :
+  ↑(OrdinaryDispatch.Hard2SourceWork.hard2FrontTreeSource q T S) ≤
+    ↑(OrdinaryDispatch.Hard2SourceWork.hard2FrontCoefficient (2 * (RMAF.leaves T).length + 3)) *
+          OrdinaryDispatch.WorkRecursion.callNodeFactor *
+        ↑((RMAF.leaves T).length + 1) *
+      Universal233.Rule5ActualTrace.base ^ q
+'OrdinaryDispatch.Hard2SourceWork.hard2FrontTreeSource_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.Hard2SourceWork.ordinaryOwnedSourceSubtotal_bound (q : Nat) (T S : RMAF.Tree)
+  (hp : Universal233.DepthOne.proper T S = true) :
+  ↑(OrdinaryDispatch.Hard2SourceWork.ordinaryOwnedSourceSubtotal q T S) ≤
+    (↑(OrdinaryDispatch.FullSourceWork.prefixCoefficient (RMAF.leaves T).length) +
+              OrdinaryDispatch.FullSourceWork.simpleSourceCoefficient (RMAF.leaves T).length q +
+            ↑(OrdinaryDispatch.Hard2SourceWork.hard2FrontCoefficient (2 * (RMAF.leaves T).length + 3))) *
+          OrdinaryDispatch.WorkRecursion.callNodeFactor *
+        ↑((RMAF.leaves T).length + 1) *
+      Universal233.Rule5ActualTrace.base ^ q
+'OrdinaryDispatch.Hard2SourceWork.ordinaryOwnedSourceSubtotal_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+
+hard2-Hard2FullOutputSource
+OrdinaryDispatch.Hard2SourceWork.fullOutputsSource_value (actual : GenericForest.FrontierWork.Ordinary)
+  (W : GenericForest.FrontierWork.OrdinaryWork) (T S : RMAF.Tree) (q : Nat)
+  (os : List Universal233.CoreProgram.Output) :
+  (OrdinaryDispatch.Hard2SourceWork.fullOutputsSource actual W T S q os).value =
+    Universal233.Hard2PaidLocal.runOutputs actual T S q os
+'OrdinaryDispatch.Hard2SourceWork.fullOutputsSource_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.Hard2SourceWork.fullOutputsSource_split (actual : GenericForest.FrontierWork.Ordinary)
+  (W : GenericForest.FrontierWork.OrdinaryWork) (T S : RMAF.Tree) (q : Nat)
+  (os : List Universal233.CoreProgram.Output) :
+  (OrdinaryDispatch.Hard2SourceWork.fullOutputsSource actual W T S q os).work =
+    (OrdinaryDispatch.Hard2SourceWork.fullOutputsSource actual (fun x x_1 x_2 => 0) T S q os).work +
+      GenericForest.FrontierWork.queryWork W
+        (OrdinaryDispatch.WorkIntegration.forestQueries actual
+          (Universal233.Hard2PaidLocal.runOutputs actual T S q os).calls)
+'OrdinaryDispatch.Hard2SourceWork.fullOutputsSource_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.Hard2SourceWork.hardPaidOutputExecutionSource_value (actual : GenericForest.FrontierWork.Ordinary)
+  (W : GenericForest.FrontierWork.OrdinaryWork) (T S : RMAF.Tree) (q : Nat) (c : Universal233.CherryBranching.Candidate)
+  (out : Universal233.Hard2Overlap.Result) :
+  (OrdinaryDispatch.Hard2SourceWork.hardPaidOutputExecutionSource actual W T S q c out).value =
+    Universal233.Hard2PaidLocal.runHardPaid actual T S q c out
+'OrdinaryDispatch.Hard2SourceWork.hardPaidOutputExecutionSource_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+OrdinaryDispatch.Hard2SourceWork.hardPaidOutputExecutionSource_split (actual : GenericForest.FrontierWork.Ordinary)
+  (W : GenericForest.FrontierWork.OrdinaryWork) (T S : RMAF.Tree) (q : Nat) (c : Universal233.CherryBranching.Candidate)
+  (out : Universal233.Hard2Overlap.Result) :
+  (OrdinaryDispatch.Hard2SourceWork.hardPaidOutputExecutionSource actual W T S q c out).work =
+    (OrdinaryDispatch.Hard2SourceWork.hardPaidOutputExecutionSource actual (fun x x_1 x_2 => 0) T S q c out).work +
+      GenericForest.FrontierWork.queryWork W
+        (OrdinaryDispatch.WorkIntegration.forestQueries actual
+          (Universal233.Hard2PaidLocal.runHardPaid actual T S q c out).calls)
+'OrdinaryDispatch.Hard2SourceWork.hardPaidOutputExecutionSource_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+
+numeric-NumericStep
+OrdinaryDispatch.GlobalNumeric.ordinaryStepTrace_cap
+  (rec : Nat → RMAF.Tree → RMAF.Tree → Option OrdinaryDispatch.CommonForest) (q : Nat) {T S : RMAF.Tree}
+  (hp : Universal233.DepthOne.proper T S = true) (M : Nat) (cap : OrdinaryDispatch.GlobalNumeric.PairCap M T S)
+  (p : RMAF.Tree × RMAF.Tree) (r : Nat)
+  (mem : (p, r) ∈ (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace rec q T S).queries) :
+  OrdinaryDispatch.GlobalNumeric.PairCap (M + 2) p.fst p.snd
+'OrdinaryDispatch.GlobalNumeric.ordinaryStepTrace_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+numeric-NumericReach
+OrdinaryDispatch.GlobalNumeric.reachable_invariant
+  (rec : Nat → RMAF.Tree → RMAF.Tree → Option OrdinaryDispatch.CommonForest) (Q N M : Nat) (T0 S0 : RMAF.Tree)
+  (hp0 : Universal233.DepthOne.proper T0 S0 = true) (size0 : (RMAF.leaves T0).length ≤ N)
+  (cap0 : OrdinaryDispatch.GlobalNumeric.PairCap M T0 S0) {d : Nat} {T S : RMAF.Tree} {q : Nat}
+  (reach : OrdinaryDispatch.GlobalNumeric.Reach rec Q T0 S0 d T S q) :
+  Universal233.DepthOne.proper T S = true ∧
+    q ≤ Q ∧
+      (RMAF.leaves T).length ≤ N ∧
+        (RMAF.leaves S).length ≤ N ∧
+          d + q + (RMAF.leaves T).length ≤ Q + N ∧ OrdinaryDispatch.GlobalNumeric.PairCap (M + 2 * d) T S
+'OrdinaryDispatch.GlobalNumeric.reachable_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.GlobalNumeric.reachable_label_bits
+  (rec : Nat → RMAF.Tree → RMAF.Tree → Option OrdinaryDispatch.CommonForest) (Q N L : Nat) (T0 S0 : RMAF.Tree)
+  (hp0 : Universal233.DepthOne.proper T0 S0 = true) (size0 : (RMAF.leaves T0).length ≤ N)
+  (labels0 : ∀ (x : Nat), x ∈ RMAF.leaves T0 ++ RMAF.leaves S0 → x < 2 ^ L) {d : Nat} {T S : RMAF.Tree} {q : Nat}
+  (reach : OrdinaryDispatch.GlobalNumeric.Reach rec Q T0 S0 d T S q) (x : Nat) :
+  x ∈ RMAF.leaves T ++ RMAF.leaves S → x < 2 ^ OrdinaryDispatch.GlobalNumeric.semanticWidth N L Q
+'OrdinaryDispatch.GlobalNumeric.reachable_label_bits' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.GlobalNumeric.reachable_builder_fresh
+  (rec : Nat → RMAF.Tree → RMAF.Tree → Option OrdinaryDispatch.CommonForest) (Q N M : Nat) (T0 S0 : RMAF.Tree)
+  (hp0 : Universal233.DepthOne.proper T0 S0 = true) (size0 : (RMAF.leaves T0).length ≤ N)
+  (cap0 : OrdinaryDispatch.GlobalNumeric.PairCap M T0 S0) {d : Nat} {T S : RMAF.Tree} {q : Nat}
+  (reach : OrdinaryDispatch.GlobalNumeric.Reach rec Q T0 S0 d T S q) :
+  OrdinaryCommonSplit.Source.labelMax (RMAF.leaves T ++ RMAF.leaves S) + 2 ≤ M + 2 * (Q + N) + 2
+'OrdinaryDispatch.GlobalNumeric.reachable_builder_fresh' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+numeric-NumericSizes
+OrdinaryDispatch.GlobalNumeric.reachable_addresses
+  (rec : Nat → RMAF.Tree → RMAF.Tree → Option OrdinaryDispatch.CommonForest) (Q N M : Nat) (T0 S0 : RMAF.Tree)
+  (hp0 : Universal233.DepthOne.proper T0 S0 = true) (size0 : (RMAF.leaves T0).length ≤ N)
+  (cap0 : OrdinaryDispatch.GlobalNumeric.PairCap M T0 S0) {d : Nat} {T S : RMAF.Tree} {q : Nat}
+  (reach : OrdinaryDispatch.GlobalNumeric.Reach rec Q T0 S0 d T S q) :
+  (Universal233.HardParent.vertices T).length ≤ 2 * N ∧
+    (Universal233.HardParent.vertices S).length ≤ 2 * N ∧
+      (∀ (v : RMAF.Vertex), Universal233.CoreGraph.Valid T v → List.length v ≤ 2 * N) ∧
+        ∀ (v : RMAF.Vertex), Universal233.CoreGraph.Valid S v → List.length v ≤ 2 * N
+'OrdinaryDispatch.GlobalNumeric.reachable_addresses' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.GlobalNumeric.reachable_numeric_widths
+  (rec : Nat → RMAF.Tree → RMAF.Tree → Option OrdinaryDispatch.CommonForest) (Q N L : Nat) (T0 S0 : RMAF.Tree)
+  (hp0 : Universal233.DepthOne.proper T0 S0 = true) (size0 : (RMAF.leaves T0).length ≤ N)
+  (labels0 : ∀ (x : Nat), x ∈ RMAF.leaves T0 ++ RMAF.leaves S0 → x < 2 ^ L) {d : Nat} {T S : RMAF.Tree} {q : Nat}
+  (reach : OrdinaryDispatch.GlobalNumeric.Reach rec Q T0 S0 d T S q) :
+  (∀ (x : Nat),
+      x ∈ RMAF.leaves T ++ RMAF.leaves S →
+        GenericForest.CheckCorrespondence.labelBits x ≤ OrdinaryDispatch.GlobalNumeric.semanticWidth N L Q) ∧
+    GenericForest.CheckCorrespondence.labelBits
+          (OrdinaryCommonSplit.Source.labelMax (RMAF.leaves T ++ RMAF.leaves S) + 2) ≤
+        OrdinaryDispatch.GlobalNumeric.semanticWidth N L Q ∧
+      GenericForest.CheckCorrespondence.labelBits q ≤ Q + 1
+'OrdinaryDispatch.GlobalNumeric.reachable_numeric_widths' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+numeric-NumericStateBounds
+OrdinaryDispatch.GlobalNumeric.common_builder_caps (T S : RMAF.Tree) (X Y : List Nat) (p : RMAF.Vertex)
+  (d : OrdinaryCommonSplit.Caller.Setup) (build : OrdinaryCommonSplit.Source.buildSetup T S X Y p = some d) (N M : Nat)
+  (sizes : (RMAF.leaves T).length ≤ N ∧ (RMAF.leaves S).length ≤ N)
+  (cap : OrdinaryDispatch.GlobalNumeric.PairCap M T S) :
+  d.rho ≤ M + 2 ∧
+    d.gamma ≤ M + 2 ∧
+      ∀ (u : RMAF.Tree),
+        u ∈ [d.tx, d.sx, d.ty, d.sy, d.mxT, d.mxS, d.myT, d.myS] →
+          (RMAF.leaves u).length ≤ N ∧
+            Universal233.CoreWork.treeNodes u ≤ 2 * N ∧ OrdinaryDispatch.GlobalNumeric.TreeCap (M + 2) u
+'OrdinaryDispatch.GlobalNumeric.common_builder_caps' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.GlobalNumeric.forest_desc_invariant (target : Option RMAF.Tree) (ss0 : List RMAF.Tree) (q0 N M : Nat)
+  (hp0 : ForestState.proper target ss0 = true) (size : (ForestState.labels target).length ≤ N)
+  (cap : ∀ (x : Nat), x ∈ ForestState.labels target → x ≤ M) {d : Nat} {ss : List RMAF.Tree} {q : Nat}
+  (path : OrdinaryDispatch.GlobalNumeric.ForestDesc target ss0 q0 d ss q) :
+  ForestState.proper target ss = true ∧
+    d + q ≤ q0 ∧
+      GenericForest.targetNodes target ≤ 2 * N ∧
+        GenericForest.sourceNodes ss ≤ 2 * N ∧
+          ss.length ≤ 2 * N ∧
+            (List.map RMAF.leaves ss).flatten.length ≤ N ∧
+              ∀ (s : RMAF.Tree),
+                s ∈ ss →
+                  Universal233.CoreWork.treeNodes s ≤ 2 * N ∧
+                    (RMAF.leaves s).length ≤ N ∧
+                      OrdinaryDispatch.GlobalNumeric.TreeCap M s ∧
+                        ∀ (v : RMAF.Vertex), Universal233.CoreGraph.Valid s v → List.length v ≤ 2 * N
+'OrdinaryDispatch.GlobalNumeric.forest_desc_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+numeric-NumericSourceBinding
+OrdinaryDispatch.GlobalNumeric.ordinary_source_queries
+  (rec : Nat → RMAF.Tree → RMAF.Tree → Option OrdinaryDispatch.CommonForest) (q : Nat) (T S : RMAF.Tree) :
+  (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace rec q T S).queries =
+    OrdinaryDispatch.GlobalNumeric.ordinaryDirectQueries rec q T S ++
+      OrdinaryDispatch.WorkIntegration.forestQueries (OrdinaryDispatch.FastOrdinary.cutoff rec q)
+        (OrdinaryDispatch.GlobalNumeric.ordinaryForestCalls rec q T S)
+'OrdinaryDispatch.GlobalNumeric.ordinary_source_queries' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+numeric-NumericActualEntries
+OrdinaryDispatch.GlobalNumeric.reachable_forest_entry_caps
+  (rec : Nat → RMAF.Tree → RMAF.Tree → Option OrdinaryDispatch.CommonForest) (Q N M : Nat) (T0 S0 : RMAF.Tree)
+  (hp0 : Universal233.DepthOne.proper T0 S0 = true) (size0 : (RMAF.leaves T0).length ≤ N)
+  (cap0 : OrdinaryDispatch.GlobalNumeric.PairCap M T0 S0) {d : Nat} {T S : RMAF.Tree} {q : Nat}
+  (reach : OrdinaryDispatch.GlobalNumeric.Reach rec Q T0 S0 d T S q) (call : Universal233.BothBad.Call)
+  (mem : call ∈ OrdinaryDispatch.GlobalNumeric.ordinaryForestCalls rec q T S) :
+  OrdinaryDispatch.GlobalNumeric.ForestCaps N (M + 2 * (Q + N)) Q call
+'OrdinaryDispatch.GlobalNumeric.reachable_forest_entry_caps' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.GlobalNumeric.reachable_forest_desc_caps
+  (rec : Nat → RMAF.Tree → RMAF.Tree → Option OrdinaryDispatch.CommonForest) (Q N M : Nat) (T0 S0 : RMAF.Tree)
+  (hp0 : Universal233.DepthOne.proper T0 S0 = true) (size0 : (RMAF.leaves T0).length ≤ N)
+  (cap0 : OrdinaryDispatch.GlobalNumeric.PairCap M T0 S0) {d : Nat} {T S : RMAF.Tree} {q : Nat}
+  (reach : OrdinaryDispatch.GlobalNumeric.Reach rec Q T0 S0 d T S q) (call : Universal233.BothBad.Call)
+  (mem : call ∈ OrdinaryDispatch.GlobalNumeric.ordinaryForestCalls rec q T S) {e : Nat} {ss : List RMAF.Tree} {r : Nat}
+  (path : OrdinaryDispatch.GlobalNumeric.ForestDesc call.target call.sources call.budget e ss r) :
+  ForestState.proper call.target ss = true ∧
+    e + r ≤ Q ∧
+      GenericForest.targetNodes call.target ≤ 2 * N ∧
+        GenericForest.sourceNodes ss ≤ 2 * N ∧
+          ss.length ≤ 2 * N ∧
+            (List.map RMAF.leaves ss).flatten.length ≤ N ∧
+              ∀ (s : RMAF.Tree),
+                s ∈ ss →
+                  Universal233.CoreWork.treeNodes s ≤ 2 * N ∧
+                    (RMAF.leaves s).length ≤ N ∧
+                      OrdinaryDispatch.GlobalNumeric.TreeCap (M + 2 * (Q + N)) s ∧
+                        ∀ (v : RMAF.Vertex), Universal233.CoreGraph.Valid s v → List.length v ≤ 2 * N
+'OrdinaryDispatch.GlobalNumeric.reachable_forest_desc_caps' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+numeric-NumericOperands
+OrdinaryDispatch.GlobalNumeric.forest_branch_operands (t : RMAF.Tree) (ss : List RMAF.Tree) (h : GenericForest.Overlap)
+  (q N Q : Nat) (hp : ForestState.proper (some t) ss = true) (size : (RMAF.leaves t).length ≤ N) (budget : q ≤ Q)
+  (io : Nat × Universal233.CoreProgram.Output) (mem : io ∈ GenericForest.branches t ss h q) :
+  io.fst < 2 * N ∧
+    io.snd.sourceCuts.length ≤ Q ∧
+      (∀ (v : RMAF.Vertex), v ∈ io.snd.sourceCuts → List.length v ≤ 2 * N) ∧
+        (List.map List.length io.snd.sourceCuts).sum ≤ Q * (2 * N)
+'OrdinaryDispatch.GlobalNumeric.forest_branch_operands' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.GlobalNumeric.represented_capacity_arithmetic (N L Q : Nat) :
+  OrdinaryDispatch.GlobalNumeric.semanticWidth N L Q + Q + 2 * (2 * N) + 3 =
+    OrdinaryDispatch.GlobalNumeric.representedCapacityEnvelope N L Q
+'OrdinaryDispatch.GlobalNumeric.represented_capacity_arithmetic' depends on axioms: [propext, Quot.sound]
+
+
+numeric-NumericInterface
+OrdinaryDispatch.GlobalNumeric.fast_original_caps (k N L : Nat) (T0 S0 : RMAF.Tree)
+  (hp0 : Universal233.DepthOne.proper T0 S0 = true) (size0 : (RMAF.leaves T0).length ≤ N)
+  (labels0 : ∀ (x : Nat), x ∈ RMAF.leaves T0 ++ RMAF.leaves S0 → x < 2 ^ L) {d : Nat} {T S : RMAF.Tree} {q : Nat}
+  (reach : OrdinaryDispatch.GlobalNumeric.FastReach k T0 S0 d T S q) :
+  q ≤ k - 1 ∧
+    (RMAF.leaves T).length ≤ N ∧
+      (RMAF.leaves S).length ≤ N ∧
+        d + q + (RMAF.leaves T).length ≤ k - 1 + N ∧
+          Universal233.CoreWork.treeNodes T + 1 ≤ 2 * N ∧
+            Universal233.CoreWork.treeNodes S + 1 ≤ 2 * N ∧
+              (∀ (x : Nat),
+                  x ∈ RMAF.leaves T ++ RMAF.leaves S →
+                    GenericForest.CheckCorrespondence.labelBits x ≤
+                      OrdinaryDispatch.GlobalNumeric.semanticWidth N L (k - 1)) ∧
+                GenericForest.CheckCorrespondence.labelBits
+                      (OrdinaryCommonSplit.Source.labelMax (RMAF.leaves T ++ RMAF.leaves S) + 2) ≤
+                    OrdinaryDispatch.GlobalNumeric.semanticWidth N L (k - 1) ∧
+                  GenericForest.CheckCorrespondence.labelBits q ≤ k + 1
+'OrdinaryDispatch.GlobalNumeric.fast_original_caps' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.GlobalNumeric.reachable_fast_payload (k N L : Nat) (T0 S0 : RMAF.Tree)
+  (hp0 : Universal233.DepthOne.proper T0 S0 = true) (size0 : (RMAF.leaves T0).length ≤ N)
+  (labels0 : ∀ (x : Nat), x ∈ RMAF.leaves T0 ++ RMAF.leaves S0 → x < 2 ^ L) {d : Nat} {T S : RMAF.Tree} {q : Nat}
+  (reach : OrdinaryDispatch.GlobalNumeric.FastReach k T0 S0 d T S q) (F : OrdinaryDispatch.Forest)
+  (answer : OrdinaryDispatch.FastOrdinary.solve q T S = some F) :
+  (List.flatten F).length ≤ N ∧
+    List.length F ≤ N ∧
+      GenericForest.CheckCorrespondence.payloadBitCells F ≤ N * OrdinaryDispatch.GlobalNumeric.semanticWidth N L (k - 1)
+'OrdinaryDispatch.GlobalNumeric.reachable_fast_payload' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+setup-paid-SetupPolynomial
+Universal233.Rule5RemainingLocalWork.setup_work (T S : RMAF.Tree) (X Y : List Nat) (p : RMAF.Vertex) (N : Nat)
+  (tn : (RMAF.leaves T).length ≤ N) (sn : (RMAF.leaves S).length ≤ N) (xy : X.length + Y.length ≤ N)
+  (pn : List.length p ≤ N) (two : 2 ≤ N) :
+  (Universal233.Rule5RemainingLocalWork.setupMeter T S X Y p).work ≤
+    Universal233.Rule5RemainingLocalWork.setupBudget N X.length (RMAF.leaves T).length
+'Universal233.Rule5RemainingLocalWork.setup_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+setup-paid-CommonSetupBinding
+Universal233.Rule5RemainingLocalWork.common_setup_value (T S : RMAF.Tree) (a b : Nat)
+  (d : Universal233.Rule5FinalClassification.BadSelection) :
+  (Universal233.Rule5RemainingLocalWork.commonSetupMeter T S a b d).value =
+    OrdinaryCommonSplit.Source.buildSetup T S (Universal233.HardParent.subtreeLabels S d.badArc)
+      (Universal233.Rule5CommonSelector.outsideLabels S a b d) d.badArc
+'Universal233.Rule5RemainingLocalWork.common_setup_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5RemainingLocalWork.common_setup_work (fee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat)
+  {T S : RMAF.Tree} {i q : RMAF.Vertex} {a b : Nat} {d : Universal233.Rule5FinalClassification.BadSelection}
+  (ch : Universal233.CoreGraph.CherryAt T i a b) (ad : Universal233.Rule5Local.admitted T S a b = true)
+  (sel :
+    (Universal233.Rule5PendantLocalWork.finalMeter fee T S a b).value =
+      some
+        (Universal233.Rule5FinalClassification.FinalSelection.remaining d
+          (Universal233.Rule5FinalClassification.BoundarySelection.one q))) :
+  (Universal233.Rule5RemainingLocalWork.commonSetupMeter T S a b d).work ≤
+    Universal233.Rule5RemainingLocalWork.commonSetupBudget (RMAF.leaves T).length (RMAF.leaves S).length
+      (Universal233.HardParent.subtreeLabels S d.badArc).length
+'Universal233.Rule5RemainingLocalWork.common_setup_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+setup-paid-PaidSelectedBinding
+Universal233.Rule5RemainingLocalWork.paid_selected_value
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat)
+  (literalFee : Universal233.Rule5RemainingLocalWork.LiteralCall → Nat) (T S : RMAF.Tree) (a b : Nat) :
+  (Universal233.Rule5RemainingLocalWork.paidSelectedMeter classFee literalFee T S a b).value =
+    Universal233.Rule5PaidSelector.buildSelected T S a b
+'Universal233.Rule5RemainingLocalWork.paid_selected_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5RemainingLocalWork.paid_selected_work
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat)
+  (literalFee : Universal233.Rule5RemainingLocalWork.LiteralCall → Nat) (T S : RMAF.Tree) (a b L Kc Kl : Nat)
+  (tlabs : ∀ (x : Nat), x ∈ RMAF.leaves T → x < 2 ^ L) (slabs : ∀ (x : Nat), x ∈ RMAF.leaves S → x < 2 ^ L)
+  (classifier :
+    ∀ (r : Universal233.Rule5PendantLocalWork.CheckRequest),
+      Universal233.Rule5PendantLocalWork.CheckDomain ((RMAF.leaves T).length + (RMAF.leaves S).length) L r →
+        classFee r ≤ Kc)
+  (literal :
+    ∀ (d : Universal233.Rule5FinalClassification.BadSelection) (u v : RMAF.Vertex),
+      (Universal233.Rule5PendantLocalWork.finalMeter classFee T S a b).value =
+          some
+            (Universal233.Rule5FinalClassification.FinalSelection.remaining d
+              (Universal233.Rule5FinalClassification.BoundarySelection.second u v)) →
+        ∀ (j : Universal233.Rule5RemainingLocalWork.LiteralCall),
+          Universal233.Rule5RemainingLocalWork.LiteralCallDomain T S a b d u v j → literalFee j ≤ Kl) :
+  (Universal233.Rule5RemainingLocalWork.paidSelectedMeter classFee literalFee T S a b).work ≤
+    Universal233.Rule5RemainingLocalWork.paidSelectedBudget (RMAF.leaves T).length (RMAF.leaves S).length Kc Kl
+'Universal233.Rule5RemainingLocalWork.paid_selected_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5RemainingLocalWork.paid_selected_ledger
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat)
+  (literalFee : Universal233.Rule5RemainingLocalWork.LiteralCall → Nat) (T S : RMAF.Tree) (a b : Nat) :
+  (Universal233.Rule5RemainingLocalWork.paidSelectedMeter classFee literalFee T S a b).work ≤
+    (Universal233.Rule5PendantLocalWork.finalMeter classFee T S a b).work +
+          Universal233.Rule5RemainingLocalWork.secondBuilderBudget (RMAF.leaves T).length (RMAF.leaves S).length
+            (RMAF.leaves T).length 0 +
+        3 +
+      (List.map literalFee (Universal233.Rule5RemainingLocalWork.paidSelectedCalls classFee literalFee T S a b)).sum
+'Universal233.Rule5RemainingLocalWork.paid_selected_ledger' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.Rule5RemainingLocalWork.paid_selected_calls_domain
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat)
+  (literalFee : Universal233.Rule5RemainingLocalWork.LiteralCall → Nat) (T S : RMAF.Tree) (a b : Nat)
+  {j : Universal233.Rule5RemainingLocalWork.LiteralCall}
+  (mem : j ∈ Universal233.Rule5RemainingLocalWork.paidSelectedCalls classFee literalFee T S a b) :
+  ∃ d u v,
+    (Universal233.Rule5PendantLocalWork.finalMeter classFee T S a b).value =
+        some
+          (Universal233.Rule5FinalClassification.FinalSelection.remaining d
+            (Universal233.Rule5FinalClassification.BoundarySelection.second u v)) ∧
+      Universal233.Rule5RemainingLocalWork.LiteralCallDomain T S a b d u v j ∧
+        List.length u ≤ (RMAF.leaves T).length ∧
+          List.length v ≤ (RMAF.leaves T).length ∧
+            List.length d.badArc + 1 ≤ (RMAF.leaves S).length ∧ d.c ∈ RMAF.leaves S
+'Universal233.Rule5RemainingLocalWork.paid_selected_calls_domain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+
+setup-paid-PaidDomains
+Universal233.Rule5RemainingLocalWork.literal_call_payload (T S : RMAF.Tree) (a b : Nat)
+  (d : Universal233.Rule5FinalClassification.BadSelection) (u v : RMAF.Vertex)
+  {j : Universal233.Rule5RemainingLocalWork.LiteralCall}
+  (domain : Universal233.Rule5RemainingLocalWork.LiteralCallDomain T S a b d u v j) :
+  List.length j.row.w + 1 ≤ (RMAF.leaves S).length ∧
+    (RMAF.leaves j.row.X).length ≤ (RMAF.leaves S).length ∧
+      RMAF.leaves j.row.X ⊆ RMAF.leaves S ∧
+        (RMAF.leaves j.core).length ≤ (RMAF.leaves T).length ∧
+          RMAF.leaves j.core ⊆ RMAF.leaves T ∧
+            List.length j.qa + 1 ≤ (RMAF.leaves T).length ∧
+              List.length j.ub + 1 ≤ (RMAF.leaves T).length ∧
+                Universal233.CoreGraph.LeafAt T j.qa j.row.a ∧ Universal233.CoreGraph.LeafAt T j.ub j.row.b
+'Universal233.Rule5RemainingLocalWork.literal_call_payload' depends on axioms: [propext, Quot.sound]
+Universal233.Rule5RemainingLocalWork.literal_call_bits (T S : RMAF.Tree) (a b : Nat)
+  (d : Universal233.Rule5FinalClassification.BadSelection) (u v : RMAF.Vertex)
+  {j : Universal233.Rule5RemainingLocalWork.LiteralCall}
+  (domain : Universal233.Rule5RemainingLocalWork.LiteralCallDomain T S a b d u v j) (L : Nat)
+  (tlabs : ∀ (x : Nat), x ∈ RMAF.leaves T → x < 2 ^ L) (slabs : ∀ (x : Nat), x ∈ RMAF.leaves S → x < 2 ^ L) :
+  (∀ (x : Nat), x ∈ RMAF.leaves j.row.X → x < 2 ^ L) ∧
+    (∀ (x : Nat), x ∈ RMAF.leaves j.core → x < 2 ^ L) ∧ j.row.a < 2 ^ L ∧ j.row.b < 2 ^ L
+'Universal233.Rule5RemainingLocalWork.literal_call_bits' depends on axioms: [propext, Quot.sound]
+
+
+literal-LiteralDecision
+Universal233.PaidLiteralDecisionWork.literal_value (T S : RMAF.Tree) (a b : Nat)
+  (d : Universal233.Rule5FinalClassification.BadSelection) (u v : RMAF.Vertex)
+  (R : Universal233.Rule5PaidSelector.BottomData) (C : RMAF.Tree) (qa ub : RMAF.Vertex) :
+  (Universal233.PaidLiteralDecisionWork.literalMeter T S a b d u v R C qa ub).value =
+    decide (Universal233.Rule5PaidSelector.LiteralProps T S a b d u v R C qa ub)
+'Universal233.PaidLiteralDecisionWork.literal_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+literal-LiteralBinding
+Universal233.PaidLiteralDecisionWork.literal_work (T S : RMAF.Tree) (a b : Nat)
+  (d : Universal233.Rule5FinalClassification.BadSelection) (u v : RMAF.Vertex)
+  (R : Universal233.Rule5PaidSelector.BottomData) (C : RMAF.Tree) (qa ub : RMAF.Vertex) (N : Nat)
+  (ht : (RMAF.leaves T).length ≤ N) (hs : (RMAF.leaves S).length ≤ N) (hx : (RMAF.leaves R.X).length ≤ N)
+  (hc : (RMAF.leaves C).length ≤ N) (hw : List.length R.w ≤ N) (hqa : List.length qa ≤ N) (hub : List.length ub ≤ N)
+  (hu : List.length u ≤ N) (hv : List.length v ≤ N) (hb : List.length d.badArc ≤ N) :
+  (Universal233.PaidLiteralDecisionWork.literalMeter T S a b d u v R C qa ub).work ≤
+    Universal233.PaidLiteralDecisionWork.literalBudget N
+'Universal233.PaidLiteralDecisionWork.literal_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.PaidLiteralDecisionWork.literal_call_work (T S : RMAF.Tree) (a b : Nat)
+  (d : Universal233.Rule5FinalClassification.BadSelection) (u v : RMAF.Vertex)
+  (j : Universal233.Rule5RemainingLocalWork.LiteralCall)
+  (dom : Universal233.Rule5RemainingLocalWork.LiteralCallDomain T S a b d u v j)
+  (hu : List.length u ≤ (RMAF.leaves T).length) (hv : List.length v ≤ (RMAF.leaves T).length)
+  (hb : List.length d.badArc + 1 ≤ (RMAF.leaves S).length) :
+  Universal233.PaidLiteralDecisionWork.literalFee T S a b j ≤
+    Universal233.PaidLiteralDecisionWork.literalBudget ((RMAF.leaves T).length + (RMAF.leaves S).length)
+'Universal233.PaidLiteralDecisionWork.literal_call_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.PaidLiteralDecisionWork.paid_selected_work_concrete
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat) (T S : RMAF.Tree) (a b L Kc : Nat)
+  (tlabs : ∀ (x : Nat), x ∈ RMAF.leaves T → x < 2 ^ L) (slabs : ∀ (x : Nat), x ∈ RMAF.leaves S → x < 2 ^ L)
+  (classifier :
+    ∀ (r : Universal233.Rule5PendantLocalWork.CheckRequest),
+      Universal233.Rule5PendantLocalWork.CheckDomain ((RMAF.leaves T).length + (RMAF.leaves S).length) L r →
+        classFee r ≤ Kc) :
+  (Universal233.Rule5RemainingLocalWork.paidSelectedMeter classFee
+        (Universal233.PaidLiteralDecisionWork.literalFee T S a b) T S a b).work ≤
+    Universal233.Rule5RemainingLocalWork.paidSelectedBudget (RMAF.leaves T).length (RMAF.leaves S).length Kc
+      (Universal233.PaidLiteralDecisionWork.literalBudget ((RMAF.leaves T).length + (RMAF.leaves S).length))
+'Universal233.PaidLiteralDecisionWork.paid_selected_work_concrete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+
+literal-LiteralPolynomial
+Universal233.PaidLiteralDecisionWork.literal_budget_expanded (N : Nat) :
+  Universal233.PaidLiteralDecisionWork.literalBudget N =
+    1024 * N * N * N * N * N + 3072 * N * N * N * N + 960 * N * N * N + 640 * N * N + 238 * N + 164
+'Universal233.PaidLiteralDecisionWork.literal_budget_expanded' depends on axioms: [propext, Quot.sound]
+
+
+literal-LiteralInterface
+Universal233.PaidLiteralDecisionWork.source_decision_value (T S : RMAF.Tree) (a b : Nat)
+  (j : Universal233.Rule5RemainingLocalWork.LiteralCall) :
+  (Universal233.PaidLiteralDecisionWork.evaluateCall T S a b j).value =
+    Universal233.PaidLiteralDecisionWork.sourceDecision T S a b j
+'Universal233.PaidLiteralDecisionWork.source_decision_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+Universal233.PaidLiteralDecisionWork.paid_selected_value_concrete
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat) (T S : RMAF.Tree) (a b : Nat) :
+  (Universal233.Rule5RemainingLocalWork.paidSelectedMeter classFee
+        (Universal233.PaidLiteralDecisionWork.literalFee T S a b) T S a b).value =
+    Universal233.Rule5PaidSelector.buildSelected T S a b
+'Universal233.PaidLiteralDecisionWork.paid_selected_value_concrete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Universal233.PaidLiteralDecisionWork.paid_selected_ledger_concrete
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat) (T S : RMAF.Tree) (a b : Nat) :
+  (Universal233.Rule5RemainingLocalWork.paidSelectedMeter classFee
+        (Universal233.PaidLiteralDecisionWork.literalFee T S a b) T S a b).work ≤
+    (Universal233.Rule5PendantLocalWork.finalMeter classFee T S a b).work +
+          Universal233.Rule5RemainingLocalWork.secondBuilderBudget (RMAF.leaves T).length (RMAF.leaves S).length
+            (RMAF.leaves T).length 0 +
+        3 +
+      (List.map (Universal233.PaidLiteralDecisionWork.literalFee T S a b)
+          (Universal233.Rule5RemainingLocalWork.paidSelectedCalls classFee
+            (Universal233.PaidLiteralDecisionWork.literalFee T S a b) T S a b)).sum
+'Universal233.PaidLiteralDecisionWork.paid_selected_ledger_concrete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Universal233.PaidLiteralDecisionWork.literal_call_scalar_bits
+  (classFee : Universal233.Rule5PendantLocalWork.CheckRequest → Nat) (T S : RMAF.Tree) (a b L : Nat)
+  (d : Universal233.Rule5FinalClassification.BadSelection) (u v : RMAF.Vertex)
+  (sel :
+    (Universal233.Rule5PendantLocalWork.finalMeter classFee T S a b).value =
+      some
+        (Universal233.Rule5FinalClassification.FinalSelection.remaining d
+          (Universal233.Rule5FinalClassification.BoundarySelection.second u v)))
+  (j : Universal233.Rule5RemainingLocalWork.LiteralCall)
+  (dom : Universal233.Rule5RemainingLocalWork.LiteralCallDomain T S a b d u v j)
+  (tlabs : ∀ (x : Nat), x ∈ RMAF.leaves T → x < 2 ^ L) (slabs : ∀ (x : Nat), x ∈ RMAF.leaves S → x < 2 ^ L) :
+  a < 2 ^ L ∧
+    b < 2 ^ L ∧
+      d.c < 2 ^ L ∧
+        j.row.a < 2 ^ L ∧
+          j.row.b < 2 ^ L ∧
+            (∀ (x : Nat), x ∈ RMAF.leaves j.row.X → x < 2 ^ L) ∧ ∀ (x : Nat), x ∈ RMAF.leaves j.core → x < 2 ^ L
+'Universal233.PaidLiteralDecisionWork.literal_call_scalar_bits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+
+binary-BinaryProducerScheduler
+GenericForest.BinaryProducer.scheduleBits_value {P P' A A' : Type} (π : P → P') (ρ : A → A')
+  (solve :
+    P →
+      GenericForest.BinaryProvider.Bits →
+        Universal233.WholeSourceWork.Charged (Option (GenericForest.BinaryProvider.Bits × A)))
+  (native : P' → Nat → Option (Nat × A'))
+  (ih :
+    ∀ (p : P) (b : GenericForest.BinaryProvider.Bits),
+      Option.map (GenericForest.BinaryProducer.pairValue ρ) (solve p b).value =
+        native (π p) (GenericForest.ScalarBits.decode b))
+  (q : GenericForest.BinaryProvider.Bits) (js : List (GenericForest.BinaryProducer.Job P A)) :
+  GenericForest.BinaryProducer.receiptValue ρ (GenericForest.BinaryProducer.scheduleBits solve q js).value =
+    Universal233.PaidQueries.schedule native (GenericForest.ScalarBits.decode q)
+      (List.map (GenericForest.BinaryProducer.jobValue π ρ) js)
+'GenericForest.BinaryProducer.scheduleBits_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+binary-BinaryProducerScheduleWork
+GenericForest.BinaryProducer.allocated_local_width {P A : Type} (W : Nat) (q : GenericForest.BinaryProvider.Bits)
+  (js : List (GenericForest.BinaryProducer.Job P A))
+  (caps : ∀ (j : GenericForest.BinaryProducer.Job P A), j ∈ js → GenericForest.BinaryProducer.CostWidth W j) :
+  List.length
+      (GenericForest.BinaryProducer.allocationBits q (GenericForest.BinaryProducer.knownBits js).value
+          (GenericForest.BinaryProducer.pendingBits js).value).value ≤
+    List.length q + W + 2 * js.length + 2
+'GenericForest.BinaryProducer.allocated_local_width' depends on axioms: [propext, Quot.sound]
+GenericForest.BinaryProducer.scheduleBits_work {P A : Type}
+  (solve :
+    P →
+      GenericForest.BinaryProvider.Bits →
+        Universal233.WholeSourceWork.Charged (Option (GenericForest.BinaryProvider.Bits × A)))
+  (q : GenericForest.BinaryProvider.Bits) (js : List (GenericForest.BinaryProducer.Job P A)) (W C : Nat)
+  (caps : ∀ (j : GenericForest.BinaryProducer.Job P A), j ∈ js → GenericForest.BinaryProducer.CostWidth W j)
+  (callback : ∀ (p : P) (b : GenericForest.BinaryProvider.Bits), (solve p b).work ≤ C)
+  (answerCap :
+    ∀ (p : P) (b : GenericForest.BinaryProvider.Bits) (x : GenericForest.BinaryProvider.Bits × A),
+      (solve p b).value = some x → List.length x.fst ≤ W) :
+  (GenericForest.BinaryProducer.scheduleBits solve q js).work ≤
+    (C + 1000 * (List.length q + W + js.length + 3)) * (js.length + 1)
+'GenericForest.BinaryProducer.scheduleBits_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+binary-BinaryProducerPretest
+GenericForest.BinaryProducer.pretestBits_value (T S : GenericForest.BinaryProvider.Tree) :
+  (GenericForest.BinaryProducer.pretestBits T S).value =
+    Universal233.DepthOne.pretest01 (GenericForest.BinaryProvider.treeValue T)
+      (GenericForest.BinaryProvider.treeValue S)
+'GenericForest.BinaryProducer.pretestBits_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+binary-BinaryProducerDisjoint
+GenericForest.BinaryProducer.disjointProducer_value
+  (ordinary :
+    GenericForest.BinaryProvider.Tree →
+      GenericForest.BinaryProvider.Tree →
+        GenericForest.BinaryProvider.Bits →
+          Universal233.WholeSourceWork.Charged (Option GenericForest.BinaryProvider.Forest))
+  (native : RMAF.Tree → RMAF.Tree → Nat → Option GenericForest.Forest)
+  (ih :
+    ∀ (t s : GenericForest.BinaryProvider.Tree) (b : GenericForest.BinaryProvider.Bits),
+      GenericForest.BinaryProvider.forestOptionValue (ordinary t s b).value =
+        native (GenericForest.BinaryProvider.treeValue t) (GenericForest.BinaryProvider.treeValue s)
+          (GenericForest.ScalarBits.decode b))
+  (t : GenericForest.BinaryProvider.Tree) (ss : List GenericForest.BinaryProvider.Tree)
+  (q : GenericForest.BinaryProvider.Bits) :
+  GenericForest.BinaryProvider.forestOptionValue (GenericForest.BinaryProducer.disjointProducer ordinary t ss q).value =
+    GenericForest.disjointSolve (GenericForest.BinaryProvider.treeValue t)
+      (GenericForest.BinaryProvider.sourcesValue ss) native (GenericForest.ScalarBits.decode q)
+'GenericForest.BinaryProducer.disjointProducer_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+GenericForest.BinaryProducer.singletonProducer_value
+  (ordinary :
+    GenericForest.BinaryProvider.Tree →
+      GenericForest.BinaryProvider.Tree →
+        GenericForest.BinaryProvider.Bits →
+          Universal233.WholeSourceWork.Charged (Option GenericForest.BinaryProvider.Forest))
+  (native : RMAF.Tree → RMAF.Tree → Nat → Option GenericForest.Forest)
+  (ih :
+    ∀ (t s : GenericForest.BinaryProvider.Tree) (b : GenericForest.BinaryProvider.Bits),
+      GenericForest.BinaryProvider.forestOptionValue (ordinary t s b).value =
+        native (GenericForest.BinaryProvider.treeValue t) (GenericForest.BinaryProvider.treeValue s)
+          (GenericForest.ScalarBits.decode b))
+  (t s : GenericForest.BinaryProvider.Tree) (q : GenericForest.BinaryProvider.Bits) :
+  GenericForest.BinaryProvider.forestOptionValue (GenericForest.BinaryProducer.singletonProducer ordinary t s q).value =
+    (native (GenericForest.BinaryProvider.treeValue t) (GenericForest.BinaryProvider.treeValue s)
+          (GenericForest.ScalarBits.decode q)).bind
+      (GenericForest.checked (some (GenericForest.BinaryProvider.treeValue t))
+        [GenericForest.BinaryProvider.treeValue s] (GenericForest.ScalarBits.decode q))
+'GenericForest.BinaryProducer.singletonProducer_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+binary-BinaryProducerLocalCaps
+GenericForest.BinaryProducer.ordinaryAnswer_work
+  (ordinary :
+    GenericForest.BinaryProvider.Tree →
+      GenericForest.BinaryProvider.Tree →
+        GenericForest.BinaryProvider.Bits →
+          Universal233.WholeSourceWork.Charged (Option GenericForest.BinaryProvider.Forest))
+  (p : GenericForest.BinaryProvider.Tree × GenericForest.BinaryProvider.Tree) (b : GenericForest.BinaryProvider.Bits)
+  (N C : Nat) (cost : (ordinary p.fst p.snd b).work ≤ C)
+  (size : ∀ (F : GenericForest.BinaryProvider.Forest), (ordinary p.fst p.snd b).value = some F → List.length F ≤ N) :
+  (GenericForest.BinaryProducer.ordinaryAnswer ordinary p b).work ≤ C + 16 * (N + 1) ^ 2 + 24 * (N + 2) + 8
+'GenericForest.BinaryProducer.ordinaryAnswer_work' depends on axioms: [propext, Quot.sound]
+GenericForest.BinaryProducer.componentBits_caps (L N : Nat) (t s u v : GenericForest.BinaryProvider.Tree)
+  (tc : GenericForest.BinaryProvider.TreeWidth L t) (sc : GenericForest.BinaryProvider.TreeWidth L s)
+  (tn : Universal233.CoreWork.treeNodes (GenericForest.BinaryProvider.treeValue t) ≤ N)
+  (sn : Universal233.CoreWork.treeNodes (GenericForest.BinaryProvider.treeValue s) ≤ N)
+  (h : (GenericForest.BinaryProducer.componentBits t s).value = some (u, v)) :
+  GenericForest.BinaryProvider.TreeWidth L u ∧
+    GenericForest.BinaryProvider.TreeWidth L v ∧
+      Universal233.CoreWork.treeNodes (GenericForest.BinaryProvider.treeValue u) ≤ N ∧
+        Universal233.CoreWork.treeNodes (GenericForest.BinaryProvider.treeValue v) ≤ N
+'GenericForest.BinaryProducer.componentBits_caps' depends on axioms: [propext, Classical.choice, Quot.sound]
+GenericForest.BinaryProducer.jobsBits_count (t : GenericForest.BinaryProvider.Tree)
+  (ss : List GenericForest.BinaryProvider.Tree)
+  (js :
+    List
+      (GenericForest.BinaryProducer.Job (GenericForest.BinaryProvider.Tree × GenericForest.BinaryProvider.Tree)
+        GenericForest.BinaryProvider.Forest)) :
+  (GenericForest.BinaryProducer.jobsBits t ss).value = some js → js.length = ss.length
+'GenericForest.BinaryProducer.jobsBits_count' depends on axioms: [propext, Quot.sound]
+
+
+binary-BinaryProducerSource
+GenericForest.BinaryProducer.sourceForestBits_value (S : GenericForest.BinaryProvider.Tree)
+  (Q : GenericForest.BinaryProvider.Forest) :
+  GenericForest.BinaryProvider.sourcesValue (GenericForest.BinaryProducer.sourceForestBits S Q).value =
+    OutputState.sourceForest (GenericForest.BinaryProvider.treeValue S) (GenericForest.BinaryProvider.forestValue Q)
+'GenericForest.BinaryProducer.sourceForestBits_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+GenericForest.BinaryProducer.replaceBits_value (Q : GenericForest.BinaryProvider.Forest)
+  (i : GenericForest.BinaryProvider.Bits) (ss : List GenericForest.BinaryProvider.Tree) :
+  GenericForest.BinaryProvider.sourcesValue (GenericForest.BinaryProducer.replaceBits Q i ss).value =
+    GenericForest.replace (GenericForest.BinaryProvider.sourcesValue ss) (GenericForest.ScalarBits.decode i)
+      (GenericForest.BinaryProvider.forestValue Q)
+'GenericForest.BinaryProducer.replaceBits_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+GenericForest.BinaryProducer.replaceBits_width (L : Nat) (Q : GenericForest.BinaryProvider.Forest)
+  (i : GenericForest.BinaryProvider.Bits) (ss : List GenericForest.BinaryProvider.Tree)
+  (cap : GenericForest.BinaryProvider.SourcesWidth L ss) :
+  GenericForest.BinaryProvider.SourcesWidth L (GenericForest.BinaryProducer.replaceBits Q i ss).value
+'GenericForest.BinaryProducer.replaceBits_width' depends on axioms: [propext, Quot.sound]
+
+
+binary-BinaryProducerRaw
+GenericForest.BinaryProducer.rawCandidates_value
+  (solve :
+    Option GenericForest.BinaryProvider.Tree →
+      List GenericForest.BinaryProvider.Tree →
+        GenericForest.BinaryProvider.Bits →
+          Universal233.WholeSourceWork.Charged (Option GenericForest.BinaryProvider.Forest))
+  (native : Option RMAF.Tree → List RMAF.Tree → Nat → Option GenericForest.Forest)
+  (ih :
+    ∀ (T : Option GenericForest.BinaryProvider.Tree) (ss : List GenericForest.BinaryProvider.Tree)
+      (b : GenericForest.BinaryProvider.Bits),
+      GenericForest.BinaryProvider.forestOptionValue (solve T ss b).value =
+        native (GenericForest.BinaryProvider.targetValue T) (GenericForest.BinaryProvider.sourcesValue ss)
+          (GenericForest.ScalarBits.decode b))
+  (T : Option GenericForest.BinaryProvider.Tree) (ss : List GenericForest.BinaryProvider.Tree)
+  (q : GenericForest.BinaryProvider.Bits)
+  (ios : List (GenericForest.BinaryProvider.Bits × GenericForest.BinaryProducer.Output)) :
+  List.map GenericForest.BinaryProvider.forestValue
+      (GenericForest.BinaryProducer.rawCandidates solve T ss q ios).value =
+    List.filterMap
+      (fun io =>
+        have d := io.snd.sourceCuts.length;
+        if 1 ≤ d ∧ d ≤ GenericForest.ScalarBits.decode q then
+          native (GenericForest.BinaryProvider.targetValue T)
+            (GenericForest.replace (GenericForest.BinaryProvider.sourcesValue ss) io.fst io.snd.partition)
+            (GenericForest.ScalarBits.decode q - d)
+        else none)
+      (List.map GenericForest.BinaryProducer.branchValue ios)
+'GenericForest.BinaryProducer.rawCandidates_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+GenericForest.BinaryProducer.rawParentProducer_value
+  (solve :
+    Option GenericForest.BinaryProvider.Tree →
+      List GenericForest.BinaryProvider.Tree →
+        GenericForest.BinaryProvider.Bits →
+          Universal233.WholeSourceWork.Charged (Option GenericForest.BinaryProvider.Forest))
+  (native : Option RMAF.Tree → List RMAF.Tree → Nat → Option GenericForest.Forest)
+  (ih :
+    ∀ (T : Option GenericForest.BinaryProvider.Tree) (ss : List GenericForest.BinaryProvider.Tree)
+      (b : GenericForest.BinaryProvider.Bits),
+      GenericForest.BinaryProvider.forestOptionValue (solve T ss b).value =
+        native (GenericForest.BinaryProvider.targetValue T) (GenericForest.BinaryProvider.sourcesValue ss)
+          (GenericForest.ScalarBits.decode b))
+  (T : Option GenericForest.BinaryProvider.Tree) (ss : List GenericForest.BinaryProvider.Tree)
+  (q : GenericForest.BinaryProvider.Bits)
+  (ios : List (GenericForest.BinaryProvider.Bits × GenericForest.BinaryProducer.Output)) :
+  GenericForest.BinaryProvider.forestOptionValue
+      (GenericForest.BinaryProducer.rawParentProducer solve T ss q ios).value =
+    RMAF.best List.length
+      (GenericForest.accepted (GenericForest.BinaryProvider.targetValue T)
+        (GenericForest.BinaryProvider.sourcesValue ss) (GenericForest.ScalarBits.decode q))
+      (List.filterMap
+        (fun io =>
+          have d := io.snd.sourceCuts.length;
+          if 1 ≤ d ∧ d ≤ GenericForest.ScalarBits.decode q then
+            native (GenericForest.BinaryProvider.targetValue T)
+              (GenericForest.replace (GenericForest.BinaryProvider.sourcesValue ss) io.fst io.snd.partition)
+              (GenericForest.ScalarBits.decode q - d)
+          else none)
+        (List.map GenericForest.BinaryProducer.branchValue ios))
+'GenericForest.BinaryProducer.rawParentProducer_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+GenericForest.BinaryProducer.rawCandidates_count
+  (solve :
+    Option GenericForest.BinaryProvider.Tree →
+      List GenericForest.BinaryProvider.Tree →
+        GenericForest.BinaryProvider.Bits →
+          Universal233.WholeSourceWork.Charged (Option GenericForest.BinaryProvider.Forest))
+  (T : Option GenericForest.BinaryProvider.Tree) (ss : List GenericForest.BinaryProvider.Tree)
+  (q : GenericForest.BinaryProvider.Bits)
+  (ios : List (GenericForest.BinaryProvider.Bits × GenericForest.BinaryProducer.Output)) :
+  (GenericForest.BinaryProducer.rawCandidates solve T ss q ios).value.length ≤ ios.length
+'GenericForest.BinaryProducer.rawCandidates_count' depends on axioms: [propext, Quot.sound]
+GenericForest.BinaryProducer.rawParentProducer_paid
+  (solve :
+    Option GenericForest.BinaryProvider.Tree →
+      List GenericForest.BinaryProvider.Tree →
+        GenericForest.BinaryProvider.Bits →
+          Universal233.WholeSourceWork.Charged (Option GenericForest.BinaryProvider.Forest))
+  (T : Option GenericForest.BinaryProvider.Tree) (ss : List GenericForest.BinaryProvider.Tree)
+  (q : GenericForest.BinaryProvider.Bits)
+  (ios : List (GenericForest.BinaryProvider.Bits × GenericForest.BinaryProducer.Output)) :
+  (GenericForest.BinaryProducer.rawParentProducer solve T ss q ios).work =
+    (GenericForest.BinaryProducer.rawCandidates solve T ss q ios).work +
+        (GenericForest.BinaryCaller.bestCandidates T ss q
+            (GenericForest.BinaryProducer.rawCandidates solve T ss q ios).value).work +
+      4
+'GenericForest.BinaryProducer.rawParentProducer_paid' depends on axioms: [propext, Quot.sound]
+
+
+binary-BinaryProducerAccounting
+GenericForest.BinaryProducer.disjoint_allocated_width (L : Nat) (t : GenericForest.BinaryProvider.Tree)
+  (ss : List GenericForest.BinaryProvider.Tree) (q : GenericForest.BinaryProvider.Bits)
+  (tc : GenericForest.BinaryProvider.TreeWidth L t) (sc : GenericForest.BinaryProvider.SourcesWidth L ss)
+  (js :
+    List
+      (GenericForest.BinaryProducer.Job (GenericForest.BinaryProvider.Tree × GenericForest.BinaryProvider.Tree)
+        GenericForest.BinaryProvider.Forest))
+  (h : (GenericForest.BinaryProducer.jobsBits t ss).value = some js) :
+  List.length
+      (GenericForest.BinaryProducer.allocationBits q (GenericForest.BinaryProducer.knownBits js).value
+          (GenericForest.BinaryProducer.pendingBits js).value).value ≤
+    List.length q + 2 * ss.length + 3
+'GenericForest.BinaryProducer.disjoint_allocated_width' depends on axioms: [propext, Quot.sound]
+GenericForest.BinaryProducer.disjointProducer_accounted
+  (ordinary :
+    GenericForest.BinaryProvider.Tree →
+      GenericForest.BinaryProvider.Tree →
+        GenericForest.BinaryProvider.Bits →
+          Universal233.WholeSourceWork.Charged (Option GenericForest.BinaryProvider.Forest))
+  (t : GenericForest.BinaryProvider.Tree) (ss : List GenericForest.BinaryProvider.Tree)
+  (q : GenericForest.BinaryProvider.Bits)
+  (js :
+    List
+      (GenericForest.BinaryProducer.Job (GenericForest.BinaryProvider.Tree × GenericForest.BinaryProvider.Tree)
+        GenericForest.BinaryProvider.Forest))
+  (h : (GenericForest.BinaryProducer.jobsBits t ss).value = some js) :
+  (GenericForest.BinaryProducer.disjointProducer ordinary t ss q).work =
+    (GenericForest.BinaryProducer.jobsBits t ss).work +
+          (GenericForest.BinaryProducer.scheduleBits (GenericForest.BinaryProducer.ordinaryAnswer ordinary) q js).work +
+        (GenericForest.BinaryCaller.disjointFinish t ss q
+            (GenericForest.BinaryProducer.scheduleBits (GenericForest.BinaryProducer.ordinaryAnswer ordinary) q
+                  js).value.answers).work +
+      8
+'GenericForest.BinaryProducer.disjointProducer_accounted' depends on axioms: [propext, Quot.sound]
+GenericForest.BinaryProducer.disjoint_setup_paid
+  (ordinary :
+    GenericForest.BinaryProvider.Tree →
+      GenericForest.BinaryProvider.Tree →
+        GenericForest.BinaryProvider.Bits →
+          Universal233.WholeSourceWork.Charged (Option GenericForest.BinaryProvider.Forest))
+  (t : GenericForest.BinaryProvider.Tree) (ss : List GenericForest.BinaryProvider.Tree)
+  (q : GenericForest.BinaryProvider.Bits)
+  (js :
+    List
+      (GenericForest.BinaryProducer.Job (GenericForest.BinaryProvider.Tree × GenericForest.BinaryProvider.Tree)
+        GenericForest.BinaryProvider.Forest))
+  (h : (GenericForest.BinaryProducer.jobsBits t ss).value = some js)
+  (xs : List (GenericForest.BinaryProvider.Bits × GenericForest.BinaryProvider.Forest))
+  (a :
+    (GenericForest.BinaryProducer.scheduleBits (GenericForest.BinaryProducer.ordinaryAnswer ordinary) q
+            js).value.answers =
+      some xs) :
+  (GenericForest.BinaryProvider.checkerCapacity (some t) ss q (List.flatMap Prod.snd xs)).work ≤
+    (GenericForest.BinaryProducer.disjointProducer ordinary t ss q).work
+'GenericForest.BinaryProducer.disjoint_setup_paid' depends on axioms: [propext, Quot.sound]
+
+
+recovery-RSBounds
+OrdinaryDispatch.RecoveryScalar.descendant_caps (t : RMAF.Tree) (color : Nat → Nat) (budget B : Nat)
+  (labels : ∀ (x : Nat), x ∈ RMAF.leaves t → x < B) (colors : ∀ (x : Nat), x ∈ RMAF.leaves t → color x < B) {q : Nat}
+  {current : Universal233.CoreProgram.GTree} {d : List Universal233.CoreProgram.Group} {c : List RMAF.Vertex}
+  (reach : OrdinaryDispatch.RecoveryScalar.Descendant t color budget q current d c) :
+  OrdinaryDispatch.RecoveryScalar.StateCap (Universal233.CoreWork.inputResource t) B q current d c
+'OrdinaryDispatch.RecoveryScalar.descendant_caps' depends on axioms: [propext, Quot.sound]
+OrdinaryDispatch.RecoveryScalar.descendant_budget (t : RMAF.Tree) (color : Nat → Nat) (budget : Nat) {q : Nat}
+  {current : Universal233.CoreProgram.GTree} {d : List Universal233.CoreProgram.Group} {c : List RMAF.Vertex}
+  (reach : OrdinaryDispatch.RecoveryScalar.Descendant t color budget q current d c) :
+  q ≤ min budget ((RMAF.leaves t).length - 1)
+'OrdinaryDispatch.RecoveryScalar.descendant_budget' depends on axioms: [propext, Quot.sound]
+OrdinaryDispatch.RecoveryScalar.run_events (q : Nat) (t : Universal233.CoreProgram.GTree)
+  (d : List Universal233.CoreProgram.Group) (c : List RMAF.Vertex) :
+  OrdinaryDispatch.RecoveryScalar.eventSize (Universal233.CoreProgram.run q t d c) + 3 ≤ 8 * 2 ^ (q + 1)
+'OrdinaryDispatch.RecoveryScalar.run_events' depends on axioms: [propext, Quot.sound]
+OrdinaryDispatch.RecoveryScalar.scalar_width_inputs (N L Q : Nat) :
+  N < 2 ^ OrdinaryDispatch.RecoveryScalar.scalarWidth N L Q ∧
+    2 ^ L ≤ 2 ^ OrdinaryDispatch.RecoveryScalar.scalarWidth N L Q ∧
+      2 ^ (Q + 5) ≤ 2 ^ OrdinaryDispatch.RecoveryScalar.scalarWidth N L Q
+'OrdinaryDispatch.RecoveryScalar.scalar_width_inputs' depends on axioms: [propext, Quot.sound]
+
+
+recovery-RSOps
+OrdinaryDispatch.RecoveryBits.clipBudget_value {α : Type} (W : Nat) (budget : List Bool) (leaves : List α)
+  (fits : leaves.length < 2 ^ W) :
+  OrdinaryDispatch.RecoveryBits.decode (OrdinaryDispatch.RecoveryBits.clipBudget W budget leaves).value =
+    min (OrdinaryDispatch.RecoveryBits.decode budget) (leaves.length - 1)
+'OrdinaryDispatch.RecoveryBits.clipBudget_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.RecoveryBits.clipBudget_work {α : Type} (W : Nat) (budget : List Bool) (leaves : List α)
+  (positive : 1 ≤ W) (bw : budget.length ≤ W) :
+  (OrdinaryDispatch.RecoveryBits.clipBudget W budget leaves).work ≤ 160 * (W + 1) * (leaves.length + 1)
+'OrdinaryDispatch.RecoveryBits.clipBudget_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.RecoveryBits.colorBits_value (P : List (List (List Bool))) (x : List Bool) :
+  OrdinaryDispatch.RecoveryBits.decode (OrdinaryDispatch.RecoveryBits.colorBits P x).value =
+    Universal233.FinalCutRecovery.blockColor (List.map (List.map OrdinaryDispatch.RecoveryBits.decode) P)
+      (OrdinaryDispatch.RecoveryBits.decode x)
+'OrdinaryDispatch.RecoveryBits.colorBits_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.RecoveryBits.colorBits_work (W : Nat) (P : List (List (List Bool))) (x : List Bool) (xw : x.length ≤ W)
+  (pw : ∀ (b : List (List Bool)), b ∈ P → ∀ (y : List Bool), y ∈ b → y.length ≤ W) :
+  (OrdinaryDispatch.RecoveryBits.colorBits P x).work ≤ 96 * (W + 1) * (P.flatten.length + P.length + 1)
+'OrdinaryDispatch.RecoveryBits.colorBits_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+recovery-RSOutputs
+OrdinaryDispatch.RecoveryScalar.generate_output_caps (t : RMAF.Tree) (color : Nat → Nat) (budget B : Nat)
+  (labels : ∀ (x : Nat), x ∈ RMAF.leaves t → x < B) (colors : ∀ (x : Nat), x ∈ RMAF.leaves t → color x < B)
+  (o : Universal233.CoreProgram.Output) (ho : o ∈ (Universal233.CoreProgram.generate t color budget).outputs) :
+  OrdinaryDispatch.RecoveryScalar.OutputCap (Universal233.CoreWork.inputResource t) B o
+'OrdinaryDispatch.RecoveryScalar.generate_output_caps' depends on axioms: [propext, Quot.sound]
+OrdinaryDispatch.RecoveryScalar.checked_color_caps (t : RMAF.Tree) (P : List (List Nat)) (L : Nat)
+  (hn : (RMAF.leaves t).Nodup) (hp : RMAF.partitionCheck (RMAF.leaves t) P = true)
+  (labels : ∀ (x : Nat), x ∈ RMAF.leaves t → x < 2 ^ L) (x : Nat) : Universal233.FinalCutRecovery.blockColor P x < 2 ^ L
+'OrdinaryDispatch.RecoveryScalar.checked_color_caps' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+recovery-RSCopy
+OrdinaryDispatch.RecoveryBits.counterAdd_value (W : Nat) (xs ys : List Bool)
+  (fits : OrdinaryDispatch.RecoveryBits.decode xs + OrdinaryDispatch.RecoveryBits.decode ys < 2 ^ W) :
+  OrdinaryDispatch.RecoveryBits.decode (OrdinaryDispatch.RecoveryBits.counterAdd W xs ys).value =
+    OrdinaryDispatch.RecoveryBits.decode xs + OrdinaryDispatch.RecoveryBits.decode ys
+'OrdinaryDispatch.RecoveryBits.counterAdd_value' depends on axioms: [propext, Quot.sound]
+OrdinaryDispatch.RecoveryBits.counterAdd_work (W : Nat) (xs ys : List Bool) (xl : xs.length ≤ W) (yl : ys.length ≤ W) :
+  (OrdinaryDispatch.RecoveryBits.counterAdd W xs ys).work ≤ 64 * (W + 1)
+'OrdinaryDispatch.RecoveryBits.counterAdd_work' depends on axioms: [propext, Quot.sound]
+OrdinaryDispatch.RecoveryBits.copyTree_value (t : OrdinaryDispatch.RecoveryBits.BitTree) :
+  (OrdinaryDispatch.RecoveryBits.copyTree t).value = t
+'OrdinaryDispatch.RecoveryBits.copyTree_value' depends on axioms: [propext, Quot.sound]
+OrdinaryDispatch.RecoveryBits.copyOutput_work (o : OrdinaryDispatch.RecoveryBits.BitOutput) :
+  (OrdinaryDispatch.RecoveryBits.copyOutput o).work ≤ 32 * OrdinaryDispatch.RecoveryBits.outputCells o
+'OrdinaryDispatch.RecoveryBits.copyOutput_work' depends on axioms: [propext, Quot.sound]
+
+
+recovery-RSInterface
+OrdinaryDispatch.RecoveryScalar.receipt_field_caps (q Q : Nat) (hq : q ≤ Q) (t : Universal233.CoreProgram.GTree)
+  (d : List Universal233.CoreProgram.Group) (c : List RMAF.Vertex) :
+  have r := Universal233.CoreProgram.run q t d c;
+  r.outputs.length < 2 ^ (Q + 5) ∧
+    r.refusals.length < 2 ^ (Q + 5) ∧ r.visited < 2 ^ (Q + 5) ∧ r.childAttempts < 2 ^ (Q + 5) ∧ r.pruned < 2 ^ (Q + 5)
+'OrdinaryDispatch.RecoveryScalar.receipt_field_caps' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.RecoveryScalar.final_recovery_ranges (t : RMAF.Tree) (P : List (List Nat)) (L : Nat)
+  (hn : (RMAF.leaves t).Nodup) (hp : RMAF.partitionCheck (RMAF.leaves t) P = true)
+  (labels : ∀ (x : Nat), x ∈ RMAF.leaves t → x < 2 ^ L) :
+  (∀ (q : Nat) (current : Universal233.CoreProgram.GTree) (d : List Universal233.CoreProgram.Group)
+      (c : List RMAF.Vertex),
+      OrdinaryDispatch.RecoveryScalar.Descendant t (Universal233.FinalCutRecovery.blockColor P) (P.length - 1) q current
+          d c →
+        OrdinaryDispatch.RecoveryScalar.StateCap (Universal233.CoreWork.inputResource t) (2 ^ L) q current d c) ∧
+    ∀ (o : Universal233.CoreProgram.Output),
+      o ∈ (Universal233.CoreProgram.generate t (Universal233.FinalCutRecovery.blockColor P) (P.length - 1)).outputs →
+        OrdinaryDispatch.RecoveryScalar.OutputCap (Universal233.CoreWork.inputResource t) (2 ^ L) o
+'OrdinaryDispatch.RecoveryScalar.final_recovery_ranges' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.RecoveryScalar.source_bound_and_ranges (t : RMAF.Tree) (P : List (List Nat)) (L : Nat)
+  (hn : (RMAF.leaves t).Nodup) (hp : RMAF.partitionCheck (RMAF.leaves t) P = true)
+  (he : RMAF.pairwiseEmbeddings t P = true) (labels : ∀ (x : Nat), x ∈ RMAF.leaves t → x < 2 ^ L) :
+  (OrdinaryDispatch.RecoveryLocalWork.meterRecover t P).work ≤
+      OrdinaryDispatch.RecoveryLocalWork.recoverySourceEnvelope (RMAF.leaves t).length * 2 ^ (P.length - 1) ∧
+    ∀ (o : Universal233.CoreProgram.Output),
+      o ∈ (Universal233.CoreProgram.generate t (Universal233.FinalCutRecovery.blockColor P) (P.length - 1)).outputs →
+        OrdinaryDispatch.RecoveryScalar.OutputCap (Universal233.CoreWork.inputResource t) (2 ^ L) o
+'OrdinaryDispatch.RecoveryScalar.source_bound_and_ranges' depends on axioms: [propext, Classical.choice, Quot.sound]
+OrdinaryDispatch.RecoveryScalar.finite_primitive_work (W : Nat) (xs ys : List Bool) (xl : xs.length ≤ W)
+  (yl : ys.length ≤ W) :
+  (OrdinaryDispatch.RecoveryBits.copiedEqual xs ys).work ≤ 128 * (W + 1) ∧
+    (OrdinaryDispatch.RecoveryBits.leBits xs ys).work ≤ 128 * (W + 1) ∧
+      (OrdinaryDispatch.RecoveryBits.minBits xs ys).work ≤ 128 * (W + 1) ∧
+        (OrdinaryDispatch.RecoveryBits.subtractBits xs ys).work ≤ 128 * (W + 1) ∧
+          (OrdinaryDispatch.RecoveryBits.counterAdd W xs ys).work ≤ 128 * (W + 1)
+'OrdinaryDispatch.RecoveryScalar.finite_primitive_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+
+recovery-RSCopyBounds
+OrdinaryDispatch.RecoveryBits.copyTree_source_bound (W N B q : Nat) (t : OrdinaryDispatch.RecoveryBits.BitTree)
+  (d : List Universal233.CoreProgram.Group) (c : List RMAF.Vertex) (words : OrdinaryDispatch.RecoveryBits.TreeWords W t)
+  (caps : OrdinaryDispatch.RecoveryScalar.StateCap N B q (OrdinaryDispatch.RecoveryBits.viewTree t) d c) :
+  (OrdinaryDispatch.RecoveryBits.copyTree t).work ≤ 64 * (W + 4) * N
+'OrdinaryDispatch.RecoveryBits.copyTree_source_bound' depends on axioms: [propext, Quot.sound]
+OrdinaryDispatch.RecoveryBits.copyOutput_source_bound (W N B : Nat) (o : OrdinaryDispatch.RecoveryBits.BitOutput)
+  (words : OrdinaryDispatch.RecoveryBits.ForestWords W o.partition)
+  (caps : OrdinaryDispatch.RecoveryScalar.OutputCap N B (OrdinaryDispatch.RecoveryBits.viewOutput o)) :
+  (OrdinaryDispatch.RecoveryBits.copyOutput o).work ≤ 32 * (W + 4) * (N + 1) ^ 2
+'OrdinaryDispatch.RecoveryBits.copyOutput_source_bound' depends on axioms: [propext, Quot.sound]

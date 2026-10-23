@@ -1,0 +1,77 @@
+{
+  "id": "branching",
+  "title": "Branching & measures",
+  "status": "open",
+  "summary": "Two naive improvements refuted. Eight arithmetic theorems checked in Lean; residual rebalancing lemma remains open.",
+  "metrics": {
+    "approaches_tested": 3,
+    "counterexamples": 2,
+    "tree_pairs_scanned": 131265,
+    "synthetic_path_instances": 2640,
+    "lean_arithmetic_theorems": 8,
+    "target_base": 2.31
+  },
+  "claims": [
+    {
+      "id": "baseline-recurrence",
+      "label": "Published bottleneck",
+      "status": "source-reported",
+      "detail": "Full rooted section read. Lemma16 vector (1,1,3,4,4); exact root bracket 2.339057129\u20132.339057130."
+    },
+    {
+      "id": "forced-cherry",
+      "label": "Always retain the cherry",
+      "status": "refuted",
+      "detail": "n6 exact optimum3; forcing selected t=2 cherry together requires4. Earlier Figure16 rules excluded; independent verification pending."
+    },
+    {
+      "id": "endpoint-bonus",
+      "label": "Endpoint isolation forces another cut",
+      "status": "refuted",
+      "detail": "n7 endpoint child is another baseline-hard tree pair; universal bonus invalid."
+    },
+    {
+      "id": "recurrence-certs",
+      "label": "2.31 arithmetic certificates",
+      "status": "lean-checked",
+      "detail": "Eight Lean kernel checks, zero axioms. Structural macro safety is unproved."
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "residual-rebalancing",
+      "label": "Three-component residual rebalancing",
+      "status": "open",
+      "detail": "Construct a safe polynomial-overhead macro with residual vector (2,2,2), (1,3,3), or (1,2); this would permit overall base2.31. Exact hypotheses in open-lemma.md.",
+      "depends_on": [
+        "path-exchange"
+      ]
+    },
+    {
+      "id": "path-exchange",
+      "label": "Overlap-path exchange",
+      "status": "open",
+      "detail": "A,C homeomorphic; B non-homeomorphic; overlap graph A\u2013B\u2013C. Can an optimum avoid both edges in B or the respective edges in A,C? Survived2640 synthetic instances; no universal proof.",
+      "depends_on": []
+    }
+  ],
+  "artifacts": [
+    "research/rmaf/branching/journal.md",
+    "research/rmaf/branching/open-lemma.md",
+    "research/rmaf/branching/README.md",
+    "research/rmaf/results/branching-search-n6.json",
+    "research/rmaf/results/branching-search-n7.json",
+    "research/rmaf/results/branching-synthetic-exchange-full.json",
+    "research/rmaf/results/branching-recurrences.json",
+    "research/rmaf/branching/Certificates.lean",
+    "research/rmaf/results/branching-lean-certificates.txt",
+    "research/rmaf/results/branching-lean-mutation.json"
+  ],
+  "sources": [
+    {
+      "title": "Split-or-decompose, v2",
+      "url": "https://arxiv.org/html/2409.18634v2",
+      "locator": "\u00a76 Lemmas12\u201316, Figure16, Theorem17; \u00a72 footnote2"
+    }
+  ]
+}

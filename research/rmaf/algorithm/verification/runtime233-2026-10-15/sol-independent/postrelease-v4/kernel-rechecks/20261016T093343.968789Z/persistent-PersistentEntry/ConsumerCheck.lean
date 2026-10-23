@@ -1,0 +1,7 @@
+import PersistentEntry
+#check GenericForest.BinaryProvider.checkerCapacity_ready
+#print axioms GenericForest.BinaryProvider.checkerCapacity_ready
+#check GenericForest.BinaryProvider.checkerFromInput_projects
+#print axioms GenericForest.BinaryProvider.checkerFromInput_projects
+#check GenericForest.BinaryProvider.checkerFromInput_polynomial
+#print axioms GenericForest.BinaryProvider.checkerFromInput_polynomial

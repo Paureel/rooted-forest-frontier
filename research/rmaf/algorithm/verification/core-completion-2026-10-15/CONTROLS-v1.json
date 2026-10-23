@@ -1,0 +1,53 @@
+{
+  "version":1,
+  "stage":"PRE-CANDIDATE",
+  "frozen_before_instrument_execution":true,
+  "source_model":"ordinary literal ordered binary syntax used only for address identification; sibling order is not mathematical topology; nonnegative integer distinct labels; no implicit rho",
+  "graph":[
+    {"id":"root-singleton","tree":7,"cuts":[],"components":[[7]],"nonempty":true,"component_count":1},
+    {"id":"root-child-cut","tree":[0,1],"cuts":[[0]],"components":[[0],[1]],"nonempty":true,"component_count":2},
+    {"id":"unlabeled-root-rejected","tree":[0,1],"cuts":[[0],[1]],"components":[[0],[1]],"nonempty":false,"component_count":3},
+    {"id":"suppression-retains-original-parent","tree":[[0,1],2],"cuts":[[0,0],[0,1]],"components":[[0],[1],[2]],"nonempty":true,"component_count":3},
+    {"id":"contracted-clade-cut","tree":[[0,1],2],"cuts":[[0]],"components":[[0,1],[2]],"nonempty":true,"component_count":2},
+    {"id":"crossed-original-witness","tree":[[0,1],[2,3]],"cuts":[[0,1],[1,1]],"components":[[0,2],[1],[3]],"nonempty":true,"component_count":3}
+  ],
+  "invalid_cuts":[
+    {"id":"root-is-not-edge","tree":[0,1],"cuts":[[]]},
+    {"id":"duplicate-address","tree":[0,1],"cuts":[[0],[0]]},
+    {"id":"nonvertex-address","tree":[0,1],"cuts":[[0,0]]}
+  ],
+  "program":[
+    {"id":"singleton-arbitrary-label","tree":7,"colors":{"7":7},"q":0,"parts":[[[7]]],"cuts":[[]],"visited":1,"attempts":0,"pruned":0},
+    {"id":"homogeneous-root","tree":[[0,1],[2,3]],"colors":{"0":0,"1":0,"2":0,"3":0},"q":0,"parts":[[[0,1,2,3]]],"cuts":[[]],"visited":1,"attempts":0,"pruned":0},
+    {"id":"homogeneous-cherry","tree":[[0,1],2],"colors":{"0":0,"1":0,"2":1},"q":1,"parts":[[[0,1],[2]]],"cuts":[[[0]]],"visited":2,"attempts":1,"pruned":0},
+    {"id":"distinct-colors-suppression","tree":[[0,1],2],"colors":{"0":0,"1":1,"2":2},"q":2,"parts":[[[1],[0],[2]]],"cuts":[[[0,1],[0,0]]],"visited":3,"attempts":2,"pruned":0},
+    {"id":"crossed-q0","tree":[[0,1],[2,3]],"colors":{"0":0,"1":1,"2":0,"3":1},"q":0,"parts":[],"cuts":[],"visited":1,"attempts":2,"pruned":2},
+    {"id":"crossed-q1","tree":[[0,1],[2,3]],"colors":{"0":0,"1":1,"2":0,"3":1},"q":1,"parts":[],"cuts":[],"visited":3,"attempts":4,"pruned":2},
+    {"id":"crossed-q2","tree":[[0,1],[2,3]],"colors":{"0":0,"1":1,"2":0,"3":1},"q":2,"parts":[[[2],[0],[1,3]],[[3],[1],[0,2]]],"cuts":[[[1,0],[0,0]],[[1,1],[0,1]]],"visited":5,"attempts":4,"pruned":0},
+    {"id":"three-color-quartet","tree":[[0,1],[2,3]],"colors":{"0":0,"1":1,"2":2,"3":0},"q":3,"parts":[[[2],[1],[0,3]]],"cuts":[[[1,0],[0,1]]],"visited":3,"attempts":2,"pruned":0},
+    {"id":"root-mixed-q0","tree":[0,1],"colors":{"0":0,"1":1},"q":0,"parts":[],"cuts":[],"visited":1,"attempts":1,"pruned":1},
+    {"id":"root-mixed-q1","tree":[0,1],"colors":{"0":0,"1":1},"q":1,"parts":[[[0],[1]]],"cuts":[[[0]]],"visited":2,"attempts":1,"pruned":0},
+    {"id":"permuted-proper-labels","tree":[2,[0,1]],"colors":{"0":0,"1":1,"2":2},"q":2,"parts":[[[0],[2],[1]]],"cuts":[[[1,0],[0]]],"visited":3,"attempts":2,"pruned":0},
+    {"id":"duplicate-label-refusal","tree":[1,1],"colors":{"1":1},"q":3,"parts":[],"cuts":[],"visited":0,"attempts":0,"pruned":0,"refusal":"duplicate original label"}
+  ],
+  "partitions":[
+    {"id":"strict-forward-refinement","tree":[[0,1],2],"colors":{"0":0,"1":0,"2":1},"F":[[0],[1],[2]],"Q":[[0,1],[2]],"q":2,"proper":true,"convex":true,"monochromatic":true,"F_refines_Q":true,"Q_refines_F":false,"equal":false,"eligible":true},
+    {"id":"same-F-over-budget","tree":[[0,1],2],"colors":{"0":0,"1":0,"2":1},"F":[[0],[1],[2]],"Q":[[0,1],[2]],"q":1,"proper":true,"convex":true,"monochromatic":true,"F_refines_Q":true,"Q_refines_F":false,"equal":false,"eligible":false},
+    {"id":"monochromatic-but-crossing","tree":[[0,1],[2,3]],"colors":{"0":0,"1":1,"2":0,"3":1},"F":[[0,2],[1,3]],"Q":[[0],[1,3],[2]],"q":3,"proper":true,"convex":false,"monochromatic":true,"F_refines_Q":false,"Q_refines_F":true,"equal":false,"eligible":false},
+    {"id":"nonmonochromatic-block","tree":[[0,1],[2,3]],"colors":{"0":0,"1":1,"2":0,"3":1},"F":[[0,1],[2],[3]],"Q":[[0],[1,3],[2]],"q":3,"proper":true,"convex":true,"monochromatic":false,"F_refines_Q":false,"Q_refines_F":false,"equal":false,"eligible":false}
+  ],
+  "proper_labels":[
+    {"labels":[2,0,1],"n":3,"expected":true},
+    {"labels":[0,0,1],"n":3,"expected":false},
+    {"labels":[0,2],"n":2,"expected":false},
+    {"labels":[7],"n":1,"expected":false}
+  ],
+  "mass":[
+    {"id":"actual-crossed-list","output_refs":[0,1],"costs":[2,2],"cost_sum":4,"mass_at_2":[1,2],"mass_at_233_100":[20000,54289]},
+    {"id":"duplicate-emission-list","output_refs":[0,0,1],"costs":[2,2,2],"cost_sum":6,"mass_at_2":[3,4],"mass_at_233_100":[30000,54289]}
+  ],
+  "forged_cost_lower_bound":{"program_id":"crossed-q2","claim_minimum_cost":3,"expected":false},
+  "suppression_control":{"tree":[[0,1],2],"first_erased":[0,0],"surviving_group_origin":[0,1],"current_parent":[],"original_edge_parent":[0],"original_path":[[],[0],[0,1]],"forged_direct_original_edge":[[],[0,1]],"forged_expected":false},
+  "invalid_syntax":[null,[-1,0],[true,0],[0,1,2]],
+  "known_false_expectations":["drop duplicate emission from mass/cost list","emit crossed q1 outputs","use equality or reverse coverage refinement","forge emitted minimum cost3","treat compressed root-to-01 link as original edge","count unlabeled-root residual as nonredundant","accept duplicate or improper canonical labels"]
+}

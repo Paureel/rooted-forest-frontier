@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "before_first_new_proof_execution": true,
+  "allowed_math": "Own frozen common contraction/coarsening/expansion/partition/payment proofs only. Frozen definitions and standard Lean facts. No new author mathematical primitive applied.",
+  "source_read_incident": "SOURCE-READ-INCIDENT-v1.json",
+  "planned_subresult": "For proper common-cherry pairs, an agreement forest containing singleton b has a valid forest merging a,b with at least one fewer component, by own coarsen then expand; useful exchange building block, not the one-pendant theorem.",
+  "actual_selected_control": {
+    "T": "(((0,1),2),((3,4),5))",
+    "S": "(((0,2),1),((3,5),4))",
+    "a": 0,
+    "b": 1,
+    "expected_proper": true,
+    "expected_pretest": "rejected",
+    "expected_early": "one false, cherry0,1",
+    "expected_cuts_length": 1,
+    "F": [
+      [
+        0,
+        2,
+        3,
+        4
+      ],
+      [
+        1
+      ],
+      [
+        5
+      ]
+    ],
+    "F_valid": true,
+    "F_refines_pendant": false,
+    "H": [
+      [
+        0,
+        1,
+        3,
+        4
+      ],
+      [
+        2
+      ],
+      [
+        5
+      ]
+    ],
+    "H_valid_and_refines": true,
+    "F_length": 3,
+    "H_length": 3
+  },
+  "common_cherry_control": {
+    "T": "((0,1),2)",
+    "S": "(2,(1,0))",
+    "F": [
+      [
+        0,
+        2
+      ],
+      [
+        1
+      ]
+    ],
+    "expected_AF": true,
+    "merge_construction_expected": [
+      [
+        0,
+        1,
+        2
+      ]
+    ],
+    "component_decrease": 1
+  },
+  "retained_controls": "Prior three-leaf one-cut exchange requirement, four-leaf t2 lower-bound adversary, paid0/callback refusals, duplicate/invalid best; frozen files unchanged.",
+  "negative_twins": [
+    "Selected-domain original F already refines pendant partition",
+    "Drop singleton assumption: a one-block AF need not admit a strictly smaller AF",
+    "Two-cut adversary is one-cut"
+  ],
+  "new_blind_credit": 0,
+  "new_replication_credit": 0
+}

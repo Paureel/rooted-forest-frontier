@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "8483bfeb83e0c9b38e2d82fba5628b08e7e409a383df7e2c6bd4687611d350d0",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3708046669999021,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.33967970899902866,
+      "resource_stop": null,
+      "log_sha256": "236cc080b42e2f0b6ec24617c1adfd9afd03a577c203032f80ed290b3e47267a"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0015754579999338603,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "ForestNatWork",
+      "source_sha256": "78fdf648820431b908b0cee7cde5602ff8b9df0fa24032d7662375ff1175f080",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8382493330009311,
+      "resource_stop": null,
+      "log_sha256": "f9c30c380584b4a9baaa6851c5208d727d4b63628d30a3bababe415569b12588"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('ForestNatWork', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:47:33: error(lean.unknownIdentifier): Unknown constant `Rat.natCast_zero`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:47:5: error: `simp` made no progress\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:56:8: error: Tactic `rfl` failed: The left-hand side\\n  \u21910\\nis not definitionally equal to the right-hand side\\n  match some t, ss with\\n  | none, x => 0\\n  | some val, [head] => 0\\n  | some t_1, x =>\\n    match overlap t_1 ss with\\n    | none => 0\\n    | some h =>\\n      (List.map\\n          (fun io =>\\n            have d := io.snd.sourceCuts.length;\\n            if _hd : 1 \u2264 d \u2227 d \u2264 q then sourceWork ordinary W (some t) (replace ss io.fst io.snd.partition) (q - d)\\n            else 0)\\n          (branches t_1 ss h q)).sum\\n\\ncase h_1\\nordinary : Ordinary\\nW : OrdinaryWork\\nq : Nat\\nss : List Tree\\nT\u271d : Option Tree\\nss\u271d : List Tree\\nt : Tree\\nih :\\n  \u2200 (m : Nat), m < q \u2192 \u2200 (ss : List Tree), \u2191(forestWork ordinary W (some t) ss m) = sourceWork ordinary W (some t) ss m\\nchild :\\n  \u2200 (t_1 : Tree) (h : Overlap),\\n    \u2191(List.map\\n            (fun io =>\\n              if _hd : 1 \u2264 io.snd.sourceCuts.length \u2227 io.snd.sourceCuts.length \u2264 q then\\n                forestWork ordinary W (some t) (replace ss io.fst io.snd.partition) (q - io.snd.sourceCuts.length)\\n              else 0)\\n            (branches t_1 ss h q)).sum =\\n      (List.map\\n          (fun io =>\\n            if _hd : 1 \u2264 io.snd.sourceCuts.length \u2227 io.snd.sourceCuts.length \u2264 q then\\n              sourceWork ordinary W (some t) (replace ss io.fst io.snd.partition) (q - io.snd.sourceCuts.length)\\n            else 0)\\n          (branches t_1 ss h q)).sum\\nh\u271d : (proper (some t) ss && !agrees (some t) ss (List.map leaves ss)) = true\\nx\u271d\u00b9 : \u2200 (head : Tree), ss = [head] \u2192 False\\nx\u271d : Option Overlap\\nheq\u271d : overlap t ss = none\\n\u22a2 \u21910 =\\n    match some t, ss with\\n    | none, x => 0\\n    | some val, [head] => 0\\n    | some t_1, x =>\\n      match overlap t_1 ss with\\n      | none => 0\\n      | some h =>\\n        (List.map\\n            (fun io =>\\n              have d := io.snd.sourceCuts.length;\\n              if _hd : 1 \u2264 d \u2227 d \u2264 q then sourceWork ordinary W (some t) (replace ss io.fst io.snd.partition) (q - d)\\n              else 0)\\n            (branches t_1 ss h q)).sum\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/ForestNatWork.lean:57:8: error: Type mismatch\\n  child t ?m.416\\nhas type\\n  \u2191(List.map\\n          (fun io =>\\n            if _hd : 1 \u2264 io.snd.sourceCuts.length \u2227 io.snd.sourceCuts.length \u2264 q then\\n              forestWork ordinary W (some t) (replace ss io.fst io.snd.partition) (q - io.snd.sourceCuts.length)\\n            else 0)\\n          (branches t ss ?m.416 q)).sum =\\n    (List.map\\n        (fun io =>\\n          if _hd : 1 \u2264 io.snd.sourceCuts.length \u2227 io.snd.sourceCuts.length \u2264 q then\\n            sourceWork ordinary W (some t) (replace ss io.fst io.snd.partition) (q - io.snd.sourceCuts.length)\\n          else 0)\\n        (branches t ss ?m.416 q)).sum\\nbut is expected to have type\\n  \u2191(List.map\\n          (fun io =>\\n            have d := io.snd.sourceCuts.length;\\n            if _hd : 1 \u2264 d \u2227 d \u2264 q then forestWork ordinary W (some t) (replace ss io.fst io.snd.partition) (q - d)\\n            else 0)\\n          (branches t ss h\u271d q)).sum =\\n    match some t, ss with\\n    | none, x => 0\\n    | some val, [head] => 0\\n    | some t_1, x =>\\n      match overlap t_1 ss with\\n      | none => 0\\n      | some h =>\\n        (List.map\\n            (fun io =>\\n              have d := io.snd.sourceCuts.length;\\n              if _hd : 1 \u2264 d \u2227 d \u2264 q then sourceWork ordinary W (some t) (replace ss io.fst io.snd.partition) (q - d)\\n              else 0)\\n            (branches t_1 ss h q)).sum\\n'))"
+}

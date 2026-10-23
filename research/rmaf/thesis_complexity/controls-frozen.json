@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "birth": "2026-10-14; hand-authored before recurrence evaluator or real recurrence outputs",
+  "arithmetic": "exact rational",
+  "cases": [
+    {"id":"binary", "parent":[0,0], "children":[[1,0,0],[1,0,0]], "expected_mass":"1", "expected_ok":true},
+    {"id":"ternary-corruption", "parent":[0,0], "children":[[1,0,0],[1,0,0],[1,0,0]], "expected_mass":"3/2", "expected_ok":false},
+    {"id":"single-credit", "parent":[1,0], "children":[[1,0,0]], "expected_mass":"1/2", "expected_ok":true},
+    {"id":"false-reset", "parent":[1,0], "children":[[1,0,0],[2,0,0]], "expected_mass":"3/4", "expected_ok":false},
+    {"id":"null", "parent":[0,0], "children":[], "expected_mass":"0", "expected_ok":true},
+    {"id":"one-no-credit", "parent":[0,0], "children":[[1,0,0]], "expected_mass":"1/2", "expected_ok":true}
+  ],
+  "state_controls": [
+    {"id":"valid-subset-count", "p":2,"q":1,"expected_ok":true},
+    {"id":"bad-subset-count", "p":1,"q":2,"expected_ok":false},
+    {"id":"too-many-credits", "p":3,"q":0,"expected_ok":false}
+  ],
+  "failure_criteria": "All exact masses and expected verdicts must match, including detection of every deliberately false recurrence and state. No finite mass check certifies structural reachability."
+}

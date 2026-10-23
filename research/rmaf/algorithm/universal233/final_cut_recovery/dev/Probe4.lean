@@ -1,0 +1,9 @@
+import FinalWork
+#check Rat.pow_le_pow_left
+#check Rat.pow_le_pow_right
+#check Rat.natCast_pow
+#check Rat.natCast_le_natCast
+#check Rat.natCast_le_natCast_iff
+#check Rat.mul_le_mul
+#check Rat.mul_le_mul_of_nonneg_right
+#check Rat.natCast_mul

@@ -1,0 +1,13 @@
+{
+  "purpose": "Fresh semantic verification target. Rebuild the graph checks from these data before reading the discovery checker.",
+  "conventions": "Ordinary rooted MAF without rho. Internal tree vertices are unsuppressed for disjointness. Source components are separate trees; their leaf sets partition target leaves in completion examples. Local source labels may be a subset of target labels. Cost equals final pieces minus initial source components.",
+  "examples": [
+    {"id":"degree-two-synergy","target":[[0,3],[1,[2,4]]],"source":[[0,2],1],"mark_paths":[[false],[true,true]],"expected_degrees_in_source_label_span":[2,2],"expected_local_costs_empty_first_second_both":[1,1,1,2]},
+    {"id":"nonpure-greedy-failure","target":[[0,1],[[2,3],[4,5]]],"source_forest":[[2,4],[[0,1],[3,5]]],"expected_exact_additional_cuts":1,"expected_deepest_keep_then_mark_additional_cuts":2,"exact_witness":[[2],[4],[0,1,3,5]]},
+    {"id":"degree-three-failure","target":[[0,1],2],"source":[[0,1],2],"mark_paths":[[false]],"expected_degree":3,"ordinary_cost":0,"marked_cost":2},
+    {"id":"redundant-marks-empty-region","target":[[0,1],[2,3]],"source":[0,2],"mark_paths":[[false],[true]],"ordinary_cost":0,"single_mark_costs":[1,1],"both_marks_cost":1,"nonempty_leaf_regions":2,"empty_regions":1}
+  ],
+  "hypotheses_to_attack": ["pure overlap requires degree two in both embeddings at every overlap vertex", "marked local one-cut refinement preserves every old mark and every other source/target piece", "globally at most one remaining piece requires repair", "empty marked-deletion regions are ignored when counting r", "role swap preserves vertex-disjointness under suppression"],
+  "formal_claims": "PureBridge.lean has 16 Std-only theorems about rooted convex regions and a conditional exchange interface. MarkInteraction.lean has 8 finite executable-model theorems importing RMAF.lean. No graph equivalence or unrestricted complexity theorem is claimed.",
+  "acceptance": "Independently reconstruct every example, test deliberately corrupted values and overlapping forests, inspect theorem hypotheses against consumers, retain source hashes and actual Lean/axiom logs. Agreement by an author of the discovery code is not fresh certification."
+}

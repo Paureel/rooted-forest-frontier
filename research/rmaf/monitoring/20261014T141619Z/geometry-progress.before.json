@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "status": "conditional-candidate-unverified",
+  "metrics": {
+    "three_protected_states": 158,
+    "protected_sibling_checks": 2626,
+    "two_protected_ge2_checks": 104,
+    "no_free_merger_checks": 312,
+    "max_active_protections": 3,
+    "descendant_cut_sets": 2626,
+    "three_way_second_pairs": 104,
+    "geometries_checked": 40000,
+    "qualifying_three_root": 733,
+    "qualifying_four_root": 488,
+    "controls_passed": 7,
+    "lean_theorems": 13,
+    "positive_lean_exit": 0,
+    "negative_lean_exit": 1,
+    "max_discounted_exit_mass": "1/4",
+    "connected_search_seconds": 8.839083582999592,
+    "forest_search_seconds": 7.69575129200166
+  },
+  "claims": [
+    {
+      "id": "GEO-universal",
+      "label": "Universal joint runtime theorem",
+      "status": "open",
+      "detail": "Not certified. Candidate source-history argument and changed frontier annotation need fresh nonauthor verification; A/B allowances are external hypotheses."
+    },
+    {
+      "id": "GEO-local",
+      "label": "Conditional three/four-root C allowance",
+      "status": "proposed-unverified",
+      "detail": "PROOF.md derives C <= alpha*2^(K-3)-1 from stated history, rules, and empty-credit frontier induction, explicitly handling a,x,u protection. Source geometry is not fully formalized."
+    },
+    {
+      "id": "GEO-bounded",
+      "label": "Bounded exact geometry check",
+      "status": "executed-no-fire",
+      "detail": "40000 seeded generated geometries in connected/forest runs, 1221 qualifying states (733 three-root, 488 four-root), maximum exit mass 1/4 in both classes. Generated states are not claimed top-level reachable."
+    },
+    {
+      "id": "GEO-controls",
+      "label": "Frozen control replay",
+      "status": "executed-pass",
+      "detail": "Nine-leaf 9/16 and dead C, thirteen-leaf three credits, live two-root, wrong orientation and positive twin reproduced; protected sibling erasure mutation caught."
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "GEO-survival",
+      "label": "No sibling cuts preserve a descendant",
+      "status": "lean-checked-conditional",
+      "detail": "surviving_descendant on explicit CutTree; source-cut-family-to-premise implication remains ordinary proof."
+    },
+    {
+      "id": "GEO-arithmetic",
+      "label": "Conditional local and joint arithmetic",
+      "status": "lean-checked",
+      "detail": "Geometry.lean: 13 theorems total, including negative fact and finite small-budget allowances; no custom axioms, sorry, or native_decide."
+    },
+    {
+      "id": "GEO-source-geometry",
+      "label": "No free merger and protected pair distance",
+      "status": "ordinary-argument-pending-review",
+      "detail": "312 bounded no-free-merger checks, 104 connected two-protected distance checks, plus an explicit disconnected dead control; source proof in Lemma5 needs independent review."
+    }
+  ],
+  "forbidden_cross_reading": "No adversary/parent/recurrence/correctness/transfer implementations read. Allowed source and frozen witnesses shared. Own checker is discovery evidence, not independent certification of own proof.",
+  "files": {
+    "research/rmaf/thesis_complexity/repair/geometry/FalseGeometry.lean": "ca8bf3911a29dbec02d78097952c4bb3198004e18f4ad9d8dd14f9a174d04235",
+    "research/rmaf/thesis_complexity/repair/geometry/Geometry-mathlib-unavailable.lean": "67c7d3f17b0dd92b61bcc385bd65dd80b8b2d0da2302470922858d6a1f81c239",
+    "research/rmaf/thesis_complexity/repair/geometry/Geometry.lean": "55a4cbd4e91b002288fb758c5a223f054a7c1a71e607d151cb8a37d36c8faab4",
+    "research/rmaf/thesis_complexity/repair/geometry/PROOF.md": "9882d2f725f6aed3166ca8dc77a764ac93452f7203d87553e34c724c1eebd5c7",
+    "research/rmaf/thesis_complexity/repair/geometry/README.md": "bf4cd17802005eb020a6b7ceb54eeedf3977ef477c2ae074f2bcc7311d187892",
+    "research/rmaf/thesis_complexity/repair/geometry/REVIEW-NOTES.md": "d3e012a86ad9da288142c8886b15831a298d493ff9fdb8d9a956d966acf47a34",
+    "research/rmaf/thesis_complexity/repair/geometry/SOURCE-LEDGER.md": "b77cffe1d0b0254c2e51e58261d924bf176c8bdc3743c5742773d92b7b04c6f4",
+    "research/rmaf/thesis_complexity/repair/geometry/SPEC.md": "06b7be67991da56d8adecc0e80a213270967fb5417a010d7ab825e038b51f4a4",
+    "research/rmaf/thesis_complexity/repair/geometry/check-v1-normalization-failed.py": "ed987429f24ab1d599549323db8c898bc1794a9903fca3ae2ab35cb2ffbcf8a7",
+    "research/rmaf/thesis_complexity/repair/geometry/check-v2-boundary-failed.py": "33e2db52067dd71e1f36c3b3887d0f4323a6063af48d29ea059d9f3a36cf99b8",
+    "research/rmaf/thesis_complexity/repair/geometry/check-v3.py": "6974a98059bdb82399cfbe9eedf35c30e25a2c9167ed9116f231e2193af44828",
+    "research/rmaf/thesis_complexity/repair/geometry/check-v5.py": "db98f8de662697f598ef147ce42ae603cbeff1b91ba582dad416436804824463",
+    "research/rmaf/thesis_complexity/repair/geometry/check.py": "6a49317ebbf6965a6773fc2d23a69c73a33cde85720b19cd35148df180bf95d5",
+    "research/rmaf/thesis_complexity/repair/geometry/disconnected_control.py": "d6f905fb878e9bd3f152ab46f8c1d0b827d734485e20f636ccf1655130d6e78b",
+    "research/rmaf/thesis_complexity/repair/geometry/package.py": "4a93081ec70cb7a5fd6739961ceeb1ea747862a76548557b885c99ca55688d43"
+  },
+  "pending": [
+    "Fresh nonauthor source-tree proof review",
+    "Source-to-frontier annotation amendment review",
+    "Composition with independently established A and B child bounds"
+  ]
+}

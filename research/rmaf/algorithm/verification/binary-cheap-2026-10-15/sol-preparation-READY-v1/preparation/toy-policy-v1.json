@@ -1,0 +1,74 @@
+{
+  "phase": "PRE-CANDIDATE",
+  "candidate_compilation": false,
+  "allowed_imports": [
+    "Lean",
+    "Std",
+    "OriginAudit",
+    "ToyClean",
+    "ToyUnused",
+    "ToyPrivate",
+    "ToyExternal",
+    "ToyUseExternal",
+    "ToyRestriction",
+    "ToyDepthRestriction",
+    "ToySource",
+    "ToyAdapted",
+    "ToyTampered"
+  ],
+  "modules": [
+    "ToyClean",
+    "ToyUnused",
+    "ToyPrivate",
+    "ToyExternal",
+    "ToyUseExternal",
+    "ToyRestriction",
+    "ToyDepthRestriction",
+    "ToySource",
+    "ToyAdapted",
+    "ToyTampered"
+  ],
+  "standard_axiom_allowlist": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "expected_accept": {
+    "ToyClean": true,
+    "ToyUnused": false,
+    "ToyPrivate": false,
+    "ToyExternal": false,
+    "ToyUseExternal": false,
+    "ToyRestriction": true,
+    "ToyDepthRestriction": true,
+    "ToySource": true,
+    "ToyAdapted": true,
+    "ToyTampered": true
+  },
+  "expected_clean_declarations": 19,
+  "expected_unused_declarations": 2,
+  "expected_adapter": [
+    [
+      "import ToyRestriction\n",
+      "import ToyDepthRestriction\n"
+    ],
+    [
+      "ToyRestriction.Restriction",
+      "ToyDepthRestriction.DepthRestriction"
+    ]
+  ],
+  "expected_reject_mutations": [
+    "zero inventory",
+    "missing origin",
+    "missing private declaration",
+    "duplicate origin row",
+    "unused external-namespace custom axiom",
+    "private custom axiom",
+    "foreign custom axiom closure",
+    "changed body despite identical declaration names"
+  ],
+  "all_origins_required": true,
+  "public_prefix_filter_forbidden": true,
+  "source_import_full_inventory_equality_required": true,
+  "origin_and_normalized_private_generated_fingerprints_required": true
+}

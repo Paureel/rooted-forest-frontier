@@ -1,0 +1,7 @@
+Author source integration controls; same author/tool lineage, no independence claim.
+
+Before actual body extraction, reuse the sealed exact compressed extractor and its completed known-clean, hostile/coalesced/private-axiom, proof-only-axiom, opaque-body, missing/duplicate-row, source/object, path and changed-adapted-source controls from the previous canonical certificate. Every fresh Lean compile repeats the measured positive, mathematical false and below-disk-floor guard controls.
+
+The new actual-source controls check duplicate failed ordinary queries and their +2 source charge; unaffordable duplicate children with no forest debit but positive traversal cost; literal Rule4 empty complement retention and restriction materialization; leaf-only weighted subtotal; and positive source construction for a zero-budget high caller. The two deliberately corrupted claims drop one duplicate or the empty literal region. Their failure must be mathematical rather than syntax, timeout, missing dependency or sorry. Full ConstantInfo metadata comparison also receives a deliberate numParams corruption before original-context object compatibility checks.
+
+All failures and initial adapter mistakes remain on disk. Existing frozen evidence, source modes and inodes are unchanged. Each command retains its prior 30s compile or 60s audit cap, 3072MiB Lean limit, 8MiB metadata stdout cap and live 3GiB free-space floor.

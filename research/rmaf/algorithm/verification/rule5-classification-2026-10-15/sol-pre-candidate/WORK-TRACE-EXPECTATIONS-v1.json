@@ -1,0 +1,18 @@
+{
+  "context": "public sameShape/restrict semantics only; candidate SourceWork counters unopened",
+  "comparison_cases": [
+    {"id":"leaf","T":0,"S":0,"result":true,"four_way_calls":1,"actual_short_circuit_calls":1,"size_product":1},
+    {"id":"straight","T":[0,1],"S":[0,1],"result":true,"four_way_calls":5,"actual_short_circuit_calls":3,"size_product":9},
+    {"id":"swapped","T":[0,1],"S":[1,0],"result":true,"four_way_calls":5,"actual_short_circuit_calls":4,"size_product":9},
+    {"id":"failed","T":[0,1],"S":[2,3],"result":false,"four_way_calls":5,"actual_short_circuit_calls":3,"size_product":9},
+    {"id":"three_leaves","T":[[0,1],2],"S":[[0,1],2],"result":true,"four_way_calls":9,"actual_short_circuit_calls":5,"size_product":25}
+  ],
+  "restriction_cases": [
+    {"id":"empty","T":[0,1],"X":[],"result":null,"visits_plus_membership_comparisons":3,"envelope":3},
+    {"id":"singleton","T":[0,1],"X":[0],"result":0,"visits_plus_membership_comparisons":5,"envelope":6},
+    {"id":"both","T":[0,1],"X":[0,1],"result":[0,1],"visits_plus_membership_comparisons":6,"envelope":9},
+    {"id":"foreign_prefix","T":[0,1],"X":[99,0,1],"result":[0,1],"visits_plus_membership_comparisons":8,"envelope":12}
+  ],
+  "false_twins": ["four_way_equals_actual", "zero_leaf_comparison", "free_membership_scan", "free_empty_restriction_visit"],
+  "claim_limit": "These own source-level counts are controls for later counter interpretation. No primitive/machine/bit/payload/global bound is accepted."
+}

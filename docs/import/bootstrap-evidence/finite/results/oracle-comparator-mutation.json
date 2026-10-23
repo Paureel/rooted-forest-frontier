@@ -1,0 +1,15 @@
+{
+  "mutation": "conflicting-triples expected k changed from 2 to 1 on a separate copy",
+  "fixture_sha256": "c84a7c2be9abb5105a55f6b95290a5fb42daa327a92f0d12a77468930c340764",
+  "mutated_fixture_sha256": "b63629a9f26fac71d802b7d03fe8ce27c01cef549a360ce8fd43b1a6c4e3bf4c",
+  "production_command": [
+    "oracle.py",
+    "controls",
+    "--fixture",
+    "research/rmaf/results/oracle-deliberate-bad-expectation.json"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/private/var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/rooted-forest-check-o_qhoeiu/research/rmaf/oracle/oracle.py\", line 387, in <module>\n    if __name__ == \"__main__\": main()\n                               ^^^^^^\n  File \"/private/var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/rooted-forest-check-o_qhoeiu/research/rmaf/oracle/oracle.py\", line 369, in main\n    if args.command == \"controls\": controls(args.fixture)\n                                   ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/jh/tgnbthq142z_by1ws1k2n0kc0000gn/T/rooted-forest-check-o_qhoeiu/research/rmaf/oracle/oracle.py\", line 268, in controls\n    assert result[\"k\"] == case[\"k\"], (case[\"id\"], result)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('conflicting-triples', {'k': 2, 'forests': [(('a',), ('b', 'c')), (('a', 'b'), ('c',)), (('a', 'c'), ('b',))], 'partitions_tested': 4})\n",
+  "status": "deliberate-mismatch-rejected"
+}

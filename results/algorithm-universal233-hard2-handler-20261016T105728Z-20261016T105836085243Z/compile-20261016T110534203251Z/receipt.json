@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.34284050000132993,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3159425829999236,
+      "resource_stop": null,
+      "log_sha256": "f8e6ea192348a68a405e52fa597c9d253e20ebc2633d99ad1d1b2fe6d5c9144c"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0015450840000994503,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GoodPairSelectedBound",
+      "source_sha256": "425de216e422818ff4db1401a19659435e7a634f3f5063ce9d145c9cf0263b22",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.7924900420002814,
+      "resource_stop": null,
+      "log_sha256": "71f4aa2d0014deab8e4adcc1487d780154e1ac3668616df836b5742ab5b0912c"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('GoodPairSelectedBound', \"/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairSelectedBound.lean:27:46: error(lean.unknownIdentifier): Unknown identifier `p'`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairSelectedBound.lean:27:65: error(lean.unknownIdentifier): Unknown identifier `r'`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairSelectedBound.lean:27:83: error(lean.unknownIdentifier): Unknown identifier `p'`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairSelectedBound.lean:27:86: error(lean.unknownIdentifier): Unknown identifier `r'`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairSelectedBound.lean:20:140: error: unsolved goals\\nactual : GenericForest.FrontierWork.Ordinary\\nT S : Tree\\nc : CherryBranching.Candidate\\no : Order\\nedge : Vertex \u00d7 Vertex\\np r : Vertex\\nq N Q : Nat\\nthree : 3 \u2264 N\\nbudget : q \u2264 Q\\ntn : treeNodes T \u2264 N\\nsn : treeNodes S \u2264 N\\nproper0 : DepthOne.proper T S = true\\nhard : CherryBranching.select T S = some (CherryBranching.Priority.hard2, c)\\ncuts : c.originalCuts = [p, r]\\nselected : runHard2 T S c = some (Result.pair o (PairGeometry.Choice.edge edge))\\ngood :\\n  (restrictionAgrees S T (first o (leftParent S p) (rightParent S r) (rootParent S p r)) &&\\n      decide (restrictionAgrees S T (second o (leftParent S p) (rightParent S r) (rootParent S p r)) = true)) =\\n    true\\ncuts' : c.originalCuts = [p, r]\\nleft\u271d\u00b9 : CherryBranching.cuts S c.a c.b = [p, r]\\nleft\u271d : HardParent.LiteralOriginalThree S p r\\nhp : partitionCheck (leaves S) [leftParent S p, rightParent S r, rootParent S p r] = true\\nes : pairwiseEmbeddings S [leftParent S p, rightParent S r, rootParent S p r] = true\\nright\u271d : CherryBranching.pendantPartition S c.a c.b = [leftParent S p, rightParent S r, rootParent S p r]\\neq : [p, r] = [p, r]\\nbasic : (leaves T).Nodup \u2227 (leaves S).Nodup \u2227 (leaves T).Perm (leaves S)\\nsame : \u2200 (x : Nat), x \u2208 leaves T \u2194 x \u2208 leaves S\\nraw :\\n  select T (leftParent S sorry) (rightParent S sorry) (rootParent S sorry sorry) =\\n    some (Result.pair o (PairGeometry.Choice.edge edge))\\n\u22a2 \u2191(goodPairSource actual (fun x x_1 x_2 => 0) T S (first o (leftParent S p) (rightParent S r) (rootParent S p r))\\n          (second o (leftParent S p) (rightParent S r) (rootParent S p r))\\n          (third o (leftParent S p) (rightParent S r) (rootParent S p r)) q).work \u2264\\n    (\u2191(goodPairPolynomial N) + geometric Rule5ActualTrace.base * forestCoefficient N Q * Rule5ActualTrace.base ^ (-3)) *\\n      Rule5ActualTrace.base ^ q\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairSelectedBound.lean:60:43: error: Invalid argument name `c` for function `Iff.mpr`\\n\\nHint: Perhaps you meant one of the following parameter names:\\n  \u2022 `a`: c\u0335a\u0332\\n  \u2022 `b`: c\u0335b\u0332\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairSelectedBound.lean:55:146: error: unsolved goals\\nactual : GenericForest.FrontierWork.Ordinary\\nT S : Tree\\nc : CherryBranching.Candidate\\nout : Result\\nq N Q : Nat\\nthree : 3 \u2264 N\\ntn : treeNodes T \u2264 N\\nsn : treeNodes S \u2264 N\\nbudget : q \u2264 Q\\nproper0 : DepthOne.proper T S = true\\nhard : CherryBranching.select T S = some (CherryBranching.Priority.hard2, c)\\nselected : runHard2 T S c = some out\\nsharp :\\n  \u2191(hardPaidSource actual (fun x x_1 x_2 => 0) T S q c out).work \u2264\\n    (\u2191(hardPaidPolynomial N Q) +\\n        geometric Rule5ActualTrace.base * forestCoefficient N Q * Hard2PaidLocal.caseMass Rule5ActualTrace.base out) *\\n      Rule5ActualTrace.base ^ q\\nkp : 0 \u2264 geometric Rule5ActualTrace.base * forestCoefficient N Q\\nuniform :\\n  geometric Rule5ActualTrace.base * forestCoefficient N Q * Hard2PaidLocal.caseMass Rule5ActualTrace.base out \u2264\\n    geometric Rule5ActualTrace.base * forestCoefficient N Q * (4 * Rule5ActualTrace.base ^ (-4))\\n\u22a2 \u2191(hardPaidSource actual (fun x x_1 x_2 => 0) T S q c out).work \u2264\\n    (\u2191(hardPaidPolynomial N Q) +\\n        geometric Rule5ActualTrace.base * forestCoefficient N Q * (4 * Rule5ActualTrace.base ^ (-4))) *\\n      Rule5ActualTrace.base ^ q\\n\"))"
+}

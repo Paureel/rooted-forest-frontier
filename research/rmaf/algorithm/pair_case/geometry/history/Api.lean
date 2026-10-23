@@ -1,0 +1,12 @@
+import Std
+#check List.find?_some
+#check List.find?_eq_some_iff
+#check List.find?_eq_none
+#check List.mem_of_find?_eq_some
+#check List.find?_isSome
+#check List.find?_eq_some_iff_getElem
+#check List.getLast?_append
+#check List.dropLast_append_cons
+#check List.getLast?_eq_some_iff
+#check List.length_dropLast
+#check List.map_inj_left

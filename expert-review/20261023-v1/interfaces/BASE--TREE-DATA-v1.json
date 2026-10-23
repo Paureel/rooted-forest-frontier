@@ -1,0 +1,84 @@
+{
+  "scope": "Only6 exact pure Tree/list bodies, no proof values/outcomes/transitive grant.",
+  "binding_note": "No rootedVertices declaration occurs in the canonical assembly sources. minimalVertices actually calls RMAF.rootedSpan, whose body and direct prependSide body are explicitly provided, not an asserted alias or same-name substitution.",
+  "definitions": [
+    {
+      "module": "RMAF",
+      "name": "RMAF.minimalVertices",
+      "code": "def minimalVertices (selected : List Nat) : Tree \u2192 List Vertex\n  | .leaf x => if selected.contains x then [[]] else []\n  | .node l r =>\n      let ls := rootedSpan selected l\n      let rs := rootedSpan selected r\n      if ls.isEmpty then prependSide true (minimalVertices selected r)\n      else if rs.isEmpty then prependSide false (minimalVertices selected l)\n      else [] :: (prependSide false ls ++ prependSide true rs)",
+      "range": [
+        126,
+        133
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.lean",
+      "source_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.olean",
+      "object_sha256": "1e507601b9ac70ce8c8995633f887c2d7e7160989682264670a4d93c7f145b8d"
+    },
+    {
+      "module": "RMAF",
+      "name": "RMAF.rootedSpan",
+      "code": "def rootedSpan (selected : List Nat) : Tree \u2192 List Vertex\n  | .leaf x => if selected.contains x then [[]] else []\n  | .node l r =>\n      let ls := rootedSpan selected l\n      let rs := rootedSpan selected r\n      if ls.isEmpty && rs.isEmpty then []\n      else [] :: (prependSide false ls ++ prependSide true rs)",
+      "range": [
+        116,
+        122
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.lean",
+      "source_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.olean",
+      "object_sha256": "1e507601b9ac70ce8c8995633f887c2d7e7160989682264670a4d93c7f145b8d"
+    },
+    {
+      "module": "RMAF",
+      "name": "RMAF.prependSide",
+      "code": "def prependSide (side : Bool) (vs : List Vertex) : List Vertex :=\n  vs.map (side :: \u00b7)",
+      "range": [
+        111,
+        112
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.lean",
+      "source_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.olean",
+      "object_sha256": "1e507601b9ac70ce8c8995633f887c2d7e7160989682264670a4d93c7f145b8d"
+    },
+    {
+      "module": "RMAF",
+      "name": "RMAF.restrict",
+      "code": "def restrict (selected : List Nat) : Tree \u2192 Option Tree\n  | .leaf x => if selected.contains x then some (.leaf x) else none\n  | .node l r =>\n      match restrict selected l, restrict selected r with\n      | none, none => none\n      | some a, none => some a\n      | none, some b => some b\n      | some a, some b => some (.node a b)",
+      "range": [
+        84,
+        91
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.lean",
+      "source_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.olean",
+      "object_sha256": "1e507601b9ac70ce8c8995633f887c2d7e7160989682264670a4d93c7f145b8d"
+    },
+    {
+      "module": "RMAF",
+      "name": "RMAF.sameShape",
+      "code": "def sameShape : Tree \u2192 Tree \u2192 Bool\n  | .leaf a, .leaf b => a == b\n  | .node a b, .node c d =>\n      (sameShape a c && sameShape b d) ||\n      (sameShape a d && sameShape b c)\n  | _, _ => false",
+      "range": [
+        36,
+        41
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.lean",
+      "source_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.olean",
+      "object_sha256": "1e507601b9ac70ce8c8995633f887c2d7e7160989682264670a4d93c7f145b8d"
+    },
+    {
+      "module": "RMAF",
+      "name": "RMAF.leaves",
+      "code": "def leaves : Tree \u2192 List Nat\n  | .leaf x => [x]\n  | .node l r => leaves l ++ leaves r",
+      "range": [
+        13,
+        15
+      ],
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.lean",
+      "source_sha256": "4960d5be9a5f1eb6b15d11c76130bee5263125631314a4eb2d43d500d5b513a9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/RMAF.olean",
+      "object_sha256": "1e507601b9ac70ce8c8995633f887c2d7e7160989682264670a4d93c7f145b8d"
+    }
+  ]
+}

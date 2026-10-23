@@ -1,0 +1,112 @@
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:172:30: warning: This simp argument is unused:
+  Charged.work
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:187:41: warning: This simp argument is unused:
+  h
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [ih]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:359:32: warning: This simp argument is unused:
+  Charged.work
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:375:31: warning: This simp argument is unused:
+  h
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [ih]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:388:30: warning: This simp argument is unused:
+  Charged.work
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:414:87: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+  a - c ≥ 0
+where
+ a := ↑M
+ b := ↑B.length
+ c := ↑C.length
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:422:33: error(lean.unknownIdentifier): Unknown constant `Nat.one_le_mul`
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:425:57: error: Tactic `rfl` failed: equality lhs
+  32 * ((M + 1) * (M + 1))
+is not definitionally equal to rhs
+  4 * (8 * ((M + 1) * (M + 1)))
+
+B C : List RMAF.Vertex
+M : Nat
+hB : B.length ≤ M
+hC : C.length ≤ M
+v : RMAF.Vertex
+vs : List RMAF.Vertex
+ih : (∀ (v : RMAF.Vertex), v ∈ vs → List.length v ≤ M) → (meterCommon vs B C).work ≤ commonCap M * (vs.length + 1)
+hA : ∀ (v_1 : RMAF.Vertex), v_1 ∈ v :: vs → List.length v_1 ≤ M
+hv : List.length v ≤ M
+hi : (meterCommon vs B C).work ≤ commonCap M * (vs.length + 1)
+hb : (meterVertexContains v B).work ≤ 8 * (M + 1) * (B.length + 1)
+hc : (meterVertexContains v C).work ≤ 8 * (M + 1) * (C.length + 1)
+hbb : 8 * (M + 1) * (B.length + 1) ≤ 8 * (M + 1) * (M + 1)
+hcc : 8 * (M + 1) * (C.length + 1) ≤ 8 * (M + 1) * (M + 1)
+hp : 1 ≤ (M + 1) * (M + 1)
+⊢ 32 * ((M + 1) * (M + 1)) = 4 * (8 * ((M + 1) * (M + 1)))
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:429:6: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  l ≥ 1
+  k ≥ 0
+  k ≥ 0
+  j ≥ 0
+  i ≥ 0
+  i - j ≥ 0
+  i - k ≤ 0
+  h ≥ 0
+  h + j - 32*l ≥ -5
+  g ≥ 0
+  g - h ≥ 0
+  g - k ≤ 0
+  f ≥ 0
+  e ≥ 0
+  e - f ≥ 0
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+  a - c ≥ 0
+  a - d ≥ 0
+where
+ a := ↑M
+ b := ↑B.length
+ c := ↑C.length
+ d := ↑(List.length v)
+ e := ↑(commonCap M) * ↑(vs.length + 1)
+ f := ↑(meterCommon vs B C).work
+ g := ↑(8 * (M + 1)) * ↑(B.length + 1)
+ h := ↑(meterVertexContains v B).work
+ i := ↑(8 * (M + 1)) * ↑(C.length + 1)
+ j := ↑(meterVertexContains v C).work
+ k := ↑(8 * (M + 1)) * ↑(M + 1)
+ l := ↑(M + 1) * ↑(M + 1)
+research/rmaf/algorithm/universal233/whole_source_work/GeometryWork.lean:434:30: warning: This simp argument is unused:
+  Charged.work
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

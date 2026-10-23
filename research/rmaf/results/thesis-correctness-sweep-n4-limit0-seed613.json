@@ -1,0 +1,711 @@
+{
+  "scope": "finite testing, not a universal correctness proof",
+  "mode": "sweep",
+  "controls": [
+    {
+      "id": "identity-null",
+      "pass": true,
+      "optimum_cuts": 0,
+      "witness": [
+        [
+          "a",
+          "b",
+          "c",
+          "rho"
+        ]
+      ]
+    },
+    {
+      "id": "single-leaf-boundary",
+      "pass": true,
+      "optimum_cuts": 0,
+      "witness": [
+        [
+          "a",
+          "rho"
+        ]
+      ]
+    },
+    {
+      "id": "one-spr-triple",
+      "pass": true,
+      "optimum_cuts": 1,
+      "witness": [
+        [
+          "a",
+          "b",
+          "rho"
+        ],
+        [
+          "c"
+        ]
+      ]
+    },
+    {
+      "id": "incompatible-quartet",
+      "pass": true,
+      "optimum_cuts": 2,
+      "witness": [
+        [
+          "a",
+          "b",
+          "rho"
+        ],
+        [
+          "c"
+        ],
+        [
+          "d"
+        ]
+      ]
+    },
+    {
+      "id": "wrong-expected-optimum",
+      "caught": true,
+      "reason": "exact comparison failed: expected=0, actual=1"
+    },
+    {
+      "id": "duplicate-label",
+      "caught": true,
+      "routes": 2
+    },
+    {
+      "id": "different-label-sets",
+      "caught": true,
+      "routes": 2
+    },
+    {
+      "id": "negative-budget",
+      "caught": true
+    }
+  ],
+  "hashes": {
+    "controls.json": "4002a37363f01967fb9fc9fac6c834a63081ebb2bc6e3e196dc7e85ccfec047f",
+    "algorithm.py": "a4e2e459e772e043093ebd25cfb0f4b9c87bc3e78abd061753069f89543672cf",
+    "reference.py": "2400342337b2e8266bbebca22b34c11872337d3a59465366b0b68712c4df8cfd"
+  },
+  "n": 4,
+  "seed": 613,
+  "completed": 225,
+  "failures": [],
+  "stats": {
+    "calls": 1929,
+    "contract": 898,
+    "B": 504,
+    "finish": 572,
+    "RB": 144,
+    "AC": 72,
+    "A2BC": 120,
+    "refused": 30,
+    "RB*": 36
+  },
+  "timing_batches": [
+    {
+      "completed": 10,
+      "seconds": 0.006529999998747371
+    },
+    {
+      "completed": 20,
+      "seconds": 0.0059819590005645296
+    },
+    {
+      "completed": 30,
+      "seconds": 0.007307791000130237
+    },
+    {
+      "completed": 40,
+      "seconds": 0.006392458999471273
+    },
+    {
+      "completed": 50,
+      "seconds": 0.006895124999573454
+    },
+    {
+      "completed": 60,
+      "seconds": 0.006279375000303844
+    },
+    {
+      "completed": 70,
+      "seconds": 0.0064498749998165295
+    },
+    {
+      "completed": 80,
+      "seconds": 0.0054842910012666835
+    },
+    {
+      "completed": 90,
+      "seconds": 0.0070297919992299285
+    },
+    {
+      "completed": 100,
+      "seconds": 0.006015667000610847
+    },
+    {
+      "completed": 110,
+      "seconds": 0.008229790999394027
+    },
+    {
+      "completed": 120,
+      "seconds": 0.006041417000233196
+    },
+    {
+      "completed": 130,
+      "seconds": 0.006612416998905246
+    },
+    {
+      "completed": 140,
+      "seconds": 0.005242500001259032
+    },
+    {
+      "completed": 150,
+      "seconds": 0.006918332999703125
+    },
+    {
+      "completed": 160,
+      "seconds": 0.006341541999063338
+    },
+    {
+      "completed": 170,
+      "seconds": 0.0069717910009785555
+    },
+    {
+      "completed": 180,
+      "seconds": 0.005873500000234344
+    },
+    {
+      "completed": 190,
+      "seconds": 0.008139125000525382
+    },
+    {
+      "completed": 200,
+      "seconds": 0.006244124999284395
+    },
+    {
+      "completed": 210,
+      "seconds": 0.006147333999251714
+    },
+    {
+      "completed": 220,
+      "seconds": 0.007301875000848668
+    }
+  ],
+  "branch_witnesses": {
+    "B": {
+      "index": 1,
+      "t1": [
+        "a",
+        [
+          "b",
+          [
+            "c",
+            "d"
+          ]
+        ]
+      ],
+      "t2": [
+        "a",
+        [
+          [
+            "b",
+            "c"
+          ],
+          "d"
+        ]
+      ],
+      "oracle_cuts": 1,
+      "oracle_witness": [
+        [
+          "a",
+          "b",
+          "c",
+          "rho"
+        ],
+        [
+          "d"
+        ]
+      ],
+      "event": {
+        "case": "B",
+        "budget": 0,
+        "a": [
+          "c"
+        ],
+        "c": [
+          "d"
+        ],
+        "branches": 1
+      },
+      "full_trace": [
+        {
+          "case": "B",
+          "budget": 0,
+          "a": [
+            "c"
+          ],
+          "c": [
+            "d"
+          ],
+          "branches": 1
+        },
+        {
+          "case": "B",
+          "budget": 1,
+          "a": [
+            "c"
+          ],
+          "c": [
+            "d"
+          ],
+          "branches": 1
+        },
+        {
+          "case": "B",
+          "budget": 2,
+          "a": [
+            "c"
+          ],
+          "c": [
+            "d"
+          ],
+          "branches": 1
+        }
+      ]
+    },
+    "RB": {
+      "index": 4,
+      "t1": [
+        "a",
+        [
+          "b",
+          [
+            "c",
+            "d"
+          ]
+        ]
+      ],
+      "t2": [
+        [
+          "a",
+          "c"
+        ],
+        [
+          "b",
+          "d"
+        ]
+      ],
+      "oracle_cuts": 1,
+      "oracle_witness": [
+        [
+          "c"
+        ],
+        [
+          "a",
+          "b",
+          "d",
+          "rho"
+        ]
+      ],
+      "event": {
+        "case": "RB",
+        "budget": 0,
+        "a": [
+          "d"
+        ],
+        "c": [
+          "c"
+        ],
+        "branches": 1
+      },
+      "full_trace": [
+        {
+          "case": "RB",
+          "budget": 0,
+          "a": [
+            "d"
+          ],
+          "c": [
+            "c"
+          ],
+          "branches": 1
+        },
+        {
+          "case": "RB",
+          "budget": 1,
+          "a": [
+            "d"
+          ],
+          "c": [
+            "c"
+          ],
+          "branches": 1
+        },
+        {
+          "case": "RB",
+          "budget": 2,
+          "a": [
+            "d"
+          ],
+          "c": [
+            "c"
+          ],
+          "branches": 1
+        }
+      ]
+    },
+    "AC": {
+      "index": 6,
+      "t1": [
+        "a",
+        [
+          "b",
+          [
+            "c",
+            "d"
+          ]
+        ]
+      ],
+      "t2": [
+        [
+          [
+            "a",
+            "b"
+          ],
+          "c"
+        ],
+        "d"
+      ],
+      "oracle_cuts": 2,
+      "oracle_witness": [
+        [
+          "a",
+          "b",
+          "rho"
+        ],
+        [
+          "c"
+        ],
+        [
+          "d"
+        ]
+      ],
+      "event": {
+        "case": "AC",
+        "budget": 0,
+        "a": [
+          "c",
+          "d"
+        ],
+        "c": [
+          "b"
+        ],
+        "branches": 2
+      },
+      "full_trace": [
+        {
+          "case": "B",
+          "budget": 0,
+          "a": [
+            "c"
+          ],
+          "c": [
+            "d"
+          ],
+          "branches": 1
+        },
+        {
+          "case": "B",
+          "budget": 1,
+          "a": [
+            "c"
+          ],
+          "c": [
+            "d"
+          ],
+          "branches": 1
+        },
+        {
+          "case": "AC",
+          "budget": 0,
+          "a": [
+            "c",
+            "d"
+          ],
+          "c": [
+            "b"
+          ],
+          "branches": 2
+        },
+        {
+          "case": "B",
+          "budget": 2,
+          "a": [
+            "c"
+          ],
+          "c": [
+            "d"
+          ],
+          "branches": 1
+        },
+        {
+          "case": "AC",
+          "budget": 1,
+          "a": [
+            "c",
+            "d"
+          ],
+          "c": [
+            "b"
+          ],
+          "branches": 2
+        },
+        {
+          "case": "B",
+          "budget": 3,
+          "a": [
+            "c"
+          ],
+          "c": [
+            "d"
+          ],
+          "branches": 1
+        },
+        {
+          "case": "AC",
+          "budget": 2,
+          "a": [
+            "c",
+            "d"
+          ],
+          "c": [
+            "b"
+          ],
+          "branches": 2
+        }
+      ]
+    },
+    "A2BC": {
+      "index": 7,
+      "t1": [
+        "a",
+        [
+          "b",
+          [
+            "c",
+            "d"
+          ]
+        ]
+      ],
+      "t2": [
+        [
+          [
+            "a",
+            "c"
+          ],
+          "b"
+        ],
+        "d"
+      ],
+      "oracle_cuts": 2,
+      "oracle_witness": [
+        [
+          "a",
+          "b",
+          "rho"
+        ],
+        [
+          "c"
+        ],
+        [
+          "d"
+        ]
+      ],
+      "event": {
+        "case": "A2BC",
+        "budget": 0,
+        "a": [
+          "c"
+        ],
+        "c": [
+          "d"
+        ],
+        "branches": 3
+      },
+      "full_trace": [
+        {
+          "case": "A2BC",
+          "budget": 0,
+          "a": [
+            "c"
+          ],
+          "c": [
+            "d"
+          ],
+          "branches": 3
+        },
+        {
+          "case": "A2BC",
+          "budget": 1,
+          "a": [
+            "c"
+          ],
+          "c": [
+            "d"
+          ],
+          "branches": 3
+        },
+        {
+          "case": "B",
+          "budget": 0,
+          "a": [
+            "b"
+          ],
+          "c": [
+            "d"
+          ],
+          "branches": 1
+        },
+        {
+          "case": "B",
+          "budget": 0,
+          "a": [
+            "c"
+          ],
+          "c": [
+            "b"
+          ],
+          "branches": 1
+        },
+        {
+          "case": "A2BC",
+          "budget": 2,
+          "a": [
+            "c"
+          ],
+          "c": [
+            "d"
+          ],
+          "branches": 3
+        },
+        {
+          "case": "B",
+          "budget": 1,
+          "a": [
+            "b"
+          ],
+          "c": [
+            "d"
+          ],
+          "branches": 1
+        },
+        {
+          "case": "A2BC",
+          "budget": 3,
+          "a": [
+            "c"
+          ],
+          "c": [
+            "d"
+          ],
+          "branches": 3
+        },
+        {
+          "case": "B",
+          "budget": 2,
+          "a": [
+            "b"
+          ],
+          "c": [
+            "d"
+          ],
+          "branches": 1
+        }
+      ]
+    },
+    "RB*": {
+      "index": 50,
+      "t1": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "t2": [
+        [
+          "a",
+          [
+            "b",
+            "c"
+          ]
+        ],
+        "d"
+      ],
+      "oracle_cuts": 1,
+      "oracle_witness": [
+        [
+          "c"
+        ],
+        [
+          "a",
+          "b",
+          "d",
+          "rho"
+        ]
+      ],
+      "event": {
+        "case": "RB*",
+        "budget": 0,
+        "a": [
+          "c"
+        ],
+        "c": [
+          "d"
+        ],
+        "branches": 1
+      },
+      "full_trace": [
+        {
+          "case": "RB*",
+          "budget": 0,
+          "a": [
+            "c"
+          ],
+          "c": [
+            "d"
+          ],
+          "branches": 1
+        },
+        {
+          "case": "RB*",
+          "budget": 1,
+          "a": [
+            "c"
+          ],
+          "c": [
+            "d"
+          ],
+          "branches": 1
+        },
+        {
+          "case": "RB*",
+          "budget": 2,
+          "a": [
+            "c"
+          ],
+          "c": [
+            "d"
+          ],
+          "branches": 1
+        }
+      ]
+    }
+  },
+  "expected_pairs": 225,
+  "tree_count": 15,
+  "denominator_complete": true,
+  "seconds": 0.14907316700009687,
+  "pass": true
+}

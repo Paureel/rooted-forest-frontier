@@ -1,0 +1,58 @@
+{
+  "role": "Requested exact definition-only supplement; only these excerpts are newly whitelisted, not entire source modules. No proofs/fixtures/auditor/receipt supplied.",
+  "definitions": [
+    {
+      "original_source": "research/rmaf/algorithm/universal233/scaffold-proof/CoreGraph.lean",
+      "original_sha256": "7099d4aa48a771f1d56e11bd36447a51d7e3c57094a6779c0d40acec11dca7a0",
+      "lines_1_based": [
+        10,
+        21
+      ],
+      "excerpt_sha256": "d037fd527496c2153742d1f75ef508a7f674938739d66e4844c03bb7fd8344bb",
+      "excerpt": "def subtree : Tree \u2192 Vertex \u2192 Option Tree\n  | t, [] => some t\n  | .leaf _, _ :: _ => none\n  | .node l r, b :: v => subtree (if b then r else l) v\n\ndef Valid (t : Tree) (v : Vertex) : Prop := \u2203 s, subtree t v = some s\n\ndef LeafAt (t : Tree) (v : Vertex) (x : Nat) : Prop :=\n  subtree t v = some (.leaf x)\n\ndef CherryAt (t : Tree) (p : Vertex) (x y : Nat) : Prop :=\n  subtree t p = some (.node (.leaf x) (.leaf y))\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/universal233/geometry/Composition.lean",
+      "original_sha256": "097b9184ebacd913524fc3f0a130057004f95e30ba15f485adb9e0b7934578df",
+      "lines_1_based": [
+        7,
+        8
+      ],
+      "excerpt_sha256": "66f3d2ea220407b792b7e38f63652b11258bb2af7a4c2acb05aa50df9ac26a99",
+      "excerpt": "def Refines (F Q : List (List Nat)) : Prop :=\n  \u2200 P, P \u2208 F \u2192 \u2203 R, R \u2208 Q \u2227 \u2200 x, x \u2208 P \u2192 x \u2208 R\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Cluster.lean",
+      "original_sha256": "606af4f29ec2417fb707ebcfc724e2ed743e6d54aa17c90461910016b6d6f3a6",
+      "lines_1_based": [
+        16,
+        17
+      ],
+      "excerpt_sha256": "909670daface553cbe09c13253608b9bd5bb4f230f1ca390520582848a0d5083",
+      "excerpt": "def yes (C : List Nat) (q : Nat \u2192 Bool) := C.filter q\ndef no (C : List Nat) (q : Nat \u2192 Bool) := C.filter (fun x => !q x)\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Forest.lean",
+      "original_sha256": "dd1d383225836c26e7d5b71cd33eee7cb7f9228ae842eb52883372f647aa31aa",
+      "lines_1_based": [
+        71,
+        72
+      ],
+      "excerpt_sha256": "6ea960271cf0a26582d291d20f6a0520f64fc9f5769145e2d624336cf94b9ab5",
+      "excerpt": "def split (C : List Nat) (q : Nat \u2192 Bool) : List (List Nat) :=\n  [yes C q,no C q].filter (fun b => !b.isEmpty)\n"
+    },
+    {
+      "original_source": "research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Forest.lean",
+      "original_sha256": "dd1d383225836c26e7d5b71cd33eee7cb7f9228ae842eb52883372f647aa31aa",
+      "lines_1_based": [
+        110,
+        110
+      ],
+      "excerpt_sha256": "a83fedd1041c6e525f22abc1e4ee8495f071442de52b59993d61b8c960de6738",
+      "excerpt": "def splitAll (V : List (List Nat)) (q : Nat \u2192 Bool) := V.flatMap (fun C => split C q)\n"
+    }
+  ],
+  "ordering": "yes split part is emitted before no part, and original block order is preserved by flatMap; filter removes empty parts. This is literal splitAll definition semantics, not a validity/cost proof.",
+  "origin_amendment_allowed_exact_path": "research/rmaf/algorithm/verification/ORIGIN-AUDIT-SCOPE-AMENDMENT-v1.md",
+  "origin_amendment_sha256": "ea045ee5054ac33c55a9b8084ee891c92ad881b227566346610421305c8a76a0"
+}

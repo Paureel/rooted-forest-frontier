@@ -1,0 +1,39 @@
+{
+  "before_execution": true,
+  "source_sha256": "17e85a889b7e685fd644d1a581a076ba9650c62fca73bac81a46726a64745f26",
+  "expected_controls": {
+    "ProducerToyA": {
+      "count": 2,
+      "accept": true
+    },
+    "ProducerToyB": {
+      "count": 2,
+      "accept": true
+    },
+    "ProducerToyBad": {
+      "count": 3,
+      "accept": false
+    },
+    "ToyClean": {
+      "count": 19,
+      "accept": true
+    },
+    "ToyUnused": {
+      "count": 2,
+      "accept": false
+    },
+    "ToyPrivate": {
+      "count": 19,
+      "accept": false
+    },
+    "ToyUseExternal": {
+      "count": 1,
+      "accept": false
+    }
+  },
+  "expected_duplicate_origin_occurrences": 4,
+  "missing_or_duplicate_entry_rejects": true,
+  "basis": "Lean.Environment header.moduleData contains each imported producer constant array before name coalescing; imports const2ModIdx uses insertIfNew. Direct CI kind and own type/value dependencies are audited.",
+  "source_API": "Lean/Environment.lean:109-129,142-176,2314-2360; Lean/Util/CollectAxioms.lean",
+  "mathematical_fixture_expectations_changed": false
+}

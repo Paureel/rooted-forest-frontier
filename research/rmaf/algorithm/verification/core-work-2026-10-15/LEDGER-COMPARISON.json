@@ -1,0 +1,895 @@
+{
+  "status": "PASS-FROZEN-LITERAL-COMPARISON",
+  "cases": 29,
+  "seconds": 0.8644661669986817,
+  "source_sha256": "fc830ca0081f0d8fde6f5e4b63e77f13b921fc872140eb2895e19fe6b58c029d",
+  "log_sha256": "5962b850d2bc5fe3d666ebe873d43a05669d22e6c3abed11cdecbc205080bfd3",
+  "checks": [
+    {
+      "id": "empty-left-append-call-still-present",
+      "observed_metrics": {},
+      "independent_counts": {
+        "append.literal.calls": 1,
+        "append.literal.left_cells": 0
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "nonempty-left-append-work",
+      "observed_metrics": {},
+      "independent_counts": {
+        "append.literal.calls": 1,
+        "append.literal.left_cells": 3
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "combine-materializes-both-left-lists",
+      "observed_metrics": {
+        "copied": 5
+      },
+      "independent_counts": {
+        "append.receipt_outputs.calls": 1,
+        "append.receipt_outputs.left_cells": 3,
+        "append.receipt_refusals.calls": 1,
+        "append.receipt_refusals.left_cells": 2,
+        "counter.add": 3
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "both actual receipt left-copy lengths"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "combine-empty-left-lists",
+      "observed_metrics": {
+        "copied": 0
+      },
+      "independent_counts": {
+        "append.receipt_outputs.calls": 1,
+        "append.receipt_outputs.left_cells": 0,
+        "append.receipt_refusals.calls": 1,
+        "append.receipt_refusals.left_cells": 0,
+        "counter.add": 3
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "both actual receipt left-copy lengths"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "combine-left-output-length-eight",
+      "observed_metrics": {
+        "copied": 8
+      },
+      "independent_counts": {
+        "append.receipt_outputs.calls": 1,
+        "append.receipt_outputs.left_cells": 8,
+        "append.receipt_refusals.calls": 1,
+        "append.receipt_refusals.left_cells": 0,
+        "counter.add": 3
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "both actual receipt left-copy lengths"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "combine-left-output-length-sixteen",
+      "observed_metrics": {
+        "copied": 16
+      },
+      "independent_counts": {
+        "append.receipt_outputs.calls": 1,
+        "append.receipt_outputs.left_cells": 16,
+        "append.receipt_refusals.calls": 1,
+        "append.receipt_refusals.left_cells": 0,
+        "counter.add": 3
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "both actual receipt left-copy lengths"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "singleton-fromTree-color-oracle",
+      "observed_metrics": {
+        "footprint": 2,
+        "oracleCalls": 1
+      },
+      "independent_counts": {
+        "fromTree.visit": 1,
+        "oracle.color_calls": 1,
+        "oracle.tariff_units": 3
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "source color calls"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "fromTree-three-leaves-original-address-work",
+      "observed_metrics": {
+        "footprint": 14,
+        "oracleCalls": 3
+      },
+      "independent_counts": {
+        "fromTree.visit": 5,
+        "append.origin.calls": 4,
+        "append.origin.left_cells": 2,
+        "oracle.color_calls": 3,
+        "oracle.tariff_units": 15
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "source color calls"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "fromTree-nonempty-original-prefix",
+      "observed_metrics": {
+        "footprint": 24,
+        "oracleCalls": 3
+      },
+      "independent_counts": {
+        "fromTree.visit": 5,
+        "append.origin.calls": 4,
+        "append.origin.left_cells": 10,
+        "oracle.color_calls": 3,
+        "oracle.tariff_units": 3
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "source color calls"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "normalization-homogeneous-payload-appends",
+      "observed_metrics": {
+        "normalizeWork": 22
+      },
+      "independent_counts": {
+        "normalize.visit": 5,
+        "compare.normalize_color": 2,
+        "append.normalize_payload.calls": 2,
+        "append.normalize_payload.left_cells": 3
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "normalizeWork dominates literal copied cells (not fine-unit time equality)"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "normalization-mixed-comparison-still-charged",
+      "observed_metrics": {
+        "normalizeWork": 20
+      },
+      "independent_counts": {
+        "normalize.visit": 5,
+        "compare.normalize_color": 2,
+        "append.normalize_payload.calls": 1,
+        "append.normalize_payload.left_cells": 1
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "normalizeWork dominates literal copied cells (not fine-unit time equality)"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "groups-left-appends",
+      "observed_metrics": {
+        "groupsWork": 19
+      },
+      "independent_counts": {
+        "groups.visit": 5,
+        "append.groups.calls": 2,
+        "append.groups.left_cells": 3
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "groupsWork dominates literal copied cells (not fine-unit time equality)"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "erase-suppressed-survivor-still-visits",
+      "observed_metrics": {
+        "eraseWork": 56
+      },
+      "independent_counts": {
+        "erase.visit": 5,
+        "compare.origin": 5
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "erase-original-root-cost",
+      "observed_metrics": {
+        "eraseWork": 46
+      },
+      "independent_counts": {
+        "erase.visit": 1,
+        "compare.origin": 1
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "choose-filter-find-list-work",
+      "observed_metrics": {
+        "findFilterWork": 26
+      },
+      "independent_counts": {
+        "choose.calls": 1,
+        "groups.visit": 3,
+        "append.groups.calls": 1,
+        "append.groups.left_cells": 1,
+        "choose.all_predicate": 2,
+        "compare.choose_color": 2,
+        "choose.find_predicate": 1,
+        "choose.filter_calls": 1,
+        "choose.filter_predicate": 2,
+        "compare.filter_color": 2,
+        "choose.filter_kept_cells": 1,
+        "length.filtered.calls": 1,
+        "length.filtered.cells": 1,
+        "compare.count": 1
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "choose-refusal-after-real-search",
+      "observed_metrics": {
+        "findFilterWork": 169
+      },
+      "independent_counts": {
+        "choose.calls": 1,
+        "groups.visit": 7,
+        "append.groups.calls": 3,
+        "append.groups.left_cells": 4,
+        "choose.all_predicate": 3,
+        "compare.choose_color": 3,
+        "choose.find_predicate": 4,
+        "choose.filter_calls": 4,
+        "choose.filter_predicate": 16,
+        "compare.filter_color": 16,
+        "choose.filter_kept_cells": 8,
+        "length.filtered.calls": 4,
+        "length.filtered.cells": 8,
+        "compare.count": 4,
+        "mixedCherry.visit": 3,
+        "compare.cherry_color": 1
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "attempt-root-refusal-cost",
+      "observed_metrics": {
+        "prunedCalls": 0,
+        "work": 0
+      },
+      "independent_counts": {
+        "attempt.calls": 1,
+        "compare.origin": 1,
+        "refusal.list_cells": 1
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "pruned continuation calls"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "attempt-duplicate-refusal-cost",
+      "observed_metrics": {
+        "prunedCalls": 0,
+        "work": 0
+      },
+      "independent_counts": {
+        "attempt.calls": 1,
+        "compare.origin": 2,
+        "cuts.contains_calls": 1,
+        "cuts.contains_cells": 1,
+        "refusal.list_cells": 1
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "pruned continuation calls"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "attempt-entire-refusal-cost",
+      "observed_metrics": {
+        "prunedCalls": 0,
+        "work": 0
+      },
+      "independent_counts": {
+        "attempt.calls": 1,
+        "compare.origin": 2,
+        "cuts.contains_calls": 1,
+        "erase.visit": 1,
+        "refusal.list_cells": 1
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "pruned continuation calls"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "attempt-prune-still-pays-local-erase",
+      "observed_metrics": {
+        "prunedCalls": 1,
+        "work": 1
+      },
+      "independent_counts": {
+        "attempt.calls": 1,
+        "compare.origin": 4,
+        "cuts.contains_calls": 1,
+        "erase.visit": 3,
+        "attempt.cons_cells": 2,
+        "attempt.continuation": 1,
+        "prune.callback": 1,
+        "counter.add": 1
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "pruned continuation calls"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "run-zero-budget-local-work",
+      "observed_metrics": {
+        "copied": 0,
+        "prunedCalls": 1,
+        "work": 131073
+      },
+      "independent_counts": {
+        "run.calls": 1,
+        "step.calls": 1,
+        "normalize.visit": 3,
+        "compare.normalize_color": 1,
+        "choose.calls": 1,
+        "groups.visit": 3,
+        "append.groups.calls": 1,
+        "append.groups.left_cells": 1,
+        "choose.all_predicate": 2,
+        "compare.choose_color": 2,
+        "choose.find_predicate": 1,
+        "choose.filter_calls": 1,
+        "choose.filter_predicate": 2,
+        "compare.filter_color": 2,
+        "choose.filter_kept_cells": 1,
+        "length.filtered.calls": 1,
+        "length.filtered.cells": 1,
+        "compare.count": 1,
+        "attempt.calls": 1,
+        "compare.origin": 4,
+        "cuts.contains_calls": 1,
+        "erase.visit": 3,
+        "attempt.cons_cells": 2,
+        "attempt.continuation": 1,
+        "prune.callback": 1,
+        "counter.add": 2
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "both actual receipt left-copy lengths",
+        "pruned continuation calls"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "generate-zero-budget-initial-check-and-colors",
+      "observed_metrics": {
+        "B": 0,
+        "N": 3,
+        "copied": 0,
+        "initialCharge": 8192,
+        "oracleCalls": 2,
+        "prunedCalls": 1,
+        "work": 139265
+      },
+      "independent_counts": {
+        "generate.calls": 1,
+        "leaves.visit": 6,
+        "append.leaves.calls": 2,
+        "append.leaves.left_cells": 2,
+        "initial.nodup_calls": 1,
+        "initial.nodup_input_cells": 2,
+        "compare.label": 1,
+        "length.initial.calls": 1,
+        "length.initial.cells": 2,
+        "budget.subtract": 1,
+        "budget.min": 1,
+        "fromTree.visit": 3,
+        "append.origin.calls": 2,
+        "append.origin.left_cells": 0,
+        "oracle.color_calls": 2,
+        "oracle.tariff_units": 14,
+        "run.calls": 1,
+        "step.calls": 1,
+        "normalize.visit": 3,
+        "compare.normalize_color": 1,
+        "choose.calls": 1,
+        "groups.visit": 3,
+        "append.groups.calls": 1,
+        "append.groups.left_cells": 1,
+        "choose.all_predicate": 2,
+        "compare.choose_color": 2,
+        "choose.find_predicate": 1,
+        "choose.filter_calls": 1,
+        "choose.filter_predicate": 2,
+        "compare.filter_color": 2,
+        "choose.filter_kept_cells": 1,
+        "length.filtered.calls": 1,
+        "length.filtered.cells": 1,
+        "compare.count": 1,
+        "attempt.calls": 1,
+        "compare.origin": 4,
+        "cuts.contains_calls": 1,
+        "erase.visit": 3,
+        "attempt.cons_cells": 2,
+        "attempt.continuation": 1,
+        "prune.callback": 1,
+        "counter.add": 2
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "source color calls",
+        "both actual receipt left-copy lengths",
+        "pruned continuation calls"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "duplicate-input-pays-check-but-not-colors",
+      "observed_metrics": {
+        "B": 1,
+        "N": 3,
+        "copied": 0,
+        "initialCharge": 8192,
+        "oracleCalls": 0,
+        "prunedCalls": 0,
+        "work": 8192
+      },
+      "independent_counts": {
+        "generate.calls": 1,
+        "leaves.visit": 3,
+        "append.leaves.calls": 1,
+        "append.leaves.left_cells": 1,
+        "initial.nodup_calls": 1,
+        "initial.nodup_input_cells": 2,
+        "compare.label": 1,
+        "refusal.list_cells": 1
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "source color calls",
+        "both actual receipt left-copy lengths",
+        "pruned continuation calls"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "generate-finish-materializes-output",
+      "observed_metrics": {
+        "B": 1,
+        "N": 3,
+        "copied": 0,
+        "initialCharge": 8192,
+        "oracleCalls": 2,
+        "prunedCalls": 0,
+        "work": 194560
+      },
+      "independent_counts": {
+        "generate.calls": 1,
+        "leaves.visit": 6,
+        "append.leaves.calls": 2,
+        "append.leaves.left_cells": 2,
+        "initial.nodup_calls": 1,
+        "initial.nodup_input_cells": 2,
+        "compare.label": 1,
+        "length.initial.calls": 1,
+        "length.initial.cells": 2,
+        "budget.subtract": 1,
+        "budget.min": 1,
+        "fromTree.visit": 3,
+        "append.origin.calls": 2,
+        "append.origin.left_cells": 0,
+        "oracle.color_calls": 2,
+        "oracle.tariff_units": 2,
+        "run.calls": 2,
+        "budget.decrement": 1,
+        "step.calls": 2,
+        "normalize.visit": 4,
+        "compare.normalize_color": 1,
+        "choose.calls": 2,
+        "groups.visit": 5,
+        "append.groups.calls": 1,
+        "append.groups.left_cells": 1,
+        "choose.all_predicate": 3,
+        "compare.choose_color": 3,
+        "choose.find_predicate": 1,
+        "choose.filter_calls": 1,
+        "choose.filter_predicate": 2,
+        "compare.filter_color": 2,
+        "choose.filter_kept_cells": 1,
+        "length.filtered.calls": 1,
+        "length.filtered.cells": 1,
+        "compare.count": 1,
+        "attempt.calls": 1,
+        "compare.origin": 4,
+        "cuts.contains_calls": 1,
+        "erase.visit": 3,
+        "attempt.cons_cells": 2,
+        "attempt.continuation": 1,
+        "finish.map_cells": 1,
+        "finish.flatmap_group_cells": 1,
+        "append.finish_payload.calls": 1,
+        "append.finish_payload.left_cells": 1,
+        "append.finish_partition.calls": 1,
+        "append.finish_partition.left_cells": 1,
+        "finish.output_cells": 1,
+        "counter.add": 2
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "source color calls",
+        "both actual receipt left-copy lengths",
+        "pruned continuation calls"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "oversized-budget-bit-width-survives-clipping",
+      "observed_metrics": {
+        "B": 1,
+        "N": 3,
+        "copied": 0,
+        "initialCharge": 8192,
+        "oracleCalls": 2,
+        "prunedCalls": 0,
+        "work": 194560
+      },
+      "independent_counts": {
+        "generate.calls": 1,
+        "leaves.visit": 6,
+        "append.leaves.calls": 2,
+        "append.leaves.left_cells": 2,
+        "initial.nodup_calls": 1,
+        "initial.nodup_input_cells": 2,
+        "compare.label": 1,
+        "length.initial.calls": 1,
+        "length.initial.cells": 2,
+        "budget.subtract": 1,
+        "budget.min": 1,
+        "fromTree.visit": 3,
+        "append.origin.calls": 2,
+        "append.origin.left_cells": 0,
+        "oracle.color_calls": 2,
+        "oracle.tariff_units": 2,
+        "run.calls": 2,
+        "budget.decrement": 1,
+        "step.calls": 2,
+        "normalize.visit": 4,
+        "compare.normalize_color": 1,
+        "choose.calls": 2,
+        "groups.visit": 5,
+        "append.groups.calls": 1,
+        "append.groups.left_cells": 1,
+        "choose.all_predicate": 3,
+        "compare.choose_color": 3,
+        "choose.find_predicate": 1,
+        "choose.filter_calls": 1,
+        "choose.filter_predicate": 2,
+        "compare.filter_color": 2,
+        "choose.filter_kept_cells": 1,
+        "length.filtered.calls": 1,
+        "length.filtered.cells": 1,
+        "compare.count": 1,
+        "attempt.calls": 1,
+        "compare.origin": 4,
+        "cuts.contains_calls": 1,
+        "erase.visit": 3,
+        "attempt.cons_cells": 2,
+        "attempt.continuation": 1,
+        "finish.map_cells": 1,
+        "finish.flatmap_group_cells": 1,
+        "append.finish_payload.calls": 1,
+        "append.finish_payload.left_cells": 1,
+        "append.finish_partition.calls": 1,
+        "append.finish_partition.left_cells": 1,
+        "finish.output_cells": 1,
+        "counter.add": 2
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "source color calls",
+        "both actual receipt left-copy lengths",
+        "pruned continuation calls"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "encoded-labels-and-oracle-tariff",
+      "observed_metrics": {
+        "B": 1,
+        "N": 3,
+        "copied": 0,
+        "initialCharge": 8192,
+        "oracleCalls": 2,
+        "prunedCalls": 0,
+        "work": 194560
+      },
+      "independent_counts": {
+        "generate.calls": 1,
+        "leaves.visit": 6,
+        "append.leaves.calls": 2,
+        "append.leaves.left_cells": 2,
+        "initial.nodup_calls": 1,
+        "initial.nodup_input_cells": 2,
+        "compare.label": 1,
+        "length.initial.calls": 1,
+        "length.initial.cells": 2,
+        "budget.subtract": 1,
+        "budget.min": 1,
+        "fromTree.visit": 3,
+        "append.origin.calls": 2,
+        "append.origin.left_cells": 0,
+        "oracle.color_calls": 2,
+        "oracle.tariff_units": 22,
+        "run.calls": 2,
+        "budget.decrement": 1,
+        "step.calls": 2,
+        "normalize.visit": 4,
+        "compare.normalize_color": 1,
+        "choose.calls": 2,
+        "groups.visit": 5,
+        "append.groups.calls": 1,
+        "append.groups.left_cells": 1,
+        "choose.all_predicate": 3,
+        "compare.choose_color": 3,
+        "choose.find_predicate": 1,
+        "choose.filter_calls": 1,
+        "choose.filter_predicate": 2,
+        "compare.filter_color": 2,
+        "choose.filter_kept_cells": 1,
+        "length.filtered.calls": 1,
+        "length.filtered.cells": 1,
+        "compare.count": 1,
+        "attempt.calls": 1,
+        "compare.origin": 4,
+        "cuts.contains_calls": 1,
+        "erase.visit": 3,
+        "attempt.cons_cells": 2,
+        "attempt.continuation": 1,
+        "finish.map_cells": 1,
+        "finish.flatmap_group_cells": 1,
+        "append.finish_payload.calls": 1,
+        "append.finish_payload.left_cells": 1,
+        "append.finish_partition.calls": 1,
+        "append.finish_partition.left_cells": 1,
+        "finish.output_cells": 1,
+        "counter.add": 2
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "source color calls",
+        "both actual receipt left-copy lengths",
+        "pruned continuation calls"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "two-pruned-children-still-join-receipts",
+      "observed_metrics": {
+        "copied": 0,
+        "prunedCalls": 2,
+        "work": 2725890
+      },
+      "independent_counts": {
+        "run.calls": 1,
+        "step.calls": 1,
+        "normalize.visit": 7,
+        "compare.normalize_color": 2,
+        "choose.calls": 1,
+        "groups.visit": 7,
+        "append.groups.calls": 3,
+        "append.groups.left_cells": 4,
+        "choose.all_predicate": 2,
+        "compare.choose_color": 2,
+        "choose.find_predicate": 4,
+        "choose.filter_calls": 4,
+        "choose.filter_predicate": 16,
+        "compare.filter_color": 16,
+        "choose.filter_kept_cells": 8,
+        "length.filtered.calls": 4,
+        "length.filtered.cells": 8,
+        "compare.count": 4,
+        "mixedCherry.visit": 3,
+        "compare.cherry_color": 1,
+        "attempt.calls": 2,
+        "compare.origin": 16,
+        "cuts.contains_calls": 2,
+        "erase.visit": 14,
+        "attempt.cons_cells": 4,
+        "attempt.continuation": 2,
+        "prune.callback": 2,
+        "counter.add": 6,
+        "append.receipt_outputs.calls": 1,
+        "append.receipt_outputs.left_cells": 0,
+        "append.receipt_refusals.calls": 1,
+        "append.receipt_refusals.left_cells": 0
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "both actual receipt left-copy lengths",
+        "pruned continuation calls"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "two-output-source-run-joins-left-output-record",
+      "observed_metrics": {
+        "B": 2,
+        "N": 7,
+        "copied": 1,
+        "initialCharge": 65536,
+        "oracleCalls": 4,
+        "prunedCalls": 0,
+        "work": 7182337
+      },
+      "independent_counts": {
+        "generate.calls": 1,
+        "leaves.visit": 14,
+        "append.leaves.calls": 6,
+        "append.leaves.left_cells": 8,
+        "initial.nodup_calls": 1,
+        "initial.nodup_input_cells": 4,
+        "compare.label": 6,
+        "length.initial.calls": 1,
+        "length.initial.cells": 4,
+        "budget.subtract": 1,
+        "budget.min": 1,
+        "fromTree.visit": 7,
+        "append.origin.calls": 6,
+        "append.origin.left_cells": 4,
+        "oracle.color_calls": 4,
+        "oracle.tariff_units": 4,
+        "run.calls": 5,
+        "budget.decrement": 3,
+        "step.calls": 5,
+        "normalize.visit": 23,
+        "compare.normalize_color": 6,
+        "choose.calls": 5,
+        "groups.visit": 21,
+        "append.groups.calls": 7,
+        "append.groups.left_cells": 8,
+        "choose.all_predicate": 9,
+        "compare.choose_color": 9,
+        "choose.find_predicate": 9,
+        "choose.filter_calls": 9,
+        "choose.filter_predicate": 31,
+        "compare.filter_color": 31,
+        "choose.filter_kept_cells": 16,
+        "length.filtered.calls": 9,
+        "length.filtered.cells": 16,
+        "compare.count": 9,
+        "mixedCherry.visit": 3,
+        "compare.cherry_color": 1,
+        "attempt.calls": 4,
+        "compare.origin": 30,
+        "cuts.contains_calls": 4,
+        "erase.visit": 24,
+        "attempt.cons_cells": 8,
+        "attempt.continuation": 4,
+        "cuts.contains_cells": 2,
+        "append.normalize_payload.calls": 2,
+        "append.normalize_payload.left_cells": 2,
+        "finish.map_cells": 4,
+        "finish.flatmap_group_cells": 2,
+        "append.finish_payload.calls": 2,
+        "append.finish_payload.left_cells": 4,
+        "append.finish_partition.calls": 2,
+        "append.finish_partition.left_cells": 4,
+        "finish.output_cells": 2,
+        "counter.add": 10,
+        "append.receipt_outputs.calls": 1,
+        "append.receipt_outputs.left_cells": 1,
+        "append.receipt_refusals.calls": 1,
+        "append.receipt_refusals.left_cells": 0
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "source color calls",
+        "both actual receipt left-copy lengths",
+        "pruned continuation calls"
+      ],
+      "structural_vector_not_machine_time": true
+    },
+    {
+      "id": "large-color-value-is-not-small-label-width",
+      "observed_metrics": {
+        "B": 0,
+        "N": 3,
+        "copied": 0,
+        "initialCharge": 8192,
+        "oracleCalls": 2,
+        "prunedCalls": 0,
+        "work": 139264
+      },
+      "independent_counts": {
+        "generate.calls": 1,
+        "leaves.visit": 6,
+        "append.leaves.calls": 2,
+        "append.leaves.left_cells": 2,
+        "initial.nodup_calls": 1,
+        "initial.nodup_input_cells": 2,
+        "compare.label": 1,
+        "length.initial.calls": 1,
+        "length.initial.cells": 2,
+        "budget.subtract": 1,
+        "budget.min": 1,
+        "fromTree.visit": 3,
+        "append.origin.calls": 2,
+        "append.origin.left_cells": 0,
+        "oracle.color_calls": 2,
+        "oracle.tariff_units": 10,
+        "run.calls": 1,
+        "step.calls": 1,
+        "normalize.visit": 3,
+        "compare.normalize_color": 1,
+        "append.normalize_payload.calls": 1,
+        "append.normalize_payload.left_cells": 1,
+        "choose.calls": 1,
+        "groups.visit": 2,
+        "choose.all_predicate": 1,
+        "compare.choose_color": 1,
+        "finish.map_cells": 0,
+        "finish.flatmap_group_cells": 1,
+        "append.finish_payload.calls": 1,
+        "append.finish_payload.left_cells": 2,
+        "append.finish_partition.calls": 1,
+        "append.finish_partition.left_cells": 0,
+        "finish.output_cells": 1
+      },
+      "checks": [
+        "value projection (combine: exact output/refusal lengths and counters)",
+        "source color calls",
+        "both actual receipt left-copy lengths",
+        "pruned continuation calls"
+      ],
+      "structural_vector_not_machine_time": true
+    }
+  ],
+  "scope": "Finite source-value, oracle/prune/copy comparisons to frozen independent ledgers. Domination/source correspondence handled separately; no equality of scalar work with machine operations."
+}

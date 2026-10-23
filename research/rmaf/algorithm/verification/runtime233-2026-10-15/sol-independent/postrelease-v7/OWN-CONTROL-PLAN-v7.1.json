@@ -1,0 +1,82 @@
+{
+  "initial_subprocess_seconds": 60,
+  "disk_floor_bytes": 3221225472,
+  "lean_MiB": 3072,
+  "raw_cap_bytes": 16777216,
+  "line_cap_bytes": 16777216,
+  "compressed_budget_bytes": 268435456,
+  "version": 7,
+  "fixture": "OWN-CONTROL-SPEC-v7.md",
+  "fixture_sha256": "c95b973adec8dee72dbec13aeae0d4fd0fc1ae8b9fb838c4ccdfe0b29e389c60",
+  "items": [
+    {
+      "name": "BaselineTrue",
+      "source": "own-controls/BaselineTrue.lean",
+      "source_sha256": "76d26df88731d745ad22a7147f8bf20bd6cd5ca9d8cc2568643ebe6c712ea5c5",
+      "root": "",
+      "additional_import_roots": [],
+      "expected": "pass",
+      "statements": 1
+    },
+    {
+      "name": "BaselineFalse",
+      "source": "own-controls/BaselineFalse.lean",
+      "source_sha256": "93bfa05a15eb437061219b08e415361da343b6446bde7bef5d665ed8a26aeca1",
+      "root": "",
+      "additional_import_roots": [],
+      "expected": "false",
+      "statements": 1
+    },
+    {
+      "name": "BinaryProducerTruthV2",
+      "source": "own-controls/BinaryProducerTruthV2.lean",
+      "source_sha256": "d82414391a2f64a20ef85347812f244e1b64b0c8ee62d886b559d893fe55ee5b",
+      "root": "results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z",
+      "additional_import_roots": [],
+      "expected": "pass",
+      "statements": 9
+    },
+    {
+      "name": "BinaryProducerDuplicateFalseV2",
+      "source": "own-controls/BinaryProducerDuplicateFalseV2.lean",
+      "source_sha256": "bc1940a7367ae69780f60dbe3819e1cef0e572b7c564177b2b415978e2500c60",
+      "root": "results/algorithm-universal233-binary-producer-final-20261016T095230Z-20261016T101422Z",
+      "additional_import_roots": [],
+      "expected": "false",
+      "statements": 1
+    },
+    {
+      "name": "RecoveryBitsTruth",
+      "source": "own-controls/RecoveryBitsTruth.lean",
+      "source_sha256": "90c07f67890b74b97e0ab78486d933dd93dcf623852ece053caf475867c1f2af",
+      "root": "results/algorithm-universal233-recovery-scalar-20261016T095748Z-20261016T100125837782Z",
+      "additional_import_roots": [
+        "results/algorithm-universal233-recovery-source-20261016T092054Z-20261016T092457019053Z",
+        "research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v6/clean-import",
+        "results/algorithm-universal233-optimizer-local-20261016T085144Z-20261016T085502958188Z",
+        "results/algorithm-universal233-budget-optimization-replay-20261015T213529360638Z",
+        "results/algorithm-universal233-early-resume-20261016T083330Z-20261016T083634190186Z",
+        "results/algorithm-universal233-forest-check-root-20261015T211023Z"
+      ],
+      "expected": "pass",
+      "statements": 8
+    },
+    {
+      "name": "RecoveryOverflowFalse",
+      "source": "own-controls/RecoveryOverflowFalse.lean",
+      "source_sha256": "3e1383ce119cdcdf65a7ad1af51ed8a8402820ce756c783f9d07d2801d2e5ecd",
+      "root": "results/algorithm-universal233-recovery-scalar-20261016T095748Z-20261016T100125837782Z",
+      "additional_import_roots": [
+        "results/algorithm-universal233-recovery-source-20261016T092054Z-20261016T092457019053Z",
+        "research/rmaf/algorithm/verification/runtime233-2026-10-15/sol-independent/postrelease-v6/clean-import",
+        "results/algorithm-universal233-optimizer-local-20261016T085144Z-20261016T085502958188Z",
+        "results/algorithm-universal233-budget-optimization-replay-20261015T213529360638Z",
+        "results/algorithm-universal233-early-resume-20261016T083330Z-20261016T083634190186Z",
+        "results/algorithm-universal233-forest-check-root-20261015T211023Z"
+      ],
+      "expected": "false",
+      "statements": 1
+    }
+  ],
+  "amendment": "Only namespace qualification corrected in two new binary control files; all arithmetic expectations unchanged. Original sources/logs/failure retained. Prior successful groups not rerun."
+}

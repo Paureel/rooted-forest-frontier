@@ -1,0 +1,80 @@
+import PaintCost
+namespace AllGoodDP.LocalWork
+open RMAF Universal233.WholeSourceWork Universal233.CoreWork
+
+theorem table_nonempty (cs : List Nat) (owner : Nat→Nat) (t : Tree) (hc : cs≠[]) : table cs owner t≠[] := by
+ cases t <;> simp [table,hc]
+
+theorem table_erase (cs : List Nat) (owner : Nat→Nat) (t : Tree) (hc : cs≠[]) :
+ ∀p,p∈table cs owner t→erase p=t := by
+ induction t with
+ | leaf x => intro p hp;have eq:p=.leaf x (owner x) := by simpa [table] using hp;subst p;rfl
+ | node l r il ir =>
+  intro p hp
+  obtain ⟨c,_,rfl⟩ := List.mem_map.1 hp
+  have hl := il _ (choose_spec (edgeCost c) (table cs owner l) (table_nonempty cs owner l hc)).1
+  have hr := ir _ (choose_spec (edgeCost c) (table cs owner r) (table_nonempty cs owner r hc)).1
+  simp [erase,hl,hr]
+
+def meterRow (c : Nat) (ls rs : List Paint) : Charged Paint :=
+ let a := meterChoose (meterEdgeCost c) ls
+ let b := meterChoose (meterEdgeCost c) rs
+ ⟨.node c a.value b.value,a.work+b.work+8⟩
+@[simp] theorem meterRow_value (c : Nat) (ls rs : List Paint) :
+ (meterRow c ls rs).value=.node c (choose (edgeCost c) ls) (choose (edgeCost c) rs) := by
+ simp [meterRow]
+
+def meterTable (cs : List Nat) (owner : Nat→Charged Nat) : Tree→Charged (List Paint)
+ | .leaf x => let o := owner x;⟨[.leaf x o.value],o.work+8⟩
+ | .node l r =>
+  let a := meterTable cs owner l
+  let b := meterTable cs owner r
+  let rows := cs.map (fun c=>meterRow c a.value b.value)
+  ⟨rows.map Charged.value,a.work+b.work+(rows.map Charged.work).sum+8⟩
+@[simp] theorem meterTable_value (cs : List Nat) (owner : Nat→Charged Nat) (t : Tree) :
+ (meterTable cs owner t).value=table cs (fun x=>(owner x).value) t := by
+ induction t with
+ | leaf x => rfl
+ | node l r il ir => simp [meterTable,il,ir,List.map_map,Function.comp_def,table]
+
+def chooseCap (m N : Nat) : Nat := (48*N+12)*(m+1)+8
+def nodeCharge (m N : Nat) : Nat := m*(2*chooseCap m N+8)+8
+def tableCoefficient (C m N : Nat) : Nat := C+nodeCharge m N+16
+
+theorem choose_table_work (cs : List Nat) (owner : Nat→Nat) (t : Tree) (hc : cs≠[]) (c N : Nat)
+ (ht : treeNodes t≤N) : (meterChoose (meterEdgeCost c) (table cs owner t)).work≤chooseCap cs.length N := by
+ have cap : ∀p,p∈table cs owner t→(meterEdgeCost c p).work≤24*N := by
+  intro p hp
+  have sz : paintNodes p=treeNodes t := by rw [paintNodes_erase,table_erase cs owner t hc p hp]
+  exact Nat.le_trans (meterEdgeCost_work c p) (by rw [sz];exact Nat.mul_le_mul_left 24 ht)
+ have b := meterChoose_work (meterEdgeCost c) (table cs owner t) (24*N) cap
+ have len : (table cs owner t).length≤cs.length+1 := by rw [table_length];cases t <;> simp
+ have mul := Nat.mul_le_mul_left (2*(24*N)+12) len
+ dsimp only [chooseCap]
+ omega
+
+theorem meterTable_work (cs : List Nat) (owner : Nat→Charged Nat) (t : Tree) (hc : cs≠[]) (C N : Nat)
+ (ht : treeNodes t≤N) (ho : ∀x,x∈leaves t→(owner x).work≤C) :
+ (meterTable cs owner t).work≤tableCoefficient C cs.length N*treeNodes t := by
+ induction t with
+ | leaf x =>
+  have h := ho x (by simp [leaves])
+  simp only [meterTable,treeNodes,Nat.mul_one,tableCoefficient]
+  omega
+ | node l r il ir =>
+  have hl : treeNodes l≤N := by simp only [treeNodes] at ht;omega
+  have hr : treeNodes r≤N := by simp only [treeNodes] at ht;omega
+  have wl := il hl (fun x hx=>ho x (by simp [leaves,hx]))
+  have wr := ir hr (fun x hx=>ho x (by simp [leaves,hx]))
+  have row : ∀c,c∈cs→(meterRow c (table cs (fun x=>(owner x).value) l) (table cs (fun x=>(owner x).value) r)).work≤2*chooseCap cs.length N+8 := by
+   intro c _
+   have a := choose_table_work cs (fun x=>(owner x).value) l hc c N hl
+   have b := choose_table_work cs (fun x=>(owner x).value) r hc c N hr
+   simp only [meterRow]
+   omega
+  have total : ((cs.map fun c=>meterRow c (table cs (fun x=>(owner x).value) l) (table cs (fun x=>(owner x).value) r)).map Charged.work).sum≤cs.length*(2*chooseCap cs.length N+8) := by
+   simpa only [List.map_map,Function.comp_def] using GenericForest.LocalPolynomial.nat_sum_le_constant cs (fun c=>(meterRow c (table cs (fun x=>(owner x).value) l) (table cs (fun x=>(owner x).value) r)).work) _ row
+  have loc : cs.length*(2*chooseCap cs.length N+8)+8≤tableCoefficient C cs.length N := by simp only [tableCoefficient,nodeCharge];omega
+  simp only [meterTable,meterTable_value,treeNodes,Nat.mul_add,Nat.mul_one]
+  omega
+end AllGoodDP.LocalWork

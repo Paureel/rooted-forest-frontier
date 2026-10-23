@@ -1,0 +1,114 @@
+{
+  "phase": "RELEASED_POSTCONTACT_CONTROLS",
+  "candidate_source_mutations": 0,
+  "runs": [
+    {
+      "module": "FreshActualCleanV1",
+      "expected": "compile",
+      "returncode": 0,
+      "seconds": 0.7536179590024403,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "FreshActualCleanV1.olean",
+        "FreshActualCleanV1.lean"
+      ],
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "FreshActualFalseV1",
+      "expected": "false",
+      "returncode": 1,
+      "seconds": 0.8237411249974684,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "FreshActualFalseV1.olean",
+        "FreshActualFalseV1.lean"
+      ],
+      "log_sha256": "c61e1772e25461f23f53f945f6aecc0842a8ad7b595d476c531c2b59ffc41e65"
+    },
+    {
+      "module": "FreshDirtyScientificV1",
+      "expected": "compile",
+      "returncode": 0,
+      "seconds": 0.40017241700115846,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "FreshDirtyScientificV1.olean",
+        "FreshDirtyScientificV1.lean"
+      ],
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "FreshDirtyScientificAuditV1",
+      "expected": "FRESH_CUSTOM_OR_UNSAFE",
+      "returncode": 1,
+      "seconds": 5.0350426669974695,
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/bootloops-lean",
+        "-o",
+        "FreshDirtyScientificAuditV1.olean",
+        "FreshDirtyScientificAuditV1.lean"
+      ],
+      "log_sha256": "82316fed4e0492aa2d70e11ae518b1c927b24e83b670cc270e0bd01347e74ead"
+    }
+  ],
+  "audits": {
+    "FreshDirtyScientificAuditV1": {
+      "rows": [
+        {
+          "origin": "FreshDirtyScientificV1",
+          "name": "_private.FreshDirtyScientificV1.0.FreshTargetDirty.hiddenFalse",
+          "is_axiom": true,
+          "unsafe": false,
+          "axioms": [
+            "_private.FreshDirtyScientificV1.0.FreshTargetDirty.hiddenFalse"
+          ],
+          "rejected": true
+        },
+        {
+          "origin": "FreshDirtyScientificV1",
+          "name": "_private.FreshDirtyScientificV1.0.FreshTargetDirty.hiddenBad",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [
+            "_private.FreshDirtyScientificV1.0.FreshTargetDirty.hiddenFalse"
+          ],
+          "rejected": true
+        },
+        {
+          "origin": "FreshDirtyScientificV1",
+          "name": "FreshTargetDirty.unusedFalse",
+          "is_axiom": true,
+          "unsafe": false,
+          "axioms": [
+            "FreshTargetDirty.unusedFalse"
+          ],
+          "rejected": true
+        },
+        {
+          "origin": "FreshDirtyScientificV1",
+          "name": "FreshTargetDirty.cleanHeadline",
+          "is_axiom": false,
+          "unsafe": false,
+          "axioms": [],
+          "rejected": false
+        }
+      ],
+      "counts": {
+        "FreshDirtyScientificV1": 4
+      },
+      "total": 4,
+      "rejected_count": 3
+    }
+  },
+  "all_main_milestones": "OPEN",
+  "verdict": "PASS_ACTUAL_FALSE_CLEAN_PRIVATE_UNUSED_CUSTOM_AXIOM_GATES",
+  "false_claims_rejected": 8,
+  "clean_twin_theorems": 8,
+  "source_bound_frozen_expectations_unchanged": true,
+  "post_candidate_contact_supplement": true,
+  "extra_replications": 0
+}

@@ -1,0 +1,72 @@
+{
+  "regime": "Theory-finding for the exact normalization domain; conditional branch logic is a known-statement regime.",
+  "reason": "Root-parent repair, containment repair and compound-root survival address distinct mechanisms. A failed formulation is not renamed and recycled as proved.",
+  "features": [
+    "component_containment",
+    "actual_AF_compatibility",
+    "LCA_parent_exists",
+    "ordinary_endpoints",
+    "compound_root_fragments_survive",
+    "E_is_minimum",
+    "E_respects_contracted_atoms",
+    "algorithm_state_reached"
+  ],
+  "formulations": [
+    {
+      "id": "universal-raw-cover",
+      "status": "refuted",
+      "mechanism": "A raw optimum can cut a compound cluster and an internal endpoint while containing no listed branch prefix.",
+      "receipt": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness_review/cover-adversary.json",
+      "licensed_successor": "existential-covered-optimum"
+    },
+    {
+      "id": "normalization-no-containment",
+      "status": "refuted",
+      "mechanism": "Rejoined component overlaps another component in the target forest.",
+      "receipt": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness_review/normalization-domain.json",
+      "licensed_successor": "explicit-containment-and-AF"
+    },
+    {
+      "id": "normalization-without-root-case",
+      "status": "undefined-on-valid-domain",
+      "mechanism": "The incoming edge of an unlabelled component-root LCA does not exist.",
+      "receipt": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-repair-root-cross-replay.json",
+      "licensed_successor": "add-parent-only-if-present"
+    },
+    {
+      "id": "containment-root-safe-arbitrary-compound",
+      "status": "refuted",
+      "mechanism": "All labels below the attached compound endpoint are disconnected from its root, so restoring the opposite path cut can join labels with the wrong upper topology.",
+      "receipt": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-repair-compound-empty.json",
+      "licensed_successor": "explicit-surviving-endpoint-fragments-or-intact-atoms"
+    },
+    {
+      "id": "surviving-fragments-root-safe",
+      "status": "twice-reviewed-prose-not-kernel-formalized",
+      "mechanism": "The one-cut anchor controls rooted compatibility; full-path restoration and an actual-parent guard cover compound and absent-parent cases.",
+      "success_requirement": "Universal graph/AF proof under stated hypotheses and fresh consumer review.",
+      "review_receipts": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/review/verdict.json",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-repair-review2-verdict.json"
+      ]
+    },
+    {
+      "id": "minimum-common-subtree-survival",
+      "status": "twice-reviewed-prose-not-kernel-formalized",
+      "mechanism": "Empty common roots require at least two internal cuts; restore the common subtree and cut its incoming edge for a strictly smaller AF. Requires a global current-forest minimum.",
+      "success_requirement": "Strictly smaller genuine AF completion if the common pendant root fragment is empty.",
+      "review_receipts": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/review/verdict.json",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-repair-review2-verdict.json"
+      ]
+    }
+  ],
+  "limitations": [
+    "Several corpus entries are source-domain obstructions rather than algorithm counterexamples.",
+    "The compound-empty counterexample is nonoptimal and structural; no reachability claim.",
+    "The root reached witness is nonoptimal and atom-respecting.",
+    "Feature choices are mechanism-driven after certified fires, not an exhaustive theorem-space synthesis.",
+    "Restricted universal AF arguments have two independent prose reviews; there is no kernel-formalized universal AF normalization theorem. General optimum/protected-origin lift remains open."
+  ],
+  "updated_at": "2026-10-14T14:54:46.007505+00:00"
+}

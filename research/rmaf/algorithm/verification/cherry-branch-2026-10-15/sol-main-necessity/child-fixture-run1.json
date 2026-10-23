@@ -1,0 +1,261 @@
+{
+  "scope": "mock exact tables only; finite fixture, no recursive implementation/IH/termination proof",
+  "checks": [
+    {
+      "child": "endpoint-a",
+      "remaining": 0,
+      "success": false,
+      "G": null
+    },
+    {
+      "child": "endpoint-a",
+      "remaining": 1,
+      "success": true,
+      "G": [
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          2,
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "child": "endpoint-a",
+      "remaining": 2,
+      "success": true,
+      "G": [
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          2,
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "child": "endpoint-a",
+      "remaining": 3,
+      "success": true,
+      "G": [
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          2,
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "child": "endpoint-b",
+      "remaining": 0,
+      "success": true,
+      "G": [
+        [
+          0,
+          2,
+          3,
+          4
+        ],
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "child": "endpoint-b",
+      "remaining": 1,
+      "success": true,
+      "G": [
+        [
+          0,
+          2,
+          3,
+          4
+        ],
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "child": "endpoint-b",
+      "remaining": 2,
+      "success": true,
+      "G": [
+        [
+          0,
+          2,
+          3,
+          4
+        ],
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "child": "endpoint-b",
+      "remaining": 3,
+      "success": true,
+      "G": [
+        [
+          0,
+          2,
+          3,
+          4
+        ],
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "child": "pendants",
+      "remaining": 0,
+      "success": true,
+      "G": [
+        [
+          0,
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          4
+        ]
+      ]
+    },
+    {
+      "child": "pendants",
+      "remaining": 1,
+      "success": true,
+      "G": [
+        [
+          0,
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          4
+        ]
+      ]
+    },
+    {
+      "child": "pendants",
+      "remaining": 2,
+      "success": true,
+      "G": [
+        [
+          0,
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          4
+        ]
+      ]
+    },
+    {
+      "child": "pendants",
+      "remaining": 3,
+      "success": true,
+      "G": [
+        [
+          0,
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          4
+        ]
+      ]
+    }
+  ],
+  "parent": [
+    {
+      "k": 0,
+      "success": false,
+      "minimum_blocks": null
+    },
+    {
+      "k": 1,
+      "success": true,
+      "minimum_blocks": 2
+    },
+    {
+      "k": 2,
+      "success": true,
+      "minimum_blocks": 2
+    },
+    {
+      "k": 3,
+      "success": true,
+      "minimum_blocks": 2
+    }
+  ],
+  "mutations": [
+    {
+      "plant": "free-known-minimum",
+      "reason": "free/wrong minimum"
+    },
+    {
+      "plant": "wrong-child",
+      "reason": "attainment/child/budget"
+    },
+    {
+      "plant": "wrong-residual-budget",
+      "reason": "affordable completeness/refusal"
+    },
+    {
+      "plant": "missing-refusal",
+      "reason": "affordable completeness/refusal"
+    },
+    {
+      "plant": "unaffordable-success",
+      "reason": "unaffordable parent rejected before subtraction"
+    },
+    {
+      "plant": "double-proof-split",
+      "reason": "wrong component offset"
+    }
+  ],
+  "required_mutations": 6,
+  "candidate_contact": false,
+  "script_sha256": "f8cbc6532d1cc4a9da5d263d5233f8841b439ba9cab987a2e78090dcb994f873",
+  "fixture_sha256": "3519ce5e6a485c52c61d2e304322acd61028f890e0f225831dab202f5a206420"
+}

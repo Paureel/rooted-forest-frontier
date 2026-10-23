@@ -1,0 +1,11 @@
+Exactly3 full compiled primitive VALUE TYPES, including all inferred parameter types, for preflight/scan/recover. No proof values. They are shared formal support, not cost/whole verification.
+
+OrdinaryDispatch.OptimizerLocalWork.meterPreflight_value : ∀ (T S : RMAF.Tree),
+  Eq.{1} (OrdinaryDispatch.OptimizerLocalWork.meterPreflight T S).value
+    (Prod.mk.{0, 0} (Universal233.DepthOne.proper T S) (List.length.{0} (RMAF.leaves T)))
+OrdinaryDispatch.OptimizerLocalWork.meterScan_value : ∀
+  (query : Nat → Universal233.WholeSourceWork.Charged (Option.{0} OrdinaryDispatch.CommonForest)) (start fuel : Nat),
+  Eq.{1} (OrdinaryDispatch.OptimizerLocalWork.meterScan query start fuel).value
+    (OrdinaryDispatch.BudgetOptimization.scan (fun q => (query q).value) start fuel)
+OrdinaryDispatch.RecoveryLocalWork.meterRecover_value : ∀ (S : RMAF.Tree) (P : OrdinaryDispatch.CommonForest),
+  Eq.{1} (OrdinaryDispatch.RecoveryLocalWork.meterRecover S P).value (Universal233.FinalCutRecovery.recover S P)

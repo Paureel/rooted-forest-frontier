@@ -1,0 +1,38 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/rule4_source_bound_20261016T095230Z/build/Rule4SourceBound.lean:22:16: warning: This simp argument is unused:
+  a
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Option.toList, List.length_append, List.length_nil, List.length_cons]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/rule4_source_bound_20261016T095230Z/build/Rule4SourceBound.lean:111:12: error(lean.unknownIdentifier): Unknown identifier `qpow_mono`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/rule4_source_bound_20261016T095230Z/build/Rule4SourceBound.lean:143:44: error: Invalid argument name `c` for function `Iff.mpr`
+
+Hint: Perhaps you meant one of the following parameter names:
+  • `a`: c̵a̲
+  • `b`: c̵b̲
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/rule4_source_bound_20261016T095230Z/build/Rule4SourceBound.lean:132:60: error: unsolved goals
+actual : GenericForest.FrontierWork.Ordinary
+T S : Tree
+s : Rule4.Choice T S
+q N Q : Nat
+size : (leaves T).length ≤ N
+budget : q ≤ Q
+localBound :
+  ↑(rule4Source actual (fun x x_1 x_2 => 0) s q).work ≤
+    ↑(rule4LocalPolynomial N) + ↑(rule4ForestDebit actual q (Rule4.branches s))
+forests :
+  ↑(rule4ForestDebit actual q (Rule4.branches s)) ≤
+    3 * (geometric Rule5ActualTrace.base * forestCoefficient N Q) * Rule5ActualTrace.base ^ q
+basepow : 1 ≤ Rule5ActualTrace.base ^ q
+localScale : ↑(rule4LocalPolynomial N) ≤ ↑(rule4LocalPolynomial N) * Rule5ActualTrace.base ^ q
+sum :
+  ↑(rule4LocalPolynomial N) + ↑(rule4ForestDebit actual q (Rule4.branches s)) ≤
+    ↑(rule4LocalPolynomial N) * Rule5ActualTrace.base ^ q +
+      3 * (geometric Rule5ActualTrace.base * forestCoefficient N Q) * Rule5ActualTrace.base ^ q
+geom : 3 * geometric Rule5ActualTrace.base ≤ 48
+coef : 3 * geometric Rule5ActualTrace.base * ↑(2 ^ 50 * (N + Q + 2) ^ 8) ≤ 48 * ↑(2 ^ 50 * (N + Q + 2) ^ 8)
+scaled :
+  3 * geometric Rule5ActualTrace.base * ↑(2 ^ 50 * (N + Q + 2) ^ 8) * Rule5ActualTrace.base ^ q ≤
+    48 * ↑(2 ^ 50 * (N + Q + 2) ^ 8) * Rule5ActualTrace.base ^ q
+⊢ ↑(rule4Source actual (fun x x_1 x_2 => 0) s q).work ≤ ↑(rule4SourcePolynomial N Q) * Rule5ActualTrace.base ^ q

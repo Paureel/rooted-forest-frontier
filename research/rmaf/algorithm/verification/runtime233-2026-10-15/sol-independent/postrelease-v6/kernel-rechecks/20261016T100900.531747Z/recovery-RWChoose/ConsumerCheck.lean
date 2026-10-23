@@ -1,0 +1,5 @@
+import RWChoose
+#check OrdinaryDispatch.RecoveryLocalWork.meterChoose_value
+#print axioms OrdinaryDispatch.RecoveryLocalWork.meterChoose_value
+#check OrdinaryDispatch.RecoveryLocalWork.meterChoose_bound
+#print axioms OrdinaryDispatch.RecoveryLocalWork.meterChoose_bound

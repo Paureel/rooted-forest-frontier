@@ -1,0 +1,52 @@
+
+115
+shows that T has at least one promising leaf invocation I “ m pF1, F 2, k q. Since this
+is a leaf invocation, we either have k ă 0 or F2 is an AF of T1 and T2. However,
+k “ k0 ´ | F2| ` 1 “ k0 ´ e pT1, T 2, T 2q ` e pT1, T 2, F 2q ě 0 because k0 ě e pT1, T 2, T 2q
+and e pT1, T 2, F 2q ě 0. Thus, k ě 0 and F2 is an AF of T1 and T2, that is, invocation
+I, and hence the whole algorithm, returns True.
+It remains to consider the eﬀect of edge protection. First obs erve that the intro-
+duction of protected edges can only reduce the number of recu rsive calls made by
+each invocation. Thus, if the algorithm returns F alsewithout using edge protection,
+it also returns F alseusing edge protection, that is, our algorithm gives the corr ect
+answer if e pT1, T 2, T 2q ą k0. For the remainder of the proof assume e pT1, T 2, T 2q ď k0.
+Consider the subtree T 1 of T deﬁned by promising invocations. Our argument in the
+previous paragraph implies that every leaf invocation of T 1 is a leaf invocation of T
+that returns True. Consider the leftmost root-leaf path I1, I2, . . . , Ih in T 1, where
+the children of each invocation I in T 1 are ordered left to right in the order invo-
+cation I makes these recursive calls. We prove that the introduction of protected
+edges cannot prevent our algorithm from exploring this path , which implies that our
+algorithm returns True if e pT1, T 2, T 2q ď k0 even using edge protection.
+Assume the contrary. Then there exists an index 1 ď j1 ă h such that our algo-
+rithm makes invocations I1, I2, . . . , Ij1 but does not make invocations Ij1` 1, Ij1` 2, . . . ,
+Ih. Then we have Ij1 “ m pF 2
+1 , F 2
+2 , k 2q and Ij1` 1 “ m pF 3
+1 , F 2
+2 ˜ E2, k 2 ´ | E2|q, for
+some edge set E2 that includes a protected edge of F 2
+2 or an edge incident to a
+root of F 2
+2 whose sibling edge is protected. In the former case, let e be a pro-
+tected edge in E2; in the latter case, let e be the protected sibling edge of an
+edge in E2 incident to a root of F 2
+2 . Since both invocations Ij1 and Ij1` 1 are
+promising, we have e pT1, T 2, F 2
+2 ˜ E2q “ e pT1, T 2, F 2
+2 q ´ | E2|, which implies that
+e pT1, T 2, F 2
+2 ˜ t euq “ e pT1, T 2, F 2
+2 q ´ 1 because either e P E2 or e’s sibling is in E2
+and both are incident to a root in F 2
+2 , in which case cutting e or its sibling produces
+the same forest. Since T2 does not contain any protected edges, there exists an index
+1 ď j ă j1 such that the invocations Ij “ m pF1, F 2, k q and Ij` 1 “ m pF 1
+1, F 1
+2, k 1q have
+the property that edge e is protected in F 1
+2 but not in F2. Therefore, invocation Ij ap-
+plies Case A2BC or A3BC and Ij` 1 “ m pF 1
+1, F 2 ˛ t ea, e b1, e b2u ˜ t ecu, k ´ 1q or Ij` 1 “
+m pF 1
+1, F 2 ˛ t eau ˜ t ecu, k ´ 1q. In particular, e P tea, e b1, e b2u. If invocation Ij applies
+

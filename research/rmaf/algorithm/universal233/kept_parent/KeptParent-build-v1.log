@@ -1,0 +1,106 @@
+research/rmaf/algorithm/universal233/kept_parent/KeptParent.lean:25:4: error: unsolved goals
+case pos
+S : Tree
+A B C : List Nat
+cb : Nat → Nat
+hp : partitionCheck (leaves S) [A, B, C] = true
+he : pairwiseEmbeddings S [A, B, C] = true
+v : Vertex
+c : Nat
+hv : LeafAt (skeleton (fromTree (keepColor A B cb) [] S)) v c
+hv' : LeafAt (recolor (keepColor A B cb) S) v c
+x : Nat
+hx : LeafAt S v x
+hxc : keepColor A B cb x = c
+hA : ¬x ∈ A
+hB : x ∈ B
+hBA : B ≠ A
+⊢ List.idxOf B [A, B, C] = 1
+research/rmaf/algorithm/universal233/kept_parent/KeptParent.lean:30:4: error: unsolved goals
+case neg
+S : Tree
+A B C : List Nat
+cb : Nat → Nat
+hp : partitionCheck (leaves S) [A, B, C] = true
+he : pairwiseEmbeddings S [A, B, C] = true
+v : Vertex
+c : Nat
+hv : LeafAt (skeleton (fromTree (keepColor A B cb) [] S)) v c
+hv' : LeafAt (recolor (keepColor A B cb) S) v c
+x : Nat
+hx : LeafAt S v x
+hxc : keepColor A B cb x = c
+hA : ¬x ∈ A
+hB : ¬x ∈ B
+b : List Nat
+hb : b ∈ [A, B, C]
+hxb : x ∈ b
+hC : x ∈ C
+hCA : C ≠ A
+hCB : C ≠ B
+⊢ List.idxOf C [A, B, C] = 2
+research/rmaf/algorithm/universal233/kept_parent/KeptParent.lean:29:40: warning: This simp argument is unused:
+  Ne.symm hBA
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [keepColor, taggedColor, hA, hB, hBA]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/kept_parent/KeptParent.lean:29:52: warning: This simp argument is unused:
+  hBA
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [keepColor, taggedColor, hA, hB, Ne.symm hBA]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/kept_parent/KeptParent.lean:42:40: warning: This simp argument is unused:
+  Ne.symm hCA
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [keepColor, taggedColor, hA, hB, Ne.symm hCB, hCA, hCB]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/kept_parent/KeptParent.lean:42:52: warning: This simp argument is unused:
+  Ne.symm hCB
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [keepColor, taggedColor, hA, hB, Ne.symm hCA, hCA, hCB]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/kept_parent/KeptParent.lean:42:64: warning: This simp argument is unused:
+  hCA
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [keepColor, taggedColor, hA, hB, Ne.symm hCA, Ne.symm hCB, hCB]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/kept_parent/KeptParent.lean:42:68: warning: This simp argument is unused:
+  hCB
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [keepColor, taggedColor, hA, hB, Ne.symm hCA, Ne.symm hCB, hCA]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/kept_parent/KeptParent.lean:53:10: error: Tactic `split` failed: Specifying multiple targets (the goal and hypothesis`hc`) is not supported
+
+Hint: Specify a single target to split, or use `split at *` to split the first target that can be automatically split
+research/rmaf/algorithm/universal233/kept_parent/KeptParent.lean:53:10: error: Tactic `split` failed: Specifying multiple targets (the goal and hypothesis`hc`) is not supported
+
+Hint: Specify a single target to split, or use `split at *` to split the first target that can be automatically split
+research/rmaf/algorithm/universal233/kept_parent/KeptParent.lean:75:4: error(lean.unknownIdentifier): Unknown identifier `partitionCheck_flatten_nodup`
+research/rmaf/algorithm/universal233/kept_parent/KeptParent.lean:98:18: error: Application type mismatch: The argument
+  x
+has type
+  Nat
+of sort `Type` but is expected to have type
+  ?m.51 ∈ [A, B, C].flatten
+of sort `Prop` in the application
+  hsub x
+research/rmaf/algorithm/universal233/kept_parent/KeptParent.lean:112:18: error: Application type mismatch: The argument
+  x
+has type
+  Nat
+of sort `Type` but is expected to have type
+  ?m.147 ∈ [A, B, C].flatten
+of sort `Prop` in the application
+  hsub x

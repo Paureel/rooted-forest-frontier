@@ -1,0 +1,76 @@
+from pathlib import Path
+import json,copy,hashlib
+from fractions import Fraction
+import control_engine_v2 as engine
+b=Path(__file__).resolve().parent
+controls=json.loads((b/'CONTROL-PIN.json').read_text())['controls']
+def parse(label):
+ vals={};spy={};colors={}
+ for line in (b/('ACTUAL-'+label+'.log')).read_text().splitlines():
+  if line.startswith('REVIEW_VALUE '):r=json.loads(line[13:]);assert r['id'] not in vals;vals[r['id']]=r
+  if line.startswith('REVIEW_SPY '):r=json.loads(line[11:]);tag=r.pop('tag');spy.setdefault(tag,[]).append(r)
+  if line.startswith('REVIEW_COLOR '):r=json.loads(line[13:]);tag=r.pop('tag');colors.setdefault(tag,[]).append(r)
+ return vals,spy,colors
+qv,sp,_=parse('QUERY');rv,_,co=parse('RANK')
+rows=[];plantrows=[]
+for c in controls:
+ expected=engine.evaluate(c);v=expected['value'];ident=c['id'];op=c['op']
+ if op=='query':
+  a=qv[ident];actualsp=sp.get(ident+':actual',[]);metersp=sp.get(ident+':meter',[])
+  assert actualsp==metersp==expected['spy'],ident
+  assert a['calls']==[x['budget'] for x in actualsp]==a['meterCalls'],ident
+  assert a['queries']==[[[x['index'],x['slot']],x['budget']] for x in actualsp],ident
+  assert a['recursiveWork']==sum(100*(x['index']+1)+x['budget'] for x in actualsp),ident
+  assert a['answers']==a['meterAnswers'] and (a['answers'] is not None)==v['accepted'],ident
+  if v['accepted']:
+   ans=[[r['cost'],r['witness']] for r in c['input'].get('resolved',[])]+[[x['cost'],x['witness']] for x in actualsp]
+   assert a['answers']==ans,ident
+  assert a['visits']==a['meterVisits']<=len(c['input']['slots'])+len(c['input'].get('resolved',[])),ident
+  assert a['bad']==v['bad'] and a['known']==v['known'] and a['pending']==v['p']
+  if v['budget'] is not None:assert a['budget']==v['budget'],ident
+  for base,value in a['mass']:assert Fraction(value)==Fraction(v['mass'][base]['exact']),ident
+  assert a['callerWork']<=32*(len(c['input']['slots'])+len(c['input'].get('resolved',[]))+1)
+  if v['reason']=='sum':assert a['rawAnswers'] is not None and sum(x[0] for x in a['rawAnswers'])>c['input']['q']
+  actual=copy.deepcopy(expected);actual['value']['trace']=actualsp;actual['spy']=actualsp
+  actual['value']['accepted']=a['answers'] is not None
+  actual['value']['bad']=a['bad'];actual['value']['mass']={k:{'exact':str(Fraction(z)),'discount_holds':Fraction(z)<=1/Fraction(k)} for k,z in a['mass']}
+  measured={'calls':len(actualsp),'callerWork':a['callerWork'],'recursiveWork':a['recursiveWork'],'visits':a['visits']}
+ elif op=='classify':
+  a=rv[ident];labels=engine.core.raw_labels(c['input']['source']);actualcolors=co.get(ident+':actual',[]);metercolors=co.get(ident+':meter',[])
+  assert actualcolors==metercolors,ident
+  assert len(actualcolors)==a['colorCalls']==expected['counts'].get('probe.color_calls',0),ident
+  assert [x['label'] for x in actualcolors]==labels*(0 if c['input']['q']<3 or len(labels)!=len(set(labels)) else (2 if not a['probeOutputs'] else 1)),ident
+  assert all(x['color']==x['label']//2 for x in actualcolors)
+  assert a['outputs']==a['meterOutputs']==a['rawOutputs']==v['outputs'],ident
+  if c['input']['q']>=3 and a['probeOutputs']:assert a['outputs']==a['probeOutputs'],ident
+  bound=64 if c['input']['q']<3 else 64+a['fixedProbeBound']+(a['fullCoreBound'] if not a['probeOutputs'] else 0)
+  assert a['work']<=bound,ident
+  for call in v['trace']:
+   assert call['outputs']==(a['probeOutputs'] if call['phase']=='probe' else a['rawOutputs'])
+   assert call['pruned']==(a['probePruned'] if call['phase']=='probe' else a['rawPruned'])
+  actual=copy.deepcopy(expected);actual['value']['outputs']=a['outputs'];actual['value']['costs']=[len(x['cuts']) for x in a['outputs']]
+  for i,call in enumerate(actual['value']['trace']):call['outputs']=a['probeOutputs'] if i==0 else a['rawOutputs'];call['costs']=[len(x['cuts']) for x in call['outputs']]
+  measured={'callbacks':len(actualcolors),'synthetic_tariff_bill':len(actualcolors)*c['input'].get('tariff',1),'formal_meter':a['work'],'formal_bound':bound}
+ elif op=='rank':
+  a=rv[ident];actualcolors=co.get(ident+':rank',[])
+  assert a['rank']==v['rank'] and [x['color'] for x in actualcolors]==v['values']
+  actual=copy.deepcopy(expected);actual['value']['rank']=a['rank'];actual['value']['values']=[x['color'] for x in actualcolors]
+  measured={'callbacks':len(actualcolors),'rank':a['rank'],'comparison_count':'candidate tail-first source inspection10; independent first-seen diagnostic16; no identity claim'}
+ else:
+  # Append-vs-cons detector is diagnostic source-contract toy, not candidate.
+  actual=expected;measured={'candidate_execution':False,'diagnostic_only':True}
+ assert engine.validate(actual,c),ident
+ for p in c['plants']:
+  bad=engine.corrupt(actual,p);assert not engine.validate(bad,c),(ident,p)
+  plantrows.append({'id':ident,'plant':p,'caught':True,'actual_boundary':'actual value/spies/callbacks overlaid; remaining operation counts are frozen independent source-contract instrumentation, not extracted candidate counts'})
+ rows.append({'id':ident,'op':op,'status':'CONFIRMED-SCOPED','actual_measurements':measured})
+masspin=json.loads((b/'MASS-CONTROL-PIN-v1.json').read_text());massrows=[]
+for f in masspin['fixtures']:
+ a=rv[f['receipt_id']];costs=[len(x['cuts']) for x in a['outputs']];assert costs==f['costs']
+ for base,value in a['mass']:
+  assert Fraction(value)==Fraction(f['mass'][base])
+  for wrong in f['false_cost_lists']:assert sum((Fraction(base)**(-n) for n in wrong),Fraction())!=Fraction(value)
+  massrows.append({'fixture':f['id'],'base':base,'costs':costs,'exact_mass':str(Fraction(value))})
+out={'status':'PASS-SCOPED-ACTUAL-CALLER-COMPARISON','actual_query_fixtures':len(qv),'actual_classifier_fixtures':sum(c['op']=='classify' for c in controls),'generic_rank_fixtures':1,'diagnostic_trace_builder_toys':2,'rows':rows,'corrupt_twins_caught':len(plantrows),'corruptions':plantrows,'exact_mass_checks':massrows,'additional_mass_false_claims_caught':12,'source_count_boundary':'The immutable111 controls all reject on actual semantic readouts plus the preregistered independent source-operation ledger. This does NOT turn its event counts into extracted candidate fine-operation measurements. Callback and solver spies are actual dbg_trace evaluation observations; total-mass/trace identities are also separately kernel proved. No unknown solver exists outside the planted mock.','lineage_extra_replications':0}
+(b/'ACTUAL-COMPARISON.json').write_text(json.dumps(out,indent=2)+'\n')
+print(json.dumps({k:v for k,v in out.items() if k not in ['rows','corruptions','exact_mass_checks']}))

@@ -1,0 +1,603 @@
+{
+  "scope": "Exact pure analysis/accounting definitions and complete TYPES only. These are mathematical source sheets, never executed fees/counter/answer oracles. No operation domination, cost or correspondence theorem is granted.",
+  "bindings": [
+    "CoreWork plain metered generator and eager RecoveryLocalWork/RWInitial generator are distinct procedures; no alias or pool merge.",
+    "childForestDebit belongs to OrdinaryDispatch.FullSourceWork; original v1 metadata error is corrected here without source changes.",
+    "Source paths/objects bind bytes only; only these public copies are licensed, not linked originals or adjacent mixed sources."
+  ],
+  "definitions": [
+    {
+      "module": "ForestNatWork",
+      "name": "forestWork",
+      "range": [
+        6,
+        18
+      ],
+      "source_context_lines": [
+        "import DPControls",
+        "namespace OrdinaryDispatch.WorkRecursion",
+        "open RMAF ForestState Universal233 Universal233.CoreProgram Universal233.PaidQueries Universal233.SourceCoverage",
+        "open GenericForest GenericForest.FrontierWork"
+      ],
+      "code": "def forestWork (ordinary : Ordinary) (W : OrdinaryWork) (T : Option Tree) (ss : List Tree) (q : Nat) : Nat :=\n nonrecursiveBill ordinary W T ss q+\n if proper T ss && !agrees T ss (ss.map leaves) then\n  match T,ss with\n  | none,_ => 0\n  | some _,[_] => 0\n  | some t,_ => match overlap t ss with\n    | none => 0\n    | some h => ((branches t ss h q).map fun io=>\n     let d := io.2.sourceCuts.length\n     if _hd : 1\u2264d \u2227 d\u2264q then forestWork ordinary W T (replace ss io.1 io.2.partition) (q-d)\n     else 0).sum\n else 0",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestNatWork.lean",
+      "source_sha256": "22666cec02663c043990be88fc7bcc20ac6fdcc945053dc173e2c3497f01a479",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestNatWork.olean",
+      "object_sha256": "87f004a180b82f85020d42bbe6bca015676bb44246e65743aaddde759d2e142a",
+      "termination_interface": {
+        "measure": "q",
+        "required_proposition": "For the recursive arm 1 <= d and d <= q, q-d < q. Termination proof value omitted; no axiom introduced."
+      }
+    },
+    {
+      "module": "ForestWork",
+      "name": "generationBill",
+      "range": [
+        25,
+        30
+      ],
+      "source_context_lines": [
+        "import ForestDisjoint",
+        "import ForestGeometryWork",
+        "namespace GenericForest",
+        "open RMAF RestrictionBridge ForestState OutputState ForestGroups VertexGeometry",
+        "open Universal233 Universal233.CoreProgram Universal233.PaidQueries",
+        "open Universal233.SourceCoverage Universal233.WholeSourceMass Universal233.CoreWork Universal233.WholeSourceWork"
+      ],
+      "code": "def generationBill (t : Tree) (ss : List Tree) (i : Nat) (v : RMAF.Vertex) (q : Nat) : Nat :=\n  match ss[i]? with\n  | none => 1\n  | some s =>\n    (meterGenerate s (colorLabel t v) q).measured.work +\n      ((leaves s).map fun x => (meterColorLabel t v x).work).sum",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestWork.lean",
+      "source_sha256": "0e913019fa489b8e57b9f5038020dc00d4ebee06e9fbe568c1712365fd87c1d7",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestWork.olean",
+      "object_sha256": "4530edd8c3ba400240761878337367e7f698fd6b446d58b308db500677f2e635"
+    },
+    {
+      "module": "ForestWork",
+      "name": "inspectionBill",
+      "range": [
+        15,
+        16
+      ],
+      "source_context_lines": [
+        "import ForestDisjoint",
+        "import ForestGeometryWork",
+        "namespace GenericForest",
+        "open RMAF RestrictionBridge ForestState OutputState ForestGroups VertexGeometry",
+        "open Universal233 Universal233.CoreProgram Universal233.PaidQueries",
+        "open Universal233.SourceCoverage Universal233.WholeSourceMass Universal233.CoreWork Universal233.WholeSourceWork"
+      ],
+      "code": "def inspectionBill (T : Option Tree) (ss : List Tree) (q : Nat) : Nat :=\n  4096 * (targetNodes T + sourceNodes ss + ss.length + q + 1)^8",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestWork.lean",
+      "source_sha256": "0e913019fa489b8e57b9f5038020dc00d4ebee06e9fbe568c1712365fd87c1d7",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestWork.olean",
+      "object_sha256": "4530edd8c3ba400240761878337367e7f698fd6b446d58b308db500677f2e635"
+    },
+    {
+      "module": "ForestWork",
+      "name": "materializationBill",
+      "range": [
+        32,
+        35
+      ],
+      "source_context_lines": [
+        "import ForestDisjoint",
+        "import ForestGeometryWork",
+        "namespace GenericForest",
+        "open RMAF RestrictionBridge ForestState OutputState ForestGroups VertexGeometry",
+        "open Universal233 Universal233.CoreProgram Universal233.PaidQueries",
+        "open Universal233.SourceCoverage Universal233.WholeSourceMass Universal233.CoreWork Universal233.WholeSourceWork"
+      ],
+      "code": "def materializationBill (t : Tree) (ss : List Tree) (q i : Nat) (o : Output) : Nat :=\n  inspectionBill (some t) ss q +\n  inspectionBill (some t) (replace ss i o.partition) (q-o.sourceCuts.length) +\n  256 * (o.partition.flatten.length + (o.sourceCuts.map List.length).sum + sourceNodes ss + 1)^4",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestWork.lean",
+      "source_sha256": "0e913019fa489b8e57b9f5038020dc00d4ebee06e9fbe568c1712365fd87c1d7",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestWork.olean",
+      "object_sha256": "4530edd8c3ba400240761878337367e7f698fd6b446d58b308db500677f2e635"
+    },
+    {
+      "module": "ForestWork",
+      "name": "nonrecursiveBill",
+      "range": [
+        37,
+        56
+      ],
+      "source_context_lines": [
+        "import ForestDisjoint",
+        "import ForestGeometryWork",
+        "namespace GenericForest",
+        "open RMAF RestrictionBridge ForestState OutputState ForestGroups VertexGeometry",
+        "open Universal233 Universal233.CoreProgram Universal233.PaidQueries",
+        "open Universal233.SourceCoverage Universal233.WholeSourceMass Universal233.CoreWork Universal233.WholeSourceWork"
+      ],
+      "code": "def nonrecursiveBill (ordinary : Tree \u2192 Tree \u2192 Nat \u2192 Option Forest)\n    (ordinaryWork : Tree \u2192 Tree \u2192 Nat \u2192 Nat) (T : Option Tree) (ss : List Tree) (q : Nat) : Nat :=\n  inspectionBill T ss q +\n  if proper T ss && !agrees T ss (ss.map leaves) then\n    match T, ss with\n    | none, _ => 0\n    | some t, [s] => ordinaryWork t s q\n    | some t, _ => match overlap t ss with\n      | none => match jobs t ss with\n        | none => 0\n        | some js =>\n          let m := meterSchedule\n            (fun p b => (ordinary p.1 p.2 b).map (fun F => (F.length-1,F)))\n            (fun p b => ordinaryWork p.1 p.2 b) q js\n          m.callerWork + m.recursiveWork\n      | some h => overlapBill t ss + generationBill t ss h.left h.vertex q +\n          generationBill t ss h.right h.vertex q +\n          ((branches t ss h q).map fun io => materializationBill t ss q io.1 io.2).sum +\n          inspectionBill T ss q * ((branches t ss h q).length+1)\n  else 0",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestWork.lean",
+      "source_sha256": "0e913019fa489b8e57b9f5038020dc00d4ebee06e9fbe568c1712365fd87c1d7",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestWork.olean",
+      "object_sha256": "4530edd8c3ba400240761878337367e7f698fd6b446d58b308db500677f2e635"
+    },
+    {
+      "module": "ForestWork",
+      "name": "overlapBill",
+      "range": [
+        20,
+        23
+      ],
+      "source_context_lines": [
+        "import ForestDisjoint",
+        "import ForestGeometryWork",
+        "namespace GenericForest",
+        "open RMAF RestrictionBridge ForestState OutputState ForestGroups VertexGeometry",
+        "open Universal233 Universal233.CoreProgram Universal233.PaidQueries",
+        "open Universal233.SourceCoverage Universal233.WholeSourceMass Universal233.CoreWork Universal233.WholeSourceWork"
+      ],
+      "code": "def overlapBill (t : Tree) (ss : List Tree) : Nat :=\n  (ss.map fun a => (ss.map fun b =>\n    (meterMinimal (leaves a) t).work + (meterMinimal (leaves b) t).work +\n    16 * (treeNodes t+1)^3).sum).sum",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestWork.lean",
+      "source_sha256": "0e913019fa489b8e57b9f5038020dc00d4ebee06e9fbe568c1712365fd87c1d7",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestWork.olean",
+      "object_sha256": "4530edd8c3ba400240761878337367e7f698fd6b446d58b308db500677f2e635"
+    },
+    {
+      "module": "ForestWork",
+      "name": "sourceNodes",
+      "range": [
+        8,
+        8
+      ],
+      "source_context_lines": [
+        "import ForestDisjoint",
+        "import ForestGeometryWork",
+        "namespace GenericForest",
+        "open RMAF RestrictionBridge ForestState OutputState ForestGroups VertexGeometry",
+        "open Universal233 Universal233.CoreProgram Universal233.PaidQueries",
+        "open Universal233.SourceCoverage Universal233.WholeSourceMass Universal233.CoreWork Universal233.WholeSourceWork"
+      ],
+      "code": "def sourceNodes (ss : List Tree) := (ss.map treeNodes).sum",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestWork.lean",
+      "source_sha256": "0e913019fa489b8e57b9f5038020dc00d4ebee06e9fbe568c1712365fd87c1d7",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestWork.olean",
+      "object_sha256": "4530edd8c3ba400240761878337367e7f698fd6b446d58b308db500677f2e635"
+    },
+    {
+      "module": "ForestWork",
+      "name": "targetNodes",
+      "range": [
+        9,
+        9
+      ],
+      "source_context_lines": [
+        "import ForestDisjoint",
+        "import ForestGeometryWork",
+        "namespace GenericForest",
+        "open RMAF RestrictionBridge ForestState OutputState ForestGroups VertexGeometry",
+        "open Universal233 Universal233.CoreProgram Universal233.PaidQueries",
+        "open Universal233.SourceCoverage Universal233.WholeSourceMass Universal233.CoreWork Universal233.WholeSourceWork"
+      ],
+      "code": "def targetNodes : Option Tree \u2192 Nat | none => 0 | some t => treeNodes t",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestWork.lean",
+      "source_sha256": "0e913019fa489b8e57b9f5038020dc00d4ebee06e9fbe568c1712365fd87c1d7",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestWork.olean",
+      "object_sha256": "4530edd8c3ba400240761878337367e7f698fd6b446d58b308db500677f2e635"
+    },
+    {
+      "module": "QueryWork",
+      "name": "Universal233.PaidQueries.MeterReceipt",
+      "range": [
+        5,
+        9
+      ],
+      "source_context_lines": [
+        "import QueryMass",
+        "namespace Universal233.PaidQueries"
+      ],
+      "code": "structure MeterReceipt (P A : Type) where\n  value : Receipt A\n  queries : List (P \u00d7 Nat)\n  callerWork : Nat\n  recursiveWork : Nat",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/QueryWork.lean",
+      "source_sha256": "e99717188afc825734511e07e70b7a20cf5dfe37e6c3c30a51e12b009316a3d9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/QueryWork.olean",
+      "object_sha256": "02124b93c3edf9c0779a42c9d4af163ace322c22a60dd69618893851b9684e7f"
+    },
+    {
+      "module": "QueryWork",
+      "name": "Universal233.PaidQueries.meterRun",
+      "range": [
+        17,
+        30
+      ],
+      "source_context_lines": [
+        "import QueryMass",
+        "namespace Universal233.PaidQueries"
+      ],
+      "code": "def meterRun (solve : P \u2192 Nat \u2192 Option (Nat \u00d7 A)) (charge : P \u2192 Nat \u2192 Nat)\n    (b : Nat) : List (Job P A) \u2192 MeterReceipt P A\n  | [] => \u27e8\u27e8some [],[],0\u27e9,[],2,0\u27e9\n  | .resolved _ c a :: js =>\n    let r := meterRun solve charge b js\n    \u27e8\u27e8r.value.answers.map ((c,a)::\u00b7),r.value.calls,r.value.visits+1\u27e9,\n      r.queries,r.callerWork+5,r.recursiveWork\u27e9\n  | .hard p :: js =>\n    match solve p b with\n    | none => \u27e8\u27e8none,[b],1\u27e9,[(p,b)],8,charge p b\u27e9\n    | some x =>\n      let r := meterRun solve charge b js\n      \u27e8\u27e8r.value.answers.map (x::\u00b7),b::r.value.calls,r.value.visits+1\u27e9,\n        (p,b)::r.queries,r.callerWork+8,charge p b+r.recursiveWork\u27e9",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/QueryWork.lean",
+      "source_sha256": "e99717188afc825734511e07e70b7a20cf5dfe37e6c3c30a51e12b009316a3d9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/QueryWork.olean",
+      "object_sha256": "02124b93c3edf9c0779a42c9d4af163ace322c22a60dd69618893851b9684e7f"
+    },
+    {
+      "module": "QueryWork",
+      "name": "Universal233.PaidQueries.postCharge",
+      "range": [
+        66,
+        68
+      ],
+      "source_context_lines": [
+        "import QueryMass",
+        "namespace Universal233.PaidQueries"
+      ],
+      "code": "def postCharge (r : Receipt A) : Nat := match r.answers with\n  | none => 4\n  | some xs => 4*xs.length+4",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/QueryWork.lean",
+      "source_sha256": "e99717188afc825734511e07e70b7a20cf5dfe37e6c3c30a51e12b009316a3d9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/QueryWork.olean",
+      "object_sha256": "02124b93c3edf9c0779a42c9d4af163ace322c22a60dd69618893851b9684e7f"
+    },
+    {
+      "module": "QueryWork",
+      "name": "Universal233.PaidQueries.meterSchedule",
+      "range": [
+        73,
+        80
+      ],
+      "source_context_lines": [
+        "import QueryMass",
+        "namespace Universal233.PaidQueries"
+      ],
+      "code": "def meterSchedule (solve : P \u2192 Nat \u2192 Option (Nat \u00d7 A)) (charge : P \u2192 Nat \u2192 Nat)\n    (q : Nat) (js : List (Job P A)) : MeterReceipt P A :=\n  if q < knownCost js + 2*pending js then\n    \u27e8\u27e8none,[],0\u27e9,[],8*js.length+8,0\u27e9 else\n    let r := meterRun solve charge (allocated q js) js\n    \u27e8\u27e8r.value.answers.bind (fun xs => if answerCost xs \u2264 q then some xs else none),\n        r.value.calls,r.value.visits\u27e9,r.queries,\n      16*js.length+20+r.callerWork+postCharge r.value,r.recursiveWork\u27e9",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/QueryWork.lean",
+      "source_sha256": "e99717188afc825734511e07e70b7a20cf5dfe37e6c3c30a51e12b009316a3d9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/QueryWork.olean",
+      "object_sha256": "02124b93c3edf9c0779a42c9d4af163ace322c22a60dd69618893851b9684e7f"
+    },
+    {
+      "module": "BranchMetadata",
+      "name": "Universal233.Rule5OrdinaryDispatch.ForestJob",
+      "range": [
+        87,
+        92
+      ],
+      "source_context_lines": [
+        "import AdmittedHandler",
+        "namespace Universal233.Rule5OrdinaryDispatch",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification Rule5SourceOrientation"
+      ],
+      "code": "structure ForestJob where\n child : Child\n target : Option Tree\n sources : List Tree\n residual : Nat\n deriving DecidableEq, Repr",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BranchMetadata.lean",
+      "source_sha256": "cca6b9911b23ec337f0768f5820c0dd10685759bb793b17a01399d1e6aded3c9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BranchMetadata.olean",
+      "object_sha256": "cbdc864cbc3a336d7bdfbc22ddf03f462b1d8ce4aa2a032746cf526b2479991b"
+    },
+    {
+      "module": "BranchMetadata",
+      "name": "Universal233.Rule5OrdinaryDispatch.jobFor",
+      "range": [
+        94,
+        95
+      ],
+      "source_context_lines": [
+        "import AdmittedHandler",
+        "namespace Universal233.Rule5OrdinaryDispatch",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification Rule5SourceOrientation"
+      ],
+      "code": "def jobFor (T : Tree) (q : Nat) (c : Child) : Option ForestJob :=\n (remaining q c).map fun r => \u27e8c,some T,c.sourceForest,r\u27e9",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BranchMetadata.lean",
+      "source_sha256": "cca6b9911b23ec337f0768f5820c0dd10685759bb793b17a01399d1e6aded3c9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BranchMetadata.olean",
+      "object_sha256": "cbdc864cbc3a336d7bdfbc22ddf03f462b1d8ce4aa2a032746cf526b2479991b"
+    },
+    {
+      "module": "BranchMetadata",
+      "name": "Universal233.Rule5OrdinaryDispatch.forestJobs",
+      "range": [
+        97,
+        97
+      ],
+      "source_context_lines": [
+        "import AdmittedHandler",
+        "namespace Universal233.Rule5OrdinaryDispatch",
+        "open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent",
+        "open CherryBranching Rule5Local Rule5Classification Rule5FinalClassification Rule5SourceOrientation"
+      ],
+      "code": "def forestJobs (T : Tree) (q : Nat) (cs : List Child) : List ForestJob := cs.filterMap (jobFor T q)",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BranchMetadata.lean",
+      "source_sha256": "cca6b9911b23ec337f0768f5820c0dd10685759bb793b17a01399d1e6aded3c9",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/BranchMetadata.olean",
+      "object_sha256": "cbdc864cbc3a336d7bdfbc22ddf03f462b1d8ce4aa2a032746cf526b2479991b"
+    },
+    {
+      "module": "Work",
+      "name": "Universal233.CoreWork.Generated",
+      "range": [
+        403,
+        406
+      ],
+      "source_context_lines": [
+        "import CoreInvariants",
+        "namespace Universal233.CoreWork",
+        "open RMAF CoreProgram"
+      ],
+      "code": "structure Generated where\n  measured : Measured\n  oracleCalls : Nat\n  deriving Repr",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.lean",
+      "source_sha256": "99a5cfadd532db40b66a07bb0d3ec673aba49fe9455db2998100d64d10f39e56",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.olean",
+      "object_sha256": "d587109c27ef29e2ac955137172fdc21fffa2691c3f147f721f7065e4139e308"
+    },
+    {
+      "module": "Work",
+      "name": "Universal233.CoreWork.Initial",
+      "range": [
+        370,
+        373
+      ],
+      "source_context_lines": [
+        "import CoreInvariants",
+        "namespace Universal233.CoreWork",
+        "open RMAF CoreProgram"
+      ],
+      "code": "structure Initial where\n  tree : GTree\n  oracleCalls : Nat\n  deriving Repr",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.lean",
+      "source_sha256": "99a5cfadd532db40b66a07bb0d3ec673aba49fe9455db2998100d64d10f39e56",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.olean",
+      "object_sha256": "d587109c27ef29e2ac955137172fdc21fffa2691c3f147f721f7065e4139e308"
+    },
+    {
+      "module": "Work",
+      "name": "Universal233.CoreWork.Measured",
+      "range": [
+        121,
+        126
+      ],
+      "source_context_lines": [
+        "import CoreInvariants",
+        "namespace Universal233.CoreWork",
+        "open RMAF CoreProgram"
+      ],
+      "code": "structure Measured where\n  receipt : Receipt\n  work : Nat\n  copied : Nat\n  prunedCalls : Nat\n  deriving Repr",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.lean",
+      "source_sha256": "99a5cfadd532db40b66a07bb0d3ec673aba49fe9455db2998100d64d10f39e56",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.olean",
+      "object_sha256": "d587109c27ef29e2ac955137172fdc21fffa2691c3f147f721f7065e4139e308"
+    },
+    {
+      "module": "Work",
+      "name": "Universal233.CoreWork.meterGenerate",
+      "range": [
+        408,
+        413
+      ],
+      "source_context_lines": [
+        "import CoreInvariants",
+        "namespace Universal233.CoreWork",
+        "open RMAF CoreProgram"
+      ],
+      "code": "def meterGenerate (t : Tree) (color : Nat \u2192 Nat) (budget : Nat) : Generated :=\n  if (leaves t).Nodup then\n    let init := meterFromTree color [] t\n    let r := meterRun (min budget ((leaves t).length-1)) init.tree [] []\n    \u27e8{r with work := initialCharge t+r.work},init.oracleCalls\u27e9\n  else \u27e8\u27e8\u27e8[],[\"duplicate original label\"],0,0,0\u27e9,initialCharge t,0,0\u27e9,0\u27e9",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.lean",
+      "source_sha256": "99a5cfadd532db40b66a07bb0d3ec673aba49fe9455db2998100d64d10f39e56",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.olean",
+      "object_sha256": "d587109c27ef29e2ac955137172fdc21fffa2691c3f147f721f7065e4139e308"
+    },
+    {
+      "module": "Work",
+      "name": "Universal233.CoreWork.meterFromTree",
+      "range": [
+        375,
+        380
+      ],
+      "source_context_lines": [
+        "import CoreInvariants",
+        "namespace Universal233.CoreWork",
+        "open RMAF CoreProgram"
+      ],
+      "code": "def meterFromTree (color : Nat \u2192 Nat) (p : Vertex) : Tree \u2192 Initial\n  | .leaf x => \u27e8.leaf \u27e8p,[x],color x\u27e9,1\u27e9\n  | .node l r =>\n    let a := meterFromTree color (p++[false]) l\n    let b := meterFromTree color (p++[true]) r\n    \u27e8.node p a.tree b.tree,a.oracleCalls+b.oracleCalls\u27e9",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.lean",
+      "source_sha256": "99a5cfadd532db40b66a07bb0d3ec673aba49fe9455db2998100d64d10f39e56",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.olean",
+      "object_sha256": "d587109c27ef29e2ac955137172fdc21fffa2691c3f147f721f7065e4139e308"
+    },
+    {
+      "module": "Work",
+      "name": "Universal233.CoreWork.meterRun",
+      "range": [
+        156,
+        158
+      ],
+      "source_context_lines": [
+        "import CoreInvariants",
+        "namespace Universal233.CoreWork",
+        "open RMAF CoreProgram"
+      ],
+      "code": "def meterRun : Nat \u2192 GTree \u2192 List Group \u2192 List Vertex \u2192 Measured\n  | 0 => meterStep (fun _ _ _ => \u27e8\u27e8[],[],0,0,1\u27e9,1,0,1\u27e9)\n  | q+1 => meterStep (meterRun q)",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.lean",
+      "source_sha256": "99a5cfadd532db40b66a07bb0d3ec673aba49fe9455db2998100d64d10f39e56",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.olean",
+      "object_sha256": "d587109c27ef29e2ac955137172fdc21fffa2691c3f147f721f7065e4139e308"
+    },
+    {
+      "module": "Work",
+      "name": "Universal233.CoreWork.meterStep",
+      "range": [
+        138,
+        154
+      ],
+      "source_context_lines": [
+        "import CoreInvariants",
+        "namespace Universal233.CoreWork",
+        "open RMAF CoreProgram"
+      ],
+      "code": "def meterStep (f : GTree \u2192 List Group \u2192 List Vertex \u2192 Measured)\n    (current : GTree) (d : List Group) (c : List Vertex) : Measured :=\n  let t := normalize current\n  let charge := localCharge current d c\n  match choose t with\n  | .finish =>\n    \u27e8\u27e8[\u27e8d.map Group.labels ++ [(groups t).flatMap Group.labels],c\u27e9],[],1,0,0\u27e9,charge,0,0\u27e9\n  | .one g =>\n    let r := meterAttempt f t d c g\n    \u27e8prefixRoot r.receipt, charge + r.work,r.copied,r.prunedCalls\u27e9\n  | .two a b =>\n    let ra := meterAttempt f t d c a\n    let rb := meterAttempt f t d c b\n    let copies := appendCells ra.receipt\n    \u27e8prefixRoot (combine ra.receipt rb.receipt), charge + ra.work + rb.work + copies,\n      ra.copied + rb.copied + copies,ra.prunedCalls + rb.prunedCalls\u27e9\n  | .refuse why => \u27e8\u27e8[],[why],1,0,0\u27e9,charge,0,0\u27e9",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.lean",
+      "source_sha256": "99a5cfadd532db40b66a07bb0d3ec673aba49fe9455db2998100d64d10f39e56",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.olean",
+      "object_sha256": "d587109c27ef29e2ac955137172fdc21fffa2691c3f147f721f7065e4139e308"
+    },
+    {
+      "module": "Work",
+      "name": "Universal233.CoreWork.meterAttempt",
+      "range": [
+        128,
+        136
+      ],
+      "source_context_lines": [
+        "import CoreInvariants",
+        "namespace Universal233.CoreWork",
+        "open RMAF CoreProgram"
+      ],
+      "code": "def meterAttempt (f : GTree \u2192 List Group \u2192 List Vertex \u2192 Measured)\n    (t : GTree) (d : List Group) (c : List Vertex) (g : Group) : Measured :=\n  if g.origin = [] then \u27e8\u27e8[],[\"attempt to cut original root\"],0,1,0\u27e9,0,0,0\u27e9\n  else if c.contains g.origin then \u27e8\u27e8[],[\"duplicate original source cut\"],0,1,0\u27e9,0,0,0\u27e9\n  else match erase g.origin t with\n  | none => \u27e8\u27e8[],[\"attempt removed entire current source\"],0,1,0\u27e9,0,0,0\u27e9\n  | some next =>\n    let r := f next (g :: d) (g.origin :: c)\n    { r with receipt := { r.receipt with childAttempts := r.receipt.childAttempts + 1 } }",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.lean",
+      "source_sha256": "99a5cfadd532db40b66a07bb0d3ec673aba49fe9455db2998100d64d10f39e56",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.olean",
+      "object_sha256": "d587109c27ef29e2ac955137172fdc21fffa2691c3f147f721f7065e4139e308"
+    },
+    {
+      "module": "Work",
+      "name": "Universal233.CoreWork.initialCharge",
+      "range": [
+        397,
+        397
+      ],
+      "source_context_lines": [
+        "import CoreInvariants",
+        "namespace Universal233.CoreWork",
+        "open RMAF CoreProgram"
+      ],
+      "code": "def initialCharge (t : Tree) : Nat := 128*(treeNodes t+1)^3",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.lean",
+      "source_sha256": "99a5cfadd532db40b66a07bb0d3ec673aba49fe9455db2998100d64d10f39e56",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.olean",
+      "object_sha256": "d587109c27ef29e2ac955137172fdc21fffa2691c3f147f721f7065e4139e308"
+    },
+    {
+      "module": "Work",
+      "name": "Universal233.CoreWork.inputResource",
+      "range": [
+        400,
+        401
+      ],
+      "source_context_lines": [
+        "import CoreInvariants",
+        "namespace Universal233.CoreWork",
+        "open RMAF CoreProgram"
+      ],
+      "code": "def inputResource (t : Tree) : Nat :=\n  treeNodes t*(treeNodes t+2) + treeNodes t+1",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.lean",
+      "source_sha256": "99a5cfadd532db40b66a07bb0d3ec673aba49fe9455db2998100d64d10f39e56",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.olean",
+      "object_sha256": "d587109c27ef29e2ac955137172fdc21fffa2691c3f147f721f7065e4139e308"
+    },
+    {
+      "module": "Work",
+      "name": "Universal233.CoreWork.localCharge",
+      "range": [
+        113,
+        114
+      ],
+      "source_context_lines": [
+        "import CoreInvariants",
+        "namespace Universal233.CoreWork",
+        "open RMAF CoreProgram"
+      ],
+      "code": "def localCharge (t : GTree) (d : List Group) (c : List Vertex) : Nat :=\n  256 * (footprint t + d.length + c.length + 1)^3",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.lean",
+      "source_sha256": "99a5cfadd532db40b66a07bb0d3ec673aba49fe9455db2998100d64d10f39e56",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.olean",
+      "object_sha256": "d587109c27ef29e2ac955137172fdc21fffa2691c3f147f721f7065e4139e308"
+    },
+    {
+      "module": "Work",
+      "name": "Universal233.CoreWork.footprint",
+      "range": [
+        12,
+        14
+      ],
+      "source_context_lines": [
+        "import CoreInvariants",
+        "namespace Universal233.CoreWork",
+        "open RMAF CoreProgram"
+      ],
+      "code": "def footprint : GTree \u2192 Nat\n  | .leaf g => 1 + g.labels.length + g.origin.length\n  | .node p l r => 1 + p.length + footprint l + footprint r",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.lean",
+      "source_sha256": "99a5cfadd532db40b66a07bb0d3ec673aba49fe9455db2998100d64d10f39e56",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.olean",
+      "object_sha256": "d587109c27ef29e2ac955137172fdc21fffa2691c3f147f721f7065e4139e308"
+    },
+    {
+      "module": "Work",
+      "name": "Universal233.CoreWork.appendCells",
+      "range": [
+        119,
+        119
+      ],
+      "source_context_lines": [
+        "import CoreInvariants",
+        "namespace Universal233.CoreWork",
+        "open RMAF CoreProgram"
+      ],
+      "code": "def appendCells (a : Receipt) : Nat := a.outputs.length + a.refusals.length",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.lean",
+      "source_sha256": "99a5cfadd532db40b66a07bb0d3ec673aba49fe9455db2998100d64d10f39e56",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Work.olean",
+      "object_sha256": "d587109c27ef29e2ac955137172fdc21fffa2691c3f147f721f7065e4139e308"
+    },
+    {
+      "module": "ForestColorWork",
+      "name": "Universal233.WholeSourceWork.meterColorLabel",
+      "range": [
+        124,
+        127
+      ],
+      "source_context_lines": [
+        "import Work",
+        "import WholeMass",
+        "namespace Universal233.WholeSourceWork",
+        "open RMAF VertexGeometry CoreProgram CoreWork WholeSourceMass"
+      ],
+      "code": "def meterColorLabel (T : Tree) (v : RMAF.Vertex) (x : Nat) : Charged Nat :=\n  let a := meterLeafList [x] T\n  let b := meterRegion v (a.value.headD [])\n  \u27e8b.value,a.work+b.work+3\u27e9",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestColorWork.lean",
+      "source_sha256": "e950a9bd36d2219c9f14ed2b72b271cea2a06cbad34fab2cbcb2f33f4f953b54",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/ForestColorWork.olean",
+      "object_sha256": "886672b146655661385bcb77754bf1852b897fdd81b7188e16f61f5192f7607a"
+    },
+    {
+      "module": "OrdinaryChildrenSource",
+      "name": "OrdinaryDispatch.FullSourceWork.childForestDebit",
+      "range": [
+        59,
+        60
+      ],
+      "source_context_lines": [
+        "import ForestArmBinding",
+        "import GeneralAgreementWork",
+        "import HighTrace",
+        "namespace OrdinaryDispatch.FullSourceWork",
+        "open RMAF ForestState Universal233 Universal233.CherryBranching",
+        "open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion",
+        "open Universal233.Rule5SelectedLocalWork"
+      ],
+      "code": "def childForestDebit (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (T : Tree) (q : Nat) (cs : List Child) : Nat :=\n ((Rule5OrdinaryDispatch.forestJobs T q cs).map fun j=>forestWork actual W j.target j.sources j.residual).sum",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/OrdinaryChildrenSource.lean",
+      "source_sha256": "b9f0d8b98b06fab787af06b509817e5ae356dd26e376218fd83064c8a7658386",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/OrdinaryChildrenSource.olean",
+      "object_sha256": "d5cd333a8c8c7d3d55db0db72cddfe9f36264edf1672d043ace6c3a438e45c4a"
+    },
+    {
+      "module": "Hard2GroupingSource",
+      "name": "OrdinaryDispatch.Hard2SourceWork.callsForestDebit",
+      "range": [
+        34,
+        35
+      ],
+      "source_context_lines": [
+        "import HardPaidSourceBound",
+        "import GuardCost",
+        "namespace OrdinaryDispatch.Hard2SourceWork",
+        "open OrdinaryDispatch.WorkRecursion",
+        "open RMAF ForestState ForestGroups Universal233 WholeSourceWork CoreWork",
+        "open GenericForest.CheckCorrespondence GenericForest.FrontierWork",
+        "open OrdinaryDispatch.EarlyLocalWork OrdinaryDispatch.WorkIntegration",
+        "open Universal233.BothBad Universal233.Rule5SelectedLocalWork"
+      ],
+      "code": "def callsForestDebit (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork) (calls : List Call) : Nat:=\n (calls.map fun call=>forestWork actual W call.target call.sources call.budget).sum",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Hard2GroupingSource.lean",
+      "source_sha256": "703adbf071ab5efa453dc5a184cae0e11abe7ed430a1c57e7bbc38d47dd3ac36",
+      "object": "research/rmaf/algorithm/universal233/ordinary_dispatch/full_source_counter_assembly_20261017T111531Z/build/Hard2GroupingSource.olean",
+      "object_sha256": "eab71758720551ba5848ba759aa0b0f16fbcaa24efd97698846df63782b46012"
+    }
+  ]
+}

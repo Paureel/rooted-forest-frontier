@@ -1,0 +1,17 @@
+import GraphControls
+#print axioms OrdinaryCommonSplit.agreement_clip
+#print axioms OrdinaryCommonSplit.marked_deletion_spec
+#print axioms OrdinaryCommonSplit.marked_singleton_deletion
+#print axioms OrdinaryCommonSplit.marked_minimum_bounds
+#print axioms OrdinaryCommonSplit.original_cut_topology_glue
+#print axioms OrdinaryCommonSplit.mixed_port_topology_glue
+#print axioms OrdinaryCommonSplit.original_merge_clear
+#print axioms OrdinaryCommonSplit.merge_embeddings
+#print axioms OrdinaryCommonSplit.marked_family_lift
+#print axioms OrdinaryCommonSplit.stable_minimum_marker_not_singleton
+#print axioms OrdinaryCommonSplit.original_split_lower
+#print axioms OrdinaryCommonSplit.arbitrary_original_marked_projection
+#print axioms OrdinaryCommonSplit.stable_marked_normal_form
+#print axioms OrdinaryCommonSplit.original_stable_marked_merge
+#print axioms OrdinaryCommonSplit.common_split_minimum_identity
+#print axioms OrdinaryCommonSplit.common_split_derived_minimum

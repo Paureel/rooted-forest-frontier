@@ -1,0 +1,5 @@
+import Rule5SourceBounds
+#check Universal233.Rule5ExecutionSource.run_selected_local_bound
+#print axioms Universal233.Rule5ExecutionSource.run_selected_local_bound
+#check Universal233.Rule5ExecutionSource.dispatch_source_split
+#print axioms Universal233.Rule5ExecutionSource.dispatch_source_split

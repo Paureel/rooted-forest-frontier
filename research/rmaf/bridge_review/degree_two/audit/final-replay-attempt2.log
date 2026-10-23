@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/bridge_review/degree_two/replay_final.py", line 93, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/bridge_review/degree_two/replay_final.py", line 73, in main
+    for p in sorted((ROOT/'graph_route/lean/negative').glob('*.lean')):run_lean('graph-'+p.stem,p,expected=1,explicit_false=True)
+                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/bridge_review/degree_two/replay_final.py", line 60, in run_lean
+    assert q.returncode!=0 and row['explicit_false'],(name,log.read_text())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('graph-FalseAddressTransport', 'research/rmaf/bridge_review/degree_two/graph_route/lean/negative/FalseAddressTransport.lean:3:70: error: Tactic `decide` proved that the proposition\n  minimalVertices [0] pathT = minimalVertices [0] pathU\nis false\n')

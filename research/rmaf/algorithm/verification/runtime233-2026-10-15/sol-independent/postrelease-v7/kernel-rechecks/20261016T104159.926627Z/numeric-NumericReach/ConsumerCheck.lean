@@ -1,0 +1,7 @@
+import NumericReach
+#check OrdinaryDispatch.GlobalNumeric.reachable_invariant
+#print axioms OrdinaryDispatch.GlobalNumeric.reachable_invariant
+#check OrdinaryDispatch.GlobalNumeric.reachable_label_bits
+#print axioms OrdinaryDispatch.GlobalNumeric.reachable_label_bits
+#check OrdinaryDispatch.GlobalNumeric.reachable_builder_fresh
+#print axioms OrdinaryDispatch.GlobalNumeric.reachable_builder_fresh

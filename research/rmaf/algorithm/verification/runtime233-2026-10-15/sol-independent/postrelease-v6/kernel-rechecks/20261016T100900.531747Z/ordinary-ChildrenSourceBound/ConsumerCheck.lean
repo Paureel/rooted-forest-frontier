@@ -1,0 +1,7 @@
+import ChildrenSourceBound
+#check OrdinaryDispatch.FullSourceWork.childForestDebit_local_bound
+#print axioms OrdinaryDispatch.FullSourceWork.childForestDebit_local_bound
+#check OrdinaryDispatch.FullSourceWork.oneSource_local_exponential
+#print axioms OrdinaryDispatch.FullSourceWork.oneSource_local_exponential
+#check OrdinaryDispatch.FullSourceWork.highSource_local_exponential
+#print axioms OrdinaryDispatch.FullSourceWork.highSource_local_exponential

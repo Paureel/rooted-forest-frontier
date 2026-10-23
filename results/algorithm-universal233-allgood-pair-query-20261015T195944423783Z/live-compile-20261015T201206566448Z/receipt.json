@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "0066694b97730a99b442354edfe748c18b8d126fca844de9e068a475b1ab2c84",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.38309708399992815,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.33623050000005605,
+      "resource_stop": null,
+      "log_sha256": "9295e7ac58eed1e78bed5741475f32f59f007840e0472a9a1a30835d99b11c92"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0018299579996892135,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PairFalseControls",
+      "source_sha256": "0236a00b1751bfac87e136bae4e13a6ae2c2372ddbe8a07f7c5fb83c728102d7",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.8889387080007509,
+      "resource_stop": null,
+      "log_sha256": "c08e48ea82e8b46c9405d181b0ab5b1a92367309f66394fd762c5bdc67e9c77d"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('NONMATHEMATICAL_CONTROL_FAILURE', ['Tactic `decide` proved that the proposition', 'Tactic `decide` proved that the proposition', 'Tactic `decide` failed to reduce', 'Tactic `decide` proved that the proposition'], '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-pair-query-20261015T195944423783Z/PairFalseControls.lean:3:241: error: Tactic `decide` proved that the proposition\\n  Option.any\\n      (fun F => decide (additionalCost (owned (OutputState.sourceForest (source badC) [A, B, C]) (A ++ B)) F = 0))\\n      (AllGoodDP.run (localTarget (some target) (A ++ B))\\n        (owned (OutputState.sourceForest (source badC) [A, B, C]) (A ++ B))) =\\n    true\\nis false\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-pair-query-20261015T195944423783Z/PairFalseControls.lean:4:116: error: Tactic `decide` proved that the proposition\\n  List.map BothBad.Call.budget (runPair depthAnswer target (source badC) A B C 4).calls = [2]\\nis false\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-pair-query-20261015T195944423783Z/PairFalseControls.lean:5:86: error: Tactic `decide` failed to reduce\\n  @decide ((runPair depthAnswer target (source badC) A B C 3).answer.isSome = true)\\n    (instDecidableEqBool (runPair depthAnswer target (source badC) A B C 3).answer.isSome true)\\nto `true` or `false`.\\n\\nAfter unfolding the instances `instDecidableEqBool`, `instDecidableEqNat`, `instDecidableNot`, `Bool.decEq`, `isTrue`, `List.decidableBAll`, `List.instDecidablePairwise`, `List.nodupDecidable`, `Nat.decEq`, and `Nat.decLe`, reduction got stuck at\\n  match (runPair depthAnswer target (source badC) A B C 3).answer with\\n  | some val => true\\n  | none => false\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-pair-query-20261015T195944423783Z/PairFalseControls.lean:6:86: error: Tactic `decide` proved that the proposition\\n  (runPair depthAnswer target (source badC) A B C 2).answer.isSome = true\\nis false\\n'))"
+}

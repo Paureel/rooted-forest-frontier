@@ -1,0 +1,58 @@
+research/rmaf/algorithm/universal233/forest_solver/build/ForestProgramControls.lean:5:50: error: Tactic `decide` failed to reduce
+  @decide (solve table (some (four 0)) ss 1 = some [[0], [2], [1, 3]] ∧ solve table (some (four 0)) ss 0 = none)
+    instDecidableAnd
+to `true` or `false`.
+
+After unfolding the instances `instDecidableAnd` and `Option.instDecidableEq`, reduction got stuck at
+  match solve table (some (four 0)) ss 1 with
+  | none =>
+    match some [[0], [2], [1, 3]] with
+    | none => isTrue ⋯
+    | some val => isFalse ⋯
+  | some a =>
+    match some [[0], [2], [1, 3]] with
+    | none => isFalse ⋯
+    | some b =>
+      match (fun a b => instDecidableEqList a b) a b with
+      | { decide := true, reflects_decide := h } => isTrue ⋯
+      | { decide := false, reflects_decide := n } => isFalse ⋯
+research/rmaf/algorithm/universal233/forest_solver/build/ForestProgramControls.lean:9:81: error: Tactic `decide` failed to reduce
+  @decide
+    (solve table (some ((four 0).node (cross 4))) [four 0, four 4] 2 = some [[0, 1, 2, 3], [4], [5], [6, 7]] ∧
+      solve table (some ((four 0).node (cross 4))) [four 0, four 4] 1 = none)
+    instDecidableAnd
+to `true` or `false`.
+
+After unfolding the instances `instDecidableAnd` and `Option.instDecidableEq`, reduction got stuck at
+  match solve table (some ((four 0).node (cross 4))) [four 0, four 4] 2 with
+  | none =>
+    match some [[0, 1, 2, 3], [4], [5], [6, 7]] with
+    | none => isTrue ⋯
+    | some val => isFalse ⋯
+  | some a =>
+    match some [[0, 1, 2, 3], [4], [5], [6, 7]] with
+    | none => isFalse ⋯
+    | some b =>
+      match (fun a b => instDecidableEqList a b) a b with
+      | { decide := true, reflects_decide := h } => isTrue ⋯
+      | { decide := false, reflects_decide := n } => isFalse ⋯
+research/rmaf/algorithm/universal233/forest_solver/build/ForestProgramControls.lean:12:51: error: Tactic `decide` failed to reduce
+  @decide
+    (solve table none [] 0 = some [] ∧
+      solve table (some (Tree.leaf 7)) [Tree.leaf 7] 0 = some [[7]] ∧ solve table (some (Tree.leaf 7)) [] 3 = none)
+    instDecidableAnd
+to `true` or `false`.
+
+After unfolding the instances `instDecidableAnd` and `Option.instDecidableEq`, reduction got stuck at
+  match solve table none [] 0 with
+  | none =>
+    match some [] with
+    | none => isTrue ⋯
+    | some val => isFalse ⋯
+  | some a =>
+    match some [] with
+    | none => isFalse ⋯
+    | some b =>
+      match (fun a b => instDecidableEqList a b) a b with
+      | { decide := true, reflects_decide := h } => isTrue ⋯
+      | { decide := false, reflects_decide := n } => isFalse ⋯

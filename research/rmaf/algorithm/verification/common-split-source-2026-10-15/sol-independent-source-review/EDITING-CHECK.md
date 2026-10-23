@@ -1,0 +1,5 @@
+# Report checks
+
+Number/provenance pass: checked the final report's12 compositions,13 producers,54 distinct stored occurrences,103 repeated rows,23 adaptation catches,9 compact-index catches,58 compiler/dump commands and maximum1.4440662499982864 seconds against retained JSON/JSONL. Old X0 reuse remains24 controls, zero new census and zero extra replication credit. Table counts match actual control receipts. Allowed-axiom closures and native generated-axiom name were copied from executed readouts, not recalled.
+
+Separate continuous prose/limit pass: READY is explicitly prerelease only; all candidate material remains barred pending root RELEASE; graph-derived global minimum and an implemented caller computing local minima are distinguished; raw theorem-view stubs, same-producer qualification, standard-library trust, cached-field exclusions and compiler-extra body limits are visible. The retained vocabulary sweep has no matches. Editorial passes are same-agent, under the no-other-reviewer-contact instruction; they are not independent review.

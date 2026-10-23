@@ -1,0 +1,168 @@
+Universal233.Rule4.Choice (T S : RMAF.Tree) : Type
+Universal233.Rule4.rawChoices_complete {T S : RMAF.Tree} (s : Universal233.Rule4.RawChoice)
+  (hs : Universal233.Rule4.LocalGuard T S s) : Membership.mem.{0, 0} (Universal233.Rule4.rawChoices T S) s
+Universal233.Rule4.select_complete {T S : RMAF.Tree} (hp : Universal233.Rule4.Priority T S)
+  (s : Universal233.Rule4.RawChoice) (hs : Universal233.Rule4.LocalGuard T S s) :
+  Exists.{1} fun c => Eq.{1} (Universal233.Rule4.select T S) (some.{0} c)
+Universal233.Rule4.actual_original_exchange {T S : RMAF.Tree} (hnT : List.Nodup.{0} (RMAF.leaves T))
+  (hnS : List.Nodup.{0} (RMAF.leaves S)) {a b c : Nat} (hab : Ne.{1} a b)
+  (hcT : Universal233.HardParent.HasCherry a b T) (hcS : Universal233.HardParent.HasCherry a c S) {q r : RMAF.Vertex}
+  (hcuts :
+    List.Perm.{0} (Universal233.HardParent.pendantOriginal S a b) (List.cons.{0} q (List.cons.{0} r List.nil.{0})))
+  (hql : Eq.{1} (Universal233.HardParent.subtreeLabels S q) (List.cons.{0} c List.nil.{0}))
+  {F : List.{0} (List.{0} Nat)} (hF : Eq.{1} (RMAF.agreement T S F) true) {B : List.{0} Nat}
+  (hB : Membership.mem.{0, 0} F B) (ha : Membership.mem.{0, 0} B a) (hcB : ¬Membership.mem.{0, 0} B c)
+  (hb : Membership.mem.{0, 0} F (List.cons.{0} b List.nil.{0}))
+  (hd :
+    Exists.{1} fun d =>
+      Membership.mem.{0, 0} B d ∧ Membership.mem.{0, 0} (Universal233.HardParent.subtreeLabels S r) d) :
+  Exists.{1} fun G =>
+    Eq.{1} (RMAF.agreement T S G) true ∧
+      Eq.{1} (List.length.{0} G) (List.length.{0} F) ∧
+        VertexGeometry.Refines G (Universal233.HardParent.literalThree S q r)
+Universal233.Rule4.actual_rule4_cover {T S : RMAF.Tree} (hnT : List.Nodup.{0} (RMAF.leaves T))
+  (hnS : List.Nodup.{0} (RMAF.leaves S)) {a b c : Nat} (hab : Ne.{1} a b)
+  (hcT : Universal233.HardParent.HasCherry a b T) (hcS : Universal233.HardParent.HasCherry a c S) {q r : RMAF.Vertex}
+  (hcuts :
+    List.Perm.{0} (Universal233.HardParent.pendantOriginal S a b) (List.cons.{0} q (List.cons.{0} r List.nil.{0})))
+  (hql : Eq.{1} (Universal233.HardParent.subtreeLabels S q) (List.cons.{0} c List.nil.{0}))
+  {F : List.{0} (List.{0} Nat)} (hF : Eq.{1} (RMAF.agreement T S F) true) :
+  Exists.{1} fun G =>
+    Eq.{1} (RMAF.agreement T S G) true ∧
+      LE.le.{0} (List.length.{0} G) (List.length.{0} F) ∧
+        (VertexGeometry.Refines G (Universal233.HardParent.literalThree S q r) ∨
+          VertexGeometry.Refines G (Universal233.Rule4.isolatePartition S a) ∨
+            VertexGeometry.Refines G (Universal233.Rule4.pendantPartition T a c))
+Universal233.Rule4.selected_branches_cover {T S : RMAF.Tree} (s : Universal233.Rule4.Choice T S)
+  {F : List.{0} (List.{0} Nat)} (hF : Eq.{1} (RMAF.agreement T S F) true) :
+  Exists.{1} fun G =>
+    Exists.{1} fun b =>
+      Membership.mem.{0, 0} (Universal233.Rule4.branches s) b ∧
+        Eq.{1} (RMAF.agreement T S G) true ∧
+          LE.le.{0} (List.length.{0} G) (List.length.{0} F) ∧ VertexGeometry.Refines G b.partition
+Universal233.Rule4.all_pendant_literal_regions {S : RMAF.Tree} (hn : List.Nodup.{0} (RMAF.leaves S)) {a b : Nat}
+  (ha : Membership.mem.{0, 0} (RMAF.leaves S) a) :
+  have cuts := Universal233.HardParent.pendantOriginal S a b;
+  Eq.{1} (List.length.{0} (Universal233.Rule4.literalPartition S cuts)) (HAdd.hAdd.{0, 0, 0} (List.length.{0} cuts) 1) ∧
+    (∀ (v : RMAF.Vertex),
+        Universal233.CoreGraph.Valid S v →
+          Exists.{1} fun q =>
+            Membership.mem.{0, 0} (HAppend.hAppend.{0, 0, 0} cuts (List.cons.{0} List.nil.{0} List.nil.{0})) q ∧
+              Universal233.CutRealization.ResidualWalk S cuts q v) ∧
+      (∀ (q r : RMAF.Vertex),
+          Membership.mem.{0, 0} (HAppend.hAppend.{0, 0, 0} cuts (List.cons.{0} List.nil.{0} List.nil.{0})) q →
+            Membership.mem.{0, 0} (HAppend.hAppend.{0, 0, 0} cuts (List.cons.{0} List.nil.{0} List.nil.{0})) r →
+              Universal233.CutRealization.ResidualWalk S cuts q r → Eq.{1} q r) ∧
+        (∀ (q : RMAF.Vertex),
+            Membership.mem.{0, 0} cuts q →
+              ∀ (x : Nat),
+                Membership.mem.{0, 0} (Universal233.HardParent.subtreeLabels S q) x ↔
+                  Exists.{1} fun v =>
+                    Universal233.CoreGraph.LeafAt S v x ∧ Universal233.CutRealization.ResidualWalk S cuts q v) ∧
+          ∀ (v : RMAF.Vertex),
+            Universal233.CoreGraph.Valid S v →
+              Exists.{1} fun w =>
+                Exists.{1} fun x =>
+                  Universal233.CoreGraph.LeafAt S w x ∧ Universal233.CutRealization.ResidualWalk S cuts v w
+Universal233.Rule4.selected_cut_properties {T S : RMAF.Tree} (s : Universal233.Rule4.Choice T S)
+  (b : Universal233.Rule4.Branch) (hb : Membership.mem.{0, 0} (Universal233.Rule4.branches s) b) :
+  List.Nodup.{0} (RMAF.leaves b.target) ∧
+    List.Nodup.{0} (RMAF.leaves b.source) ∧
+      (∀ (x : Nat), Membership.mem.{0, 0} (RMAF.leaves b.target) x ↔ Membership.mem.{0, 0} (RMAF.leaves b.source) x) ∧
+        Universal233.Rule4.OriginalAntichain b.source b.cuts ∧
+          (Exists.{1} fun a =>
+              Membership.mem.{0, 0} (RMAF.leaves b.source) a ∧
+                ∀ (q : RMAF.Vertex),
+                  Membership.mem.{0, 0} b.cuts q →
+                    ¬Membership.mem.{0, 0} (Universal233.HardParent.subtreeLabels b.source q) a) ∧
+            LT.lt.{0} 0 b.cost
+Universal233.Rule4.selected_source_state {T S : RMAF.Tree} (s : Universal233.Rule4.Choice T S)
+  (b : Universal233.Rule4.Branch) (hb : Membership.mem.{0, 0} (Universal233.Rule4.branches s) b)
+  (F : List.{0} (List.{0} Nat)) :
+  Eq.{1} (RMAF.partitionCheck (RMAF.leaves b.source) b.partition) true ∧
+    Eq.{1} (RMAF.pairwiseEmbeddings b.source b.partition) true ∧
+      Eq.{1} (List.length.{0} b.partition) (HAdd.hAdd.{0, 0, 0} b.cost 1) ∧
+        Eq.{1} (List.length.{0} b.sourceForest) (List.length.{0} b.partition) ∧
+          Eq.{1} (ForestState.proper (some.{0} b.target) b.sourceForest) true ∧
+            (Eq.{1} (ForestState.agrees (some.{0} b.target) b.sourceForest F) true ↔
+                Eq.{1} (RMAF.agreement b.target b.source F) true ∧ RestrictionBridge.Refines F b.partition) ∧
+              Eq.{1} (ForestState.additionalCost b.sourceForest F)
+                (HSub.hSub.{0, 0, 0} (List.length.{0} F) (List.length.{0} b.partition))
+Universal233.Rule4.selected_swapped_cost (T S : RMAF.Tree) (s : Universal233.Rule4.Choice T S) :
+  LE.le.{0} 2 (List.length.{0} (Universal233.HardParent.pendantOriginal T s.raw.a s.raw.c))
+Universal233.Rule4.ExactChild (child : Universal233.Rule4.Branch → Nat → Option.{0} Universal233.Rule4.Forest)
+  (b : Universal233.Rule4.Branch) (r : Nat) : Prop
+Universal233.Rule4.actual_callback_decrease {T S : RMAF.Tree} (s : Universal233.Rule4.Choice T S) (q : Nat)
+  (b : Universal233.Rule4.Branch) (hb : Membership.mem.{0, 0} (Universal233.Rule4.branches s) b)
+  (hq : LE.le.{0} b.cost q) : LT.lt.{0} (HSub.hSub.{0, 0, 0} q b.cost) q
+Universal233.Rule4.actual_callback_mass {T S : RMAF.Tree} (s : Universal233.Rule4.Choice T S) (q : Nat) (c : Rat)
+  (hc : LE.le.{0} 2 c) :
+  LE.le.{0}
+    (Universal233.Rule4.callbackMass c q
+      (List.map.{0, 0} Universal233.Rule4.Branch.cost (Universal233.Rule4.branches s)))
+    (HAdd.hAdd.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (-1)) (HMul.hMul.{0, 0, 0} 2 (HPow.hPow.{0, 0, 0} c (-2))))
+Universal233.Rule4.solveForest_minimum {T S : RMAF.Tree} (s : Universal233.Rule4.Choice T S) (q : Nat)
+  (child : Universal233.Rule4.Branch → Nat → Option.{0} Universal233.Rule4.Forest)
+  (ih :
+    ∀ (b : Universal233.Rule4.Branch),
+      Membership.mem.{0, 0} (Universal233.Rule4.branches s) b →
+        LE.le.{0} b.cost q → Universal233.Rule4.ExactChild child b (HSub.hSub.{0, 0, 0} q b.cost))
+  (G : Universal233.Rule4.Forest) (hG : Eq.{1} (Universal233.Rule4.solveForest s q child) (some.{0} G)) :
+  Eq.{1} (RMAF.agreement T S G) true ∧
+    LE.le.{0} (HSub.hSub.{0, 0, 0} (List.length.{0} G) 1) q ∧
+      ∀ (F : List.{0} (List.{0} Nat)),
+        Eq.{1} (RMAF.agreement T S F) true →
+          LE.le.{0} (HSub.hSub.{0, 0, 0} (List.length.{0} F) 1) q → LE.le.{0} (List.length.{0} G) (List.length.{0} F)
+Universal233.Rule4.solveForest_none_iff {T S : RMAF.Tree} (s : Universal233.Rule4.Choice T S) (q : Nat)
+  (child : Universal233.Rule4.Branch → Nat → Option.{0} Universal233.Rule4.Forest)
+  (ih :
+    ∀ (b : Universal233.Rule4.Branch),
+      Membership.mem.{0, 0} (Universal233.Rule4.branches s) b →
+        LE.le.{0} b.cost q → Universal233.Rule4.ExactChild child b (HSub.hSub.{0, 0, 0} q b.cost)) :
+  Eq.{1} (Universal233.Rule4.solveForest s q child) none.{0} ↔
+    ¬Exists.{1} fun F => Eq.{1} (RMAF.agreement T S F) true ∧ LE.le.{0} (HSub.hSub.{0, 0, 0} (List.length.{0} F) 1) q
+Universal233.Rule4.solveCuts_original {T S : RMAF.Tree} (s : Universal233.Rule4.Choice T S) (q : Nat)
+  (child : Universal233.Rule4.Branch → Nat → Option.{0} Universal233.Rule4.Forest)
+  (ih :
+    ∀ (b : Universal233.Rule4.Branch),
+      Membership.mem.{0, 0} (Universal233.Rule4.branches s) b →
+        LE.le.{0} b.cost q → Universal233.Rule4.ExactChild child b (HSub.hSub.{0, 0, 0} q b.cost))
+  (G : Universal233.Rule4.Forest) (hG : Eq.{1} (Universal233.Rule4.solveForest s q child) (some.{0} G)) :
+  Exists.{1} fun o =>
+    Eq.{1} (Universal233.Rule4.solveCuts s q child) (some.{0} o) ∧
+      Eq.{1} (RMAF.agreement T S o.partition) true ∧
+        Eq.{1} (List.length.{0} o.sourceCuts) (HSub.hSub.{0, 0, 0} (List.length.{0} G) 1) ∧
+          LE.le.{0} (List.length.{0} o.sourceCuts) q ∧
+            Universal233.CutRealization.RealizedOutput S o ∧
+              ∀ (F : List.{0} (List.{0} Nat)),
+                Eq.{1} (RMAF.agreement T S F) true →
+                  LE.le.{0} (HSub.hSub.{0, 0, 0} (List.length.{0} F) 1) q →
+                    LE.le.{0} (List.length.{0} o.partition) (List.length.{0} F)
+Universal233.Rule4.solveCuts_recovery_work {T S : RMAF.Tree} (s : Universal233.Rule4.Choice T S) (q : Nat)
+  (child : Universal233.Rule4.Branch → Nat → Option.{0} Universal233.Rule4.Forest)
+  (ih :
+    ∀ (b : Universal233.Rule4.Branch),
+      Membership.mem.{0, 0} (Universal233.Rule4.branches s) b →
+        LE.le.{0} b.cost q → Universal233.Rule4.ExactChild child b (HSub.hSub.{0, 0, 0} q b.cost))
+  (G : Universal233.Rule4.Forest) (hG : Eq.{1} (Universal233.Rule4.solveForest s q child) (some.{0} G)) (c : Rat)
+  (hc : LE.le.{0} 2 c) :
+  LE.le.{0} (↑(Universal233.FinalCutRecovery.meterRecover S G).work)
+    (HMul.hMul.{0, 0, 0} (↑(Universal233.FinalCutRecovery.finalPolynomial S G)) (HPow.hPow.{0, 0, 0} c q))
+Universal233.FinalCutRecovery.meterRecover_value (S : RMAF.Tree) (P : List.{0} (List.{0} Nat)) :
+  Eq.{1} (Universal233.FinalCutRecovery.meterRecover S P).value (Universal233.FinalCutRecovery.recover S P)
+Universal233.FinalCutRecovery.final_work_absorbed (S : RMAF.Tree) (P : List.{0} (List.{0} Nat))
+  (hn : List.Nodup.{0} (RMAF.leaves S)) (hp : Eq.{1} (RMAF.partitionCheck (RMAF.leaves S) P) true)
+  (he : Eq.{1} (RMAF.pairwiseEmbeddings S P) true) (q : Nat)
+  (hq : LE.le.{0} (HSub.hSub.{0, 0, 0} (List.length.{0} P) 1) q) (c : Rat) (hc : LE.le.{0} 2 c) :
+  LE.le.{0} (↑(Universal233.FinalCutRecovery.meterRecover S P).work)
+    (HMul.hMul.{0, 0, 0} (↑(Universal233.FinalCutRecovery.finalPolynomial S P)) (HPow.hPow.{0, 0, 0} c q))
+OutputState.agrees_iff_original (T S : RMAF.Tree) (Q F : List.{0} (List.{0} Nat))
+  (properT : List.Nodup.{0} (RMAF.leaves T)) (properS : List.Nodup.{0} (RMAF.leaves S))
+  (same : ∀ (x : Nat), Membership.mem.{0, 0} (RMAF.leaves T) x ↔ Membership.mem.{0, 0} (RMAF.leaves S) x)
+  (hQ : Eq.{1} (RMAF.partitionCheck (RMAF.leaves S) Q) true) (sourceQ : Eq.{1} (RMAF.pairwiseEmbeddings S Q) true) :
+  Eq.{1} (ForestState.agrees (some.{0} T) (OutputState.sourceForest S Q) F) true ↔
+    Eq.{1} (RMAF.agreement T S F) true ∧ RestrictionBridge.Refines F Q
+RestrictionBridge.disjoint_transport (t u : RMAF.Tree) (U B C : List.{0} Nat)
+  (hu : Eq.{1} (RMAF.restrict U t) (some.{0} u)) (hB : Subset.{0} B U) (hC : Subset.{0} C U) :
+  Eq.{1} (RMAF.disjointVertices (RMAF.minimalVertices B t) (RMAF.minimalVertices C t)) true ↔
+    Eq.{1} (RMAF.disjointVertices (RMAF.minimalVertices B u) (RMAF.minimalVertices C u)) true

@@ -1,0 +1,9 @@
+import StoredMax
+#check OrdinaryDispatch.StoredNumeric.maximumCopy_value
+#print axioms OrdinaryDispatch.StoredNumeric.maximumCopy_value
+#check OrdinaryDispatch.StoredNumeric.maximumBlock_value
+#print axioms OrdinaryDispatch.StoredNumeric.maximumBlock_value
+#check OrdinaryDispatch.StoredNumeric.freshOne_value
+#print axioms OrdinaryDispatch.StoredNumeric.freshOne_value
+#check OrdinaryDispatch.StoredNumeric.freshOne_work
+#print axioms OrdinaryDispatch.StoredNumeric.freshOne_work

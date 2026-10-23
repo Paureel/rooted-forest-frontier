@@ -1,0 +1,25 @@
+research/rmaf/algorithm/universal233/forest_solver/build/ForestLocal.lean:92:7: error: unexpected token 'local'; expected '(', ':=', '|' or term
+research/rmaf/algorithm/universal233/forest_solver/build/ForestLocal.lean:75:22: warning: `dif_pos` has been deprecated: Use `dite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  d̵i̵f̵_̵p̵o̵s̵d̲i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+research/rmaf/algorithm/universal233/forest_solver/build/ForestLocal.lean:92:7: error: Missing cases:
+research/rmaf/algorithm/universal233/forest_solver/build/ForestLocal.lean:70:87: error: unsolved goals
+t : Tree
+ss : List Tree
+hp : proper (some t) ss = true
+clear : pairwiseEmbeddings t (List.map leaves ss) = true
+out : Tree → Forest
+ha : ∀ (s : Tree), s ∈ ss → agreement (pair t s).fst (pair t s).snd (out s) = true
+owner : List Nat → Tree := fun U => if h : ∃ s, s ∈ ss ∧ leaves s = U then h.choose else Tree.leaf 0
+owner_spec : ∀ (U : List Nat), U ∈ List.map leaves ss → owner U ∈ ss ∧ leaves (owner U) = U
+owner_source : ∀ (s : Tree), s ∈ ss → owner (leaves s) = s
+H : List Nat → Forest := fun U => out (owner U)
+hQ : partitionCheck (labels (some t)) (List.map leaves ss) = true
+own : Owns ss (List.map leaves ss)
+cross : CrossClear (some t) ss (List.map leaves ss)
+⊢ agrees (some t) ss (List.flatMap out ss) = true ∧
+    additionalCost ss (List.flatMap out ss) = (List.map (fun s => List.length (out s) - 1) ss).sum
+research/rmaf/algorithm/universal233/forest_solver/build/ForestLocal.lean:92:12: error: unexpected token '('; expected 'binder_predicate', 'builtin_cbv_simproc', 'builtin_dsimproc', 'builtin_simproc', 'cbv_simproc', 'def_eval_config_item', 'dsimproc', 'elab', 'elab_rules', 'grind_pattern', 'infix', 'infixl', 'infixr', 'instance', 'macro', 'macro_rules', 'notation', 'postfix', 'prefix', 'simproc', 'syntax' or 'unif_hint'
+research/rmaf/algorithm/universal233/forest_solver/build/ForestLocal.lean:103:91: error: unexpected token 'have'; expected 'binder_predicate', 'builtin_cbv_simproc', 'builtin_dsimproc', 'builtin_simproc', 'cbv_simproc', 'def_eval_config_item', 'dsimproc', 'elab', 'elab_rules', 'grind_pattern', 'infix', 'infixl', 'infixr', 'instance', 'macro', 'macro_rules', 'notation', 'postfix', 'prefix', 'simproc', 'syntax' or 'unif_hint'
+research/rmaf/algorithm/universal233/forest_solver/build/ForestLocal.lean:104:80: error: unexpected token 'have'; expected 'binder_predicate', 'builtin_cbv_simproc', 'builtin_dsimproc', 'builtin_simproc', 'cbv_simproc', 'def_eval_config_item', 'dsimproc', 'elab', 'elab_rules', 'grind_pattern', 'infix', 'infixl', 'infixr', 'instance', 'macro', 'macro_rules', 'notation', 'postfix', 'prefix', 'simproc', 'syntax' or 'unif_hint'

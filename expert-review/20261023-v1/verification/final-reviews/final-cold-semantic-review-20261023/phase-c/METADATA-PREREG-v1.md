@@ -1,0 +1,2 @@
+# Phase C metadata check, before execution
+Expected positive: SHA256(abc) is the standard ba7816...15ad. Expected corrupted comparison: SHA256(abd) differs. Then exactly 28+2 release entries must match both byte length and SHA256 and both packet manifests their released pins. Output is integrity evidence only. No semantic acceptance from process status. Existing default30 wrapper and shared lock; no resource change or rerun.

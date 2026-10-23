@@ -1,0 +1,87 @@
+import BinaryProducerAccounting
+namespace GenericForest.BinaryProducer
+open BinaryProvider GenericForest.ScalarBits GenericForest.CheckCorrespondence Universal233.WholeSourceWork Universal233.CoreWork
+
+def leafCost (N L : Nat) := beta L*(8*(N+1)^2)
+def restrictCost (N L : Nat) := beta L*(4*(N+2)*N)
+
+theorem bitsLeaves_count (T : BinaryProvider.Tree) : (leavesBits T).length≤treeNodes (treeValue T) := by
+ have h:=leaves_nodes (treeValue T)
+ have e:=congrArg List.length (leaves_projection T)
+ simp only [blockValue_length] at e;omega
+
+theorem leavesCopy_cost (N L : Nat) (T : BinaryProvider.Tree) (tc : TreeWidth L T) (tn : treeNodes (treeValue T)≤N) :
+ (leavesCopy T).work≤leafCost N L :=
+ Nat.le_trans (leavesCopy_projects T L tc).2 (Nat.mul_le_mul_left _ (meterLeaves_cap _ N tn))
+
+theorem restrictLabels_cost (N L : Nat) (B : Block) (T : BinaryProvider.Tree)
+ (bc : BlockWidth L B) (tc : TreeWidth L T) (bl : B.length≤N) (tn : treeNodes (treeValue T)≤N) :
+ (restrictLabels B T).work≤restrictCost N L := by
+ have h:=meterRestrict_bound (blockValue B) (treeValue T)
+ have b:=Nat.mul_le_mul (show 4*((blockValue B).length+2)≤4*(N+2) by simpa only [blockValue_length] using Nat.mul_le_mul_left 4 (Nat.add_le_add_right bl 2)) tn
+ exact Nat.le_trans (restrictLabels_projects L B T bc tc).2 (Nat.mul_le_mul_left _ (Nat.le_trans h b))
+
+theorem allChecks_bound {A : Type} (f : A→Charged Bool) (xs : List A) (C : Nat) (cap : ∀x∈xs,(f x).work≤C) :
+ (allChecks f xs).work≤(C+4)*(xs.length+1) := by
+ induction xs with
+ | nil=>simp [allChecks];omega
+ | cons x xs ih=>
+  have a:=cap x (by simp);have r:=ih (fun y hy=>cap y (by simp [hy]))
+  simp only [allChecks,List.length_cons,Nat.mul_add,Nat.mul_one] at *;omega
+
+theorem containsLabel_cost (L : Nat) (x : Bits) (B : Block) (xc : x.length≤L) (bc : BlockWidth L B) :
+ (containsLabel x B).work≤beta L*(4*(B.length+1)) := by
+ have p:=(containsLabel_projects L x B xc bc).2
+ have m:=meterContains_bound (decode x) (blockValue B)
+ exact Nat.le_trans p (Nat.mul_le_mul_left _ (by simpa only [blockValue_length,labelValue] using m))
+
+theorem excludeLabels_cost (L : Nat) (U B : Block) (uc : BlockWidth L U) (bc : BlockWidth L B) :
+ (excludeLabels U B).work≤(beta L*(4*(U.length+1))+6)*(B.length+1) := by
+ induction B with
+ | nil=>simp [excludeLabels];omega
+ | cons x xs ih=>
+  have a:=containsLabel_cost L x U (bc x (by simp)) uc
+  have r:=ih (fun y hy=>bc y (by simp [hy]))
+  simp only [excludeLabels,List.length_cons]
+  simp only [Nat.mul_add,Nat.mul_one] at *;omega
+
+theorem subtreeBits_nodes (S U : BinaryProvider.Tree) (p : RMAF.Vertex) (h : (subtreeBits S p).value=some U) :
+ treeNodes (treeValue U)≤treeNodes (treeValue S) := by
+ induction p generalizing S with
+ | nil=>simp only [subtreeBits,Option.some.injEq] at h;subst U;omega
+ | cons b bs ih=>
+  cases S with
+  | leaf x=>simp [subtreeBits] at h
+  | node l r=>
+   cases b
+   · have a:=ih l h;simp only [treeValue,treeNodes];omega
+   · have a:=ih r h;simp only [treeValue,treeNodes];omega
+
+def forestCost (N L P : Nat) := 4*(P+1)+2*leafCost N L+(beta L*(4*(N+1))+6)*(N+1)+12
+
+theorem forestBits_cost (N L P : Nat) (S : BinaryProvider.Tree) (cut : Option RMAF.Vertex)
+ (sc : TreeWidth L S) (sn : treeNodes (treeValue S)≤N) (path : ∀p,cut=some p→p.length≤P) :
+ (forestBits S cut).work≤forestCost N L P := by
+ have l:=leavesCopy_cost N L S sc sn
+ have ln:=Nat.le_trans (bitsLeaves_count S) sn
+ cases cut with
+ | none=>simp only [forestBits];unfold forestCost;omega
+ | some p=>
+  have pbound:=path p rfl
+  have sw:=subtreeBits_work S p
+  have caps:=subtreeLeavesBits_caps L S p sc
+  have e:=excludeLabels_cost L (subtreeLeavesBits S p).value (leavesBits S) caps.1 sc
+  have e1:=Nat.mul_le_mul_right ((leavesBits S).length+1) (show beta L*(4*((subtreeLeavesBits S p).value.length+1))+6≤beta L*(4*(N+1))+6 by
+   have m:=Nat.mul_le_mul_left (beta L) (Nat.mul_le_mul_left 4 (Nat.add_le_add_right (Nat.le_trans caps.2 ln) 1));omega)
+  have e2:=Nat.mul_le_mul_left (beta L*(4*(N+1))+6) (Nat.add_le_add_right ln 1)
+  have a : (subtreeLeavesBits S p).work≤4*(P+1)+leafCost N L+4:=by
+   cases h : (subtreeBits S p).value with
+   | none=>simp only [subtreeLeavesBits,h];omega
+   | some U=>
+    have uw:=subtreeBits_width L S U p sc h
+    have un:=Nat.le_trans (subtreeBits_nodes S U p h) sn
+    have uc:=leavesCopy_cost N L U uw un
+    simp only [subtreeLeavesBits,h];omega
+  simp only [forestBits,leavesCopy_value]
+  unfold forestCost;omega
+end GenericForest.BinaryProducer

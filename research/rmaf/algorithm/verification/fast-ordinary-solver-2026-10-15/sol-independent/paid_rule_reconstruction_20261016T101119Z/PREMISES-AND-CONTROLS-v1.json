@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "before_first_new_proof_execution": true,
+  "cases": [
+    {
+      "name": "one-cut-exchange-required",
+      "T": "((0,1),2)",
+      "S": "((0,2),1)",
+      "a": 0,
+      "b": 1,
+      "cuts_length": 1,
+      "F": [
+        [
+          0,
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "F_valid": true,
+      "F_refines_pendant": false,
+      "H": [
+        [
+          0,
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "H_valid_and_refines": true,
+      "F_length": 2,
+      "H_length": 2
+    },
+    {
+      "name": "t2-not-one",
+      "T": "((0,1),(2,3))",
+      "S": "(((0,2),3),1)",
+      "a": 0,
+      "b": 1,
+      "cuts_length": 2,
+      "F": [
+        [
+          0
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "F_valid": true,
+      "F_length": 2,
+      "pendant_partition_length": 3
+    },
+    {
+      "name": "strict-paid-zero",
+      "paid": 1,
+      "q": 0,
+      "remaining": null,
+      "child_callback": "must not be called"
+    },
+    {
+      "name": "best-duplicates",
+      "candidates": [
+        4,
+        2,
+        2,
+        7
+      ],
+      "valid": "x!=7",
+      "cost": "identity",
+      "expected": 2
+    },
+    {
+      "name": "best-invalid-cheaper",
+      "candidates": [
+        0,
+        3,
+        4
+      ],
+      "valid": "x!=0",
+      "expected": 3
+    },
+    {
+      "name": "best-all-invalid",
+      "candidates": [
+        0,
+        0
+      ],
+      "valid": false,
+      "expected": null
+    }
+  ],
+  "false_twins": [
+    "One-cut F automatically refines pendant partition",
+    "t2 cut list has length one",
+    "paid1 affordable at q0",
+    "best all-invalid has an answer"
+  ],
+  "policy": "Semantic false diagnostics or explicit compiled negations; failed tactics alone are not counterexamples.",
+  "caps": {
+    "seconds": 59,
+    "raw": 67108864,
+    "line": 16777216,
+    "compressed": 268435456,
+    "floor": 3221225472
+  },
+  "no_full_solver_or_oracle_evaluation": true,
+  "new_blind_credit": 0
+}

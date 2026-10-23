@@ -1,0 +1,78 @@
+Universal233.FinalCutRecovery.recover (S : RMAF.Tree) (P : List (List Nat)) : Option Universal233.CoreProgram.Output
+Universal233.FinalCutRecovery.checked_rank (S : RMAF.Tree) (P : List (List Nat))
+  (hp : RMAF.partitionCheck (RMAF.leaves S) P = true) :
+  Universal233.RankDichotomy.inputRank S (Universal233.FinalCutRecovery.blockColor P) = P.length
+Universal233.FinalCutRecovery.checked_separation (S : RMAF.Tree) (P : List (List Nat))
+  (hp : RMAF.partitionCheck (RMAF.leaves S) P = true) (b : List Nat) (hb : b ∈ P) (x : Nat) :
+  x ∈ b ↔
+    x ∈ RMAF.leaves S ∧
+      Universal233.FinalCutRecovery.blockColor P x = Universal233.FinalCutRecovery.blockColor P (b.headD 0)
+Universal233.FinalCutRecovery.checked_block_permutation (S : RMAF.Tree) (P Q : List (List Nat))
+  (hp : RMAF.partitionCheck (RMAF.leaves S) P = true) (hq : RMAF.partitionCheck (RMAF.leaves S) Q = true)
+  (hmq : ∀ (b : List Nat), b ∈ Q → VertexGeometry.LabelMonochromatic (Universal233.FinalCutRecovery.blockColor P) b)
+  (hlq : Q.length = P.length) : Universal233.FinalCutRecovery.BlockPermutation P Q
+Universal233.FinalCutRecovery.agreement_block_permutation (T S : RMAF.Tree) (P Q : List (List Nat))
+  (h : Universal233.FinalCutRecovery.BlockPermutation P Q) : RMAF.agreement T S P = RMAF.agreement T S Q
+Universal233.FinalCutRecovery.recover_checked (S : RMAF.Tree) (P : List (List Nat)) (hn : (RMAF.leaves S).Nodup)
+  (hp : RMAF.partitionCheck (RMAF.leaves S) P = true) (he : RMAF.pairwiseEmbeddings S P = true) :
+  ∃ o,
+    Universal233.FinalCutRecovery.recover S P = some o ∧
+      (Universal233.CoreProgram.generate S (Universal233.FinalCutRecovery.blockColor P) (P.length - 1)).outputs = [o] ∧
+        o.sourceCuts.length = P.length - 1 ∧
+          o.partition.length = P.length ∧
+            Universal233.CutRealization.RealizedOutput S o ∧
+              Universal233.FinalCutRecovery.BlockPermutation P o.partition ∧
+                RMAF.partitionCheck (RMAF.leaves S) o.partition = true
+Universal233.FinalCutRecovery.recover_sound (S : RMAF.Tree) (P : List (List Nat)) (o : Universal233.CoreProgram.Output)
+  (ho : Universal233.FinalCutRecovery.recover S P = some o) :
+  Universal233.CutRealization.RealizedOutput S o ∧
+    o.sourceCuts.length = P.length - 1 ∧
+      o.partition.length = P.length ∧
+        Universal233.FinalCutRecovery.BlockPermutation P o.partition ∧
+          RMAF.partitionCheck (RMAF.leaves S) o.partition = true
+Universal233.FinalCutRecovery.recover_edges (S : RMAF.Tree) (P : List (List Nat)) (o : Universal233.CoreProgram.Output)
+  (ho : Universal233.FinalCutRecovery.recover S P = some o) :
+  o.sourceCuts.Nodup ∧ ∀ (v : RMAF.Vertex), v ∈ o.sourceCuts → Universal233.CoreGraph.Valid S v ∧ v ≠ []
+Universal233.FinalCutRecovery.recover_original_agreement (T S : RMAF.Tree) (P : List (List Nat))
+  (hn : (RMAF.leaves S).Nodup) (ha : RMAF.agreement T S P = true) :
+  ∃ o,
+    Universal233.FinalCutRecovery.recover S P = some o ∧
+      RMAF.agreement T S o.partition = true ∧
+        o.sourceCuts.length = P.length - 1 ∧
+          o.partition.length = P.length ∧
+            Universal233.CutRealization.RealizedOutput S o ∧
+              Universal233.FinalCutRecovery.BlockPermutation P o.partition
+Universal233.FinalCutRecovery.recover_success_iff (S : RMAF.Tree) (P : List (List Nat)) :
+  (∃ o, Universal233.FinalCutRecovery.recover S P = some o) ↔ Universal233.FinalCutRecovery.inputCheck S P = true
+Universal233.FinalCutRecovery.accepted_guards (S : RMAF.Tree) (P : List (List Nat))
+  (o : Universal233.CoreProgram.Output) (ho : Universal233.FinalCutRecovery.recover S P = some o) :
+  (RMAF.leaves S).Nodup ∧
+    P.flatten.Nodup ∧
+      (∀ (b : List Nat), b ∈ P → b ≠ []) ∧
+        (∀ (x : Nat), x ∈ RMAF.leaves S → List.count x P.flatten = 1) ∧
+          (∀ (x : Nat), x ∈ P.flatten → x ∈ RMAF.leaves S) ∧ RMAF.pairwiseEmbeddings S P = true
+Universal233.FinalCutRecovery.meterRecover_value (S : RMAF.Tree) (P : List (List Nat)) :
+  (Universal233.FinalCutRecovery.meterRecover S P).value = Universal233.FinalCutRecovery.recover S P
+Universal233.FinalCutRecovery.meterColor_value (P : List (List Nat)) (x : Nat) :
+  (Universal233.FinalCutRecovery.meterColor P x).value = Universal233.FinalCutRecovery.blockColor P x
+Universal233.FinalCutRecovery.meterColor_work (P : List (List Nat)) (x : Nat) :
+  (Universal233.FinalCutRecovery.meterColor P x).work ≤ 32 * (P.flatten.length + P.length + 1)
+Universal233.FinalCutRecovery.total_color_work (P : List (List Nat)) (xs : List Nat) :
+  (List.map (fun x => (Universal233.FinalCutRecovery.meterColor P x).work) xs).sum ≤
+    32 * xs.length * (P.flatten.length + P.length + 1)
+Universal233.FinalCutRecovery.final_work_bound (S : RMAF.Tree) (P : List (List Nat)) (hn : (RMAF.leaves S).Nodup)
+  (hp : RMAF.partitionCheck (RMAF.leaves S) P = true) (he : RMAF.pairwiseEmbeddings S P = true) :
+  (Universal233.FinalCutRecovery.meterRecover S P).work ≤
+    Universal233.FinalCutRecovery.finalPolynomial S P * 2 ^ (P.length - 1)
+Universal233.FinalCutRecovery.final_work_actual_cost (S : RMAF.Tree) (P : List (List Nat)) (hn : (RMAF.leaves S).Nodup)
+  (hp : RMAF.partitionCheck (RMAF.leaves S) P = true) (he : RMAF.pairwiseEmbeddings S P = true) :
+  ∃ o,
+    Universal233.FinalCutRecovery.recover S P = some o ∧
+      Universal233.CutRealization.RealizedOutput S o ∧
+        o.sourceCuts.length = P.length - 1 ∧
+          (Universal233.FinalCutRecovery.meterRecover S P).work ≤
+            Universal233.FinalCutRecovery.finalPolynomial S P * 2 ^ o.sourceCuts.length
+Universal233.FinalCutRecovery.final_work_absorbed (S : RMAF.Tree) (P : List (List Nat)) (hn : (RMAF.leaves S).Nodup)
+  (hp : RMAF.partitionCheck (RMAF.leaves S) P = true) (he : RMAF.pairwiseEmbeddings S P = true) (q : Nat)
+  (hq : P.length - 1 ≤ q) (c : Rat) (hc : 2 ≤ c) :
+  ↑(Universal233.FinalCutRecovery.meterRecover S P).work ≤ ↑(Universal233.FinalCutRecovery.finalPolynomial S P) * c ^ q

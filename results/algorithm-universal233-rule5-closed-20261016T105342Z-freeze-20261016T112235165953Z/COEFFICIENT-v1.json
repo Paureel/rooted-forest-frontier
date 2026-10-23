@@ -1,0 +1,13 @@
+{
+  "coefficient": "C5 N Q L = prefixCap N + 80*(2^50*(N+Q+L+2)^8) + 4",
+  "prefix": "prefixCap N = finalBudget N N (checkCap (2*N)) + forestArmBudget N N (agreementK N) + commonBudget N N (2*N) + paidPrefixCap N + 20",
+  "paid_prefix": "paidPrefixCap N = paidSelectedBudget N N (checkCap (2*N)) (literalBudget (2*N)) + bestCap N (4*N) (2*N) + 2",
+  "concrete_classifier": "checkCap M = 120*(2*M*M+2*M+2)^5+128*(M+1)^2+2",
+  "concrete_literal": "literalBudget M = 1024*M^5+3072*M^4+960*M^3+640*M^2+238*M+164",
+  "general_agreement": "agreementK M = 1024*(12*M+2)^5",
+  "positive_polynomial_definitions": "UniformPrefix.lean and POLYNOMIAL-DEFINITIONS-v1.json; each remaining operation is addition, multiplication or fixed natural power",
+  "bound": "actual_rule5_bound and admitted_route_bound",
+  "base": "233/100",
+  "inputs": "InputDomain: original target leaf cap N, q<=original budget cap Q, original T/S labels<2^L; source leaf count follows from actual admission/proper input. No q<=reducedn.",
+  "model": "scalar source inspections; not native/binary/compiler semantics"
+}

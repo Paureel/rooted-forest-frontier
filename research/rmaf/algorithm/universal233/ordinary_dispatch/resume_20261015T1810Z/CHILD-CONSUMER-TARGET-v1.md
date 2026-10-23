@@ -1,0 +1,11 @@
+# Actual bounded child-to-forest binding
+
+Named main consumer: the executable ordinary dispatcher calls `GenericForest.solve actual` on each literal CherryBranching Child.sourceForest at remaining budget k-paid. Existing cherry/Rule5 contracts quantify ExactBoundedChild over every residual r; a well-founded ordinary IH only covers actual paid queries. Prove the direct current-r contract from LocalOrdinaryIH r actual, literal child materialization, original source partition/embeddings and same labels. No runtime ghost/minimum callback is added.
+
+Then prove an actual checked best-of-child-calls consumer using the actual remaining budget. Prove original agreement, minimum, budget, and non-success iff no original feasible forest only when the named frozen source cover supplies the case. Do not assume global ordinary correctness or desired source coverage in a record.
+
+Controls before construction: an actual lower-budget cutoff callback and overlap fixture from the saved LocalControls; the existing unbounded transfer and singleton-hard discount false claims remain rejected; add a false residual-paid inference and a missing one-child cover control before any enumeration instrument. Build only the actual transitive source closure in one new root; all frozen sources remain byte-for-byte. Source/proof checks here are AUTHOR development, not independent verification. All main claims remain OPEN.
+
+## Actual executable controls
+
+Before compiling new runChildren control modules: use the four-label crossed quartet T=((0,1),(2,3)), S=((0,2),(1,3)). A literal singleton0 source child at parent budget2 has an actual three-block AF; no ordinary callback is needed because the remaining three-label component is resolved by the completed depth01 pretest. The output's agreement flag and component count must be (true,3), without imposing an irrelevant block order. Parent budget1 must return none. An empty child list returns none and therefore cannot be promoted to a complete source cover for that feasible quartet. Both contrary claims must fail in the kernel. The earlier saved actual hard-callback and overlap fixtures remain separate positive evidence, not relabeled as new tests of this wrapper.

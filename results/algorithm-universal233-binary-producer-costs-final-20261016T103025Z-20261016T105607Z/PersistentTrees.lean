@@ -1,0 +1,121 @@
+import PersistentPartition
+namespace GenericForest.BinaryProvider
+open Universal233.WholeSourceWork GenericForest.ScalarBits GenericForest.CheckCorrespondence
+
+def sameShapeLabels : Tree→Tree→Charged Bool
+ | .leaf a,.leaf b=>copiedEqual a b
+ | .node a b,.node c d=>
+  let ac:=sameShapeLabels a c;let bd:=sameShapeLabels b d
+  let ad:=sameShapeLabels a d;let bc:=sameShapeLabels b c
+  ⟨(ac.value&&bd.value)||(ad.value&&bc.value),ac.work+bd.work+ad.work+bc.work+4⟩
+ | _,_=>⟨false,4⟩
+
+theorem sameShapeLabels_projects (W : Nat) (T S : Tree) (tc : TreeWidth W T) (sc : TreeWidth W S) :
+ Projects W id (sameShapeLabels T S) (meterSameShape (treeValue T) (treeValue S)) := by
+ have p:=beta_positive W
+ induction T generalizing S with
+ | leaf a=>
+  cases S with
+  | leaf b=>
+   have c:=copiedEqual_work W a b (tc a (by simp [leavesBits])) (sc b (by simp [leavesBits]))
+   simp only [Projects,id_eq,sameShapeLabels,treeValue,meterSameShape,copiedEqual_value,labelValue]
+   constructor
+   · trivial
+   · unfold ScalarBits.beta;omega
+  | node l r=>simp only [Projects,id_eq,sameShapeLabels,treeValue,meterSameShape];constructor;trivial;omega
+ | node a b iha ihb=>
+  cases S with
+  | leaf c=>simp only [Projects,id_eq,sameShapeLabels,treeValue,meterSameShape];constructor;trivial;omega
+  | node c d=>
+   have ac:=iha c (treeWidth_left W a b tc) (treeWidth_left W c d sc)
+   have ad:=iha d (treeWidth_left W a b tc) (treeWidth_right W c d sc)
+   have bc:=ihb c (treeWidth_right W a b tc) (treeWidth_left W c d sc)
+   have bd:=ihb d (treeWidth_right W a b tc) (treeWidth_right W c d sc)
+   simp only [Projects,id_eq] at ac ad bc bd ⊢
+   simp only [sameShapeLabels,treeValue,meterSameShape,ac.1,ad.1,bc.1,bd.1]
+   constructor
+   · trivial
+   · simp only [Nat.mul_add];omega
+
+/-- Surviving leaves share their immutable label arrays. Only new tree nodes
+are allocated here; comparisons separately pay operand copies. -/
+def restrictLabels (B : Block) : Tree→Charged (Option Tree)
+ | .leaf x=>let m:=containsLabel x B;⟨if m.value then some (.leaf x) else none,m.work+4⟩
+ | .node l r=>let a:=restrictLabels B l;let b:=restrictLabels B r
+               ⟨match a.value,b.value with
+                | none,none=>none | some x,none=>some x | none,some y=>some y | some x,some y=>some (.node x y),
+                a.work+b.work+4⟩
+
+theorem restrictLabels_projects (W : Nat) (B : Block) (T : Tree) (bc : BlockWidth W B) (tc : TreeWidth W T) :
+ Projects W targetValue (restrictLabels B T) (meterRestrict (blockValue B) (treeValue T)) := by
+ have p:=beta_positive W
+ induction T with
+ | leaf x=>
+  have m:=containsLabel_projects W x B (tc x (by simp [leavesBits])) bc
+  simp only [Projects,id_eq] at m
+  simp only [Projects,restrictLabels,treeValue,meterRestrict,m.1]
+  constructor
+  · cases h : (meterContains (labelValue x) (blockValue B)).value <;> simp [h,targetValue,treeValue]
+  · simp only [Nat.mul_add];omega
+ | node l r ihl ihr=>
+  have a:=ihl (treeWidth_left W l r tc)
+  have b:=ihr (treeWidth_right W l r tc)
+  simp only [Projects] at a b ⊢
+  simp only [restrictLabels,treeValue,meterRestrict,←a.1,←b.1]
+  constructor
+  · cases h : (restrictLabels B l).value <;> cases k : (restrictLabels B r).value <;> simp [h,k,targetValue,treeValue]
+  · simp only [Nat.mul_add];omega
+
+theorem restrictedWidth (W : Nat) (B : Block) (T U : Tree) (tc : TreeWidth W T)
+ (h : (restrictLabels B T).value=some U) : TreeWidth W U := by
+ induction T generalizing U with
+ | leaf x=>
+  cases m : (containsLabel x B).value <;> simp only [restrictLabels,m,Bool.false_eq_true,ite_false,ite_true] at h
+  · contradiction
+  · cases h;exact tc
+ | node l r ihl ihr=>
+  cases a : (restrictLabels B l).value <;> cases b : (restrictLabels B r).value <;> simp only [restrictLabels,a,b] at h
+  · contradiction
+  · cases h;exact ihr _ (treeWidth_right W l r tc) b
+  · cases h;exact ihl _ (treeWidth_left W l r tc) a
+  · cases h
+    have lc:=ihl _ (treeWidth_left W l r tc) a
+    have rc:=ihr _ (treeWidth_right W l r tc) b
+    intro x hx
+    simp only [leavesBits,List.mem_append] at hx
+    exact hx.elim (lc x) (rc x)
+
+def restrictionAgreesLabels (T S : Tree) (B : Block) : Charged Bool :=
+ let a:=restrictLabels B T;let b:=restrictLabels B S
+ match a.value,b.value with
+ | some u,some v=>let c:=sameShapeLabels u v;⟨c.value,a.work+b.work+c.work+4⟩
+ | _,_=>⟨false,a.work+b.work+4⟩
+
+theorem restrictionAgreesLabels_projects (W : Nat) (T S : Tree) (B : Block)
+ (tc : TreeWidth W T) (sc : TreeWidth W S) (bc : BlockWidth W B) :
+ Projects W id (restrictionAgreesLabels T S B)
+  (meterRestrictionAgrees (treeValue T) (treeValue S) (blockValue B)) := by
+ have p:=beta_positive W
+ have a:=restrictLabels_projects W B T bc tc
+ have b:=restrictLabels_projects W B S bc sc
+ simp only [Projects] at a b ⊢
+ simp only [restrictionAgreesLabels,meterRestrictionAgrees,←a.1,←b.1]
+ cases ht : (restrictLabels B T).value with
+ | none=>
+  cases hs : (restrictLabels B S).value <;> simp only [ht,hs,targetValue,Option.map_none,Option.map_some,id_eq]
+  all_goals constructor
+  all_goals first | trivial | (simp only [Nat.mul_add];omega)
+ | some u=>
+  cases hs : (restrictLabels B S).value with
+  | none=>
+   simp only [ht,hs,targetValue,Option.map_none,Option.map_some,id_eq]
+   constructor
+   · trivial
+   · simp only [Nat.mul_add];omega
+  | some v=>
+   have c:=sameShapeLabels_projects W u v (restrictedWidth W B T u tc ht) (restrictedWidth W B S v sc hs)
+   simp only [ht,hs,targetValue,Option.map_some,id_eq]
+   constructor
+   · exact c.1
+   · have cost:=c.2;simp only [Nat.mul_add];omega
+end GenericForest.BinaryProvider

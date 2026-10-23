@@ -1,0 +1,41 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericOperands.lean:17:3: error: unknown tactic
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericOperands.lean:16:30: error: unsolved goals
+t : Tree
+ss : List Tree
+h : GenericForest.Overlap
+q N Q : Nat
+hp : proper (some t) ss = true
+size : (leaves t).length ≤ N
+budget : q ≤ Q
+io : Nat × CoreProgram.Output
+mem : io ∈ GenericForest.branches t ss h q
+s : Tree
+index : ss[io.fst]? = some s
+generated : io.snd ∈ (CoreProgram.generate s (VertexGeometry.colorLabel t h.vertex) q).outputs
+source : treeNodes s ≤ 2 * N ∧ (leaves s).length ≤ N
+valid : CutRealization.RealizedOutput s io.snd
+cutcount : io.snd.sourceCuts.length ≤ q
+state : GenericForest.targetNodes (some t) ≤ 2 * N ∧ GenericForest.sourceNodes ss ≤ 2 * N ∧ ss.length ≤ 2 * N
+⊢ io.fst < ss.length
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericOperands.lean:10:88: error: unsolved goals
+t : Tree
+ss : List Tree
+h : GenericForest.Overlap
+q N Q : Nat
+hp : proper (some t) ss = true
+size : (leaves t).length ≤ N
+budget : q ≤ Q
+io : Nat × CoreProgram.Output
+mem : io ∈ GenericForest.branches t ss h q
+s : Tree
+index : ss[io.fst]? = some s
+generated : io.snd ∈ (CoreProgram.generate s (VertexGeometry.colorLabel t h.vertex) q).outputs
+source : treeNodes s ≤ 2 * N ∧ (leaves s).length ≤ N
+valid : CutRealization.RealizedOutput s io.snd
+cutcount : io.snd.sourceCuts.length ≤ q
+state : GenericForest.targetNodes (some t) ≤ 2 * N ∧ GenericForest.sourceNodes ss ≤ 2 * N ∧ ss.length ≤ 2 * N
+idx : io.fst < ss.length
+⊢ io.fst < 2 * N ∧
+    io.snd.sourceCuts.length ≤ Q ∧
+      (∀ (v : Vertex), v ∈ io.snd.sourceCuts → List.length v ≤ 2 * N) ∧
+        (List.map List.length io.snd.sourceCuts).sum ≤ Q * (2 * N)

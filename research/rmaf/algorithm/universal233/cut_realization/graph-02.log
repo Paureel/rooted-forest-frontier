@@ -1,0 +1,40 @@
+research/rmaf/algorithm/universal233/cut_realization/OriginalGraph.lean:57:111: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  c ≥ 0
+  a ≥ 0
+  a - c ≤ -2
+where
+ a := ↑(List.length u)
+ c := ↑(List.length (u ++ [b]))
+research/rmaf/algorithm/universal233/cut_realization/OriginalGraph.lean:106:30: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [ep, hd]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+research/rmaf/algorithm/universal233/cut_realization/OriginalGraph.lean:106:47: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [ep]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+research/rmaf/algorithm/universal233/cut_realization/OriginalGraph.lean:142:30: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [hvp]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+research/rmaf/algorithm/universal233/cut_realization/OriginalGraph.lean:161:11: error: Type mismatch
+  ResidualWalk.refl hv
+has type
+  ResidualWalk T ?m.39 (r ++ []) (r ++ [])
+but is expected to have type
+  ResidualWalk T cuts r (r ++ [])
+research/rmaf/algorithm/universal233/cut_realization/OriginalGraph.lean:170:83: error: Application type mismatch: The argument
+  ih hv ht
+has type
+  ResidualWalk T cuts (r ++ [b]) (r ++ [b] ++ q)
+but is expected to have type
+  ResidualWalk T cuts (r ++ [b]) (r ++ b :: q)
+in the application
+  ResidualWalk.step (region_down_edge hm List.prefix_rfl (valid_ancestor hv hp) b rfl) (ih hv ht)

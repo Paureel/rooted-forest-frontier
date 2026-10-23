@@ -1,0 +1,38 @@
+Additive arithmetic clarification to payload-ledger-correction-v2
+Root AUTHOR, not independent acceptance; original sealed bytes unchanged
+
+The v2 payload argument first bounds geometry/SelectedPaid by1024a but uses
+512a for geometry in the environment overcount, without deriving that tighter
+bound. Use the already stated SAFE1024a throughout that overcount. This changes
+its displayed linear coefficient from2904a to3416a. The same environment bound
+still follows, without changing any recipe, D', P' or K': for a=N+1>=2,
+
+  environment <=296a^2+3416a+160 <=2048a^2.
+
+Indeed the difference is1752a^2-3416a-160; since a>=2 this is
+ >=3504a-3416a-160=88a-160>=16.
+Thus eighteen environments/list/records still satisfy
+  18*2048a^2+256 <=20480a^3,
+as a>=2 makes the right-minus-left at least4096a^2-256>0.
+All other rows and the combined108400a^3 bound are unchanged. This explicit
+correction avoids presuming geometry's smaller512a bound. It does not declare
+a global polynomial heap size; generator-derived unbounded spines remain
+outside D'. The original v1 and v2 reports/seals remain preserved.
+
+The corrected derived constants are therefore still
+  D'=2^18*(N+1)^3,
+  P'=2^48*(D'+1)^10 <=2^238*(N+Q+L+2)^30,
+  K=2^252*(N+Q+L+2)^32 >=256P'.
+The root has read every v2 public argument in full. Its exact five-channel
+source-summand accounting replaces the earlier unproved family multiplicity.
+Independent whole reconstruction remains required.
+
+One SOURCE-sum clarification: completeSourceCounter sums every stored attached
+SOURCE slot, whereas the actual recursive QUERY body may not execute at a
+locally refused PAID slot. The final global count therefore uses the injection
+and nonnegativity argument in MATHEMATICAL-QUERY-COUNT-INDUCTION-v1, not an
+assumed equality of the SOURCE tree and executed QUERY-body tree. At each
+executed node Ulocal<=64P'(d+1)<=128P'd. Actual child sums are<=the full stored
+SOURCE child sum, so Uquery<=128P'*C. This is exactly the inequality needed by
+the unchanged optimizer factor audit. Every refused comparison/return remains
+in Ulocal and every stored duplicate/refusal stays in the SOURCE recurrence.

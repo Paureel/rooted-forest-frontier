@@ -1,0 +1,7 @@
+# Retained exact failed metadata-only query body.
+from pathlib import Path
+import json
+R=Path.cwd()
+paths=['pair-case-2026-10-15/frozen-review-v2','rank-restriction-2026-10-15/frozen-ready-v1','rank-restriction-2026-10-15/frozen-review-v1','depth-one-2026-10-15/frozen-ready-v1','depth-one-2026-10-15/frozen-review-v1']
+for x in paths:
+ p=R/'research/rmaf/algorithm/verification'/x/'MANIFEST.json';d=json.loads(p.read_text());print(x,list(d),str(d.get('files',[None])[0])[:300])

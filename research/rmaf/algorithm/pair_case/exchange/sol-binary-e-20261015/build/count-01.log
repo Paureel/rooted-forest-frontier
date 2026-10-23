@@ -1,0 +1,60 @@
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Count.lean:12:10: error: unsolved goals
+t u : Tree
+v : RMAF.Vertex
+C : List Nat
+hn : (leaves t).Nodup
+he : treeAt t v = some u
+hC : Sub C (leaves t)
+hm : (mixed C fun x => (leaves u).contains x) = true
+x : Nat
+hx : x ∈ C
+hqx : (leaves u).contains x = true
+y : Nat
+hy : y ∈ C
+hh : y ∈ leaves u
+hh' : (leaves u).contains y = true
+hqy : ¬y ∈ leaves u
+⊢ False
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Count.lean:12:69: warning: This simp argument is unused:
+  hh'
+
+Hint: Omit it from the simp argument list.
+  [apply] simp at hqy
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Count.lean:59:4: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  g ≥ 0
+  f ≥ 0
+  e ≥ 2
+  0 ≤ d ≤ 1
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a + e - f ≤ 0
+  a + b - c ≥ 0
+where
+ a := ↑V.length
+ b := ↑(List.filter (fun x => mixed x q) V).length
+ c := ↑(splitAll V q).length
+ d := ↑(List.filter (fun x => mixed x fun x => (leaves u).contains x) V).length
+ e := ↑U.length
+ f := ↑(splitAll V fun x => (leaves u).contains x).length
+ g := ↑W.length
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Count.lean:68:4: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  f ≥ 0
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  c - d ≥ 0
+  b ≥ 1
+  b + c - e ≤ 0
+  0 ≤ a ≤ 1
+where
+ a := ↑(List.filter (fun x => mixed x fun x => (leaves u).contains x) V).length
+ b := ↑U.length
+ c := ↑V.length
+ d := ↑(splitAll V q).length
+ e := ↑(splitAll V fun x => (leaves u).contains x).length
+ f := ↑W.length

@@ -1,0 +1,946 @@
+{
+  "scope": "Executed local mutually-clear structural plants with arbitrary hard homogeneous group; no earlier-rule admission claim",
+  "controls": [
+    {
+      "case": "bad-sector",
+      "target": [
+        [
+          [
+            [
+              [
+                0,
+                1
+              ],
+              2
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          [
+            3,
+            [
+              6,
+              7
+            ]
+          ]
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "source_A": [
+        [
+          0,
+          [
+            1,
+            2
+          ]
+        ],
+        3
+      ],
+      "source_B": [
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "selector": {
+        "case": "mutually-clear-binary",
+        "vertex": "0",
+        "color_groups": [
+          [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ],
+        "checked_mutual_clear": true
+      },
+      "rows": [
+        {
+          "A_core": {
+            "partition": [
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                3
+              ]
+            ],
+            "cuts": [
+              [
+                "",
+                "0"
+              ]
+            ],
+            "cost": 1,
+            "events": [
+              {
+                "operation": "homogeneous_cherry_contract",
+                "original_node": "01",
+                "children": [
+                  "010",
+                  "011"
+                ],
+                "groups": [
+                  [
+                    1
+                  ],
+                  [
+                    2
+                  ]
+                ],
+                "lifted_group": [
+                  1,
+                  2
+                ]
+              },
+              {
+                "operation": "homogeneous_cherry_contract",
+                "original_node": "0",
+                "children": [
+                  "00",
+                  "01"
+                ],
+                "groups": [
+                  [
+                    0
+                  ],
+                  [
+                    1,
+                    2
+                  ]
+                ],
+                "lifted_group": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "operation": "unique_color_detach",
+                "original_edge": [
+                  "",
+                  "0"
+                ],
+                "detached_labels": [
+                  0,
+                  1,
+                  2
+                ],
+                "color": 0,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "",
+                "replacement_original_node": "1",
+                "was_root": true
+              }
+            ]
+          },
+          "continuation": {
+            "mode": "disjoint-local-queries",
+            "pre_completion_overlap": [],
+            "homeomorphic": [
+              false,
+              true,
+              false,
+              true
+            ],
+            "all_good_completions": [],
+            "paid_poly_cuts": 0,
+            "remaining_overlap": [],
+            "local_pretests": [
+              {
+                "component": 0,
+                "labels": [
+                  4,
+                  5,
+                  6,
+                  7
+                ],
+                "depth1": {
+                  "value": null,
+                  "lower_bound": 2,
+                  "tested_edges": 6,
+                  "edges": [
+                    {
+                      "edge": [
+                        "",
+                        "0"
+                      ],
+                      "valid": false
+                    },
+                    {
+                      "edge": [
+                        "0",
+                        "00"
+                      ],
+                      "valid": false
+                    },
+                    {
+                      "edge": [
+                        "0",
+                        "01"
+                      ],
+                      "valid": false
+                    },
+                    {
+                      "edge": [
+                        "",
+                        "1"
+                      ],
+                      "valid": false
+                    },
+                    {
+                      "edge": [
+                        "1",
+                        "10"
+                      ],
+                      "valid": false
+                    },
+                    {
+                      "edge": [
+                        "1",
+                        "11"
+                      ],
+                      "valid": false
+                    }
+                  ]
+                },
+                "ell": 2
+              },
+              {
+                "component": 2,
+                "labels": [
+                  0,
+                  1,
+                  2
+                ],
+                "depth1": {
+                  "value": 1,
+                  "cut": [
+                    "",
+                    "0"
+                  ],
+                  "tested_edges": 1
+                },
+                "ell": 1
+              }
+            ],
+            "queries": [
+              {
+                "component": 0,
+                "other_parent_loss": 1,
+                "poly_completion_loss": 0,
+                "total_loss": 1
+              }
+            ],
+            "relative_query_mass": "100/233",
+            "one_unit_progress": true
+          }
+        }
+      ]
+    },
+    {
+      "case": "both-sectors-good",
+      "target": [
+        [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              [
+                [
+                  4,
+                  10
+                ],
+                [
+                  11,
+                  12
+                ]
+              ],
+              5
+            ]
+          ],
+          [
+            [
+              2,
+              3
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "source_A": [
+        [
+          [
+            0,
+            1
+          ],
+          2
+        ],
+        3
+      ],
+      "source_B": [
+        [
+          [
+            [
+              4,
+              11
+            ],
+            [
+              10,
+              12
+            ]
+          ],
+          6
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "selector": {
+        "case": "mutually-clear-binary",
+        "vertex": "0",
+        "color_groups": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          [
+            [
+              4,
+              5,
+              10,
+              11,
+              12
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ],
+        "checked_mutual_clear": true
+      },
+      "rows": [
+        {
+          "B_core": {
+            "partition": [
+              [
+                4,
+                10,
+                11,
+                12
+              ],
+              [
+                5
+              ],
+              [
+                6,
+                7
+              ]
+            ],
+            "cuts": [
+              [
+                "0",
+                "00"
+              ],
+              [
+                "1",
+                "10"
+              ]
+            ],
+            "cost": 2,
+            "events": [
+              {
+                "operation": "homogeneous_cherry_contract",
+                "original_node": "000",
+                "children": [
+                  "0000",
+                  "0001"
+                ],
+                "groups": [
+                  [
+                    4
+                  ],
+                  [
+                    11
+                  ]
+                ],
+                "lifted_group": [
+                  4,
+                  11
+                ]
+              },
+              {
+                "operation": "homogeneous_cherry_contract",
+                "original_node": "001",
+                "children": [
+                  "0010",
+                  "0011"
+                ],
+                "groups": [
+                  [
+                    10
+                  ],
+                  [
+                    12
+                  ]
+                ],
+                "lifted_group": [
+                  10,
+                  12
+                ]
+              },
+              {
+                "operation": "homogeneous_cherry_contract",
+                "original_node": "00",
+                "children": [
+                  "000",
+                  "001"
+                ],
+                "groups": [
+                  [
+                    4,
+                    11
+                  ],
+                  [
+                    10,
+                    12
+                  ]
+                ],
+                "lifted_group": [
+                  4,
+                  10,
+                  11,
+                  12
+                ]
+              },
+              {
+                "operation": "mixed_cherry_detach",
+                "original_edge": [
+                  "0",
+                  "00"
+                ],
+                "detached_labels": [
+                  4,
+                  10,
+                  11,
+                  12
+                ],
+                "color": 0,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "0",
+                "replacement_original_node": "01",
+                "was_root": false
+              },
+              {
+                "operation": "unique_color_detach",
+                "original_edge": [
+                  "1",
+                  "10"
+                ],
+                "detached_labels": [
+                  5
+                ],
+                "color": 0,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "1",
+                "replacement_original_node": "11",
+                "was_root": false
+              },
+              {
+                "operation": "homogeneous_cherry_contract",
+                "original_node": "",
+                "children": [
+                  "01",
+                  "11"
+                ],
+                "groups": [
+                  [
+                    6
+                  ],
+                  [
+                    7
+                  ]
+                ],
+                "lifted_group": [
+                  6,
+                  7
+                ]
+              }
+            ]
+          },
+          "actual_A_completion_cut": [
+            [
+              "0",
+              "00"
+            ]
+          ],
+          "distinct_parent_paid_cuts": [
+            [
+              "B",
+              "00"
+            ],
+            [
+              "B",
+              "10"
+            ],
+            [
+              "A",
+              "00"
+            ]
+          ],
+          "continuation": {
+            "mode": "disjoint-local-queries",
+            "pre_completion_overlap": [],
+            "homeomorphic": [
+              false,
+              true,
+              false,
+              true,
+              true
+            ],
+            "all_good_completions": [],
+            "paid_poly_cuts": 0,
+            "remaining_overlap": [],
+            "local_pretests": [
+              {
+                "component": 0,
+                "labels": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "depth1": {
+                  "value": 1,
+                  "cut": [
+                    "",
+                    "0"
+                  ],
+                  "tested_edges": 1
+                },
+                "ell": 1
+              },
+              {
+                "component": 2,
+                "labels": [
+                  4,
+                  10,
+                  11,
+                  12
+                ],
+                "depth1": {
+                  "value": null,
+                  "lower_bound": 2,
+                  "tested_edges": 6,
+                  "edges": [
+                    {
+                      "edge": [
+                        "",
+                        "0"
+                      ],
+                      "valid": false
+                    },
+                    {
+                      "edge": [
+                        "0",
+                        "00"
+                      ],
+                      "valid": false
+                    },
+                    {
+                      "edge": [
+                        "0",
+                        "01"
+                      ],
+                      "valid": false
+                    },
+                    {
+                      "edge": [
+                        "",
+                        "1"
+                      ],
+                      "valid": false
+                    },
+                    {
+                      "edge": [
+                        "1",
+                        "10"
+                      ],
+                      "valid": false
+                    },
+                    {
+                      "edge": [
+                        "1",
+                        "11"
+                      ],
+                      "valid": false
+                    }
+                  ]
+                },
+                "ell": 2
+              }
+            ],
+            "queries": [
+              {
+                "component": 2,
+                "other_parent_loss": 1,
+                "poly_completion_loss": 0,
+                "total_loss": 1
+              }
+            ],
+            "relative_query_mass": "100/233",
+            "one_unit_progress": true
+          }
+        },
+        {
+          "B_core": {
+            "partition": [
+              [
+                4,
+                5,
+                10,
+                11,
+                12
+              ],
+              [
+                6
+              ],
+              [
+                7
+              ]
+            ],
+            "cuts": [
+              [
+                "0",
+                "01"
+              ],
+              [
+                "1",
+                "11"
+              ]
+            ],
+            "cost": 2,
+            "events": [
+              {
+                "operation": "homogeneous_cherry_contract",
+                "original_node": "000",
+                "children": [
+                  "0000",
+                  "0001"
+                ],
+                "groups": [
+                  [
+                    4
+                  ],
+                  [
+                    11
+                  ]
+                ],
+                "lifted_group": [
+                  4,
+                  11
+                ]
+              },
+              {
+                "operation": "homogeneous_cherry_contract",
+                "original_node": "001",
+                "children": [
+                  "0010",
+                  "0011"
+                ],
+                "groups": [
+                  [
+                    10
+                  ],
+                  [
+                    12
+                  ]
+                ],
+                "lifted_group": [
+                  10,
+                  12
+                ]
+              },
+              {
+                "operation": "homogeneous_cherry_contract",
+                "original_node": "00",
+                "children": [
+                  "000",
+                  "001"
+                ],
+                "groups": [
+                  [
+                    4,
+                    11
+                  ],
+                  [
+                    10,
+                    12
+                  ]
+                ],
+                "lifted_group": [
+                  4,
+                  10,
+                  11,
+                  12
+                ]
+              },
+              {
+                "operation": "mixed_cherry_detach",
+                "original_edge": [
+                  "0",
+                  "01"
+                ],
+                "detached_labels": [
+                  6
+                ],
+                "color": 1,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "0",
+                "replacement_original_node": "00",
+                "was_root": false
+              },
+              {
+                "operation": "unique_color_detach",
+                "original_edge": [
+                  "1",
+                  "11"
+                ],
+                "detached_labels": [
+                  7
+                ],
+                "color": 1,
+                "paid_cost": 1
+              },
+              {
+                "operation": "unary_suppress",
+                "original_node": "1",
+                "replacement_original_node": "10",
+                "was_root": false
+              },
+              {
+                "operation": "homogeneous_cherry_contract",
+                "original_node": "",
+                "children": [
+                  "00",
+                  "10"
+                ],
+                "groups": [
+                  [
+                    4,
+                    10,
+                    11,
+                    12
+                  ],
+                  [
+                    5
+                  ]
+                ],
+                "lifted_group": [
+                  4,
+                  5,
+                  10,
+                  11,
+                  12
+                ]
+              }
+            ]
+          },
+          "actual_A_completion_cut": [
+            [
+              "0",
+              "00"
+            ]
+          ],
+          "distinct_parent_paid_cuts": [
+            [
+              "B",
+              "01"
+            ],
+            [
+              "B",
+              "11"
+            ],
+            [
+              "A",
+              "00"
+            ]
+          ],
+          "continuation": {
+            "mode": "disjoint-local-queries",
+            "pre_completion_overlap": [],
+            "homeomorphic": [
+              false,
+              true,
+              false,
+              true,
+              true
+            ],
+            "all_good_completions": [],
+            "paid_poly_cuts": 0,
+            "remaining_overlap": [],
+            "local_pretests": [
+              {
+                "component": 0,
+                "labels": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "depth1": {
+                  "value": 1,
+                  "cut": [
+                    "",
+                    "0"
+                  ],
+                  "tested_edges": 1
+                },
+                "ell": 1
+              },
+              {
+                "component": 2,
+                "labels": [
+                  4,
+                  5,
+                  10,
+                  11,
+                  12
+                ],
+                "depth1": {
+                  "value": null,
+                  "lower_bound": 2,
+                  "tested_edges": 8,
+                  "edges": [
+                    {
+                      "edge": [
+                        "",
+                        "0"
+                      ],
+                      "valid": false
+                    },
+                    {
+                      "edge": [
+                        "0",
+                        "00"
+                      ],
+                      "valid": false
+                    },
+                    {
+                      "edge": [
+                        "00",
+                        "000"
+                      ],
+                      "valid": false
+                    },
+                    {
+                      "edge": [
+                        "00",
+                        "001"
+                      ],
+                      "valid": false
+                    },
+                    {
+                      "edge": [
+                        "0",
+                        "01"
+                      ],
+                      "valid": false
+                    },
+                    {
+                      "edge": [
+                        "01",
+                        "010"
+                      ],
+                      "valid": false
+                    },
+                    {
+                      "edge": [
+                        "01",
+                        "011"
+                      ],
+                      "valid": false
+                    },
+                    {
+                      "edge": [
+                        "",
+                        "1"
+                      ],
+                      "valid": false
+                    }
+                  ]
+                },
+                "ell": 2
+              }
+            ],
+            "queries": [
+              {
+                "component": 2,
+                "other_parent_loss": 1,
+                "poly_completion_loss": 0,
+                "total_loss": 1
+              }
+            ],
+            "relative_query_mass": "100/233",
+            "one_unit_progress": true
+          }
+        }
+      ]
+    }
+  ]
+}

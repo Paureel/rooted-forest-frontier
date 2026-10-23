@@ -1,0 +1,10 @@
+{
+  "status": "FROZEN_BEFORE_COST_COUNTER_EXECUTION",
+  "model": "List append copies one cons per element of its left list; count only the leaves construction copies, omitting every other owner-scan operation.",
+  "literalSource": "RMAF.leaves (.node l r) = leaves l ++ leaves r; AllGoodDP.owner rebuilds leaves s inside the findIdx predicate for each queried target leaf.",
+  "known": [{"leaves":1,"leftCombCopies":0},{"leaves":3,"leftCombCopies":3}],
+  "counterexample": {"leaves":64,"n":127,"m":127,"r":1,"leftCombCopiesPerOwnerQuery":2016,"targetLeafQueries":64,"constructionCopiesOnly":129024,"authorDisplayedOwnerBound":65532,"exceeds":true},
+  "formula": "L*(L-1)/2 copies per source-list construction; L^2*(L-1)/2 across L target leaf owners; author4*(2L-1)*(2L+1).",
+  "negativeControl": "replace per-query copy count by L-1 and require exact comparison to reject",
+  "scope": "Refutes one displayed linear owner helper sub-bound under the stated list/copy model. Does not refute exact minimum, final loose degree6 envelope, or machine runtime. No partition census or extra replication."
+}

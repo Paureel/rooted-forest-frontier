@@ -1,0 +1,9 @@
+# Provenance
+
+The new target pin is 9fb3ecba7dc8cee1d26feecc789408d77dfc839277d0b17f1aa2f7b95fe0d49d. The skeleton was written immediately after that target alone was read. Existing early and budget packages remain untouched. All 5061 directly listed immutable member records and 917 readonly transitive early import records were checked by SHA256, mode and inode before the final audit completed. The transitive imports are pinned by the listed completed early manifest's original_files; no new checker work or dependency rebuild was undertaken.
+
+The method reuses the measured local Lean wrapper and the unchanged completed producer extractor. Its source hash is pinned by the completed early package. This author wrote the new meters, proofs, controls and audit wrapper. All checks share the author's Lean/source/library lineage. Identity checks, exact source value theorems, executed known-answer controls and axiom rejection supply different evidence; none is described as independent replication.
+
+CONTROLS-PIN-v1.md fixed expected values before new companion execution. The first false-control run rejected nine propositions but could not reduce the optimizer recursion in the tenth; the same false statement was then reduced with the frozen actual_query_count theorem, and all ten false statements produced `is false` diagnostics. No expected statement or threshold was changed. An aggregate true-token audit check incorrectly included a scan tag; the failed audit/source was retained and replaced by explicit checks of the ten named control booleans.
+
+All compiler attempts are retained with their exact source snapshots. One source-file lookup guessed Program.lean before the actual CoreProgram.lean was located; no source was created or altered by that failed read. No children, peer/reviewer findings or unfinished sibling bodies were consulted. Literature and novelty were not assessed; the document makes no historical or comparative complexity claim.

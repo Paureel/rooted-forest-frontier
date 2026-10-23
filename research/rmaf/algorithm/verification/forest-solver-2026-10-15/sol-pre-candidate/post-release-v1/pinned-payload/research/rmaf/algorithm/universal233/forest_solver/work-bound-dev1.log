@@ -1,0 +1,133 @@
+research/rmaf/algorithm/universal233/forest_solver/build/ForestWorkBound.lean:33:80: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 0
+  b ≥ 0
+  b - d ≤ -2
+  a ≥ 0
+  a - b ≥ 0
+where
+ a := ↑Q
+ b := ↑q
+ d := ↑1
+research/rmaf/algorithm/universal233/forest_solver/build/ForestWorkBound.lean:50:77: error: Type mismatch
+  paid.left
+has type
+  1 ≤ io.snd.sourceCuts.length
+but is expected to have type
+  1 ≤ io.snd.sourceCuts.length ∧ io.snd.sourceCuts.length ≤ q
+research/rmaf/algorithm/universal233/forest_solver/build/ForestWorkBound.lean:48:58: error: unsolved goals
+ordinary : Tree → Tree → Nat → Option Forest
+ordinaryWork : Tree → Tree → Nat → Nat
+T : Option Tree
+Q : Nat
+c K : Rat
+hc : 2 ≤ c
+hK : 0 ≤ K
+hlocal : LocalBillBound ordinary ordinaryWork T Q c K
+q : Nat
+ih :
+  ∀ (m : Nat),
+    m < q →
+      ∀ (ss : List Tree), m ≤ Q → proper T ss = true → sourceWork ordinary ordinaryWork T ss m ≤ ↑(m + 1) * K * c ^ m
+ss : List Tree
+hqQ : q ≤ Q
+hp : proper T ss = true
+cpos : 0 < c
+powpos : 0 ≤ c ^ q
+hloc : ↑(nonrecursiveBill ordinary ordinaryWork T ss q) ≤ K * c ^ q
+base : K * c ^ q ≤ ↑(q + 1) * K * c ^ q
+t : Tree
+ht : T = some t
+h : Overlap
+hh : overlap t ss = some h
+A : Rat := ↑q * K * c ^ q
+f : Nat × Output → Rat :=
+  fun io =>
+    if _hd : 1 ≤ io.snd.sourceCuts.length ∧ io.snd.sourceCuts.length ≤ q then
+      sourceWork ordinary ordinaryWork T (replace ss io.fst io.snd.partition) (q - io.snd.sourceCuts.length)
+    else 0
+hA : 0 ≤ A
+io : Nat × Output
+hio : io ∈ branches t ss h q
+paid :
+  1 ≤ io.snd.sourceCuts.length ∧
+    io.snd.sourceCuts.length ≤ q ∧ proper (some t) (replace ss io.fst io.snd.partition) = true
+hd : 1 ≤ io.snd.sourceCuts.length ∧ io.snd.sourceCuts.length ≤ q
+⊢ f io ≤ A * c ^ (-↑io.snd.sourceCuts.length)
+research/rmaf/algorithm/universal233/forest_solver/build/ForestWorkBound.lean:40:43: error: unsolved goals
+ordinary : Tree → Tree → Nat → Option Forest
+ordinaryWork : Tree → Tree → Nat → Nat
+T : Option Tree
+Q : Nat
+c K : Rat
+hc : 2 ≤ c
+hK : 0 ≤ K
+hlocal : LocalBillBound ordinary ordinaryWork T Q c K
+q : Nat
+ih :
+  ∀ (m : Nat),
+    m < q →
+      ∀ (ss : List Tree), m ≤ Q → proper T ss = true → sourceWork ordinary ordinaryWork T ss m ≤ ↑(m + 1) * K * c ^ m
+ss : List Tree
+hqQ : q ≤ Q
+hp : proper T ss = true
+cpos : 0 < c
+powpos : 0 ≤ c ^ q
+hloc : ↑(nonrecursiveBill ordinary ordinaryWork T ss q) ≤ K * c ^ q
+base : K * c ^ q ≤ ↑(q + 1) * K * c ^ q
+t : Tree
+ht : T = some t
+h : Overlap
+hh : overlap t ss = some h
+A : Rat := ↑q * K * c ^ q
+f : Nat × Output → Rat :=
+  fun io =>
+    if _hd : 1 ≤ io.snd.sourceCuts.length ∧ io.snd.sourceCuts.length ≤ q then
+      sourceWork ordinary ordinaryWork T (replace ss io.fst io.snd.partition) (q - io.snd.sourceCuts.length)
+    else 0
+hA : 0 ≤ A
+each : ∀ (io : Nat × Output), io ∈ branches t ss h q → f io ≤ A * c ^ (-↑io.snd.sourceCuts.length)
+⊢ (List.map
+        (fun io =>
+          if _hd : 1 ≤ io.snd.sourceCuts.length ∧ io.snd.sourceCuts.length ≤ q then
+            sourceWork ordinary ordinaryWork T (replace ss io.fst io.snd.partition) (q - io.snd.sourceCuts.length)
+          else 0)
+        (branches t ss h q)).sum ≤
+    ↑q * K * c ^ q
+research/rmaf/algorithm/universal233/forest_solver/build/ForestWorkBound.lean:28:13: error: unsolved goals
+case ind
+ordinary : Tree → Tree → Nat → Option Forest
+ordinaryWork : Tree → Tree → Nat → Nat
+T : Option Tree
+Q : Nat
+c K : Rat
+hc : 2 ≤ c
+hK : 0 ≤ K
+hlocal : LocalBillBound ordinary ordinaryWork T Q c K
+q : Nat
+ih :
+  ∀ (m : Nat),
+    m < q →
+      ∀ (ss : List Tree), m ≤ Q → proper T ss = true → sourceWork ordinary ordinaryWork T ss m ≤ ↑(m + 1) * K * c ^ m
+ss : List Tree
+hqQ : q ≤ Q
+hp : proper T ss = true
+cpos : 0 < c
+powpos : 0 ≤ c ^ q
+hloc : ↑(nonrecursiveBill ordinary ordinaryWork T ss q) ≤ K * c ^ q
+base : K * c ^ q ≤ ↑(q + 1) * K * c ^ q
+childBound :
+  ∀ (t : Tree),
+    T = some t →
+      ∀ (h : Overlap),
+        overlap t ss = some h →
+          (List.map
+                (fun io =>
+                  if _hd : 1 ≤ io.snd.sourceCuts.length ∧ io.snd.sourceCuts.length ≤ q then
+                    sourceWork ordinary ordinaryWork T (replace ss io.fst io.snd.partition)
+                      (q - io.snd.sourceCuts.length)
+                  else 0)
+                (branches t ss h q)).sum ≤
+            ↑q * K * c ^ q
+⊢ sourceWork ordinary ordinaryWork T ss q ≤ ↑(q + 1) * K * c ^ q
+research/rmaf/algorithm/universal233/forest_solver/build/ForestWorkBound.lean:50:83: error: unexpected token ','; expected command

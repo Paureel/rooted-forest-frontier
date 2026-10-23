@@ -1,0 +1,151 @@
+{
+  "audit_date": "2026-10-14",
+  "full_texts_read": 2,
+  "partial_sources_read": 1,
+  "works": [
+    {
+      "id": "split",
+      "grade": "P5",
+      "read_status": "FULL-TEXT-READ",
+      "source_version": "arXiv2409.18634v2, 2026-03-21",
+      "url": "https://arxiv.org/abs/2409.18634v2",
+      "pdf": "research/rmaf/sources/baseline/split-or-decompose-v2.pdf",
+      "pages": 27,
+      "locators": [
+        "\u00a72 pp3\u20134",
+        "\u00a73 pp5\u20137",
+        "\u00a74 pp7\u201310",
+        "\u00a75 pp10\u201317",
+        "\u00a76 pp17\u201326",
+        "\u00a77 pp26\u201327",
+        "references p27"
+      ],
+      "quote": "Algorithm rMAF solves the problem rMAF in time",
+      "quote_locator": "Theorem17 p26",
+      "verdict": "Published source theorem and conventions retrieved; source proof not Lean reconstructed"
+    },
+    {
+      "id": "multi-kernel",
+      "grade": "P3",
+      "read_status": "FULL-TEXT-READ",
+      "source_version": "arXiv2602.22281v3, 2026-06-11",
+      "url": "https://arxiv.org/abs/2602.22281v3",
+      "pdf": "research/rmaf/sources/baseline/multitree-kernel.pdf",
+      "pages": 23,
+      "locators": [
+        "Introduction pp1\u20133",
+        "Definitions pp3\u20136",
+        "Reduction rules pp6\u201314",
+        "Kernel proofs pp14\u201320",
+        "Conclusion pp21\u201322",
+        "References pp22\u201323"
+      ],
+      "verdict": "Later work still reports 2.3391 on p2 and cites baseline reference13 p23; new multiple-tree kernel, not smaller exponential base"
+    },
+    {
+      "id": "whidden-thesis",
+      "grade": "P5 ceiling",
+      "read_status": "PARTIAL-TEXT-READ; FULL-TEXT DEBT",
+      "source_version": "July2013 thesis national-library PDF; 214 pages",
+      "url": "https://dalspace.library.dal.ca/bitstreams/3b246ff4-5ec2-452f-95ab-ef1aed255373/download",
+      "pdf": "research/rmaf/sources/baseline/whidden-thesis-2013.pdf",
+      "locators": [
+        "Front matter PDF1\u20138",
+        "Chapter2 printed pp12\u201318 / PDF25\u201331",
+        "Chapter6 printed pp100\u2013127 / PDF113\u2013140",
+        "Theorem6.1 printed p100",
+        "Theorem6.12 printed pp114\u2013116",
+        "Theorem6.13 printed pp116\u2013126"
+      ],
+      "visual_pages_read": [
+        121,
+        123,
+        131
+      ],
+      "verdict": "Earlier public 2^k claim has substantial proof argument; independent reconstruction and root-convention transfer unresolved; imported lemmas and other chapters unread"
+    },
+    {
+      "id": "cyclic-kernel",
+      "grade": "P3 ceiling",
+      "read_status": "ABSTRACT-ONLY; FULL-TEXT-UNREAD",
+      "url": "https://arxiv.org/abs/2202.09904",
+      "locators": [
+        "Abstract; claims 9q-3 leaves with q=rSPR distance"
+      ],
+      "verdict": "Do not import reductions or reconstruction claims before full-text read"
+    },
+    {
+      "id": "better-approx-exact",
+      "grade": "P3 ceiling",
+      "read_status": "ABSTRACT-ONLY; FULL-TEXT-UNREAD",
+      "url": "https://doi.org/10.1109/TCBB.2018.2878731",
+      "discovery_url": "https://pubmed.ncbi.nlm.nih.gov/30387740/",
+      "verdict": "Practical exact/approximation programs; strongest theoretical time bound not checked; full-text debt"
+    },
+    {
+      "id": "2015-bound",
+      "grade": "P3 ceiling",
+      "read_status": "BASELINE-REFERENCE-ONLY; FULL-TEXT-UNREAD",
+      "url": "https://doi.org/10.1007/s10878-013-9695-8",
+      "verdict": "2.3431 recurrence retrieved from baseline \u00a76 p17; original proof debt"
+    },
+    {
+      "id": "case-automation",
+      "grade": "P2",
+      "read_status": "ABSTRACT-ONLY",
+      "url": "https://arxiv.org/abs/2512.16691",
+      "verdict": "Methodological lead; no particular theorem imported"
+    },
+    {
+      "id": "relaxed-af",
+      "grade": "P1",
+      "read_status": "ABSTRACT-ONLY",
+      "url": "https://arxiv.org/abs/2309.01110",
+      "verdict": "Different problem allowing overlap; excluded from rooted MAF bound comparison"
+    },
+    {
+      "id": "rSPR-software",
+      "grade": "P5 ceiling",
+      "read_status": "README RELEVANT SECTIONS READ; CODE/PROOFS UNREAD",
+      "url": "https://github.com/cwhidden/rspr",
+      "locators": [
+        "README Efficiency",
+        "README References",
+        "README Citing rSPR"
+      ],
+      "verdict": "Official software claims 2^k; corresponding paper labelled In Preparation2013; source-level theorem audit owed"
+    }
+  ],
+  "chains": [
+    {
+      "direction": "forward",
+      "from": "split",
+      "to": "multi-kernel",
+      "evidence": "multi-tree kernel v3 reference13 p23 and Introduction p2; primary full text"
+    },
+    {
+      "direction": "backward",
+      "from": "split",
+      "to": "2015-bound",
+      "evidence": "baseline reference7 p27; \u00a76 p17"
+    },
+    {
+      "direction": "backward",
+      "from": "split",
+      "to": "whidden-thesis",
+      "evidence": "baseline p2 footnote1; author root convention separate"
+    },
+    {
+      "direction": "backward",
+      "from": "multi-kernel",
+      "to": "cyclic-kernel",
+      "evidence": "multi-tree kernel reference11 p23 and Introduction p2"
+    },
+    {
+      "direction": "backward",
+      "from": "split",
+      "to": "2013 Whidden-Beiko-Zeh paper",
+      "evidence": "baseline reference15 p27 and \u00a73.2 pp6\u20137; original full-text debt"
+    }
+  ]
+}

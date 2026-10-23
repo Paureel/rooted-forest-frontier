@@ -1,0 +1,51 @@
+{
+  "frozen_before_audit_script": true,
+  "acceptance": "nonzero Lean exit and exactly one explicit decide-falsity diagnostic, with no additional errors",
+  "planted_diagnostics": [
+    {
+      "name": "explicit-false",
+      "exit": 1,
+      "message": "x.lean:1:1: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "accepted": true
+    },
+    {
+      "name": "successful-exit",
+      "exit": 0,
+      "message": "x.lean:1:1: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "accepted": false
+    },
+    {
+      "name": "synthesis-error",
+      "exit": 1,
+      "message": "x.lean:1:1: error: failed to synthesize Decidable P\n",
+      "accepted": false
+    },
+    {
+      "name": "unknown-name",
+      "exit": 1,
+      "message": "x.lean:1:1: error: Unknown identifier noSuchExecutableBridgeProof\n",
+      "accepted": false
+    },
+    {
+      "name": "mixed-false-and-error",
+      "exit": 1,
+      "message": "x.lean:1:1: error: Tactic `decide` proved that the proposition\n  False\nis false\nx.lean:2:1: error: Unknown identifier bogus\n",
+      "accepted": false
+    },
+    {
+      "name": "type-mismatch",
+      "exit": 1,
+      "message": "x.lean:1:1: error: Type mismatch\n  0\nhas type\n  Nat\nbut is expected to have type\n  True\n",
+      "accepted": false
+    }
+  ],
+  "actual_malformed_control": "True supplied an ill-typed Nat term must be rejected as a falsity receipt; the clean True.intro twin must compile.",
+  "true_twins": {
+    "FalseAbsent": "LeastEmbedding.Controls.absent_terminals",
+    "FalseDeletedPath": "LeastEmbedding.Controls.crossing_support; deleted_path_disconnected",
+    "FalseAddedRoot": "LeastEmbedding.Controls.siblings_support; added_root_connected; added_root_not_least",
+    "FalseAmbient": "LeastEmbedding.Controls.crossing_support; invalid_ambient_rejected",
+    "FalseTerminal": "LeastEmbedding.Controls.siblings_terminals; missing_terminal_rejected"
+  },
+  "lineage": "Diagnostic-parser logic and five parser plants adapted from completed executable audit; not an independent mathematical verifier."
+}

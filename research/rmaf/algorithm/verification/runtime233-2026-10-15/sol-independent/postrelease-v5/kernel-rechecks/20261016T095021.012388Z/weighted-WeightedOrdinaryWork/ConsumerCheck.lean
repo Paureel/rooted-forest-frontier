@@ -1,0 +1,7 @@
+import WeightedOrdinaryWork
+#check OrdinaryDispatch.FullSourceWork.budgetTreeWork_eq
+#print axioms OrdinaryDispatch.FullSourceWork.budgetTreeWork_eq
+#check OrdinaryDispatch.FullSourceWork.budgetTreeWork_bound
+#print axioms OrdinaryDispatch.FullSourceWork.budgetTreeWork_bound
+#check OrdinaryDispatch.FullSourceWork.weighted_paid_step
+#print axioms OrdinaryDispatch.FullSourceWork.weighted_paid_step

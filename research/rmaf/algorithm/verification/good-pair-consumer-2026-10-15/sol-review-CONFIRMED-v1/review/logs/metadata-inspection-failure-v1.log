@@ -1,0 +1,6 @@
+Failed metadata-only inspection, 2026-10-15:
+  print(d['files'][:2])
+  KeyError: slice(None, 2, None)
+Cause: accepted G/E v2 manifest files is a dict, not a list.
+Correction: inspect list(d['files'].items())[:2].
+No evaluator, proof source, fixture expectation or scientific result changed.

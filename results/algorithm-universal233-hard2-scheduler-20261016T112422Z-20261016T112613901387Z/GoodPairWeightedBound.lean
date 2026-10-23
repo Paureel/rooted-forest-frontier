@@ -1,0 +1,80 @@
+import GoodPairLocalBound
+namespace OrdinaryDispatch.Hard2SourceWork
+open RMAF ForestState ForestGroups Universal233 WholeSourceWork CoreWork SourceCoverage
+open GenericForest.CheckCorrespondence GenericForest.FrontierWork
+open OrdinaryDispatch.WorkRecursion OrdinaryDispatch.WorkIntegration OrdinaryDispatch.FullSourceWork
+open Universal233.BothBad Universal233.PaidQueries
+
+/-- Generic literal call-list overhead, charged at each returned residual. -/
+theorem callsForestDebit_weighted (actual : GenericForest.FrontierWork.Ordinary) (calls : List Call) (q N Q : Nat)
+ (budget : q≤Q) (proper0 : ∀a,a∈calls→proper a.target a.sources=true)
+ (size : ∀a,a∈calls→(labels a.target).length≤N) (residual : ∀a,a∈calls→a.budget≤q) :
+ (callsForestDebit actual (fun _ _ _=>0) calls:Rat)≤
+ (geometric Rule5ActualTrace.base*forestCoefficient N Q*Rule5ActualTrace.base^q)*traceMass Rule5ActualTrace.base q calls:=by
+ let b:=Rule5ActualTrace.base
+ have bp:0<b:=by decide +kernel
+ have point (a : Call) (mem:a∈calls) :
+ (forestWork actual (fun _ _ _=>0) a.target a.sources a.budget:Rat)≤
+ (geometric b*forestCoefficient N Q*b^q)*b^(-((q-a.budget:Nat):Int)):=by
+  have bound:=forestLocalWork_bound actual a.target N Q b (by decide +kernel) (size a mem) a.sources a.budget (by have h:=residual a mem;omega) (proper0 a mem)
+  have clear:=qpow_clear b (Rat.ne_of_gt bp) q (q-a.budget) (by omega)
+  have eq:q-(q-a.budget)=a.budget:=by have h:=residual a mem;omega
+  rw [eq] at clear
+  rw [clear] at bound
+  simpa only [Rat.mul_assoc] using bound
+ have sum:=GenericForest.rat_sum_map_le calls _ _ point
+ rw [GenericForest.rat_sum_mul] at sum
+ simpa only [callsForestDebit,nat_sum_cast,traceMass,actualQueryMass,List.map_map,Function.comp_def,b] using sum
+
+theorem goodPair_call_target (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree)
+ (A B C : List Nat) (q : Nat) (a : Call) (mem:a∈(GoodPairDP.runPair actual T S A B C q).calls) :
+ a.target=localTarget (some T) C:=by
+ unfold GoodPairDP.runPair at mem
+ split at mem
+ · dsimp only at mem
+   split at mem
+   · simp at mem
+   · split at mem
+     · have eq:=List.mem_singleton.1 mem;subst a;rfl
+     · simp at mem
+ · simp at mem
+
+theorem goodPairSource_bound (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree)
+ (A B C : List Nat) (q N Q : Nat) (three : 3≤N) (budget : q≤Q)
+ (tn : treeNodes T≤N) (sn : treeNodes S≤N) (al : A.length≤N) (bl : B.length≤N) (cl : C.length≤N)
+ (hs : (leaves S).Nodup) (ht : (leaves T).Nodup) (same : ∀x,x∈leaves T ↔ x∈leaves S)
+ (hp : partitionCheck (leaves S) [A,B,C]=true)
+ (ac : BinaryExchange.Disj T A C) (bc : BinaryExchange.Disj T B C)
+ (ga : restrictionAgrees T S A=true) (gb : restrictionAgrees T S B=true)
+ (over : ∃v,v∈minimalVertices A T ∧ v∈minimalVertices B T) :
+ ((goodPairSource actual (fun _ _ _=>0) T S A B C q).work:Rat)≤
+ ((goodPairPolynomial N:Rat)+geometric Rule5ActualTrace.base*forestCoefficient N Q*Rule5ActualTrace.base^(-3:Int))*Rule5ActualTrace.base^q:=by
+ have localBill:=goodPairLocalSource_bound actual T S A B C N q three tn sn al bl cl
+ have debit:=callsForestDebit_weighted actual (GoodPairDP.runPair actual T S A B C q).calls q N Q budget
+  (good_pair_query_proper actual T S A B C q hs ht same hp ac bc)
+  (by intro a mem;rw [goodPair_call_target actual T S A B C q a mem];exact localTarget_labels_cap T C N tn)
+  (by intro a mem;have h:=GoodPairDP.runPair_calls_decrease actual T S A B C q a mem;omega)
+ have mass:=GoodPairDP.runPair_mass actual T S A B C q hs ht same hp ac bc ga gb over Rule5ActualTrace.base (by decide +kernel)
+ have positive:0≤geometric Rule5ActualTrace.base*forestCoefficient N Q*Rule5ActualTrace.base^q:=
+  Rat.mul_nonneg (Rat.mul_nonneg (geometric_properties _ (by decide +kernel)).2.2.1 Rat.natCast_nonneg)
+   (Rat.le_of_lt (Rat.pow_pos (by decide +kernel)))
+ have weighted:=Rat.le_trans debit (Rat.mul_le_mul_of_nonneg_left mass positive)
+ have regroup:(geometric Rule5ActualTrace.base*forestCoefficient N Q*Rule5ActualTrace.base^q)*Rule5ActualTrace.base^(-3:Int)=
+  (geometric Rule5ActualTrace.base*forestCoefficient N Q*Rule5ActualTrace.base^(-3:Int))*Rule5ActualTrace.base^q:=by
+  rw [Rat.mul_assoc,Rat.mul_comm (Rule5ActualTrace.base^q) (Rule5ActualTrace.base^(-3:Int)),←Rat.mul_assoc]
+ rw [regroup] at weighted
+ have localPow:=Rat.mul_le_mul_of_nonneg_left (call_base_pow_ge_one q) (show 0≤(goodPairPolynomial N:Rat) from Rat.natCast_nonneg)
+ rw [Rat.mul_one] at localPow
+ have localCast:=Rat.natCast_le_natCast.2 localBill
+ have total:=qadd_le_add (Rat.le_trans localCast localPow) weighted
+ simp only [goodPairSource,Rat.natCast_add,goodPairLocalSource_value]
+ simpa only [Rat.add_mul] using total
+
+/-- This explicit fixed-base cap removes the out-dependent coefficient only
+at composition; the sharper caseMass theorem remains available. -/
+theorem hardPaid_caseMass_uniform (out : Hard2Overlap.Result) :
+ Hard2PaidLocal.caseMass Rule5ActualTrace.base out≤4*Rule5ActualTrace.base^(-4:Int):=by
+ cases out with
+ | pair o k=>cases k <;> simp only [Hard2PaidLocal.caseMass] <;> decide +kernel
+ | _=>simp only [Hard2PaidLocal.caseMass];decide +kernel
+end OrdinaryDispatch.Hard2SourceWork

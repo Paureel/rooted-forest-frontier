@@ -1,0 +1,43 @@
+FreshCleanTwins.lean:11:44: error: Tactic `decide` failed to reduce
+  @decide (rawQMass 2 duplicated = 3 / 4) (instDecidableEqRat (rawQMass 2 duplicated) (3 / 4))
+to `true` or `false`.
+
+After unfolding the instances `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, and `instDecidableEqRat.decEq`, reduction got stuck at
+  match
+    (((fun o => 2 ^ (-↑o.sourceCuts.length)) (os.getD 0 { partition := [], sourceCuts := [] })).add
+        (List.foldr (fun x1 x2 => x1 + x2) 0
+          (List.map (fun o => 2 ^ (-↑o.sourceCuts.length))
+            [os.getD 0 { partition := [], sourceCuts := [] }, os.getD 1 { partition := [], sourceCuts := [] }]))).num,
+    (Rat.mul 3 (Rat.inv 4)).num with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | { decide := true, reflects_decide := h } => isTrue ⋯
+    | { decide := false, reflects_decide := h } => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | { decide := true, reflects_decide := h } => isTrue ⋯
+    | { decide := false, reflects_decide := h } => isFalse ⋯
+FreshCleanTwins.lean:12:60: error: Tactic `decide` failed to reduce
+  @decide (rawQMass (233 / 100) duplicated = 30000 / 54289)
+    (instDecidableEqRat (rawQMass (233 / 100) duplicated) (30000 / 54289))
+to `true` or `false`.
+
+After unfolding the instances `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, and `instDecidableEqRat.decEq`, reduction got stuck at
+  match
+    (((fun o => (233 / 100) ^ (-↑o.sourceCuts.length)) (os.getD 0 { partition := [], sourceCuts := [] })).add
+        (List.foldr (fun x1 x2 => x1 + x2) 0
+          (List.map (fun o => (233 / 100) ^ (-↑o.sourceCuts.length))
+            [os.getD 0 { partition := [], sourceCuts := [] }, os.getD 1 { partition := [], sourceCuts := [] }]))).num,
+    (Rat.mul 30000 (Rat.inv 54289)).num with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | { decide := true, reflects_decide := h } => isTrue ⋯
+    | { decide := false, reflects_decide := h } => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | { decide := true, reflects_decide := h } => isTrue ⋯
+    | { decide := false, reflects_decide := h } => isFalse ⋯

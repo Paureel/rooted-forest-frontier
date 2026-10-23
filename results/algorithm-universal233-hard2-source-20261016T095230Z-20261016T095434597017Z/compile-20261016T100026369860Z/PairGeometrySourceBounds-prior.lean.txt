@@ -1,0 +1,111 @@
+import Hard2GraphSource
+namespace OrdinaryDispatch.Hard2SourceWork
+open RMAF ForestState Universal233 WholeSourceWork CoreWork
+open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork
+
+private theorem cap_filter {α : Type} (f : α→Charged Bool) (xs : List α) (N k p : Nat)
+ (len : xs.length≤N) (point : ∀x∈xs,(f x).work≤k*(N+1)^p) :
+ (meterFilter f xs).work≤(k+4)*(N+1)^(p+1) := by
+ have h:=meterFilter_bound f xs (k*(N+1)^p) point
+ have pos:1≤(N+1)^p:=Nat.one_le_pow _ _ (by omega)
+ have coef:k*(N+1)^p+4≤(k+4)*(N+1)^p:=by simp only [Nat.add_mul];omega
+ exact Nat.le_trans h (by simpa only [Nat.pow_succ,Nat.mul_assoc] using Nat.mul_le_mul coef (Nat.add_le_add_right len 1))
+private theorem cap_find {α : Type} (f : α→Charged Bool) (xs : List α) (N k p : Nat)
+ (len : xs.length≤N) (point : ∀x∈xs,(f x).work≤k*(N+1)^p) :
+ (meterFind f xs).work≤(k+4)*(N+1)^(p+1) := by
+ have h:=meterFind_bound f xs (k*(N+1)^p) point
+ have pos:1≤(N+1)^p:=Nat.one_le_pow _ _ (by omega)
+ have coef:k*(N+1)^p+4≤(k+4)*(N+1)^p:=by simp only [Nat.add_mul];omega
+ exact Nat.le_trans h (by simpa only [Nat.pow_succ,Nat.mul_assoc] using Nat.mul_le_mul coef (Nat.add_le_add_right len 1))
+
+private theorem leafList_cap (T : Tree) (D : List Nat) (N : Nat) (tn : treeNodes T≤N) (dl : D.length≤N) :
+ (meterLeafList D T).work≤32*(N+1)^2 := by
+ have h:=meterLeafList_bound D T N tn
+ have coef:16*(D.length+N+2)≤32*(N+1):=by omega
+ exact Nat.le_trans h (by simpa only [Nat.pow_two,Nat.mul_assoc] using Nat.mul_le_mul coef (Nat.le_trans tn (Nat.le_succ N)))
+
+theorem pairPrefixMeter_bound (v a : RMAF.Vertex) : (pairPrefixMeter v a).work≤4*(v.length+1) := by
+ induction v generalizing a <;> cases a <;> simp_all [pairPrefixMeter] <;> omega
+
+theorem pairDescendantsMeter_bound (T : Tree) (v : RMAF.Vertex) (N : Nat) (tn : treeNodes T≤N) (vn : v.length≤N) :
+ (pairDescendantsMeter T v).work≤54*(N+1)^3 := by
+ have nl:=Nat.le_trans (leaves_nodes T) tn
+ have positive:1≤N:=Nat.le_trans (treeNodes_pos T) tn
+ have pos2:1≤(N+1)^2:=Nat.one_le_pow _ _ (by omega)
+ have point (x : Nat) (_ : x∈leaves T) :
+  (let a:=meterLeafList [x] T;let p:=pairPrefixMeter v (a.value.headD []);(⟨p.value,a.work+p.work+4⟩:Charged Bool)).work≤42*(N+1)^2:=by
+  have a:=leafList_cap T [x] N tn (by simpa using positive)
+  have p:=pairPrefixMeter_bound v ((meterLeafList [x] T).value.headD [])
+  have shift:4*(v.length+1)≤4*(N+1)^2:=by
+   exact Nat.le_trans (by omega) (Nat.mul_le_mul_left 4 (by simpa using pow_mono N 1 2 (by decide)))
+  dsimp only
+  omega
+ have f:=cap_filter _ (leaves T) N 42 2 nl point
+ have l:=cap_lift N 8 2 3 _ (meterLeaves_cap T N tn) (by decide)
+ have pos3:1≤(N+1)^3:=Nat.one_le_pow _ _ (by omega)
+ simp only [pairDescendantsMeter,meterLeaves_value]
+ omega
+
+theorem pairSideMeter_length (A : List Nat) (T : Tree) (v : RMAF.Vertex) (inside : Bool) :
+ (pairSideMeter A T v inside).value.length≤A.length := by
+ rw [pairSideMeter_value]
+ exact List.length_filter_le _ _
+
+theorem pairDescendantsMeter_length (T : Tree) (v : RMAF.Vertex) :
+ (pairDescendantsMeter T v).value.length≤(leaves T).length := by
+ rw [pairDescendantsMeter_value]
+ exact List.length_filter_le _ _
+
+theorem pairSideMeter_bound (A : List Nat) (T : Tree) (v : RMAF.Vertex) (inside : Bool) (N : Nat)
+ (tn : treeNodes T≤N) (al : A.length≤N) (vn : v.length≤N) :
+ (pairSideMeter A T v inside).work≤66*(N+1)^4 := by
+ have d:=pairDescendantsMeter_bound T v N tn vn
+ have len:=Nat.le_trans (pairDescendantsMeter_length T v) (Nat.le_trans (leaves_nodes T) tn)
+ have pos3:1≤(N+1)^3:=Nat.one_le_pow _ _ (by omega)
+ have point (x : Nat) (_ : x∈A) :
+  (let d:=pairDescendantsMeter T v;let c:=meterContains x d.value;(⟨if inside then c.value else !c.value,d.work+c.work+4⟩:Charged Bool)).work≤62*(N+1)^3:=by
+  have c:=meterContains_bound x (pairDescendantsMeter T v).value
+  have shift:4*((pairDescendantsMeter T v).value.length+1)≤4*(N+1)^3:=by
+   exact Nat.le_trans (by omega) (Nat.mul_le_mul_left 4 (by simpa using pow_mono N 1 3 (by decide)))
+  dsimp only
+  omega
+ exact cap_filter _ A N 62 3 al point
+
+theorem pairRegionsMeter_length (D : List Nat) (T : Tree) (v : RMAF.Vertex) :
+ (pairRegionsMeter D T v).value.length≤3 := by
+ rw [pairRegionsMeter_value]
+ exact List.length_filter_le _ _
+
+theorem pairRegionsMeter_bound (D : List Nat) (T : Tree) (v : RMAF.Vertex) (N : Nat)
+ (three : 3≤N) (tn : treeNodes T≤N) (dl : D.length≤N) (vn : v.length≤N) :
+ (pairRegionsMeter D T v).work≤48*(N+1)^3 := by
+ have ll:=Nat.le_trans (leafList_length D T) tn
+ have l:=leafList_cap T D N tn dl
+ have pos:1≤(N+1):=by omega
+ have pos2:1≤(N+1)^2:=Nat.one_le_pow _ _ (by omega)
+ have point (c : Nat) (_ : c∈[0,1,2]) :
+  (let l:=meterLeafList D T;let r:=meterAny (fun a=>let r:=meterRegion v a;(⟨r.value==c,r.work+2⟩:Charged Bool)) l.value;
+    (⟨r.value,l.work+r.work+2⟩:Charged Bool)).work≤44*(N+1)^2:=by
+  have a:=cap_any (fun a=>let r:=meterRegion v a;(⟨r.value==c,r.work+2⟩:Charged Bool)) (leafList D T) N 6 1 ll
+   (by intro a _;have h:=meterRegion_bound v a;dsimp only;simpa only [Nat.pow_one] using (show (meterRegion v a).work+2≤6*(N+1) by omega))
+  dsimp only
+  simp only [meterLeafList_value]
+  omega
+ exact cap_filter _ [0,1,2] N 44 2 (by simpa using three) point
+
+theorem pairVertexMeter_bound (T : Tree) (A B : List Nat) (v : RMAF.Vertex) (N : Nat)
+ (three : 3≤N) (tn : treeNodes T≤N) (al : A.length≤N) (bl : B.length≤N) (vn : v.length≤N) :
+ (pairVertexMeter T A B v).work≤230*(N+1)^3 := by
+ have a:=meterMinimal_polynomial T A N tn al;have b:=meterMinimal_polynomial T B N tn bl
+ have ca:=meterVertexContains_bound v (minimalVertices A T) N vn
+ have cb:=meterVertexContains_bound v (minimalVertices B T) N vn
+ have la:=Nat.le_trans (minimal_length A T) tn;have lb:=Nat.le_trans (minimal_length B T) tn
+ have capA:=Nat.mul_le_mul_left (8*(N+1)) (Nat.add_le_add_right la 1)
+ have capB:=Nat.mul_le_mul_left (8*(N+1)) (Nat.add_le_add_right lb 1)
+ have ra:=pairRegionsMeter_bound A T v N three tn al vn;have rb:=pairRegionsMeter_bound B T v N three tn bl vn
+ have rla:=pairRegionsMeter_length A T v;have rlb:=pairRegionsMeter_length B T v
+ have powers:8*(N+1)*(N+1)≤8*(N+1)^3:=by simpa only [Nat.pow_two] using Nat.mul_le_mul_left 8 (pow_mono N 2 3 (by decide))
+ have pos:1≤(N+1)^3:=Nat.one_le_pow _ _ (by omega)
+ simp only [pairVertexMeter,meterMinimal_value]
+ omega
+end OrdinaryDispatch.Hard2SourceWork

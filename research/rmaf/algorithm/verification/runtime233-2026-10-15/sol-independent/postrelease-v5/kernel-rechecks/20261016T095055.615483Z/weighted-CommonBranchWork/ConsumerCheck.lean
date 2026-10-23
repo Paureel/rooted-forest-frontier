@@ -1,0 +1,7 @@
+import CommonBranchWork
+#check OrdinaryDispatch.FullSourceWork.commonBranchMeter_value
+#print axioms OrdinaryDispatch.FullSourceWork.commonBranchMeter_value
+#check OrdinaryDispatch.FullSourceWork.commonBranchMeter_work_split
+#print axioms OrdinaryDispatch.FullSourceWork.commonBranchMeter_work_split
+#check OrdinaryDispatch.FullSourceWork.commonBranchMeter_local_bound
+#print axioms OrdinaryDispatch.FullSourceWork.commonBranchMeter_local_bound

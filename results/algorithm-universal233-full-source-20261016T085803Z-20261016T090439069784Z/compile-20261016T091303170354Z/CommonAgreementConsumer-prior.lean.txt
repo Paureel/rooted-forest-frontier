@@ -1,0 +1,54 @@
+import GeneralAgreementWork
+import ScalarEnvelope
+namespace OrdinaryDispatch.FullSourceWork
+open RMAF Universal233 WholeSourceWork CoreWork
+open OrdinaryCommonSplit OrdinaryCommonSplit.Caller OrdinaryCommonSplit.Source
+
+theorem setup_tree_node_caps (d : Setup) :
+ treeNodes d.T≤2*(leaves d.T).length ∧ treeNodes d.S≤2*(leaves d.T).length := by
+ have t:=treeNodes_leafCount d.T;have s:=treeNodes_leafCount d.S
+ have xy:=Rule5LocalWork.setup_blocks d
+ have perm:=FinalCutRecovery.checked_flatten_perm d.S [d.X,d.Y] d.ns d.hpS
+ have len:=perm.length_eq
+ simp only [List.flatten_cons,List.flatten_nil,List.append_nil,List.length_append] at len
+ omega
+
+/-- Discharges the previously explicit general-agreement K premise in the
+frozen real common-one reconstruction consumer. -/
+theorem common_real_pick_work_closed_checker (d : Setup) (r : Nat) {FM FY FN : List (List Nat)}
+ (fm : actual d.mxT d.mxS r=some FM) {p : RMAF.Vertex}
+ (pre : DepthOne.pretest01 d.ty d.sy=.found (some p))
+ (fy : FY=DepthOne.forest d.sy (some p)) (fn : outsideReply d FY=some FN) :
+ (Rule5LocalWork.pickMeter (measuredAgreement d.T d.S) d.X d.Y d.x d.y d.rho d.gamma FM FN).work≤
+ let N:=2*(leaves d.T).length
+ 4*N+((8*(N+2)^2+2)*N+2)*N+2+(agreementK (leaves d.T).length+2*(2*N+2)+2)*(FM.length*FN.length) := by
+ have caps:=setup_tree_node_caps d
+ exact Rule5LocalWork.common_real_pick_work d r fm pre fy fn (measuredAgreement d.T d.S) (agreementK (leaves d.T).length)
+  (fun G hg=>measuredAgreement_K d.T d.S (leaves d.T).length caps.1 caps.2 G hg)
+
+theorem reconstruct_actual_agreement (d : Setup) (FX FY FM FN : List (List Nat)) :
+ (Rule5LocalWork.reconstructMeter (measuredAgreement d.T d.S) d FX FY FM FN).value=
+ reconstruct d FX FY FM FN :=
+ Rule5LocalWork.reconstruct_value (measuredAgreement d.T d.S) d FX FY FM FN (fun G _=>measuredAgreement_value d.T d.S G)
+
+/-- Every literal common-one candidate, failed or duplicate included, has
+the exact value/K bridge and the already-derived numeric label domain. -/
+theorem common_candidate_agreement_envelope (T S : Tree) (X Y : List Nat) (p : RMAF.Vertex) (d : Setup)
+ (build : buildSetup T S X Y p=some d) (r : Nat) {FM FY FN : List (List Nat)}
+ (fm : actual d.mxT d.mxS r=some FM) {e : RMAF.Vertex}
+ (pre : DepthOne.pretest01 d.ty d.sy=.found (some e))
+ (fy : FY=DepthOne.forest d.sy (some e)) (fn : outsideReply d FY=some FN)
+ {G : List (List Nat)} (mem : G∈mergeCandidates d.X d.Y d.x d.y d.rho d.gamma FM FN)
+ (L : Nat) (labels : ∀x,x∈leaves T++leaves S→x<2^L) :
+ Rule5LocalWork.cells G≤12*(leaves d.T).length+1 ∧
+ (∀z,z∈G.flatten→z<2^(L+2)) ∧
+ (measuredAgreement d.T d.S G).value=RMAF.agreement d.T d.S G ∧
+ (measuredAgreement d.T d.S G).work≤agreementK (leaves d.T).length := by
+ have pay:=Rule5LocalWork.common_real_payload d r fm pre fy fn
+ have merge:=Rule5LocalWork.merge_payload d.X d.Y d.x d.y d.rho d.gamma FM FN (2*(leaves d.T).length)
+  pay.1 pay.2 (by rw [Rule5LocalWork.merge_value];exact mem)
+ have caps:=setup_tree_node_caps d
+ have cells:Rule5LocalWork.cells G≤12*(leaves d.T).length+1:=by omega
+ exact ⟨cells,Rule5LocalWork.common_real_bits T S X Y p d build r fm pre fy fn mem L labels,
+  measuredAgreement_value d.T d.S G,measuredAgreement_K d.T d.S (leaves d.T).length caps.1 caps.2 G cells⟩
+end OrdinaryDispatch.FullSourceWork

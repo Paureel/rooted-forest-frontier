@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "interfaces": [
+    {
+      "module": "NumericStep",
+      "theorem": "OrdinaryDispatch.GlobalNumeric.ordinaryStepTrace_cap",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericStep.lean",
+      "line": 54,
+      "contract": "One edge raises label max by at most2; exact frozen trace membership"
+    },
+    {
+      "module": "NumericReach",
+      "theorem": "OrdinaryDispatch.GlobalNumeric.reachable_invariant",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericReach.lean",
+      "line": 16,
+      "contract": "Properness, q<=Q, both leaves<=N, d+q+n<=Q+N, labels<=M0+2d"
+    },
+    {
+      "module": "NumericSizes",
+      "theorem": "OrdinaryDispatch.GlobalNumeric.reachable_numeric_widths",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericSizes.lean",
+      "line": 38,
+      "contract": "W=L+2(Q+N)+3 bounds labels and local max+2; budget width<=Q+1"
+    },
+    {
+      "module": "NumericSizes",
+      "theorem": "OrdinaryDispatch.GlobalNumeric.reachable_addresses",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericSizes.lean",
+      "line": 25,
+      "contract": "Valid source/target unary addresses and vertex counts<=2N"
+    },
+    {
+      "module": "NumericStateBounds",
+      "theorem": "OrdinaryDispatch.GlobalNumeric.common_builder_caps",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericStateBounds.lean",
+      "line": 66,
+      "contract": "All eight actual common-builder trees size/node/label caps and both markers"
+    },
+    {
+      "module": "NumericSourceBinding",
+      "theorem": "OrdinaryDispatch.GlobalNumeric.ordinary_source_queries",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericSourceBinding.lean",
+      "line": 80,
+      "contract": "Exact source-order list equality, preserving failed/duplicate ordinary calls"
+    },
+    {
+      "module": "NumericActualEntries",
+      "theorem": "OrdinaryDispatch.GlobalNumeric.reachable_forest_entry_caps",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericActualEntries.lean",
+      "line": 101,
+      "contract": "Derived original-input caps for every companion forest entry"
+    },
+    {
+      "module": "NumericActualEntries",
+      "theorem": "OrdinaryDispatch.GlobalNumeric.reachable_forest_desc_caps",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericActualEntries.lean",
+      "line": 112,
+      "contract": "Caps through paid replacement descendants; e+r<=Q"
+    },
+    {
+      "module": "NumericOperands",
+      "theorem": "OrdinaryDispatch.GlobalNumeric.forest_branch_operands",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericOperands.lean",
+      "line": 6,
+      "contract": "Source indices, cut counts and original unary address lengths/cells"
+    },
+    {
+      "module": "NumericOperands",
+      "theorem": "OrdinaryDispatch.GlobalNumeric.represented_capacity_arithmetic",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericOperands.lean",
+      "line": 50,
+      "contract": "Arithmetic only, conditional on separate represented producer storage binding"
+    },
+    {
+      "module": "NumericInterface",
+      "theorem": "OrdinaryDispatch.GlobalNumeric.fast_original_caps",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericInterface.lean",
+      "line": 11,
+      "contract": "Actual FastOrdinary.solve with Q=k-1 and no implicitrho"
+    },
+    {
+      "module": "NumericInterface",
+      "theorem": "OrdinaryDispatch.GlobalNumeric.reachable_fast_payload",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericInterface.lean",
+      "line": 30,
+      "contract": "Actual returned payload blocks/cells and semantic bits"
+    }
+  ],
+  "assumptions": [
+    "proper original input",
+    "original target leaf capN; original node cap may be used via leaves<=nodes",
+    "original labels <2^L",
+    "Q arbitrary Nat independent of reduced leaf count"
+  ],
+  "stored_representation": "OPEN: semantic values do not bound arbitrary padding",
+  "consumer_binding": "Use exact ordinaryForestCalls companion or source-site entry lemmas; full source-bit bill integration owned elsewhere"
+}

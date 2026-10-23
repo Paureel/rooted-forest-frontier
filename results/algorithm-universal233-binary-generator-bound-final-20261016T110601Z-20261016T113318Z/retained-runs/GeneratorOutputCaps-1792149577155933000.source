@@ -1,0 +1,113 @@
+import GeneratorInputCosts
+namespace GenericForest.BinaryProducer.Generator
+open BinaryProvider Universal233.WholeSourceWork
+
+def labelSum : List Group→Nat
+ | []=>0 | g::gs=>g.labels.length+labelSum gs
+@[simp] theorem labelSum_append (a b : List Group) : labelSum (a++b)=labelSum a+labelSum b := by
+ induction a <;> simp_all [labelSum,Nat.add_assoc]
+
+theorem groups_labelSum (T : GTree) : labelSum (groupsBits T).value≤size T := by
+ induction T <;> simp_all only [groupsBits,appendSpine_value,labelSum_append,labelSum,size] <;> omega
+
+theorem flattenGroups_length (gs : List Group) : (flattenGroups gs).value.length=labelSum gs := by
+ induction gs <;> simp_all [flattenGroups,appendLabels_value,labelSum]
+
+theorem flattenGroups_wide (W : Nat) (gs : List Group) (h : ∀g∈gs,BlockWidth W g.labels) :
+ BlockWidth W (flattenGroups gs).value := by
+ induction gs with
+ | nil=>simp [flattenGroups,BlockWidth]
+ | cons g gs ih=>
+  have a:=h g (by simp);have b:=ih (fun x hx=>h x (by simp [hx]))
+  simp only [flattenGroups,appendLabels_value]
+  intro x hx;rcases List.mem_append.mp hx with hx|hx
+  · exact a x hx
+  · exact b x hx
+
+def OutputCap (W M : Nat) (o : BinaryProducer.Output) : Prop :=
+ ForestWidth W o.partition ∧ (∀B∈o.partition,B.length≤M) ∧
+ o.sourceCuts.length≤M ∧ o.partition.length≤M+1 ∧ ∀v∈o.sourceCuts,v.length≤M
+
+def OutputGood (W M : Nat) (r : Receipt) : Prop := ∀o∈r.outputs,OutputCap W M o
+
+theorem finishBits_output (W M : Nat) (T d c) (h : StateGood W M 0 T d c) :
+ OutputGood W M (finishBits T d c).value := by
+ have st:=h.1;unfold Within at st
+ have sizecap : size T≤M:=by omega
+ have detached : ∀B∈(detachedBits d).value,BlockWidth W B ∧ B.length≤M := by
+  intro B hb
+  induction d with
+  | nil=>simp [detachedBits] at hb
+  | cons g gs ih=>
+   simp only [detachedBits,List.mem_cons] at hb
+   rcases hb with rfl|hb
+   · exact h.2.2.1 g (by simp)
+   · exact ih (by simp only [List.length_cons] at st;omega)
+      (fun x hx=>h.2.2.1 x (by simp [hx])) hb
+ have wide:=flattenGroups_wide W (groupsBits T).value (groups_wide W T h.2.1)
+ have cells:=Nat.le_trans (groups_labelSum T) sizecap
+ have dl:=(detachedBits_cost d).2
+ dsimp only [OutputGood,finishBits]
+ intro o ho;have eq : o=⟨(detachedBits d).value++[(flattenGroups (groupsBits T).value).value],c⟩:=by simpa only [appendSpine_value,List.mem_singleton] using ho
+ subst o
+ refine ⟨?_,?_,by omega,?_,h.2.2.2⟩
+ · intro B hb;rcases List.mem_append.mp hb with hb|hb
+   · exact (detached B hb).1
+   · have eq:=List.mem_singleton.mp hb;subst B;exact wide
+ · intro B hb;rcases List.mem_append.mp hb with hb|hb
+   · exact (detached B hb).2
+   · have eq:=List.mem_singleton.mp hb;subst B;rw [flattenGroups_length];exact cells
+ · simp only [List.length_append,List.length_singleton,dl];omega
+
+theorem attemptBits_output (W M q : Nat) (f : GTree→List Group→Addresses→Charged Receipt)
+ (hf : ∀t d c,StateGood W M q t d c→OutputGood W M (f t d c).value)
+ (T d c g) (h : StateGood W M (q+1) T d c) (gm : g∈(groupsBits T).value) :
+ OutputGood W M (attemptBits f T d c g).value := by
+ dsimp only [attemptBits]
+ split
+ · simp [OutputGood]
+ · split
+   · simp [OutputGood]
+   · cases he : (eraseBits g.origin T).value with
+     | none=>simp [OutputGood]
+     | some U=>exact hf _ _ _ (state_child W M q T d c g U h gm he)
+
+theorem stepBits_output (W M q : Nat) (f : GTree→List Group→Addresses→Charged Receipt)
+ (hf : ∀t d c,StateGood W M q t d c→OutputGood W M (f t d c).value)
+ (T d c) (h : StateGood W M (q+1) T d c) : OutputGood W M (stepBits f T d c).value := by
+ have n:=state_normalized W M (q+1) T d c h
+ have mem:=chooseBits_mem (normalizeBits T).value
+ dsimp only [stepBits]
+ cases he : (chooseBits (normalizeBits T).value).value with
+ | finish=>
+  apply finishBits_output W M _ d c
+  exact ⟨by have z:=n.1;unfold Within at z ⊢;omega,n.2⟩
+ | refuse why=>simp [OutputGood]
+ | one g=>exact attemptBits_output W M q f hf _ d c g n (mem.1 g he)
+ | two a b=>
+  have members:=mem.2 a b he
+  have x:=attemptBits_output W M q f hf _ d c a n members.1
+  have y:=attemptBits_output W M q f hf _ d c b n members.2
+  dsimp only [prefixBits,combineBits,OutputGood]
+  simp only [appendSpine_value,List.mem_append]
+  intro o ho;rcases ho with ho|ho
+  · exact x o ho
+  · exact y o ho
+
+theorem runBits_output (W M : Nat) (fuel : Capacity) (T d c)
+ (h : StateGood W M (fuel.length+1) T d c) : OutputGood W M (runBits fuel T d c).value := by
+ induction fuel generalizing T d c with
+ | nil=>exact stepBits_output W M 0 _ (by intros;simp [OutputGood]) T d c h
+ | cons u fuel ih=>exact stepBits_output W M (fuel.length+1) (runBits fuel) ih T d c h
+
+theorem generateBits_output (W N : Nat) (S : BinaryProvider.Tree) (color : GenericForest.ScalarBits.Bits→Charged Color) (q : GenericForest.ScalarBits.Bits)
+ (sw : TreeWidth W S) (sn : Universal233.CoreWork.treeNodes (treeValue S)≤N) :
+ OutputGood W (inputResource N) (generateBits S color q).value := by
+ have fn : (fuelBits q (leavesBits S).tail).value.length≤N:=by
+  rw [fuelBits_length]
+  exact Nat.le_trans (Nat.min_le_right _ _) (by simp only [List.length_tail];have z:=bitsLeaves_count S;omega)
+ dsimp only [generateBits];simp only [leavesCopy_value]
+ split
+ · exact runBits_output W (inputResource N) _ _ [] [] (initial_state W N color S _ sw sn fn)
+ · simp [OutputGood]
+end GenericForest.BinaryProducer.Generator

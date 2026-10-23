@@ -1,0 +1,24 @@
+research/rmaf/bridge_review/degree_two/lean/DegreeCounting.lean:68:32: error(lean.unknownIdentifier): Unknown constant `List.mem_nil`
+research/rmaf/bridge_review/degree_two/lean/DegreeCounting.lean:69:27: error: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)
+  w = b ∨ w ∈ []
+
+case inr
+s : List Vertex
+v a b : Vertex
+hab : a ≠ b
+hsa : a ∈ s
+hea : Adj v a
+hsb : b ∈ s
+heb : Adj v b
+hall : ∀ (x : Vertex), (fun w => w ∈ s) x → Adj v x → x = a ∨ x = b
+hsub : supportNeighbors s v ⊆ [a, b]
+w : Vertex
+h✝ : w = b ∨ w ∈ []
+⊢ w ∈ supportNeighbors s v
+research/rmaf/bridge_review/degree_two/lean/DegreeCounting.lean:68:46: warning: This simp argument is unused:
+  or_false
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [List.mem_cons, List.mem_nil] at hw
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

@@ -1,0 +1,7 @@
+import PrefixSourceWork
+#check OrdinaryDispatch.FullSourceWork.prefixTreeWork_eq
+#print axioms OrdinaryDispatch.FullSourceWork.prefixTreeWork_eq
+#check OrdinaryDispatch.FullSourceWork.prefixTreeWork_bound
+#print axioms OrdinaryDispatch.FullSourceWork.prefixTreeWork_bound
+#check OrdinaryDispatch.FullSourceWork.prefixTreeMeter_value
+#print axioms OrdinaryDispatch.FullSourceWork.prefixTreeMeter_value

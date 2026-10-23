@@ -1,0 +1,40 @@
+
+16
+F1 F2
+1 2
+3 4
+5
+6 7
+a c
+4
+5
+6 7
+1 2
+3
+a
+c
+Figure 2.3: A sibling pair pa, c q of two forests F1 and F2: a and c have a common
+parent in F1, and both a and c exist also in F2.
+shown in Figures 2.2(b) and 2.2(d) are shown in Figures 2.2(e) a nd 2.2(f).
+For two nodes a and b of a forest F , we write a „ F b if there exists a path between
+a and b in F . An internal node of a path P in F is a node of P that is not an endpoint
+of P ; a pendant node of P is a node not in P and whose parent is an internal node
+of P . For a node x of a rooted forest F , F x denotes the subtree of F induced by all
+descendants of x, including x. For two rooted forests F1 and F2 and a node a P F1, we
+say that a exists in F2 if there is a node a1 P F2 such that F a
+1 “ F a1
+2 . For simplicity,
+we refer to both a and a1 as a. For forests F1 and F2 and nodes a, c P F1 with a
+common parent, we say pa, c q is a sibling pair of F1 if a and c exist in F2. Figure 2.3
+shows such a sibling pair.
+The correctness proofs of our algorithms make use of the foll owing two lemmas.
+Lemma 2.1 was shown by Bordewich et al. [22] and is illustrate d in Figure 2.4. Sup-
+pose we cut a set of edges E from a forest F to obtain F ˜ E, and there is an edge e
+of F such that F ´ p E Y teuq has a component without labelled nodes. This lemma
+shows that the forest F ˜ p E z t f u Y teuq obtained by replacing any edge f P E on
+the boundary of this “empty” component with e is the same as F ˜ E.
+Lemma 2.1 (Shifting Lemma) . Let F be a forest of an X-tree, e and f edges of F ,
+and E a subset of edges of F such that f P E and e R E. Let vf be the end vertex of
+f closer to e, and ve an end vertex of e. If vf „ F ´E ve and x  F ´pEYteuq vf , for all
+x P X, then F ˜ E “ F ˜ p E z t f u Y teuq.
+

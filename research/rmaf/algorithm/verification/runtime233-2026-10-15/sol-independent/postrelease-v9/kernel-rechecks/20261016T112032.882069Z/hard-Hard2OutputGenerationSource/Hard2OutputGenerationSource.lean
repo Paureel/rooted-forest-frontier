@@ -1,0 +1,102 @@
+import Hard2GeneratorSource
+namespace OrdinaryDispatch.Hard2SourceWork
+open RMAF Universal233 WholeSourceWork CoreWork CoreProgram VertexGeometry
+open Universal233.Hard2PaidLocal Universal233.Hard2Overlap Universal233.PaidAssembly
+open Universal233.Rule5PendantLocalWork GenericForest.CheckCorrespondence
+open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion
+
+def sideTaggedMeter (A B D : List Nat) (x : Nat) : Charged Nat :=
+ let a:=meterContains x A
+ if a.value then ⟨0,a.work+5⟩ else
+  let b:=meterContains x B
+  if b.value then let d:=meterContains x D;⟨3*(if d.value then 0 else 1)+1,a.work+b.work+d.work+8⟩
+  else ⟨2,a.work+b.work+7⟩
+@[simp] theorem sideTaggedMeter_value (A B D : List Nat) (x : Nat) :
+ (sideTaggedMeter A B D x).value=WholeSourceMass.taggedColor A B (fun _=>0) (PairAssembly.sideColor D) (fun _=>0) x := by
+ by_cases a:x∈A <;> by_cases b:x∈B <;> by_cases d:x∈D <;>
+  simp [sideTaggedMeter,WholeSourceMass.taggedColor,PairAssembly.sideColor,a,b,d]
+
+def kindOutputsMeter (kind : Kind) (S T : Tree) (A B : List Nat) (q : Nat) : Charged (List Output) :=
+ match kind with
+ | .clique v=>
+  appendOutputsMeter
+   (appendOutputsMeter (wholeOutputsMeter S T A B ⟨.keep,.single v,.single v⟩ q)
+    (wholeOutputsMeter S T A B ⟨.single v,.keep,.single v⟩ q))
+   (wholeOutputsMeter S T A B ⟨.single v,.single v,.keep⟩ q)
+ | .four v w=>
+  appendOutputsMeter
+   (appendOutputsMeter
+    (appendOutputsMeter (wholeOutputsMeter S T A B ⟨.keep,.single v,.single w⟩ q)
+     (wholeOutputsMeter S T A B ⟨.keep,.joint v w,.keep⟩ q))
+    (wholeOutputsMeter S T A B ⟨.single v,.keep,.single w⟩ q))
+   (wholeOutputsMeter S T A B ⟨.single v,.single w,.keep⟩ q)
+ | .diagonal v w=>appendOutputsMeter
+   (wholeOutputsMeter S T A B ⟨.keep,.joint v w,.keep⟩ q)
+   (wholeOutputsMeter S T A B ⟨.single v,.keep,.single w⟩ q)
+ | .vertex v=>appendOutputsMeter
+   (wholeOutputsMeter S T A B ⟨.single v,.keep,.keep⟩ q)
+   (wholeOutputsMeter S T A B ⟨.keep,.single v,.keep⟩ q)
+ | .side D=>generatedOutputsMeter S (sideTaggedMeter A B D) q
+
+@[simp] theorem kindOutputsMeter_value (kind : Kind) (S T : Tree) (A B : List Nat) (q : Nat) :
+ (kindOutputsMeter kind S T A B q).value=Hard2PaidLocal.outputs kind S T A B q := by
+ cases kind <;> simp [kindOutputsMeter,Hard2PaidLocal.outputs,WholeSourceMass.cliqueOutputs,
+  WholeSourceMass.fourChainOutputs,WholeSourceMass.diagonalOutputs,PairAssembly.vertexPairOutputs,
+  PairAssembly.sideOutputs,WholeSourceMass.wholeOutputs,localColor]
+
+def edgeOutputsMeter (S T : Tree) (A B : List Nat) (e : RMAF.Vertex×RMAF.Vertex) (q : Nat) : Charged (List Output) :=
+ let good:=meterRestrictionAgrees S T A
+ let d:=pairDescendantsMeter T e.2
+ let r:=if good.value then kindOutputsMeter (.side d.value) S T A B q
+  else kindOutputsMeter (.side d.value) S T B A q
+ ⟨r.value,good.work+d.work+r.work+8⟩
+@[simp] theorem edgeOutputsMeter_value (S T : Tree) (A B : List Nat) (e : RMAF.Vertex×RMAF.Vertex) (q : Nat) :
+ (edgeOutputsMeter S T A B e q).value=Hard2PaidLocal.edgeOutputs S T A B e q := by
+ simp only [edgeOutputsMeter,meterRestrictionAgrees_value,pairDescendantsMeter_value,Hard2PaidLocal.edgeOutputs]
+ split <;> simp [kindOutputsMeter_value]
+
+def caseOutputsMeter (S T : Tree) (A B C : List Nat) (q : Nat) : Result→Charged (List Output)
+ | .disjoint=>⟨[],2⟩
+ | .clique v=>kindOutputsMeter (.clique v) S T A B q
+ | .four o v w=>kindOutputsMeter (.four v w) S T (first o A B C) (second o A B C) q
+ | .diagonal o v w=>kindOutputsMeter (.diagonal v w) S T (first o A B C) (second o A B C) q
+ | .pair o (.vertex v)=>kindOutputsMeter (.vertex v) S T (first o A B C) (second o A B C) q
+ | .pair o (.edge e)=>edgeOutputsMeter S T (first o A B C) (second o A B C) e q
+@[simp] theorem caseOutputsMeter_value (S T : Tree) (A B C : List Nat) (q : Nat) (out : Result) :
+ (caseOutputsMeter S T A B C q out).value=Hard2PaidLocal.caseOutputs S T A B C q out := by
+ cases out with
+ | pair o k=>cases k <;> simp [caseOutputsMeter,Hard2PaidLocal.caseOutputs]
+ | _=>simp [caseOutputsMeter,Hard2PaidLocal.caseOutputs]
+
+def actualOutputsMeter (S T : Tree) (c : CherryBranching.Candidate) (q : Nat) (out : Result) : Charged (List Output) :=
+ match c.originalCuts with
+ | [p,r]=>let parents:=hard2ParentsMeter S p r
+          let os:=caseOutputsMeter S T parents.value.1 parents.value.2.1 parents.value.2.2 q out
+          ⟨os.value,parents.work+os.work+8⟩
+ | _=>⟨[],8⟩
+@[simp] theorem actualOutputsMeter_value (S T : Tree) (c : CherryBranching.Candidate) (q : Nat) (out : Result) :
+ (actualOutputsMeter S T c q out).value=Hard2PaidLocal.actualOutputs S T c q out := by
+ simp only [actualOutputsMeter,Hard2PaidLocal.actualOutputs]
+ split <;> simp_all [hard2ParentsMeter_value]
+
+/-- Complete hard-paid source body: literal output GENERATION plus the already
+proved full-mode execution. It is not a source bill for other hard2 handlers. -/
+def hardPaidSource (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+ (T S : Tree) (q : Nat) (c : CherryBranching.Candidate) (out : Result) : SourceExecution :=
+ let os:=actualOutputsMeter S T c q out
+ let r:=fullOutputsSource actual W T S q os.value
+ ⟨r.value,os.work+r.work+4⟩
+theorem hardPaidSource_value (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+ (T S : Tree) (q : Nat) (c : CherryBranching.Candidate) (out : Result) :
+ (hardPaidSource actual W T S q c out).value=Hard2PaidLocal.runHardPaid actual T S q c out := by
+ simp [hardPaidSource,fullOutputsSource_value,Hard2PaidLocal.runHardPaid]
+theorem hardPaidSource_split (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+ (T S : Tree) (q : Nat) (c : CherryBranching.Candidate) (out : Result) :
+ (hardPaidSource actual W T S q c out).work=(hardPaidSource actual (fun _ _ _=>0) T S q c out).work+
+ queryWork W (forestQueries actual
+  (Hard2PaidLocal.runHardPaid actual T S q c out).calls) := by
+ have h:=fullOutputsSource_split actual W T S q (Hard2PaidLocal.actualOutputs S T c q out)
+ simp only [Hard2PaidLocal.runHardPaid] at h ⊢
+ simp only [hardPaidSource,actualOutputsMeter_value]
+ omega
+end OrdinaryDispatch.Hard2SourceWork

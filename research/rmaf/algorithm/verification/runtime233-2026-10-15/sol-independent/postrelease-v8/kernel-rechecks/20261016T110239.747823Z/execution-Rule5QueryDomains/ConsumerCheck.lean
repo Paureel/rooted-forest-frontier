@@ -1,0 +1,7 @@
+import Rule5QueryDomains
+#check Universal233.Rule5ExecutionSource.run_selected_calls_native
+#print axioms Universal233.Rule5ExecutionSource.run_selected_calls_native
+#check Universal233.Rule5ExecutionSource.dispatch_calls_native
+#print axioms Universal233.Rule5ExecutionSource.dispatch_calls_native
+#check Universal233.Rule5ExecutionSource.dispatch_query_domain
+#print axioms Universal233.Rule5ExecutionSource.dispatch_query_domain

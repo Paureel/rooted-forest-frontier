@@ -1,0 +1,189 @@
+{
+  "id": "thesis-runtime-repair-fresh-review-history",
+  "status": "checked",
+  "summary": "Independent reachable counterexample to the unqualified history-to-outside-b application premise; conditional geometric theorem and runtime bound not refuted.",
+  "first_review": {
+    "status": "conditional",
+    "receipt": "research/rmaf/results/thesis-runtime-repair-fresh-review-final.json",
+    "sha256": "895e88583342a699b14c4cf9cec3b00d116fc74762bbe30cde4f9a22e620a11a",
+    "preserved_unchanged": true
+  },
+  "metrics": {
+    "exact_replay_checks": 60,
+    "source_branch_steps": 4,
+    "ordinary_labels": 12,
+    "J_budget": 16,
+    "J_pendants": 3,
+    "J_e_active_roots": 3,
+    "actual_C_count": 2,
+    "original_Lean_statements": 11,
+    "supplemental_Lean_checks": 2,
+    "false_Lean_copy_rejected": 1
+  },
+  "fire": {
+    "failing_step": "unqualified source-history implication to x outside protected sibling b",
+    "scope": "source-reachable physical full-call-tree history with source-derived G1/G3 credit schedule; not a conditional local theorem or runtime-bound counterexample",
+    "instance": {
+      "input_f1": "((((((a,t),d0),c),d),((x,y),h)),((W,X),(Y,B)))",
+      "input_f2": "(((a,((W,(x,X)),(d,(y,Y)))),(t,(c,(d0,B)))),h)",
+      "root": "labelled unary rho",
+      "initial_budget": 20,
+      "branch_sequence": [
+        "C",
+        "A",
+        "C",
+        "A"
+      ],
+      "J_budget": 16,
+      "J_pair": [
+        "x",
+        "y"
+      ],
+      "P": [
+        "a"
+      ],
+      "Q": [],
+      "b": "W,X,Y,x,y",
+      "e_active_roots": [
+        "x",
+        "y",
+        "h"
+      ]
+    },
+    "lhs": 1,
+    "rhs": 0,
+    "residual": 1,
+    "quantity": "indicator that x belongs to b; claimed outside-b conclusion requires zero"
+  },
+  "source_correspondence": {
+    "G1_C_assignment": "p118 sets P={a},Q empty for A2 C; all-three-legal is not required",
+    "G3_sole_child": "p120 resets P,Q on sole A2/A3 child; physical protections persist",
+    "G3_endpoint": "p120 old A2/current A2 two-child endpoint retains a,Q empty",
+    "depth": "p110 physical protected top restricts eligibility independently of P/Q"
+  },
+  "formal_limits": "Explicit numeric trees, selected protected tops and phase-credit schedule; source correspondence is supported by the separate fresh physical replay and source reading, not a universal Lean source-algorithm model.",
+  "actual_C": {
+    "count": 2,
+    "budget": 15,
+    "scope": "full legal children under deterministic allowed tie selection; invocation counted",
+    "tree": {
+      "budget": 15,
+      "rule": {
+        "pair": [
+          "x",
+          "h"
+        ],
+        "case": "A3BC",
+        "pendants": [
+          "X",
+          "W",
+          "Y",
+          "a",
+          "B"
+        ],
+        "branches": [
+          {
+            "name": "A",
+            "cuts": [
+              "x"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": false
+          },
+          {
+            "name": "B",
+            "cuts": [
+              "X",
+              "W",
+              "Y",
+              "a",
+              "B"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": false
+          },
+          {
+            "name": "C",
+            "cuts": [
+              "h"
+            ],
+            "protect2": [
+              "x"
+            ],
+            "protect1": [
+              "x"
+            ],
+            "legal": true
+          }
+        ]
+      },
+      "children": [
+        {
+          "branch": "C",
+          "tree": {
+            "budget": 14,
+            "rule": {
+              "pair": [
+                "x",
+                "a"
+              ],
+              "case": "A3BC",
+              "pendants": [
+                "X",
+                "W",
+                "Y"
+              ],
+              "branches": [
+                {
+                  "name": "A",
+                  "cuts": [
+                    "x"
+                  ],
+                  "protect2": [],
+                  "protect1": [],
+                  "legal": false
+                },
+                {
+                  "name": "B",
+                  "cuts": [
+                    "X",
+                    "W",
+                    "Y"
+                  ],
+                  "protect2": [],
+                  "protect1": [],
+                  "legal": false
+                },
+                {
+                  "name": "C",
+                  "cuts": [
+                    "a"
+                  ],
+                  "protect2": [
+                    "x"
+                  ],
+                  "protect1": [
+                    "x"
+                  ],
+                  "legal": false
+                }
+              ]
+            },
+            "children": [],
+            "count": 1
+          }
+        }
+      ],
+      "count": 2
+    }
+  },
+  "artifacts": [
+    "research/rmaf/thesis_complexity/repair/fresh_review/new_history/ADDENDUM.md",
+    "research/rmaf/results/thesis-runtime-repair-fresh-review-history-replay.json",
+    "research/rmaf/results/thesis-runtime-repair-fresh-review-history-lean.json"
+  ],
+  "input_sha256": "daf26c7595e727f02bf9b013f21d6c87cfa909b1b783a74848d18cb7df6aa85d",
+  "implementation_lineage": "Fresh evaluator authored during first review, copied with only root/output relocation; no parent witness generator or engine imported."
+}

@@ -1,0 +1,70 @@
+import CherryDispatch
+import MassAssembly
+namespace OrdinaryDispatch.DisjointParents
+open RMAF ForestState OutputState Universal233 Universal233.CherryBranching
+open Universal233.BothBad
+abbrev Ordinary := Tree → Tree → Nat → Option OrdinaryDispatch.Forest
+
+/-- Literal original precut charge; callback receives the actual parent blocks. -/
+def query (actual : Ordinary) (T S : Tree) (P : RMAF.Forest) (q : Nat) : Execution :=
+ if P.length-1≤q then
+  let r := ordinaryExecution (GenericForest.solve actual) T S P (q-(P.length-1))
+  ⟨checked T S q r.answer,r.calls⟩
+ else ⟨none,[]⟩
+
+def run (actual : Ordinary) (T S : Tree) (a b q : Nat) : Option RMAF.Forest :=
+ choose (runChildren actual T S q [singletonChild S a,singletonChild S b])
+   (query actual T S (pendantPartition S a b) q).answer
+
+theorem query_sound (actual : Ordinary) (T S : Tree) (P F : RMAF.Forest) (q : Nat)
+ (h : (query actual T S P q).answer=some F) : agreement T S F=true ∧ F.length-1≤q := by
+ unfold query at h
+ split at h
+ · exact checked_sound _ _ _ _ _ h |>.2
+ · simp at h
+
+theorem query_calls_decrease (actual : Ordinary) (T S : Tree) (P : RMAF.Forest) (q : Nat)
+ (positive : 1≤P.length-1) (a : Call) (mem : a∈(query actual T S P q).calls) : a.budget<q := by
+ unfold query at mem
+ split at mem
+ · have h := ordinary_budget_cap (GenericForest.solve actual) T S P (q-(P.length-1)) a mem
+   omega
+ · simp at mem
+
+theorem ordinary_mass_bad (solve : ForestSolver) (T S : Tree) (P : RMAF.Forest)
+ (b : Nat) (c : Rat) (hc : 2≤c) (bad : 2≤MafScheduler.badParents T S P) :
+ traceMass c b (ordinaryExecution solve T S P b).calls≤c^(-1 : Int) := by
+ apply Rat.le_trans (ordinary_mass_le_calls solve T S P b c hc)
+ cases hp : MafScheduler.prepare T S P with
+ | none =>
+  simp only [MafScheduler.calls,MafScheduler.attempt,hp,Option.map_none,Option.getD_none,
+   PaidQueries.actualQueryMass,List.map_nil,List.sum_nil]
+  exact Rat.le_of_lt (Rat.zpow_pos (by grind : 0<c))
+ | some js =>
+  have count := prepare_bad T S P js hp
+  have h := PaidQueries.actual_paid_query_mass
+    (MafScheduler.recursive T S (asTree solve)) b js (by omega) c hc
+  simpa [MafScheduler.calls,MafScheduler.attempt,hp] using h
+
+theorem query_mass (actual : Ordinary) (T S : Tree) (P : RMAF.Forest) (q : Nat)
+ (three : P.length=3) (bad : 2≤MafScheduler.badParents T S P) (c : Rat) (hc : 2≤c) :
+ traceMass c q (query actual T S P q).calls≤c^(-3 : Int) := by
+ unfold query
+ split
+ · rename_i affordable
+   have paid : P.length-1=2 := by omega
+   have shift := traceMass_shift c hc q (q-2) 2
+    (ordinaryExecution (GenericForest.solve actual) T S P (q-2)).calls
+    (by omega) (ordinary_budget_cap (GenericForest.solve actual) T S P (q-2))
+   simp only [paid]
+   rw [shift]
+   have h := Rat.mul_le_mul_of_nonneg_left
+    (ordinary_mass_bad (GenericForest.solve actual) T S P (q-2) c hc bad)
+    (Rat.le_of_lt (Rat.zpow_pos (a:=c) (n:= -(2 : Int)) (by grind : 0<c)))
+   have eq : c^(-(2 : Int))*c^(-1 : Int)=c^(-3 : Int) := by
+    rw [←Rat.zpow_add (Rat.ne_of_gt (by grind : 0<c))]
+    rfl
+   exact h.trans_eq eq
+ · simp only [traceMass,PaidQueries.actualQueryMass,List.map_nil,List.sum_nil]
+   exact Rat.le_of_lt (Rat.zpow_pos (by grind : 0<c))
+end OrdinaryDispatch.DisjointParents

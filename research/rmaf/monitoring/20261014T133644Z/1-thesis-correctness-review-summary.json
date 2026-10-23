@@ -1,0 +1,179 @@
+{
+  "id": "thesis-correctness-review",
+  "status": "open",
+  "verdict": "Narrow executable and Lean results corroborated; two concrete proof-interface/domain findings retained.",
+  "universal_correctness": "OPEN",
+  "algorithm_decision_counterexample_found": false,
+  "independent_frozen_controls": 14,
+  "independent_cut_partition_pairs": 468,
+  "independent_A2BC_exchange_premises": 288,
+  "candidate_pairs": 534,
+  "candidate_budget_decisions": 2507,
+  "candidate_mismatches": 0,
+  "fresh_sample_seed": 6142026,
+  "all_n4_pairs": 225,
+  "sample_n5": 150,
+  "sample_n6": 150,
+  "author_selected_witness_pairs": 9,
+  "candidate_cases_reached": [
+    "2B",
+    "A2BC",
+    "A2BC-protected-c",
+    "A3BC",
+    "AC",
+    "B",
+    "BCY",
+    "RB",
+    "RB*"
+  ],
+  "actual_state_audit": {
+    "states": 120,
+    "normalization_checks": 50,
+    "root_safe_checks": 0,
+    "raw_cover_counterexamples": 21,
+    "bcy_raw_cover_counterexamples": 0,
+    "second_2B_normalization_root_parent_absent": 0,
+    "normalization_failures": 0
+  },
+  "source_fixture_reconstruction": {
+    "author_controls": [
+      {
+        "id": "identity-null",
+        "expected": 0,
+        "fresh_partition_cuts": 0
+      },
+      {
+        "id": "single-leaf-boundary",
+        "expected": 0,
+        "fresh_partition_cuts": 0
+      },
+      {
+        "id": "one-spr-triple",
+        "expected": 1,
+        "fresh_partition_cuts": 1
+      },
+      {
+        "id": "incompatible-quartet",
+        "expected": 2,
+        "fresh_partition_cuts": 2
+      }
+    ],
+    "root_safe_fixture": {
+      "source": "SEMANTICS.md root-safe normalization fixture",
+      "original_cut_AF": true,
+      "root_safe_normalized_AF": true,
+      "LCA_parent_absent": true
+    },
+    "Lemma6_3": {
+      "labels": 2,
+      "target_components": 1,
+      "triples": 0,
+      "component_overlap": false,
+      "forest_refinement": false
+    }
+  },
+  "lean": {
+    "original_theorems": 7,
+    "original_axiom_union": [
+      "propext",
+      "Quot.sound"
+    ],
+    "true_twin_passed": true,
+    "false_twin_rejected_for_mathematical_falsity": true,
+    "review_existential_repair_theorems": 3,
+    "repair_axioms": [],
+    "replays": [
+      {
+        "file": "ProtectedBranch.lean",
+        "exit_code": 0,
+        "log": "research/rmaf/thesis_correctness_review/lean-isolated/ProtectedBranch-replay.log"
+      },
+      {
+        "file": "PositiveTwin.lean",
+        "exit_code": 0,
+        "log": "research/rmaf/thesis_correctness_review/lean-isolated/PositiveTwin-replay.log"
+      },
+      {
+        "file": "OriginalNegativeControl.lean",
+        "exit_code": 1,
+        "log": "research/rmaf/thesis_correctness_review/lean-isolated/OriginalNegativeControl-replay.log"
+      },
+      {
+        "file": "ExistentialRepair.lean",
+        "exit_code": 0,
+        "log": "research/rmaf/thesis_correctness_review/lean-isolated/ExistentialRepair-replay.log"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "id": "RAW-COVER",
+      "severity": "high-for-universal-proof-interface",
+      "status": "refuted_as_raw_optimum_coverage",
+      "claim": "Every minimum original-edge cutset contains A, BB, or C",
+      "counterexample_file": "research/rmaf/thesis_correctness_review/cover-adversary.json",
+      "consequence": "Use existential branch coverage plus child-membership exclusion, or justify a normalized optimal family. Original conditional Lean theorems remain valid."
+    },
+    {
+      "id": "NORMALIZATION-DOMAIN",
+      "severity": "medium",
+      "status": "refuted_on_literal_standalone_domain",
+      "claim": "Root-safe Lemma6.5 follows from its printed standalone hypotheses alone",
+      "counterexample_file": "research/rmaf/thesis_correctness_review/normalization-domain.json",
+      "consequence": "Carry active F2-to-F1 component containment / AF compatibility. Witness violates that active invariant and is not an algorithm counterexample."
+    }
+  ],
+  "remaining_obligations": [
+    "Root-safe normalization AF preservation for valid active states",
+    "Original-edge and optimum transport through suppression and common-subtree contraction",
+    "Source structural branch coverage and a correct quantifier interface",
+    "Marked-state induction or coupling for protection-dependent selection and order",
+    "Finishing, termination, and full soundness/completeness composition"
+  ],
+  "limits": [
+    "Only finite exact graph checks; no universal graph theorem proved",
+    "Root-safe formula tested on constructed fixtures; no root-normalization premise occurred in 120 sampled snapshots",
+    "Original 14250-pair census receipts and hashes inspected, not rerun in full by reviewer",
+    "No complexity, convention transfer, or novelty claim",
+    "No complexity/transfer agent work read",
+    "Toolkit-wide validation not rerun because upstream toolkit code was unchanged"
+  ],
+  "author_receipts_inspected": [
+    {
+      "file": "research/rmaf/results/thesis-correctness-sweep-n4-limit0-seed613.json",
+      "pairs": 225,
+      "hashes_match": true,
+      "meaning": "author receipt inspected, not independently rerun in full"
+    },
+    {
+      "file": "research/rmaf/results/thesis-correctness-sweep-n5-limit0-seed613.json",
+      "pairs": 11025,
+      "hashes_match": true,
+      "meaning": "author receipt inspected, not independently rerun in full"
+    },
+    {
+      "file": "research/rmaf/results/thesis-correctness-sweep-n6-limit3000-seed613.json",
+      "pairs": 3000,
+      "hashes_match": true,
+      "meaning": "author receipt inspected, not independently rerun in full"
+    }
+  ],
+  "author_source_hashes_match": {
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/algorithm.py": true,
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/reference.py": true,
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/replay.py": true,
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/local_obligations.py": true,
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/root_normalization_witness.py": true,
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/controls.json": true,
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/ProtectedBranch.lean": true,
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/NegativeControl.lean": true,
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/SEMANTICS.md": true,
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/source-read-ledger.json": true
+  },
+  "provenance": {
+    "freeze": "research/rmaf/thesis_correctness_review/independent-freeze.sha256",
+    "journal": "research/rmaf/thesis_correctness_review/WORKFILE.md",
+    "independent_source_sha256": "6d433a8be8bbdb8bb1adf3deeb07fb7d47ef48530fd835a577f246ddde02ad49",
+    "candidate_sha256": "a4e2e459e772e043093ebd25cfb0f4b9c87bc3e78abd061753069f89543672cf"
+  }
+}

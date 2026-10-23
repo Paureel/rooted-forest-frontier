@@ -1,0 +1,52 @@
+import PersistentMembership
+namespace GenericForest.BinaryProvider
+open Universal233.WholeSourceWork GenericForest.ScalarBits GenericForest.CheckCorrespondence
+
+/-- The finite counter is kept as bits across every recursive call. The one-bit
+increment is a literal, and allocation follows the supplied capacity spine. -/
+def countLabel (C : Capacity) (x : Label) : Block→Charged Bits
+ | []=>zeroRegister C
+ | y::ys=>let r:=countLabel C x ys;let e:=copiedEqual x y
+           let a:=addRegister C r.value (if e.value then [true] else [])
+           ⟨a.value,r.work+e.work+a.work+4⟩
+
+@[simp] theorem countLabel_length (C : Capacity) (x : Label) (L : Block) :
+ (countLabel C x L).value.length≤C.length := by
+ cases L with
+ | nil=>simp [countLabel]
+ | cons y ys=>exact addRegister_length C _ _
+
+theorem countLabel_projects (W : Nat) (C : Capacity) (x : Label) (L : Block)
+ (cw : C.length≤W) (xw : LabelWidth W x) (cap : BlockWidth W L)
+ (fits : L.length<2^C.length) :
+ Projects W decode (countLabel C x L) (meterCount (labelValue x) (blockValue L)) := by
+ induction L with
+ | nil=>
+  simp only [Projects,countLabel,zeroRegister_value,decode_replicate_false,blockValue,List.map_nil,meterCount,zeroRegister_work]
+  constructor
+  · trivial
+  · unfold ScalarBits.beta;omega
+ | cons y ys ih=>
+  have tailFit : ys.length<2^C.length:=by simpa only [List.length_cons] using Nat.lt_of_succ_lt fits
+  have r:=ih (fun z hz=>cap z (by simp [hz])) tailFit
+  have rv : decode (countLabel C x ys).value=(blockValue ys).count (labelValue x):=r.1.trans (meterCount_value _ _)
+  have countLen : (blockValue ys).count (labelValue x)≤ys.length:=by simpa using (List.count_le_length (l:=blockValue ys) (a:=labelValue x))
+  have pos : 0<C.length:=by
+   by_cases h : C.length=0
+   · simp [h] at fits
+   · omega
+  have incLen : (if (copiedEqual x y).value then [true] else []).length≤C.length:=by split <;> simp <;> omega
+  have a:=addRegister_work C (countLabel C x ys).value (if (copiedEqual x y).value then [true] else []) (countLabel_length C x ys) incLen
+  have sumFit : decode (countLabel C x ys).value+decode (if (copiedEqual x y).value then [true] else [])<2^C.length:=by
+   rw [rv];split <;> simp only [decode,bit,Bool.true_eq,ite_true,Nat.mul_zero,Nat.add_zero,List.length_cons] at fits ⊢ <;> omega
+  have av:=addRegister_value C (countLabel C x ys).value (if (copiedEqual x y).value then [true] else []) sumFit
+  have e:=copiedEqual_work W x y xw (cap y (by simp))
+  have ev : (copiedEqual x y).value=(labelValue x==labelValue y):=copiedEqual_value x y
+  simp only [ev] at av
+  simp only [Projects,blockValue] at r ⊢
+  simp only [countLabel,blockValue,List.map_cons,meterCount]
+  constructor
+  · rw [ev,av,r.1];cases h : labelValue x==labelValue y <;> simp [h,decode,bit] <;> omega
+  · simp only [Nat.mul_add,Nat.mul_one] at r ⊢
+    unfold ScalarBits.beta at r ⊢;omega
+end GenericForest.BinaryProvider

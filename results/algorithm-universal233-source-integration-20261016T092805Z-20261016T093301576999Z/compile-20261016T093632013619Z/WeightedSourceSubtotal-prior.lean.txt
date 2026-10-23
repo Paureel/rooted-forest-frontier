@@ -1,0 +1,62 @@
+import PrefixSourceWork
+namespace OrdinaryDispatch.FullSourceWork
+open RMAF ForestState Universal233
+open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion
+
+/-- An explicit Nat source subtotal over the complete actual ordinary tree.
+The caller chooses a proved local source debit, rather than an assumed full
+runtime fee. Every actual ordinary invocation contributes its own local bill. -/
+def sourceSubtotal (localDebit : OrdinaryWork) (q : Nat) (T S : Tree) : Nat :=
+ localDebit T S q+
+ (((ordinaryStepTrace FastOrdinary.solve q T S).queries.attach).map fun pb=>
+  sourceSubtotal localDebit pb.val.2 pb.val.1.1 pb.val.1.2).sum
+termination_by (q,(leaves T).length)
+decreasing_by exact ordinaryStepTrace_lex FastOrdinary.solve q T S _ _ pb.property
+
+theorem sourceSubtotal_eq (localDebit : OrdinaryWork) (q : Nat) (T S : Tree) :
+ sourceSubtotal localDebit q T S=localDebit T S q+
+ queryWork (fun t s r=>sourceSubtotal localDebit r t s) (ordinaryStepTrace FastOrdinary.solve q T S).queries := by
+ rw [sourceSubtotal.eq_def]
+ unfold queryWork
+ exact congrArg (fun L : List Nat=>localDebit T S q+L.sum)
+  (List.attach_map_val (l:=(ordinaryStepTrace FastOrdinary.solve q T S).queries)
+   (f:=fun pb : Query=>sourceSubtotal localDebit pb.2 pb.1.1 pb.1.2))
+
+/-- Correct weighted composition. A polynomial*c^r local forest bill is summed
+against the c^r reservoir, so no second exponential factor is introduced. -/
+theorem sourceSubtotal_weighted_aux (localDebit : OrdinaryWork) (N Q : Nat) (C : Rat)
+ (localBound : ∀T S r,DepthOne.proper T S=true→(leaves T).length≤N→r≤Q→
+  (localDebit T S r:Rat)≤C*Rule5ActualTrace.base^r) (q n : Nat) : ∀T S : Tree,
+ (leaves T).length=n→n≤N→q≤Q→DepthOne.proper T S=true→
+ (sourceSubtotal localDebit q T S:Rat)≤C*budgetTreeWork q T S := by
+ induction q using Nat.strongRecOn generalizing n with
+ | ind q qih=>
+  induction n using Nat.strongRecOn with
+  | ind n nih=>
+   intro T S hn size budget hp
+   let xs:=(ordinaryStepTrace FastOrdinary.solve q T S).queries
+   have point (pb : Query) (mem : pb∈xs) :
+    (sourceSubtotal localDebit pb.2 pb.1.1 pb.1.2:Rat)≤C*budgetTreeWork pb.2 pb.1.1 pb.1.2:=by
+    have b:=ordinaryStepTrace_bounds FastOrdinary.solve q hp pb.1 pb.2 mem
+    have childsize:(leaves pb.1.1).length≤N:=by omega
+    have childbudget:pb.2≤Q:=by omega
+    by_cases eq:pb.2=q
+    · have less:(leaves pb.1.1).length<n:=by have h:=b.2.2.2.2 eq;omega
+      simpa only [eq] using nih (leaves pb.1.1).length less pb.1.1 pb.1.2 rfl childsize budget b.2.1
+    · exact qih pb.2 (by omega) (leaves pb.1.1).length pb.1.1 pb.1.2 rfl childsize childbudget b.2.1
+   have sum:=GenericForest.rat_sum_map_le xs
+    (fun pb=>(sourceSubtotal localDebit pb.2 pb.1.1 pb.1.2:Rat))
+    (fun pb=>C*budgetTreeWork pb.2 pb.1.1 pb.1.2) point
+   rw [GenericForest.rat_sum_mul] at sum
+   rw [sourceSubtotal_eq,Rat.natCast_add,queryWork_cast,budgetTreeWork_eq,Rat.mul_add]
+   exact Rat.add_le_add (localBound T S q hp (by omega) budget) sum
+
+theorem sourceSubtotal_bound (localDebit : OrdinaryWork) (N Q : Nat) (C : Rat) (positive : 0≤C)
+ (localBound : ∀T S r,DepthOne.proper T S=true→(leaves T).length≤N→r≤Q→
+  (localDebit T S r:Rat)≤C*Rule5ActualTrace.base^r)
+ (q : Nat) (T S : Tree) (size : (leaves T).length≤N) (budget : q≤Q) (hp : DepthOne.proper T S=true) :
+ (sourceSubtotal localDebit q T S:Rat)≤C*callNodeFactor*((leaves T).length+1:Nat)*Rule5ActualTrace.base^q := by
+ have sum:=sourceSubtotal_weighted_aux localDebit N Q C localBound q (leaves T).length T S rfl size budget hp
+ have scale:=Rat.mul_le_mul_of_nonneg_left (budgetTreeWork_bound q T S hp) positive
+ exact Rat.le_trans sum (by simpa only [Rat.mul_assoc] using scale)
+end OrdinaryDispatch.FullSourceWork

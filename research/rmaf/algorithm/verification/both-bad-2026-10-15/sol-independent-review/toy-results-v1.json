@@ -1,0 +1,179 @@
+{
+  "audit_output_sha256": {
+    "All": "965672510e4f147b0f4b9a2fd311a2c61bbadfc7e44bf1a0fc3170979bbc0990",
+    "Good": "c66004a527a9d0f881e794f27a922f335d1a75e7723997a1e7c58d24db6b250f",
+    "Private": "5fb74aaa342ea078c1280eb52a2ced18e18ccbfab131ab4f1b0c06f1e5f531cb",
+    "Unused": "753ba57d820f925ae94d044e3233f5ca73f0c4f78e316109ce4f1ef14872c85d"
+  },
+  "audit_sources": {
+    "AuditAll": "18169355252c92c8380bc010472c2bcadec9c8546e633cd41fafda29fa6c3ff4",
+    "AuditGood": "149f7493f6a3ea7381e50f28e60fe691d398de74157e7fd204a8d75be4ca2a53",
+    "AuditPrivate": "0218523bb5f222e2d1ea2e93775854d4f5cfd197bb2378cda260011db76008cf",
+    "AuditUnused": "b1bf5f6a95c783f6e20c338e0efdebe2995c6741553551ea4a20ab673f0a3576"
+  },
+  "builds": [
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "module": "ToyGood",
+      "seconds": 0.3580114999967918,
+      "source_sha256": "162a1cd3b6cc8aa0b9cadf8e4b0f60b693e2a0b30408aeeed81bd7f300f651f2"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "module": "ToyGenerated",
+      "seconds": 0.33375454199995147,
+      "source_sha256": "4ee4e257fc9798b807b6f5eca1c6e6fbeb3b11f7b58c84055bb3b95de5af5d6f"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "module": "ToyUnused",
+      "seconds": 0.33049633300106507,
+      "source_sha256": "a7d92cbb16492bae5c7e6dfe2900a3742dbf84baed33bfbe4bdb9595e2ee74bb"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "module": "ToyPrivate",
+      "seconds": 0.29474108300200896,
+      "source_sha256": "04676f02e0cc4a3a7559dd65f4235b8a21876eb6c5cacadf6cb4269f55876cf1"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "module": "OriginAudit",
+      "seconds": 0.67163241599701,
+      "source_sha256": "72f5860c366434452b427831199692c0b19fc3d0da17bb8f57a388f121bc7b16"
+    },
+    {
+      "exit": 1,
+      "expected_exit": 1,
+      "module": "ToyFalse",
+      "seconds": 0.3009630000015022,
+      "source_sha256": "ac1566eae2e3a94d6ebc04d9a07e98e16df40fbec03a1644e186d04406d71c99"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "module": "AuditGood",
+      "seconds": 4.209186874999432,
+      "source_sha256": "149f7493f6a3ea7381e50f28e60fe691d398de74157e7fd204a8d75be4ca2a53"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "module": "AuditUnused",
+      "seconds": 4.183991665999201,
+      "source_sha256": "b1bf5f6a95c783f6e20c338e0efdebe2995c6741553551ea4a20ab673f0a3576"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "module": "AuditPrivate",
+      "seconds": 4.192697957998462,
+      "source_sha256": "0218523bb5f222e2d1ea2e93775854d4f5cfd197bb2378cda260011db76008cf"
+    },
+    {
+      "exit": 0,
+      "expected_exit": 0,
+      "module": "AuditAll",
+      "seconds": 4.176190082998801,
+      "source_sha256": "18169355252c92c8380bc010472c2bcadec9c8546e633cd41fafda29fa6c3ff4"
+    }
+  ],
+  "clean_origin_count": 28,
+  "generated_origin_seen": "ToyGenerated.Cell.rec",
+  "plants": [
+    {
+      "caught": [
+        "origin-bijection"
+      ],
+      "name": "missing-origin"
+    },
+    {
+      "caught": [
+        "duplicate-origin"
+      ],
+      "name": "duplicate-origin"
+    },
+    {
+      "caught": [
+        "exact-record:ToyGenerated.Cell.cell.inj"
+      ],
+      "name": "wrong-origin"
+    },
+    {
+      "caught": [
+        "origin-bijection"
+      ],
+      "name": "missing-private"
+    },
+    {
+      "caught": [
+        "origin-bijection"
+      ],
+      "name": "missing-generated"
+    },
+    {
+      "caught": [
+        "sources"
+      ],
+      "name": "wrong-source"
+    },
+    {
+      "caught": [
+        "imports"
+      ],
+      "name": "wrong-import"
+    },
+    {
+      "caught": [
+        "exact-record:ToyGenerated.Cell.cell.inj"
+      ],
+      "name": "wrong-type"
+    },
+    {
+      "caught": [
+        "exact-record:ToyGenerated.Cell.cell.inj"
+      ],
+      "name": "wrong-body"
+    },
+    {
+      "caught": [
+        "origin-bijection"
+      ],
+      "name": "hidden-origin-axiom"
+    }
+  ],
+  "private_origin_seen": "_private.ToyGood.0.ToyGood.privateSeed",
+  "rejections": {
+    "All": [
+      "_private.ToyPrivate.0.ToyPrivate.producer:_private.ToyPrivate.0.ToyPrivate.privateCustom",
+      "_private.ToyPrivate.0.ToyPrivate.privateCustom:_private.ToyPrivate.0.ToyPrivate.privateCustom",
+      "unused-or-used-origin-axiom:_private.ToyPrivate.0.ToyPrivate.privateCustom",
+      "ToyUnused.unusedCustom:ToyUnused.unusedCustom",
+      "unused-or-used-origin-axiom:ToyUnused.unusedCustom"
+    ],
+    "Good": [],
+    "Private": [
+      "_private.ToyPrivate.0.ToyPrivate.producer:_private.ToyPrivate.0.ToyPrivate.privateCustom",
+      "_private.ToyPrivate.0.ToyPrivate.privateCustom:_private.ToyPrivate.0.ToyPrivate.privateCustom",
+      "unused-or-used-origin-axiom:_private.ToyPrivate.0.ToyPrivate.privateCustom"
+    ],
+    "Unused": [
+      "ToyUnused.unusedCustom:ToyUnused.unusedCustom",
+      "unused-or-used-origin-axiom:ToyUnused.unusedCustom"
+    ]
+  },
+  "source_pins": {
+    "OriginAudit.lean": "72f5860c366434452b427831199692c0b19fc3d0da17bb8f57a388f121bc7b16",
+    "ToyFalse.lean": "ac1566eae2e3a94d6ebc04d9a07e98e16df40fbec03a1644e186d04406d71c99",
+    "ToyGenerated.lean": "4ee4e257fc9798b807b6f5eca1c6e6fbeb3b11f7b58c84055bb3b95de5af5d6f",
+    "ToyGood.lean": "162a1cd3b6cc8aa0b9cadf8e4b0f60b693e2a0b30408aeeed81bd7f300f651f2",
+    "ToyPrivate.lean": "04676f02e0cc4a3a7559dd65f4235b8a21876eb6c5cacadf6cb4269f55876cf1",
+    "ToyUnused.lean": "a7d92cbb16492bae5c7e6dfe2900a3742dbf84baed33bfbe4bdb9595e2ee74bb"
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,533 @@
+{
+  "version": 1,
+  "scope": "Completed released components only; all global acceptance OPEN",
+  "new_blind_credit": 0,
+  "rows": [
+    {
+      "obligation": "same-budget common recursion",
+      "status": "SOURCE_GUARD_REVIEWED",
+      "consumer": "FastOrdinary.solve common branch",
+      "printed_hypotheses": [
+        "actual early result common; runtime strict target-leaf guard"
+      ],
+      "reviewed_conclusion": "One recursive same-q call has strictly fewer target leaves; lexicographic termination measure is literal.",
+      "remaining": "Bound accumulated local work over the complete contraction chain.",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/fast_ordinary_recursion/FastSolve.lean",
+          "lines": [
+            16,
+            37
+          ],
+          "sha256": "5e6f9a586a7029648e774f34eae8d0fed9451976326d3b59f5d78c0741e8ed31"
+        }
+      ]
+    },
+    {
+      "obligation": "paid ordinary recursion",
+      "status": "SOURCE_GUARD_REVIEWED",
+      "consumer": "FastOrdinary.solve paid callback",
+      "printed_hypotheses": [
+        "r<q runtime test"
+      ],
+      "reviewed_conclusion": "Guard recurses only for strictly smaller budget.",
+      "remaining": "Source work for guards/refusals and full callback cost still must be bound.",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/fast_ordinary_recursion/FastSolve.lean",
+          "lines": [
+            16,
+            31
+          ],
+          "sha256": "5e6f9a586a7029648e774f34eae8d0fed9451976326d3b59f5d78c0741e8ed31"
+        }
+      ]
+    },
+    {
+      "obligation": "forest value/bill/frontier guards",
+      "status": "SOURCE_RECONSTRUCTED",
+      "consumer": "GenericForest.solve/sourceWork/frontier",
+      "printed_hypotheses": [
+        "Accounting identity itself all-input; proper forest needed for mass/size"
+      ],
+      "reviewed_conclusion": "Singleton, overlap, disjoint and inactive guards align; overlap uses all raw occurrences.",
+      "remaining": "Primitive source-to-bill/compiled execution correspondence remains qualified.",
+      "sources": [
+        {
+          "path": "results/algorithm-universal233-forest-frontier-root-20261015T203110Z/ForestProgram.lean",
+          "lines": [
+            24,
+            40
+          ],
+          "sha256": "b1da51b6a6b800453bead7672331dd061a7f7516441d0d6349a90f6038260bcf"
+        },
+        {
+          "path": "results/algorithm-universal233-forest-frontier-root-20261015T203110Z/ForestWork.lean",
+          "lines": [
+            37,
+            74
+          ],
+          "sha256": "0e913019fa489b8e57b9f5038020dc00d4ebee06e9fbe568c1712365fd87c1d7"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_frontier_work/MeterErase.lean",
+          "lines": [
+            33,
+            69
+          ],
+          "sha256": "be275947eef30389acd38f5bf3dc0bbb9def545ce5b96756e02a2357fbee7f54"
+        }
+      ]
+    },
+    {
+      "obligation": "failed and duplicate schedule calls",
+      "status": "SOURCE_AND_LITERAL_CONTROL_RECONSTRUCTED",
+      "consumer": "meterRun/meterSchedule",
+      "printed_hypotheses": [
+        "Literal callback values and allocated budget"
+      ],
+      "reviewed_conclusion": "Failure is recorded before stopping; each successful duplicate occurrence remains; unexecuted suffix omitted. Own literal run gives caller29+recursive35=64 with calls X,X,F.",
+      "remaining": "No full machine execution identity inferred.",
+      "sources": [
+        {
+          "path": "results/algorithm-universal233-forest-frontier-root-20261015T203110Z/QueryWork.lean",
+          "lines": [
+            17,
+            45
+          ],
+          "sha256": "e99717188afc825734511e07e70b7a20cf5dfe37e6c3c30a51e12b009316a3d9"
+        },
+        {
+          "path": "results/algorithm-universal233-forest-frontier-root-20261015T203110Z/QueryWork.lean",
+          "lines": [
+            73,
+            80
+          ],
+          "sha256": "e99717188afc825734511e07e70b7a20cf5dfe37e6c3c30a51e12b009316a3d9"
+        }
+      ]
+    },
+    {
+      "obligation": "ordinary coefficient paid once",
+      "status": "SELECTED_CONSUMER_KERNEL_RECHECKED",
+      "consumer": "source_work_bound_separated",
+      "printed_hypotheses": [
+        "c>2; K,D>=0; LocalOverheadBound with zero W; OrdinaryBillBound; proper forest; q<=Q"
+      ],
+      "reviewed_conclusion": "Exact sourceWork split plus frontier mass bounds D once; geometric factor applies only to zero-W overhead.",
+      "remaining": "Actual ordinary W bound is a supplied premise.",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_frontier_work/SourceSplit.lean",
+          "lines": [
+            72,
+            125
+          ],
+          "sha256": "ed9172255c3ddbff034795615e41e07b211a7f7c2d6972ee477276887b508bbe"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_frontier_work/OverheadBound.lean",
+          "lines": [
+            81,
+            103
+          ],
+          "sha256": "8db863fc899c2ede20f92a06bca7ec43584174709a84095d08f684466e362430"
+        }
+      ]
+    },
+    {
+      "obligation": "finite query caps",
+      "status": "SELECTED_CONSUMER_KERNEL_RECHECKED",
+      "consumer": "source_work_bound_size_capped",
+      "printed_hypotheses": [
+        "proper forest; target count<=N; q<=Q; size-capped proper-pair callback bill; c>2; D,K>=0"
+      ],
+      "reviewed_conclusion": "Both queried tree leaf counts<=N and r<=Q discharge finite caps; singleton need not strictly shrink.",
+      "remaining": "When used by main, instantiate outer forest properness and strictly paid outer budget.",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_overhead_polynomial/BoundedFrontier.lean",
+          "lines": [
+            15,
+            48
+          ],
+          "sha256": "7164e3e170fc06ffded0f3f4f5298926562f908880c955c2dd89f881a6f7e0f1"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_frontier_work/FrontierBasics.lean",
+          "lines": [
+            29,
+            70
+          ],
+          "sha256": "bba24773f121d59ea92d6db4849111cc0a8cfea54938372428b3383190a467c4"
+        }
+      ]
+    },
+    {
+      "obligation": "printed polynomial forest overhead",
+      "status": "SELECTED_CONSUMER_KERNEL_RECHECKED",
+      "consumer": "source_work_monomial_size_capped",
+      "printed_hypotheses": [
+        "c>2; D>=0; target count<=N; proper forest; q<=Q; SizeCappedOrdinaryBillBound W N Q c D"
+      ],
+      "reviewed_conclusion": "K=2^50*(N+Q+2)^8 bounds every printed zero-W bill term. Caller bound is (D+K/(1-2/c))*c^q.",
+      "remaining": "This is not a proof that inspectionBill covers actual arbitrary callback payload traversal or scalar bit work.",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_local_overhead_polynomial/LocalBill.lean",
+          "lines": [
+            35,
+            101
+          ],
+          "sha256": "343733c96fa7912d1ace41b2d4640bd196c4fd0bc53d2a2f7f9003ab53e61c44"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_local_overhead_polynomial/Monomial.lean",
+          "lines": [
+            100,
+            133
+          ],
+          "sha256": "8833610f28f2dd0fbecb8f1b1e05a169c22af8024df60fd22179bcf2d47e74d3"
+        },
+        {
+          "path": "results/algorithm-universal233-forest-frontier-root-20261015T203110Z/ForestWork.lean",
+          "lines": [
+            11,
+            16
+          ],
+          "sha256": "0e913019fa489b8e57b9f5038020dc00d4ebee06e9fbe568c1712365fd87c1d7"
+        }
+      ]
+    },
+    {
+      "obligation": "nonRule5 hard2 mass",
+      "status": "SELECTED_CONSUMER_KERNEL_RECHECKED",
+      "consumer": "combined_mass/disjointExecution_mass",
+      "printed_hypotheses": [
+        "proper ordinary pair; actual hard2 selector; actual runHard2 result for paid route; notAll/notTwo guards for disjoint route; 2<=c<=3"
+      ],
+      "reviewed_conclusion": "Literal outer forest-call trace mass<=2/c+4/c^4. Paid calls debit>=2; combined outer budgets strictly decrease.",
+      "remaining": "Flatten into ordinary callbacks using properness of each actual outer forest query and forest frontier mass; do not identify BothBad.Call with an ordinary pair query.",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/hard2_trace_bound/PaidTraceBound.lean",
+          "lines": [
+            37,
+            91
+          ],
+          "sha256": "cf131af74ed85cdcdcb7153e4935d0d0288e0f9bfb311861693870b984471ac3"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/hard2_trace_bound/DisjointTrace.lean",
+          "lines": [
+            15,
+            36
+          ],
+          "sha256": "47ef4ec04c1d0f92e6bca566fcf9f610213bdd30161184862ec0514f962c34cf"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/hard2_trace_bound/TraceProgress.lean",
+          "lines": [
+            32,
+            68
+          ],
+          "sha256": "62ad5c2ce07548910763df935b9f16d8437c53e049cddf3498f41c7840205516"
+        }
+      ]
+    },
+    {
+      "obligation": "nonRule5 target size",
+      "status": "SELECTED_CONSUMER_KERNEL_RECHECKED",
+      "consumer": "combined_query_potential/disjoint_query_potential",
+      "printed_hypotheses": [
+        "Same actual selector/proper/result context; actual outer-call membership"
+      ],
+      "reviewed_conclusion": "TargetBound means target label support and count only; targetCount+2*r+2<=oldCount+2*q.",
+      "remaining": "Source forest properness is a separate consuming hypothesis, not entailed by TargetBound alone.",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/hard2_query_size/TargetBounds.lean",
+          "lines": [
+            5,
+            18
+          ],
+          "sha256": "33c88c94eaac8b0e5740e46630dc8fec82a42c9a51fa268169c1bc404bbfb60c"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/hard2_query_size/PaidTargets.lean",
+          "lines": [
+            59,
+            95
+          ],
+          "sha256": "86c2e375d988fc1300f520e2eb1277292e78ee128d5b03b30d116173b693953f"
+        }
+      ]
+    },
+    {
+      "obligation": "direct common calls",
+      "status": "SOURCE_RECONSTRUCTED",
+      "consumer": "selectedTrace common.one/commonTrace",
+      "printed_hypotheses": [
+        "Actual builder/outside guard path; jobs list retained"
+      ],
+      "reviewed_conclusion": "Both direct jobs are mapped before reconstruction; failed first call retains second execution. Calls.direct maps to directQueries.",
+      "remaining": "Local builder/outside/reconstruction work and returned payload costs stay open.",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_actual_trace/CommonTrace.lean",
+          "lines": [
+            25,
+            40
+          ],
+          "sha256": "0622c9497c0fe2b3754acde061a26bd361b6372c1ee0b0fa4db63d7702ade5b7"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_actual_trace/SelectedTrace.lean",
+          "lines": [
+            46,
+            54
+          ],
+          "sha256": "799a51845ddd7fdbaafd0c6a39681306e5ce390db1cbd0895cd784afefd99d5a"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_actual_trace/SelectedTrace.lean",
+          "lines": [
+            90,
+            100
+          ],
+          "sha256": "799a51845ddd7fdbaafd0c6a39681306e5ce390db1cbd0895cd784afefd99d5a"
+        }
+      ]
+    },
+    {
+      "obligation": "Rule5 ordinary frontier mass",
+      "status": "SOURCE_RECONSTRUCTED_AND_IMPORT_USED",
+      "consumer": "dispatch_mass",
+      "printed_hypotheses": [
+        "Actual CherryAt and admitted=true; selected final classification derived; base=233/100"
+      ],
+      "reviewed_conclusion": "Inner frontier mass is proved from proper selected full states and lifted exact debits; repeated/failed/direct calls retained. Actual flattened ordinary mass<=gamma.",
+      "remaining": "No local caller work follows from this mass theorem.",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_actual_trace/MassTransfer.lean",
+          "lines": [
+            24,
+            54
+          ],
+          "sha256": "5d03e2407c06209bc067fe4f3891e98bfadf2f160b5b9545dd9bac0162bf7e25"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_actual_trace/OuterMass.lean",
+          "lines": [
+            18,
+            77
+          ],
+          "sha256": "2f36c88744ac90a9a7f4449aba791590ced2fcb9ab3317617a811acd817b5954"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_actual_trace/UniformMass.lean",
+          "lines": [
+            15,
+            66
+          ],
+          "sha256": "fa009bdc7216fd90b537b796f2564f0446b4abd3fddb6044c24dab6d2de98fb5"
+        }
+      ]
+    },
+    {
+      "obligation": "Rule5 ordinary properness/budget/size",
+      "status": "SELECTED_CONSUMER_PRINTED_TYPE_AND_IMPORT_USED",
+      "consumer": "dispatch_query_bounds/dispatch_potential",
+      "printed_hypotheses": [
+        "CherryAt and admitted=true; membership in actual queries"
+      ],
+      "reviewed_conclusion": "All actual ordinary calls are proper, r<q, and both leaf counts<=old target count. Fresh marking preserves count by restriction then relabeling.",
+      "remaining": "Numeric label maxima/bit lengths do not follow from leaf count.",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_actual_trace/QuerySizes.lean",
+          "lines": [
+            12,
+            29
+          ],
+          "sha256": "d8804cd5dd5d719f46cb529a53dd06e111107fc0e3c8e7afb58df7e3e5bccf49"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_actual_trace/QuerySizes.lean",
+          "lines": [
+            101,
+            145
+          ],
+          "sha256": "d8804cd5dd5d719f46cb529a53dd06e111107fc0e3c8e7afb58df7e3e5bccf49"
+        }
+      ]
+    },
+    {
+      "obligation": "Rule5 supplied ordinary work",
+      "status": "SELECTED_CONSUMER_KERNEL_RECHECKED",
+      "consumer": "dispatch_ordinary_work_bound",
+      "printed_hypotheses": [
+        "CherryAt; admitted=true; D>=0; actual-member-only W<=D*base^r"
+      ],
+      "reviewed_conclusion": "OrdinaryWork<=D*base^q*gamma for actual flattened source-level queries.",
+      "remaining": "Total caller/selector/builder/pretest/failure/local forest overhead and real payload/bit work are outside ordinaryWork.",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_actual_trace/WorkBinding.lean",
+          "lines": [
+            23,
+            47
+          ],
+          "sha256": "64b97f86391953e3ccf64895b94b22f90978affd1b30cc69dcea2169599948fb"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_actual_trace/INTERFACE-v1.md",
+          "lines": [
+            55,
+            65
+          ],
+          "sha256": "87ad4d90c58207e3a77e1f2c01fcf653ec55efa996a7aacea59ef24a743b3b90"
+        }
+      ]
+    },
+    {
+      "obligation": "label/address/payload bit model",
+      "status": "EXPLICIT_OPEN_PREMISE",
+      "consumer": "actual source-cost interpretation",
+      "printed_hypotheses": [
+        "Printed bill uses unit scalar operations; address cells bounded in MaterialBounds; callbacks arbitrary in local statements"
+      ],
+      "reviewed_conclusion": "Generated address-cell and materialization counts are included in printed K. Numeric labels can change under marked direct calls.",
+      "remaining": "Prove primitive inspection/copy/check costs including actual returned payload, label equality/freshmax and Nat bit lengths under a propagated encoded-input envelope.",
+      "sources": [
+        {
+          "path": "results/algorithm-universal233-forest-frontier-root-20261015T203110Z/ForestWork.lean",
+          "lines": [
+            11,
+            35
+          ],
+          "sha256": "0e913019fa489b8e57b9f5038020dc00d4ebee06e9fbe568c1712365fd87c1d7"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_local_overhead_polynomial/MaterialBounds.lean",
+          "lines": [
+            30,
+            57
+          ],
+          "sha256": "ca9aa346fa394e25ca19536d12e37528c7992650f3d6767fa0d0d78c22d1ca00"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_local_overhead_polynomial/README.md",
+          "lines": [
+            38,
+            45
+          ],
+          "sha256": "b24b288942e6cec54500bdfda1784091e5362b41e019ae8a11c371227d14354a"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_actual_trace/INTERFACE-v1.md",
+          "lines": [
+            48,
+            60
+          ],
+          "sha256": "87ad4d90c58207e3a77e1f2c01fcf653ec55efa996a7aacea59ef24a743b3b90"
+        }
+      ]
+    },
+    {
+      "obligation": "local coefficient absorption",
+      "status": "ARITHMETIC_ONLY_RECONSTRUCTED",
+      "consumer": "future actual ordinary recurrence",
+      "printed_hypotheses": [
+        "Need an actually proved polynomial local coefficient and same-q contraction accounting first"
+      ],
+      "reviewed_conclusion": "At c=233/100: gamma=2929867400/2947295521<1, 1-gamma=17428121/2947295521, geometric=233/33. For a hypothetical unit local coefficient, D170 absorbs and D169 does not.",
+      "remaining": "No actual global polynomial coefficient or full ordinary source-work inequality is supplied in this release; arithmetic is not the missing theorem.",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_actual_trace/UniformMass.lean",
+          "lines": [
+            7,
+            11
+          ],
+          "sha256": "fa009bdc7216fd90b537b796f2564f0446b4abd3fddb6044c24dab6d2de98fb5"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_frontier_work/OverheadBound.lean",
+          "lines": [
+            5,
+            28
+          ],
+          "sha256": "8db863fc899c2ede20f92a06bca7ec43584174709a84095d08f684466e362430"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/fast_ordinary_recursion/SOURCE-WORK-v1.md",
+          "lines": [
+            18,
+            27
+          ],
+          "sha256": "769459c66543c7310cd70dcc0c3e3ded30d263df5eeed9a3e5f844be36b7adf1"
+        }
+      ]
+    },
+    {
+      "obligation": "budget conversion/recovery",
+      "status": "SOURCE_GUARD_REVIEWED",
+      "consumer": "externalWith",
+      "printed_hypotheses": [
+        "k=0 checked before query; successful actual forest passed to recover"
+      ],
+      "reviewed_conclusion": "One query at q=k-1 and one recovery after success; no per-recursion final-cut extraction.",
+      "remaining": "Optimum-budget iteration, failed budget costs, stopping cap, and final source color/recovery cost still need proof. Unfinished wrapper not read.",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/fast_ordinary_recursion/ExternalRecovery.lean",
+          "lines": [
+            5,
+            9
+          ],
+          "sha256": "e3fad065350c1e37dc5dad906abbbb6855c9a5d2be9de6ed7122f3887c58b5e8"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/fast_ordinary_recursion/SOURCE-WORK-v1.md",
+          "lines": [
+            18,
+            27
+          ],
+          "sha256": "769459c66543c7310cd70dcc0c3e3ded30d263df5eeed9a3e5f844be36b7adf1"
+        }
+      ]
+    },
+    {
+      "obligation": "Rule5 caller cherry/admission instantiation",
+      "status": "SOURCE_CALLSITE_RECONSTRUCTED_ONLY",
+      "consumer": "FastOrdinary.solve hard2 -> Hard2Dispatcher.run -> Rule5 trace",
+      "printed_hypotheses": [
+        "actual ordinary properness",
+        "actual early hard2 result with both selectors hard2 and both Rule4 selectors refusing",
+        "actual runHard2 disjoint result and two-good guard"
+      ],
+      "reviewed_conclusion": "FastExact passes the actual selector facts; Hard2Exact obtains the cherry and actual_disjoint_admission_iff supplies admission on the two-good path, matching Rule5 cost interfaces without a desired mass/query-list assumption.",
+      "remaining": "This is a cost-context inspection of existing functional source; no independent functional proof/origin acceptance.",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/fast_ordinary_recursion/FastExact.lean",
+          "lines": [
+            48,
+            50
+          ],
+          "sha256": "e2c80b8b1e48e843e53f3b72909cb271897064083bb25d814049d0eeecf46223"
+        },
+        {
+          "path": "results/algorithm-universal233-fast-ordinary-recursion-replay-20261015T205325296780Z/Hard2Exact.lean",
+          "lines": [
+            54,
+            80
+          ],
+          "sha256": "1ec04cfbb32d53de5a1f3d84faddde8b353231f13dfd00034899e8d46d143281"
+        }
+      ]
+    }
+  ]
+}

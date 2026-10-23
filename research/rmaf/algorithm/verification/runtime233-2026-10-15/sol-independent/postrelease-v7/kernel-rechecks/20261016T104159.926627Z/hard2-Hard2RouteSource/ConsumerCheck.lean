@@ -1,0 +1,7 @@
+import Hard2RouteSource
+#check OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter_value
+#print axioms OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter_value
+#check OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter_queries
+#print axioms OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter_queries
+#check OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter_bound
+#print axioms OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter_bound

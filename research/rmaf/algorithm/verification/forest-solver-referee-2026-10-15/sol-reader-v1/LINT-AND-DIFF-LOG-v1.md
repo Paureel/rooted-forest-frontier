@@ -1,0 +1,23 @@
+# Prose and integrity checks
+
+Two self-lint passes covered REVIEW-REPORT-v1.md and SCOPE-COMPANION-v1.md. The reader fully read referee-sim and prose-lint before drafting. A different root editor has not yet reviewed the final text or its diffs. The review therefore does not satisfy the skill's different-editor condition by itself. [prose-lint](/Users/paurel/Documents/ChatGPT/bootscience/.agents/skills/prose-lint/SKILL.md), G6, requires: “Whoever rewrites a sentence cannot be the last to review it: sweep the DIFF of every fix pass with different eyes.” The root requested this condition remain pending.
+
+## Pass one
+
+The honesty and number pass compared the two manifest pins, manifest path counts, selected source bytes, exact quotations, retained outer theorem binders, reported finite/provenance counts and scheduler/mass fields with their named records. The bounded metadata script first passed its constructed hash, quote, location, duplicate, escaping-path and count controls; all are post-contact controls. The script did not recompute a theorem, mass, minimum, producer census, cost recurrence or runtime.
+
+The parse/meaning pass read the draft in order, sentence by sentence, and checked paragraph openings, pronouns, the meaning of OrdinaryIH, each work premise, callback soundness versus exactness, and the universal-datatype versus finite-fixture distinction. The colleague pass and vocabulary/structure sweep followed the parse pass. The sweep found no suspect vocabulary or structure in the two prose files; this result is only the outcome of the stated sweep.
+
+The manual read found and corrected these issues: A3.1, an unnecessary “record states” construction, became a direct statement of the two premises; A3.1, “the record answers”, became the reader's located answer; E3, an unsupported generic programmer attribution, became a direct statement about the supplied program; E4/F4, a circulation-authorization claim, became the actual pending editor/render condition. A source-log check also replaced a target-only reference to the multiGB representation history with exact sealed WORKFILE lines. Protected quotations were left unchanged. The prelint copies and pass-one copies preserve the exact draft and fixes.
+
+## Pass two
+
+A continuous cold read covered both saved prose files after pass one, with the opening, headline tables, conclusion and cold summary checked separately. E4/F4 identified an inconsistency between the review's description of the companion opening and the companion itself: the companion initially left global runtime/base/novelty and no-replication language to its end and did not explicitly name the shared model family. The final companion now puts those conditions first; repeated closing status sentences were removed under B15. The report opening also makes the four open global statuses explicit, following ROOT:9.
+
+A second honesty/number pass checked that every numerical achievement remains attributed to the sealed review; 143 modules is distinct from declaration/name counts, 19 cases from 52 root rows, and scalar fixture bills from runtime. The rational c>=2 domain, fixed target, uniform proper-source-list/cap quantifier, nonnegative K and all open primitive/payload/bit/compiled/global obligations remain attached to the bill claim. Seven proof-body differences and the three/23 and 15-context qualified Name correspondences remain distinct. The below-two example retains both cost-two occurrences and the failed cost-one occurrence; no independent replication or blind-control credit was added.
+
+The final diff also names OrdinaryIH explicitly, identifies the companion source directories, and restores the immediate bill terms and the limit of the source-volume identity from WORK:16-20. The final parse/meaning read checked the pass-two diff, every table row's correctness/novelty axis and exact source location, first-sentence subjects, identifier spelling and quotation boundaries. Mechanical checks separately verify quoted spans, table column counts, code-span pairing, JSON parsing, required scope terms and exact input hashes. No further issue was found in those checks. The edits have received two self passes only; a different editor remains pending.
+
+## Render limit
+
+Only UTF-8 Markdown source and structured records were inspected. No application, browser, PDF or print rendering was opened; no actual layout or rendered-text extraction result is claimed. The source table/delimiter checks cannot substitute for a rendered read. The general bootloops-check suite and all scientific replays were outside this bounded reader scope.

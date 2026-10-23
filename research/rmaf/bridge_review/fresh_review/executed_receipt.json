@@ -1,0 +1,151 @@
+{
+  "status": "CONFIRMED_GRAPH_MODEL_SEMANTICS_ONLY",
+  "created_utc": "2026-10-14T13:07:56.713248+00:00",
+  "lean_version": "Lean (version 4.35.0, arm64-apple-darwin24.6.0, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "independent_finite_enumeration": {
+    "receipt": "enumeration.json",
+    "sha256": "5ce420cc6c6bb42880a704bb28f03da4a87ef413ed7345447946eaf2a0592058",
+    "counts": {
+      "vertices": 15,
+      "subsets_checked": 32768,
+      "nonempty_connected": 750,
+      "disconnected_nonempty": 32017,
+      "region_checks": 245760,
+      "nonminimum_root_rejections": 5636,
+      "empty_subsets": 1,
+      "elapsed_seconds": 0.11430145800113678
+    }
+  },
+  "lean_reproduction": {
+    "receipt": "lean_receipt.json",
+    "sha256": "4c5178e0b2e8a4bf107f523a415de8c7de499391887d9fe64e3d324304ff3922",
+    "named_review_theorems": 18,
+    "positive_builds": 4,
+    "false_propositions_rejected": 3,
+    "same_kernel": true
+  },
+  "main_proof_body_unchanged_after_correction": true,
+  "source_versions": {
+    "research/rmaf/spec.json": "beac60a68f372b2a561e04ed224b4c2ffc834c95cf5d3a3497bbb44088f9b3f1",
+    "research/rmaf/bridge_review/TARGET.md": "25d721f99673151d727d4bc827e2502540ebe79b80b2f16bc160837a1a5b2275",
+    "research/rmaf/bridge_review/REPORT.md": "fc447a0485ab7714581d9aeb02b308c3095e525ada8cd3d089e11dc63a96117a",
+    "research/rmaf/bridge_review/lean/GraphRegion.lean": "5d53cadd43f7c654656040218939c2051f8592e5045227bc2506dd2cddee5455",
+    "research/rmaf/bridge_review/lean/GraphControls.lean": "850af71b10c41985deb66fb7b6d293c99b89c6496ac6a00bd7ea2da2f305daba",
+    "research/rmaf/pure_bridge/lean/PureBridge.lean": "acf08329466b6449c39c5edb0914c7af15f30690b25b8f0389cb65b2b24943f4",
+    "research/rmaf/pure_bridge/FORMAL.md": "0b3b8ea74ce3d75127a8f3fe1249381a83fca438c7aab6fe3ddce9e673440437"
+  },
+  "source_excerpts": [
+    {
+      "source": "research/rmaf/bridge_review/lean/GraphRegion.lean",
+      "sha256": "5d53cadd43f7c654656040218939c2051f8592e5045227bc2506dd2cddee5455",
+      "lines": "87-91",
+      "status": "read; verbatim from current source",
+      "quote": "structure ConnectedSupport where\n  first : Address\n  rest : List Address\n  connected : \u2200 u, u \u2208 first :: rest \u2192 \u2200 v, v \u2208 first :: rest \u2192\n    Walk (fun x => x \u2208 first :: rest) u v"
+    },
+    {
+      "source": "research/rmaf/bridge_review/lean/GraphRegion.lean",
+      "sha256": "5d53cadd43f7c654656040218939c2051f8592e5045227bc2506dd2cddee5455",
+      "lines": "106-112",
+      "status": "read; verbatim from current source",
+      "quote": "noncomputable def toRootedRegion (s : ConnectedSupport) : RootedRegion where\n  root := s.root\n  member := fun v => v \u2208 s.first :: s.rest\n  root_mem := s.root_mem\n  below := fun v hv => walk_below_minimum (s.connected _ s.root_mem v hv) s.root_shortest\n  convex := fun x y hrx hxy hy =>\n    walk_ancestor_between (s.connected _ s.root_mem y hy) x hrx hxy"
+    },
+    {
+      "source": "research/rmaf/bridge_review/lean/GraphRegion.lean",
+      "sha256": "5d53cadd43f7c654656040218939c2051f8592e5045227bc2506dd2cddee5455",
+      "lines": "123-127",
+      "status": "read; verbatim from current source",
+      "quote": "theorem deepest_graph_root_in_neighbor (a b : ConnectedSupport)\n    (hdepth : b.root.length \u2264 a.root.length)\n    (hoverlap : \u2203 z, z \u2208 a.first :: a.rest \u2227 z \u2208 b.first :: b.rest) :\n    a.root \u2208 b.first :: b.rest := by\n  exact PureBridge.deepest_root_in_neighbor a.toRootedRegion b.toRootedRegion hdepth hoverlap"
+    },
+    {
+      "source": "research/rmaf/pure_bridge/lean/PureBridge.lean",
+      "sha256": "acf08329466b6449c39c5edb0914c7af15f30690b25b8f0389cb65b2b24943f4",
+      "lines": "14-19",
+      "status": "read; verbatim from current source",
+      "quote": "structure RootedRegion where\n  root : Address\n  member : Address \u2192 Prop\n  root_mem : member root\n  below : \u2200 v, member v \u2192 root.IsPrefix v\n  convex : \u2200 x y, root.IsPrefix x \u2192 x.IsPrefix y \u2192 member y \u2192 member x"
+    },
+    {
+      "source": "research/rmaf/pure_bridge/lean/PureBridge.lean",
+      "sha256": "acf08329466b6449c39c5edb0914c7af15f30690b25b8f0389cb65b2b24943f4",
+      "lines": "75-80",
+      "status": "read; verbatim from current source",
+      "quote": "  freeLeft : \u2200 a r, localValid a \u2192 restValid r \u2192 localAvoids a \u2192 compatible a r\n  freeRight : \u2200 a r, localValid a \u2192 restValid r \u2192 restAvoids r \u2192 compatible a r\n  collision : \u2200 a r, localValid a \u2192 restValid r \u2192 compatible a r \u2192\n    localAvoids a \u2228 restAvoids r\n  clearRest : \u2200 r, restValid r \u2192 \u2203 r', restValid r' \u2227 restAvoids r' \u2227\n    restCost r' \u2264 restCost r + 1"
+    }
+  ],
+  "prior_finite_receipts_read": [
+    {
+      "source": "research/rmaf/results/bridge-review-geometry5.json",
+      "sha256": "234ab0ae358c35846a407694004dd0331f45af2ab3239240a61f72b401174565",
+      "status": "read summary only; not freshly rerun",
+      "counts": {
+        "trees": 125,
+        "partitions": 5703,
+        "pure_partitions": 5283,
+        "deepest_neighbors": 816,
+        "free_subblocks": 5664,
+        "degree_two_splits": 6820,
+        "old_mark_sets": 6820,
+        "hull_regions": 258247
+      }
+    },
+    {
+      "source": "research/rmaf/results/bridge-review-local-exhaustive5.json",
+      "sha256": "2b6767f7a5ba94b32d118f70f8589bd17c158504f84a374cec5038f154b60013",
+      "status": "read summary only; not freshly rerun",
+      "counts": {
+        "case_pool": 23614,
+        "cases": 23614,
+        "source_transport": 165256,
+        "role_swap_families": 373634,
+        "role_swap_partition_comparisons": 11384296,
+        "refined_optimal_forests": 373634,
+        "empty_region_queries": 138786,
+        "root_mark_queries": 186817,
+        "region_counts": {
+          "1": 29068,
+          "2": 58816,
+          "3": 125820,
+          "4": 109530,
+          "5": 50400
+        },
+        "max_residual": 2
+      }
+    },
+    {
+      "source": "research/rmaf/results/bridge-review-completion-full.json",
+      "sha256": "9cb2bc5d5a282bb187e22b74f008eecae58344fbbccfe27a833175ee5fc368d4",
+      "status": "read summary only; not freshly rerun",
+      "counts": {
+        "pool_cases": 2341,
+        "cases": 2341,
+        "profiles": 4682,
+        "exact_feasible_forests": 14940,
+        "elimination_nodes": 15271,
+        "all_tie_elimination_outputs": 6204
+      }
+    }
+  ],
+  "initial_finding": {
+    "type": "false-control-rejected-for-missing-decidable-instance",
+    "status": "resolved and rechecked",
+    "evidence": "lean_replay/adjacency_twins.json",
+    "original_log": "lean_replay/FalseSuppressParent.initial.log"
+  },
+  "review_files": {
+    "REVIEW.md": "90d651c1dd1172cf4eb334e502f49d7e4cac687de2a32e562e4fe9c0fba0a0b7",
+    "referee_sim_REPORT.md": "65b9841caaa9fb44c0aa473075df472ddfb69f419d4e2a3fd27a8caf80749a41"
+  },
+  "open": [
+    "Executable hull extraction and label-preserving encoding for full G1",
+    "Universal G2\u2013G7",
+    "Unrestricted safe-cover and correctness/termination/complexity proofs",
+    "Faster rMAF bound",
+    "Prior-bound reconciliation and novelty"
+  ],
+  "not_performed": [
+    "Read/import of original pure_bridge/check_geometry.py or any other campaign/review Python",
+    "Fresh rerun of prior local-role-swap/completion computations",
+    "External literature audit",
+    "Full unrelated BootLoops toolkit battery"
+  ],
+  "reviewed_report_snapshot_sha256": "fc447a0485ab7714581d9aeb02b308c3095e525ada8cd3d089e11dc63a96117a"
+}

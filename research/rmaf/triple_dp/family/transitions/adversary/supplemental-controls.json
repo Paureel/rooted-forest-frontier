@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "frozen_before": "first execution of either checker",
+  "malformed_family": [
+    {"id":"duplicate-index", "family":{"tree":"a","regions":{"o":[""]},"indices":["o","o"],"boundary":"o"}},
+    {"id":"incomplete-index", "family":{"tree":"a","regions":{"o":[""]},"indices":[],"boundary":"o"}},
+    {"id":"out-of-tree", "family":{"tree":"a","regions":{"o":["","0"]},"boundary":"o"}},
+    {"id":"root-owner-unmarked", "family":{"tree":"a","regions":{"o":[""]},"boundary":null}}
+  ],
+  "valid_merge": [
+    {"id":"repeat-labels-and-index-names", "left":{"tree":["x","x"],"regions":{"M":["","0"],"L:o":["1"]},"indices":["L:o","M"],"boundary":"M"},"right":{"tree":"x","regions":{"M":[""]},"boundary":"M"},"expected":{"regions":{"M":["","0","00","1"],"L:L:o":["01"]},"boundary":"M","blocks":2,"cost":1,"merged_labels":["x"]}}
+  ],
+  "valid_but_wrong_output": [
+    {"id":"fill-unused-vertex", "fixture":"unused-internal-vertex", "region":"M", "add":"01", "expected":"family-valid, exact-retention-invalid"},
+    {"id":"rename-survivor", "fixture":"left-extra-block", "old":"L:c", "new":"R:c", "expected":"family-valid, exact-index-invalid"}
+  ]
+}

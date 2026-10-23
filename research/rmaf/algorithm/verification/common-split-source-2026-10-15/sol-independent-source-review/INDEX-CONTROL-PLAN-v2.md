@@ -1,0 +1,5 @@
+# Compact index comparison controls v2
+
+The initial compact index matched all nine fabricated clean/hostile classifications, using at most6158 bytes per row and0.6388 seconds per receipt. Retain its databases and v1 code. v2 additionally compares all import flags/order/multiplicity to the retained cold-build header registry; source hashes were registered before compilation, while olean/header hashes necessarily bind its observed outputs. This does not independently certify source-parser semantics, which remains an explicit postrelease source-reading obligation.
+
+Before v2 execution, require all nine classifications to remain identical. Plant missing and duplicate occurrence, altered kind/body/resolved origin/import modifier and wrong-producer private-view evidence in actual controlled receipt copies. Require structural exception or REJECT; clean receipt must pass. Plant wrong source/olean SHA in registry copies; each must fail before proof parsing. These are integrity controls on this own instrument, not new mathematical experiments. Bound each receipt/index operation to50 seconds and32MiB per row.

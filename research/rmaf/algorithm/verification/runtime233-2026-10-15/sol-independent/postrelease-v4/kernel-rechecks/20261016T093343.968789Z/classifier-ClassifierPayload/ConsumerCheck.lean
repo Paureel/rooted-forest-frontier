@@ -1,0 +1,17 @@
+import ClassifierPayload
+#check Universal233.Rule5PendantLocalWork.admitted_value
+#print axioms Universal233.Rule5PendantLocalWork.admitted_value
+#check Universal233.Rule5PendantLocalWork.admitted_work
+#print axioms Universal233.Rule5PendantLocalWork.admitted_work
+#check Universal233.Rule5PendantLocalWork.final_value
+#print axioms Universal233.Rule5PendantLocalWork.final_value
+#check Universal233.Rule5PendantLocalWork.final_work
+#print axioms Universal233.Rule5PendantLocalWork.final_work
+#check Universal233.Rule5PendantLocalWork.final_calls
+#print axioms Universal233.Rule5PendantLocalWork.final_calls
+#check Universal233.Rule5PendantLocalWork.final_call_count
+#print axioms Universal233.Rule5PendantLocalWork.final_call_count
+#check Universal233.Rule5PendantLocalWork.final_payload
+#print axioms Universal233.Rule5PendantLocalWork.final_payload
+#check Universal233.Rule5PendantLocalWork.final_scaled_work
+#print axioms Universal233.Rule5PendantLocalWork.final_scaled_work

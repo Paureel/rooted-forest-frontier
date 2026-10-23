@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "date": "2026-10-14",
+  "frozen_before_source_inspection": true,
+  "convention": "Binary full tree as nested two-element arrays; leaves are integers. Address string 0=left, 1=right; empty string=input root. All equality checks exact, no tolerances.",
+  "cases": [
+    {"id":"quartet-cross","tree":[[1,2],[3,4]],"selection":[1,3],"terminals":["00","10"],"support":["","0","00","1","10"]},
+    {"id":"quartet-singleton","tree":[[1,2],[3,4]],"selection":[1],"terminals":["00"],"support":["00"]},
+    {"id":"quartet-siblings","tree":[[1,2],[3,4]],"selection":[1,2],"terminals":["00","01"],"support":["0","00","01"]},
+    {"id":"quartet-empty","tree":[[1,2],[3,4]],"selection":[],"terminals":[],"support":[]},
+    {"id":"quartet-absent","tree":[[1,2],[3,4]],"selection":[9],"terminals":[],"support":[]},
+    {"id":"root-selected","tree":1,"selection":[1],"terminals":[""],"support":[""]},
+    {"id":"root-empty","tree":1,"selection":[],"terminals":[],"support":[]},
+    {"id":"repeated-label","tree":[[1,1],[2,1]],"selection":[1],"terminals":["00","01","11"],"support":["","0","00","01","1","11"]},
+    {"id":"repeated-selection","tree":[[1,2],[3,4]],"selection":[1,1,2,2],"terminals":["00","01"],"support":["0","00","01"]},
+    {"id":"deep-siblings","tree":[[[1,2],3],4],"selection":[1,2],"terminals":["000","001"],"support":["00","000","001"]}
+  ],
+  "corruptions": [
+    {"id":"delete-path","base":"quartet-cross","remove":["0"],"add":[],"expect_ambient":true,"expect_terminals":true,"expect_connected":false,"expect_least":false},
+    {"id":"add-root","base":"quartet-siblings","remove":[],"add":[""],"expect_ambient":true,"expect_terminals":true,"expect_connected":true,"expect_least":false},
+    {"id":"invalid-address","base":"quartet-siblings","remove":[],"add":["000"],"expect_ambient":false,"expect_terminals":true,"expect_connected":true,"expect_least":false},
+    {"id":"missing-terminal","base":"quartet-siblings","remove":["01"],"add":[],"expect_ambient":true,"expect_terminals":false,"expect_connected":true,"expect_least":false},
+    {"id":"add-deep-root-chain","base":"deep-siblings","remove":[],"add":["","0"],"expect_ambient":true,"expect_terminals":true,"expect_connected":true,"expect_least":false}
+  ],
+  "null": "Empty and absent selections must return exactly the empty set; they are outside the nonempty-terminal constructor target.",
+  "true_twins": "Every corruption is paired with its unchanged base support, which must satisfy ambient, terminal, connected, and least checks.",
+  "malformed_proof": "A separate Lean file asserting a true frozen equality with an ill-typed proof must fail; this failure is a harness diagnostic, not a semantic counterexample.",
+  "semantic_false": "A separate Lean by-decide assertion that a selected terminal is absent, and one asserting the extra-root support equals the extractor, must fail.",
+  "stop_condition": "Any frozen expected support, terminal set, corruption signature, or source comparison mismatch stops expansion pending recorded diagnosis. A finite no-fire never certifies a universal theorem.",
+  "pilot": "Run only frozen cases and corruption twins first. Then scale arbitrary tree shape enumeration by leaf bound with binary labels and all subsets of {0,1}, plus absent 2 and duplicate selected labels. Record per-bound exact case counts, wall times, and source hashes before increasing bound."
+}

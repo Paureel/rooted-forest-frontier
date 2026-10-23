@@ -1,0 +1,705 @@
+{
+  "schema_version": 1,
+  "independence": "fresh graph evaluator; no project evaluator imported",
+  "control": {
+    "controls": [
+      {
+        "id": "live-two-leaf",
+        "orientation_accepted": true,
+        "parent": {
+          "case": "A3BC",
+          "pair": [
+            "x",
+            "y"
+          ],
+          "pendants": [
+            "p",
+            "q",
+            "r"
+          ],
+          "branches": [
+            {
+              "name": "A",
+              "cuts": [
+                "x"
+              ],
+              "protect1": [],
+              "protect2": [],
+              "legal": true
+            },
+            {
+              "name": "B",
+              "cuts": [
+                "p",
+                "q",
+                "r"
+              ],
+              "protect1": [],
+              "protect2": [],
+              "legal": true
+            },
+            {
+              "name": "C",
+              "cuts": [
+                "y"
+              ],
+              "protect1": [
+                "x"
+              ],
+              "protect2": [
+                "x"
+              ],
+              "legal": true
+            }
+          ]
+        },
+        "C": {
+          "case": "A3BC",
+          "pair": [
+            "x",
+            "a"
+          ],
+          "pendants": [
+            "p",
+            "q",
+            "r"
+          ],
+          "branches": [
+            {
+              "name": "A",
+              "cuts": [
+                "x"
+              ],
+              "protect1": [],
+              "protect2": [],
+              "legal": false
+            },
+            {
+              "name": "B",
+              "cuts": [
+                "p",
+                "q",
+                "r"
+              ],
+              "protect1": [],
+              "protect2": [],
+              "legal": true
+            },
+            {
+              "name": "C",
+              "cuts": [
+                "a"
+              ],
+              "protect1": [
+                "x"
+              ],
+              "protect2": [
+                "x"
+              ],
+              "legal": false
+            }
+          ]
+        }
+      },
+      {
+        "id": "wrong-orientation",
+        "orientation_accepted": false,
+        "parent": {
+          "case": "A3BC",
+          "pair": [
+            "x",
+            "y"
+          ],
+          "pendants": [
+            "r",
+            "q",
+            "p"
+          ],
+          "branches": [
+            {
+              "name": "A",
+              "cuts": [
+                "x"
+              ],
+              "protect1": [],
+              "protect2": [],
+              "legal": true
+            },
+            {
+              "name": "B",
+              "cuts": [
+                "r",
+                "q",
+                "p"
+              ],
+              "protect1": [],
+              "protect2": [],
+              "legal": true
+            },
+            {
+              "name": "C",
+              "cuts": [
+                "y"
+              ],
+              "protect1": [
+                "x"
+              ],
+              "protect2": [
+                "x"
+              ],
+              "legal": true
+            }
+          ]
+        },
+        "C": {
+          "case": "B",
+          "pair": [
+            "x",
+            "a"
+          ],
+          "pendants": [
+            "p,q,r"
+          ],
+          "branches": [
+            {
+              "name": "B",
+              "cuts": [
+                "p,q,r"
+              ],
+              "protect1": [],
+              "protect2": [],
+              "legal": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "orientation-positive-twin",
+        "orientation_accepted": true,
+        "parent": {
+          "case": "A3BC",
+          "pair": [
+            "y",
+            "x"
+          ],
+          "pendants": [
+            "p",
+            "q",
+            "r"
+          ],
+          "branches": [
+            {
+              "name": "A",
+              "cuts": [
+                "y"
+              ],
+              "protect1": [],
+              "protect2": [],
+              "legal": true
+            },
+            {
+              "name": "B",
+              "cuts": [
+                "p",
+                "q",
+                "r"
+              ],
+              "protect1": [],
+              "protect2": [],
+              "legal": true
+            },
+            {
+              "name": "C",
+              "cuts": [
+                "x"
+              ],
+              "protect1": [
+                "y"
+              ],
+              "protect2": [
+                "y"
+              ],
+              "legal": true
+            }
+          ]
+        },
+        "C": {
+          "case": "A3BC",
+          "pair": [
+            "y",
+            "a"
+          ],
+          "pendants": [
+            "p",
+            "q",
+            "r"
+          ],
+          "branches": [
+            {
+              "name": "A",
+              "cuts": [
+                "y"
+              ],
+              "protect1": [],
+              "protect2": [],
+              "legal": false
+            },
+            {
+              "name": "B",
+              "cuts": [
+                "p",
+                "q",
+                "r"
+              ],
+              "protect1": [],
+              "protect2": [],
+              "legal": true
+            },
+            {
+              "name": "C",
+              "cuts": [
+                "a"
+              ],
+              "protect1": [
+                "y"
+              ],
+              "protect2": [
+                "y"
+              ],
+              "legal": false
+            }
+          ]
+        }
+      },
+      {
+        "id": "nine-leaf",
+        "trace": [
+          {
+            "case": "A2BC",
+            "pair": [
+              "a",
+              "c"
+            ],
+            "pendants": [
+              "d,t,w,x,y,z",
+              "h"
+            ],
+            "branches": [
+              {
+                "name": "A",
+                "cuts": [
+                  "a"
+                ],
+                "protect1": [],
+                "protect2": [],
+                "legal": true
+              },
+              {
+                "name": "B",
+                "cuts": [
+                  "d,t,w,x,y,z",
+                  "h"
+                ],
+                "protect1": [],
+                "protect2": [],
+                "legal": true
+              },
+              {
+                "name": "C",
+                "cuts": [
+                  "c"
+                ],
+                "protect1": [
+                  "a"
+                ],
+                "protect2": [
+                  "a",
+                  "d,t,w,x,y,z",
+                  "h"
+                ],
+                "legal": true
+              }
+            ]
+          },
+          {
+            "case": "A2BC",
+            "pair": [
+              "d",
+              "a"
+            ],
+            "pendants": [
+              "t,w,y",
+              "x,z"
+            ],
+            "branches": [
+              {
+                "name": "B",
+                "cuts": [
+                  "t,w,y",
+                  "x,z"
+                ],
+                "protect1": [],
+                "protect2": [],
+                "legal": true
+              },
+              {
+                "name": "A",
+                "cuts": [
+                  "d"
+                ],
+                "protect1": [],
+                "protect2": [
+                  "t,w,y",
+                  "x,z"
+                ],
+                "legal": true
+              }
+            ]
+          },
+          {
+            "case": "A3BC",
+            "pair": [
+              "y",
+              "x"
+            ],
+            "pendants": [
+              "w",
+              "t",
+              "z"
+            ],
+            "branches": [
+              {
+                "name": "A",
+                "cuts": [
+                  "y"
+                ],
+                "protect1": [],
+                "protect2": [],
+                "legal": true
+              },
+              {
+                "name": "B",
+                "cuts": [
+                  "w",
+                  "t",
+                  "z"
+                ],
+                "protect1": [],
+                "protect2": [],
+                "legal": true
+              },
+              {
+                "name": "C",
+                "cuts": [
+                  "x"
+                ],
+                "protect1": [
+                  "y"
+                ],
+                "protect2": [
+                  "y"
+                ],
+                "legal": true
+              }
+            ]
+          },
+          {
+            "case": "A3BC",
+            "pair": [
+              "y",
+              "a"
+            ],
+            "pendants": [
+              "w",
+              "t",
+              "z"
+            ],
+            "branches": [
+              {
+                "name": "A",
+                "cuts": [
+                  "y"
+                ],
+                "protect1": [],
+                "protect2": [],
+                "legal": false
+              },
+              {
+                "name": "B",
+                "cuts": [
+                  "w",
+                  "t",
+                  "z"
+                ],
+                "protect1": [],
+                "protect2": [],
+                "legal": false
+              },
+              {
+                "name": "C",
+                "cuts": [
+                  "a"
+                ],
+                "protect1": [
+                  "y"
+                ],
+                "protect2": [
+                  "y"
+                ],
+                "legal": false
+              }
+            ]
+          }
+        ],
+        "P": [
+          "a"
+        ],
+        "Q": []
+      },
+      {
+        "id": "thirteen-leaf",
+        "trace": [
+          {
+            "case": "A2BC",
+            "pair": [
+              "a",
+              "c"
+            ],
+            "pendants": [
+              "d,z1,z2",
+              "b2"
+            ],
+            "branches": [
+              {
+                "name": "A",
+                "cuts": [
+                  "a"
+                ],
+                "protect1": [],
+                "protect2": [],
+                "legal": true
+              },
+              {
+                "name": "B",
+                "cuts": [
+                  "d,z1,z2",
+                  "b2"
+                ],
+                "protect1": [],
+                "protect2": [],
+                "legal": true
+              },
+              {
+                "name": "C",
+                "cuts": [
+                  "c"
+                ],
+                "protect1": [
+                  "a"
+                ],
+                "protect2": [
+                  "a",
+                  "d,z1,z2",
+                  "b2"
+                ],
+                "legal": true
+              }
+            ]
+          },
+          {
+            "case": "A2BC",
+            "pair": [
+              "d",
+              "a"
+            ],
+            "pendants": [
+              "z2",
+              "z1"
+            ],
+            "branches": [
+              {
+                "name": "B",
+                "cuts": [
+                  "z2",
+                  "z1"
+                ],
+                "protect1": [],
+                "protect2": [],
+                "legal": true
+              },
+              {
+                "name": "A",
+                "cuts": [
+                  "d"
+                ],
+                "protect1": [],
+                "protect2": [
+                  "z2",
+                  "z1"
+                ],
+                "legal": true
+              }
+            ]
+          },
+          {
+            "case": "A3BC",
+            "pair": [
+              "x",
+              "y"
+            ],
+            "pendants": [
+              "a,b2,z1,z2",
+              "su,u",
+              "sv,v",
+              "sy"
+            ],
+            "branches": [
+              {
+                "name": "A",
+                "cuts": [
+                  "x"
+                ],
+                "protect1": [],
+                "protect2": [],
+                "legal": true
+              },
+              {
+                "name": "B",
+                "cuts": [
+                  "a,b2,z1,z2",
+                  "su,u",
+                  "sv,v",
+                  "sy"
+                ],
+                "protect1": [],
+                "protect2": [],
+                "legal": true
+              },
+              {
+                "name": "C",
+                "cuts": [
+                  "y"
+                ],
+                "protect1": [
+                  "x"
+                ],
+                "protect2": [
+                  "x"
+                ],
+                "legal": true
+              }
+            ]
+          },
+          {
+            "case": "A3BC",
+            "pair": [
+              "u",
+              "v"
+            ],
+            "pendants": [
+              "su",
+              "a,b2,x,z1,z2",
+              "sy",
+              "sv"
+            ],
+            "branches": [
+              {
+                "name": "A",
+                "cuts": [
+                  "u"
+                ],
+                "protect1": [],
+                "protect2": [],
+                "legal": true
+              },
+              {
+                "name": "B",
+                "cuts": [
+                  "su",
+                  "a,b2,x,z1,z2",
+                  "sy",
+                  "sv"
+                ],
+                "protect1": [],
+                "protect2": [],
+                "legal": true
+              },
+              {
+                "name": "C",
+                "cuts": [
+                  "v"
+                ],
+                "protect1": [
+                  "u"
+                ],
+                "protect2": [
+                  "u"
+                ],
+                "legal": true
+              }
+            ]
+          },
+          {
+            "case": "A2BC",
+            "pair": [
+              "u",
+              "x"
+            ],
+            "pendants": [
+              "su",
+              "a,b2,z1,z2"
+            ],
+            "branches": [
+              {
+                "name": "B",
+                "cuts": [
+                  "su",
+                  "a,b2,z1,z2"
+                ],
+                "protect1": [],
+                "protect2": [],
+                "legal": true
+              },
+              {
+                "name": "A",
+                "cuts": [
+                  "u"
+                ],
+                "protect1": [],
+                "protect2": [
+                  "su",
+                  "a,b2,z1,z2"
+                ],
+                "legal": false
+              }
+            ]
+          }
+        ],
+        "P": [
+          "a",
+          "u",
+          "x"
+        ],
+        "Q": [
+          "u",
+          "x"
+        ]
+      }
+    ],
+    "arithmetic": {
+      "child_mass": "9/16",
+      "parent_mass": "1/2"
+    },
+    "mutation_catches": 2
+  },
+  "search": {
+    "attempts": 1000,
+    "eligible": 138,
+    "live": 9,
+    "dead": 178,
+    "history_checks": 7819,
+    "fires": [],
+    "seconds": 1.6590667500004201
+  },
+  "elapsed_seconds": 1.681944708001538
+}

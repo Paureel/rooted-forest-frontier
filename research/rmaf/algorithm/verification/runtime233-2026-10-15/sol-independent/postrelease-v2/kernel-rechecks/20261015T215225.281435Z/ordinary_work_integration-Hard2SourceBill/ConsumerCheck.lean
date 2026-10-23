@@ -1,0 +1,7 @@
+import Hard2SourceBill
+#check OrdinaryDispatch.WorkIntegration.hard2Trace_query_bounds
+#print axioms OrdinaryDispatch.WorkIntegration.hard2Trace_query_bounds
+#check OrdinaryDispatch.WorkIntegration.combined_source_bill_bound
+#print axioms OrdinaryDispatch.WorkIntegration.combined_source_bill_bound
+#check OrdinaryDispatch.WorkIntegration.hard2_ordinary_work_bound
+#print axioms OrdinaryDispatch.WorkIntegration.hard2_ordinary_work_bound

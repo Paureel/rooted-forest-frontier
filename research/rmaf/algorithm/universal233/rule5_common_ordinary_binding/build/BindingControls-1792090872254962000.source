@@ -1,0 +1,21 @@
+import OrdinaryBinding
+import CommonControls
+namespace Universal233.Rule5CommonOrdinary.Controls
+open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent CherryBranching Rule5Local Rule5Local.Pre Rule5Classification Rule5Classification.Controls Rule5FinalClassification Rule5FinalClassification.Controls Rule5CommonSelector Rule5CommonSelector.Controls
+set_option maxRecDepth 10000
+example : (some (some [[0,1],[2]]) : Option (Option (List (List Nat))).join=some [[0,1],[2]] := by decide
+example : (some none : Option (Option (List (List Nat))).join=none := by decide
+example : (none : Option (Option (List (List Nat))).join=none := by decide
+example : (commonJobs commonT commonS 0 1 commonD 5).isEmpty=false := by decide
+example : (commonJobs commonT commonS 0 1 commonD 5).all (fun j => j.budget==4 && decide (j.budget<5 ∧ 5-j.budget=1) && DepthOne.proper j.T j.S)=true := by decide
+example : (commonJobs rootT commonS 0 1 commonD 5).all (fun j => j.budget==4 && decide (j.budget<5 ∧ 5-j.budget=1) && DepthOne.proper j.T j.S)=true := by decide
+example : runSelectedCommon (fun _ _ _ => none) commonT commonS 0 1 commonD 5=none := by decide
+example : runSelectedCommon (fun _ _ _ => none) rootT commonS 0 1 commonD 5=none := by decide
+example (actual : Tree→Tree→Nat→Option (List (List Nat)))
+ (smaller : ∀r,r<5 → ForestMinCompletion.LocalOrdinaryIH r actual) :
+ OrdinaryCommonSplit.Caller.BoundedExact commonT commonS 5 (runSelectedCommon actual commonT commonS 0 1 commonD 5) :=
+ selected_bounded common_actual common_admitted common_final actual 5 smaller
+#check selected_sound_minimum
+#check selected_complete
+#check selected_none_iff
+end Universal233.Rule5CommonOrdinary.Controls

@@ -1,0 +1,90 @@
+import PersistentTrees
+namespace GenericForest.BinaryProvider
+open Universal233.WholeSourceWork GenericForest.ScalarBits GenericForest.CheckCorrespondence
+
+def nodupLabels : Block→Charged Bool
+ | []=>⟨true,1⟩
+ | x::xs=>let c:=containsLabel x xs;let r:=nodupLabels xs;⟨!c.value&&r.value,c.work+r.work+4⟩
+theorem nodupLabels_projects (W : Nat) (L : Block) (lc : BlockWidth W L) :
+ Projects W id (nodupLabels L) (meterNodup (blockValue L)) := by
+ have p:=beta_positive W
+ induction L with
+ | nil=>simp [Projects,nodupLabels,blockValue,meterNodup];exact p
+ | cons x xs ih=>
+  have c:=containsLabel_projects W x xs (lc x (by simp)) (fun z hz=>lc z (by simp [hz]))
+  have r:=ih (fun z hz=>lc z (by simp [hz]))
+  simp only [Projects,id_eq,blockValue,forestValue] at c r ⊢
+  simp only [nodupLabels,blockValue,List.map_cons,meterNodup,c.1,r.1]
+  constructor
+  · trivial
+  · simp only [Nat.mul_add];omega
+
+def containedLabels (B U : Block) : Charged Bool:=allChecks (fun x=>containsLabel x U) B
+theorem containedLabels_projects (W : Nat) (B U : Block) (bc : BlockWidth W B) (uc : BlockWidth W U) :
+ Projects W id (containedLabels B U) (meterContained (blockValue B) (blockValue U)) := by
+ exact allChecks_projects W labelValue _ _ B (fun x hx=>containsLabel_projects W x U (bc x hx) uc)
+
+/-- Accepted blocks share their immutable payload; each new forest cons is paid. -/
+def familyLabels (U : Block) : Forest→Charged Forest
+ | []=>⟨[],1⟩
+ | B::F=>let c:=containedLabels B U;let r:=familyLabels U F
+          ⟨if c.value then B::r.value else r.value,c.work+r.work+6⟩
+theorem familyLabels_projects (W : Nat) (U : Block) (F : Forest) (uc : BlockWidth W U) (fc : ForestWidth W F) :
+ Projects W forestValue (familyLabels U F) (meterFamily (blockValue U) (forestValue F)) := by
+ have p:=beta_positive W
+ induction F with
+ | nil=>simp [Projects,familyLabels,forestValue,meterFamily];exact p
+ | cons B F ih=>
+  have c:=containedLabels_projects W B U (fc B (by simp)) uc
+  have r:=ih (fun A ha=>fc A (by simp [ha]))
+  simp only [Projects,id_eq,blockValue,forestValue] at c r ⊢
+  simp only [familyLabels,forestValue,List.map_cons,meterFamily,blockValue,c.1]
+  constructor
+  · cases h : (meterContained (List.map labelValue B) (List.map labelValue U)).value <;> simp only [h,Bool.false_eq_true,ite_false,ite_true,List.map_cons,blockValue,r.1]
+  · simp only [Nat.mul_add];omega
+
+def sourceLeavesCopy : List Tree→Charged Forest
+ | []=>⟨[],1⟩
+ | s::ss=>let a:=leavesCopy s;let r:=sourceLeavesCopy ss;⟨a.value::r.value,a.work+r.work+4⟩
+@[simp] theorem sourceLeavesCopy_value (ss : List Tree) : (sourceLeavesCopy ss).value=ss.map leavesBits := by
+ induction ss <;> simp_all [sourceLeavesCopy]
+theorem sourceLeavesCopy_projects (W : Nat) (ss : List Tree) (sc : SourcesWidth W ss) :
+ Projects W forestValue (sourceLeavesCopy ss) (meterSourceLeaves (sourcesValue ss)) := by
+ have p:=beta_positive W
+ induction ss with
+ | nil=>simp [Projects,sourceLeavesCopy,forestValue,sourcesValue,meterSourceLeaves];exact p
+ | cons s ss ih=>
+  have a:=leavesCopy_projects s W (sc s (by simp))
+  have r:=ih (fun t ht=>sc t (by simp [ht]))
+  simp only [Projects,sourcesValue] at a r ⊢
+  simp only [sourceLeavesCopy,sourcesValue,List.map_cons,meterSourceLeaves]
+  constructor
+  · simp only [forestValue,List.map_cons,a.1] at r ⊢
+    exact congrArg (fun F=> (meterLeaves (treeValue s)).value::F) r.1
+  · simp only [Nat.mul_add];omega
+
+def targetLabelsCopy : Option Tree→Charged Block
+ | none=>⟨[],1⟩ | some t=>leavesCopy t
+theorem targetLabelsCopy_projects (W : Nat) (T : Option Tree) (tc : ∀t∈T,TreeWidth W t) :
+ Projects W blockValue (targetLabelsCopy T) (meterLabels (targetValue T)) := by
+ cases T with
+ | none=>simp [Projects,targetLabelsCopy,targetValue,blockValue,meterLabels];exact beta_positive W
+ | some t=>exact leavesCopy_projects t W (tc t (by simp))
+
+def sourceContainmentLabels (B : Block) (ss : List Tree) : Charged Bool:=
+ anyChecks (fun s=>let a:=leavesCopy s;let c:=containedLabels B a.value;⟨c.value,a.work+c.work+2⟩) ss
+
+theorem sourceContainmentLabels_projects (W : Nat) (B : Block) (ss : List Tree)
+ (bc : BlockWidth W B) (sc : SourcesWidth W ss) :
+ Projects W id (sourceContainmentLabels B ss) (meterSourceContainment (blockValue B) (sourcesValue ss)) := by
+ apply anyChecks_projects W treeValue
+ intro s hs
+ have a:=leavesCopy_projects s W (sc s hs)
+ have c:=containedLabels_projects W B (leavesBits s) bc (sc s hs)
+ have p:=beta_positive W
+ simp only [Projects,id_eq] at a c ⊢
+ simp only [leavesCopy_value,meterLeaves_value,leaves_projection] at a c ⊢
+ constructor
+ · exact c.1
+ · simp only [Nat.mul_add];omega
+end GenericForest.BinaryProvider

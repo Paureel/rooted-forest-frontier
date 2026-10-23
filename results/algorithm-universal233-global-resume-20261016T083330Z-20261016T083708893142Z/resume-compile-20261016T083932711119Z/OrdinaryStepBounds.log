@@ -1,0 +1,51 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryStepBounds.lean:70:1: error: unsolved goals
+case neg
+rec : Nat → Tree → Tree → Option CommonForest
+q : Nat
+T S : Tree
+p : Tree × Tree
+r : Nat
+hp : ¬DepthOne.proper T S = true
+mem :
+  (p, r) ∈
+    (if false = true then
+        match DepthOne.pretest01 T S with
+        | DepthOne.Result.refused => { value := none, queries := [] }
+        | DepthOne.Result.found c =>
+          { value := if DepthOne.cutCost c ≤ q then some (DepthOne.forest S c) else none, queries := [] }
+        | DepthOne.Result.rejected =>
+          match early T S with
+          | Early.common reverse c =>
+            if (leaves (commonPair T S reverse c).fst).length < (leaves T).length then
+              {
+                value :=
+                  Option.map (expandCommon T S reverse c)
+                    (rec q (commonPair T S reverse c).fst (commonPair T S reverse c).snd),
+                queries := [(commonPair T S reverse c, q)] }
+            else { value := none, queries := [] }
+          | Early.one reverse c =>
+            childrenTrace (cutoff rec q) (Oriented reverse T S).fst (Oriented reverse T S).snd q
+              [pendantChild (Oriented reverse T S).snd c.a c.b]
+          | Early.high reverse c =>
+            childrenTrace (cutoff rec q) (Oriented reverse T S).fst (Oriented reverse T S).snd q
+              (branches (Oriented reverse T S).snd c.a c.b)
+          | Early.rule4Forward s => rule4Trace (cutoff rec q) s q
+          | Early.rule4Reverse s => rule4Trace (cutoff rec q) s q
+          | Early.hard2 c d => hard2Trace (cutoff rec q) T S c d q
+          | Early.refused => { value := none, queries := [] }
+      else { value := none, queries := [] }).queries
+⊢ Prod.Lex (fun a b => a < b) (fun a b => a < b) (r, (leaves p.fst).length) (q, (leaves T).length)
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryStepBounds.lean:70:35: warning: This simp argument is unused:
+  ite_false
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [ordinaryStepTrace, hp, List.not_mem_nil] at mem
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryStepBounds.lean:70:45: warning: This simp argument is unused:
+  List.not_mem_nil
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [ordinaryStepTrace, hp, ite_false] at mem
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

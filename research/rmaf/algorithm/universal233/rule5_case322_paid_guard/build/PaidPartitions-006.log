@@ -1,0 +1,19 @@
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:156:47: error: unsolved goals
+T S : Tree
+a b : Nat
+hn : (leaves S).Nodup
+ha : a ∈ leaves S
+nd : (pendantOriginal S a b).Nodup
+arcs : ((cuts S a b).all fun q => !List.isEmpty q && (subtree S q).isSome) = true
+binding : arcPartition S (cuts S a b) = pendantPartition S a b
+hp : partitionCheck (leaves S) (pendantPartition S a b) = true
+emb : pairwiseEmbeddings S (pendantPartition S a b) = true
+len : (pendantPartition S a b).length = (cuts S a b).length + 1
+⊢ decide (cuts S a b).Nodup = true
+research/rmaf/algorithm/universal233/rule5_case322_paid_guard/build/PaidPartitions.lean:169:44: warning: This simp argument is unused:
+  nd
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [currentGuard, hardBranch, current, paid, arcs, hp, emb, len, binding]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

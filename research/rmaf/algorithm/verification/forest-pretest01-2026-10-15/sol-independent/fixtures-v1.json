@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "tree_serialization": "Nat leaf, [left,right] binary node, null Option none",
+  "frozen_before_execution": true,
+  "cases": [
+    {"id":"singleton","T":0,"ss":[0],"proper":true,"minimum":0,"candidate_count":1,"witness":[[0]]},
+    {"id":"empty","T":null,"ss":[],"proper":true,"minimum":0,"candidate_count":1,"witness":[]},
+    {"id":"leaf_empty","T":0,"ss":[],"proper":false},
+    {"id":"empty_leaf","T":null,"ss":[0],"proper":false},
+    {"id":"mismatch","T":0,"ss":[1],"proper":false},
+    {"id":"duplicate_target","T":[0,0],"ss":[[0,0]],"proper":false},
+    {"id":"duplicate_source","T":[0,1],"ss":[[0,0]],"proper":false},
+    {"id":"overlapping_source_labels","T":[0,1],"ss":[0,0,1],"proper":false},
+    {"id":"crossed_forest","T":[[0,1],[2,3]],"ss":[[0,2],[1,3]],"proper":true,"minimum":1,"candidate_count":5,"valid_candidate_entries":4,"valid_candidate_distinct":2,"witness":[[0],[2],[1,3]],"invalid_witness":[[0,2],[1,3]]},
+    {"id":"crossed_single","T":[[0,1],[2,3]],"ss":[[[0,2],[1,3]]],"proper":true,"minimum":2,"candidate_count":7,"witness":[[0],[1],[2,3]]},
+    {"id":"specific_coverage","T":[[0,1],2],"ss":[[[0,1],2]],"proper":true,"minimum":0,"candidate_count":5,"witness":[[0],[1,2]],"unique_edge":"00"},
+    {"id":"hidden_target","T":[[[0,1],2],[3,4]],"ss":[[0,3],[1,2],4],"proper":true,"minimum":1,"candidate_count":5,"invalid_witness":[[0,3],[1,2],[4]],"hidden_intersection":["0","00"]},
+    {"id":"hidden_source","T":[[[0,3],[1,2]],4],"ss":[[[[0,1],2],[3,4]]],"proper":true,"validator_only":true,"invalid_witness":[[0,3],[1,2],[4]],"hidden_intersection":["0","00"]}
+  ]
+}

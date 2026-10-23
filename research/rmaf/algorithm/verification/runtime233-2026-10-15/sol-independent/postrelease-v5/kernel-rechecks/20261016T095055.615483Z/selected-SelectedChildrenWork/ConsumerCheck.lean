@@ -1,0 +1,9 @@
+import SelectedChildrenWork
+#check Universal233.Rule5SelectedLocalWork.selected_children_value
+#print axioms Universal233.Rule5SelectedLocalWork.selected_children_value
+#check Universal233.Rule5SelectedLocalWork.selected_children_work
+#print axioms Universal233.Rule5SelectedLocalWork.selected_children_work
+#check Universal233.Rule5SelectedLocalWork.selected_child_payload
+#print axioms Universal233.Rule5SelectedLocalWork.selected_child_payload
+#check Universal233.Rule5SelectedLocalWork.selected_child_label_bits
+#print axioms Universal233.Rule5SelectedLocalWork.selected_child_label_bits

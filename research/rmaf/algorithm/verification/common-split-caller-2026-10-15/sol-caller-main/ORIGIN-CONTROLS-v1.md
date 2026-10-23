@@ -1,0 +1,8 @@
+# New scoped producer controls before execution
+
+Reuse source is pinned in OWN-REUSE-PINS. This is the same own stored-ConstantInfo route with added actual recursor RHS references/strings, unsafe/partial fields, resolved type/body/rules and loaded-module identities; it earns zero new replication credit. All scientific fixtures import Std only. The detector imports standard Lean APIs and trusts the installed standard library. Compiler-only IR auxiliary bodies are not inspected or claimed; stored kernel ConstantInfo and actual recursor rules are. Stored extra names are reported separately.
+
+CleanA alone, clean twins in both orders, Generated private/recursive declarations and Empty must pass. CleanB intentionally uses a different True proof body; both producer bodies must be retained even if the name resolves once. Hostile shared axiom plus its own clean declaration must reject in both import orders. Unused/public and unused/private custom axioms reject. The simultaneous private-unused-coalesced twin must reject in both orders, with its clean twin passing. KnownFalse must fail elaboration. No import failure earns axiom-detection credit.
+
+Fresh zero-row headers, full contiguous per-producer indices, loaded resolved origin membership, actual kind/type/body/rules and SHA fields are required. Missing/duplicate occurrence, missing/duplicate/forged-empty producer, invented origin, unresolved reference, modified actual type/body/rule and source byte/import/type/body adaptations must reject with clean twins. Source pins freeze exact fixtures and detector before first compile. Compile and audit a clean pilot first, then project the fixed small full battery. Preserve every failure.
+

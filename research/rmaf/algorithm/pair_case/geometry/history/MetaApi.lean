@@ -1,0 +1,9 @@
+import Lean
+open Lean
+#check Environment.getModuleIdxFor?
+#check Environment.header
+#check Environment.constants
+#check Environment.getModuleNameFor?
+#check Lean.collectAxioms
+#check Lean.ConstantInfo.isAxiom
+#check EnvironmentHeader.moduleNames

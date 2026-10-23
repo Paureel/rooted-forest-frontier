@@ -1,0 +1,7 @@
+# Reused method and execution controls
+
+The method is composition of the already frozen Rule5 measured-source programs, exact value proofs and stored-producer auditor. The prior dfda... source stage retained 32 known-answer runtime cases, six mathematical false claims, zero-work corruption detection, custom/hidden/dependency axiom refusals, opaque-body checks, missing/duplicate producer rows, source/object hash failures and foreign import paths. These are licensed frozen controls for the reused method; they give no independence credit.
+
+This execution stage will rerun the existing auditor controls with fresh fixtures and add source-specific controls before its final freeze: explicit outside relabel/rejection/refusal paths, pretest-result binding, q=0 paid job refusal, strict two-callback execution when the first fails, successful reconstruction and final length refusal, exact ordered callback multiplicity, and corrupted zero/excluded-callback bills. Negative claims must fail compilation; source/object/audit corruptions must be caught. No whole-execution primitive fee is an acceptable implementation substitute.
+
+Each pilot is capped at 30 seconds and 3072 MiB, with a live 3 GiB disk floor, 64 MiB raw output, 16 MiB lines and 128 MiB result-directory budget. Existing dependency objects are reused through an explicitly pinned path order. The 21 differing shared objects are covered by the completed parent's exact source/type/nonproof-body and required metadata bridges.

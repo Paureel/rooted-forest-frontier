@@ -1,0 +1,194 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:46:58: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  i ≥ 0
+  h ≥ 0
+  g ≥ 0
+  f ≥ 1
+  16*f - g ≥ 4
+  16*f - h ≥ 4
+  64*f - g - h - i ≤ 11
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  a ≥ 0
+  a - c ≥ 0
+  a - d ≥ 0
+  a - e ≥ 0
+  a - f ≤ 0
+where
+ a := ↑N
+ c := ↑(treeNodes T)
+ d := ↑(treeNodes S)
+ e := ↑U.length
+ f := ↑((N + 1) ^ 2)
+ g := ↑(meterRestrict U T).work
+ h := ↑(meterRestrict U S).work
+ i := ↑((Option.map List.length (GenericForest.solve actual (some t') [s'] b)).getD 0)
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:51:52: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  l ≥ 0
+  k ≥ 0
+  j ≥ 0
+  i ≥ 0
+  i - j ≥ 0
+  i - k ≥ 0
+  h ≥ 0
+  g ≥ 0
+  f ≥ 1
+  16*f - g ≥ 4
+  16*f - h ≥ 4
+  64*f - g - h - l ≤ 11
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  a ≥ 0
+  a - c ≥ 0
+  a - d ≥ 0
+  a - e ≥ 0
+  a - f ≤ 0
+  a - i ≥ 0
+where
+ a := ↑N
+ c := ↑(treeNodes T)
+ d := ↑(treeNodes S)
+ e := ↑U.length
+ f := ↑((N + 1) ^ 2)
+ g := ↑(meterRestrict U T).work
+ h := ↑(meterRestrict U S).work
+ i := ↑(leaves t').length
+ j := ↑(List.length F)
+ k := ↑(List.flatten F).length
+ l := ↑((Option.map List.length (GenericForest.solve actual (some t') [s'] b)).getD 0)
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:46:24: warning: This simp argument is unused:
+  Option.map_none
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Option.getD_none]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:46:40: warning: This simp argument is unused:
+  Option.getD_none
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Option.map_none]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:51:18: warning: This simp argument is unused:
+  Option.map_some
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Option.getD_some]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:51:34: warning: This simp argument is unused:
+  Option.getD_some
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Option.map_some]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:56:70: error: No goals to be solved
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:56:6: error: unsolved goals
+case nil
+T S : Tree
+js : List (Job (List Nat) (List (List Nat)))
+prep : MafScheduler.prepare T S [] = some js
+h : js = []
+⊢ js.length = [].length
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:90:43: error: Type mismatch: After simplification, term
+  congrArg
+    (fun o =>
+      Option.map
+        (fun j =>
+          match j with
+          | Job.resolved problem cost F => F
+          | Job.hard problem => [])
+        o)
+    (Eq.symm h)
+ has type
+  Option.map
+      (fun j =>
+        match j with
+        | Job.resolved problem cost F => F
+        | Job.hard problem => [])
+      (some (Job.resolved U c F)) =
+    Option.map
+      (fun j =>
+        match j with
+        | Job.resolved problem cost F => F
+        | Job.hard problem => [])
+      (some (Job.resolved U (DepthOne.cutCost a) (DepthOne.forest s a)))
+but is expected to have type
+  F = DepthOne.forest s a
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:109:62: error: No goals to be solved
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:109:6: error: unsolved goals
+case nil
+P A : Type
+f : P → Nat → Charged (Option (Nat × A))
+b : Nat
+ok : A → Prop
+resolved : ∀ (p : P) (c : Nat) (a : A), Job.resolved p c a ∈ [] → ok a
+callback : ∀ (p : P), Job.hard p ∈ [] → ∀ (x : Nat × A), (f p b).value = some x → ok x.snd
+xs : List (Nat × A)
+h : (runSourceMeter f b []).value.answers = some xs
+eq : xs = []
+⊢ ∀ (x : Nat × A), x ∈ xs → ok x.snd
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:116:11: error: unsolved goals
+case cons.resolved.none
+P A : Type
+f : P → Nat → Charged (Option (Nat × A))
+b : Nat
+ok : A → Prop
+js : List (Job P A)
+ih :
+  (∀ (p : P) (c : Nat) (a : A), Job.resolved p c a ∈ js → ok a) →
+    (∀ (p : P), Job.hard p ∈ js → ∀ (x : Nat × A), (f p b).value = some x → ok x.snd) →
+      ∀ (xs : List (Nat × A)), (runSourceMeter f b js).value.answers = some xs → ∀ (x : Nat × A), x ∈ xs → ok x.snd
+xs : List (Nat × A)
+rr : ∀ (p : P) (c : Nat) (a : A), Job.resolved p c a ∈ js → ok a
+cc : ∀ (p : P), Job.hard p ∈ js → ∀ (x : Nat × A), (f p b).value = some x → ok x.snd
+p : P
+c : Nat
+a : A
+resolved : ∀ (p_1 : P) (c_1 : Nat) (a_1 : A), Job.resolved p_1 c_1 a_1 ∈ Job.resolved p c a :: js → ok a_1
+callback : ∀ (p_1 : P), Job.hard p_1 ∈ Job.resolved p c a :: js → ∀ (x : Nat × A), (f p_1 b).value = some x → ok x.snd
+ht : (runSourceMeter f b js).value.answers = none
+h : ∃ a_1, (run (fun p b => (f p b).value) b js).answers = some a_1 ∧ (c, a) :: a_1 = xs
+⊢ ∀ (x : Nat × A), x ∈ xs → ok x.snd
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:126:13: error: unsolved goals
+case cons.hard.some.none
+P A : Type
+f : P → Nat → Charged (Option (Nat × A))
+b : Nat
+ok : A → Prop
+js : List (Job P A)
+ih :
+  (∀ (p : P) (c : Nat) (a : A), Job.resolved p c a ∈ js → ok a) →
+    (∀ (p : P), Job.hard p ∈ js → ∀ (x : Nat × A), (f p b).value = some x → ok x.snd) →
+      ∀ (xs : List (Nat × A)), (runSourceMeter f b js).value.answers = some xs → ∀ (x : Nat × A), x ∈ xs → ok x.snd
+xs : List (Nat × A)
+rr : ∀ (p : P) (c : Nat) (a : A), Job.resolved p c a ∈ js → ok a
+cc : ∀ (p : P), Job.hard p ∈ js → ∀ (x : Nat × A), (f p b).value = some x → ok x.snd
+p : P
+resolved : ∀ (p_1 : P) (c : Nat) (a : A), Job.resolved p_1 c a ∈ Job.hard p :: js → ok a
+callback : ∀ (p_1 : P), Job.hard p_1 ∈ Job.hard p :: js → ∀ (x : Nat × A), (f p_1 b).value = some x → ok x.snd
+y : Nat × A
+hf : (f p b).value = some y
+ht : (runSourceMeter f b js).value.answers = none
+h : ∃ a, (run (fun p b => (f p b).value) b js).answers = some a ∧ y :: a = xs
+⊢ ∀ (x : Nat × A), x ∈ xs → ok x.snd
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:131:38: error(lean.unknownIdentifier): Unknown identifier `y`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:116:34: warning: This simp argument is unused:
+  ht
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [runSourceMeter] at h
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-scheduler-20261016T112422Z-20261016T112613901387Z/OrdinarySchedulerCaps.lean:126:39: warning: This simp argument is unused:
+  ht
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [runSourceMeter, hf] at h
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

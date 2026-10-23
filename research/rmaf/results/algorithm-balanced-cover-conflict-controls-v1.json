@@ -1,0 +1,1445 @@
+{
+  "kind": "GLOBAL-C-frozen-controls",
+  "started_utc": "2026-10-14T22:01:33.025065+00:00",
+  "controls_sha256": "018ea332780a0f96196664720d45ef7ab8665b8e60b4819833de45d1a10b821d",
+  "script_sha256": "bcbdae46fc826a5064de57d2d16daccefd930484d55cad66b8b2898f91f64f2d",
+  "lineage": "fresh stdlib code; cut-mask vs partition enumeration; shared Tree primitives; no X0/production imports",
+  "rows": [
+    {
+      "id": "empty",
+      "actual": {
+        "optimum": 0,
+        "packing": 0,
+        "hyperedge_count": 0,
+        "cutsets_tested": 1,
+        "partition_optimum_count": 1,
+        "minimum_hitting_masks": [
+          0
+        ],
+        "seconds": 1.4792000001762062e-05,
+        "optimum_partitions": [
+          []
+        ],
+        "source_edges": [],
+        "conflicts": [],
+        "maximum_disjoint_packing": []
+      },
+      "checks": [
+        {
+          "field": "expected_optimum",
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "field": "expected_packing",
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": "singleton",
+      "actual": {
+        "optimum": 0,
+        "packing": 0,
+        "hyperedge_count": 0,
+        "cutsets_tested": 1,
+        "partition_optimum_count": 1,
+        "minimum_hitting_masks": [
+          0
+        ],
+        "seconds": 2.312500009793439e-05,
+        "optimum_partitions": [
+          [
+            [
+              "a"
+            ]
+          ]
+        ],
+        "source_edges": [],
+        "conflicts": [],
+        "maximum_disjoint_packing": []
+      },
+      "checks": [
+        {
+          "field": "expected_optimum",
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "field": "expected_packing",
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": "identical",
+      "actual": {
+        "optimum": 0,
+        "packing": 0,
+        "hyperedge_count": 0,
+        "cutsets_tested": 64,
+        "partition_optimum_count": 1,
+        "minimum_hitting_masks": [
+          0
+        ],
+        "seconds": 0.0008009580001271388,
+        "optimum_partitions": [
+          [
+            [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          ]
+        ],
+        "source_edges": [
+          {
+            "edge": 0,
+            "parent": 0,
+            "child": 1,
+            "child_labels": [
+              "a",
+              "b"
+            ]
+          },
+          {
+            "edge": 1,
+            "parent": 1,
+            "child": 2,
+            "child_labels": [
+              "a"
+            ]
+          },
+          {
+            "edge": 2,
+            "parent": 1,
+            "child": 3,
+            "child_labels": [
+              "b"
+            ]
+          },
+          {
+            "edge": 3,
+            "parent": 0,
+            "child": 4,
+            "child_labels": [
+              "c",
+              "d"
+            ]
+          },
+          {
+            "edge": 4,
+            "parent": 4,
+            "child": 5,
+            "child_labels": [
+              "c"
+            ]
+          },
+          {
+            "edge": 5,
+            "parent": 4,
+            "child": 6,
+            "child_labels": [
+              "d"
+            ]
+          }
+        ],
+        "conflicts": [],
+        "maximum_disjoint_packing": []
+      },
+      "checks": [
+        {
+          "field": "expected_optimum",
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "field": "expected_packing",
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": "incompatible-triple",
+      "actual": {
+        "optimum": 1,
+        "packing": 1,
+        "hyperedge_count": 1,
+        "cutsets_tested": 16,
+        "partition_optimum_count": 3,
+        "minimum_hitting_masks": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "seconds": 0.00017283400029555196,
+        "optimum_partitions": [
+          [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "c"
+            ]
+          ],
+          [
+            [
+              "a",
+              "c"
+            ],
+            [
+              "b"
+            ]
+          ],
+          [
+            [
+              "a"
+            ],
+            [
+              "b",
+              "c"
+            ]
+          ]
+        ],
+        "source_edges": [
+          {
+            "edge": 0,
+            "parent": 0,
+            "child": 1,
+            "child_labels": [
+              "c"
+            ]
+          },
+          {
+            "edge": 1,
+            "parent": 0,
+            "child": 2,
+            "child_labels": [
+              "a",
+              "b"
+            ]
+          },
+          {
+            "edge": 2,
+            "parent": 2,
+            "child": 3,
+            "child_labels": [
+              "a"
+            ]
+          },
+          {
+            "edge": 3,
+            "parent": 2,
+            "child": 4,
+            "child_labels": [
+              "b"
+            ]
+          }
+        ],
+        "conflicts": [
+          {
+            "edge_mask": 15,
+            "edges": [
+              {
+                "edge": 0,
+                "parent": 0,
+                "child": 1,
+                "child_labels": [
+                  "c"
+                ]
+              },
+              {
+                "edge": 1,
+                "parent": 0,
+                "child": 2,
+                "child_labels": [
+                  "a",
+                  "b"
+                ]
+              },
+              {
+                "edge": 2,
+                "parent": 2,
+                "child": 3,
+                "child_labels": [
+                  "a"
+                ]
+              },
+              {
+                "edge": 3,
+                "parent": 2,
+                "child": 4,
+                "child_labels": [
+                  "b"
+                ]
+              }
+            ],
+            "causes": [
+              {
+                "kind": "triple",
+                "labels": [
+                  "a",
+                  "b",
+                  "c"
+                ]
+              }
+            ]
+          }
+        ],
+        "maximum_disjoint_packing": [
+          15
+        ]
+      },
+      "checks": [
+        {
+          "field": "expected_optimum",
+          "expected": 1,
+          "actual": 1,
+          "passed": true
+        },
+        {
+          "field": "expected_packing",
+          "expected": 1,
+          "actual": 1,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": "quartet-packing-gap",
+      "actual": {
+        "optimum": 2,
+        "packing": 1,
+        "hyperedge_count": 5,
+        "cutsets_tested": 64,
+        "partition_optimum_count": 6,
+        "minimum_hitting_masks": [
+          3,
+          5,
+          6,
+          10,
+          12,
+          17,
+          18,
+          20,
+          24,
+          33,
+          34,
+          36,
+          40,
+          48
+        ],
+        "seconds": 0.0007473750001736335,
+        "optimum_partitions": [
+          [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "c"
+            ],
+            [
+              "d"
+            ]
+          ],
+          [
+            [
+              "a",
+              "c"
+            ],
+            [
+              "b"
+            ],
+            [
+              "d"
+            ]
+          ],
+          [
+            [
+              "a",
+              "d"
+            ],
+            [
+              "b"
+            ],
+            [
+              "c"
+            ]
+          ],
+          [
+            [
+              "a"
+            ],
+            [
+              "b",
+              "c"
+            ],
+            [
+              "d"
+            ]
+          ],
+          [
+            [
+              "a"
+            ],
+            [
+              "b",
+              "d"
+            ],
+            [
+              "c"
+            ]
+          ],
+          [
+            [
+              "a"
+            ],
+            [
+              "b"
+            ],
+            [
+              "c",
+              "d"
+            ]
+          ]
+        ],
+        "source_edges": [
+          {
+            "edge": 0,
+            "parent": 0,
+            "child": 1,
+            "child_labels": [
+              "a",
+              "b"
+            ]
+          },
+          {
+            "edge": 1,
+            "parent": 1,
+            "child": 2,
+            "child_labels": [
+              "a"
+            ]
+          },
+          {
+            "edge": 2,
+            "parent": 1,
+            "child": 3,
+            "child_labels": [
+              "b"
+            ]
+          },
+          {
+            "edge": 3,
+            "parent": 0,
+            "child": 4,
+            "child_labels": [
+              "c",
+              "d"
+            ]
+          },
+          {
+            "edge": 4,
+            "parent": 4,
+            "child": 5,
+            "child_labels": [
+              "c"
+            ]
+          },
+          {
+            "edge": 5,
+            "parent": 4,
+            "child": 6,
+            "child_labels": [
+              "d"
+            ]
+          }
+        ],
+        "conflicts": [
+          {
+            "edge_mask": 31,
+            "edges": [
+              {
+                "edge": 0,
+                "parent": 0,
+                "child": 1,
+                "child_labels": [
+                  "a",
+                  "b"
+                ]
+              },
+              {
+                "edge": 1,
+                "parent": 1,
+                "child": 2,
+                "child_labels": [
+                  "a"
+                ]
+              },
+              {
+                "edge": 2,
+                "parent": 1,
+                "child": 3,
+                "child_labels": [
+                  "b"
+                ]
+              },
+              {
+                "edge": 3,
+                "parent": 0,
+                "child": 4,
+                "child_labels": [
+                  "c",
+                  "d"
+                ]
+              },
+              {
+                "edge": 4,
+                "parent": 4,
+                "child": 5,
+                "child_labels": [
+                  "c"
+                ]
+              }
+            ],
+            "causes": [
+              {
+                "kind": "triple",
+                "labels": [
+                  "a",
+                  "b",
+                  "c"
+                ]
+              }
+            ]
+          },
+          {
+            "edge_mask": 47,
+            "edges": [
+              {
+                "edge": 0,
+                "parent": 0,
+                "child": 1,
+                "child_labels": [
+                  "a",
+                  "b"
+                ]
+              },
+              {
+                "edge": 1,
+                "parent": 1,
+                "child": 2,
+                "child_labels": [
+                  "a"
+                ]
+              },
+              {
+                "edge": 2,
+                "parent": 1,
+                "child": 3,
+                "child_labels": [
+                  "b"
+                ]
+              },
+              {
+                "edge": 3,
+                "parent": 0,
+                "child": 4,
+                "child_labels": [
+                  "c",
+                  "d"
+                ]
+              },
+              {
+                "edge": 5,
+                "parent": 4,
+                "child": 6,
+                "child_labels": [
+                  "d"
+                ]
+              }
+            ],
+            "causes": [
+              {
+                "kind": "triple",
+                "labels": [
+                  "a",
+                  "b",
+                  "d"
+                ]
+              }
+            ]
+          },
+          {
+            "edge_mask": 59,
+            "edges": [
+              {
+                "edge": 0,
+                "parent": 0,
+                "child": 1,
+                "child_labels": [
+                  "a",
+                  "b"
+                ]
+              },
+              {
+                "edge": 1,
+                "parent": 1,
+                "child": 2,
+                "child_labels": [
+                  "a"
+                ]
+              },
+              {
+                "edge": 3,
+                "parent": 0,
+                "child": 4,
+                "child_labels": [
+                  "c",
+                  "d"
+                ]
+              },
+              {
+                "edge": 4,
+                "parent": 4,
+                "child": 5,
+                "child_labels": [
+                  "c"
+                ]
+              },
+              {
+                "edge": 5,
+                "parent": 4,
+                "child": 6,
+                "child_labels": [
+                  "d"
+                ]
+              }
+            ],
+            "causes": [
+              {
+                "kind": "triple",
+                "labels": [
+                  "a",
+                  "c",
+                  "d"
+                ]
+              }
+            ]
+          },
+          {
+            "edge_mask": 61,
+            "edges": [
+              {
+                "edge": 0,
+                "parent": 0,
+                "child": 1,
+                "child_labels": [
+                  "a",
+                  "b"
+                ]
+              },
+              {
+                "edge": 2,
+                "parent": 1,
+                "child": 3,
+                "child_labels": [
+                  "b"
+                ]
+              },
+              {
+                "edge": 3,
+                "parent": 0,
+                "child": 4,
+                "child_labels": [
+                  "c",
+                  "d"
+                ]
+              },
+              {
+                "edge": 4,
+                "parent": 4,
+                "child": 5,
+                "child_labels": [
+                  "c"
+                ]
+              },
+              {
+                "edge": 5,
+                "parent": 4,
+                "child": 6,
+                "child_labels": [
+                  "d"
+                ]
+              }
+            ],
+            "causes": [
+              {
+                "kind": "triple",
+                "labels": [
+                  "b",
+                  "c",
+                  "d"
+                ]
+              }
+            ]
+          },
+          {
+            "edge_mask": 54,
+            "edges": [
+              {
+                "edge": 1,
+                "parent": 1,
+                "child": 2,
+                "child_labels": [
+                  "a"
+                ]
+              },
+              {
+                "edge": 2,
+                "parent": 1,
+                "child": 3,
+                "child_labels": [
+                  "b"
+                ]
+              },
+              {
+                "edge": 4,
+                "parent": 4,
+                "child": 5,
+                "child_labels": [
+                  "c"
+                ]
+              },
+              {
+                "edge": 5,
+                "parent": 4,
+                "child": 6,
+                "child_labels": [
+                  "d"
+                ]
+              }
+            ],
+            "causes": [
+              {
+                "kind": "path-overlap",
+                "pairs": [
+                  [
+                    "a",
+                    "b"
+                  ],
+                  [
+                    "c",
+                    "d"
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "maximum_disjoint_packing": [
+          31
+        ]
+      },
+      "checks": [
+        {
+          "field": "expected_optimum",
+          "expected": 2,
+          "actual": 2,
+          "passed": true
+        },
+        {
+          "field": "expected_packing",
+          "expected": 1,
+          "actual": 1,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": "equal-half-survival-failure",
+      "actual": {
+        "optimum": 1,
+        "packing": 1,
+        "hyperedge_count": 2,
+        "cutsets_tested": 64,
+        "partition_optimum_count": 3,
+        "minimum_hitting_masks": [
+          4,
+          16,
+          32
+        ],
+        "seconds": 0.0008662079999339767,
+        "optimum_partitions": [
+          [
+            [
+              "a",
+              "b",
+              "c"
+            ],
+            [
+              "d"
+            ]
+          ],
+          [
+            [
+              "a",
+              "b",
+              "d"
+            ],
+            [
+              "c"
+            ]
+          ],
+          [
+            [
+              "a",
+              "c",
+              "d"
+            ],
+            [
+              "b"
+            ]
+          ]
+        ],
+        "source_edges": [
+          {
+            "edge": 0,
+            "parent": 0,
+            "child": 1,
+            "child_labels": [
+              "a"
+            ]
+          },
+          {
+            "edge": 1,
+            "parent": 0,
+            "child": 2,
+            "child_labels": [
+              "b",
+              "c",
+              "d"
+            ]
+          },
+          {
+            "edge": 2,
+            "parent": 2,
+            "child": 3,
+            "child_labels": [
+              "b"
+            ]
+          },
+          {
+            "edge": 3,
+            "parent": 2,
+            "child": 4,
+            "child_labels": [
+              "c",
+              "d"
+            ]
+          },
+          {
+            "edge": 4,
+            "parent": 4,
+            "child": 5,
+            "child_labels": [
+              "c"
+            ]
+          },
+          {
+            "edge": 5,
+            "parent": 4,
+            "child": 6,
+            "child_labels": [
+              "d"
+            ]
+          }
+        ],
+        "conflicts": [
+          {
+            "edge_mask": 60,
+            "edges": [
+              {
+                "edge": 2,
+                "parent": 2,
+                "child": 3,
+                "child_labels": [
+                  "b"
+                ]
+              },
+              {
+                "edge": 3,
+                "parent": 2,
+                "child": 4,
+                "child_labels": [
+                  "c",
+                  "d"
+                ]
+              },
+              {
+                "edge": 4,
+                "parent": 4,
+                "child": 5,
+                "child_labels": [
+                  "c"
+                ]
+              },
+              {
+                "edge": 5,
+                "parent": 4,
+                "child": 6,
+                "child_labels": [
+                  "d"
+                ]
+              }
+            ],
+            "causes": [
+              {
+                "kind": "triple",
+                "labels": [
+                  "b",
+                  "c",
+                  "d"
+                ]
+              }
+            ]
+          },
+          {
+            "edge_mask": 55,
+            "edges": [
+              {
+                "edge": 0,
+                "parent": 0,
+                "child": 1,
+                "child_labels": [
+                  "a"
+                ]
+              },
+              {
+                "edge": 1,
+                "parent": 0,
+                "child": 2,
+                "child_labels": [
+                  "b",
+                  "c",
+                  "d"
+                ]
+              },
+              {
+                "edge": 2,
+                "parent": 2,
+                "child": 3,
+                "child_labels": [
+                  "b"
+                ]
+              },
+              {
+                "edge": 4,
+                "parent": 4,
+                "child": 5,
+                "child_labels": [
+                  "c"
+                ]
+              },
+              {
+                "edge": 5,
+                "parent": 4,
+                "child": 6,
+                "child_labels": [
+                  "d"
+                ]
+              }
+            ],
+            "causes": [
+              {
+                "kind": "path-overlap",
+                "pairs": [
+                  [
+                    "a",
+                    "b"
+                  ],
+                  [
+                    "c",
+                    "d"
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "maximum_disjoint_packing": [
+          55
+        ],
+        "precuts": 1,
+        "surviving": 0,
+        "completion": 1,
+        "tau": 0,
+        "charged": 2,
+        "precut_realizations": [
+          [
+            {
+              "edge": 3,
+              "parent": 2,
+              "child": 4,
+              "child_labels": [
+                "c",
+                "d"
+              ]
+            }
+          ]
+        ]
+      },
+      "checks": [
+        {
+          "field": "expected_optimum",
+          "expected": 1,
+          "actual": 1,
+          "passed": true
+        },
+        {
+          "field": "expected_precuts",
+          "expected": 1,
+          "actual": 1,
+          "passed": true
+        },
+        {
+          "field": "expected_surviving",
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "field": "expected_completion",
+          "expected": 1,
+          "actual": 1,
+          "passed": true
+        },
+        {
+          "field": "expected_tau",
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": "equal-half-clean-twin",
+      "actual": {
+        "optimum": 1,
+        "packing": 1,
+        "hyperedge_count": 2,
+        "cutsets_tested": 64,
+        "partition_optimum_count": 3,
+        "minimum_hitting_masks": [
+          4,
+          16,
+          32
+        ],
+        "seconds": 0.000754832999973587,
+        "optimum_partitions": [
+          [
+            [
+              "a",
+              "b",
+              "c"
+            ],
+            [
+              "d"
+            ]
+          ],
+          [
+            [
+              "a",
+              "b",
+              "d"
+            ],
+            [
+              "c"
+            ]
+          ],
+          [
+            [
+              "a",
+              "c",
+              "d"
+            ],
+            [
+              "b"
+            ]
+          ]
+        ],
+        "source_edges": [
+          {
+            "edge": 0,
+            "parent": 0,
+            "child": 1,
+            "child_labels": [
+              "a"
+            ]
+          },
+          {
+            "edge": 1,
+            "parent": 0,
+            "child": 2,
+            "child_labels": [
+              "b",
+              "c",
+              "d"
+            ]
+          },
+          {
+            "edge": 2,
+            "parent": 2,
+            "child": 3,
+            "child_labels": [
+              "b"
+            ]
+          },
+          {
+            "edge": 3,
+            "parent": 2,
+            "child": 4,
+            "child_labels": [
+              "c",
+              "d"
+            ]
+          },
+          {
+            "edge": 4,
+            "parent": 4,
+            "child": 5,
+            "child_labels": [
+              "c"
+            ]
+          },
+          {
+            "edge": 5,
+            "parent": 4,
+            "child": 6,
+            "child_labels": [
+              "d"
+            ]
+          }
+        ],
+        "conflicts": [
+          {
+            "edge_mask": 60,
+            "edges": [
+              {
+                "edge": 2,
+                "parent": 2,
+                "child": 3,
+                "child_labels": [
+                  "b"
+                ]
+              },
+              {
+                "edge": 3,
+                "parent": 2,
+                "child": 4,
+                "child_labels": [
+                  "c",
+                  "d"
+                ]
+              },
+              {
+                "edge": 4,
+                "parent": 4,
+                "child": 5,
+                "child_labels": [
+                  "c"
+                ]
+              },
+              {
+                "edge": 5,
+                "parent": 4,
+                "child": 6,
+                "child_labels": [
+                  "d"
+                ]
+              }
+            ],
+            "causes": [
+              {
+                "kind": "triple",
+                "labels": [
+                  "b",
+                  "c",
+                  "d"
+                ]
+              }
+            ]
+          },
+          {
+            "edge_mask": 55,
+            "edges": [
+              {
+                "edge": 0,
+                "parent": 0,
+                "child": 1,
+                "child_labels": [
+                  "a"
+                ]
+              },
+              {
+                "edge": 1,
+                "parent": 0,
+                "child": 2,
+                "child_labels": [
+                  "b",
+                  "c",
+                  "d"
+                ]
+              },
+              {
+                "edge": 2,
+                "parent": 2,
+                "child": 3,
+                "child_labels": [
+                  "b"
+                ]
+              },
+              {
+                "edge": 4,
+                "parent": 4,
+                "child": 5,
+                "child_labels": [
+                  "c"
+                ]
+              },
+              {
+                "edge": 5,
+                "parent": 4,
+                "child": 6,
+                "child_labels": [
+                  "d"
+                ]
+              }
+            ],
+            "causes": [
+              {
+                "kind": "path-overlap",
+                "pairs": [
+                  [
+                    "a",
+                    "b"
+                  ],
+                  [
+                    "c",
+                    "d"
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "maximum_disjoint_packing": [
+          55
+        ],
+        "precuts": 1,
+        "surviving": 1,
+        "completion": 0,
+        "tau": 0,
+        "charged": 1,
+        "precut_realizations": [
+          [
+            {
+              "edge": 2,
+              "parent": 2,
+              "child": 3,
+              "child_labels": [
+                "b"
+              ]
+            }
+          ]
+        ]
+      },
+      "checks": [
+        {
+          "field": "expected_optimum",
+          "expected": 1,
+          "actual": 1,
+          "passed": true
+        },
+        {
+          "field": "expected_precuts",
+          "expected": 1,
+          "actual": 1,
+          "passed": true
+        },
+        {
+          "field": "expected_surviving",
+          "expected": 1,
+          "actual": 1,
+          "passed": true
+        },
+        {
+          "field": "expected_completion",
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        },
+        {
+          "field": "expected_tau",
+          "expected": 0,
+          "actual": 0,
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "mutations": [
+    {
+      "id": "empty",
+      "field": "expected_optimum",
+      "corrupt": 1,
+      "caught": true
+    },
+    {
+      "id": "empty",
+      "field": "expected_packing",
+      "corrupt": 1,
+      "caught": true
+    },
+    {
+      "id": "singleton",
+      "field": "expected_optimum",
+      "corrupt": 1,
+      "caught": true
+    },
+    {
+      "id": "singleton",
+      "field": "expected_packing",
+      "corrupt": 1,
+      "caught": true
+    },
+    {
+      "id": "identical",
+      "field": "expected_optimum",
+      "corrupt": 1,
+      "caught": true
+    },
+    {
+      "id": "identical",
+      "field": "expected_packing",
+      "corrupt": 1,
+      "caught": true
+    },
+    {
+      "id": "incompatible-triple",
+      "field": "expected_optimum",
+      "corrupt": 2,
+      "caught": true
+    },
+    {
+      "id": "incompatible-triple",
+      "field": "expected_packing",
+      "corrupt": 2,
+      "caught": true
+    },
+    {
+      "id": "quartet-packing-gap",
+      "field": "expected_optimum",
+      "corrupt": 3,
+      "caught": true
+    },
+    {
+      "id": "quartet-packing-gap",
+      "field": "expected_packing",
+      "corrupt": 2,
+      "caught": true
+    },
+    {
+      "id": "equal-half-survival-failure",
+      "field": "expected_optimum",
+      "corrupt": 2,
+      "caught": true
+    },
+    {
+      "id": "equal-half-survival-failure",
+      "field": "expected_precuts",
+      "corrupt": 2,
+      "caught": true
+    },
+    {
+      "id": "equal-half-survival-failure",
+      "field": "expected_surviving",
+      "corrupt": 1,
+      "caught": true
+    },
+    {
+      "id": "equal-half-survival-failure",
+      "field": "expected_completion",
+      "corrupt": 2,
+      "caught": true
+    },
+    {
+      "id": "equal-half-survival-failure",
+      "field": "expected_tau",
+      "corrupt": 1,
+      "caught": true
+    },
+    {
+      "id": "equal-half-clean-twin",
+      "field": "expected_optimum",
+      "corrupt": 2,
+      "caught": true
+    },
+    {
+      "id": "equal-half-clean-twin",
+      "field": "expected_precuts",
+      "corrupt": 2,
+      "caught": true
+    },
+    {
+      "id": "equal-half-clean-twin",
+      "field": "expected_surviving",
+      "corrupt": 2,
+      "caught": true
+    },
+    {
+      "id": "equal-half-clean-twin",
+      "field": "expected_completion",
+      "corrupt": 1,
+      "caught": true
+    },
+    {
+      "id": "equal-half-clean-twin",
+      "field": "expected_tau",
+      "corrupt": 1,
+      "caught": true
+    },
+    {
+      "id": "wrong-topology-unsplit",
+      "caught": true,
+      "clean_twin": true
+    },
+    {
+      "id": "wrong-precut-charge",
+      "caught": true,
+      "clean_twin": true
+    },
+    {
+      "id": "false-halfbudget",
+      "caught": true,
+      "clean_twin": true
+    }
+  ],
+  "fixtures_passed": 7,
+  "comparisons_passed": 20,
+  "mutation_catches": 23,
+  "verdict": "FINITE-CONTROLS-REPRODUCE"
+}

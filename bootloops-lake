@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+BOOTSCIENCE_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+export BOOTSCIENCE_ROOT
+. "$BOOTSCIENCE_ROOT/activate.sh"
+exec lake "$@"

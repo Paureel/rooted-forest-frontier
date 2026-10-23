@@ -1,0 +1,104 @@
+import SourceSplit
+namespace GenericForest.FrontierWork
+open RMAF ForestState Universal233 Universal233.PaidQueries Universal233.SourceCoverage Universal233.CoreProgram
+
+def contraction (c : Rat) : Rat := 2*c^(-1:Int)
+def geometric (c : Rat) : Rat := (1-contraction c)⁻¹
+
+theorem geometric_formula (c : Rat) : geometric c=1/(1-2/c) := by
+ simp only [geometric,contraction,show (-1:Int)= -(1:Int) from rfl,Rat.zpow_neg,Rat.zpow_one,Rat.div_def,Rat.one_mul]
+
+theorem geometric_properties (c : Rat) (hc : 2<c) :
+ 0≤contraction c ∧ contraction c<1 ∧ 0≤geometric c ∧ 1≤geometric c ∧
+ 1+geometric c*contraction c=geometric c := by
+ have cp : 0<c:=by grind
+ have cn:=Rat.ne_of_gt cp
+ have nonneg : 0≤contraction c:=Rat.mul_nonneg (by decide) (Rat.le_of_lt (Rat.zpow_pos cp))
+ have less : contraction c<1 := by
+  apply Rat.lt_of_mul_lt_mul_right (c:=c) _ (Rat.le_of_lt cp)
+  simpa only [contraction,show (-1:Int)= -(1:Int) from rfl,Rat.zpow_neg,Rat.zpow_one,
+   Rat.mul_assoc,Rat.inv_mul_cancel c cn,Rat.mul_one,Rat.one_mul] using hc
+ have diff : 0<1-contraction c:=(Rat.lt_iff_sub_pos _ _).1 less
+ have gp : 0≤geometric c:=Rat.le_of_lt (Rat.inv_pos.2 diff)
+ have balance:=Rat.inv_mul_cancel (1-contraction c) (Rat.ne_of_gt diff)
+ have eq : 1+geometric c*contraction c=geometric c := by
+  change geometric c*(1-contraction c)=1 at balance
+  grind
+ have prod:=Rat.mul_nonneg gp nonneg
+ exact ⟨nonneg,less,gp,by grind,eq⟩
+
+/-- Pure forest overhead: the local premise contains zero ordinary charges. -/
+theorem forest_overhead_bound (ordinary : Ordinary) (T : Option Tree) (Q : Nat) (c K : Rat)
+ (hc : 2<c) (hK : 0≤K) (hloc : LocalOverheadBound ordinary T Q c K)
+ (ss : List Tree) (q : Nat) (hqQ : q≤Q) (hp : proper T ss=true) :
+ sourceWork ordinary (fun _ _ _=>0) T ss q≤geometric c*K*c^q := by
+ have hcweak : 2≤c:=Rat.le_of_lt hc
+ obtain ⟨alpha,_,gpos,gone,balance⟩:=geometric_properties c hc
+ induction q using Nat.strongRecOn generalizing ss with
+ | ind q ih =>
+  have cp : 0<c:=by grind
+  have powpos : 0≤c^q:=Rat.le_of_lt (Rat.pow_pos cp)
+  have localBill:=hloc ss q hqQ hp
+  have base : K*c^q≤geometric c*K*c^q := by
+   have h:=Rat.mul_le_mul_of_nonneg_right gone (Rat.mul_nonneg hK powpos)
+   simpa only [Rat.one_mul,Rat.mul_assoc] using h
+  have childBound (t : Tree) (ht : T=some t) (h : Overlap) (hh : overlap t ss=some h) :
+   ((branches t ss h q).map fun io=>if _hd : 1≤io.2.sourceCuts.length ∧ io.2.sourceCuts.length≤q then
+    sourceWork ordinary (fun _ _ _=>0) T (replace ss io.1 io.2.partition) (q-io.2.sourceCuts.length) else 0).sum≤
+   (geometric c*K*c^q)*contraction c := by
+   let A:=geometric c*K*c^q
+   let f : Nat × Output → Rat:=fun io=>if _hd : 1≤io.2.sourceCuts.length ∧ io.2.sourceCuts.length≤q then
+    sourceWork ordinary (fun _ _ _=>0) T (replace ss io.1 io.2.partition) (q-io.2.sourceCuts.length) else 0
+   have aPos : 0≤A:=Rat.mul_nonneg (Rat.mul_nonneg gpos hK) powpos
+   have each (io : Nat × Output) (mem : io∈branches t ss h q) : f io≤A*c^(-(io.2.sourceCuts.length:Int)) := by
+    have paid:=branch_paid_proper t ss (by simpa [ht] using hp) h hh q io.1 io.2 mem
+    have hd : 1≤io.2.sourceCuts.length ∧ io.2.sourceCuts.length≤q:=⟨paid.1,paid.2.1⟩
+    have child:=ih (q-io.2.sourceCuts.length) (by omega) (replace ss io.1 io.2.partition) (by omega) (by simpa [ht] using paid.2.2)
+    simp only [f,dite_eq_left hd]
+    rw [qpow_clear c (Rat.ne_of_gt cp) q _ paid.2.1] at child
+    simpa only [A,Rat.mul_assoc] using child
+   have sum:=rat_sum_map_le (branches t ss h q) f (fun io=>A*c^(-(io.2.sourceCuts.length:Int))) each
+   rw [rat_sum_mul] at sum
+   have mass:=Rat.mul_le_mul_of_nonneg_left (branch_mass_sharp t ss (by simpa [ht] using hp) h hh q c hcweak) aPos
+   exact Rat.le_trans sum mass
+  rw [sourceWork.eq_def]
+  split
+  · split
+    · exact Rat.le_trans (by simpa only [Rat.add_zero] using localBill) base
+    · exact Rat.le_trans (by simpa only [Rat.add_zero] using localBill) base
+    · rename_i t ht notsingle
+      split
+      · exact Rat.le_trans (by simpa only [Rat.add_zero] using localBill) base
+      · rename_i h hh
+        have bound:=qadd_le_add localBill (childBound t rfl h hh)
+        have eq : K*c^q+(geometric c*K*c^q)*contraction c=geometric c*K*c^q := by
+         have h:=congrArg (fun x=>x*(K*c^q)) balance
+         grind
+        rw [eq] at bound
+        exact bound
+  · exact Rat.le_trans (by simpa only [Rat.add_zero] using localBill) base
+
+/-- Ordinary work is charged once along the actual frontier. -/
+def OrdinaryBillBound (W : OrdinaryWork) (Q : Nat) (c D : Rat) : Prop :=
+ ∀t s r,r≤Q → DepthOne.proper t s=true → (W t s r:Rat)≤D*c^r
+
+theorem frontier_work_bound (ordinary : Ordinary) (W : OrdinaryWork) (T : Option Tree) (ss : List Tree)
+ (q Q : Nat) (c D : Rat) (hc : 2≤c) (hD : 0≤D) (hp : proper T ss=true) (hqQ : q≤Q)
+ (bill : OrdinaryBillBound W Q c D) : queryWorkRat W (frontier ordinary T ss q)≤D*c^q := by
+ have each (pb : Query) (mem : pb∈frontier ordinary T ss q) : (W pb.1.1 pb.1.2 pb.2:Rat)≤D*c^pb.2 := by
+  have valid:=frontier_queries_proper ordinary T ss q hp pb.1 pb.2 mem
+  exact bill pb.1.1 pb.1.2 pb.2 (Nat.le_trans valid.1 hqQ) valid.2
+ have sum:=rat_sum_map_le (frontier ordinary T ss q) (fun pb=>(W pb.1.1 pb.1.2 pb.2:Rat)) (fun pb=>D*c^pb.2) each
+ rw [rat_sum_mul] at sum
+ exact Rat.le_trans sum (Rat.mul_le_mul_of_nonneg_left (frontier_power_bound ordinary T ss q hp c hc) hD)
+
+theorem source_work_bound_separated (ordinary : Ordinary) (W : OrdinaryWork) (T : Option Tree) (Q : Nat)
+ (c K D : Rat) (hc : 2<c) (hK : 0≤K) (hD : 0≤D)
+ (hloc : LocalOverheadBound ordinary T Q c K) (bill : OrdinaryBillBound W Q c D)
+ (ss : List Tree) (q : Nat) (hqQ : q≤Q) (hp : proper T ss=true) :
+ sourceWork ordinary W T ss q≤(D+geometric c*K)*c^q := by
+ rw [source_work_split]
+ have h:=qadd_le_add (forest_overhead_bound ordinary T Q c K hc hK hloc ss q hqQ hp)
+  (frontier_work_bound ordinary W T ss q Q c D (Rat.le_of_lt hc) hD hp hqQ bill)
+ simpa only [Rat.add_mul,Rat.mul_assoc,Rat.add_comm] using h
+end GenericForest.FrontierWork

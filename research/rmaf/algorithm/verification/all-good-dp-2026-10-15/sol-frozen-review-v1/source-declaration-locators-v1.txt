@@ -1,0 +1,234 @@
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Branches.lean:120:inductive GCherryAt : GTree → RMAF.Vertex → Group → Group → Prop
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Branches.lean:212:def FullyNormalized : GTree → Prop
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Contraction.lean:12:inductive CherryContraction : Tree → Tree → RMAF.Vertex → Nat → Nat → Nat → Prop
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Contraction.lean:104:def contractOwner (P : SourcePartition t) (p : RMAF.Vertex) (v : RMAF.Vertex) : Nat :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Contraction.lean:107:def contractSupport (P : SourcePartition t) (u : Tree) (i : Nat) (v : RMAF.Vertex) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Contraction.lean:135:def contractPartition {t u p x y z} (h : CherryContraction t u p x y z)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Contraction.lean:159:def cherryProjection (p v : RMAF.Vertex) : RMAF.Vertex :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:10:structure Group where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:16:inductive GTree where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:21:def fromTree (color : Nat → Nat) (p : Vertex) : Tree → GTree
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:25:def groups : GTree → List Group
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:29:def normalize : GTree → GTree
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:38:def erase (chosen : Vertex) : GTree → Option GTree
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:48:def mixedCherry : GTree → Option (Group × Group)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:53:inductive Choice where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:60:def choose (t : GTree) : Choice :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:76:structure Output where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:83:structure Receipt where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:91:def combine (a b : Receipt) : Receipt :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:95:def prefixRoot (r : Receipt) : Receipt := { r with visited := r.visited + 1 }
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:97:def attempt (continuation : GTree → List Group → List Vertex → Receipt)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:108:def step (continuation : GTree → List Group → List Vertex → Receipt)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:120:def run : Nat → GTree → List Group → List Vertex → Receipt
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:124:def generate (t : Tree) (color : Nat → Nat) (budget : Nat) : Receipt :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:129:def maxVisits : Nat → Nat
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:241:def crossed : Tree := .node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:242:def parity (x : Nat) : Nat := x % 2
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:246:def insertBy (le : α → α → Bool) (a : α) : List α → List α
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:250:def sortBy (le : α → α → Bool) : List α → List α
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:254:def lexBy [BEq α] (le : α → α → Bool) : List α → List α → Bool
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:259:def natLE (a b : Nat) : Bool := decide (a ≤ b)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:261:def canonicalPartition (p : List (List Nat)) : List (List Nat) :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:264:def parts (r : Receipt) : List (List (List Nat)) :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:267:def costs (r : Receipt) : List Nat := r.outputs.map (fun o => o.sourceCuts.length)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:276:def cherry3 : Tree := .node (.node (.leaf 0) (.leaf 1)) (.leaf 2)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreProgram.lean:277:def homColor (x : Nat) : Nat := if x < 2 then 0 else 1
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorBudget.lean:8:def dedupNat : List Nat → List Nat
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorBudget.lean:22:def colors : GTree → List Nat
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorBudget.lean:26:def colorCount (t : GTree) : Nat := (dedupNat (colors t)).length
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorBudget.lean:28:def ColorCover (t : GTree) (cs : List Nat) : Prop := ∀ i, i ∈ colors t → i ∈ cs
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ActualProgram.lean:6:def owner (ss : List Tree) (x : Nat) : Nat :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ActualProgram.lean:9:def allGood (T : Option Tree) (ss : List Tree) : Bool :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ActualProgram.lean:14:def candidate (T : Option Tree) (ss : List Tree) : List (List Nat) :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ActualProgram.lean:19:def run (T : Option Tree) (ss : List Tree) : Option (List (List Nat)) :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CutRecords.lean:8:def nonrootOrigins : GTree → List RMAF.Vertex
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CutRecords.lean:12:def RootZeroOnly (t : GTree) : Prop := [] ∉ nonrootOrigins t
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CutRecords.lean:14:def CutsAvoid (t : GTree) (cuts : List RMAF.Vertex) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CutRecords.lean:190:def SourceAttempt (f : GTree → List Group → List RMAF.Vertex → Receipt)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorRegions.lean:9:def split : Paint → List Nat × List (List Nat)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorRegions.lean:20:def rawBlocks (p : Paint) : List (List Nat) := (split p).1 :: (split p).2
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorRegions.lean:21:def blocks (p : Paint) : List (List Nat) := (rawBlocks p).filter (fun b => !b.isEmpty)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorRegions.lean:84:def Mono (owner : Nat → Nat) (c : Nat) (B : List Nat) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CutColoring.lean:7:def shade : Tree → (Vertex → Nat) → Paint
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CutColoring.lean:15:def changeEdges : Paint → List Vertex
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CherryCoarsening.lean:10:def mergeOwner (P : SourcePartition t) (a b : Nat) (v : Vertex) : Nat :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CherryCoarsening.lean:13:def mergeSupport (P : SourcePartition t) (p : Vertex) (a b i : Nat) (v : Vertex) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CherryCoarsening.lean:148:def coarsenCherry {t p x y} (P : SourcePartition t)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CherryCoarsening.lean:158:def Refines {t} (P Q : SourcePartition t) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/EraseLift.lean:8:def origins : GTree → List RMAF.Vertex
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/EraseLift.lean:32:inductive GLeafErase : GTree → GTree → RMAF.Vertex → Group → Type
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/EraseLift.lean:89:def gLeafErase_graph {t u v g} : GLeafErase t u v g → LeafErasure (skeleton t) (skeleton u)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreInvariants.lean:8:def payload : GTree → List Nat
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreInvariants.lean:26:def PureGroups (color : Nat → Nat) : GTree → Prop
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreInvariants.lean:61:def GoodCuts (cuts : List Vertex) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreInvariants.lean:127:def OutputShape (o : Output) : Prop := o.partition.length = o.sourceCuts.length + 1
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/InitialCoverage.lean:22:noncomputable def blockRep (T : Tree) (b : List Nat) : RMAF.Vertex := by
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/InitialCoverage.lean:70:def leafAddresses : GTree → List RMAF.Vertex
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorDP.lean:10:inductive Paint where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorDP.lean:15:def root : Paint → Nat
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorDP.lean:19:def erase : Paint → Tree
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorDP.lean:23:def delta (a b : Nat) : Nat := if a == b then 0 else 1
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorDP.lean:24:def changes : Paint → Nat
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorDP.lean:27:def edgeCost (c : Nat) (p : Paint) := changes p + delta c (root p)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorDP.lean:29:inductive Valid (cs : List Nat) (owner : Nat → Nat) : Tree → Paint → Prop where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorDP.lean:50:def choose (cost : Paint → Nat) (xs : List Paint) : Paint :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorDP.lean:60:def table (cs : List Nat) (owner : Nat → Nat) : Tree → List Paint
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorDP.lean:107:def solve (cs : List Nat) (owner : Nat → Nat) (t : Tree) : Paint :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorDP.lean:125:def vertices : Tree → Nat
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorDP.lean:131:def rowBound (r : Nat) (t : Tree) : Nat := match t with | .leaf _ => 1 | .node _ _ => r
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ColorDP.lean:132:def visits (r : Nat) : Tree → Nat
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Coverage.lean:10:def OwnerCover (t : GTree) (P : SourcePartition (skeleton t)) (ids : List Nat) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Coverage.lean:13:def SourceRefines (t : GTree) (P : SourcePartition (skeleton t))
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Coverage.lean:18:def DetachedKept (d : List Group) (blocks : List (List Nat)) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Coverage.lean:30:noncomputable def ownerImage (t u : GTree) (P : SourcePartition (skeleton t))
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Geometry.lean:8:abbrev Vertex := List Bool
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Geometry.lean:12:inductive PathAt : Vertex → Vertex → Vertex → Prop where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Geometry.lean:26:def Hull (S : Vertex → Prop) (v : Vertex) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Geometry.lean:29:def Prefix (p a : Vertex) : Prop := ∃ q, a = p ++ q
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Geometry.lean:31:def ProperPrefix (p a : Vertex) : Prop := ∃ s q, a = p ++ s :: q
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Geometry.lean:35:def region : Vertex → Vertex → Nat
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Geometry.lean:44:def SameRegion (v a b : Vertex) : Prop := region v a = region v b
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Geometry.lean:250:def jointRegion (v w a : Vertex) : Nat × Nat := (region v a, region w a)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Geometry.lean:252:def TwoJointRegions (S : Vertex → Prop) (v w : Vertex) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Geometry.lean:333:def Occupies (F : Nat → List (Vertex → Prop)) (i : Nat) (v : Vertex) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Geometry.lean:336:def Clear (F : Nat → List (Vertex → Prop)) (i : Nat) (v : Vertex) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Geometry.lean:341:def DisjointParents (F : Nat → List (Vertex → Prop)) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Geometry.lean:400:def lca : Vertex → Vertex → Vertex
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Geometry.lean:443:def median : Vertex → Vertex → Vertex → Vertex
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Geometry.lean:559:def Convex (A : Vertex → Prop) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreGraph.lean:10:def subtree : Tree → Vertex → Option Tree
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreGraph.lean:15:def Valid (t : Tree) (v : Vertex) : Prop := ∃ s, subtree t v = some s
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreGraph.lean:17:def LeafAt (t : Tree) (v : Vertex) (x : Nat) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreGraph.lean:20:def CherryAt (t : Tree) (p : Vertex) (x y : Nat) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreGraph.lean:23:def Adj (t : Tree) (u v : Vertex) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreGraph.lean:28:inductive Walk (t : Tree) (P : Vertex → Prop) : Vertex → Vertex → Prop
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreGraph.lean:189:structure SourcePartition (t : Tree) where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreGraph.lean:198:def SingletonBlock {t} (P : SourcePartition t) (u : Vertex) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CoreGraph.lean:201:def Monochromatic {t} (P : SourcePartition t) (color : Nat → Nat) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/FullTransport.lean:10:def FullTransport (t u : GTree) (P : SourcePartition (skeleton t))
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/OriginalGraph.lean:8:abbrev Pre (p v : RMAF.Vertex) : Prop := p <+: v
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/OriginalGraph.lean:10:def Live (cuts : List RMAF.Vertex) (v : RMAF.Vertex) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/OriginalGraph.lean:60:def ResidualAdj (T : Tree) (cuts : List RMAF.Vertex) (u v : RMAF.Vertex) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/OriginalGraph.lean:64:inductive ResidualWalk (T : Tree) (cuts : List RMAF.Vertex) :
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/OriginalGraph.lean:119:def Region (cuts : List RMAF.Vertex) (r v : RMAF.Vertex) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ParentColors.lean:9:def taggedColor (A B : List Nat) (ca cb cc : Nat → Nat) (x : Nat) : Nat :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Cost.lean:115:def colorCount (T : Tree) (color : Nat → Nat) : Nat := ((leaves T).map color).eraseDups.length
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Bridge.lean:5:def Join (S T : Vertex → Prop) : Vertex → Prop
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Bridge.lean:10:def Reach (S : Vertex → Prop) (v : Vertex) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Bridge.lean:13:def Nonempty (S : Vertex → Prop) : Prop := ∃ a, S a
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Bridge.lean:168:def selectedLeaves (D : List Nat) : RMAF.Tree → Vertex → Prop
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Bridge.lean:399:def leafList (D : List Nat) : RMAF.Tree → List Vertex
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Bridge.lean:414:def regions (D : List Nat) (t : RMAF.Tree) (v : Vertex) : List Nat :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Bridge.lean:462:def jointColors (D : List Nat) (t : RMAF.Tree) (v w : Vertex) : List (Nat × Nat) :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Bridge.lean:552:def colorLabel (t : RMAF.Tree) (v : Vertex) (x : Nat) : Nat :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Bridge.lean:583:def LabelMonochromatic (color : Nat → Nat) (P : List Nat) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Bridge.lean:635:def findCommon (A B C : List Vertex) : Option Vertex :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Bridge.lean:640:def commonPredicateCalls (A B C : List Vertex) : Nat :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Entrypoint.lean:8:def RefinesBlocks (bs qs : List (List Nat)) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Display.lean:10:def rootOrigin : GTree → RMAF.Vertex
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Display.lean:14:def Exact (T : Tree) (cuts : List RMAF.Vertex) (base : RMAF.Vertex) (L : List Nat) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Display.lean:17:def LabelsValid (T : Tree) (L : List Nat) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Display.lean:20:def Difference (old next removed : List Nat) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Display.lean:23:structure Facts (T : Tree) (cuts : List RMAF.Vertex) (base : RMAF.Vertex) (t : GTree) : Prop where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Display.lean:32:inductive Models (T : Tree) (cuts : List RMAF.Vertex) : RMAF.Vertex → GTree → Prop
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RankCost.lean:10:def inputRank (T : Tree) (color : Nat → Nat) : Nat :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RankCost.lean:13:def RankFeasible (T : Tree) (color : Nat → Nat) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RecoveryProgram.lean:9:def blockColor : List (List Nat) → Nat → Nat
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RecoveryProgram.lean:13:def inputCheck (S : Tree) (P : List (List Nat)) : Bool :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RecoveryProgram.lean:16:def recover (S : Tree) (P : List (List Nat)) : Option Output :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ExactMinimum.lean:72:def decideBudget (T : Option Tree) (ss : List Tree) (q : Nat) : Bool :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Normalization.lean:9:def skeleton : GTree → Tree
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Normalization.lean:13:def groupAt : GTree → RMAF.Vertex → Option Group
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Normalization.lean:19:def GroupLeafAt (t : GTree) (v : RMAF.Vertex) (g : Group) : Prop := groupAt t v = some g
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Normalization.lean:36:inductive GContract : GTree → GTree → RMAF.Vertex → Nat → Prop
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Normalization.lean:99:def GroupedTransport (t u : GTree) (P : SourcePartition (skeleton t))
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Normalization.lean:147:inductive GContracts : GTree → GTree → Prop
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RawMass.lean:11:def scaledMass (b offset : Nat) (outputs : List Output) : Nat :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/SourceBridge.lean:206:def HasCheckedSupport (t : Tree) (bs : List (List Nat)) (v : RMAF.Vertex) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/SourceBridge.lean:209:noncomputable def checkedOwner (t : Tree) (bs : List (List Nat)) (v : RMAF.Vertex) : Nat := by
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/SourceBridge.lean:213:def checkedSupport (t : Tree) (bs : List (List Nat)) (i : Nat) (v : RMAF.Vertex) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/SourceBridge.lean:243:noncomputable def checkedSourcePartition (t : Tree) (bs : List (List Nat))
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/IsoTransport.lean:89:def OptionIso : Option Tree → Option Tree → Prop
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/InitialLift.lean:8:def recolor (color : Nat → Nat) : Tree → Tree
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/InitialLift.lean:34:def recolorPartition (color : Nat → Nat) (t : Tree) (P : SourcePartition t) :
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/InitialLift.lean:80:def retreePartition {t u : Tree} (h : t = u) (P : SourcePartition t) : SourcePartition u where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/InitialLift.lean:88:noncomputable def initialPartition (t : Tree) (bs : List (List Nat)) (color : Nat → Nat)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/StatePartition.lean:5:def contained (B U : List Nat) : Bool := B.all (U.contains ·)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/StatePartition.lean:6:def family (U : List Nat) (F : List (List Nat)) := F.filter (contained · U)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/StatePartition.lean:7:def Refines (F Q : List (List Nat)) : Prop := ∀ B ∈ F, ∃ U ∈ Q, B ⊆ U
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/State.lean:7:def labels : Option Tree → List Nat
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/State.lean:11:def targetEmbeddings : Option Tree → List (List Nat) → Bool
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/State.lean:15:def targetAgrees : Option Tree → Tree → List Nat → Bool
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/State.lean:19:def proper (T : Option Tree) (ss : List Tree) : Bool :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/State.lean:22:def sourceCheck (T : Option Tree) (F : List (List Nat)) (s : Tree) : Bool :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/State.lean:26:def agrees (T : Option Tree) (ss : List Tree) (F : List (List Nat)) : Bool :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/State.lean:31:def additionalCost (ss : List Tree) (F : List (List Nat)) := F.length - ss.length
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/State.lean:33:def cleanupTarget (T : Option Tree) (a : Nat) := T.bind (restrict ((labels T).erase a))
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/State.lean:34:def cleanupSources (ss : List Tree) (a : Nat) := ss.erase (.leaf a)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/State.lean:35:def cleanupForest (F : List (List Nat)) (a : Nat) := F.erase [a]
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/State.lean:37:def cherry (a b : Nat) : Tree → Bool
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/State.lean:43:def contract (a b z : Nat) : Tree → Tree
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/State.lean:49:def expand (a b z : Nat) : Tree → Tree
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/State.lean:53:def cherryReady (T : Option Tree) (ss : List Tree) (a b z : Nat) : Bool :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/State.lean:58:def contractBlock (a b z : Nat) (B : List Nat) : List Nat :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/State.lean:61:def expandBlock (a b z : Nat) (B : List Nat) : List Nat :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Composition.lean:7:def Refines (F Q : List (List Nat)) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Composition.lean:17:def Clears (t : RMAF.Tree) (F : List (List Nat)) (v : Vertex) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Composition.lean:47:abbrev SourceEdge := Nat × Vertex
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Composition.lean:49:def InSourceParent (i : Nat) (C : List SourceEdge) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Composition.lean:80:def PieceHulls (t : RMAF.Tree) (groups : Nat → List (List Nat)) : Nat → List (Vertex → Prop) :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:8:inductive Tree where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:13:def leaves : Tree → List Nat
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:19:structure Instance where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:28:inductive RootedIso : Tree → Tree → Prop where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:36:def sameShape : Tree → Tree → Bool
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:84:def restrict (selected : List Nat) : Tree → Option Tree
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:109:abbrev Vertex := List Bool
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:111:def prependSide (side : Bool) (vs : List Vertex) : List Vertex :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:116:def rootedSpan (selected : List Nat) : Tree → List Vertex
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:126:def minimalVertices (selected : List Nat) : Tree → List Vertex
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:135:def disjointVertices (a b : List Vertex) : Bool :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:138:def pairwiseEmbeddings (t : Tree) : List (List Nat) → Bool
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:144:def restrictionAgrees (t u : Tree) (b : List Nat) : Bool :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:149:def partitionCheck (labels : List Nat) (bs : List (List Nat)) : Bool :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:154:def agreement (t u : Tree) (bs : List (List Nat)) : Bool :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:161:def blocks (a : List Nat) : List (List Nat) :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:166:def assignments (length tags : Nat) : List (List Nat) :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:211:def best {α : Type} (cost : α → Nat) (valid : α → Bool) : List α → Option α
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:282:def solve (n : Nat) (t u : Tree) : Option (List Nat) :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:308:def leftTree : Tree := .node (.node (.leaf 0) (.leaf 1)) (.node (.leaf 2) (.leaf 3))
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:309:def rightTree : Tree := .node (.node (.leaf 0) (.node (.leaf 1) (.leaf 2))) (.leaf 3)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:314:def exampleInstance : Instance := {
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RMAF.lean:332:def isolatedEndpoint (a : List Nat) : Bool :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Permutations.lean:9:def BlockPermutation (P Q : List (List Nat)) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Permutations.lean:12:def blockForKey : List (List Nat) → Nat → List Nat
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/OwnershipBase.lean:6:def parentTag (A B : List Nat) : Nat → Nat := taggedColor A B (fun _ => 0) (fun _ => 0) (fun _ => 0)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/OwnershipBase.lean:8:def parentGroups (F : List (List Nat)) (A B : List Nat) (i : Nat) : List (List Nat) :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/OwnershipBase.lean:107:def BranchSolution (target source : Tree) (A B C : List Nat) (F : List (List Nat))
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/StateEmbedding.lean:6:def Clear (a b : List Vertex) : Prop := ∀ v, v ∈ a → v ∈ b → False
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Suppression.lean:89:inductive LeafErasure : Tree → Tree → Type
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Suppression.lean:95:def erasureEmbedding {t u : Tree} : LeafErasure t u → RMAF.Vertex → RMAF.Vertex
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Suppression.lean:191:def erasureTerminals {t u} (h : LeafErasure t u) (P : SourcePartition t) (i : Nat)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Suppression.lean:210:def erasePartition {t u} (h : LeafErasure t u) (P : SourcePartition t) : SourcePartition u where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/OwnerCover.lean:36:def FullTransport (t u : GTree) (P : SourcePartition (skeleton t))
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/OwnerCover.lean:103:structure OwnerCover (t : GTree) (P : SourcePartition (skeleton t)) (reps : List RMAF.Vertex) : Prop where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/CutCoverage.lean:9:def Tracked (bs : List (List Nat)) (t : GTree) (d : List Group)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Requests.lean:6:inductive Request where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Requests.lean:11:def targets : Request → List RMAF.Vertex
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Requests.lean:16:def localColor (t : Tree) : Request → Nat → Nat
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Requests.lean:96:def requestedColor (t : Tree) (A B : List Nat) (a b c : Request) : Nat → Nat :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Requests.lean:99:def ParentClears (t : Tree) (F : List (List Nat)) (A : List Nat) (r : Request) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Regions.lean:49:inductive CutHistory (T : Tree) : List RMAF.Vertex → Prop
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RationalMass.lean:9:def scaledQMass (b : Rat) (offset : Nat) (outputs : List Output) : Rat :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/RationalMass.lean:150:def rawQMass (b : Rat) (outputs : List Output) : Rat :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Realization.lean:8:structure ComponentLabels (T : Tree) (cuts : List RMAF.Vertex)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Realization.lean:24:def pairs (t : GTree) (d : List Group) : List (RMAF.Vertex × List Nat) :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/Realization.lean:29:def RealizedOutput (T : Tree) (o : Output) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/History.lean:9:inductive History (T : Tree) (color : Nat → Nat) :
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/History.lean:17:structure DetachedFacts (T : Tree) (cuts : List RMAF.Vertex) (g : Group) : Prop where
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/History.lean:22:structure StateInvariant (T : Tree) (color : Nat → Nat)
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/History.lean:99:def FinishOf (T : Tree) (color : Nat → Nat) (o : Output) : Prop :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/ValidPartition.lean:6:def wholePayload (t : GTree) (d : List Group) : List Nat :=
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/StateRestriction.lean:7:def join : Option Tree → Option Tree → Option Tree
+research/rmaf/algorithm/verification/all-good-dp-2026-10-15/sol-review-v1/isolated/StateRestriction.lean:53:def optionLeaves : Option Tree → List Nat

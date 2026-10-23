@@ -1,0 +1,87 @@
+import ProducerCostPretest
+namespace GenericForest.BinaryProducer
+open BinaryProvider GenericForest.ScalarBits GenericForest.CheckCorrespondence Universal233.WholeSourceWork Universal233.CoreWork
+
+theorem pretestBits_found_mem (T S : BinaryProvider.Tree) (cut : Option RMAF.Vertex) (h : (pretestBits T S).value=.found cut) :
+ cut∈(candidatesBits S).value := by
+ dsimp only [pretestBits] at h
+ split at h
+ · cases hb : (bestCuts T S (candidatesBits S).value).value with
+   | none=>simp only [hb] at h;contradiction
+   | some c=>
+    simp only [hb,Universal233.DepthOne.Result.found.injEq] at h;subst c
+    rw [bestCuts_value] at hb
+    exact (RMAF.best_spec _ _ _ _ hb).1
+ · contradiction
+
+def componentCost (N L : Nat):=leafCost N L+restrictCost N L+4
+
+theorem componentBits_cost (N L : Nat) (t s : BinaryProvider.Tree)
+ (tc : TreeWidth L t) (sc : TreeWidth L s) (tn : treeNodes (treeValue t)≤N) (sn : treeNodes (treeValue s)≤N) :
+ (componentBits t s).work≤componentCost N L := by
+ have a:=leavesCopy_cost N L s sc sn
+ have b:=restrictLabels_cost N L (leavesBits s) t sc tc (Nat.le_trans (bitsLeaves_count s) sn) tn
+ simp only [componentBits,leavesCopy_value];unfold componentCost;omega
+
+def jobsCost (N L J : Nat):=(componentCost N L+pretestCost N L+forestCost N L N+12)*(J+1)
+
+theorem jobsBits_cost (N L : Nat) (t : BinaryProvider.Tree) (ss : List BinaryProvider.Tree)
+ (tc : TreeWidth L t) (sc : SourcesWidth L ss) (tn : treeNodes (treeValue t)≤N)
+ (sn : ∀s∈ss,treeNodes (treeValue s)≤N) : (jobsBits t ss).work≤jobsCost N L ss.length := by
+ induction ss with
+ | nil=>simp [jobsBits,jobsCost] <;> omega
+ | cons s ss ih=>
+  have sw:=sc s (by simp);have snn:=sn s (by simp)
+  have a:=componentBits_cost N L t s tc sw tn snn
+  have tail:=ih (fun s hs=>sc s (by simp [hs])) (fun s hs=>sn s (by simp [hs]))
+  dsimp only [jobsBits]
+  cases c : (componentBits t s).value with
+  | none=>simp only [c,Charged.work,List.length_cons];unfold jobsCost;simp only [Nat.mul_add,Nat.mul_one];omega
+  | some p=>
+   have pc:=componentBits_caps L N t s p.1 p.2 tc sw tn snn c
+   have b:=pretestBits_cost N L p.1 p.2 pc.1 pc.2.1 pc.2.2.1 pc.2.2.2
+   cases h : (pretestBits p.1 p.2).value with
+   | refused=>simp only [h,Charged.work,List.length_cons];unfold jobsCost;simp only [Nat.mul_add,Nat.mul_one];omega
+   | rejected=>simp only [h,Charged.work];unfold jobsCost at *;simp only [List.length_cons,Nat.mul_add,Nat.mul_one] at *;omega
+   | found cut=>
+    have path:=candidateBits_paths N p.2 pc.2.2.2 cut (pretestBits_found_mem p.1 p.2 cut h)
+    have f:=forestBits_cost N L N s cut sw snn path
+    simp only [h,Charged.work];unfold jobsCost at *;simp only [List.length_cons,Nat.mul_add,Nat.mul_one] at *;omega
+
+theorem sourceForestBits_cost (N L : Nat) (S : BinaryProvider.Tree) (Q : BinaryProvider.Forest)
+ (sc : TreeWidth L S) (sn : treeNodes (treeValue S)≤N) (qc : ForestWidth L Q) (ql : ∀B∈Q,B.length≤N) :
+ (sourceForestBits S Q).work≤(restrictCost N L+6)*(Q.length+1) := by
+ induction Q with
+ | nil=>simp [sourceForestBits] <;> omega
+ | cons B Q ih=>
+  have a:=restrictLabels_cost N L B S (qc B (by simp)) sc (ql B (by simp)) sn
+  have b:=ih (fun B h=>qc B (by simp [h])) (fun B h=>ql B (by simp [h]))
+  simp only [sourceForestBits,List.length_cons,Nat.mul_add,Nat.mul_one] at *;omega
+
+def replaceCost (N L I M S : Nat):=(56*(I+1)+24*(I+2)+(restrictCost N L+6)*(M+1)+4*M+9)*(S+1)
+
+theorem replaceBits_cost (N L I : Nat) (Q : BinaryProvider.Forest) (i : Bits) (ss : List BinaryProvider.Tree)
+ (positive : 1≤I) (iw : i.length≤I) (sc : SourcesWidth L ss) (sn : ∀s∈ss,treeNodes (treeValue s)≤N)
+ (qc : ForestWidth L Q) (ql : ∀B∈Q,B.length≤N) :
+ (replaceBits Q i ss).work≤replaceCost N L I Q.length ss.length := by
+ induction ss generalizing i with
+ | nil=>simp [replaceBits,replaceCost] <;> omega
+ | cons s ss ih=>
+  have z:=copiedEqual_work I i [] iw (by simp)
+  have d:=subtractBits_work i [true]
+  have dl:=subtractBits_length i [true]
+  have dw : (subtractBits i [true]).value.length≤I:=by simp only [List.length_cons,List.length_nil] at dl;omega
+  have f:=sourceForestBits_cost N L s Q (sc s (by simp)) (sn s (by simp)) qc ql
+  have fc:=(sourceForestBits_caps L s Q (sc s (by simp))).2
+  have r:=ih (subtractBits i [true]).value dw (fun u hu=>sc u (by simp [hu])) (fun u hu=>sn u (by simp [hu]))
+  dsimp only [replaceBits]
+  split
+  · simp only [appendSpine_work,List.length_cons]
+    unfold replaceCost;have h : 1≤ss.length+1:=by omega
+    have m:=Nat.mul_le_mul_left (56*(I+1)+24*(I+2)+(restrictCost N L+6)*(Q.length+1)+4*Q.length+9) h
+    simp only [Nat.mul_add,Nat.mul_one] at m ⊢
+    omega
+  · dsimp only [Charged.work]
+    unfold replaceCost at *
+    simp only [List.length_cons,List.length_nil,Nat.mul_add,Nat.mul_one] at *;omega
+end GenericForest.BinaryProducer

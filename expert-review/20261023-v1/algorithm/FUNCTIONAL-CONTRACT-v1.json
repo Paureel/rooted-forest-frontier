@@ -1,0 +1,43 @@
+{
+  "scope": "These exact theorem TYPES and compiled interfaces, not proof values. No proof-body grant, status or reviewer outcome.",
+  "context": [
+    "open RMAF Universal233 OrdinaryDispatch Universal233.CherryBranching"
+  ],
+  "contracts": [
+    {
+      "name": "CompletedFunctional233.query_correct",
+      "type": "theorem query_correct (q : Nat) (T S : Tree) (proper : DepthOne.proper T S = true) :\n    QueryExact T S q (FastOrdinary.solve q T S)",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_actual_caller_20261022/WholeFunctional.lean",
+      "source_sha256": "28716994647f595df6a6cd03aa96fdbbf158d8c5c2e06242c635172015ee3878",
+      "object_sha256": "d5780a86c0b4134c7704641777e0ed66a381d3eab5e38967fbe95529c8c528b7"
+    },
+    {
+      "name": "CompletedFunctional233.malformed_refuses",
+      "type": "theorem malformed_refuses (q : Nat) (T S : Tree)\n    (malformed : DepthOne.proper T S = false) : FastOrdinary.solve q T S = none",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_actual_caller_20261022/WholeFunctional.lean",
+      "source_sha256": "28716994647f595df6a6cd03aa96fdbbf158d8c5c2e06242c635172015ee3878",
+      "object_sha256": "d5780a86c0b4134c7704641777e0ed66a381d3eab5e38967fbe95529c8c528b7"
+    },
+    {
+      "name": "CompletedFunctional233.external_correct",
+      "type": "theorem external_correct (T S : Tree) (k : Nat) (proper : DepthOne.proper T S = true) :\n    FastOrdinary.ExternalExact T S k (FastOrdinary.external T S k)",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_actual_caller_20261022/WholeFunctional.lean",
+      "source_sha256": "28716994647f595df6a6cd03aa96fdbbf158d8c5c2e06242c635172015ee3878",
+      "object_sha256": "d5780a86c0b4134c7704641777e0ed66a381d3eab5e38967fbe95529c8c528b7"
+    },
+    {
+      "name": "CompletedFunctional233.optimization_correct",
+      "type": "theorem optimization_correct (T S : Tree) (proper : DepthOne.proper T S = true) :\n    \u2203 q F o,\n      (BudgetOptimization.optimize T S).search.selected = some (q,F) \u2227\n      (BudgetOptimization.optimize T S).search.trials =\n        BudgetOptimization.failedTrials 0 q ++ [(q,some F)] \u2227\n      (BudgetOptimization.optimize T S).output = some o \u2227\n      (BudgetOptimization.optimize T S).recoveries = [(F,some o)] \u2227\n      FastOrdinary.solve q T S = some F \u2227 FinalCutRecovery.recover S F = some o \u2227\n      agreement T S F = true \u2227 agreement T S o.partition = true \u2227\n      CutRealization.RealizedOutput S o \u2227\n      o.sourceCuts.Nodup \u2227 (\u2200 e \u2208 o.sourceCuts, CoreGraph.Valid S e \u2227 e \u2260 []) \u2227\n      o.sourceCuts.length = q \u2227 o.partition.length = q+1 \u2227\n      (\u2200 G, agreement T S G = true \u2192 o.partition.length \u2264 G.length) \u2227\n      q < (leaves T).length",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_actual_caller_20261022/WholeFunctional.lean",
+      "source_sha256": "28716994647f595df6a6cd03aa96fdbbf158d8c5c2e06242c635172015ee3878",
+      "object_sha256": "d5780a86c0b4134c7704641777e0ed66a381d3eab5e38967fbe95529c8c528b7"
+    },
+    {
+      "name": "CompletedFunctional233.malformed_optimizer_refuses",
+      "type": "theorem malformed_optimizer_refuses (T S : Tree)\n    (malformed : DepthOne.proper T S = false) :\n    (BudgetOptimization.optimize T S).search.trials = [] \u2227\n    (BudgetOptimization.optimize T S).recoveries = [] \u2227\n    (BudgetOptimization.optimize T S).output = none",
+      "source": "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_actual_caller_20261022/WholeFunctional.lean",
+      "source_sha256": "28716994647f595df6a6cd03aa96fdbbf158d8c5c2e06242c635172015ee3878",
+      "object_sha256": "d5780a86c0b4134c7704641777e0ed66a381d3eab5e38967fbe95529c8c528b7"
+    }
+  ]
+}

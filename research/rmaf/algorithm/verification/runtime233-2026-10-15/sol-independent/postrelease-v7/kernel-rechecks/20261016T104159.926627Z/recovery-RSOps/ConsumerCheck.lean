@@ -1,0 +1,9 @@
+import RSOps
+#check OrdinaryDispatch.RecoveryBits.clipBudget_value
+#print axioms OrdinaryDispatch.RecoveryBits.clipBudget_value
+#check OrdinaryDispatch.RecoveryBits.clipBudget_work
+#print axioms OrdinaryDispatch.RecoveryBits.clipBudget_work
+#check OrdinaryDispatch.RecoveryBits.colorBits_value
+#print axioms OrdinaryDispatch.RecoveryBits.colorBits_value
+#check OrdinaryDispatch.RecoveryBits.colorBits_work
+#print axioms OrdinaryDispatch.RecoveryBits.colorBits_work

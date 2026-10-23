@@ -1,0 +1,6 @@
+import OverheadBound
+set_option pp.width 120
+#check GenericForest.FrontierWork.source_work_split
+#print axioms GenericForest.FrontierWork.source_work_split
+#check GenericForest.FrontierWork.source_work_bound_separated
+#print axioms GenericForest.FrontierWork.source_work_bound_separated

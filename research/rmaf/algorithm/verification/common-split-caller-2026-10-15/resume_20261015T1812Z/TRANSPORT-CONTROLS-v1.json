@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "postcontact": true,
+  "blind_credit": 0,
+  "controls": [
+    {
+      "control": "clean",
+      "pass": true,
+      "identical_prior_full_projection": true,
+      "transport": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "--run",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/CallerProducerAudit_chunk_v3.lean",
+          "CallerCleanA",
+          "CallerCleanB",
+          "--producers",
+          "CallerCleanA",
+          "CallerCleanB"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1",
+        "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/origin/build-full-v2",
+        "returncode": 0,
+        "seconds": 1.6065162920000375,
+        "raw_bytes": 38523,
+        "raw_sha256": "43f8d158009bf67943f89de938576ada7a9a9fe4e30b4dfa16842a861da70e27",
+        "gzip_path": "transport-control-clean-v1.stdout.json.gz",
+        "gzip_bytes": 7499,
+        "gzip_sha256": "8db83104a4eca6b355e6e1f4cdb44e79c10818305183b29fb61901751be21f5c",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "error": null,
+        "detector_sha256": "325642f06f2b7bbf97c51435ede1a71c487faaa9305edcb02e82deeead327050",
+        "script_sha256": "c28f7bb1748c99ebd0fc51d8247a3e278ee46da0e449f8b59de61992781ab94e"
+      }
+    },
+    {
+      "control": "hostile-forward",
+      "reject": true,
+      "reason": "direct custom axiom CallerPrivateHostile:_private.SameCallerPrivate.0.CallerPrivateTwin.shared",
+      "transport": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "--run",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/CallerProducerAudit_chunk_v3.lean",
+          "CallerPrivateClean",
+          "CallerPrivateHostile",
+          "--producers",
+          "CallerPrivateClean",
+          "CallerPrivateHostile"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1",
+        "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/origin/private-imports",
+        "returncode": 0,
+        "seconds": 1.3022639999999228,
+        "raw_bytes": 37416,
+        "raw_sha256": "294861d91f7c80a861041a965ef71dcb9b2a30eb086a8a8f107ab44236d47ef2",
+        "gzip_path": "transport-control-hostile-forward-v1.stdout.json.gz",
+        "gzip_bytes": 7321,
+        "gzip_sha256": "860f7ed3568fb3a04066181ac9a2a62a64164bc697fd709e6ca3e2522eef080d",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "error": null,
+        "detector_sha256": "325642f06f2b7bbf97c51435ede1a71c487faaa9305edcb02e82deeead327050",
+        "script_sha256": "c28f7bb1748c99ebd0fc51d8247a3e278ee46da0e449f8b59de61992781ab94e"
+      }
+    },
+    {
+      "control": "hostile-reverse",
+      "reject": true,
+      "reason": "direct custom axiom CallerPrivateHostile:_private.SameCallerPrivate.0.CallerPrivateTwin.shared",
+      "transport": {
+        "command": [
+          "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+          "--run",
+          "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1/CallerProducerAudit_chunk_v3.lean",
+          "CallerPrivateHostile",
+          "CallerPrivateClean",
+          "--producers",
+          "CallerPrivateHostile",
+          "CallerPrivateClean"
+        ],
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/postrelease-v1",
+        "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/common-split-caller-2026-10-15/sol-caller-main/origin/private-imports",
+        "returncode": 0,
+        "seconds": 1.2191690420000896,
+        "raw_bytes": 37420,
+        "raw_sha256": "589b97cc9820cf52772bc56693a90d7e2be61acbcbe73493ae974661df53dea1",
+        "gzip_path": "transport-control-hostile-reverse-v1.stdout.json.gz",
+        "gzip_bytes": 7333,
+        "gzip_sha256": "a2fc1192316cf5aaffb419b43679cd9324566fa6f5183bc0b826ac9f19cd2edd",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "error": null,
+        "detector_sha256": "325642f06f2b7bbf97c51435ede1a71c487faaa9305edcb02e82deeead327050",
+        "script_sha256": "c28f7bb1748c99ebd0fc51d8247a3e278ee46da0e449f8b59de61992781ab94e"
+      }
+    }
+  ]
+}

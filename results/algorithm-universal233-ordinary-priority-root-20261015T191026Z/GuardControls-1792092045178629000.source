@@ -1,0 +1,40 @@
+import AdmissionBridge
+import FinalControls
+import Rule4Controls
+namespace Universal233.OrdinaryPriorityBridge.Controls
+open RMAF CoreGraph Integration VertexGeometry CutRealization HardParent CherryBranching Rule5Local Rule5Local.Pre Rule5Classification Rule5Classification.Controls Rule5FinalClassification Rule5FinalClassification.Controls
+set_option maxRecDepth 10000
+
+def commonC : Candidate := ⟨[false,false,false,false,true],3,4,
+ [[false,false,true,false,false,true],[false,false,true,false,true]]⟩
+def commonD : Candidate := ⟨[false,false,true,false,false,true,true],7,8,
+ [[false,false,false,false],[false,false,true]]⟩
+
+-- Source-derived literal predictions; pending execution after disk restore.
+example : DepthOne.proper commonT commonS=true := by decide
+example : CherryBranching.select commonT commonS=some (.hard2,commonC) := by decide
+example : CherryBranching.select commonS commonT=some (.hard2,commonD) := by decide
+example : Rule4.select commonT commonS=none := by decide
+example : Rule4.select commonS commonT=none := by decide
+example : pairwiseEmbeddings commonT (pendantPartition commonS commonC.a commonC.b)=false := by decide
+example : ((pendantPartition commonS commonC.a commonC.b).filter (fun B => restrictionAgrees commonT commonS B)).length=1 := by decide
+example : admitted commonT commonS commonC.a commonC.b=false := by decide
+example : admitted commonT commonS 0 1=true := by decide
+
+-- Literal source order pins the singleton to opposite positions after mirroring.
+example : (cuts Rule4.Controls.S 0 1).map (subtreeLabels Rule4.Controls.S) = [[2],[3,4]] := by decide
+example : (cuts (Rule4.Controls.mirror Rule4.Controls.S) 0 1).map (subtreeLabels (Rule4.Controls.mirror Rule4.Controls.S)) = [[4,3],[2]] := by decide
+example : hasCherry Rule4.Controls.S 0 2=true := by decide
+example : hasCherry (Rule4.Controls.swap01 Rule4.Controls.S) 1 2=true := by decide
+example : Rule5Local.rule4 Rule4.Controls.T Rule4.Controls.S=true := by decide
+example : (Rule4.select Rule4.Controls.T Rule4.Controls.S).isSome=true := by decide
+example : Rule5Local.rule4 Rule4.Controls.T (Rule4.Controls.swap01 Rule4.Controls.S)=true := by decide
+example : (Rule4.select Rule4.Controls.T (Rule4.Controls.swap01 Rule4.Controls.S)).isSome=true := by decide
+example : Rule5Local.rule4 (Rule4.Controls.mirror Rule4.Controls.T) (Rule4.Controls.mirror Rule4.Controls.S)=true := by decide
+example : (Rule4.select (Rule4.Controls.mirror Rule4.Controls.T) (Rule4.Controls.mirror Rule4.Controls.S)).isSome=true := by decide
+example : Rule5Local.rule4 (Rule4.Controls.mirror Rule4.Controls.T) (Rule4.Controls.mirror (Rule4.Controls.swap01 Rule4.Controls.S))=true := by decide
+example : (Rule4.select (Rule4.Controls.mirror Rule4.Controls.T) (Rule4.Controls.mirror (Rule4.Controls.swap01 Rule4.Controls.S))).isSome=true := by decide
+#check hard2_priority_guards
+#check rule4_scan_isSome
+#check actual_rule5_admitted_iff
+end Universal233.OrdinaryPriorityBridge.Controls

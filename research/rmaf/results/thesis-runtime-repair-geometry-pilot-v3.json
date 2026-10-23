@@ -1,0 +1,206 @@
+{
+  "status": "NO-FIRE-BOUNDED",
+  "geometries": 100,
+  "hits": {
+    "3": 4,
+    "4": 1
+  },
+  "maxima": {
+    "3": "1/8",
+    "4": "1/4"
+  },
+  "source_cut_checks": 15,
+  "witnesses": {
+    "3": {
+      "F1": "(((a,((x,y),z)),((p,q),(r,s))))rho",
+      "F2": [
+        "((y,(r,((q,z),((a,(p,s)),x)))))rho"
+      ],
+      "b": "p,s",
+      "mass": "1/8",
+      "nodes": 2,
+      "trace": [
+        {
+          "rule": {
+            "pair": [
+              "x",
+              "z"
+            ],
+            "case": "BCY",
+            "pendants": [
+              "a,p,s",
+              "q"
+            ],
+            "branches": [
+              {
+                "name": "B",
+                "cuts": [
+                  "a,p,s",
+                  "q"
+                ],
+                "protect2": [],
+                "protect1": [],
+                "legal": true
+              },
+              {
+                "name": "CY",
+                "cuts": [
+                  "z",
+                  "p,s"
+                ],
+                "protect2": [],
+                "protect1": [],
+                "legal": false
+              }
+            ],
+            "uncle": "a"
+          },
+          "branch": "B",
+          "mass": "1/2",
+          "child": [
+            {
+              "rule": {
+                "pair": [
+                  "x,z",
+                  "a"
+                ],
+                "case": "AC",
+                "pendants": [],
+                "branches": [
+                  {
+                    "name": "A",
+                    "cuts": [
+                      "x,z"
+                    ],
+                    "protect2": [],
+                    "protect1": [],
+                    "legal": true
+                  },
+                  {
+                    "name": "C",
+                    "cuts": [
+                      "a"
+                    ],
+                    "protect2": [],
+                    "protect1": [],
+                    "legal": false
+                  }
+                ],
+                "uncle": "p,q,r,s"
+              },
+              "branch": "A",
+              "mass": "1",
+              "child": []
+            }
+          ]
+        }
+      ]
+    },
+    "4": {
+      "F1": "(((a,((x,y),(u,v))),((p,q),(r,s))))rho",
+      "F2": [
+        "(((a,r),(p,(((s,(x,v)),(q,u)),y))))rho"
+      ],
+      "b": "r",
+      "mass": "1/4",
+      "nodes": 2,
+      "trace": [
+        {
+          "rule": {
+            "pair": [
+              "v",
+              "u"
+            ],
+            "case": "RB",
+            "pendants": [
+              "x",
+              "s",
+              "q"
+            ],
+            "branches": [
+              {
+                "name": "C",
+                "cuts": [
+                  "u"
+                ],
+                "protect2": [],
+                "protect1": [],
+                "legal": true
+              }
+            ],
+            "uncle": "x"
+          },
+          "branch": "C",
+          "mass": "1/2",
+          "child": [
+            {
+              "rule": {
+                "pair": [
+                  "v,x",
+                  "a"
+                ],
+                "case": "A3BC",
+                "pendants": [
+                  "s",
+                  "q",
+                  "p",
+                  "r"
+                ],
+                "branches": [
+                  {
+                    "name": "A",
+                    "cuts": [
+                      "v,x"
+                    ],
+                    "protect2": [],
+                    "protect1": [],
+                    "legal": true
+                  },
+                  {
+                    "name": "B",
+                    "cuts": [
+                      "s",
+                      "q",
+                      "p",
+                      "r"
+                    ],
+                    "protect2": [],
+                    "protect1": [],
+                    "legal": false
+                  },
+                  {
+                    "name": "C",
+                    "cuts": [
+                      "a"
+                    ],
+                    "protect2": [
+                      "v,x"
+                    ],
+                    "protect1": [
+                      "v,x"
+                    ],
+                    "legal": false
+                  }
+                ],
+                "uncle": "p,q,r,s"
+              },
+              "branch": "A",
+              "mass": "1",
+              "child": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "controls": [
+    "thesis-complexity-reachable-trace.json",
+    "thesis-complexity-three-credit-trace.json",
+    "live-two-leaf",
+    "wrong-orientation",
+    "orientation-positive-twin"
+  ],
+  "elapsed_seconds": 0.04851824999968812,
+  "seed": 614,
+  "script_sha256": "6974a98059bdb82399cfbe9eedf35c30e25a2c9167ed9116f231e2193af44828"
+}

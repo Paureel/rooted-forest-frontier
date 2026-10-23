@@ -1,0 +1,7 @@
+import CommonCallBinding
+#check Universal233.Rule5ExecutionSource.common_local_on_jobs
+#print axioms Universal233.Rule5ExecutionSource.common_local_on_jobs
+#check Universal233.Rule5ExecutionSource.common_call_count
+#print axioms Universal233.Rule5ExecutionSource.common_call_count
+#check Universal233.Rule5ExecutionSource.common_call_bits
+#print axioms Universal233.Rule5ExecutionSource.common_call_bits

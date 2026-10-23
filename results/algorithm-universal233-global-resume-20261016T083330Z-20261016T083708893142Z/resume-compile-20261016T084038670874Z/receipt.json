@@ -1,0 +1,67 @@
+{
+  "instrument_sha256": "550b066c54ad3530bcf2d7a0d51ecfa6a08b3286e40c914571f6d9aabc032c66",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "memory_megabytes": 3072,
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "source_origin": "results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/live-compile-20261015T220123767831Z/GuardPositive.lean",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "source_origin": "results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/live-compile-20261015T220123767831Z/GuardFalse.lean",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true,
+      "same_lineage": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.7511987919999683,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.3312209160000066,
+      "resource_stop": null,
+      "log_sha256": "3fa27542148a0488336f2a2dce1e5c37aa9484fb0cc9ffcd4cff3518bf0a4c77"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.002393707999999606,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "OrdinaryCallNodes",
+      "source_sha256": "84dc02e301c8051fc729aac70c05203983a959716fa988afce37cb4084c57e3f",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.6934041659999366,
+      "resource_stop": null,
+      "log_sha256": "d8a30f7210eee88fea1a6bbfc433edb824c08134a1cdda8132bda0a5f7cd0b72"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('OrdinaryCallNodes', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallNodes.lean:20:22: error(lean.unknownIdentifier): Unknown constant `List.map_attach`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallNodes.lean:18:58: error: unsolved goals\\nq : Nat\\nT S : Tree\\n\u22a2 1 +\\n      (List.map (fun pb => ordinaryCallNodes pb.val.snd pb.val.fst.fst pb.val.fst.snd)\\n          (ordinaryStepTrace FastOrdinary.solve q T S).queries.attach).sum =\\n    1 +\\n      (List.map (fun pb => ordinaryCallNodes pb.snd pb.fst.fst pb.fst.snd)\\n          (ordinaryStepTrace FastOrdinary.solve q T S).queries).sum\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallNodes.lean:45:38: error(lean.unknownIdentifier): Unknown constant `Prod.lex_wf.induction`\\n'))"
+}

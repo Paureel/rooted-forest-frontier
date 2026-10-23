@@ -1,0 +1,8 @@
+{
+ "version":3,
+ "retained_fixture_failure":"First StoredControls compilation rejected two manually predicted lengths.",
+ "root_causes":["maximumBlock uses empty zero as fold seed and maximumCopy chooses right operand on numeric ties. All-zero labels therefore choose the empty seed, so fresh marker lengths are1 and2, not4.","subtractBits returns empty on underflow; padded zero minus1 therefore has length0, not4."],
+ "repair":"Keep the rejected expectations in CONTROLS-v2.json and attempt source. Add padded positive-max and positive-budget fixtures to test actual padding retention; zero-underflow becomes an explicit null control. No theorem, resource cap or scientific acceptance threshold changes.",
+ "new_known":["all-zero fresh lengths1/2","padded positive max1 width4 gives fresh2/3 width4","padded zero minus0 preserves4 bits; minus1 underflows to empty"],
+ "provenance":"Same-author exact construction controls; no independent credit."
+}

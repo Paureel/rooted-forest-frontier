@@ -1,0 +1,7 @@
+import CommonAgreementConsumer
+#check OrdinaryDispatch.FullSourceWork.reconstruct_actual_agreement
+#print axioms OrdinaryDispatch.FullSourceWork.reconstruct_actual_agreement
+#check OrdinaryDispatch.FullSourceWork.common_real_pick_work_closed_checker
+#print axioms OrdinaryDispatch.FullSourceWork.common_real_pick_work_closed_checker
+#check OrdinaryDispatch.FullSourceWork.common_candidate_agreement_envelope
+#print axioms OrdinaryDispatch.FullSourceWork.common_candidate_agreement_envelope

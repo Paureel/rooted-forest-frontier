@@ -1,0 +1,145 @@
+OrdinaryDispatch.ExtendedSourceAssembly.selectedCaseMass_cap : ∀ (out : Universal233.Hard2Overlap.Result),
+  0 ≤ Universal233.Hard2PaidLocal.caseMass Universal233.Rule5ActualTrace.base out ∧
+    Universal233.Hard2PaidLocal.caseMass Universal233.Rule5ActualTrace.base out ≤ 1
+OrdinaryDispatch.ExtendedSourceAssembly.hardPaidSource_uniform : ∀ (actual : GenericForest.FrontierWork.Ordinary)
+  (T S : RMAF.Tree) (c : Universal233.CherryBranching.Candidate) (out : Universal233.Hard2Overlap.Result) (q N Q : Nat),
+  3 ≤ N →
+    Universal233.CoreWork.treeNodes T ≤ N →
+      Universal233.CoreWork.treeNodes S ≤ N →
+        q ≤ Q →
+          Universal233.DepthOne.proper T S = true →
+            Universal233.CherryBranching.select T S = some (Universal233.CherryBranching.Priority.hard2, c) →
+              Universal233.Hard2Overlap.runHard2 T S c = some out →
+                ↑(OrdinaryDispatch.Hard2SourceWork.hardPaidSource actual (fun x x_1 x_2 => 0) T S q c out).work ≤
+                  ↑(OrdinaryDispatch.ExtendedSourceAssembly.hardPaidUniformPolynomial N Q) *
+                    Universal233.Rule5ActualTrace.base ^ q
+OrdinaryDispatch.ExtendedSourceAssembly.hardPaidCaseUsed_binding : ∀ (actual : GenericForest.FrontierWork.Ordinary)
+  (T S : RMAF.Tree) (c : Universal233.CherryBranching.Candidate) (out : Universal233.Hard2Overlap.Result) (q : Nat),
+  OrdinaryDispatch.ExtendedSourceAssembly.hardPaidCaseUsed T S c out = true →
+    OrdinaryDispatch.Hard2Dispatcher.paidCase actual T S c q out =
+      Universal233.Hard2PaidLocal.runHardPaid actual T S q c out
+OrdinaryDispatch.ExtendedSourceAssembly.hardPaidLocalDebit_bound : ∀ (N Q : Nat) (T S : RMAF.Tree) (q : Nat),
+  Universal233.DepthOne.proper T S = true →
+    (RMAF.leaves T).length ≤ N →
+      q ≤ Q →
+        ↑(OrdinaryDispatch.ExtendedSourceAssembly.hardPaidLocalDebit T S q) ≤
+          ↑(OrdinaryDispatch.ExtendedSourceAssembly.hardPaidUniformPolynomial (2 * N + 3) Q) *
+            Universal233.Rule5ActualTrace.base ^ q
+OrdinaryDispatch.ExtendedSourceAssembly.hardPaid_actual_source_value : ∀ (actual : GenericForest.FrontierWork.Ordinary)
+  (W : GenericForest.FrontierWork.OrdinaryWork) (T S : RMAF.Tree) (c : Universal233.CherryBranching.Candidate)
+  (out : Universal233.Hard2Overlap.Result) (q : Nat),
+  OrdinaryDispatch.ExtendedSourceAssembly.hardPaidCaseUsed T S c out = true →
+    (OrdinaryDispatch.Hard2SourceWork.hardPaidSource actual W T S q c out).value =
+      OrdinaryDispatch.Hard2Dispatcher.paidCase actual T S c q out
+OrdinaryDispatch.ExtendedSourceAssembly.hardPaid_actual_step_queries : ∀ (q : Nat) {T S : RMAF.Tree},
+  Universal233.DepthOne.proper T S = true →
+    Universal233.DepthOne.pretest01 T S = Universal233.DepthOne.Result.rejected →
+      ∀ {c d : Universal233.CherryBranching.Candidate},
+        OrdinaryDispatch.FastOrdinary.early T S = OrdinaryDispatch.FastOrdinary.Early.hard2 c d →
+          ∀ {out : Universal233.Hard2Overlap.Result},
+            (OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter T S c q).value =
+                OrdinaryDispatch.Hard2SourceWork.Hard2Route.paid out →
+              OrdinaryDispatch.ExtendedSourceAssembly.hardPaidCaseUsed T S c out = true →
+                (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace OrdinaryDispatch.FastOrdinary.solve q T S).queries =
+                  OrdinaryDispatch.WorkIntegration.forestQueries
+                      (OrdinaryDispatch.FastOrdinary.cutoff OrdinaryDispatch.FastOrdinary.solve q)
+                      (OrdinaryDispatch.Hard2Combine.unitCalls S T c.a c.b q) ++
+                    OrdinaryDispatch.WorkIntegration.forestQueries
+                      (OrdinaryDispatch.FastOrdinary.cutoff OrdinaryDispatch.FastOrdinary.solve q)
+                      (Universal233.Hard2PaidLocal.runHardPaid
+                          (OrdinaryDispatch.FastOrdinary.cutoff OrdinaryDispatch.FastOrdinary.solve q) T S q c
+                          out).calls
+OrdinaryDispatch.ExtendedSourceAssembly.hardPaid_actual_step_split : ∀ (W : GenericForest.FrontierWork.OrdinaryWork)
+  (q : Nat) {T S : RMAF.Tree},
+  Universal233.DepthOne.proper T S = true →
+    Universal233.DepthOne.pretest01 T S = Universal233.DepthOne.Result.rejected →
+      ∀ {c d : Universal233.CherryBranching.Candidate},
+        OrdinaryDispatch.FastOrdinary.early T S = OrdinaryDispatch.FastOrdinary.Early.hard2 c d →
+          ∀ {out : Universal233.Hard2Overlap.Result},
+            Universal233.Hard2Overlap.runHard2 T S c = some out →
+              (OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter T S c q).value =
+                  OrdinaryDispatch.Hard2SourceWork.Hard2Route.paid out →
+                OrdinaryDispatch.ExtendedSourceAssembly.hardPaidCaseUsed T S c out = true →
+                  (OrdinaryDispatch.Hard2SourceWork.hardPaidSource
+                          (OrdinaryDispatch.FastOrdinary.cutoff OrdinaryDispatch.FastOrdinary.solve q) W T S q c
+                          out).work +
+                      GenericForest.FrontierWork.queryWork W
+                        (OrdinaryDispatch.WorkIntegration.forestQueries
+                          (OrdinaryDispatch.FastOrdinary.cutoff OrdinaryDispatch.FastOrdinary.solve q)
+                          (OrdinaryDispatch.Hard2Combine.unitCalls S T c.a c.b q)) =
+                    OrdinaryDispatch.ExtendedSourceAssembly.hardPaidLocalDebit T S q +
+                      GenericForest.FrontierWork.queryWork W
+                        (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace OrdinaryDispatch.FastOrdinary.solve q T
+                            S).queries
+OrdinaryDispatch.ExtendedSourceAssembly.rule5Answer_dispatch_join : ∀ (actual : GenericForest.FrontierWork.Ordinary)
+  (W : GenericForest.FrontierWork.OrdinaryWork) (T S : RMAF.Tree) (a b q : Nat),
+  OrdinaryDispatch.Hard2Dispatcher.rule5Answer actual T S a b q =
+    match (OrdinaryDispatch.ExtendedSourceAssembly.concreteRule5Dispatch actual W T S a b q).value with
+    | Universal233.Rule5OrdinaryDispatch.Result.answered F => F
+    | x => none
+OrdinaryDispatch.ExtendedSourceAssembly.concreteRule5Dispatch_split : ∀ (actual : GenericForest.FrontierWork.Ordinary)
+  (W : GenericForest.FrontierWork.OrdinaryWork) (T S : RMAF.Tree) (c : Universal233.CherryBranching.Candidate)
+  (q : Nat),
+  (OrdinaryDispatch.ExtendedSourceAssembly.concreteRule5Dispatch actual W T S c.a c.b q).work =
+    (OrdinaryDispatch.ExtendedSourceAssembly.concreteRule5Dispatch actual (fun x x_1 x_2 => 0) T S c.a c.b q).work +
+      GenericForest.FrontierWork.queryWork W
+        (OrdinaryDispatch.Hard2SourceWork.hard2RouteQueries actual T S c q
+          OrdinaryDispatch.Hard2SourceWork.Hard2Route.admittedRule5)
+OrdinaryDispatch.ExtendedSourceAssembly.rule5Dispatch_actual_step_split : ∀
+  (W : GenericForest.FrontierWork.OrdinaryWork) (q : Nat) {T S : RMAF.Tree},
+  Universal233.DepthOne.proper T S = true →
+    Universal233.DepthOne.pretest01 T S = Universal233.DepthOne.Result.rejected →
+      ∀ {c d : Universal233.CherryBranching.Candidate},
+        OrdinaryDispatch.FastOrdinary.early T S = OrdinaryDispatch.FastOrdinary.Early.hard2 c d →
+          (OrdinaryDispatch.Hard2SourceWork.hard2FrontMeter T S c q).value =
+              OrdinaryDispatch.Hard2SourceWork.Hard2Route.admittedRule5 →
+            (OrdinaryDispatch.ExtendedSourceAssembly.concreteRule5Dispatch
+                  (OrdinaryDispatch.FastOrdinary.cutoff OrdinaryDispatch.FastOrdinary.solve q) W T S c.a c.b q).work =
+              OrdinaryDispatch.ExtendedSourceAssembly.rule5DispatchLocalDebit T S q +
+                GenericForest.FrontierWork.queryWork W
+                  (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace OrdinaryDispatch.FastOrdinary.solve q T S).queries
+OrdinaryDispatch.ExtendedSourceAssembly.extendedSourceSubtotal_eq : ∀ (q : Nat) (T S : RMAF.Tree),
+  OrdinaryDispatch.ExtendedSourceAssembly.extendedSourceSubtotal q T S =
+    OrdinaryDispatch.ExtendedSourceAssembly.extendedLocalDebit T S q +
+      GenericForest.FrontierWork.queryWork
+        (fun t s r => OrdinaryDispatch.ExtendedSourceAssembly.extendedSourceSubtotal r t s)
+        (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace OrdinaryDispatch.FastOrdinary.solve q T S).queries
+OrdinaryDispatch.ExtendedSourceAssembly.extendedSourceSubtotal_bound : ∀ (N Q q : Nat) (T S : RMAF.Tree),
+  Universal233.DepthOne.proper T S = true →
+    (RMAF.leaves T).length ≤ N →
+      q ≤ Q →
+        ↑(OrdinaryDispatch.ExtendedSourceAssembly.extendedSourceSubtotal q T S) ≤
+          ↑(OrdinaryDispatch.ExtendedSourceAssembly.extendedLocalPolynomial N Q) *
+                OrdinaryDispatch.WorkRecursion.callNodeFactor *
+              ↑((RMAF.leaves T).length + 1) *
+            Universal233.Rule5ActualTrace.base ^ q
+OrdinaryDispatch.ExtendedSourceAssembly.extendedPartialOptimize_value : ∀ (T S : RMAF.Tree),
+  (OrdinaryDispatch.ExtendedSourceAssembly.extendedPartialOptimize T S).value =
+    OrdinaryDispatch.BudgetOptimization.optimize T S
+OrdinaryDispatch.ExtendedSourceAssembly.extendedPartialOptimize_bound : ∀ (T S : RMAF.Tree),
+  Universal233.DepthOne.proper T S = true →
+    ∃ o,
+      (OrdinaryDispatch.BudgetOptimization.optimize T S).output = some o ∧
+        0 < o.partition.length ∧
+          o.sourceCuts.length + 1 = o.partition.length ∧
+            ↑(OrdinaryDispatch.ExtendedSourceAssembly.extendedPartialOptimize T S).work ≤
+              ↑(OrdinaryDispatch.ExtendedSourceAssembly.extendedOptimizeCoefficient (RMAF.leaves T).length) *
+                (233 / 100) ^ (o.partition.length - 1)
+OrdinaryDispatch.ExtendedSourceAssembly.joinedDispatchSubtotal_eq : ∀ (q : Nat) (T S : RMAF.Tree),
+  OrdinaryDispatch.ExtendedSourceAssembly.joinedDispatchSubtotal q T S =
+    OrdinaryDispatch.ExtendedSourceAssembly.joinedLocalDebit T S q +
+      GenericForest.FrontierWork.queryWork
+        (fun t s r => OrdinaryDispatch.ExtendedSourceAssembly.joinedDispatchSubtotal r t s)
+        (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace OrdinaryDispatch.FastOrdinary.solve q T S).queries
+def OrdinaryDispatch.ExtendedSourceAssembly.hardPaidUniformPolynomial : Nat → Nat → Nat :=
+fun N Q => OrdinaryDispatch.Hard2SourceWork.hardPaidPolynomial N Q + 16 * (2 ^ 50 * (N + Q + 2) ^ 8)
+def OrdinaryDispatch.ExtendedSourceAssembly.extendedLocalPolynomial : Nat → Nat → Nat :=
+fun N Q =>
+  OrdinaryDispatch.GlobalSourceAssembly.closedLocalPolynomial N Q +
+    OrdinaryDispatch.ExtendedSourceAssembly.hardPaidUniformPolynomial (2 * N + 3) Q
+def OrdinaryDispatch.ExtendedSourceAssembly.extendedQueryPolynomial : Nat → Nat :=
+fun n => OrdinaryDispatch.ExtendedSourceAssembly.extendedLocalPolynomial n n * 1024 * (n + 1)
+def OrdinaryDispatch.ExtendedSourceAssembly.extendedOptimizeCoefficient : Nat → Nat :=
+fun n =>
+  n * OrdinaryDispatch.ExtendedSourceAssembly.extendedQueryPolynomial n + 512 * (2 * n + 1) ^ 2 +
+    OrdinaryDispatch.RecoveryLocalWork.recoverySourceEnvelope n

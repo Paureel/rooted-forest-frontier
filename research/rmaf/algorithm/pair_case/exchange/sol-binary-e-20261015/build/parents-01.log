@@ -1,0 +1,34 @@
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Parents.lean:21:2: error: Type mismatch
+  List.Perm.trans (List.Perm.append_left (aParts A F) h₂) (id h₁)
+has type
+  (aParts A F ++
+        (List.filter (fun x => inside x B) (residual A F) ++ List.filter (fun x => !inside x B) (residual A F))).Perm
+    F
+but is expected to have type
+  (aParts A F ++ bParts A B F ++ outside A B F).Perm F
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Parents.lean:104:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  List.count x (List.filter (fun x => inside x A) F).flatten
+in the target expression
+  List.count x (aParts A F).flatten = 1
+
+case hc
+L : List Nat
+P F : List (List Nat)
+hp : partitionCheck L P = true
+hF : partitionCheck L F = true
+hf : Refines F P
+A : List Nat
+hA : A ∈ P
+hn : ∀ (C : List Nat), C ∈ F → C ≠ []
+hc : ∀ (x : Nat), x ∈ L → List.count x F.flatten = 1
+hl : ∀ (x : Nat), x ∈ F.flatten → x ∈ L
+x : Nat
+hx : x ∈ A
+he : List.count x (List.filter (fun x => inside x A) F).flatten = List.count x F.flatten
+⊢ List.count x (aParts A F).flatten = 1
+research/rmaf/algorithm/pair_case/exchange/sol-binary-e-20261015/Parents.lean:121:24: warning: Variable name `L` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _L
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`

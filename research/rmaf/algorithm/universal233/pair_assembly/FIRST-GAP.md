@@ -1,0 +1,7 @@
+# First full-algorithm consumer still open
+
+The total good-parent pair branch now has actual source-generator coverage and paid raw-list mass at original proper-P/A-good/outside-clearance hypotheses. Its first downstream call is the solver on the emitted source forest Q with remaining budget q-d, where d is Q's actual cut count. The kept A block costs zero additional work in the edge case, but B pieces may still overlap each other in the target. No c^(q-d) solver bound follows solely from the list mass.
+
+The both-bad binary pair consumer still needs actual paid continuation. In particular, raw profiles [3] and [4,4] alone need an extra charged unit; a positive local minimum does not discount a sole unresolved query's own budget. The minimum-rank dichotomy and all-output untouched-parent theorem are separate upcoming interfaces. Neither was assumed by this frozen proof. Exact disjoint local-query work must include p=1, sums of exact local minima, negative-budget rejection and all pretests.
+
+The current consumer takes an original ordinary source tree, an original ordinary target tree and three actual source parents. Its lift into a general current forest state is not supplied. A general source forest may have further components outside this triple; the E outside-clearance condition must include every relevant original target support, and label contraction/suppression needs actual forward/reverse forest-state transport. Source priority cases, global reconstruction, termination and full runtime remain OPEN. All three main milestones remain OPEN.

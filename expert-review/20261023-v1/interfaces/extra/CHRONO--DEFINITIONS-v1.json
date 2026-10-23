@@ -1,0 +1,54 @@
+{
+  "scope": "Exactly six requested chronology/recorded/label helpers plus their two immediate cellSlots definitions. No theorem values.",
+  "fragments": [
+    {
+      "names": [
+        "SourceRule4V3.cellSlots",
+        "SourceRule4V3.labelCell",
+        "SourceRule4V3.recorded",
+        "SourceRule4V3.chronological"
+      ],
+      "source_binding_only": "research/rmaf/algorithm/universal233/ordinary_dispatch/source_callback_pairing_20261022/v3/Rule4ExecutionV3.lean",
+      "source_sha256": "af14f7e0a51124e402eb1a723bf087188293d89c10afe754039a2244843c22b2",
+      "object_sha256": "6421b4788d55e13c9b0358011db4dab34bc2575a473c0c18bd56e466df5b1f48",
+      "source_context_lines": [
+        "namespace SourceRule4V3",
+        "open RMAF ForestState Universal233 WholeSourceWork CoreWork",
+        "open GenericForest.CheckCorrespondence GenericForest.FrontierWork",
+        "open OrdinaryDispatch.FullSourceWork OrdinaryDispatch.WorkRecursion",
+        "open SourceForestV3 SourceCouplingV2",
+        "open SourceDisjointV2 (ordinarySpec)",
+        "open CallbackPairingAuthor (indexFrom)"
+      ],
+      "line_range": [
+        18,
+        28
+      ],
+      "pure_definitions": "def cellSlots (cell : Cell) : List SourceForestV3.S :=\n  match cell.result with | none=>[] | some out=>out.slots\n\ndef labelCell (cell : Cell) : List ((Nat\u00d7Nat)\u00d7SourceForestV3.S) :=\n  (cellSlots cell).map fun s=>((cell.branchIndex,s.index),s)\n\ndef recorded (cells : List Cell) : List ((Nat\u00d7Nat)\u00d7SourceForestV3.S) :=\n  cells.flatMap labelCell\n\ndef chronological (cells : List Cell) : List ((Nat\u00d7Nat)\u00d7SourceForestV3.S) :=\n  cells.reverse.flatMap labelCell\n"
+    },
+    {
+      "names": [
+        "SourceFullOutputsV3.cellSlots",
+        "SourceFullOutputsV3.labelCell",
+        "SourceFullOutputsV3.recorded",
+        "SourceFullOutputsV3.chronological"
+      ],
+      "source_binding_only": "research/rmaf/algorithm/universal233/ordinary_dispatch/source_callback_pairing_20261022/v3/FullOutputsExecutionV3.lean",
+      "source_sha256": "c01e49f5d01f364497b3a13001d9e224f11433bfec547eed4d0ba4b2fbdd8532",
+      "object_sha256": "29d8728a67326915cd67d847a358ee6ac59ed8a0dd0dd59cb16006ac36548c58",
+      "source_context_lines": [
+        "namespace SourceFullOutputsV3",
+        "open RMAF Universal233 WholeSourceWork CoreWork",
+        "open GenericForest.CheckCorrespondence GenericForest.FrontierWork",
+        "open OrdinaryDispatch.Hard2SourceWork OrdinaryDispatch.WorkIntegration",
+        "open Universal233.Rule5SelectedLocalWork SourceForestV3 SourceCouplingV2",
+        "open SourceDisjointV2 (ordinarySpec)"
+      ],
+      "line_range": [
+        18,
+        25
+      ],
+      "pure_definitions": "def cellSlots (c : Cell) : List SourceForestV3.S :=\n  match c.result with | none=>[] | some out=>out.slots\n\ndef labelCell (c : Cell) : List ((Nat\u00d7Nat)\u00d7SourceForestV3.S) :=\n  (cellSlots c).map (fun s=>((c.outputIndex,s.index),s))\n\ndef recorded (cells : List Cell) := cells.flatMap labelCell\ndef chronological (cells : List Cell) := cells.reverse.flatMap labelCell\n"
+    }
+  ]
+}

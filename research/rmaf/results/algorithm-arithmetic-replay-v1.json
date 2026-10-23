@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "scope": "Replay of existing conditional branching-vector arithmetic only; no structural cover, correctness, termination, recurrence-solution or improved-algorithm claim.",
+  "date": "2026-10-14",
+  "positive": {
+    "command": "./bootloops-lean research/rmaf/branching/Certificates.lean",
+    "source_sha256": "1da7a9047f32238d93e15e915ba25b487c908c8821172bf0447b366ce138bdf5",
+    "exit_code": 0,
+    "expected_axiom_reports": 8,
+    "observed_axiom_reports": 8,
+    "all_report_no_axioms": true,
+    "log": "research/rmaf/results/algorithm-arithmetic-replay-v1.log",
+    "time_log": "research/rmaf/results/algorithm-arithmetic-replay-v1.time",
+    "wall_seconds_time_p": 3.21
+  },
+  "negative": {
+    "command": "./bootloops-lean research/rmaf/branching/Mutation.lean",
+    "source_sha256": "1780b1432b43405146322b80c3d3dd613553ad701c178158d8a05266a6333fff",
+    "exit_code": 1,
+    "false_arithmetic_rejected": true,
+    "required_message_observed": "Tactic `decide` proved that the proposition",
+    "log": "research/rmaf/results/algorithm-arithmetic-false-control-v1.log",
+    "time_log": "research/rmaf/results/algorithm-arithmetic-false-control-v1.time",
+    "wall_seconds_time_p": 0.31
+  },
+  "lineage": "Coordinator replayed unchanged earlier-authored Lean sources; no new proof authored, original receipts preserved. These arithmetic targets have already influenced candidate selection and are development certificates, not held-out structural verification.",
+  "skipped": ["No global bootloops-check: shared toolkit/source unchanged and root confirmed scoped instrument controls are relevant at this stage."]
+}

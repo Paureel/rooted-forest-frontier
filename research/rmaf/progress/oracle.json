@@ -1,0 +1,111 @@
+{
+  "id": "oracle",
+  "title": "Exact small-instance oracle",
+  "status": "tested",
+  "summary": "Exact corpus built; a six-leaf counterexample refutes endpoint-only branching even with two off-path subtrees.",
+  "metrics": {
+    "pairs": 11259,
+    "partitions": 370977,
+    "endpoint_tests": 13722,
+    "controls": "15/15",
+    "six_leaf_sample": 2000
+  },
+  "claims": [
+    {
+      "id": "frozen-controls",
+      "label": "Frozen controls",
+      "status": "tested",
+      "detail": "15/15 hand controls, invalid forests, and malformed inputs passed. Exact Python checks; not Lean."
+    },
+    {
+      "id": "small-corpus",
+      "label": "Complete small corpus",
+      "status": "tested",
+      "detail": "11259 ordered tree pairs enumerated on leaf counts [3, 4, 5]; witnesses retained. Finite corpus only."
+    },
+    {
+      "id": "endpoint-only-cherry",
+      "label": "Drop side-subtree branch",
+      "status": "refuted",
+      "detail": "refuted-by-exact-enumeration"
+    },
+    {
+      "id": "restriction-only-contraction",
+      "label": "Contract any equal restriction",
+      "status": "refuted",
+      "detail": "Conflicting triples: equal two-leaf restriction; deletion reduces optimum from two to one."
+    },
+    {
+      "id": "endpoint-only-t2",
+      "label": "Drop side branch when t\u22652",
+      "status": "refuted",
+      "detail": "Survived n\u22645, then a fresh six-leaf sampled pair refuted it. Unique optimum {{a},{b},{c,d,e,f}} retains both cherry endpoints d,f together."
+    },
+    {
+      "id": "endpoint-t2-six",
+      "label": "Six-leaf cherry search",
+      "status": "refuted",
+      "detail": "2000 exact sampled pairs; 2200 eligible cherries. refuted-by-exact-enumeration; not Lean."
+    }
+  ],
+  "lemmas": [],
+  "artifacts": [
+    "research/rmaf/oracle/README.md",
+    "research/rmaf/results/oracle-controls.json",
+    "research/rmaf/results/oracle-corpus.json",
+    "research/rmaf/results/oracle-local-rules.json",
+    "research/rmaf/results/oracle-local-rules-v2.json",
+    "research/rmaf/results/oracle-sample-six.json",
+    "research/rmaf/results/oracle-counterexample-six.json"
+  ],
+  "example": {
+    "tree_a": [
+      "a",
+      [
+        "c",
+        [
+          "b",
+          [
+            "e",
+            [
+              "d",
+              "f"
+            ]
+          ]
+        ]
+      ]
+    ],
+    "tree_b": [
+      "c",
+      [
+        "e",
+        [
+          "f",
+          [
+            "a",
+            [
+              "b",
+              "d"
+            ]
+          ]
+        ]
+      ]
+    ],
+    "forest": [
+      [
+        "a"
+      ],
+      [
+        "b"
+      ],
+      [
+        "c",
+        "d",
+        "e",
+        "f"
+      ]
+    ],
+    "k": 3,
+    "caption": "Unique optimum: three components. Cherry endpoints d and f stay together; dropping the side-subtree branch fails."
+  }
+}

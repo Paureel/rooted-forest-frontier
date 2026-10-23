@@ -1,0 +1,11 @@
+List.idxOf_cons.{u_1} {α : Type u_1} {x : α} {xs : List α} {y : α} [BEq α] :
+  List.idxOf y (x :: xs) = if (x == y) = true then 0 else List.idxOf y xs + 1
+List.idxOf_cons_self.{u_1} {α : Type u_1} {a : α} [BEq α] [ReflBEq α] {l : List α} : List.idxOf a (a :: l) = 0
+CheckAPI.lean:4:7: error(lean.unknownIdentifier): Unknown constant `List.idxOf_cons_ne`
+List.idxOf_eq_length.{u_1} {α : Type u_1} {a : α} [BEq α] [LawfulBEq α] {l : List α} (h : ¬a ∈ l) :
+  List.idxOf a l = l.length
+CheckAPI.lean:6:7: error(lean.unknownIdentifier): Unknown constant `List.nodup_iff_count_le_one`
+CheckAPI.lean:7:7: error(lean.unknownIdentifier): Unknown identifier `Universal233.VertexGeometry.partitionCheck_subset`
+CheckAPI.lean:8:7: error(lean.unknownIdentifier): Unknown identifier `Universal233.SourceCoverage.partitionCheck_count`
+def List.idxOf.{u} : {α : Type u} → [BEq α] → α → List α → Nat :=
+fun {α} [BEq α] a => List.findIdx fun x => x == a

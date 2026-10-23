@@ -1,0 +1,52 @@
+research/rmaf/algorithm/universal233/forest_solver/build/ForestConditional.lean:78:21: error: unsolved goals
+ordinary : Tree → Tree → Nat → Option Forest
+ho : OrdinaryIH ordinary
+hd : DisjointExact ordinary
+q : Nat
+ih :
+  ∀ (m : Nat),
+    m < q →
+      ∀ (T : Option Tree) (ss : List Tree) (G : List (List Nat)),
+        agrees T ss G = true → additionalCost ss G ≤ m → ∃ F, solve ordinary T ss m = some F ∧ List.length F ≤ G.length
+G : List (List Nat)
+t s : Tree
+hq : additionalCost [s] G ≤ q
+ha : agrees (some t) [s] G = true
+hp : proper (some t) [s] = true
+done : ¬agrees (some t) [s] (List.map leaves [s]) = true
+nDone : agrees (some t) [s] (List.map leaves [s]) = false
+pg : agreement t s G = true
+pp : DepthOne.proper t s = true
+F : Forest
+hF : ordinary t s q = some F
+hf : agreement t s F = true
+hb : List.length F - 1 ≤ q
+hm : ∀ (G : List (List Nat)), agreement t s G = true → List.length F ≤ G.length
+fs : agrees (some t) [s] F = true
+ac : accepted (some t) [s] q F = true
+⊢ agrees (some t) [s] [leaves s] = true → [leaves s] = F
+research/rmaf/algorithm/universal233/forest_solver/build/ForestConditional.lean:103:14: error: Tactic `simp` failed with a nested error:
+maximum recursion depth has been reached
+use `set_option maxRecDepth <num>` to increase limit
+use `set_option diagnostics true` to get diagnostic information
+research/rmaf/algorithm/universal233/forest_solver/build/ForestConditional.lean:62:67: warning: This simp argument is unused:
+  sourceCheck
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [agrees, proper, labels, partitionCheck, targetEmbeddings] at done
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/forest_solver/build/ForestConditional.lean:78:46: warning: This simp argument is unused:
+  nDone
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [solve.eq_def, hp, hF, checked, ac]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/forest_solver/build/ForestConditional.lean:98:102: warning: This simp argument is unused:
+  ite_true
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [show 1 ≤ o.sourceCuts.length ∧ o.sourceCuts.length ≤ q from ⟨hpos, hbudget⟩]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

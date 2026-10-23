@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "status": "AUTHOR_LEAN_SOURCE_PRIMITIVE_MODEL_PASSED",
+  "namespace": "Universal233.ClassifierCheckFee",
+  "canonical_build": "results/algorithm-universal233-classifier-fee-20261016T103025Z-freeze-20261016T104018296331Z",
+  "canonical_imports": [
+    "ClassifierFeeBinding",
+    "ClassifierFeePolynomial"
+  ],
+  "import_paths": [
+    "results/algorithm-universal233-classifier-fee-20261016T103025Z-freeze-20261016T104018296331Z",
+    "results/algorithm-universal233-paid-literal-20261016T100131Z-freeze-20261016T101642140379Z",
+    "results/algorithm-universal233-rule5-remaining-20261016T092622Z-freeze-20261016T095618897390Z",
+    "results/algorithm-universal233-rule5-selected-20261016T090023Z-freeze-20261016T092100151815Z",
+    "research/rmaf/algorithm/universal233/ordinary_dispatch/rule5_selected_local_work_20261016T090023Z/imports",
+    "research/rmaf/algorithm/universal233/ordinary_dispatch/classifier_check_fee_20261016T103025Z/checker-imports"
+  ],
+  "request_type": "Universal233.Rule5PendantLocalWork.CheckRequest",
+  "request_domain": "Universal233.Rule5PendantLocalWork.CheckDomain",
+  "implemented": [
+    "requestMeter",
+    "checkFee",
+    "finalSourceMeter",
+    "paidBuilderSourceMeter"
+  ],
+  "exact_value_receipts": [
+    "request_value",
+    "request_calls",
+    "check_receipt_eq",
+    "final_source_value",
+    "paid_builder_value"
+  ],
+  "universal_work": [
+    "embedding_work",
+    "restriction_work",
+    "check_fee_bound",
+    "final_source_work",
+    "final_source_calls",
+    "paid_builder_work"
+  ],
+  "polynomial": "120*(2*N*N+2*N+2)^5+128*(N+1)^2+2",
+  "polynomial_theorem": "check_cap_polynomial",
+  "request_size": "payloadCap N+2*N+1; payloadCap N=N*(2*N)",
+  "actual_invocation_N": "(leaves T).length+(leaves S).length",
+  "reused": [
+    "GenericForest.CheckCorrespondence.meterPairwise",
+    "GenericForest.CheckCorrespondence.meterPairwise_value",
+    "GenericForest.CheckCorrespondence.meterPairwise_polynomial",
+    "GenericForest.CheckCorrespondence.meterRestrictionAgrees",
+    "GenericForest.CheckCorrespondence.meterRestrictionAgrees_value",
+    "GenericForest.CheckCorrespondence.meterRestrictionAgrees_bound"
+  ],
+  "model": "Existing checker source inspection units, plus two explicit inspections for request dispatch and primitive invocation. No binary/native or instrumentation-runtime interpretation.",
+  "remaining_fee_premises": "None in final_source_work or paid_builder_work. Kc and sealed Kl are concrete; general agreement K is distinct and untouched.",
+  "literal_fee": "PaidLiteralDecisionWork.literalFee T S a b from the prior frozen seal; unchanged",
+  "compatible_pool": "Reuse exact prior literal pool; add only pinned HullCheckMeters object. Its sole nonstandard import TreeCheckMeters exactly matches the already-loaded checker object.",
+  "independent_acceptance": false,
+  "native_or_binary_semantics": false,
+  "whole_rule5": false,
+  "full233": false,
+  "novelty": false
+}

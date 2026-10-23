@@ -1,0 +1,7 @@
+import RWRun
+#check OrdinaryDispatch.RecoveryLocalWork.meterRun_value
+#print axioms OrdinaryDispatch.RecoveryLocalWork.meterRun_value
+#check OrdinaryDispatch.RecoveryLocalWork.meterRun_bound
+#print axioms OrdinaryDispatch.RecoveryLocalWork.meterRun_bound
+#check OrdinaryDispatch.RecoveryLocalWork.meterRun_closed
+#print axioms OrdinaryDispatch.RecoveryLocalWork.meterRun_closed

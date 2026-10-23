@@ -1,0 +1,67 @@
+{
+  "instrument_sha256": "1de053faeb30dfc00db48f66829c01bc4684f8c47f359208d98b248a6647f017",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "memory_megabytes": 3072,
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "source_origin": "results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/live-compile-20261015T220123767831Z/GuardPositive.lean",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "source_origin": "results/algorithm-universal233-ordinary-work-recursion-20261015T215305067588Z/live-compile-20261015T220123767831Z/GuardFalse.lean",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true,
+      "same_lineage": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.34156574999997247,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.32876345900001525,
+      "resource_stop": null,
+      "log_sha256": "28c8dbf2ee40643003204726de08bf6287265ddd061535a06d7c8aa5f94f61e0"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016454999999950815,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "OrdinaryCallBound",
+      "source_sha256": "0b4d4984201df663210c25cb74b5c4911b74015d89dbcb46dd0faab741a7f116",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8135737080000354,
+      "resource_stop": null,
+      "log_sha256": "fd3b28a30f98a2e6d334ccd552cd3476b2b810b29f596ce51dc3713c6739f037"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('OrdinaryCallBound', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallBound.lean:18:1: error: Type mismatch: After simplification, term\\n  sum\\n has type\\n  @LE.le Rat Rat.instLE (List.map (fun pb => \u2191(W pb.fst.fst pb.fst.snd pb.snd)) xs).sum\\n    (D * (Rule5ActualTrace.base ^ q * PaidQueries.actualQueryMass Rule5ActualTrace.base q (List.map Prod.snd xs)))\\nbut is expected to have type\\n  @LE.le Rat Rat.instLE (queryWorkRat W xs)\\n    (D * (Rule5ActualTrace.base ^ q * PaidQueries.actualQueryMass Rule5ActualTrace.base q (List.map Prod.snd xs)))\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallBound.lean:32:29: error(lean.unknownIdentifier): Unknown constant `Rat.natCast_one`\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallBound.lean:32:1: error: Type mismatch: After simplification, term\\n  Rat.le_trans a b\\n has type\\n  X + 1 \u2264 callNodeFactor * \u2191n * Rule5ActualTrace.base ^ q + callNodeFactor * Rule5ActualTrace.base ^ q\\nbut is expected to have type\\n  X + 1 \u2264 callNodeFactor * \u2191n * Rule5ActualTrace.base ^ q + callNodeFactor * \u21911 * Rule5ActualTrace.base ^ q\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallBound.lean:38:67: error: omega could not prove the goal:\\na possible counterexample may satisfy the constraints\\n  b \u2265 0\\n  a \u2265 0\\n  a - b \u2265 2\\nwhere\\n a := \u21911\\n b := \u2191n\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallBound.lean:49:79: error: Tactic `rfl` failed: equality lhs\\n  callNodeFactor * \u2191(n + 1) * Rule5ActualTrace.base ^ q * Rule5ActualTrace.gamma Rule5ActualTrace.base\\nis not definitionally equal to rhs\\n  callNodeFactor * Rule5ActualTrace.gamma Rule5ActualTrace.base * (\u2191(n + 1) * Rule5ActualTrace.base ^ q)\\n\\nn q : Nat\\nX : Rat\\nbound : X \u2264 callNodeFactor * \u2191(n + 1) * Rule5ActualTrace.base ^ q * Rule5ActualTrace.gamma Rule5ActualTrace.base\\nt : Rat := \u2191(n + 1) * Rule5ActualTrace.base ^ q\\nnp : 1 \u2264 \u2191(n + 1)\\nscaled : \u2191(n + 1) \u2264 \u2191(n + 1) * Rule5ActualTrace.base ^ q\\nht : 1 \u2264 t\\ntpos : 0 \u2264 t\\nabsorb : t + callNodeFactor * Rule5ActualTrace.gamma Rule5ActualTrace.base * t \u2264 callNodeFactor * t\\na : 1 + X \u2264 1 + callNodeFactor * \u2191(n + 1) * Rule5ActualTrace.base ^ q * Rule5ActualTrace.gamma Rule5ActualTrace.base\\nb :\\n  1 + callNodeFactor * Rule5ActualTrace.gamma Rule5ActualTrace.base * t \u2264\\n    t + callNodeFactor * Rule5ActualTrace.gamma Rule5ActualTrace.base * t\\n\u22a2 callNodeFactor * \u2191(n + 1) * Rule5ActualTrace.base ^ q * Rule5ActualTrace.gamma Rule5ActualTrace.base =\\n    callNodeFactor * Rule5ActualTrace.gamma Rule5ActualTrace.base * (\u2191(n + 1) * Rule5ActualTrace.base ^ q)\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-global-resume-20261016T083330Z-20261016T083708893142Z/OrdinaryCallBound.lean:72:44: error(lean.unknownIdentifier): Unknown constant `Rat.natCast_one`\\n'))"
+}

@@ -1,0 +1,83 @@
+import OverlapDefs
+namespace Universal233.Hard2Overlap
+open RMAF VertexGeometry
+
+theorem overlap_sound {T : Tree} {A B : List Nat} {v : RMAF.Vertex}
+ (h : overlap T A B=some v) : v∈minimalVertices A T ∧ v∈minimalVertices B T := by
+ have hh := findCommon_sound _ _ _ v h
+ exact ⟨hh.1,hh.2.1⟩
+theorem overlap_none {T : Tree} {A B : List Nat} (h : overlap T A B=none) : Clear T A B := by
+ intro v ha hb
+ obtain ⟨w,hw⟩ := findCommon_complete (minimalVertices A T) (minimalVertices B T) (minimalVertices B T) ⟨v,ha,hb,hb⟩
+ change overlap T A B=some w at hw
+ rw [h] at hw
+ contradiction
+theorem clear_symm {T : Tree} {A B : List Nat} (h : Clear T A B) : Clear T B A :=
+ fun v hb ha => h v ha hb
+theorem clear_disjoint {T : Tree} {A B : List Nat} (h : Clear T A B) :
+ disjointVertices (minimalVertices A T) (minimalVertices B T)=true :=
+ (PairGeometry.disjointB_correct _ _).2 h
+theorem three_clear {T : Tree} {A B C : List Nat} (ab : Clear T A B) (ac : Clear T A C) (bc : Clear T B C) :
+ pairwiseEmbeddings T [A,B,C]=true := by
+ simp [pairwiseEmbeddings,clear_disjoint ab,clear_disjoint ac,clear_disjoint bc]
+
+theorem permuted_partition {S : Tree} {A B C : List Nat} (o : Order)
+ (hp : partitionCheck (leaves S) [A,B,C]=true) :
+ partitionCheck (leaves S) (parents o A B C)=true := by
+ rw [FinalCutRecovery.partitionCheck_outer_perm (leaves S) (parents_perm o A B C)]
+ exact hp
+
+theorem partition_pair_proper {T S : Tree} {A B C : List Nat}
+ (ht : (leaves T).Nodup) (hl : ∀x,x∈leaves S → x∈leaves T)
+ (hp : partitionCheck (leaves S) [A,B,C]=true) : PairGeometry.properInput T A B=true := by
+ have hn := (BinaryExchange.flatten_nodup_parts _ (BinaryExchange.partition_flatten_nodup _ _ hp)).1
+ have na := hn A (by simp)
+ have nb := hn B (by simp)
+ have nea := partitionCheck_nonempty _ _ hp A (by simp)
+ have neb := partitionCheck_nonempty _ _ hp B (by simp)
+ have aa : A.all (fun x => (leaves T).contains x)=true := by
+  apply List.all_eq_true.2
+  intro x hx
+  exact List.contains_iff_mem.2 (hl x (partitionCheck_subset _ _ hp (by simpa using Or.inl hx : x∈[A,B,C].flatten)))
+ have bb : B.all (fun x => (leaves T).contains x)=true := by
+  apply List.all_eq_true.2
+  intro x hx
+  exact List.contains_iff_mem.2 (hl x (partitionCheck_subset _ _ hp (by simp [hx])))
+ have hd := (Assembly.parent_partition_disjoint S A B C hp).1
+ have ab : A.all (fun x => !(B.contains x))=true := by simpa using hd
+ simp [PairGeometry.properInput,ht,na,nb,nea,neb,aa,bb,ab]
+
+theorem chain_guards {T S : Tree} {A B C : List Nat} {v w : RMAF.Vertex}
+ (hp : partitionCheck (leaves S) [A,B,C]=true)
+ (av : v∈minimalVertices A T) (bv : v∈minimalVertices B T)
+ (bw : w∈minimalVertices B T) (cw : w∈minimalVertices C T) (ac : Clear T A C) :
+ ChainGuards T A B C v w := by
+ obtain ⟨ab,_,bc⟩ := Assembly.parent_partition_disjoint S A B C hp
+ refine ⟨PairAssembly.overlap_internal T A B v ab av bv,PairAssembly.overlap_internal T B C w bc bw cw,av,bv,bw,cw,ac,?_⟩
+ intro eq
+ exact ac v av (eq ▸ cw)
+
+theorem chain_valid {T S : Tree} {A B C : List Nat} (o : Order) {v w : RMAF.Vertex}
+ (hp : partitionCheck (leaves S) [A,B,C]=true)
+ (av : v∈minimalVertices (first o A B C) T) (bv : v∈minimalVertices (second o A B C) T)
+ (bw : w∈minimalVertices (second o A B C) T) (cw : w∈minimalVertices (third o A B C) T)
+ (ac : Clear T (first o A B C) (third o A B C)) : Valid T A B C (chain T A B C o v w) := by
+ have pp := permuted_partition o hp
+ have cg := chain_guards pp av bv bw cw ac
+ have low := jointColors_at_least_two (second o A B C) T v w
+   (disjoint_parent_overlap_nonlabel _ _ T v (Assembly.parent_partition_disjoint S _ _ _ pp).1 av bv).2 bv
+ unfold chain
+ split
+ · rename_i count; exact ⟨cg,count⟩
+ · rename_i count; exact ⟨cg,by omega⟩
+
+theorem isolated_valid {T S : Tree} {A B C : List Nat} (o : Order)
+ (ht : (leaves T).Nodup) (hl : ∀x,x∈leaves S → x∈leaves T)
+ (hp : partitionCheck (leaves S) [A,B,C]=true)
+ (hover : ∃v,v∈minimalVertices (first o A B C) T ∧ v∈minimalVertices (second o A B C) T)
+ (ac : Clear T (first o A B C) (third o A B C)) (bc : Clear T (second o A B C) (third o A B C)) :
+ ∃out,isolated T A B C o=some out ∧ Valid T A B C out := by
+ have proper := partition_pair_proper ht hl (permuted_partition o hp)
+ obtain ⟨choice,hchoose,hvalid⟩ := PairGeometry.choose_complete T _ _ proper hover
+ exact ⟨.pair o choice,by simp [isolated,hchoose],ac,bc,hchoose,hvalid⟩
+end Universal233.Hard2Overlap

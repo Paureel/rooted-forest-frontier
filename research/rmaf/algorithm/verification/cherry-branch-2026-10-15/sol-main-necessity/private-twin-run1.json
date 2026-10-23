@@ -1,0 +1,115 @@
+{
+  "candidate_contact": false,
+  "commands": [
+    {
+      "label": "private-twin-PrivateCleanTwin-compile-v3",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+        "-o",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/origin/private-twin-clean/build/SamePrivate.olean",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/origin/private-twin-clean/SamePrivate.lean"
+      ],
+      "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/origin/private-twin-clean",
+      "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/origin/private-twin-clean/build",
+      "returncode": 0,
+      "seconds": 0.2677950420002162,
+      "log": "private-twin-PrivateCleanTwin-compile-v3.log"
+    },
+    {
+      "label": "private-twin-PrivateHostileTwin-compile-v3",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+        "-o",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/origin/private-twin-hostile/build/SamePrivate.olean",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/origin/private-twin-hostile/SamePrivate.lean"
+      ],
+      "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/origin/private-twin-hostile",
+      "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/origin/private-twin-hostile/build",
+      "returncode": 0,
+      "seconds": 0.2455564170013531,
+      "log": "private-twin-PrivateHostileTwin-compile-v3.log"
+    },
+    {
+      "label": "private-twin-clean-v3",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+        "--run",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/origin/ProducerAudit_v1.lean",
+        "PrivateCleanTwin"
+      ],
+      "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/origin",
+      "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/origin/private-twin-imports",
+      "returncode": 0,
+      "seconds": 1.1373978339979658,
+      "log": "private-twin-clean-v3.log"
+    },
+    {
+      "label": "private-twin-both-v3",
+      "command": [
+        "/Users/paurel/Documents/ChatGPT/bootscience/.runtime/elan/toolchains/leanprover--lean4---v4.35.0/bin/lean",
+        "--run",
+        "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/origin/ProducerAudit_v1.lean",
+        "PrivateCleanTwin",
+        "PrivateHostileTwin"
+      ],
+      "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/origin",
+      "LEAN_PATH": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/cherry-branch-2026-10-15/sol-main-necessity/origin/private-twin-imports",
+      "returncode": 0,
+      "seconds": 1.0129992500005756,
+      "log": "private-twin-both-v3.log"
+    }
+  ],
+  "controls": [
+    {
+      "control": "private-clean-twin",
+      "pass": true,
+      "stored_occurrences": 2
+    },
+    {
+      "control": "private-unused-coalesced-axiom",
+      "reject": true,
+      "reason": "direct custom axiom PrivateHostileTwin:_private.SamePrivate.0.BlindPrivateTwin.shared"
+    }
+  ],
+  "status": "CONTROLS_PASS",
+  "coalesced_rows": [
+    {
+      "axioms": [],
+      "body": "Lean.Expr.const `True.intro []",
+      "index": 1,
+      "kind": "theorem",
+      "missing": [],
+      "name": "_private.SamePrivate.0.BlindPrivateTwin.shared",
+      "producer": "PrivateCleanTwin",
+      "references": [
+        "True",
+        "True.intro"
+      ],
+      "resolved_kind": "theorem",
+      "resolved_origin": "PrivateCleanTwin",
+      "type": "Lean.Expr.const `True []",
+      "type_sha256": "f5d8a8840f30c2d0e5b651a20789cb4c8d616d4ba312057d224114a13a157b90",
+      "body_sha256": "32d1c87e59c33c2a16c7347bb723088c39f6f563fdfc5f37030943f4ae55ef44"
+    },
+    {
+      "axioms": [
+        "_private.SamePrivate.0.BlindPrivateTwin.shared"
+      ],
+      "body": null,
+      "index": 1,
+      "kind": "axiom",
+      "missing": [],
+      "name": "_private.SamePrivate.0.BlindPrivateTwin.shared",
+      "producer": "PrivateHostileTwin",
+      "references": [
+        "True"
+      ],
+      "resolved_kind": "theorem",
+      "resolved_origin": "PrivateCleanTwin",
+      "type": "Lean.Expr.const `True []",
+      "type_sha256": "f5d8a8840f30c2d0e5b651a20789cb4c8d616d4ba312057d224114a13a157b90",
+      "body_sha256": null
+    }
+  ],
+  "seconds": 2.6637485430001107
+}

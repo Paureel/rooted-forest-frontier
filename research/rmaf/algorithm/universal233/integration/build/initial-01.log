@@ -1,0 +1,23 @@
+research/rmaf/algorithm/universal233/integration/InitialLift.lean:70:22: error: Tactic `rfl` failed: The left-hand side
+  []
+is not definitionally equal to the right-hand side
+  { origin := p ++ [], labels := [x], color := color x }
+
+case leaf.nil
+color : Nat → Nat
+x : Nat
+p : RMAF.Vertex
+hv : LeafAt (Tree.leaf x) [] x
+⊢ GroupLeafAt (fromTree color p (Tree.leaf x)) [] { origin := p ++ [], labels := [x], color := color x }
+research/rmaf/algorithm/universal233/integration/InitialLift.lean:89:73: error: unsolved goals
+t : Tree
+bs : List (List Nat)
+color : Nat → Nat
+hp : partitionCheck (leaves t) bs = true
+he : pairwiseEmbeddings t bs = true
+v : RMAF.Vertex
+⊢ (cast ⋯
+          { owner := (checkedSourcePartition t bs hp he).owner, support := (checkedSourcePartition t bs hp he).support,
+            actual := ⋯, terminal_exact := ⋯, connected := ⋯, disjoint := ⋯ }).owner
+      v =
+    checkedOwner t bs v

@@ -1,0 +1,35 @@
+import ActualInspection
+import CheckPrecontrols
+namespace GenericForest.CheckCorrespondence.Controls
+open RMAF ForestState Universal233 WholeSourceWork
+set_option maxRecDepth 10000
+
+def unaryTree : Tree := .node (.node (.leaf 0) (.leaf 1)) (.leaf 2)
+def unaryForest : Forest := [[0,2],[1]]
+
+theorem checker_values : (meterAgrees (some leaf) [leaf] [[0]]).value=true ∧
+ (meterAccepted (some leaf) [leaf] 0 [[0],[0]]).value=false ∧
+ (meterChecked (some leaf) [leaf] 0 [[0],[0]]).value=none ∧
+ (meterProper (some leaf) []).value=false ∧
+ (meterAgrees none [] []).value=true := by decide
+
+theorem exact_duplicate_scans : (meterCount 0 [0,0,0]).value=3 ∧
+ (meterCount 0 [0,0,0]).work=13 ∧ (meterFlatten [[0],[0],[0]]).work=37 := by decide
+
+theorem original_unary_vertices : minimalVertices [0,2] unaryTree=[[],[false],[false,false],[true]] ∧
+ (meterPairwise unaryTree unaryForest).value=false ∧
+ (meterRestrictionAgrees unaryTree unaryTree [0,2]).value=true := by decide
+
+theorem rejected_small_payload_bound : (meterChecked (some leaf) [leaf] 0 [[1]]).value=none ∧
+ (meterChecked (some leaf) [leaf] 0 [[1]]).work≤inspectionBill (some leaf) [leaf] 0 := by decide
+
+theorem actual_scheduled_payload :
+ ∃r,disjointAttempt leaf [leaf] (fun T S q=>OrdinaryDispatch.FastOrdinary.solve q T S) 0=some r ∧
+ r.answers=some [(0,[[0]])] := by
+ refine ⟨⟨some [(0,[[0]])],[],1⟩,?_,?_⟩ <;> decide
+
+theorem duplicate_raw_occurrences :
+ ([[[0]],[[0]]] : List Forest).length=2 ∧
+ (([[[0]],[[0]]] : List Forest).map (fun F=>(meterAccepted (some leaf) [leaf] 0 F).work)).sum=
+ 2*(meterAccepted (some leaf) [leaf] 0 [[0]]).work := by decide
+end GenericForest.CheckCorrespondence.Controls

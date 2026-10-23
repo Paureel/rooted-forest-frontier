@@ -1,0 +1,70 @@
+[
+  {
+    "consumer": "RMAF.agreement / partitionCheck both inputs",
+    "source": "research/rmaf/lean/RMAF.lean:154",
+    "supply": "nonempty split blocks and Perm B; PartitionRefinement.partitionCheck_replace",
+    "final_use": "ActualRefinement.actual_partition_split:61",
+    "open_transport": []
+  },
+  {
+    "consumer": "RMAF.agreement / restrictionAgrees each block",
+    "source": "research/rmaf/lean/RMAF.lean:156",
+    "supply": "RestrictionTransport.restrictionAgrees_subset via actual restrict composition and RootedIso",
+    "final_use": "ActualRefinement.actual_two_tree_split:35",
+    "open_transport": []
+  },
+  {
+    "consumer": "RMAF.agreement / pairwiseEmbeddings t",
+    "source": "research/rmaf/lean/RMAF.lean:157",
+    "supply": "LocalSplit.actual_one_tree_split; actual support nesting; pairwiseEmbeddings_replace",
+    "final_use": "ActualRefinement.actual_two_tree_split:27",
+    "open_transport": []
+  },
+  {
+    "consumer": "RMAF.agreement / pairwiseEmbeddings u",
+    "source": "research/rmaf/lean/RMAF.lean:157",
+    "supply": "ActualSupportTransport.actual_disjoint_transport plus actual_support_mono in u",
+    "final_use": "ActualRefinement.actual_two_tree_split:38",
+    "open_transport": []
+  },
+  {
+    "consumer": "old marks in own input coordinates",
+    "source": "PartitionRefinement.agreement_replace_and_clear:233",
+    "supply": "EmbSub in each input and avoidsPartition_replace",
+    "final_use": "ActualRefinement.actual_partition_split:61",
+    "open_transport": []
+  },
+  {
+    "consumer": "component-level degree",
+    "source": "ActualRefinement.actual_component_partition_split:69",
+    "supply": "actualDegree_propagation",
+    "remaining_hypotheses": [
+      "B subset S",
+      "v in B support",
+      "v not in terminals B t",
+      "actualDegree t S v = 2"
+    ],
+    "open_transport": []
+  },
+  {
+    "consumer": "other occurrences / global partition clearing",
+    "source": "PartitionRefinement.pairwise_other_avoids:183",
+    "supply": "original pairwiseEmbeddings plus actual cut avoids v in both new t supports",
+    "final_use": "ActualRefinement.actual_partition_split:61",
+    "open_transport": []
+  },
+  {
+    "consumer": "PureBridge.ExchangeSystem.clearRest",
+    "source": "research/rmaf/pure_bridge/lean/PureBridge.lean:79",
+    "use": "paid_replacement:115",
+    "supply": "actual_partition_split supplies one-piece geometric repair; replacement_forest_cost_bound gives fixed-component arithmetic bound",
+    "remaining_hypotheses": [
+      "concrete full remainder state and validity",
+      "old interactions and fixed-witness compatibility in forest representation",
+      "avoidance and cost objects",
+      "occupied piece degree assumptions",
+      "other ExchangeSystem fields"
+    ],
+    "instantiated": false
+  }
+]

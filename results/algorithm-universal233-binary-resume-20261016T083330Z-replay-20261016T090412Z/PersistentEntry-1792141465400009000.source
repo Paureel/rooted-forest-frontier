@@ -1,0 +1,106 @@
+import PersistentAccepted
+namespace GenericForest.BinaryProvider
+open Universal233.WholeSourceWork GenericForest.ScalarBits GenericForest.CheckCorrespondence
+
+structure Ready (W : Nat) (C : Capacity) (T : Option Tree) (ss : List Tree) (q : Bits) (F : Forest) : Prop where
+ width : C.length≤W
+ positive : 0<C.length
+ target : TargetWidth W T
+ sources : SourcesWidth W ss
+ budget : q.length≤W
+ forest : ForestWidth W F
+ forestCells : F.flatten.length<2^C.length
+ sourceCells : (sourceLeavesCopy ss).value.flatten.length<2^C.length
+ forestCount : F.length<2^C.length
+ sourceCount : ss.length<2^C.length
+
+/-- Persistent source values enter directly. All leaf/capacity materialization
+and both list-length counters execute and contribute to setup work. -/
+def checkerCapacity (T : Option Tree) (ss : List Tree) (q : Bits) (F : Forest) : Charged Capacity:=
+ let a:=targetLabelsCopy T;let b:=sourceLeavesCopy ss;let g:=appendSpine F b.value
+ let c:=prepareCapacity (q::a.value) g.value
+ let fl:=spineCounter F;let sl:=spineCounter ss
+ let w:=widenCapacity c.value fl.value;let z:=widenCapacity w.value sl.value
+ ⟨z.value,a.work+b.work+g.work+c.work+fl.work+sl.work+w.work+z.work+12⟩
+
+theorem checkerCapacity_width (T : Option Tree) (ss : List Tree) (q : Bits) (F : Forest) :
+ (checkerCapacity T ss q F).value.length=
+ max (max (prepareCapacity (q::(targetLabelsCopy T).value) (F++(sourceLeavesCopy ss).value)).value.length
+  (spineCounter F).value.length) (spineCounter ss).value.length := by
+ simp only [checkerCapacity,appendSpine_value,widenCapacity_length]
+
+theorem checkerCapacity_ready (T : Option Tree) (ss : List Tree) (q : Bits) (F : Forest) :
+ let C:=(checkerCapacity T ss q F).value
+ Ready C.length C T ss q F := by
+ let A:=(targetLabelsCopy T).value
+ let S:=(sourceLeavesCopy ss).value
+ let B:=(prepareCapacity (q::A) (F++S)).value
+ let C:=(checkerCapacity T ss q F).value
+ have bs:=prepareCapacity_spec (q::A) (F++S)
+ have len : C.length=max (max B.length (spineCounter F).value.length) (spineCounter ss).value.length:=checkerCapacity_width T ss q F
+ have bl : B.length≤C.length:=by rw [len];omega
+ have fl : (spineCounter F).value.length≤C.length:=by rw [len];omega
+ have sl : (spineCounter ss).value.length≤C.length:=by rw [len];omega
+ have power:=Nat.pow_le_pow_right (n:=2) (by decide) bl
+ have fit : (F++S).flatten.length<2^C.length:=Nat.lt_of_lt_of_le bs.2.2.2 power
+ have fitF : F.flatten.length<2^C.length:=by simp only [List.flatten_append,List.length_append] at fit;omega
+ have fitS : S.flatten.length<2^C.length:=by simp only [List.flatten_append,List.length_append] at fit;omega
+ have countF:=decode_bound (spineCounter F).value
+ have countS:=decode_bound (spineCounter ss).value
+ rw [spineCounter_value] at countF countS
+ have pf:=Nat.pow_le_pow_right (n:=2) (by decide) fl
+ have ps:=Nat.pow_le_pow_right (n:=2) (by decide) sl
+ have bp : 0<B.length:=bs.2.2.1
+ refine ⟨Nat.le_refl _,Nat.lt_of_lt_of_le bp bl,?_,?_,?_,?_,fitF,fitS,Nat.lt_of_lt_of_le countF pf,Nat.lt_of_lt_of_le countS ps⟩
+ · cases T with
+   | none=>intro t ht;simp at ht
+   | some t=>
+    intro u hu
+    have eq : t=u:=by simpa using hu
+    subst u
+    intro x hx
+    have ax : x∈A:=by simpa only [A,targetLabelsCopy,leavesCopy_value] using hx
+    exact Nat.le_trans (bs.1 x (List.mem_cons_of_mem q ax)) bl
+ · intro t ht x hx
+   have ts : leavesBits t∈S:=by
+    simp only [S,sourceLeavesCopy_value]
+    exact List.mem_map.mpr ⟨t,ht,rfl⟩
+   exact Nat.le_trans (bs.2.1 (leavesBits t) (List.mem_append_right F ts) x hx) bl
+ · exact Nat.le_trans (bs.1 q (by simp)) bl
+ · intro G hG x hx
+   exact Nat.le_trans (bs.2.1 G (List.mem_append_left S hG) x hx) bl
+
+/-- Standalone represented checker including paid setup. It returns the input
+persistent forest on success, so no output payload copy is silently inserted. -/
+def checkerFromInput (T : Option Tree) (ss : List Tree) (q : Bits) (F : Forest) : Charged (Option Forest):=
+ let c:=checkerCapacity T ss q F;let p:=checkedLabels c.value T ss q F
+ ⟨p.value,c.work+p.work+4⟩
+
+theorem checkerFromInput_projects (T : Option Tree) (ss : List Tree) (q : Bits) (F : Forest) :
+ let C:=(checkerCapacity T ss q F).value
+ forestOptionValue (checkerFromInput T ss q F).value=
+  GenericForest.checked (targetValue T) (sourcesValue ss) (labelValue q) (forestValue F) ∧
+ (checkerFromInput T ss q F).work≤(checkerCapacity T ss q F).work+
+  ScalarBits.beta C.length*(meterChecked (targetValue T) (sourcesValue ss) (labelValue q) (forestValue F)).work+4 := by
+ have r:=checkerCapacity_ready T ss q F
+ have p:=checkedLabels_projects _ _ T ss q F r.width r.positive r.target r.sources r.budget r.forest
+  r.forestCells r.sourceCells r.forestCount r.sourceCount
+ constructor
+ · exact p.1.trans (meterChecked_value _ _ _ _)
+ · have c:=p.2;dsimp only [checkerFromInput];omega
+
+/-- Local source checker polynomial. Its setup is separately executed and
+charged; this theorem makes no claim about recursive solver call counts. -/
+theorem checkerFromInput_polynomial (T : Option Tree) (ss : List Tree) (q : Bits) (F : Forest) (N : Nat)
+ (tn : targetNodes (targetValue T)≤N) (sn : sourceNodes (sourcesValue ss)≤N)
+ (sl : ss.length≤N) (fl : F.length≤N) (cells : F.flatten.length≤N) :
+ (checkerFromInput T ss q F).work≤(checkerCapacity T ss q F).work+
+  ScalarBits.beta (checkerCapacity T ss q F).value.length*(908*(N+1)^6)+4 := by
+ have p:=(checkerFromInput_projects T ss q F).2
+ have m:=meterChecked_cap (targetValue T) (sourcesValue ss) (labelValue q) (forestValue F) N tn sn
+  (by simpa only [sourcesValue,List.length_map] using sl)
+  (by simpa only [forestValue_length] using fl)
+  (by simpa only [forestValue_flatten,blockValue_length] using cells)
+ have k:=Nat.mul_le_mul_left (ScalarBits.beta (checkerCapacity T ss q F).value.length) m
+ omega
+end GenericForest.BinaryProvider

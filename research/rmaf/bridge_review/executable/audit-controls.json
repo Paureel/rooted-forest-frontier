@@ -1,0 +1,41 @@
+{
+  "frozen_before_audit_script": true,
+  "acceptance": "nonzero Lean exit and exactly one explicit decide-falsity diagnostic, with no additional errors",
+  "planted_diagnostics": [
+    {
+      "name": "explicit-false",
+      "exit": 1,
+      "message": "x.lean:1:1: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "accepted": true
+    },
+    {
+      "name": "successful-exit",
+      "exit": 0,
+      "message": "x.lean:1:1: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "accepted": false
+    },
+    {
+      "name": "synthesis-error",
+      "exit": 1,
+      "message": "x.lean:1:1: error: failed to synthesize Decidable P\n",
+      "accepted": false
+    },
+    {
+      "name": "unknown-name",
+      "exit": 1,
+      "message": "x.lean:1:1: error: Unknown identifier noSuchExecutableBridgeProof\n",
+      "accepted": false
+    },
+    {
+      "name": "mixed-false-and-error",
+      "exit": 1,
+      "message": "x.lean:1:1: error: Tactic `decide` proved that the proposition\n  False\nis false\nx.lean:2:1: error: Unknown identifier bogus\n",
+      "accepted": false
+    }
+  ],
+  "actual_malformed_control": "unknown identifier in a True proof must be rejected as a falsity receipt",
+  "true_twins": {
+    "FalseAbsent": "Controls.absent_exact",
+    "FalseDeletedVertex": "Controls.path_deletion_rejected"
+  }
+}

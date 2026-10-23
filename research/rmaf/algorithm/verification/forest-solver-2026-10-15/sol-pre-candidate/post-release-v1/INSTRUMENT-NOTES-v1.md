@@ -1,0 +1,13 @@
+# Local review instruments
+
+The new instruments are one-shot source-review programs retained in this directory. They extend only this arm's own prepared code. No shared toolkit, candidate or frozen READY file was edited.
+
+`source_rebuild_v1.py` verifies pinned source digests, reconstructs original bytes by reversing declared import lines, independently sorts imports and compiles fresh scientific oleans. Its pilot/full receipts identify every command, source and output digest. Reach for it only to replay this exact143-source release. A compiler exit alone is not its semantic criterion; it also verifies the source catalog, complete producer coverage and independent controls.
+
+`producer_audit_v4.lean` reads each scientific producer's stored ConstantInfo array before coalescing and emits lossless rooted Expr DAGs, actual/resolved origins and records, direct axiom references and dependency producer maps. Its meaning is kernel ConstantInfo scope. Separate IR-only generated names have no claimed machine-body verification. The auditor must pass the coalesced axiom/private/missing/duplicate/unresolved and literal import/body controls plus the binder-collapse plant before candidate use. Failed v1 raw-repr batches and failed v2/v3 encoders remain filed.
+
+`candidate_origin_batches_v2.py` applies that unchanged qualified auditor in eight bounded batches. `check_provenance_scope_v1.py`, `index_declarations_v1.py` and KERNEL-IR-SCOPE-v1.json account for actual/resolved references, exact main-signature binders, source dependency closure and extra IR-only names. Counts are inventory; they do not certify a theorem by their magnitude.
+
+`original_adapter_review_v1.py` compiles all14 import-only original counterparts using explicitly recorded fresh aliases from pinned dependency sources. It compares all actual kind/type/body/directAX records without normalizing. `classify_adapter_names_v1.py` later classifies only the retained23 generated hygienic-Name differences and rejects numerical/public/literal/annotation changes. Its output is a qualified correspondence, not raw equality for those records.
+
+`make_actual_probe_v4.py` constructs finite ordinary mock tables with the original fresh graph evaluator and emits actual candidate selector/generator/replacement/scheduler/recursive-state observations. `check_actual_probe_v3.py` compares every occurrence and all small final partitions using graph paths and clade topology. The tables are fixtures, never a complete ordinary solver or OrdinaryIH proof. The final52 budget rows use at most six labels. `make_premise_trace_v2.py` extracts full proposition-definition meanings and verbatim source-located consuming contracts; copied quotes are not edited as prose.

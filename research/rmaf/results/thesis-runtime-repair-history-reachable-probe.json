@@ -1,0 +1,363 @@
+{
+  "scope": "candidate reachable counterexample to unqualified history-to-outside-b application; not a runtime counterexample",
+  "validation_status": "coordinator engine replay; independent replay and Lean witness pending",
+  "engine_lineage": "completed geometry/check.py reused, no independence claimed",
+  "initial_budget": 20,
+  "input_f1": "((((((a,t),d0),c),d),((x,y),h)),((W,X),(Y,B)))",
+  "input_f2": "(((a,((W,(x,X)),(d,(y,Y)))),(t,(c,(d0,B)))),h)",
+  "root_convention": "labelled unary rho",
+  "initial_protected1": [],
+  "initial_protected2": [],
+  "initial_credits": {
+    "P": [],
+    "Q": []
+  },
+  "reachability_convention": "full permitted recursive-call tree; no short-circuit visitation claim",
+  "control_groups_passed": 6,
+  "rows": [
+    {
+      "step": 1,
+      "budget": 20,
+      "f1": "(((((((a,t),d0),c),d),((x,y),h)),((W,X),(Y,B))))rho",
+      "f2": [
+        "((((a,((W,(x,X)),(d,(y,Y)))),(t,(c,(d0,B)))),h))rho"
+      ],
+      "protected1": [],
+      "protected2": [],
+      "rule": {
+        "pair": [
+          "a",
+          "t"
+        ],
+        "case": "A2BC",
+        "pendants": [
+          "W,X,Y,d,x,y",
+          "B,c,d0"
+        ],
+        "branches": [
+          {
+            "name": "A",
+            "cuts": [
+              "a"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "B",
+            "cuts": [
+              "W,X,Y,d,x,y",
+              "B,c,d0"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "C",
+            "cuts": [
+              "t"
+            ],
+            "protect2": [
+              "a",
+              "W,X,Y,d,x,y",
+              "B,c,d0"
+            ],
+            "protect1": [
+              "a"
+            ],
+            "legal": true
+          }
+        ],
+        "uncle": "d0"
+      },
+      "selected_branch": "C",
+      "output_credits": {
+        "P": [
+          "a"
+        ],
+        "Q": []
+      },
+      "credit_rule": "initial G1 C"
+    },
+    {
+      "step": 2,
+      "budget": 19,
+      "f1": "((((((a,d0),c),d),((x,y),h)),((W,X),(Y,B))))rho",
+      "f2": [
+        "((((a,((W,(x,X)),(d,(y,Y)))),(c,(d0,B))),h))rho"
+      ],
+      "protected1": [
+        "a"
+      ],
+      "protected2": [
+        "B,c,d0",
+        "W,X,Y,d,x,y",
+        "a"
+      ],
+      "rule": {
+        "pair": [
+          "d0",
+          "a"
+        ],
+        "case": "A3BC",
+        "pendants": [
+          "B",
+          "c",
+          "W,X,Y,d,x,y"
+        ],
+        "branches": [
+          {
+            "name": "A",
+            "cuts": [
+              "d0"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "B",
+            "cuts": [
+              "B",
+              "c",
+              "W,X,Y,d,x,y"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": false
+          },
+          {
+            "name": "C",
+            "cuts": [
+              "a"
+            ],
+            "protect2": [
+              "d0"
+            ],
+            "protect1": [
+              "d0"
+            ],
+            "legal": false
+          }
+        ],
+        "uncle": "c"
+      },
+      "selected_branch": "A",
+      "output_credits": {
+        "P": [],
+        "Q": []
+      },
+      "credit_rule": "initial G3 sole child resets both credits"
+    },
+    {
+      "step": 3,
+      "budget": 18,
+      "f1": "(((((a,c),d),((x,y),h)),((W,X),(Y,B))))rho",
+      "f2": [
+        "((((a,((W,(x,X)),(d,(y,Y)))),(c,B)),h))rho"
+      ],
+      "protected1": [
+        "a"
+      ],
+      "protected2": [
+        "B,c",
+        "W,X,Y,d,x,y",
+        "a"
+      ],
+      "rule": {
+        "pair": [
+          "a",
+          "c"
+        ],
+        "case": "A2BC",
+        "pendants": [
+          "W,X,Y,d,x,y",
+          "B"
+        ],
+        "branches": [
+          {
+            "name": "A",
+            "cuts": [
+              "a"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": false
+          },
+          {
+            "name": "B",
+            "cuts": [
+              "W,X,Y,d,x,y",
+              "B"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": false
+          },
+          {
+            "name": "C",
+            "cuts": [
+              "c"
+            ],
+            "protect2": [
+              "a",
+              "W,X,Y,d,x,y",
+              "B"
+            ],
+            "protect1": [
+              "a"
+            ],
+            "legal": true
+          }
+        ],
+        "uncle": "d"
+      },
+      "selected_branch": "C",
+      "output_credits": {
+        "P": [
+          "a"
+        ],
+        "Q": []
+      },
+      "credit_rule": "new empty-credit G1 C"
+    },
+    {
+      "step": 4,
+      "budget": 17,
+      "f1": "((((a,d),((x,y),h)),((W,X),(Y,B))))rho",
+      "f2": [
+        "((((a,((W,(x,X)),(d,(y,Y)))),B),h))rho"
+      ],
+      "protected1": [
+        "a"
+      ],
+      "protected2": [
+        "B",
+        "W,X,Y,d,x,y",
+        "a"
+      ],
+      "rule": {
+        "pair": [
+          "d",
+          "a"
+        ],
+        "case": "A2BC",
+        "pendants": [
+          "Y,y",
+          "W,X,x"
+        ],
+        "branches": [
+          {
+            "name": "B",
+            "cuts": [
+              "Y,y",
+              "W,X,x"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "A",
+            "cuts": [
+              "d"
+            ],
+            "protect2": [
+              "Y,y",
+              "W,X,x"
+            ],
+            "protect1": [],
+            "legal": true
+          }
+        ],
+        "uncle": "h,x,y"
+      },
+      "selected_branch": "A",
+      "output_credits": {
+        "P": [
+          "a"
+        ],
+        "Q": []
+      },
+      "credit_rule": "new G3 two-child A2 endpoint branch retains a"
+    },
+    {
+      "step": 5,
+      "budget": 16,
+      "f1": "(((a,((x,y),h)),((W,X),(Y,B))))rho",
+      "f2": [
+        "((((a,((W,(x,X)),(y,Y))),B),h))rho"
+      ],
+      "protected1": [
+        "a"
+      ],
+      "protected2": [
+        "B",
+        "W,X,Y,x,y",
+        "W,X,x",
+        "Y,y",
+        "a"
+      ],
+      "rule": {
+        "pair": [
+          "x",
+          "y"
+        ],
+        "case": "A3BC",
+        "pendants": [
+          "X",
+          "W",
+          "Y"
+        ],
+        "branches": [
+          {
+            "name": "A",
+            "cuts": [
+              "x"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "B",
+            "cuts": [
+              "X",
+              "W",
+              "Y"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "C",
+            "cuts": [
+              "y"
+            ],
+            "protect2": [
+              "x"
+            ],
+            "protect1": [
+              "x"
+            ],
+            "legal": true
+          }
+        ],
+        "uncle": "h"
+      },
+      "input_credits": {
+        "P": [
+          "a"
+        ],
+        "Q": []
+      },
+      "a_sibling": "W,X,Y,x,y",
+      "retained_x_inside_b": true
+    }
+  ],
+  "contradicted_application": "Every source-reachable three/four-root exceptional G4.1 instance satisfies x outside the inherited protected sibling b and original G1 eligibility of x,y",
+  "not_contradicted": "The geometric candidate explicitly assumes original eligibility and x outside b; its conditional local theorem and the joint runtime inequality are not refuted."
+}

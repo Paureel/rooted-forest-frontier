@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3534375419999378,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.32979270800024096,
+      "resource_stop": null,
+      "log_sha256": "9dfe3a80be908fadde6c284596c17d3edd7343dedfdcea1a09416cebcf9a8874"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0015654170001653256,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "CommonAgreementConsumer",
+      "source_sha256": "c3b244c8018e4fb2bf6e51e6a9afb166a85d52b4e435e34457a7bcf80832237a",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.7019757499997468,
+      "resource_stop": null,
+      "log_sha256": "f2bd1edb6af22ada3249621e13eb2ce3db285d4040bae0df8aa80ec2b128ce8d"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('CommonAgreementConsumer', \"/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-full-source-20261016T085803Z-20261016T090439069784Z/CommonAgreementConsumer.lean:19:7: error: Function expected at\\n  actual\\nbut this term has type\\n  ?m.1\\n\\nNote: Expected a function because this term is being applied to the argument\\n  d.mxT\\n\\nHint: The identifier `actual` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-full-source-20261016T085803Z-20261016T090439069784Z/CommonAgreementConsumer.lean:38:7: error: Function expected at\\n  actual\\nbut this term has type\\n  ?m.1\\n\\nNote: Expected a function because this term is being applied to the argument\\n  d.mxT\\n\\nHint: The identifier `actual` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-full-source-20261016T085803Z-20261016T090439069784Z/CommonAgreementConsumer.lean:46:70: error: unsolved goals\\nx\u271d : Sort u_1\\nactual : x\u271d\\nT S : Tree\\nX Y : List Nat\\np : Vertex\\nd : Setup\\nbuild : buildSetup T S X Y p = some d\\nr : Nat\\nFM FY FN : List (List Nat)\\nfm : sorry = some FM\\ne : Vertex\\npre : DepthOne.pretest01 d.ty d.sy = DepthOne.Result.found (some e)\\nfy : FY = DepthOne.forest d.sy (some e)\\nfn : outsideReply d FY = some FN\\nG : List (List Nat)\\nmem : G \u2208 mergeCandidates d.X d.Y d.x d.y d.rho d.gamma FM FN\\nL : Nat\\nlabels : \u2200 (x : Nat), x \u2208 leaves T ++ leaves S \u2192 x < 2 ^ L\\n\u22a2 Rule5LocalWork.cells G \u2264 12 * (leaves d.T).length + 1 \u2227\\n    (\u2200 (z : Nat), z \u2208 G.flatten \u2192 z < 2 ^ (L + 2)) \u2227\\n      (measuredAgreement d.T d.S G).value = agreement d.T d.S G \u2227\\n        (measuredAgreement d.T d.S G).work \u2264 agreementK (leaves d.T).length\\n\"))"
+}

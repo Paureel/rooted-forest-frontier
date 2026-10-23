@@ -1,0 +1,345 @@
+research/rmaf/algorithm/universal233/core_work/Work.lean:61:11: error: unsolved goals
+case leaf
+g : Group
+⊢ 1 ≤ 1 + g.labels.length + List.length g.origin
+research/rmaf/algorithm/universal233/core_work/Work.lean:141:5: error: unexpected token 'local'; expected '(', ':=', 'rec', '|' or term
+research/rmaf/algorithm/universal233/core_work/Work.lean:141:11: error: unexpected token ':='; expected 'binder_predicate', 'builtin_cbv_simproc', 'builtin_dsimproc', 'builtin_simproc', 'cbv_simproc', 'dsimproc', 'elab', 'elab_rules', 'grind_pattern', 'infix', 'infixl', 'infixr', 'instance', 'macro', 'macro_rules', 'notation', 'postfix', 'prefix', 'simproc', 'syntax' or 'unif_hint'
+research/rmaf/algorithm/universal233/core_work/Work.lean:144:83: error: unexpected token ','; expected 'binder_predicate', 'builtin_cbv_simproc', 'builtin_dsimproc', 'builtin_simproc', 'cbv_simproc', 'dsimproc', 'elab', 'elab_rules', 'grind_pattern', 'infix', 'infixl', 'infixr', 'instance', 'macro', 'macro_rules', 'notation', 'postfix', 'prefix', 'simproc', 'syntax' or 'unif_hint'
+research/rmaf/algorithm/universal233/core_work/Work.lean:147:32: error: unexpected token '+'; expected 'binder_predicate', 'builtin_cbv_simproc', 'builtin_dsimproc', 'builtin_simproc', 'cbv_simproc', 'dsimproc', 'elab', 'elab_rules', 'grind_pattern', 'infix', 'infixl', 'infixr', 'instance', 'macro', 'macro_rules', 'notation', 'postfix', 'prefix', 'simproc', 'syntax' or 'unif_hint'
+research/rmaf/algorithm/universal233/core_work/Work.lean:152:54: error: unexpected token '+'; expected 'binder_predicate', 'builtin_cbv_simproc', 'builtin_dsimproc', 'builtin_simproc', 'cbv_simproc', 'dsimproc', 'elab', 'elab_rules', 'grind_pattern', 'infix', 'infixl', 'infixr', 'instance', 'macro', 'macro_rules', 'notation', 'postfix', 'prefix', 'simproc', 'syntax' or 'unif_hint'
+research/rmaf/algorithm/universal233/core_work/Work.lean:154:42: error: unexpected token ','; expected 'binder_predicate', 'builtin_cbv_simproc', 'builtin_dsimproc', 'builtin_simproc', 'cbv_simproc', 'dsimproc', 'elab', 'elab_rules', 'grind_pattern', 'infix', 'infixl', 'infixr', 'instance', 'macro', 'macro_rules', 'notation', 'postfix', 'prefix', 'simproc', 'syntax' or 'unif_hint'
+research/rmaf/algorithm/universal233/core_work/Work.lean:165:12: error: Tactic `rfl` failed: The left-hand side
+  { receipt := { refusals := ["attempt removed entire current source"], childAttempts := 1 }, work := 0, copied := 0,
+      prunedCalls := 0 }.receipt
+is not definitionally equal to the right-hand side
+  match erase g.origin t with
+  | none => { refusals := ["attempt removed entire current source"], childAttempts := 1 }
+  | some next =>
+    have r := (fun t d c => (f t d c).receipt) next (g :: d) (g.origin :: c);
+    { outputs := r.outputs, refusals := r.refusals, visited := r.visited, childAttempts := r.childAttempts + 1,
+      pruned := r.pruned }
+
+case h_1
+f : GTree → List Group → List Vertex → Measured
+t : GTree
+d : List Group
+c : List Vertex
+g : Group
+h✝¹ : ¬g.origin = []
+h✝ : ¬c.contains g.origin = true
+x✝ : Option GTree
+heq✝ : erase g.origin t = none
+⊢ { receipt := { refusals := ["attempt removed entire current source"], childAttempts := 1 }, work := 0, copied := 0,
+        prunedCalls := 0 }.receipt =
+    match erase g.origin t with
+    | none => { refusals := ["attempt removed entire current source"], childAttempts := 1 }
+    | some next =>
+      have r := (fun t d c => (f t d c).receipt) next (g :: d) (g.origin :: c);
+      { outputs := r.outputs, refusals := r.refusals, visited := r.visited, childAttempts := r.childAttempts + 1,
+        pruned := r.pruned }
+research/rmaf/algorithm/universal233/core_work/Work.lean:165:12: error: Tactic `rfl` failed: The left-hand side
+  (have r := f next✝ (g :: d) (g.origin :: c);
+    {
+      receipt :=
+        have __src := r.receipt;
+        { outputs := __src.outputs, refusals := __src.refusals, visited := __src.visited,
+          childAttempts := r.receipt.childAttempts + 1, pruned := __src.pruned },
+      work := r.work, copied := r.copied, prunedCalls := r.prunedCalls }).receipt
+is not definitionally equal to the right-hand side
+  match erase g.origin t with
+  | none => { refusals := ["attempt removed entire current source"], childAttempts := 1 }
+  | some next =>
+    have r := (fun t d c => (f t d c).receipt) next (g :: d) (g.origin :: c);
+    { outputs := r.outputs, refusals := r.refusals, visited := r.visited, childAttempts := r.childAttempts + 1,
+      pruned := r.pruned }
+
+case h_2
+f : GTree → List Group → List Vertex → Measured
+t : GTree
+d : List Group
+c : List Vertex
+g : Group
+h✝¹ : ¬g.origin = []
+h✝ : ¬c.contains g.origin = true
+x✝ : Option GTree
+next✝ : GTree
+heq✝ : erase g.origin t = some next✝
+⊢ (have r := f next✝ (g :: d) (g.origin :: c);
+      {
+        receipt :=
+          have __src := r.receipt;
+          { outputs := __src.outputs, refusals := __src.refusals, visited := __src.visited,
+            childAttempts := r.receipt.childAttempts + 1, pruned := __src.pruned },
+        work := r.work, copied := r.copied, prunedCalls := r.prunedCalls }).receipt =
+    match erase g.origin t with
+    | none => { refusals := ["attempt removed entire current source"], childAttempts := 1 }
+    | some next =>
+      have r := (fun t d c => (f t d c).receipt) next (g :: d) (g.origin :: c);
+      { outputs := r.outputs, refusals := r.refusals, visited := r.visited, childAttempts := r.childAttempts + 1,
+        pruned := r.pruned }
+research/rmaf/algorithm/universal233/core_work/Work.lean:168:81: error: unsolved goals
+case finish
+f : GTree → List Group → List Vertex → Measured
+t : GTree
+d : List Group
+c : List Vertex
+hs : choose (normalize t) = Choice.finish
+⊢ sorry.receipt =
+    {
+      outputs :=
+        [{ partition := List.map Group.labels d ++ [List.flatMap Group.labels (groups (normalize t))],
+            sourceCuts := c }],
+      visited := 1 }
+
+case one
+f : GTree → List Group → List Vertex → Measured
+t : GTree
+d : List Group
+c : List Vertex
+a✝ : Group
+hs : choose (normalize t) = Choice.one a✝
+⊢ sorry.receipt = prefixRoot (attempt (fun t d c => (f t d c).receipt) (normalize t) d c a✝)
+
+case two
+f : GTree → List Group → List Vertex → Measured
+t : GTree
+d : List Group
+c : List Vertex
+a✝¹ a✝ : Group
+hs : choose (normalize t) = Choice.two a✝¹ a✝
+⊢ sorry.receipt =
+    prefixRoot
+      (combine (attempt (fun t d c => (f t d c).receipt) (normalize t) d c a✝¹)
+        (attempt (fun t d c => (f t d c).receipt) (normalize t) d c a✝))
+
+case refuse
+f : GTree → List Group → List Vertex → Measured
+t : GTree
+d : List Group
+c : List Vertex
+a✝ : String
+hs : choose (normalize t) = Choice.refuse a✝
+⊢ sorry.receipt = { refusals := [a✝], visited := 1 }
+research/rmaf/algorithm/universal233/core_work/Work.lean:170:15: warning: declaration uses `sorry`
+research/rmaf/algorithm/universal233/core_work/Work.lean:170:33: warning: This simp argument is unused:
+  meterAttempt_receipt
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [meterStep, step, hs]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/core_work/Work.lean:195:78: error: unsolved goals
+case finish
+q : Nat
+t✝ : GTree
+d✝ : List Group
+c✝ : List Vertex
+f : GTree → List Group → List Vertex → Measured
+hf : ∀ (t : GTree) (d : List Group) (c : List Vertex), (f t d c).prunedCalls = (f t d c).receipt.pruned
+t : GTree
+d : List Group
+c : List Vertex
+hs : choose (normalize t) = Choice.finish
+⊢ sorry.prunedCalls = sorry.receipt.pruned
+
+case one
+q : Nat
+t✝ : GTree
+d✝ : List Group
+c✝ : List Vertex
+f : GTree → List Group → List Vertex → Measured
+hf : ∀ (t : GTree) (d : List Group) (c : List Vertex), (f t d c).prunedCalls = (f t d c).receipt.pruned
+t : GTree
+d : List Group
+c : List Vertex
+a✝ : Group
+hs : choose (normalize t) = Choice.one a✝
+⊢ sorry.prunedCalls = sorry.receipt.pruned
+
+case two
+q : Nat
+t✝ : GTree
+d✝ : List Group
+c✝ : List Vertex
+f : GTree → List Group → List Vertex → Measured
+hf : ∀ (t : GTree) (d : List Group) (c : List Vertex), (f t d c).prunedCalls = (f t d c).receipt.pruned
+t : GTree
+d : List Group
+c : List Vertex
+a✝¹ a✝ : Group
+hs : choose (normalize t) = Choice.two a✝¹ a✝
+⊢ sorry.prunedCalls = sorry.receipt.pruned
+
+case refuse
+q : Nat
+t✝ : GTree
+d✝ : List Group
+c✝ : List Vertex
+f : GTree → List Group → List Vertex → Measured
+hf : ∀ (t : GTree) (d : List Group) (c : List Vertex), (f t d c).prunedCalls = (f t d c).receipt.pruned
+t : GTree
+d : List Group
+c : List Vertex
+a✝ : String
+hs : choose (normalize t) = Choice.refuse a✝
+⊢ sorry.prunedCalls = sorry.receipt.pruned
+research/rmaf/algorithm/universal233/core_work/Work.lean:197:17: warning: declaration uses `sorry`
+research/rmaf/algorithm/universal233/core_work/Work.lean:197:27: warning: This simp argument is unused:
+  hs
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [meterStep, prefixRoot, combine, meterAttempt_pruned f hf]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/core_work/Work.lean:197:30: warning: This simp argument is unused:
+  prefixRoot
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [meterStep, hs, combine, meterAttempt_pruned f hf]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/core_work/Work.lean:197:41: warning: This simp argument is unused:
+  combine
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [meterStep, hs, prefixRoot, meterAttempt_pruned f hf]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/core_work/Work.lean:197:49: warning: This simp argument is unused:
+  meterAttempt_pruned f hf
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [meterStep, hs, prefixRoot, combine]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/core_work/Work.lean:214:26: error: don't know how to synthesize placeholder for argument `c`
+context:
+f : GTree → List Group → List Vertex → Receipt
+hf : ∀ (t : GTree) (d : List Group) (c : List Vertex), records (f t d c) ≤ (f t d c).visited + (f t d c).childAttempts
+t : GTree
+d : List Group
+c : List Vertex
+g : Group
+h✝¹ : ¬g.origin = []
+h✝ : ¬c.contains g.origin = true
+x✝ : Option GTree
+next✝ : GTree
+heq✝ : erase g.origin t = some next✝
+⊢ List Vertex
+research/rmaf/algorithm/universal233/core_work/Work.lean:214:24: error: don't know how to synthesize placeholder for argument `d`
+context:
+f : GTree → List Group → List Vertex → Receipt
+hf : ∀ (t : GTree) (d : List Group) (c : List Vertex), records (f t d c) ≤ (f t d c).visited + (f t d c).childAttempts
+t : GTree
+d : List Group
+c : List Vertex
+g : Group
+h✝¹ : ¬g.origin = []
+h✝ : ¬c.contains g.origin = true
+x✝ : Option GTree
+next✝ : GTree
+heq✝ : erase g.origin t = some next✝
+⊢ List Group
+research/rmaf/algorithm/universal233/core_work/Work.lean:214:22: error: don't know how to synthesize placeholder for argument `t`
+context:
+f : GTree → List Group → List Vertex → Receipt
+hf : ∀ (t : GTree) (d : List Group) (c : List Vertex), records (f t d c) ≤ (f t d c).visited + (f t d c).childAttempts
+t : GTree
+d : List Group
+c : List Vertex
+g : Group
+h✝¹ : ¬g.origin = []
+h✝ : ¬c.contains g.origin = true
+x✝ : Option GTree
+next✝ : GTree
+heq✝ : erase g.origin t = some next✝
+⊢ GTree
+research/rmaf/algorithm/universal233/core_work/Work.lean:214:13: error: failed to infer `have` declaration type
+research/rmaf/algorithm/universal233/core_work/Work.lean:253:32: error: Application type mismatch: The argument
+  Nat.pow_le_pow_left hh
+has type
+  ∀ (i : Nat), (footprint t + d.length + c.length + 1) ^ i ≤ (m + 1) ^ i
+but is expected to have type
+  (footprint t + d.length + c.length + 1) ^ 3 ≤ (m + 1) ^ 3
+in the application
+  Nat.mul_le_mul_left 128 (Nat.pow_le_pow_left hh)
+research/rmaf/algorithm/universal233/core_work/Work.lean:301:81: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  e ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+  a - e ≥ 1
+where
+ a := ↑(cap m)
+ b := ↑(localCharge t d c)
+ e := ↑?m.52
+research/rmaf/algorithm/universal233/core_work/Work.lean:302:85: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  e ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+  a - e ≥ 1
+where
+ a := ↑(cap m)
+ b := ↑(localCharge t d c)
+ e := ↑?m.80
+research/rmaf/algorithm/universal233/core_work/Work.lean:306:95: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  0 ≤ e ≤ 1
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+where
+ a := ↑(cap m)
+ b := ↑(localCharge t d c)
+ e := ↑(meterAttempt (fun x x_1 x_2 => { receipt := { pruned := 1 }, work := 1, copied := 0, prunedCalls := 1 })
+      (normalize t) d c g).work
+research/rmaf/algorithm/universal233/core_work/Work.lean:313:6: error: 'change' tactic failed, pattern
+  localCharge t d c + (meterAttempt f (normalize t) d c a).work + (meterAttempt f (normalize t) d c b).work +
+      appendCells (meterAttempt f (normalize t) d c a).receipt ≤
+    cap m + 3
+is not definitionally equal to target
+  (meterRun 0 t d c).work ≤ envelope 0 (cap m)
+research/rmaf/algorithm/universal233/core_work/Work.lean:331:81: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  f ≥ 0
+  e ≥ 1
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+  a - f ≥ 1
+where
+ a := ↑(cap m)
+ b := ↑(localCharge t d c)
+ e := ↑2 ^ q
+ f := ↑?m.401
+research/rmaf/algorithm/universal233/core_work/Work.lean:332:85: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  f ≥ 0
+  e ≥ 1
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 0
+  a - f ≥ 1
+where
+ a := ↑(cap m)
+ b := ↑(localCharge t d c)
+ e := ↑2 ^ q
+ f := ↑?m.429
+research/rmaf/algorithm/universal233/core_work/Work.lean:301:32: warning: declaration uses `sorry`
+research/rmaf/algorithm/universal233/core_work/Work.lean:335:36: warning: This simp argument is unused:
+  hs
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [meterRun, meterStep, envelope]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/core_work/Work.lean:341:36: warning: This simp argument is unused:
+  hs
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [meterRun, meterStep, envelope]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

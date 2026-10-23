@@ -1,0 +1,95 @@
+[
+  {
+    "path": "results/algorithm-universal233-rule5-resume-20261016T083330Z-freeze-20261016T085305929640Z/AdmittedCheckCalls.lean",
+    "sha256": "348bf4d9691aa278592cbfe9c65d73fbee3f713af1ab516d16010c82f30acc78",
+    "status": "read",
+    "excerpts": [
+      {
+        "needle": "inductive CheckRequest",
+        "line": 7,
+        "verbatim": "inductive CheckRequest where\n | embedding (T : Tree) (P : List (List Nat))\n | restriction (T S : Tree) (B : List Nat)\n deriving Repr,DecidableEq\n\ndef checkValue : CheckRequest\u2192Bool\n | .embedding T P=>pairwiseEmbeddings T P"
+      },
+      {
+        "needle": "def checkValue",
+        "line": 12,
+        "verbatim": "def checkValue : CheckRequest\u2192Bool\n | .embedding T P=>pairwiseEmbeddings T P\n | .restriction T S B=>restrictionAgrees T S B\n\nstructure CheckReceipt (\u03b1 : Type) where\n value : \u03b1\n work : Nat"
+      },
+      {
+        "needle": "def checkMeter",
+        "line": 23,
+        "verbatim": "def checkMeter (fee : CheckRequest\u2192Nat) (r : CheckRequest) : CheckReceipt Bool := \u27e8checkValue r,fee r,[r]\u27e9\n\ndef andSequence : List (Unit\u2192CheckReceipt Bool)\u2192CheckReceipt Bool\n | []=>\u27e8true,1,[]\u27e9\n | f::fs=>let a:=f ()\n           if a.value then let b:=andSequence fs\n            \u27e8b.value,a.work+b.work+a.calls.length+1,a.calls++b.calls\u27e9"
+      },
+      {
+        "needle": "def CheckDomain",
+        "line": 89,
+        "verbatim": "def CheckDomain (N L : Nat) : CheckRequest\u2192Prop\n | .embedding T P=> (leaves T).length\u2264N \u2227 P.length\u22642*N+1 \u2227 P.flatten.length\u2264payloadCap N+N \u2227\n    (\u2200x,x\u2208leaves T \u2192x<2^L) \u2227 (\u2200x,x\u2208P.flatten \u2192x<2^L)\n | .restriction T S B=> (leaves T).length\u2264N \u2227 (leaves S).length\u2264N \u2227 B.length\u2264N \u2227\n    (\u2200x,x\u2208leaves T \u2192x<2^L) \u2227 (\u2200x,x\u2208leaves S \u2192x<2^L) \u2227 (\u2200x,x\u2208B \u2192x<2^L)\n\ntheorem partition_block_domain (S : Tree) (a b : Nat) {B : List Nat}"
+      }
+    ]
+  },
+  {
+    "path": "results/algorithm-universal233-forest-check-root-20261015T211023Z/TreeCheckMeters.lean",
+    "sha256": "cc76d3e7fce1e6dd8ebf7bbe301652182b1addf94c0cf7e4ce8b5fc20221095c",
+    "status": "read",
+    "excerpts": [
+      {
+        "needle": "def meterRestrictionAgrees",
+        "line": 68,
+        "verbatim": "def meterRestrictionAgrees (T S : Tree) (B : List Nat) : Charged Bool :=\n let a:=meterRestrict B T;let b:=meterRestrict B S\n match a.value,b.value with\n | some u,some v=>let c:=meterSameShape u v;\u27e8c.value,a.work+b.work+c.work+4\u27e9\n | _,_=>\u27e8false,a.work+b.work+4\u27e9\n\n@[simp] theorem meterRestrictionAgrees_value (T S : Tree) (B : List Nat) :"
+      },
+      {
+        "needle": "theorem meterRestrictionAgrees_value",
+        "line": 74,
+        "verbatim": "@[simp] theorem meterRestrictionAgrees_value (T S : Tree) (B : List Nat) :\n (meterRestrictionAgrees T S B).value=restrictionAgrees T S B := by\n cases ht : restrict B T <;> cases hs : restrict B S <;>\n  simp [meterRestrictionAgrees,restrictionAgrees,meterRestrict_value,ht,hs]\n\ntheorem meterRestrictionAgrees_bound (T S : Tree) (B : List Nat) (N : Nat)\n (tn : treeNodes T\u22642*N) (sn : treeNodes S\u22642*N) (bl : B.length\u2264N) :"
+      },
+      {
+        "needle": "theorem meterRestrictionAgrees_bound",
+        "line": 79,
+        "verbatim": "theorem meterRestrictionAgrees_bound (T S : Tree) (B : List Nat) (N : Nat)\n (tn : treeNodes T\u22642*N) (sn : treeNodes S\u22642*N) (bl : B.length\u2264N) :\n (meterRestrictionAgrees T S B).work\u2264128*(N+1)^2 := by\n have a:=meterRestrict_bound B T\n have b:=meterRestrict_bound B S\n have ea:=Nat.mul_le_mul (Nat.mul_le_mul_left 4 (Nat.add_le_add_right bl 2)) tn\n have eb:=Nat.mul_le_mul (Nat.mul_le_mul_left 4 (Nat.add_le_add_right bl 2)) sn"
+      }
+    ]
+  },
+  {
+    "path": "results/algorithm-universal233-forest-check-root-20261015T211023Z/HullCheckMeters.lean",
+    "sha256": "a715f9f673a55e0bef80165b760fa9242e1b1cdb2daab0f55926322a8af2f6cb",
+    "status": "read",
+    "excerpts": [
+      {
+        "needle": "def meterPairwise",
+        "line": 17,
+        "verbatim": "def meterPairwise (T : Tree) : Forest \u2192 Charged Bool\n | []=>\u27e8true,1\u27e9\n | B::F=>let a:=meterAll (meterHullPair T B) F;let r:=meterPairwise T F\n         \u27e8a.value&&r.value,a.work+r.work+4\u27e9\n@[simp] theorem meterPairwise_value (T F) : (meterPairwise T F).value=pairwiseEmbeddings T F := by\n induction F with\n | nil=>rfl"
+      },
+      {
+        "needle": "theorem meterPairwise_value",
+        "line": 21,
+        "verbatim": "@[simp] theorem meterPairwise_value (T F) : (meterPairwise T F).value=pairwiseEmbeddings T F := by\n induction F with\n | nil=>rfl\n | cons B F ih=>simp [meterPairwise,pairwiseEmbeddings,ih]\n\ntheorem meterMinimal_polynomial (T : Tree) (B : List Nat) (N : Nat)\n (tn : treeNodes T\u2264N) (bl : B.length\u2264N) :"
+      },
+      {
+        "needle": "theorem meterPairwise_polynomial",
+        "line": 79,
+        "verbatim": "theorem meterPairwise_polynomial (T : Tree) (F : Forest) (N : Nat)\n (tn : treeNodes T\u2264N) (tl : (leaves T).length\u2264N) (fl : F.length\u2264N)\n (blocks : \u2200B\u2208F,B.length\u2264N) :\n (meterPairwise T F).work\u2264120*(N+1)^5 := by\n have h:=meterPairwise_bound T F (111*(N+1)^3)\n   (fun B hb C hc=>meterHullPair_polynomial T B C N tn tl (blocks B hb) (blocks C hc))\n have pos : 1\u2264(N+1)^3:=Nat.one_le_pow _ _ (by omega)"
+      }
+    ]
+  },
+  {
+    "path": "results/algorithm-universal233-rule5-resume-20261016T083330Z-freeze-20261016T085305929640Z/FinalClassifierWork.lean",
+    "sha256": "1299ce867d2a735bb231ad3dfd78993b4a3099f66f1ea3d362403dd34472d01f",
+    "status": "read",
+    "excerpts": [
+      {
+        "needle": "def finalMeter",
+        "line": 103,
+        "verbatim": "def finalMeter (fee : CheckRequest\u2192Nat) (T S : Tree) (a b : Nat) : CheckReceipt (Option FinalSelection) :=\n let l:=localMeter fee T S a b\n match l.value with\n | none=>\u27e8none,l.work+1,l.calls\u27e9\n | some .remaining=>let d:=selectBadMeter fee T S a b\n  match d.value with\n  | none=>\u27e8none,l.work+d.work+l.calls.length+2,l.calls++d.calls\u27e9"
+      },
+      {
+        "needle": "theorem final_work",
+        "line": 152,
+        "verbatim": "theorem final_work (fee : CheckRequest\u2192Nat) (T S : Tree) (a b L K : Nat)\n (tlabs : \u2200x,x\u2208leaves T \u2192x<2^L) (slabs : \u2200x,x\u2208leaves S \u2192x<2^L)\n (primitive : \u2200r,CheckDomain ((leaves T).length+(leaves S).length) L r \u2192fee r\u2264K) :\n (finalMeter fee T S a b).work\u2264finalBudget (leaves T).length (leaves S).length K := by\n have l:=local_work fee T S a b L K tlabs slabs primitive\n have lc:=local_call_count fee T S a b ((leaves T).length+(leaves S).length) L (by omega) (by omega) tlabs slabs\n have d:=select_bad_work fee T S a b L K tlabs slabs primitive"
+      },
+      {
+        "needle": "theorem final_calls",
+        "line": 176,
+        "verbatim": "theorem final_calls (fee : CheckRequest\u2192Nat) (T S : Tree) (a b N L : Nat)\n (tcap : (leaves T).length\u2264N) (scap : (leaves S).length\u2264N)\n (tlabs : \u2200x,x\u2208leaves T \u2192x<2^L) (slabs : \u2200x,x\u2208leaves S \u2192x<2^L)\n {r : CheckRequest} (mem : r\u2208(finalMeter fee T S a b).calls) : CheckDomain N L r := by\n have loc:=local_calls fee T S a b N L tcap scap tlabs slabs (r:=r)\n have bad:=bad_candidates_calls fee T S a b N L tcap scap tlabs slabs (r:=r)\n simp only [finalMeter] at mem"
+      }
+    ]
+  }
+]

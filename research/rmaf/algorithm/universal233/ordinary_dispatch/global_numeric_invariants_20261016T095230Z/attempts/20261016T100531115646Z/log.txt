@@ -1,0 +1,78 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericSourceBinding.lean:20:21: warning: This simp argument is unused:
+  forestQueries
+
+Hint: Omit it from the simp argument list.
+  [apply] simp_all
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericSourceBinding.lean:33:19: error: unsolved goals
+case paidRequests.cons
+actual : GenericForest.FrontierWork.Ordinary
+j : Rule5PaidSelector.PaidRequest
+jobs : List Rule5PaidSelector.PaidRequest
+ih :
+  List.flatMap (fun j => currentFrontier actual (some j.target) j.sources j.residual) jobs =
+    List.flatMap (fun call => frontier actual call.target call.sources call.budget)
+      (List.flatMap currentForestCalls jobs)
+⊢ forestQueries actual (currentForestCalls j) ++
+      List.flatMap (fun j => currentFrontier actual (some j.target) j.sources j.residual) jobs =
+    List.flatMap (fun call => frontier actual call.target call.sources call.budget) (currentForestCalls j) ++
+      List.flatMap (fun j => currentFrontier actual (some j.target) j.sources j.residual) jobs
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericSourceBinding.lean:25:103: warning: This simp argument is unused:
+  Function.comp_def
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [queries, directCallsOf, forestCallsOf, forestQueries, jobCall, List.flatMap_map]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericSourceBinding.lean:49:11: error: Tactic `rfl` failed: The left-hand side
+  (hard2Trace actual T S c d q).queries
+is not definitionally equal to the right-hand side
+  hard2DirectQueries actual T S c q ++ forestQueries actual (hard2ForestCalls actual T S c q)
+
+case none
+actual : GenericForest.FrontierWork.Ordinary
+T S : Tree
+c d : Candidate
+q : Nat
+sel : runHard2 T S c = none
+⊢ (hard2Trace actual T S c d q).queries =
+    hard2DirectQueries actual T S c q ++ forestQueries actual (hard2ForestCalls actual T S c q)
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericSourceBinding.lean:56:7: error: Type mismatch: After simplification, term
+  calls_source_binding actual (dispatchTrace actual T S c.a c.b q).calls
+ has type
+  @Eq (List Rule5ActualTrace.Query) (queries actual (dispatchTrace actual T S c.a c.b q).calls)
+    (directCallsOf (dispatchTrace actual T S c.a c.b q).calls ++
+      forestQueries actual
+        (match (dispatchTrace actual T S c.a c.b q).calls with
+        | Calls.forestJobs jobs => List.map jobCall jobs
+        | Calls.direct jobs => []
+        | Calls.paidRequests jobs => List.flatMap currentForestCalls jobs
+        | Calls.selectorRefused => []
+        | Calls.paidBuilderRefused => []))
+but is expected to have type
+  @Eq (List GenericForest.FrontierWork.Query) (queries actual (dispatchTrace actual T S c.a c.b q).calls)
+    (directCallsOf (dispatchTrace actual T S c.a c.b q).calls ++
+      forestQueries actual
+        (match (dispatchTrace actual T S c.a c.b q).calls with
+        | Calls.forestJobs jobs => List.map jobCall jobs
+        | Calls.direct jobs => []
+        | Calls.paidRequests jobs => List.flatMap currentForestCalls jobs
+        | Calls.selectorRefused => []
+        | Calls.paidBuilderRefused => []))
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericSourceBinding.lean:90:163: warning: This simp argument is unused:
+  Function.comp_def
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [ordinaryStepTrace, ordinaryDirectQueries, ordinaryForestCalls, hp, pre, he, childrenTrace, childCalls,
+    forestQueries, jobCall, List.flatMap_map, queries]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/global_numeric_invariants_20261016T095230Z/NumericSourceBinding.lean:91:164: warning: This simp argument is unused:
+  Function.comp_def
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [ordinaryStepTrace, ordinaryDirectQueries, ordinaryForestCalls, hp, pre, he, childrenTrace, childCalls,
+    forestQueries, jobCall, List.flatMap_map, queries]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

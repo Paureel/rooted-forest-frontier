@@ -1,0 +1,381 @@
+{
+  "status": "passed",
+  "source": [
+    [
+      "a",
+      [
+        [
+          "c",
+          "d"
+        ],
+        "e"
+      ]
+    ],
+    [
+      "x",
+      [
+        "b",
+        [
+          [
+            "f",
+            "g"
+          ],
+          "h"
+        ]
+      ]
+    ]
+  ],
+  "target": [
+    [
+      "a",
+      "b"
+    ],
+    [
+      [
+        "c",
+        "f"
+      ],
+      [
+        [
+          "d",
+          "g"
+        ],
+        [
+          "e",
+          [
+            "h",
+            "x"
+          ]
+        ]
+      ]
+    ]
+  ],
+  "child": {
+    "target": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        [
+          "c",
+          "f"
+        ],
+        [
+          [
+            "d",
+            "g"
+          ],
+          [
+            "e",
+            [
+              "h",
+              "x"
+            ]
+          ]
+        ]
+      ]
+    ],
+    "source": [
+      [
+        [
+          "c",
+          "d"
+        ],
+        "e"
+      ],
+      [
+        [
+          "f",
+          "g"
+        ],
+        "h"
+      ],
+      "x",
+      [
+        "a",
+        "b"
+      ]
+    ]
+  },
+  "result": {
+    "components": 7,
+    "additional_cuts": 3,
+    "partition": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "c"
+      ],
+      [
+        "f"
+      ],
+      [
+        "d",
+        "e"
+      ],
+      [
+        "g"
+      ],
+      [
+        "h"
+      ],
+      [
+        "x"
+      ]
+    ],
+    "bad_components": 2,
+    "metrics": {
+      "state_width": 15,
+      "states_stored": 255,
+      "close_scans": 240,
+      "candidate_transitions": 344,
+      "join_candidates_per_internal": 14,
+      "internal_vertices": 8,
+      "reconstruction_visits": 17
+    }
+  },
+  "cherry_path_counts": [
+    {
+      "tree": "target",
+      "cherry": [
+        "a",
+        "b"
+      ],
+      "t": 3
+    },
+    {
+      "tree": "target",
+      "cherry": [
+        "c",
+        "f"
+      ],
+      "t": 7
+    },
+    {
+      "tree": "target",
+      "cherry": [
+        "d",
+        "g"
+      ],
+      "t": 7
+    },
+    {
+      "tree": "target",
+      "cherry": [
+        "h",
+        "x"
+      ],
+      "t": 2
+    },
+    {
+      "tree": "source",
+      "cherry": [
+        "c",
+        "d"
+      ],
+      "t": 3
+    },
+    {
+      "tree": "source",
+      "cherry": [
+        "f",
+        "g"
+      ],
+      "t": 3
+    }
+  ],
+  "selected_branch": {
+    "cherry": [
+      "a",
+      "b"
+    ],
+    "t": 3,
+    "pendant_labels": [
+      [
+        "c",
+        "d",
+        "e"
+      ],
+      [
+        "x"
+      ],
+      [
+        "f",
+        "g",
+        "h"
+      ]
+    ],
+    "off_edges": [
+      [
+        1,
+        3
+      ],
+      [
+        8,
+        9
+      ],
+      [
+        10,
+        12
+      ]
+    ]
+  },
+  "incompatible_embedding_overlap_vertices": [
+    4,
+    5,
+    8,
+    9,
+    12
+  ],
+  "all_nine_cross_color_pair_intersections": [
+    {
+      "first": [
+        "c",
+        "d"
+      ],
+      "second": [
+        "f",
+        "g"
+      ],
+      "vertices": [
+        4,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "first": [
+        "c",
+        "d"
+      ],
+      "second": [
+        "f",
+        "h"
+      ],
+      "vertices": [
+        4,
+        5,
+        8
+      ]
+    },
+    {
+      "first": [
+        "c",
+        "d"
+      ],
+      "second": [
+        "g",
+        "h"
+      ],
+      "vertices": [
+        8,
+        9
+      ]
+    },
+    {
+      "first": [
+        "c",
+        "e"
+      ],
+      "second": [
+        "f",
+        "g"
+      ],
+      "vertices": [
+        4,
+        5,
+        8
+      ]
+    },
+    {
+      "first": [
+        "c",
+        "e"
+      ],
+      "second": [
+        "f",
+        "h"
+      ],
+      "vertices": [
+        4,
+        5,
+        8,
+        12
+      ]
+    },
+    {
+      "first": [
+        "c",
+        "e"
+      ],
+      "second": [
+        "g",
+        "h"
+      ],
+      "vertices": [
+        8,
+        12
+      ]
+    },
+    {
+      "first": [
+        "d",
+        "e"
+      ],
+      "second": [
+        "f",
+        "g"
+      ],
+      "vertices": [
+        8,
+        9
+      ]
+    },
+    {
+      "first": [
+        "d",
+        "e"
+      ],
+      "second": [
+        "f",
+        "h"
+      ],
+      "vertices": [
+        8,
+        12
+      ]
+    },
+    {
+      "first": [
+        "d",
+        "e"
+      ],
+      "second": [
+        "g",
+        "h"
+      ],
+      "vertices": [
+        8,
+        9,
+        12
+      ]
+    }
+  ],
+  "lower_bound_argument": "Each bad triple needs at least one cut. With only two cuts total each keeps a pair, but every pair span of cde intersects every pair span of fgh; hence at least three additional cuts.",
+  "paid_cuts": 3,
+  "remaining_optimum_cuts": 3,
+  "final_components": 7,
+  "original_instance_optimum": "not computed or claimed",
+  "seconds": 1.4007670410010178,
+  "locator": "Baseline v2 Section 3.2 PDF pp.6\u20137; Figure 16 step2b p.24",
+  "scope": "Legal Whidden(t=3) all-pendant-cuts child, with overlapping bad triples. No safe cover or global recurrence improvement.",
+  "source_hashes": {
+    "reachable_child.py": "339e364d7959f1e85af4e4250abdfa98580158b705d9b076b4ef1588b81230a6",
+    "solver.py": "4b0fed6b9a1e76454820a911f21a29d263c110e58bb4575b52a086e751c2174d",
+    "cut_oracle.py": "3bf06211563f91959856167d5ce21a7d1356650f1aa10589feacb7e3b4ce966b"
+  }
+}

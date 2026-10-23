@@ -1,0 +1,18 @@
+{
+  "frozen_date": "2026-10-14",
+  "accuracy": "exact integer optimum under the no-rho ordinary rooted-MAF convention",
+  "failure_criteria": ["any computed optimum differs from the hand expected integer", "a malformed or label-mismatched input is accepted", "the comparator accepts a planted unequal integer pair"],
+  "cases": [
+    {"id": "one-leaf-null", "t1": "a", "t2": "a", "expected_k": 1, "reason": "The single leaf is the only nonempty component."},
+    {"id": "two-leaf-null", "t1": ["a", "b"], "t2": ["b", "a"], "expected_k": 1, "reason": "Child order has no meaning for non-plane rooted trees."},
+    {"id": "three-leaf-identical", "t1": [["a", "b"], "c"], "t2": ["c", ["b", "a"]], "expected_k": 1, "reason": "Identical unordered rooted topology."},
+    {"id": "three-leaf-conflict", "t1": [["a", "b"], "c"], "t2": [["a", "c"], "b"], "expected_k": 2, "reason": "All three leaves disagree; deleting c leaves the same two-leaf rooted restriction, giving a pair and singleton."},
+    {"id": "crossed-quartet", "t1": [["a", "b"], ["c", "d"]], "t2": [["a", "c"], ["b", "d"]], "expected_k": 3, "reason": "Every 3+1 partition disagrees. Each 2+2 partition has overlapping pair embeddings in at least one tree. A two-leaf component plus two singletons is feasible."}
+  ],
+  "rejections": [
+    {"id": "label-mismatch", "t1": ["a", "b"], "t2": ["a", "c"]},
+    {"id": "duplicate-label", "t1": ["a", "a"], "t2": ["a", "a"]},
+    {"id": "not-binary", "t1": ["a", "b", "c"], "t2": [["a", "b"], "c"]}
+  ],
+  "planted_comparison": {"left": 2, "right": 3, "expected": "reject"}
+}

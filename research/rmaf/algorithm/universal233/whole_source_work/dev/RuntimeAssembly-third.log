@@ -1,0 +1,42 @@
+research/rmaf/algorithm/universal233/whole_source_work/RuntimeAssembly.lean:60:2: error: Tactic `decide` failed to reduce
+  @decide
+    (2 < mkRat 233 100 ∧
+      mkRat 233 100 < mkRat 23391 10000 ∧
+        2 / mkRat 233 100 + 3 * (mkRat 233 100 ^ 4)⁻¹ < 1 ∧
+          2 / mkRat 233 100 + 4 * (mkRat 233 100 ^ 4)⁻¹ < 1 ∧
+            2 / mkRat 233 100 + (mkRat 233 100 ^ 3)⁻¹ + (mkRat 233 100 ^ 4)⁻¹ < 1)
+    instDecidableAnd
+to `true` or `false`.
+
+After unfolding the instances `decEq`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `isFalse`, `isTrue`, `Int.decEq`, `Int.decLe`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `Nat.decEq`, and `Rat.instDecidableLt`, reduction got stuck at
+  match 0 - ((2 / mkRat 233 100 + 3 * (mkRat 233 100 ^ 4)⁻¹).num + 1) with
+  | Int.ofNat m => isTrue ⋯
+  | Int.negSucc i => isFalse ⋯
+research/rmaf/algorithm/universal233/whole_source_work/RuntimeAssembly.lean:58:66: warning: This simp argument is unused:
+  Rat.zpow_natCast
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [cliqueFactor, chainFactor, diagonalFactor, Rat.zpow_neg]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/whole_source_work/RuntimeAssembly.lean:59:25: warning: This simp argument is unused:
+  Rat.pow_succ
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [runtimeBase, Rat.pow_zero, Rat.mul_one]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/whole_source_work/RuntimeAssembly.lean:59:38: warning: This simp argument is unused:
+  Rat.pow_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [runtimeBase, Rat.pow_succ, Rat.mul_one]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/whole_source_work/RuntimeAssembly.lean:59:51: warning: This simp argument is unused:
+  Rat.mul_one
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [runtimeBase, Rat.pow_succ, Rat.pow_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

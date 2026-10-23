@@ -1,0 +1,44 @@
+research/rmaf/triple_dp/family/FamilyTransport.lean:113:51: error: unsolved goals
+α✝ : Type
+t : BTree α✝
+k : Nat
+F : RawFamily t k
+hn : F.openRegion = none
+⊢ { finite := finIndex k, support := F.closed, bounded := ⋯, convex := ⋯, labelled := ⋯, disjoint := ⋯, covers := ⋯,
+        boundary := none, root_spec := ⋯ }.blockCount =
+    k
+research/rmaf/triple_dp/family/FamilyTransport.lean:114:31: warning: This simp argument is unused:
+  toClosedAssembly_count
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [CostRoute.Family.cost, toClosedAssembly, closedCost, CostRoute.boundaryCharge]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/triple_dp/family/FamilyTransport.lean:124:57: error: unsolved goals
+α✝ : Type
+t : BTree α✝
+k : Nat
+F : RawFamily t k
+R : Support
+hR : F.openRegion = some R
+hLive : HasLeaf t R
+⊢ { finite := CostRoute.indexSum (finIndex k) unitIndex, support := openIndexedSupport F R, bounded := ⋯, convex := ⋯,
+          labelled := ⋯, disjoint := ⋯, covers := ⋯, boundary := some (Sum.inr ()), root_spec := ⋯ }.blockCount -
+      1 =
+    k
+research/rmaf/triple_dp/family/FamilyTransport.lean:125:31: warning: This simp argument is unused:
+  toOpenAssembly_count
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [CostRoute.Family.cost, toOpenAssembly, closedCost, CostRoute.boundaryCharge]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'TripleDP.Family.vertex_costRoute' depends on axioms: [propext]
+'TripleDP.Family.label_costRoute' depends on axioms: [propext]
+'TripleDP.Family.toClosedAssembly' depends on axioms: [propext, Quot.sound]
+'TripleDP.Family.toOpenAssembly' depends on axioms: [propext, Quot.sound]
+'TripleDP.Family.toClosedAssembly_count' depends on axioms: [propext, Quot.sound]
+'TripleDP.Family.toClosedAssembly_cost' depends on axioms: [propext, sorryAx, Quot.sound]
+'TripleDP.Family.toOpenAssembly_count' depends on axioms: [propext, Quot.sound]
+'TripleDP.Family.toOpenAssembly_cost' depends on axioms: [propext, sorryAx, Quot.sound]
+'TripleDP.Family.normalized_assembly_exists' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

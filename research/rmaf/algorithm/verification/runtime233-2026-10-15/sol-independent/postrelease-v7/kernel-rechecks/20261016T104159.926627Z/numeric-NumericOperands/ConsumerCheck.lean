@@ -1,0 +1,5 @@
+import NumericOperands
+#check OrdinaryDispatch.GlobalNumeric.forest_branch_operands
+#print axioms OrdinaryDispatch.GlobalNumeric.forest_branch_operands
+#check OrdinaryDispatch.GlobalNumeric.represented_capacity_arithmetic
+#print axioms OrdinaryDispatch.GlobalNumeric.represented_capacity_arithmetic

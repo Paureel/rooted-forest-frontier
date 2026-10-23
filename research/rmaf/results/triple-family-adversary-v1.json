@@ -1,0 +1,813 @@
+{
+  "checker_sha256": "c5bf4e9bfc9cd70e2bae6319b2c13f2acae5610660831eabbffda38360f91188",
+  "controls": {
+    "corruption": [
+      {
+        "actual_lca_closed": true,
+        "actual_path_convex": false,
+        "caught": true,
+        "clean_twin": [
+          "",
+          "0",
+          "00"
+        ],
+        "clean_twin_path_convex": true,
+        "expected_lca_closed": true,
+        "expected_path_convex": false,
+        "id": "gapped_lca_only",
+        "missing_path_vertex": "0",
+        "support": [
+          "",
+          "00"
+        ],
+        "tree": "balanced"
+      },
+      {
+        "alarm": "open_root_missing",
+        "caught": true,
+        "clean_twin_passed": true,
+        "detail": null,
+        "expected_alarm": "open_root_missing",
+        "id": "drop_open_stem",
+        "mutant_supports": [
+          [
+            "00"
+          ],
+          [
+            "01",
+            "010",
+            "011"
+          ],
+          [
+            "10"
+          ],
+          [
+            "11"
+          ]
+        ],
+        "twin": "deep_open_keep_stem"
+      },
+      {
+        "alarm": "not_path_convex",
+        "caught": true,
+        "clean_twin_passed": true,
+        "detail": 0,
+        "expected_alarm": "not_path_convex",
+        "id": "lca_closure_instead_of_span",
+        "mutant_supports": [
+          [
+            "0",
+            "00",
+            "010"
+          ],
+          [
+            "011"
+          ],
+          [
+            "10"
+          ],
+          [
+            "11"
+          ]
+        ],
+        "twin": "deep_pair_keep_intermediate"
+      },
+      {
+        "alarm": "closed_cost_changed",
+        "caught": true,
+        "child": "1",
+        "clean_twin_passed": true,
+        "detail": {
+          "correct_cost": 2,
+          "discarded": [
+            {
+              "labels": [],
+              "parent_id": 0,
+              "support": [
+                ""
+              ]
+            }
+          ],
+          "planted_cost": 3,
+          "retained": {
+            "open": null,
+            "supports": [
+              [
+                "0"
+              ],
+              [
+                "1"
+              ]
+            ]
+          }
+        },
+        "expected_alarm": "closed_cost_changed",
+        "expected_closed_cost": 2,
+        "expected_retained_blocks": 2,
+        "id": "charge_empty_child_fragment",
+        "leafless_local_support": [
+          ""
+        ],
+        "mutant_closed_cost": 3,
+        "twin": "leafless_incursion_extra"
+      },
+      {
+        "alarm": "open_root_missing",
+        "caught": true,
+        "clean_twin_passed": true,
+        "detail": null,
+        "expected_alarm": "open_root_missing",
+        "hypothesis_omission_only": true,
+        "id": "force_open_without_root",
+        "open": 0,
+        "supports": [
+          [
+            "00"
+          ],
+          [
+            "",
+            "0",
+            "01"
+          ],
+          [
+            "1"
+          ]
+        ],
+        "tree": "triple"
+      },
+      {
+        "alarm": "forbidden_full_bad_triple",
+        "caught": true,
+        "clean_twin_passed": true,
+        "detail": 0,
+        "expected_alarm": "forbidden_full_bad_triple",
+        "id": "merge_adjacent_bad_color",
+        "mutant_supports": [
+          [
+            "",
+            "0",
+            "00",
+            "01",
+            "1"
+          ]
+        ],
+        "twin": "adjacent_bad_color_separate"
+      }
+    ],
+    "positive": [
+      {
+        "actual": {
+          "open": 0,
+          "supports": [
+            [
+              ""
+            ]
+          ]
+        },
+        "assembly": {
+          "child_closed_costs": [],
+          "closing_charge": 0,
+          "transition": "leaf"
+        },
+        "blocks": 1,
+        "closed_cost": 0,
+        "expected": [
+          [
+            ""
+          ]
+        ],
+        "id": "singleton_root",
+        "kind": "regression",
+        "open": 0,
+        "supports": [
+          [
+            ""
+          ]
+        ],
+        "tree": "singleton"
+      },
+      {
+        "actual": {
+          "open": null,
+          "supports": [
+            [
+              "0"
+            ],
+            [
+              "1"
+            ]
+          ]
+        },
+        "assembly": {
+          "child_closed_costs": [
+            0,
+            0
+          ],
+          "closing_charge": 2,
+          "parent_closed_cost": 2,
+          "transition": "unused"
+        },
+        "blocks": 2,
+        "closed_cost": 2,
+        "expected": [
+          [
+            "0"
+          ],
+          [
+            "1"
+          ]
+        ],
+        "id": "unused_internal",
+        "kind": "regression",
+        "open": null,
+        "supports": [
+          [
+            "0"
+          ],
+          [
+            "1"
+          ]
+        ],
+        "tree": "cherry"
+      },
+      {
+        "actual": {
+          "open": 0,
+          "supports": [
+            [
+              "",
+              "0"
+            ],
+            [
+              "1"
+            ]
+          ]
+        },
+        "assembly": {
+          "child_closed_costs": [
+            0,
+            0
+          ],
+          "closing_charge": 1,
+          "parent_closed_cost": 1,
+          "transition": "extend_0"
+        },
+        "blocks": 2,
+        "closed_cost": 1,
+        "expected": [
+          [
+            "",
+            "0"
+          ],
+          [
+            "1"
+          ]
+        ],
+        "id": "left_extension",
+        "kind": "fresh_constructed",
+        "open": 0,
+        "supports": [
+          [
+            "",
+            "0"
+          ],
+          [
+            "1"
+          ]
+        ],
+        "tree": "cherry"
+      },
+      {
+        "actual": {
+          "open": 1,
+          "supports": [
+            [
+              "0"
+            ],
+            [
+              "",
+              "1"
+            ]
+          ]
+        },
+        "assembly": {
+          "child_closed_costs": [
+            0,
+            0
+          ],
+          "closing_charge": 1,
+          "parent_closed_cost": 1,
+          "transition": "extend_1"
+        },
+        "blocks": 2,
+        "closed_cost": 1,
+        "expected": [
+          [
+            "0"
+          ],
+          [
+            "",
+            "1"
+          ]
+        ],
+        "id": "right_extension",
+        "kind": "fresh_constructed",
+        "open": 1,
+        "supports": [
+          [
+            "0"
+          ],
+          [
+            "",
+            "1"
+          ]
+        ],
+        "tree": "cherry"
+      },
+      {
+        "actual": {
+          "open": 0,
+          "supports": [
+            [
+              "",
+              "0",
+              "1"
+            ]
+          ]
+        },
+        "assembly": {
+          "child_closed_costs": [
+            0,
+            0
+          ],
+          "closing_charge": 0,
+          "parent_closed_cost": 0,
+          "transition": "join"
+        },
+        "blocks": 1,
+        "closed_cost": 0,
+        "expected": [
+          [
+            "",
+            "0",
+            "1"
+          ]
+        ],
+        "id": "two_child_join",
+        "kind": "fresh_constructed",
+        "open": 0,
+        "supports": [
+          [
+            "",
+            "0",
+            "1"
+          ]
+        ],
+        "tree": "cherry"
+      },
+      {
+        "actual": {
+          "open": 0,
+          "supports": [
+            [
+              "",
+              "0",
+              "00"
+            ],
+            [
+              "01"
+            ],
+            [
+              "10"
+            ],
+            [
+              "11"
+            ]
+          ]
+        },
+        "assembly": {
+          "child_closed_costs": [
+            1,
+            2
+          ],
+          "closing_charge": 0,
+          "parent_closed_cost": 3,
+          "transition": "extend_0"
+        },
+        "blocks": 4,
+        "closed_cost": 3,
+        "expected": [
+          [
+            "",
+            "0",
+            "00"
+          ],
+          [
+            "01"
+          ],
+          [
+            "10"
+          ],
+          [
+            "11"
+          ]
+        ],
+        "id": "leafless_incursion_clean",
+        "kind": "regression",
+        "open": 0,
+        "supports": [
+          [
+            "",
+            "0",
+            "00"
+          ],
+          [
+            "01"
+          ],
+          [
+            "10"
+          ],
+          [
+            "11"
+          ]
+        ],
+        "tree": "balanced"
+      },
+      {
+        "actual": {
+          "open": 0,
+          "supports": [
+            [
+              "",
+              "0",
+              "00"
+            ],
+            [
+              "01"
+            ],
+            [
+              "10"
+            ],
+            [
+              "11"
+            ]
+          ]
+        },
+        "assembly": {
+          "child_closed_costs": [
+            1,
+            2
+          ],
+          "closing_charge": 0,
+          "parent_closed_cost": 3,
+          "transition": "extend_0"
+        },
+        "blocks": 4,
+        "closed_cost": 3,
+        "expected": [
+          [
+            "",
+            "0",
+            "00"
+          ],
+          [
+            "01"
+          ],
+          [
+            "10"
+          ],
+          [
+            "11"
+          ]
+        ],
+        "id": "leafless_incursion_extra",
+        "kind": "regression",
+        "open": 0,
+        "supports": [
+          [
+            "",
+            "0",
+            "00",
+            "1"
+          ],
+          [
+            "01"
+          ],
+          [
+            "10"
+          ],
+          [
+            "11"
+          ]
+        ],
+        "tree": "balanced"
+      },
+      {
+        "actual": {
+          "open": null,
+          "supports": [
+            [
+              "00"
+            ],
+            [
+              "01",
+              "010",
+              "011"
+            ],
+            [
+              "10"
+            ],
+            [
+              "11"
+            ]
+          ]
+        },
+        "assembly": {
+          "child_closed_costs": [
+            2,
+            2
+          ],
+          "closing_charge": 0,
+          "parent_closed_cost": 4,
+          "transition": "unused"
+        },
+        "blocks": 4,
+        "closed_cost": 4,
+        "expected": [
+          [
+            "00"
+          ],
+          [
+            "01",
+            "010",
+            "011"
+          ],
+          [
+            "10"
+          ],
+          [
+            "11"
+          ]
+        ],
+        "id": "deep_closed_drop_stem",
+        "kind": "fresh_constructed",
+        "open": null,
+        "supports": [
+          [
+            "00"
+          ],
+          [
+            "0",
+            "01",
+            "010",
+            "011"
+          ],
+          [
+            "10"
+          ],
+          [
+            "11"
+          ]
+        ],
+        "tree": "deep"
+      },
+      {
+        "actual": {
+          "open": 0,
+          "supports": [
+            [
+              "",
+              "0",
+              "00"
+            ],
+            [
+              "01",
+              "010",
+              "011"
+            ],
+            [
+              "10"
+            ],
+            [
+              "11"
+            ]
+          ]
+        },
+        "assembly": {
+          "child_closed_costs": [
+            1,
+            2
+          ],
+          "closing_charge": 0,
+          "parent_closed_cost": 3,
+          "transition": "extend_0"
+        },
+        "blocks": 4,
+        "closed_cost": 3,
+        "expected": [
+          [
+            "",
+            "0",
+            "00"
+          ],
+          [
+            "01",
+            "010",
+            "011"
+          ],
+          [
+            "10"
+          ],
+          [
+            "11"
+          ]
+        ],
+        "id": "deep_open_keep_stem",
+        "kind": "fresh_constructed",
+        "open": 0,
+        "supports": [
+          [
+            "",
+            "0",
+            "00"
+          ],
+          [
+            "01",
+            "010",
+            "011"
+          ],
+          [
+            "10"
+          ],
+          [
+            "11"
+          ]
+        ],
+        "tree": "deep"
+      },
+      {
+        "actual": {
+          "open": null,
+          "supports": [
+            [
+              "0",
+              "00",
+              "01",
+              "010"
+            ],
+            [
+              "011"
+            ],
+            [
+              "10"
+            ],
+            [
+              "11"
+            ]
+          ]
+        },
+        "assembly": {
+          "child_closed_costs": [
+            1,
+            2
+          ],
+          "closing_charge": 1,
+          "parent_closed_cost": 4,
+          "transition": "unused"
+        },
+        "blocks": 4,
+        "closed_cost": 4,
+        "expected": [
+          [
+            "0",
+            "00",
+            "01",
+            "010"
+          ],
+          [
+            "011"
+          ],
+          [
+            "10"
+          ],
+          [
+            "11"
+          ]
+        ],
+        "id": "deep_pair_keep_intermediate",
+        "kind": "fresh_constructed",
+        "open": null,
+        "supports": [
+          [
+            "0",
+            "00",
+            "01",
+            "010"
+          ],
+          [
+            "011"
+          ],
+          [
+            "10"
+          ],
+          [
+            "11"
+          ]
+        ],
+        "tree": "deep"
+      },
+      {
+        "actual": {
+          "open": 0,
+          "supports": [
+            [
+              "",
+              "0",
+              "00",
+              "01"
+            ],
+            [
+              "1"
+            ]
+          ]
+        },
+        "assembly": {
+          "child_closed_costs": [
+            0,
+            0
+          ],
+          "closing_charge": 1,
+          "parent_closed_cost": 1,
+          "transition": "extend_0"
+        },
+        "bad_color": [
+          "a",
+          "b",
+          "c"
+        ],
+        "blocks": 2,
+        "closed_cost": 1,
+        "expected": [
+          [
+            "",
+            "0",
+            "00",
+            "01"
+          ],
+          [
+            "1"
+          ]
+        ],
+        "id": "adjacent_bad_color_separate",
+        "kind": "regression",
+        "open": 0,
+        "source_disjoint_before_after": [
+          true,
+          true
+        ],
+        "source_tree": "bad_source",
+        "supports": [
+          [
+            "",
+            "0",
+            "00",
+            "01"
+          ],
+          [
+            "1"
+          ]
+        ],
+        "tree": "triple"
+      }
+    ]
+  },
+  "controls_sha256": "16f587178dbdabfa4788f93dbd9b9658caaa0fc77b0992efbc2c4e283d404509",
+  "corruptions_caught": 6,
+  "elapsed_seconds": 0.015003124999566353,
+  "exact": true,
+  "mode": "bounded-probes",
+  "positive_passes": 11,
+  "probes": {
+    "discarded_raw_fragments": 21,
+    "families": 119,
+    "per_tree": {
+      "balanced": 31,
+      "cherry": 5,
+      "deep": 68,
+      "singleton": 1,
+      "triple": 14
+    },
+    "supports_considered": 677,
+    "transition_counts": {
+      "extend_0": 26,
+      "extend_1": 18,
+      "join": 37,
+      "leaf": 1,
+      "unused": 37
+    }
+  },
+  "schema": "triple-family-adversary-receipt-v1",
+  "scope": "Exact finite graph-support controls and fixed-tree probe families only; no universal proof, no DP correctness, no G1 transfer theorem, no fresh-author verification.",
+  "started_utc": "2026-10-14T13:18:30.936312+00:00",
+  "verdict": "NO-FIRE"
+}

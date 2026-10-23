@@ -1,0 +1,16 @@
+# Review of the producer report's scope
+
+This pass was performed in a context that authored none of `../thesis_complexity/report.md`. It applies the referee-sim and prose-lint skills to that report. The newly proposed local repair requires another author to review it.
+
+| Audience | Axis | Strong objection | Answer location and outcome | Severity / action |
+|---|---|---|---|---|
+| Parameterized algorithms | Correctness | A failing sufficient inequality is not a lower-bound family, especially if one child immediately dies. | Producer opening, Exceptional recurrence and final scope explicitly retain O(2^q n) as open. Independent replay confirms dead child. | No defect in that scope statement; repeat the distinction in the independent opening. |
+| Parameterized algorithms | Novelty | A source-proof gap does not erase the prior O(2^q n) claim or justify improved-algorithm priority. | Producer opening/final paragraph disclaim novelty; spec retains prior-art debt. | No novelty clearance issued. |
+| Source author / rooted-tree specialists | Correctness | The proposed state may violate depth ordering or be preempted by RB, RB*, 2B or BCY; ordered-tuple equality may miss an unordered match. | Independent explicit-graph replay computes depth/protection and canonical unordered topology; all eight supplied states agree. | Required semantic test executed. |
+| Source author / rooted-tree specialists | Novelty | The analysis may admit an elementary repair once descendants are counted jointly. | Producer smallest-obligation section explicitly allows a repair. Fresh two-leaf argument is separately labelled proposed. | Larger G4 cases stay open. |
+| Formal verification | Correctness | Compiling concrete trees and conditional arithmetic does not formalize the universal algorithm or prove an asymptotic theorem. | Independent report's formal-scope table separates the three statement classes; all 28 axiom lists replayed. | Clarification added to independent report; no theorem status inflated. |
+| Formal verification | Novelty | Re-running Lean files written by the producer is not an independent formalization. | Independent report's lineage paragraph names shared Lean statements and fresh graph code. | Independence applies to graph/source reconstruction, not duplicate kernel evaluation. |
+| Algorithm implementers | Correctness | A short-circuit solver may never visit the C-path at the same input budget. | Producer explicitly uses full permitted-call tree; independent report gives budget10 and excludes a short-circuit reachability assertion. | Keep the execution-model qualifier beside reachability. |
+| Algorithm implementers | Novelty | No faster solver or linear-per-node implementation is delivered. | Producer overhead paragraph and independent remaining-work paragraph retain those debts. | No implementation performance claim issued. |
+
+The numerical pass matched both headline fractions, the affine 30/31 example, two witness leaf counts excluding rho, 44 rows, and 28 axiom prints to executed records. A second prose pass checked the independent report's opening, formulas, trace tables and final scope for accidental promotion of finite evidence to a universal result. The local-repair argument remains a separate proposed proof.

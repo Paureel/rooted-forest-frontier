@@ -1,0 +1,101 @@
+{
+  "tropical-sampler": {
+    "class": "selftest",
+    "tried": [
+      {
+        "kind": "manifest",
+        "cmd": "python3 tools/tropical-sampler/tropical_sampler.py --selftest && CEGM_GJ_OUT=\"$(mktemp -d)\" python3 tools/tropical-sampler/cegm_gj/t3_prod.py sanity --procs 4",
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+        "rc": 1,
+        "wall_s": 0.6,
+        "tail": "tropical_sampler selftest: base 4 cones, I^tr = 25/16; refined 7 cones, I^tr = 25/16; tiling 500/500 exact x2 \u2014 PASS\nTraceback (most recent call last):\n  File \"/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/tropical-sampler/cegm_gj/t3_prod.py\", line 411, in <module>\n    f\"nice={os.nice(0)} ===\")\n            ^^^^^^^^^^\nPermissionError: [Errno 1] Operation not permitted\n"
+      }
+    ],
+    "secs": 0.6,
+    "wall_s": 0.6,
+    "status": "FAIL"
+  },
+  "amflow-kit": {
+    "class": "partial",
+    "tried": [
+      {
+        "kind": "manifest",
+        "cmd": "python3 selftest.py && python3 -m pytest tests -q -rs -p no:cacheprovider",
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/amflow-kit",
+        "rc": 1,
+        "wall_s": 49.7,
+        "tail": "il must carry a\n        per-launch unique element (an output path); a repeated launch of the same\n        command within the window is otherwise ambiguous. Returns the pid or\n        None.\"\"\"\n        tail = list(argv_tail)\n        excl = set(exclude or ())\n        hz = os.sysconf(\"SC_CLK_TCK\")\n        boot = _boot_epoch()\n        cwd = os.path.realpath(cwd) if cwd else None\n        for _ in range(max(1, int(retries))):\n>           for pid in os.listdir(PROC):\n                       ^^^^^^^^^^^^^^^^\nE           FileNotFoundError: [Errno 2] No such file or directory: '/proc'\n\namflow_kit/memfence.py:569: FileNotFoundError\n=========================== short test summary info ============================\nSKIPPED [1] tests/test_cgroup_procs_size.py:58: no cgroup v2 '0::' line in /proc/self/cgroup\nSKIPPED [1] tests/test_cgroup_procs_size.py:109: no cgroup v2 '0::' line in /proc/self/cgroup: no live leaf\nSKIPPED [1] tests/test_compare_amflow_json.py:380: COMPARE_AMFLOW_JSON_PREVIOUS unset: the previous tool's file is not named\nSKIPPED [1] tests/test_compare_amflow_json.py:687: COMPARE_AMFLOW_JSON_PREVIOUS unset: the previous tool's file is not named\n7 failed, 42 passed, 4 skipped in 49.19s\n"
+      }
+    ],
+    "secs": 49.7,
+    "wall_s": 49.7,
+    "status": "FAIL"
+  },
+  "ffcapital": {
+    "class": "data-gated",
+    "tried": [
+      {
+        "kind": "manifest",
+        "cmd": "python3 selftest.py",
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/ffcapital",
+        "rc": 4,
+        "wall_s": 0.9,
+        "tail": "smoke ok: harvest_ffsave_eta.py --help rc=0\nsmoke ok: harvest_ffsave_2var.py --help rc=0\nsmoke ok: control refuses fail-closed (CONFIG: COVERAGE unset \u2014 pass --coverage (or --config JSON / --base derivation); no silent defaults)\ncontrol ok: reference grid PASS (6 cases; P*,Q* share (eta+2) at d=118/29 (s10))\ncontrol ok: generic grid PASS (6 cases; P*,Q* share (eta+2) at d=4 (s10))\ncontrol ok: small grid refused by name (rc=1)\nDATA GATE: no ff_save/ state supplied \u2014 the harvest-member gates run against a user-supplied FireFly ff_save/ reconstruction state and no public fixtures ship (see GUIDE.md INVOKE). The recon_symbolic_d synthetic control battery above is the data-free part.\n"
+      }
+    ],
+    "secs": 0.9,
+    "wall_s": 0.9,
+    "status": "REFUSED (by design)",
+    "reason": "DATA GATE: no ff_save/ state supplied \u2014 the harvest-member gates run against a user-supplied FireFly ff_save/ reconstruction state and no public fixtures ship (see GUIDE.md INVOKE). The recon_symbolic_d synthetic control battery above is the data-free part."
+  },
+  "frobenius-boundary": {
+    "class": "data-gated",
+    "tried": [
+      {
+        "kind": "manifest",
+        "cmd": "python3 asdminer/run_control.py && python3 deform_transport/battery/run_battery_deform.py --stages S0,S1 && python3 -m frobenius_boundary.selftest",
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/frobenius-boundary",
+        "rc": 4,
+        "wall_s": 6.1,
+        "tail": "PILOT (Honda E1, p=5): CONSISTENT D= 4 weil= [1] | ellak a_5 = 1\nproducer_lint: SKIPPED (FROB_PRODUCER_LINT unset)\nVERDICT: ASDMINER-CONTROL-PASS: G1,G2,G3a,G3b,G3c,G4,G5,G6 all green; Honda 8/8+8/8 exact ellak match, Beukers-85 12/12, Hecke 5/5, fault+null caught\ncontrol_pass = True\ndeform_transport battery start 2026-10-15T06:55:37Z (pid 9511) stages=S0,S1\nCONSUME existing DT_S0_COPIES_SYM5.json\nS0: S0-PASS: code census recorded; Sym^5 operator rebuilt from code/build_sym5.py and verified (full-MUM\nCONSUME existing DT_S1_CALA.json\nS1: S1-PASS: rank-2 Dwork theorem case EXACT through the full matrix transport at p in {23,29}, supersin\nproducer_lint: SKIPPED (FROB_PRODUCER_LINT unset)\nBATTERY VERDICT: FAST-TIER-GREEN: stages S0,S1 only \u2014 all run gates true; the full battery is --stages S0,S1,S2,S3,S4\nSELFTEST DATA-GATED REFUSAL: the configured Kira reduction table does not exist:\n  kira_targets_m = (set me) /path/to/your/point/kira_targets_all.m\nThis acceptance test needs a per-point Kira reduction table (kira2math output), which is not distributed with the repo. Fill in a copy of config_example.json and set FROB_CONFIG to it.\n"
+      }
+    ],
+    "secs": 6.1,
+    "wall_s": 6.1,
+    "status": "REFUSED (by design)",
+    "reason": "This acceptance test needs a per-point Kira reduction table (kira2math output), which is not distributed with the repo. Fill in a copy of config_example.json and set FROB_CONFIG to it."
+  },
+  "galois": {
+    "class": "data-gated",
+    "tried": [
+      {
+        "kind": "manifest",
+        "cmd": "python3 svmap21.py selftest",
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/galois",
+        "rc": 4,
+        "wall_s": 0.3,
+        "tail": "REFUSED: selftest: no explicit svalign dir given and GALOIS_CAMPAIGN_BANK is not set. The SV formula/numeric banks are reference data that do not ship with this repo \u2014 pass --svalign / svalign_dir explicitly or point GALOIS_CAMPAIGN_BANK at your own bank (subdir svalign/).\n"
+      }
+    ],
+    "secs": 0.3,
+    "wall_s": 0.3,
+    "status": "REFUSED (by design)",
+    "reason": "REFUSED: selftest: no explicit svalign dir given and GALOIS_CAMPAIGN_BANK is not set. The SV formula/numeric banks are reference data that do not ship with this repo \u2014 pass --svalign / svalign_dir explicitly or point GALOIS_CAMPAIGN_BANK at your own bank (subdir svalign/)."
+  },
+  "seedling": {
+    "class": "partial",
+    "tried": [
+      {
+        "kind": "manifest",
+        "cmd": "python3 -m pytest tools/seedling -x -q -rs -p no:cacheprovider",
+        "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+        "rc": 1,
+        "wall_s": 42.8,
+        "tail": "script):\n                p = subprocess.Popen([\"sleep\", \"30\"])\n                with open(procs, \"w\") as fh:\n                    fh.write(f\"{p.pid}\\n1\\n\")\n                return p\n    \n            def kill(proc):            # the mock records; it ends the plain `sleep`\n                killed.append(proc.pid)\n                proc.kill()\n    \n            def move(pid, dest):       # the mock records; no cgroup is touched\n                moved.append((pid, dest))\n                return True\n    \n            ledger = os.path.join(td, \"ledger.jsonl\")\n            rec, _ = runner.run_phase(\n                \"stage\", td, \"sleep 30\", dict(CFG, name=name), ledger,\n                launch_ops={\"cg_root\": td, \"launch\": launch, \"kill\": kill,\n                            \"move\": move, \"in_leaf\": lambda pid, n: True,\n                            \"poll_s\": 0.05, \"echo\": echoed.append})\n>           assert rec[\"exit_status\"] == runner.RC_CG_FOREIGN_PID != 0\nE           assert 0 == 99\nE            +  where 99 = runner.RC_CG_FOREIGN_PID\n\ntools/seedling/tests/test_cgroup_law.py:227: AssertionError\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 11 passed in 42.35s\n"
+      }
+    ],
+    "secs": 42.8,
+    "wall_s": 42.8,
+    "status": "FAIL"
+  }
+}

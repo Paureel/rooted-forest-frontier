@@ -1,0 +1,34 @@
+research/rmaf/algorithm/universal233/state_reductions/build/Forward.lean:134:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  family (leaves s) (F.erase [a])
+in the target expression
+  partitionCheck (leaves s) (family (leaves s) (cleanupForest F a)) = true ∧
+    (family (leaves s) (cleanupForest F a)).all (targetAgrees (cleanupTarget T a) s) = true ∧
+      pairwiseEmbeddings s (family (leaves s) (cleanupForest F a)) = true
+
+case refine_3
+T : Option Tree
+ss : List Tree
+F : List (List Nat)
+a : Nat
+h : agrees T ss F = true
+ha : Tree.leaf a ∈ ss
+hp : proper T ss = true
+hF : partitionCheck (labels T) F = true
+href : ∀ (B : List Nat), B ∈ F → ∃ s, s ∈ ss ∧ B ⊆ leaves s
+ht : targetEmbeddings T F = true
+hs : ∀ (s : Tree), s ∈ ss → sourceCheck T F s = true
+nd : (labels T).Nodup
+hsingle : [a] ∈ F
+hsub : ∀ (B : List Nat), B ∈ cleanupForest F a → B ⊆ (labels T).erase a
+homit : ∀ (s : Tree), s ∈ cleanupSources ss a → ¬a ∈ leaves s
+hnewF : partitionCheck (labels (cleanupTarget T a)) (cleanupForest F a) = true
+s : Tree
+hsnew : s ∈ cleanupSources ss a
+hsold :
+  (partitionCheck (leaves s) (family (leaves s) F) && (family (leaves s) F).all (targetAgrees T s) &&
+      pairwiseEmbeddings s (family (leaves s) F)) =
+    true
+hfamily : family (leaves s) (F.erase [a]) = family (leaves s) F
+⊢ partitionCheck (leaves s) (family (leaves s) (cleanupForest F a)) = true ∧
+    (family (leaves s) (cleanupForest F a)).all (targetAgrees (cleanupTarget T a) s) = true ∧
+      pairwiseEmbeddings s (family (leaves s) (cleanupForest F a)) = true

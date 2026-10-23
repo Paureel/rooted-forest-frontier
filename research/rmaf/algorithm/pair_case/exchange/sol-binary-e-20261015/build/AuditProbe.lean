@@ -1,0 +1,9 @@
+import Exchange
+import Lean
+#check Lean.Environment.constants
+#check Lean.Environment.allImportedModuleNames
+#check Lean.collectAxioms
+#check Lean.ConstantInfo.isUnsafe
+#check Lean.SMap.toList
+#check Lean.Environment.getModuleIdxFor?
+#check Lean.Environment.checked

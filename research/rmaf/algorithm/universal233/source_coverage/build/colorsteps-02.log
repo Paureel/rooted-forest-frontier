@@ -1,0 +1,18 @@
+research/rmaf/algorithm/universal233/source_coverage/ColorSteps.lean:77:27: error(lean.invalidField): Invalid field `length_le_of_subset`: The environment does not contain `List.Pairwise.length_le_of_subset`, so it is not possible to project the field `length_le_of_subset` from an expression
+  hfilterNodup
+of type
+  List.Pairwise (fun x1 x2 => x1 ≠ x2) (List.filter (fun h => h.color == g.color) (groups t))
+research/rmaf/algorithm/universal233/source_coverage/ColorSteps.lean:62:53: error: unsolved goals
+t : GTree
+g : Group
+hn : (origins t).Nodup
+hg : g ∈ groups t
+hu : (List.filter (fun h => h.color == g.color) (groups t)).length ≠ 1
+hno : ¬∃ a, a ∈ groups t ∧ a.color = g.color ∧ a ≠ g
+hall : ∀ (a : Group), a ∈ groups t → a.color = g.color → a = g
+hfilterNodup : List.Pairwise (fun x1 x2 => x1 ≠ x2) (List.filter (fun h => h.color == g.color) (groups t))
+hsub : List.filter (fun h => h.color == g.color) (groups t) ⊆ [g]
+⊢ False
+real 0.33
+user 0.19
+sys 0.17

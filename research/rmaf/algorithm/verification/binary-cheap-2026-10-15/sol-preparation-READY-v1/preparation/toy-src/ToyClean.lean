@@ -1,0 +1,10 @@
+import OriginAudit
+namespace ToyClean
+structure Packet where
+  value : Nat
+private def hidden : Nat := 11
+def ordinary : Nat := 7
+theorem harmless : True := True.intro
+end ToyClean
+
+run_cmd ReleasedAudit.emit ["ToyClean"]

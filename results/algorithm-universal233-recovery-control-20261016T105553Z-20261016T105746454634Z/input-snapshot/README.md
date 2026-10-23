@@ -1,0 +1,15 @@
+# Persistent recovery choose, erasure and step preparation
+
+Actual represented choose and erasure are implemented and proved. The package also composes the frozen represented normalizer with choose, retaining the normalized owned tree for subsequent attempts. Import RCStorage from the canonical receipt in FINAL-MANIFEST-v1.json. The namespace is OrdinaryDispatch.RecoveryControlBits.
+
+represented_choose proves exact CoreProgram.choose priority/refusals, work≤4096*(W+4)*(N+1)^3 and retained choiceCells≤2*((W+4)*N)+1. Premises stay explicit: W≥1, represented label/color words≤W, source footprint≤N, and N<2^W for filter-count value refinement. Source group collection, homogeneous all-color testing, every failed filter/count/unique candidate, find suffix and left-priority mixed-cherry fallback have concrete bodies. Selected groups are copied; temporary filters/counters/group collections and discarded mixed-cherry pairs are closed. Padding-equivalent color words compare numerically.
+
+eraseBits_source_bound proves exact source erase, work≤256*(W+4)*(N+1)*N, preserved represented word widths and retained successful result treeCells≤(W+4)*N. It requires chosen address length≤N; chosen_one_address/chosen_two_addresses derive that for actual choose results. Paths use structural Bool-list equality, so [] and [false] remain distinct. Erasure retains original child addresses when suppressing a node and returns fresh copied surviving data.
+
+represented_prepare executes the frozen normalizer followed by represented choose and returns both normalized tree and copied choice. It proves the exact source step-front values, work≤8192*(W+4)*(N+1)^3 and combined retained cells≤3*((W+4)*N)+1. This reuses the frozen normalization proof. It does not rerun or replace initialization/normalization developments.
+
+RCStorage gives group-collector/filter and mixed-pair retained-cell bounds. RCInterface exposes actual work decomposition and paid collector/filter/counter/discarded-pair/address-operand scope closes. Work is the literal recursive operation sum; groupFee and polynomial bounds are mathematical envelopes excluded from runtime producer closure. Mathematical view/encode/decode functions are likewise absent from that closure.
+
+The next missing call is persistent attempt with represented receipts/counters and actual detached/cut state transfer/copy/close. Step/run/fuel, all pruned/refused prefixes, receipt append/materialization and the complete lifetime ledger follow. No whole recovery bit coefficient is asserted. The frozen source multiplier64, factor2^q and once-only233/100 source absorption remain unchanged.
+
+The final audit validates10 owned modules and478 stored occurrences, plus exact prior own bodies for closure checks. Thirty literal controls pass and sixteen false claims are rejected; hash/missing/duplicate producer/custom-axiom corruptions are caught. All failed proof attempts are retained. This is an author-level abstract bit/cell result with zero independent acceptance credit. Native allocation/GC/compiler/IR, metadata arithmetic execution, full recovery and full2.33 remain open.

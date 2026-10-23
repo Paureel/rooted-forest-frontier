@@ -1,0 +1,76 @@
+import Hard2FullOutputBound
+namespace OrdinaryDispatch.Hard2SourceWork
+open RMAF ForestState Universal233 WholeSourceWork CoreWork CoreProgram
+open GenericForest.FrontierWork GenericForest.CheckCorrespondence
+open OrdinaryDispatch.FullSourceWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion
+open Universal233.Rule5SelectedLocalWork Universal233.BothBad Universal233.WholeSourceMass
+open Universal233.Hard2PaidLocal Universal233.Hard2Overlap Universal233.PaidAssembly
+
+theorem case_output_generated (S T : Tree) (A B C : List Nat) (q : Nat) (out : Result) (o : Output)
+ (mem : o∈caseOutputs S T A B C q out) :
+ ∃color:Nat→Nat,o∈(generate S color q).outputs := by
+ have origin (kind : Kind) (A B : List Nat) (h:o∈outputs kind S T A B q) :
+  ∃color:Nat→Nat,o∈(generate S color q).outputs:=by
+  obtain ⟨ca,cb,cc,h⟩:=outputs_generated kind S T A B q o h
+  exact ⟨_,h⟩
+ cases out with
+ | disjoint=>simp [caseOutputs] at mem
+ | clique v=>exact origin (.clique v) A B mem
+ | four order v w=>exact origin (.four v w) _ _ mem
+ | diagonal order v w=>exact origin (.diagonal v w) _ _ mem
+ | pair order k=>cases k with
+  | vertex v=>exact origin (.vertex v) _ _ mem
+  | edge e=>
+   simp only [caseOutputs,edgeOutputs] at mem
+   split at mem <;> exact origin (.side _) _ _ mem
+
+theorem actual_output_generated (S T : Tree) (c : CherryBranching.Candidate) (q : Nat) (out : Result) (o : Output)
+ (mem : o∈actualOutputs S T c q out) : ∃color:Nat→Nat,o∈(generate S color q).outputs := by
+ unfold actualOutputs at mem
+ split at mem
+ · exact case_output_generated S T _ _ _ q out o mem
+ · simp at mem
+
+theorem actual_output_shape (S T : Tree) (c : CherryBranching.Candidate) (q : Nat) (out : Result) (N : Nat)
+ (ns : (leaves S).Nodup) (sn : treeNodes S≤N) (o : Output) (mem : o∈actualOutputs S T c q out) :
+ partitionCheck (leaves S) o.partition=true ∧ o.sourceCuts.length≤N ∧ o.partition.length≤N ∧
+ (∀B,B∈o.partition→B.length≤N) := by
+ obtain ⟨color,gen⟩:=actual_output_generated S T c q out o mem
+ have valid:=(Assembly.generated_source_valid S color q o gen).1
+ have shape:=RankDichotomy.generate_partition_cost S color q o gen
+ have blocks:=SourceCoverage.partitionCheck_block_bound _ _ valid
+ have flat:=(FinalCutRecovery.checked_flatten_perm S o.partition ns valid).length_eq
+ have sl:=leaves_nodes S
+ refine ⟨valid,by omega,by omega,?_⟩
+ intro B hB
+ have b:=block_cells o.partition B hB
+ omega
+
+/-- Weighted forest debit: the forest overhead at q-d is multiplied by the
+actual raw output weight c^-d. Failed and duplicate occurrences remain in sum. -/
+theorem outputForestDebit_weighted (actual : GenericForest.FrontierWork.Ordinary)
+ (T S : Tree) (q N Q : Nat) (os : List Output)
+ (tl : (leaves T).length≤N) (budget : q≤Q)
+ (proper0 : ∀o,o∈os→proper (some T) (OutputState.sourceForest S o.partition)=true) :
+ (outputForestDebit actual (fun _ _ _=>0) T S q os:Rat)≤
+ (geometric Rule5ActualTrace.base*forestCoefficient N Q*Rule5ActualTrace.base^q)*rawQMass Rule5ActualTrace.base os := by
+ let b:=Rule5ActualTrace.base
+ let K:Rat:=geometric b*forestCoefficient N Q
+ have kp:0≤K:=Rat.mul_nonneg (geometric_properties b (by decide +kernel)).2.2.1 Rat.natCast_nonneg
+ have bp:0<b:=by decide +kernel
+ have point (o : Output) (mem : o∈os) :
+ ((if o.sourceCuts.length≤q then forestWork actual (fun _ _ _=>0) (some T)
+  (OutputState.sourceForest S o.partition) (q-o.sourceCuts.length) else 0:Nat):Rat)≤
+ (K*b^q)*b^(-(o.sourceCuts.length:Int)):=by
+  by_cases h:o.sourceCuts.length≤q
+  · simp only [h,ite_true]
+    have bill:=forestLocalWork_bound actual (some T) N Q b (by decide +kernel) tl
+     (OutputState.sourceForest S o.partition) (q-o.sourceCuts.length) (by omega) (proper0 o mem)
+    rw [qpow_clear b (Rat.ne_of_gt bp) q _ h] at bill
+    simpa only [K,b,Rat.mul_assoc] using bill
+  · simp only [h,ite_false,Rat.natCast_zero]
+    exact Rat.mul_nonneg (Rat.mul_nonneg kp (Rat.le_of_lt (Rat.pow_pos bp))) (Rat.le_of_lt (Rat.zpow_pos bp))
+ have sum:=GenericForest.rat_sum_map_le os _ _ point
+ rw [GenericForest.rat_sum_mul] at sum
+ simpa only [outputForestDebit,nat_sum_cast,rawQMass,K,b] using sum
+end OrdinaryDispatch.Hard2SourceWork

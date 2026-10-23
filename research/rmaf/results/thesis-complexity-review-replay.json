@@ -1,0 +1,909 @@
+{
+  "representation": "explicit vertex adjacency, incoming-edge protection, exact rational arithmetic",
+  "imports_from_author_runtime": false,
+  "nine": [
+    {
+      "F1": {
+        "forest": [
+          "(((((a,c),d),(x,y)),((h,t),(w,z))))rho"
+        ],
+        "protected": []
+      },
+      "F2": {
+        "forest": [
+          "((((((((w,y),t),d),(x,z)),a),h),c))rho"
+        ],
+        "protected": []
+      },
+      "pair": [
+        "a",
+        "c"
+      ],
+      "selection": {
+        "eligible": [
+          [
+            "a",
+            "c"
+          ],
+          [
+            "x",
+            "y"
+          ],
+          [
+            "w",
+            "z"
+          ],
+          [
+            "h",
+            "t"
+          ]
+        ],
+        "rank": [
+          5,
+          0,
+          4
+        ],
+        "protected_top": "a,c,d,h,t,w,x,y,z"
+      },
+      "predicates": {
+        "AC": false,
+        "B": false,
+        "RB": false,
+        "RB*": false,
+        "2B": false,
+        "BCY": false,
+        "A2BC": true,
+        "A3BC": false
+      },
+      "case": "A2BC",
+      "pendants": [
+        "d,t,w,x,y,z",
+        "h"
+      ],
+      "uncle": "d",
+      "branches": [
+        {
+          "name": "A",
+          "cuts": [
+            "a"
+          ],
+          "protect1": [],
+          "protect2": [],
+          "legal": true
+        },
+        {
+          "name": "B",
+          "cuts": [
+            "d,t,w,x,y,z",
+            "h"
+          ],
+          "protect1": [],
+          "protect2": [],
+          "legal": true
+        },
+        {
+          "name": "C",
+          "cuts": [
+            "c"
+          ],
+          "protect1": [
+            "a"
+          ],
+          "protect2": [
+            "a",
+            "d,t,w,x,y,z",
+            "h"
+          ],
+          "legal": true
+        }
+      ],
+      "budget": 10,
+      "P": [],
+      "Q": [],
+      "selected_branch": "C"
+    },
+    {
+      "F1": {
+        "forest": [
+          "((((a,d),(x,y)),((h,t),(w,z))))rho"
+        ],
+        "protected": [
+          "a"
+        ]
+      },
+      "F2": {
+        "forest": [
+          "(((((((w,y),t),d),(x,z)),a),h))rho"
+        ],
+        "protected": [
+          "a",
+          "d,t,w,x,y,z",
+          "h"
+        ]
+      },
+      "pair": [
+        "d",
+        "a"
+      ],
+      "selection": {
+        "eligible": [
+          [
+            "a",
+            "d"
+          ]
+        ],
+        "rank": [
+          4,
+          0,
+          5
+        ],
+        "protected_top": "a,d"
+      },
+      "predicates": {
+        "AC": false,
+        "B": false,
+        "RB": false,
+        "RB*": false,
+        "2B": false,
+        "BCY": false,
+        "A2BC": true,
+        "A3BC": false
+      },
+      "case": "A2BC",
+      "pendants": [
+        "t,w,y",
+        "x,z"
+      ],
+      "uncle": "x,y",
+      "branches": [
+        {
+          "name": "B",
+          "cuts": [
+            "t,w,y",
+            "x,z"
+          ],
+          "protect1": [],
+          "protect2": [],
+          "legal": true
+        },
+        {
+          "name": "A",
+          "cuts": [
+            "d"
+          ],
+          "protect1": [],
+          "protect2": [
+            "t,w,y",
+            "x,z"
+          ],
+          "legal": true
+        }
+      ],
+      "budget": 9,
+      "P": [
+        "a"
+      ],
+      "Q": [],
+      "selected_branch": "A"
+    },
+    {
+      "F1": {
+        "forest": [
+          "((((h,t),(w,z)),((x,y),a)))rho"
+        ],
+        "protected": [
+          "a"
+        ]
+      },
+      "F2": {
+        "forest": [
+          "((((((w,y),t),(x,z)),a),h))rho"
+        ],
+        "protected": [
+          "a",
+          "h",
+          "t,w,x,y,z",
+          "t,w,y",
+          "x,z"
+        ]
+      },
+      "pair": [
+        "y",
+        "x"
+      ],
+      "selection": {
+        "eligible": [
+          [
+            "x",
+            "y"
+          ]
+        ],
+        "rank": [
+          4,
+          0,
+          6
+        ],
+        "protected_top": "a,x,y"
+      },
+      "predicates": {
+        "AC": false,
+        "B": false,
+        "RB": false,
+        "RB*": false,
+        "2B": false,
+        "BCY": false,
+        "A2BC": false,
+        "A3BC": true
+      },
+      "case": "A3BC",
+      "pendants": [
+        "w",
+        "t",
+        "z"
+      ],
+      "uncle": "a",
+      "branches": [
+        {
+          "name": "A",
+          "cuts": [
+            "y"
+          ],
+          "protect1": [],
+          "protect2": [],
+          "legal": true
+        },
+        {
+          "name": "B",
+          "cuts": [
+            "w",
+            "t",
+            "z"
+          ],
+          "protect1": [],
+          "protect2": [],
+          "legal": true
+        },
+        {
+          "name": "C",
+          "cuts": [
+            "x"
+          ],
+          "protect1": [
+            "y"
+          ],
+          "protect2": [
+            "y"
+          ],
+          "legal": true
+        }
+      ],
+      "budget": 8,
+      "P": [
+        "a"
+      ],
+      "Q": [],
+      "selected_branch": "C"
+    },
+    {
+      "F1": {
+        "forest": [
+          "((((h,t),(w,z)),(a,y)))rho"
+        ],
+        "protected": [
+          "a",
+          "y"
+        ]
+      },
+      "F2": {
+        "forest": [
+          "((((((w,y),t),z),a),h))rho"
+        ],
+        "protected": [
+          "a",
+          "h",
+          "t,w,y",
+          "t,w,y,z",
+          "y",
+          "z"
+        ]
+      },
+      "pair": [
+        "y",
+        "a"
+      ],
+      "selection": {
+        "eligible": [
+          [
+            "a",
+            "y"
+          ]
+        ],
+        "rank": [
+          3,
+          0,
+          6
+        ],
+        "protected_top": "a,y"
+      },
+      "predicates": {
+        "AC": false,
+        "B": false,
+        "RB": false,
+        "RB*": false,
+        "2B": false,
+        "BCY": false,
+        "A2BC": false,
+        "A3BC": true
+      },
+      "case": "A3BC",
+      "pendants": [
+        "w",
+        "t",
+        "z"
+      ],
+      "uncle": "h,t,w,z",
+      "branches": [
+        {
+          "name": "A",
+          "cuts": [
+            "y"
+          ],
+          "protect1": [],
+          "protect2": [],
+          "legal": false
+        },
+        {
+          "name": "B",
+          "cuts": [
+            "w",
+            "t",
+            "z"
+          ],
+          "protect1": [],
+          "protect2": [],
+          "legal": false
+        },
+        {
+          "name": "C",
+          "cuts": [
+            "a"
+          ],
+          "protect1": [
+            "y"
+          ],
+          "protect2": [
+            "y"
+          ],
+          "legal": false
+        }
+      ],
+      "budget": 7,
+      "P": [
+        "a",
+        "y"
+      ],
+      "Q": [
+        "y"
+      ]
+    }
+  ],
+  "thirteen": [
+    {
+      "F1": {
+        "forest": [
+          "(((((a,c),d),((u,v),(x,y))),(((b2,su),(sv,sy)),(z1,z2))))rho"
+        ],
+        "protected": []
+      },
+      "F2": {
+        "forest": [
+          "(((((((((d,z2),z1),a),b2),c),x),(su,u)),((sv,v),(sy,y))))rho"
+        ],
+        "protected": []
+      },
+      "pair": [
+        "a",
+        "c"
+      ],
+      "selection": {
+        "eligible": [
+          [
+            "a",
+            "c"
+          ],
+          [
+            "x",
+            "y"
+          ],
+          [
+            "u",
+            "v"
+          ],
+          [
+            "z1",
+            "z2"
+          ],
+          [
+            "b2",
+            "su"
+          ],
+          [
+            "sv",
+            "sy"
+          ]
+        ],
+        "rank": [
+          5,
+          0,
+          7
+        ],
+        "protected_top": "a,b2,c,d,su,sv,sy,u,v,x,y,z1,z2"
+      },
+      "predicates": {
+        "AC": false,
+        "B": false,
+        "RB": false,
+        "RB*": false,
+        "2B": false,
+        "BCY": false,
+        "A2BC": true,
+        "A3BC": false
+      },
+      "case": "A2BC",
+      "pendants": [
+        "d,z1,z2",
+        "b2"
+      ],
+      "uncle": "d",
+      "branches": [
+        {
+          "name": "A",
+          "cuts": [
+            "a"
+          ],
+          "protect1": [],
+          "protect2": [],
+          "legal": true
+        },
+        {
+          "name": "B",
+          "cuts": [
+            "d,z1,z2",
+            "b2"
+          ],
+          "protect1": [],
+          "protect2": [],
+          "legal": true
+        },
+        {
+          "name": "C",
+          "cuts": [
+            "c"
+          ],
+          "protect1": [
+            "a"
+          ],
+          "protect2": [
+            "a",
+            "d,z1,z2",
+            "b2"
+          ],
+          "legal": true
+        }
+      ],
+      "budget": 10,
+      "P": [],
+      "Q": [],
+      "selected_branch": "C"
+    },
+    {
+      "F1": {
+        "forest": [
+          "(((((b2,su),(sv,sy)),(z1,z2)),(((u,v),(x,y)),(a,d))))rho"
+        ],
+        "protected": [
+          "a"
+        ]
+      },
+      "F2": {
+        "forest": [
+          "((((((((d,z2),z1),a),b2),x),(su,u)),((sv,v),(sy,y))))rho"
+        ],
+        "protected": [
+          "a",
+          "b2",
+          "d,z1,z2"
+        ]
+      },
+      "pair": [
+        "d",
+        "a"
+      ],
+      "selection": {
+        "eligible": [
+          [
+            "a",
+            "d"
+          ]
+        ],
+        "rank": [
+          4,
+          0,
+          8
+        ],
+        "protected_top": "a,d"
+      },
+      "predicates": {
+        "AC": false,
+        "B": false,
+        "RB": false,
+        "RB*": false,
+        "2B": false,
+        "BCY": false,
+        "A2BC": true,
+        "A3BC": false
+      },
+      "case": "A2BC",
+      "pendants": [
+        "z2",
+        "z1"
+      ],
+      "uncle": "u,v,x,y",
+      "branches": [
+        {
+          "name": "B",
+          "cuts": [
+            "z2",
+            "z1"
+          ],
+          "protect1": [],
+          "protect2": [],
+          "legal": true
+        },
+        {
+          "name": "A",
+          "cuts": [
+            "d"
+          ],
+          "protect1": [],
+          "protect2": [
+            "z2",
+            "z1"
+          ],
+          "legal": true
+        }
+      ],
+      "budget": 9,
+      "P": [
+        "a"
+      ],
+      "Q": [],
+      "selected_branch": "A"
+    },
+    {
+      "F1": {
+        "forest": [
+          "(((((b2,su),(sv,sy)),(z1,z2)),(((u,v),(x,y)),a)))rho"
+        ],
+        "protected": [
+          "a"
+        ]
+      },
+      "F2": {
+        "forest": [
+          "(((((((z1,z2),a),b2),x),(su,u)),((sv,v),(sy,y))))rho"
+        ],
+        "protected": [
+          "a",
+          "b2",
+          "z1",
+          "z1,z2",
+          "z2"
+        ]
+      },
+      "pair": [
+        "x",
+        "y"
+      ],
+      "selection": {
+        "eligible": [
+          [
+            "x",
+            "y"
+          ],
+          [
+            "u",
+            "v"
+          ]
+        ],
+        "rank": [
+          5,
+          0,
+          4
+        ],
+        "protected_top": "a,u,v,x,y"
+      },
+      "predicates": {
+        "AC": false,
+        "B": false,
+        "RB": false,
+        "RB*": false,
+        "2B": false,
+        "BCY": false,
+        "A2BC": false,
+        "A3BC": true
+      },
+      "case": "A3BC",
+      "pendants": [
+        "a,b2,z1,z2",
+        "su,u",
+        "sv,v",
+        "sy"
+      ],
+      "uncle": "u,v",
+      "branches": [
+        {
+          "name": "A",
+          "cuts": [
+            "x"
+          ],
+          "protect1": [],
+          "protect2": [],
+          "legal": true
+        },
+        {
+          "name": "B",
+          "cuts": [
+            "a,b2,z1,z2",
+            "su,u",
+            "sv,v",
+            "sy"
+          ],
+          "protect1": [],
+          "protect2": [],
+          "legal": true
+        },
+        {
+          "name": "C",
+          "cuts": [
+            "y"
+          ],
+          "protect1": [
+            "x"
+          ],
+          "protect2": [
+            "x"
+          ],
+          "legal": true
+        }
+      ],
+      "budget": 8,
+      "P": [
+        "a"
+      ],
+      "Q": [],
+      "selected_branch": "C"
+    },
+    {
+      "F1": {
+        "forest": [
+          "(((((b2,su),(sv,sy)),(z1,z2)),(((u,v),x),a)))rho"
+        ],
+        "protected": [
+          "a",
+          "x"
+        ]
+      },
+      "F2": {
+        "forest": [
+          "(((((((z1,z2),a),b2),x),(su,u)),((sv,v),sy)))rho"
+        ],
+        "protected": [
+          "a",
+          "b2",
+          "x",
+          "z1",
+          "z1,z2",
+          "z2"
+        ]
+      },
+      "pair": [
+        "u",
+        "v"
+      ],
+      "selection": {
+        "eligible": [
+          [
+            "u",
+            "v"
+          ]
+        ],
+        "rank": [
+          5,
+          0,
+          4
+        ],
+        "protected_top": "u,v,x"
+      },
+      "predicates": {
+        "AC": false,
+        "B": false,
+        "RB": false,
+        "RB*": false,
+        "2B": false,
+        "BCY": false,
+        "A2BC": false,
+        "A3BC": true
+      },
+      "case": "A3BC",
+      "pendants": [
+        "su",
+        "a,b2,x,z1,z2",
+        "sy",
+        "sv"
+      ],
+      "uncle": "x",
+      "branches": [
+        {
+          "name": "A",
+          "cuts": [
+            "u"
+          ],
+          "protect1": [],
+          "protect2": [],
+          "legal": true
+        },
+        {
+          "name": "B",
+          "cuts": [
+            "su",
+            "a,b2,x,z1,z2",
+            "sy",
+            "sv"
+          ],
+          "protect1": [],
+          "protect2": [],
+          "legal": true
+        },
+        {
+          "name": "C",
+          "cuts": [
+            "v"
+          ],
+          "protect1": [
+            "u"
+          ],
+          "protect2": [
+            "u"
+          ],
+          "legal": true
+        }
+      ],
+      "budget": 7,
+      "P": [
+        "a",
+        "x"
+      ],
+      "Q": [
+        "x"
+      ],
+      "selected_branch": "C"
+    },
+    {
+      "F1": {
+        "forest": [
+          "(((((b2,su),(sv,sy)),(z1,z2)),((u,x),a)))rho"
+        ],
+        "protected": [
+          "a",
+          "u",
+          "x"
+        ]
+      },
+      "F2": {
+        "forest": [
+          "(((((((z1,z2),a),b2),x),(su,u)),(sv,sy)))rho"
+        ],
+        "protected": [
+          "a",
+          "b2",
+          "u",
+          "x",
+          "z1",
+          "z1,z2",
+          "z2"
+        ]
+      },
+      "pair": [
+        "u",
+        "x"
+      ],
+      "selection": {
+        "eligible": [
+          [
+            "u",
+            "x"
+          ]
+        ],
+        "rank": [
+          4,
+          0,
+          4
+        ],
+        "protected_top": "u,x"
+      },
+      "predicates": {
+        "AC": false,
+        "B": false,
+        "RB": false,
+        "RB*": false,
+        "2B": false,
+        "BCY": false,
+        "A2BC": true,
+        "A3BC": false
+      },
+      "case": "A2BC",
+      "pendants": [
+        "su",
+        "a,b2,z1,z2"
+      ],
+      "uncle": "a",
+      "branches": [
+        {
+          "name": "B",
+          "cuts": [
+            "su",
+            "a,b2,z1,z2"
+          ],
+          "protect1": [],
+          "protect2": [],
+          "legal": true
+        },
+        {
+          "name": "A",
+          "cuts": [
+            "u"
+          ],
+          "protect1": [],
+          "protect2": [
+            "su",
+            "a,b2,z1,z2"
+          ],
+          "legal": false
+        }
+      ],
+      "budget": 6,
+      "P": [
+        "a",
+        "x",
+        "u"
+      ],
+      "Q": [
+        "x",
+        "u"
+      ]
+    }
+  ],
+  "arithmetic": {
+    "parent_mass": "1/2",
+    "child_mass": "9/16",
+    "alpha": 64,
+    "K": 0,
+    "parent_affine": "30",
+    "composed_affine": "31",
+    "base_compatible_scaling": {
+      "alpha": 128,
+      "K": 0,
+      "parent": "62",
+      "children": "67"
+    }
+  },
+  "source_cap_violated": true,
+  "nine_C_child_descendants": 1,
+  "limits": [
+    "full candidate recursion tree; optional short-circuit order not replayed",
+    "finite witnesses only; no asymptotic lower bound",
+    "source credit assignment applied manually with exact set records"
+  ],
+  "elapsed_seconds": 0.012953082999956678
+}

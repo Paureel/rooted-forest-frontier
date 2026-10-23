@@ -1,0 +1,94 @@
+{
+  "id": "algorithm-balanced-cover-quotient",
+  "title": "GLOBAL-Q guarded quotient certificates",
+  "status": "open",
+  "summary": "Actual edge-deletion/refinement proved in Lean; two quotient proposals refuted exactly; total exhaustive original-edge cover implemented at unlicensed binomial cost. Efficient oracle-free guarded enumeration remains open.",
+  "metrics": {
+    "frozen_oracle_controls_passed": 4,
+    "oracle_corruptions_caught": 3,
+    "geometry_controls": 2,
+    "slow_cover_controls": 4,
+    "slow_cover_accounting_corruptions_caught": 4,
+    "five_leaf_pairs_completed": 11025,
+    "accepted_axiom_audits": 12
+  },
+  "claims": [
+    {
+      "id": "Algorithm",
+      "status": "open",
+      "detail": "A total slow algorithm is supplied; requested O*((5/4)^b) or licensed faster generation is unproved."
+    },
+    {
+      "id": "Correctness",
+      "status": "open",
+      "detail": "Path localization is kernel checked; slow-cover universal prose proof awaits independent source-model review; efficient generator not constructed."
+    },
+    {
+      "id": "Smaller base",
+      "status": "open",
+      "detail": "Rational upper product comparisons are checked; no valid charged fast cover bound."
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "cut-subset-refinement",
+      "status": "kernel-checked",
+      "detail": "Original optimum graph components refine any subset precut graph. No axioms."
+    },
+    {
+      "id": "residual-edge-deletion",
+      "status": "kernel-checked",
+      "detail": "Precut plus residual predicates equal original optimum cuts; standard Lean axioms only."
+    },
+    {
+      "id": "local-budget-localization",
+      "status": "prose-proof-pending-review",
+      "detail": "d_D\u2264q_D\u2264|K|-|C| for explicit original optimum K. No marked budgets."
+    },
+    {
+      "id": "Q2-ONE",
+      "status": "refuted-finite-exact",
+      "detail": "Six-leaf Opt3 star quotient; every one-edge precut has unmarked tau2>1."
+    },
+    {
+      "id": "Q-HALF-ANY",
+      "status": "refuted-finite-exact",
+      "detail": "Seven-leaf Opt2; a half subset is balanced but impure with incompatible four-leaf block. Another subset succeeds."
+    },
+    {
+      "id": "guarded-enumeration",
+      "status": "open",
+      "detail": "Construct oracle-free family in total O*((3/2)^b) or O*((5/4)^b), including local witness construction and rejected recognition costs."
+    }
+  ],
+  "artifacts": [
+    "research/rmaf/algorithm/balanced_safe_cover/quotient/RESULT.md",
+    "research/rmaf/algorithm/balanced_safe_cover/quotient/EdgeLocalization.lean",
+    "research/rmaf/results/algorithm-balanced-cover-quotient-lean.log",
+    "research/rmaf/results/algorithm-balanced-cover-quotient-probe.json",
+    "research/rmaf/results/algorithm-balanced-cover-quotient-geometry.json",
+    "research/rmaf/algorithm/balanced_safe_cover/quotient/SlowCover.py",
+    "research/rmaf/results/algorithm-balanced-cover-quotient-slow-controls.json"
+  ],
+  "pins": {
+    "EdgeLocalization.lean": "81b24c92dfaba0c69c8ce2d8a5bcb52283b16b3102089f7cb6c58da5fe4bd401",
+    "NegativeArithmetic.lean": "9044caa52e951fcba7863edb864fb0f67e4995e9bc132c4ba5f700c61ad30dc5",
+    "SlowCover.py": "8eaa57f3eb9991afad9af5cb1fd514d6a6bb6eecbf9d0ff77b7f9e6490281ecf",
+    "quotient_probe.py": "32954d5854db5709a585ba620d758ddb32d26b5cc2e5552977ce0ddaab8f5faa",
+    "geometry_probe.py": "4d04d4650b3b74e69de7810cf9081a40aca5b0ddfdaca4d457e8457f77a855ec",
+    "smallest_probe.py": "70501fc138ed76a260a3c064d5d994c65047f485039c7dfc5747ad8d28abfb4a",
+    "star_repair.py": "56b37d0e9b68ffebd3d20d7ce1331ee590da6c3a8d8cfd3b9fb18500c59c82e0",
+    "slow_cover_controls.py": "29223a3d49244beae311c53658af7e83a55ed8273aef34b773e252aa20747afd",
+    "CONTROLS-v1.json": "f0eaa8c6e1a8f4e7a648b19ca9ca6f81773bceaced71cbc78fa1c61e7d747062",
+    "GEOMETRY-CONTROLS-v1.json": "2cca111fbe17d4b3271270aabf793dd3b07848b3f2b440429ba3e44f2b92d416",
+    "RESULT.md": "a69efd34f545c9e4f562be429322ca78b55004c4bc5d24c829debc249ef75c0f"
+  },
+  "review_needed": [
+    "Fresh code reproducing star/geometry optimum and source-cut certificates, without importing route or X0 primitives.",
+    "Review original support extension and residual local AF heredity from source spec.",
+    "Trace guarded certificates to original unmarked budgets and every terminal import; distinguish stronger local-witness condition.",
+    "Review total runtime candidate count and absence of optimizer/oracle calls in SlowCover.",
+    "Fresh-context referee simulation of RESULT before outward circulation."
+  ],
+  "independence": "No parent journal, paid_cover, joint_macro or X0 implementation read. Shared frozen spec allowed; all own oracle contacts are development/tuning and may not independently certify this route."
+}

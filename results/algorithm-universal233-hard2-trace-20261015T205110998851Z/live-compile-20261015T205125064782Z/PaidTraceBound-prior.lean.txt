@@ -1,0 +1,92 @@
+import Hard2Exact
+namespace OrdinaryDispatch.Hard2Trace
+open RMAF ForestState RestrictionBridge Universal233 Universal233.BothBad
+open Universal233.CherryBranching Universal233.Hard2Overlap Universal233.PaidAssembly
+open OrdinaryDispatch.Hard2Dispatcher
+
+theorem inverse_three_four (b : Rat) (base : 2≤b) (upper : b≤3) :
+ b^(-3 : Int)+b^(-4 : Int)≤4*b^(-4 : Int) := by
+ have pos : 0<b := by grind
+ have shift : b^(-3 : Int)=b*b^(-4 : Int) := by
+  have eq := Rat.zpow_add (q:=b) (Rat.ne_of_gt pos) (m:=1) (n:=(-4 : Int))
+  simpa using eq
+ have factor : b+1≤4 := by grind
+ have nonneg : (0 : Rat)≤b^(-4 : Int) := Rat.le_of_lt (Rat.zpow_pos pos)
+ have mul := Rat.mul_le_mul_of_nonneg_right factor nonneg
+ simpa [shift,Rat.add_mul,Rat.one_mul] using mul
+
+theorem inverse_three_bound (b : Rat) (base : 2≤b) (upper : b≤3) :
+ b^(-3 : Int)≤4*b^(-4 : Int) := by
+ have nonneg : (0 : Rat)≤b^(-4 : Int) := Rat.le_of_lt (Rat.zpow_pos (by grind : 0<b))
+ have add : b^(-3 : Int)≤b^(-3 : Int)+b^(-4 : Int) := by grind
+ exact Rat.le_trans add (inverse_three_four b base upper)
+
+theorem caseMass_uniform (b : Rat) (base : 2≤b) (upper : b≤3) (out : Result) :
+ Hard2PaidLocal.caseMass b out≤4*b^(-4 : Int) := by
+ have nonneg : (0 : Rat)≤b^(-4 : Int) := Rat.le_of_lt (Rat.zpow_pos (by grind : 0<b))
+ cases out with
+ | disjoint => exact Rat.mul_nonneg (by decide) nonneg
+ | clique v => exact Rat.mul_le_mul_of_nonneg_right (by decide : (3 : Rat)≤4) nonneg
+ | four o v w => exact Rat.le_refl
+ | diagonal o v w => exact inverse_three_four b base upper
+ | pair o choice =>
+  cases choice with
+  | vertex v => exact inverse_three_four b base upper
+  | edge edge => exact inverse_three_bound b base upper
+
+theorem paidCase_mass (actual : Ordinary) {T S : Tree} {c : Candidate} {q : Nat} {out : Result}
+ (proper : DepthOne.proper T S=true) (hard : CherryBranching.select T S=some (.hard2,c))
+ (selected : runHard2 T S c=some out) (b : Rat) (base : 2≤b) (upper : b≤3) :
+ traceMass b q (paidCase actual T S c q out).calls≤4*b^(-4 : Int) := by
+ have frozen := Hard2PaidLocal.actual_paid_trace_mass actual proper hard selected q b base
+ have bound := Rat.le_trans frozen (caseMass_uniform b base upper out)
+ obtain ⟨p,r,cuts,hcuts,graph,hp,es,partEq⟩ := actual_source_inputs proper hard
+ have basic := OrdinaryPriorityBridge.proper_parts proper
+ have ht := basic.1
+ have hs := basic.2.1
+ have same : ∀x,x∈leaves T ↔ x∈leaves S := fun _=>basic.2.2.mem_iff
+ have hl : ∀x,x∈leaves S→x∈leaves T := fun x hx=>(same x).2 hx
+ have raw : Hard2Overlap.select T (leftParent S p) (rightParent S r) (rootParent S p r)=some out := by
+  simpa only [runHard2,cuts] using selected
+ cases out with
+ | disjoint => simpa [paidCase,cuts] using bound
+ | clique v => simpa [paidCase,cuts] using bound
+ | four o v w => simpa [paidCase,cuts] using bound
+ | diagonal o v w => simpa [paidCase,cuts] using bound
+ | pair o choice =>
+  cases choice with
+  | vertex v => simpa [paidCase,cuts] using bound
+  | edge edge =>
+   let A := first o (leftParent S p) (rightParent S r) (rootParent S p r)
+   let B := second o (leftParent S p) (rightParent S r) (rootParent S p r)
+   let C := third o (leftParent S p) (rightParent S r) (rootParent S p r)
+   obtain ⟨pp,pe,ne,pairProper,chosen,valid,other⟩ := selected_pair_guards ht hl hp es raw
+   have guards := select_sound ht hl hp raw
+   have ac : BinaryExchange.Disj T A C := FreshPairReview.actual_clear_disj T _ _ guards.1
+   have bc : BinaryExchange.Disj T B C := FreshPairReview.actual_clear_disj T _ _ guards.2.1
+   by_cases both : (restrictionAgrees S T A && restrictionAgrees S T B)=true
+   · have good : restrictionAgrees S T A=true ∧ restrictionAgrees S T B=true := by simpa only [Bool.and_eq_true] using both
+     have over : ∃v,v∈minimalVertices A T ∧ v∈minimalVertices B T := ⟨edge.1,valid.2.1,valid.2.2.1⟩
+     have dp := GoodPairDP.runPair_mass actual T S A B C q hs ht same pp ac bc
+      (PairAssembly.restriction_agrees_swap S T A good.1) (PairAssembly.restriction_agrees_swap S T B good.2) over b base
+     have total := Rat.le_trans dp (inverse_three_bound b base upper)
+     simpa [paidCase,cuts,A,B,C,good.1,good.2] using total
+   · have bothN : ¬(restrictionAgrees S T A=true ∧ restrictionAgrees S T B=true) := by simpa only [Bool.and_eq_true] using both
+     by_cases one : (restrictionAgrees S T A || restrictionAgrees S T B)=true
+     · have oneP : restrictionAgrees S T A=true ∨ restrictionAgrees S T B=true := by simpa only [Bool.or_eq_true] using one
+       simpa [paidCase,cuts,A,B,C,bothN,oneP] using bound
+     · have badA : restrictionAgrees S T A=false := by cases h:restrictionAgrees S T A <;> simp_all
+       have badB : restrictionAgrees S T B=false := by cases h:restrictionAgrees S T B <;> simp_all
+       have paid := badPair_mass actual T S A B C edge q hs ht same pp pe badA badB ac bc chosen b base upper
+       simpa [paidCase,cuts,A,B,C,badA,badB] using paid
+
+theorem combined_mass (actual : Ordinary) {T S : Tree} {c : Candidate} {q : Nat} {out : Result}
+ (proper : DepthOne.proper T S=true) (hard : CherryBranching.select T S=some (.hard2,c))
+ (selected : runHard2 T S c=some out) (b : Rat) (base : 2≤b) (upper : b≤3) :
+ traceMass b q (Hard2Combine.combine actual T S c.a c.b q (paidCase actual T S c q out)).calls
+ ≤2*b^(-1 : Int)+4*b^(-4 : Int) :=
+ Hard2Combine.combine_mass actual T S c.a c.b q _ b base _ (paidCase_mass actual proper hard selected b base upper)
+
+theorem exact_233_contraction :
+ 2*(233/100 : Rat)^(-1 : Int)+4*(233/100 : Rat)^(-4 : Int)<1 := by decide
+end OrdinaryDispatch.Hard2Trace

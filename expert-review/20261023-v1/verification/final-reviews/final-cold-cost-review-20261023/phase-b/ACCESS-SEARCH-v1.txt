@@ -1,0 +1,17 @@
+Scope: exactly the 38 files listed in FINAL-COLD-COST-COMPUTATION-RELEASE-v1.json, paths passed by jq into xargs rg. No original or adjacent file was searched.
+
+Query 1: fixed string SourceRule5PaidSelectionV3.prepare
+Observed exit: 0
+Observed matches, all in GRAPH--GRAPH-CONSTRUCTOR-FULL-TYPES-v1.txt:
+1256: Eq (SourceRule5PaidSelectionV3.prepare T S a b).value none ->
+1259: prefixWork := (SourceRule5PaidSelectionV3.prepare T S a b).work + 2
+1267: Eq (SourceRule5PaidSelectionV3.prepare T S a b).value (some R) ->
+These are paraphrased locators; the exact full signatures were separately read from the released file.
+
+Query 2: namespace SourceRule5PaidSelectionV3|def (SourceRule5PaidSelectionV3\.)?prepare([ (]|$)
+Observed exit: 0
+Observed sole match: GRAPH-HELPERS--DEFINITIONS-v1.json line 47, a string containing SourceGoodPairV3.prepare, within its SourceGoodPairV3 context. That helper takes T S A B C and returns Prep; it is a different namespace/arity from the required T S a b helper. No SourceRule5PaidSelectionV3 namespace/body was found.
+
+Runtime use site checked: BASE--PROCEDURES-v1.md lines 3505 onward, PaidBestSource.lean original lines 30-37, calls paidSelectedMeter classFee literalFee T S a b. The missing graph helper cannot be identified with that value by name alone.
+
+This receipt records text retrieval, not an executable candidate check or a mathematical counterexample. Absence is scoped to the 38 released files and these two searches. Root must supply the full pure helper body/resolved TYPE/binding context or the current typed route remains open.

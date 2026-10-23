@@ -1,0 +1,108 @@
+[
+  {
+    "id": "compound-empty-unrestricted-normalization",
+    "status": "executed-known-broader-statement-failure",
+    "failing_claim": "arbitrary compound E can normalize without an anchor",
+    "instance": {
+      "T1": [
+        [
+          [
+            "a",
+            [
+              "c1",
+              "c2"
+            ]
+          ],
+          "x"
+        ],
+        "y"
+      ],
+      "T2": [
+        [
+          "a",
+          [
+            "c1",
+            "c2"
+          ]
+        ],
+        [
+          "x",
+          "y"
+        ]
+      ],
+      "rho": "labelled unary root added",
+      "E": [
+        "e:n00",
+        "e:n010",
+        "e:n011"
+      ]
+    },
+    "before_AF": true,
+    "after_AF": false,
+    "predicted_by_false_claim": true,
+    "actual": false,
+    "cut_count": 3,
+    "optimum": 1,
+    "result_cutset": [
+      "e:n010",
+      "e:n011"
+    ],
+    "in_minimum_consumer_regime": false,
+    "receipt": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/review2/boundaries.json",
+    "replay": "fresh_graph.py boundaries"
+  },
+  {
+    "id": "partial-is-not-full-normalization",
+    "status": "executed-known-broader-statement-failure",
+    "failing_claim": "restoring a selected proper subset of path cuts is automatically equivalent to full normalization",
+    "instance": {
+      "T1": [
+        [
+          [
+            "a",
+            "c"
+          ],
+          "x"
+        ],
+        "y"
+      ],
+      "T2": [
+        [
+          "a",
+          "c"
+        ],
+        [
+          "x",
+          "y"
+        ]
+      ],
+      "rho": "labelled unary root added",
+      "E": [
+        "e:n00",
+        "e:n01"
+      ]
+    },
+    "before_AF": true,
+    "after_AF": false,
+    "predicted_by_false_claim": true,
+    "actual": false,
+    "cut_count": 2,
+    "optimum": 1,
+    "result_cutset": [
+      "e:n01"
+    ],
+    "in_minimum_consumer_regime": false,
+    "receipt": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/review2/boundaries.json",
+    "replay": "fresh_graph.py boundaries"
+  },
+  {
+    "id": "suppressed-corridor-unchanged-claim",
+    "status": "deliberate-negative-control-rejected",
+    "instance": "frozen 2B fixture after cutting B",
+    "claimed_unchanged_original_edge": "e:n00",
+    "predicted": true,
+    "actual": false,
+    "receipt": "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/repair/review2/frozen.json",
+    "replay": "fresh_graph.py frozen"
+  }
+]

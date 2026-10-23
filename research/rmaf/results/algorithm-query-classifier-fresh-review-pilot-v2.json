@@ -1,0 +1,676 @@
+{
+  "status": "PASS-PRE-CANDIDATE-FIXED-CONTROLS",
+  "cases": 3,
+  "plants_caught": 14,
+  "seconds": 0.0009294999999838183,
+  "rows": [
+    {
+      "id": "two-budget3-successes-total6-reject",
+      "seconds": 0.0003309999992779922,
+      "report": {
+        "id": "two-budget3-successes-total6-reject",
+        "value": {
+          "accepted": false,
+          "reason": "sum",
+          "known": 0,
+          "p": 2,
+          "budget": 3,
+          "cost": 6,
+          "trace": [
+            {
+              "index": 0,
+              "slot": "A",
+              "budget": 3,
+              "success": true,
+              "cost": 3,
+              "witness": [
+                "slot",
+                0,
+                "A",
+                "minimum",
+                3
+              ]
+            },
+            {
+              "index": 1,
+              "slot": "B",
+              "budget": 3,
+              "success": true,
+              "cost": 3,
+              "witness": [
+                "slot",
+                1,
+                "B",
+                "minimum",
+                3
+              ]
+            }
+          ],
+          "bad": 2,
+          "discount_eligible": true,
+          "mass": {
+            "2": {
+              "exact": "1/2",
+              "discount_holds": true
+            },
+            "233/100": {
+              "exact": "20000/54289",
+              "discount_holds": true
+            },
+            "3": {
+              "exact": "2/9",
+              "discount_holds": true
+            }
+          }
+        },
+        "counts": {
+          "query.pretest": 1,
+          "query.slot_length_cells": 2,
+          "query.guard_arithmetic": 3,
+          "query.budget_arithmetic": 4,
+          "query.actual_calls": 2,
+          "query.trace_cells": 2,
+          "query.returned_sum_cells": 2,
+          "query.cost_additions": 2,
+          "query.final_sum_check": 1
+        },
+        "events": [
+          {
+            "id": 0,
+            "kind": "query.pretest",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 1,
+            "kind": "query.slot_length_cells",
+            "amount": 2,
+            "argument_sizes": []
+          },
+          {
+            "id": 2,
+            "kind": "query.guard_arithmetic",
+            "amount": 3,
+            "argument_sizes": []
+          },
+          {
+            "id": 3,
+            "kind": "query.budget_arithmetic",
+            "amount": 4,
+            "argument_sizes": []
+          },
+          {
+            "id": 4,
+            "kind": "query.actual_calls",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 5,
+            "kind": "query.trace_cells",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 6,
+            "kind": "query.returned_sum_cells",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 7,
+            "kind": "query.cost_additions",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 8,
+            "kind": "query.actual_calls",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 9,
+            "kind": "query.trace_cells",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 10,
+            "kind": "query.returned_sum_cells",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 11,
+            "kind": "query.cost_additions",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 12,
+            "kind": "query.final_sum_check",
+            "amount": 1,
+            "argument_sizes": []
+          }
+        ],
+        "spy": [
+          {
+            "index": 0,
+            "slot": "A",
+            "budget": 3,
+            "success": true,
+            "cost": 3,
+            "witness": [
+              "slot",
+              0,
+              "A",
+              "minimum",
+              3
+            ]
+          },
+          {
+            "index": 1,
+            "slot": "B",
+            "budget": 3,
+            "success": true,
+            "cost": 3,
+            "witness": [
+              "slot",
+              1,
+              "B",
+              "minimum",
+              3
+            ]
+          }
+        ],
+        "metadata": {
+          "q_bits": 3,
+          "label_bits": 1,
+          "tariff": 1,
+          "symbolic_floor_color_bits": 1,
+          "no_machine_time_claim": true,
+          "minima_access_in_caller": false,
+          "core_lineage": "byte-identical prior independent ledger;zero new replications"
+        }
+      },
+      "plants": [
+        {
+          "plant": {
+            "kind": "value",
+            "target": "accepted",
+            "replacement": true
+          },
+          "caught": true,
+          "value_preserved": false
+        },
+        {
+          "plant": {
+            "kind": "zero",
+            "target": "query.final_sum_check"
+          },
+          "caught": true,
+          "value_preserved": true
+        },
+        {
+          "plant": {
+            "kind": "omit_trace"
+          },
+          "caught": true,
+          "value_preserved": false
+        },
+        {
+          "plant": {
+            "kind": "duplicate_trace"
+          },
+          "caught": true,
+          "value_preserved": false
+        },
+        {
+          "plant": {
+            "kind": "value",
+            "target": "trace.1.budget",
+            "replacement": 2
+          },
+          "caught": true,
+          "value_preserved": false
+        }
+      ]
+    },
+    {
+      "id": "sole-hard-budget5-no-discount",
+      "seconds": 0.00017558299987285864,
+      "report": {
+        "id": "sole-hard-budget5-no-discount",
+        "value": {
+          "accepted": true,
+          "reason": "accept",
+          "known": 0,
+          "p": 1,
+          "budget": 5,
+          "cost": 5,
+          "trace": [
+            {
+              "index": 0,
+              "slot": "A",
+              "budget": 5,
+              "success": true,
+              "cost": 5,
+              "witness": [
+                "slot",
+                0,
+                "A",
+                "minimum",
+                5
+              ]
+            }
+          ],
+          "bad": 1,
+          "discount_eligible": false,
+          "mass": {
+            "2": {
+              "exact": "1",
+              "discount_holds": false
+            },
+            "233/100": {
+              "exact": "1",
+              "discount_holds": false
+            },
+            "3": {
+              "exact": "1",
+              "discount_holds": false
+            }
+          }
+        },
+        "counts": {
+          "query.pretest": 1,
+          "query.slot_length_cells": 1,
+          "query.guard_arithmetic": 3,
+          "query.budget_arithmetic": 4,
+          "query.actual_calls": 1,
+          "query.trace_cells": 1,
+          "query.returned_sum_cells": 1,
+          "query.cost_additions": 1,
+          "query.final_sum_check": 1
+        },
+        "events": [
+          {
+            "id": 0,
+            "kind": "query.pretest",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 1,
+            "kind": "query.slot_length_cells",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 2,
+            "kind": "query.guard_arithmetic",
+            "amount": 3,
+            "argument_sizes": []
+          },
+          {
+            "id": 3,
+            "kind": "query.budget_arithmetic",
+            "amount": 4,
+            "argument_sizes": []
+          },
+          {
+            "id": 4,
+            "kind": "query.actual_calls",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 5,
+            "kind": "query.trace_cells",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 6,
+            "kind": "query.returned_sum_cells",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 7,
+            "kind": "query.cost_additions",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 8,
+            "kind": "query.final_sum_check",
+            "amount": 1,
+            "argument_sizes": []
+          }
+        ],
+        "spy": [
+          {
+            "index": 0,
+            "slot": "A",
+            "budget": 5,
+            "success": true,
+            "cost": 5,
+            "witness": [
+              "slot",
+              0,
+              "A",
+              "minimum",
+              5
+            ]
+          }
+        ],
+        "metadata": {
+          "q_bits": 3,
+          "label_bits": 1,
+          "tariff": 1,
+          "symbolic_floor_color_bits": 1,
+          "no_machine_time_claim": true,
+          "minima_access_in_caller": false,
+          "core_lineage": "byte-identical prior independent ledger;zero new replications"
+        }
+      },
+      "plants": [
+        {
+          "plant": {
+            "kind": "value",
+            "target": "trace.0.budget",
+            "replacement": 4
+          },
+          "caught": true,
+          "value_preserved": false
+        },
+        {
+          "plant": {
+            "kind": "value",
+            "target": "mass.2.exact",
+            "replacement": "1/2"
+          },
+          "caught": true,
+          "value_preserved": false
+        },
+        {
+          "plant": {
+            "kind": "value",
+            "target": "discount_eligible",
+            "replacement": true
+          },
+          "caught": true,
+          "value_preserved": false
+        },
+        {
+          "plant": {
+            "kind": "metadata",
+            "target": "minima_access_in_caller",
+            "replacement": true
+          },
+          "caught": true,
+          "value_preserved": true
+        }
+      ]
+    },
+    {
+      "id": "cheap-known-four-q3",
+      "seconds": 0.000420667000071262,
+      "report": {
+        "id": "cheap-known-four-q3",
+        "value": {
+          "outputs": [
+            {
+              "partition": [
+                [
+                  4,
+                  5
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  6,
+                  7
+                ]
+              ],
+              "cuts": [
+                "10",
+                "01",
+                "00"
+              ]
+            }
+          ],
+          "costs": [
+            3
+          ],
+          "trace": [
+            {
+              "phase": "probe",
+              "budget": 3,
+              "callbacks": 8,
+              "outputs": [
+                {
+                  "partition": [
+                    [
+                      4,
+                      5
+                    ],
+                    [
+                      2,
+                      3
+                    ],
+                    [
+                      0,
+                      1
+                    ],
+                    [
+                      6,
+                      7
+                    ]
+                  ],
+                  "cuts": [
+                    "10",
+                    "01",
+                    "00"
+                  ]
+                }
+              ],
+              "costs": [
+                3
+              ],
+              "pruned": 0
+            }
+          ],
+          "path": "reuse",
+          "rank_calls": 0
+        },
+        "counts": {
+          "probe.q_guard": 1,
+          "probe.generate_calls": 1,
+          "probe.color_calls": 8,
+          "probe.oracle_tariff": 8,
+          "probe.nonempty_check": 1
+        },
+        "events": [
+          {
+            "id": 0,
+            "kind": "probe.q_guard",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 1,
+            "kind": "probe.generate_calls",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 2,
+            "kind": "probe.color_calls",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 3,
+            "kind": "probe.oracle_tariff",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 4,
+            "kind": "probe.color_calls",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 5,
+            "kind": "probe.oracle_tariff",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 6,
+            "kind": "probe.color_calls",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 7,
+            "kind": "probe.oracle_tariff",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 8,
+            "kind": "probe.color_calls",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 9,
+            "kind": "probe.oracle_tariff",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 10,
+            "kind": "probe.color_calls",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 11,
+            "kind": "probe.oracle_tariff",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 12,
+            "kind": "probe.color_calls",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 13,
+            "kind": "probe.oracle_tariff",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 14,
+            "kind": "probe.color_calls",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 15,
+            "kind": "probe.oracle_tariff",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 16,
+            "kind": "probe.color_calls",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 17,
+            "kind": "probe.oracle_tariff",
+            "amount": 1,
+            "argument_sizes": []
+          },
+          {
+            "id": 18,
+            "kind": "probe.nonempty_check",
+            "amount": 1,
+            "argument_sizes": []
+          }
+        ],
+        "spy": [],
+        "metadata": {
+          "q_bits": 2,
+          "label_bits": 3,
+          "tariff": 1,
+          "symbolic_floor_color_bits": 2,
+          "no_machine_time_claim": true,
+          "minima_access_in_caller": false,
+          "core_lineage": "byte-identical prior independent ledger;zero new replications"
+        }
+      },
+      "plants": [
+        {
+          "plant": {
+            "kind": "value",
+            "target": "rank_calls",
+            "replacement": 8
+          },
+          "caught": true,
+          "value_preserved": false
+        },
+        {
+          "plant": {
+            "kind": "zero",
+            "target": "probe.color_calls"
+          },
+          "caught": true,
+          "value_preserved": true
+        },
+        {
+          "plant": {
+            "kind": "zero",
+            "target": "probe.generate_calls"
+          },
+          "caught": true,
+          "value_preserved": true
+        },
+        {
+          "plant": {
+            "kind": "value",
+            "target": "outputs",
+            "replacement": []
+          },
+          "caught": true,
+          "value_preserved": false
+        },
+        {
+          "plant": {
+            "kind": "value",
+            "target": "costs",
+            "replacement": []
+          },
+          "caught": true,
+          "value_preserved": false
+        }
+      ]
+    }
+  ],
+  "scope": "same-lineage readiness only;no actual MAF solver/global recurrence/candidate acceptance"
+}

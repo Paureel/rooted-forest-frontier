@@ -1,0 +1,1478 @@
+
+=== PDF PAGE 1 ===
+Split-or-decompose: Improved FPT branching
+algorithms for maximum agreement forests
+David Mestel/envel⌢pe
+Department of Advanced Computing Sciences, Maastricht University, The Netherlands
+Steven Chaplick/envel⌢pe
+Department of Advanced Computing Sciences, Maastricht University, The Netherlands
+Steven Kelk/envel⌢pe
+Department of Advanced Computing Sciences, Maastricht University, The Netherlands
+Ruben Meuwese/envel⌢pe
+Department of Advanced Computing Sciences, Maastricht University, The Netherlands
+Abstract
+Phylogenetic trees are leaf-labelled trees used to model the evolution of species. In practice it is not
+uncommon to obtain two topologically distinct trees for the same set of species, and this motivates
+the use of distance measures to quantify dissimilarity. A well-known measure is the maximum
+agreement forest (MAF). Computing such a MAF is NP-hard and so considerable effort has been
+invested in finding FPT algorithms, parameterised byk, the number of components of a MAF. In
+this work we present improved algorithms for both the unrooted and rooted cases, with runtimes
+O∗(2.846k)and O∗(2.3391k)respectively. The key to our improvement is a novel branching strategy
+in which we show that any overlapping components obtained on the way to a MAF can be ‘split’ by
+a branching rule with favourable branching factor, and then the problem can be decomposed into
+disjoint subproblems to be solved separately.
+2012 ACM Subject ClassificationTheory of computation→Parameterized complexity and exact
+algorithms; Applied computing→Bioinformatics
+Keywords and phrasesPhylogenetics, maximum agreement forest, fixed parameter tractability,
+branching algorithms.
+FundingRuben Meuwese: Supported by the Dutch Research Council (NWO) KLEIN 1 grant Deep
+kernelization for phylogenetic discordance, project number OCENW.KLEIN.305.
+arXiv:2409.18634v2  [cs.DS]  21 Mar 2026
+
+=== PDF PAGE 2 ===
+2 Improved FPT branching algorithms for maximum agreement forests
+1 Introduction
+A phylogenetic tree is a binary tree whose leaves are bijectively labeled with a set ofn species
+(or, more generically, a set oftaxa)X. These trees are common in the systematic study of
+evolution: the leaves represent contemporary species and the internal vertices of the tree
+represent hypothetical common ancestors. There are many different methods for constructing
+such trees and it is not unusual for different methods to produce topologically distinct trees
+on the same input data, or the same method to produce distinct trees depending on which
+part of the genome has been used as input data. This naturally leads to the challenge of
+quantifying the topological dissimilarity of two trees on the same set of taxaX.
+Here we consider themaximum agreement forest(MAF) criterion for quantifying dissim-
+ilarity. Informally, this is a minimum-size partition ofX which splits both trees into (up to
+homeomorphism) the same set of disjoint, leaf-labelled subtrees. The agreement forest model
+is useful when the trees are presumed to differ due to the influence of complex biological
+phenomena, such as horizontal gene transfer, which topologically rearrange the underlying
+evolutionary history [18]. Unfortunately, it is NP-hard (in fact, APX-hard) to compute a
+MAF, both in the rooted variant of the problem (rMAF) [4], when the two input trees have
+a root denoting the direction of evolution, and in the unrooted variant, where the input trees
+are undirected (uMAF) [10, 11]. These variants have been intensively studied in the last
+decade by the algorithms community; see [15, 13, 5] for good overviews. The fixed parameter
+tractable (FPT) status of rMAF and uMAF dates back to 2004 and 2001, respectively, when
+linear kernels were established [3, 1]. Regarding FPT branching algorithms, which are the
+focus of this article, anO∗(4k)algorithm was given for rMAF in 2008 [2], followed byO∗(3k)
+in 2009 [17],O∗(2.42k)in 2013 1 [15] and finallyO∗(2.3431k)in 2015 [7], by an elaborate case
+analysis of at least 23 cases. Herek refers to the size of the optimum. For uMAF, anO∗(4k)
+algorithm was given in 2007 by [9] and (via a rather different technique) again in 2009 [17],
+and finallyO∗(3k)was given in 2015 [6] which builds on techniques from [15].
+Our Contribution.In this work we give FPT branching algorithms with running times
+O∗(2.3391k)and O∗(2.846k)for rMAF and uMAF, respectively, thus improving on previous
+results: quite significantly in the case of uMAF. The key insight is a novel ‘splitting’ branching
+rule, which ensures that the components created on the way to constructing the MAF can be
+assumed to be disjoint. More precisely, existing algorithms proceed by successively cutting
+edges in one of the two trees until a MAF is reached, so maintaining at each step of the
+algorithm a pair(T,F′)of one of our original treesT and a forestF′formed by cutting
+edges in the other input treeT′. The algorithm then branches on a set of further cuts to be
+made in the forest (according to some branching rule that must be proved to be safe, i.e. it
+must be shown that any MAF extending the current configuration must contain one of the
+candidate sets of cuts), and continues. The number of branches per cut edge controls the
+running time of the algorithm, and is called the ‘branching factor’.
+Our new insight is to show that whenever the components of our forest overlap in the
+other tree (i.e. the subtrees ofT induced by the taxa of each component ofF′are not
+disjoint) then there is a branching rule we can apply with branching factor at most 2. We
+can apply this ‘splitting’ branching rule until the components ofF′do not overlap inT,
+and then solve each component as a fresh instance of the MAF problem. Since the running
+time of all these algorithms is exponential in the number of cutsk, breaking an instance into
+multiple subproblems leads to a major gain as long as the remaining cuts are not all in one
+1 A further advancement was claimed in the PhD thesis of Whidden (2013) but this remains unpublished.
+
+=== PDF PAGE 3 ===
+D. Mestel, S. Chaplick, S. Kelk, R. Meuwese 3
+a
+b
+c
+e
+d
+a
+b
+c
+a
+b
+c
+e
+d
+T
+e
+d
+T
+T ′
+a
+b
+c
+e
+d
+T ′
+Figure 1Left: two unrooted binary phylogenetic trees on taxaX ={a,b,c,d,e}. An uMAF for
+these two trees has 2 components, e.g.{{a,b,c},{d,e}}. Right: two rooted binary phylogenetic trees
+on the same set of taxa. An rMAF for these two trees has 3 components, e.g.{{a,c},{b},{d,e}}.
+subproblem. Most of the technical work for our algorithms will be in showing that this does
+not occur, or rather that if it would occur then there are alternative branching rules we can
+apply instead with favourable branching factors.
+We are hopeful that this new technique, which limits the need for extensive case analysis,
+could lead to improvements more widely on the many variants of MAF that exist; it is
+arguably the first structural methodological advance in MAF branching algorithms since the
+foundational work of Whidden et al. 15 years ago [17, 15]. Although the running time of
+O∗(2.3391k)for rMAF is a small improvement over the previous best ofO∗(2.3431k), we
+are optimistic that in the future our technique can lead to further improvements. Indeed,
+as another proof-of-concept we improve the fastest uMAF branching algorithm on two
+caterpillars (which are path-like phylogenetic trees) fromO∗(2.49k)to O∗(2.4634k)using
+our technique. Although empirical evaluation is outside the scope of this paper, we expect
+that overlapping components will arise frequently in practice, so that adding our split-
+or-decompose technique may improve the performance of existing algorithms on practical
+problems.
+In Section 2 we set out some preliminary definitions. In Section 3 we describe the existing
+FPT branching algorithms for uMAF and rMAF which we build upon. Section 4 introduces
+our ‘split-or-decompose’ technique. This is then applied to uMAF and rMAF in Sections 5
+and 6 respectively. Finally in Section 7 we discuss some future research directions.
+2 Preliminaries
+Throughout this paper,X denotes a finite set oftaxa. We consider both unrooted and rooted
+binary phylogenetic trees. We introduce terminology and notation for unrooted trees, and
+then explain where the differences lie for rooted trees. Figure 1 illustrates some key concepts.
+Unrooted trees.Anunrooted binary phylogenetic tree T on X is a simple undirected tree
+whose leaves are bijectively labeled withX and whose other vertices all have degree 3. For
+simplicity we refer to an unrooted binary phylogenetic tree as aphylogenetic treeor even
+just atreewhen it is clear from the context. For two phylogenetic treesT,T′on the same
+set of taxaX we writeT =T′if there is an isomorphism betweenT and T′that is identity
+on X. Note that, if|X|≤3, T = T′always holds. A tree is acaterpillarif deleting all
+leaves yields a path. Two leaves, saya and b, ofT are called acherry{a,b}of T if they are
+adjacent to a common vertex. ForX′⊆X, we writeT [X′]to denote the unique, minimal
+subtree ofT that connects all elements inX′. For brevity we callT [X′]theembeddingof
+(the subtree induced by)X′in T. We refer to the phylogenetic tree onX′obtained from
+T [X′]by suppressing degree-2 vertices as therestriction ofT to X′and we denote this by
+T|X′. If X′⊆Xand T|X′=T′|X′, we say that the subtrees induced byX′in T and T′
+arehomeomorphic; for brevity we often just say “X′is homeomorphic”. For a phylogenetic
+tree T we will sometimes writeℓ(T )to denote the taxa at its leaves. The meaning ofℓ(.)
+extends as expected also to embeddings of phylogenetic trees.
+
+=== PDF PAGE 4 ===
+4 Improved FPT branching algorithms for maximum agreement forests
+A subtreeT∗of a phylogenetic treeT ispendantif it can be detached fromT by deleting
+a single edge ofT. For simplicity we often refer to a pendant subtree by the set of taxa
+X∗⊂Xat its leaves. LetX∗⊂Xand T,T′be two phylogenetic trees onX, such thatX∗
+induces a pendant subtree in bothT andT′. We say that the pendant subtreeT′iscommon
+ignoring rootingif T|X∗=T′|X∗. The pendant subtreeT′iscommon including rootingif
+T|(X∗∪{y}) = T′|(X∗∪{y})where y is any taxon inX\X∗. The second notion of common
+pendancy is stronger than the first; informally, it says that the two pendant subtrees not
+only have the same topology, but also attach to their parent trees at the same place. For the
+two unrooted treesT,T′in Figure 1, takingX∗={a,b,c}yields a common pendant subtree
+ignoring rooting, but not including rooting.
+Rooted trees.Arootedbinary phylogenetic tree on X is a simple directed tree whose
+leaves are bijectively labelled byX and all internal nodes have indegree-1 and outdegree-2,
+except (when|X|≥2) a single node with indegree-0 and outdegree-2 (theroot). As in the
+unrooted case, we often simply writephylogenetic treeortreeto denote a rooted binary
+phylogenetic tree. The definitions for rooted trees go through as for unrooted trees, with
+the following exceptions. For|X|≤3, T =T′does not always hold (but it does if|X|≤2).
+ForX′⊆X, we writeT|X′to denote the rooted tree obtained fromT [X′]by suppressing
+all nodes that have indegree-1 and outdegree-1. Also, unlike unrooted trees the notion of a
+common pendant subtree requires no nuancing: the location of the root in the subtree is
+always taken into account. Note that a rooted tree (when|X|≥2) might only have one
+cherry, and such a tree is a caterpillar. However, an unrooted treeT (when|X|≥4) always
+has at least two cherries{a,b},{c,d}where a,b,c,d are distinct andT [{a,b}]is disjoint
+from T [{c,d}]. The only unrooted trees with at most two cherries are caterpillars. Finally,
+when referring to a path in a rooted tree, we mean a path in the underlying unrooted tree.
+Agreement forests.The following definitions hold for both rooted and unrooted trees. Let
+T and T′be two phylogenetic trees onX. Let F ={B1,B 2,...,Bk}be a partition ofX,
+where each blockBi withi∈{1, 2,...,k}is referred to as acomponentofF. We say thatF
+is anagreement forestforTandT ′if the following conditions hold.
+(1) For eachi∈{1,2,...,k}, we haveT|Bi =T ′|Bi.
+(2) For each pairi,j∈{1, 2,...,k}with i̸= j, we have thatT [Bi]and T [Bj]are vertex-
+disjoint inT, andT ′[Bi]andT ′[Bj]are vertex-disjoint inT ′.
+Let F ={B1,B 2,...,Bk}be an agreement forest forT and T′. Thesizeof F is simply its
+number of components; i.e.k. Moreover, an agreement forest with the minimum number of
+components (over all agreement forests forT and T′) is called amaximum agreement forest
+(MAF)for T andT′. The number of components of a maximum agreement forest forT andT′
+is denoted byduMAF(T,T′), whenT andT′are unrooted trees, anddrMAF(T,T′)when T and
+T′are rooted. Although they share much common structure, there are subtle combinatorial
+differences between the rMAF and uMAF models, which explains the differences in running
+times obtained thus far for the two models.2
+It is well-known that, when computingduMAF(T,T′), pendant subtrees that are common
+including rooting can be reduced to a single taxon without changingduMAF(T,T′)[ 1]. When
+computing drMAF(T,T′)common pendant subtrees can also be reduced to a single taxon
+without changingdrMAF(T,T′)[ 3]. This is why, for both rMAF and uMAF, ifT andT′both
+contain a cherry{a,b}, this common cherry can always be reduced to a single taxon.
+2 Also, with rMAF, an extra taxonρpendant to the root in both trees is commonly added. This is done
+to ensure that rMAF correctly models therooted subtree prune and regraftdistance. We do not adopt
+this convention here, but just note that our rMAF algorithm works with or withoutρ.
+
+=== PDF PAGE 5 ===
+D. Mestel, S. Chaplick, S. Kelk, R. Meuwese 5
+3 Existing branching strategies
+We first describe the branching algorithm of Chen et al. [6] for uMAF, with running time
+O∗(3k), which was based on earlier work by Whidden et al. [15]. Then, for rMAF, we explain
+the algorithm from [15] with a running time ofO∗(2.42k). These two classical branching
+schemes form the starting point for our new algorithms.
+3.1 Chen et al.’s algorithm for uMAF [6]
+We start with two unrooted treesT and T′on X. The high-level idea is to progressively cut
+edges in one of the trees, sayT′, to obtain a forestF′(initially F′=T′) with an increasing
+number of components, until it becomes anagreementforest forT and T′. Each edge cut
+increases the size of the forest by 1. Hence, to determine whether there exists an agreement
+forest with at mostk components, we can make at mostk−1edge cuts in T′. At each step
+various “tidying up” operations are applied to exhaustion:
+1. If a singleton component is created inF′(i.e. a component comprising a single taxona),
+then we deleteafrom bothTandF ′;
+2.Degree-2 nodes are always suppressed;
+3. Common cherries are always reduced into a single taxon in both trees. For example by
+discarding an arbitrary taxon from the common cheery in bothTandF′.
+The way we will choose edges to cut, combined with the tidying up operations, ensures
+that (unlikeT′) T remains connected at every step. More formally: if, at a given step,T′
+has been cut into a forestF′and X′is the union of the taxa inF′, thenT will have been
+transformed intoT|X′. To keep notation light we will henceforth refer simply toT and F′,
+with the understanding that we are actually referring to the tree-forest pair encountered
+at a specific iteration of the algorithm. The general decision problem is as follows. We are
+given a(T,F′)tree-forest pair on a setX′⊆Xof taxa, and a parameterk, and we wish
+to know: is it possible to transformF′into an agreement forest making at mostk further
+cuts (more formally: an agreement forest forT|X′and T′|X′)? If we can answer this query
+we will, in particular, be able to answer theoriginalquery of whether the original input
+(T,T′)has an agreement forest with at mostk + 1components. Note that for( T,T′)the
+query k = 0returns TRUE if and only ifT =T′. We use a recursive branching algorithm
+to answer this query, and writeT (k)to denote the number of final configurations at the
+lowest level of the branching process (i.e. the number of ‘leaf’ calls which return a value
+without any further recursive calls) that results from answering this query. Note that the
+total number of recursive calls in this branching process is at most twice the number of final
+calls, and the total running time of the algorithm is at most a polynomial factor larger than
+the total number of calls (because inside each call only a polynomial amount of work will be
+undertaken). For brevity, and because we are only interested in the exponential dependence
+of the running time onk, we henceforth simply refer toT(k)as “running time”.
+The following branching rules are used; we assume that common cherries have already
+been (exhaustively) collapsed.
+1. (DIFFERENT COMPONENTS) IfT has a cherry{a,b}such thata andb are in different
+components ofF′, then cuta off, or cutb off. This yields the inequalityT (k)≤2T (k−1)
+and a bound on the exponent of2k.
+2. (CHEN) IfT has a cherry{a,b}such thata and b are in the same componentB of F′,
+then letP be the unique path froma to b in B. Lete1,...,et be the edges with exactly
+one endpoint onP. Note that t≥2otherwise {a,b}is a common cherry. There are
+
+=== PDF PAGE 6 ===
+6 Improved FPT branching algorithms for maximum agreement forests
+a
+b
+T
+a
+b
+e1
+e2
+e3
+P
+B ∈ F ′
+a
+b
+e1
+e2
+e3
+a
+b
+e1
+e2
+e3
+a
+b
+e3
+a
+b
+e2
+a
+b
+e1
+k − 1
+k − 1
+k − 2
+k − 2
+k − 2
+Figure 2An illustration of Chen’s branching strategy forunrootedagreement forests when{a,b}
+is a cherry inT and a and b are together in a componentB∈F′. Here t = 3and the resulting
+recurrence is2T(k−1) + 3T(k−2).
+a
+b
+T
+a
+b
+e1
+e2
+e3
+P
+B ∈ F ′
+k − 1
+k − 1
+k − 3
+a
+b
+e1
+e2
+e3
+P
+a
+b
+e1
+e2
+e3
+P
+a
+b
+P
+Figure 3An illustration of Whidden’s branching strategy forrootedagreement forests when
+{a,b}is a cherry inT anda andb are together in a componentB∈F′. Heret = 3, and the resulting
+recurrence is2T(k−1) +T(k−3).
+three possibilities:a is cut off,b is cut off, all but one of thee1,...,et edges is cut off.
+See Figure 2 for an illustration of how the branching works whent = 3. This gives a
+recurrence T (k)≤2T (k−1) + tT (k−(t−1)). If t≥3, then this recursion can be
+bounded by3k. However, fort = 2the recursion yields4 k. To circumvent this, Chen et al.
+observe that the branch “cutb off” can be dropped whent = 2. This yields a recurrence
+T (k−1) + 2T (k−1), producing a bound of3k for that case, and thus at most3k overall.
+3.2 Whidden et al.’s algorithm for rMAF [15]
+This is very similar to the above3 and, indeed, predates it. The second branching rule is
+slightly different as a result of the trees being rooted.
+1.(DIFFERENT COMPONENTS) This is the same as in the previous section.
+2. (WHIDDEN) IfT has a cherry{a,b}such thata and b are in the same componentB
+of F′, then letP be the unique path froma to b in B. Lete1,...,et be the edges whose
+tails, but not heads, lie onP. Note that t≥1otherwise {a,b}is a common cherry.
+There are three possibilities:a is cut off,b is cut off,allthe e1,...,et edges are cut off.
+See Figure 3. This gives a recurrenceT (k)≤2T (k−1) +T (k−t). Ift≥2, then this
+3 The tidying up steps are also analogous, with the exception that we do not suppress nodes with
+indegree-0 and outdegree-2, i.e. the roots of components.
+
+=== PDF PAGE 7 ===
+D. Mestel, S. Chaplick, S. Kelk, R. Meuwese 7
+recursion is bounded by(1 +
+√
+2)k≈2.42k. The caset = 1remains a bottleneck however,
+yielding3 k. However, whent = 1we do not need to consider the case whena is cut off,
+or whenb is cut off: it is safe to simply deterministically cut the edgee1 (Case 6.2 of
+[15]). This is sufficient to obtain a bound on the recursion of2.42k for allt≥1. The
+limiting case ist = 2, since the running time further decreases fort≥3. Fort = 3we
+obtain approximately2.206k, for example.
+4 Split-or-decompose
+In this section we describe our ‘split-or-decompose’ technique, which applies to both rooted
+and unrooted trees. First, in Section 4.1 we describe a branching rule (branching rule 1) with
+branching factor two that applies whenever we have overlapping components. If this rule
+does not apply (or after it has been applied to exhaustion), we are guaranteed to have disjoint
+components which we can then solve as independent sub-problems. This has two benefits.
+Firstly, at each subsequent level of our recursive algorithm we have two trees rather than
+a tree and a forest. Secondly, if the remaining cuts are to any degree divided across these
+subproblems then we get a significant gain (essentially because in generalρk1 +ρk2≪ρk1+k2).
+In Section 4.2 we describe the ‘recursion rule’ used to achieve this.
+Unlike earlier work, we frame our recursive algorithm as solving a hybrid decision-
+optimization problem. Formally: given( T,F′)the query asks, is it possible to reach an
+agreement forest with at mostk further cuts inF′, and if so what is the minimum number
+of cuts required to reach an agreement forest from this point? This requires slightly different
+post-processing of the results for alternative branches inside branching rules: essentially,
+taking the minimum rather than the logical OR. The formalism of an optimization problem
+is necessary in order to use the number of cuts required by one sub-problem to inform the
+depth to which we solve another.
+4.1 Splitting overlapping components
+The essence of our splitting strategy is to exploit the fact that at most one component of
+an agreement forest can use a given edge of a tree, and that all other components need to
+respect the bipartition of their taxa induced by that edge. Before concretizing this notion we
+need to introduce some further concepts.
+LetT be a binary phylogenetic tree, and let(Y,Z )be a bipartition of the labels ofT. Say
+that a cutK⊆E(T )splits( Y,Z )if no component ofT\K contains bothY- andZ-vertices.
+Say that cutK1 refinescut K2 if whenever two labels are connected inT\K 1 they are
+connected inT\K 2. Say that a setC ={K1,...,Kn}of non-empty cuts is asplitting core
+for(Y,Z)if for every cutKthat splits(Y,Z)we have thatKrefinesK i for someKi∈C.
+The next lemma not only establishes an important property of splitting cores, but its
+proof also includes an approach (summarized in Figure 4) to obtain such a splitting core.
+This is then used in Branching rule 1 to branch with respect to the cuts in the splitting core.
+See Figure 5 for more intuition on the concept of a splitting core.
+▶ Lemma 1.Let T be a binary phylogenetic tree and(Y,Z )a non-trivial bipartition of the
+labels ofT. Then there exists a splitting coreCfor(Y,Z)such that ∑
+K∈C2−|K|≤1
+2.
+Proof. Induction on the number of leaves ofT, strengthening the inductive hypothesis to
+only assume maximum degree 3 rather than that all internal nodes have degree exactly 3.
+The base case (one leaf) is vacuous since there is no non-trivial bipartition on one element.
+
+=== PDF PAGE 8 ===
+8 Improved FPT branching algorithms for maximum agreement forests
+T
+subset of Y
+subset of Z
+e
+e
+e connects
+taxa in Y
+e connects
+taxa in Z
+e
+Two Choices:
+
+
+Figure 4Thebranchinginvolved in splitting a tree T into components according to a bipartition
+(Y,Z )of the leaves ofT. In any minimal split, the edgee will be allocated either to a subtree whose
+leaves belong toY or to a subtree whose leaves belong toZ. Repeatedly applying this procedure
+allows a splitting core to be constructed (see Figure 5).
+If T [Y ]is pendant inT, say detached by deleting edgee, then{{e}}is a splitting core
+satisfying the inequality. Otherwise, there is an internal nodev ofT of degree 3 joined by an
+edge e1 to a pendant subtree whose leaves are all drawn fromY′⊆Y, by an edgee2 to a
+pendant subtree whose leaves are all drawn fromZ′⊆Z, and by an edgee3 to a pendant
+subtree containing a mixture ofY and Z leaves. WriteT1 and T2 for the component ofv in
+T\{e1}andT\{e2}respectively; note that each ofT1 andT2 contains bothY- andZ-nodes.
+Let C1 and C2 be splitting cores for(Y,Z )∩T1 and( Y,Z )∩T2 satisfying the inequality (by
+the inductive hypothesis). ThenC ={K∪{e1}|K∈C1}∪{K∪{e2}|K∈C2}is a splitting
+core for(Y,Z ). Indeed, letK be a cut that splits(Y,Z ). ThenK refines{e1}or{e2}; say
+{e1}w.l.o.g. ThenK∩T1 splits( Y,Z )∩T1, soK∩T1 refinesK′for someK′∈C1, andK
+refinesK′∪{e1}∈C, as required. Now to complete the proof note that by the inductive
+hypothesis
+∑
+K∈C
+2−|K|≤
+∑
+K∈C1
+2−(|K|+1)+
+∑
+K∈C2
+2−(|K|+1)≤1
+4 + 1
+4 = 1
+2.◀
+T
+subset of Y
+subset of Z
+
+
+
+
+
+
+
+
+
+Figure 5(left) A subtreeT′of a treeT where the leaves (taxa) have been bipartitioned as(Y,Z ).
+(right) Three minimal cuts inT′where no resulting component has leaves from both ofY and Z.
+These three cuts form a splitting core of the subtreeT′with respect to(Y,Z ). The cuts can be
+obtained by repeatedly identifying a pair of edges, at least one of which must be cut, and branching
+on which of the two is cut (see Figure 4).
+
+=== PDF PAGE 9 ===
+D. Mestel, S. Chaplick, S. Kelk, R. Meuwese 9
+▶ Branching rule 1(SPLIT).Suppose that components T′
+1,T′
+2 ∈F′have overlapping
+embeddings inT, i.e. T [ℓ(T′
+1)]and T [ℓ(T′
+2)]are not disjoint. We write Ti, i∈{1, 2}as
+shorthand for these embeddings, i.e.T1 =T [ℓ(T′
+1)]and T2 =T [ℓ(T′
+2)]. Select a common edge
+e∈T1∩T2. First branch on whethere will be assigned to embeddingT1 or embeddingT2.
+For the branch in whiche is assigned toT3−i, let(Y,Z )be the bipartition induced onℓ(T′
+i )
+by associating labels which are on the same side ofe in Ti. LetC be a splitting core as in
+the statement of Lemma 1. Now branch on the cuts ofC.
+As stated earlier the idea behind this branching rule, which generalizes the DIFFERENT
+COMPONENTS branching rule4, is that in any agreement forest at most one component
+can use edgee in T. For a component (say,T′
+1) that does not have edgee available, no path
+can survive inT′
+1 from a taxon inY to a taxon inZ. Hence, any agreement forest reached
+from this point necessarily separates all theY taxa into different components than theZ
+taxa. Crucially, the branching factor of such a separation procedure is comparatively low.
+Formally this is because of the inequality in Lemma 1; intuitively, once we have decided to
+separateY fromZ inT′
+1 we can recursively identify pairs of edges, such that at least one has
+to be cut in any (optimal) agreement forest reached from this point (see Figure 4). The fact
+that we do not make a cut with the initial branch (i.e. when we decide whetherT′
+1 or T′
+2
+claims the edgee in T) is compensated for by the fact that the final cut required to separate
+YfromZ, is deterministic (i.e. “for free”).
+▶ Lemma 2.Branching rule 1 is safe and has recurrence dominated byT (k) = 2T (k−1),
+assumingT(k)∈ω(2k). This yields branching factor 2.
+Proof. For safety, the branch wheree is allocated toT3−irepresents the case that edgee is
+notused by any of the components thatTi is split into in the agreement forest ultimately
+reached; clearly this must hold for eitheri = 1or i = 2(or both). Then the final MAF must
+be a cut which splitsTi with respect to the bipartition(Y,Z )and so it must refine some
+element of the splitting coreC. For the recurrence, writingC1 and C2 for the splitting cores
+for the two branches, we haveT (k) =
+(∑
+K∈C1T(k−|K|))
+)
++
+(∑
+K∈C2T(k−|K|)
+)
+, which
+by Lemma 1 is dominated byT(k) = 2T(k−1).◀
+Note that since the overall recurrence is assumed to be inω(2k)any non-trivial splitting
+core would only improve the recurrence. In particular, encountering a splitting core with
+more than a single cut of size 1 leads to a greater degree of branching at branching factor 2,
+and hence an improved overall running time.
+4.2 Decomposing into disjoint components
+We call a(T,F′)instance such that the components ofF′induce disjoint subtrees ofT a
+disjoint instance. It is easy to see that for a disjoint instance a smallest possible agreement
+forest reachable from(T,F′)can be obtained by independently computing smallest possible
+agreement forests for each of the tree pair instancesT|B,F′|B, and combining them, where
+B ranges over all components inF′. However, if we are seeking a MAF with at mostk cuts,
+it is not clear how these cuts need to be partitioned among the sub-instances. It turns out
+that we can make gains by first testing each sub-instance at some constant deptht, and then
+4 To see this, if{a,b}is a cherry inT, anda and b belong to different non-singleton components inF′,
+then the embeddings of these two non-singleton components inT necessarily overlap on the parent ofa
+andbinT. Ifaorbis a singleton inF ′, then it would already have been tidied up.
+
+=== PDF PAGE 10 ===
+10 Improved FPT branching algorithms for maximum agreement forests
+(for those for which this fails) re-testing using the knowledge thus gained about the number
+of cuts needed for other components. We note that testing at deptht amounts to asking
+whether the sub-instance has an agreement forest with at most(t + 1)components and if
+so returning the smallest such agreement forest. For constantt this can be computed in
+polynomial time simply by trying all possible ways to cut at mostt edges in one of the trees
+comprising the sub-instance.
+▶ Recursion rule(Parameter t).Let I = (T,F′)be a disjoint instance, letT′
+1...T′
+q be the
+components ofF′, and writeTi for the subtree ofT induced by the taxa ofT′
+i. To solveI to
+depthk, do the following:
+1. For eachi, solve the instance(Ti,T′
+i )to depth t, and let the result beri. Writer′
+i =t + 1
+ifr i =⊥andr′
+i =r i otherwise.
+2. For eachi, letsi =ri ifri̸=⊥. Ifri =⊥, solve the instance(Ti,T′
+i )to depth k−∑
+j̸=ir′
+j,
+and let the result besi.
+3.Return⊥if anysi =⊥and∑
+isi otherwise.
+Note that this is clearly sound: once we have established at step 1 that all the components
+except fori require a total of at least∑
+j̸=ir′
+j cuts to produce a MAF, it suffices at step 2 to
+solve componenti to depthk−∑
+j̸=ir′
+j. In terms of running time, if all components are
+homeomorphic then we terminate after step 1 in polynomial time. If exactly one component
+is non-homeomorphic, then Step 2 contains a single call also to depthk. However, if at least
+two components are non-homeomorphic then we see in the next lemma that we obtain a
+huge gain, equivalent to applying a branching rule with branching factor21/(t+1).
+▶ Lemma 3.For k≥t+ 1, if the disjoint instanceI = (T,F′)has at least two non-
+homeomorphic components (i.e. those whereTi is not homeomorphic toT′
+i) then the cost
+of solving instanceI with the recursion rule with parametert has recurrence dominated by
+T(k) = 2T(k−(t+ 1)).
+Proof. Step 1 involves solving the sub-instances to constant depth, and hence only polynomial
+work. Letp be the number of sub-instances returning⊥at step 1 and hence requiring to
+be solved at step 2. Ifp = 1then there is only one sub-instance to be solved, to depth at
+most k−1(since at least one other sub-instance was non-homeomorphic and so required at
+least one cut), for total work at mostT (k−1). Ifp≥2then each subinstance is solved to
+depth at mostk−(p−1)(t + 1)(or return ⊥if this is negative) and so we have total work
+at mostpT (k−(p−1)(t + 1)). It is easy to check that this is dominated byp = 2, giving
+the required result.◀
+Note that the Recursion rule and Lemma 3 can be further optimised to use simultaneous
+iterative deepening in place of a constantt, giving a bound of essentiallyT (k−1)rather
+than2T (k−(t + 1)). We do not describe this in detail, however, because it does not improve
+the overall running time of any of our algorithms: for each one the limiting case (as well as
+most of the mathematical work) is in handling/avoiding the situation where all except one of
+the components are homeomorphic. In fact, for the unrooted and rooted algorithms it will
+suffice to taket= 0andt= 1respectively.
+5 Unrooted trees
+Before deploying our split-or-decompose technique to uMAF, we start with some insights and
+some improvements of special cases. First, note that when Chen’s algorithm is applied to a
+tree-pair(T,T ′), rather than a tree-forest pair, there is complete symmetry betweenTand
+
+=== PDF PAGE 11 ===
+D. Mestel, S. Chaplick, S. Kelk, R. Meuwese 11
+T′. In particular, we can apply the second part of Chen’s algorithm to cherries fromT′, not
+just to cherries fromT. (This insight holds for Whidden’s algorithm on rooted trees, too).
+Next, we observe that CHEN(t= 2)can actually be further strengthened.
+▶ Observation 4.Let {a,b}be a cherry inT such thata and b are in the same component
+B of F′and the path froma to b in B has exactly two incident edgese1,e 2. Then, if an
+agreement forestF∗can be reached from here by making at mostk′≤kcuts, then withk′(or
+fewer) cuts an agreement forest can be reached in which{a,b}are in the same component.
+Proof. Suppose an agreement forestF∗is reached from this position wherea and b end up
+in different componentsBa and Bb. Observe that, due to{a,b}being a cherry inT, at least
+one ofBa and Bb is a singleton component. If bothBa and Bb are singleton components,
+then at most one component distinct fromBa and Bb, let us call thisBc, intersects the path
+froma tob inB. We can cut this componentBc (incurring one extra cut) to free up the path
+from a to b in B and then joinBa and Bb (saving one cut). Hence,a and b are now together
+in a component and the number of components has not increased; we are done. Next, assume
+that exactly one ofBa and Bb is a singleton, so w.l.o.g.|Ba|≥2and |Bb|= 1. If|Ba|= 2,
+we can mergeBa andB b to obtain a valid agreement forest with one fewer component and
+we are done. If|Ba|>2and at least one of the edgese1,e 2 is not used byBa, it is again
+safe to simply mergeBa and Bb. The only issue is if bothe1 and e2 are used byBa. In this
+case, let∅⊂Si⊂(Ba\{a}), i∈{1, 2}, be the subset ofBa that lies beyond edgeei. Note
+that Ba ={a}∪S1∪S2. We replace the two componentsBa,Bb with the two components
+S1,S 2∪{a,b}and we are done.◀
+High-level intuition.By Observation 4, the caset = 2simplifies to: cut one of{e1,e 2}
+off, giving a bound of2k. After this mild strengthening, the caset = 3is the only limiting
+case of Chen’s algorithm5, with recurrence2T (k−1) + 3T (k−2)(yielding branching factor
+3). So, to improve the overall running time for uMAF, it is sufficient to target this case, and
+in particular the three branches where two cuts are made. As discussed in Section 4, if the
+resulting components are not disjoint then we can immediately apply branching rule 1 and
+replace aT (k−2)with2 T (k−3). The term2T (k−3)is obtained when we substitutek−2for
+k in the (worst-case) recurrence for branching rule 1, i.e.2T ((k−2)−1). If the components
+are disjoint but at least two of them are non-homeomorphic then we also win by Lemma 3:
+we again obtain a strengthening fromT (k−2)to2 T ((k−2)−1) = 2T (k−3). We will in due
+course argue that at least two of the threeT (k−2)terms can be strengthened this way. Then,
+instead of an overall running time of2T (k−1)+3T (k−2)we get2T (k−1)+T (k−2)+4T (k−3)
+which solves to the required branching factor of2.846. To make the above machinery work
+we need to deal with the remaining case when the components resulting from aT (k−2)
+invocation are disjoint inT and two of them are homeomorphic. We will handle this by
+introducing new branching rules with low branching factors which are applicable in certain
+special cases, and then show that if none of these are applicable then when we apply CHEN
+(t = 3)the bad case cannot happen. Ultimately this will culminate inAlgorithm uMAF
+shown later in Figure 8.
+The first special-case rule is described by the following lemma.
+▶ Lemma 5.Let T and T′be two unrooted trees onX without common cherries. Assume
+that CHEN does not apply witht = 2or t≥4. Let{a,b}be a cherry inT that allows at = 3
+5 Fort≥4the branching factor of CHEN is at most 2.595.
+
+=== PDF PAGE 12 ===
+12 Improved FPT branching algorithms for maximum agreement forests
+application of CHEN and let∅⊂X1,X 2,X 3⊂(X\{a,b})be the three subsets of taxa that
+are pendant on the path froma to b in T′(the labelling of these three subsets is arbitrary).
+If two or more of theXi have cardinality 1, then the branching rule CHEN(t = 3)can be
+slightly adapted to yield recursionT (k) = 2T (k−1) + 2T (k−2)which has a branching factor
+of at most≈2.73. Specifically: letX1 ={c}and X3 ={d}and without loss of generality
+(because the labels ofa and b are symmetric, and because of the arbitrary labelling of theXi)
+assume thatc is sibling toa in T′. Then the branch of CHEN(t = 3)where c and X2 are
+cut off, does not need to be considered.
+Proof. Observe that{a,c}is a cherry inT′. Therefore, to prevent triggering CHENt = 2
+or t≥4, c must be exactly four edges away froma in T. Consider an agreement forest
+reached from this point that contains the component{a,b,d}. In this forest,c is definitely
+a singleton. It can be verified that, due toc being exactly four edges away froma in T,
+replacing the components{a,b,d},{c}with the components{a,b,c},{d}also yields a valid
+agreement forest. Hence, aT (k−2)branch of CHEN(t = 3)can be dropped—specifically,
+the one that cuts offcandX 2—and we obtain the required recursion.◀
+The improvement of CHENt = 3by Lemma 5 is denoted CHEN(t = 3,≥2 singletons).
+Crucially, incorporating this branching rule allows us to focus our attention on applications of
+CHEN t = 3whenat most oneof X1,X 2,X 3 is a singleton. The next special-case branching
+rule detects and handles the situation that the two trees contain pendant components which
+are homeomorphic once cut off.
+▶ Branching rule 2.Let T and T′be unrooted trees with no common cherries. Suppose
+that there existsX′⊂ℓ(T′)such that,
+1.T ′|X′=T|X′
+2.T ′[X′]is pendant inT ′, andT[X′]is pendant inT
+3.|X′|>1.
+That is,X′induces a non-trivial common pendant subtree, ignoring rooting, inT′and T.
+Then we cut off the pendant subtreeT′[X′]from T′, cut off the pendant subtreeT [X′]from
+T, and delete the two pendant subtrees we have cut off (since they are homeomorphic).
+▶Lemma 6.Branching rule 2 is safe and has recurrenceT(k) =T(k−1).
+Proof. The recurrence is trivial, since we deterministically make one cut inT′. For safety,
+observe that since all common cherries have already been collapsed, and|X′|>1, the two
+pendant subtrees induced byX′arenotcommon including rooting; informally, they are
+attached toT′and T at different locations. Hence, any agreement forest obtained from this
+point cannot have a component that is a strict superset ofX′. Consider, then, a smallest
+possible agreement forest obtained from this point. Suppose this agreement forest contains a
+componentB1 containing at least one taxon fromX′and at least one taxon from outsideX′.
+Then there is at least one componentB2 that is a strict subset ofX′. ReplacingB1,B2 (and
+any other components that are strict subsets ofX′) byX′,( B1\X′)yields an agreement
+forest of the same or smaller size, in whichX′is a component, from which safety follows.◀
+The next lemma shows that the non-applicability of CHEN for certain values oft, implies
+that some of the branches created by CHENt = 3induce forests with overlapping components.
+This insight will play a crucial role later in the proof of Lemma 9.
+▶ Lemma 7.Let T and T′be two unrooted trees onX with no common cherries. Assume
+that none of CHEN(t = 2),( t≥4)or( t = 3,≥2 singletons)apply. Let {a,b}be a cherry
+
+=== PDF PAGE 13 ===
+D. Mestel, S. Chaplick, S. Kelk, R. Meuwese 13
+a
+b
+X1
+X2
+X3
+T ′
+c
+d
+X2
+X1
+X3
+T
+c
+d
+a
+b
+Figure 6The situation described in the proof of Lemma 7. HereX1 is the leftmost of the three
+subtrees betweena and b in T′, but this is not necessary. InT, T [X1]is shown in the dotted circle.
+in T that allows at = 3application of CHEN and let∅⊂X1,X 2,X 3⊂(X\{a,b})be the
+three subsets of taxa that are pendant on the path froma to b in T′(the labelling of these
+three subsets is arbitrary). Due to non-applicability of CHEN(t = 3,≥2 singletons), at least
+two ofX1,X 2,X 3 will have cardinality 2 or larger. Without loss of generality letX1 be a set
+with cardinality at least 2. SupposeT [X1∪{a,b}], T [X2]and T [X3]are mutually disjoint in
+T, and thatT|(X1∪{a,b}) =T′|(X1∪{a,b}). Then:
+T[X 2]andT[X 3]are both pendant inT, butT[X 1∪{a,b}]is not,
+T[X 1],T[X 2∪{a,b}]andT[X3]are not all mutually disjoint, and
+T[X 1],T[X 2]andT[X 3∪{a,b}]are notall mutually disjoint.
+In particular, at least two of theT (k−2)branches of CHEN( t = 3)create forests of T′that
+induce overlapping components inT.
+Proof. See Figure 6. Let{c,d}be a cherry inX1 inT′. Consider the embeddingT [X1∪{a,b}].
+The path fromc to d on this embedding has at least three edges, because otherwise{c,d}
+would be a common cherry. Due to the assumption thatT|(X1∪{a,b}) = T′|(X1∪{a,b})
+and the mutual disjointness assumption, the only way that this path can have at least three
+edges, is if at least one ofT [X2]and T [X3]is pendant on this path. Suppose only one of
+them is pendant on the path. Then the path would have length exactly three, so CHEN
+(t = 2)would apply to cherry{c,d}- recall that we are free to apply CHEN toT or T′- so
+we obtain a contradiction. So bothT [X2]and T [X3]are pendant on the path. Recalling
+that c and d are both inX1, and that the path fromc to d in T intersects both the path
+from{a,b}to T [X2], and the path from{a,b}to T [X3], we have thatT [X1]overlaps with
+T[X 2∪{a,b}], and thatT[X1]overlaps withT[X 3∪{a,b}].◀
+Next, we present another new branching rule which is primarily designed to deal with a
+tricky case we will later encounter in the proof of Lemma 9.
+▶ Branching rule 3.Let T and T′be two unrooted trees onX without common cherries.
+Assume that CHEN(t = 2)(i.e. the stronger version) does not apply. SupposeX can be
+partitioned into three blocksA,B,Csatisfying the following (as in Figure 7):
+1. In T, T [A], T [B]and T [C]are mutually disjoint, and so areT′[A],T′[B]and T′[C]in T′.
+2.T[B]is not pendant inT, henceT[A]andT[C]are.
+3.T ′[A]is not pendant inT′, henceT′[B]andT ′[C]are.
+4.T|B=T′|B.
+Then branch on (1) cutting the edge betweenT [A]and T [B]in T, or (2) the edge between
+T[B]andT[C].
+▶ Lemma 8.Branching rule 3 is safe and has recursionT (k) = 2 T (k−1), yielding a
+branching factor of2.
+
+=== PDF PAGE 14 ===
+14 Improved FPT branching algorithms for maximum agreement forests
+A
+B
+C
+Bu
+Bv
+Bw
+u
+v
+w
+B
+C
+A
+T ′
+T
+Figure 7Branching rule 3 states that if the depicted situation is encountered, and the strengthened
+version of CHEN(t = 2)does not apply, then at least one of the two crossed edges can be cut inT.
+HereBis shown shaded to emphasize thatT|B=T′|B.
+Proof.The branching factor is at most 2 because we delete one of two edges.
+We now prove safeness. Due to non-pendancy,|A|,|B| ≥2. We cannot make any
+cardinality assumptions on|C|, but we do not need them. Observe that inT, any pathP
+from a taxon inA to a taxon inC must pass through at least one edgee ={u,v}of T [B];
+this is due to the non-pendancy ofT [B]in T. The edge leavingu that does not lie onP,
+must therefore feed into a pendant subtree ofT containing taxa∅⊂Bu⊂B. Define Bv
+similarly. If P intersects with two or more edges ofT [B], then there exists a subpath of
+P, u−v−wwhere u,v,w all lie onT [B]. In this case we defineBw similarly toBu,Bv.
+However,Bw will not always exist (in which caseB=Bu∪Bv). See Figure 7.
+Now, consider any smallest agreement forestF reached from this point. If the edge
+betweenT [A]and T [B]was cut to reach this forest, or the edge betweenT [B]and T [C], we
+are in branch (1) or (2) and are done, so assume that neither holds. This means that some
+component U in the forest must contain a taxon fromA and a taxon fromB∪C, and some
+component U′must contain a taxon fromC and a taxon fromA∪B; possiblyU =U′. We
+distinguish several cases. In each case we show that an agreement forest exists, no larger
+thanF, in which at least one of branch (1), (2) holds, or we derive a contradiction.
+Suppose U intersectsA and C, but notB. (In this caseU =U′). ThenBu and Bv must
+have been cut off to reachF. We make a single cut toU to separate itsA part from its
+C part, and then compensate for this extra cut by introducingB as a single component
+i.e. merging the two or more components that are subsets ofB, into a single component
+B. There are at least two such components, becauseBu and Bv had originally been cut off,
+so this saves at least one cut. Note that we can introduceB as a component because by
+assumptionT|B=T′|B. Both branch (1) and branch (2) now apply, and we are done.
+If U intersectsA, B and C (which again means thatU =U′) thenU cannot intersect
+with more than one ofBu and Bv (and if it exists,Bw), because thenT [U ]̸=T′[U ]. IfBw
+exists, then due to the fact thatU cannot intersect with more than one ofBu,Bv,Bw, we
+can cut off theA and C parts ofU, which costs two cuts, and then introduceB as a single
+component, saving two cuts, and we are done, as again branch (1) and branch (2) both now
+apply. Therefore, assumeBw does not exist. Observe that it is not possible for bothBu and
+Bv to each contain two or more taxa. This is because, if they did, they would each contain a
+cherry, and at least one of these would also be a cherry inT′(because T′[B]is pendant),
+contradicting the assumption that all common cherries have been reduced. Letx∈Bu and
+y∈Bv. If |Bu|=|Bv|= 1, then|B|= 2and {x,y}is a cherry inT′, because T′[B]is
+pendant. Butx and y are separated by exactly three edges inT, so CHEN(t = 2)would
+have held; contradiction. Hence, assume without loss of generality that|Bu|≥2. ThenBu
+must, inT, contain some cherry{x,z}. If{x,z}is a cherry inT′, we obtain a contradiction
+to the assumption that the cherry reduction does not apply. Given thatT|B=T′|B, the
+only way for{x,z}not to be a cherry inT′, is if it is “rooted” on the edge feeding intox, or
+
+=== PDF PAGE 15 ===
+D. Mestel, S. Chaplick, S. Kelk, R. Meuwese 15
+Figure 8Algorithm uMAF.
+1.Apply tidying-up operations
+2.Apply the first among the following branching rules to be applicable:
+a.Branching rule 2 (1)
+b.Branching rule 3 (2)
+c.CHEN(t= 2)(strong version with branching factor 2, see Observation 4)
+d.CHEN(t≥4)(2.595)
+e.CHEN(t= 3,≥2singletons)(2.73)
+f.CHEN(t= 3)(3)
+3.Apply Branching rule 1 (SPLIT) to exhaustion (2)
+4.Apply the recursion rule (i.e. decomposition) witht= 0
+the edge feeding intoz. Either way, CHEN(t = 2)can then be applied to{x,z}, becausex
+andzhave exactly three edges between them inT′, and we obtain a contradiction.
+The only remaining case is thatU andU′are distinct, i.e.U intersects withA andB but
+not C, andU′intersects withB and C but notA. However, observe that thenT′[U ]and
+T′[U′]are not disjoint (becauseB lies “inbetween”A andC inT, but inT′,A lies inbetween
+BandC). So this case cannot occur.◀
+We are now ready to describe the overall algorithm for unrooted trees: seeAlgorithm
+uMAFin Figure 8. Values in brackets denote the branching factor of each branching rule.
+Observe that all of these branching rules have branching factors below our target of2.846
+apart from CHEN(t = 3), which has branching factor 3. Thus, it remains to show that if
+CHEN(t = 3)is reached then either subsequent applications of branching rule 1, or breaking
+into many non-homeomorphic components and applying Lemma 3, will result in an overall
+branching factor at most2.846.
+▶ Lemma 9.Let T and T′be two unrooted trees onX with no common cherries. Assume
+that none of branching rule 2, branching rule 3, CHENt = 2, t≥4or( t = 3,≥2 singletons)
+apply. Then applying CHEN(t = 3)followed by branching rule 1 to exhaustion, followed by
+applying the recursion rule witht= 0, has overall branching factor at most2.846.
+Proof. Let{a,b}be a cherry in T that allows a t = 3application of CHEN and let
+∅⊂X1,X 2,X 3⊂(X\{a,b})be the three subsets of taxa that are pendant on the path
+from a to b in T′(the labelling of these three subsets is arbitrary). Due to non-applicability
+of CHEN(t = 3,≥2 singletons), at least two ofX1,X 2,X 3 will have cardinality 2 or larger.
+Moreover, due to non-applicability of branching rule 2, noXi with|Xi|≥2can have the
+property thatT[X i]is pendant inT,T ′[Xi]is pendant inT ′, andT|Xi =T ′|Xi.
+We analyse the running time of the CHENt = 3invocation. As usual, we incur a2T (k−1)
+term, stemming from cutting offa, or cutting offb. We do not attempt to optimize this.
+Rather, consider the threeT (k−2)instances that CHEN(t = 3)usually creates. Suppose
+some Xi, with|Xi|≥2, sayX1, induces the situation described in the statement of Lemma
+7. Then by Lemma 7 the twoT (k−2)branches corresponding to X2 joining with{a,b},
+and X3 joining with{a,b}, are non-disjoint, so branching rule 1 can be applied to each of
+them. Recalling that branching rule 1 has a recursion2T (k−1), this means that each of the
+T (k−2)branches needs time at most2T ((k−2)−1) = 2T (k−3). Hence, the total time for
+both these branches is at most4T (k−3). We simply spend timeT (k−2)on the instance in
+whichX1 joins with{a,b}, and we obtain a recurrence2T (k−1) +T (k−2) + 4T (k−3),
+which solves to the required bound of2.846.
+
+=== PDF PAGE 16 ===
+16 Improved FPT branching algorithms for maximum agreement forests
+Assume, then, that none of the setsXi with cardinality 2 or higher, induce the situation
+described in Lemma 7. Without loss of generality letX1 and X2 be sets with cardinality 2
+or higher; we allow the possibility thatX3 has cardinality 1, and return to this later.
+The only way for (say) theX1∪{a,b}subinstance not to trigger Lemma 7, is if (a) the
+T [X1∪{a,b}],T [X2],T [X3]subinstances overlap somewhere inT (i.e. are not disjoint), or
+(b) theyaredisjoint, but T|(X1∪{a,b})̸=T′|(X1∪{a,b}). In situation (a), branching rule 1
+applies, meaning that time at most2T ((k−2)−1) = 2T (k−3)is required for this branch. The
+latter case, situation (b), is more subtle. We know thatT|(X1∪{a,b})̸=T′|(X1∪{a,b}),
+so if we can additionally show that at least one of T|X2 ̸= T′|X2, T|X3 ̸= T′|X3 is
+true, the decomposition procedure from Lemma 3 will kick in, meaning that time at most
+2T ((k−2)−1) = 2T (k−3)is needed for this branch. Noting that at least one ofT [X2],T [X3]
+is pendant inT (due to disjointness), and that branching rule 2 was not applicable, the
+conclusion that at least one ofT|X2̸=T′|X2, T|X3̸=T′|X3 holds is immediate if|X3|≥2
+(because then all three ofX1,X 2,X 3 contain two or more leaves). Hence, we can assume
+|X3|= 1. If T|X2̸=T′|X2 we also have our desired two non-homeomorphic subinstances,
+and are done, so assume thatT|X2 =T′|X2. Moreover, to avoid triggering branching rule 2
+onX2,T [X2]isnotpendant in T. This means thatT [X1∪{a,b}]and (vacuously) T [X3]are
+pendant inT, thatT [X1∪{a,b}]is incident toT [X2], andT [X3]is incident toT [X2]. By
+construction, T′[X1∪{a,b}]is not pendant inT′, butT′[X2]and T′[X3]are. This means
+that branching rule 3 could have been applied, by setting in the statement of that branching
+rule A,B,C to X1∪{a,b},X2,X 3 respectively, contradiction. Hence,T|X2̸=T′|X2 and we
+indeed have our second non-homeomorphic subinstance. Putting it all together: this means
+that situation (b) immediately triggers the decomposition procedure inherent in Lemma 3,
+which has a branching factor of 2, yielding just like situation (a) a branching factor of
+2T(k−3). Thus, this branch takes time at most2T(k−3).
+The analysis forX2∪{a,b}, is entirely symmetrical to that ofX1∪{a,b}.
+Hence, the branches corresponding toX1∪{a,b}andX2∪{a,b}each need at most time
+2T (k−3), and thus at most4T (k−3)in total. If|X3|≥2, then theX3∪{a,b}branch will
+also require time at most2T (k−3)(because the same analysis as above holds here too).
+If|X3|= 1, we can pessimistically use running time at mostT (k−2)for the X3∪{a,b}
+branch. Noting thatT (k−2)dominates over2 T (k−3), we obtain a total recurrence of at
+most2T(k−1) +T(k−2) + 4T(k−3), which again solves to the required2.846.◀
+▶Theorem 10.Algorithm uMAFsolves the problem uMAF in timeO ∗(2.846k).
+Finally, before moving on to rooted trees, we note that our split-or-decompose technique
+can be used to improve the existingO∗(2.49k)algorithm for two unrootedcaterpillars.
+▶ Lemma 11.By strengthening the algorithm from [11] with branching rule 1 we obtain an
+algorithm with running timeO∗(2.4634k)for computing uMAF on two unrooted caterpillars.
+Proof.The limiting case for the existing algorithm from [11] is shown in Figure 9.
+a
+b
+a
+b
+T
+T ′
+L
+R
+{c, d}
+Figure 9The limiting case for the algorithm from [11] is when{a,b}is a cherry inT, there are
+exactly two taxa,candd, betweenaandbinT ′, andLandRare both non-empty.
+First, recall that the standard Chen(t = 4)algorithm gives recursion2T (k−1)+4T (k−3).
+This can be improved by observing that one of the twoT (k−3)branches, which create
+
+=== PDF PAGE 17 ===
+D. Mestel, S. Chaplick, S. Kelk, R. Meuwese 17
+component{a,b,c}and{a,b,d}respectively, can be dropped. Specifically, we can restrict
+ourselves to the branch{a,b,x}where x∈{c,d}and x is nearest to the{a,b}cherry inT
+(as it is least disruptive to the rest ofT). This improves the recursion to2T (k−1) + 3T (k−3)
+which gives a branching factor of at most2.49. Note that ifL is a singleton set, orR is a
+singleton set, we can drop at least one other branch, again prioritizing the taxon that is
+closest to the{a,b}cherry inT. Hence, if at least one ofL and R is a singleton, we obtain
+recursion2 T (k−1) + 2T (k−3)which gives a branching factor of 2.36. So suppose thatL
+and R are both non-singleton. If any of the threeT (k−3)branches trigger overlap, then by
+branching rule 1 theT (k−3)term improves to2T (k−4)giving an overall running time of
+2T (k−1) + 2T (k−3) + 2T (k−4)which yields2 .4634. So assume none of the threeT (k−3)
+branches induce overlap: all of them create disjoint instances. One such disjoint instance
+creates components{a,b,x}, L and R (where x is as defined before), soT [L]and T [R]are
+disjoint and each spans at least 2 taxa. Suppose thatL is closer to the{a,b}cherry inT
+than R. But then the branch which creates components{a,b}∪Rand L is overlapping:
+contradiction. A symmetrical argument holds ifR is closer to the{a,b}cherry thanL. ◀
+6 Rooted trees
+We now switch to rooted trees. We show how rMAF can be solved in timeO∗(2.3391k).
+This is a very slight improvement on the limiting recursion from [7], which is T (k) =
+T(k−2) + 10T(k−3) + 2T(k−5) + 2T(k−6) + 1. That has a branching factor of2.3431.
+An advantage of our approach is that significantly less deep case analysis is required.
+A crucial difference with the unrooted case is that two rooted trees on 3 taxa can be
+non-homeomorphic. For example, whenX ={a,b,c}, T has a unique cherry{a,b}and T′
+has a unique cherry{b,c}. This leads to a number of subtle differences with the unrooted
+case. Nevertheless, at a high-level we use the same approach as for unrooted trees: all the
+results from Section 4 hold for both types of trees.
+High-level intuition.Recall that the limiting case of Whidden’s algorithm ist = 2,
+with recursion2T (k−1) +T (k−2). Our overall goal is to ensure that theT (k−2)invocation
+triggers a situation with recurrenceT (k−1) + 2T (k−2). By substitutingk−2for k, this
+becomes T ((k−2)−1) + 2T ((k−2)−2)which is T (k−3) + 2T (k−4). Combining with
+the2T (k−1)term we obtain an overall recurrence of2T (k−1) +T (k−3) + 2T (k−4): this
+solves to the desired branching factor of2.3391.
+Analogous to our approach for uMAF, we also need a number of branching rules which
+are designed to catch certain special cases – we will start by describing these. Ultimately,
+once everything is put together, we will end up with the algorithm described in Figure 16.
+Branching rule 4 has a function similar to that of Lemma 5 for unrooted trees: to ensure
+that “not too many” singleton components are created in theT (k−2)branch of Whidden
+(t= 2).
+▶ Branching rule 4.Let T and T′be two rooted trees onX without common cherries,
+and assume that Whidden(t = 1)does not apply. Let {a,b}be a cherry inT and let
+∅⊂X1,X 2⊂(X\{a,b})be the two subsets of taxa that are pendant on the path froma to
+b in T′, whereX1 is closer toa, thanX2 is toa. SupposeX1 ={c}and{a,c}is a cherry in
+T′. (Note that ifX2 is a singleton, and forms a cherry withb, then we can swap the labels
+ofaandbto arrive in the same situation). Then branch as follows:
+1.Cut offX 1 andX 2.
+2.Cut offa.
+
+=== PDF PAGE 18 ===
+18 Improved FPT branching algorithms for maximum agreement forests
+a
+b
+T
+a
+b
+T ′
+X2
+X1=c
+c
+Figure 10By Branching rule 4, when this situation occurs, and Whidden(t = 1)does not apply,
+then eitherX1 and X2 are cut off inT′, a is cut off, or inT at least two outgoing arcs (shown in
+bold red) on the path fromatocare cut. Note that inT ′,X 2 might alternatively be sibling tob.
+3.InT, cut off the at least two arcs whose tails lie on the path fromatoc.
+▶ Lemma 12.Branching rule4is safe and has a recursion T (k−1) + 2T (k−2), which
+yields a branching factor of at most 2.
+Proof. To see that the third branch needs to cut at least two arcs, note that there is an arc
+outgoing tob whose tail lies on the path froma toc inT. If there are no other arcs outgoing
+from this path then Whidden(t = 1)would apply, contradiction. (See also Figure 10). For
+safety, suppose none of the three branches apply. Thena is in a non-singleton componentB.
+IfB containsb, then we are in the first branch. IfB does not containc or any taxa fromX2,
+we are also in the first branch. IfB contains taxa fromX2, but notc, we can cut offX2 and
+add b (which will necessarily be a singleton) toB, irrespective of whetherB contains taxa
+from outside{a,b,c}∪X2: again, we are back in the first branch. The remaining case is that
+B includes c. Then (due to{a,c}being a cherry inT′)the two arcs outgoing from the path
+from a to c in T cannot be inB i.e. they must be cut. Hence, the third branch applies.◀
+Consider a potential invocation of Whidden(t = 2), where X1 and X2 are as defined
+in the statement of branching rule 4, and letS =X\ ({a,b}∪X1∪X2). (So, the branch
+of Whidden(t = 2)that cuts off X1 and X2, splitsT′into three components with taxa
+X1,X 2 and S∪{a,b}). Assuming branching rule 4 does not apply,X1 and X2 are not both
+singletons. Also, if one of them is a singleton, it does not form a cherry witha or b. We are
+now almost ready to invoke a specially-modified version of Whidden(t = 2), but we have to
+first deal with a very specific boundary situation when both the following conditions hold:
+1.T[X 1],T[X 2]andT[S∪{a,b}]are mutually disjoint inT.
+2.At least two ofX 1,X 2,S∪{a,b}are homeomorphic.
+The only purpose of our next branching rule,Branching rule 5, is to catch this situation.
+For convenience, we give the definition of this branching rule at the same time as the proof
+of its correctness; to guide the reader we show the actual branching strategy in red text.
+▶ Lemma 13.Let T and T′be two rooted trees onX without common cherries. Suppose
+Whidden( t = 1)does not apply, and neither does branching rule 4. Suppose Whidden (t = 2)
+does apply. That is:{a,b}is a cherry inT and∅⊂X1,X 2⊂(X\{a,b})are the two subsets
+of taxa that are pendant on the path froma to b in T′, whereX1 is closer toa than X2 is to
+a. LetS =X\ ({a,b}∪X1∪X2). Suppose thatT [Xi],T [Xj]and T [S∪{a,b}]are mutually
+disjoint inT, and at least two ofXi,Xj,S∪{a,b}are homeomorphic. Then there is a safe
+branching rule, denotedbranching rule 5, with recursion at mostT (k−1) + 3T (k−2),
+which yields a branching factor of at most 2.3028.
+Proof. First, recall that due to the non-applicability of branching rule 4, at most one ofX1
+and X2 is a singleton, and if one of them is a singleton it does not form a cherry witha or b.
+
+=== PDF PAGE 19 ===
+D. Mestel, S. Chaplick, S. Kelk, R. Meuwese 19
+Now, if all three ofX1,X 2,S∪{a,b}are homeomorphic, theT (k−2)branch of Whidden
+(t = 2)would simply return TRUE/0 instantly, because the three sets already constitute a
+valid agreement forest. Hence in this situation we can simply execute the standard Whidden
+(t = 2)branching, observing that the usual recursion, which is2T (k−1) +T (k−2), collapses
+to2T(k−1). This has a branching factor of 2, which is less than 2.3028.
+From this point on, we can henceforth assume thatexactly twoof the three sets are
+homeomorphic. Figure 11 describes the situation at this point.
+a
+b
+T ′
+X2
+X1
+S
+X2
+X1
+T
+b
+a
+S
+Figure 11The starting point for our technical analysis. HereX1 and X2 are not both singletons;
+a and b do not form cherries inT′with X1 or X2; T [X1], T [X2]and T [S∪{a,b}]are mutually
+disjoint inT, and exactly two ofX1,X 2,S∪{a,b}induce homeomorphic subtrees inT andT′. Here
+X2 is shown as being sibling tob in T′but it might also be ancestral toa and X1 i.e. “above”X1
+inT ′.
+Suppose Xi, (say)X1, is homeomorphic and|X1|≥2. Let{p,q}be a cherry inX1; this
+must exist. To prevent{p,q}being a common cherry inT, and assuming that Whidden
+(t = 1or t≥3) does not apply anywhere, we observe crucially thatT [{p,q}]must have at
+least two outgoing arcs inT. These outgoing arcs can only be created by edges outgoing
+to T [X2]and T [S∪{a,b}]. This has several consequences:X1 has at most one cherry (so
+T|X1 =T′|X1 is in fact a caterpillar) andX2 cannot be homeomorphic non-singleton (as
+T′|X2 would then also contain a cherry, meaning there are simply too many cherries inT to
+‘hit’). See Figure 12.
+p
+q
+T
+S∪{a, b}
+X2
+X1
+p
+q
+X1
+T ′
+Figure 12If one ofX1,X 2 is homeomorphic non-singleton, sayX1, then it contains a cherry
+{p,q}, and inT, X2 and S∪{a,b}will be pendant to the path fromp to q. X1 will also be a
+caterpillar, andX2 will not be homeomorphic non-singleton. Note that the location ofX2 and
+S∪{a,b}on the path fromptoqcan vary.
+Hence, ifX1 andX2 each have at least 2 taxa, then at most one of them is homeomorphic.
+Conversely, if they are both homeomorphic, at least one of them is a singleton.
+We can distinguish the following cases.
+Case 1: At least one of X1,X 2, say Xj, is homeomorphic and |Xj|≥3.It follows
+that Xi (i̸=j) is either a singleton, or non-homeomorphic, but we do not directly need
+this information. Similarly, the following argument is agnostic to the (non-)homeomorphic
+status ofS∪{a,b}. We know thatXj is a non-singleton caterpillar with a unique cherry
+{p,q}. Furthermore, inT, T [Xi]and T [S∪{a,b}]must be pendant to the embedding of
+this cherry (see the remark in the previous paragraph; also, in Figure 12,Xj =X1 and
+Xi =X2). As a result of this (a) any component of a forest that contains at least one
+taxon fromXi∪S∪{a,b}, can contain at most one taxon fromXj. This is because, if
+such a component contained two or more taxa fromXj, the component would have a
+
+=== PDF PAGE 20 ===
+20 Improved FPT branching algorithms for maximum agreement forests
+cherry comprising two taxa fromXj (due to the pendancy ofT′[Xj]). However, due to the
+topology ofT - recall thatT|Xj is a caterpillar andT [Xi],T [S∪{a,b}]are outgoing from
+its only cherry - these two taxa cannot form a cherry in the embedding of the component
+in T. Also, (b) there can be at most one component that contains taxa from bothXj
+and outside it, due to the pendancy ofT′[Xj]. We use insights (a) and (b) to now argue
+that bothT [Xi]and T [S∪{a,b}]can definitely be cut off (which is equivalent to cutting
+off T′[Xi]and T′[Xj]). Suppose this is not the case for some agreement forest. First,
+suppose B contains at least one taxon fromXi, and at least one taxon fromS∪{a,b}
+but no taxa fromXj. Then at least one ofp,q will be a singleton. We cutB into its
+Xi and S∪{a,b}parts with a single cut, and then compensate by introducingXj as a
+single component (which saves at least one cut, due to absorbing singletonp or q). On
+the other hand, suppose that there is a componentB that contains at least one taxon
+from Xi∪S∪{a,b}and exactly one taxon fromXj. Crucially, all taxa in(Xj\B )will
+be singleton components6, sinceB entersT′[Xj]via its root (due to pendancy ofT′[Xj])
+but T [Xj]via the cherry at the bottom. Given that|Xj|≥3, there are at least two such
+singletons. We can then cutB into itsXi, S∪{a,b}and Xj parts (requiring at most
+two cuts), and compensate by introducingXj as a single component (which absorbs the
+at least two singletons); done. The recursion isT (k) = T (k−2), which has a branching
+factor of 1.
+Case 2: At least one of X1,X 2, say Xj, is homeomorphic and |Xj|= 2.The
+analysis for|Xj|≥3from Case 1 holds almost entirely here, except at the very end when
+we leverage the|Xj|≥3assumption. To avoid extensive case analysis, we accommodate
+this via a comparatively weakened analysis. Our branches are now: (1) Cut offX1,X 2
+(which is the situation discussed in the previous paragraph); (2) Cut offp and a, (3) Cut
+offp and b, (4) Cut offq and a, (5) Cut offq and b. The argument is straightforward: if
+a and b are together in a component, then via the standard Whidden(t = 2)argument,
+(1) holds. Otherwise, at least one ofa and b is a singleton. Now, we know from the
+previous paragraph that if (1) does not hold, at least one ofp and q will be a singleton.
+The recursion isT(k) = 5T(k−2), which has a branching factor of 2.2361.
+Case 3: Exactly one of X1,X 2 is non-homeomorphic, and the other is a
+singleton.Hence, S∪{a,b}is homeomorphic. Now, supposeT|(S∪{a,b}) = T′|(S∪
+{a,b})contains a cherry {p,q}such that{p,q}∩{a,b}=∅. In this case, the same
+branching from Case 2 works. That is becauseX1 and X2 must both be pendant to
+T [{p,q}], by the same arguments as given in Case 1. SoX1,X 2 are pendant to the
+cherry{p,q}in T, and are pendant to the cherry{a,b}in T′. If{p,q}are together in
+a component, or{a,b}are together in a component, thenX1,X 2 are both cut off, i.e.
+branch (1) holds. Otherwise at most one ofp and q can be in a non-singleton component,
+and at most one ofa,b can be in a non-singleton component, i.e. at least one of branches
+(2)-(5) holds.
+We may thus assume thatS∪{a,b}has no second cherry, i.e.T|(S∪{a,b}) = T′|(S∪{a,b})
+is a caterpillar. This situation is shown in Figure 13.
+Now, letXj be the non-homeomorphic set.
+Case 3.1: T [Xj]has exactly one incident edge, incoming or outgoing.Observe
+that in bothT and T′the taxa fromXj are completely separated from the taxa in
+X\X j (in phylogenetics this is called a “common split”); this is shown schematically
+6 This means that, again, at least one ofp and q will be a singleton. We do not need this fact here, but it
+is leveraged in the next case.
+
+=== PDF PAGE 21 ===
+D. Mestel, S. Chaplick, S. Kelk, R. Meuwese 21
+a
+b
+T ′
+X2
+X1
+S
+a
+b
+T
+X2
+X1
+S
+Figure 13Assuming the situation in Figure 12 does not occur, we have that one ofX1,X 2 is
+non-homeomorphic, and the other is a singleton. Hence,S∪{a,b}is homeomorphic. The most
+technically challenging situation to deal with is whenS∪{a,b}is a caterpillar, as shown here.
+Different subcases occur depending on howX1,X 2 and S∪{a,b}connect to each other withinT.
+These are elaborated on later in Figures 14 and 15.
+in Figure 14.
+X\Xj
+Xj
+T
+X\Xj
+Xj
+T ′
+Figure 14Elaborating on Figure 13, this is a schematic depiction of the special situation when
+T [Xj]has exactly one incoming or outgoing arc inT: Xj (the non-homeomorphic set) is cleanly
+separated from the rest of the tree,X\Xj, inT. This separation occurs by construction inT′.
+This can be exploited as follows. We first solve instanceT|Xj,T′|Xj with aT (k−1)
+call, and then solve instanceT|(Xj∪ρ),T′|(Xj∪ρ)with a secondT (k−1)call, where
+ρis a new taxon which is attached toT|Xj and T′|Xj to represent the location at
+which the rest ofT,T′(respectively) is attached. The invocation withρallows us to
+understand whether optimal agreement forests forT|Xj,T′|Xj can potentially grow
+beyond Xj without sacrificing optimality. In more detail, lety,yρbe the numerical
+values returned from the two invocations (or FALSE if the corresponding invocation
+failed). If y is FALSE, then an agreement forest forT|Xj,T′|Xj has at leastk + 1
+components (i.e. at leastk cuts are needed). However, given thatT|(X\X j)and
+T′|(X\X j)are not homeomorphic (as{a,b}is a cherry in one and not the other),
+an agreement forest forT|(X\X j)and T′|(X\X j)has at least two components. At
+most one component can span both theXj and theX\X j instance, so together at
+least( k + 1) + 2−1 = k + 2components are required, and thus at leastk + 1cuts,
+so we can definitely return FALSE. Otherwise: ify < yρ, ory is numeric andyρis
+FALSE, then no optimal agreement forest forT|Xj,T′|Xj can grow beyondXj. Hence,
+it is safe to assume that in some optimal agreement forest reached from this point,
+Xj is cut off. Noting thatT|(X\X j),T′|(X\X j)has an agreement forest with at
+most two components (due toXi and S∪{a,b}being disjoint and homeomorphic),
+we can use brute force to determine whether 0 or 1 cut is required for this instance,
+add this toy, and return this as our (guaranteed successful) solution. Ify = yρ,
+then we replaceXj with a taxonγin T,T′to obtainTγ,T′
+γ. The instance Tγ,T′
+γ
+has an agreement forest with at most 3 components. Letz be the minimum number
+of cuts to obtain an agreement forest forT|(X\X j),T′|(X\X j), and letzγbe the
+minimum number of cuts to obtain an agreement forest forTγ,T′
+γ(both z,zγcan
+be computed using brute force, sincez≤zγ≤2). If z < zγwe returny +z as our
+solution (or FALSE ify +z > k), but ifz = zγwe returny +z−1(or FALSE if
+y +z−1>k ) as our solution. The “−1” represents the situation when a component
+from an optimal agreement forest forT|(X\X j),T′|(X\X j), and a component from
+
+=== PDF PAGE 22 ===
+22 Improved FPT branching algorithms for maximum agreement forests
+an optimal agreement forest forT|Xj,T′|Xj, can be merged into a single component.
+The recursion here isT(k) = 2T(k−1), which has a branching factor of 2.
+Case 3.2: T [Xj]has exactlytwoincident arcs.The only situation we need
+to consider is whenXj (which is not a singleton, due to being non-homeomorphic)
+is sibling toa in T′, c (where Xi ={c}) is a child of the grandparent ofa and Xj
+in T′, andb is directly incident to the root ofT′[Xj]– see Figure 15 (right). (All
+other topologies will trigger branching rule 4). This again splits into several subcases,
+contingent on the topology ofT; these are shown in panels 1, 2, 3 of Figure 15 (left).
+a
+b
+T ′
+Xj
+S
+S
+Xj
+c
+a
+b
+S
+Xj
+c
+a
+b
+S
+Xj
+c
+a
+b
+1
+2
+3
+T
+{c}=Xi
+Figure 15Here T [Xj]has exactlytwoincident arcs; the different ways that this is possible
+are shown in the panels 1, 2, 3 on the left. Assuming other reduction rules do not hold the only
+topology we need to consider forT′is shown on the right. (Recall that, due to an earlier assumption,
+S∪{a,b}is homeomorphic, andXj is not).
+∗ Case 3.2.1: In T , c is outgoing from T [Xj], and T [Xj]is outgoing from
+T [S∪{a,b}].Observe that it is not possible for a component of the forest to
+simultaneously includea,c and a taxon fromXj. This is because inT cand Xj,
+but nota, are together below some cut-edge ofT, but inT′a different topology is
+induced (due toa being sibling toXj). We therefore branch as follows: (1) Cut
+Xi ={c}and Xj, (2) Cuta. This is safe because ifa is not a singleton component
+(i.e. branch (2) does not apply), anda is not together withb in a component (i.e.
+branch (1) does not apply), thenb is singleton, anda can be together in a component
+B with c, or together with taxa fromXj, or neither – but not both. Note also
+that ifa is in a componentB with taxa fromXj (and thereforec is not in that
+component), thenc is singleton; ifc was not singleton, its componentB′̸=B would
+necessarily include a taxon fromS, but thenT [B]and T [B′]would intersect on the
+edge fromT [S∪{a,b}]to T [Xj]. Hence, we make (at most) one cut to separatea
+from Xj or c, and then compensate by addingb together witha, so we are back in
+branch (1). The recursion isT (k) = T (k−1) +T (k−2), with a branching factor of
+1.618.
+∗ Case 3.2.2: In T , c and T [S∪{a,b}]are both outgoing from T [Xj].Here we
+branch as follows. (1) Cut offX1 and X2, (2) Cut offb, (3) Cut offa and inT also
+cut off: (i) one arc outgoing from the interior of the path fromlca(c,b )to c, if there
+are at least two such arcs or, failing that, (ii) all arcs outgoing from the interior of
+the path fromlca(c,b )to b (excluding the arc toa), if they exist or, failing that,
+(iii) the arc incoming tolca(c,b ). In branch 3 at least one of (i)-(iii) occurs because
+otherwiseT [Xj]is pendant. This gives a recursionT (k−1) + 3T (k−2)(branching
+factor 2.3028), the worst case being obtained in 3(i) when we have to guess which of
+the least two arcs outgoing from the path fromlca(c,b )to c need to be cut. We do
+this by selecting an arbitrary size-2 subset of two such outgoing arcs and guessing
+which of the two is cut (in addition toa); this contributes2T (k−2)to the recursion.
+Safety is rather subtle here. Supposeb is not a singleton; then, as usual, assuming
+branch 1 does not hold,a is singleton. If the component thatb is in does not contain
+
+=== PDF PAGE 23 ===
+D. Mestel, S. Chaplick, S. Kelk, R. Meuwese 23
+either c or taxa fromXj we can separate (if necessary)c from Xj using a single cut
+and compensate by bringinga into the component thatb is in (so we are in branch
+1). If b is in a component with exactly one ofc and taxa fromXj, then we can
+cut offc or Xj from this component and bringa and b back together (branch 1).
+So assume thatb is together with bothc and taxa fromXj in some componentB.
+Consider T [B]. At most one type 3(i) arc can be used byT [B], and no type 3(ii)
+arcs. ComponentB cannot contain any taxa fromS∪{a,b}other thanb, since all
+taxa inS∪{a,b}lie below a cut-edge inT. Hence,lca(c,b )is the root ofT [B]in
+T; so the edge enteringlca(c,b)(if it is present) can be cut.
+∗ Case 3.2.3: In T , c is sibling to the root of T [Xj], and T [S∪{a,b}]is
+outgoing from T [Xj].In this case we can branch as follows: (1) Cut offX1 and
+X2, (2) Cut offb. The crucial point underpinning safety here is that it is not possible
+to haveb,c and taxa fromXj together in a component. This is becausec is at the
+root ofT, meaning that for every{b,c,x}where x∈Xj, T|{b,c,x}̸=T′|{b,c,x}.
+Now, ifb is not in a singleton component, then it is together witha in a component
+(putting us in branch 1), ora is a singleton andb is together in a component
+with at most one ofc and taxa fromXj (but not both). If it is together with
+exactly one of them, we can separateb from c or Xj and then bringa into the
+component, putting us back in branch 1. If it is together with neither of them,
+then if necessary we can separatec and Xj with one cut, and then bringa into the
+component withb, returning us (for the final time) to branch 1. This gives recursion
+T(k) =T(k−1) +T(k−2)with branching factor 1.618.
+◀
+Even when preceded by branching rules 4 and 5, there is still a risk with the classical
+Whidden( t = 2)that the branching factor rises too much. This can happen if theT (k−2)
+branch, whenX1 and X2 are cut off inT′, subsequently induces worst-case behaviour in
+branching rule 1, which is2T (k−1). TheT (k−2)term becomes2 T ((k−2)−1) = 2T (k−3),
+giving an overall running time of2T (k−1) + 2T (k−3), where as usual the2T (k−1)term is
+from cutting offa or b. This has a branching factor of2.3593, which is larger than we want.
+To address this, we construct a specially modified version of Whidden(t = 2). This
+modification entails that, immediately after theT (k−2)branch is created, branching rules
+6 and 7 are executed. These rules ensure that, subsequently, worst case running time for
+branching rule 1 is avoided.
+▶ Branching rule 6.Let( T,F′)be a non-disjoint instance, such thatF′consists of compon-
+entsA,B,Cwhere:
+Ais homeomorphic andCis homeomorphic, butBis not.
+T [C]is disjoint fromT [A]and T [B], andT [A]and T [B]overlap on only a single edge;
+write A1,A 2 and B1,B 2 for the bipartitions of the taxa ofA and B respectively induced
+by this edge.
+Then cut componentBintoB 1 andB 2 with a single cut.
+▶Lemma 14.Branching rule 6 is safe and has recurrenceT(k) =T(k−1).
+Proof. To see why this safe, suppose some optimal agreement forest reached from this point
+contains a component with taxa from bothB1 and B2. In such an agreement forest,A
+is necessarily split into two or more components. However, we can modify this into an
+agreement forest that is no larger by splitting the component that spansB1 and B2 into
+
+=== PDF PAGE 24 ===
+24 Improved FPT branching algorithms for maximum agreement forests
+its B1 and B2 parts with a single cut, and introducingA as a single component (which is
+possible becauseA is homeomorphic andA1,A 2 only overlap on a single edge ofT), saving
+at least one cut.◀
+The following is not really a branching rule, but a situation in which part of the agreement
+forest can independently be computed to optimality in polynomial time, reducing the number
+of cuts available to the remaining part of the instance. Fitch’s algorithm [8] is a well-known
+algorithm in phylogenetics.
+▶ Branching rule 7.Let( T,F′)be a non-disjoint instance, and let F′
+H be a subset of
+the homeomorphic components ofF′with the following property:|F′
+H|≥2and in T, no
+component ofF′
+H overlaps with a component outsideF′
+H. LetXH be the union of the taxa
+in the components ofF′
+H. Use Fitch’s algorithm to cutT [XH ]into the smallest number of
+pieces, such that each piece only contains taxa from a single element ofF′
+H.
+▶ Lemma 15.Branching rule 7 is safe and yields recursionT (k) = T (k−1)if at least one
+cut is required to transformF′
+H into an agreement forest.
+Proof. Some background: given an assignment of discrete state labels to the taxaX of a
+phylogenetic treeT, Fitch’s algorithm extends in polynomial time the state labels to the
+interior nodes ofT such that the number of edges with different states at the endpoints
+is minimized. These edges correspond to cuts that separate taxa with distinct states into
+distinct components. To use Fitch in the present context, we introduce one state label per
+element ofF′
+H and allocate each taxon inXH the state label of the component it is in.
+Clearly any agreement forest refining(T,F′)must separate the F′
+H in T (and on the
+other hand sets of taxa contained in aF′
+H must be homeomorphic since theFH are), hence
+branching rule 7 actually produces an agreement forest of minimum size for the components
+in F′
+H. Also, none of the cuts implied by Fitch’s algorithm to build this agreement forest
+for F′
+H can be used to build an agreement forest for components outsideF′
+H, due to the
+assumption that the components ofF′
+H only overlap with each other inT. Hence, if Fitch’s
+algorithm computes that at least one edge has to be cut to obtain an agreement forest for
+F′
+H, at mostk−1cuts are available for any remaining components outsideF′
+H. Thus, we
+obtain a branching factor of at mostT(k−1).◀
+We can now describe the overall algorithm for rMAF; see Figure 16. Note that here the
+recursion rule in step 4 is called witht= 1.
+Figure 16Algorithm rMAF.
+1.Apply tidying-up operations
+2.Apply the first among the following branching rules to be applicable:
+a.Whidden(t= 1)(1)
+b.Whidden(t≥3)(2.206)
+c.Branching rule 4 (2)
+d.Branching rule 5 (2.3028)
+e.Whidden(t= 2)(2.42), followed by branching rule 6 or 7 if applicable.
+3.Apply branching rule 1 (SPLIT) to exhaustion (2)
+4.Apply the recursion rule (i.e. decomposition) witht= 1
+
+=== PDF PAGE 25 ===
+D. Mestel, S. Chaplick, S. Kelk, R. Meuwese 25
+Every branching rule except for Whidden(t = 2)has a branching factor below our target
+of2.3391. However, we still obtain on overall branching factor of at most2.3391:
+▶ Lemma 16.Let T and T′be two rooted trees onX with no common cherries. Assume
+that none of Whidden(t = 1), Whidden(t≥3), branching rule 4 or branching rule 5 apply.
+Then applying Whidden(t = 2), followed by branching rule 6 or 7 if applicable, followed
+by branching rule 1 to exhaustion, followed by the recursion rule witht = 1, has overall
+branching factor at most2.3391.
+Proof. The obstacle blocking a branching factor of at most 2.3391 is when theT (k−2)
+branch of Whidden(t = 2)induces worst-case behaviour,2 T (k−1), in branching rule 1.
+We show that this is avoided. More formally, we take as our starting point the situation
+created by theT (k−2)branch of Whidden(t = 2), i.e. T′has been split intoX1,X 2 and
+S∪{a,b}, and show that from this point a recursion of at mostT (k−1) + 2T (k−2)is
+obtained. Plugging k−2in here for k, givesT (k−3) + 2T (k−4). Combined with the
+original2 T (k−1)term for cutting offa and b, we will obtain an overall running time of
+2T (k−1) +T (k−3) + 2T (k−4), which finally yields the desired branching factor of 2.3391.
+We can assume that tidying-up operations have been applied, soa,b have been collapsed
+into a single taxon, because they now form a common cherry, and any singleton components
+have been deleted. We let{A,B,C}be the (at most) three components inT′at this point;
+we will not need to know their origins as{X1,X 2,S∪{a,b}}. We know that ifA,B,C are
+mutually disjoint inT, then at least two of them are non-homeomorphic, because otherwise
+branching rule 5 would have applied. In this situation the recursion rule in step 4 (executed
+to depth 1) ensures a recursion of at most2T (k−2)(see Lemma 3), which is faster than the
+required T (k−1) + 2T (k−2)bound, so we are done. Hence, from this point on we know
+thatA,B,Care not mutually disjoint inT. We consider a number of other cases.
+1.T [A],T [B],T [C]share a common edgee of T. Only one of the three components can
+use e, so branching rule 1 will initially apply to two of the components, sayA and B.
+In the branch whereA is split, we simply assume worst-case behaviour i.e. only one cut
+is needed to splitA. This contributesT (k−1)to the recursion. In the branch where
+B is split, we also assume that only a single cut is needed to splitB, but observe that
+branching rule 1 then triggers again to separateA from C, giving a running time of at
+most2 T ((k−1)−1) = 2T (k−2)for that branch, and thusT (k−1) + 2T (k−2)overall.
+2.T[A]overlaps withT[B],T[B]overlaps withT[C], butT[A]does not overlap withT[C].
+This is essentially identical to the previous case: when splitting (say)B from A, the
+branch in whichBis kept intact, will then need to splitBfromC.
+3.T [A]and T [B]overlap, but neither overlaps withT [C]. C isnothomeomorphic.If A and
+B are homeomorphic, then branching rule 7 can be applied by takingF′
+H ={A,B}. At
+least one cut will be needed to separate them. Hence, at mostk−1cuts are available for
+C, giving an overall branching factor of at mostT (k−1)and we are done. On the other
+hand, suppose that at least one ofA and B is non-homeomorphic, sayA. Branching rule
+1 will trigger to splitA and B. We allocate timeT (k−1)to the branch in whichA is
+split. In the other branch (whereB is split), we obtain a new disjoint instance in which
+A and C both survive, and both are non-homeomorphic. Then, Lemma 3 gives a bound
+of at most2T((k−1)−2) = 2T(k−3), yielding at mostT(k−1) + 2T(k−3)overall.
+4.A , B and C are all homeomorphic. This is caught by branching rule 7, by taking
+F′
+H ={A,B,C}. This solves theT(k−2)branch to optimality in polynomial time.
+Assuming none of the situations above apply implies thatA,B,C are not all homeomorphic,
+T [A]overlaps with T [B]but neither overlap withT [C], andC is homeomorphic. Hence,
+
+=== PDF PAGE 26 ===
+26 Improved FPT branching algorithms for maximum agreement forests
+at least one ofA and B is non-homeomorphic. Recall that branching rule 1 first decides
+whether A or B should use the overlap edge, and then splits the other tree. If either tree
+requires 2 or more cuts to be split, we are done, because then the running time of branching
+rule 1 is at mostT (k−1) + 2T (k−2)instead of2 T (k−1). So, assume that both trees
+require exactly 1 cut to be split. LetA1 and A2 be the bipartition ofA in T induced by the
+overlap edge, and defineB1,B 2 similarly. InT′there is a single edge that separatesA1 and
+A2, and a single edge that separatesB1 from B2: this is due to the assumption that both
+trees require only 1 cut to be split inT′.
+Now, suppose in the branch whereB is kept intact (andA is split intoA1,A 2), at least
+one ofT [A1],T [A2]overlaps with T [B]. Here branching rule 1 is triggered for a second time,
+which is sufficient. A symmetrical observation holds for the branch whereA is kept intact.
+So, we henceforth assume neither triggering happens. This means thatT [A1],T [A2],T [B1]
+and T [B2]are mutually disjoint and thatT [A],T [B]overlap on a single edge. Continuing,
+suppose at least one ofA1,A 2,B 1,B 2 is non-homeomorphic. Without loss of generality,
+suppose it isB1 (so B is non-homeomorphic). IfA is homeomorphic, then branching rule 6
+applies, and we are done. Hence, we can assume thatA is not homeomorphic. Branching
+rule 1 then splitsA and B. In the branch in whichA is kept intact,A and B1 exist as
+disjoint non-homeomorphic components, so Lemma 3 yields2((k−1)−2) = 2(k−3)for
+solving A and B1. Combined withT (k−1)for the branch in whichB is kept intact, we
+obtain T (k−1) + 2T (k−3)overall. Finally, let us assume that all ofA1,A 2,B 1,B 2 are
+homeomorphic. Here one single cut is necessary and sufficient to obtain an agreement forest
+for T and T′: deleting the unique overlap edge inT. This single cut will be discovered by
+subsequent branching rules after branching to at most depth 1, i.e. in polynomial time.◀
+▶Theorem 17.Algorithm rMAFsolves the problem rMAF in timeO ∗(2.3391k).
+7 Future work
+Implementations of FPT branching algorithms for uMAF and, in particular, rMAF have been
+aggressively optimized [18, 16, 19] facilitating their use in practice. We are hopeful that our
+branching scheme, which is conceptually straightforward, can lead to further practical speed-
+ups: not just because of the reduced branching factor, but also because after branching rule 1
+has been applied to exhaustion, the resulting components inF′have disjoint embeddings in
+T: we obtain a set of disjoint tree-tree instances. This opens the door to applying existing
+kernelization algorithms to these tree-tree instances encountered deeper in the recursion
+(“branch and reduce”). Existing sophisticated kernelization algorithms and bounding schemes
+do not generalize well to tree-forest instances [14], so this is an interesting opportunity.
+An implementation should also take into account that, in order to attain state-of-the-art
+performancein practice, it is usually necessary to incorporate additional speed-ups that are
+not part of the core branching scheme. For example, although it does not improve worst-case
+performance, thecommon clusterreduction rule is known to give a dramatic performance
+boost in practice [12]. Other speed-ups include fast and aggressive lower bounding schemes
+that can very quickly return⊥(i.e. fail) if it is impossible to reach an agreement forest from
+a given point with the remaining budget of cuts. It is also possible that, in practice, some
+of the more exotic flanking branching rules that we have developed (such as branching rule
+5) do not need to implemented at all in order to secure the main benefits of our algorithm.
+Careful profiling of where the algorithm spends its time on realistic data sets is required to
+guide such engineering decisions. We defer such implementation issues to future research.
+On the theoretical side it is natural to ask how far the branching factors obtained in this
+
+=== PDF PAGE 27 ===
+D. Mestel, S. Chaplick, S. Kelk, R. Meuwese 27
+article can be reduced, and what improvements our branching scheme might yield for other
+variants of rMAF and uMAF, for example on multiple trees or nonbinary trees.
+References
+1 B. Allen and M. Steel. Subtree transfer operations and their induced metrics on evolutionary
+trees.Annals of Combinatorics, 5(1):1–15, 2001.doi:10.1007/s00026-001-8006-8.
+2 M. Bordewich, C. McCartin, and C. Semple. A 3-approximation algorithm for the subtree
+distance between phylogenies.Journal of Discrete Algorithms, 6(3):458–471, 2008.
+3 M. Bordewich and C. Semple. On the computational complexity of the rooted subtree prune
+and regraft distance.Annals of Combinatorics., 8(4):409–423, January 2004.
+4 M. Bordewich and C. Semple. Computing the minimum number of hybridization events for a
+consistent evolutionary history.Discrete Applied Mathematics, 155(8):914–928, 2007.
+5 L. Bulteau and M. Weller. Parameterized algorithms in bioinformatics: An overview.Al-
+gorithms, 12(12):256, 2019.
+6 J. Chen, J-H. Fan, and S-H. Sze. Parameterized and approximation algorithms for maximum
+agreement forest in multifurcating trees.Theoretical Computer Science, 562:496–512, 2015.
+7 Z-Z. Chen, Y. Fan, and L. Wang. Faster exact computation of rSPR distance.Journal of
+Combinatorial Optimization, 29:605–635, 2015.
+8 W. Fitch. Toward Defining the Course of Evolution: Minimum Change for a Specific Tree
+Topology.Systematic Biology, 20(4):406–416, 12 1971.
+9 M. Hallett and C. McCartin. A faster fpt algorithm for the maximum agreement forest problem.
+Theory of Computing Systems, 41(3):539–550, 2007.
+10 J. Hein, T. Jiang, L. Wang, and K. Zhang. On the complexity of comparing evolutionary trees.
+Discrete Applied Mathematics, 71(1-3):153–169, 1996.
+11 S. Kelk and R. Meuwese. Agreement forests of caterpillar trees: Complexity, kernelization and
+branching.Theoretical Computer Science, 1003:114608, 2024.
+12 Z. Li and N. Zeh. Computing maximum agreement forests without cluster partitioning is folly.
+In25th Annual European Symposium on Algorithms (ESA 2017). Schloss-Dagstuhl-Leibniz
+Zentrum für Informatik, 2017.
+13 F. Shi, J. Chen, Q. Feng, and J. Wang. A parameterized algorithm for the maximum agreement
+forest problem on multiple rooted multifurcating trees.Journal of Computer and System
+Sciences, 97:28–44, 2018.
+14 R. van Wersch, S. Kelk, S. Linz, and G. Stamoulis. Reflections on kernelizing and computing
+unrooted agreement forests.Annals of Operations Research, 309(1):425–451, 2022.
+15 C. Whidden, R. Beiko, and N. Zeh. Fixed-parameter algorithms for maximum agreement
+forests.SIAM Journal on Computing, 42(4):1431–1466, 2013.
+16 C. Whidden and F. Matsen. Calculating the unrooted subtree prune-and-regraft distance.
+IEEE/ACM transactions on computational biology and bioinformatics, 16(3):898–911, 2018.
+17 C. Whidden and N. Zeh. A unifying view on approximation and FPT of agreement forests.
+InInternational Workshop on Algorithms in Bioinformatics (W ABI 2009), pages 390–402.
+Springer, 2009.
+18 C. Whidden, N. Zeh, and R. Beiko. Supertrees Based on the Subtree Prune-and-Regraft
+Distance.Systematic Biology, 63(4):566–581, 04 2014.
+19 K. Yamada, Z-Z. Chen, and L. Wang. Better practical algorithms for rSPR distance and
+Hybridization Number. In19th International Workshop on Algorithms in Bioinformatics
+(W ABI 2019). Schloss-Dagstuhl-Leibniz Zentrum für Informatik, 2019.

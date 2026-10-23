@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "before_first_new_proof_execution": true,
+  "allowed_reuse": [
+    "Own CommonCoreV2,CommonRuleV2,ExpansionPartitionV2,ControlFlowV4,ReconstructionV2",
+    "Existing four selector primitives only at actual selection interface; their prior author dependencies remain reused",
+    "Exact frozen Tree,HasCherry,contract,restrict,rootedSpan,minimalVertices,agreement,expandBlock definitions",
+    "Lean standard library proofs and standard three axioms"
+  ],
+  "new_author_mathematical_primitives": [],
+  "forbidden": "author target common expansion/contraction/lifting/decision exactness, global exactness and derived IH; no blanket correctness imports as proofs",
+  "controls": [
+    {
+      "name": "valid expansion",
+      "T": "((0,1),2)",
+      "S": "(2,(1,0))",
+      "contracted_G": [
+        [
+          3
+        ],
+        [
+          2
+        ]
+      ],
+      "expanded": [
+        [
+          0,
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "agreement": true
+    },
+    {
+      "name": "separate endpoints, singleton b",
+      "T": "((0,1),2)",
+      "S": "(2,(1,0))",
+      "original": [
+        [
+          0,
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "coarsened": [
+        [
+          3,
+          2
+        ]
+      ],
+      "both_agreement": true
+    },
+    {
+      "name": "missing b rejected",
+      "T": "((0,1),2)",
+      "S": "(2,(1,0))",
+      "forest": [
+        [
+          0
+        ],
+        [
+          2
+        ]
+      ],
+      "agreement": false
+    },
+    {
+      "name": "freshness/uniqueness negatives",
+      "reuse": "Prior explicit mathematical counterexamples retained unchanged"
+    }
+  ],
+  "new_blind_credit": 0,
+  "new_replication_credit": 0,
+  "caps": {
+    "seconds": 59,
+    "raw": 67108864,
+    "line": 16777216,
+    "compressed": 268435456,
+    "floor": 3221225472
+  }
+}

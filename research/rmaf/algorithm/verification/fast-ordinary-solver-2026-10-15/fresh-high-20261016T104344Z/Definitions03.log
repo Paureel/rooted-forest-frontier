@@ -1,0 +1,13 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/verification/fast-ordinary-solver-2026-10-15/fresh-high-20261016T104344Z/Definitions03.lean:5:0: error: (kernel) excessive memory consumption detected
+def RMAF.restrict : List Nat → RMAF.Tree → Option RMAF.Tree :=
+fun selected x => RMAF.Tree.brecOn x (RMAF.restrict._f selected)
+def RMAF.sameShape : RMAF.Tree → RMAF.Tree → Bool :=
+fun x x_1 => RMAF.Tree.brecOn (motive := fun x => RMAF.Tree → Bool) x RMAF.sameShape._f x_1
+def RMAF.minimalVertices : List Nat → RMAF.Tree → List RMAF.Vertex :=
+fun selected x => RMAF.Tree.brecOn x (RMAF.minimalVertices._f selected)
+def Universal233.CoreGraph.subtree : RMAF.Tree → RMAF.Vertex → Option RMAF.Tree :=
+fun x x_1 => List.brecOn (motive := fun x => RMAF.Tree → Option RMAF.Tree) x_1 Universal233.CoreGraph.subtree._f x
+def Universal233.HardParent.vertices : RMAF.Tree → List RMAF.Vertex :=
+fun x => RMAF.Tree.brecOn x Universal233.HardParent.vertices._f
+def Universal233.HardParent.subtreeLabels : RMAF.Tree → RMAF.Vertex → List Nat :=
+fun x x_1 => List.brecOn (motive := fun x => RMAF.Tree → List Nat) x_1 Universal233.HardParent.subtreeLabels._f x

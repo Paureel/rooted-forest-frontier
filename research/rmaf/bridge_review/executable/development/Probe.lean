@@ -1,0 +1,11 @@
+import RMAF
+import GraphRegion
+#check List.cons_head_tail
+#check List.head_cons
+#check List.mem_map
+#check List.isEmpty_eq_false
+#check List.isEmpty_iff
+#check List.contains_iff_mem
+#check List.mem_cons
+#check List.mem_append
+#check List.map_eq_nil_iff

@@ -1,0 +1,5 @@
+import NumericSizes
+#check OrdinaryDispatch.GlobalNumeric.reachable_addresses
+#print axioms OrdinaryDispatch.GlobalNumeric.reachable_addresses
+#check OrdinaryDispatch.GlobalNumeric.reachable_numeric_widths
+#print axioms OrdinaryDispatch.GlobalNumeric.reachable_numeric_widths

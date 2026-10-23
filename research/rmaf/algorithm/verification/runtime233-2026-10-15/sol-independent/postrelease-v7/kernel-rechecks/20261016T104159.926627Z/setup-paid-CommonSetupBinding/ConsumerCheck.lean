@@ -1,0 +1,5 @@
+import CommonSetupBinding
+#check Universal233.Rule5RemainingLocalWork.common_setup_value
+#print axioms Universal233.Rule5RemainingLocalWork.common_setup_value
+#check Universal233.Rule5RemainingLocalWork.common_setup_work
+#print axioms Universal233.Rule5RemainingLocalWork.common_setup_work

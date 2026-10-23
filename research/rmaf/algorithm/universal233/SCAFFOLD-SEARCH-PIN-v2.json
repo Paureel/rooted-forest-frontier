@@ -1,0 +1,155 @@
+{
+  "version": 2,
+  "date": "2026-10-15",
+  "target": "Actual eligible hard-child states with one overlap pair and isolated homeomorphic third parent. Resolve the source paragraph that leaves residual (1,2,2) at c=233/100 when a binary core needs at least two cuts.",
+  "scope": "Targeted development search; not a repeat of completed colored-source X0, not held-out certification, not universal proof.",
+  "source_contacts": [
+    "algorithm/x0/fresh_oracle.py",
+    "algorithm/joint_macro/develop.py",
+    "branching/exact_search.py",
+    "algorithm/x0/multicolor/prototype.py"
+  ],
+  "controls": [
+    {
+      "name": "synthetic isolated good classification",
+      "T": [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "forest": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "expected": {
+        "overlap_pairs": [
+          [
+            0,
+            1
+          ]
+        ],
+        "isolated": 2,
+        "homeomorphic": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "name": "crossed quartet core",
+      "source": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "colors": {
+        "0": 0,
+        "1": 1,
+        "2": 0,
+        "3": 1
+      },
+      "expected": {
+        "costs": [
+          2,
+          2
+        ],
+        "mass2": "1/2"
+      }
+    },
+    {
+      "name": "omitted mixed branch caught",
+      "source": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "colors": {
+        "0": 0,
+        "1": 1,
+        "2": 0,
+        "3": 1
+      },
+      "missing_partition": [
+        [
+          0,
+          2
+        ],
+        [
+          1
+        ],
+        [
+          3
+        ]
+      ],
+      "expected_clean_covered": true,
+      "expected_corrupt_covered": false
+    },
+    {
+      "name": "p1 local-budget corruption caught",
+      "local_minima": [
+        2,
+        1,
+        0
+      ],
+      "q": 3,
+      "expected_unresolved_queries": [
+        [
+          0,
+          2
+        ]
+      ],
+      "corrupted_query_budget": 1
+    }
+  ],
+  "pilot": "All rooted labelled source trees against the fixed rooted target caterpillar at n=6; inspect both orientations and all cherries for source earlier-rule exclusions, then actual two-pendant cuts and full tidy. Retain only one-overlap, isolated-good states. Record all counts and elapsed seconds. Extend to n=7 only after pilot and rate record; n=8 only if extrapolated under2hours.",
+  "kill_conditions": "A classifier control mismatch halts dependent search. A candidate sharper universal residual bound is refuted only by an exact in-regime admitted state with actual cut/emission and unresolved-child witnesses. NO-FIRE is finite only.",
+  "independence": "All imported source/oracle values used for search are development contacts and cannot certify chosen proof. Fresh nonauthor verification is required.",
+  "erratum": {
+    "original_pin": "SCAFFOLD-SEARCH-PIN-v1.json",
+    "reason": "Pre-real-search control failed: omit_first_mixed_right keeps the B-pair partition and removes the A-pair partition. Expected omitted partition orientation in v1 was reversed. No real search ran before this correction.",
+    "failed_control_partition": [
+      [
+        0
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2
+      ]
+    ]
+  }
+}

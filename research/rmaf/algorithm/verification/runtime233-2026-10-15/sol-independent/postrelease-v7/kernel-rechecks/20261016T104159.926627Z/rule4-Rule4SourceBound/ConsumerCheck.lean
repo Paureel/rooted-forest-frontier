@@ -1,0 +1,9 @@
+import Rule4SourceBound
+#check OrdinaryDispatch.FullSourceWork.rule4Answers_payload
+#print axioms OrdinaryDispatch.FullSourceWork.rule4Answers_payload
+#check OrdinaryDispatch.FullSourceWork.rule4Source_local
+#print axioms OrdinaryDispatch.FullSourceWork.rule4Source_local
+#check OrdinaryDispatch.FullSourceWork.rule4ForestDebit_bound
+#print axioms OrdinaryDispatch.FullSourceWork.rule4ForestDebit_bound
+#check OrdinaryDispatch.FullSourceWork.rule4Source_bound
+#print axioms OrdinaryDispatch.FullSourceWork.rule4Source_bound

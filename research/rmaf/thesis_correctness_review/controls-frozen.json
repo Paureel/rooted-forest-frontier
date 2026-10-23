@@ -1,0 +1,18 @@
+{
+  "phase":"frozen before reading author target artifacts or any campaign oracle",
+  "date":"2026-10-14",
+  "arithmetic":"exact integer, Boolean and finite set equality; no tolerance",
+  "representation":"Fresh directed parent/child graph with labelled ordinary leaves and optional labelled unary rho root. Minimal embeddings are unions of undirected graph paths between block labels; roots keep original orientation. Restriction suppresses only unlabelled unary vertices.",
+  "known_truth":[
+    {"id":"identity","trees":[["a","b"],["a","b"]],"optimum_components":1},
+    {"id":"triplet_rotation","trees":[[["a","b"],"c"],["a",["b","c"]]],"optimum_components":2,"rho_optimum_components":2},
+    {"id":"crossing_partition","tree":[["a","b"],["c","d"]],"partition":[["a","c"],["b","d"]],"valid":false,"clean_partition":[["a","b"],["c","d"]],"clean_valid":true},
+    {"id":"zero_cuts","tree":[["a","b"],["c","d"]],"components":1},
+    {"id":"root_cherry_exchange","F1":[["a","c"],"b","d","rho"],"F2":[[["a","b"],["c","d"]],"rho"],"E":["a","b","c","d"],"E2":["b","d"],"lca_parent_exists":false,"root_safe_E0":["b","d"],"expected_AF":true}
+  ],
+  "corruptions":["Force rotation optimum from 2 to 1; comparator must reject","Omit vertex-disjointness on crossing partition; corrupted checker must incorrectly accept while clean checker rejects","Replace clean partition by crossing partition; gate must reject"],
+  "pilot":"n=3 and n=4 exact cuts and partitions; record times. Larger search only after projected wall clock below 120 seconds.",
+  "hostile_search":"After controls pass: cut versus partition optima for all ordered pairs on up to 4 ordinary leaves with true labelled unary rho; test root-safe exchange and A2BC exchange premise on exact optimal cut sets. Audit finite shape/branch semantics independently before opening algorithm.py/reference.py.",
+  "fail_conditions":"Any exact mismatch stops the corresponding leg; any target artifact weaker than universal proof must be scoped; a source expression undefined at root is a domain omission unless a well-defined execution yields a wrong answer.",
+  "lean_controls":"Replay exact seven lemmas with clean standard dependencies; print axioms. Prove a true arithmetic twin with the same proof machinery and demand rejection of a false arithmetic variant; nonzero exit from missing imports is invalid evidence."
+}

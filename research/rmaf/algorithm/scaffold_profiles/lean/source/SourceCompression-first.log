@@ -1,0 +1,62 @@
+SourceCompression.lean:8:74: error(lean.unknownIdentifier): Unknown identifier `CoreGraph.Vertex`
+SourceCompression.lean:15:19: error: unsolved goals
+case node
+color : Nat → Nat
+a : Nat
+l r : Tree
+il :
+  ∀ (p : sorry),
+    (∀ (x : Nat), x ∈ leaves l → color x = a) →
+      normalize (fromTree color sorry l) = GTree.leaf { origin := sorry, labels := leaves l, color := a }
+ir :
+  ∀ (p : sorry),
+    (∀ (x : Nat), x ∈ leaves r → color x = a) →
+      normalize (fromTree color sorry r) = GTree.leaf { origin := sorry, labels := leaves r, color := a }
+p : sorry
+h : ∀ (x : Nat), x ∈ leaves (l.node r) → color x = a
+hl : ∀ (x : Nat), x ∈ leaves l → color x = a
+hr : ∀ (x : Nat), x ∈ leaves r → color x = a
+⊢ (match normalize (fromTree color (sorry () ++ [false]) l), normalize (fromTree color (sorry () ++ [true]) r) with
+    | GTree.leaf a, GTree.leaf b =>
+      if a.color = b.color then GTree.leaf { origin := sorry (), labels := a.labels ++ b.labels, color := a.color }
+      else GTree.node (sorry ()) (GTree.leaf a) (GTree.leaf b)
+    | a, b => GTree.node (sorry ()) a b) =
+    GTree.leaf { origin := sorry (), labels := leaves l ++ leaves r, color := a }
+SourceCompression.lean:20:31: warning: This simp argument is unused:
+  il _ hl
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [fromTree, normalize, ir _ hr, leaves]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+SourceCompression.lean:20:40: warning: This simp argument is unused:
+  ir _ hr
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [fromTree, normalize, il _ hl, leaves]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+SourceCompression.lean:36:79: error: unsolved goals
+l r : Tree
+color : Nat → Nat
+hl : ∀ (x : Nat), x ∈ leaves l → color x = 0
+hr : ∀ (x : Nat), x ∈ leaves r → color x = 1
+⊢ (match normalize (fromTree color [false] l), normalize (fromTree color [true] r) with
+    | GTree.leaf a, GTree.leaf b =>
+      if a.color = b.color then GTree.leaf { origin := [], labels := a.labels ++ b.labels, color := a.color }
+      else GTree.node [] (GTree.leaf a) (GTree.leaf b)
+    | a, b => GTree.node [] a b) =
+    GTree.node [] (GTree.leaf { origin := [false], labels := leaves l, color := 0 })
+      (GTree.leaf { origin := [true], labels := leaves r, color := 1 })
+SourceCompression.lean:39:2: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [run, step, hn, normalize, choose, groups, attempt, erase, prefixRoot]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+'ScaffoldProfiles.Source.homogeneous_source_normalizes' depends on axioms: [propext, sorryAx]
+'ScaffoldProfiles.Source.two_root_groups_one_cut' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ScaffoldProfiles.Source.arbitrary_pure_subtrees_one_cut' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

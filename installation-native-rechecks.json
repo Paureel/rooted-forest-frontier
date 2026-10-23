@@ -1,0 +1,36 @@
+{
+ "tropical-sampler": {
+  "class": "selftest",
+  "tried": [
+   {
+    "kind": "manifest",
+    "cmd": "python3 tools/tropical-sampler/tropical_sampler.py --selftest && CEGM_GJ_OUT=\"$(mktemp -d)\" python3 tools/tropical-sampler/cegm_gj/t3_prod.py sanity --procs 4",
+    "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+    "rc": 0,
+    "wall_s": 4.8,
+    "tail": "j_total=5s rate=1.15e+05pts/s\n[1791973636.126] SANITY engine=plain: 78/104 chunks 3.4s proj_total=5s rate=1.14e+05pts/s\n[1791973636.294] SANITY engine=plain: 81/104 chunks 3.6s proj_total=5s rate=1.13e+05pts/s\n[1791973636.353] SANITY engine=plain: 84/104 chunks 3.6s proj_total=5s rate=1.15e+05pts/s\n[1791973636.478] SANITY engine=plain: 87/104 chunks 3.8s proj_total=5s rate=1.15e+05pts/s\n[1791973636.651] SANITY engine=plain: 90/104 chunks 3.9s proj_total=5s rate=1.14e+05pts/s\n[1791973636.764] SANITY engine=plain: 93/104 chunks 4.1s proj_total=5s rate=1.15e+05pts/s\n[1791973636.871] SANITY engine=plain: 96/104 chunks 4.2s proj_total=5s rate=1.15e+05pts/s\n[1791973636.994] SANITY engine=plain: 99/104 chunks 4.3s proj_total=5s rate=1.15e+05pts/s\n[1791973637.143] SANITY engine=plain: 102/104 chunks 4.4s proj_total=5s rate=1.15e+05pts/s\n[1791973637.207] SANITY engine=plain: 104/104 chunks 4.5s proj_total=4s rate=1.16e+05pts/s\n[1791973637.210] SANITY engine=plain: value=0.127399414826922828643207977258924035788138193190338784176844748942737759706e3 wall=4.50s (1.16e+05 pts/s)\n[1791973637.221] SANITY: rel-vs-pilot-n10=1.49e-45 gate<1e-38: PASS\n{\"rel\": 1.4940318561006172e-45, \"gate\": \"PASS\"}\n"
+   }
+  ],
+  "secs": 4.8,
+  "wall_s": 4.8,
+  "status": "PASS",
+  "via": "python3 tools/tropical-sampler/tropical_sampler.py --selftest && CEGM_GJ_OUT=\"$(mktemp -d)\" python3 tools/tropical-sampler/cegm_gj/t3_prod.py sanity --procs 4"
+ },
+ "frobenius-boundary": {
+  "class": "data-gated",
+  "tried": [
+   {
+    "kind": "manifest",
+    "cmd": "python3 asdminer/run_control.py && python3 deform_transport/battery/run_battery_deform.py --stages S0,S1 && python3 -m frobenius_boundary.selftest",
+    "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/frobenius-boundary",
+    "rc": 4,
+    "wall_s": 8.7,
+    "tail": "ENT D= 4 weil= [1] | ellak a_5 = 1\nproducer_lint: SKIPPED (FROB_PRODUCER_LINT unset)\nVERDICT: ASDMINER-CONTROL-PASS: G1,G2,G3a,G3b,G3c,G4,G5,G6 all green; Honda 8/8+8/8 exact ellak match, Beukers-85 12/12, Hecke 5/5, fault+null caught\ncontrol_pass = True\ndeform_transport battery start 2026-10-14T10:27:16Z (pid 6583) stages=S0,S1\nproducer_lint: SKIPPED (FROB_PRODUCER_LINT unset)\nS0: S0-PASS: code census recorded; Sym^5 operator rebuilt from code/build_sym5.py and verified (full-MUM\n  [S1] rank-2 p=23 PASS=True\n  [S1] rank-2 p=29 PASS=True\nproducer_lint: SKIPPED (FROB_PRODUCER_LINT unset)\nS1: S1-PASS: rank-2 Dwork theorem case EXACT through the full matrix transport at p in {23,29}, supersin\nproducer_lint: SKIPPED (FROB_PRODUCER_LINT unset)\nBATTERY VERDICT: FAST-TIER-GREEN: stages S0,S1 only \u2014 all run gates true; the full battery is --stages S0,S1,S2,S3,S4\nSELFTEST DATA-GATED REFUSAL: the configured Kira reduction table does not exist:\n  kira_targets_m = (set me) /path/to/your/point/kira_targets_all.m\nThis acceptance test needs a per-point Kira reduction table (kira2math output), which is not distributed with the repo. Fill in a copy of config_example.json and set FROB_CONFIG to it.\n"
+   }
+  ],
+  "secs": 8.7,
+  "wall_s": 8.7,
+  "status": "REFUSED (by design)",
+  "reason": "This acceptance test needs a per-point Kira reduction table (kira2math output), which is not distributed with the repo. Fill in a copy of config_example.json and set FROB_CONFIG to it."
+ }
+}

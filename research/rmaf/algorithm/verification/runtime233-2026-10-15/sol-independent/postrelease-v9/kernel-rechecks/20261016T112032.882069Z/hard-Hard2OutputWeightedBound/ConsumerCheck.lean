@@ -1,0 +1,5 @@
+import Hard2OutputWeightedBound
+#check OrdinaryDispatch.Hard2SourceWork.outputForestDebit_weighted
+#print axioms OrdinaryDispatch.Hard2SourceWork.outputForestDebit_weighted
+#check OrdinaryDispatch.Hard2SourceWork.actual_output_count
+#print axioms OrdinaryDispatch.Hard2SourceWork.actual_output_count

@@ -1,0 +1,5 @@
+import OrdinaryStepTrace
+#check OrdinaryDispatch.WorkRecursion.ordinaryStepTrace_value
+#print axioms OrdinaryDispatch.WorkRecursion.ordinaryStepTrace_value
+#check OrdinaryDispatch.WorkRecursion.ordinaryStepTrace_common
+#print axioms OrdinaryDispatch.WorkRecursion.ordinaryStepTrace_common

@@ -1,0 +1,34 @@
+research/rmaf/algorithm/universal233/forest_solver/build/ForestDisjoint.lean:32:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  List.map (pair t) ss
+in the target expression
+  j.problem ∈ keys
+
+ordinary : Tree → Tree → Nat → Option Forest
+ho : OrdinaryIH ordinary
+t : Tree
+ss : List Tree
+q : Nat
+G : List (List Nat)
+ha : agrees (some t) ss G = true
+hclear : pairwiseEmbeddings t (List.map leaves ss) = true
+hq : additionalCost ss G ≤ q
+hp : proper (some t) ss = true
+keys : List (Tree × Tree) := List.map (pair t) ss
+pproper : ∀ (p : Tree × Tree), p ∈ keys → DepthOne.proper p.fst p.snd = true
+existsMin : ∀ (p : Tree × Tree), p ∈ keys → ∃ n, LocalMinimum p.fst p.snd n
+m : Tree × Tree → Nat := fun p => if h : ∃ n, LocalMinimum p.fst p.snd n then h.choose else 0
+hm : ∀ (p : Tree × Tree), p ∈ keys → LocalMinimum p.fst p.snd (m p)
+js : List (Job (Tree × Tree) Forest)
+hjobs : jobs t ss = some js
+hkeys : List.map Job.problem js = List.map (pair t) ss
+hplan : ∀ (j : Job (Tree × Tree) Forest), j ∈ js → Planned m (PairValid m) j
+j : Job (Tree × Tree) Forest
+hj : j ∈ js
+⊢ j.problem ∈ keys
+research/rmaf/algorithm/universal233/forest_solver/build/ForestDisjoint.lean:69:54: error: Function expected at
+  h
+but this term has type
+  ?m.683 s r
+
+Note: Expected a function because this term is being applied to the argument
+  (congrArg Prod.snd he)

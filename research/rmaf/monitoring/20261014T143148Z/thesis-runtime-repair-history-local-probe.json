@@ -1,0 +1,218 @@
+{
+  "scope": "local protected entry state, NOT a top-level source-reachable counterexample",
+  "engine_lineage": "reuses completed geometry/check.py; coordinator exploration only",
+  "input_f1": "((((a,c),d),((x,y),h)),((W,X),(Y,B)))",
+  "input_f2": "(((a,((W,(x,X)),(d,(y,Y)))),(c,B)),h)",
+  "initial_protected1": [
+    "a"
+  ],
+  "initial_protected2": [
+    "a"
+  ],
+  "initial_analysis_credits": {
+    "P": [],
+    "Q": []
+  },
+  "initial_selected_pairs": [
+    [
+      "a",
+      "c"
+    ]
+  ],
+  "protection_removed_twin_selected_pairs": [
+    [
+      "x",
+      "y"
+    ]
+  ],
+  "calibration_control_groups": 6,
+  "original_b": "W,X,Y,d,x,y",
+  "rows": [
+    {
+      "f1": "(((((a,c),d),((x,y),h)),((W,X),(Y,B))))rho",
+      "f2": [
+        "((((a,((W,(x,X)),(d,(y,Y)))),(c,B)),h))rho"
+      ],
+      "protected1": [
+        "a"
+      ],
+      "protected2": [
+        "a"
+      ],
+      "rule": {
+        "pair": [
+          "a",
+          "c"
+        ],
+        "case": "A2BC",
+        "pendants": [
+          "W,X,Y,d,x,y",
+          "B"
+        ],
+        "branches": [
+          {
+            "name": "A",
+            "cuts": [
+              "a"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": false
+          },
+          {
+            "name": "B",
+            "cuts": [
+              "W,X,Y,d,x,y",
+              "B"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "C",
+            "cuts": [
+              "c"
+            ],
+            "protect2": [
+              "a",
+              "W,X,Y,d,x,y",
+              "B"
+            ],
+            "protect1": [
+              "a"
+            ],
+            "legal": true
+          }
+        ],
+        "uncle": "d"
+      },
+      "chosen_branch": "C"
+    },
+    {
+      "f1": "((((a,d),((x,y),h)),((W,X),(Y,B))))rho",
+      "f2": [
+        "((((a,((W,(x,X)),(d,(y,Y)))),B),h))rho"
+      ],
+      "protected1": [
+        "a"
+      ],
+      "protected2": [
+        "B",
+        "W,X,Y,d,x,y",
+        "a"
+      ],
+      "rule": {
+        "pair": [
+          "d",
+          "a"
+        ],
+        "case": "A2BC",
+        "pendants": [
+          "Y,y",
+          "W,X,x"
+        ],
+        "branches": [
+          {
+            "name": "B",
+            "cuts": [
+              "Y,y",
+              "W,X,x"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "A",
+            "cuts": [
+              "d"
+            ],
+            "protect2": [
+              "Y,y",
+              "W,X,x"
+            ],
+            "protect1": [],
+            "legal": true
+          }
+        ],
+        "uncle": "h,x,y"
+      },
+      "chosen_branch": "A"
+    },
+    {
+      "f1": "(((a,((x,y),h)),((W,X),(Y,B))))rho",
+      "f2": [
+        "((((a,((W,(x,X)),(y,Y))),B),h))rho"
+      ],
+      "protected1": [
+        "a"
+      ],
+      "protected2": [
+        "B",
+        "W,X,Y,x,y",
+        "W,X,x",
+        "Y,y",
+        "a"
+      ],
+      "rule": {
+        "pair": [
+          "x",
+          "y"
+        ],
+        "case": "A3BC",
+        "pendants": [
+          "X",
+          "W",
+          "Y"
+        ],
+        "branches": [
+          {
+            "name": "A",
+            "cuts": [
+              "x"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "B",
+            "cuts": [
+              "X",
+              "W",
+              "Y"
+            ],
+            "protect2": [],
+            "protect1": [],
+            "legal": true
+          },
+          {
+            "name": "C",
+            "cuts": [
+              "y"
+            ],
+            "protect2": [
+              "x"
+            ],
+            "protect1": [
+              "x"
+            ],
+            "legal": true
+          }
+        ],
+        "uncle": "h"
+      },
+      "a_sibling": "W,X,Y,x,y",
+      "retained_x_inside_b": true,
+      "literal_credit_assignment": {
+        "P": [
+          "a"
+        ],
+        "Q": []
+      }
+    }
+  ],
+  "conclusion": "original x,y eligibility cannot be inferred from equal F1 depth and this local carried-credit prefix alone",
+  "missing_obligation": "reach this protected empty-credit entry state from an unprotected source input, or prove it cannot occur"
+}

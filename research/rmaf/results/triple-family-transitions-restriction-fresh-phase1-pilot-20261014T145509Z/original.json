@@ -1,0 +1,218 @@
+{
+  "denominators_ok": true,
+  "elapsed_seconds": 0.00020841700097662397,
+  "expected_denominators": {
+    "corruption": 0,
+    "hostile": 0,
+    "malformed": 0,
+    "outside_premise": 0,
+    "positive": 1,
+    "wrong_number": 1
+  },
+  "observed_denominators": {
+    "corruption": 0,
+    "hostile": 0,
+    "malformed": 0,
+    "outside_premise": 0,
+    "positive": 1,
+    "wrong_number": 1
+  },
+  "outer_gate_accepts": true,
+  "passing_rows": 2,
+  "rows": [
+    {
+      "category": "positive",
+      "comparison": {
+        "accepted": true,
+        "mismatches": []
+      },
+      "evaluation": {
+        "child_reports": [
+          {
+            "charge": 1,
+            "cost": 0,
+            "count": 1,
+            "leaf_witnesses": {
+              "a": [
+                {
+                  "address": "",
+                  "label": "a"
+                }
+              ]
+            },
+            "root_owner": "a",
+            "unused_vertices": [],
+            "valid": true
+          },
+          {
+            "charge": 1,
+            "cost": 0,
+            "count": 1,
+            "leaf_witnesses": {
+              "b": [
+                {
+                  "address": "",
+                  "label": "b"
+                }
+              ]
+            },
+            "root_owner": "b",
+            "unused_vertices": [],
+            "valid": true
+          }
+        ],
+        "children": [
+          {
+            "boundary": "a",
+            "indices": [
+              "a"
+            ],
+            "regions": {
+              "a": [
+                ""
+              ]
+            },
+            "tree": "a"
+          },
+          {
+            "boundary": "b",
+            "indices": [
+              "b"
+            ],
+            "regions": {
+              "b": [
+                ""
+              ]
+            },
+            "tree": "b"
+          }
+        ],
+        "cost_equation": {
+          "lhs": 2,
+          "rhs": 2
+        },
+        "count_equation": {
+          "lhs": 2,
+          "rhs": 2
+        },
+        "exact_reassembly": true,
+        "index_bijection": [
+          {
+            "parent_index": "a",
+            "parent_support": [
+              "0"
+            ],
+            "reassembled_support": [
+              "0"
+            ],
+            "tag": [
+              "L",
+              "a"
+            ]
+          },
+          {
+            "parent_index": "b",
+            "parent_support": [
+              "1"
+            ],
+            "reassembled_support": [
+              "1"
+            ],
+            "tag": [
+              "R",
+              "b"
+            ]
+          }
+        ],
+        "live_indices": [
+          [
+            "a"
+          ],
+          [
+            "b"
+          ]
+        ],
+        "mapped_boundary": null,
+        "open_branch_live": true,
+        "overlap": [],
+        "parent": {
+          "charge": 0,
+          "cost": 2,
+          "count": 2,
+          "leaf_witnesses": {
+            "a": [
+              {
+                "address": "0",
+                "label": "a"
+              }
+            ],
+            "b": [
+              {
+                "address": "1",
+                "label": "b"
+              }
+            ]
+          },
+          "root_owner": null,
+          "unused_vertices": [
+            ""
+          ],
+          "valid": true
+        },
+        "parent_boundary_live_flags": [
+          false,
+          false
+        ],
+        "summary": {
+          "kind": "closeBoth",
+          "left_boundary": "a",
+          "left_cost": 0,
+          "left_count": 1,
+          "left_regions": {
+            "a": [
+              ""
+            ]
+          },
+          "parent_cost": 2,
+          "parent_count": 2,
+          "right_boundary": "b",
+          "right_cost": 0,
+          "right_count": 1,
+          "right_regions": {
+            "b": [
+              ""
+            ]
+          },
+          "toll": 2
+        }
+      },
+      "id": "R1-close-both",
+      "pass": true
+    },
+    {
+      "actual": 2,
+      "category": "wrong_number",
+      "clean": {
+        "accepted": true,
+        "mismatches": []
+      },
+      "correct": 2,
+      "corrupt": {
+        "accepted": false,
+        "mismatches": [
+          {
+            "actual": 2,
+            "claimed": 0,
+            "field": "toll"
+          }
+        ]
+      },
+      "field": "toll",
+      "id": "omit-close-toll",
+      "pass": true,
+      "wrong": 0
+    }
+  ],
+  "started_utc": "2026-10-14T14:55:14.914022+00:00",
+  "total_rows": 2
+}

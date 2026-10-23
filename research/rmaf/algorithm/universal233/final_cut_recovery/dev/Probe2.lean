@@ -1,0 +1,17 @@
+import RecoveryProgram
+#check List.Perm.pairwise_iff
+#check List.Perm.pairwise
+#check List.Pairwise.imp
+#check List.forall₂_map_left_iff
+#check List.forall₂_cons
+#check List.forall₂_nil_left_iff
+#check List.Perm.count_eq
+#check List.Perm.isEmpty_eq
+#check List.Perm.map_eq
+#check List.map_eq_map_iff
+#check List.map_id
+#check List.map_congr_left
+#check List.Forall₂
+#check List.Pairwise
+#check List.pairwise_cons
+#check List.all_eq_true

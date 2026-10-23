@@ -1,0 +1,9 @@
+import ChildrenExecutionWork
+#check Universal233.Rule5SelectedLocalWork.run_children_value
+#print axioms Universal233.Rule5SelectedLocalWork.run_children_value
+#check Universal233.Rule5SelectedLocalWork.run_children_local
+#print axioms Universal233.Rule5SelectedLocalWork.run_children_local
+#check Universal233.Rule5SelectedLocalWork.run_children_recursive
+#print axioms Universal233.Rule5SelectedLocalWork.run_children_recursive
+#check Universal233.Rule5SelectedLocalWork.children_answer_payload
+#print axioms Universal233.Rule5SelectedLocalWork.children_answer_payload

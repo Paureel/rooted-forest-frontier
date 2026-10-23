@@ -1,0 +1,63 @@
+{
+  "id": "thesis-correctness",
+  "title": "Thesis protected-edge correctness",
+  "status": "open",
+  "summary": "All 14,250 current-version tiny pairs match; 160 local exchange checks and seven Lean lemmas complete. Universal graph correctness remains open.",
+  "metrics": {
+    "source_pages_read": 35,
+    "controls_passed": 8,
+    "finite_pairs_tested_current_version": 14250,
+    "local_exchange_states": 80,
+    "local_exchange_endpoint_checks": 160,
+    "lean_theorems_checked": 7
+  },
+  "claims": [
+    {
+      "id": "thesis-algorithm-correctness",
+      "label": "Chapter 6 universal correctness",
+      "status": "open",
+      "detail": "Root-safe common-cherry path normalization preserving AF and original-edge provenance, plus lifting of residual optimum cutsets through suppression; these imply symmetric two-pendant exchange and inherited optimum exclusion."
+    },
+    {
+      "id": "thesis-finite-replay",
+      "label": "Exact small-input decisions",
+      "status": "tested",
+      "detail": "All 225 four-leaf pairs, 11,025 five-leaf pairs, and 3,000 six-leaf pairs with seed 613 agree with a separate partition implementation. Same author; no universal claim."
+    },
+    {
+      "id": "thesis-source-lemma63",
+      "label": "Lemma 6.3 source overstatement",
+      "status": "refuted",
+      "detail": "Two-label disconnected-source/joined-target counterexample; immediate 6.4/6.5 uses compare against connected T1, so their containment premise is automatic."
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "thesis-local-a2bc-protected-c",
+      "label": "Protected-c A2BC branch logic",
+      "status": "conditional",
+      "detail": "Kernel checked, no axioms; coverage, exchange and inherited exclusion are explicit hypotheses."
+    },
+    {
+      "id": "thesis-protection-or",
+      "label": "OR protection provenance",
+      "status": "checked",
+      "detail": "Two kernel-checked Boolean path theorems; graph transport is still open."
+    },
+    {
+      "id": "thesis-normalization-cost",
+      "label": "Normalization cut-count inequality",
+      "status": "checked",
+      "detail": "Kernel checked under explicit count bounds; root-safe AF preservation remains open."
+    }
+  ],
+  "artifacts": [
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/SEMANTICS.md",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/WORKLOG.md",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_correctness/ProtectedBranch.lean",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-lean.log",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-summary.json",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-sweep-n6-limit3000-seed613.json",
+    "/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/results/thesis-correctness-root-normalization-witness.json"
+  ]
+}

@@ -1,0 +1,419 @@
+{
+  "version": 3,
+  "status": "SCOPED_V3_SOURCE_AND_REFERENCE_COMPONENT_REVIEW_COMPLETE_GLOBAL_ACTUAL_RUNTIME_OPEN",
+  "rows": [
+    {
+      "obligation": "allgood value and proper-state polynomial",
+      "status": "SELECTED_SOURCE_KERNEL_AND_OWN_FINITE_CHECKS",
+      "exact_hypotheses": "proper (some t) ss=true for n-polynomial; value unconditional",
+      "result": "meterRun.value=AllGoodDP.run for every input; proper actual target tree gives1048576*(n+1)^4 without desired-work premise",
+      "remaining_actual_cost_premise": "Scalar/cell/provider interpretation and actual caller composition; n-only theorem is not arbitrary raw-input envelope",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/allgood_local_work/GuardCost.lean",
+          "sha256": "8b32867b9dfdfedc16c66397f90c2036ecac0c457589a12655ee55a5f21453a0",
+          "lines": [
+            42,
+            59
+          ],
+          "verbatim": "def meterRun (T : Option Tree) (ss : List Tree) : Charged (Option (List (List Nat))) :=\n let g := meterGuard T ss\n if g.value then\n  let c := meterCandidate T ss\n  ⟨some c.value,g.work+c.work+8⟩\n else ⟨none,g.work+4⟩\n@[simp] theorem meterRun_value (T : Option Tree) (ss : List Tree) : (meterRun T ss).value=run T ss := by\n cases h:allGood T ss <;> simp [meterRun,run,h]\n\ndef runPolynomial (n : Nat) : Nat := guardPolynomial (2*n)+candidatePolynomial n+8\n\ntheorem actual_run_work (t : Tree) (ss : List Tree) (hp : proper (some t) ss=true) :\n (meterRun (some t) ss).work≤runPolynomial (leaves t).length := by\n have volume := GenericForest.LocalPolynomial.state_size_bounds (some t) ss hp (leaves t).length (Nat.le_refl _)\n have guard := meterGuard_work (some t) ss (2*(leaves t).length) volume.1 volume.2.1 volume.2.2\n have candidate := actual_candidate_work t ss hp\n simp only [meterRun,runPolynomial]\n split <;> dsimp only <;> omega"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/allgood_local_work/Polynomial.lean",
+          "sha256": "dd9900e6d01a7ea3555f3cc773153a378d8efb4ac84e2170e63deae8d053c615",
+          "lines": [
+            9,
+            11
+          ],
+          "verbatim": "theorem actual_run_polynomial (t : Tree) (ss : List Tree) (hp : proper (some t) ss=true) :\n (meterRun (some t) ss).work≤1048576*((leaves t).length+1)^4 :=\n Nat.le_trans (actual_run_work t ss hp) (runPolynomial_monomial _)"
+        }
+      ]
+    },
+    {
+      "obligation": "allgood refusal/raw domain",
+      "status": "SOURCE_AND_SELECTED_CONSUMER",
+      "exact_hypotheses": "targetNodes<=N; sourceNodes<=N; ss.length<=N; allGood=false",
+      "result": "value none and guardPolynomial N+4 including refused malformed source work",
+      "remaining_actual_cost_premise": "Actual raw encoded-size domain and scalar integration",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/allgood_local_work/GuardCost.lean",
+          "sha256": "8b32867b9dfdfedc16c66397f90c2036ecac0c457589a12655ee55a5f21453a0",
+          "lines": [
+            61,
+            67
+          ],
+          "verbatim": "theorem refused_guard_work (T : Option Tree) (ss : List Tree) (N : Nat)\n (tn : GenericForest.targetNodes T≤N) (sn : GenericForest.sourceNodes ss≤N) (sl : ss.length≤N)\n (refused : allGood T ss=false) : (meterRun T ss).value=none ∧ (meterRun T ss).work≤guardPolynomial N+4 := by\n have guard := meterGuard_work T ss N tn sn sl\n have value : (meterGuard T ss).value=false := by rw [meterGuard_value,refused]\n simp only [meterRun,value,Bool.false_eq_true,if_false]\n exact ⟨True.intro,Nat.add_le_add_right guard 4⟩"
+        }
+      ]
+    },
+    {
+      "obligation": "DP best/table/blocks multiplicity",
+      "status": "SOURCE_AND_OWN_HAND_TRUTH_CONTROLS",
+      "exact_hypotheses": "Nonempty colors for table erasure/work proof; owner/tree caps; all actual state premises discharged separately",
+      "result": "Both score scans per comparison, tail-first ties, duplicate colors and raw empty blocks retained until final filter",
+      "remaining_actual_cost_premise": "Unit equality/order/addition, list/counter and cell costs require representation binding",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/allgood_local_work/PaintCost.lean",
+          "sha256": "9f71314feda9cbfa44eac2c13a8008fc78017ff2764058a7e49bbe25570b284f",
+          "lines": [
+            40,
+            60
+          ],
+          "verbatim": "/-- Literal tail-first best. Both actual candidate costs are recomputed in each\ncomparison, with their full paint scan work retained. -/\ndef meterBest {α : Type} (cost : α → Charged Nat) : List α → Charged (Option α)\n | [] => ⟨none,4⟩\n | a::as =>\n  let r := meterBest cost as\n  match r.value with\n  | none => ⟨some a,r.work+8⟩\n  | some b =>\n   let ca := cost a\n   let cb := cost b\n   ⟨if ca.value≤cb.value then some a else some b,r.work+ca.work+cb.work+12⟩\n@[simp] theorem meterBest_value {α : Type} (cost : α → Charged Nat) (xs : List α) :\n (meterBest cost xs).value=RMAF.best (fun a=>(cost a).value) (fun _=>true) xs := by\n induction xs with\n | nil => rfl\n | cons a as ih => simp only [meterBest,ih,RMAF.best];cases h:RMAF.best (fun a=>(cost a).value) (fun _=>true) as <;> simp\n\ntheorem meterBest_work {α : Type} (cost : α → Charged Nat) (xs : List α) (C : Nat)\n (cap : ∀a,a∈xs→(cost a).work≤C) :\n (meterBest cost xs).work≤(2*C+12)*xs.length+4 := by"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/allgood_local_work/TableCost.lean",
+          "sha256": "727394aade4850a4a25613cf642f05aa0171c5b6e86d93418df460cb71c61680",
+          "lines": [
+            31,
+            46
+          ],
+          "verbatim": "def meterTable (cs : List Nat) (owner : Nat→Charged Nat) : Tree→Charged (List Paint)\n | .leaf x => let o := owner x;⟨[.leaf x o.value],o.work+8⟩\n | .node l r =>\n  let a := meterTable cs owner l\n  let b := meterTable cs owner r\n  let rows := cs.map (fun c=>meterRow c a.value b.value)\n  ⟨rows.map Charged.value,a.work+b.work+(rows.map Charged.work).sum+8⟩\n@[simp] theorem meterTable_value (cs : List Nat) (owner : Nat→Charged Nat) (t : Tree) :\n (meterTable cs owner t).value=table cs (fun x=>(owner x).value) t := by\n induction t with\n | leaf x => rfl\n | node l r il ir => simp [meterTable,il,ir,List.map_map,Function.comp_def,table]\n\ndef chooseCap (m N : Nat) : Nat := (48*N+12)*(m+1)+8\ndef nodeCharge (m N : Nat) : Nat := m*(2*chooseCap m N+8)+8\ndef tableCoefficient (C m N : Nat) : Nat := C+nodeCharge m N+16"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/allgood_local_work/BlockCost.lean",
+          "sha256": "4f1db9ebffc78f92b65489070aeb14abe0a4ab17e011e9f94e237e7f9ad3eeb1",
+          "lines": [
+            32,
+            43
+          ],
+          "verbatim": "/-- The four literal equality tests and both left append spines are charged.\nThe forest blocks retain empty components until the production final filter. -/\ndef meterSplit : Paint→Charged (List Nat×List (List Nat))\n | .leaf x _ => ⟨([x],[]),8⟩\n | .node c l r =>\n  let a := meterSplit l\n  let b := meterSplit r\n  let la := if c==root l then a.value.1 else []\n  let lb := if c==root r then b.value.1 else []\n  let fa := if c==root l then a.value.2 else a.value.1::a.value.2\n  let fb := if c==root r then b.value.2 else b.value.1::b.value.2\n  ⟨(la++lb,fa++fb),a.work+b.work+4*(la.length+fa.length+2)+16⟩"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/allgood_local_work/BlockCost.lean",
+          "sha256": "4f1db9ebffc78f92b65489070aeb14abe0a4ab17e011e9f94e237e7f9ad3eeb1",
+          "lines": [
+            66,
+            84
+          ],
+          "verbatim": "def meterNonempty : List (List Nat)→Charged (List (List Nat))\n | [] => ⟨[],4⟩\n | B::F =>\n  let m := meterNonempty F\n  ⟨if B.isEmpty then m.value else B::m.value,m.work+8⟩\n@[simp] theorem meterNonempty_value (F : List (List Nat)) :\n (meterNonempty F).value=F.filter (fun b=>!b.isEmpty) := by\n induction F with\n | nil => rfl\n | cons B F ih => cases B <;> simp [meterNonempty,ih]\ntheorem meterNonempty_work (F : List (List Nat)) : (meterNonempty F).work=8*F.length+4 := by\n induction F with\n | nil => rfl\n | cons B F ih => simp only [meterNonempty,List.length_cons,Nat.mul_add,Nat.mul_one];omega\n\ndef meterBlocks (p : Paint) : Charged (List (List Nat)) :=\n let m := meterSplit p\n let n := meterNonempty (m.value.1::m.value.2)\n ⟨n.value,m.work+n.work+8⟩"
+        }
+      ]
+    },
+    {
+      "obligation": "DP actual owner/paint domains",
+      "status": "SOURCE_REVIEWED",
+      "exact_hypotheses": "Proper actual state; input labels below explicit L",
+      "result": "Actual source count bounds colors, leaf labels preserve input cap; owner repeated source leaf scans included",
+      "remaining_actual_cost_premise": "Global propagation and actual bit cost for paint scores/colors/owner counters",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/allgood_local_work/OwnerCost.lean",
+          "sha256": "0efa6b93075c05b53537c0072f1ec8275f9356ff2cee5d1eea9f81eeea0881f3",
+          "lines": [
+            36,
+            54
+          ],
+          "verbatim": "def meterOwner (x : Nat) : List Tree→Charged Nat\n | [] => ⟨0,4⟩\n | s::ss =>\n  let ls := meterLabels s\n  let m := meterContains x ls.value\n  if m.value then ⟨0,ls.work+m.work+8⟩ else\n   let r := meterOwner x ss\n   ⟨r.value+1,ls.work+m.work+r.work+8⟩\n@[simp] theorem meterOwner_value (x : Nat) (ss : List Tree) :\n (meterOwner x ss).value=owner ss x := by\n induction ss with\n | nil => simp [meterOwner,owner]\n | cons s ss ih => by_cases h:x∈leaves s <;> simp [meterOwner,owner,meterLabels_value,ih,List.findIdx_cons,h]\n\ndef ownerRowCap (N : Nat) := 8*(N+1)*N+4*(N+1)+8\n\ntheorem meterOwner_work (x : Nat) (ss : List Tree) (N : Nat)\n (hs : ∀s,s∈ss→treeNodes s≤N) :\n (meterOwner x ss).work≤ss.length*ownerRowCap N+4 := by"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/allgood_local_work/CandidateCost.lean",
+          "sha256": "7f94265702fd804a4d144ce27d361b33e584b437873324821c88eb893b94515e",
+          "lines": [
+            19,
+            44
+          ],
+          "verbatim": "theorem actual_candidate_work (t : Tree) (ss : List Tree) (hp : proper (some t) ss=true) :\n (meterCandidate (some t) ss).work≤candidatePolynomial (leaves t).length := by\n let n := (leaves t).length\n have volume := GenericForest.LocalPolynomial.state_size_bounds (some t) ss hp n (Nat.le_refl _)\n have ht : treeNodes t≤2*n := volume.1\n have hs := volume.2.2\n have source : ∀s,s∈ss→treeNodes s≤2*n := fun s hm=>(GenericForest.LocalPolynomial.source_size_bounds (some t) ss hp n (Nat.le_refl _) s hm).1\n have ownerwork : ∀x,x∈leaves t→(meterOwner x ss).work≤2*n*ownerRowCap (2*n)+4 := by\n  intro x _\n  have h := meterOwner_work x ss (2*n) source\n  have mul := Nat.mul_le_mul_right (ownerRowCap (2*n)) hs\n  omega\n have nonempty : List.range ss.length≠[] := by\n  have ne := some_sources_nonempty t ss hp\n  simp only [ne_eq,List.range_eq_nil,List.length_eq_zero_iff]\n  exact ne\n have paint := meterSolve_work (List.range ss.length) (fun x=>meterOwner x ss) t nonempty _ (2*n) ht ownerwork\n simp only [List.length_range] at paint\n have raise := solveBill_mono (Nat.le_refl (2*n*ownerRowCap (2*n)+4)) hs (Nat.le_refl (2*n))\n have bounds : paintNodes (meterSolve (List.range ss.length) (fun x=>meterOwner x ss) t).value≤2*n := by\n  rw [paintNodes_erase,meterSolve_erase _ _ _ nonempty]\n  exact ht\n have block := meterBlocks_work _ (2*n) bounds\n simp only [meterCandidate,candidatePolynomial]\n dsimp only [n] at paint raise block hs\n omega"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/allgood_local_work/CandidateCost.lean",
+          "sha256": "7f94265702fd804a4d144ce27d361b33e584b437873324821c88eb893b94515e",
+          "lines": [
+            58,
+            63
+          ],
+          "verbatim": "theorem actual_paint_scalars (t : Tree) (ss : List Tree) (hp : proper (some t) ss=true)\n (L : Nat) (labels : ∀x,x∈leaves t→x<L) :\n PaintScalars L ss.length (meterSolve (List.range ss.length) (fun x=>meterOwner x ss) t).value := by\n rw [meterSolve_value]\n simp only [meterOwner_value]\n exact valid_scalars (actual_paint_spec t ss hp).1 L ss.length labels (fun c hc=>List.mem_range.1 hc)"
+        }
+      ]
+    },
+    {
+      "obligation": "cherry and Rule4 selectors",
+      "status": "SELECTED_SOURCE_KERNEL_AND_OWN_CONTROLS",
+      "exact_hypotheses": "treeNodes T<=N; treeNodes S<=N; no success/proper/budget premise needed",
+      "result": "Exact selector values and2048(N+1)^5/262144(N+1)^6; both orientation primitive sum<=1048576(N+1)^6",
+      "remaining_actual_cost_premise": "Weighted structural source slots still need actual binary/native provider binding",
+      "sources": [
+        {
+          "path": "results/algorithm-universal233-early-resume-20261016T083330Z-20261016T083634190186Z/ERInterface.lean",
+          "sha256": "15fcf124ae73f3b12872a87016a4d0e65addfb2b73e727b1c3ec467c83ea7975",
+          "lines": [
+            19,
+            43
+          ],
+          "verbatim": "/-- Public primitive envelope, with literal tree-size premises only. -/\ntheorem cherry_select_envelope (T S : Tree) (N : Nat)\n (tn : treeNodes T≤N) (sn : treeNodes S≤N) :\n (meterSelect T S).value=CherryBranching.select T S ∧\n (meterSelect T S).work≤2048*(N+1)^5 :=\n ⟨meterSelect_value T S,meterSelect_bound T S N tn sn⟩\n\n/-- Public primitive Rule4 envelope. The raw head caps are proved from\nrawChoices membership, not supplied by a successful guard. -/\ntheorem rule4_select_envelope (T S : Tree) (N : Nat)\n (tn : treeNodes T≤N) (sn : treeNodes S≤N) :\n (meterRule4Select T S).value=Rule4.select T S ∧\n (meterRule4Select T S).work≤262144*(N+1)^6 :=\n ⟨meterRule4Select_value T S,meterRule4Select_bound T S N tn sn⟩\n\n/-- Calls in both orientations have the same uniform envelope. -/\ntheorem earlier_clear_primitive_envelopes (T S : Tree) (N : Nat)\n (tn : treeNodes T≤N) (sn : treeNodes S≤N) :\n ((meterSelect T S).work+(meterSelect S T).work)+\n ((meterRule4Select T S).work+(meterRule4Select S T).work)≤1048576*(N+1)^6 := by\n have f:=cap_lift N 2048 5 6 _ (meterSelect_bound T S N tn sn) (by decide)\n have r:=cap_lift N 2048 5 6 _ (meterSelect_bound S T N sn tn) (by decide)\n have a:=meterRule4Select_bound T S N tn sn\n have b:=meterRule4Select_bound S T N sn tn\n omega"
+        },
+        {
+          "path": "results/algorithm-universal233-early-resume-20261016T083330Z-20261016T083634190186Z/ELRule4Raw.lean",
+          "sha256": "68edaccfc9404b17b16e0103f9390279ffdb23c41725a396007e8cd11d388cd2",
+          "lines": [
+            150,
+            159
+          ],
+          "verbatim": "/-- Raw heads are actual source vertices, before any LocalGuard succeeds. -/\ntheorem rawChoice_head (T S : Tree) (raw : Rule4.RawChoice) (h : raw∈Rule4.rawChoices T S) : raw.cHead.length≤treeNodes S := by\n unfold Rule4.rawChoices at h\n obtain ⟨ab,hab,h⟩:=List.mem_flatMap.1 h\n obtain ⟨ac,hac,h⟩:=List.mem_flatMap.1 h\n split at h\n · obtain ⟨q,hq,h⟩:=List.mem_flatMap.1 h\n   obtain ⟨r,hr,eq⟩:=List.mem_map.1 h\n   subst raw\n   exact pendant_address S ab.1 ab.2 q hq"
+        },
+        {
+          "path": "results/algorithm-universal233-early-resume-20261016T083330Z-20261016T083634190186Z/ELEarly.lean",
+          "sha256": "8c32eaaa748d8bc9cc6c7151e44efdceec126975afab37b4f0496a51dabd2119",
+          "lines": [
+            15,
+            22
+          ],
+          "verbatim": "def meterFirstChoice (T S : Tree) (hp : Rule4.Priority T S) : List Rule4.RawChoice→ChoiceMeasured T S\n | []=>⟨none,1,[]⟩\n | x::xs=>let g:=meterLocalGuard T S x\n   if h:g.value=true then\n    let proof : Rule4.LocalGuard T S x:=of_decide_eq_true ((meterLocalGuard_value T S x).symm.trans h)\n    ⟨some ⟨x,hp,proof⟩,g.work+4,[(x,true)]⟩\n   else let r:=meterFirstChoice T S hp xs\n        ⟨r.value,g.work+r.work+4,(x,false)::r.checks⟩"
+        }
+      ]
+    },
+    {
+      "obligation": "initial solve prefix and budget",
+      "status": "SELECTED_BODY_KERNEL_AND_OWN_CONTROLS",
+      "exact_hypotheses": "Both tree-node caps; found-source binding uses actual proper/pretest equations; ScalarDomain separately has q<=Q",
+      "result": "Initial proper and repeated pretest, all no/one cuts and found materialization, early selection;2097152(N+1)^6 without q<=current n",
+      "remaining_actual_cost_premise": "Ends before recursive branch construction. Actual q comparison, conversions, address/counter/scalar fees remain open",
+      "sources": [
+        {
+          "path": "results/algorithm-universal233-early-resume-20261016T083330Z-20261016T083634190186Z/ELOuter.lean",
+          "sha256": "8b067f940b53414f46320c17099438bd653e9cbfead601f4e92001fe910de5eb",
+          "lines": [
+            19,
+            50
+          ],
+          "verbatim": "def meterFront (q : Nat) (T S : Tree) : Charged (Front T S) :=\n let p:=meterOrdinaryProper T S\n if p.value then\n  let d:=meterPretest T S\n  match d.value with\n  | .refused=>⟨.stop none,p.work+d.work+4⟩\n  | .found c=>\n    let f:=meterForest S c\n    ⟨.stop (if DepthOne.cutCost c≤q then some f.value else none),p.work+d.work+f.work+8⟩\n  | .rejected=>let e:=meterEarly T S;⟨.selected e.value,p.work+d.work+e.work+4⟩\n else ⟨.stop none,p.work+2⟩\n@[simp] theorem meterFront_value (q T S) : (meterFront q T S).value=front q T S := by\n simp only [meterFront,front,meterOrdinaryProper_value,meterPretest_value,meterForest_value,meterEarly_value]\n repeat first | rfl | split\n\n/-- Binds the found prefix to the unchanged frozen solve at every budget,\nincluding budgets larger than the current reduced leaf count. -/\ntheorem front_found_solve (T S : Tree) (q : Nat) (c : Option RMAF.Vertex)\n (hp : DepthOne.proper T S=true) (found : DepthOne.pretest01 T S=.found c) :\n FastOrdinary.solve q T S=(if DepthOne.cutCost c≤q then some (DepthOne.forest S c) else none) ∧\n front q T S=.stop (FastOrdinary.solve q T S) := by\n have actual : FastOrdinary.solve q T S=(if DepthOne.cutCost c≤q then some (DepthOne.forest S c) else none) := by\n  rw [FastOrdinary.solve.eq_def]\n  simp only [hp,ite_true,found]\n exact ⟨actual,by simp only [front,hp,ite_true,found,actual]⟩\n\ntheorem front_rejected_binding (T S : Tree) (q : Nat)\n (hp : DepthOne.proper T S=true) (rejected : DepthOne.pretest01 T S=.rejected) :\n front q T S=.selected (FastOrdinary.early T S) := by simp [front,hp,rejected]\n\ntheorem meterFront_bound (T S : Tree) (q N : Nat) (tn : treeNodes T≤N) (sn : treeNodes S≤N) :\n (meterFront q T S).work≤2097152*(N+1)^6 := by"
+        },
+        {
+          "path": "results/algorithm-universal233-early-resume-20261016T083330Z-20261016T083634190186Z/ELOuter.lean",
+          "sha256": "8b067f940b53414f46320c17099438bd653e9cbfead601f4e92001fe910de5eb",
+          "lines": [
+            67,
+            89
+          ],
+          "verbatim": "/-- Explicit resources for a reduced current state. NT,NS may be original\nsizes; Q bounds current q separately. There is no hypothesis q<=current n. -/\ndef ScalarDomain (T S : Tree) (q L Q : Nat) : Prop :=\n (∀x∈leaves T,x<2^L) ∧ (∀x∈leaves S,x<2^L) ∧ q≤Q\n\ndef structuralEnvelope (NT NS L Q : Nat) : Nat :=\n 2097152*(NT+NS+L+Q+1)^6\n\ntheorem meterFront_resources (T S : Tree) (q NT NS L Q : Nat)\n (tn : treeNodes T≤NT) (sn : treeNodes S≤NS) (domain : ScalarDomain T S q L Q) :\n (meterFront q T S).work≤structuralEnvelope NT NS L Q := by\n exact meterFront_bound T S q (NT+NS+L+Q) (by omega) (by omega)\n\n/-- A weighted structural model only. A binary provider must separately prove\nthat fee covers every unit scalar equality/inequality/increment, label copy,\ncomparison with q, and administrative address/counter slot in this source sheet.\nIt is not an assumption that the whole selector already has a cost bound. -/\ndef weightedFront (fee q : Nat) (T S : Tree) : Nat := fee*(meterFront q T S).work\n\ntheorem weightedFront_bound (fee q : Nat) (T S : Tree) (NT NS L Q : Nat)\n (tn : treeNodes T≤NT) (sn : treeNodes S≤NS) (domain : ScalarDomain T S q L Q) :\n weightedFront fee q T S≤fee*structuralEnvelope NT NS L Q :=\n Nat.mul_le_mul_left fee (meterFront_resources T S q NT NS L Q tn sn domain)"
+        },
+        {
+          "path": "results/algorithm-universal233-early-resume-20261016T083330Z-20261016T083634190186Z/ELPretestBounds.lean",
+          "sha256": "08b4f3dde926cd7c878782e9a1087677ca4213576fdcc4b3685468842d29f097",
+          "lines": [
+            39,
+            54
+          ],
+          "verbatim": "/-- All no-cut and one-cut checks, valid and invalid, and all best-tail\ncomparisons are included. No agreement or successful-check premise is needed. -/\ntheorem meterPretest_bound (T S : Tree) (N : Nat) (tn : treeNodes T≤N) (sn : treeNodes S≤N) :\n (meterPretest T S).work≤400000*(N+1)^6 := by\n have p:=cap_lift N 128 2 6 _ (meterOrdinaryProper_bound T S N tn sn) (by decide)\n have c:=cap_lift N 32 2 6 _ (meterCandidates_bound S N sn) (by decide)\n have b:=meterBest_bound DepthOne.cutCost (meterCandidate T S) (DepthOne.candidates S) (300000*(N+1)^5)\n  (fun x hx=>meterCandidate_bound T S x hx N tn sn)\n have coeff : 300000*(N+1)^5+10≤300010*(N+1)^5:=by have pos:=Nat.one_le_pow 5 (N+1) (by omega);omega\n have scale:=Nat.mul_le_mul coeff (Nat.add_le_add_right sn 1)\n rw [candidates_length] at b\n have bb : (meterBest DepthOne.cutCost (meterCandidate T S) (DepthOne.candidates S)).work≤300010*(N+1)^6:=\n  Nat.le_trans b (by simpa only [show 6=5+1 from rfl,Nat.pow_succ,Nat.mul_assoc] using scale)\n have pos : 1≤(N+1)^6:=Nat.one_le_pow _ _ (by omega)\n simp only [meterPretest,meterCandidates_value]\n split <;> simp only [Charged.work] <;> omega"
+        }
+      ]
+    },
+    {
+      "obligation": "available geometry versus Rule5 assembly",
+      "status": "SOURCE_REVIEWED_COMPONENT_INCREMENT",
+      "exact_hypotheses": "Exact HardParent/DepthOne primitive sources and tree-node/address caps",
+      "result": "vertices/pendantOriginal/minimal/subtree source components now available; earlier blanket absence of those bodies superseded at these interfaces",
+      "remaining_actual_cost_premise": "Full actual Rule5 pendantPartition/admitted/classifiers/builders/caller binding not provided here; no later work contacted",
+      "sources": [
+        {
+          "path": "results/algorithm-universal233-early-resume-20261016T083330Z-20261016T083634190186Z/ELGeometry.lean",
+          "sha256": "4875b2f8de88d5c004a9724922b84c4a448bcf6ecfbad1748fc56a589dd141b9",
+          "lines": [
+            5,
+            33
+          ],
+          "verbatim": "def meterVertices : Tree→Charged (List RMAF.Vertex)\n | .leaf _=>⟨[[]],4⟩\n | .node l r=>let a:=meterVertices l;let b:=meterVertices r\n   ⟨[]::(a.value.map (false::·)++b.value.map (true::·)),a.work+b.work+8*(a.value.length+b.value.length+1)⟩\n@[simp] theorem meterVertices_value (T : Tree) : (meterVertices T).value=HardParent.vertices T := by\n induction T <;> simp_all [meterVertices,HardParent.vertices,prependSide]\ntheorem vertices_depthone (T : Tree) : HardParent.vertices T=DepthOne.vertices T := by\n induction T <;> simp_all [HardParent.vertices,DepthOne.vertices,prependSide]\ntheorem vertices_length (T : Tree) : (HardParent.vertices T).length=treeNodes T := by\n induction T <;> simp_all [HardParent.vertices,prependSide,treeNodes];omega\ntheorem vertices_address (T : Tree) (v : RMAF.Vertex) (hv : v∈HardParent.vertices T) : v.length≤treeNodes T := by\n induction T generalizing v with\n | leaf x=>simp [HardParent.vertices] at hv;subst v;simp [treeNodes]\n | node l r il ir=>\n  simp only [HardParent.vertices,prependSide,List.mem_cons,List.mem_append,List.mem_map] at hv\n  rcases hv with rfl|⟨u,hu,rfl⟩|⟨u,hu,rfl⟩\n  · simp [treeNodes]\n  · have h:=il u hu;simp only [List.length_cons,treeNodes];omega\n  · have h:=ir u hu;simp only [List.length_cons,treeNodes];omega\n\ntheorem meterVertices_bound (T : Tree) (N : Nat) (tn : treeNodes T≤N) :\n (meterVertices T).work≤8*(N+1)*treeNodes T := by\n induction T with\n | leaf x=>simp only [meterVertices,treeNodes,Nat.mul_one];omega\n | node l r il ir=>\n  have ln : treeNodes l≤N:=by simp only [treeNodes] at tn;omega\n  have rn : treeNodes r≤N:=by simp only [treeNodes] at tn;omega\n  have a:=il ln;have b:=ir rn\n  simp only [meterVertices,meterVertices_value,vertices_length,treeNodes,Nat.mul_add,Nat.mul_one] at a b tn ⊢;omega"
+        },
+        {
+          "path": "results/algorithm-universal233-early-resume-20261016T083330Z-20261016T083634190186Z/ELGeometry.lean",
+          "sha256": "4875b2f8de88d5c004a9724922b84c4a448bcf6ecfbad1748fc56a589dd141b9",
+          "lines": [
+            122,
+            152
+          ],
+          "verbatim": "def meterPendantCheck (S : Tree) (a b : Nat) (v : RMAF.Vertex) : Charged Bool :=\n let d:=meterDropLast v\n let m:=meterMinimal [a,b] S;let c:=meterVertexContains d.value m.value\n let n:=meterMinimal [a,b] S;let e:=meterVertexContains v n.value\n ⟨!v.isEmpty&&c.value&&(!e.value),d.work+m.work+c.work+n.work+e.work+4⟩\n@[simp] theorem meterPendantCheck_value (S a b v) :\n (meterPendantCheck S a b v).value=(!v.isEmpty&&(minimalVertices [a,b] S).contains v.dropLast&&(!(minimalVertices [a,b] S).contains v)) := by\n simp [meterPendantCheck]\n\ntheorem meterPendantCheck_bound (S : Tree) (a b N : Nat) (v : RMAF.Vertex)\n (sn : treeNodes S≤N) (vn : v.length≤N) : (meterPendantCheck S a b v).work≤256*(N+1)^3 := by\n have d:=meterDropLast_bound v\n have m:=minimal_two_bound S a b N sn\n have ml:=Nat.le_trans (minimal_length [a,b] S) sn\n have dv : v.dropLast.length≤N:=by simp only [List.length_dropLast];omega\n have cb:=meterVertexContains_bound v.dropLast (minimalVertices [a,b] S) N dv\n have eb:=meterVertexContains_bound v (minimalVertices [a,b] S) N vn\n have k:=Nat.mul_le_mul_left (8*(N+1)) (Nat.add_le_add_right ml 1)\n have c:=Nat.le_trans cb k;have e:=Nat.le_trans eb k\n have p1:=pow_mono N 1 3 (by decide);have p2:=pow_mono N 2 3 (by decide)\n have pos : 1≤(N+1)^3:=Nat.one_le_pow _ _ (by omega)\n simp only [Nat.pow_one,Nat.pow_two,Nat.mul_assoc] at c e p1 p2\n simp only [meterPendantCheck,meterDropLast_value,meterMinimal_value];omega\n\ndef meterPendant (S : Tree) (a b : Nat) : Charged (List RMAF.Vertex) :=\n let v:=meterVertices S;let f:=meterFilter (meterPendantCheck S a b) v.value\n ⟨f.value,v.work+f.work+2⟩\n@[simp] theorem meterPendant_value (S a b) : (meterPendant S a b).value=HardParent.pendantOriginal S a b := by\n simp [meterPendant,HardParent.pendantOriginal]\ntheorem meterPendant_bound (S : Tree) (a b N : Nat) (sn : treeNodes S≤N) :\n (meterPendant S a b).work≤512*(N+1)^4 := by"
+        }
+      ]
+    },
+    {
+      "obligation": "finite binary provider values and widths",
+      "status": "SELECTED_BODY_KERNEL_AND_OWN_HAND_TRUTH_CONTROLS",
+      "exact_hypotheses": "Finite supplied arrays; encode n<2^W; fixed-width sum fit; length fit for decoded count; positive/index width for work",
+      "result": "Concrete compare/carry/borrow/saturation/copy/counter algorithms and linear work; out-of-width examples deliberately truncate",
+      "remaining_actual_cost_premise": "Native encoder/backend or persistent representation and conversion/copy lifetime are not supplied",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_scalar_bit_lift/BinaryEncoding.lean",
+          "sha256": "d1cafddf304765945e1088f6bfea1b95b087d6c8cd9bd68c28db04520091c81a",
+          "lines": [
+            6,
+            29
+          ],
+          "verbatim": "/-- Mathematical input representation; not a native Nat conversion cost claim. -/\ndef encode : Nat → Nat → List Bool\n | 0,_=>[]\n | W+1,n=>decide (n%2=1)::encode W (n/2)\n@[simp] theorem encode_length (W n : Nat) : (encode W n).length=W := by\n induction W generalizing n <;> simp [encode, *]\n\ntheorem bit_mod_two (n : Nat) : bit (decide (n%2=1))=n%2 := by\n have h:=Nat.mod_two_eq_zero_or_one n\n rcases h with h|h <;> simp [h,bit]\n\ntheorem encode_value (W n : Nat) (bound : n<2^W) : decode (encode W n)=n := by\n induction W generalizing n with\n | zero=>\n  have eq : n=0:=by simpa using bound\n  subst n;rfl\n | succ W ih=>\n  have quotient : n/2<2^W:=by\n   have p:=Nat.mod_add_div n 2\n   have m:=Nat.mod_lt n (by decide : 0<2)\n   simp only [Nat.pow_succ] at bound\n   omega\n  simp only [encode,decode,bit_mod_two,ih (n/2) quotient]\n  have h:=Nat.mod_add_div n 2;omega"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_scalar_bit_lift/BinaryEncoding.lean",
+          "sha256": "d1cafddf304765945e1088f6bfea1b95b087d6c8cd9bd68c28db04520091c81a",
+          "lines": [
+            67,
+            90
+          ],
+          "verbatim": "/-- Fixed-width reference addition. Truncation traversals are explicitly billed. -/\ndef addAtWidth (W : Nat) (xs ys : List Bool) : Charged (List Bool) :=\n let r:=addBits xs ys\n ⟨r.value.take W,r.work+4*(W+1)⟩\n\ntheorem addAtWidth_value (W : Nat) (xs ys : List Bool) (fits : decode xs+decode ys<2^W) :\n decode (addAtWidth W xs ys).value=decode xs+decode ys := by\n simp only [addAtWidth]\n rw [decode_take _ W (by simpa only [addBits_value] using fits),addBits_value]\n\ntheorem addAtWidth_work (W : Nat) (xs ys : List Bool) (xl : xs.length≤W) (yl : ys.length≤W) :\n (addAtWidth W xs ys).work≤32*(W+1) := by\n have h:=addCarry_work xs ys false\n simp only [addAtWidth,addBits];omega\n\ntheorem scalar_width_bounds (W : Nat) (xs ys : List Bool) (xl : xs.length≤W) (yl : ys.length≤W) :\n (equalBits xs ys).work≤48*(W+1) ∧ (leBits xs ys).work≤48*(W+1) ∧\n (maxBits xs ys).work≤48*(W+1) ∧ (subtractBits xs ys).work≤48*(W+1) := by\n have a:=compare_family_work xs ys\n have b:=subtractBits_work xs ys\n omega\n\ntheorem counter_cap_binary (M x : Nat) (bound : x≤4096*(M+1)^8) :\n x<2^(13+8*labelBits (M+1)) := by"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_scalar_bit_lift/BinaryCounters.lean",
+          "sha256": "98f9be6ed2bc4afd6e77a20944fd33715b31eedb9c50ef6b45d0a85e9b53614a",
+          "lines": [
+            19,
+            30
+          ],
+          "verbatim": "@[simp] theorem lengthBits_value {α : Type} (W : Nat) (xs : List α) (fits : xs.length<2^W) :\n decode (lengthBits W xs).value=xs.length := by\n induction xs with\n | nil=>simp [lengthBits,decode_replicate_false]\n | cons x xs ih=>\n  have tail : xs.length<2^W:=by simp only [List.length_cons] at fits;omega\n  simp only [lengthBits]\n  rw [addAtWidth_value W _ [true] (by simpa [ih tail,decode,bit] using fits)]\n  simp [ih tail,decode,bit]\n\ntheorem lengthBits_work {α : Type} (W : Nat) (xs : List α) (positive : 1≤W) :\n (lengthBits W xs).work≤40*(W+1)*(xs.length+1) := by"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_scalar_bit_lift/BinaryCopy.lean",
+          "sha256": "108534bb10a89641e8c14ac8b529c2880fbc82621d9018e29d729c390917e58e",
+          "lines": [
+            14,
+            23
+          ],
+          "verbatim": "def copiedEqual (xs ys : List Bool) : Charged Bool :=\n let a:=copyBits xs;let b:=copyBits ys;let e:=equalBits a.value b.value\n ⟨e.value,a.work+b.work+e.work+4⟩\n@[simp] theorem copiedEqual_value (xs ys : List Bool) : (copiedEqual xs ys).value=(decode xs==decode ys) := by\n simp [copiedEqual]\ntheorem copiedEqual_work (W : Nat) (xs ys : List Bool) (xl : xs.length≤W) (yl : ys.length≤W) :\n (copiedEqual xs ys).work≤56*(W+1) := by\n have h:=(scalar_width_bounds W xs ys xl yl).1\n simp only [copiedEqual,copyBits_value,copyBits_work];omega\nend GenericForest.ScalarBits"
+        }
+      ]
+    },
+    {
+      "obligation": "referenceEq/count exact representation gap",
+      "status": "SELECTED_BODY_KERNEL_AND_OWN_FALSE_CONTROLS",
+      "exact_hypotheses": "referenceEq values require both operands<2^W; count additionally list length fit",
+      "result": "Work derives from copied arrays and finite add/count bodies, not a hypothetical arbitrary scalar-fee record",
+      "remaining_actual_cost_premise": "Bind encode/decode at every scalar/count recursion to actual persistent representation or pay verified native conversion/backend cost",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_scalar_bit_lift/BitPrimitiveChecks.lean",
+          "sha256": "bb0098e79052ddb9945a7bd7783c403f58da9e2d8f5babc549aa2d73a27ea07f",
+          "lines": [
+            12,
+            20
+          ],
+          "verbatim": "/-- Representation-boundary evaluation: the scalar provider is equalBits on\nfinite supplied bit arrays. Encode is the mathematical representation map;\n8*(W+1) bills copying the two represented operands, not native Nat conversion. -/\ndef referenceEq (W x y : Nat) : Charged Bool :=\n copiedEqual (encode W x) (encode W y)\ntheorem referenceEq_value (W x y : Nat) (hx : x<2^W) (hy : y<2^W) :\n (referenceEq W x y).value=(x==y) := by simp [referenceEq,encode_value W x hx,encode_value W y hy]\ntheorem referenceEq_work (W x y : Nat) : (referenceEq W x y).work≤56*(W+1) := by\n exact copiedEqual_work W (encode W x) (encode W y) (by simp) (by simp)"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_scalar_bit_lift/BitPrimitiveChecks.lean",
+          "sha256": "bb0098e79052ddb9945a7bd7783c403f58da9e2d8f5babc549aa2d73a27ea07f",
+          "lines": [
+            81,
+            108
+          ],
+          "verbatim": "/-- Binary equality plus fixed-width binary increment, even for duplicate labels. -/\ndef bitCount (W x : Nat) : List Nat → Charged Nat\n | []=>⟨0,beta W⟩\n | y::ys=>\n  let r:=bitCount W x ys;let e:=referenceEq W x y\n  let a:=addAtWidth W (encode W r.value) (encode W (if e.value then 1 else 0))\n  ⟨decode a.value,r.work+e.work+a.work+8*(W+1)⟩\n\ntheorem bitCount_refines (W x : Nat) (L : List Nat) (hx : x<2^W) (cap : LabelCap W L)\n (length : L.length<2^W) : Refines W (bitCount W x L) (meterCount x L) := by\n induction L with\n | nil=>simp [Refines,bitCount,meterCount]\n | cons y ys ih=>\n  have hy:=cap y (by simp)\n  have tailCap : LabelCap W ys:=fun z hz=>cap z (by simp [hz])\n  have tailLength : ys.length<2^W:=by simp only [List.length_cons] at length;omega\n  have r:=ih tailCap tailLength\n  have rv : (bitCount W x ys).value=ys.count x:=r.1.trans (meterCount_value x ys)\n  have eq:=referenceEq_value W x y hx hy\n  have countLength : ys.count x≤ys.length:=List.count_le_length\n  have countFits : (bitCount W x ys).value<2^W:=by omega\n  have small : (if (referenceEq W x y).value then 1 else 0)<2^W:=by\n   split <;> simp only [List.length_cons] at length <;> omega\n  have sumFits : (bitCount W x ys).value+(if (referenceEq W x y).value then 1 else 0)<2^W:=by\n   split <;> simp only [List.length_cons] at length <;> omega\n  have av:=addAtWidth_value W (encode W (bitCount W x ys).value)\n   (encode W (if (referenceEq W x y).value then 1 else 0))\n   (by simpa only [encode_value W _ countFits,encode_value W _ small] using sumFits)"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_scalar_bit_lift/FIRST-GAP-v1.md",
+          "sha256": "b922f9a527e7d40712d98d4756ecabea1d4d76e3c7baa38e31b633a19fed0101",
+          "lines": [
+            7,
+            19
+          ],
+          "verbatim": "The next actual implementation binding is the representation boundary:\n`referenceEq W x y` describes `copiedEqual (encode W x) (encode W y)`.\nThe declared work charges the supplied bit-array copy/comparison provider,\nnot native Nat encode's division/modulo or native Nat.beq. The checked reference\ncost therefore cannot be substituted for compiled FastOrdinary runtime until a\npersistent binary representation/provider (or measured/proved native scalar\nbackend) is bound to the actual program, including conversion/copy lifetime.\nNo native encoder cost or backend assumption is silently introduced here.\n\nThe parent also retains current-budget/whole-bill application, Rule5 fresh\nmax/common-contraction input label cap, all remaining primitive bill scopes and\nmain/independent acceptance. Exact source constraints remain q=k_opt-1,\nconditional c=2.33, no implicit rho. This release changes no production runtime."
+        }
+      ]
+    },
+    {
+      "obligation": "reference checker concrete polynomial",
+      "status": "SELECTED_CONSUMER_KERNEL_AND_SOURCE_REVIEW",
+      "exact_hypotheses": "Proper state; target labelBits<=L; PayloadLabelBits L F; StatePayloadSize T F",
+      "result": "Exact checked value and256*(L+14+8*labelBits(4n+q+1))*4096*(4n+q+1)^8; repeated flattening and false checks retained",
+      "remaining_actual_cost_premise": "Reference semantics only; production provider/copy/encoding/caller binding and global label cap remain open",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_scalar_bit_lift/PolynomialBitBound.lean",
+          "sha256": "bf7bac22b8eaf9306219f4dd1f88c4c5c34128424cf1192b03e3de71f9ee65cf",
+          "lines": [
+            15,
+            30
+          ],
+          "verbatim": "def binaryInspectionPolynomial (L n q : Nat) :=\n (256*(L+14+8*labelBits (4*n+q+1)))*(4096*(4*n+q+1)^8)\n\ntheorem binary_checked_polynomial (L : Nat) (T : Option Tree) (ss : List Tree) (q : Nat) (F : Forest)\n (proper : ForestState.proper T ss=true) (bits : ∀x∈labels T,labelBits x≤L)\n (payloadLabels : PayloadLabelBits L F) (payload : StatePayloadSize T F) :\n (bitChecked (checkerWidth L T ss q) T ss q F).value=checked T ss q F ∧\n (bitChecked (checkerWidth L T ss q) T ss q F).work≤binaryInspectionPolynomial L (labels T).length q := by\n have h:=binary_checked_inspection_bound L T ss q F (proper_input_bits L T ss proper bits) payloadLabels payload\n have volume:=proper_volume_bound T ss q proper\n have log:=labelBits_mono _ _ volume\n have factor : 256*(L+14+8*labelBits (stateVolume T ss q+1))≤\n  256*(L+14+8*labelBits (4*(labels T).length+q+1)):=by omega\n have bill : inspectionBill T ss q≤4096*(4*(labels T).length+q+1)^8:=\n  Nat.mul_le_mul_left 4096 (Nat.pow_le_pow_left volume 8)\n exact ⟨h.1,Nat.le_trans h.2 (Nat.mul_le_mul factor bill)⟩"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_scalar_bit_lift/CheckerLift.lean",
+          "sha256": "1b410deb6d5408a3c28080b8668a941b67d7f989f3f0be8a89c8c1abc320678d",
+          "lines": [
+            30,
+            60
+          ],
+          "verbatim": "/-- Closed binary-reference checker theorem, with explicit label width and\nsemantic payload-size assumptions. No desired scalar cost field is supplied. -/\ntheorem binary_checked_inspection_bound (L : Nat) (T : Option Tree) (ss : List Tree) (q : Nat) (F : Forest)\n (inputs : InputLabelBits L T ss) (payloadLabels : PayloadLabelBits L F) (payload : StatePayloadSize T F) :\n (bitChecked (checkerWidth L T ss q) T ss q F).value=checked T ss q F ∧\n (bitChecked (checkerWidth L T ss q) T ss q F).work≤\n 256*(L+14+8*labelBits (stateVolume T ss q+1))*inspectionBill T ss q := by\n let W:=checkerWidth L T ss q\n have positive : 1≤W:=by dsimp [W,checkerWidth];omega\n have LW : L≤W:=by dsimp [W,checkerWidth];omega\n have tc : TargetCap W T:=labelled_cap L W (labels T) LW inputs.1\n have sc : SourcesCap W ss:=fun s hs=>labelled_cap L W (leaves s) LW (inputs.2 s hs)\n have fc : LabelCap W F.flatten:=labelled_cap L W F.flatten LW payloadLabels\n have lab : (labels T).length≤stateVolume T ss q:=by\n  have h:=labels_nodes T;dsimp [stateVolume];omega\n have source : (ss.map leaves).flatten.length≤stateVolume T ss q:=by\n  have h:=source_leaves_cells ss;dsimp [stateVolume];omega\n have fl : F.length≤stateVolume T ss q:=Nat.le_trans payload.1 lab\n have cells : F.flatten.length≤stateVolume T ss q:=Nat.le_trans payload.2 lab\n have sl : ss.length≤stateVolume T ss q:=by dsimp [stateVolume];omega\n have budget : q≤stateVolume T ss q:=by dsimp [stateVolume];omega\n have r:=bitChecked_refines W T ss q F positive tc sc fc\n  (volume_fit L T ss q _ source) (volume_fit L T ss q _ cells)\n  (volume_fit L T ss q _ fl) (volume_fit L T ss q _ sl) (volume_fit L T ss q _ budget)\n have old:=checked_work_le_inspection T ss q F payload\n constructor\n · exact r.1.trans (meterChecked_value T ss q F)\n · have h:=Nat.le_trans r.2 (Nat.mul_le_mul_left (beta W) old)\n   have factor : beta W=256*(L+14+8*labelBits (stateVolume T ss q+1)):=by\n    unfold beta W checkerWidth;congr 1;omega\n   rw [factor] at h"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_scalar_bit_lift/BitPartition.lean",
+          "sha256": "a58b45344247b5d9415f44edfebe18c4fae6b40678ae7b852b298518ef47bf0e",
+          "lines": [
+            5,
+            26
+          ],
+          "verbatim": "/-- Scalar-free pointer/Bool/copy counterpart with conservative slot expansion.\nThe argument is a named structural source meter; no scalar provider is hidden\nin this constructor. Label equality/count/arithmetic calls are replaced below. -/\ndef pointerLift {α : Type} (W : Nat) (a : Charged α) : Charged α := ⟨a.value,beta W*a.work⟩\ntheorem pointerLift_refines {α : Type} (W : Nat) (a : Charged α) : Refines W (pointerLift W a) a := ⟨rfl,Nat.le_refl _⟩\ntheorem referenceEq_refines (W x y : Nat) (hx : x<2^W) (hy : y<2^W) :\n Refines W (referenceEq W x y) ⟨x==y,4⟩ := by\n have h:=referenceEq_work W x y\n exact ⟨referenceEq_value W x y hx hy,by dsimp [beta];omega⟩\n\ndef bitPartition (W : Nat) (L : List Nat) (F : List (List Nat)) : Charged Bool :=\n let nonempty:=bitAll W (fun B : List Nat=>pointerLift W ⟨!B.isEmpty,1⟩) F\n let counts:=bitAll W (fun x=>let cells:=pointerLift W (meterFlatten F)\n   let cnt:=bitCount W x cells.value;let e:=referenceEq W cnt.value 1\n   ⟨e.value,cells.work+cnt.work+e.work⟩) L\n let cells:=pointerLift W (meterFlatten F)\n let labels:=bitAll W (fun x=>bitContains W x L) cells.value\n ⟨nonempty.value&&counts.value&&labels.value,nonempty.work+counts.work+cells.work+labels.work+4*beta W⟩\n\ntheorem bitPartition_refines (W : Nat) (L : List Nat) (F : List (List Nat))\n (positive : 1≤W) (lcap : LabelCap W L) (fcap : LabelCap W F.flatten)\n (cellsFit : F.flatten.length<2^W) : Refines W (bitPartition W L F) (meterPartition L F) := by"
+        }
+      ]
+    },
+    {
+      "obligation": "actual before-parent payload sites",
+      "status": "SOURCE_AND_SELECTED_CONSUMER_CHECKS",
+      "exact_hypotheses": "Actual closed callback return/properness/target labels; generic scheduler ReturnedPayloadBound and actual jobs",
+      "result": "Actual raw child/scheduler/pretest labels and sizes before parent acceptance; duplicates kept; none has no payload scan",
+      "remaining_actual_cost_premise": "No unbounded-hostile-return promise. Functional source imports remain reused author lineage",
+      "sources": [
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_scalar_bit_lift/ActualBitChecks.lean",
+          "sha256": "e36c2a9c0b5b7bdab9f0c99f70515f9562354ab996fb3b4c6d26a44c64367559",
+          "lines": [
+            37,
+            70
+          ],
+          "verbatim": "theorem fast_binary_checked_bound (L : Nat) (T S : Tree) (q : Nat) (F : Forest)\n (proper : DepthOne.proper T S=true) (bits : ∀x∈leaves T,labelBits x≤L)\n (answer : OrdinaryDispatch.FastOrdinary.solve q T S=some F) :\n (bitChecked (checkerWidth L (some T) [S] q) (some T) [S] q F).value=checked (some T) [S] q F ∧\n (bitChecked (checkerWidth L (some T) [S] q) (some T) [S] q F).work≤\n 256*(L+14+8*labelBits (stateVolume (some T) [S] q+1))*inspectionBill (some T) [S] q := by\n have pp:=proper\n simp only [DepthOne.proper,Bool.and_eq_true,decide_eq_true_eq] at pp\n have inputs : InputLabelBits L (some T) [S]:=by\n  refine ⟨bits,?_⟩\n  intro s hs x hx\n  have eq : s=S:=by simpa using hs\n  subst s\n  exact bits x (pp.2.mem_iff.mpr hx)\n have payload:=fast_returned_payload T S q F proper answer\n have payloadLabels : PayloadLabelBits L F:=fun x hx=>bits x (payload.1.mem_iff.mp hx)\n exact binary_checked_inspection_bound L (some T) [S] q F inputs payloadLabels\n  (state_payload_ordinary_return _ fast_returned_payload T S q F proper answer)\n\ntheorem actual_raw_binary_checks_bound (actual : Ordinary) (L : Nat) (t : Tree) (ss : List Tree)\n (h : Overlap) (q : Nat) (proper : ForestState.proper (some t) ss=true)\n (bits : ∀x∈leaves t,labelBits x≤L) :\n ((recursiveCandidates actual t ss h q).map (fun F=>(bitAccepted (checkerWidth L (some t) ss q) (some t) ss q F).work)).sum≤\n (recursiveCandidates actual t ss h q).length*\n  (256*(L+14+8*labelBits (stateVolume (some t) ss q+1))*inspectionBill (some t) ss q) := by\n apply LocalPolynomial.nat_sum_le_constant\n intro F hF\n obtain ⟨io,_,answer⟩:=List.mem_filterMap.mp hF\n dsimp only at answer\n split at answer\n · exact (binary_accepted_inspection_bound L (some t) ss q F\n    (proper_input_bits L (some t) ss proper bits)\n    (return_payload_bits actual L (some t) _ _ F bits answer)\n    (state_payload_forest_return actual (some t) _ _ F answer)).2"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_scalar_bit_lift/ScheduledBitChecks.lean",
+          "sha256": "908039676f950c81a4868c5a9e944e753981b1ef7c11944739b2c7b39043480d",
+          "lines": [
+            119,
+            129
+          ],
+          "verbatim": "theorem fast_scheduled_binary_checked_bound (L : Nat) (t : Tree) (ss : List Tree) (q : Nat)\n (proper : ForestState.proper (some t) ss=true) (bits : ∀x∈leaves t,labelBits x≤L)\n (js : List (Job (Tree×Tree) Forest)) (hjobs : jobs t ss=some js) (xs : List (Nat×Forest))\n (answer : (schedule (fun p b=>(OrdinaryDispatch.FastOrdinary.solve b p.1 p.2).map (fun F=>(F.length-1,F))) q js).answers=some xs) :\n (bitChecked (checkerWidth L (some t) ss q) (some t) ss q (xs.flatMap Prod.snd)).value=\n checked (some t) ss q (xs.flatMap Prod.snd) ∧\n (bitChecked (checkerWidth L (some t) ss q) (some t) ss q (xs.flatMap Prod.snd)).work≤\n 256*(L+14+8*labelBits (stateVolume (some t) ss q+1))*inspectionBill (some t) ss q :=\n binary_checked_inspection_bound L (some t) ss q _ (proper_input_bits L (some t) ss proper bits)\n  (scheduled_payload_bits _ fast_returned_payload L t ss q proper bits js hjobs xs answer)\n  (scheduled_payload _ fast_returned_payload t ss q proper js hjobs xs answer)"
+        },
+        {
+          "path": "research/rmaf/algorithm/universal233/ordinary_dispatch/forest_scalar_bit_lift/InitialBitChecks.lean",
+          "sha256": "fc0a0fb295e680553639d33f6599caf61fdf915bc6e26579263f815d0e0299a3",
+          "lines": [
+            5,
+            29
+          ],
+          "verbatim": "theorem binary_proper_inspection_bound (L : Nat) (T : Option Tree) (ss : List Tree) (q : Nat)\n (inputs : InputLabelBits L T ss) :\n (bitProper (checkerWidth L T ss q) T ss).value=proper T ss ∧\n (bitProper (checkerWidth L T ss q) T ss).work≤\n 256*(L+14+8*labelBits (stateVolume T ss q+1))*inspectionBill T ss q := by\n let W:=checkerWidth L T ss q\n have positive : 1≤W:=by dsimp [W,checkerWidth];omega\n have LW : L≤W:=by dsimp [W,checkerWidth];omega\n have tc : TargetCap W T:=labelled_cap L W (labels T) LW inputs.1\n have sc : SourcesCap W ss:=fun s hs=>labelled_cap L W (leaves s) LW (inputs.2 s hs)\n have source : (ss.map leaves).flatten.length≤stateVolume T ss q:=by\n  have h:=source_leaves_cells ss;dsimp [stateVolume];omega\n have r:=bitProper_refines W T ss positive tc sc (volume_fit L T ss q _ source)\n constructor\n · exact r.1.trans (meterProper_value T ss)\n · have h:=Nat.le_trans r.2 (Nat.mul_le_mul_left (beta W) (proper_work_le_inspection T ss q))\n   have factor : beta W=256*(L+14+8*labelBits (stateVolume T ss q+1)):=by\n    unfold beta W checkerWidth;congr 1;omega\n   rw [factor] at h;exact h\n\ntheorem initial_binary_agrees_bound (L : Nat) (T : Option Tree) (ss : List Tree) (q : Nat)\n (proper : ForestState.proper T ss=true) (bits : ∀x∈labels T,labelBits x≤L) :\n (bitAgrees (checkerWidth L T ss q) T ss (ss.map leaves)).value=agrees T ss (ss.map leaves) ∧\n (bitAgrees (checkerWidth L T ss q) T ss (ss.map leaves)).work≤\n 256*(L+14+8*labelBits (stateVolume T ss q+1))*inspectionBill T ss q := by"
+        }
+      ]
+    }
+  ],
+  "selected_kernel_runs": [
+    {
+      "receipt": "kernel-rechecks/20261016T090333.298219Z/receipt.json",
+      "sha256": "9ac3bc6bdd77cf8ad4011e4356bfcd94472a62c2116c8a95adf9d29c4589dc6e",
+      "modules": [
+        "Polynomial"
+      ],
+      "reports": 4
+    },
+    {
+      "receipt": "kernel-rechecks/20261016T090340.336258Z/receipt.json",
+      "sha256": "162123d0b733c924ef21115db45a28c3d8703da216844a0b076dee8dc8c7baea",
+      "modules": [
+        "ERInterface",
+        "ELOuter",
+        "BinaryEncoding",
+        "PolynomialBitBound"
+      ],
+      "reports": 17
+    },
+    {
+      "receipt": "kernel-rechecks/20261016T090530.703550Z/receipt.json",
+      "sha256": "7d7ea60ed6f05f22629bb8bc53b76bb42f2ebd9b8470e4c8d21e02ff3fdf6046",
+      "modules": [
+        "GuardCost",
+        "BitPrimitiveChecks"
+      ],
+      "reports": 6
+    }
+  ],
+  "new_blind_replication_credit": 0,
+  "source_reads_postcontact": true,
+  "full_dependency_origin_or_actual_import_closure_audit": false,
+  "no_author_auditor_or_oracle_execution": true,
+  "prior_phase2_ledger_preserved": true
+}

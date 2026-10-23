@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "frozen_before_n6_oracle_outputs": true,
+  "scope": "ordinary rooted no-rho completion; fixed source leaf sets abc and def",
+  "target_labels": ["a", "b", "c", "d", "e", "f"],
+  "source_leaf_sets": [["a", "b", "c"], ["d", "e", "f"]],
+  "target_count": 945,
+  "source_topology_pairs_per_target": 9,
+  "full_case_count": 8505,
+  "monochromatic_partitions_per_case": 25,
+  "full_characterization_partition_count": 212625,
+  "expected_full_bad_color_histogram": {"0": 945, "1": 3780, "2": 3780},
+  "pilot": {"count": 40, "sample_seed": 140626, "method": "uniform without replacement over deterministic full enumeration indices"},
+  "decision": "Run all 8505 if pilot per-case projection is under 60 seconds; otherwise use deterministic 200-case sample with seed 2140626. Any mismatch stops the run.",
+  "pass_criteria": ["exact optimum component count", "exact additional cuts = components - 2", "returned partition feasible in both trees", "candidate characterization agrees on every monochromatic partition", "unchanged solver and oracle hashes"],
+  "controls": [
+    {"id": "six-compatible-twin", "input": {"target": [["a", "b"], ["c", [["d", "e"], "f"]]], "source": [[["a", "b"], "c"], [["d", "e"], "f"]]}, "components": 2, "additional_cuts": 0, "partition": [["a", "b", "c"], ["d", "e", "f"]]},
+    {"id": "six-one-bad", "input": {"target": [["a", "b"], ["c", [["d", "e"], "f"]]], "source": [[["a", "c"], "b"], [["d", "e"], "f"]]}, "components": 3, "additional_cuts": 1, "partition": [["a", "b"], ["c"], ["d", "e", "f"]]},
+    {"id": "six-two-bad", "input": {"target": [["a", "b"], ["c", [["d", "e"], "f"]]], "source": [[["a", "c"], "b"], [["d", "f"], "e"]]}, "components": 4, "additional_cuts": 2, "partition": [["a", "b"], ["c"], ["d", "e"], ["f"]]}
+  ],
+  "mutant": {"fixture": "six-two-bad", "components": 2, "additional_cuts": 0, "partition": [["a", "b", "c"], ["d", "e", "f"]]},
+  "interpretation": "Supplementary finite verification; does not establish universal graph correspondence or cover arbitrary compatible components. Existing n<=5 receipt is retained unchanged."
+}

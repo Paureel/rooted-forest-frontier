@@ -1,0 +1,12 @@
+import FailedFrontier
+open PaidCoverFailedFrontier
+#print axioms proper_labels
+#print axioms initial_outside_terminal
+#print axioms exact_one_cut_class_filter
+#print axioms parent_two_cut_witness
+#print axioms exact_parent_and_frontier_optima
+#print axioms every_feasible_at_least
+#print axioms first_frontier_loses_every_two_cut_assignment
+#print axioms quartet_five_children_fail_paid_mass
+#print axioms compatible_two_color_mass_passes
+#print axioms unpaid_query_has_no_strict_budget_decrease

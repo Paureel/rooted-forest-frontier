@@ -1,0 +1,7 @@
+# Stored-part controls v5
+
+Additional detector control before any candidate contact or multi-part control execution. The initial controls use legacy non-module files and test a genuine generated private name stored in the main .olean. To test the newly supported physical part reader, add Std-only module-system clean and hostile twins.
+
+PartsClean: public True theorem, private hidden True theorem, public True theorem using it. Expect all declarations' true proofs, no scientific custom axiom or unsafe/partial declaration, one actual private hidden theorem occurrence in the union of physical parts. PartsBad: public True theorem plus an unused private False axiom. Expect direct custom scientific axiom rejection on exactly one private hiddenFalse occurrence, despite public theorem being clean. Actual physical parts and declaration counts are compiler readouts; the controls do not assume their counts or blindly treat duplicate view stubs as distinct logical declarations. Every stored occurrence must be preserved with its part and exact kind/body, and any compiler view transformation must be explained explicitly before a clean pass can be asserted.
+
+This supplements the detector, not the old mathematical X0 or its census. If parts introduce an unexpected ConstantInfo view, retain the failure and diagnose from installed Lean source before further work. No candidate bytes are permitted.

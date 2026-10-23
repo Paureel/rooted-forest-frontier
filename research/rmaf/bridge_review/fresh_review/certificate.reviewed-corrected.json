@@ -1,0 +1,188 @@
+{
+  "scope": "G1 graph support realization and original deepest-root consumer; executable extraction and G2\u2013G7 remain open",
+  "status": "kernel-checked-graph-interface",
+  "source_hashes": {
+    "research/rmaf/pure_bridge/lean/PureBridge.lean": "acf08329466b6449c39c5edb0914c7af15f30690b25b8f0389cb65b2b24943f4",
+    "research/rmaf/bridge_review/lean/GraphRegion.lean": "5d53cadd43f7c654656040218939c2051f8592e5045227bc2506dd2cddee5455",
+    "research/rmaf/bridge_review/lean/GraphControls.lean": "850af71b10c41985deb66fb7b6d293c99b89c6496ac6a00bd7ea2da2f305daba",
+    "research/rmaf/bridge_review/lean/negative/FalseDisconnected.lean": "1138953993350bf611e9c6db8f0b283a5790e27c3f7a1a964b77e0d1c4ca6410",
+    "research/rmaf/bridge_review/lean/negative/FalseNoMinimum.lean": "1ff7f7e4d777512ea91205aa42ca7309e4530a8e231cc4f5809691898411c963",
+    "research/rmaf/bridge_review/lean/negative/FalseSuppressParent.lean": "35f801a7a6eb5ece8867d60c7b5065aeac5d56b3bf01fb5f8b65149c701874ec",
+    "research/rmaf/bridge_review/lean/positive/CleanEdge.lean": "1faef6444059bfe0f57fc9a4c8007cb620ec899c2056e04e6cd48e841db98769"
+  },
+  "builds": {
+    "dependency-PureBridge": {
+      "exit_code": 0,
+      "seconds": 0.46495041600064724,
+      "log": "research/rmaf/bridge_review/lean/audit/dependency-PureBridge.log"
+    },
+    "GraphRegion": {
+      "exit_code": 0,
+      "seconds": 0.3804376659991249,
+      "log": "research/rmaf/bridge_review/lean/audit/GraphRegion.log"
+    },
+    "GraphControls": {
+      "exit_code": 0,
+      "seconds": 0.3233645420004905,
+      "log": "research/rmaf/bridge_review/lean/audit/GraphControls.log"
+    },
+    "CleanEdge": {
+      "exit_code": 0,
+      "seconds": 0.29701529100020707,
+      "log": "research/rmaf/bridge_review/lean/audit/CleanEdge.log"
+    }
+  },
+  "axioms": {
+    "PureBridge.deepest_root_in_neighbor": [],
+    "PureBridge.deepest_neighbors_intersect": [],
+    "PureBridge.at_most_one_occupant": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PureBridge.avoids_weaken": [],
+    "PureBridge.ExchangeSystem.free_replacement": [
+      "propext",
+      "Quot.sound"
+    ],
+    "PureBridge.ExchangeSystem.paid_replacement": [
+      "propext",
+      "Quot.sound"
+    ],
+    "PureBridge.ExchangeSystem.paid_minimum": [
+      "propext",
+      "Quot.sound"
+    ],
+    "PureBridge.ExchangeSystem.free_minimum": [
+      "propext",
+      "Quot.sound"
+    ],
+    "PureBridge.one_cut_query_dichotomy": [
+      "propext",
+      "Quot.sound"
+    ],
+    "PureBridge.role_swap_parameter": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PureBridge.role_swap_minimum": [
+      "propext",
+      "Quot.sound"
+    ],
+    "PureBridge.bounded_second_query": [
+      "propext",
+      "Quot.sound"
+    ],
+    "PureBridge.negative_budget_impossible": [
+      "propext",
+      "Quot.sound"
+    ],
+    "PureBridge.Controls.bad_repair_optimum": [
+      "propext",
+      "Quot.sound"
+    ],
+    "PureBridge.Controls.bad_repair_forced_keeper": [
+      "propext",
+      "Quot.sound"
+    ],
+    "PureBridge.Controls.one_unit_repair_rejected": [],
+    "BridgeReview.MinimalEmbedding.region": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "BridgeReview.MinimalEmbedding.region_exact": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "BridgeReview.MinimalEmbedding.deepest_root_in_neighbor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "BridgeReview.Walk.start": [],
+    "BridgeReview.Walk.finish": [],
+    "BridgeReview.walk_below_minimum": [
+      "propext"
+    ],
+    "BridgeReview.walk_ancestor_between": [
+      "propext",
+      "Quot.sound"
+    ],
+    "BridgeReview.exists_shortest": [
+      "propext",
+      "Quot.sound"
+    ],
+    "BridgeReview.ConnectedSupport.root_mem": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "BridgeReview.ConnectedSupport.root_shortest": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "BridgeReview.ConnectedSupport.root_unique": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "BridgeReview.ConnectedSupport.toRootedRegion": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "BridgeReview.ConnectedSupport.deepest_graph_root_in_neighbor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "BridgeReview.ConnectedSupport.deepest_graph_neighbors_intersect": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "BridgeReview.Controls.root_child_walk": [],
+    "BridgeReview.Controls.child_root_walk": [],
+    "BridgeReview.Controls.minimum_condition_needed": [
+      "propext",
+      "Quot.sound"
+    ],
+    "BridgeReview.Controls.connectivity_needed": [
+      "propext",
+      "Quot.sound"
+    ],
+    "BridgeReview.Controls.cannot_skip_parent": [
+      "propext",
+      "Quot.sound"
+    ],
+    "BridgeReview.Controls.middle_vertex_retained": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "false_controls": {
+    "FalseDisconnected": {
+      "exit_code": 1,
+      "seconds": 0.2986182499989809,
+      "log": "research/rmaf/bridge_review/lean/audit/FalseDisconnected.log",
+      "rejected": true
+    },
+    "FalseNoMinimum": {
+      "exit_code": 1,
+      "seconds": 0.30339754200031166,
+      "log": "research/rmaf/bridge_review/lean/audit/FalseNoMinimum.log",
+      "rejected": true
+    },
+    "FalseSuppressParent": {
+      "exit_code": 1,
+      "seconds": 0.2985414579998178,
+      "log": "research/rmaf/bridge_review/lean/audit/FalseSuppressParent.log",
+      "rejected": true
+    }
+  },
+  "review_theorem_count": 18
+}

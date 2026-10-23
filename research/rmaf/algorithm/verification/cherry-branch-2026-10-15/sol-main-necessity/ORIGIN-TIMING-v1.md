@@ -1,0 +1,5 @@
+# Std-only origin battery launch decision
+
+Valid v3 pilot: clean source compiles0.3663s and0.3065s; one producer audit1.3691s and two-producer clean-twin audit1.3020s. Version query0.0342s excluded from rates. The second compile/audit are the steady-state window and neither cost increases. Clean twins preserve five stored occurrences versus four unique resolved names. This explicitly exercises name coalescing before hostile data.
+
+Full fixed battery: seven fixture compiles plus two adaptation compiles, seven base audits plus two adaptation audits. Conservative allowance9*0.37 +9*1.37 <16s, doubled to32s for generated/private rows and import variation, on the same machine/toolchain/driver. The changed-import twin loads Lean rather than only Std and its import regime may add overhead; the32s allowance is a planning estimate, while every command retains its measured time and the120s per-command fail-closed timeout. No long run is planned. Source pins and postrun rehashes are mandatory. Proceed with the full hostile battery; retain every failure.

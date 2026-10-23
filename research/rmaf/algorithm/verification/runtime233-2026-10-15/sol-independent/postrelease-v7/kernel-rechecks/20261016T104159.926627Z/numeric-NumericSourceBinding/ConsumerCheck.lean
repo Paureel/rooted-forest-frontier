@@ -1,0 +1,3 @@
+import NumericSourceBinding
+#check OrdinaryDispatch.GlobalNumeric.ordinary_source_queries
+#print axioms OrdinaryDispatch.GlobalNumeric.ordinary_source_queries

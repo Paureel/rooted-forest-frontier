@@ -1,0 +1,15 @@
+research/rmaf/algorithm/universal233/forest_solver/build/ForestConditional.lean:81:12: error: No goals to be solved
+research/rmaf/algorithm/universal233/forest_solver/build/ForestConditional.lean:109:14: error: Type mismatch: After simplification, term
+  hJ
+ has type
+  @Eq (Option (List (List Nat))) (best List.length (accepted (some t) (s :: r :: rest) q) answers) (some J)
+but is expected to have type
+  @Eq (Option Forest)
+    (best List.length (accepted (some t) (s :: r :: rest) q)
+      (List.filterMap
+        (fun io =>
+          if _hd : 1 ≤ io.snd.sourceCuts.length ∧ io.snd.sourceCuts.length ≤ q then
+            solve ordinary (some t) (replace (s :: r :: rest) io.fst io.snd.partition) (q - io.snd.sourceCuts.length)
+          else none)
+        (branches t (s :: r :: rest) h q)))
+    (some J)

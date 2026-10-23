@@ -1,0 +1,9 @@
+# Scientific text checks
+
+Pass1 checked the final report and origin-audit erratum against executed receipts, source declarations and native API locators. The counts distinguish3590 merged names from3616 stored producer occurrences and83 merged restriction/embedding entries from96 standalone entries. The135 pilot comparisons are a subset of591, and the seven fingerprint toy checks are included in the16 adoption checks. The four snapshot counts sum to448. Exact rational masses, source cuts, local pretest values and the explicit inside/outside regime labels agree with retained results.
+
+The draft compressed candidate completeness into an edge-only description; the final wording explicitly permits the zero-cut candidate before bad A excludes it. The final report identifies cut addresses as bit strings and attributes the author's order/postproof chronology to the author's records. The initial uncirculated draft is preserved. No mathematical fixture or result was changed.
+
+Pass2 read the complete final report and erratum for hypothesis/conclusion direction, finite-versus-universal claims, lineage, runtime limits and colleague-readable prose. Source/target embedding remains separate from agreement, every opposite output remains present, local minimum does not discount a capped query, original-F refinement remains false in its control, and Fprime supplies no runtime oracle. The producer-audit correction and all failures remain explicit. No fresh-context referee, independent replication, complete algorithm or source runtime is claimed.
+
+The final_integrity.py output field no_mathematical_rerun is overbroad: that script rechecks one frozen original-graph cut against a retained native observation. Its intended scope is no fixture-battery rerun or new input/search; the source and output remain preserved. This note corrects the provenance label without altering the shared result.

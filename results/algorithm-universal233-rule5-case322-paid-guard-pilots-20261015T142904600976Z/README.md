@@ -1,0 +1,1 @@
+Development compile logs, including failures, preserved. Failed source revisions were not separately archived; these logs are diagnostic evidence only. Final source is bound by STACK-PINS and isolated replay. No scientific acceptance from pilot exit status.

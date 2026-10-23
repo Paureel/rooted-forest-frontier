@@ -1,0 +1,39 @@
+research/rmaf/algorithm/universal233/state_reductions/build/Removal.lean:28:39: error: unsolved goals
+B : List Nat
+x : Nat
+C : List Nat
+F : List (List Nat)
+ih : B ∈ F → List.count x (F.erase B).flatten + List.count x B = List.count x F.flatten
+hB : B ∈ C :: F
+he : ¬C = B
+hb : B ∈ F
+hi : List.count x (F.erase B).flatten + List.count x B = List.count x F.flatten
+hbe : (C == B) = false
+⊢ (?m.88 == ?m.87) = false
+research/rmaf/algorithm/universal233/state_reductions/build/Removal.lean:29:6: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 0
+  c ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b ≤ 0
+  a - b - c + d ≤ -1
+where
+ a := ↑(List.count x B)
+ b := ↑(List.count x F.flatten)
+ c := ↑(List.count x C)
+ d := ↑(List.count x ((C :: F).erase B).flatten)
+research/rmaf/algorithm/universal233/state_reductions/build/Removal.lean:28:48: warning: This simp argument is unused:
+  hbe
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/state_reductions/build/Removal.lean:44:55: warning: This simp argument is unused:
+  hxa
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Ne.symm hxa]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

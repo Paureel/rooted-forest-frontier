@@ -1,0 +1,3 @@
+# Empty producer controls before execution
+
+ImportOnly.lean explicitly imports Std and declares nothing. Expected stored producer header count0, exact stored imports[Init,Init,Std], zero occurrence rows. The same unchanged Lean reader must obtain this. Revised schema must accept that exact empty module and reject a missing header, duplicate header, fake count0 on CleanA with rows, missing/duplicate nonzero occurrence and altered actual body/import. Original clean/private/generated/coalesced controls, including simultaneous private-unused-coalesced, are replayed unchanged as saved raw inventories before candidate revalidation. No missing nonempty producer is allowed.

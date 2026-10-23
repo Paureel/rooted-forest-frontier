@@ -1,0 +1,23 @@
+research/rmaf/bridge_review/degree_two/restriction_route/SupportAlgebra.lean:56:54: error: unsolved goals
+case false.true
+a b c d : List Vertex
+⊢ Apart (prependSide false a) ([] :: (prependSide false c ++ prependSide true d)) ∧
+      Apart (prependSide true b) ([] :: (prependSide false c ++ prependSide true d)) ↔
+    Apart a c ∧ Apart b d
+
+case true.false
+a b c d : List Vertex
+⊢ Apart ([] :: (prependSide false a ++ prependSide true b)) (prependSide false c) ∧
+      Apart ([] :: (prependSide false a ++ prependSide true b)) (prependSide true d) ↔
+    Apart a c ∧ Apart b d
+
+case true.true
+a b c d : List Vertex
+⊢ ¬Apart ([] :: (prependSide false a ++ prependSide true b)) ([] :: (prependSide false c ++ prependSide true d))
+research/rmaf/bridge_review/degree_two/restriction_route/SupportAlgebra.lean:58:56: warning: This simp argument is unused:
+  and_assoc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [shell, apart_append_left, apart_append_right]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

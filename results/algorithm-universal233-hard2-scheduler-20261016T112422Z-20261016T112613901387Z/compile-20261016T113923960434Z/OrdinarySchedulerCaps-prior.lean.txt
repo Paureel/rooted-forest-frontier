@@ -1,0 +1,139 @@
+import OrdinarySchedulerSource
+namespace OrdinaryDispatch.Hard2SourceWork
+open RMAF Universal233 WholeSourceWork CoreWork
+open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork
+open Universal233.BothBad Universal233.PaidQueries
+open OrdinaryDispatch.WorkIntegration
+
+theorem mafRecursiveMeter_payload (actual : GenericForest.FrontierWork.Ordinary)
+ (T S : Tree) (U : List Nat) (b N : Nat) (tn:treeNodes T≤N)
+ (x : Nat×List (List Nat)) (h:(mafRecursiveMeter actual T S U b).value=some x) :
+ x.2.length≤N ∧ x.2.flatten.length≤N:=by
+ simp only [mafRecursiveMeter_value,MafScheduler.recursive,asTree] at h
+ cases ht:restrict U T with
+ | none=>simp [ht] at h
+ | some t=>cases hs:restrict U S with
+   | none=>simp [ht,hs] at h
+   | some s=>
+     simp only [ht,hs] at h
+     cases ha:GenericForest.solve actual (some t) [s] b with
+     | none=>simp [ha] at h
+     | some F=>
+       have eq:x=(F.length-1,F):=by simpa [ha] using h.symm
+       subst x
+       have payload:=state_payload_forest_return actual (some t) [s] b F ha
+       have cap:=Nat.le_trans (leaves_nodes t) (Nat.le_trans (restricted_nodes U T t ht) tn)
+       dsimp only [StatePayloadSize,ForestState.labels] at payload
+       exact ⟨Nat.le_trans payload.1 cap,Nat.le_trans payload.2 cap⟩
+
+theorem mafRecursiveMeter_bound (actual : GenericForest.FrontierWork.Ordinary)
+ (T S : Tree) (U : List Nat) (b N : Nat) (tn:treeNodes T≤N)
+ (sn:treeNodes S≤N) (ul:U.length≤N) :
+ (mafRecursiveMeter actual T S U b).work≤64*(N+1)^2:=by
+ have t:=localTargetMeter_bound T U N tn (by omega)
+ have s:=localTargetMeter_bound S U N sn (by omega)
+ change (meterRestrict U T).work+4≤16*(N+1)^2 at t
+ change (meterRestrict U S).work+4≤16*(N+1)^2 at s
+ have pos:1≤(N+1)^2:=Nat.one_le_pow _ _ (by omega)
+ have ncap:N≤(N+1)^2:=by have h:=pow_mono N 1 2 (by decide);simp only [Nat.pow_one] at h;omega
+ simp only [mafRecursiveMeter,meterRestrict_value]
+ cases ht:restrict U T with
+ | none=>cases hs:restrict U S <;> simp only [] <;> omega
+ | some t'=>cases hs:restrict U S with
+   | none=>simp only [];omega
+   | some s'=>
+     cases ha:GenericForest.solve actual (some t') [s'] b with
+     | none=>simp only [ha,Option.map_none,Option.getD_none];omega
+     | some F=>
+       have payload:=state_payload_forest_return actual (some t') [s'] b F ha
+       have cap:=Nat.le_trans (leaves_nodes t') (Nat.le_trans (restricted_nodes U T t' ht) tn)
+       dsimp only [StatePayloadSize,ForestState.labels] at payload
+       simp only [ha,Option.map_some,Option.getD_some];omega
+
+theorem prepare_length (T S : Tree) (Q : List (List Nat))
+ (js : List (Job (List Nat) (List (List Nat)))) (prep:MafScheduler.prepare T S Q=some js) : js.length=Q.length:=by
+ induction Q generalizing js with
+ | nil=>
+   have h:js=[]:=by simpa [MafScheduler.prepare] using prep.symm
+   subst js;rfl
+ | cons U Q ih=>
+   cases hs:MafScheduler.slot T S U with
+   | none=>simp [MafScheduler.prepare,hs] at prep
+   | some j=>cases hr:MafScheduler.prepare T S Q with
+     | none=>simp [MafScheduler.prepare,hs,hr] at prep
+     | some rest=>
+       have eq:js=j::rest:=by simpa [MafScheduler.prepare,hs,hr] using prep.symm
+       subst js;simp [ih rest hr]
+
+theorem prepared_job_problem_cap (T S : Tree) (Q : List (List Nat)) (N : Nat)
+ (blocks:∀U,U∈Q→U.length≤N) (js : List (Job (List Nat) (List (List Nat))))
+ (prep:MafScheduler.prepare T S Q=some js) (j : Job (List Nat) (List (List Nat))) (mem:j∈js) :
+ j.problem.length≤N:=by
+ obtain ⟨U,hm,hs⟩:=prepare_slots T S Q js prep j mem
+ rw [(slot_proper T S U j hs).1]
+ exact blocks U hm
+
+theorem slot_resolved_payload (T S : Tree) (U : List Nat) (N : Nat) (sn:treeNodes S≤N)
+ (c : Nat) (F : List (List Nat)) (h:MafScheduler.slot T S U=some (.resolved U c F)) :
+ F.length≤2 ∧ F.flatten.length≤2*N:=by
+ unfold MafScheduler.slot at h
+ split at h
+ · simp at h
+ · cases ht:restrict U T with
+   | none=>simp [ht] at h
+   | some t=>cases hs:restrict U S with
+     | none=>simp [ht,hs] at h
+     | some s=>
+       simp only [ht,hs] at h
+       cases hp:DepthOne.pretest01 t s with
+       | refused=>simp [hp] at h
+       | rejected=>simp [hp] at h
+       | found a=>
+         have eq:F=DepthOne.forest s a:=by
+           have hj:=Option.some.inj (by simpa only [hp] using h)
+           exact (Job.resolved.inj hj).2.2.symm
+         subst F
+         have cap:=forest_cells s a
+         exact ⟨cap.1,Nat.le_trans cap.2 (Nat.mul_le_mul_left 2 (Nat.le_trans (restricted_nodes U S s hs) sn))⟩
+
+theorem prepared_resolved_payload (T S : Tree) (Q : List (List Nat)) (N : Nat) (sn:treeNodes S≤N)
+ (js : List (Job (List Nat) (List (List Nat)))) (prep:MafScheduler.prepare T S Q=some js)
+ (U : List Nat) (c : Nat) (F : List (List Nat)) (mem:Job.resolved U c F∈js) :
+ F.length≤2 ∧ F.flatten.length≤2*N:=by
+ obtain ⟨V,_,hs⟩:=prepare_slots T S Q js prep (.resolved U c F) mem
+ have eq:U=V:=(slot_proper T S V _ hs).1
+ subst V;exact slot_resolved_payload T S U N sn c F hs
+
+theorem runSourceMeter_answer_payload {P A : Type} (f : P→Nat→Charged (Option (Nat×A)))
+ (b : Nat) (js : List (Job P A)) (ok : A→Prop)
+ (resolved:∀p c a,Job.resolved p c a∈js→ok a)
+ (callback:∀p,Job.hard p∈js→∀x,(f p b).value=some x→ok x.2)
+ (xs : List (Nat×A)) (h:(runSourceMeter f b js).value.answers=some xs) : ∀x,x∈xs→ok x.2:=by
+ induction js generalizing xs with
+ | nil=>
+   have eq:xs=[]:=by simpa only [runSourceMeter,Option.some.injEq] using h.symm
+   subst xs;simp
+ | cons j js ih=>
+   have rr:∀p c a,Job.resolved p c a∈js→ok a:=by intro p c a hm;exact resolved p c a (by simp [hm])
+   have cc:∀p,Job.hard p∈js→∀x,(f p b).value=some x→ok x.2:=by intro p hm;exact callback p (by simp [hm])
+   cases j with
+   | resolved p c a=>
+     cases ht:(runSourceMeter f b js).value.answers with
+     | none=>simp only [runSourceMeter,ht,Option.map_none,Option.noConfusion] at h
+     | some ys=>
+       have eq:xs=(c,a)::ys:=by simpa only [runSourceMeter,ht,Option.map_some,Option.some.injEq] using h.symm
+       subst xs
+       intro x hx;rcases List.mem_cons.1 hx with he|hm
+       · rw [he];exact resolved p c a (by simp)
+       · exact ih rr cc ys ht x hm
+   | hard p=>cases hf:(f p b).value with
+     | none=>simp only [runSourceMeter,hf,Option.noConfusion] at h
+     | some y=>cases ht:(runSourceMeter f b js).value.answers with
+       | none=>simp only [runSourceMeter,hf,ht,Option.map_none,Option.noConfusion] at h
+       | some ys=>
+         have eq:xs=y::ys:=by simpa only [runSourceMeter,hf,ht,Option.map_some,Option.some.injEq] using h.symm
+         subst xs
+         intro x hx;rcases List.mem_cons.1 hx with he|hm
+         · rw [he];exact callback p (by simp) y hf
+         · exact ih rr cc ys ht x hm
+end OrdinaryDispatch.Hard2SourceWork

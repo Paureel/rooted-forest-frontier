@@ -1,0 +1,55 @@
+{
+  "scope": "Read-only extraction of existing macro-route workspace-suite failure diagnostics; no rerun or toolkit edit.",
+  "source": "bootloops/selftest_results.json",
+  "source_sha256": "5f9bcb465c56b2260a2a5439ba2022700bbc55c9797e00dd87f5ba29b9c6f473",
+  "records": {
+    "amflow-kit": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 selftest.py && python3 -m pytest tests -q -rs -p no:cacheprovider",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/amflow-kit",
+          "rc": 1,
+          "wall_s": 48.7,
+          "tail": "il must carry a\n        per-launch unique element (an output path); a repeated launch of the same\n        command within the window is otherwise ambiguous. Returns the pid or\n        None.\"\"\"\n        tail = list(argv_tail)\n        excl = set(exclude or ())\n        hz = os.sysconf(\"SC_CLK_TCK\")\n        boot = _boot_epoch()\n        cwd = os.path.realpath(cwd) if cwd else None\n        for _ in range(max(1, int(retries))):\n>           for pid in os.listdir(PROC):\n                       ^^^^^^^^^^^^^^^^\nE           FileNotFoundError: [Errno 2] No such file or directory: '/proc'\n\namflow_kit/memfence.py:569: FileNotFoundError\n=========================== short test summary info ============================\nSKIPPED [1] tests/test_cgroup_procs_size.py:58: no cgroup v2 '0::' line in /proc/self/cgroup\nSKIPPED [1] tests/test_cgroup_procs_size.py:109: no cgroup v2 '0::' line in /proc/self/cgroup: no live leaf\nSKIPPED [1] tests/test_compare_amflow_json.py:380: COMPARE_AMFLOW_JSON_PREVIOUS unset: the previous tool's file is not named\nSKIPPED [1] tests/test_compare_amflow_json.py:687: COMPARE_AMFLOW_JSON_PREVIOUS unset: the previous tool's file is not named\n7 failed, 42 passed, 4 skipped in 48.23s\n"
+        }
+      ],
+      "secs": 48.7,
+      "wall_s": 48.7,
+      "status": "FAIL"
+    },
+    "seedling": {
+      "class": "partial",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 -m pytest tools/seedling -x -q -rs -p no:cacheprovider",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 1,
+          "wall_s": 39.4,
+          "tail": "script):\n                p = subprocess.Popen([\"sleep\", \"30\"])\n                with open(procs, \"w\") as fh:\n                    fh.write(f\"{p.pid}\\n1\\n\")\n                return p\n    \n            def kill(proc):            # the mock records; it ends the plain `sleep`\n                killed.append(proc.pid)\n                proc.kill()\n    \n            def move(pid, dest):       # the mock records; no cgroup is touched\n                moved.append((pid, dest))\n                return True\n    \n            ledger = os.path.join(td, \"ledger.jsonl\")\n            rec, _ = runner.run_phase(\n                \"stage\", td, \"sleep 30\", dict(CFG, name=name), ledger,\n                launch_ops={\"cg_root\": td, \"launch\": launch, \"kill\": kill,\n                            \"move\": move, \"in_leaf\": lambda pid, n: True,\n                            \"poll_s\": 0.05, \"echo\": echoed.append})\n>           assert rec[\"exit_status\"] == runner.RC_CG_FOREIGN_PID != 0\nE           assert 0 == 99\nE            +  where 99 = runner.RC_CG_FOREIGN_PID\n\ntools/seedling/tests/test_cgroup_law.py:227: AssertionError\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 11 passed in 39.12s\n"
+        }
+      ],
+      "secs": 39.4,
+      "wall_s": 39.4,
+      "status": "FAIL"
+    },
+    "tropical-sampler": {
+      "class": "selftest",
+      "tried": [
+        {
+          "kind": "manifest",
+          "cmd": "python3 tools/tropical-sampler/tropical_sampler.py --selftest && CEGM_GJ_OUT=\"$(mktemp -d)\" python3 tools/tropical-sampler/cegm_gj/t3_prod.py sanity --procs 4",
+          "cwd": "/Users/paurel/Documents/ChatGPT/bootscience/bootloops",
+          "rc": 1,
+          "wall_s": 0.4,
+          "tail": "tropical_sampler selftest: base 4 cones, I^tr = 25/16; refined 7 cones, I^tr = 25/16; tiling 500/500 exact x2 \u2014 PASS\nTraceback (most recent call last):\n  File \"/Users/paurel/Documents/ChatGPT/bootscience/bootloops/tools/tropical-sampler/cegm_gj/t3_prod.py\", line 411, in <module>\n    f\"nice={os.nice(0)} ===\")\n            ^^^^^^^^^^\nPermissionError: [Errno 1] Operation not permitted\n"
+        }
+      ],
+      "secs": 0.4,
+      "wall_s": 0.4,
+      "status": "FAIL"
+    }
+  }
+}

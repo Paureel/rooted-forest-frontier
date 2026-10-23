@@ -1,0 +1,132 @@
+import PairGeometrySourceBounds
+namespace OrdinaryDispatch.Hard2SourceWork
+open RMAF ForestState Universal233 WholeSourceWork CoreWork
+open GenericForest.CheckCorrespondence OrdinaryDispatch.EarlyLocalWork
+
+theorem pairSideClearMeter_bound (T : Tree) (A B : List Nat) (v : RMAF.Vertex) (inside : Bool) (N : Nat)
+ (tn : treeNodes T≤N) (al : A.length≤N) (bl : B.length≤N) (vn : v.length≤N) :
+ (pairSideClearMeter T A B v inside).work≤500*(N+1)^4 := by
+ have tl:=leaves_nodes T
+ have sa:=pairSideMeter_bound A T v inside N tn al vn;have sb:=pairSideMeter_bound B T v inside N tn bl vn
+ have la:=Nat.le_trans (pairSideMeter_length A T v inside) al;have lb:=Nat.le_trans (pairSideMeter_length B T v inside) bl
+ have a:=cap_lift N 48 3 4 _ (meterMinimal_polynomial T A N tn al) (by decide)
+ have b:=cap_lift N 48 3 4 _ (meterMinimal_polynomial T B N tn bl) (by decide)
+ have sma:=cap_lift N 48 3 4 _ (meterMinimal_polynomial T (pairSideMeter A T v inside).value N tn la) (by decide)
+ have smb:=cap_lift N 48 3 4 _ (meterMinimal_polynomial T (pairSideMeter B T v inside).value N tn lb) (by decide)
+ have ac:=cap_lift N 13 3 4 _ (meterDisjoint_polynomial
+  (minimalVertices (pairSideMeter A T v inside).value T) (minimalVertices B T) N
+  (Nat.le_trans (minimal_length _ T) tn) (Nat.le_trans (minimal_length _ T) tn)
+  (fun x hx=>by have h:=minimal_address (pairSideMeter A T v inside).value T x hx;omega)) (by decide)
+ have bc:=cap_lift N 13 3 4 _ (meterDisjoint_polynomial
+  (minimalVertices (pairSideMeter B T v inside).value T) (minimalVertices A T) N
+  (Nat.le_trans (minimal_length _ T) tn) (Nat.le_trans (minimal_length _ T) tn)
+  (fun x hx=>by have h:=minimal_address (pairSideMeter B T v inside).value T x hx;omega)) (by decide)
+ have pos:1≤(N+1)^4:=Nat.one_le_pow _ _ (by omega)
+ simp only [pairSideClearMeter,meterMinimal_value]
+ omega
+
+theorem pairEdgeMeter_bound (T : Tree) (A B : List Nat) (e : RMAF.Vertex×RMAF.Vertex) (N : Nat)
+ (two : 2≤N) (tn : treeNodes T≤N) (al : A.length≤N) (bl : B.length≤N)
+ (e1 : e.1.length≤N) (e2 : e.2.length≤N) :
+ (pairEdgeMeter T A B e).work≤744*(N+1)^5 := by
+ have a:=cap_lift N 48 3 5 _ (meterMinimal_polynomial T A N tn al) (by decide)
+ have b:=cap_lift N 48 3 5 _ (meterMinimal_polynomial T B N tn bl) (by decide)
+ have contains (v : RMAF.Vertex) (D : List Nat) (vn : v.length≤N) :
+  (meterVertexContains v (minimalVertices D T)).work≤8*(N+1)^5:=by
+  have h:=meterVertexContains_bound v (minimalVertices D T) N vn
+  have len:=Nat.le_trans (minimal_length D T) tn
+  have mul:=Nat.mul_le_mul_left (8*(N+1)) (Nat.add_le_add_right len 1)
+  exact cap_lift N 8 2 5 _ (Nat.le_trans h (by simpa only [Nat.pow_two,Nat.mul_assoc] using mul)) (by decide)
+ have ca1:=contains e.1 A e1;have cb1:=contains e.1 B e1;have ca2:=contains e.2 A e2;have cb2:=contains e.2 B e2
+ have sides:=cap_all (pairSideClearMeter T A B e.2) [false,true] N 500 4 (by simpa using two)
+  (fun x _=>pairSideClearMeter_bound T A B e.2 x N tn al bl e2)
+ change _≤504*(N+1)^5 at sides
+ have pos:1≤(N+1)^5:=Nat.one_le_pow _ _ (by omega)
+ simp only [pairEdgeMeter,meterMinimal_value]
+ omega
+
+theorem pairVertices_count (T : Tree) : (PairGeometry.vertices T).length=treeNodes T := by
+ have a:=PairGeometry.vertices_length T;have b:=OrdinaryDispatch.FullSourceWork.treeNodes_leafCount T;omega
+
+theorem pairEdges_count (T : Tree) : (PairGeometry.edges T).length≤treeNodes T := by
+ have a:=PairGeometry.edges_length T;rw [pairVertices_count] at a;omega
+
+theorem pairEdges_address (T : Tree) (e : RMAF.Vertex×RMAF.Vertex) (mem : e∈PairGeometry.edges T) :
+ e.1.length≤treeNodes T ∧ e.2.length≤treeNodes T := by
+ induction T generalizing e with
+ | leaf x=>simp [PairGeometry.edges] at mem
+ | node l r il ir=>
+  simp only [PairGeometry.edges,List.mem_cons,List.not_mem_nil,or_false,List.mem_append,List.mem_map] at mem
+  rcases mem with rfl|rfl|⟨d,hd,rfl⟩|⟨d,hd,rfl⟩
+  · simp only [List.length_nil,List.length_cons,treeNodes];omega
+  · simp only [List.length_nil,List.length_cons,treeNodes];omega
+  · have h:=il d hd;simp only [List.length_cons,treeNodes];omega
+  · have h:=ir d hd;simp only [List.length_cons,treeNodes];omega
+
+theorem pairEdgesMeter_bound (T : Tree) (N : Nat) (tn : treeNodes T≤N) :
+ (pairEdgesMeter T).work≤24*(N+1)^2 := by
+ have h:(pairEdgesMeter T).work≤24*(N+1)*treeNodes T:=by
+  induction T with
+  | leaf x=>simp only [pairEdgesMeter,treeNodes,Nat.mul_one];omega
+  | node l r il ir=>
+   have ln:treeNodes l≤N:=by simp only [treeNodes] at tn;omega
+   have rn:treeNodes r≤N:=by simp only [treeNodes] at tn;omega
+   have a:=il ln;have b:=ir rn
+   have la:=pairEdges_count l;have lb:=pairEdges_count r
+   simp only [pairEdgesMeter,pairEdgesMeter_value,treeNodes,Nat.mul_add,Nat.mul_one] at *
+   omega
+ exact Nat.le_trans h (by simpa only [Nat.pow_two,Nat.mul_assoc] using Nat.mul_le_mul_left (24*(N+1)) (Nat.le_trans tn (Nat.le_succ N)))
+
+theorem pairProperMeter_bound (T : Tree) (A B : List Nat) (N : Nat)
+ (tn : treeNodes T≤N) (al : A.length≤N) (bl : B.length≤N) :
+ (pairProperMeter T A B).work≤96*(N+1)^3 := by
+ have tl:=Nat.le_trans (leaves_nodes T) tn
+ have l:=cap_lift N 8 2 3 _ (meterLeaves_cap T N tn) (by decide)
+ have nodup (D : List Nat) (dl : D.length≤N) : (meterNodup D).work≤8*(N+1)^3:=by
+  exact cap_lift N 8 2 3 _ (Nat.le_trans (meterNodup_bound D)
+   (Nat.mul_le_mul_left 8 (Nat.pow_le_pow_left (by omega) 2))) (by decide)
+ have nt:=nodup (leaves T) tl;have na:=nodup A al;have nb:=nodup B bl
+ let f:Nat→Charged Bool:=fun x=>let l:=meterLeaves T;let c:=meterContains x l.value;⟨c.value,l.work+c.work+2⟩
+ have fc (x : Nat) : (f x).work≤14*(N+1)^2:=by
+  have le:=meterLeaves_cap T N tn;have c:=meterContains_bound x (leaves T)
+  have m:4*((leaves T).length+1)≤4*(N+1)^2:=Nat.le_trans (show 4*((leaves T).length+1)≤4*(N+1) by omega)
+   (Nat.mul_le_mul_left 4 (by simpa only [Nat.pow_one] using pow_mono N 1 2 (by decide)))
+  have pos:1≤(N+1)^2:=Nat.one_le_pow _ _ (by omega)
+  simp only [f,meterLeaves_value];omega
+ have ca:=cap_all f A N 14 2 al (fun x _=>fc x);have cb:=cap_all f B N 14 2 bl (fun x _=>fc x)
+ change _≤18*(N+1)^3 at ca cb
+ have ab:=cap_all (fun x=>let c:=meterContains x B;(⟨!c.value,c.work+2⟩:Charged Bool)) A N 6 1 al (by
+  intro x _;have c:=meterContains_bound x B;dsimp only;simpa only [Nat.pow_one] using (show (meterContains x B).work+2≤6*(N+1) by omega))
+ have ab3:=cap_lift N 10 2 3 _ ab (by decide)
+ have pos:1≤(N+1)^3:=Nat.one_le_pow _ _ (by omega)
+ simp only [pairProperMeter,meterLeaves_value]
+ dsimp only [f] at ca cb ab3 ⊢
+ simp only [meterLeaves_value] at ca cb
+ omega
+
+theorem pairChooseMeter_bound (T : Tree) (A B : List Nat) (N : Nat)
+ (three : 3≤N) (tn : treeNodes T≤N) (al : A.length≤N) (bl : B.length≤N) :
+ (pairChooseMeter T A B).work≤1200*(N+1)^6 := by
+ have proper0:=cap_lift N 96 3 6 _ (pairProperMeter_bound T A B N tn al bl) (by decide)
+ have v:=meterVertices_bound T N tn
+ have vm:=Nat.mul_le_mul_left (8*(N+1)) (Nat.le_trans tn (Nat.le_succ N))
+ have vcap:=cap_lift N 8 2 6 _ (Nat.le_trans v (by simpa only [Nat.pow_two,Nat.mul_assoc] using vm)) (by decide)
+ change (pairVerticesMeter T).work≤8*(N+1)^6 at vcap
+ have ecap:=cap_lift N 24 2 6 _ (pairEdgesMeter_bound T N tn) (by decide)
+ have vertex:=hard2_cap_find (pairVertexMeter T A B) (PairGeometry.vertices T) N 230 3
+  (by rw [pairVertices_count];exact tn) (by
+   intro x hx
+   have eq:PairGeometry.vertices T=HardParent.vertices T:=(pairVerticesMeter_value T).symm.trans (meterVertices_value T)
+   rw [eq] at hx
+   exact pairVertexMeter_bound T A B x N three tn al bl (Nat.le_trans (vertices_address T x hx) tn))
+ have vertex6:=cap_lift N 234 4 6 _ vertex (by decide)
+ have edge:=hard2_cap_find (pairEdgeMeter T A B) (PairGeometry.edges T) N 744 5 (Nat.le_trans (pairEdges_count T) tn) (by
+  intro x hx;have a:=pairEdges_address T x hx
+  exact pairEdgeMeter_bound T A B x N (by omega) tn al bl (Nat.le_trans a.1 tn) (Nat.le_trans a.2 tn))
+ change _≤748*(N+1)^6 at edge
+ have pos:1≤(N+1)^6:=Nat.one_le_pow _ _ (by omega)
+ simp only [pairChooseMeter,pairVerticesMeter_value,pairEdgesMeter_value]
+ split
+ · split <;> simp only [Charged.work] <;> omega
+ · simp only [Charged.work];omega
+end OrdinaryDispatch.Hard2SourceWork

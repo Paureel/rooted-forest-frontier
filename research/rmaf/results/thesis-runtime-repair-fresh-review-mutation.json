@@ -1,0 +1,51 @@
+{
+  "failing_step": "adversary geometric argument 3/5 with orientation premise removed on copy",
+  "exact_instance": {
+    "id": "wrong-orientation",
+    "F1": "((a,(x,y)),(p,(q,r)))",
+    "F2": "(a,(x,(((y,p),q),r)))",
+    "protected_F1": [
+      "a"
+    ],
+    "protected_F2": [
+      "a",
+      "p,q,r,x,y"
+    ],
+    "chosen_pair": [
+      "x",
+      "y"
+    ],
+    "expected_orientation_accepted": false,
+    "if_illegally_cut_y_expected_C_pendants": 1
+  },
+  "scope": "local; wrong orientation is rejected by source model, not a reachable counterexample",
+  "lhs": 1,
+  "rhs": 3,
+  "residual": -2,
+  "mutation_rejected": true,
+  "next_case": {
+    "pair": [
+      "x",
+      "a"
+    ],
+    "case": "B",
+    "pendants": [
+      "p,q,r"
+    ],
+    "branches": [
+      {
+        "name": "B",
+        "cuts": [
+          "p,q,r"
+        ],
+        "protect2": [],
+        "protect1": [],
+        "legal": true
+      }
+    ]
+  },
+  "candidate_copy_sha256": "47db5c560e7ed1771212782ede6e2d2cd611887cdfcaadf1cab658f8dc1d87ba",
+  "clean_reverse_twin_passed": true,
+  "Lean_false_copy_rejected": true,
+  "Lean_exit_code": 1
+}

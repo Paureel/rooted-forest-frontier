@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "frozen_before_X0_and_construction": true,
+  "graph_format": "edges are [id,parent,child]; labels maps vertex to label; forest includes all listed vertices after deletion",
+  "base_graph": {
+    "vertices": ["rho","r","s","a","b","c"],
+    "labels": {"rho":"rho","a":"a","b":"b","c":"c"},
+    "edges": [["er","rho","r"],["ea","r","a"],["es","r","s"],["eb","s","b"],["ec","s","c"]]
+  },
+  "graph_controls": [
+    {"id":"identity","C":[],"expected_residual_paths":{"rho-r":["er"],"r-a":["ea"],"r-s":["es"],"s-b":["eb"],"s-c":["ec"]},"R":[],"expected_lift_count":0,"expected_components":[["rho","a","b","c"]]},
+    {"id":"suppressed-path-choice","C":["ec"],"expected_residual_paths":{"rho-r":["er"],"r-a":["ea"],"r-b":["es","eb"]},"R":["r-b"],"all_expected_origin_choices":["es","eb"],"designated_protected_origin":"es","expected_lift_count":2,"expected_components":[["rho","a"],["b"],["c"]],"rejection_twins":{"wrong_origin":"ea","retained_suppressed_edge":"r-s"}},
+    {"id":"absent-parent","C":["er","ec"],"expected_residual_paths":{"r-a":["ea"],"r-b":["es","eb"]},"R":["r-b"],"all_expected_origin_choices":["es","eb"],"expected_lift_count":3,"expected_components":[["rho"],["a"],["b"],["c"]],"rejection_twins":{"fictitious_parent_path":["er"]}},
+    {"id":"empty-component-and-redundant-cost","C":["er","ea","eb","ec"],"expected_residual_paths":{},"R":[],"expected_lift_count":4,"expected_components":[["rho"],["a"],["b"],["c"]],"expected_discarded_component_vertices":["r","s"],"rejection_twins":{"claimed_component_count_equals_cut_count_plus_one":5}},
+    {"id":"sequential-choice","C":["ec"],"first_R":["r-b"],"first_origin":"es","second_R":["rho-a"],"expected_second_path_origins":["er","ea"],"all_final_cutsets":[["ec","es","er"],["ec","es","ea"]],"expected_lift_count":3,"expected_components":[["rho"],["a"],["b"],["c"]],"rejection_twins":{"same_raw_cutset_for_all_choices":false}},
+    {"id":"two-protected-origins-one-residual-edge","C":["ec"],"R":["r-b"],"protected_origins":["es","eb"],"expected_each_individually_selectable":true,"expected_select_both_lift_count":3,"rejection_twins":{"claimed_both_origins_with_additive_count":2}}
+  ],
+  "minimum_controls": [
+    {"id":"identical-common-cherry","T1":[["a","b"],"c"],"T2":[["a","b"],"c"],"rho":"labelled unary root added","expected_optimum":0,"common_subtree_labels":["a","b"],"expected_every_minimum_intact":true,"expected_exists_minimum_intact":true},
+    {"id":"nonzero-common-cherry","T1":[[["a","b"],"c"],"d"],"T2":[["a","b"],["c","d"]],"rho":"labelled unary root added","expected_optimum":1,"common_subtree_labels":["a","b"],"expected_minimum_cut_clusters":[[["a","b"]],[["c"]],[["d"]]],"expected_every_minimum_intact":true,"expected_exists_minimum_intact":true,"contract_alpha":"alpha","contracted_T1":[["alpha","c"],"d"],"contracted_T2":["alpha",["c","d"]],"expected_contracted_optimum":1},
+    {"id":"arbitrary-AF-intactness-rejection","T1":[[["a","b"],"c"],"d"],"T2":[["a","b"],["c","d"]],"rho":"labelled unary root added","cut_clusters":[["a"],["b"],["c"],["d"]],"expected_AF":true,"expected_intact":false,"expected_minimum":false},
+    {"id":"forced-extension-intactness-rejection","T1":[["a","b"],"c"],"T2":[["a","b"],"c"],"rho":"labelled unary root added","forced_cut_clusters":[["a"]],"expected_unrestricted_optimum":0,"expected_forced_extension_optimum":1,"expected_forced_minimum_intact":false},
+    {"id":"arbitrary-child-global-minimum-rejection","T1":["a","b"],"T2":["a","b"],"rho":"labelled unary root added","C_clusters":[["a"]],"expected_unrestricted_optimum":0,"expected_residual_optimum":0,"expected_C_plus_residual_optimum":1,"expected_C_contained_in_any_global_minimum":false},
+    {"id":"same-cluster-different-topology-rejection","T1":[[["a","b"],"c"],"d"],"T2":[["a",["b","c"]],"d"],"rho":"labelled unary root added","candidate_common_labels":["a","b","c"],"expected_identical_pendant_subtree":false,"rejection_twins":{"allowed_as_common_subtree":true}}
+  ],
+  "failure_rule": "Any failed predicted control stops the route and records exact actual values; distinguish pin error from mathematical refutation."
+}

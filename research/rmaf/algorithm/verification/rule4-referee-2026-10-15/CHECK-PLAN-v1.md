@@ -1,0 +1,9 @@
+# Bounded record checks
+
+The checker will compare literal byte hashes, line-span quotations, manifest membership, JSON record fields and retained type/source spans. These are document and record checks; none builds or executes the scientific implementation. The existing emitall guide covers scalar receipt assertions but not byte hashes, exact source-span binding or Markdown table rendering, so a one-session wrapper is justified. It will remain in this directory and is deliberately not registered as a scientific instrument.
+
+Before its first real record check, the wrapper must pass clean fixtures and reject, separately, a changed hash, changed quotation, changed JSON value, wrong array length and removed required type token. A zero-element count fixture must return zero. The renderer must recover a known heading, paragraph, inline code and two-column/two-row table from a literal control. A malformed table must be refused. These controls are designed after document reading but before checker execution; they are postcontact documentation controls and receive no blind mathematical credit.
+
+The real run will check only named sources used by this framing review, the manifest inventories and quoted receipt fields. It will not recheck all scientific payload bytes, open auditor implementations, rebuild Lean, run Python science, enumerate cases or read live successors. A mismatch stops the relevant check until diagnosed. The manifest inventory is a count of recorded members, not independent evidence of scientific truth.
+
+The final render uses a narrow local Markdown subset (headings, paragraphs, lists, tables and inline code), no scripts or external resources. Text and table structure will be inspected after rendering. No pixel inspection will be claimed unless a screenshot is actually obtained. Root different-editor review remains pending.

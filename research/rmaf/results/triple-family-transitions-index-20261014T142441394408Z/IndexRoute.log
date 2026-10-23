@@ -1,0 +1,54 @@
+IndexRoute.lean:204:2: error: unsolved goals
+case neg
+I J : Type
+inst✝ : DecidableEq I
+o : I
+p : J
+x y : I
+hx : x = o
+hy : ¬y = o
+⊢ ¬o = y
+IndexRoute.lean:204:28: warning: This simp argument is unused:
+  eq_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [fromLeft, hx, hy]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+IndexRoute.lean:212:2: error: unsolved goals
+case neg
+I J : Type
+inst✝ : DecidableEq J
+o : I
+p x y : J
+hx : x = p
+hy : ¬y = p
+⊢ ¬p = y
+IndexRoute.lean:212:29: warning: This simp argument is unused:
+  eq_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [fromRight, hx, hy]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+IndexRoute.lean:233:37: error: unsolved goals
+I J : Type
+inst✝¹ : DecidableEq I
+inst✝ : DecidableEq J
+xs : List I
+ys : List J
+o : I
+p : J
+⊢ List.map Joined.left (List.filter ((fun z => !decide (z = Joined.boundary)) ∘ Joined.left) (survivors o xs)) ++
+      List.map Joined.right (List.filter ((fun z => !decide (z = Joined.boundary)) ∘ Joined.right) (survivors p ys)) =
+    List.map Joined.left (survivors o xs) ++ List.map Joined.right (survivors p ys)
+'TripleDP.CostRoute.IndexRoute.mergedFinite' depends on axioms: [propext, Quot.sound]
+'TripleDP.CostRoute.IndexRoute.enumeration_count' depends on axioms: [propext, Quot.sound]
+'TripleDP.CostRoute.IndexRoute.closed_count' depends on axioms: [propext, Quot.sound]
+'TripleDP.CostRoute.IndexRoute.left_retained_iff' depends on axioms: [propext, Quot.sound]
+'TripleDP.CostRoute.IndexRoute.right_retained_iff' depends on axioms: [propext, Quot.sound]
+'TripleDP.CostRoute.IndexRoute.only_boundary_identified' depends on axioms: [propext]
+'TripleDP.CostRoute.IndexRoute.all_joined_from_child' depends on axioms: [propext]
+'TripleDP.CostRoute.IndexRoute.survivors_are_family_closed' depends on axioms: [propext, Quot.sound]
+'TripleDP.CostRoute.IndexRoute.family_closed_count' depends on axioms: [propext, Quot.sound]
+'TripleDP.CostRoute.IndexRoute.family_consumer_equations' depends on axioms: [propext, sorryAx, Quot.sound]

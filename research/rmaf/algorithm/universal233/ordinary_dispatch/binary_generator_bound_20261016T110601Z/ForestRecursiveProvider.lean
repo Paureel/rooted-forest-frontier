@@ -1,0 +1,101 @@
+import ForestRecursiveRaw
+namespace GenericForest.BinaryProducer
+open BinaryProvider GenericForest.ScalarBits GenericForest.CheckCorrespondence Universal233.WholeSourceWork
+
+/-- Paid source-forest entry, using the already sealed GenericForest checker
+bridge. This is separate from the ordinary RMAF.agreement/K bridge. -/
+def forestEntryBits (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) : Charged (Bool×Bool×BinaryProvider.Forest):=
+ let leaves:=sourceLeavesCopy ss;let cap:=checkerCapacity T ss [] leaves.value
+ let proper:=properLabels cap.value T ss;let agrees:=agreesLabels cap.value T ss leaves.value
+ ⟨(proper.value,agrees.value,leaves.value),leaves.work+cap.work+proper.work+agrees.work+8⟩
+
+theorem forestEntryBits_value (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) :
+ (forestEntryBits T ss).value.1=ForestState.proper (targetValue T) (sourcesValue ss) ∧
+ (forestEntryBits T ss).value.2.1=ForestState.agrees (targetValue T) (sourcesValue ss) ((sourcesValue ss).map RMAF.leaves) ∧
+ forestValue (forestEntryBits T ss).value.2.2=(sourcesValue ss).map RMAF.leaves := by
+ have cap:=checkerCapacity_ready T ss [] (sourceLeavesCopy ss).value
+ have p:=(properLabels_projects _ _ T ss cap.width cap.positive cap.target cap.sources cap.sourceCells).1
+ have a:=(agreesLabels_projects _ _ T ss (sourceLeavesCopy ss).value cap.width cap.positive cap.target cap.sources cap.forest cap.forestCells cap.sourceCells).1
+ have l : forestValue (sourceLeavesCopy ss).value=(sourcesValue ss).map RMAF.leaves:=by
+  simp only [sourceLeavesCopy_value,forestValue,sourcesValue,List.map_map]
+  exact List.map_congr_left (fun s _=>leaves_projection s)
+ simp only [Projects,id_eq,meterProper_value,meterAgrees_value,l] at p a
+ exact ⟨p,a,l⟩
+
+def forestStepBits
+ (ordinary : BinaryProvider.Tree→BinaryProvider.Tree→Bits→Charged (Option BinaryProvider.Forest))
+ (solve : Option BinaryProvider.Tree→List BinaryProvider.Tree→Bits→Charged (Option BinaryProvider.Forest))
+ (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits) : Charged (Option BinaryProvider.Forest):=
+ let e:=forestEntryBits T ss
+ if e.value.1 then
+  if e.value.2.1 then ⟨some e.value.2.2,e.work+4⟩ else
+   match T,ss with
+   | none,_=>⟨none,e.work+4⟩
+   | some t,[s]=>let r:=singletonProducer ordinary t s q;⟨r.value,e.work+r.work+4⟩
+   | some t,_=>let h:=overlapProducer t ss
+               match h.value with
+               | none=>let r:=disjointProducer ordinary t ss q;⟨r.value,e.work+h.work+r.work+8⟩
+               | some pair=>let r:=generatedRawParent solve t ss pair q;⟨r.value,e.work+h.work+r.work+8⟩
+ else ⟨none,e.work+4⟩
+
+theorem forestStepBits_value
+ (ordinary : BinaryProvider.Tree→BinaryProvider.Tree→Bits→Charged (Option BinaryProvider.Forest))
+ (nativeOrdinary : RMAF.Tree→RMAF.Tree→Nat→Option GenericForest.Forest)
+ (ordinaryIH : ∀t s b,forestOptionValue (ordinary t s b).value=nativeOrdinary (treeValue t) (treeValue s) (decode b))
+ (solve : Option BinaryProvider.Tree→List BinaryProvider.Tree→Bits→Charged (Option BinaryProvider.Forest))
+ (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits)
+ (recursiveIH : ∀U xs b,decode b<decode q→forestOptionValue (solve U xs b).value=GenericForest.solve nativeOrdinary (targetValue U) (sourcesValue xs) (decode b)) :
+ forestOptionValue (forestStepBits ordinary solve T ss q).value=GenericForest.solve nativeOrdinary (targetValue T) (sourcesValue ss) (decode q) := by
+ have e:=forestEntryBits_value T ss
+ rw [GenericForest.solve.eq_def]
+ dsimp only [forestStepBits]
+ simp only [e.1,e.2.1,e.2.2]
+ split
+ · split
+   · exact congrArg some e.2.2
+   · cases T with
+     | none=>rfl
+     | some t=>
+      cases ss with
+      | nil=>
+       have ov:=overlapProducer_value t []
+       simp only [targetValue,Option.map_some,sourcesValue,List.map_nil] at ov ⊢
+       simp only [←ov]
+       cases h : (overlapProducer t []).value with
+       | none=>exact disjointProducer_value ordinary nativeOrdinary ordinaryIH t [] q
+       | some pair=>exact generatedRawParent_value_below solve (GenericForest.solve nativeOrdinary) (decode q) recursiveIH t [] pair q (Nat.le_refl _)
+      | cons s rest=>
+       cases rest with
+       | nil=>exact singletonProducer_value ordinary nativeOrdinary ordinaryIH t s q
+       | cons s' tail=>
+        have ov:=overlapProducer_value t (s::s'::tail)
+        simp only [targetValue,Option.map_some,sourcesValue,List.map_cons] at ov ⊢
+        simp only [←ov]
+        cases h : (overlapProducer t (s::s'::tail)).value with
+        | none=>exact disjointProducer_value ordinary nativeOrdinary ordinaryIH t (s::s'::tail) q
+        | some pair=>exact generatedRawParent_value_below solve (GenericForest.solve nativeOrdinary) (decode q) recursiveIH t (s::s'::tail) pair q (Nat.le_refl _)
+ · rfl
+
+/-- Actual forest fixed point. The unary capacity is an explicit stored caller
+resource; runtime recursion never decodes the mathematical budget. The ordinary
+provider remains an explicit executable parameter. -/
+def forestRunBits (ordinary : BinaryProvider.Tree→BinaryProvider.Tree→Bits→Charged (Option BinaryProvider.Forest)) :
+ Capacity→Option BinaryProvider.Tree→List BinaryProvider.Tree→Bits→Charged (Option BinaryProvider.Forest)
+ | [],T,ss,q=>let r:=forestStepBits ordinary (fun _ _ _=>⟨none,1⟩) T ss q;⟨r.value,r.work+4⟩
+ | _::fuel,T,ss,q=>let r:=forestStepBits ordinary (forestRunBits ordinary fuel) T ss q;⟨r.value,r.work+4⟩
+
+theorem forestRunBits_value
+ (ordinary : BinaryProvider.Tree→BinaryProvider.Tree→Bits→Charged (Option BinaryProvider.Forest))
+ (nativeOrdinary : RMAF.Tree→RMAF.Tree→Nat→Option GenericForest.Forest)
+ (ordinaryIH : ∀t s b,forestOptionValue (ordinary t s b).value=nativeOrdinary (treeValue t) (treeValue s) (decode b))
+ (fuel : Capacity) (T : Option BinaryProvider.Tree) (ss : List BinaryProvider.Tree) (q : Bits) (qcap : decode q≤fuel.length) :
+ forestOptionValue (forestRunBits ordinary fuel T ss q).value=GenericForest.solve nativeOrdinary (targetValue T) (sourcesValue ss) (decode q) := by
+ induction fuel generalizing T ss q with
+ | nil=>
+  apply forestStepBits_value ordinary nativeOrdinary ordinaryIH _ T ss q
+  intro U xs b hb;simp only [List.length_nil] at qcap;omega
+ | cons u fuel ih=>
+  apply forestStepBits_value ordinary nativeOrdinary ordinaryIH _ T ss q
+  intro U xs b hb
+  exact ih U xs b (by simp only [List.length_cons] at qcap;omega)
+end GenericForest.BinaryProducer

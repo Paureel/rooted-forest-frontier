@@ -1,0 +1,81 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestPermutation.lean:121:12: error: unsolved goals
+case nil
+t : Tree
+F✝ G✝ F G H I : Forest
+hFG : ForestPerm F G
+hHI : ForestPerm H I
+ih : pairwiseEmbeddings t F = pairwiseEmbeddings t G
+ij : pairwiseEmbeddings t H = pairwiseEmbeddings t I
+K : Forest
+⊢ decide (pairwiseEmbeddings t K = true) = true ∧ pairwiseEmbeddings t K = true
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestPermutation.lean:122:20: error: unsolved goals
+case cons
+t : Tree
+F✝ G✝ F G H I : Forest
+hFG : ForestPerm F G
+hHI : ForestPerm H I
+ih✝ : pairwiseEmbeddings t F = pairwiseEmbeddings t G
+ij : pairwiseEmbeddings t H = pairwiseEmbeddings t I
+K : Forest
+A : List Nat
+J : List (List Nat)
+ih :
+  (decide (pairwiseEmbeddings t (J ++ K) = pairwiseEmbeddings t J) && pairwiseEmbeddings t K &&
+      J.all fun A => List.all K fun B => disjointVertices (minimalVertices A t) (minimalVertices B t)) =
+    true
+⊢ pairwiseEmbeddings t K = true ∧
+    (∀ (x : List Nat), x ∈ K → disjointVertices (minimalVertices A t) (minimalVertices x t) = true) ∧
+      (pairwiseEmbeddings t (J ++ K) &&
+            ((List.all K fun c => disjointVertices (minimalVertices A t) (minimalVertices c t)) &&
+              J.all fun c => disjointVertices (minimalVertices A t) (minimalVertices c t))) =
+          (pairwiseEmbeddings t J && J.all fun c => disjointVertices (minimalVertices A t) (minimalVertices c t)) ∧
+        ∀ (x : List Nat),
+          x ∈ J → ∀ (x_1 : List Nat), x_1 ∈ K → disjointVertices (minimalVertices x t) (minimalVertices x_1 t) = true
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestPermutation.lean:123:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  decide (pairwiseEmbeddings t (?J ++ ?K) = pairwiseEmbeddings t ?J) && pairwiseEmbeddings t ?K &&
+    List.all ?J fun A => List.all ?K fun B => disjointVertices (minimalVertices A t) (minimalVertices B t)
+in the target expression
+  pairwiseEmbeddings t (F ++ H) = pairwiseEmbeddings t (G ++ I)
+
+case append
+t : Tree
+F✝ G✝ F G H I : Forest
+hFG : ForestPerm F G
+hHI : ForestPerm H I
+ih : pairwiseEmbeddings t F = pairwiseEmbeddings t G
+ij : pairwiseEmbeddings t H = pairwiseEmbeddings t I
+app :
+  ∀ (J K : Forest),
+    (decide (pairwiseEmbeddings t (J ++ K) = pairwiseEmbeddings t J) && pairwiseEmbeddings t K &&
+        List.all J fun A => List.all K fun B => disjointVertices (minimalVertices A t) (minimalVertices B t)) =
+      true
+⊢ pairwiseEmbeddings t (F ++ H) = pairwiseEmbeddings t (G ++ I)
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestPermutation.lean:122:48: warning: This simp argument is unused:
+  ih
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [pairwiseEmbeddings, Bool.and_assoc, Bool.and_left_comm, Bool.and_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestPermutation.lean:148:11: error: unsolved goals
+case none
+ss : List Tree
+F G : Forest
+h : ForestPerm F G
+hf : ∀ (s : Tree), ForestPerm (family (leaves s) F) (family (leaves s) G)
+source : ∀ (s : Tree), sourceCheck none F s = sourceCheck none G s
+⊢ List.isEmpty F = List.isEmpty G
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestPermutation.lean:148:42: warning: This simp argument is unused:
+  List.isEmpty_iff_length_eq_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [targetEmbeddings, h.length_eq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/ForestPermutation.lean:148:74: warning: This simp argument is unused:
+  h.length_eq
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [targetEmbeddings, List.isEmpty_iff_length_eq_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

@@ -1,0 +1,60 @@
+{
+  "instrument_sha256": "ef4bdaf6c945c7f3ff5724e556aadd46e734b1466805ac8368afec5c8a99c99e",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true,
+      "same_lineage": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.35179387499920267,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.31622212500042224,
+      "resource_stop": null,
+      "log_sha256": "ac890b06414dce30b2d7eab98ce1ab24b12ddf4e1fba906b841ea9e765f5fb63"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016394579997722758,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GoodPairSource",
+      "source_sha256": "84deee1510965c59e4533d1dc45012f4bd9829dbb4eaa3d0597fec83d2fd0795",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8393509579982492,
+      "resource_stop": null,
+      "log_sha256": "66928f9acca6d664a4d2673d2b700e0ef4ca7e82087f43ffcaf82c3cc9b2d43c"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('GoodPairSource', \" answer := none, calls := [] }\\n\\ncase pos\\nactual : GenericForest.FrontierWork.Ordinary\\nT S : Tree\\nA B C : List Nat\\nq : Nat\\nh : 2 \u2264 q\\n\u22a2 (match\\n        AllGoodDP.run (localTarget (some T) (A ++ B))\\n          (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) with\\n      | none =>\\n        { value := { answer := none, calls := [] },\\n          work :=\\n            (sourceForestMeter S [A, B, C]).work + (appendLabelsMeter A B).work +\\n                        (localTargetMeter (some T) (A ++ B)).work +\\n                      (appendLabelsMeter A B).work +\\n                    (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +\\n                  (AllGoodDP.LocalWork.meterRun (localTarget (some T) (A ++ B))\\n                      (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))).work +\\n                12 +\\n              4 }\\n      | some H =>\\n        if additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H \u2264 q - 2 then\\n          {\\n            value :=\\n              {\\n                answer :=\\n                  checked T S q\\n                    (Option.map (fun K => H ++ K)\\n                      (GenericForest.solve actual (localTarget (some T) C)\\n                        (owned (List.filterMap (fun B => restrict B S) [A, B, C]) C)\\n                        (q - 2 -\\n                          additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H))),\\n                calls :=\\n                  [{ target := localTarget (some T) C,\\n                      sources := owned (List.filterMap (fun B => restrict B S) [A, B, C]) C,\\n                      budget :=\\n                        q - 2 -\\n                          additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H }] },\\n            work :=\\n              (sourceForestMeter S [A, B, C]).work + (appendLabelsMeter A B).work +\\n                                          (localTargetMeter (some T) (A ++ B)).work +\\n                                        (appendLabelsMeter A B).work +\\n                                      (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +\\n                                    (AllGoodDP.LocalWork.meterRun (localTarget (some T) (A ++ B))\\n                                        (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))).work +\\n                                  12 +\\n                                (appendLabelsMeter A B).work +\\n                              (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +\\n                            (additionalCostMeter (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))\\n                                H).work +\\n                          8 +\\n                        (localTargetMeter (some T) C).work +\\n                      (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) C).work +\\n                    2 * H.length +\\n                  (checkedMeter T S q\\n                      (Option.map (fun K => H ++ K)\\n                        (GenericForest.solve actual (localTarget (some T) C)\\n                          (owned (List.filterMap (fun B => restrict B S) [A, B, C]) C)\\n                          (q - 2 -\\n                            additionalCost (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))\\n                              H)))).work +\\n                16 }\\n        else\\n          { value := { answer := none, calls := [] },\\n            work :=\\n              (sourceForestMeter S [A, B, C]).work + (appendLabelsMeter A B).work +\\n                                  (localTargetMeter (some T) (A ++ B)).work +\\n                                (appendLabelsMeter A B).work +\\n                              (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +\\n                            (AllGoodDP.LocalWork.meterRun (localTarget (some T) (A ++ B))\\n                                (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B))).work +\\n                          12 +\\n                        (appendLabelsMeter A B).work +\\n                      (ownedMeter (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)).work +\\n                    (additionalCostMeter (owned (List.filterMap (fun B => restrict B S) [A, B, C]) (A ++ B)) H).work +\\n                  8 +\\n                4 }).value =\\n    match AllGoodDP.run (localTarget (some T) (A ++ B)) (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) with\\n    | none => { answer := none, calls := [] }\\n    | some H =>\\n      if additionalCost (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) H \u2264 q - 2 then\\n        {\\n          answer :=\\n            checked T S q\\n              (Option.map (fun K => H ++ K)\\n                (GenericForest.solve actual (localTarget (some T) C) (owned (OutputState.sourceForest S [A, B, C]) C)\\n                  (q - 2 - additionalCost (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) H))),\\n          calls :=\\n            [{ target := localTarget (some T) C, sources := owned (OutputState.sourceForest S [A, B, C]) C,\\n                budget := q - 2 - additionalCost (owned (OutputState.sourceForest S [A, B, C]) (A ++ B)) H }] }\\n      else { answer := none, calls := [] }\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairSource.lean:56:14: error: Function expected at\\n  forestQueries\\nbut this term has type\\n  ?m.1\\n\\nNote: Expected a function because this term is being applied to the argument\\n  actual\\n\\nHint: The identifier `forestQueries` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.\\n\"))"
+}

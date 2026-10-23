@@ -1,0 +1,9 @@
+# One actual source root for the fast dispatcher
+
+Named main consumers are the checked cherry and Rule4 forest calls, selected Rule5 prefix/first/third/common/paid calls, actual whole-source clique/four/diagonal and pair outputs, BothBad.solvePair, and the all-good group DP. Their completed frozen packages have not all previously been imported together. This stage builds their actual transitive union in one root before writing the integrated fast recursive definition.
+
+Seed module names from the completed ordinary source pool. Resolve each additional package's actual imports recursively. Deduplicate only exact adapted source bytes; otherwise retain both sources with an explicit module filename/import alias. Do not edit a frozen source or silently replace a nonproof declaration. Stop at the first literal importing consumer mismatch. A stored-producer compatibility audit must follow source build; compilation alone supplies no universal compatibility or algorithm acceptance.
+
+Fresh resolver/source-pin plants and actual same-name theorem/nonproof importer controls run before scientific staging. Preserve every failure and log. Compile only the named consumer closure, including all its actual imports, in one local LEAN_PATH. Binary files for this union are freshly built from the selected exact source; no source/binary reuse is relabeled as a new proof. Use live 3 GiB free-space floor, 60-second per-command cap, 128 MiB per-file cap, and bounded metadata. New scientific producer output must be compressed. The existing scaffold's baseline fallback is not included as a fast runtime consumer.
+
+This is necessary source integration for the concrete main dispatcher, not a supporting theorem inventory. All intended fast algorithm, correctness, base, source/bit/payload recurrence, and novelty claims remain OPEN.

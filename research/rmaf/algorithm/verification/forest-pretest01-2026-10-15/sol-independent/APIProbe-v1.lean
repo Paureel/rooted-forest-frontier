@@ -1,0 +1,16 @@
+import Lean
+open Lean
+#check Environment.getModuleIdxFor?
+#check Environment.header
+#check Environment.constants
+#check ConstantInfo.type
+#check ConstantInfo.value?
+#check ConstantInfo.name
+#check Environment.getModuleIdx?
+#check Environment.imports
+#check Expr.fold
+#check Name.isPrivate
+#check Name.getPrefix
+#check Json.compress
+#check KVMap.toList
+#check DataValue

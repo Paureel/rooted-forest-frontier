@@ -1,0 +1,12 @@
+# Author scope and prose check
+
+This is an author scope precheck. It does not satisfy the fresh-context referee-sim or independent proof/interface acceptance; the coordinator must arrange those after the manifest is frozen.
+
+| Audience | Standard correctness objection | Answer location | Novelty objection and scope |
+|---|---|---|---|
+| Rooted-MAF theorist | A coarsening/refinement or suppressed source cut may give a different forest. | RESULT returned-certificate paragraphs; `checked_separation`, `checked_block_permutation`, `recover_sound` and full original `RealizedOutput`. | A final recovery lemma alone is not a new faster algorithm. RESULT opening and FIRST-GAP keep all full-algorithm/novelty milestones open. |
+| Lean proof reviewer | Rank, realization or permutation is smuggled into input hypotheses, or a stale/imported custom axiom proves the result. | INTERFACE exact hypothesis table; source-bound Interfaces.log; complete actual module-origin audit and deliberate custom-axiom plant. | Existing completed theorems are named as development inputs. No priority claim. |
+| Complexity reviewer | A unit oracle hides coloring, uniqueness deletes evaluated prefixes, or source helper counts are asserted as extracted runtime. | COST-MODEL color/guard table and complete core-envelope paragraphs; FinalWork value/scan/envelope proofs; explicit source-correspondence qualification. | Search selection, recurrence and global runtime remain separate. The final call is additive and occurs once. |
+| Implementer | Invalid P passes merely because its labels partition the source, or returned cuts use suppressed-tree addresses. | inputCheck, recover_success_iff, accepted_guards, recover_edges; source-embedding-overlap and suppressed-path actual controls. | Program wraps the existing actual generator and contains no new set-partition search. |
+
+Author pass 1 checked the meaning, assumptions, theorem names, original-tree convention, exact-cost exponent and source-operation qualification in RESULT/INTERFACE/COST-MODEL/README/FIRST-GAP. Author pass 2 read the opening and closing paragraphs and every stated count against executed receipts. A targeted phrase scan found no listed hype/boilerplate phrase. The documents are Markdown source notes without a separate rendered scientific manuscript. Parent-coordinated fresh-context prose/referee review remains pending; no independent review is claimed here.

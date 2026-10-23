@@ -1,0 +1,102 @@
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:245:40: warning: This simp argument is unused:
+  isEmpty_true
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Bool.eq_false_iff, ne_eq, hL]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:247:40: warning: This simp argument is unused:
+  isEmpty_true
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Bool.eq_false_iff, ne_eq, hR]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:297:16: error: unsolved goals
+case node.false.false.cons.false
+D : List Nat
+l r : RMAF.Tree
+ihl : ∀ (v : Vertex), v ∈ RMAF.minimalVertices D l ↔ Hull (selectedLeaves D l) v
+ihr : ∀ (v : Vertex), v ∈ RMAF.minimalVertices D r ↔ Hull (selectedLeaves D r) v
+v : List Bool
+hL : ¬RMAF.rootedSpan D l = []
+hR : ¬RMAF.rootedSpan D r = []
+hnl : Nonempty (selectedLeaves D l)
+hnr : Nonempty (selectedLeaves D r)
+⊢ Hull (selectedLeaves D l) v → v ∈ RMAF.rootedSpan D l
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:303:15: error: unsolved goals
+case node.false.false.cons.true
+D : List Nat
+l r : RMAF.Tree
+ihl : ∀ (v : Vertex), v ∈ RMAF.minimalVertices D l ↔ Hull (selectedLeaves D l) v
+ihr : ∀ (v : Vertex), v ∈ RMAF.minimalVertices D r ↔ Hull (selectedLeaves D r) v
+v : List Bool
+hL : ¬RMAF.rootedSpan D l = []
+hR : ¬RMAF.rootedSpan D r = []
+hnl : Nonempty (selectedLeaves D l)
+hnr : Nonempty (selectedLeaves D r)
+⊢ Hull (selectedLeaves D r) v → v ∈ RMAF.rootedSpan D r
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:303:15: error: unsolved goals
+case node.false.true.cons.true
+D : List Nat
+l r : RMAF.Tree
+ihl : ∀ (v : Vertex), v ∈ RMAF.minimalVertices D l ↔ Hull (selectedLeaves D l) v
+ihr : ∀ (v : Vertex), v ∈ RMAF.minimalVertices D r ↔ Hull (selectedLeaves D r) v
+v : List Bool
+hL : ¬RMAF.rootedSpan D l = []
+hnl : Nonempty (selectedLeaves D l)
+hnr : ¬Nonempty (selectedLeaves D r)
+rr : RMAF.rootedSpan D r = []
+⊢ ¬Hull (selectedLeaves D r) v
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:297:16: error: unsolved goals
+case node.true.false.cons.false
+D : List Nat
+l r : RMAF.Tree
+ihl : ∀ (v : Vertex), v ∈ RMAF.minimalVertices D l ↔ Hull (selectedLeaves D l) v
+ihr : ∀ (v : Vertex), v ∈ RMAF.minimalVertices D r ↔ Hull (selectedLeaves D r) v
+v : List Bool
+hR : ¬RMAF.rootedSpan D r = []
+hnl : ¬Nonempty (selectedLeaves D l)
+hnr : Nonempty (selectedLeaves D r)
+ll : RMAF.rootedSpan D l = []
+⊢ ¬Hull (selectedLeaves D l) v
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:297:16: error: unsolved goals
+case node.true.true.cons.false
+D : List Nat
+l r : RMAF.Tree
+ihl : ∀ (v : Vertex), v ∈ RMAF.minimalVertices D l ↔ Hull (selectedLeaves D l) v
+ihr : ∀ (v : Vertex), v ∈ RMAF.minimalVertices D r ↔ Hull (selectedLeaves D r) v
+v : List Bool
+hnl : ¬Nonempty (selectedLeaves D l)
+hnr : ¬Nonempty (selectedLeaves D r)
+ll : RMAF.rootedSpan D l = []
+rr : RMAF.rootedSpan D r = []
+⊢ ¬Hull (selectedLeaves D l) v
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:299:20: warning: This simp argument is unused:
+  eR
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hnr, hull_or_reach, ← rootedSpan_correct, ← ihl, RMAF.minimalVertices, eL, eR, RMAF.prependSide]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:299:23: warning: This simp argument is unused:
+  hull_or_reach
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hnr, eR, ← rootedSpan_correct, ← ihl, RMAF.minimalVertices, eL, eR, RMAF.prependSide]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:305:20: warning: This simp argument is unused:
+  eL
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hnl, hull_or_reach, ← rootedSpan_correct, ← ihr, RMAF.minimalVertices, eL, eR, RMAF.prependSide]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/geometry/Bridge.lean:305:23: warning: This simp argument is unused:
+  hull_or_reach
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hnl, eL, ← rootedSpan_correct, ← ihr, RMAF.minimalVertices, eL, eR, RMAF.prependSide]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

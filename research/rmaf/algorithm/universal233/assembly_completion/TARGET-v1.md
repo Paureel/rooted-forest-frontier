@@ -1,0 +1,9 @@
+# Same-list original hard2 ownership consumer
+
+Complete frozen inputs are assembly v1, hard-parent safety v1, whole-source mass v1 and whole-source implementation work v1. Do not alter their frozen files. Construct a new isolated combined source graph.
+
+Prove equality of the independently constructed request colors and the mass/work input colors, and literal membership of each actual forest-cover witness in the exact appended clique/four-chain/diagonal output list whose raw mass is bounded. The mass proof must therefore apply to the list which actually covers original F; a separate same-shaped list is insufficient. Derive ParentPartition/WholeCall and nonlabel occupancy from actual original partition checks and internal vertex/occupancy hypotheses.
+
+Consume actual original hard2 source safety: for original proper T,S, actual target cherry, exactly two original source pendants and actual agreement F, obtain literal original A,B,C and the disjunction [a] in F or [b] in F or one of the actual whole-source forest outputs. F-refines-parents may not be an input to this outer theorem. Named cuts must be fixed independently of F. Reuse actual source validity/cut realization/refinement and budget from frozen assembly, and whole-source raw mass without a second hard2 factor.
+
+Pin small actual cherry/pendant, endpoint singleton, literal appended-list membership, zero-budget/pruned, wrong joint cost and color mismatch controls before proving the new bridge. Controls are development evidence. Source-bound isolated kernel replay must audit all origins including private/generated and reject deliberate false claims/custom-axiom/missing-record/source-pin plants. All main milestones remain OPEN; this local theorem does not prove recursive solver restriction, output target agreement, source priorities, termination or global runtime.

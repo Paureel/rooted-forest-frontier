@@ -1,0 +1,11 @@
+# READY for exact root release
+
+PRE-CANDIDATE. Candidate manifest, proofs, programs, controls, auditors and receipts remain unopened. This readiness records completed prerequisite controls with the explicit coverage limits in COVERAGE-v1.json. It authorizes no candidate contact or acceptance.
+
+Request a separate root RELEASE for COMMON-SPLIT-CALLER-MANIFEST-v1.json, SHA256 `3da4d51890af8e552b9942667f0f61afff9f6def6af58073f8f1d05286f1714e`, exactly 1066 immutable payloads plus 163 external pins. Root must recheck this READY and the exact candidate again. No self-release.
+
+Seven fixed hand/construction fixtures cover all four marked-stability profiles; five separate symmetry/role/Nat variants pass. The starting complete minimum families and all explicitly declared families, original hulls and marked trees reproduce. Two six-label global complete families remain unpinned debts, with exact hand costs and witnesses checked. Twenty-six graph/caller corruptions and 32 producer checks pass, plus the intended false compile. Source control bytes/detector were pinned before compilation; pilots preceded each bounded enlargement. All versions, raw results, infrastructure failure and amendments are retained. Reuse is of this agent's own pinned instruments only and earns zero extra replication credit.
+
+Callback eagerness/order was publicly unspecified and is frozen UNKNOWN. No exact-order blind credit is claimed. Planned jobs, actual invocations and q0/refusal outcomes will be distinguished after release. The producer scope includes actual kernel ModuleData occurrences, type/body/direct/dependency axioms and recursor RHS; compiler-only IR auxiliary bodies and validation of installed trusted Lean/Std are outside the claim.
+
+READY-MANIFEST-v1.json binds all current local scripts, sources, literal expectations, own lineage, executions, timing, contacts, amendments, failures, coverage limits and PREPLAN. Derived Python caches are excluded; source is included. All bound files are made read-only after the manifest is written. New postrelease work must use new paths. Source applicability, fine source bridge, mutual solver/termination, final recovery/global recurrence/base and novelty remain OPEN; later fresh-context framing is separate.

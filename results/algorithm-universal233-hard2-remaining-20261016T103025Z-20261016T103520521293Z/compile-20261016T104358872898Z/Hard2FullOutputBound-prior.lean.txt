@@ -1,0 +1,92 @@
+import Hard2SelectedGenerationBound
+namespace OrdinaryDispatch.Hard2SourceWork
+open RMAF ForestState Universal233 WholeSourceWork CoreWork CoreProgram
+open GenericForest.FrontierWork GenericForest.CheckCorrespondence
+open OrdinaryDispatch.FullSourceWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion
+open Universal233.Rule5SelectedLocalWork Universal233.BothBad
+
+/-- Every successful forest callback is checked by the actual solver before
+this original T/S checker is reached. No arbitrary callback payload premise. -/
+theorem forest_answer_payload (actual : GenericForest.FrontierWork.Ordinary) (T : Tree) (ss : List Tree) (q : Nat)
+ (nt : (leaves T).Nodup) {F : List (List Nat)} (answer : GenericForest.solve actual (some T) ss q=some F) :
+ F.flatten.length=(leaves T).length ∧ F.length≤(leaves T).length := by
+ have sound:=GenericForest.solve_sound actual (some T) ss q F answer
+ have part:partitionCheck (leaves T) F=true:=by
+  simp only [ForestState.agrees,ForestState.labels,Bool.and_eq_true] at sound
+  exact sound.1.1.1.1.2
+ exact ⟨(FinalCutRecovery.checked_flatten_perm T F nt part).length_eq,SourceCoverage.partitionCheck_block_bound _ _ part⟩
+
+theorem checkedMeter_forest_bound (actual : GenericForest.FrontierWork.Ordinary) (T S : Tree) (ss : List Tree) (r q N : Nat)
+ (nt : (leaves T).Nodup) (tn : treeNodes T≤2*N) (sn : treeNodes S≤2*N) (tl : (leaves T).length≤N) :
+ (checkedMeter T S q (GenericForest.solve actual (some T) ss r)).work≤agreementK N+N+6 := by
+ cases h:GenericForest.solve actual (some T) ss r with
+ | none=>simp [checkedMeter]
+ | some F=>
+  have pay:=forest_answer_payload actual T ss r nt h
+  have check:=measuredAgreement_K T S N tn sn F (by unfold Rule5LocalWork.cells;omega)
+  simp only [checkedMeter]
+  omega
+
+theorem chooseMeter_bound (a b : Option (List (List Nat))) (N : Nat)
+ (ap : ∀F,a=some F→F.length≤N) (bp : ∀F,b=some F→F.length≤N) :
+ (chooseMeter a b).work≤2*N+4 := by
+ cases a with
+ | none=>cases b <;> simp [chooseMeter]
+ | some F=>cases b with
+  | none=>simp [chooseMeter]
+  | some G=>have f:=ap F rfl;have g:=bp G rfl;simp only [chooseMeter];omega
+
+theorem checkedMeter_size (T S : Tree) (q : Nat) (answer : Option (List (List Nat))) (N : Nat)
+ (tl : (leaves T).length≤N) :
+ ∀F,(checkedMeter T S q answer).value=some F→F.length≤N := by
+ intro F h
+ rw [checkedMeter_value] at h
+ have ok:=(BothBad.checked_sound T S q answer F h).2.1
+ have part:partitionCheck (leaves T) F=true:=by simp only [agreement,Bool.and_eq_true] at ok;exact ok.1.1.1.1
+ exact Nat.le_trans (SourceCoverage.partitionCheck_block_bound _ _ part) tl
+
+theorem fullOutputsSource_size (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+ (T S : Tree) (q : Nat) (os : List Output) (N : Nat) (tl : (leaves T).length≤N) :
+ ∀F,(fullOutputsSource actual W T S q os).value.answer=some F→F.length≤N := by
+ intro F h
+ rw [fullOutputsSource_value] at h
+ have ok:=(Hard2PaidLocal.runOutputs_sound actual T S q os F h).1
+ have part:partitionCheck (leaves T) F=true:=by simp only [agreement,Bool.and_eq_true] at ok;exact ok.1.1.1.1
+ exact Nat.le_trans (SourceCoverage.partitionCheck_block_bound _ _ part) tl
+
+/-- Sum at each literal residual budget; never multiply a worst forest bill
+by the number of generated outputs. Refused entries pay only their traversal. -/
+def outputForestDebit (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+ (T S : Tree) (q : Nat) (os : List Output) : Nat :=
+ (os.map fun o=>if o.sourceCuts.length≤q then
+  forestWork actual W (some T) (OutputState.sourceForest S o.partition) (q-o.sourceCuts.length) else 0).sum
+
+def outputLocalPolynomial (N : Nat) :=2*N+(4*(N+2)*N+3)*N+1+agreementK N+3*N+24
+
+theorem fullOutputsSource_local (actual : GenericForest.FrontierWork.Ordinary) (W : OrdinaryWork)
+ (T S : Tree) (q N : Nat) (os : List Output)
+ (nt : (leaves T).Nodup) (tn : treeNodes T≤N) (sn : treeNodes S≤N)
+ (shape : ∀o,o∈os→o.sourceCuts.length≤N ∧ o.partition.length≤N ∧ ∀B,B∈o.partition→B.length≤N) :
+ (fullOutputsSource actual W T S q os).work≤outputLocalPolynomial N*os.length+2+outputForestDebit actual W T S q os := by
+ induction os with
+ | nil=>simp [fullOutputsSource,outputForestDebit]
+ | cons o os ih=>
+  have cur:=shape o (by simp)
+  have tail:=ih (by intro x h;exact shape x (by simp [h]))
+  have material:=source_forest_work S o.partition N cur.2.2
+  have ms:=Nat.mul_le_mul (Nat.add_le_add_right (Nat.mul_le_mul_left (4*(N+2)) sn) 3) cur.2.1
+  have check:=checkedMeter_forest_bound actual T S (sourceForestMeter S o.partition).value (q-o.sourceCuts.length) q N nt (by omega) (by omega) (Nat.le_trans (leaves_nodes T) tn)
+  have choose:=chooseMeter_bound
+   (checkedMeter T S q (GenericForest.solve actual (some T) (sourceForestMeter S o.partition).value (q-o.sourceCuts.length))).value
+   (fullOutputsSource actual W T S q os).value.answer N
+   (checkedMeter_size T S q _ N (Nat.le_trans (leaves_nodes T) tn))
+   (fullOutputsSource_size actual W T S q os N (Nat.le_trans (leaves_nodes T) tn))
+  simp only [fullOutputsSource,outputForestDebit,List.map_cons,List.sum_cons,List.length_cons]
+  by_cases afford:o.sourceCuts.length≤q
+  · simp only [afford,ite_true,source_forest_value,←OutputState.sourceForest] at *
+    simp only [outputLocalPolynomial,Nat.mul_add,Nat.mul_one] at *
+    omega
+  · simp only [afford,ite_false,Nat.zero_add]
+    simp only [outputLocalPolynomial,Nat.mul_add,Nat.mul_one] at *
+    omega
+end OrdinaryDispatch.Hard2SourceWork

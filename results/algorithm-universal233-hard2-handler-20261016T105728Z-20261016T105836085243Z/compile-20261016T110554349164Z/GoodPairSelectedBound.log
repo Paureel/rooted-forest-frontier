@@ -1,0 +1,67 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairSelectedBound.lean:37:112: error(lean.unknownIdentifier): Unknown identifier `leaves_nodes`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairSelectedBound.lean:39:113: error(lean.unknownIdentifier): Unknown identifier `leaves_nodes`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairSelectedBound.lean:40:93: error(lean.unknownIdentifier): Unknown identifier `leaves_nodes`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairSelectedBound.lean:44:10: error: Invalid projection: Projections cannot be used on functions, and
+  Bool.and_eq_true
+has function type
+  ∀ (a b : Bool), ((a && b) = true) = (a = true ∧ b = true)
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-hard2-handler-20261016T105728Z-20261016T105836085243Z/GoodPairSelectedBound.lean:20:140: error: unsolved goals
+actual : GenericForest.FrontierWork.Ordinary
+T S : Tree
+c : CherryBranching.Candidate
+o : Order
+edge : Vertex × Vertex
+p r : Vertex
+q N Q : Nat
+three : 3 ≤ N
+budget : q ≤ Q
+tn : treeNodes T ≤ N
+sn : treeNodes S ≤ N
+proper0 : DepthOne.proper T S = true
+hard : CherryBranching.select T S = some (CherryBranching.Priority.hard2, c)
+cuts : c.originalCuts = [p, r]
+selected : runHard2 T S c = some (Result.pair o (PairGeometry.Choice.edge edge))
+good :
+  (restrictionAgrees S T (first o (leftParent S p) (rightParent S r) (rootParent S p r)) &&
+      restrictionAgrees S T (second o (leftParent S p) (rightParent S r) (rootParent S p r))) =
+    true
+cuts' : c.originalCuts = [p, r]
+left✝¹ : CherryBranching.cuts S c.a c.b = [p, r]
+left✝ : HardParent.LiteralOriginalThree S p r
+hp : partitionCheck (leaves S) [leftParent S p, rightParent S r, rootParent S p r] = true
+es : pairwiseEmbeddings S [leftParent S p, rightParent S r, rootParent S p r] = true
+right✝ : CherryBranching.pendantPartition S c.a c.b = [leftParent S p, rightParent S r, rootParent S p r]
+eq : [p, r] = [p, r]
+basic : (leaves T).Nodup ∧ (leaves S).Nodup ∧ (leaves T).Perm (leaves S)
+same : ∀ (x : Nat), x ∈ leaves T ↔ x ∈ leaves S
+raw :
+  select T (leftParent S p) (rightParent S r) (rootParent S p r) = some (Result.pair o (PairGeometry.Choice.edge edge))
+guards : Valid T (leftParent S p) (rightParent S r) (rootParent S p r) (Result.pair o (PairGeometry.Choice.edge edge))
+ac :
+  BinaryExchange.Disj T (first o (leftParent S p) (rightParent S r) (rootParent S p r))
+    (third o (leftParent S p) (rightParent S r) (rootParent S p r))
+bc :
+  BinaryExchange.Disj T (second o (leftParent S p) (rightParent S r) (rootParent S p r))
+    (third o (leftParent S p) (rightParent S r) (rootParent S p r))
+chosen :
+  PairGeometry.properInput T (first o (leftParent S p) (rightParent S r) (rootParent S p r))
+        (second o (leftParent S p) (rightParent S r) (rootParent S p r)) =
+      true ∧
+    PairGeometry.ValidChoice T (first o (leftParent S p) (rightParent S r) (rootParent S p r))
+      (second o (leftParent S p) (rightParent S r) (rootParent S p r)) (PairGeometry.Choice.edge edge)
+over :
+  ∃ v,
+    v ∈ minimalVertices (first o (leftParent S p) (rightParent S r) (rootParent S p r)) T ∧
+      v ∈ minimalVertices (second o (leftParent S p) (rightParent S r) (rootParent S p r)) T
+a : (leftParent S p).length ≤ N
+b : (rightParent S r).length ≤ N
+d : (rootParent S p r).length ≤ N
+sizes :
+  (first o (leftParent S p) (rightParent S r) (rootParent S p r)).length ≤ N ∧
+    (second o (leftParent S p) (rightParent S r) (rootParent S p r)).length ≤ N ∧
+      (third o (leftParent S p) (rightParent S r) (rootParent S p r)).length ≤ N
+⊢ ↑(goodPairSource actual (fun x x_1 x_2 => 0) T S (first o (leftParent S p) (rightParent S r) (rootParent S p r))
+          (second o (leftParent S p) (rightParent S r) (rootParent S p r))
+          (third o (leftParent S p) (rightParent S r) (rootParent S p r)) q).work ≤
+    (↑(goodPairPolynomial N) + geometric Rule5ActualTrace.base * forestCoefficient N Q * Rule5ActualTrace.base ^ (-3)) *
+      Rule5ActualTrace.base ^ q

@@ -1,0 +1,29 @@
+research/rmaf/triple_dp/family/FamilyModel.lean:55:23: error: unsolved goals
+case node.cons.false
+α : Type
+l r : BTree α
+rest : List Bool
+hl : ∀ (v : Address) (x : α), label l v = some x → vertex l v
+hr : ∀ (v : Address) (x : α), label r v = some x → vertex r v
+h : ∃ x, label l rest = some x
+⊢ vertex l rest
+
+case node.cons.true
+α : Type
+l r : BTree α
+rest : List Bool
+hl : ∀ (v : Address) (x : α), label l v = some x → vertex l v
+hr : ∀ (v : Address) (x : α), label r v = some x → vertex r v
+h : ∃ x, label r rest = some x
+⊢ vertex r rest
+'TripleDP.Family.vertex_iff_mem' depends on axioms: [propext, Quot.sound]
+'TripleDP.Family.leaf_vertex' depends on axioms: [propext, sorryAx, Quot.sound]
+'TripleDP.Family.vertices_pathConvex' depends on axioms: [propext, Quot.sound]
+'TripleDP.Family.hull_contains' does not depend on any axioms
+'TripleDP.Family.hull_least' does not depend on any axioms
+'TripleDP.Family.hull_pathConvex' does not depend on any axioms
+'TripleDP.Family.hull_idempotent' depends on axioms: [propext, Quot.sound]
+'TripleDP.Family.closedHull_subset' does not depend on any axioms
+'TripleDP.Family.openHull_subset' does not depend on any axioms
+'TripleDP.Family.closedHull_labels' depends on axioms: [propext, Quot.sound]
+'TripleDP.Family.openHull_labels' depends on axioms: [propext, Quot.sound]

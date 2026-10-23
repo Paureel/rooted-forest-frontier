@@ -1,0 +1,33 @@
+List.count_flatMap.{u_1, u_2} {β : Type u_1} {α : Type u_2} [BEq β] {l : List α} {f : α → List β} {x : β} :
+  List.count x (List.flatMap f l) = (List.map (List.count x ∘ f) l).sum
+List.count_filter.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {p : α → Bool} {a : α} {l : List α} (h : p a = true) :
+  List.count a (List.filter p l) = List.count a l
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/APIProbe.lean:4:7: error(lean.unknownIdentifier): Unknown constant `List.Perm.flatMap`
+List.Perm.flatten.{u_1} {α : Type u_1} {l₁ l₂ : List (List α)} (h : l₁.Perm l₂) : l₁.flatten.Perm l₂.flatten
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/APIProbe.lean:6:7: error(lean.unknownIdentifier): Unknown constant `List.Forall₂`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/APIProbe.lean:7:7: error(lean.unknownIdentifier): Unknown constant `List.Forall₂.append`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/APIProbe.lean:8:7: error(lean.unknownIdentifier): Unknown constant `List.Forall₂.length_eq`
+List.Pairwise.imp_of_mem.{u_1} {α : Type u_1} {l : List α} {R S : α → α → Prop}
+  (H : ∀ {a b : α}, a ∈ l → b ∈ l → R a b → S a b) (p : List.Pairwise R l) : List.Pairwise S l
+List.Perm.pairwise_iff.{u_1} {α : Type u_1} {R : α → α → Prop} (S : ∀ {x y : α}, R x y → R y x) {l₁ l₂ : List α}
+  (_p : l₁.Perm l₂) : List.Pairwise R l₁ ↔ List.Pairwise R l₂
+List.Perm.subset.{u_1} {α : Type u_1} {l₁ l₂ : List α} (p : l₁.Perm l₂) : l₁ ⊆ l₂
+List.Perm.all_eq.{u_1} {α : Type u_1} {l₁ l₂ : List α} {f : α → Bool} (hp : l₁.Perm l₂) : l₁.all f = l₂.all f
+List.Perm.append_left.{u_1} {α : Type u_1} {t₁ t₂ : List α} (l : List α) : t₁.Perm t₂ → (l ++ t₁).Perm (l ++ t₂)
+List.Perm.append_right.{u_1} {α : Type u_1} {l₁ l₂ : List α} (t₁ : List α) (p : l₁.Perm l₂) : (l₁ ++ t₁).Perm (l₂ ++ t₁)
+List.perm_ext_iff_of_nodup.{u_1} {α : Type u_1} {l₁ l₂ : List α} (d₁ : l₁.Nodup) (d₂ : l₂.Nodup) :
+  l₁.Perm l₂ ↔ ∀ (a : α), a ∈ l₁ ↔ a ∈ l₂
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/APIProbe.lean:16:7: error(lean.unknownIdentifier): Unknown constant `List.nodup_flatMap`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/APIProbe.lean:17:7: error(lean.unknownIdentifier): Unknown constant `List.Nodup.flatten`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/APIProbe.lean:18:7: error(lean.unknownIdentifier): Unknown constant `List.Subperm`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/APIProbe.lean:19:7: error(lean.unknownIdentifier): Unknown constant `List.Perm.ofFn`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/APIProbe.lean:20:7: error(lean.unknownIdentifier): Unknown constant `List.mem_split`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/APIProbe.lean:21:7: error(lean.unknownIdentifier): Unknown constant `List.Perm.map_eq`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/APIProbe.lean:22:7: error(lean.unknownIdentifier): Unknown constant `List.Perm.exists_erase_eq`
+List.countP_flatMap.{u_1, u_2} {α : Type u_2} {β : Type u_1} {p : β → Bool} {l : List α} {f : α → List β} :
+  List.countP p (List.flatMap f l) = (List.map (List.countP p ∘ f) l).sum
+List.Perm.filter.{u_1} {α : Type u_1} (p : α → Bool) {l₁ l₂ : List α} (s : l₁.Perm l₂) :
+  (List.filter p l₁).Perm (List.filter p l₂)
+List.Perm.append.{u_1} {α : Type u_1} {l₁ l₂ t₁ t₂ : List α} (p₁ : l₁.Perm l₂) (p₂ : t₁.Perm t₂) :
+  (l₁ ++ t₁).Perm (l₂ ++ t₂)
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/forest_pretest01/APIProbe.lean:26:7: error(lean.unknownIdentifier): Unknown constant `List.forall₂_iff_getElem`

@@ -1,0 +1,64 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:62:54: error: Invalid argument name `q` for function `Rat.pow_pos`
+
+Hint: Perhaps you meant one of the following parameter names:
+  • `a`: q̵a̲
+  • `h`: q̵h̲
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:62:92: error: Expected type must not contain metavariables
+  0 < ?m.245
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:37:92: error: unsolved goals
+actual : GenericForest.FrontierWork.Ordinary
+T : Tree
+q : Nat
+cs : List Child
+N Q m : Nat
+size : (leaves T).length ≤ N
+budget : q ≤ Q
+count : cs.length ≤ m
+proper0 : ∀ (c : Child), c ∈ cs → proper (some T) c.sourceForest = true
+js : List Rule5OrdinaryDispatch.ForestJob := Rule5OrdinaryDispatch.forestJobs T q cs
+positive : 0 ≤ geometric Rule5ActualTrace.base * forestCoefficient N Q
+point :
+  ∀ (j : Rule5OrdinaryDispatch.ForestJob),
+    j ∈ js →
+      ↑(forestWork actual (fun x x_1 x_2 => 0) j.target j.sources j.residual) ≤
+        geometric Rule5ActualTrace.base * forestCoefficient N Q * Rule5ActualTrace.base ^ q
+sum :
+  (List.map (fun j => ↑(forestWork actual (fun x x_1 x_2 => 0) j.target j.sources j.residual)) js).sum ≤
+    ↑js.length * (geometric Rule5ActualTrace.base * forestCoefficient N Q * Rule5ActualTrace.base ^ q)
+len : js.length ≤ m
+⊢ ↑(childForestDebit actual (fun x x_1 x_2 => 0) T q cs) ≤
+    ↑m * (geometric Rule5ActualTrace.base * forestCoefficient N Q) * Rule5ActualTrace.base ^ q
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:78:2: warning: Variable name `sel` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _sel
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:78:64: warning: Variable name `budget` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _budget
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:92:2: warning: Variable name `sel` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _sel
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:92:65: warning: Variable name `budget` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _budget
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-source-integration-20261016T092805Z-20261016T093301576999Z/ChildrenSourceBound.lean:118:28: error: Type mismatch: After simplification, term
+  sum
+ has type
+  @LE.le Rat Rat.instLE (↑(simpleLocalPolynomial N) + ↑(childForestDebit actual (fun x x_1 x_2 => 0) T q cs))
+    (↑(simpleLocalPolynomial N) * Rule5ActualTrace.base ^ q +
+      ↑3 * (geometric Rule5ActualTrace.base * forestCoefficient N Q) * Rule5ActualTrace.base ^ q)
+but is expected to have type
+  @LE.le Rat Rat.instLE (↑(simpleLocalPolynomial N) + ↑(childForestDebit actual (fun x x_1 x_2 => 0) T q cs))
+    (↑(simpleLocalPolynomial N) * Rule5ActualTrace.base ^ q +
+      3 * (geometric Rule5ActualTrace.base * forestCoefficient N Q) * Rule5ActualTrace.base ^ q)

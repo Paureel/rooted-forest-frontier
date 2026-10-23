@@ -1,0 +1,22 @@
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-pair-query-20261015T195944423783Z/PairFalseControls.lean:3:241: error: Tactic `decide` proved that the proposition
+  Option.any
+      (fun F => decide (additionalCost (owned (OutputState.sourceForest (source badC) [A, B, C]) (A ++ B)) F = 0))
+      (AllGoodDP.run (localTarget (some target) (A ++ B))
+        (owned (OutputState.sourceForest (source badC) [A, B, C]) (A ++ B))) =
+    true
+is false
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-pair-query-20261015T195944423783Z/PairFalseControls.lean:4:116: error: Tactic `decide` proved that the proposition
+  List.map BothBad.Call.budget (runPair depthAnswer target (source badC) A B C 4).calls = [2]
+is false
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-pair-query-20261015T195944423783Z/PairFalseControls.lean:5:86: error: Tactic `decide` failed to reduce
+  @decide ((runPair depthAnswer target (source badC) A B C 3).answer.isSome = true)
+    (instDecidableEqBool (runPair depthAnswer target (source badC) A B C 3).answer.isSome true)
+to `true` or `false`.
+
+After unfolding the instances `instDecidableEqBool`, `instDecidableEqNat`, `instDecidableNot`, `Bool.decEq`, `isTrue`, `List.decidableBAll`, `List.instDecidablePairwise`, `List.nodupDecidable`, `Nat.decEq`, and `Nat.decLe`, reduction got stuck at
+  match (runPair depthAnswer target (source badC) A B C 3).answer with
+  | some val => true
+  | none => false
+/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-allgood-pair-query-20261015T195944423783Z/PairFalseControls.lean:6:86: error: Tactic `decide` proved that the proposition
+  (runPair depthAnswer target (source badC) A B C 2).answer.isSome = true
+is false

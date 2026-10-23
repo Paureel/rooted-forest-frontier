@@ -1,0 +1,7 @@
+# Actual bounded source-rank probe
+
+Use the completed rank_dichotomy author freeze. Construct an executable classifier by running the ACTUAL generate at q=inputRank-1, and testing whether the actual output list is empty. For proper original S prove nonempty iff RankFeasible, empty iff infeasible, and a sufficient-budget output is the exact same singleton emitted at the probe for every larger budget. No partition enumeration or boolean test on an unknown witness is executed.
+
+When r<=4 the probe query has q<=3, so its actual capped/pruned prefix and append work is bounded by the reviewed core source-operation envelope at that fixed budget, plus its explicit input-color callback bill. Do not identify the helper meter with every extracted fine operation; retain the reviewed conservative source-operation bridge contract. The actual four-color binary pair caller is an eventual consumer; no extra residual query discount follows from classification alone.
+
+Pin/run before proof: contiguous two-color probe emits one cost1; crossed probe empty but larger generate costs[2,2]; exact3color minimum; q0; repeated labels refuse, and repeated-label unqualified iff must fail because the actual source hypothesis is essential. Fixed false claims: crossed probe nonempty, contiguous probe empty, repeated-label probe acceptance. Use source-bound isolated replay/fullmoduleorigin/stdaxiom/false/corruption evidence. All3mainmilestonesOPEN. No unfinished kept/state proof or review contact. Own rank_consumer/ and new algorithm-universal233-rank-consumer-* results.

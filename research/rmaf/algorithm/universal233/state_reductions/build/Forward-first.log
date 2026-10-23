@@ -1,0 +1,106 @@
+research/rmaf/algorithm/universal233/state_reductions/build/Forward.lean:76:11: error: unsolved goals
+case some.none
+a : Nat
+s : Tree
+B : List Nat
+t : Tree
+hB : B ⊆ (labels (some t)).erase a
+hr : restrict ((leaves t).erase a) t = none
+hb : restrict B t = none
+⊢ (match restrict ((labels (some t)).erase a) t, s, B with
+    | none, x, x_1 => false
+    | some t, s, B =>
+      match restrict B t, restrict B s with
+      | some s, some v => sameShape s v
+      | x, x_1 => false) =
+    false
+research/rmaf/algorithm/universal233/state_reductions/build/Forward.lean:81:13: error: unsolved goals
+case some.some
+a : Nat
+s : Tree
+B : List Nat
+t : Tree
+hB : B ⊆ (labels (some t)).erase a
+u : Tree
+hr : restrict ((leaves t).erase a) t = some u
+⊢ (match restrict ((labels (some t)).erase a) t, s, B with
+    | none, x, x_1 => false
+    | some t, s, B =>
+      match restrict B t, restrict B s with
+      | some s, some v => sameShape s v
+      | x, x_1 => false) =
+    match restrict B t, restrict B s with
+    | some s, some v => sameShape s v
+    | x, x_1 => false
+research/rmaf/algorithm/universal233/state_reductions/build/Forward.lean:80:39: warning: This simp argument is unused:
+  hr
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [cleanupTarget, targetAgrees, restrictionAgrees, hb]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/state_reductions/build/Forward.lean:82:48: warning: This simp argument is unused:
+  hr
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [cleanupTarget, Option.bind_some, targetAgrees, restrictionAgrees,
+    restrict_inside t u ((leaves t).erase a) B hr hB]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/state_reductions/build/Forward.lean:83:8: warning: This simp argument is unused:
+  restrict_inside t u ((leaves t).erase a) B hr hB
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [cleanupTarget, Option.bind_some, hr, targetAgrees, restrictionAgrees]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/algorithm/universal233/state_reductions/build/Forward.lean:116:13: error: unsolved goals
+case refine_2.some.none
+ss : List Tree
+F : List (List Nat)
+a : Nat
+ha : Tree.leaf a ∈ ss
+href : ∀ (B : List Nat), B ∈ F → ∃ s, s ∈ ss ∧ B ⊆ leaves s
+hsingle : [a] ∈ F
+homit : ∀ (s : Tree), s ∈ cleanupSources ss a → ¬a ∈ leaves s
+t : Tree
+h : agrees (some t) ss F = true
+hp : proper (some t) ss = true
+hF : partitionCheck (labels (some t)) F = true
+ht : targetEmbeddings (some t) F = true
+hs : ∀ (s : Tree), s ∈ ss → sourceCheck (some t) F s = true
+nd : (labels (some t)).Nodup
+hsub : ∀ (B : List Nat), B ∈ cleanupForest F a → B ⊆ (labels (some t)).erase a
+hnewF : partitionCheck [] (cleanupForest F a) = true
+hr : restrict ((leaves t).erase a) t = none
+hz : labels (cleanupTarget (some t) a) = []
+he : cleanupForest F a = []
+⊢ (match restrict ((labels (some t)).erase a) t, [] with
+    | none, F => F.isEmpty
+    | some t, F => pairwiseEmbeddings t F) =
+    true
+research/rmaf/algorithm/universal233/state_reductions/build/Forward.lean:125:8: error: Type mismatch: After simplification, term
+  ht2
+ has type
+  pairwiseEmbeddings u (cleanupForest F a) = true
+but is expected to have type
+  (match restrict ((labels (some t)).erase a) t, cleanupForest F a with
+    | none, F => F.isEmpty
+    | some t, F => pairwiseEmbeddings t F) =
+    true
+research/rmaf/algorithm/universal233/state_reductions/build/Forward.lean:130:4: error: 'change' tactic failed, pattern
+  partitionCheck (leaves s) (family (leaves s) (cleanupForest F a)) = true ∧
+    (family (leaves s) (cleanupForest F a)).all (targetAgrees (cleanupTarget T a) s) = true ∧
+      pairwiseEmbeddings s (family (leaves s) (cleanupForest F a)) = true
+is not definitionally equal to target
+  (partitionCheck (leaves s) (family (leaves s) (cleanupForest F a)) &&
+        (family (leaves s) (cleanupForest F a)).all (targetAgrees (cleanupTarget T a) s) &&
+      pairwiseEmbeddings s (family (leaves s) (cleanupForest F a))) =
+    true
+research/rmaf/algorithm/universal233/state_reductions/build/Forward.lean:120:28: warning: This simp argument is unused:
+  hr
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [cleanupTarget, targetEmbeddings, he]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

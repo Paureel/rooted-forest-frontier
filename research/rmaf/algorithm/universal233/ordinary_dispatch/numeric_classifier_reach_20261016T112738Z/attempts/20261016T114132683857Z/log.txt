@@ -1,0 +1,41 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredClassifierHostile.lean:6:87: error: Tactic `decide` proved that the proposition
+  (selectBadBits targetBad sourceBad a b).work = 0
+is false
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredClassifierHostile.lean:7:127: error: Tactic `decide` failed to reduce
+  @decide (Option.map (fun d => d.c) (selectBadBits targetBad sourceBad a b).value = some [false, true, true])
+    ((Option.map (fun d => d.c) (selectBadBits targetBad sourceBad a b).value).instDecidableEq
+      (some [false, true, true]))
+to `true` or `false`.
+
+After unfolding the instances `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Nat.decEq`, `Option.instDecidableEq`, and `instDecidableEqOrder`, reduction got stuck at
+  match Option.map (fun d => d.c) (selectBadBits targetBad sourceBad a b).value with
+  | none =>
+    match some [false, true, true] with
+    | none => isTrue ⋯
+    | some val => isFalse ⋯
+  | some a =>
+    match some [false, true, true] with
+    | none => isFalse ⋯
+    | some b =>
+      match (fun a b => instDecidableEqList a b) a b with
+      | { decide := true, reflects_decide := h } => isTrue ⋯
+      | { decide := false, reflects_decide := n } => isFalse ⋯
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredClassifierHostile.lean:8:113: error: Tactic `decide` failed to reduce
+  @decide ((badFor targetBad sourceBad [false, true] duplicateList).value.length = 1)
+    (instDecidableEqNat (badFor targetBad sourceBad [false, true] duplicateList).value.length 1)
+to `true` or `false`.
+
+After unfolding the instances `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Nat.decEq`, and `instDecidableEqOrder`, reduction got stuck at
+  (badFor targetBad sourceBad [false, true] duplicateList).value.length.beq 1
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredClassifierHostile.lean:13:1: error: Type mismatch
+  bound_path_bridge rec paddedBudget commonT commonS (BoundPath.next BoundPath.root (actual_common_event rec))
+has type
+  OrientedPath commonT commonS (0 + 1) (contractPairBits c5 c6 commonT commonS).value.fst
+      (contractPairBits c5 c6 commonT commonS).value.snd ∧
+    GlobalNumeric.Reach rec (decode paddedBudget) (treeValue commonT) (treeValue commonS) (0 + 1)
+      (treeValue (contractPairBits c5 c6 commonT commonS).value.fst)
+      (treeValue (contractPairBits c5 c6 commonT commonS).value.snd) (decode [true])
+but is expected to have type
+  let p := (contractPairBits c5 c6 commonT commonS).value;
+  OrientedPath commonT commonS 2 p.fst p.snd ∧
+    GlobalNumeric.Reach rec 1 (treeValue commonT) (treeValue commonS) 2 (treeValue p.fst) (treeValue p.snd) 1

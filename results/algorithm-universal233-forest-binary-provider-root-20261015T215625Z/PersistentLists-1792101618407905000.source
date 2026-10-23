@@ -1,0 +1,66 @@
+import Representation
+namespace GenericForest.BinaryProvider
+open Universal233.WholeSourceWork GenericForest.ScalarBits
+open GenericForest.CheckCorrespondence
+
+/-- Copies each traversed label array; the right tail is shared immutably. -/
+def appendLabels : Block→Block→Charged Block
+ | [],B=>⟨B,1⟩
+ | x::xs,B=>let a:=copyBits x;let r:=appendLabels xs B;⟨a.value::r.value,a.work+r.work+4⟩
+@[simp] theorem appendLabels_value (A B : Block) : (appendLabels A B).value=A++B := by
+ induction A <;> simp_all [appendLabels]
+theorem appendLabels_work (A B : Block) (W : Nat) (cap : BlockWidth W A) :
+ (appendLabels A B).work≤(4*W+5)*A.length+1 := by
+ induction A with
+ | nil=>simp [appendLabels]
+ | cons x xs ih=>
+  have width:=cap x (by simp)
+  have tail:=ih (fun y hy=>cap y (by simp [hy]))
+  simp only [appendLabels,copyBits_work,List.length_cons,Nat.mul_add,Nat.mul_one];omega
+
+def flattenLabels : Forest→Charged Block
+ | []=>⟨[],1⟩
+ | B::F=>let r:=flattenLabels F;let a:=appendLabels B r.value;⟨a.value,r.work+a.work+4⟩
+@[simp] theorem flattenLabels_value (F : Forest) : (flattenLabels F).value=F.flatten := by
+ induction F <;> simp_all [flattenLabels]
+theorem flattenLabels_projects (F : Forest) (W : Nat) (cap : ForestWidth W F) :
+ Projects W blockValue (flattenLabels F) (meterFlatten (forestValue F)) := by
+ induction F with
+ | nil=>simp [Projects,flattenLabels,meterFlatten,blockValue,beta]
+ | cons B F ih=>
+  have tail:=ih (fun A ha=>cap A (by simp [ha]))
+  have a:=appendLabels_work B (flattenLabels F).value W (cap B (by simp))
+  simp only [Projects] at tail ⊢
+  simp only [flattenLabels,appendLabels_value,flattenLabels_value,forestValue,List.map_cons,meterFlatten]
+  constructor
+  · simp [blockValue,tail.1]
+  · simp only [blockValue_length,Nat.mul_add,Nat.mul_assoc,beta] at tail ⊢
+    simp only [Nat.mul_add,Nat.add_mul,Nat.mul_assoc,Nat.mul_one] at a tail ⊢
+    omega
+
+def leavesCopy : Tree→Charged Block
+ | .leaf x=>let a:=copyBits x;⟨[a.value],a.work+4⟩
+ | .node l r=>let a:=leavesCopy l;let b:=leavesCopy r;let c:=appendLabels a.value b.value
+               ⟨c.value,a.work+b.work+c.work+4⟩
+@[simp] theorem leavesCopy_value (T : Tree) : (leavesCopy T).value=leavesBits T := by
+ induction T <;> simp_all [leavesCopy,leavesBits]
+theorem leavesCopy_projects (T : Tree) (W : Nat) (cap : TreeWidth W T) :
+ Projects W blockValue (leavesCopy T) (meterLeaves (treeValue T)) := by
+ induction T with
+ | leaf x=>
+  have width:=cap x (by simp [leavesBits])
+  simp only [Projects,leavesCopy,copyBits_value,copyBits_work,treeValue,meterLeaves,blockValue,List.map_cons,List.map_nil]
+  refine ⟨rfl,?_⟩
+  dsimp only [beta];omega
+ | node l r ihl ihr=>
+  have lc:=treeWidth_left W l r cap;have rc:=treeWidth_right W l r cap
+  have a:=ihl lc;have b:=ihr rc
+  have c:=appendLabels_work (leavesBits l) (leavesBits r) W lc
+  simp only [Projects] at a b ⊢
+  simp only [leavesCopy,appendLabels_value,leavesCopy_value,treeValue,meterLeaves]
+  constructor
+  · simp [leaves_projection,a.1,b.1]
+  · simp only [leavesCopy_value,meterLeaves_value,←leaves_projection,blockValue_length,Nat.mul_add,Nat.mul_assoc,beta] at a b ⊢
+    simp only [Nat.mul_add,Nat.add_mul,Nat.mul_assoc,Nat.mul_one] at a b c ⊢
+    omega
+end GenericForest.BinaryProvider

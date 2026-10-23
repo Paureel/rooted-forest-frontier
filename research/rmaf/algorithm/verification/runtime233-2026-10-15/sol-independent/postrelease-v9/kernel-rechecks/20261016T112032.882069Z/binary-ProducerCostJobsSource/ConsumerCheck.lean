@@ -1,0 +1,7 @@
+import ProducerCostJobsSource
+#check GenericForest.BinaryProducer.jobsBits_cost
+#print axioms GenericForest.BinaryProducer.jobsBits_cost
+#check GenericForest.BinaryProducer.sourceForestBits_cost
+#print axioms GenericForest.BinaryProducer.sourceForestBits_cost
+#check GenericForest.BinaryProducer.replaceBits_cost
+#print axioms GenericForest.BinaryProducer.replaceBits_cost

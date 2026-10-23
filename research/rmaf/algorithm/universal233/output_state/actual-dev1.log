@@ -1,0 +1,26 @@
+research/rmaf/algorithm/universal233/output_state/ActualConsumers.lean:21:42: error: don't know how to synthesize implicit argument `α`
+  @Exists (?m.42 sa) fun ta =>
+    ∃ p,
+      KeptParent.OriginalLocalOneCut s t a { partition := DepthOne.forest sa (some p), sourceCuts := [p] } ∧
+        ∃ aa cc,
+          restrict a s = some aa ∧
+            restrict c s = some cc ∧
+              agrees (localTarget (some t) a) [aa] (DepthOne.forest sa (some p)) = true ∧
+                additionalCost [aa] (DepthOne.forest sa (some p)) = 1 ∧
+                  agrees (localTarget (some t) c) [cc] [c] = true ∧ additionalCost [cc] [c] = 0
+context:
+sa : Tree
+⊢ Sort ?u.4
+
+Note: All parameter types and holes (e.g., `_`) in the header of a theorem are resolved before the proof is processed; information from the proof cannot be used to infer what these values should be
+research/rmaf/algorithm/universal233/output_state/ActualConsumers.lean:21:47: error(lean.inferBinderTypeFailed): Failed to infer type of binder `ta`
+
+Note: All parameter types and holes (e.g., `_`) in the header of a theorem are resolved before the proof is processed; information from the proof cannot be used to infer what these values should be
+research/rmaf/algorithm/universal233/output_state/ActualConsumers.lean:37:12: error: Application type mismatch: The argument
+  ta
+has type
+  Tree
+of sort `Type` but is expected to have type
+  ?m.42 sa
+of sort `Sort u_1` in the application
+  Exists.intro ta

@@ -1,0 +1,78 @@
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:37:28: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:41:23: error: Tactic `cases` failed with a nested error:
+Dependent elimination failed: Failed to solve equation
+  Bool.rec (motive := fun x => x.Reflects ((List.filter (fun e => !onPath e) cuts).contains p = true) → List Edge)
+      (fun x => p :: List.filter (fun e => !onPath e) cuts) (fun x => List.filter (fun e => !onPath e) cuts)
+      (decide ((List.filter (fun e => !onPath e) cuts).contains p = true)) ⋯ =
+    e :: he
+at case `List.Mem.head`
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:46:10: error: Type mismatch
+  Or.inr he
+has type
+  ?m.104 ∨ e ∈ cuts ∧ onPath e = false
+but is expected to have type
+  e ∈ if True then List.insert p (List.filter (fun e => !onPath e) cuts) else List.filter (fun e => !onPath e) cuts
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:47:10: error: Type mismatch
+  Or.inl (Eq.symm he)
+has type
+  e = p ∨ ?m.107
+but is expected to have type
+  e ∈ if True then List.insert p (List.filter (fun e => !onPath e) cuts) else List.filter (fun e => !onPath e) cuts
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:37:28: warning: This simp argument is unused:
+  if_pos h
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [normalize, kept, List.mem_insert_iff, List.mem_filter, Bool.not_eq_true, Added, h, true_and,
+    Option.some.injEq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:37:44: warning: This simp argument is unused:
+  List.mem_insert_iff
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [normalize, if_pos h, kept, List.mem_filter, Bool.not_eq_true, Added, h, true_and,
+    Option.some.injEq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:38:8: warning: This simp argument is unused:
+  List.mem_filter
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [normalize, if_pos h, kept, List.mem_insert_iff, Bool.not_eq_true, Added, h, true_and,
+    Option.some.injEq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:38:25: warning: This simp argument is unused:
+  Bool.not_eq_true
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [normalize, if_pos h, kept, List.mem_insert_iff, List.mem_filter, Added, h, true_and,
+    Option.some.injEq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+research/rmaf/thesis_correctness/repair/edge_route/OriginalEdges.lean:165:78: error: unexpected token 'omit'; expected '#guard_msgs', 'abbrev', 'add_decl_doc', 'axiom', 'binder_predicate', 'builtin_cbv_simproc', 'builtin_cbv_simproc_decl', 'builtin_dsimproc', 'builtin_dsimproc_decl', 'builtin_grind_propagator', 'builtin_initialize', 'builtin_simproc', 'builtin_simproc_decl', 'cbv_simproc', 'cbv_simproc_decl', 'class', 'coinductive', 'declare_simp_like_tactic', 'declare_syntax_cat', 'def', 'dsimproc', 'dsimproc_decl', 'elab', 'elab_rules', 'example', 'grind_propagator', 'inductive', 'infix', 'infixl', 'infixr', 'initialize', 'instance', 'macro', 'macro_rules', 'notation', 'opaque', 'postfix', 'prefix', 'recall', 'recommended_spelling', 'register_error_explanation', 'register_tactic_tag', 'register_try?_tactic', 'simproc', 'simproc_decl', 'structure', 'syntax', 'tactic_extension', 'theorem' or 'unif_hint'
+'RootSafeOriginalEdges.normalize_mem' depends on axioms: [propext, sorryAx]
+'RootSafeOriginalEdges.original_edge_provenance' depends on axioms: [propext, sorryAx]
+'RootSafeOriginalEdges.restored_path_is_uncut' depends on axioms: [propext, sorryAx]
+'RootSafeOriginalEdges.protected_cuts_retained' depends on axioms: [propext, sorryAx]
+'RootSafeOriginalEdges.root_normalization_exact' depends on axioms: [propext]
+'RootSafeOriginalEdges.kept_removed_length' depends on axioms: [propext, Quot.sound]
+'RootSafeOriginalEdges.normalized_cost_le' depends on axioms: [propext, Quot.sound]
+'RootSafeOriginalEdges.root_cost_exact' depends on axioms: [propext, Quot.sound]
+'RootSafeOriginalEdges.normalized_nodup' depends on axioms: [propext]
+'RootSafeOriginalEdges.Walk.mono' does not depend on any axioms
+'RootSafeOriginalEdges.Walk.trans' does not depend on any axioms
+'RootSafeOriginalEdges.Walk.symm' does not depend on any axioms
+'RootSafeOriginalEdges.Walk.confined' does not depend on any axioms
+'RootSafeOriginalEdges.endpoint_path_restored' depends on axioms: [propext, sorryAx]
+'RootSafeOriginalEdges.old_walk_avoiding_added_survives' depends on axioms: [propext, sorryAx]
+'RootSafeOriginalEdges.root_old_walk_survives' depends on axioms: [propext, sorryAx]
+'RootSafeOriginalEdges.normalized_component_isolated' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'RootSafeOriginalEdges.anchored_labels_join' depends on axioms: [propext, sorryAx]
+'RootSafeOriginalEdges.full_to_partial_inclusion' depends on axioms: [propext, sorryAx]

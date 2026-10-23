@@ -1,0 +1,18 @@
+{
+  "claim_under_test": "On finite binary distinct-labeled trees, nonempty complementary X,Y partitioning all leaves: incident(T,X) has length1 iff OriginalSplit(T,X,Y). This is a bounded attack/guard control only, not proof for arbitrary N.",
+  "scope": "Independently reimplemented released minimal/incident/OriginalSplit value definitions. Constructed cases precede finite enumeration in the same capped run; stop if a control fails. No author proof, source oracle, numeric RAM listing or cost conclusion.",
+  "controls": [
+    {"name": "X_subtree", "T": [[0,1],2], "X": [0,1], "incident": [[false]], "split": true},
+    {"name": "Y_subtree_complement", "T": [[0,1],2], "X": [0,2], "incident": [[false,true]], "split": true},
+    {"name": "nonseparable", "T": [[0,1],[2,3]], "X": [0,2], "incident": [[false,true],[true,true]], "split": false}
+  ],
+  "corruption": {"name": "delete_Y_alternative", "expected_diagnostic": "MISSING_COMPLEMENT_SIDE"},
+  "control_denominator": 4,
+  "enumeration": [
+    {"N": 2, "trees": 2, "partition_cases": 4, "singleton_incident": 4, "original_split": 4, "disagreements": 0},
+    {"N": 3, "trees": 12, "partition_cases": 72, "singleton_incident": 72, "original_split": 72, "disagreements": 0},
+    {"N": 4, "trees": 120, "partition_cases": 1680, "singleton_incident": 1200, "original_split": 1200, "disagreements": 0}
+  ],
+  "expectations_provenance": "Hand-derived before execution: Catalan ordered shapes times N! labelings. N=4 admits all8 singleton/complement subsets and2 cherry/complement pairs per tree, giving10 accepted of14 subsets. No expectation comes from the checker.",
+  "failure_rule": "Preserve output; stop on any mismatch. Prospective new version only, no rescoring/passed rerun. Default30/shared lock unchanged."
+}

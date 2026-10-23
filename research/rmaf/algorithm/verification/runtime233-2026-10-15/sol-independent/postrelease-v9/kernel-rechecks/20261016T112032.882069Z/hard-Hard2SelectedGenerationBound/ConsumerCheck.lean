@@ -1,0 +1,9 @@
+import Hard2SelectedGenerationBound
+#check OrdinaryDispatch.Hard2SourceWork.selected_result_size
+#print axioms OrdinaryDispatch.Hard2SourceWork.selected_result_size
+#check OrdinaryDispatch.Hard2SourceWork.caseOutputsMeter_bound
+#print axioms OrdinaryDispatch.Hard2SourceWork.caseOutputsMeter_bound
+#check OrdinaryDispatch.Hard2SourceWork.generationEnvelope_uniform
+#print axioms OrdinaryDispatch.Hard2SourceWork.generationEnvelope_uniform
+#check OrdinaryDispatch.Hard2SourceWork.actualOutputsMeter_bound
+#print axioms OrdinaryDispatch.Hard2SourceWork.actualOutputsMeter_bound

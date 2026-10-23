@@ -1,0 +1,78 @@
+Universal233.Rule5Classification.admitted_good_pendant_caterpillar {T S : RMAF.Tree} {a b : Nat} {e : RMAF.Vertex}
+  (ha : Universal233.Rule5Local.admitted T S a b = true) (he : e ∈ Universal233.CherryBranching.cuts S a b)
+  (good : RMAF.restrictionAgrees T S (Universal233.HardParent.subtreeLabels S e) = true) :
+  ∃ U,
+    Universal233.CoreGraph.subtree S e = some U ∧
+      Universal233.Rule5Classification.Caterpillar U ∧ (Universal233.CherryBranching.cherries U).length ≤ 1
+Universal233.Rule5Classification.admitted_large_exchange {T S : RMAF.Tree} {i e : RMAF.Vertex} {a b : Nat}
+  {F : List (List Nat)} (ha : Universal233.Rule5Local.admitted T S a b = true)
+  (cab : Universal233.CoreGraph.CherryAt T i a b) (em : e ∈ Universal233.CherryBranching.cuts S a b)
+  (good : RMAF.restrictionAgrees T S (Universal233.HardParent.subtreeLabels S e) = true)
+  (size : 3 ≤ (Universal233.HardParent.subtreeLabels S e).length) (hF : RMAF.agreement T S F = true) :
+  ∃ G,
+    RMAF.agreement T S G = true ∧
+      G.length ≤ F.length ∧ VertexGeometry.Refines G (Universal233.CherryBranching.pendantPartition S a b)
+Universal233.Rule5Classification.admitted_large_child_solver {T S : RMAF.Tree} {i e : RMAF.Vertex} {a b : Nat}
+  (ha : Universal233.Rule5Local.admitted T S a b = true) (cab : Universal233.CoreGraph.CherryAt T i a b)
+  (sel : Universal233.Rule5Classification.selectLarge T S a b = some e)
+  (solver : Universal233.CherryBranching.Child → Nat → Option (List (List Nat)))
+  (ih : Universal233.CherryBranching.ExactBoundedChild T S solver (Universal233.CherryBranching.pendantChild S a b))
+  (k : Nat) :
+  Universal233.CherryBranching.OriginalWithin T S k ↔
+    ∃ G, Universal233.CherryBranching.childCall solver k (Universal233.CherryBranching.pendantChild S a b) = some G
+Universal233.Rule5Classification.admitted_sizeTwo_cover {T S : RMAF.Tree} {i : RMAF.Vertex} {a b : Nat}
+  {c : Universal233.Rule5Classification.SizeTwoSelection} {F : List (List Nat)}
+  (ha : Universal233.Rule5Local.admitted T S a b = true) (ch : Universal233.CoreGraph.CherryAt T i a b)
+  (sel : Universal233.Rule5Classification.selectSizeTwo T S a b = some c) (hF : RMAF.agreement T S F = true) :
+  ∃ d, d ∈ Universal233.Rule5Classification.fiveChildren S a b c.p c.q ∧ Universal233.CherryBranching.feasible T S d F
+Universal233.Rule5Classification.admitted_sizeTwo_child_solver {T S : RMAF.Tree} {i : RMAF.Vertex} {a b : Nat}
+  {c : Universal233.Rule5Classification.SizeTwoSelection} (ha : Universal233.Rule5Local.admitted T S a b = true)
+  (ch : Universal233.CoreGraph.CherryAt T i a b) (sel : Universal233.Rule5Classification.selectSizeTwo T S a b = some c)
+  (solver : Universal233.CherryBranching.Child → Nat → Option (List (List Nat)))
+  (ih :
+    ∀ (d : Universal233.CherryBranching.Child),
+      d ∈ Universal233.Rule5Classification.fiveChildren S a b c.p c.q →
+        Universal233.CherryBranching.ExactBoundedChild T S solver d)
+  (k : Nat) :
+  Universal233.CherryBranching.OriginalWithin T S k ↔
+    ∃ d,
+      d ∈ Universal233.Rule5Classification.fiveChildren S a b c.p c.q ∧
+        ∃ G, Universal233.CherryBranching.childCall solver k d = some G
+Universal233.Rule5Classification.original_core_second_cherry {S U : RMAF.Tree} {a b p q : Nat} {j : RMAF.Vertex}
+  (hn : (RMAF.leaves S).Nodup) (aS : a ∈ RMAF.leaves S) (bS : b ∈ RMAF.leaves S) (nab : a ≠ b)
+  (hU : RMAF.restrict (Universal233.CherryBranching.coreLabels S a b) S = some U)
+  (cpq : Universal233.CoreGraph.CherryAt U j p q) (sep : p ≠ a ∧ p ≠ b ∧ q ≠ a ∧ q ≠ b) :
+  Universal233.HardParent.HasCherry p q S
+Universal233.Rule5Classification.outside_selector_complete {S T U : RMAF.Tree} {a b p q : Nat} {j : RMAF.Vertex}
+  (hn : (RMAF.leaves S).Nodup) (aS : a ∈ RMAF.leaves S) (bS : b ∈ RMAF.leaves S) (nab : a ≠ b)
+  (hU : RMAF.restrict (Universal233.CherryBranching.coreLabels S a b) S = some U)
+  (cpq : Universal233.CoreGraph.CherryAt U j p q) (sep : p ≠ a ∧ p ≠ b ∧ q ≠ a ∧ q ≠ b)
+  (good : RMAF.restrictionAgrees T S (Universal233.CherryBranching.coreLabels S a b) = true) :
+  ∃ c, Universal233.Rule5Classification.selectOutside T S a b = some c
+Universal233.Rule5Classification.admitted_outside_cover {T S : RMAF.Tree} {i : RMAF.Vertex} {a b : Nat}
+  {c : Universal233.Rule5Classification.OutsideSelection} {F : List (List Nat)}
+  (ha : Universal233.Rule5Local.admitted T S a b = true) (ch : Universal233.CoreGraph.CherryAt T i a b)
+  (sel : Universal233.Rule5Classification.selectOutside T S a b = some c) (hF : RMAF.agreement T S F = true) :
+  ∃ d, d ∈ Universal233.Rule5Classification.fiveChildren S a b c.p c.q ∧ Universal233.CherryBranching.feasible T S d F
+Universal233.Rule5Classification.admitted_outside_child_solver {T S : RMAF.Tree} {i : RMAF.Vertex} {a b : Nat}
+  {c : Universal233.Rule5Classification.OutsideSelection} (ha : Universal233.Rule5Local.admitted T S a b = true)
+  (ch : Universal233.CoreGraph.CherryAt T i a b) (sel : Universal233.Rule5Classification.selectOutside T S a b = some c)
+  (solver : Universal233.CherryBranching.Child → Nat → Option (List (List Nat)))
+  (ih :
+    ∀ (d : Universal233.CherryBranching.Child),
+      d ∈ Universal233.Rule5Classification.fiveChildren S a b c.p c.q →
+        Universal233.CherryBranching.ExactBoundedChild T S solver d)
+  (k : Nat) :
+  Universal233.CherryBranching.OriginalWithin T S k ↔
+    ∃ d,
+      d ∈ Universal233.Rule5Classification.fiveChildren S a b c.p c.q ∧
+        ∃ G, Universal233.CherryBranching.childCall solver k d = some G
+Universal233.Rule5Classification.no_outside_core_caterpillar {T S U : RMAF.Tree} {a b : Nat}
+  (hn : (RMAF.leaves S).Nodup) (aS : a ∈ RMAF.leaves S) (bS : b ∈ RMAF.leaves S) (nab : a ≠ b)
+  (hU : RMAF.restrict (Universal233.CherryBranching.coreLabels S a b) S = some U)
+  (good : RMAF.restrictionAgrees T S (Universal233.CherryBranching.coreLabels S a b) = true)
+  (none : Universal233.Rule5Classification.selectOutside T S a b = none) :
+  Universal233.Rule5Classification.Caterpillar U ∧ (Universal233.CherryBranching.cherries U).length = 1
+Universal233.Rule5Classification.shapeWork_bound (T S : RMAF.Tree) :
+  Universal233.Rule5Classification.shapeWork T S ≤
+    Universal233.Rule5Classification.treeSize T * Universal233.Rule5Classification.treeSize S

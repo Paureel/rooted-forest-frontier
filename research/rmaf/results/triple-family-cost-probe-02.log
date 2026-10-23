@@ -1,0 +1,21 @@
+research/rmaf/triple_dp/family/cost_route/Probe.lean:2:7: error(lean.unknownIdentifier): Unknown constant `List.prefix_singleton`
+research/rmaf/triple_dp/family/cost_route/Probe.lean:3:7: error(lean.unknownIdentifier): Unknown constant `List.IsPrefix.eq_or_eq`
+List.filter_cons.{u_1} {α : Type u_1} {x : α} {xs : List α} {p : α → Bool} :
+  List.filter p (x :: xs) = if p x = true then x :: List.filter p xs else List.filter p xs
+List.nodup_cons.{u_1} {α : Type u_1} {a : α} {l : List α} : (a :: l).Nodup ↔ ¬a ∈ l ∧ l.Nodup
+List.length_erase_of_mem.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {a : α} {l : List α} (h : a ∈ l) :
+  (l.erase a).length = l.length - 1
+research/rmaf/triple_dp/family/cost_route/Probe.lean:7:7: error(lean.unknownIdentifier): Unknown constant `List.count_eq_one_of_mem`
+research/rmaf/triple_dp/family/cost_route/Probe.lean:8:7: error(lean.unknownIdentifier): Unknown constant `List.count_eq_one`
+List.count_pos_iff.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] {a : α} {l : List α} : 0 < List.count a l ↔ a ∈ l
+List.filter_eq.{u_1} {α : Type u_1} [BEq α] [LawfulBEq α] [DecidableEq α] {l : List α} (a : α) :
+  List.filter (fun x => decide (x = a)) l = List.replicate (List.count a l) a
+List.filter_eq_cons_iff.{u_1} {α✝ : Type u_1} {p : α✝ → Bool} {l : List α✝} {a : α✝} {as : List α✝} :
+  List.filter p l = a :: as ↔
+    ∃ l₁ l₂, l = l₁ ++ a :: l₂ ∧ (∀ (x : α✝), x ∈ l₁ → ¬p x = true) ∧ p a = true ∧ List.filter p l₂ = as
+research/rmaf/triple_dp/family/cost_route/Probe.lean:12:7: error(lean.unknownIdentifier): Unknown constant `List.length_filter_add_length_filter_neg_eq`
+List.filter_eq_nil_iff.{u_1} {α✝ : Type u_1} {p : α✝ → Bool} {l : List α✝} :
+  List.filter p l = [] ↔ ∀ (a : α✝), a ∈ l → ¬p a = true
+research/rmaf/triple_dp/family/cost_route/Probe.lean:14:7: error(lean.unknownIdentifier): Unknown constant `List.mem_erase_iff`
+List.count_eq_length_filter.{u_1} {α : Type u_1} [BEq α] {a : α} {l : List α} :
+  List.count a l = (List.filter (fun x => x == a) l).length

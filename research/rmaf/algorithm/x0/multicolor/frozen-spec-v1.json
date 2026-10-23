@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "scope": "Frozen before multicolor prototype execution, 2026-10-15",
+  "plants": [
+    {"name": "crossed two-color quartet", "T": [[0,1],[2,3]], "colors": [0,1,0,1], "expected_extremal_partitions": [[[0,2],[1],[3]],[[0],[1,3],[2]]], "expected_cost": 2, "expected_mass_at_2": "1/2", "invalid_pair_pair": [[0,2],[1,3]]},
+    {"name": "homogeneous cherry original singleton refinement", "T": [[0,1],2], "colors": [0,0,1], "expected_core_partition": [[0,1],[2]], "original_refining_partition": [[0],[1],[2]], "expected_cost": 1, "expected_mass_at_2": "1/2"},
+    {"name": "three distinct colors", "T": [[0,1],2], "colors": [0,1,2], "expected_core_partition": [[0],[1],[2]], "expected_cost": 2, "expected_mass_at_2": "1/4"},
+    {"name": "root and unary suppression three colors", "T": [[0,1],[2,3]], "colors": [0,1,2,0], "expected_core_partition": [[0,3],[1],[2]], "expected_cost": 2, "expected_mass_at_2": "1/4"},
+    {"name": "one-color root", "T": [[0,1],[2,3]], "colors": [0,0,0,0], "expected_core_partition": [[0,1,2,3]], "expected_cost": 0, "expected_mass_at_2": "1"},
+    {"name": "singleton", "T": 0, "colors": [0], "expected_core_partition": [[0]], "expected_cost": 0, "expected_mass_at_2": "1"},
+    {"name": "empty null", "T": null, "colors": [], "expected_core_partition": [], "expected_cost": 0, "expected_mass_at_2": "1", "mass_hypothesis_applies": false}
+  ],
+  "mutation_controls": {
+    "omit_right_first_mixed_branch": {"case": "crossed two-color quartet", "explicit_missed_partition": [[0,2],[1],[3]], "clean_twin_must_cover_both": true},
+    "wrong_cost": {"case": "crossed two-color quartet", "reported_cost": 1, "true_cost": 2},
+    "wrong_mass": {"case": "crossed two-color quartet", "reported_mass_at_2": "2/3", "true_mass_at_2": "1/2"},
+    "zero_core": {"nonempty_input": true, "expected": "reject with explicit missed source-valid partition"},
+    "duplicate_core": {"expected": "reject duplicate before deduplicated evaluation; actual generator may explicitly deduplicate"},
+    "root_cut": {"invalid_edge": ["", ""], "expected": "nonexistent cut edge rejected"},
+    "duplicate_partition_label": {"expected": "reject"},
+    "missing_partition_label": {"expected": "reject"},
+    "duplicate_tree_label": {"expected": "reject"},
+    "missing_color_label": {"expected": "reject"},
+    "zero_scored_denominator": {"expected": "reject"}
+  },
+  "census": {
+    "input_convention": "All labelled nonplane rooted binary trees on range(n), times all canonical restricted-growth color vectors on those labels",
+    "pilot_n": 4,
+    "pilot_expected_trees": 15,
+    "pilot_expected_color_vectors": 15,
+    "pilot_expected_cases": 225,
+    "after_success_and_timing_n": [1,2,3,5],
+    "n5_expected_trees": 105,
+    "n5_expected_color_vectors": 52,
+    "n5_expected_cases": 5460,
+    "all_n1_to_n5_expected_cases": 5703,
+    "partitions_scored": "EVERY source-valid monochromatic partition, not only colored optima",
+    "bases": ["2", "233/100", "3"],
+    "budget_checks": "For every integer q from 0 through n-1, output exactly the unpruned emitted cores of actual cost at most q; compare all source-valid partitions achievable within q to emitted coarsenings",
+    "failure_conditions": ["any uncovered source-valid monochromatic partition", "any invalid source cut or mismatch on original-label reconstruction", "paid cost differs from nonredundant original cut count or pieces-1", "duplicate final partitions left undeclared", "empty core on nonempty source", "exact mass exceeds c^(1-r) for a tested c", "emitted d below r-1", "zero or changed declared denominator"],
+    "extension_stop_rule": "Measure pilot and write projected denominator/time before n5. Stop/restructure if a projection exceeds two hours. No larger n authorized in this run."
+  },
+  "independence": {
+    "prototype": "New direct recursive group-deletion code, no reference imports, no optimum calls",
+    "reference": "Existing earlier X0 fresh_oracle.py explicit original vertices, paths, source partitions and cut graph; unchanged",
+    "shared": "Literal pinned plants and standard source-partition definitions; this is finite adversarial testing of a prototype, not independent production verification",
+    "forbidden": ["read unfinished prover work", "call target optimum inside generator", "require emitted core to be target agreement", "promote finite checks to universal or Lean closure"]
+  }
+}

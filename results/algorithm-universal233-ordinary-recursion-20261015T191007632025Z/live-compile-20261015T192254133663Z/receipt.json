@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "cd50e29b4649cfa949a270f81eb5043c62cfcfdbc1f3c4956237583850d6ff95",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "expected_exit": 0,
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "expected_exit": 1,
+      "passed": true
+    },
+    {
+      "module": "GuardResourcePlant",
+      "passed": true,
+      "scope": "Synthetic below-floor reading stops own process before real development."
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "a21f66e13f4e519b083996f2812dedc6ce7e8ba90667a7c5e8fd68e471fc1211",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.4632062919999953,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.39134070799991605,
+      "resource_stop": null,
+      "log_sha256": "414265b1ee89e3194c014af8428084f58cd0d5c54a1623d3b99cee8dbb54e14b"
+    },
+    {
+      "module": "GuardResourcePlant",
+      "source_sha256": "a9ed25f48eee6bb3e9ec34a43127bacd1c7e8691070536a6591a388adec1d899",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0015522920002695173,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "ScaffoldFalseControls",
+      "source_sha256": "2246710f9136e1070a02f8ccbaad476c48f860151e56257ff19c4e7cb8aa9cf6",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.181414333000248,
+      "resource_stop": null,
+      "log_sha256": "7348f13eab5e36bd670249dc3869774127c1089187d08bee2366e292edc5295d"
+    }
+  ],
+  "status": "PASS_AUTHOR_LIVE_GUARDED_COMPILE"
+}

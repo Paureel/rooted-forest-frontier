@@ -1,0 +1,49 @@
+import Hard2FullOutputSource
+import SourceIntegrationControls
+namespace OrdinaryDispatch.Hard2SourceWork.Controls
+open RMAF ForestState Universal233 WholeSourceWork CoreWork
+open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion
+
+def cross : Tree:=.node (.node (.leaf 0) (.leaf 2)) (.node (.leaf 1) (.leaf 3))
+def refused : GenericForest.FrontierWork.Ordinary:=fun _ _ _=>none
+
+theorem pair_edge_literal :
+ (pairChooseMeter cross [0,1] [2,3]).value=some (.edge ([],[false])) ∧
+ 0<(pairChooseMeter cross [0,1] [2,3]).work := by cbv
+
+theorem pair_malformed_refused :
+ (pairProperMeter cross [0,1] [1,2]).value=false ∧
+ (pairChooseMeter cross [0,1] [1,2]).value=none ∧
+ 0<(pairChooseMeter cross [0,1] [1,2]).work := by cbv
+
+theorem hard2_graph_direct_literal :
+ (runHard2Meter Hard2Dispatcher.Controls.T Hard2Dispatcher.Controls.S Hard2Dispatcher.Controls.c).value=some .disjoint ∧
+ executeHard2Route refused Hard2Dispatcher.Controls.T Hard2Dispatcher.Controls.S Hard2Dispatcher.Controls.c 1
+  (hard2FrontMeter Hard2Dispatcher.Controls.T Hard2Dispatcher.Controls.S Hard2Dispatcher.Controls.c 1).value=none ∧
+ (executeHard2Route refused Hard2Dispatcher.Controls.T Hard2Dispatcher.Controls.S Hard2Dispatcher.Controls.c 2
+  (hard2FrontMeter Hard2Dispatcher.Controls.T Hard2Dispatcher.Controls.S Hard2Dispatcher.Controls.c 2).value).any
+   (fun F=>decide (F.length=3))=true := by cbv
+
+def output : CoreProgram.Output:={sourceCuts:=[],partition:=[leaves Hard2Dispatcher.Controls.S]}
+
+theorem full_outputs_duplicate_queries :
+ forestQueries refused (Hard2PaidLocal.runOutputs refused Hard2Dispatcher.Controls.T Hard2Dispatcher.Controls.S 0 [output,output]).calls=
+ [((Hard2Dispatcher.Controls.T,Hard2Dispatcher.Controls.S),0),((Hard2Dispatcher.Controls.T,Hard2Dispatcher.Controls.S),0)] := by cbv
+
+theorem full_outputs_failed_duplicate_paid :
+ (fullOutputsSource refused (fun _ _ _=>1) Hard2Dispatcher.Controls.T Hard2Dispatcher.Controls.S 0 [output,output]).value.answer=none ∧
+ (fullOutputsSource refused (fun _ _ _=>1) Hard2Dispatcher.Controls.T Hard2Dispatcher.Controls.S 0 [output,output]).work=
+ (fullOutputsSource refused (fun _ _ _=>0) Hard2Dispatcher.Controls.T Hard2Dispatcher.Controls.S 0 [output,output]).work+2 := by
+ constructor
+ · rw [fullOutputsSource_value];cbv
+ · rw [fullOutputsSource_split,full_outputs_duplicate_queries]
+   simp [queryWork]
+
+theorem original_check_and_minimum :
+ (checkedMeter (.leaf 0) (.leaf 0) 5 (some [[999]])).value=none ∧
+ 0<(checkedMeter (.leaf 0) (.leaf 0) 5 (some [[999]])).work ∧
+ (chooseMeter (some [[0]]) (some [[1]])).value=some [[0]] := by cbv
+
+theorem owned_leaf_subtotal_zero :
+ hard2FrontTreeSource 9 (.leaf 0) (.leaf 0)=0 := by cbv
+end OrdinaryDispatch.Hard2SourceWork.Controls

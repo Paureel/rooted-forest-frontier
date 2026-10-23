@@ -1,0 +1,91 @@
+@SourceSelectedChildrenV3.actual_one_step : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {base : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F} {T S : RMAF.Tree} {q : Nat} {reverse : Bool}
+  {k : Nat} {r : Universal233.Rule5SelectedLocalWork.ForestReceipt (List.{0} SourceForestV3.F)} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S} {c : Universal233.CherryBranching.Candidate},
+  (∀ (T S : RMAF.Tree) (b : Nat) (a : Option.{0} SourceForestV3.F), OrdExec T S b a → Eq.{1} a (base T S b)) →
+    SourceForestV3.ChildrenExec OrdExec (SourceCouplingV2.Mode.cutoff q)
+        (Prod.fst.{0, 0} (OrdinaryDispatch.FastOrdinary.Oriented reverse T S)) q k
+        (List.cons.{0}
+          (Universal233.Rule5SelectedLocalWork.pendantChildMeter
+              (Prod.snd.{0, 0} (OrdinaryDispatch.FastOrdinary.Oriented reverse T S)) c.a c.b).value
+          List.nil.{0})
+        r debits slots →
+      Eq.{1} (Universal233.DepthOne.proper T S) Bool.true →
+        Eq.{1} (Universal233.DepthOne.pretest01 T S) Universal233.DepthOne.Result.rejected →
+          Eq.{1} (OrdinaryDispatch.FastOrdinary.early T S) (OrdinaryDispatch.FastOrdinary.Early.one reverse c) →
+            Eq.{1}
+                (SourceSelectedChildrenV2.finishOne
+                    (Prod.fst.{0, 0} (OrdinaryDispatch.FastOrdinary.Oriented reverse T S))
+                    (Prod.snd.{0, 0} (OrdinaryDispatch.FastOrdinary.Oriented reverse T S)) q c.a c.b r debits).value
+                (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace (fun b T S => base T S b) q T S).value ∧
+              Eq.{1} (List.map.{0, 0} (fun s => Prod.mk.{0, 0} s.index s.query) slots)
+                (CallbackPairingAuthor.indexFrom k
+                  (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace (fun b T S => base T S b) q T S).queries)
+@SourceSelectedChildrenV3.actual_high_step : ∀
+  {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {base : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F} {T S : RMAF.Tree} {q : Nat} {reverse : Bool}
+  {k : Nat} {r : Universal233.Rule5SelectedLocalWork.ForestReceipt (List.{0} SourceForestV3.F)} {debits : List.{0} Nat}
+  {slots : List.{0} SourceForestV3.S} {c : Universal233.CherryBranching.Candidate},
+  (∀ (T S : RMAF.Tree) (b : Nat) (a : Option.{0} SourceForestV3.F), OrdExec T S b a → Eq.{1} a (base T S b)) →
+    SourceForestV3.ChildrenExec OrdExec (SourceCouplingV2.Mode.cutoff q)
+        (Prod.fst.{0, 0} (OrdinaryDispatch.FastOrdinary.Oriented reverse T S)) q k
+        (OrdinaryDispatch.FullSourceWork.branchesMeter
+            (Prod.snd.{0, 0} (OrdinaryDispatch.FastOrdinary.Oriented reverse T S)) c.a c.b).value
+        r debits slots →
+      Eq.{1} (Universal233.DepthOne.proper T S) Bool.true →
+        Eq.{1} (Universal233.DepthOne.pretest01 T S) Universal233.DepthOne.Result.rejected →
+          Eq.{1} (OrdinaryDispatch.FastOrdinary.early T S) (OrdinaryDispatch.FastOrdinary.Early.high reverse c) →
+            Eq.{1}
+                (SourceSelectedChildrenV2.finishHigh
+                    (Prod.fst.{0, 0} (OrdinaryDispatch.FastOrdinary.Oriented reverse T S))
+                    (Prod.snd.{0, 0} (OrdinaryDispatch.FastOrdinary.Oriented reverse T S)) q c.a c.b r debits).value
+                (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace (fun b T S => base T S b) q T S).value ∧
+              Eq.{1} (List.map.{0, 0} (fun s => Prod.mk.{0, 0} s.index s.query) slots)
+                (CallbackPairingAuthor.indexFrom k
+                  (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace (fun b T S => base T S b) q T S).queries)
+@SourceCommonV3.common_index : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {T S : RMAF.Tree} {q : Nat} {reverse : Bool} {c : Universal233.CherryBranching.Candidate} {k : Nat}
+  {out : Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F)} {slots : List.{0} SourceForestV3.S},
+  SourceCommonV3.CommonExec OrdExec q T S reverse c k out slots →
+    Eq.{1} (List.map.{0, 0} (fun s => Prod.mk.{0, 0} s.index s.query) slots)
+      (CallbackPairingAuthor.indexFrom k (SourceCommonV3.queries q T S reverse c))
+@SourceCommonV3.actual_common_trace : ∀ {OrdExec : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F → Prop}
+  {base : RMAF.Tree → RMAF.Tree → Nat → Option.{0} SourceForestV3.F} {T S : RMAF.Tree} {q : Nat} {reverse : Bool}
+  {c : Universal233.CherryBranching.Candidate} {k : Nat}
+  {out : Universal233.WholeSourceWork.Charged (Option.{0} SourceForestV3.F)} {slots : List.{0} SourceForestV3.S},
+  (∀ (T S : RMAF.Tree) (b : Nat) (a : Option.{0} SourceForestV3.F), OrdExec T S b a → Eq.{1} a (base T S b)) →
+    SourceCommonV3.CommonExec OrdExec q T S reverse c k out slots →
+      Eq.{1} (Universal233.DepthOne.proper T S) Bool.true →
+        Eq.{1} (Universal233.DepthOne.pretest01 T S) Universal233.DepthOne.Result.rejected →
+          Eq.{1} (OrdinaryDispatch.FastOrdinary.early T S) (OrdinaryDispatch.FastOrdinary.Early.common reverse c) →
+            Eq.{1} out.value (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace (fun b T S => base T S b) q T S).value ∧
+              Eq.{1} (List.map.{0, 0} (fun s => Prod.mk.{0, 0} s.index s.query) slots)
+                (CallbackPairingAuthor.indexFrom k
+                  (OrdinaryDispatch.WorkRecursion.ordinaryStepTrace (fun b T S => base T S b) q T S).queries)
+SourceCommonV3.common_raw_queries : ∀ (q : Nat) (T S : RMAF.Tree) (reverse : Bool)
+  (c : Universal233.CherryBranching.Candidate),
+  Eq.{1} (SourceCommonV3.queries q T S reverse c)
+    (ite.{1}
+      (LT.lt.{0}
+        (List.length.{0} (RMAF.leaves (Prod.fst.{0, 0} (OrdinaryDispatch.FastOrdinary.commonPair T S reverse c))))
+        (List.length.{0} (RMAF.leaves T)))
+      (List.cons.{0} (Prod.mk.{0, 0} (OrdinaryDispatch.FastOrdinary.commonPair T S reverse c) q) List.nil.{0})
+      List.nil.{0})
+def SourceForestV3.Corresponds : GenericForest.FrontierWork.Ordinary →
+  Nat → Option.{0} RMAF.Tree → List.{0} RMAF.Tree → Nat → SourceForestV3.Result → Prop :=
+fun actual k T ss q out =>
+  Eq.{1} out.value (GenericForest.solve actual T ss q) ∧
+    Eq.{1} out.debit (OrdinaryDispatch.WorkRecursion.forestWork actual (fun x x_1 x_2 => 0) T ss q) ∧
+      Eq.{1} (List.map.{0, 0} (fun s => Prod.mk.{0, 0} s.index s.query) out.slots)
+        (CallbackPairingAuthor.indexFrom k (GenericForest.FrontierWork.frontier actual T ss q))
+def SourceForestV3.childrenQueries : GenericForest.FrontierWork.Ordinary →
+  RMAF.Tree → Nat → List.{0} Universal233.CherryBranching.Child → List.{0} SourceForestV3.Q :=
+fun actual T q cs =>
+  List.flatMap.{0, 0} (fun j => GenericForest.FrontierWork.frontier actual j.target j.sources j.residual)
+    (Universal233.Rule5OrdinaryDispatch.forestJobs T q cs)
+def SourceCommonV3.queries : Nat →
+  RMAF.Tree → RMAF.Tree → Bool → Universal233.CherryBranching.Candidate → List.{0} SourceForestV3.Q :=
+fun q T S reverse c =>
+  ite.{1} (SourceCommonV3.smaller T S reverse c)
+    (List.cons.{0} (Prod.mk.{0, 0} (SourceCommonV3.pair T S reverse c) q) List.nil.{0}) List.nil.{0}

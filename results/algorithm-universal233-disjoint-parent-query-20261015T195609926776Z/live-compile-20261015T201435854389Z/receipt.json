@@ -1,0 +1,59 @@
+{
+  "instrument_sha256": "aaee88fbb9ccb20555966346d0e96754f52dfab822f066cbe9c82b9922e17ec3",
+  "reused_compiler": "research/rmaf/algorithm/universal233/ordinary_dispatch/ordinary_recursion/compile_development_v5.py",
+  "reused_compiler_sha256": "783c62aa7984a0b352ceced09f130f56b5403b71ef9b0387b0254bc8fe38863a",
+  "controls": [
+    {
+      "module": "GuardPositive",
+      "passed": true
+    },
+    {
+      "module": "GuardFalse",
+      "passed": true
+    },
+    {
+      "module": "GuardResource",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "module": "GuardPositive",
+      "source_sha256": "9873c3b0bd3c9a530ba682af95bd7b779badb226855d9f4f151ad2fb21b5bcab",
+      "exit": 0,
+      "expected_exit": 0,
+      "seconds": 0.3970858329994371,
+      "resource_stop": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "GuardFalse",
+      "source_sha256": "8085754a1f3ee9dadedbe6ba182b935bb5bbc19bdc0f78fbdb6684935e047876",
+      "exit": 1,
+      "expected_exit": 1,
+      "seconds": 0.33880212499934714,
+      "resource_stop": null,
+      "log_sha256": "d5bf4e33e1a0959a6c49e7c54aba3f018b5c7967883e053ca726ba119900a623"
+    },
+    {
+      "module": "GuardResource",
+      "source_sha256": "19e7e9e25891b97014ecd9b8700a5d7437bb7468444a6564444e7d2b6b750540",
+      "exit": -2,
+      "expected_exit": 0,
+      "seconds": 0.0016509580000274582,
+      "resource_stop": "FREE_SPACE_MARGIN_STOP",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "Hard2Combine",
+      "source_sha256": "019bd4c09f3915499e5f96630f5844df566e0b444249018cdf4564bdd49e08e2",
+      "exit": 1,
+      "expected_exit": 0,
+      "seconds": 0.8682013329998881,
+      "resource_stop": null,
+      "log_sha256": "3c03ae563f5996a5539d521e25b32f6e1e314443fa611417268c843009ee74bf"
+    }
+  ],
+  "status": "FAILED_NOT_ACCEPTED",
+  "error": "AssertionError(('Hard2Combine', '/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-disjoint-parent-query-20261015T195609926776Z/Hard2Combine.lean:71:33: error: Tactic `decide` failed to reduce\\n  @decide (2 = 1 + 1) (instDecidableEqRat 2 (1 + 1))\\nto `true` or `false`.\\n\\nAfter unfolding the instances `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, and `instDecidableEqRat.decEq`, reduction got stuck at\\n  match \u21912, (Rat.add 1 1).num with\\n  | Int.ofNat a, Int.ofNat b =>\\n    match decEq a b with\\n    | { decide := true, reflects_decide := h } => isTrue \u22ef\\n    | { decide := false, reflects_decide := h } => isFalse \u22ef\\n  | Int.ofNat a, Int.negSucc a_1 => isFalse \u22ef\\n  | Int.negSucc a, Int.ofNat a_1 => isFalse \u22ef\\n  | Int.negSucc a, Int.negSucc b =>\\n    match decEq a b with\\n    | { decide := true, reflects_decide := h } => isTrue \u22ef\\n    | { decide := false, reflects_decide := h } => isFalse \u22ef\\n/Users/paurel/Documents/ChatGPT/bootscience/results/algorithm-universal233-disjoint-parent-query-20261015T195609926776Z/Hard2Combine.lean:73:9: error: Function expected at\\n  Rat.le_refl\\nbut this term has type\\n  ?m.79 \u2264 ?m.79\\n\\nNote: Expected a function because this term is being applied to the argument\\n  _\\n'))"
+}

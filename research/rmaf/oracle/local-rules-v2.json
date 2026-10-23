@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "version": 2,
+  "frozen_at": "2026-10-14",
+  "context": "Exploratory refinement after v1 was refuted by a t=1 cherry. This is not a fresh held-out certification.",
+  "statement": "For all ordinary rooted binary trees T,U on X and every cherry {a,b} in T, if the directed U-path embedding between a and b has at least two outgoing off-path child edges, then there exists a minimum agreement forest with singleton {a} or singleton {b}.",
+  "t_definition": "Count U edges (parent,child) whose parent belongs to the minimal vertex embedding U[{a,b}] and whose child does not belong to it.",
+  "failure_criterion": "A pair and cherry with t>=2 such that every minimum agreement forest contains neither endpoint singleton.",
+  "search": "Replay the saved exact n=3,4,5 corpus; preserve every first counterexample per t value.",
+  "acceptance": "An exact counterexample can refute the statement after independent replay; finite survival does not prove it."
+}

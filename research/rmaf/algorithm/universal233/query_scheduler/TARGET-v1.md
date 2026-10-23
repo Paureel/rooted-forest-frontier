@@ -1,0 +1,11 @@
+# Executed disjoint-query scheduler
+
+Implement the actual caller for disjoint local problems after executed depth-zero/one pretests. Each slot is either an exact resolved cost0/1 with a witness, or unresolved with a proved minimum at least2. Before any recursive call reject when q < knownCost + 2*pendingCount. Otherwise query each unresolved slot at q-knownCost-2*(pendingCount-1). Check the SUM of returned exact minima against q before accepting; individual successful calls are insufficient.
+
+Prove this executable caller returns the exact combined minimum and witnesses within q, CONDITIONAL on a printed exact-minimum recursive-call contract and the actual pretest-derived slot hypotheses. The contract is the future induction hypothesis, not a proved full solver. Do not encode a desired runtime/coverage/graph property into a structure field and claim it established. State the missing original MAF/pretest/disjoint reconstruction instantiation at the consuming call.
+
+When at least two original slots are bad, prove the allocated calls have a paid unit: one unresolved slot implies a resolved cost1 elsewhere; at least two unresolved slots give p calls with losses at least2*(p-1). A sole hard problem with knownCost0 receives budget q and has NO paid unit. Do not subtract its own positive minimum. Prove exact executed call traces, early pruning, total query-budget bounds, and structural caller-work accounting under explicit operation costs; retain the distinction between a helper meter and fine instructions.
+
+Before universal proofs execute the pinned manual truth table: resolved0+1/q1; resolved1+hard2/q3; hard2+hard2/q4; hard3+hard3/q5 (both local calls succeed, SUM rejects); hard2+hard6/q6; two hard/q3 (no calls); solehard2/q3 (budget3/no unit); empty/q0; resolved1/q0; threehard2/q6. Catch mutations omitting the final sum, charging one's own minimum, overdiscounting all lower bounds, and pruning at3 per hard. These are planted caller controls, not actual MAF facts.
+
+Use bootloops wrappers, isolated source-bound build/full module-origin/axiom audit and retained false/corruption plants. No unfinished author or reviewer contact. All Algorithm/Correctness/Smaller-base milestones OPEN. Owner main universal233; root coordinates fresh verification.

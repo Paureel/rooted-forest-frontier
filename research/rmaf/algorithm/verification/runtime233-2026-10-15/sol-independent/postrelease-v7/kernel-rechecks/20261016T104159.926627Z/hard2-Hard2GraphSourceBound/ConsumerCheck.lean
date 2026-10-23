@@ -1,0 +1,5 @@
+import Hard2GraphSourceBound
+#check OrdinaryDispatch.Hard2SourceWork.runHard2Meter_bound
+#print axioms OrdinaryDispatch.Hard2SourceWork.runHard2Meter_bound
+#check OrdinaryDispatch.Hard2SourceWork.hard2SelectMeter_bound
+#print axioms OrdinaryDispatch.Hard2SourceWork.hard2SelectMeter_bound

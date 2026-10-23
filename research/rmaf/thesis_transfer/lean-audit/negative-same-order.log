@@ -1,0 +1,37 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/thesis_transfer/lean-audit/FalseSameOrder.lean:23:47: error: unsolved goals
+case false
+a b rho : Nat
+s : List Nat
+t u rt ru : Tree
+hab : ¬a = b
+ha : a ∈ s
+hb : b ∈ s
+ht : restrict s t = some rt
+hu : restrict s u = some ru
+hba : ¬b = a
+hr : ¬rho ∈ s
+⊢ sameShape rt ru = false ∧ (sameShape (Tree.leaf a) ru = true → sameShape rt (Tree.leaf a) = false)
+
+case true
+a b rho : Nat
+s : List Nat
+t u rt ru : Tree
+hab : ¬a = b
+ha : a ∈ s
+hb : b ∈ s
+ht : restrict s t = some rt
+hu : restrict s u = some ru
+hba : ¬b = a
+hr : rho ∈ s
+⊢ sameShape rt ru = false ∧ (sameShape (Tree.leaf a) ru = true → sameShape rt (Tree.leaf a) = false)
+'ThesisTransfer.two_markers_disagree' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ThesisTransfer.rootedSpan_head' depends on axioms: [propext, Quot.sound]
+'ThesisTransfer.rootedSpan_nonempty_of_leaf' depends on axioms: [propext, Quot.sound]
+'ThesisTransfer.old_root_mem_inner' depends on axioms: [propext, Quot.sound]
+'ThesisTransfer.old_root_mem_outer' depends on axioms: [propext, Quot.sound]
+'ThesisTransfer.old_root_mem_rho' depends on axioms: [propext, Quot.sound]
+'ThesisTransfer.shared_vertex_not_disjoint' depends on axioms: [propext, Quot.sound]
+'ThesisTransfer.old_root_mem_mixed' depends on axioms: [propext, Quot.sound]
+'ThesisTransfer.mixed_blocks_overlap' depends on axioms: [propext, Quot.sound]
+'ThesisTransfer.optimum_shift_from_maps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThesisTransfer.cuts_equal_components' depends on axioms: [propext, Quot.sound]

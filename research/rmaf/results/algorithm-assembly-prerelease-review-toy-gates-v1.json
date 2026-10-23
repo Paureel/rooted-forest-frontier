@@ -1,0 +1,163 @@
+{
+  "status": "PASS_PRE_CANDIDATE_TOY_AXIOM_GATES",
+  "candidate_compiled": false,
+  "receipts": [
+    {
+      "module": "CleanToy",
+      "exit": 0,
+      "seconds": 0.358616167000946,
+      "source_sha256": "35e3a078074919c5bbaf26414b99c7e53b135596aedbe2053222e49b858a893d",
+      "log": "research/rmaf/algorithm/verification/assembly-2026-10-15/toy-build-v1/CleanToy.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "CleanToyAudit",
+      "exit": 0,
+      "seconds": 4.42141166699912,
+      "source_sha256": "0bd68e6bbc778f092d734bf450dea757cd7db1959811397d76ee4a5788db4b80",
+      "log": "research/rmaf/algorithm/verification/assembly-2026-10-15/toy-build-v1/CleanToyAudit.log",
+      "log_sha256": "e32b19db2f99e06610a376cee832579fcd9e6c71ead450fb29324b6b456f86b8"
+    },
+    {
+      "module": "UnusedPublicToy",
+      "exit": 0,
+      "seconds": 0.3671969580009318,
+      "source_sha256": "d3fe977dd712be11ab0d3004cdd50d0d8688d145a518620a2d15ea6354264f8f",
+      "log": "research/rmaf/algorithm/verification/assembly-2026-10-15/toy-build-v1/UnusedPublicToy.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "UnusedPublicToyAudit",
+      "exit": 0,
+      "seconds": 4.226808584000537,
+      "source_sha256": "44983ea5640144c083e4e6aefeceda3b49f7e473bbeef79cd1dde42e5b75ffed",
+      "log": "research/rmaf/algorithm/verification/assembly-2026-10-15/toy-build-v1/UnusedPublicToyAudit.log",
+      "log_sha256": "92277f6a3009848960dde181bfb04fa7949dcfd0553253d6eb454b2ff204bc19"
+    },
+    {
+      "module": "UnusedPrivateToy",
+      "exit": 0,
+      "seconds": 0.29445758299880254,
+      "source_sha256": "f06bf1d5b9b8212a1c639a1948df0d66ca1fa16d56676d26d8625c3765f93e62",
+      "log": "research/rmaf/algorithm/verification/assembly-2026-10-15/toy-build-v1/UnusedPrivateToy.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "UnusedPrivateToyAudit",
+      "exit": 0,
+      "seconds": 4.269119708998915,
+      "source_sha256": "dadacc4d74daf9d043d9133e14c5db0c3ef9640ea5680c18ceec12921ab44979",
+      "log": "research/rmaf/algorithm/verification/assembly-2026-10-15/toy-build-v1/UnusedPrivateToyAudit.log",
+      "log_sha256": "b9f7f6dd4b8ada43cc88aa50766b862c8c0eccd4745653055e8901caf6b2e040"
+    },
+    {
+      "module": "PrivateUsedToy",
+      "exit": 0,
+      "seconds": 0.32004741600030684,
+      "source_sha256": "5b55cf6da5ae3958b3bc8f39464bd40b06c285275e6507e7cf3ed102a57ae7f0",
+      "log": "research/rmaf/algorithm/verification/assembly-2026-10-15/toy-build-v1/PrivateUsedToy.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "PrivateUsedToyAudit",
+      "exit": 0,
+      "seconds": 4.3123916250006005,
+      "source_sha256": "1336dfa4d922c4dd14bcd842c868e95279a0b10625b3885deeac59c1564d20c9",
+      "log": "research/rmaf/algorithm/verification/assembly-2026-10-15/toy-build-v1/PrivateUsedToyAudit.log",
+      "log_sha256": "e833331afdba93aab89d2e76c1e3109dc6e5187dff5bb22bfb95c47edc186e42"
+    }
+  ],
+  "controls": [
+    {
+      "module": "CleanToy",
+      "rows": [
+        {
+          "module": "CleanToy",
+          "name": "_private.CleanToy.0.hiddenData",
+          "kind": "other",
+          "axioms": []
+        },
+        {
+          "module": "CleanToy",
+          "name": "_private.CleanToy.0.hiddenTrue",
+          "kind": "theorem",
+          "axioms": []
+        }
+      ],
+      "custom_axiom_caught": false,
+      "clean_expected": true
+    },
+    {
+      "module": "UnusedPublicToy",
+      "rows": [
+        {
+          "module": "UnusedPublicToy",
+          "name": "unusedPublicDebt",
+          "kind": "axiom",
+          "axioms": [
+            "unusedPublicDebt"
+          ]
+        },
+        {
+          "module": "UnusedPublicToy",
+          "name": "_private.UnusedPublicToy.0.cleanUnrelated",
+          "kind": "theorem",
+          "axioms": []
+        }
+      ],
+      "custom_axiom_caught": true,
+      "clean_expected": false
+    },
+    {
+      "module": "UnusedPrivateToy",
+      "rows": [
+        {
+          "module": "UnusedPrivateToy",
+          "name": "_private.UnusedPrivateToy.0.unusedPrivateDebt",
+          "kind": "axiom",
+          "axioms": [
+            "_private.UnusedPrivateToy.0.unusedPrivateDebt"
+          ]
+        },
+        {
+          "module": "UnusedPrivateToy",
+          "name": "_private.UnusedPrivateToy.0.cleanUnrelated",
+          "kind": "theorem",
+          "axioms": []
+        }
+      ],
+      "custom_axiom_caught": true,
+      "clean_expected": false
+    },
+    {
+      "module": "PrivateUsedToy",
+      "rows": [
+        {
+          "module": "PrivateUsedToy",
+          "name": "_private.PrivateUsedToy.0.hiddenDebt",
+          "kind": "axiom",
+          "axioms": [
+            "_private.PrivateUsedToy.0.hiddenDebt"
+          ]
+        },
+        {
+          "module": "PrivateUsedToy",
+          "name": "_private.PrivateUsedToy.0.hiddenClaim",
+          "kind": "theorem",
+          "axioms": [
+            "_private.PrivateUsedToy.0.hiddenDebt"
+          ]
+        }
+      ],
+      "custom_axiom_caught": true,
+      "clean_expected": false
+    }
+  ],
+  "unused_public_axiom_caught": true,
+  "unused_private_axiom_caught": true,
+  "private_used_axiom_caught": true,
+  "missing_private_record_caught": true,
+  "omitted_record": "TOY|CleanToy|_private.CleanToy.0.hiddenData|other|",
+  "wrong_origin_record_caught": true,
+  "replication_count_added": 0
+}

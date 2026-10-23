@@ -1,0 +1,44 @@
+results/algorithm-universal233-ordinary-child-binding-20261015T182851721674Z/CherryDispatch.lean:15:46: error(lean.unknownIdentifier): Unknown identifier `CoreGraph.CherryAt`
+results/algorithm-universal233-ordinary-child-binding-20261015T182851721674Z/CherryDispatch.lean:40:46: error(lean.unknownIdentifier): Unknown identifier `CoreGraph.CherryAt`
+results/algorithm-universal233-ordinary-child-binding-20261015T182851721674Z/CherryDispatch.lean:44:79: error: unsolved goals
+actual : Tree → Tree → Nat → Option Forest
+T S : Tree
+k : Nat
+p : Vertex
+a b : Nat
+nt : (leaves T).Nodup
+ns : (leaves S).Nodup
+same : ∀ (x : Nat), x ∈ leaves T ↔ x ∈ leaves S
+ch : sorry
+positive : 1 ≤ (cuts S a b).length
+ih : ∀ (r : Nat), r < k → ForestMinCompletion.LocalOrdinaryIH r actual
+F : Forest
+hF : agreement T S F = true
+budget : List.length F - 1 ≤ k
+⊢ (c : Child) → c ∈ branches S a b → Vertex
+results/algorithm-universal233-ordinary-child-binding-20261015T182851721674Z/CherryDispatch.lean:60:46: error(lean.unknownIdentifier): Unknown identifier `CoreGraph.CherryAt`
+results/algorithm-universal233-ordinary-child-binding-20261015T182851721674Z/CherryDispatch.lean:69:50: error: unsolved goals
+actual : Tree → Tree → Nat → Option Forest
+T S : Tree
+k : Nat
+p : Vertex
+a b : Nat
+nt : (leaves T).Nodup
+ns : (leaves S).Nodup
+same : ∀ (x : Nat), x ∈ leaves T ↔ x ∈ leaves S
+ch : sorry
+one : (cuts S a b).length = 1
+ih : ∀ (r : Nat), r < k → ForestMinCompletion.LocalOrdinaryIH r actual
+F : Forest
+hF : agreement T S F = true
+budget : List.length F - 1 ≤ k
+hc : pendantChild S a b ∈ [pendantChild S a b]
+⊢ pendantChild S a b = singletonChild S ?m.74 ∨
+    pendantChild S a b = singletonChild S ?m.75 ∨ pendantChild S a b = pendantChild S ?m.74 ?m.75
+results/algorithm-universal233-ordinary-child-binding-20261015T182851721674Z/CherryDispatch.lean:73:40: error: Type mismatch: After simplification, term
+  Nat.le_of_eq (Eq.symm one)
+ has type
+  @LE.le Nat instLENat 1 (cuts S a b).length
+but is expected to have type
+  @LE.le Nat instLENat 1 (makeChild S (pendantPartition S a b) (cuts S a b).length).paid
+results/algorithm-universal233-ordinary-child-binding-20261015T182851721674Z/CherryDispatch.lean:75:11: error: Tactic `rcases` failed: `x✝ : ?m.134` is not an inductive datatype

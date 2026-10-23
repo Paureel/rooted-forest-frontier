@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "frozen_before_solver_access": true,
+  "positive": [
+    {"id":"singleton","input":{"target":"a","source":["a"]},"components":1,"additional_cuts":0,"partition":[["a"]]},
+    {"id":"identical-quartet","input":{"target":[["a","b"],["c","d"]],"source":[[["a","b"],["c","d"]]]},"components":1,"additional_cuts":0,"partition":[["a","b","c","d"]]},
+    {"id":"bad-triple","input":{"target":[["a","b"],"c"],"source":[[["a","c"],"b"]]},"components":2,"additional_cuts":1,"partition":[["a","b"],["c"]]},
+    {"id":"crossing-pairs","input":{"target":[["a","c"],["b","d"]],"source":[["a","b"],["c","d"]]},"components":3,"additional_cuts":1,"partition":[["a","b"],["c"],["d"]]},
+    {"id":"compatible-large-interspersed","input":{"target":[["a",["b","x"]],["c","d"]],"source":[[["a","b"],["c","d"]],"x"]},"components":2,"additional_cuts":0,"partition":[["a","b","c","d"],["x"]]},
+    {"id":"pair-at-root","input":{"target":[["a","c"],"b"],"source":[["a","b"],"c"]},"components":2,"additional_cuts":0,"partition":[["a","b"],["c"]]}
+  ],
+  "malformed": [
+    {"id":"duplicate-target","input":{"target":["a","a"],"source":["a"]}},
+    {"id":"duplicate-source","input":{"target":["a","b"],"source":["a",["a","b"]]}},
+    {"id":"missing-label","input":{"target":["a","b"],"source":["a"]}},
+    {"id":"unary-node","input":{"target":["a"],"source":["a"]}},
+    {"id":"empty-source","input":{"target":"a","source":[]}}
+  ],
+  "wrong_result": [
+    {"fixture":"bad-triple","reason":"wrong-optimum","result":{"components":3,"additional_cuts":2,"partition":[["a"],["b"],["c"]]}},
+    {"fixture":"bad-triple","reason":"missing-leaf","result":{"components":2,"additional_cuts":1,"partition":[["a"],["b"]]}},
+    {"fixture":"bad-triple","reason":"duplicate-leaf","result":{"components":2,"additional_cuts":1,"partition":[["a","b"],["a","c"]]}},
+    {"fixture":"bad-triple","reason":"full-bad-triple-mutant","result":{"components":1,"additional_cuts":0,"partition":[["a","b","c"]]}},
+    {"fixture":"crossing-pairs","reason":"ignore-target-overlap-mutant","result":{"components":2,"additional_cuts":0,"partition":[["a","b"],["c","d"]]}}
+  ]
+}

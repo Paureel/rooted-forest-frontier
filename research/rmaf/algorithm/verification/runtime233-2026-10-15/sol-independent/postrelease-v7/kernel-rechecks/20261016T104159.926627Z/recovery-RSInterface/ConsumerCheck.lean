@@ -1,0 +1,9 @@
+import RSInterface
+#check OrdinaryDispatch.RecoveryScalar.receipt_field_caps
+#print axioms OrdinaryDispatch.RecoveryScalar.receipt_field_caps
+#check OrdinaryDispatch.RecoveryScalar.final_recovery_ranges
+#print axioms OrdinaryDispatch.RecoveryScalar.final_recovery_ranges
+#check OrdinaryDispatch.RecoveryScalar.source_bound_and_ranges
+#print axioms OrdinaryDispatch.RecoveryScalar.source_bound_and_ranges
+#check OrdinaryDispatch.RecoveryScalar.finite_primitive_work
+#print axioms OrdinaryDispatch.RecoveryScalar.finite_primitive_work

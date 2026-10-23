@@ -1,0 +1,3 @@
+import LiteralDecision
+#check Universal233.PaidLiteralDecisionWork.literal_value
+#print axioms Universal233.PaidLiteralDecisionWork.literal_value

@@ -1,0 +1,9 @@
+import OrdinaryCallControls
+namespace OrdinaryDispatch.WorkRecursion.Controls
+open RMAF ForestState Universal233
+open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration
+
+example : ordinaryCallNodes 0 commonT commonS=1 := by cbv;decide
+example : queryWork (fun _ _ _=>1)
+ (forestQueries Hard2Dispatcher.Controls.refusal WorkIntegration.Controls.failedCalls)=1 := by cbv;decide
+end OrdinaryDispatch.WorkRecursion.Controls

@@ -1,0 +1,135 @@
+import OrdinaryChildrenSource
+import WeightedSourceSubtotal
+namespace OrdinaryDispatch.FullSourceWork
+open RMAF ForestState Universal233 Universal233.CherryBranching Universal233.SourceCoverage
+open GenericForest.FrontierWork OrdinaryDispatch.WorkIntegration OrdinaryDispatch.WorkRecursion
+open Universal233.Rule5SelectedLocalWork
+open Universal233.Rule5PendantLocalWork
+
+/-- Positive polynomial constructor and checker caps are monotone in the
+original leaf bound; no assumption q<=the current number of leaves appears. -/
+theorem simpleBudget_mono {n N : Nat} (h : n≤N) :
+ pendantChildBudget n≤pendantChildBudget N ∧ branchesBudget n≤branchesBudget N ∧
+ agreementK n≤agreementK N := by
+ constructor
+ · unfold pendantChildBudget partitionBudget coreBudget pendantPayloadBudget blocksBudget payloadCap cutsBudget cutGuardBudget minimalBudget
+   repeat first | exact h | exact Nat.le_refl _ | apply Nat.add_le_add | apply Nat.mul_le_mul
+ constructor
+ · unfold branchesBudget singletonChildBudget singletonPartitionBudget pendantChildBudget partitionBudget coreBudget pendantPayloadBudget blocksBudget payloadCap cutsBudget cutGuardBudget minimalBudget
+   repeat first | exact h | exact Nat.le_refl _ | apply Nat.add_le_add | apply Nat.mul_le_mul
+ · unfold agreementK
+   exact Nat.mul_le_mul_left 1024 (Nat.pow_le_pow_left (by omega) 5)
+
+theorem rat_sum_constant {α : Type} (L : List α) (X : Rat) :
+ (L.map (fun _=>X)).sum=(L.length:Rat)*X := by
+ induction L with
+ | nil=>simp
+ | cons a L ih=>simp only [List.map_cons,List.sum_cons,List.length_cons,Rat.natCast_add,Rat.natCast_ofNat,ih,Rat.add_mul,Rat.one_mul,Rat.add_comm]
+
+/-- Each job's whole internal forest overhead is charged at its own residual
+budget, then bounded by c^q. This local exponential is composed by the weighted
+ordinary reservoir below, never by the unweighted total number of calls. -/
+theorem childForestDebit_local_bound (actual : GenericForest.FrontierWork.Ordinary)
+ (T : Tree) (q : Nat) (cs : List Child) (N Q m : Nat)
+ (size : (leaves T).length≤N) (budget : q≤Q) (count : cs.length≤m)
+ (proper0 : ∀c,c∈cs→proper (some T) c.sourceForest=true) :
+ (childForestDebit actual (fun _ _ _=>0) T q cs:Rat)≤
+ (m:Rat)*(geometric Rule5ActualTrace.base*forestCoefficient N Q)*Rule5ActualTrace.base^q := by
+ let js:=Rule5OrdinaryDispatch.forestJobs T q cs
+ have positive:0≤geometric Rule5ActualTrace.base*forestCoefficient N Q:=
+  Rat.mul_nonneg (geometric_properties _ (by decide +kernel)).2.2.1 Rat.natCast_nonneg
+ have point (j : Rule5OrdinaryDispatch.ForestJob) (mem : j∈js) :
+  (forestWork actual (fun _ _ _=>0) j.target j.sources j.residual:Rat)≤
+  (geometric Rule5ActualTrace.base*forestCoefficient N Q)*Rule5ActualTrace.base^q:=by
+  have b:=Rule5OrdinaryDispatch.literal_job_binding mem
+  have rem : j.child.paid≤q ∧ j.residual=q-j.child.paid := by
+   have hr:=b.2.2.2
+   unfold remaining at hr
+   split at hr
+   · exact ⟨by assumption,(Option.some.inj hr).symm⟩
+   · contradiction
+  have base:=forestLocalWork_bound actual j.target N Q Rule5ActualTrace.base (by decide +kernel)
+   (by rw [b.2.1];exact size) j.sources j.residual (by omega)
+   (by rw [b.2.1,b.2.2.1];exact proper0 j.child b.1)
+  have pow:=qpow_mono Rule5ActualTrace.base (by decide +kernel) (show j.residual≤q by omega)
+  exact Rat.le_trans base (Rat.mul_le_mul_of_nonneg_left pow positive)
+ have sum:=GenericForest.rat_sum_map_le js
+  (fun j=>(forestWork actual (fun _ _ _=>0) j.target j.sources j.residual:Rat))
+  (fun _=>(geometric Rule5ActualTrace.base*forestCoefficient N Q)*Rule5ActualTrace.base^q) point
+ rw [rat_sum_constant] at sum
+ have len:js.length≤m:=Nat.le_trans (List.length_filterMap_le _ _) count
+ have scale:=Rat.mul_le_mul_of_nonneg_right (Rat.natCast_le_natCast.2 len)
+  (Rat.mul_nonneg positive (Rat.le_of_lt (Rat.pow_pos (by decide +kernel))))
+ simpa only [childForestDebit,nat_sum_cast,js,Rat.mul_assoc] using Rat.le_trans sum scale
+
+def simpleLocalPolynomial (N : Nat) : Nat :=
+ pendantChildBudget N+branchesBudget N+3*(agreementK N+3*N+16)+8
+
+def simpleSourceCoefficient (N Q : Nat) : Rat :=
+ (simpleLocalPolynomial N:Rat)+3*(geometric Rule5ActualTrace.base*forestCoefficient N Q)
+
+theorem simpleSourceCoefficient_nonneg (N Q : Nat) : 0≤simpleSourceCoefficient N Q := by
+ apply Rat.add_nonneg Rat.natCast_nonneg
+ exact Rat.mul_nonneg (by decide +kernel) (Rat.mul_nonneg
+  (geometric_properties _ (by decide +kernel)).2.2.1 Rat.natCast_nonneg)
+
+theorem oneSource_bound (actual : GenericForest.FrontierWork.Ordinary)
+ {T S : Tree} {c : Candidate} (q N Q : Nat) (hp : DepthOne.proper T S=true)
+ (sel : select T S=some (.one,c)) (size : (leaves T).length≤N) (budget : q≤Q) :
+ (oneSource actual (fun _ _ _=>0) T S q c.a c.b).work≤
+ simpleLocalPolynomial N+childForestDebit actual (fun _ _ _=>0) T q [pendantChild S c.a c.b] := by
+ have eq:=((DepthOne.proper_iff T S).1 hp).2.2.length_eq
+ have build:=pendant_child_work S c.a c.b
+ have mono:=simpleBudget_mono (n:=(leaves S).length) (N:=N) (by omega)
+ have check:=ordinary_run_children_local actual (fun _=>0) T S q [pendantChild S c.a c.b] hp
+ have km:agreementK (leaves T).length≤agreementK N:=(simpleBudget_mono size).2.2
+ simp only [List.length_singleton] at check
+ simp only [oneSource,runChildrenSource,pendant_child_value,simpleLocalPolynomial]
+ omega
+
+theorem highSource_bound (actual : GenericForest.FrontierWork.Ordinary)
+ {T S : Tree} {c : Candidate} (q N Q : Nat) (hp : DepthOne.proper T S=true)
+ (sel : select T S=some (.high,c)) (size : (leaves T).length≤N) (budget : q≤Q) :
+ (highSource actual (fun _ _ _=>0) T S q c.a c.b).work≤
+ simpleLocalPolynomial N+childForestDebit actual (fun _ _ _=>0) T q (branches S c.a c.b) := by
+ have eq:=((DepthOne.proper_iff T S).1 hp).2.2.length_eq
+ have build:=branchesMeter_work S c.a c.b
+ have mono:=simpleBudget_mono (n:=(leaves S).length) (N:=N) (by omega)
+ have check:=ordinary_run_children_local actual (fun _=>0) T S q (branches S c.a c.b) hp
+ have km:agreementK (leaves T).length≤agreementK N:=(simpleBudget_mono size).2.2
+ simp only [branches,List.length_cons,List.length_nil] at check
+ simp only [highSource,runChildrenSource,branchesMeter_value,simpleLocalPolynomial]
+ omega
+
+theorem simpleSource_envelope (actual : GenericForest.FrontierWork.Ordinary)
+ {T S : Tree} {c : Candidate} {pr : Priority} (q N Q : Nat) (hp : DepthOne.proper T S=true)
+ (sel : select T S=some (pr,c)) (size : (leaves T).length≤N) (budget : q≤Q)
+ (cs : List Child) (count : cs.length≤3) (members : ∀x,x∈cs→x∈branches S c.a c.b)
+ (work : Nat) (bound : work≤simpleLocalPolynomial N+childForestDebit actual (fun _ _ _=>0) T q cs) :
+ (work:Rat)≤simpleSourceCoefficient N Q*Rule5ActualTrace.base^q := by
+ have forest:=childForestDebit_local_bound actual T q cs N Q 3 size budget count
+  (fun x hx=>selected_children_proper hp sel x (members x hx))
+ have cap:=Rat.natCast_le_natCast.2 bound
+ rw [Rat.natCast_add] at cap
+ have local:=Rat.mul_le_mul_of_nonneg_left (call_base_pow_ge_one q)
+  (Rat.natCast_nonneg (a:=simpleLocalPolynomial N))
+ rw [Rat.mul_one] at local
+ have sum:=Rat.le_trans (Rat.add_le_add_right.mpr local) (Rat.add_le_add_left.mpr forest)
+ exact Rat.le_trans cap (by simpa only [simpleSourceCoefficient,Rat.add_mul] using sum)
+
+theorem oneSource_local_exponential (actual : GenericForest.FrontierWork.Ordinary)
+ {T S : Tree} {c : Candidate} (q N Q : Nat) (hp : DepthOne.proper T S=true)
+ (sel : select T S=some (.one,c)) (size : (leaves T).length≤N) (budget : q≤Q) :
+ ((oneSource actual (fun _ _ _=>0) T S q c.a c.b).work:Rat)≤simpleSourceCoefficient N Q*Rule5ActualTrace.base^q := by
+ apply simpleSource_envelope actual q N Q hp sel size budget [pendantChild S c.a c.b] (by simp)
+  (fun x hx=>by have eq:x=pendantChild S c.a c.b:=by simpa using hx;rw [eq];simp [branches])
+ exact oneSource_bound actual q N Q hp sel size budget
+
+theorem highSource_local_exponential (actual : GenericForest.FrontierWork.Ordinary)
+ {T S : Tree} {c : Candidate} (q N Q : Nat) (hp : DepthOne.proper T S=true)
+ (sel : select T S=some (.high,c)) (size : (leaves T).length≤N) (budget : q≤Q) :
+ ((highSource actual (fun _ _ _=>0) T S q c.a c.b).work:Rat)≤simpleSourceCoefficient N Q*Rule5ActualTrace.base^q := by
+ apply simpleSource_envelope actual q N Q hp sel size budget (branches S c.a c.b)
+  (by simp [branches]) (fun _ hx=>hx)
+ exact highSource_bound actual q N Q hp sel size budget
+end OrdinaryDispatch.FullSourceWork

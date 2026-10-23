@@ -1,0 +1,89 @@
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredBadClassifier.lean:39:30: warning: `if_false` has been deprecated: Use `ite_false` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵f̵a̵l̵s̵e̵i̲t̲e̲_̲f̲a̲l̲s̲e̲
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredBadClassifier.lean:44:13: error: Tactic `rfl` failed: The left-hand side
+  Option.map badValue
+    (match none with
+      | some (Tree.leaf c) =>
+        { value := some { badArc := e, singletonArc := f, c := (copyBits c).value },
+          work :=
+            (meterAddressEq e f).work + (subtreeLeavesBits S e).work +
+                    (restrictionAgreesLabels T S (subtreeLeavesBits S e).value).work +
+                  (subtreeBits S f).work +
+                (copyBits c).work +
+              12 }
+      | x =>
+        { value := none,
+          work :=
+            (meterAddressEq e f).work + (subtreeLeavesBits S e).work +
+                  (restrictionAgreesLabels T S (subtreeLeavesBits S e).value).work +
+                (subtreeBits S f).work +
+              8 }).value
+is not definitionally equal to the right-hand side
+  if e ≠ f ∧ True then
+    match targetValue none with
+    | some (RMAF.Tree.leaf c) => some { badArc := e, singletonArc := f, c := c }
+    | x => none
+  else none
+
+case neg.false.none
+T S : Tree
+e f : RMAF.Vertex
+sv : targetValue (subtreeBits S f).value = Universal233.CoreGraph.subtree (treeValue S) f
+same : ¬e = f
+ag : RMAF.restrictionAgrees (treeValue T) (treeValue S) (Universal233.HardParent.subtreeLabels (treeValue S) e) = false
+h : (subtreeBits S f).value = none
+⊢ Option.map badValue
+      (match none with
+        | some (Tree.leaf c) =>
+          { value := some { badArc := e, singletonArc := f, c := (copyBits c).value },
+            work :=
+              (meterAddressEq e f).work + (subtreeLeavesBits S e).work +
+                      (restrictionAgreesLabels T S (subtreeLeavesBits S e).value).work +
+                    (subtreeBits S f).work +
+                  (copyBits c).work +
+                12 }
+        | x =>
+          { value := none,
+            work :=
+              (meterAddressEq e f).work + (subtreeLeavesBits S e).work +
+                    (restrictionAgreesLabels T S (subtreeLeavesBits S e).value).work +
+                  (subtreeBits S f).work +
+                8 }).value =
+    if e ≠ f ∧ True then
+      match targetValue none with
+      | some (RMAF.Tree.leaf c) => some { badArc := e, singletonArc := f, c := c }
+      | x => none
+    else none
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredBadClassifier.lean:45:13: error: unsolved goals
+case neg.false.some.leaf
+T S : Tree
+e f : RMAF.Vertex
+sv : targetValue (subtreeBits S f).value = Universal233.CoreGraph.subtree (treeValue S) f
+same : ¬e = f
+ag : RMAF.restrictionAgrees (treeValue T) (treeValue S) (Universal233.HardParent.subtreeLabels (treeValue S) e) = false
+label✝ : Label
+h : (subtreeBits S f).value = some (Tree.leaf label✝)
+⊢ ¬e = f
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredBadClassifier.lean:39:39: warning: This simp argument is unused:
+  true_and
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [same, beq_iff_eq, if_false]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredBadClassifier.lean:41:45: warning: This simp argument is unused:
+  ite_true
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Bool.false_eq_true, ite_false]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+/Users/paurel/Documents/ChatGPT/bootscience/research/rmaf/algorithm/universal233/ordinary_dispatch/numeric_classifier_reach_20261016T112738Z/StoredBadClassifier.lean:75:48: warning: This simp argument is unused:
+  h
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [ih]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
